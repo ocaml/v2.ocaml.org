@@ -1,0 +1,76 @@
+html {
+  /* Always show a vertical scroll-bar in firefox (à la IE) so the
+     100% width is always the same pixel width */
+  overflow-y: scroll;
+}
+
+body {
+  padding: 20px;
+  color: #000;
+  background: #FFFFFF;
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+@media print {
+  body {
+    padding-top: 0;
+    font-size: 12px;
+  }
+}
+
+
+/* Header
+   **********************************************************************/
+
+#header {
+  color: white;
+  background: #925a41;
+}
+
+#header img {
+  float: left;
+}
+
+#header .name {
+  font-size: 300%;
+  font-weight: bold;
+  display: block;
+}
+
+#header .slogan {
+  font-size: 100%;
+}
+
+.search-box {
+  float: right;
+}
+
+.login {
+  float: right;
+}
+
+/* Main
+   **********************************************************************/
+
+.dynamic {
+  float: right;
+  width: 20%;
+  background: yellow;
+}
+
+a.download {
+  float: right;
+}
+
+
+#main {
+  width: 79%;
+}
+
+/* Footer
+   **********************************************************************/
+
+#footer {
+  background: #925a41;
+  clear: both;
+}
