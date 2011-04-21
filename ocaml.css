@@ -60,8 +60,11 @@ body {
 
 a.download {
   float: right;
+  border: 0;
 }
-
+a.download img {
+  border: 0;
+}
 
 #main {
   width: 79%;

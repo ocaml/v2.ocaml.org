@@ -1,0 +1,5 @@
+* IRC
+
+http://www.mibbit.com/ might be interesting for newcomers.  Firefox
+proposes it when one clicks on the URL in index.html.  Freenode does
+not seem to be available though.
