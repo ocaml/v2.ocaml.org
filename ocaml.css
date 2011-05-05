@@ -25,6 +25,7 @@ body {
 #header {
   color: white;
   background: #925a41;
+  padding: 0.5ex;
 }
 
 #header img {
@@ -83,7 +84,7 @@ a.download img {
 }
 
 #main {
-  width: 79%;
+  width: 100%;
 }
 
 /* Footer
