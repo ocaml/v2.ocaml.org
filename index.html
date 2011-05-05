@@ -9,26 +9,6 @@
     <link href="ocaml.css" media="all" type="text/css" rel="stylesheet">
   </head>
   <body>
-    <div id="header">
-      <form class="search-box" method="get"
-	    action="http://www.google.com/search">
-	<div>
-	  <input type="text" name="q" value="${search_name}..."
-		 onblur="if(this.value=='') this.value='${search_name}...';"
-		 onfocus="if(this.value=='${search_name}...') this.value='';"
-		 />
-	  <button type="submit"
-		  ><img src="${url_base}images/gosearch.gif"
-			alt="Search" ></button>
-	</div>
-      </form>
-      <img src="https://static.ocamlcore.org/official/images/logo-big.png"
-	   alt="OCaml Community Logo"
-	   width="64" height="64" />
-      <span class="name">OCaml</span>
-      <span class="slogan">Fun with an efficient and expressive language</span>
-      <span class="login">Login/Create an account</span>
-    </div>
     <div class="dynamic">
       <p>Dynamic content</p>
       

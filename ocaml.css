@@ -49,6 +49,22 @@ body {
   float: right;
 }
 
+
+.navigation-bar {
+  font: 83% arial, helvetica, sans-serif; /* as the menu */
+}
+
+.navigation-bar a {
+  border: 0;
+  margin: 0;
+}
+
+.navigation-bar a:hover {
+  background-color: transparent;
+  border: 0;
+  text-decoration: underline;
+}
+
 /* Main
    **********************************************************************/
 

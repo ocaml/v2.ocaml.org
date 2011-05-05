@@ -1,0 +1,9 @@
+# OASIS / ocamlbuild						-*-conf-unix-*-
+_build/
+_tags
+myocamlbuild.ml
+*.data
+setup.ml
+# Generated files
+OCAML.ml
+OCAML.mli

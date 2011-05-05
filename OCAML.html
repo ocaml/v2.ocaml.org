@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <!-- Set document compatibility mode to IE8Mode. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title >OCaml portal | ${title}</title>
+    <meta name="author"
+	  content="Christophe Troestler, Esther Baruk, Ashish Agarwal" />
+    <meta name="description" content="${description}" />
+    <meta name="keywords" content="${keywords}" />
+    <meta name="generator" content="OCaml" />
+
+    <link rel="shortcut icon"
+	  href="${shortcut_icon}" />
+    <link rel="stylesheet" type="text/css" media="all"
+	  href="${url_base}ocaml.css" />
+    <link ml:replace="stylesheet" />
+    <script ml:replace="javascript" ></script>
+
+    <meta property="og:title" content="${title}"/>
+    <meta property="og:type"  content="non_profit" />
+
+    <meta name="robots" content="all" />
+  </head>
+  <body>
+    <div id="header">
+      <form class="search-box" method="get"
+	    action="http://www.google.com/search">
+	<div>
+	  <input type="text" name="q" value="${search_name}..."
+		 onblur="if(this.value=='') this.value='${search_name}...';"
+		 onfocus="if(this.value=='${search_name}...') this.value='';"
+		 />
+	  <button type="submit"
+		  ><img src="${url_base}images/gosearch.gif"
+			alt="Search" /></button>
+	</div>
+      </form>
+      <img src="https://static.ocamlcore.org/official/images/logo-big.png"
+	   alt="OCaml Community Logo"
+	   width="64" height="64" />
+      <span class="name">OCaml</span>
+      <span class="slogan">Fun with an efficient and expressive language</span>
+      <span class="login">Login/Create an account</span>
+
+      <div class="menu" ml:content="menu" >
+	<ul><li>menu entry 1</li></ul>
+      </div>
+    </div>
+    <span class="navigation-bar">
+      <span ml:replace="navigation_bar">navigation bar</span>
+    </span>
+
+    <div id="main">
+
+      <div id="advertisements" ml:content="advertisements"
+	   ml:strip="if empty">
+	Advertisements (if any).
+	<div class="news">news</div>
+	<div class="actions">actions</div>
+      </div>
+
+      <span ml:replace="main">Main text area.</span>
+    </div>
+
+
+    <!-- Footer -->
+    <div id="footer">
+      
+    </div>
+  </body>
+</html>

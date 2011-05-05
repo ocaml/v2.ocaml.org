@@ -1,0 +1,9 @@
+# OASIS_START
+# DO NOT EDIT (digest: 10ce862acd55154b3f596ff206436903)
+# Executable build
+<build.{native,byte}>: pkg_template
+<*.ml{,i}>: pkg_template
+# OASIS_STOP
+
+<**/*.ml>: annot
+
