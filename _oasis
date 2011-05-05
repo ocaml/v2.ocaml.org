@@ -4,7 +4,7 @@ Name:        web-portal
 Version:     0.5
 Synopsis:    OCaml Web portal
 Description: Web portal for ocaml.org
-Authors:     Christophe Troestler
+Authors:     Christophe Troestler, Esther Baruk, Ashish Agarwal
 License:     LGPL-3.0 with OCaml linking exception
 Plugins:     META (0.2), StdFiles (0.2)
 Homepage:    http://forge.ocamlcore.org/projects/ocamlweb/

@@ -2,8 +2,11 @@
 _build/
 _tags
 myocamlbuild.ml
-*.data
 setup.ml
-# Generated files
+*.data
+*.log
+*.native
+# Generated files & dirs
 OCAML.ml
 OCAML.mli
+en/
