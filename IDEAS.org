@@ -1,0 +1,24 @@
+* Components (code to develop)
+
+- user accounts (forge, openID, google, linkedin, yahoo, facebook)
+- wiki
+- listing of the project on the forge
+- searching email lists
+
+* Wiki
+
+- Choice or markup (define an abstract interface, implement
+  several concrete syntax).
+- syntax highlighting
+- comment system
+- history of changes
+- export to several formats, e.g. LaTeX, PDF (low priority).
+
+IMPORTANT GOALS: support writing tutorial with ease.  A comment system
+per paragraph is a plus.
+
+* IRC
+
+http://www.mibbit.com/ might be interesting for newcomers.  Firefox
+proposes it when one clicks on the URL in index.html.  Freenode does
+not seem to be available though.
