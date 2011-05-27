@@ -30,6 +30,10 @@ doc install uninstall reinstall:
 upload-doc: doc
 	scp -C -p -r _build/API.docdir/ $(WEB)
 
+.PHONY: upload
+upload: all
+	scp -C -p -r en/ $(WEB)
+
 # Make a tarball
 .PHONY: dist tar
 dist tar: $(DISTFILES)
