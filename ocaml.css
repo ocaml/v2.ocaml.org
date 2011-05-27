@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  padding: 20px;
+  padding: 0px;
   color: #000;
   background: #FFFFFF;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -18,28 +18,45 @@ body {
   }
 }
 
+a {
+  color: #c25608;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f16a04;
+  text-decoration: underline;
+}
+
 
 /* Header
    **********************************************************************/
 
 #header {
   color: white;
-  background: #925a41;
-  padding: 0.5ex;
+  /* background: #925a41; */
+  padding: 0px;
+  margin: 0;
 }
 
-#header img {
-  float: left;
+#header .top {
+  background-image: url("images/banner-top.jpg");
+  height: 100px;
+  padding: 8px;
+}
+
+#header .bottom {
+  background: black url("images/banner-bottom.jpg") no-repeat top left;
+  height: 19px;
+  padding: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 #header .name {
-  font-size: 300%;
+  font-size: 350%;
   font-weight: bold;
   display: block;
-}
-
-#header .slogan {
-  font-size: 100%;
 }
 
 .search-box {
@@ -48,16 +65,21 @@ body {
 
 .login {
   float: right;
+  font: 83% arial, helvetica, sans-serif; /* as the menu */
 }
 
 
 .navigation-bar {
-  font: 83% arial, helvetica, sans-serif; /* as the menu */
+  font: 83% arial, helvetica, sans-serif;
+  font-weight: bold;
+  color: white;
 }
 
 .navigation-bar a {
   border: 0;
   margin: 0;
+  text-decoration: none;
+  color: white;
 }
 
 .navigation-bar a:hover {
@@ -66,13 +88,40 @@ body {
   text-decoration: underline;
 }
 
+.separation {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 /* Main
    **********************************************************************/
 
+#menu {
+  float: left;
+  width: 15%;
+  font: 83% arial, helvetica, sans-serif;
+  background-color: #111111;
+  color: white;
+}
+
+
+#main {
+  float: right;
+  width: 84%;  /* Conf. in build.ml */
+  padding-left: 1ex;
+}
+
+.slogan {
+  font-size: 100%;
+  font-weight: bold;
+}
+
 .dynamic {
   float: right;
-  width: 20%;
-  background: yellow;
+  width: 15%;
+  background: #111111;
+  color: white;
+  padding: 1ex;
 }
 
 a.download {
@@ -81,10 +130,6 @@ a.download {
 }
 a.download img {
   border: 0;
-}
-
-#main {
-  width: 100%;
 }
 
 /* Footer

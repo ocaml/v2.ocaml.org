@@ -10,7 +10,7 @@
 	  content="Christophe Troestler, Esther Baruk, Ashish Agarwal" />
     <meta name="description" content="${description}" />
     <meta name="keywords" content="${keywords}" />
-    <meta name="generator" content="OCaml" />
+    <meta name="generator" content="OCaml (Template)" />
 
     <link rel="shortcut icon"
 	  href="${shortcut_icon}" />
@@ -26,35 +26,36 @@
   </head>
   <body>
     <div id="header">
-      <form class="search-box" method="get"
-	    action="http://www.google.com/search">
-	<div>
-	  <input type="text" name="q" value="${search_name}..."
-		 onblur="if(this.value=='') this.value='${search_name}...';"
-		 onfocus="if(this.value=='${search_name}...') this.value='';"
-		 />
-	  <button type="submit"
-		  ><img src="${url_base}images/gosearch.gif"
-			alt="Search" /></button>
-	</div>
-      </form>
-      <img src="https://static.ocamlcore.org/official/images/logo-big.png"
-	   alt="OCaml Community Logo"
-	   width="64" height="64" />
-      <span class="name">OCaml</span>
-      <span class="slogan">Fun with an efficient and expressive language</span>
-      <span class="login">Login/Create an account</span>
-
-      <div class="menu" ml:content="menu" >
-	<ul><li>menu entry 1</li></ul>
+      <div class="top">
+	<form class="search-box" method="get"
+	      action="http://www.google.com/search">
+	  <div>
+	    <input type="text" name="q" value="${search_name}..."
+		   onblur="if(this.value=='') this.value='${search_name}...';"
+		   onfocus="if(this.value=='${search_name}...') this.value='';"
+		   />
+	    <button type="submit"
+		    ><img src="${url_base}images/gosearch.gif"
+			  alt="Search" /></button>
+	  </div>
+	</form>
+	<!--<img src="https://static.ocamlcore.org/official/images/logo-big.png"
+	    alt="OCaml Community Logo"
+	    width="64" height="64" /> -->
+	<span class="name">OCaml</span>
+      </div>
+      <div class="bottom">
+	<span class="navigation-bar">
+	  <span ml:replace="navigation_bar">navigation bar</span>
+	</span>
+	<span class="login">Login/Create an account</span>
       </div>
     </div>
-    <span class="navigation-bar">
-      <span ml:replace="navigation_bar">navigation bar</span>
-    </span>
 
-    <div id="main">
-
+    <div id="menu" ml:content="menu" >
+      <ul><li>menu entry 1</li></ul>
+    </div>
+    <div id="main" style="width: ${main_width}" >
       <div id="advertisements" ml:content="advertisements"
 	   ml:strip="if empty">
 	Advertisements (if any).
@@ -64,7 +65,6 @@
 
       <span ml:replace="main">Main text area.</span>
     </div>
-
 
     <!-- Footer -->
     <div id="footer">

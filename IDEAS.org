@@ -1,3 +1,5 @@
+#+STARTUP: showall
+
 * Components (code to develop)
 
 - user accounts (forge, openID, google, linkedin, yahoo, facebook)

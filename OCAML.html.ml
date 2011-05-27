@@ -12,10 +12,10 @@ let separation_arrow url_base =
 
 let rec transform_path sep p = match p with
   | [] -> []
-  | [(a, _)] -> [sep; Data a]
+  | [(a, _)] -> [Data a]
   | (a, rev) :: tl ->
       let el = Element("a", ["href", rev], [Data a]) in
-      sep :: el :: transform_path sep tl
+      el :: sep :: transform_path sep tl
 
 let stylesheet tpl ?(rel_base=true) url =
   Set.stylesheet tpl begin fun t ->
