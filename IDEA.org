@@ -1,0 +1,14 @@
+* Components (code to develop)
+
+- user accounts (forge, openID, google, linkedin, yahoo, facebook)
+- wiki
+- listing of the project on the forge
+- searching email lists
+
+* Wiki
+
+- Choice or markup (define an abstract interface, implement
+  several concrete syntax).
+- syntax highlighting
+- comment system
+- history of changes
