@@ -16,4 +16,4 @@ Executable build
   BuildDepends:   template
   CompiledObject: best
   BuildTools:     ocamlbuild
-  Install:        true
+  Install:        false
