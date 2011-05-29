@@ -18,7 +18,8 @@ all: native
 byte native: configure
 	ocaml setup.ml -build
 
-configure: setup.ml
+configure: setup.data setup.log
+setup.data setup.log: setup.ml
 	ocaml $< -configure
 
 setup.ml: _oasis
@@ -28,11 +29,11 @@ doc install uninstall reinstall:
 	ocaml setup.ml -$@
 
 upload-doc: doc
-	scp -C -p -r _build/API.docdir/ $(WEB)
+	scp -C -r _build/API.docdir/ $(WEB)
 
 .PHONY: upload
 upload: all
-	scp -C -p -r en/ $(WEB)
+	scp -C -r en/ $(WEB)
 
 # Make a tarball
 .PHONY: dist tar
