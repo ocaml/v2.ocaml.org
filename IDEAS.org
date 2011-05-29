@@ -14,6 +14,8 @@
 
 - Choice or markup (define an abstract interface, implement
   several concrete syntax).
+  - should allow to define external anchors.
+
 - syntax highlighting
 - comment system
 - history of changes

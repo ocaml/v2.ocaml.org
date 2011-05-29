@@ -28,6 +28,14 @@ a:hover {
   text-decoration: underline;
 }
 
+h1, h1 a {
+  color: black
+}
+
+h2, h2 a {
+  color: #d1630a;
+}
+
 
 /* Header
    **********************************************************************/
@@ -112,8 +120,16 @@ a:hover {
 }
 
 .slogan {
-  font-size: 100%;
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+  font-size: 120%;
   font-weight: bold;
+}
+
+div.short-explanation {
+  padding: 1ex;
+  margin-bottom: 1ex;
+  background: #fcf7d5;
 }
 
 .dynamic {
@@ -124,12 +140,22 @@ a:hover {
   padding: 1ex;
 }
 
-a.download {
+div.download {
   float: right;
   border: 0;
+  width: 120px;
+  text-align: center;
+  background: white;
+  padding-bottom: 5ex;
 }
-a.download img {
+download a img {
   border: 0;
+}
+
+.read-more {
+  font-size: 80%;
+  float: right;
+  padding-top: 0.5ex;
 }
 
 /* Footer
