@@ -7,6 +7,9 @@
 - listing of the project on the forge
 - searching email lists
 
+- Statistics on the paths (list of links) that people follow would be
+  interesting to optimize the site after it is launched.
+
 * Wiki
 
 - Choice or markup (define an abstract interface, implement
@@ -15,6 +18,7 @@
 - comment system
 - history of changes
 - export to several formats, e.g. LaTeX, PDF (low priority).
+- It should be easy to merge/move/split pages through the provided interface.
 
 IMPORTANT GOALS: support writing tutorial with ease.  A comment system
 per paragraph is a plus.
