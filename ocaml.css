@@ -130,6 +130,7 @@ div.short-explanation {
   padding: 1ex;
   margin-bottom: 1ex;
   background: #fcf7d5;
+  /* line-height: 140%; */
 }
 
 .dynamic {
