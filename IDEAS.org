@@ -1,32 +1,139 @@
 #+STARTUP: showall
 
-* Components (code to develop)
+* Components
+  Here is a list of the main components desired. Details for each
+  component are in the following subsections.
+  - user accounts
+  - wiki
+  - documentation
+  - list of libraries
+  - searching email lists
+  - site statistics
+  - blog
+  - FAQ
+  - list external resources
+  - aesthetic functional design
+  - management structure
 
-- user accounts (forge, openID, google, linkedin, yahoo, facebook)
-- wiki
-- listing of the project on the forge
-- searching email lists
+  Many features require new code to be written (current plan is to
+  implement the site in Ocsigen), and several require well written
+  content.
 
-- Statistics on the paths (list of links) that people follow would be
-  interesting to optimize the site after it is launched.
+* User Accounts
+** Allow authentication via trusted 3rd party sites:
+  - [[https://forge.ocamlcore.org/][OCaml Forge]]
+  - Google
+  - LinkedIn
+  - Facebook
+  - Yahoo
+  - OpenID
+
+** Maintain minimal profile data to:
+  - help us understand community
+  - know which institutions have OCaml programmers
+  - create map showing where OCaml programmers are based
 
 * Wiki
+  IMPORTANT GOALS: support writing tutorial with ease. A comment
+  system per paragraph is a plus.
 
-- Choice or markup (define an abstract interface, implement
-  several concrete syntax).
+  It will be important to have an editor who monitors the structure
+  and quality of the writing on a long-term basis. Else the wiki risks
+  being a collection of incoherent text.
+
+** Desired features:
+  - Choice of markup (define an abstract interface, implement
+    several concrete syntax).
   - should allow to define external anchors.
+  - support structured documentation with sections, subsections, etc.
+  - syntax highlighting
+  - comment system
+  - history of changes
+  - export to several formats, e.g. LaTeX, PDF (low priority).
+  - It should be easy to merge/move/split pages through the provided interface.
+  - comments per paragraph, as in [[http://book.realworldhaskell.org/read/][Real World Haskell]]
 
-- syntax highlighting
-- comment system
-- history of changes
-- export to several formats, e.g. LaTeX, PDF (low priority).
-- It should be easy to merge/move/split pages through the provided interface.
+* Documentation
+  There are many forms of documentation. The wiki feature is meant to
+  enable user contributed documentation. On the other hand, there is
+  much documentation that already exists. At first, we can simply link
+  to these other sources, but a better goal is to seamlessly integrate
+  into the main site. For example, PDF books should be available in
+  html format to help search engines, and possibly provide enhanced
+  features like user comments.
 
-IMPORTANT GOALS: support writing tutorial with ease.  A comment system
-per paragraph is a plus.
+** Existing Documentation
+   - Books
+     - All those listed [[http://caml.inria.fr/about/books.en.html][on inria's site]].
+     - Jason Hickey's [[http://files.metaprl.org/doc/ocaml-book.pdf][Introduction to OCaml]]
+     - [[http://ocamlunix.forge.ocamlcore.org/][Unix system programming in OCaml]].
+   - [[http://pleac.sourceforge.net/pleac_ocaml/][PLEAC-OCaml]]
+   - Absorb content of ocaml-tutorial.org.
+   - Encourage community to add to wiki, especially content already
+     available in other forms elsewhere. Examples:
+     - ocamlbuild documentation
+     - [[http://ambassadortothecomputers.blogspot.com/p/reading-camlp4.html][Jake Donham's blog posts on camlp4]]
 
-* IRC
+* List of Libraries
+  - something like hackage
+  - oasis-db project provides a good starting point
+  - may require also automatically pulling information from github and
+    ocamlforge
 
-http://www.mibbit.com/ might be interesting for newcomers.  Firefox
-proposes it when one clicks on the URL in index.html.  Freenode does
-not seem to be available though.
+** Desired features
+  - provide download links to latest and previous versions of library
+  - list methods by which library can be installed, e.g. source, godi,
+    debian package, etc.
+  - link to API documentation, oasis project will help here
+  - support star ranking like Amazon, each user can assign number of
+    stars and comment on the library, average starts are shown
+  - search, like in Hoogle, there is already a version of this for
+    OCaml somewhere...
+
+* Search Email Lists
+  The main OCaml List and Beginner's list are both difficult to search
+  over. An improved interface would be nice. In addition, there are
+  actually numerous other OCaml related mailing lists (e.g. virtually
+  every project on the forge). Should at least link to them and/or
+  integrate search over all lists.
+
+  Make it easy to subscribe to mailing lists. Simply check a box in
+  your account settings page.
+
+* Site Statistics
+  - on the paths (list of links) that people follow would be
+    interesting to optimize the site after it is launched
+  - register with Google
+  - any software that should be installed on web server?
+
+* Blog
+  - aggregate related blogs, already provide by [[http://planet.ocamlcore.org/][planet]].
+  - one new blog where major announcements are made, show this one on
+    front page
+
+* FAQ (Frequently Asked Questions)
+  - should be in sections
+
+* List External Resources
+  - IRC, create links directly to #ocaml channel via various
+    clients.
+
+    [[http://www.mibbit.com/][mibbit]] might be interesting for newcomers. Firefox proposes it
+    when one clicks on the URL in index.html. Freenode does not seem
+    to be available though.
+
+  - Reddit
+  - Stack Overflow
+
+* Design
+  - get funding for professional designer
+  - clean designe but not austere
+  - should support dynamic features where appropriate, but work
+    gracefully when javascript not enabled
+  - should also look good and be functional on mobile devices (lower priority)
+  - examples of sites for inspiration: [[http://www.postgresql.org][PostgreSQL]], [[http://www.mongodb.org][mongoDB]], [[http://drupal.org][Drupal]],
+    [[http://www.perl.org][Perl]]
+  - random eye-catching ideas: [[http://www.wordle.net][word clouds]], [[http://www.highcharts.com][charts]]
+
+* Management Structure
+  - site is owned by the community
