@@ -43,7 +43,8 @@
 
 ** Desired features:
   - Choice of markup (define an abstract interface, implement
-    several concrete syntax).
+    several concrete syntax).  This is VERY URGENT in order to be able
+    to develop content while the code is being written.
   - should allow to define external anchors.
   - support structured documentation with sections, subsections, etc.
   - syntax highlighting
@@ -68,15 +69,15 @@
      - Jason Hickey's [[http://files.metaprl.org/doc/ocaml-book.pdf][Introduction to OCaml]]
      - [[http://ocamlunix.forge.ocamlcore.org/][Unix system programming in OCaml]].
    - [[http://pleac.sourceforge.net/pleac_ocaml/][PLEAC-OCaml]]
-   - Absorb content of ocaml-tutorial.org.
+   - Absorb content of [[http://mirror.ocamlcore.org/wiki.cocan.org/][ocaml-tutorial.org]].
    - Encourage community to add to wiki, especially content already
      available in other forms elsewhere. Examples:
-     - ocamlbuild documentation
+     - [[http://brion.inria.fr/gallium/index.php/Ocamlbuild][ocamlbuild documentation]]
      - [[http://ambassadortothecomputers.blogspot.com/p/reading-camlp4.html][Jake Donham's blog posts on camlp4]]
 
 * List of Libraries
-  - something like hackage
-  - oasis-db project provides a good starting point
+  - something like [[http://hackage.haskell.org/packages/hackage.html][hackage]]
+  - [[http://oasis.ocamlcore.org/dev/home][oasis-db]] project provides a good starting point
   - may require also automatically pulling information from github and
     ocamlforge
 
@@ -89,6 +90,9 @@
     stars and comment on the library, average starts are shown
   - search, like in Hoogle, there is already a version of this for
     OCaml somewhere...
+  - have permanent links to libraries [pages] so we can safely refer
+    to them from other pages (e.g. comparing libraries for web
+    programming).
 
 * Search Email Lists
   The main OCaml List and Beginner's list are both difficult to search
@@ -107,7 +111,8 @@
   - any software that should be installed on web server?
 
 * Blog
-  - aggregate related blogs, already provide by [[http://planet.ocamlcore.org/][planet]].
+  - aggregate related blogs, already provided by [[http://planet.ocamlcore.org/][planet]] but we would
+    like to display healines only on the front page of the site.
   - one new blog where major announcements are made, show this one on
     front page
 
@@ -127,7 +132,7 @@
 
 * Design
   - get funding for professional designer
-  - clean designe but not austere
+  - clean design but not austere
   - should support dynamic features where appropriate, but work
     gracefully when javascript not enabled
   - should also look good and be functional on mobile devices (lower priority)
