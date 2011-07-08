@@ -68,6 +68,7 @@
      - All those listed [[http://caml.inria.fr/about/books.en.html][on inria's site]].
      - Jason Hickey's [[http://files.metaprl.org/doc/ocaml-book.pdf][Introduction to OCaml]]
      - [[http://ocamlunix.forge.ocamlcore.org/][Unix system programming in OCaml]].
+     - [[http://thinkocaml.com/][Think OCaml]]
    - [[http://pleac.sourceforge.net/pleac_ocaml/][PLEAC-OCaml]]
    - Absorb content of [[http://mirror.ocamlcore.org/wiki.cocan.org/][ocaml-tutorial.org]].
    - Encourage community to add to wiki, especially content already
