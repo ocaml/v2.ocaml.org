@@ -1,0 +1,168 @@
+html {
+  /* Always show a vertical scroll-bar in firefox (à la IE) so the
+     100% width is always the same pixel width */
+  overflow-y: scroll;
+}
+
+body {
+  padding: 0px;
+  color: #000;
+  background: #FFFFFF;
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+@media print {
+  body {
+    padding-top: 0;
+    font-size: 12px;
+  }
+}
+
+a {
+  color: #c25608;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f16a04;
+  text-decoration: underline;
+}
+
+h1, h1 a {
+  color: black
+}
+
+h2, h2 a {
+  color: #d1630a;
+}
+
+
+/* Header
+   **********************************************************************/
+
+#header {
+  color: white;
+  /* background: #925a41; */
+  padding: 0px;
+  margin: 0;
+}
+
+#header .top {
+  background-image: url("images/banner-top.jpg");
+  height: 100px;
+  padding: 8px;
+}
+
+#header .bottom {
+  background: black url("images/banner-bottom.jpg") no-repeat top left;
+  height: 19px;
+  padding: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+#header .name {
+  font-size: 350%;
+  font-weight: bold;
+  display: block;
+}
+
+.search-box {
+  float: right;
+}
+
+.login {
+  float: right;
+  font: 83% arial, helvetica, sans-serif; /* as the menu */
+}
+
+
+.navigation-bar {
+  font: 83% arial, helvetica, sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+.navigation-bar a {
+  border: 0;
+  margin: 0;
+  text-decoration: none;
+  color: white;
+}
+
+.navigation-bar a:hover {
+  background-color: transparent;
+  border: 0;
+  text-decoration: underline;
+}
+
+.separation {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Main
+   **********************************************************************/
+
+#menu {
+  float: left;
+  width: 15%;
+  font: 83% arial, helvetica, sans-serif;
+  background-color: #111111;
+  color: white;
+}
+
+
+#main {
+  float: right;
+  width: 84%;  /* Conf. in build.ml */
+  padding-left: 1ex;
+}
+
+.slogan {
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+div.short-explanation {
+  padding: 1ex;
+  margin-bottom: 1ex;
+  background: #fcf7d5;
+  /* line-height: 140%; */
+}
+
+.dynamic {
+  float: right;
+  width: 15%;
+  background: #111111;
+  color: white;
+  padding: 1ex;
+}
+
+div.download {
+  float: right;
+  border: 0;
+  width: 120px;
+  text-align: center;
+  background: white;
+  padding-bottom: 5ex;
+}
+download a img {
+  border: 0;
+}
+
+.read-more {
+  font-size: 80%;
+  float: right;
+  padding-top: 0.5ex;
+}
+
+/* Footer
+   **********************************************************************/
+
+#footer {
+  background: #925a41;
+  clear: both;
+}
