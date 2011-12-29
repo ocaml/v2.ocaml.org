@@ -15,17 +15,17 @@ all: native
 	cp ocaml.css en
 	cp -a images/ en/
 
-byte native: configure
+byte native setup.log: configure
 	ocaml setup.ml -build
 
-configure: setup.data setup.log
-setup.data setup.log: setup.ml
+configure: setup.data
+setup.data: setup.ml
 	ocaml $< -configure
 
 setup.ml: _oasis
 	oasis setup
 
-doc install uninstall reinstall:
+doc install uninstall reinstall: setup.log
 	ocaml setup.ml -$@
 
 upload-doc: doc
@@ -55,4 +55,4 @@ clean::
 
 distclean:
 	ocaml setup.ml -distclean
-	$(RM) $(wildcard *.ba[0-9] *.bak *~ *.odocl) setup.log
+	$(RM) $(wildcard *.ba[0-9] *.bak *~ *.odocl)
