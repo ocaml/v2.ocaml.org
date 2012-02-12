@@ -5,8 +5,10 @@ setup.data
 setup.log
 configure
 *.native
+doclib.docdir
 src/lib/OCamlOrg_Main.ml
 src/lib/OCamlOrg_Main.mli
 src/lib/META
 src/lib/ocamlorg.mllib
+src/lib/doclib.odocl
 en/
