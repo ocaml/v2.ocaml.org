@@ -12,8 +12,8 @@ DISTFILES   = AUTHORS.txt INSTALL.txt README.txt _oasis \
 
 all: native
 	./build.native
-	cp ocaml.css en
-	cp -a images/ en/
+	cp -a src/html/css/ en/
+	cp -a src/html/img/ en/
 
 byte native setup.log: configure
 	ocaml setup.ml -build

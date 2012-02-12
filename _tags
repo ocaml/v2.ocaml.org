@@ -1,8 +1,16 @@
 # OASIS_START
-# DO NOT EDIT (digest: 5435710b53e66998ecd0cc114b733e9f)
+# DO NOT EDIT (digest: 90187e5a3f355a6ef388591b252160bb)
+# Library ocamlorg
+"src/lib": include
+<src/lib/*.ml{,i}>: pkg_weberizer
+<src/lib/*.ml{,i}>: pkg_netstring
 # Executable build
-<build.{native,byte}>: pkg_weberizer
-<*.ml{,i}>: pkg_weberizer
+<src/app/build.{native,byte}>: use_ocamlorg
+<src/app/build.{native,byte}>: pkg_weberizer
+<src/app/build.{native,byte}>: pkg_netstring
+<src/app/*.ml{,i}>: use_ocamlorg
+<src/app/*.ml{,i}>: pkg_weberizer
+<src/app/*.ml{,i}>: pkg_netstring
 # OASIS_STOP
 
 <**/*.ml>: annot

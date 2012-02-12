@@ -6,12 +6,20 @@ Description: A website for and by the OCaml community.
 Authors:     Christophe Troestler, Esther Baruk, Ashish Agarwal
 License:     LGPL-3.0 with OCaml linking exception
 Plugins:     META (0.2)
-PostConfCommand: weberizer_compile OCAML.html
+PostConfCommand: weberizer_compile src/lib/OCamlOrg_Main.html
+
+Library ocamlorg
+  Path:         src/lib
+  FindlibName:  ocamlorg
+  BuildTools:   ocamlbuild
+  BuildDepends: weberizer, netstring
+  Install:      false
+  Modules:      OCamlOrg_Main
 
 Executable build
-  Path:           .
+  Path:           src/app
   MainIs:         build.ml
-  BuildDepends:   weberizer
+  BuildDepends:   weberizer, ocamlorg
   CompiledObject: best
   BuildTools:     ocamlbuild
   Install:        false
