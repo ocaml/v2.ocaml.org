@@ -18,6 +18,6 @@ val navigation : t -> (string * string) list -> t
     [nav].  The couples of [nav] are of the form [(text, URL)]. *)
 
 val navigation_of_path : t -> ?prefix:(string * string) list ->
-  Template.Path.t -> t
+  Weberizer.Path.t -> t
 (** [navigation_of_path t path] add a navigation bar based on the
     [path]. *)

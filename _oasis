@@ -1,19 +1,17 @@
-#                                                               -*-conf-*-
 OASISFormat: 0.2
-Name:        web-portal
-Version:     0.5
-Synopsis:    OCaml Web portal
-Description: Web portal for ocaml.org
+Name:        ocamlorg
+Version:     0.0-dev
+Synopsis:    OCaml Community Website
+Description: A website for and by the OCaml community.
 Authors:     Christophe Troestler, Esther Baruk, Ashish Agarwal
 License:     LGPL-3.0 with OCaml linking exception
-Plugins:     META (0.2), StdFiles (0.2)
-Homepage:    http://forge.ocamlcore.org/projects/ocamlweb/
-PostConfCommand: compile_template OCAML.html
+Plugins:     META (0.2)
+PostConfCommand: weberizer_compile OCAML.html
 
 Executable build
   Path:           .
   MainIs:         build.ml
-  BuildDepends:   template
+  BuildDepends:   weberizer
   CompiledObject: best
   BuildTools:     ocamlbuild
   Install:        false

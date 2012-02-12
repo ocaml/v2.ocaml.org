@@ -39,4 +39,4 @@ let navigation tpl path =
   end
 
 let navigation_of_path tpl ?(prefix=[]) p =
-  navigation tpl (prefix @ Template.Path.navigation p)
+  navigation tpl (prefix @ Weberizer.Path.navigation p)
