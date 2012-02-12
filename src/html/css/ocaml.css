@@ -48,13 +48,13 @@ h2, h2 a {
 }
 
 #header .top {
-  background-image: url("images/banner-top.jpg");
+  background-image: url("../img/banner-top.jpg");
   height: 100px;
   padding: 8px;
 }
 
 #header .bottom {
-  background: black url("images/banner-bottom.jpg") no-repeat top left;
+  background: black url("../img/banner-bottom.jpg") no-repeat top left;
   height: 19px;
   padding: 5px;
   padding-top: 10px;

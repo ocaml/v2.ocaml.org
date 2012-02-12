@@ -5,8 +5,8 @@ AUTOFILES = src/lib/OCamlOrg_Main.ml \
 # build the website
 web: build
 	./build.native
-	cp -a src/html/css/ en/
-	cp -a src/html/img/ en/
+	cp -a src/html/css en/
+	cp -a src/html/img en/
 
 
 # OASIS_START

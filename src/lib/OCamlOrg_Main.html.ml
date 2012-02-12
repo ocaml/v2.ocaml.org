@@ -7,7 +7,7 @@ let concat_path p f =
 
 let separation_arrow url_base =
   Element("span", ["class", "separation"],
-          [Element("img", ["src", url_base ^ "images/right_arrow.png";
+          [Element("img", ["src", url_base ^ "img/right_arrow.png";
                            "alt", "&gt;"], [])])
 
 let rec transform_path sep p = match p with
