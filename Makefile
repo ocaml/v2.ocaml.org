@@ -1,58 +1,55 @@
-PKGNAME	    = $(shell oasis query name)
-PKGVERSION  = $(shell oasis query version)
-PKG_TARBALL = $(PKGNAME)-$(PKGVERSION).tar.gz
+# auto-generated ml/mli files
+AUTOFILES = src/lib/OCamlOrg_Main.ml \
+            src/lib/OCamlOrg_Main.mli
 
-WEB = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
-
-DISTFILES   = AUTHORS.txt INSTALL.txt README.txt _oasis \
-  Makefile myocamlbuild.ml setup.ml config.ml _tags \
-  $(wildward *.html)
-
-.PHONY: all byte native configure doc install uninstall reinstall upload-doc
-
-all: native
+# build the website
+web: build
 	./build.native
 	cp -a src/html/css/ en/
 	cp -a src/html/img/ en/
 
-byte native setup.log: configure
-	ocaml setup.ml -build
 
-configure: setup.data
-setup.data: setup.ml
-	ocaml $< -configure
+# OASIS_START
+# DO NOT EDIT (digest: bc1e05bfc8b39b664f29dae8dbd3ebbb)
 
-setup.ml: _oasis
-	oasis setup
+SETUP = ocaml setup.ml
 
-doc install uninstall reinstall: setup.log
-	ocaml setup.ml -$@
+build: setup.data
+	$(SETUP) -build $(BUILDFLAGS)
 
-upload-doc: doc
-	scp -C -r _build/API.docdir/ $(WEB)
+doc: setup.data build
+	$(SETUP) -doc $(DOCFLAGS)
 
-.PHONY: upload
-upload: all
-	scp -C -r en/ $(WEB)
+test: setup.data build
+	$(SETUP) -test $(TESTFLAGS)
 
-# Make a tarball
-.PHONY: dist tar
-dist tar: $(DISTFILES)
-	mkdir $(PKGNAME)-$(PKGVERSION)
-	cp --parents -r $(DISTFILES) $(PKGNAME)-$(PKGVERSION)/
-	tar -zcvf $(PKG_TARBALL) $(PKGNAME)-$(PKGVERSION)
-	rm -rf $(PKGNAME)-$(PKGVERSION)
+all: 
+	$(SETUP) -all $(ALLFLAGS)
 
+install: setup.data
+	$(SETUP) -install $(INSTALLFLAGS)
 
-.PHONY: svn
-svn:
-	bzr push svn+ssh://scm.ocamlcore.org/svnroot/ocamlweb/template
+uninstall: setup.data
+	$(SETUP) -uninstall $(UNINSTALLFLAGS)
 
-.PHONY: clean distclean
-clean::
-	ocaml setup.ml -clean
-	$(RM) $(PKG_TARBALL)
+reinstall: setup.data
+	$(SETUP) -reinstall $(REINSTALLFLAGS)
 
-distclean:
-	ocaml setup.ml -distclean
-	$(RM) $(wildcard *.ba[0-9] *.bak *~ *.odocl)
+clean: 
+	$(SETUP) -clean $(CLEANFLAGS)
+
+distclean: 
+	$(SETUP) -distclean $(DISTCLEANFLAGS)
+
+setup.data:
+	$(SETUP) -configure $(CONFIGUREFLAGS)
+
+.PHONY: build doc test all install uninstall reinstall clean distclean configure
+
+# OASIS_STOP
+
+# delete everything that is auto-generated
+.PHONY: fresh
+fresh: distclean
+	rm -rf en
+	rm -f $(AUTOFILES)
