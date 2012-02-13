@@ -12,6 +12,7 @@
     <li><h4><a href="download.html">Download</a></h4></li>
     <li><h4><a href="news.html">News</a></h4></li>
     <li><h4><a href="features.html">Features</a></h4></li>
+    <li><h4><a href="books.html">Books</a></h4></li>
     <li><h4><a href="tutorials.html">Tutorials</a></h4></li>
     <li><h4><a href="documentation.html">Manuals</a></h4></li>
     <li><h4><a href="community.html">Community</a></h4></li>
@@ -32,6 +33,7 @@
 <h2>Learn</h2>
 <ul>
 <li><a href="features.html" title="Discover OCaml Features">Features</a></li>
+<li><a href="books.html" title="Links to books">Books</a></li>
 <li><a href="tutorials.html" title="Links to tutorials">Tutorials</a></li>
 <li><a href="community.html" title="Join the OCaml community">Community</a></li>
 <li><a href="applications.html" title="Discover what you can develop with OCaml">Applications</a></li>
