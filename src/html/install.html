@@ -9,6 +9,34 @@
   <body>
 
     <h1>Install OCaml</h1>
+    <p>OCaml can be easily installed in several ways. Broadly, the
+    options are: install from source code, use a package manager
+    supported by your platform, or use a package manager specific to
+    OCaml. The different options are detailed below.</p>
+
+    <h2>GODI</h2>
+    <p>GODI is a package manager specific to OCaml. It automatically
+    downloads, compiles, and installs OCaml itself as well as many
+    OCaml libraries. It works well on Unix, Linux, and Mac OS X
+    systems. Windows support is less stable, but it may work.</p>
+
+    <p>To get started, go to
+    the <a href="http://godi.camlcity.org">GODI website</a>, click
+    "Get GODI", download the tarball, and follow the instructions in
+    the README.</p>
+
+    <p>For the impatient, do the following
+
+    <pre>
+    wget http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
+    tar xzvf http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
+    cd godi-rocketboost-20110811
+    ./bootstrap
+    </pre>
+
+    You may need to use the --prefix option to the bootstrap command
+    if you need to change the default installation location.
+    </p>
 
     <h2>Linux</h2>
 
