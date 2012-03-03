@@ -10,7 +10,10 @@ Imported all that I found interesting in "Choose your platform". [ChriS]
 
 ocaml-tutorial.org website
 ==========================
-Imported all tutorials:
+
+Imported all tutorials from
+[ocaml-tutorial.org](http://mirror.ocamlcore.org/ocaml-tutorial.org/index.html):
+
 * The Basics
 * The Structure of OCaml Programs
 * Data Types and Matching

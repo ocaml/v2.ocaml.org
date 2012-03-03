@@ -15,7 +15,7 @@ DEPENDENCIES
 Building the html pages requires:
 
 * ocaml
-* oasis
+* [oasis](http://forge.ocamlcore.org/projects/oasis/)
 * [weberizer](https://github.com/Chris00/weberizer)
 
 Weberizer is Christophe Troestler's templating tool. It allows us to
