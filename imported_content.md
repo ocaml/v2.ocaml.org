@@ -4,6 +4,9 @@ Safety : http://mirror.ocamlcore.org/wiki.cocan.org/features/safety.html [Esther
 Portable programs: http://mirror.ocamlcore.org/wiki.cocan.org/features/portability.html [Esther] (Except WxCaml and Case Studies paragraphs)
 Speed: http://mirror.ocamlcore.org/wiki.cocan.org/features/speed.html [Esther] (Just the part on the INRIA page)
 
+http://mirror.ocamlcore.org/wiki.cocan.org/getting_started_with_ocaml.html
+Imported all that I found interesting in "Choose your platform". [ChriS]
+
 
 ocaml-tutorial.org website
 ==========================
