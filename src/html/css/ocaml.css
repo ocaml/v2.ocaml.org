@@ -36,6 +36,11 @@ h2, h2 a {
   color: #d1630a;
 }
 
+h3, h3 a {
+  color: #505050;
+  font-style: italic;
+}
+
 
 /* Header
    **********************************************************************/
@@ -177,6 +182,13 @@ download a img {
   font-size: 80%;
   float: right;
   padding-top: 0.5ex;
+}
+
+
+pre {
+  border: thin dashed #959595;
+  padding: 1ex;
+  background-color: #fffae1;
 }
 
 /* Footer
