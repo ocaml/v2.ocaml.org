@@ -21,3 +21,11 @@ val navigation_of_path : t -> ?prefix:(string * string) list ->
   Weberizer.Path.t -> t
 (** [navigation_of_path t path] add a navigation bar based on the
     [path]. *)
+
+(* @hide languages *)
+val languages : t -> (string * string) list -> t
+(** [languages tpl langs] return (a copy of) the template [tpl] with
+    the language links set according to [langs].  [langs] is a list
+    of [(lang, url)] where [lang] is the name of the language and
+    [url] is the (relative or absolute) URL where the page can be
+    found ([""] if it is the current page). *)

@@ -101,6 +101,26 @@ h2, h2 a {
   padding-right: 5px;
 }
 
+span.separation-bar {
+  padding-left: 3px;
+  padding-right: 3px;
+  /* color: rgb(204,0,51); */
+  /* font-weight: bold; */
+}
+
+#language .current-url {
+  color: #7B7B7B;
+}
+
+#language .open-bracket {
+  padding-left: 1em;
+  color: #7B7B7B;
+}
+
+#language .close-bracket {
+  color: #7B7B7B;
+}
+
 /* Main
    **********************************************************************/
 

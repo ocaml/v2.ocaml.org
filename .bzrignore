@@ -6,6 +6,12 @@ setup.ml
 *.data
 *.log
 *.native
+*.odocl
+*.mllib
+src/lib/OCamlOrg_Main.ml
+src/lib/OCamlOrg_Main.mli
+META
+configure
 # Generated files & dirs
 OCAML.ml
 OCAML.mli

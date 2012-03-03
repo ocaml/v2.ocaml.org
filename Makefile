@@ -8,6 +8,8 @@ web: build
 	cp -a src/html/css en/
 	cp -a src/html/img en/
 
+setup.data: src/lib/OCamlOrg_Main.html \
+  src/lib/OCamlOrg_Main.html.ml src/lib/OCamlOrg_Main.html.mli
 
 # OASIS_START
 # DO NOT EDIT (digest: bc1e05bfc8b39b664f29dae8dbd3ebbb)
