@@ -1,10 +1,13 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>Description</title>
   </head>
   <body>
     <h1>What is OCaml?</h1>
 
+    OCaml is a modern, high-level programming language with many useful features.
 
     <h2><a name="functional">Benefits functional languages</a></h2>
 
@@ -13,10 +16,144 @@
 
     <h2><a name="safety">Safety</a></h2>
 
+    OCaml provides safety features to stop programmers from shipping
+    programs with bugs. This section describes some of these safety
+    features.
 
-    <p>See “<a href="http://caml.inria.fr/about/history.en.html" >A
-	History of Caml</a>” for an account of the origins of the
-      language.
+    <h3>Type safety</h3>
+
+    <h4>Static type checking</h4>
+
+    <p>
+      OCaml enforces type safety rigorously when the program is
+      compiled. Consequently, it isn't possible to compile a program
+      which confuses a string with a number, or one object with another
+      incompatible object.
+    </p>
+
+    <h4>Type inference</h4>
+
+    <p>
+      OCaml literally works out the types of every expression and variable
+      in your program, so you don't have to.
+    </p>
+
+    <p>
+      You can also change one part of a program and have the compiler tell
+      you which other parts of the program that change affects, even if the
+      change is in a part of the program which doesn't run, such as an
+      obscure error handling routine.
+    </p>
+
+    <h3>Automatic garbage collection</h3>
+
+    <p>
+      Garbage collection is the cornerstone of all modern computer
+      languages, and OCaml contains one of the fastest garbage
+      collectors (GC) in any programming language. Forget about the
+      slow, bloated GC in languages like Java. OCaml's GC is nimble and
+      small.
+    </p>
+
+    <h3>Bounds checking</h3>
+
+    <p>
+      OCaml automatically enforces array boundaries, and will throw an
+      exception if the program tries to access an element outside the
+      bounds of an array.
+      
+      When speed matters above all else, you can turn this feature off at compile time.
+      
+    </p>
+
+    <h2><a name="speed">Speed</a></h2>
+
+    The INRIA official OCaml website has a page on optimising OCaml
+    programs for speed and one on writing efficient numerical code.
+
+    <h2><a name="portable-programs">Portable programs</a></h2>
+
+    <p>
+      OCaml makes it quite simple to write portable programs which will work
+      across Windows, Mac OS X, Linux and Unix from a single codebase.
+    </p>
+
+    <p>
+      This page describes the choices available to companies that
+      need to write programs across all platforms.
+    </p>
+
+    <h3>Command line, background, server programs</h3>
+
+    <p>
+      Cross platform programs without a Graphical User Interface (GUI) can
+      easily be written directly in OCaml. To port such programs to Windows,
+      simply avoid using a few Unix-specific features of the standard
+      library. See the <a href="http://caml.inria.fr/pub/docs/manual-ocaml/index.html">OCaml manual</a>.
+    </p>
+
+    <h3>Graphical (GUI) programs</h3>
+
+    <p>
+      To develop successful cross-platform programs with Graphical User
+      Interfaces (GUIs), simply choose the right cross-platform library.
+    </p>
+
+    <h4>Gtk</h4>
+
+    <p>
+      The right cross-platform library usually is Gtk, which has
+      comprehensive OCaml bindings called lablgtk2. Gtk is available on
+      Windows, Linux and Unix. Gtk for Mac OS X requires the Apple X Server
+      subsystem, which usually is only an issue for those running Mac OS X
+      versions before 10.3.
+    </p>
+
+    <p>
+      Gtk Wimp is a Windows theme which makes Gtk programs running under
+      Windows look like native Windows programs. Gtk Wimp is fully
+      integrated into Gtk.
+    </p>
+
+    <h3>Build environment</h3>
+
+    <p>
+      When developing a cross-platform application with OCaml, we
+      recommend the <a href="omake.metprl.org">OMake Build
+      System</a>. OMake is an alternative to GNU Make and the GNU tools
+      that was developed in OCaml. OMake's library of default build
+      recipes has extensive support for OCaml programs.
+    </p>
+
+    <p>
+      For platform independent version control, we strongly recommend
+      Concurrent Versioning System (CVS).
+    </p>
+
+    <p>Alternatives to CVS include Subversion and Arch.</p>
+
+    <h3>Installer</h3>
+
+    <p>
+      Since every platform has its own packaging system and installation
+      requirements, there is no "cross-platform installer". However, a
+      Makefile-based build environment allows one to easily generate
+      packages for each platform.
+    </p>
+
+    <p>
+      On Windows we suggest using NSIS which has a simple text-based
+      configuration file and can be driven from a Makefile.
+    </p>
+
+    <p>
+      On Linux you can build either RPMs or Debian DEBs using the standard tools.
+    </p>
+
+    <br /><br />
+    <p>
+      See "<a href="http://caml.inria.fr/about/history.en.html">A History of Caml</a>"
+      for an account of the origins of the language.
     </p>
   </body>
 </html>
