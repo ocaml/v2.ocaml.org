@@ -9,7 +9,7 @@ web: build
 	./build.native
 	cp -a src/html/css en/
 	cp -a src/html/img en/
-	@echo "Create symlinks for languages:"
+	@echo -n "Create symlinks for languages:"
 	@for l in $(filter-out en, $(LANGS)); do \
 	  if test -d $$l; then \
 	    echo -n " $$l"; \
@@ -17,6 +17,7 @@ web: build
 	    ln --force -s ../en/img/ $$l/img; \
 	  fi; \
 	done
+	@echo
 
 setup.data: src/lib/OCamlOrg_Main.html \
   src/lib/OCamlOrg_Main.html.ml src/lib/OCamlOrg_Main.html.mli

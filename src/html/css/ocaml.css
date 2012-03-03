@@ -120,10 +120,12 @@ span.separation-bar {
 #language .open-bracket {
   padding-left: 1em;
   color: #7B7B7B;
+  padding-right: 3px;
 }
 
 #language .close-bracket {
   color: #7B7B7B;
+  padding-left: 3px;
 }
 
 /* Main
