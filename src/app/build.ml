@@ -24,7 +24,7 @@ let () =
   let re_filter = Str.regexp "\\(menu\\|OCAML\\).*" in
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in
 
-  let langs = ["en"; "de"] in
+  let langs = ["en"; "fr"; "de"; "es"; "it"; "ja"] in
   Weberizer.iter_html ~filter ~langs "src/html" begin fun lang p ->
     printf "Processing %s\n" (Path.full p);
     let tpl = OCamlOrg_Main.url_base tpl (Weberizer.Path.to_base p) in

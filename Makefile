@@ -2,11 +2,21 @@
 AUTOFILES = src/lib/OCamlOrg_Main.ml \
             src/lib/OCamlOrg_Main.mli
 
+LANGS = en fr de es it ja
+
 # build the website
 web: build
 	./build.native
 	cp -a src/html/css en/
 	cp -a src/html/img en/
+	@echo "Create symlinks for languages:"
+	@for l in $(filter-out en, $(LANGS)); do \
+	  if test -d $$l; then \
+	    echo -n " $$l"; \
+	    ln --force -s ../en/css/ $$l/css; \
+	    ln --force -s ../en/img/ $$l/img; \
+	  fi; \
+	done
 
 setup.data: src/lib/OCamlOrg_Main.html \
   src/lib/OCamlOrg_Main.html.ml src/lib/OCamlOrg_Main.html.mli
