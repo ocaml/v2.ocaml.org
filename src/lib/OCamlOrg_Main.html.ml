@@ -40,3 +40,23 @@ let navigation tpl path =
 
 let navigation_of_path tpl ?(prefix=[]) p =
   navigation tpl (prefix @ Weberizer.Path.navigation p)
+
+
+let separation_bar =
+  Element("span", ["class", "separation-bar"], [Data "|"])
+
+let html_of_item (name, url) =
+  if url = "" then
+    Element ("span", ["class", "current-url"], [Data name])
+  else Element("a", ["href", url], [Data name])
+
+let rec horizontal_toolbar = function
+  | [] -> []
+  | [item] -> [html_of_item item]
+  | item :: tl -> html_of_item item :: separation_bar :: horizontal_toolbar tl
+
+let languages tpl langs =
+  let langs = List.map (fun (n,u) -> (String.capitalize n, u)) langs in
+  languages tpl (Element ("span", ["class", "open-bracket"], [Data "["])
+                 :: horizontal_toolbar langs
+                 @ [Element ("span", ["class", "close-bracket"], [Data "]"])])
