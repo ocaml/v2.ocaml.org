@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+#include "head.include"
+   <title>The OCaml Programming Language</title>
+</head>
+<body id="Screen">
+
+#include "body.header.include"
+
+<h1>OCaml</h1>
+
+<p>
+OCaml is a general purpose industrial-strength programming language
+with an emphasis on conciseness, performance and safety. Developed for
+more than 20 years at Inria, it benefits from one of the most advanced
+type system, and supports functional, imperative and object-oriented
+styles of programming. <a href="features.html">Read More</a>
+</p>
+
+
+
+<h2>What&#39;s new in 3.12 ?</h2>
+
+    <p>
+      Some of the highlights in release 3.12 are:
+
+    </p>
+
+    <ul><li> Polymorphic recursion is supported, using explicit type declarations on the recursively-defined identifiers.</li><li> First-class modules: module expressions can be embedded as values of the core language, then manipulated like any other first-class value, then projected back to the module level.</li><li> New operator to modify a signature a posteriori:
+<code>S with type t := tau</code> denotes signature <code>S</code>
+where the <code>t</code> type component is removed and substituted by the type <code>tau</code> elsewhere.</li><li> New notations for record expressions and record patterns: <code>{ lbl }</code> as shorthand for <code>{ lbl = lbl }</code>, and <code>{ ...; _ }</code>
+marks record patterns where some labels were intentionally omitted.</li><li> Local open <code>let open ... in ...</code> now supported by popular demand.</li><li> Type variables can be bound as type parameters to functions; such types are treated like abstract types within the function body, and like type variables (possibly generalized) outside.</li><li> The <code>module type of</code> construct enables to recover the module type of a given module.</li><li> Explicit method override using the <code>method!</code> keyword, with associated warnings and errors.</li></ul>
+
+<h3><a href="download.html">Download OCaml 3.12.1 Now !</a></h3>
+
+<div id="rssfeed">
+<script type='text/javascript' charset='utf-8'
+src='http://scripts.hashemian.com/jss/feed.js?print=yes&amp;numlinks=4&amp;summarylen=500&amp;seedate=yes&amp;popwin=no&amp;url=http:%2F%2Fplanet.ocamlcore.org%2Frss20.xml'>OCaml Planet</script>
+</div>
+
+#include "body.trailer.include"
+
+</body>
+</html>
