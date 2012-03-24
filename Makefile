@@ -13,8 +13,8 @@ web: build
 	@for l in $(filter-out en, $(LANGS)); do \
 	  if test -d $$l; then \
 	    echo -n " $$l"; \
-	    ln --force -s ../en/css/ $$l/css; \
-	    ln --force -s ../en/img/ $$l/img; \
+	    ln -f -s ../en/css/ $$l/css; \
+	    ln -f -s ../en/img/ $$l/img; \
 	  fi; \
 	done
 	@echo
