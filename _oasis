@@ -1,5 +1,5 @@
 OASISFormat: 0.2
-Name:        ocamlorg
+Name:        ocamlweb
 Version:     0.0-dev
 Synopsis:    OCaml Community Website
 Description: A website for and by the OCaml community.
@@ -7,26 +7,26 @@ Authors:     Christophe Troestler, Esther Baruk, Ashish Agarwal
 License:     LGPL-3.0 with OCaml linking exception
 Plugins:     META (0.2), DevFiles (0.2)
 BuildTools:  ocamlbuild
-PostConfCommand: weberizer_compile src/lib/OCamlOrg_Main.html
+PostConfCommand: weberizer_compile src/lib/OCamlWeb_Main.html
 
-Library ocamlorg
+Library ocamlweb
   Path:         src/lib
-  FindlibName:  ocamlorg
+  FindlibName:  ocamlweb
   BuildDepends: weberizer, netstring
   Install:      false
-  Modules:      OCamlOrg_Main
+  Modules:      OCamlWeb_Main
 
 Executable build
   Path:           src/app
   MainIs:         build.ml
-  BuildDepends:   weberizer, ocamlorg
+  BuildDepends:   weberizer, ocamlweb
   CompiledObject: best
   Install:        false
 
 Document doclib
-  Title:                OCamlOrg API Reference
+  Title:                OCamlWeb API Reference
   Type:                 ocamlbuild (0.2)
   Install:              false
   BuildTools+:          ocamldoc
   XOCamlbuildPath:      src/lib
-  XOCamlbuildLibraries: ocamlorg
+  XOCamlbuildLibraries: ocamlweb

@@ -1,6 +1,6 @@
 # auto-generated ml/mli files
-AUTOFILES = src/lib/OCamlOrg_Main.ml \
-            src/lib/OCamlOrg_Main.mli
+AUTOFILES = src/lib/OCamlWeb_Main.ml \
+            src/lib/OCamlWeb_Main.mli
 
 LANGS = en fr de es it ja
 
@@ -19,8 +19,8 @@ web: build
 	done
 	@echo
 
-setup.data: src/lib/OCamlOrg_Main.html \
-  src/lib/OCamlOrg_Main.html.ml src/lib/OCamlOrg_Main.html.mli
+setup.data: src/lib/OCamlWeb_Main.html \
+  src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
 
 # OASIS_START
 # DO NOT EDIT (digest: bc1e05bfc8b39b664f29dae8dbd3ebbb)

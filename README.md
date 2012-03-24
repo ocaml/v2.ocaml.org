@@ -1,13 +1,11 @@
-THE OCAML.ORG PROJECT
-=====================
-(This README assumes the domain ocaml.org has been obtained by this
-project, but that is not yet currently the case. For now, the site is
-visible only locally when you run 'make'.)
-
-This is the source code implementing http://ocaml.org. Information
-here is relevant only to developers and content
-contributors. End-users of the website should simply visit
-http://ocaml.org.
+OCAMLWEB PROJECT
+================
+This is the source code implementing a new website for the OCaml
+community. Information here is relevant only to developers and content
+contributors. End-users of the website should simply visit the
+website, which is currently being hosted at http://ocaml-lang.org. (It
+is hoped that this site will eventually be served by the URL
+ocaml.org, but that is not finalized yet.)
 
 
 DEPENDENCIES
@@ -43,9 +41,8 @@ Changes can be published by running:
 
     make publish
 
-Of course, this is only allowed by the project lead that has write
-permission to the production server. Other contributors should send a
-message to the mailing list.
+Of course, this is only allowed by the project administrators that
+have write permission to the production server.
 
 
 CONTACTS
@@ -54,6 +51,6 @@ You can reach the development team by posting to the [mailing
 list](https://lists.forge.ocamlcore.org/cgi-bin/listinfo/ocamlweb-devel).
 
 To begin contributing, visit the [master
-repo](https://github.com/agarwal/ocamlorg) on github, click the Fork
+repo](https://github.com/agarwal/ocamlweb) on github, click the Fork
 button, make changes to your copy, and submit pull requests. It's that
 easy!

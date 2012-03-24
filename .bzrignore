@@ -8,8 +8,8 @@ setup.ml
 *.native
 *.odocl
 *.mllib
-src/lib/OCamlOrg_Main.ml
-src/lib/OCamlOrg_Main.mli
+src/lib/OCamlWeb_Main.ml
+src/lib/OCamlWeb_Main.mli
 META
 configure
 # Generated files & dirs
