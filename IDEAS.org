@@ -25,6 +25,7 @@
   - Google
   - LinkedIn
   - Facebook
+  - Twitter
   - Yahoo
   - OpenID
 
@@ -142,4 +143,5 @@
   - random eye-catching ideas: [[http://www.wordle.net][word clouds]], [[http://www.highcharts.com][charts]]
 
 * Management Structure
-  - site is owned by the community
+  - site is managed by a non-profit organization to be created
+  - site content is enriched by the community with a mediation on the content by managers
