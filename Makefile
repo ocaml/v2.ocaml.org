@@ -14,8 +14,8 @@ web: build
 	@for l in $(filter-out en, $(LANGS)); do \
 	  if test -d $(WWW)/$$l; then \
 	    echo -n " $$l"; \
-	    ln -f -s ../css $(WWW)/$$l/css; \
-	    ln -f -s ../img $(WWW)/$$l/img; \
+	    test -e $(WWW)/$$l/css || ln -s ../css $(WWW)/$$l/css; \
+	    test -e $(WWW)/$$l/img || ln -s ../img $(WWW)/$$l/img; \
 	  fi; \
 	done
 	@echo
