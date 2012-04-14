@@ -33,6 +33,7 @@ let () =
     else "../" ^ l2 in
   let process_html lang p =
     printf "Processing %s\n" (Path.full p);
+    let tpl = OCamlWeb_Main.lang tpl lang in
     let tpl = OCamlWeb_Main.url_base tpl (Weberizer.Path.to_base p) in
     let page = Weberizer.read (Path.full p) ~bindings:b in
     let tpl = OCamlWeb_Main.title tpl (Weberizer.title_of page) in
