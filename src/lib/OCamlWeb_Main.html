@@ -14,12 +14,11 @@
     <meta name="keywords" content="${keywords}" />
     <meta name="generator" content="OCaml (Weberizer)" />
 
-    <link rel="shortcut icon"
-	  href="${shortcut_icon}" />
+    <link rel="shortcut icon" href="${shortcut_icon}" />
     <link href="${url_base}css/bootstrap.css" rel="stylesheet">
-    <link href="${url_base}css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all"
 	  href="${url_base}css/ocaml.css" />
+    <link href="${url_base}css/bootstrap-responsive.css" rel="stylesheet">
 
     <link ml:replace="stylesheet" />
     <script ml:replace="javascript" ></script>
@@ -44,27 +43,27 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse"
-	     data-target=".nav-collapse">
+	  <!-- .btn-navbar : toggle for collapsed navbar content -->
+          <a class="btn btn-navbar"
+	     data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="${url_base}">OCaml</a>
+
           <div class="nav-collapse">
             <ul class="nav">
-	      <ul ml:content="menu" ml:strip="true">
-		<li class="active"><a href="#">Home</a></li>
-		<li><a href="#">Discover</a></li>
-	      </ul>
-
-	      <form class="navbar-search pull-left"
-		    method="get"
-		    action="http://www.google.com/search">
-		<input type="text" class="search-query"
-		       placeholder="Search" />
-	      </form>
+	      <li ml:replace="menu" class="active"><a href="#">Home</a></li>
             </ul>
+	    <form class="navbar-search pull-right"
+		  method="get"
+		  action="http://www.google.com/search">
+	      <input type="text" class="search-query"
+		     placeholder="Search" />
+	    </form>
+            <!-- <span class="navbar-text" -->
+	    <!-- 	  >Logged in as <a href="#">username</a></span> -->
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -100,7 +99,6 @@
     <!-- Le javascript
 	 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="${url_base}js/bootstrap.min.js"></script>
     <script src="${url_base}js/bootstrap.js"></script>
   </body>
 </html>

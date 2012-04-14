@@ -28,19 +28,6 @@ a:hover {
   text-decoration: underline;
 }
 
-h1, h1 a {
-  color: black
-}
-
-h2, h2 a {
-  color: #d1630a;
-}
-
-h3, h3 a {
-  color: #505050;
-  font-style: italic;
-}
-
 
 /* Header
    **********************************************************************/
@@ -64,10 +51,6 @@ h3, h3 a {
   padding: 5px;
   padding-top: 10px;
   padding-left: 10px;
-}
-
-.navbar-search {
-  padding-left: 3em;
 }
 
 .login {
