@@ -11,4 +11,4 @@ src/lib/OCamlWeb_Main.mli
 src/lib/META
 src/lib/ocamlweb.mllib
 src/lib/doclib.odocl
-en/
+www/
