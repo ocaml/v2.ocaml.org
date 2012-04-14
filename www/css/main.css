@@ -60,10 +60,7 @@ a:hover {
 }
 
 .logo {
-    display: block;
-    width: 200px;
     text-align: center;
-    float: left;
     height: 70px;
 }
 
