@@ -62,14 +62,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">OCaml</a>
+          <a class="brand" href="${url_base}">OCaml</a>
           <div class="nav-collapse">
-            <ul class="nav">
+            <ul class="nav" ml:content="menu" >
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#">Discover</a></li>
-              <li><a href="#">Learn</a></li>
-              <li><a href="#">Documentation</a></li>
-              <li><a href="#">Community</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -77,29 +74,24 @@
     </div>
 
     <div class="container">
-      <div id="menu" ml:content="menu" >
-	<ul><li>menu entry 1</li></ul>
+      <div id="advertisements" ml:content="advertisements"
+	   ml:strip="if empty">
+	Advertisements (if any).
+	<div class="news">news</div>
+	<div class="actions">actions</div>
       </div>
-      <div id="main" style="width: ${main_width}" >
-	<div id="advertisements" ml:content="advertisements"
-	     ml:strip="if empty">
-	  Advertisements (if any).
-	  <div class="news">news</div>
-	  <div class="actions">actions</div>
-	</div>
 
-	<span class="navigation-bar">
-	  <span ml:replace="navigation_bar">navigation bar</span>
-	  <span id="language">
-	    <span class="horizontal-toolbar" ml:content="languages">
-	      Fr<span class="separation-bar">|</span
-						 ><a href="#">En</a>
-	    </span>
+      <span class="navigation-bar">
+	<span ml:replace="navigation_bar">navigation bar</span>
+	<span id="language">
+	  <span class="horizontal-toolbar" ml:content="languages">
+	    Fr<span class="separation-bar">|</span
+					       ><a href="#">En</a>
 	  </span>
-	</span>	
+	</span>
+      </span>	
 
-	<span ml:replace="main">Main text area.</span>
-      </div>
+      <span ml:replace="main">Main text area.</span>
     </div>
 
     <!-- Footer -->

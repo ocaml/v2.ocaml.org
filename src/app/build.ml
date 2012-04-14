@@ -8,14 +8,14 @@ let tpl = OCamlWeb_Main.search_name OCamlWeb_Main.empty "Search"
 let tpl = OCamlWeb_Main.shortcut_icon tpl
   "https://static.ocamlcore.org/official/images/favicon.ico"
 
-let menu = Weberizer.body_of(Weberizer.read "src/html/menu.html")
-
-let add_menu tpl p =
-  if not(Path.in_base p && Path.filename p = "index.html") then
-    let tpl = OCamlWeb_Main.main_width tpl "84%" in
-    OCamlWeb_Main.menu tpl (Weberizer.relative_url_are_from_base p menu)
-  else
-    OCamlWeb_Main.main_width tpl "100%"
+(* more = <li class="active"><a href="#">Tutorial</a></li>
+   for and additional menu. *)
+let add_menu ?(more=[]) tpl lang =
+  let menu =
+    if lang = "en" then "src/html/menu.html"
+    else "src/html/menu." ^ lang ^ ".html" in
+  let m = Weberizer.body_of(Weberizer.read menu) @ more in
+  OCamlWeb_Main.menu tpl m
 
 
 let () =
@@ -41,7 +41,7 @@ let () =
     let body = Weberizer.protect_emails body in
     let tpl = OCamlWeb_Main.main tpl body in
 
-    let tpl = add_menu tpl p in
+    let tpl = add_menu tpl lang in
 
     let tpl = OCamlWeb_Main.navigation_of_path tpl p in
     let tpl = OCamlWeb_Main.languages tpl
