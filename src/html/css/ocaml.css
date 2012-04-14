@@ -200,3 +200,29 @@ pre {
   background: #925a41;
   clear: both;
 }
+
+/* News
+   **********************************************************************/
+
+.announce {
+  display: block;
+  margin-bottom: 15px;
+  background-color: #f0f0f0;
+  padding: 0 15px 25px 15px;
+}
+
+.software {
+  position: relative;
+  top: 20px;
+}
+
+.announce_title {
+ float: left;
+ color: #1010ff;
+  font-weight: bold;
+}
+
+.announce_date {
+ float: right;
+ color: #1010ff;
+}
