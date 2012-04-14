@@ -9,12 +9,15 @@ LANGS = en fr de es it ja
 web: build
 	./build.native
 	cp -a src/html/css $(WWW)
+	cp -a src/html/ext/bootstrap/css/*.css $(WWW)/css/
+	cp -a src/html/ext/bootstrap/js $(WWW)/
 	cp -a src/html/img $(WWW)
 	@echo -n "Create symlinks for languages:"
 	@for l in $(filter-out en, $(LANGS)); do \
 	  if test -d $(WWW)/$$l; then \
 	    echo -n " $$l"; \
 	    test -e $(WWW)/$$l/css || ln -s ../css $(WWW)/$$l/css; \
+	    test -e $(WWW)/$$l/js || ln -s ../js $(WWW)/$$l/js; \
 	    test -e $(WWW)/$$l/img || ln -s ../img $(WWW)/$$l/img; \
 	  fi; \
 	done

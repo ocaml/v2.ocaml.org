@@ -16,8 +16,11 @@
 
     <link rel="shortcut icon"
 	  href="${shortcut_icon}" />
+    <link href="${url_base}css/bootstrap.css" rel="stylesheet">
+    <link href="${url_base}css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all"
 	  href="${url_base}css/ocaml.css" />
+
     <link ml:replace="stylesheet" />
     <script ml:replace="javascript" ></script>
 
@@ -44,16 +47,33 @@
 	<!--<img src="https://static.ocamlcore.org/official/images/logo-big.png"
 	    alt="OCaml Community Logo"
 	    width="64" height="64" /> -->
-	<span class="name">The OCaml Programming Language</span>
+	<!-- <span class="name">The OCaml Programming Language</span> -->
       </div>
       <div class="bottom">
       </div>
     </div>
 
-    <div id="menu" ml:content="menu" >
-      <ul><li>menu entry 1</li></ul>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse"
+	     data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="${url_base}">OCaml</a>
+          <div class="nav-collapse">
+            <ul class="nav" ml:content="menu" >
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Discover</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
     </div>
-    <div id="main" style="width: ${main_width}" >
+
+    <div class="container">
       <div id="advertisements" ml:content="advertisements"
 	   ml:strip="if empty">
 	Advertisements (if any).
@@ -70,6 +90,7 @@
 	  </span>
 	</span>
       </span>	
+
       <span ml:replace="main">Main text area.</span>
     </div>
 
@@ -77,5 +98,12 @@
     <div id="footer">
       
     </div>
+
+
+    <!-- Le javascript
+	 ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="${url_base}js/bootstrap.min.js"></script>
+    <script src="${url_base}js/bootstrap.js"></script>
   </body>
 </html>
