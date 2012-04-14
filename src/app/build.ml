@@ -25,7 +25,13 @@ let () =
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in
 
   let langs = ["en"; "fr"; "de"; "es"; "it"; "ja"] in
-  Weberizer.iter_html ~filter ~langs "src/html" begin fun lang p ->
+  let out_dir lang =
+    if lang = "en" then "www" else Filename.concat "www" lang in
+  let rel_dir l1 l2 =
+    if l1 = "en" then l2
+    else if l2 = "en" then ".."
+    else "../" ^ l2 in
+  let process_html lang p =
     printf "Processing %s\n" (Path.full p);
     let tpl = OCamlWeb_Main.url_base tpl (Weberizer.Path.to_base p) in
     let page = Weberizer.read (Path.full p) ~bindings:b in
@@ -37,7 +43,8 @@ let () =
     let tpl = add_menu tpl p in
 
     let tpl = OCamlWeb_Main.navigation_of_path tpl p in
-    let tpl = OCamlWeb_Main.languages
-                tpl (Weberizer.Path.translations ~langs p) in
+    let tpl = OCamlWeb_Main.languages tpl
+                                      (Path.translations p ~langs ~rel_dir) in
     OCamlWeb_Main.render tpl
-  end
+  in
+  Weberizer.iter_html ~filter ~langs "src/html" ~out_dir process_html
