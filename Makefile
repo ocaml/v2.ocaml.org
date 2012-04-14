@@ -2,19 +2,20 @@
 AUTOFILES = src/lib/OCamlWeb_Main.ml \
             src/lib/OCamlWeb_Main.mli
 
+WWW = www
 LANGS = en fr de es it ja
 
 # build the website
 web: build
 	./build.native
-	cp -a src/html/css en/
-	cp -a src/html/img en/
+	cp -a src/html/css $(WWW)
+	cp -a src/html/img $(WWW)
 	@echo -n "Create symlinks for languages:"
 	@for l in $(filter-out en, $(LANGS)); do \
-	  if test -d $$l; then \
+	  if test -d $(WWW)/$$l; then \
 	    echo -n " $$l"; \
-	    ln -f -s ../en/css/ $$l/css; \
-	    ln -f -s ../en/img/ $$l/img; \
+	    ln -f -s ../css $(WWW)/$$l/css; \
+	    ln -f -s ../img $(WWW)/$$l/img; \
 	  fi; \
 	done
 	@echo
@@ -64,5 +65,5 @@ setup.data:
 # delete everything that is auto-generated
 .PHONY: fresh
 fresh: distclean
-	rm -rf en
-	rm -f $(AUTOFILES)
+	$(RM) -r $(WWW)
+	$(RM) $(AUTOFILES)
