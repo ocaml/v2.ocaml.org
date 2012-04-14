@@ -59,8 +59,10 @@
 	    <form class="navbar-search pull-right"
 		  method="get"
 		  action="http://www.google.com/search">
-	      <input type="text" class="search-query"
+	      <input type="text" name="q" class="search-query"
 		     placeholder="Search" />
+	      <input type="hidden" name="q"
+		     value="site:http://www.ocaml-lang.org/" />
 	    </form>
             <!-- <span class="navbar-text" -->
 	    <!-- 	  >Logged in as <a href="#">username</a></span> -->
