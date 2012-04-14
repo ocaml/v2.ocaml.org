@@ -1,13 +1,15 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="${lang}" xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Set document compatibility mode to IE8Mode. -->
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title >OCaml portal | ${title}</title>
+    <title >OCaml portal${title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author"
-	  content="Christophe Troestler, Esther Baruk, Ashish Agarwal" />
+	  content="Ashish Agarwal, Esther Baruk, Christophe Troestler and many contrinutors" />
     <meta name="description" content="${description}" />
     <meta name="keywords" content="${keywords}" />
     <meta name="generator" content="OCaml (Weberizer)" />
@@ -42,18 +44,9 @@
 	<!--<img src="https://static.ocamlcore.org/official/images/logo-big.png"
 	    alt="OCaml Community Logo"
 	    width="64" height="64" /> -->
-	<span class="name">OCaml</span>
+	<span class="name">The OCaml Programming Language</span>
       </div>
       <div class="bottom">
-	<span class="navigation-bar">
-	  <span ml:replace="navigation_bar">navigation bar</span>
-	  <span id="language">
-	    <span class="horizontal-toolbar" ml:content="languages">
-	      Fr<span class="separation-bar">|</span
-						 ><a href="#">En</a>
-	  </span>
-	</span>
-	<span class="login">Login/Create an account</span>
       </div>
     </div>
 
@@ -68,6 +61,15 @@
 	<div class="actions">actions</div>
       </div>
 
+      <span class="navigation-bar">
+	<span ml:replace="navigation_bar">navigation bar</span>
+	<span id="language">
+	  <span class="horizontal-toolbar" ml:content="languages">
+	    Fr<span class="separation-bar">|</span
+					       ><a href="#">En</a>
+	  </span>
+	</span>
+      </span>	
       <span ml:replace="main">Main text area.</span>
     </div>
 
