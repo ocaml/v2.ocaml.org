@@ -32,18 +32,6 @@
   <body>
     <div id="header">
       <div class="top">
-	<form class="search-box" method="get"
-	      action="http://www.google.com/search">
-	  <div>
-	    <input type="text" name="q" value="${search_name}..."
-		   onblur="if(this.value=='') this.value='${search_name}...';"
-		   onfocus="if(this.value=='${search_name}...') this.value='';"
-		   />
-	    <button type="submit"
-		    ><img src="${url_base}img/gosearch.gif"
-			  alt="Search" /></button>
-	  </div>
-	</form>
 	<!--<img src="https://static.ocamlcore.org/official/images/logo-big.png"
 	    alt="OCaml Community Logo"
 	    width="64" height="64" /> -->
@@ -64,9 +52,18 @@
           </a>
           <a class="brand" href="${url_base}">OCaml</a>
           <div class="nav-collapse">
-            <ul class="nav" ml:content="menu" >
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Discover</a></li>
+            <ul class="nav">
+	      <ul ml:content="menu" ml:strip="true">
+		<li class="active"><a href="#">Home</a></li>
+		<li><a href="#">Discover</a></li>
+	      </ul>
+
+	      <form class="navbar-search pull-left"
+		    method="get"
+		    action="http://www.google.com/search">
+		<input type="text" class="search-query"
+		       placeholder="Search" />
+	      </form>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

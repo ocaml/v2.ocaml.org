@@ -66,14 +66,8 @@ h3, h3 a {
   padding-left: 10px;
 }
 
-#header .name {
-  font-size: 250%;
-  font-weight: bold;
-  display: block;
-}
-
-.search-box {
-  float: right;
+.navbar-search {
+  padding-left: 3em;
 }
 
 .login {
@@ -161,7 +155,8 @@ span.separation-bar {
 div.short-explanation {
   padding: 1ex;
   margin-bottom: 1ex;
-  background: #fcf7d5;
+  text-align: justify;
+  /* background: #fcf7d5; */
   /* line-height: 140%; */
 }
 
@@ -179,6 +174,7 @@ div.download {
   width: 120px;
   text-align: center;
   background: white;
+  padding-left: 3ex;
   padding-bottom: 5ex;
 }
 download a img {

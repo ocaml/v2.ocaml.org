@@ -4,8 +4,7 @@ module Path = Weberizer.Path
 
 
 (* Settings common to all pages. *)
-let tpl = OCamlWeb_Main.search_name OCamlWeb_Main.empty "Search"
-let tpl = OCamlWeb_Main.shortcut_icon tpl
+let tpl = OCamlWeb_Main.shortcut_icon OCamlWeb_Main.empty
   "https://static.ocamlcore.org/official/images/favicon.ico"
 
 (* more = <li class="active"><a href="#">Tutorial</a></li>
