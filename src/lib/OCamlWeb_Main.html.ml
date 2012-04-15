@@ -2,8 +2,14 @@ open Nethtml
 
 let concat_path p f =
   if p = "" then f
-  else if p.[String.length p - 1] = '/' then p ^ f
-  else p ^ "/" ^ f
+  else
+    let f =
+      if String.length f > 0 && f.[0] = '/' then
+        String.sub f 1 (String.length f - 1)
+      else f
+    in
+    if p.[String.length p - 1] = '/' then p ^ f
+    else p ^ "/" ^ f
 
 let separation_arrow url_base =
   Element("span", ["class", "separation"],
