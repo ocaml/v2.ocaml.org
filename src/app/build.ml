@@ -27,6 +27,8 @@ let () =
   let out_dir lang =
     if lang = "en" then "www" else Filename.concat "www" lang in
   let rel_dir l1 l2 =
+    (* Path to go from the base directory for language [l1] to the one
+       for [l2]. *)
     if l1 = "en" then l2
     else if l2 = "en" then ".."
     else "../" ^ l2 in
@@ -48,3 +50,4 @@ let () =
     OCamlWeb_Main.render tpl
   in
   Weberizer.iter_html ~filter ~langs "src/html" ~out_dir process_html
+                      ~perm:0o755

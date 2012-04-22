@@ -75,4 +75,4 @@ fresh: distclean
 
 .PHONY: upload
 upload: web
-	scp -C -r $(WWW) $(UPLOAD)
+	scp -C -r -p $(WWW) $(UPLOAD)
