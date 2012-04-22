@@ -134,12 +134,12 @@ div.short-explanation {
   /* line-height: 140%; */
 }
 
-.dynamic {
-  float: right;
-  width: 15%;
-  background: #111111;
-  color: white;
-  padding: 1ex;
+.quick-links td {
+  width: 10%;
+}
+
+.quick-links h2 {
+  padding-left: 1ex;
 }
 
 div.download {
@@ -178,10 +178,27 @@ pre {
    **********************************************************************/
 
 .announce {
-  display: block;
-  margin-bottom: 15px;
-  background-color: #f0f0f0;
-  padding: 0 15px 25px 15px;
+  background-color: #fdf7ba;
+}
+
+.announce p {
+  font-size: 13px;
+  font-weight: 100;
+  line-height: 16px;
+}
+
+.announce .btn {
+  background-image: linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: -moz-linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: -ms-linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdf7ba), to(#fdec45));
+  background-image: -webkit-linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: -o-linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: linear-gradient(top, #fdf7ba, #fdec45);
+}
+.announce .btn:hover,
+.announce .btn:active {
+  background-color: #f1df1c;
 }
 
 .software {
