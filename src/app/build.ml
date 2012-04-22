@@ -36,6 +36,7 @@ let () =
     printf "Processing %s\n" (Path.full p);
     let tpl = OCamlWeb_Main.lang tpl lang in
     let tpl = OCamlWeb_Main.url_base tpl (Weberizer.Path.to_base p) in
+    Weberizer.Binding.string b "url_base" (Weberizer.Path.to_base p);
     let page = Weberizer.read (Path.full p) ~bindings:b in
     let tpl = OCamlWeb_Main.title tpl (Weberizer.title_of page) in
     let body = Weberizer.body_of page in

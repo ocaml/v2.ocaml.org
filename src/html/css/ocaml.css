@@ -143,13 +143,8 @@ div.short-explanation {
 }
 
 div.download {
-  float: right;
-  border: 0;
-  width: 120px;
   text-align: center;
-  background: white;
-  padding-left: 3ex;
-  padding-bottom: 5ex;
+  background: #e5d5c7;
 }
 download a img {
   border: 0;
