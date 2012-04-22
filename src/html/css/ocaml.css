@@ -74,12 +74,13 @@ a:hover {
   font-weight: normal;
   text-decoration: none;
   color: black;
+  padding: 0.5ex;
 }
 
 .navigation-bar a:hover {
-  background-color: transparent;
+  background-color: #fee1ad;
   border: 0;
-  font-weight: bold;
+  /* font-weight: bold; */
   text-decoration: underline;
 }
 
