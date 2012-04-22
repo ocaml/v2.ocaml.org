@@ -4,6 +4,7 @@ AUTOFILES = src/lib/OCamlWeb_Main.ml \
 
 WWW = www
 LANGS = en fr de es it ja
+UPLOAD = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
 
 # build the website
 web: build
@@ -71,3 +72,7 @@ setup.data:
 fresh: distclean
 	$(RM) -r $(WWW)
 	$(RM) $(AUTOFILES)
+
+.PHONY: upload
+upload: web
+	scp -C -r $(WWW) $(UPLOAD)
