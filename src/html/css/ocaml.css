@@ -114,13 +114,6 @@ span.separation-bar {
 /* Main
    **********************************************************************/
 
-#menu {
-  float: left;
-  width: 15%;
-  font: 83% arial, helvetica, sans-serif;
-  background-color: #111111;
-  color: white;
-}
 
 
 #main {
@@ -129,11 +122,8 @@ span.separation-bar {
   padding-left: 1ex;
 }
 
-.slogan {
-  padding-top: 1ex;
-  padding-bottom: 1ex;
-  font-size: 120%;
-  font-weight: bold;
+.hero-unit {
+  padding: 3ex;
 }
 
 div.short-explanation {
@@ -182,8 +172,11 @@ pre {
    **********************************************************************/
 
 #footer {
-  background: #925a41;
-  clear: both;
+  background-color: #f1eff0;
+  text-align: center;
+  font-style: italic;
+  padding-top: 2ex;
+  padding-bottom: 2ex;
 }
 
 /* News
@@ -211,3 +204,4 @@ pre {
  float: right;
  color: #1010ff;
 }
+

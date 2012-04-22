@@ -9,26 +9,8 @@
     <link href="css/ocaml.css" media="all" type="text/css" rel="stylesheet">
   </head>
   <body>
-    <div class="dynamic">
-      <p>Dynamic content</p>
-      
-      <p>Planet feeds</p>
-      
-      <p>Major announcements</p>
-      
-      <p>Featured project</p>
-
-      <p>Package stats</p>
-    </div>
-
-    <div class="download">
-      <a href="download.html"
-	 ><img src="http://www.esquire.com/cm/esquire/images/download-button-0409-lg.jpg"
-	       width="100px" alt="download" /><br />
-	Download</a>
-    </div>
     <div class="row-fluid">
-      <div class="span8">
+      <div class="span9">
 	<div class="hero-unit">
 	  <p><strong>OCaml</strong> is a general purpose
 	  industrial-strength programming language with an emphasis
@@ -44,7 +26,23 @@
 	  </p>
       
 	  <p><a href="description.html"
-		class="btn btn-primary btn-large">Read more...</a></p>
+		class="btn btn-primary btn-large"
+		>Read more...</a></p>
+	</div>
+      </div> <!-- span8 -->
+      <div class="span3 pull-right">
+	<div class="hero-unit">
+	  <h3><a href="download.html">Download OCaml 3.12.1 Now!</a></h3>
+
+	  <p>Dynamic content</p>
+	  
+	  <p>Planet feeds</p>
+	  
+	  <p>Major announcements</p>
+	  
+	  <p>Featured project</p>
+	  
+	  <p>Package stats</p>
 	</div>
       </div>
     </div>
@@ -111,26 +109,52 @@
     </div><!--/.fluid-container-->
 
     
+    <h2><a href="news.html">News</a></h2>    
 
-<h2><a href="news.html">News</a></h2>    
-<h2>What&#39;s new in 3.12?</h2>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span6" >
+	  <h2>What&#39;s new in 3.12?</h2>
 
-    <p>
-      Some of the highlights in release 3.12 are:
+	  <p>Some of the highlights in release 3.12 are:</p>
+	  <ul><li> Polymorphic recursion is supported, using explicit
+	      type declarations on the recursively-defined
+	      identifiers.</li>
+	    <li> First-class modules: module expressions can be
+	      embedded as values of the core language, then manipulated
+	      like any other first-class value, then projected back to
+	      the module level.</li>
+	    <li> New operator to modify a signature a posteriori:
+	      <code>S with type t := tau</code> denotes
+	      signature <code>S</code> where the <code>t</code> type
+	      component is removed and substituted by the
+	      type <code>tau</code> elsewhere.</li>
+	    <li> New notations for record expressions and record
+	      patterns: <code>{ lbl }</code> as shorthand for <code>{
+		lbl = lbl }</code>, and <code>{ ...; _ }</code> marks
+	      record patterns where some labels were intentionally
+	      omitted.</li><li> Local open <code>let open ... in
+		...</code> now supported by popular demand.</li>
+	    <li> Type variables can be bound as type parameters to
+	      functions; such types are treated like abstract types
+	      within the function body, and like type variables
+	      (possibly generalized) outside.</li>
+	    <li> The <code>module
+		type of</code> construct enables to recover the module
+	      type of a given module.</li><li> Explicit method override
+	      using the <code>method!</code> keyword, with associated
+	      warnings and errors.</li>
+	  </ul>
+	</div> <!-- span6 -->
+	<div class="span6" >
+	  <div id="rssfeed">
+	    <script type='text/javascript' charset='utf-8'
+		    src='http://scripts.hashemian.com/jss/feed.js?print=yes&amp;numlinks=4&amp;summarylen=500&amp;seedate=yes&amp;popwin=no&amp;url=http:%2F%2Fplanet.ocamlcore.org%2Frss20.xml'>OCaml Planet</script>
+	  </div>
+	</div>
+      </div><!--/row-->
+    </div><!--/.fluid-container-->
 
-    </p>
-
-    <ul><li> Polymorphic recursion is supported, using explicit type declarations on the recursively-defined identifiers.</li><li> First-class modules: module expressions can be embedded as values of the core language, then manipulated like any other first-class value, then projected back to the module level.</li><li> New operator to modify a signature a posteriori:
-<code>S with type t := tau</code> denotes signature <code>S</code>
-where the <code>t</code> type component is removed and substituted by the type <code>tau</code> elsewhere.</li><li> New notations for record expressions and record patterns: <code>{ lbl }</code> as shorthand for <code>{ lbl = lbl }</code>, and <code>{ ...; _ }</code>
-marks record patterns where some labels were intentionally omitted.</li><li> Local open <code>let open ... in ...</code> now supported by popular demand.</li><li> Type variables can be bound as type parameters to functions; such types are treated like abstract types within the function body, and like type variables (possibly generalized) outside.</li><li> The <code>module type of</code> construct enables to recover the module type of a given module.</li><li> Explicit method override using the <code>method!</code> keyword, with associated warnings and errors.</li></ul>
-
-<h3><a href="download.html">Download OCaml 3.12.1 Now!</a></h3>
-
-<div id="rssfeed">
-<script type='text/javascript' charset='utf-8'
-src='http://scripts.hashemian.com/jss/feed.js?print=yes&amp;numlinks=4&amp;summarylen=500&amp;seedate=yes&amp;popwin=no&amp;url=http:%2F%2Fplanet.ocamlcore.org%2Frss20.xml'>OCaml Planet</script>
-</div>
 
   </body>
 </html>
