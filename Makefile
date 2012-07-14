@@ -23,6 +23,11 @@ web: build
 setup.data: src/lib/OCamlWeb_Main.html \
   src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
 
+src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli: src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
+	cd src/lib; weberizer_compile OCamlWeb_Main.html
+
+build: src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli
+
 # OASIS_START
 # DO NOT EDIT (digest: bc1e05bfc8b39b664f29dae8dbd3ebbb)
 

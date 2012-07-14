@@ -7,7 +7,6 @@ Authors:     Christophe Troestler, Esther Baruk, Ashish Agarwal
 License:     LGPL-3.0 with OCaml linking exception
 Plugins:     META (0.2), DevFiles (0.2)
 BuildTools:  ocamlbuild
-PostConfCommand: weberizer_compile src/lib/OCamlWeb_Main.html
 
 Library ocamlweb
   Path:         src/lib
