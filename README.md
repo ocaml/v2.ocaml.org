@@ -32,7 +32,7 @@ external file or database servers. Simply run:
     oasis setup
     make
 
-This will generate a new folder 'en' that contains the full website.
+This will generate a new folder 'www' that contains the full website.
 
 
 PUBLISH
