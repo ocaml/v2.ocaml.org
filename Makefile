@@ -13,6 +13,7 @@ web: build
 	cp -a src/html/ext/bootstrap/css/*.css $(WWW)/css/
 	cp -a src/html/ext/bootstrap/js $(WWW)/
 	cp -a src/html/img $(WWW)
+	cp -a src/html/ext/bootstrap/img/*.png $(WWW)/img/
 	@echo -n "Create symlinks for languages:"
 	@for l in $(filter-out en, $(LANGS)); do \
 	  if test -d $(WWW)/$$l; then \
