@@ -1,15 +1,3 @@
-html {
-  /* Always show a vertical scroll-bar in firefox (à la IE) so the
-     100% width is always the same pixel width */
-  overflow-y: scroll;
-}
-
-body {
-  padding: 0px;
-  color: #000;
-  background: #FFFFFF;
-  /* font-family: verdana, arial, helvetica, sans-serif; */
-}
 
 @media print {
   body {
@@ -52,12 +40,6 @@ a:hover {
   padding-top: 10px;
   padding-left: 10px;
 }
-
-.login {
-  float: right;
-  font: 83% arial, helvetica, sans-serif; /* as the menu */
-}
-
 
 .navigation-bar {
   display: block;
@@ -114,8 +96,6 @@ span.separation-bar {
 /* Main
    **********************************************************************/
 
-
-
 #main {
   float: right;
   width: 84%;  /* Conf. in build.ml */
@@ -142,29 +122,49 @@ div.short-explanation {
   padding-left: 1ex;
 }
 
-div.download {
-  text-align: center;
-  background: #e5d5c7;
-}
-download a img {
-  border: 0;
-}
-
 .read-more {
   font-size: 80%;
   float: right;
   padding-top: 0.5ex;
 }
 
+/* Big announcements, 1st page
+ ***********************************************************************/
 
-pre {
-  border: thin dashed #959595;
-  padding: 1ex;
-  background-color: #fffae1;
+.big-announcements div.download {
+  text-align: center;
+  background: #e5d5c7;
+}
+.big-announcements download a img {
+  border: 0;
+}
+
+.big-announcements p {
+  font-size: 13px;
+  font-weight: 100;
+  line-height: 16px;
+}
+
+.big-announcements div {
+  background-color: #fdf7ba;
+}
+
+.big-announcements .btn {
+  background-image: linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: -moz-linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: -ms-linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdf7ba), to(#fdec45));
+  background-image: -webkit-linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: -o-linear-gradient(top, #fdf7ba, #fdec45);
+  background-image: linear-gradient(top, #fdf7ba, #fdec45);
+}
+.big-announcements .btn:hover,
+.big-announcements .btn:active {
+  background-color: #f1df1c;
 }
 
 /* Footer
-   **********************************************************************/
+ **********************************************************************/
 
 #footer {
   background-color: #f1eff0;
@@ -174,46 +174,22 @@ pre {
   padding-bottom: 2ex;
 }
 
-/* News
+/* News (news.html)
    **********************************************************************/
 
-.announce {
-  background-color: #fdf7ba;
-}
-
-.announce p {
-  font-size: 13px;
-  font-weight: 100;
-  line-height: 16px;
-}
-
-.announce .btn {
-  background-image: linear-gradient(top, #fdf7ba, #fdec45);
-  background-image: -moz-linear-gradient(top, #fdf7ba, #fdec45);
-  background-image: -ms-linear-gradient(top, #fdf7ba, #fdec45);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdf7ba), to(#fdec45));
-  background-image: -webkit-linear-gradient(top, #fdf7ba, #fdec45);
-  background-image: -o-linear-gradient(top, #fdf7ba, #fdec45);
-  background-image: linear-gradient(top, #fdf7ba, #fdec45);
-}
-.announce .btn:hover,
-.announce .btn:active {
-  background-color: #f1df1c;
-}
-
-.software {
-  position: relative;
-  top: 20px;
-}
-
 .announce_title {
- float: left;
- color: #1010ff;
+  display: inline;
+  color: black;
+  font-size: 120%;
   font-weight: bold;
 }
 
 .announce_date {
- float: right;
- color: #1010ff;
+  display: inline;
+  color: #1010ff;
+  padding-left: 1em;
 }
 
+.software {
+  padding-bottom: 1ex;
+}
