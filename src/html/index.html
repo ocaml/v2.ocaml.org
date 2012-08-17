@@ -91,7 +91,7 @@
 	  -- Main announcements to the right.
 	  ---------------------------------------------------->
 	<div class="hero-unit download">
-	  <h3><a href="download.html">Download OCaml 3.12.1 Now!
+	  <h3><a href="download.html">Download OCaml 4.00.0 Now!
 
 	      <img src="${url_base}/img/download-button.png"
 		   width="120px" alt="download" />
@@ -117,9 +117,30 @@
     <div class="container-fluid">
       <div class="row-fluid">
 	<div class="span6" >
-	  <h2>What&#39;s new in OCaml 3.12?</h2>
+	  <h2>What&#39;s new in OCaml 4.00.0?</h2>
 
-	  <p>Some of the highlights in release 3.12 are:</p>
+	  <p>Some of the highlights in release 4.0.0 (July 2012) are:</p>
+	  <ul><li> The name of our favorite language is now officially
+              "OCaml", and this name is used consistently in all the
+              documentation and tool outputs. </li>
+	    <li> Generalized Algebraic Data Types (GADTs): this is a
+	      powerful extension of the type system that provides great
+	      flexibility and power to the programmer. </li>
+	    <li> A new and improved ARM back-end. </li>
+	    <li> Changes to first-class modules: type annotations can
+	      now be omitted when packing and unpacking modules (and are
+	      inferred from context whenever possible), and first-class
+	      modules can now be unpacked by pattern-matching. </li>
+	    <li> Support for randomized hash tables to avoid
+	      denial-of-service vulnerabilities. </li>
+	    <li>Installation of the compiler's internal libraries in
+              <code>+compiler-libs</code> for easier access by third-party
+              programming tools. </li>
+	  </ul>
+
+	  <h2>Previous release (3.12)</h2>
+
+	  <p>Some of the highlights in release 3.12 are:</p>
 	  <ul><li> Polymorphic recursion is supported, using explicit
 	      type declarations on the recursively-defined
 	      identifiers.</li>
@@ -149,16 +170,6 @@
 	      warnings and errors.</li>
 	  </ul>
 
-	  <h2>Next release: OCaml 4.0</h2>
-
-	  <p><strong>ETA</strong>: June 2012.</p>
-
-	  <p><strong>Highlights</strong>: GADTs, improved first-class
-	    modules, new ARM backend, mingw-w64 support,
-	    optimizations...</p>
-	  <a href="http://caml.inria.fr/cgi-bin/viewvc.cgi/ocaml/trunk/Changes?view=markup"
-	     class="btn pull-right"
-	     >Read more <i class="icon-arrow-right"></i></a>
 
 	</div> <!-- span6 -->
 	<div class="span6" >

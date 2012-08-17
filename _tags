@@ -1,29 +1,4 @@
 # OASIS_START
-# DO NOT EDIT (digest: 3e3f240dc458143d95d1d3c57e79ad1a)
-# Ignore VCS directories, you can use the same kind of rule outside 
-# OASIS_START/STOP if you want to exclude directories that contains 
-# useless stuff for the build process
-<**/.svn>: -traverse
-<**/.svn>: not_hygienic
-".bzr": -traverse
-".bzr": not_hygienic
-".hg": -traverse
-".hg": not_hygienic
-".git": -traverse
-".git": not_hygienic
-"_darcs": -traverse
-"_darcs": not_hygienic
-# Library ocamlweb
-"src/lib/ocamlweb.cmxs": use_ocamlweb
-<src/lib/*.ml{,i}>: pkg_weberizer
-<src/lib/*.ml{,i}>: pkg_netstring
-# Executable build
-<src/app/build.{native,byte}>: use_ocamlweb
-<src/app/build.{native,byte}>: pkg_weberizer
-<src/app/build.{native,byte}>: pkg_netstring
-<src/app/*.ml{,i}>: use_ocamlweb
-<src/app/*.ml{,i}>: pkg_weberizer
-<src/app/*.ml{,i}>: pkg_netstring
 # OASIS_STOP
 
 <**/*.ml>: annot
