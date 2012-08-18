@@ -215,6 +215,26 @@ pre.rss-text { /* main story is text, not HTML */
   border: 0;
 }
 
+#news .rss-title {
+  font-size: 100%;
+}
+
+#news .rss-description { /* main story */
+  display: block;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+
+#news .rss-date {
+  font-size: 80%;
+}
+
+#news .rss-description h1,
+#news .rss-description h2,
+#news .rss-description h3 {
+  font-size: 100%;
+}
+
 /* Colorize code */
 
 .rss-description .kwa { font-weight: bold; }

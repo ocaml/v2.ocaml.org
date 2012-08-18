@@ -176,12 +176,11 @@
 	<div class="span6" >
 	  <h2>News</h2>    
 
-	  <div id="rssfeed">
-	    <script type="text/javascript" charset="utf-8"
-		    src="http://scripts.hashemian.com/jss/feed.js?print=yes&amp;numlinks=4&amp;summarylen=500&amp;seedate=yes&amp;popwin=no&amp;url=http:%2F%2Fplanet.ocamlcore.org%2Frss20.xml"
-		    >OCaml Planet</script>
-	  </div>
-	  <a href="ocaml_planet.html" class="btn pull-right"
+	  <div id="news"
+	       ml:content="news http://planet.ocamlcore.org/rss20.xml"
+	       ></div>
+
+	  <a href="planet/" class="btn pull-right"
 	     >More news <i class="icon-arrow-right"></i></a>
 	</div>
       </div><!--/row-->

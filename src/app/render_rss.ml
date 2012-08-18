@@ -32,6 +32,14 @@ type post = {
   desc : string;
 }
 
+let html_title p =
+  if p.link = "" then Data p.title
+  else Element("a", ["href", p.link], [Data p.title])
+
+let html_author p =
+  if p.email = "" then Data p.author
+  else Element("a", ["href", "mailto:" ^ p.email], [Data p.author])
+
 let string_of_option = function None -> "" | Some s -> s
 
 let parse_item it =
@@ -113,11 +121,6 @@ let html_of_post p =
     | Some d -> Rss.string_of_date d in
   let sep = if p.author = "" && date = "" then ""
             else "&nbsp;&mdash;&nbsp;" in
-  let html_title = if p.link = "" then Data p.title
-                   else Element("a", ["href", p.link], [Data p.title]) in
-  let html_author =
-    if p.email = "" then Data p.author
-    else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
   let desc =
     if List.mem p.author text_description then
       [Element("pre", ["class", "rss-text"], [Data p.desc])]
@@ -129,18 +132,29 @@ let html_of_post p =
   let span_class c html = Element("span", ["class", c], html) in
   [Element("a", ["name", title_anchor], []);
    span_class "rss-header"
-              [span_class "rss-title" [html_title];
+              [span_class "rss-title" [html_title p];
                Data sep;
-               span_class "rss-author" [html_author];
+               span_class "rss-author" [html_author p];
                Data(if p.author <> "" then ", " else "");
                span_class "rss-date" [Data date];
               ];
    span_class "rss-description" desc;
    Data "\n"]
 
-
-
-(* FIXME: do we want to build a TOC? *)
+(* Similar to [html_of_post] but tailored to be shown in a list of
+   news. *)
+let news_of_post p =
+  let date = match p.date with
+    | None -> ""
+    | Some d -> Rss.string_of_date d in
+  let desc = Nethtml.parse (new Netchannels.input_string p.desc) in
+  let span_class c html = Element("span", ["class", c], html) in
+  [Element("li", [],
+           [span_class "rss-title" [html_title p];
+            Data(if date = "" then "" else "&nbsp;&mdash;&nbsp;");
+            span_class "rss-date" [Data date];
+            span_class "rss-description" (prefix_of_html desc 500)
+  ])]
 
 let of_urls urls =
   let ch = channel_of_urls urls in
@@ -148,3 +162,10 @@ let of_urls urls =
   let posts = List.map parse_item items in
   List.concat(List.map html_of_post posts)
   @ toggle_script
+
+let news urls =
+  let ch = channel_of_urls urls in
+  let ch = Rss.keep_n_items 5 ch in
+  let items = Rss.sort_items_by_date ch.Rss.ch_items in
+  let posts = List.map parse_item items in
+  [Element("ul", [], List.concat(List.map news_of_post posts))]

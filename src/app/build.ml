@@ -54,6 +54,7 @@ and modify_img_path_element ~img_dir p = function
 let () =
   let b = Weberizer.Binding.make() in
   Weberizer.Binding.fun_html b "rss" Render_rss.of_urls;
+  Weberizer.Binding.fun_html b "news" Render_rss.news;
 
   let re_filter = Str.regexp "\\(menu\\|OCAML\\).*" in
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in
