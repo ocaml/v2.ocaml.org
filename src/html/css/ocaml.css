@@ -175,7 +175,7 @@ div.short-explanation {
 }
 
 /* News (news.html)
-   **********************************************************************/
+ **********************************************************************/
 
 .announce_title {
   display: inline;
@@ -192,4 +192,15 @@ div.short-explanation {
 
 .software {
   padding-bottom: 1ex;
+}
+
+/* support.html
+ ***********************************************************************/
+
+td.logo {
+  padding: 1ex 2ex 1ex 2ex;
+}
+
+table.logos {
+  margin-bottom: 2ex;
 }
