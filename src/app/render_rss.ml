@@ -72,21 +72,25 @@ let rec prefix_of_html html len = match html with
      if l < len then el :: prefix_of_html tl (len - l)
      else [] (* FIXME: naive, descend into el *)
 
+
+let new_id =
+  let id = ref 0 in
+  fun () -> incr id; sprintf "post%i" !id
+
 (* [toggle html1 html2] return some piece oh html with buttons to pass
    from [html1] to [html2] and vice versa. *)
-let toggle =
-  let id = ref 0 in
-  let new_id () = incr id; sprintf "rsspost%i" !id in
+let toggle ?(anchor="") html1 html2 =
   let button id1 id2 text =
-    [Element("a", ["onclick", sprintf "switchContent('%s','%s')" id1 id2;
-                   "class", "btn"],
-             [Data text])]
+    Element("a", ["onclick", sprintf "switchContent('%s','%s')" id1 id2;
+                  "class", "btn";
+                  "href", "#" ^ anchor],
+            [Data text])
   in
-  fun html1 html2 ->
   let id1 = new_id() and id2 = new_id() in
-  [Element("div", ["id", id1], html1 @ button id1 id2 "Read more...");
+  [Element("div", ["id", id1],
+           html1 @ [button id1 id2 "Read more..."]);
    Element("div", ["id", id2; "style", "display: none"],
-           html2 @ button id2 id1 "Hide") ]
+           html2 @ [button id2 id1 "Hide"])]
 
 let toggle_script =
   let script =
@@ -103,6 +107,7 @@ let toggle_script =
 
   (* Transform a RSS item (i.e. story) into HTML. *)
 let html_of_post p =
+  let title_anchor = new_id() in
   let date = match p.date with
     | None -> ""
     | Some d -> Rss.string_of_date d in
@@ -119,10 +124,11 @@ let html_of_post p =
     else
       let desc = Nethtml.parse (new Netchannels.input_string p.desc) in
       if length_html desc < 1000 then desc
-      else toggle (prefix_of_html desc 1000) desc
+      else toggle (prefix_of_html desc 1000) desc ~anchor:title_anchor
   in
   let span_class c html = Element("span", ["class", c], html) in
-  [span_class "rss-header"
+  [Element("a", ["name", title_anchor], []);
+   span_class "rss-header"
               [span_class "rss-title" [html_title];
                Data sep;
                span_class "rss-author" [html_author];
