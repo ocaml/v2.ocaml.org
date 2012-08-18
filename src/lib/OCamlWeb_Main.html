@@ -15,10 +15,10 @@
     <meta name="generator" content="OCaml (Weberizer)" />
 
     <link rel="shortcut icon" href="${shortcut_icon}" />
-    <link href="${url_base}css/bootstrap.css" rel="stylesheet">
+    <link href="${css_dir}bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all"
-	  href="${url_base}css/ocaml.css" />
-    <link href="${url_base}css/bootstrap-responsive.css" rel="stylesheet">
+	  href="${css_dir}ocaml.css" />
+    <link href="${css_dir}bootstrap-responsive.css" rel="stylesheet">
 
     <link ml:replace="stylesheet" />
     <script ml:replace="javascript" ></script>
@@ -88,6 +88,8 @@
       Contribute to this project!
       Find us on <a href="https://github.com/agarwal/ocamlweb" >Github</a>.
     </div>
+    <span title="${img_dir} = image directory from the base of the site"
+	  ></span>
 
 
     <!-- Le javascript
@@ -97,7 +99,7 @@
 
     <script type="text/javascript"
 	    src="http://platform.twitter.com/widgets.js"></script>
-    <script src="${url_base}js/jquery.js"></script>
-    <!-- <script src="${url_base}js/google-code-prettify/prettify.js"></script> -->
-    <script src="${url_base}js/bootstrap.js"></script>
+    <script src="${javascript_dir}jquery.js"></script>
+    <!-- <script src="${javascript_dir}google-code-prettify/prettify.js"></script> -->
+    <script src="${javascript_dir}/bootstrap.js"></script>
 </html>

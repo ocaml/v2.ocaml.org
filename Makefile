@@ -15,16 +15,6 @@ web: build
 	cp -a src/html/ext/*.js $(WWW)/js/
 	cp -a src/html/img $(WWW)
 	cp -a src/html/ext/bootstrap/img/*.png $(WWW)/img/
-	@echo -n "Create symlinks for languages:"
-	@for l in $(filter-out en, $(LANGS)); do \
-	  if test -d $(WWW)/$$l; then \
-	    echo -n " $$l"; \
-	    test -e $(WWW)/$$l/css || ln -s ../css $(WWW)/$$l/css; \
-	    test -e $(WWW)/$$l/js || ln -s ../js $(WWW)/$$l/js; \
-	    test -e $(WWW)/$$l/img || ln -s ../img $(WWW)/$$l/img; \
-	  fi; \
-	done
-	@echo
 
 setup.data: src/lib/OCamlWeb_Main.html \
   src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli

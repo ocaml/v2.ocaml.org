@@ -11,9 +11,9 @@ let concat_path p f =
     if p.[String.length p - 1] = '/' then p ^ f
     else p ^ "/" ^ f
 
-let separation_arrow url_base =
+let separation_arrow img_dir =
   Element("span", ["class", "separation"],
-          [Element("img", ["src", url_base ^ "img/right_arrow.png";
+          [Element("img", ["src", img_dir ^ "right_arrow.png";
                            "alt", "&gt;"], [])])
 
 let rec transform_path sep p = match p with
@@ -34,13 +34,14 @@ let stylesheet tpl ?(rel_base=true) url =
 
 let javascript tpl ?(rel_base=true) url =
   Set.javascript tpl begin fun t ->
-    let url = if rel_base then concat_path (Get.url_base t) url else url in
+    let url = if rel_base then concat_path (Get.javascript_dir t) url
+              else url in
     [Element("script", ["type", "text/javascript"; "src", url], [])]
   end
 
 let navigation tpl path =
   Set.navigation_bar tpl begin fun t ->
-    let sep = separation_arrow (Get.url_base t) in
+    let sep = separation_arrow (Get.img_dir t) in
     transform_path sep path
   end
 
