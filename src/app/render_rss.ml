@@ -11,9 +11,9 @@ let text_description =
 
 let channel_of_urls urls =
   let download_and_parse url =
-    printf "Downloading %s... " url;
+    eprintf "Downloading %s... %!" url;
     let ch = Rss.channel_of_string(http_get url) in
-    printf "done.\n";
+    eprintf "done.\n%!";
     ch in
   let channels = List.map download_and_parse urls in
   match channels with
@@ -57,9 +57,51 @@ let parse_item it =
     date = it.item_pubdate }
 
 
-let span_class c html = Element("span", ["class", c], html)
+(* Limit the length of the description presented to the reader. *)
 
-(* Transform a RSS item (i.e. story) into HTML. *)
+let rec length_html html =
+  List.fold_left (fun l h -> l + length_html_el h) 0 html
+and length_html_el = function
+  | Element(_, _, content) -> length_html content
+  | Data d -> String.length d
+
+let rec prefix_of_html html len = match html with
+  | [] -> []
+  | el :: tl ->
+     let l = length_html_el el in
+     if l < len then el :: prefix_of_html tl (len - l)
+     else [] (* FIXME: naive, descend into el *)
+
+(* [toggle html1 html2] return some piece oh html with buttons to pass
+   from [html1] to [html2] and vice versa. *)
+let toggle =
+  let id = ref 0 in
+  let new_id () = incr id; sprintf "rsspost%i" !id in
+  let button id1 id2 text =
+    [Element("a", ["onclick", sprintf "switchContent('%s','%s')" id1 id2;
+                   "class", "btn"],
+             [Data text])]
+  in
+  fun html1 html2 ->
+  let id1 = new_id() and id2 = new_id() in
+  [Element("div", ["id", id1], html1 @ button id1 id2 "Read more...");
+   Element("div", ["id", id2; "style", "display: none"],
+           html2 @ button id2 id1 "Hide") ]
+
+let toggle_script =
+  let script =
+    "function switchContent(id1,id2) {
+     // Get the DOM reference
+     var contentId1 = document.getElementById(id1);
+     var contentId2 = document.getElementById(id2);
+     // Toggle
+     contentId1.style.display = \"none\";
+     contentId2.style.display = \"block\";
+     }" in
+  [Element("script", ["type", "text/javascript"], [Data script])]
+
+
+  (* Transform a RSS item (i.e. story) into HTML. *)
 let html_of_post p =
   let date = match p.date with
     | None -> ""
@@ -74,8 +116,12 @@ let html_of_post p =
   let desc =
     if List.mem p.author text_description then
       [Element("pre", ["class", "rss-text"], [Data p.desc])]
-    else [Data p.desc]   (* FIXME: folding if too long *)
+    else
+      let desc = Nethtml.parse (new Netchannels.input_string p.desc) in
+      if length_html desc < 1000 then desc
+      else toggle (prefix_of_html desc 1000) desc
   in
+  let span_class c html = Element("span", ["class", c], html) in
   [span_class "rss-header"
               [span_class "rss-title" [html_title];
                Data sep;
@@ -95,3 +141,4 @@ let of_urls urls =
   let items = Rss.sort_items_by_date ch.Rss.ch_items in
   let posts = List.map parse_item items in
   List.concat(List.map html_of_post posts)
+  @ toggle_script

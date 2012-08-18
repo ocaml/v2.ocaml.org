@@ -16,6 +16,9 @@ a:hover {
   text-decoration: underline;
 }
 
+code { /* override bootstrap */
+  color: black;
+}
 
 /* Header
    **********************************************************************/
@@ -211,6 +214,12 @@ pre.rss-text { /* main story is text, not HTML */
   background-color: white;
   border: 0;
 }
+
+/* Colorize code */
+
+.rss-description .kwa { font-weight: bold; }
+.rss-description .kwb { color: #9a21c9; }
+.rss-description .kwc { color: #213cc9; }
 
 /* support.html
  ***********************************************************************/
