@@ -229,10 +229,16 @@ pre.rss-text { /* main story is text, not HTML */
   font-size: 80%;
 }
 
+/* News content */
+
 #news .rss-description h1,
 #news .rss-description h2,
 #news .rss-description h3 {
   font-size: 100%;
+}
+
+#news .rss-description p {
+  display: inline;
 }
 
 /* Colorize code */

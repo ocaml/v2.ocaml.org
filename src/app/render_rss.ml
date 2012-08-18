@@ -73,6 +73,12 @@ and length_html_el = function
   | Element(_, _, content) -> length_html content
   | Data d -> String.length d
 
+let rec text_of_html html =
+  String.concat "" (List.map text_of_el html)
+and text_of_el = function
+  | Element(_, _, content) -> text_of_html content
+  | Data d -> d
+
 let rec prefix_of_html html len = match html with
   | [] -> []
   | el :: tl ->
@@ -143,18 +149,27 @@ let html_of_post p =
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news. *)
-let news_of_post p =
+let news_of_post ?(len=400) p =
   let date = match p.date with
     | None -> ""
     | Some d -> Rss.string_of_date d in
   let desc = Nethtml.parse (new Netchannels.input_string p.desc) in
   let span_class c html = Element("span", ["class", c], html) in
+  let more = Element("a", ["href", p.link], [Data "&nbsp;[...]"]) in
+  let desc =
+    if List.mem p.author text_description then
+      if String.length p.desc <= len || p.link = "" then [Data p.desc]
+      else [Data(String.sub p.desc 0 len); more]
+    else
+      let d = prefix_of_html desc len in
+      if length_html d > 0 then (* e.g. if length_html desc <= len *)
+        d @ [more]
+      else [Data(String.sub (text_of_html desc) 0 len); more] in
   [Element("li", [],
            [span_class "rss-title" [html_title p];
             Data(if date = "" then "" else "&nbsp;&mdash;&nbsp;");
             span_class "rss-date" [Data date];
-            span_class "rss-description" (prefix_of_html desc 500)
-  ])]
+            span_class "rss-description" desc; ])]
 
 let of_urls urls =
   let ch = channel_of_urls urls in
