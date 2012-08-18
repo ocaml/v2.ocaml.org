@@ -42,6 +42,7 @@ let html_author p =
 
 let string_of_option = function None -> "" | Some s -> s
 
+(* Transform a RSS item into a [post]. *)
 let parse_item it =
   let open Rss in
   let title = string_of_option it.item_title in
@@ -119,7 +120,7 @@ let toggle_script =
   [Element("script", ["type", "text/javascript"], [Data script])]
 
 
-  (* Transform a RSS item (i.e. story) into HTML. *)
+(* Transform a post [p] (i.e. story) into HTML. *)
 let html_of_post p =
   let title_anchor = new_id() in
   let date = match p.date with
@@ -148,7 +149,7 @@ let html_of_post p =
    Data "\n"]
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
-   news. *)
+   news (e.g. needs to be more condensed). *)
 let news_of_post ?(len=400) p =
   let date = match p.date with
     | None -> ""
@@ -156,15 +157,16 @@ let news_of_post ?(len=400) p =
   let desc = Nethtml.parse (new Netchannels.input_string p.desc) in
   let span_class c html = Element("span", ["class", c], html) in
   let more = Element("a", ["href", p.link], [Data "&nbsp;[...]"]) in
+  let desc_of_txt txt =
+    let len_txt = String.length txt in
+    if len_txt <= len || p.link = "" then [Data txt]
+    else [Data(String.sub txt 0 (min len len_txt)); more] in
   let desc =
-    if List.mem p.author text_description then
-      if String.length p.desc <= len || p.link = "" then [Data p.desc]
-      else [Data(String.sub p.desc 0 len); more]
+    if List.mem p.author text_description then desc_of_txt p.desc
     else
       let d = prefix_of_html desc len in
-      if length_html d > 0 then (* e.g. if length_html desc <= len *)
-        d @ [more]
-      else [Data(String.sub (text_of_html desc) 0 len); more] in
+      if length_html d > 0 then d @ [more]
+      else desc_of_txt (text_of_html desc) in
   [Element("li", [],
            [span_class "rss-title" [html_title p];
             Data(if date = "" then "" else "&nbsp;&mdash;&nbsp;");
