@@ -31,10 +31,10 @@ let dir_from_base p =
 let modify_img_path ~img_dir p ((src, url) as arg) =
   let url = Neturl.split_path url in
   let path = Neturl.norm_path(dir_from_base p @ url) in
-  printf "*** url = %s path = %s\n%!" (String.concat "|" url)
-         (String.concat "|" path);
   match path with
-  | "img" :: sub_path -> (src, img_dir ^ Neturl.join_path sub_path)
+  | "img" :: sub_path ->
+     let url' = Path.to_base p ^ img_dir ^ Neturl.join_path sub_path in
+     (src, url')
   | _ -> arg
 
 let rec img_path_translations ~img_dir p html =
@@ -70,15 +70,15 @@ let () =
     printf "Processing %s\n" (Path.full p);
     let tpl = OCamlWeb_Main.lang tpl lang in
     let tpl = OCamlWeb_Main.url_base tpl (Weberizer.Path.to_base p) in
-    Weberizer.Binding.string b "url_base" (Weberizer.Path.to_base p);
+    let url_base = if Path.in_base p then "" else Path.to_base p in
+    Weberizer.Binding.string b "url_base" url_base;
     let page = Weberizer.read (Path.full p) ~bindings:b in
     let tpl = OCamlWeb_Main.title tpl (Weberizer.title_of page) in
-    let img_dir = if lang = "en" then "img/" else "../img/" in
+    let prefix = if lang = "en" then "" else "../" in
+    let img_dir = url_base ^ prefix ^ "img/" in
     let tpl = OCamlWeb_Main.img_dir tpl img_dir in
-    let tpl = OCamlWeb_Main.css_dir tpl (if lang = "en" then "css/"
-                                         else "../css/") in
-    let tpl = OCamlWeb_Main.javascript_dir tpl (if lang = "en" then "js/"
-                                                else "../js/") in
+    let tpl = OCamlWeb_Main.css_dir tpl (url_base ^ prefix ^ "css/") in
+    let tpl = OCamlWeb_Main.javascript_dir tpl (url_base ^ prefix ^ "js/") in
     let body = Weberizer.body_of page in
     let body = Weberizer.protect_emails body in
     let body = img_path_translations p body ~img_dir in
