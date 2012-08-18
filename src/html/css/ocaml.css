@@ -201,6 +201,17 @@ div.short-explanation {
   padding-bottom: 3ex;
 }
 
+pre.rss-text { /* main story is text, not HTML */
+  color: black;
+  /* Same font as "body": */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border: 0;
+}
+
 /* support.html
  ***********************************************************************/
 
