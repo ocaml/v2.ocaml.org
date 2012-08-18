@@ -11,7 +11,7 @@ BuildTools:  ocamlbuild
 Library ocamlweb
   Path:         src/lib
   FindlibName:  ocamlweb
-  BuildDepends: weberizer, netstring
+  BuildDepends: weberizer, netstring, netclient, rss
   Install:      false
   Modules:      OCamlWeb_Main
 

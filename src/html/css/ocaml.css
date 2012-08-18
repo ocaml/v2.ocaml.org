@@ -174,24 +174,31 @@ div.short-explanation {
   padding-bottom: 2ex;
 }
 
-/* News (news.html)
+/* OCaml Planet
  **********************************************************************/
 
-.announce_title {
-  display: inline;
+.rss-header {
+  display: block;
+  background-color: #ededed;
+  width: 100%;
   color: black;
-  font-size: 120%;
+  padding: 1ex 1ex 1ex 1ex;
+  margin-bottom: 1ex;
+}
+
+.rss-title {
+  font-size: 125%;
   font-weight: bold;
 }
 
-.announce_date {
-  display: inline;
-  color: #1010ff;
-  padding-left: 1em;
+.rss-date {
+  font-style: italic;
 }
 
-.software {
-  padding-bottom: 1ex;
+.rss-description { /* main story */
+  display: block;
+  padding-left: 3em;
+  padding-bottom: 3ex;
 }
 
 /* support.html

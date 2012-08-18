@@ -15,6 +15,8 @@ Building the html pages requires:
 * ocaml
 * [oasis](http://forge.ocamlcore.org/projects/oasis/)
 * [weberizer](https://github.com/Chris00/weberizer)
+* [Ocamlnet](http://projects.camlcity.org/projects/ocamlnet.html)
+* [OCamlRSS](http://zoggy.github.com/ocamlrss/)
 
 Weberizer is Christophe Troestler's templating tool. It allows us to
 easily provide a consistent design to multiple pages. You will only
