@@ -2,22 +2,14 @@
 
 open Printf
 open Nethtml
-open Http_client.Convenience
 
 (** List of "authors" that send text descriptions (as opposed to
     HTML).  The formatting of the description must then be respected. *)
 let text_description =
   ["OCamlCore Forge News"]
 
-(* FIXME: consider using a local cache not to download the RSS file
-   over again during development. *)
-
 let channel_of_urls urls =
-  let download_and_parse url =
-    eprintf "Downloading %s... %!" url;
-    let ch = Rss.channel_of_string(http_get url) in
-    eprintf "done.\n%!";
-    ch in
+  let download_and_parse url = Rss.channel_of_string(Http.get url) in
   let channels = List.map download_and_parse urls in
   match channels with
   | [] -> Rss.channel ~title:"No channel given" ~link:"" ~desc:"" []
@@ -205,9 +197,7 @@ module OPML = struct
      the [Rss] module => no additional dep. *)
 
   let contributors_of_url url =
-    eprintf "Downloading %s... %!" url;
-    let fh = Xmlm.make_input (`String(0, http_get url))  in
-    eprintf "done.\n%!";
+    let fh = Xmlm.make_input (`String(0, Http.get url))  in
     let contrib = ref [] in
     try
       while true do
