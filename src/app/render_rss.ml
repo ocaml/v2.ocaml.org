@@ -168,14 +168,14 @@ let news_of_post ?(len=400) p =
             span_class "rss-date" [Data date];
             span_class "rss-description" desc; ])]
 
-let of_urls urls =
+let of_urls urls _whole_html =
   let ch = channel_of_urls urls in
   let items = Rss.sort_items_by_date ch.Rss.ch_items in
   let posts = List.map parse_item items in
   List.concat(List.map html_of_post posts)
   @ toggle_script
 
-let news urls =
+let news urls _ =
   let ch = channel_of_urls urls in
   let ch = Rss.keep_n_items 5 ch in
   let items = Rss.sort_items_by_date ch.Rss.ch_items in
@@ -213,7 +213,7 @@ module OPML = struct
     with Xmlm.Error(_, `Unexpected_eoi) ->
       !contrib
 
-  let of_urls urls =
+  let of_urls urls _ =
     let cs = List.concat (List.map (fun u -> contributors_of_url u) urls) in
     let cs = List.sort (fun c1 c2 -> String.compare c1.name c2.name) cs in
     let contrib_html c =
