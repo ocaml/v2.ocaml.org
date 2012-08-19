@@ -9,6 +9,9 @@ open Http_client.Convenience
 let text_description =
   ["OCamlCore Forge News"]
 
+(* FIXME: consider using a local cache not to download the RSS file
+   over again during development. *)
+
 let channel_of_urls urls =
   let download_and_parse url =
     eprintf "Downloading %s... %!" url;
@@ -186,3 +189,44 @@ let news urls =
   let items = Rss.sort_items_by_date ch.Rss.ch_items in
   let posts = List.map parse_item items in
   [Element("ul", [], List.concat(List.map news_of_post posts))]
+
+
+(* OPML -- subscriber list
+ ***********************************************************************)
+
+module OPML = struct
+  type contributor = {
+    name : string;
+    title : string;
+    url : string;
+  }
+
+  (* Use Xmlm for the parsing, mostly because it is already needed by
+     the [Rss] module => no additional dep. *)
+
+  let contributors_of_url url =
+    eprintf "Downloading %s... %!" url;
+    let fh = Xmlm.make_input (`String(0, http_get url))  in
+    eprintf "done.\n%!";
+    let contrib = ref [] in
+    try
+      while true do
+        match Xmlm.input fh with
+        | `El_start((_, "outline"), args) ->
+           contrib := { name = List.assoc ("", "text") args;
+                        title = List.assoc ("", "text") args;
+                        url = List.assoc ("", "xmlUrl") args;
+                      } :: !contrib
+        | _ -> ()
+      done;
+      assert false
+    with Xmlm.Error(_, `Unexpected_eoi) ->
+      !contrib
+
+  let of_urls urls =
+    let cs = List.concat (List.map (fun u -> contributors_of_url u) urls) in
+    let cs = List.sort (fun c1 c2 -> String.compare c1.name c2.name) cs in
+    let contrib_html c =
+      Element("li", [], [Element("a", ["href", c.url], [Data c.name])]) in
+    [Element("ul", [], List.map contrib_html cs)]
+end

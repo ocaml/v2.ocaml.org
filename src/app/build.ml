@@ -28,12 +28,13 @@ let dir_from_base p =
   let path = Path.from_base_split p in
   if Path.filename p = "" then path else drop_last path
 
+(* [img_dir]: path to images from the location [p] points to. *)
 let modify_img_path ~img_dir p ((src, url) as arg) =
   let url = Neturl.split_path url in
   let path = Neturl.norm_path(dir_from_base p @ url) in
   match path with
   | "img" :: sub_path ->
-     let url' = Path.to_base p ^ img_dir ^ Neturl.join_path sub_path in
+     let url' = img_dir ^ Neturl.join_path sub_path in
      (src, url')
   | _ -> arg
 
@@ -55,6 +56,7 @@ let () =
   let b = Weberizer.Binding.make() in
   Weberizer.Binding.fun_html b "rss" Render_rss.of_urls;
   Weberizer.Binding.fun_html b "news" Render_rss.news;
+  Weberizer.Binding.fun_html b "opml" Render_rss.OPML.of_urls;
 
   let re_filter = Str.regexp "\\(menu\\|OCAML\\).*" in
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in

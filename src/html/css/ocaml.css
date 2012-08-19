@@ -180,13 +180,32 @@ div.short-explanation {
 /* OCaml Planet
  **********************************************************************/
 
+div.planet-subscriptions {
+  font-size: 85%;
+  background-color: #ededed; /* same as .rss-header */
+  padding: 0.5ex 1ex 0.5ex 0.5ex;
+  margin-right: 0;
+  border: 1px solid #8b8b8b;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.planet-subscriptions em {
+  font-size: 110%;
+  padding-left: 0.5ex;
+}
+
 .rss-header {
   display: block;
   background-color: #ededed;
-  width: 100%;
+  width: 90%;
   color: black;
   padding: 1ex 1ex 1ex 1ex;
   margin-bottom: 1ex;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
 }
 
 .rss-title {
