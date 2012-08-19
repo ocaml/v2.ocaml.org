@@ -272,7 +272,7 @@ pre.rss-text { /* main story is text, not HTML */
  ***********************************************************************/
 
 .toc li {
-  margin-left: -1em;
+  list-style-type: square;
 }
 
 /* support.html

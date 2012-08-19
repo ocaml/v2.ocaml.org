@@ -87,18 +87,6 @@ module Toc = struct
     | Element(_, _, content) -> collect_toc content
     | Data _ -> []
 
-  (* FIXME: ATM, we will replace <toc/> with the table of contents.
-     It would be expected to have a "toc" function for Weberiser
-     ml:replace but this requires to modify Weberiser so that
-     variables can access the current HTML (and possibly modify it, if
-     we want to automatically add anchors in the future). *)
-  let rec replace_toc_element f html =
-    List.map (replace_toc_element_el f) html
-  and replace_toc_element_el f = function
-    | Element("toc", _, _) -> f()
-    | Element(e, a, c) -> Element(e, a, replace_toc_element f c)
-    | Data _ as e -> e
-
   let html_of_entry e =
     let h = if e.anchor = "" then Data e.title
             else Element("a", ["href", "#" ^ e.anchor], [Data e.title]) in
@@ -119,15 +107,29 @@ module Toc = struct
        else (* e.level < level; return to higher level *)
          ul_of_entries html, toc
 
-  let to_html toc =
-    let html, _ = to_html_sub 1 [] toc in
-    Element("div", ["class", "toc"], [html])
+  let to_html ~level toc =
+    let html, _ = to_html_sub level [] toc in
+    [Element("div", ["class", "toc"], [html])]
 
-  let rec make ?(low = 2) html =
-    let f html =
-    let entries = List.filter (fun e -> e.level >= low) (collect_toc html) in
-    to_html entries in
-    replace_toc_element (fun () -> f html) html
+  let make args html =
+    let entries = collect_toc html in
+    let entries, level =
+      try
+        match args with
+        | [low] ->
+           let low = int_of_string low in
+           List.filter (fun e -> e.level >= low) entries, low
+        | [low; hi] ->
+           let low = int_of_string low and hi = int_of_string hi in
+           List.filter (fun e -> e.level >= low && e.level <= hi) entries, low
+        | _ ->
+           (* By default, <h1> is the main title of the page. *)
+           List.filter (fun e -> e.level >= 2) entries, 2
+      with Failure _ ->
+        invalid_arg "[toc ?low ?hi] and bound must be integers."
+    in
+    to_html ~level entries
+
 end
 
 let () =
@@ -135,6 +137,7 @@ let () =
   Weberizer.Binding.fun_html b "rss" Render_rss.of_urls;
   Weberizer.Binding.fun_html b "news" Render_rss.news;
   Weberizer.Binding.fun_html b "opml" Render_rss.OPML.of_urls;
+  Weberizer.Binding.fun_html b "toc" Toc.make;
 
   let re_filter = Str.regexp "\\(menu\\|OCAML\\).*" in
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in
@@ -164,7 +167,6 @@ let () =
     let body = Weberizer.body_of page in
     let body = Weberizer.protect_emails body in
     let body = img_path_translations p body ~img_dir in
-    let body = Toc.make body in
     let tpl = OCamlWeb_Main.main tpl body in
 
     let tpl = add_menu tpl lang in
