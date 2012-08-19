@@ -51,6 +51,84 @@ and modify_img_path_element ~img_dir p = function
   | Nethtml.Data _ as e -> e
 
 
+module Toc = struct
+  type entry = {
+    title : string;
+    anchor: string;
+    level: int;
+  }
+
+  let rec text_of_html html =
+    String.concat "" (List.map text_of_el html)
+  and text_of_el = function
+    | Element(_, _, content) -> text_of_html content
+    | Data d -> d
+
+  let rec get_anchor = function
+    | [] -> ""
+    | e :: tl ->
+       let a = get_anchor_el e in
+       if a = "" then get_anchor tl else a
+  and get_anchor_el = function
+    | Element("a", args, content) ->
+       (try List.assoc "name" args
+        with Not_found -> get_anchor content)
+    | Element(_, _, content) -> get_anchor content
+    | Data _ -> ""
+
+  let rec collect_toc html =
+    List.concat (List.map collect_toc_el html)
+  and collect_toc_el = function
+    | Element(("h1" | "h2" | "h3" | "h4" | "h5" | "h6") as e, args, content) ->
+       let level = int_of_string(String.sub e 1 1) in
+       let title = text_of_html content
+       and anchor = get_anchor content in
+       [{ title; anchor; level }]
+    | Element(_, _, content) -> collect_toc content
+    | Data _ -> []
+
+  (* FIXME: ATM, we will replace <toc/> with the table of contents.
+     It would be expected to have a "toc" function for Weberiser
+     ml:replace but this requires to modify Weberiser so that
+     variables can access the current HTML (and possibly modify it, if
+     we want to automatically add anchors in the future). *)
+  let rec replace_toc_element f html =
+    List.map (replace_toc_element_el f) html
+  and replace_toc_element_el f = function
+    | Element("toc", _, _) -> f()
+    | Element(e, a, c) -> Element(e, a, replace_toc_element f c)
+    | Data _ as e -> e
+
+  let html_of_entry e =
+    let h = if e.anchor = "" then Data e.title
+            else Element("a", ["href", "#" ^ e.anchor], [Data e.title]) in
+    Element("li", ["class", "toc-entry"], [h])
+
+  let ul_of_entries html =
+    Element("ul", ["class", "toc-sub"], List.rev html)
+
+  let rec to_html_sub level html toc =
+    match toc with
+    | [] -> ul_of_entries html, [] (* no toc entries, return html we got *)
+    | e :: tl ->
+       if e.level = level then
+         to_html_sub level (html_of_entry e :: html) tl
+       else if e.level > level then (* Sub-entry *)
+         let h, toc = to_html_sub e.level [] toc in
+         to_html_sub level (h :: html) toc
+       else (* e.level < level; return to higher level *)
+         ul_of_entries html, toc
+
+  let to_html toc =
+    let html, _ = to_html_sub 1 [] toc in
+    Element("div", ["class", "toc"], [html])
+
+  let rec make ?(low = 2) html =
+    let f html =
+    let entries = List.filter (fun e -> e.level >= low) (collect_toc html) in
+    to_html entries in
+    replace_toc_element (fun () -> f html) html
+end
 
 let () =
   let b = Weberizer.Binding.make() in
@@ -86,6 +164,7 @@ let () =
     let body = Weberizer.body_of page in
     let body = Weberizer.protect_emails body in
     let body = img_path_translations p body ~img_dir in
+    let body = Toc.make body in
     let tpl = OCamlWeb_Main.main tpl body in
 
     let tpl = add_menu tpl lang in
