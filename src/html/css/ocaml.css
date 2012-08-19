@@ -1,11 +1,4 @@
 
-@media print {
-  body {
-    padding-top: 0;
-    font-size: 12px;
-  }
-}
-
 a {
   color: #c25608;
   text-decoration: none;
@@ -14,6 +7,15 @@ a {
 a:hover {
   color: #f16a04;
   text-decoration: underline;
+}
+
+h1 a, h2 a, h3 a, h4 a { /* anchors */
+  color: black;
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { /* anchors */
+  color: black;
+  text-decoration: none;
 }
 
 code { /* override bootstrap */
