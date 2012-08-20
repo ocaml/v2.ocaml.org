@@ -53,8 +53,9 @@ let parse_item it =
   let link = match it.item_guid with
     | None -> link
     | Some e ->
-       (* Prefer [link], sometimes the guid is garbled (e.g. Coq) *)
-       if link = "" then e.guid_name else link in
+       (* Sometimes the guid is indicated with isPermaLink="false" but
+          is nonetheless the only URL we get (e.g. ocamlpro). *)
+       if e.guid_permalink || link = "" then e.guid_name else link in
   { title; link; author;
     email = string_of_option it.item_author;
     desc = string_of_option it.item_desc;
