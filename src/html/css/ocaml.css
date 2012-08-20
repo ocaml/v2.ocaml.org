@@ -262,6 +262,10 @@ pre.rss-text { /* main story is text, not HTML */
   display: inline;
 }
 
+.rss-description h1 { font-size: 140%; }
+.rss-description h2 { font-size: 130%; }
+.rss-description h3 { font-size: 105%; }
+
 /* Colorize code */
 
 .rss-description .kwa { font-weight: bold; }
