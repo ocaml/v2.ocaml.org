@@ -5,18 +5,26 @@
 open Printf
 open Http_client.Convenience
 
-let not_too_old fn =
+let age fn =
   let now = Unix.time () in (* in sec *)
   let modif = (Unix.stat fn).Unix.st_mtime in
-  eprintf "*** Now: %f  %S: %f\n%!" now fn modif;
-  now <= modif +. 86400. (* 60 * 60 * 24 = 24h *)
+  now -. modif
 
-let get url =
+let time_of_secs s =
+  let s = truncate s in
+  let m = s / 60 and s = s mod 60 in
+  let h = m / 60 and m = m mod 60 in
+  sprintf "%ih %im %is" h m s
+
+(* 86400. = 60 * 60 * 24 = 24h *)
+let get ?(cache_secs=86400.) url =
   let md5 = Digest.to_hex(Digest.string url) in
   let fn = Filename.concat Filename.temp_dir_name ("ocamlorg-" ^ md5) in
   eprintf "Downloading %s... %!" url;
-  if Sys.file_exists fn && not_too_old fn then (
-    eprintf "done.\n  (using cache %s).\n%!" fn;
+  let a = age fn in
+  if Sys.file_exists fn && a <= cache_secs then (
+    eprintf "done.\n  (using cache %s, updated %s ago).\n%!"
+            fn (time_of_secs a);
     let fh = open_in fn in
     let data = input_value fh in
     close_in fh;
