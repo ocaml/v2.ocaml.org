@@ -30,7 +30,34 @@
 	from <a href="#macosx-sources" >sources</a>;</li>
     </ul>
 
+    <ul class="nav nav-tabs">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">By Platform <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#debian" data-toggle="tab">Debian</a></li>
+          <li><a href="#fedora" data-toggle="tab">Fedora</a></li>
+          <li><a href="#gentoo" data-toggle="tab">Gentoo</a></li>
+          <li><a href="#macosx" data-toggle="tab">Mac OS X</a></li>
+          <li><a href="#suse" data-toggle="tab">SuSE</a></li>
+          <li><a href="#ubuntu" data-toggle="tab">Ubuntu</a></li>
+          <li><a href="#windows" data-toggle="tab">Windows</a></li>
+        </ul>
+      </li>
 
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">By Package Manager <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#godi" data-toggle="tab">GODI</a></li>
+          <li><a href="#odb" data-toggle="tab">ODB</a></li>
+          <li><a href="#opam" data-toggle="tab">OPAM</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#source" data-toggle="tab">From Source</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane fade" id="godi">
     <h2><a name="godi">GODI</a></h2>
     <p>GODI is a package manager specific to OCaml. It automatically
     downloads, compiles, and installs OCaml itself as well as many
@@ -53,11 +80,9 @@
     You may need to use the <code>--prefix</code> option to the bootstrap command
     if you need to change the default installation location.
     </p>
+      </div><!-- godi -->
 
-    <h2><a name="linux">Linux</a></h2>
-
-    <p>OCaml is packaged for the following distributions.</p>
-
+      <div class="tab-pane fade" id="debian">
     <h3><a name="debian" >Debian</a></h3>
 
       <p>OCaml is very easy to install
@@ -86,7 +111,9 @@
 	 >packages available in Debian</a>.
     </p>
   </li>
+      </div><!-- debian -->
 
+      <div class="tab-pane fade" id="ubuntu">
     <h3><a name="ubuntu" >Ubuntu</a></h3>
 
     <p><a href="http://www.ubuntu.com/" >Ubuntu</a> being a derivative
@@ -94,7 +121,9 @@
       <a href="http://packages.ubuntu.com/search?keywords=ocaml"
       >OCaml packages</a>.  The same recommendations as for Debian
       hold.
+      </div><!-- ubuntu -->
     
+      <div class="tab-pane fade" id="fedora">
     <h3><a name="fedora" >Fedora</a></h3>
 
     <p>Since <a href="http://fedoraproject.org/" >Fedora 8</a>, Fedora
@@ -135,6 +164,9 @@
       </li>
     </ul>
 
+      </div><!-- fedora -->
+
+      <div class="tab-pane fade" id="gentoo">
     <h3><a name="gentoo" >Gentoo</a></h3>
 
     <p>In order to get the basic tools under
@@ -148,6 +180,10 @@
 	emerge -S ocaml</pre>
     </p>
 
+      </div><!-- gentoo -->
+
+
+      <div class="tab-pane fade" id="suse">
     <h3><a name="suse" >SuSE</a></h3>
 
     <p>Getting Started with OCaml
@@ -155,14 +191,18 @@
       standard distribution.  In openSuse 12.1, the package name is
       <code>ocaml-3.12.0-11.1.2</code>.</p>
 
+      </div><!-- suse -->
 
+      <div class="tab-pane fade" id="windows">
     <h2><a name="windows" >Windows</a></h2>
 
     <p>An installer
       is <a href="http://protz.github.com/ocaml-installer/"
 	    >available</a>.
     </p>
+      </div><!-- windows -->
 
+      <div class="tab-pane fade" id="macosx">
     <h2><a name="macosx" >Mac OS X</a></h2>
 
     <p>Under Mac OS X, there are, at least for the base package, five
@@ -474,6 +514,18 @@ mv hello hello.app/Contents/MacOS</pre>
       won't be able to take any samples and won't report any
       statistics. More function names will show up in the profiles if you
       compile with <code>-g</code>.</p>
+
+      </div><!-- macosx -->
+
+      <div class="tab-pane fade" id="odb">
+      </div>
+
+      <div class="tab-pane fade" id="opam">
+      </div>
+
+      <div class="tab-pane fade" id="source">
+	Installing from source...
+      </div>
 
   </body>
 </html>
