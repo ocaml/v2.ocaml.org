@@ -9,11 +9,12 @@ let tpl = OCamlWeb_Main.shortcut_icon OCamlWeb_Main.empty
 
 (* more = <li class="active"><a href="#">Tutorial</a></li>
    for and additional menu. *)
-let add_menu ?(more=[]) tpl lang =
+let add_menu ?(more=[]) tpl lang p =
   let menu =
     if lang = "en" then "src/html/menu.html"
     else "src/html/menu." ^ lang ^ ".html" in
   let m = Weberizer.body_of(Weberizer.read menu) @ more in
+  let m = Weberizer.relative_url_are_from_base p m in
   OCamlWeb_Main.menu tpl m
 
 (* To avoid symlinks for the images but still share them accross the
@@ -169,7 +170,7 @@ let () =
     let body = img_path_translations p body ~img_dir in
     let tpl = OCamlWeb_Main.main tpl body in
 
-    let tpl = add_menu tpl lang in
+    let tpl = add_menu tpl lang p in
 
     let tpl = OCamlWeb_Main.navigation_of_path tpl p in
     let tpl = OCamlWeb_Main.languages tpl
