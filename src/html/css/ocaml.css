@@ -275,6 +275,30 @@ pre.rss-text { /* main story is text, not HTML */
 .rss-description .kwb { color: #9a21c9; }
 .rss-description .kwc { color: #213cc9; }
 
+/* Companies
+ ***********************************************************************/
+
+.company a.name {
+  font-weight: bold;
+  font-size: 110%;
+}
+.company a.name:after {
+  color: black;
+  font-weight: normal;
+  content: ",";
+}
+
+.company .country:after {
+  content: ".";
+}
+
+.company .description {
+  display: block;
+  font-style: italic;
+  padding: 0 0 1ex 1em;
+}
+
+
 /* TOC
  ***********************************************************************/
 
