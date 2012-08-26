@@ -361,6 +361,6 @@ div.A {
 /* OCaml code
  ***********************************************************************/
 
-span.output {
+.listing span.output {
   color: #3b9bf8;
 }
