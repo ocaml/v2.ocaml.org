@@ -2,20 +2,32 @@
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta content="IE=8" http-equiv="X-UA-Compatible">
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <title>FAQ</title>
-
-    <link href="ocaml.css" media="all" type="text/css" rel="stylesheet">
+    <link href="ocaml.css" media="all" type="text/css" rel="stylesheet" />
   </head>
   <body>
-    <div class="row-fluid">
-      <div class="span12"><h1>FAQ</h1></div>
-      <div class="span1">
-        <img src="img/under_construction_icon.gif" alt="Under Construction" />
-      </div>
+    <h1>FAQ</h1>
 
-      <div class="span12">
+    <p>
+    </p>
+
+    <ul class="nav nav-tabs">
+      <li class="active">
+	<a href="#ocaml" data-toggle="tab">Core Language</a>
+      </li>
+      <li><a href="#general" data-toggle="tab">General questions</a></li>
+    </ul>
+
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="ocaml">
+	<h2>Core Language</h2>
+
+
+
+
+	<hr />
         <p>Installation of OCaml?</p>
         <p><a
         href="http://caml.inria.fr/resources/doc/faq/core.en.html">Core
@@ -26,8 +38,104 @@
         should show how delimited overloading makes thing easier.
         </p>
 
-      </div>
-    </div>
+      </div><!-- Core Language -->
+
+
+      <div class="tab-pane" id="general">
+	<h2>General questions</h2>
+
+	<div class="Q">What is OCaml?</div>
+	<div class="A">
+	  OCaml is a programming language. It is a functional
+	  language, since the basic units of programs are
+	  functions.  It is a strongly-typed language; it means that
+	  the objects that you use belong to a set that has a name,
+	  called its type.  In OCaml, types are managed by the computer,
+	  the user has nothing to do about types (types are
+	  synthesized).  The language is available on almost every
+	  Unix platform (including Linux and MacOS X) and on PCs under
+	  Windows.  A brief tour on main <a
+	  href="description.html" >features</a> of OCaml.
+	</div>
+
+	<div class="Q">
+	  What is the meaning of the name &#8220;OCaml&#8221;
+	</div>
+	<div class="A">
+	  &#8220;Caml&#8221; is an acronym: it stands for
+	  &#8220;Categorical Abstract Machine Language&#8221;. The
+	  &#8220;Categorical Abstract Machine&#8221; is an abstract
+	  machine to define and execute functions. It is issued from
+	  theoretical considerations on the relationship between
+	  category theory and lambda-calculus. The first Caml compiler
+	  produced code for this abstract machine (in 1984).  The
+	  &#8220;O&#8221; stands for &#8220;Objective&#8221; and was
+	  added after object oriented features were available in the
+	  language.
+	  <br />
+	  In addition, OCaml is issued from the ML programming
+	  language, designed by Robin Milner in 1978, and used as the
+	  programming language to write the &#8220;proof
+	  tactics&#8221; in the LCF proof system.
+	</div>
+
+	<div class="Q">
+	  Do you write &#8220;Caml&#8221; or &#8220;CAML&#8221;,
+	  &#8220;OCaml&#8221;, &#8220;Ocaml&#8221; or
+	  &#8220;OCAML&#8221;?
+	</div>
+	<div class="A">
+	  We write OCaml.  <br /> According to usual rules for
+	  acronyms, we should write CAML, as we write USA or INRIA. On
+	  the other hand, this upper case name seems to yell all over
+	  the place, and writing OCaml is far more pretty and elegant
+	  — with  &#8220;O&#8221; and &#8220;C&#8221; capitalized.
+	</div>
+
+	<div class="Q">
+	  Is Caml a compiled or interpreted language?
+	</div>
+	<div class="A">
+          OCaml is compiled.  However each OCaml compiler offers a
+          top-level interactive loop, that is similar to an
+          interpreter. In fact, in the interactive system, the user
+          may type in program chunks (we call these pieces OCaml
+          &#8220;phrases&#8221;) that the system handles at once,
+          compiling them, executing them, and writing their results.
+	</div>
+
+	<div class="Q">
+	  What are the differences between Caml V3.1, Caml Light, and
+	  OCaml?
+	</div>
+	<div class="A">
+	  These are different Caml implementations that have been
+	  developed successively at INRIA.  These systems share many
+	  features since they all implement the core of the OCaml
+	  language; so the basic syntax is nearly the same.  However,
+	  all these systems have their own extensions to the Caml core
+	  language.
+	  <br />
+	  Caml V3.1 is no longer maintained nor distributed.  <a
+	  href="http://caml.inria.fr/caml-light/index.en.html" >Caml
+	  Light</a> is no longer developed, but still maintained.
+	  Because of its stable status, it is actively used in
+	  education.  Most other users have switched to OCaml, the
+	  latest variant of the language.  This is the version we
+	  suggest using in new software developments. See our brief <a
+	  href="history.html" >history</a> of the OCaml language.
+	</div>
+
+	<div class="Q">
+	  How to report a bug in the compilers?
+	</div>
+	<div class="A">
+	  Use the <a href="http://caml.inria.fr/mantis/" >bug tracking
+	  system</a> to browse bug reports and features request, and
+	  submit new ones.
+	</div>
+      </div><!-- General questions -->
+    </div><!-- tab-content -->
 
   </body>
 </html>

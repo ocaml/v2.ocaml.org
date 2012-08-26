@@ -344,3 +344,16 @@ td.logo {
 table.logos {
   margin-bottom: 2ex;
 }
+
+/* FAQ
+ ***********************************************************************/
+
+div.Q {
+  font-weight: bold;
+  padding-top: 1ex;
+  padding-bottom: 0.3ex;
+}
+
+div.A {
+  padding-left: 2em;
+}
