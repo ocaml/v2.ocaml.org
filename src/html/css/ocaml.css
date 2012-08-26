@@ -327,6 +327,28 @@ pre.rss-text { /* main story is text, not HTML */
           border-radius: 6px;
 }
 
+.disclaimer {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 18px;
+  color: #666666;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #cccccc;
+  border: 1px solid #999999;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.disclaimer a {
+  color: #333333;
+  text-decoration: none;
+}
+
+.disclaimer a:hover {
+  color: #666666;
+  text-decoration: underline;
+}
+
 /* TOC
  ***********************************************************************/
 
