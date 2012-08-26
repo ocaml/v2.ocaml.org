@@ -298,6 +298,15 @@ pre.rss-text { /* main story is text, not HTML */
   padding: 0 0 1ex 1em;
 }
 
+#company-highlight {
+  background-color: #fbf3d8;
+  padding: 1ex;
+  margin-bottom: 2ex;
+  border: 1px solid #8b8b8b;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
 
 /* TOC
  ***********************************************************************/

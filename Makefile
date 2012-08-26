@@ -6,9 +6,11 @@ WWW = www
 UPLOAD = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
 
 # build the website
+.PHONY: web
 web: build
 	./build.native
 	cp -a src/html/css $(WWW)
+	cp -a src/html/js $(WWW)
 	cp -a src/html/ext/bootstrap/css/*.css $(WWW)/css/
 	cp -a src/html/ext/bootstrap/js $(WWW)/
 	cp -a src/html/ext/*.js $(WWW)/js/

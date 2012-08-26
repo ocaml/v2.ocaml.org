@@ -13,6 +13,10 @@
   <body>
     <h1>Companies</h1>
 
+    <p></p>
+
+    <div id="company-highlight" class="hero"></div>
+
     <div class="company">
       <a class="name"
 	 href="http://www.acunu.com">Acunu</a> <span class=
@@ -329,5 +333,18 @@
 	<a href="https://github.com/VictorNicollet/Ohm">Ohm</a>.
       </div>
     </div>
+
+
+    <script type="text/javascript"
+	    src="js/getElementsByClassName-1.0.1.js"></script>
+    <script type="text/javascript">
+      // <!--
+      // Must be at the end or this will not collect the <div>
+      var companies = getElementsByClassName("company", "div", null);
+      var hi = document.getElementById("company-highlight");
+      var i = Math.floor(Math.random() * companies.length);
+      hi.innerHTML = companies[i].innerHTML;
+      // -->
+    </script>
   </body>
 </html>
