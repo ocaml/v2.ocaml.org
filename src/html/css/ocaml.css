@@ -22,6 +22,25 @@ code { /* override bootstrap */
   color: black;
 }
 
+
+table.array {
+  text-align: left;
+  border-collapse: collapse;
+}
+
+table.array td, table.array th {
+  border: solid 1px #e1e1e8;
+  vertical-align:text-top;
+  padding: 0.5ex;
+}
+
+table.array th {
+  background: #e1e1e8;
+  color: black;
+  font-weight: bold;
+}
+
+
 /* Header
    **********************************************************************/
 

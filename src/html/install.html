@@ -1,542 +1,732 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta content="IE=8" http-equiv="X-UA-Compatible">
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="text/html; charset=utf-8"
+	  http-equiv="Content-Type" />
+
     <title>Install</title>
   </head>
-  <body>
 
+  <body>
     <h1>Install OCaml</h1>
-    <p>OCaml can be easily installed in several ways. Broadly, the
-    options are: install from source code, use a package manager
-    supported by your platform, or use a package manager specific to
-    OCaml. The different options are detailed below.</p>
+
+    <p>The most recent version is <b>OCaml 4.00.0</b>, released on
+    2012-07-26. It can be easily installed in several ways. Broadly,
+    the options are:</p>
+
     <ul>
-      <li><a href="#godi" >GODI</a>: Unix, Mac OX, Windows;</li>
-      <li>Linux: <a href="#debian"
-      >Debian</a>, <a href="#ubuntu"
-      >Ubuntu</a>, <a href="#fedora"
-      >Fedora</a>, <a href="gentoo"
-      >Gentoo</a>, <a href="suse" >SuSE</a>;</li>
-      <li><a href="#windows" >Windows</a>;</li>
-      <li>Mac OS X: <a href="#macosx-inria" >Inria's
-	  package</a>, <a href="#macosx-fink"
-			  >Fink</a> (with <a href="macosx-fink-godi"
-					     >godi</a>),
-	<a href="macosx-macports" >MacPorts</a>
-	(with <a href="#macosx-macports-godi" >godi</a>),
-	from <a href="#macosx-sources" >sources</a>;</li>
+      <li>use a package manager supported by your platform (Windows,
+      Linux, Mac OS X,...);</li>
+
+      <li>or use a package manager specific to OCaml (GODI,...);</li>
+
+      <li>install from source code (tarball).</li>
     </ul>
+
+    <p>The different options are detailed below. Most of these tools
+    allow you to download and install OCaml libraries. You can also
+    find more packages on <a href=
+    "http://caml.inria.fr/ocaml/release.en.html#id239715">Inria's
+    website</a>. Once you have OCaml installed, go to the <a href=
+    "tutorials/">tutorials</a> or <a href="books.html">books</a>
+    page.</p>
+
+    <p>The development version is also accessible.</p>
+
+    <p>The <a href=
+    "http://caml.inria.fr/ocaml/release-prev.en.html">previous release
+    (3.12.1)</a> of OCaml is still available.</p>
+
+    <p>Finally, these projects allow you to compile OCaml code towards
+    platforms traditionnally designed for other languages:</p>
+
+    <ul>
+      <li>The <a href="http://ocsigen.org/js_of_ocaml/">js_of_ocaml
+      project</a>, an OCaml to Javascript compiler (stable)</li>
+
+      <li>The <a href="http://cafesterol.x9c.fr/">ocamljava project</a>,
+      an OCaml to Java compiler (experimental)</li>
+    </ul>
+    <br />
 
     <ul class="nav nav-tabs">
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">By Platform <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#debian" data-toggle="tab">Debian</a></li>
-          <li><a href="#fedora" data-toggle="tab">Fedora</a></li>
-          <li><a href="#gentoo" data-toggle="tab">Gentoo</a></li>
-          <li><a href="#macosx" data-toggle="tab">Mac OS X</a></li>
-          <li><a href="#suse" data-toggle="tab">SuSE</a></li>
-          <li><a href="#ubuntu" data-toggle="tab">Ubuntu</a></li>
-          <li><a href="#windows" data-toggle="tab">Windows</a></li>
-        </ul>
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	  By Platform
+	  <b class="caret"></b>
+	</a>
+	<ul class="dropdown-menu">
+	  <li><a href="#debian" data-toggle="tab">Debian</a></li>
+	  <li><a href="#fedora" data-toggle="tab">Fedora</a></li>
+	  <li><a href="#gentoo" data-toggle="tab">Gentoo</a></li>
+	  <li><a href="#macosx" data-toggle="tab">Mac OS X</a></li>
+	  <li><a href="#suse"   data-toggle="tab">SuSE</a></li>
+	  <li><a href="#ubuntu" data-toggle="tab">Ubuntu</a></li>
+	  <li><a href="#windows" data-toggle="tab">Windows</a></li>
+	</ul>
       </li>
-
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">By Package Manager <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#godi" data-toggle="tab">GODI</a></li>
-          <li><a href="#oasis-db" data-toggle="tab">Oasis-DB</a></li>
-          <li><a href="#odb" data-toggle="tab">ODB</a></li>
-          <li><a href="#opam" data-toggle="tab">OPAM</a></li>
-        </ul>
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	  By Package Manager
+	  <b class="caret"></b>
+	</a>
+	<ul class="dropdown-menu">
+	  <li><a href="#godi"  data-toggle="tab">GODI</a></li>
+	  <li><a href="#oasis-db" data-toggle="tab">Oasis-DB</a></li>
+	  <li><a href="#odb"   data-toggle="tab">ODB</a></li>
+	  <li><a href="#opam"  data-toggle="tab">OPAM</a></li>
+	</ul>
       </li>
-
       <li><a href="#source" data-toggle="tab">From Source</a></li>
+      <li class="active">
+	<a href="#devel" data-toggle="tab">Development version</a>
+      </li>
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane fade" id="godi">
-    <h2><a name="godi">GODI</a></h2>
-    <p>GODI is a package manager specific to OCaml. It automatically
-    downloads, compiles, and installs OCaml itself as well as many
-    OCaml libraries. It works well on Unix, Linux, and Mac OS X
-    systems. Windows support is less stable, but it may work.</p>
+      <div class="tab-pane" id="godi">
+	<h2>GODI</h2>
 
-    <p>To get started, go to
-    the <a href="http://godi.camlcity.org">GODI website</a>, click
-    "Get GODI", download the tarball, and follow the instructions in
-    the README.</p>
+	<p>GODI is a package manager specific to OCaml. It
+	automatically downloads, compiles, and installs OCaml itself
+	as well as many OCaml libraries. It works well on Unix, Linux,
+	and Mac OS X systems. Windows support is less stable, but it
+	may work.</p>
 
-    <p>For the impatient, do the following
+	<p>To get started, go to the <a href=
+	"http://godi.camlcity.org">GODI website</a>, click "Get GODI",
+	download the tarball, and follow the instructions in the
+	README.</p>
 
-    <pre>
-    wget http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
-    tar xzvf http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
-    cd godi-rocketboost-20110811
-    ./bootstrap</pre>
+	<p>For the impatient, do the following</p>
+	<pre>
+          wget http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
+          tar xzvf http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
+          cd godi-rocketboost-20110811
+        ./bootstrap</pre>
 
-    You may need to use the <code>--prefix</code> option to the bootstrap command
-    if you need to change the default installation location.
-    </p>
+	<p>You may need to use the <code>--prefix</code> option to the
+	bootstrap command if you need to change the default
+	installation location.</p>
       </div><!-- godi -->
 
-      <div class="tab-pane fade" id="debian">
-    <h3><a name="debian" >Debian</a></h3>
+      <div class="tab-pane" id="debian">
+	<h2>Debian</h2>
 
-      <p>OCaml is very easy to install
-	under <a href="http://www.debian.org"
-		 >Debian</a>.  We recommend you
-	install <code>ocaml-nox</code> to develop applications not
-	needing the graphics library or <code>ocaml</code> if you need
-	the <a href="http://caml.inria.fr/pub/docs/manual-ocaml/libref/Graphics.html"
-      ><code>Graphics</code></a> module.  We also recommend you
-      install
-      <ul>
-	<li><code>ocaml-native-compilers</code> to be able to
-	  compile your program the native code (this is not
-	  available on some more obscure architectures).
-	</li>
-	<li><code>libpcre-ocaml-dev</code> which is a binding to
+	<p>OCaml is very easy to install under <a href=
+	"http://www.debian.org">Debian</a>. We recommend you install
+	<code>ocaml-nox</code> to develop applications not needing the
+	graphics library or <code>ocaml</code> if you need the <a
+	href=
+	"http://caml.inria.fr/pub/docs/manual-ocaml/libref/Graphics.html"><code> Graphics</code></a> module. We
+	also recommend you install</p>
+
+	<ul>
+	  <li><code>ocaml-native-compilers</code> to be able to
+	  compile your program the native code (this is not available
+	  on some more obscure architectures).</li>
+
+	  <li><code>libpcre-ocaml-dev</code> which is a binding to
 	  PCRE.</li>
-	<li><code>libbatteries-ocaml-dev</code>, an extended standard
-	  libraries
-	  named <a href="http://batteries.forge.ocamlcore.org/"
-	  >batteries</a>.</li>
-      </ul>
-    </p>
-    <p>Check the
-      <a href="http://packages.debian.org/search?keywords=ocaml&searchon=all&suite=testing&section=all"
-	 >packages available in Debian</a>.
-    </p>
-  </li>
+
+	  <li><code>libbatteries-ocaml-dev</code>, an extended
+	  standard libraries named <a href=
+	  "http://batteries.forge.ocamlcore.org/">batteries</a>.</li>
+	</ul>
+	  
+	<p>Check the <a
+	href="http://packages.debian.org/search?keywords=ocaml&amp;searchon=all&amp;suite=testing&amp;section=all"
+	> packages available in Debian</a>.</p>
       </div><!-- debian -->
 
-      <div class="tab-pane fade" id="ubuntu">
-    <h3><a name="ubuntu" >Ubuntu</a></h3>
+      <div class="tab-pane" id="ubuntu">
+	<h2>Ubuntu</h2>
 
-    <p><a href="http://www.ubuntu.com/" >Ubuntu</a> being a derivative
-      of Debian, it inherits its ease of install of
-      <a href="http://packages.ubuntu.com/search?keywords=ocaml"
-      >OCaml packages</a>.  The same recommendations as for Debian
-      hold.
+	<p><a href="http://www.ubuntu.com/">Ubuntu</a> being a
+	derivative of Debian, it inherits its ease of install of <a
+	href= "http://packages.ubuntu.com/search?keywords=ocaml">OCaml
+	packages</a>. The same recommendations as for Debian hold.</p>
       </div><!-- ubuntu -->
-    
-      <div class="tab-pane fade" id="fedora">
-    <h3><a name="fedora" >Fedora</a></h3>
 
-    <p>Since <a href="http://fedoraproject.org/" >Fedora 8</a>, Fedora
-      has excellent support for OCaml in the basic distribution. There
-      is an active group of maintainers who keep up to date with the
-      latest OCaml, and there is a wide range of packages
-      available.</p>
+      <div class="tab-pane" id="fedora">
+	<h2>Fedora</h2>
 
-    <p>To install the OCaml compiler just do:
-      <pre>
-	yum install ocaml</pre>
+	<p>Since <a href="http://fedoraproject.org/">Fedora 8</a>,
+	Fedora has excellent support for OCaml in the basic
+	distribution. There is an active group of maintainers who keep
+	up to date with the latest OCaml, and there is a wide range of
+	packages available.</p>
 
-      To install an OCaml library called '<code>foo</code>', and any
-      dependencies it needs, you would do:
-      <pre>
-	yum install ocaml-foo-devel</pre>
-      A good set of basic development libraries can be installed by doing:
-      <pre>
-	yum install ocaml-camlp4-devel ocaml-ocamldoc ocaml-findlib-devel \
-	ocaml-extlib-devel ocaml-calendar-devel</pre>
-      To list all OCaml packages use:
-      <pre>
-	yum search ocaml</pre>
-    </p>
+	<p>To install the OCaml compiler just do:</p>
+	<pre>
+        yum install ocaml</pre>
 
-    <p><strong>Packaging policy and mailing lists</strong></p>
-    <ul>
-      <li><a href="http://fedoraproject.org/wiki/Packaging/OCaml"
-	     >OCaml packaging policy</a> in Fedora.  All Fedora OCaml
-	packages have to obey this policy, ensuring a minimum
-	standard for all OCaml packages we ship.</li>
-      <li><a href="http://fedoraproject.org/wiki/SIGs/OCaml"
-	     >OCaml Special Interest Group</a>.</li>
-      <li><a href="https://www.redhat.com/mailman/listinfo/fedora-ocaml-list"
-	     >fedora-ocaml-list</a>: mailing list for people
-	interested in OCaml on Fedora or Red Hat Enterprise
-	Linux.</li>
-      </li>
-    </ul>
+	<p>To install an OCaml library called '<code>foo</code>', and any
+	dependencies it needs, you would do:</p>
+	<pre>
+        yum install ocaml-foo-devel</pre>
 
+	<p>A good set of basic development libraries can be installed by
+	doing:</p>
+	<pre>
+          yum install ocaml-camlp4-devel ocaml-ocamldoc ocaml-findlib-devel \
+        ocaml-extlib-devel ocaml-calendar-devel</pre>
+
+	To list all OCaml packages use:
+	<pre>
+        yum search ocaml</pre>
+
+	<p><strong>Packaging policy and mailing lists</strong></p>
+
+	<ul>
+	  <li><a
+	  href="http://fedoraproject.org/wiki/Packaging/OCaml">OCaml
+	  packaging policy</a> in Fedora. All Fedora OCaml packages
+	  have to obey this policy, ensuring a minimum standard for
+	  all OCaml packages we ship.</li>
+
+	  <li><a href="http://fedoraproject.org/wiki/SIGs/OCaml">OCaml
+	  Special Interest Group</a>.</li>
+
+	  <li><a href="https://www.redhat.com/mailman/listinfo/fedora-ocaml-list"
+		 >fedora-ocaml-list</a>:
+	  mailing list for people interested in OCaml on Fedora or Red Hat
+	  Enterprise Linux.</li>
+	</ul>
       </div><!-- fedora -->
 
-      <div class="tab-pane fade" id="gentoo">
-    <h3><a name="gentoo" >Gentoo</a></h3>
+      <div class="tab-pane" id="gentoo">
+	<h2>Gentoo</h2>
 
-    <p>In order to get the basic tools under
-      <a href="http://gentoo-portage.com/dev-ml/" >Gentoo</a>, execute:
-      <pre>
-	emerge ocaml</pre>
-      while being logged in as a user that is a member of
-      the <code>portage</code> group (e.g. root). If you want to see
-      what other related packages are available execute
-      <pre>
-	emerge -S ocaml</pre>
-    </p>
+	<p>In order to get the basic tools under <a href=
+	"http://gentoo-portage.com/dev-ml/">Gentoo</a>, execute:</p>
+	<pre>
+        emerge ocaml  </pre>
 
+	<p>while being logged in as a user that is a member of the
+	<code>portage</code> group (e.g.&nbsp;root). If you want to see
+	what other related packages are available execute</p>
+	<pre>
+        emerge -S ocaml </pre>
       </div><!-- gentoo -->
 
+      <div class="tab-pane" id="suse">
+	<h2>SuSE</h2>
 
-      <div class="tab-pane fade" id="suse">
-    <h3><a name="suse" >SuSE</a></h3>
-
-    <p>Getting Started with OCaml
-      on <a href="http://www.suse.com/" >SuSE</a> is part in the
-      standard distribution.  In openSuse 12.1, the package name is
-      <code>ocaml-3.12.0-11.1.2</code>.</p>
-
+	<p>Getting Started with OCaml on <a href=
+	"http://www.suse.com/">SuSE</a> is part in the standard
+	distribution. In openSuse&nbsp;12.1, the package name is
+	<code>ocaml-3.12.0-11.1.2</code>.</p>
       </div><!-- suse -->
 
-      <div class="tab-pane fade" id="windows">
-    <h2><a name="windows" >Windows</a></h2>
+      <div class="tab-pane" id="windows">
+	<h2>Windows</h2>
 
-    <p>An installer
-      is <a href="http://protz.github.com/ocaml-installer/"
-	    >available</a>.
-    </p>
+	<p>Four ports of OCaml for Microsoft Windows are currently
+	available. For additional information, please consult the list
+	of <a href=
+	"http://caml.inria.fr/ocaml/portability.en.html">portability
+	issues</a> or the <a href=
+	"http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32">Windows
+	release notes</a>.</p>
+
+	<ul>
+	  <li><a
+	  href="http://protz.github.com/ocaml-installer/">Cygwin-based
+	  native Win32 port (4.00.0)</a>. A self installer. The
+	  interactive loop comes with a simple graphical user
+	  interface. Some features require the Cygwin environment,
+	  which the installer can fetch for you. However, the
+	  compilers are, and generate true Win32 executables, which do
+	  not require Cygwin to run.</li>
+
+	  <li>Microsoft-based native Win32 port. No binary
+	  distribution available yet; download the source distribution
+	  and compile it.</li>
+
+	  <li><a href="http://cygwin.com/"
+	  shape="rect">Cygwin</a>-based port. Requires Cygwin. No
+	  graphical user interface is provided. The compilers generate
+	  executables that do require Cygwin. The precompiled binaries
+	  are part of the Cygwin distribution; you can install them
+	  using the Cygwin <code>setup</code> tool. Alternatively,
+	  download the source distribution and compile it under
+	  Cygwin.</li>
+
+	  <li>Microsoft-based native Win64 port Same features as the
+	  Microsoft-based native Win32 port, but generates 64-bit
+	  code. No binary distribution available yet; download the
+	  source distribution and compile it.</li>
+	</ul>
       </div><!-- windows -->
 
-      <div class="tab-pane fade" id="macosx">
-    <h2><a name="macosx" >Mac OS X</a></h2>
+      <div class="tab-pane" id="macosx">
+	<h2>Mac OS X</h2>
 
-    <p>Under Mac OS X, there are, at least for the base package, five
-      different ways to go: Install the binary package from INRIA;
-      Install via Fink; Install via MacPorts; Build
-      via <a href="#godi">GODI</a>; or build it manually from
-      sources.  For each of the four approaches, you will need to have at
-      least the OS X developer tools installed — any other requirements
-      will be discussed below.</p>
+	<p>Under Mac OS X, there are, at least for the base package,
+	five different ways to go: Install the binary package from
+	INRIA; Install via Fink; Install via MacPorts; Build via <a
+	href= "#godi">GODI</a>; or build it manually from sources. For
+	each of the four approaches, you will need to have at least
+	the OS X developer tools installed — any other requirements
+	will be discussed below.</p>
 
-    <h3><a name="macosx-inria" >Inria's binary package</a></h3>
+	<h3><a name="macosx-inria"
+	       id="macosx-inria">Inria's binary package</a></h3>
 
-    <p>This is the easiest way to set up a basic OCaml installation
-      for OS X. For 10.4 (Tiger), simply
-      <a href="http://caml.inria.fr/download.en.html" >download</a>
-      Intel disk image, mount the disk image, double-click on the
-      ocaml.pkg file contained within, and follow the instructions from
-      there.  Requirements for this package are OS X 10.4.x (Tiger), with
-      X11 and the XCode tools (v2.4) installed. It appears that that
-      this installation was built with the TCL/TK interface. Also, X11
-      is not needed to compile code.</p>
+	<p>This is the easiest way to set up a basic OCaml
+	installation for OS X. For 10.4 (Tiger), simply <a href=
+	"http://caml.inria.fr/download.en.html">download</a> Intel
+	disk image, mount the disk image, double-click on the
+	ocaml.pkg file contained within, and follow the instructions
+	from there.  Requirements for this package are OS X 10.4.x
+	(Tiger), with X11 and the XCode tools (v2.4) installed. It
+	appears that that this installation was built with the TCL/TK
+	interface. Also, X11 is not needed to compile code.</p>
 
-    <p>Also available as a binary package, and usable with any of the
-      OCaml installations described on this page
-      is <a href="http://www.cs.unm.edu/~wneumann/cococaml/"
-      >CocOCaml</a>, a Cocoa application allowing for easy interaction
-      with the OCaml toplevel environment.</p>
+	<p>Also available as a binary package, and usable with any of
+	the OCaml installations described on this page is <a href=
+	"http://www.cs.unm.edu/~wneumann/cococaml/">CocOCaml</a>, a
+	Cocoa application allowing for easy interaction with the OCaml
+	toplevel environment.</p>
 
-    <h3><a name="macosx-fink" >Fink</a></h3>
+	<h3><a name="macosx-fink" id="macosx-fink">Fink</a></h3>
 
-    <p><a title="Fink" href="http://fink.sourceforge.net/">Fink</a> is
-      the most prevalent package management system for OS X, and is
-      based on Debian's package management system.  Fink can be
-      installed by downloading and building
-      the <a href="http://fink.sourceforge.net/download/srcdist.php?phpLang=en"
-      >source release</a> (you will need to have the OS X Developer
-      Tools installed before building Fink).  After Fink is installed,
-      it must
-      be <a href="http://fink.sourceforge.net/faq/usage-fink.php#unstable"
-      >configured to use the unstable branch</a> of the distribution
-      tree -- this is where the OCaml packages reside.</p>
+	<p><a title="Fink"
+	href="http://fink.sourceforge.net/">Fink</a> is the most
+	prevalent package management system for OS X, and is based on
+	Debian's package management system. Fink can be installed by
+	downloading and building the <a href=
+	"http://fink.sourceforge.net/download/srcdist.php?phpLang=en">source
+	release</a> (you will need to have the OS X Developer Tools
+	installed before building Fink). After Fink is installed, it
+	must be <a href=
+	"http://fink.sourceforge.net/faq/usage-fink.php#unstable">configured
+	to use the unstable branch</a> of the distribution tree --
+	this is where the OCaml packages reside.</p>
 
-    <p>Once Fink is installed, you
-      can <a href="http://fink.sourceforge.net/doc/users-guide/index.php"
-	     >use it to install</a> the following packages:</p>
-    <ul><li><code>ocaml</code> The
-	basic installation of the ocaml tools including labltk.</li>
-      <li><code>lablgl</code>  The OCaml interface to OpenGL</li>
-      <li><code>lablgtk</code> The OCaml interface to gtk+</li>
+	<p>Once Fink is installed, you can <a href=
+	"http://fink.sourceforge.net/doc/users-guide/index.php">use it
+	to install</a> the following packages:</p>
 
-      <li><code>ledit</code> An optional line editor for OCaml to make
-      it easier to work with the interactive toplevel in the
-      terminal.</li>
-    </ul>
-    <p>It is likely that Fink will need to download and install a
-      number of other packages required to build the OCaml packages, but
-      this will occur mostly automatically.</p>
+	<ul>
+	  <li><code>ocaml</code> The basic installation of the ocaml tools
+	  including labltk.</li>
 
+	  <li><code>lablgl</code> The OCaml interface to OpenGL</li>
 
-    <h3><a name="macosx-fink-godi" >Godi OCaml Linking Against Fink
+	  <li><code>lablgtk</code> The OCaml interface to gtk+</li>
+
+	  <li><code>ledit</code> An optional line editor for OCaml to
+	  make it easier to work with the interactive toplevel in the
+	  terminal.</li>
+	</ul>
+
+	<p>It is likely that Fink will need to download and install a
+	number of other packages required to build the OCaml packages,
+	but this will occur mostly automatically.</p>
+
+	<h3><a name="macosx-fink-godi"
+	       id="macosx-fink-godi">Godi OCaml Linking Against Fink
 	Libraries</a></h3>
 
-    <p>This method uses
-      <a href="#godi" >GODI</a>'s version of OCaml and
-      uses <a href="http://fink.sourceforge.net/">Fink</a> to provide
-      any additional third party libraries that do not come with Mac
-      OS X.  This is done because the version of OCaml in Fink is
-      older (3.08 in the unstable branch) than the one in Godi.  Also,
-      Godi's package management system will recompile any packages
-      when a dependent package is updated, ensuring that your OCaml
-      build tree is always in good shape.</p>
-    <p>There is the issue of knowing which Fink packages have to be
-      installed before you can install some of the Godi packages with
-      all optioned enabled.</p>
+	<p>This method uses <a href="#godi">GODI</a>'s version of
+	OCaml and uses <a href="http://fink.sourceforge.net/">Fink</a>
+	to provide any additional third party libraries that do not
+	come with Mac OS X.  This is done because the version of OCaml
+	in Fink is older (3.08 in the unstable branch) than the one in
+	Godi. Also, Godi's package management system will recompile
+	any packages when a dependent package is updated, ensuring
+	that your OCaml build tree is always in good shape.</p>
+	
+	<p>There is the issue of knowing which Fink packages have to
+	be installed before you can install some of the Godi packages
+	with all optioned enabled.</p>
 
-    <h3><a href="macosx-macports">MacPorts</a></h3>
+	<h3><a href="macosx-macports">MacPorts</a></h3>
 
-    <p><a href="http://www.macports.org/">MacPorts</a>, formerly known
-      as DarwinPorts, is a package management system for Mac OS X based
-      on the BSD ports system.  You will need to have the OS X Developer
-      Tools installed
-      before <a href="http://www.macports.org/?page_id=48"
-		>installing</a> MacPorts.  MacPorts can be used to download and
-      build the following packages:</p>
-    <ul><li><code>ocaml</code> The basic installation of the ocaml tools
-	including labltk.</li>
-      <li><code>lablgl</code>  The OCaml interface to OpenGL</li>
-      <li><code>lablgtk</code> The OCaml interface to gtk+</li>
-      <li><code>lablgtk2</code> The OCaml interface to gtk+ 2.x</li>
-      <li><code>cryptokit</code> An OCaml interface to several cryptographic
-	functions.</li>
-      <li><code>ocaml-mode.el</code> An EMACS major mode for editing OCaml
-	programs.</li>
-      <li><code>tuareg-mode.el</code> A GNU Emacs/XEmacs major mode for
-	editing Caml and OCaml programs.</li></ul>
+	<p><a href="http://www.macports.org/">MacPorts</a>, formerly
+	known as DarwinPorts, is a package management system for Mac
+	OS X based on the BSD ports system. You will need to have the
+	OS X Developer Tools installed before <a href=
+	"http://www.macports.org/?page_id=48">installing</a> MacPorts.
+	MacPorts can be used to download and build the following
+	packages:</p>
 
-    <h3><a name="macosx-macports-godi" >Godi OCaml Linking Against
-    MacPorts Libraries</a></h3>
+	<ul>
+	  <li><code>ocaml</code> The basic installation of the ocaml tools
+	  including labltk.</li>
 
-    <p>Just like the Fink/Godi setup mentioned above, this method
-      uses <a href="#godi">GODI</a>'s version of OCaml and
-      uses <a href="http://www.macports.org/">MacPorts</a> to provide
-      any additional third party libraries that do not come with Mac OS
-      X.  This way you can let GODI take care of your OCaml build tree,
-      and let MacPorts take care of the native libraries, such as GTK2
-      and PCRE.</p>
+	  <li><code>lablgl</code> The OCaml interface to OpenGL</li>
 
-    <h3><a href="macosx-sources" >Building from sources</a></h3>
+	  <li><code>lablgtk</code> The OCaml interface to gtk+</li>
 
-    <p>Unfortunately, the packages available for both Fink and
-      DarwinPorts don't yet include some of the more useful additions to
-      the OCaml collection, such as Markus Mottl's PCRE-Ocaml library or
-      Stolpmann's findlib system.  In order to get those packages, one
-      must currently build them from source.</p>
-    <p>The following packages are the most beneficial to install:</p>
-    <ul>
-      <li><a href="http://caml.inria.fr/download.en.html">The OCaml
-      source distribution.</a></li>
-      <li><a href="http://www.ocaml-programming.de/programming/findlib.html"
-	     >Findlib</a>, an OCaml library management system.</li>
-      <li><a href="http://batteries.forge.ocamlcore.org/">Batteries</a>, a
-	collection of libraries that extend and improve upon the OCaml
-	Standard Library</li>
-      <li><a href="http://www.ocaml.info/home/ocaml_sources.html"
-	     >PCRE-OCaml</a>, a library for working with Perl Compatible
-	Regular Expressions in OCaml (this will require you to
-	build <a href="http://www.pcre.org/" >the PCRE library</a> as
-	well).</li>
-      <li><a href="http://www.ocaml.info/home/ocaml_sources.html"
-	     >OCamlMakefile</a> which makes it easy to create
-	makefiles for OCaml projects.</li>
-    </ul>
-    <p>If additional components, such as OpenGL and Gtk+ or Gtk+2 have
-      already been installed, packages such
-      as <a href="http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgl.html"
-      >lablgl</a>, <a href="http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html"
-      >lablgtk</a>, etc. can be built as well.  The most flexible
-      solution for doing this is often using Fink to install the
-      required dependencies, and build the OCaml packages from source
-      distributions.</p>
+	  <li><code>lablgtk2</code> The OCaml interface to gtk+ 2.x</li>
 
+	  <li><code>cryptokit</code> An OCaml interface to several
+	  cryptographic functions.</li>
+	  
+	  <li><code>ocaml-mode.el</code> An EMACS major mode for editing
+	  OCaml programs.</li>
+	  
+	  <li><code>tuareg-mode.el</code> A GNU Emacs/XEmacs major mode for
+	  editing Caml and OCaml programs.</li>
+	</ul>
+	
+	<h3><a name="macosx-macports-godi"
+	       id="macosx-macports-godi">Godi OCaml Linking Against MacPorts
+	Libraries</a></h3>
 
-    <h3>Using Xcode for writing OCaml programs</h3>
+	<p>Just like the Fink/Godi setup mentioned above, this method
+	uses <a href="#godi">GODI</a>'s version of OCaml and uses <a
+	href= "http://www.macports.org/">MacPorts</a> to provide any
+	additional third party libraries that do not come with Mac OS
+	X. This way you can let GODI take care of your OCaml build
+	tree, and let MacPorts take care of the native libraries, such
+	as GTK2 and PCRE.</p>
 
-    <p>There exists an Xcode plugin integrating Objective Caml
-      developement in Xcode. This plugin is always under development and
-      still lacks of features, however it gives useful features for
-      developing applications:</p>
-    <ul>
-      <li>create a Objective Caml projet or target with Xcode</li>
-      <li>add files to this target like you do for a C program</li>
-      <li>modify the OCaml compiler or linker settings through the Xcode's
-	build-in build setting GUI.</li>
-      <li>adding a library in library build phase of a OCaml target</li>
-      <li>syntax higlighting</li>
-      <li>use ocamllex and ocamlyacc</li>
-      <li>use of the native compiler (select architecture "ppc"
-	instead of the default "ocaml")</li>
-      <li>dependance between source files</li>
-      <li>mixing OCaml and C code</li>
-    </ul>
-    <p>Still being in beta it does not yet support the following:</p>
-    <ul>
-      <li>better dependance between source files (you must put them
-      manually in the good order in the target build phase)</li>
-      <li>targeting the intel procs (only bytecode &amp; ppc support
-      at this time)</li>
-      <li>ocamlp4 preprocessor</li>
-      <li>debugging from Xcode (but possible with direct use of
-	ocamldebug)</li>
-    </ul>
-    <p><a href="http://maxao.free.fr/xcode-ocaml-plugin/">Download and
-	information</a>.
-    </p>
+	<h3><a href="macosx-sources">Building from sources</a></h3>
 
-    <h3>Using labltk with OS X</h3>
+	<p>Unfortunately, the packages available for both Fink and
+	DarwinPorts don't yet include some of the more useful
+	additions to the OCaml collection, such as Markus Mottl's
+	PCRE-Ocaml library or Stolpmann's findlib system. In order to
+	get those packages, one must currently build them from
+	source.</p>
 
-    <p>There are a couple of different ways one can go if they wish to
-      use labltk with OS X.  One could download and build the Tcl/Tk
-      libraries themselves and use those libraries.  However, there are
-      two easier ways to proceed,
-      using <a href="http://fink.sourceforge.net/" >Fink</a> to install
-      Tcl/Tk, or using
-      the <a href="http://tcltkaqua.sourceforge.net/" >Tcl/Tk Aqua</a>
-      Framework.  There are two very important distinction between the
-      two that one needs to consider before installing OCaml and
-      labltk:</p>
-    <ol>
-      <li>The fink libraries require X11 to be running when any program
-	using labltk is executed, while the Tcl/Tk Aqua libraries will execute
-	(and look and feel) like a native OS X application</li>
-      <li>As of the time of writing this, it appears as if labltk
-	applications built with the Tcl/Tk Aqua libraries <em>must</em>
-	be built as native OS X applications (and require an extra step
-	at build time).  If one requires the portability of bytecode, or
-	needs the interactive environment of a labltk enabled toplevel,
-	then they <em>must</em> use the fink libraries.</li>
-    </ol>
+	<p>The following packages are the most beneficial to install:</p>
 
-    <h4>Installing the fink libraries</h4>
+	<ul>
+	  <li><a href="http://caml.inria.fr/download.en.html">The
+	  OCaml source distribution.</a></li>
 
-    <p>Once Fink
-      is <a href="http://fink.sourceforge.net/doc/index.php?phpLang=en"
-      >installed and configured</a>, install the Tcl/Tk libraries with
-      the command <code>fink install tcltk tcltk-dev
-      tcltk-shlibs</code> and wait for the build and install process
-      to compete.  Once this is done, OCaml's configure script should
-      be able to locate the libraries and header files required to
-      build labltk (provided fink is set up to install its packages in
-      the /sw directory).  Running the standard OCaml build will also
-      build labltk.
-    </p>
+	  <li><a href=
+	  "http://www.ocaml-programming.de/programming/findlib.html"
+	  >Findlib</a>, an OCaml library management system.</li>
 
-    <h4>Installing the Tcl/Tk Aqua libraries</h4>
+	  <li><a
+	  href="http://batteries.forge.ocamlcore.org/" >Batteries</a>,
+	  a collection of libraries that extend and improve upon the
+	  OCaml Standard Library</li>
 
-    <p>This framework comes with OS X 10.4 and later.
-      Configure the OCaml build by using the following flags:</p>
-<pre>./configure -tkdefs \
-    "-I/Library/Frameworks/Tcl.framework/Headers \
-     -I/Library/Frameworks/Tk.framework/Headers" \
-     -tklibs "-framework Tcl -framework Tk"</pre>
+	  <li><a href=
+	  "http://www.ocaml.info/home/ocaml_sources.html">PCRE-OCaml</a>,
+	  a library for working with Perl Compatible Regular
+	  Expressions in OCaml (this will require you to build <a
+	  href= "http://www.pcre.org/">the PCRE library</a> as
+	  well).</li>
 
-    <p>Now building OCaml will also build labltk using the Tcl/Tk Aqua
-      libraries.</p>
-    <p>As mentioned above, any programs using labltk must be compiled
-      using <code>ocamlopt</code>, and an additional step must be
-      performed before the application can be used.  For example, with
-      the simple program, <code>hello.ml</code>:</p>
-<pre> open Tk;;
- let hello () = 
-     print_endline "Hello!"; flush stdout in
- let top = openTk () in
- let hb = 
-     Button.create ~text:"Hello" ~command:hello top in
- pack [hb]; 
- mainLoop ()</pre>
+	  <li><a href=
+	  "http://www.ocaml.info/home/ocaml_sources.html"
+	  >OCamlMakefile</a> which makes it easy to create makefiles
+	  for OCaml projects.</li>
+	</ul>
 
-    <p>One would compile this program with the command <code>ocamlopt
-	-o hello -I +labltk labltk.cmxa hello.ml</code></p>
-    <p>Now, to make the program work properly, one must perform one of
-      two additional steps: adding a resource fork to the executable, or
-      building a Mac OS X .app structure.</p>
-    <p>To add a resource fork, one needs to use the
-      program <code>Rez</code>, included in the OS X Developer tools.  This
-      can be done with the following command:</p>
-<pre>/Developer/Tools/Rez -t APPL -o hello ~/dev/mac.r \
-     -i /Library/Frameworks/Tcl.framework/Headers \
-     -i /Library/Frameworks/Tk.framework/Headers</pre>
+	<p>If additional components, such as OpenGL and Gtk+ or Gtk+2
+	have already been installed, packages such as <a href=
+	"http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgl.html"
+	>lablgl</a>, <a href=
+	"http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html"
+	>lablgtk</a>, etc. can be built as well. The most flexible
+	solution for doing this is often using Fink to install the
+	required dependencies, and build the OCaml packages from
+	source distributions.</p>
 
-    <p>Where mac.r is a Rez source file.  It is part of
-    the <a href="http://www.fltk.org/" >FLTK</a> distribution.  This
-    will add the required resource fork to the hello application.  The
-    program can be run either by typing <code>hello</code> at the
-    command line or by double-clicking the app's icon (note that if it
-    is launched by double-clicking, hello will send its output to the
-    OS X console rather than the terminal).</p>
+	<h3>Using Xcode for writing OCaml programs</h3>
+	
+	<p>There exists an Xcode plugin integrating Objective Caml
+	developement in Xcode. This plugin is always under development
+	and still lacks of features, however it gives useful features
+	for developing applications:</p>
 
-    <p>Unfortunately, files with resource forks can present a problem
-      in that utilities like <code>cp, mv, tar</code>, etc. will strip
-      the resource fork from the file, breaking the application.  To
-      aleviate this problem, one can build an OS X application bundle to
-      wrap the compiled executable.</p>
-    <p>To do this, after compiling with <code>ocamlopt -o hello -I +labltk
-	labltk.cmxa hello.ml</code>, the following steps will build the
-      bundle:</p>
-<pre>mkdir hello.app
-mkdir hello.app/Contents 
-mkdir hello.app/Contents/MacOS
-mv hello hello.app/Contents/MacOS</pre>
+	<ul>
+	  <li>create a Objective Caml projet or target with Xcode</li>
+	  <li>add files to this target like you do for a C program</li>
+	  <li>modify the OCaml compiler or linker settings through the
+	  Xcode's build-in build setting GUI.</li>
+	  <li>adding a library in library build phase of a OCaml target</li>
+	  <li>syntax higlighting</li>
+	  <li>use ocamllex and ocamlyacc</li>
+	  <li>use of the native compiler (select architecture "ppc" instead
+	  of the default "ocaml")</li>
+	  <li>dependance between source files</li>
+	  <li>mixing OCaml and C code</li>
+	</ul>
 
-    <p>Next, create a file <code>hello.app/Contents/Info.plist</code>
-      with the following contents:</p>
-    <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+	<p>Still being in beta it does not yet support the following:</p>
+	<ul>
+	  <li>better dependance between source files (you must put them
+	  manually in the good order in the target build phase)</li>
+	  <li>targeting the intel procs (only bytecode &amp; ppc support at
+	  this time)</li>
+	  <li>ocamlp4 preprocessor</li>
+	  <li>debugging from Xcode (but possible with direct use of
+	  ocamldebug)</li>
+	</ul>
 
-&lt;plist version="1.0"&gt;
-&lt;dict&gt;
-  &lt;key&gt;CFBundleExecutable&lt;/key&gt;
-  &lt;string&gt;hello&lt;/string&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;</pre>
+	<p><a href="http://maxao.free.fr/xcode-ocaml-plugin/">Download and
+	information</a>.</p>
+	
+	<h3>Using labltk with OS X</h3>
+	
+	<p>There are a couple of different ways one can go if they
+	wish to use labltk with OS X. One could download and build the
+	Tcl/Tk libraries themselves and use those libraries. However,
+	there are two easier ways to proceed, using <a href=
+	"http://fink.sourceforge.net/">Fink</a> to install Tcl/Tk, or
+	using the <a href="http://tcltkaqua.sourceforge.net/">Tcl/Tk
+	Aqua</a> Framework. There are two very important distinction
+	between the two that one needs to consider before installing
+	OCaml and labltk:</p>
 
-    <p>The hello application can now be run from the command line by
-      typing <code>open hello.app</code>, or by double-clicking on the app's
-      icon (again, this will send hello.app's output to the console).</p>
+	<ol>
+	  <li>The fink libraries require X11 to be running when any
+	  program using labltk is executed, while the Tcl/Tk Aqua
+	  libraries will execute (and look and feel) like a native OS
+	  X application</li>
 
+	  <li>As of the time of writing this, it appears as if labltk
+	  applications built with the Tcl/Tk Aqua libraries
+	  <em>must</em> be built as native OS X applications (and
+	  require an extra step at build time). If one requires the
+	  portability of bytecode, or needs the interactive
+	  environment of a labltk enabled toplevel, then they
+	  <em>must</em> use the fink libraries.</li>
+	</ol>
 
-    <h3>Tips</h3>
+	<h4>Installing the fink libraries</h4>
 
-    <p><strong>Documentation.</strong> To get quick access to the
-      documentation of a module (whatever the editor you use)
-      use <a href="http://quicksilver.blacktree.com/" >Quicksilver</a>
-      to index the libref/ directory of ocaml's documentation. Since
-      ocamldoc generates the documentation of a module M in a file
-      M.html, you can access it by invoking Quicksilver, type an
-      abbreviation of the module's name you want and hit return to get
-      its html file loaded in your preferred browser.</p>
+	<p>Once Fink is <a href=
+	"http://fink.sourceforge.net/doc/index.php?phpLang=en"
+	>installed and configured</a>, install the Tcl/Tk libraries
+	with the command <code>fink install tcltk tcltk-dev
+	tcltk-shlibs</code> and wait for the build and install process
+	to compete. Once this is done, OCaml's configure script should
+	be able to locate the libraries and header files required to
+	build labltk (provided fink is set up to install its packages
+	in the /sw directory). Running the standard OCaml build will
+	also build labltk.</p>
 
-    <p><strong>Profiling.</strong> To profile native-code
-      programs <em>do not</em> compile them with the option -p (this is
-      unsupported) simply use Shark. Shark can be invoked directly from the
-      command line as follows :</p>
-<pre> &gt; shark -i -1 -q myprogram.opt args</pre>
+	<h4>Installing the Tcl/Tk Aqua libraries</h4>
 
-    <p>This will write a .mshark file in the directory that you can
-      open with Shark.app.</p>
-<pre> &gt; open *.mshark</pre>
+	<p>This framework comes with OS X 10.4 and later. Configure
+	the OCaml build by using the following flags:</p>
+	<pre>
+          ./configure -tkdefs \
+          "-I/Library/Frameworks/Tcl.framework/Headers \
+          -I/Library/Frameworks/Tk.framework/Headers" \
+        -tklibs "-framework Tcl -framework Tk" </pre>
 
-    <p>Note that if your executable doesn't run for long enough Shark
-      won't be able to take any samples and won't report any
-      statistics. More function names will show up in the profiles if you
-      compile with <code>-g</code>.</p>
+	<p>Now building OCaml will also build labltk using the Tcl/Tk Aqua
+	libraries.</p>
 
+	<p>As mentioned above, any programs using labltk must be compiled
+	using <code>ocamlopt</code>, and an additional step must be
+	performed before the application can be used. For example, with the
+	simple program, <code>hello.ml</code>:</p>
+	<pre>
+          open Tk;;
+          let hello () =
+          print_endline "Hello!"; flush stdout in
+          let top = openTk () in
+          let hb =
+          Button.create ~text:"Hello" ~command:hello top in
+          pack [hb];
+          mainLoop ()	    </pre>
+
+	<p>One would compile this program with the command
+	<code>ocamlopt -o hello -I +labltk labltk.cmxa
+	hello.ml</code></p>
+
+	<p>Now, to make the program work properly, one must perform
+	one of two additional steps: adding a resource fork to the
+	executable, or building a Mac OS X .app structure.</p>
+
+	<p>To add a resource fork, one needs to use the program
+	<code>Rez</code>, included in the OS X Developer tools. This
+	can be done with the following command:</p>
+	<pre>
+          /Developer/Tools/Rez -t APPL -o hello ~/dev/mac.r \
+          -i /Library/Frameworks/Tcl.framework/Headers \
+          -i /Library/Frameworks/Tk.framework/Headers   </pre>
+
+	<p>Where mac.r is a Rez source file. It is part of the <a
+	href= "http://www.fltk.org/">FLTK</a> distribution. This will
+	add the required resource fork to the hello application. The
+	program can be run either by typing <code>hello</code> at the
+	command line or by double-clicking the app's icon (note that
+	if it is launched by double-clicking, hello will send its
+	output to the OS X console rather than the terminal).</p>
+
+	<p>Unfortunately, files with resource forks can present a
+	problem in that utilities like <code>cp, mv, tar</code>,
+	etc. will strip the resource fork from the file, breaking the
+	application. To aleviate this problem, one can build an OS X
+	application bundle to wrap the compiled executable.</p>
+
+	<p>To do this, after compiling with <code>ocamlopt -o hello -I
+	+labltk labltk.cmxa hello.ml</code>, the following steps will
+	build the bundle:</p>
+	<pre>
+          mkdir hello.app
+          mkdir hello.app/Contents
+          mkdir hello.app/Contents/MacOS
+          mv hello hello.app/Contents/MacOS  </pre>
+
+	<p>Next, create a file
+	<code>hello.app/Contents/Info.plist</code> with the following
+	contents:</p>
+	<pre>
+          &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+          &lt;plist version="1.0"&gt;
+          &lt;dict&gt;
+          &lt;key&gt;CFBundleExecutable&lt;/key&gt;
+          &lt;string&gt;hello&lt;/string&gt;
+          &lt;/dict&gt;
+          &lt;/plist&gt;	    </pre>
+
+	<p>The hello application can now be run from the command line
+	by typing <code>open hello.app</code>, or by double-clicking
+	on the app's icon (again, this will send hello.app's output to
+	the console).</p>
+
+	<h3>Tips</h3>
+
+	<p><strong>Documentation.</strong> To get quick access to the
+	documentation of a module (whatever the editor you use) use <a
+	href="http://quicksilver.blacktree.com/">Quicksilver</a> to
+	index the libref/ directory of ocaml's documentation. Since
+	ocamldoc generates the documentation of a module M in a file
+	M.html, you can access it by invoking Quicksilver, type an
+	abbreviation of the module's name you want and hit return to
+	get its html file loaded in your preferred browser.</p>
+
+	<p><strong>Profiling.</strong> To profile native-code programs
+	<em>do not</em> compile them with the option -p (this is
+	unsupported) simply use Shark. Shark can be invoked directly
+	from the command line as follows :</p>
+	<pre>
+        &gt; shark -i -1 -q myprogram.opt args   </pre>
+
+	<p>This will write a .mshark file in the directory that you can
+	open with Shark.app.</p>
+	<pre>
+        &gt; open *.mshark  </pre>
+
+	<p>Note that if your executable doesn't run for long enough
+	Shark won't be able to take any samples and won't report any
+	statistics.  More function names will show up in the profiles
+	if you compile with <code>-g</code>.</p>
       </div><!-- macosx -->
 
-      <div class="tab-pane fade" id="oasis-db">
-        <h3><a name="oasis-db">Oasis-DB</a></h3>
-        <img src="img/under_construction_icon.gif" alt="Under Construction" />
+
+      <div class="tab-pane" id="oasis-db">
+	<h2>Oasis-DB</h2>
+
+	<img src="img/under_construction_icon.gif"
+	     alt="Under Construction" />
       </div><!-- oasis-db -->
 
-      <div class="tab-pane fade" id="odb">
-        <h3><a name="odb">ODB</a></h3>
-        <img src="img/under_construction_icon.gif" alt="Under Construction" />
+      <div class="tab-pane" id="odb">
+	<h2>ODB</h2>
+	
+	<img src="img/under_construction_icon.gif"
+	     alt="Under Construction" />
       </div><!-- odb -->
 
-      <div class="tab-pane fade" id="opam">
-        <h2><a name="opam" >OPAM</a></h2>
-        <img src="img/under_construction_icon.gif" alt="Under Construction" />
+      <div class="tab-pane" id="opam">
+	<h2>OPAM</h2><img src="img/under_construction_icon.gif"
+	alt="Under Construction" />
       </div><!-- opam -->
+	
+      <div class="tab-pane" id="source">
+	<h2>Source</h2>
 
-      <div class="tab-pane fade" id="source">
-        <h2><a name="source" >Source</a></h2>
-        <img src="img/under_construction_icon.gif" alt="Under Construction" />
+	<img src="img/under_construction_icon.gif"
+	     alt="Under Construction" />
       </div><!-- source -->
+	  
+      <div class="tab-pane active" id="devel">
+	<h2>Development version</h2>
 
+	<p>OCaml is developed using the Subversion (SVN) version
+	control system.  Public read-only access to our Subversion
+	repository is available.  It enables advanced users to track
+	changes and bug-fixes in real-time, without having to wait for
+	the next release.</p>
+
+	<h3>Accessing the repository</h3>
+
+	<p>The address of the repository is
+	<code>http://caml.inria.fr/svn</code>.  To check out a local,
+	working copy of the sources:</p>
+	<pre>
+svn checkout http://caml.inria.fr/svn/<em>dir</em></pre>
+
+	<p>where <em>dir</em> is the subdirectory of interest
+        (see table below).  </p>
+	<p>To update a local working copy with our latest changes:
+        </p>
+	<pre>
+svn update</pre>
+
+        <p>If you are not familiar with Subversion commands, see the <a
+	href="http://svnbook.red-bean.com/" shape="rect">documentation.</a>
+	</p>
+
+	<p>If you do not need a local copy of the sources but just
+	wish to see changes and their history, you can also <a
+	href="http://caml.inria.fr/cgi-bin/viewvc.cgi"
+	shape="rect">browse the repository via a Web interface.</a>
+	</p>
+
+	<h3>Repository structure</h3>
+
+	<table class="array">
+	  <tr><th rowspan="1" colspan="1">
+	    Directory (<em>dir</em>)</th>
+	    <th rowspan="1" colspan="1">Contents</th>
+	  </tr>
+	  <tr>
+	    <td rowspan="1" colspan="1"><code>ocaml/trunk</code></td>
+	    <td rowspan="1" colspan="1">The development version of OCaml.  
+            It will become the next major release.
+            Not very stable; use at your own risk.
+            </td>
+	  </tr>
+	  <tr>
+	    <td rowspan="1"
+	    colspan="1"
+	    ><code>ocaml/version/</code><em>X</em><code>.</code><em>YY</em></td><td
+	    rowspan="1" colspan="1">The bug-fix branch for the major
+	    release number <em>X</em><code>.</code><em>YY</em>
+	    (e.g. <code>3.11</code>).  Minor releases are culled from
+	    this branch.  Only bug-fixes and minor extensions are
+	    performed in this branch, but not incompatible changes.
+	    Recommended for advanced users who wish to track bug
+	    fixes. </td>
+	  </tr>
+	  <tr>
+	    <td rowspan="1"
+	    colspan="1"><code>ocaml/branches/</code></td><td
+	    rowspan="1" colspan="1">Various branches containing
+	    experiments or extensions to OCaml,
+	    e.g. <code>ocaml/branches/jocamltrunk</code> for JoCaml.
+	    Many of the experimental branches have been folded in the
+	    development sources.
+            
+            To explore the contents, use <code>svn list</code> or <a
+            href="http://caml.inria.fr/cgi-bin/viewvc.cgi/ocaml/branches/"
+            shape="rect">browse the repository</a> </td>
+	  </tr>
+	</table>
+
+      </div><!-- devel -->
+
+    </div><!-- tab-content -->
   </body>
 </html>
