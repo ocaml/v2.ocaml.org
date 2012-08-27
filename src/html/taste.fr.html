@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Une centaine de lignes de Caml d'OCaml</title>
+    <link href="ocaml.css" media="all" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Une centaine de lignes de Caml d'OCaml</h1>
+
+    <div class="pull-right hero-unit" style="margin-left: 1em" >
+      <em>Sur cette page</em>
+      <div ml:replace="toc"></div>
+    </div>
+
+    <h2><a name="elementary"></a>Fonctions élémentaires</h2>
+
+    <p>Avec le système interactif, définissons la fonction
+      <code>square</code> (carré) et la fonction factorielle dans sa
+      version récursive. Puis, appliquons ces fonctions à quelques
+      valeurs choisies :
+  </p>
+
+<pre class="listing">
+<span class="output">        OCaml version 4.00.0</span>
+
+<b>let</b> square x = x * x;;
+<span class="output"><b>val</b> square : int -&gt; int = &lt;fun&gt;</span>
+<b>let</b> <b>rec</b> fact x =
+  <b>if</b> x &lt;= 1 <b>then</b> 1 <b>else</b> x * fact (x - 1);;
+<span class="output"><b>val</b> fact : int -&gt; int = &lt;fun&gt;</span>
+fact 5;;
+<span class="output">- : int = 120</span>
+square 120;;
+<span class="output">- : int = 14400</span>
+</pre>
+
+
+  <h2><a name="memory"</a>Gestion automatique de la mémoire</h2>
+
+  <p>Toutes les opérations d'allocation et de libération de la mémoire
+    sont complètement automatiques. Par exemple, considérons les
+    listes simplement chaînées.
+  </p>
+  <p>Les listes sont prédéfinies en OCaml.  La liste vide est notée
+      <code>[]</code>. Le constructeur d'ajout d'un élément à une
+      liste est noté <code>::</code> (sous forme infixe).
+  </p>
+
+<pre class="listing">
+<b>let</b> l = 1 :: 2 :: 3 :: [];;
+<span class="output"><b>val</b> l : int list = [1; 2; 3]</span>
+[1; 2; 3];;
+<span class="output">- : int list = [1; 2; 3]</span>
+5 :: l;;
+<span class="output">- : int list = [5; 1; 2; 3]</span>
+</pre>
+
+
+  <h2><a name="polymorphism"></a>Polymorphisme : le tri des listes</h2>
+
+  <p>Le tri par insertion est défini à l'aide de deux fonctions
+  récursives.
+  </p>
+<pre class="listing">
+<b>let</b> <b>rec</b> sort = <b>function</b>
+  | [] -&gt; []
+  | x :: l -&gt; insert x (sort l)
+<b>and</b> insert elem = <b>function</b>
+  | [] -&gt; [elem]
+  | x :: l -&gt; 
+      <b>if</b> elem &lt; x <b>then</b> elem :: x :: l <b>else</b> x :: insert elem l;;
+<span class="output"><b>val</b> sort : 'a list -&gt; 'a list = &lt;fun&gt;</span>
+<span class="output"><b>val</b> insert : 'a -&gt; 'a list -&gt; 'a list = &lt;fun&gt;</span>
+</pre>
+
+  <p>On notera que le type des éléments de la liste reste non
+  spécifié: il est représenté par une <em>variable de
+  types</em> <code>'a</code>. La fonction <code>sort</code> peut donc
+  être appliquée aussi bien à une liste d'entiers qu'à une liste de
+  chaînes de caractères.
+  </p>
+<pre class="listing">
+sort [2; 1; 0];;
+<span class="output">- : int list = [0; 1; 2]</span>
+sort ["yes"; "ok"; "sure"; "ya"; "yep"];;
+<span class="output">- : string list = ["ok"; "sure"; "ya"; "yep"; "yes"]</span>
+</pre>
+
+
+  <h2><a name="imperative"</a>Programmation impérative</h2>
+
+  <p>Représentons les polynômes des tableaux de coefficients
+  entiers. Alors, pour ajouter deux polynômes, on alloue d'abord le
+  tableau résultat, puis on le remplit à l'aide de deux
+  boucles <code><b>for</b></code> successives.
+  </p>
+
+<pre class="listing">
+<b>let</b> add_polynom p1 p2 =
+  <b>let</b> n1 = Array.length p1
+  <b>and</b> n2 = Array.length p2 <b>in</b>
+  <b>let</b> result = Array.create (max n1 n2) 0 <b>in</b>
+  <b>for</b> i = 0 <b>to</b> n1 - 1 <b>do</b> result.(i) &lt;- p1.(i) done;
+  <b>for</b> i = 0 <b>to</b> n2 - 1 <b>do</b> result.(i) &lt;- result.(i) + p2.(i) done;
+  result;;
+<span class="output"><b>val</b> add_polynom : int array -&gt; int array -&gt; int array</span>
+add_polynom [| 1; 2 |] [| 1; 2; 3 |];;
+<span class="output">- : int array = [|2; 4; 3|]</span>
+</pre>
+
+  <p>OCaml offre des cellules mémoire modifiables
+  appelées <em>références</em> :
+    <code>ref init</code> renvoie une nouvelle cellule, dont le
+    contenu initial est <code>init</code>, <code>!cell</code> renvoie
+    le contenu actuel de <code>cell</code>,
+    et <code>cell
+    :=<b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> x</code>
+    met dans <code>cell</code> la valeur <code>x</code>.
+  </p>
+  <p>On peut redéfinir <code>fact</code> à l'aide d'une référence et
+    d'une boucle
+    <code><b>for</b></code> :
+  </p>
+<pre class="listing">
+<b>let</b> fact n =
+  <b>let</b> result = ref 1 <b>in</b>
+  <b>for</b> i = 2 <b>to</b> n <b>do</b>
+    result := i * !result
+   done;
+   !result;;
+<span class="output"><b>val</b> fact : int -&gt; int = &lt;fun&gt;</span>
+fact 5;;
+<span class="output">- : int = 120</span>
+</pre>
+
+
+  <h2><a name="functionality"</a>Fonctions d'ordre supérieur</h2>
+
+  <p>Il n'y a pas de restriction sur les fonctions, qui peuvent donc
+  être passés en argument à d'autres fonctions. Définissons une
+  fonction
+      <code>sigma</code> qui renvoie la somme des résultats de
+      l'application d'une fonction <code>f</code> donnée aux éléments
+      d'une liste :
+  </p>
+
+<pre class="listing">
+<b>let</b> <b>rec</b> sigma f = <b>function</b>
+    | [] -&gt; 0
+    | x :: l -&gt; f x + sigma f l;;
+<span class="output"><b>val</b> sigma : ('a -&gt; int) -&gt; 'a list -&gt; int = &lt;fun&gt;</span>
+</pre>
+
+  <p>On peut définir des fonctions anonymes à l'aide de la
+  construction <code><b>fun</b></code> ou <code><b>function</b></code> :
+  </p>
+<pre class="listing">
+sigma (<b>fun</b> x -&gt; x * x) [1; 2; 3];;
+<span class="output">- : int = 14</span>
+</pre>
+
+  <p>Polymorphisme et fonctions d'ordre supérieur permettent de
+    définir la composition de fonctions sous sa forme la plus générale :
+  </p>
+<pre class="listing">
+<b>let</b> compose f g = <b>fun</b> x -&gt; f (g x);;
+<span class="output"><b>val</b> compose : ('a -&gt; 'b) -&gt; ('c -&gt; 'a) -&gt; 'c -&gt; 'b = &lt;fun&gt;</span>
+<b>let</b> square_o_fact = compose square fact;;
+<span class="output"><b>val</b> square_o_fact : int -&gt; int = &lt;fun&gt;</span>
+square_o_fact 5;;
+<span class="output">- : int = 14400</span>
+</pre>
+
+
+  <h2><a name="power"</a>La puissance des fonctions</h2>
+
+  <p>La puissance des fonctions ne peut pas être mieux illustrée que
+      par la fonction « puissance » :
+  </p>
+
+<pre class="listing">
+<b>let</b> <b>rec</b> power f n = 
+    <b>if</b> n = 0 <b>then</b> <b>function</b> x -&gt; x 
+    <b>else</b> compose f (power f (n - 1));;
+<span class="output"><b>val</b> power : ('a -&gt; 'a) -&gt; int -&gt; 'a -&gt; 'a = &lt;fun&gt;</span>
+</pre>
+
+  <p>La dérivée n<sup>ième</sup> d'une fonction peut alors se définir
+      comme en mathématiques en élevant la fonction dérivée à la
+      puissance n :
+  </p>
+
+<pre class="listing">
+<b>let</b> derivative dx f = <b>function</b> x -&gt; (f (x +. dx) -. f x) /. dx;;
+<span class="output"><b>val</b> derivative : float -&gt; (float -&gt; float) -&gt; float -&gt; float</span>
+<b>let</b> sin''' = power (derivative 1e-5) 3 sin;;
+<span class="output"><b>val</b> sin''' : float -&gt; float = &lt;fun&gt;</span>
+<b>let</b> pi = 4.0 *. atan 1.0 <b>in</b> sin''' pi;;
+<span class="output">- : float = 0.999998972517346263</span>
+</pre>
+
+
+  <h2><a name="symbolic"</a>Calcul symbolique</h2>
+
+  <p>Considérons des expressions symboliques simples comprenant des
+  entiers, des variables, un opérateur de
+  liaison <code><b>let</b></code>, et des opérateurs binaires. Ces
+  expressions peuvent être définies à l'aide d'un nouveau type de
+  données, de la façon suivante :
+  </p>
+<pre class="listing">
+<b>type</b> expression =
+  | Num <b>of</b> int
+  | Var <b>of</b> string
+  | Let <b>of</b> string * expression * expression
+  | Binop <b>of</b> string * expression * expression;;
+</pre>
+
+  <p>L'évaluation de ces expressions utilise un environnement
+      qui à un identificateur associe une valeur, représenté par
+      une liste de paires.
+  </p>
+<pre class="listing">
+<b>let</b> <b>rec</b> eval env = <b>function</b>
+  | Num i -&gt; i
+  | Var x -&gt; List.assoc x env
+  | Let (x, e1, in_e2) -&gt;
+     <b>let</b> val_x = eval env e1 <b>in</b>
+     eval ((x, val_x) :: env) in_e2
+  | Binop (op, e1, e2) -&gt;
+     <b>let</b> v1 = eval env e1 <b>in</b>
+     <b>let</b> v2 = eval env e2 <b>in</b>
+     eval_op op v1 v2
+<b>and</b> eval_op op v1 v2 =
+  <b>match</b> op <b>with</b>
+  | "+" -&gt; v1 + v2
+  | "-" -&gt; v1 - v2
+  | "*" -&gt; v1 * v2
+  | "/" -&gt; v1 / v2
+  | _ -&gt; failwith ("Unknown operator: " ^ op);;
+<span class="output"><b>val</b> eval : (string * int) list -&gt; expression -&gt; int = &lt;fun&gt;</span>
+<span class="output"><b>val</b> eval_op : string -&gt; int -&gt; int -&gt; int = &lt;fun&gt;</span>
+</pre>
+
+  <p>Évaluons par exemple la phrase <code><b>let</b> x <b></b>=<b></b>
+  1 <b>in</b> x + x</code> :
+  </p>
+
+<pre class="listing">
+eval [] (Let ("x", Num 1, Binop ("+", Var "x", Var "x")));;
+<span class="output">- : int = 2</span>
+</pre>
+
+  <p>L'emploi du filtrage facilite la définition des fonctions opérant
+      sur des données symboliques, en donnant aux définitions de
+      fonctions une forme similaire à celle des déclarations de
+      types. Notez, en effet, la similitude entre la définition de la
+      fonction <code>eval</code> et la définition du type
+      <code>expression</code>.
+  </p>
+
+
+  <h2><a name="debugging"</a>Trace des fonctions</h2>
+
+  <p>Pour terminer, voici le moyen le plus élémentaire pour espionner
+  les fonctions :
+  </p>
+<pre class="listing">
+<b>let</b> <b>rec</b> fib x = <b>if</b> x &lt;= 1 <b>then</b> 1 <b>else</b> fib (x - 1) + fib (x - 2);;
+
+<span class="output"><b>val</b> fib : int -&gt; int = &lt;fun&gt;</span>
+#trace fib;;
+<span class="output">fib is now traced.</span>
+fib 3;;
+<span class="output">fib &lt;-- 3</span>
+<span class="output">fib &lt;-- 1</span>
+<span class="output">fib --&gt; 1</span>
+<span class="output">fib &lt;-- 2</span>
+<span class="output">fib &lt;-- 0</span>
+<span class="output">fib --&gt; 1</span>
+<span class="output">fib &lt;-- 1</span>
+<span class="output">fib --&gt; 1</span>
+<span class="output">fib --&gt; 2</span>
+<span class="output">fib --&gt; 3</span>
+<span class="output">- : int = 3</span>
+</pre>
+
+
+  </body>
+</html>

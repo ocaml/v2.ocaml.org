@@ -379,3 +379,10 @@ div.Q {
 div.A {
   padding-left: 2em;
 }
+
+/* OCaml code
+ ***********************************************************************/
+
+.listing span.output {
+  color: #3b9bf8;
+}

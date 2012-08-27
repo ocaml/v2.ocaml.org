@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>A Hundred Lines of OCaml</title>
+    <link href="ocaml.css" media="all" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>A Hundred Lines of OCaml</h1>
+
+    <div class="pull-right hero-unit" style="margin-left: 1em" >
+      <em>Table of contents</em>
+      <div ml:replace="toc"></div>
+    </div>
+
+    <!-- FIXME: Use the template system to generate the output during
+	 compilation -->
+
+    <h2><a name="elementary"></a>Elementary functions</h2>
+
+    <p>Using the interactive system, let us define the square function
+    and the recursive factorial function.  Then, let us apply these
+    functions to sample values:
+    </p>
+
+    <pre class="listing">
+<span class="output">        OCaml version 4.00.0</span>
+
+<b>let</b> square x = x * x;;
+<span class="output"><b>val</b> square : int -&gt; int = &lt;fun&gt;</span>
+<b>let</b> <b>rec</b> fact x =
+  <b>if</b> x &lt;= 1 <b>then</b> 1 <b>else</b> x * fact (x - 1);;
+
+<span class="output"><b>val</b> fact : int -&gt; int = &lt;fun&gt;</span>
+fact 5;;
+<span class="output">- : int = 120</span>
+square 120;;
+<span class="output">- : int = 14400</span>
+</pre>
+
+
+  <h2><a name="memory"></a>Automatic memory management</h2>
+
+  <p>All allocation and deallocation operations are fully automatic.
+  For example, let us consider simply linked lists.
+  </p>
+  <p>Lists are predefined in OCaml. The empty list is
+  written <code>[]</code>.  The constructor that allows
+  prepending an element to a list is written <code>::</code> (in infix
+  form).
+  </p>
+
+<pre class="listing">
+<b>let</b> l = 1 :: 2 :: 3 :: [];;
+<span class="output"><b>val</b> l : int list = [1; 2; 3]</span>
+[1; 2; 3];;
+<span class="output">- : int list = [1; 2; 3]</span>
+5 :: l;;
+<span class="output">- : int list = [5; 1; 2; 3]</span>
+</pre>
+
+  <h2><a name="polymorphism"></a>Polymorphism: sorting lists</h2>
+
+  <p>Insertion sort is defined using two recursive functions.
+  </p>
+<pre class="listing">
+<b>let</b> <b>rec</b> sort = <b>function</b>
+  | [] -&gt; []
+  | x :: l -&gt; insert x (sort l)
+<b>and</b> insert elem = <b>function</b>
+  | [] -&gt; [elem]
+  | x :: l -&gt; <b>if</b> elem &lt; x <b>then</b> elem :: x :: l <b>else</b> x :: insert elem l;;
+<span class="output"><b>val</b> sort : 'a list -&gt; 'a list = &lt;fun&gt;</span>
+<span class="output"><b>val</b> insert : 'a -&gt; 'a list -&gt; 'a list = &lt;fun&gt;</span>
+</pre>
+
+  <p>Note that the type of the list elements remains unspecified: it
+  is represented by a <em>type
+  variable</em> <code>'a</code>. Thus, <code>sort</code> can be
+  applied both to a list of integers and to a list of strings.
+  </p>
+<pre class="listing">
+sort [2; 1; 0];;
+<span class="output">- : int list = [0; 1; 2]</span>
+sort ["yes"; "ok"; "sure"; "ya"; "yep"];;
+<span class="output">- : string list = ["ok"; "sure"; "ya"; "yep"; "yes"]</span>
+</pre>
+
+
+<h2><a name="imperative"></a>Imperative features</h2>
+
+    <p>Let us encode polynomials as arrays of integer
+      coefficients. Then, to add two polynomials, we first allocate the
+      result array, then fill its slots using two successive
+      <code><b>for</b></code> loops.
+    </p>
+
+<pre class="listing">
+<b>let</b> add_polynom p1 p2 =
+  <b>let</b> n1 = Array.length p1
+  <b>and</b> n2 = Array.length p2 <b>in</b>
+  <b>let</b> result = Array.create (max n1 n2) 0 <b>in</b>
+  <b>for</b> i = 0 <b>to</b> n1 - 1 <b>do</b> result.(i) &lt;- p1.(i) done;
+  <b>for</b> i = 0 <b>to</b> n2 - 1 <b>do</b> result.(i) &lt;- result.(i) + p2.(i) done;
+  result;;
+<span class="output"><b>val</b> add_polynom : int array -&gt; int array -&gt; int array</span>
+add_polynom [| 1; 2 |] [| 1; 2; 3 |];;
+<span class="output">- : int array = [|2; 4; 3|]</span>
+</pre>
+
+  <p>OCaml offers updatable memory cells, called
+    <em>references</em>:
+    <code>ref init</code> returns a new cell with initial contents
+    <code>init</code>, <code>!cell</code> returns the current contents
+    of
+    <code>cell</code>, and 
+    <code>cell :=<b></b> v</code> 
+    writes the value <code>v</code> into <code>cell</code>.
+  </p>
+
+  <p>We may redefine <code>fact</code> using a reference cell and
+      a <code><b>for</b></code> loop:
+  </p>
+<pre class="listing">
+<b>let</b> fact n =
+  <b>let</b> result = ref 1 <b>in</b>
+  <b>for</b> i = 2 <b>to</b> n <b>do</b>
+    result := i * !result
+   done;
+   !result;;
+<span class="output"><b>val</b> fact : int -&gt; int = &lt;fun&gt;</span>
+fact 5;;
+<span class="output">- : int = 120</span>
+</pre>
+
+
+
+  <h2><a name="functionality"></a>Higher-order functions</h2>
+
+  <p>There is no restriction on functions, which may thus be passed as
+    arguments to other functions.  Let us define a function
+    <code>sigma</code> that returns the sum of the results of applying a given
+    function <code>f</code> to each element of a list:
+  </p>
+
+<pre class="listing">
+<b>let</b> <b>rec</b> sigma f = <b>function</b>
+  | [] -&gt; 0
+  | x :: l -&gt; f x + sigma f l;;
+<span class="output"><b>val</b> sigma : ('a -&gt; int) -&gt; 'a list -&gt; int = &lt;fun&gt;</span>
+</pre>
+
+  <p>Anonymous functions may be defined using the
+    <code><b>fun</b></code> or <code><b>function</b></code> construct:
+  </p>
+<pre class="listing">
+sigma (<b>fun</b> x -&gt; x * x) [1; 2; 3];;
+<span class="output">- : int = 14</span>
+</pre>
+
+  <p>Polymorphism and higher-order functions allow defining function
+  composition in its most general form:
+  </p>
+<pre class="listing">
+<b>let</b> compose f g = <b>fun</b> x -&gt; f (g x);;
+<span class="output"><b>val</b> compose : ('a -&gt; 'b) -&gt; ('c -&gt; 'a) -&gt; 'c -&gt; 'b = &lt;fun&gt;</span>
+<b>let</b> square_o_fact = compose square fact;;
+<span class="output"><b>val</b> square_o_fact : int -&gt; int = &lt;fun&gt;</span>
+square_o_fact 5;;
+<span class="output">- : int = 14400</span>
+</pre>
+
+
+  <h2><a name="power"></a>The power of functions</h2>
+
+  <p>The power of functions cannot be better illustrated than by
+      the <code>power</code> function:
+  </p>
+
+<pre class="listing">
+<b>let</b> <b>rec</b> power f n = 
+    <b>if</b> n = 0 <b>then</b> <b>fun</b> x -&gt; x 
+    <b>else</b> compose f (power f (n - 1));;
+<span class="output"><b>val</b> power : ('a -&gt; 'a) -&gt; int -&gt; 'a -&gt; 'a = &lt;fun&gt;</span>
+</pre>
+
+  <p>The n<sup>th</sup> derivative of a function can be computed as in
+      mathematics by raising the derivative function to the
+      n<sup>th</sup> power:
+  </p>
+
+<pre class="listing">
+<b>let</b> derivative dx f = <b>fun</b> x -&gt; (f (x +. dx) -. f x) /. dx;;
+<span class="output"><b>val</b> derivative : float -&gt; (float -&gt; float) -&gt; float -&gt; float</span>
+<b>let</b> sin''' = power (derivative 1e-5) 3 sin;;
+<span class="output"><b>val</b> sin''' : float -&gt; float = &lt;fun&gt;</span>
+<b>let</b> pi = 4.0 *. atan 1.0 <b>in</b> sin''' pi;;
+<span class="output">- : float = 0.999998972517346263</span>
+</pre>
+
+
+  <h2><a name="symbolic"></a>Symbolic computation</h2>
+
+  <p>Let us consider simple symbolic expressions made up of integers,
+    variables, <code><b>let</b></code> bindings, and binary
+    operators. Such expressions can be defined as a new data type,
+    as follows:
+  </p>
+<pre class="listing">
+<b>type</b> expression =
+  | Num <b>of</b> int
+  | Var <b>of</b> string
+  | Let <b>of</b> string * expression * expression
+  | Binop <b>of</b> string * expression * expression;;
+</pre>
+
+  <p>Evaluation of these expressions involves an environment that maps
+    identifiers to values, represented as a list of pairs.
+  </p>
+<pre class="listing">
+<b>let</b> <b>rec</b> eval env = <b>fun</b>
+  | Num i -&gt; i
+  | Var x -&gt; List.assoc x env
+  | Let (x, e1, in_e2) -&gt;
+     <b>let</b> val_x = eval env e1 <b>in</b>
+     eval ((x, val_x) :: env) in_e2
+  | Binop (op, e1, e2) -&gt;
+     <b>let</b> v1 = eval env e1 <b>in</b>
+     <b>let</b> v2 = eval env e2 <b>in</b>
+     eval_op op v1 v2
+<b>and</b> eval_op op v1 v2 =
+  <b>match</b> op <b>with</b>
+  | "+" -&gt; v1 + v2
+  | "-" -&gt; v1 - v2
+  | "*" -&gt; v1 * v2
+  | "/" -&gt; v1 / v2
+  | _ -&gt; failwith ("Unknown operator: " ^ op);;
+<span class="output"><b>val</b> eval : (string * int) list -&gt; expression -&gt; int = &lt;fun&gt;</span>
+<span class="output"><b>val</b> eval_op : string -&gt; int -&gt; int -&gt; int = &lt;fun&gt;</span>
+</pre>
+
+  <p>As an example, we evaluate the phrase <code><b>let</b>
+  x <b></b>=<b></b> 1 <b>in</b> x
+  + <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> x</code>:
+  </p>
+
+<pre class="listing">
+eval [] (Let ("x", Num 1, Binop ("+", Var "x", Var "x")));;
+<span class="output">- : int = 2</span>
+</pre>
+
+  <p>Pattern matching eases the definition of functions operating on
+  symbolic data, by giving function definitions and type declarations
+  similar shapes. Indeed, note the close resemblance between the
+  definition of the <code>eval</code> function and that of the
+    <code>expression</code> type.
+  </p>
+
+
+  <h2><a name="debugging"></a>Elementary debugging</h2>
+
+  <p>To conclude, here is the simplest way of spying over functions:
+  </p>
+<pre class="listing">
+<b>let</b> <b>rec</b> fib x = <b>if</b> x &lt;= 1 <b>then</b> 1 <b>else</b> fib (x - 1) + fib (x - 2);;
+<span class="output"><b>val</b> fib : int -&gt; int = &lt;fun&gt;</span>
+#trace fib;;
+<span class="output">fib is now traced.</span>
+fib 3;;
+<span class="output">fib &lt;-- 3</span>
+<span class="output">fib &lt;-- 1</span>
+<span class="output">fib --&gt; 1</span>
+<span class="output">fib &lt;-- 2</span>
+<span class="output">fib &lt;-- 0</span>
+<span class="output">fib --&gt; 1</span>
+<span class="output">fib &lt;-- 1</span>
+<span class="output">fib --&gt; 1</span>
+<span class="output">fib --&gt; 2</span>
+<span class="output">fib --&gt; 3</span>
+<span class="output">- : int = 3</span>
+</pre>
+
+
+
+  </body>
+</html>
