@@ -25,6 +25,8 @@ SETUP = ocaml setup.ml
 setup.data: src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
 	$(SETUP) -configure $(CONFIGUREFLAGS)
 
+configure: setup.data
+
 build: setup.data src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli
 	$(SETUP) -build $(BUILDFLAGS)
 
