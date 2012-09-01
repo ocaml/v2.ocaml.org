@@ -14,14 +14,30 @@
       <div ml:replace="toc"></div>
     </div>
 
-    <!-- FIXME: Use the template system to generate the output during
-	 compilation -->
+    <p>OCaml possesses an <a href="description.html#interactive" >
+    interactive system</a>, called “toploop”, that lets you type OCaml
+    code and have it evaluated immediately.  It is a great way to
+    learn the language and to quickly experiment with ideas.  Below,
+    we demonstrate the use of the toploop to illustrate basic
+    capabilities of the language.
+    </p>
+
+    <p>Some indications for the code below.  The prompt at which you
+      type is “<code><span class="ocamltop-prompt">#</span></code>”.
+      The code must end with
+      “<code><span class="ocamltop-prompt">;;</span></code>” (this is
+      only an indication to the interactive system that the input has
+      to be evaluated and is not really part of the OCaml code).  The
+      output of the system is displayed in
+      <code><span class="ocamltop-output">this color</span></code>.
+    </p>
 
     <h2><a name="elementary"></a>Elementary functions</h2>
 
-    <p>Using the interactive system, let us define the square function
-    and the recursive factorial function.  Then, let us apply these
-    functions to sample values:
+    <p>Let us define the square function and the recursive factorial
+    function.  Then, let us apply these functions to sample values.
+    Note that, contrarily to popular languages, OCaml uses parentheses
+    for grouping but not for the arguments of a function.
     </p>
 
     <pre class="listing" ml:content="ocaml">
@@ -255,7 +271,10 @@ fib --&gt; 3
 - : int = 3
 </pre>
 
-
+<p>Go and <a href="http://try.ocamlpro.com/" >try it in your
+    browser</a> or <a href="install.html" >install</a> it and read
+    some <a href="tutorials/" >tutorials</a>.
+</p>
 
   </body>
 </html>
