@@ -64,4 +64,4 @@ distclean: setup.ml
 DEVSITE = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
 .PHONY: dev-upload dev-publish
 dev-publish dev-upload: web
-	scp -C -r $(WWW) $(UPLOAD)
+	scp -C -r $(WWW) $(DEVSITE)
