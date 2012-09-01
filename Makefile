@@ -55,6 +55,7 @@ distclean:
 	$(SETUP) -distclean $(DISTCLEANFLAGS)
 	$(RM) -r $(WWW)
 	$(RM) $(AUTOFILES)
+	$(RM) setup.ml
 
 setup.data:
 	$(SETUP) -configure $(CONFIGUREFLAGS)
