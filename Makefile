@@ -3,10 +3,8 @@ AUTOFILES = src/lib/OCamlWeb_Main.ml \
             src/lib/OCamlWeb_Main.mli \
             setup.ml
 
-WWW = www
-UPLOAD = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
-
 # build the website
+WWW = www
 .PHONY: web
 web: build
 	if [ -x ./build.native ]; then ./build.native; else ./build.byte; fi
@@ -62,6 +60,8 @@ distclean: setup
 
 .PHONY: setup build doc test all install uninstall reinstall clean distclean configure
 
-.PHONY: upload publish
-publish upload: web
+# publish the site to the development site
+DEVSITE = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
+.PHONY: dev-upload dev-publish
+dev-publish dev-upload: web
 	scp -C -r $(WWW) $(UPLOAD)
