@@ -20,9 +20,12 @@ web: build
 src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli: src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
 	cd src/lib; weberizer_compile OCamlWeb_Main.html
 
+setup: _oasis
+	oasis setup -setup-update dynamic
+
 SETUP = ocaml setup.ml
 
-setup.data: src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
+setup.data: setup src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
 	$(SETUP) -configure $(CONFIGUREFLAGS)
 
 configure: setup.data
@@ -36,7 +39,7 @@ doc: setup.data build
 test: setup.data build
 	$(SETUP) -test $(TESTFLAGS)
 
-all: 
+all: setup
 	$(SETUP) -all $(ALLFLAGS)
 
 install: setup.data
@@ -48,16 +51,16 @@ uninstall: setup.data
 reinstall: setup.data
 	$(SETUP) -reinstall $(REINSTALLFLAGS)
 
-clean: 
+clean: setup
 	$(SETUP) -clean $(CLEANFLAGS)
 
-distclean: 
+distclean: setup
 	$(SETUP) -distclean $(DISTCLEANFLAGS)
 	$(RM) -r $(WWW)
 	$(RM) $(AUTOFILES)
 	$(RM) setup.ml
 
-.PHONY: build doc test all install uninstall reinstall clean distclean configure
+.PHONY: setup build doc test all install uninstall reinstall clean distclean configure
 
 .PHONY: upload publish
 publish upload: web
