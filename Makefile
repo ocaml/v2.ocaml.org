@@ -17,13 +17,13 @@ web: build
 	cp -a src/html/img $(WWW)
 	cp -a src/html/ext/bootstrap/img/*.png $(WWW)/img/
 
-setup.data: src/lib/OCamlWeb_Main.html \
-  src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
-
 src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli: src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
 	cd src/lib; weberizer_compile OCamlWeb_Main.html
 
 SETUP = ocaml setup.ml
+
+setup.data: src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
+	$(SETUP) -configure $(CONFIGUREFLAGS)
 
 build: setup.data src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli
 	$(SETUP) -build $(BUILDFLAGS)
@@ -54,9 +54,6 @@ distclean:
 	$(RM) -r $(WWW)
 	$(RM) $(AUTOFILES)
 	$(RM) setup.ml
-
-setup.data:
-	$(SETUP) -configure $(CONFIGUREFLAGS)
 
 .PHONY: build doc test all install uninstall reinstall clean distclean configure
 
