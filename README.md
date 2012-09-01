@@ -24,6 +24,9 @@ need to understand this tool if you are contributing design
 changes. Content contributors can focus on the pure html source within
 src/html/.
 
+Optionally [highlight](http://www.andre-simon.de/), if found, is used
+to highlight code.
+
 
 BUILD
 =====
