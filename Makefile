@@ -1,11 +1,10 @@
-# auto-generated ml/mli files
+# auto-generated files, deleted by distclean
 AUTOFILES = src/lib/OCamlWeb_Main.ml \
-            src/lib/OCamlWeb_Main.mli
-
-WWW = www
-UPLOAD = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
+            src/lib/OCamlWeb_Main.mli \
+            setup.ml
 
 # build the website
+WWW = www
 .PHONY: web
 web: build
 	if [ -x ./build.native ]; then ./build.native; else ./build.byte; fi
@@ -17,20 +16,20 @@ web: build
 	cp -a src/html/img $(WWW)
 	cp -a src/html/ext/bootstrap/img/*.png $(WWW)/img/
 
-setup.data: src/lib/OCamlWeb_Main.html \
-  src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
-
 src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli: src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
 	cd src/lib; weberizer_compile OCamlWeb_Main.html
 
-build: src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli
-
-# OASIS_START
-# DO NOT EDIT (digest: bc1e05bfc8b39b664f29dae8dbd3ebbb)
+setup: _oasis
+	oasis setup -setup-update dynamic
 
 SETUP = ocaml setup.ml
 
-build: setup.data
+setup.data: setup src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
+	$(SETUP) -configure $(CONFIGUREFLAGS)
+
+configure: setup.data
+
+build: setup.data src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli
 	$(SETUP) -build $(BUILDFLAGS)
 
 doc: setup.data build
@@ -39,7 +38,7 @@ doc: setup.data build
 test: setup.data build
 	$(SETUP) -test $(TESTFLAGS)
 
-all: 
+all: setup
 	$(SETUP) -all $(ALLFLAGS)
 
 install: setup.data
@@ -51,25 +50,18 @@ uninstall: setup.data
 reinstall: setup.data
 	$(SETUP) -reinstall $(REINSTALLFLAGS)
 
-clean: 
+clean: setup
 	$(SETUP) -clean $(CLEANFLAGS)
 
-distclean: 
+distclean: setup
 	$(SETUP) -distclean $(DISTCLEANFLAGS)
-
-setup.data:
-	$(SETUP) -configure $(CONFIGUREFLAGS)
-
-.PHONY: build doc test all install uninstall reinstall clean distclean configure
-
-# OASIS_STOP
-
-# delete everything that is auto-generated
-.PHONY: fresh
-fresh: distclean
 	$(RM) -r $(WWW)
 	$(RM) $(AUTOFILES)
 
-.PHONY: upload publish
-publish upload: web
+.PHONY: setup build doc test all install uninstall reinstall clean distclean configure
+
+# publish the site to the development site
+DEVSITE = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
+.PHONY: dev-upload dev-publish
+dev-publish dev-upload: web
 	scp -C -r $(WWW) $(UPLOAD)
