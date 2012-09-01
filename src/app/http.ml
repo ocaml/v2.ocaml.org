@@ -16,8 +16,9 @@ let time_of_secs s =
   let h = m / 60 and m = m mod 60 in
   sprintf "%ih %im %is" h m s
 
-(* 86400. = 60 * 60 * 24 = 24h *)
-let get ?(cache_secs=86400.) url =
+(* let cache_secs = 60. *. 60. *. 24. (\* 24h *\) *)
+let cache_secs = 60. *. 55.
+let get ?(cache_secs=cache_secs) url =
   let md5 = Digest.to_hex(Digest.string url) in
   let fn = Filename.concat Filename.temp_dir_name ("ocamlorg-" ^ md5) in
   eprintf "Downloading %s... %!" url;
