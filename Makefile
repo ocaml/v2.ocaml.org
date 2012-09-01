@@ -1,6 +1,7 @@
-# auto-generated ml/mli files
+# auto-generated files, deleted by distclean
 AUTOFILES = src/lib/OCamlWeb_Main.ml \
-            src/lib/OCamlWeb_Main.mli
+            src/lib/OCamlWeb_Main.mli \
+            setup.ml
 
 WWW = www
 UPLOAD = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
@@ -58,7 +59,6 @@ distclean: setup
 	$(SETUP) -distclean $(DISTCLEANFLAGS)
 	$(RM) -r $(WWW)
 	$(RM) $(AUTOFILES)
-	$(RM) setup.ml
 
 .PHONY: setup build doc test all install uninstall reinstall clean distclean configure
 
