@@ -92,9 +92,15 @@
 	  <li><a href="#opam"  data-toggle="tab">OPAM</a></li>
 	</ul>
       </li>
-      <li><a href="#source" data-toggle="tab">From Source</a></li>
-      <li class="active">
-	<a href="#devel" data-toggle="tab">Development version</a>
+      <li class="dropdown active">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          From Source
+	  <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#releases" data-toggle="tab">Official Releases</a></li>
+          <li><a href="#devel" data-toggle="tab">Development Version</a></li>
+        </ul>
       </li>
     </ul>
 
@@ -655,7 +661,7 @@
 	alt="Under Construction" />
       </div><!-- opam -->
 	
-      <div class="tab-pane" id="source">
+      <div class="tab-pane" id="releases">
 	<h2>Source</h2>
 
 	<img src="img/under_construction_icon.gif"
