@@ -24,19 +24,13 @@
     functions to sample values:
     </p>
 
-    <pre class="listing">
-<span class="output">        OCaml version 4.00.0</span>
-
-<b>let</b> square x = x * x;;
-<span class="output"><b>val</b> square : int -&gt; int = &lt;fun&gt;</span>
-<b>let</b> <b>rec</b> fact x =
-  <b>if</b> x &lt;= 1 <b>then</b> 1 <b>else</b> x * fact (x - 1);;
-
-<span class="output"><b>val</b> fact : int -&gt; int = &lt;fun&gt;</span>
+    <pre class="listing" ml:content="ocaml">
+let square x = x * x;;
+  square 3;;
+  let rec fact x =
+    if x <= 1 then 1 else x * fact (x - 1);;
 fact 5;;
-<span class="output">- : int = 120</span>
 square 120;;
-<span class="output">- : int = 14400</span>
 </pre>
 
 
@@ -51,28 +45,24 @@ square 120;;
   form).
   </p>
 
-<pre class="listing">
-<b>let</b> l = 1 :: 2 :: 3 :: [];;
-<span class="output"><b>val</b> l : int list = [1; 2; 3]</span>
+<pre class="listing" ml:content="ocaml">
+let l = 1 :: 2 :: 3 :: [];;
 [1; 2; 3];;
-<span class="output">- : int list = [1; 2; 3]</span>
 5 :: l;;
-<span class="output">- : int list = [5; 1; 2; 3]</span>
 </pre>
 
   <h2><a name="polymorphism"></a>Polymorphism: sorting lists</h2>
 
   <p>Insertion sort is defined using two recursive functions.
   </p>
-<pre class="listing">
-<b>let</b> <b>rec</b> sort = <b>function</b>
-  | [] -&gt; []
-  | x :: l -&gt; insert x (sort l)
-<b>and</b> insert elem = <b>function</b>
-  | [] -&gt; [elem]
-  | x :: l -&gt; <b>if</b> elem &lt; x <b>then</b> elem :: x :: l <b>else</b> x :: insert elem l;;
-<span class="output"><b>val</b> sort : 'a list -&gt; 'a list = &lt;fun&gt;</span>
-<span class="output"><b>val</b> insert : 'a -&gt; 'a list -&gt; 'a list = &lt;fun&gt;</span>
+<pre class="listing" ml:content="ocaml">
+let rec sort = function
+  | [] -> []
+  | x :: l -> insert x (sort l)
+and insert elem = function
+  | [] -> [elem]
+  | x :: l -> if elem < x then elem :: x :: l
+              else x :: insert elem l;;
 </pre>
 
   <p>Note that the type of the list elements remains unspecified: it
@@ -80,11 +70,9 @@ square 120;;
   variable</em> <code>'a</code>. Thus, <code>sort</code> can be
   applied both to a list of integers and to a list of strings.
   </p>
-<pre class="listing">
+<pre class="listing" ml:content="ocaml">
 sort [2; 1; 0];;
-<span class="output">- : int list = [0; 1; 2]</span>
 sort ["yes"; "ok"; "sure"; "ya"; "yep"];;
-<span class="output">- : string list = ["ok"; "sure"; "ya"; "yep"; "yes"]</span>
 </pre>
 
 
@@ -96,17 +84,15 @@ sort ["yes"; "ok"; "sure"; "ya"; "yep"];;
       <code><b>for</b></code> loops.
     </p>
 
-<pre class="listing">
-<b>let</b> add_polynom p1 p2 =
-  <b>let</b> n1 = Array.length p1
-  <b>and</b> n2 = Array.length p2 <b>in</b>
-  <b>let</b> result = Array.create (max n1 n2) 0 <b>in</b>
-  <b>for</b> i = 0 <b>to</b> n1 - 1 <b>do</b> result.(i) &lt;- p1.(i) done;
-  <b>for</b> i = 0 <b>to</b> n2 - 1 <b>do</b> result.(i) &lt;- result.(i) + p2.(i) done;
+<pre class="listing" ml:content="ocaml">
+let add_polynom p1 p2 =
+  let n1 = Array.length p1
+  and n2 = Array.length p2 in
+  let result = Array.create (max n1 n2) 0 in
+  for i = 0 to n1 - 1 do result.(i) <- p1.(i) done;
+  for i = 0 to n2 - 1 do result.(i) <- result.(i) + p2.(i) done;
   result;;
-<span class="output"><b>val</b> add_polynom : int array -&gt; int array -&gt; int array</span>
 add_polynom [| 1; 2 |] [| 1; 2; 3 |];;
-<span class="output">- : int array = [|2; 4; 3|]</span>
 </pre>
 
   <p>OCaml offers updatable memory cells, called
@@ -122,16 +108,14 @@ add_polynom [| 1; 2 |] [| 1; 2; 3 |];;
   <p>We may redefine <code>fact</code> using a reference cell and
       a <code><b>for</b></code> loop:
   </p>
-<pre class="listing">
-<b>let</b> fact n =
-  <b>let</b> result = ref 1 <b>in</b>
-  <b>for</b> i = 2 <b>to</b> n <b>do</b>
-    result := i * !result
-   done;
-   !result;;
-<span class="output"><b>val</b> fact : int -&gt; int = &lt;fun&gt;</span>
-fact 5;;
-<span class="output">- : int = 120</span>
+<pre class="listing" ml:content="ocaml">
+  let fact n =
+    let result = ref 1 in
+    for i = 2 to n do
+      result := i * !result
+    done;
+    !result;;
+  fact 5;;
 </pre>
 
 
@@ -144,31 +128,26 @@ fact 5;;
     function <code>f</code> to each element of a list:
   </p>
 
-<pre class="listing">
-<b>let</b> <b>rec</b> sigma f = <b>function</b>
-  | [] -&gt; 0
-  | x :: l -&gt; f x + sigma f l;;
-<span class="output"><b>val</b> sigma : ('a -&gt; int) -&gt; 'a list -&gt; int = &lt;fun&gt;</span>
+<pre class="listing" ml:content="ocaml">
+  let rec sigma f = function
+    | [] -> 0
+    | x :: l -> f x + sigma f l
 </pre>
 
   <p>Anonymous functions may be defined using the
     <code><b>fun</b></code> or <code><b>function</b></code> construct:
   </p>
-<pre class="listing">
-sigma (<b>fun</b> x -&gt; x * x) [1; 2; 3];;
-<span class="output">- : int = 14</span>
+<pre class="listing" ml:content="ocaml">
+sigma (fun x -> x * x) [1; 2; 3];;
 </pre>
 
   <p>Polymorphism and higher-order functions allow defining function
   composition in its most general form:
   </p>
-<pre class="listing">
-<b>let</b> compose f g = <b>fun</b> x -&gt; f (g x);;
-<span class="output"><b>val</b> compose : ('a -&gt; 'b) -&gt; ('c -&gt; 'a) -&gt; 'c -&gt; 'b = &lt;fun&gt;</span>
-<b>let</b> square_o_fact = compose square fact;;
-<span class="output"><b>val</b> square_o_fact : int -&gt; int = &lt;fun&gt;</span>
-square_o_fact 5;;
-<span class="output">- : int = 14400</span>
+<pre class="listing" ml:content="ocaml">
+  let compose f g = fun x -> f (g x);;
+  let square_o_fact = compose square fact;;
+  square_o_fact 5;;
 </pre>
 
 
@@ -178,25 +157,21 @@ square_o_fact 5;;
       the <code>power</code> function:
   </p>
 
-<pre class="listing">
-<b>let</b> <b>rec</b> power f n = 
-    <b>if</b> n = 0 <b>then</b> <b>fun</b> x -&gt; x 
-    <b>else</b> compose f (power f (n - 1));;
-<span class="output"><b>val</b> power : ('a -&gt; 'a) -&gt; int -&gt; 'a -&gt; 'a = &lt;fun&gt;</span>
+<pre class="listing" ml:content="ocaml">
+  let rec power f n = 
+    if n = 0 then fun x -> x 
+    else</b> compose f (power f (n - 1));;
 </pre>
 
-  <p>The n<sup>th</sup> derivative of a function can be computed as in
-      mathematics by raising the derivative function to the
-      n<sup>th</sup> power:
-  </p>
+<p>The <code>n</code><sup>th</sup> derivative of a function can be
+  computed as in mathematics by raising the derivative function to
+  the <code>n</code><sup>th</sup> power:
+</p>
 
-<pre class="listing">
-<b>let</b> derivative dx f = <b>fun</b> x -&gt; (f (x +. dx) -. f x) /. dx;;
-<span class="output"><b>val</b> derivative : float -&gt; (float -&gt; float) -&gt; float -&gt; float</span>
-<b>let</b> sin''' = power (derivative 1e-5) 3 sin;;
-<span class="output"><b>val</b> sin''' : float -&gt; float = &lt;fun&gt;</span>
-<b>let</b> pi = 4.0 *. atan 1.0 <b>in</b> sin''' pi;;
-<span class="output">- : float = 0.999998972517346263</span>
+<pre class="listing" ml:content="ocaml">
+  let derivative dx f = fun x -> (f (x +. dx) -. f x) /. dx;;
+  let sin''' = power (derivative 1e-5) 3 sin;;
+  let pi = 4.0 *. atan 1.0 in sin''' pi;;
 </pre>
 
 
@@ -207,37 +182,35 @@ square_o_fact 5;;
     operators. Such expressions can be defined as a new data type,
     as follows:
   </p>
-<pre class="listing">
-<b>type</b> expression =
-  | Num <b>of</b> int
-  | Var <b>of</b> string
-  | Let <b>of</b> string * expression * expression
-  | Binop <b>of</b> string * expression * expression;;
+<pre class="listing" ml:content="ocaml">
+  type expression =
+    | Num of int
+    | Var of string
+    | Let of string * expression * expression
+    | Binop of string * expression * expression;;
 </pre>
 
   <p>Evaluation of these expressions involves an environment that maps
     identifiers to values, represented as a list of pairs.
   </p>
-<pre class="listing">
-<b>let</b> <b>rec</b> eval env = <b>fun</b>
-  | Num i -&gt; i
-  | Var x -&gt; List.assoc x env
-  | Let (x, e1, in_e2) -&gt;
-     <b>let</b> val_x = eval env e1 <b>in</b>
-     eval ((x, val_x) :: env) in_e2
-  | Binop (op, e1, e2) -&gt;
-     <b>let</b> v1 = eval env e1 <b>in</b>
-     <b>let</b> v2 = eval env e2 <b>in</b>
-     eval_op op v1 v2
-<b>and</b> eval_op op v1 v2 =
-  <b>match</b> op <b>with</b>
-  | "+" -&gt; v1 + v2
-  | "-" -&gt; v1 - v2
-  | "*" -&gt; v1 * v2
-  | "/" -&gt; v1 / v2
-  | _ -&gt; failwith ("Unknown operator: " ^ op);;
-<span class="output"><b>val</b> eval : (string * int) list -&gt; expression -&gt; int = &lt;fun&gt;</span>
-<span class="output"><b>val</b> eval_op : string -&gt; int -&gt; int -&gt; int = &lt;fun&gt;</span>
+<pre class="listing" ml:content="ocaml">
+  let rec eval env = function
+    | Num i -> i
+    | Var x -> List.assoc x env
+    | Let (x, e1, in_e2) ->
+       let val_x = eval env e1 in
+       eval ((x, val_x) :: env) in_e2
+    | Binop (op, e1, e2) ->
+       let v1 = eval env e1 in
+       let v2 = eval env e2 in
+       eval_op op v1 v2
+  and eval_op op v1 v2 =
+    match op with
+    | "+" -> v1 + v2
+    | "-" -> v1 - v2
+    | "*" -> v1 * v2
+    | "/" -> v1 / v2
+    | _ -> failwith ("Unknown operator: " ^ op);;
 </pre>
 
   <p>As an example, we evaluate the phrase <code><b>let</b>
@@ -245,9 +218,8 @@ square_o_fact 5;;
   + <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> x</code>:
   </p>
 
-<pre class="listing">
-eval [] (Let ("x", Num 1, Binop ("+", Var "x", Var "x")));;
-<span class="output">- : int = 2</span>
+<pre class="listing" ml:content="ocaml">
+  eval [] (Let ("x", Num 1, Binop ("+", Var "x", Var "x")));;
 </pre>
 
   <p>Pattern matching eases the definition of functions operating on
@@ -263,22 +235,24 @@ eval [] (Let ("x", Num 1, Binop ("+", Var "x", Var "x")));;
   <p>To conclude, here is the simplest way of spying over functions:
   </p>
 <pre class="listing">
-<b>let</b> <b>rec</b> fib x = <b>if</b> x &lt;= 1 <b>then</b> 1 <b>else</b> fib (x - 1) + fib (x - 2);;
-<span class="output"><b>val</b> fib : int -&gt; int = &lt;fun&gt;</span>
-#trace fib;;
-<span class="output">fib is now traced.</span>
-fib 3;;
-<span class="output">fib &lt;-- 3</span>
-<span class="output">fib &lt;-- 1</span>
-<span class="output">fib --&gt; 1</span>
-<span class="output">fib &lt;-- 2</span>
-<span class="output">fib &lt;-- 0</span>
-<span class="output">fib --&gt; 1</span>
-<span class="output">fib &lt;-- 1</span>
-<span class="output">fib --&gt; 1</span>
-<span class="output">fib --&gt; 2</span>
-<span class="output">fib --&gt; 3</span>
-<span class="output">- : int = 3</span>
+<code ml:replace="ocaml">
+  let rec fib x = if x <= 1 then 1 else fib (x - 1) + fib (x - 2);;
+</code
+><span class="ocamltop-prompt"># </span>trace fib<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output">fib is now traced.</span>
+<span class="ocamltop-prompt"># </span>fib 3<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output"
+>fib &lt;-- 3
+fib &lt;-- 1
+fib --&gt; 1
+fib &lt;-- 2
+fib &lt;-- 0
+fib --&gt; 1
+fib &lt;-- 1
+fib --&gt; 1
+fib --&gt; 2
+fib --&gt; 3
+- : int = 3
 </pre>
 
 

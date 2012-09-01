@@ -5,6 +5,7 @@ setup.data
 setup.log
 configure
 *.native
+*.byte
 doclib.docdir
 src/lib/OCamlWeb_Main.ml
 src/lib/OCamlWeb_Main.mli

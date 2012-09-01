@@ -11,15 +11,17 @@ BuildTools:  ocamlbuild
 Library ocamlweb
   Path:         src/lib
   FindlibName:  ocamlweb
-  BuildDepends: weberizer (>= 0.6.4), netstring, netclient, rss
+  BuildDepends: weberizer (>= 0.6.5), netstring, netclient, rss
   Install:      false
   Modules:      OCamlWeb_Main
 
 Executable build
   Path:           src/app
   MainIs:         build.ml
-  BuildDepends:   weberizer, ocamlweb
-  CompiledObject: best
+  BuildDepends:   weberizer, ocamlweb, unix, str
+  ByteOpt:	  toplevellib.cma
+# toplevellib does not exist in native code...
+  CompiledObject: byte
   Install:        false
 
 Document doclib

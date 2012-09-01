@@ -374,6 +374,20 @@ div.A {
 /* OCaml code
  ***********************************************************************/
 
-.listing span.output {
-  color: #3b9bf8;
+.ocamltop-prompt {
+  color: #8d8d8d;
+}
+
+.ocamltop-input .kwa { font-weight: bold; }
+.ocamltop-input .kwb { color: #9a21c9; }
+.ocamltop-input .kwc { color: #213cc9; }
+.ocamltop-input .opt { color: #08087a; } /* operators */
+
+.ocamltop-output {
+  color: #7792dd;
+}
+
+.ocamltop-error {
+  font-style: italic;
+  color: #d32121;
 }

@@ -112,7 +112,7 @@ module Toc = struct
     let html, _ = to_html_sub level [] toc in
     [Element("div", ["class", "toc"], [html])]
 
-  let make args html =
+  let make args ~content html =
     let entries = collect_toc html in
     let entries, level =
       try
@@ -139,6 +139,7 @@ let () =
   Weberizer.Binding.fun_html b "news" Render_rss.news;
   Weberizer.Binding.fun_html b "opml" Render_rss.OPML.of_urls;
   Weberizer.Binding.fun_html b "toc" Toc.make;
+  Weberizer.Binding.fun_html b "ocaml" Code.eval_ocaml;
 
   let re_filter = Str.regexp "\\(menu\\|OCAML\\).*" in
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in

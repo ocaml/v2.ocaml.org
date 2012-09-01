@@ -8,7 +8,7 @@ UPLOAD = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
 # build the website
 .PHONY: web
 web: build
-	./build.native
+	if [ -x ./build.native ]; then ./build.native; else ./build.byte; fi
 	cp -a src/html/css $(WWW)
 	cp -a src/html/js $(WWW)
 	cp -a src/html/ext/bootstrap/css/*.css $(WWW)/css/
