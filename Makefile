@@ -53,17 +53,13 @@ clean:
 
 distclean: 
 	$(SETUP) -distclean $(DISTCLEANFLAGS)
+	$(RM) -r $(WWW)
+	$(RM) $(AUTOFILES)
 
 setup.data:
 	$(SETUP) -configure $(CONFIGUREFLAGS)
 
 .PHONY: build doc test all install uninstall reinstall clean distclean configure
-
-# delete everything that is auto-generated
-.PHONY: fresh
-fresh: distclean
-	$(RM) -r $(WWW)
-	$(RM) $(AUTOFILES)
 
 .PHONY: upload publish
 publish upload: web
