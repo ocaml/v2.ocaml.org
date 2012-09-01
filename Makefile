@@ -23,11 +23,9 @@ setup.data: src/lib/OCamlWeb_Main.html \
 src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli: src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
 	cd src/lib; weberizer_compile OCamlWeb_Main.html
 
-build: src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli
-
 SETUP = ocaml setup.ml
 
-build: setup.data
+build: setup.data src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli
 	$(SETUP) -build $(BUILDFLAGS)
 
 doc: setup.data build
