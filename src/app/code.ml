@@ -25,7 +25,7 @@ let highlight ?(syntax="ocaml") phrase =
                     syntax in
   let o, i = Unix.open_process pgm in
   output_string i phrase;
-  close_out i;            (* No output is performed before *)
+  (try close_out i with _ -> ());     (* No output is performed before *)
   let html = input_all o in
   match Unix.close_process (o, i) with
   | Unix.WEXITED st ->
