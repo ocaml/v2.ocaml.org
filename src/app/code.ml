@@ -21,8 +21,8 @@ let input_all fh =
 
 
 let highlight ?(syntax="ocaml") phrase =
-  let pgm = sprintf "highlight --syntax=%s --out-format=xhtml --fragment \
-                     --style-outfile=stdout" syntax in
+  let pgm = sprintf "highlight --syntax=%s --out-format=xhtml --fragment"
+                    syntax in
   let o, i = Unix.open_process pgm in
   output_string i phrase;
   close_out i;            (* No output is performed before *)
