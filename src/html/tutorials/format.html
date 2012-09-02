@@ -6,6 +6,12 @@
     <title>Using the Format module</title>
   </head>
   <body>
+
+    <div class="pull-right hero-unit" style="margin-left: 1em" >
+      <em>Table of contents</em>
+      <div ml:replace="toc"></div>
+    </div>
+
     <h1>Using the Format module</h1>
 
     <p> The <code>Format</code> module of Caml Light and OCaml's
@@ -290,7 +296,8 @@
 
     <h2><a name="hov-boxes"></a>Refinement on &#8220;hov&#8221; boxes</h2>
 
-    <h3>Packing and structural &#8220;hov&#8221; boxes</h3>
+    <h3><a name="packing" ></a>Packing and structural
+      &#8220;hov&#8221; boxes</h3>
 
     <p>The &#8220;hov&#8221; box type is refined into two categories.
     </p>
@@ -312,8 +319,8 @@
       </li>
     </ul>
 
-    <h3>Differences between a packing and a structural
-      &#8220;hov&#8221; box</h3>
+    <h3><a name="packing-and-hov" ></a>Differences between a packing
+      and a structural &#8220;hov&#8221; box</h3>
 
     <p>The difference between a packing and a structural
     &#8220;hov&#8221; box is shown by a routine that closes boxes and
@@ -472,7 +479,7 @@ Prix TTC <b></b>=<b></b> 100 Euros
 <h2><a name="example"></a>A concrete example</h2>
 
     <p>Let me give a full example: the shortest non trivial example
-    you could imagine, that is the $\lambda-$calculus :)
+      you could imagine, that is the λ-calculus :)
     </p>
 
     <p> Thus the problem is to pretty-print the values of a concrete
@@ -480,56 +487,42 @@ Prix TTC <b></b>=<b></b> 100 Euros
       functions and their applications to arguments.
     </p>
 
-    <p> First, I give the abstract syntax of lambda-terms:
+    <p> First, I give the abstract syntax of lambda-terms (we
+      illustrate is in the <a href="../description.html#interactive" >
+      interactive system</a>):
     </p>
 
-<pre class="listing">
-<b>type</b> lambda <b></b>=
-
-<b></b> <b></b> | Lambda <b>of</b> string * lambda
-<b></b> <b></b> | Var <b>of</b> string
-<b></b> <b></b> | Apply <b>of</b> lambda * lambda
-;;
-
+<pre class="listing" ml:content="ocaml">
+  type lambda =
+    | Lambda of string * lambda
+    | Var of string
+    | Apply of lambda * lambda
 </pre>
 
     <p>I use the format library to print the lambda-terms:
     </p>
 
-<pre class="listing">
-<b>open</b> Format;;
+<pre class="listing" ml:content="ocaml">
+  open Format;;
 
-<b>let</b> ident = print_string;;
-<b>let</b> kwd = print_string;;
+  let ident = print_string
+  let kwd = print_string;;
 
-<span class="output"><b>val</b> ident : string -&gt; unit = &lt;fun&gt;</span>
-<span class="output"><b>val</b> kwd : string -&gt; unit = &lt;fun&gt;</span>
-
-<b>let</b> <b>rec</b> print_exp0 = <b>function</b>
-
-  | Var s -&gt;  ident s
-  | lam -&gt; open_hovbox 1; kwd "("; print_lambda lam; kwd ")"; close_box ()
-
-<b>and</b> print_app = <b>function</b>
-  | e -&gt; open_hovbox 2; print_other_applications e; close_box ()
-
-<b>and</b> print_other_applications f =
-  <b>match</b> f <b>with</b>
-
-  | Apply (f, arg) -&gt; print_app f; print_space (); print_exp0 arg
-  | f -&gt; print_exp0 f
-
-<b>and</b> print_lambda = <b>function</b>
-  | Lambda (s, lam) -&gt;
-      open_hovbox 1;
-      kwd "\\"; ident s; kwd "."; print_space(); print_lambda lam;
-      close_box()
-  | e -&gt; print_app e;;
-
-<span class="output"><b>val</b> print_app : lambda -&gt; unit = &lt;fun&gt;</span>
-<span class="output"><b>val</b> print_other_applications : lambda -&gt; unit = &lt;fun&gt;</span>
-<span class="output"><b>val</b> print_lambda : lambda -&gt; unit = &lt;fun&gt;</span>
-
+  let rec print_exp0 = function
+    | Var s ->  ident s
+    | lam -> open_hovbox 1; kwd "("; print_lambda lam; kwd ")"; close_box ()
+  and print_app = function
+    | e -> open_hovbox 2; print_other_applications e; close_box ()
+  and print_other_applications f =
+    match f with
+    | Apply (f, arg) -> print_app f; print_space (); print_exp0 arg
+    | f -> print_exp0 f
+  and print_lambda = function
+    | Lambda (s, lam) ->
+        open_hovbox 1;
+        kwd "\\"; ident s; kwd "."; print_space(); print_lambda lam;
+        close_box()
+    | e -> print_app e
 </pre>
 
 <p> In Caml Light, replace the first line by:
@@ -537,43 +530,6 @@ Prix TTC <b></b>=<b></b> 100 Euros
 
 <pre class="listing">
 #open "format";;
-</pre>
-
-
-
-<h3><a name="example-printf"></a>Using <code>printf</code></h3>
-
-<p>This can be equivalently written using <code>printf</code>:
-</p>
-
-<pre class="listing">
-<b>open</b> Format;;
-
-<b>let</b> <b>rec</b> print_exp0 <b></b>=<b></b> <b>function</b>
-
-<b></b> <b></b> | Var s -&gt; <b></b> ident s
-<b></b> <b></b> | lam -&gt; printf "@[&lt;1&gt;(%a)@]" print_lambda lam
-
-<b>and</b> print_app <b></b>=<b></b> <b>function</b>
-
-<b></b> <b></b> | e -&gt; <b></b> printf "@[&lt;2&gt;%a@]" print_other_applications e
-
-<b>and</b> print_other_applications f <b></b>=
-<b></b> <b></b> <b>match</b> f <b>with</b>
-
-<b></b> <b></b> | Apply <b></b>(f, arg)<b></b> -&gt; printf "%a@ %a" print_app f print_exp0 arg
-<b></b> <b></b> | f -&gt; print_exp0 f
-
-<b>and</b> print_lambda <b></b>=<b></b> <b>function</b>
-
-<b></b> | Lambda <b></b>(s, lam)<b></b> -&gt;
-<b></b> <b></b> <b></b> <b></b> <b></b> printf "@[&lt;1&gt;%a%a%a@ %a@]" kwd "\\" ident s kwd "." print_lambda lam
-<b></b> | e -&gt; print_app e;;
-
-<span class="output"><b>val</b> print_app : lambda -&gt; unit <b></b>=<b></b> &lt;fun&gt;</span>
-<span class="output"><b>val</b> print_other_applications : lambda -&gt; unit <b></b>=<b></b> &lt;fun&gt;</span>
-
-<span class="output"><b>val</b> print_lambda : lambda -&gt; unit <b></b>=<b></b> &lt;fun&gt;</span>
 </pre>
 
 
@@ -602,42 +558,26 @@ Prix TTC <b></b>=<b></b> 100 Euros
   routines can be written as follows:
 </p>
 
-<pre class="listing">
-<b>open</b> Format;;
+<pre class="listing" ml:content="ocaml">
+  open Format;;
 
+  let ident ppf s = fprintf ppf "%s" s
+  let kwd ppf s = fprintf ppf "%s" s;;
 
-<b>let</b> ident ppf s <b></b>=<b></b> fprintf ppf "%s" s;;
-<b>let</b> kwd ppf s <b></b>=<b></b> fprintf ppf "%s" s;;
-<span class="output"><b>val</b> ident : Format.formatter -&gt; string -&gt; unit</span>
-
-<span class="output"><b>val</b> kwd : Format.formatter -&gt; string -&gt; unit</span>
-
-<b>let</b> <b>rec</b> pr_exp0 ppf <b></b>=<b></b> <b>function</b>
-
-<b></b> <b></b> | Var s -&gt; fprintf ppf "%a" ident s
-<b></b> <b></b> | lam -&gt; fprintf ppf "@[&lt;1&gt;(%a)@]" pr_lambda lam
-
-<b>and</b> pr_app ppf <b></b>=<b></b> <b>function</b>
-
-<b></b> <b></b> | e -&gt; <b></b> fprintf ppf "@[&lt;2&gt;%a@]" pr_other_applications e
-
-<b>and</b> pr_other_applications ppf f <b></b>=
-<b></b> <b></b> <b>match</b> f <b>with</b>
-
-<b></b> <b></b> | Apply <b></b>(f, arg)<b></b> -&gt; fprintf ppf "%a@ %a" pr_app f pr_exp0 arg
-<b></b> <b></b> | f -&gt; pr_exp0 ppf f
-
-<b>and</b> pr_lambda ppf <b></b>=<b></b> <b>function</b>
-
-<b></b> | Lambda <b></b>(s, lam)<b></b> -&gt;
-<b></b> <b></b> <b></b> <b></b> <b></b> fprintf ppf "@[&lt;1&gt;%a%a%a@ %a@]" kwd "\\" ident s kwd "." pr_lambda lam
-<b></b> | e -&gt; pr_app ppf e
-;;
-
-<span class="output"><b>val</b> pr_app : Format.formatter -&gt; lambda -&gt; unit</span>
-<span class="output"><b>val</b> pr_other_applications : Format.formatter -&gt; lambda -&gt; unit</span>
-<span class="output"><b>val</b> pr_lambda : Format.formatter -&gt; lambda -&gt; unit</span>
-
+  let rec pr_exp0 ppf = function
+    | Var s -> fprintf ppf "%a" ident s
+    | lam -> fprintf ppf "@[<1>(%a)@]" pr_lambda lam
+  and pr_app ppf e =
+    fprintf ppf "@[<2>%a@]" pr_other_applications e
+  and pr_other_applications ppf f =
+    match f with
+    | Apply (f, arg) -> fprintf ppf "%a@ %a" pr_app f pr_exp0 arg
+    | f -> pr_exp0 ppf f
+  and pr_lambda ppf = function
+    | Lambda (s, lam) ->
+       fprintf ppf "@[<1>%a%a%a@ %a@]"
+               kwd "\\" ident s kwd "." pr_lambda lam
+    | e -> pr_app ppf e
 </pre>
 
 <p>
@@ -646,11 +586,9 @@ Prix TTC <b></b>=<b></b> 100 Euros
   <code>stderr</code> is just a matter of partial application:
 </p>
 
-<pre class="listing">
-<b>let</b> print_lambda <b></b>=<b></b> pr_lambda std_formatter;;
-<b>let</b> eprint_lambda <b></b>=<b></b> pr_lambda err_formatter;;
-<span class="output"><b>val</b> print_lambda : lambda -&gt; unit</span>
-<span class="output"><b>val</b> eprint_lambda : lambda -&gt; unit</span>
+<pre class="listing" ml:content="ocaml">
+  let print_lambda = pr_lambda std_formatter
+  let eprint_lambda = pr_lambda err_formatter
 </pre>
 
   </body>

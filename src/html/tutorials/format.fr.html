@@ -6,8 +6,13 @@
     <title>Utiliser le module Format</title>
   </head>
   <body>
-    <h1>Utiliser le module Format</h1>
 
+    <div class="pull-right hero-unit" style="margin-left: 1em" >
+      <em>Table des matières</em>
+      <div ml:replace="toc"></div>
+    </div>
+
+    <h1>Utiliser le module Format</h1>
 
     <p>Le module Format des librairies standard de Caml Light et OCaml
     propose une méthode d'impression enjolivée. Ce module implémente
@@ -305,7 +310,8 @@ fait :
   Raffinement sur les boîtes « hov »
 </h2>
 
-<h3>Boîte « hov » tassante et boîte « hov » structurelle</h3>
+<h3><a name="packing" ></a>Boîte « hov » tassante et boîte « hov »
+  structurelle</h3>
 
 <p>
   Les boîtes « hov » se subdivisent en deux catégories au comportement
@@ -334,8 +340,8 @@ fait :
   </li>
 </ul>
 
-<h3>Différences entre boîte « hov » tassante et
-    boîte « hov » structurelle</h3>
+<h3><a name="packing-hov"></a>Différences entre boîte « hov » tassante
+    et boîte « hov » structurelle</h3>
 
 <p> La différence de comportement entre la boîte « hov » tassante et
 la boîte « hov » structurelle (ou « box ») est mise en évidence par la
@@ -519,56 +525,42 @@ Prix TTC <b></b>=<b></b> 100 Euros
   leur application à des arguments.
 </p>
 
-<p> D'abord, je donne la syntaxe abstraite des lambda-termes :
+<p> D'abord, je donne la syntaxe abstraite des lambda-termes (nous
+  utilisons le <a href="../description.html#interactive" >système
+  interactif</a> pour évaluer ce code) :
 </p>
 
-<pre class="listing">
-<b>type</b> lambda <b></b>=
-
-<b></b> <b></b> | Lambda <b>of</b> string * lambda
-<b></b> <b></b> | Var <b>of</b> string
-<b></b> <b></b> | Apply <b>of</b> lambda * lambda
-;;
-
+<pre class="listing" ml:content="ocaml">
+  type lambda =
+    | Lambda of string * lambda
+    | Var of string
+    | Apply of lambda * lambda
 </pre>
 
 <p> J'utilise le module format pour imprimer les lambda-termes:
 </p>
 
-<pre class="listing">
-<b>open</b> Format;;
+<pre class="listing" ml:content="ocaml">
+  open Format;;
 
-<b>let</b> ident = print_string;;
-<b>let</b> kwd = print_string;;
+  let ident = print_string
+  let kwd = print_string;;
 
-<span class="output"><b>val</b> ident : string -&gt; unit = &lt;fun&gt;</span>
-<span class="output"><b>val</b> kwd : string -&gt; unit = &lt;fun&gt;</span>
-
-<b>let</b> <b>rec</b> print_exp0 = <b>function</b>
-
-  | Var s -&gt;  ident s
-  | lam -&gt; open_hovbox 1; kwd "("; print_lambda lam; kwd ")"; close_box ()
-
-<b>and</b> print_app = <b>function</b>
-  | e -&gt; open_hovbox 2; print_other_applications e; close_box ()
-
-<b>and</b> print_other_applications f =
-  <b>match</b> f <b>with</b>
-
-  | Apply (f, arg) -&gt; print_app f; print_space (); print_exp0 arg
-  | f -&gt; print_exp0 f
-
-<b>and</b> print_lambda = <b>function</b>
-  | Lambda (s, lam) -&gt;
-      open_hovbox 1;
-      kwd "\\"; ident s; kwd "."; print_space(); print_lambda lam;
-      close_box()
-  | e -&gt; print_app e;;
-
-<span class="output"><b>val</b> print_app : lambda -&gt; unit = &lt;fun&gt;</span>
-<span class="output"><b>val</b> print_other_applications : lambda -&gt; unit = &lt;fun&gt;</span>
-<span class="output"><b>val</b> print_lambda : lambda -&gt; unit = &lt;fun&gt;</span>
-
+  let rec print_exp0 = function
+    | Var s ->  ident s
+    | lam -> open_hovbox 1; kwd "("; print_lambda lam; kwd ")"; close_box ()
+  and print_app = function
+    | e -> open_hovbox 2; print_other_applications e; close_box ()
+  and print_other_applications f =
+    match f with
+    | Apply (f, arg) -> print_app f; print_space (); print_exp0 arg
+    | f -> print_exp0 f
+  and print_lambda = function
+    | Lambda (s, lam) ->
+        open_hovbox 1;
+        kwd "\\"; ident s; kwd "."; print_space(); print_lambda lam;
+        close_box()
+    | e -> print_app e
 </pre>
 
 <p> En Caml Light, remplacez la première ligne par :
@@ -576,44 +568,6 @@ Prix TTC <b></b>=<b></b> 100 Euros
 
 <pre class="listing">
 #open "format";;
-</pre>
-
-
-
-<h3><a name="example-printf"</a>Utilisation de <code>printf</code></h3>
-
-<p> Cela peut s'écrire de manière équivalente en utilisant
-  <code>printf</code> :
-</p>
-
-<pre class="listing">
-<b>open</b> Format;;
-
-<b>let</b> <b>rec</b> print_exp0 <b></b>=<b></b> <b>function</b>
-
-<b></b> <b></b> | Var s -&gt; <b></b> ident s
-<b></b> <b></b> | lam -&gt; printf "@[&lt;1&gt;(%a)@]" print_lambda lam
-
-<b>and</b> print_app <b></b>=<b></b> <b>function</b>
-
-<b></b> <b></b> | e -&gt; <b></b> printf "@[&lt;2&gt;%a@]" print_other_applications e
-
-<b>and</b> print_other_applications f <b></b>=
-<b></b> <b></b> <b>match</b> f <b>with</b>
-
-<b></b> <b></b> | Apply <b></b>(f, arg)<b></b> -&gt; printf "%a@ %a" print_app f print_exp0 arg
-<b></b> <b></b> | f -&gt; print_exp0 f
-
-<b>and</b> print_lambda <b></b>=<b></b> <b>function</b>
-
-<b></b> | Lambda <b></b>(s, lam)<b></b> -&gt;
-<b></b> <b></b> <b></b> <b></b> <b></b> printf "@[&lt;1&gt;%a%a%a@ %a@]" kwd "\\" ident s kwd "." print_lambda lam
-<b></b> | e -&gt; print_app e;;
-
-<span class="output"><b>val</b> print_app : lambda -&gt; unit <b></b>=<b></b> &lt;fun&gt;</span>
-<span class="output"><b>val</b> print_other_applications : lambda -&gt; unit <b></b>=<b></b> &lt;fun&gt;</span>
-
-<span class="output"><b>val</b> print_lambda : lambda -&gt; unit <b></b>=<b></b> &lt;fun&gt;</span>
 </pre>
 
 
@@ -638,40 +592,26 @@ Prix TTC <b></b>=<b></b> 100 Euros
   formats d'impression à la <code>fprintf</code>.
 </p>
 
-<pre class="listing">
-<b>open</b> Format;;
+<pre class="listing" ml:content="ocaml">
+  open Format;;
 
-<b>let</b> ident ppf s <b></b>=<b></b> fprintf ppf "%s" s;;
+  let ident ppf s = fprintf ppf "%s" s
+  let kwd ppf s = fprintf ppf "%s" s;;
 
-<b>let</b> kwd ppf s <b></b>=<b></b> fprintf ppf "%s" s;;
-<span class="output"><b>val</b> ident : Format.formatter -&gt; string -&gt; unit</span>
-<span class="output"><b>val</b> kwd : Format.formatter -&gt; string -&gt; unit</span>
-
-<b>let</b> <b>rec</b> pr_exp0 ppf <b></b>=<b></b> <b>function</b>
-<b></b> <b></b> | Var s -&gt; fprintf ppf "%a" ident s
-<b></b> <b></b> | lam -&gt; fprintf ppf "@[&lt;1&gt;(%a)@]" pr_lambda lam
-
-
-<b>and</b> pr_app ppf <b></b>=<b></b> <b>function</b>
-<b></b> <b></b> | e -&gt; <b></b> fprintf ppf "@[&lt;2&gt;%a@]" pr_other_applications e
-
-<b>and</b> pr_other_applications ppf f <b></b>=
-
-<b></b> <b></b> <b>match</b> f <b>with</b>
-<b></b> <b></b> | Apply <b></b>(f, arg)<b></b> -&gt; fprintf ppf "%a@ %a" pr_app f pr_exp0 arg
-<b></b> <b></b> | f -&gt; pr_exp0 ppf f
-
-
-<b>and</b> pr_lambda ppf <b></b>=<b></b> <b>function</b>
-<b></b> | Lambda <b></b>(s, lam)<b></b> -&gt;
-<b></b> <b></b> <b></b> <b></b> <b></b> fprintf ppf "@[&lt;1&gt;%a%a%a@ %a@]" kwd "\\" ident s kwd "." pr_lambda lam
-
-<b></b> | e -&gt; pr_app ppf e
-;;
-<span class="output"><b>val</b> pr_app : Format.formatter -&gt; lambda -&gt; unit</span>
-<span class="output"><b>val</b> pr_other_applications : Format.formatter -&gt; lambda -&gt; unit</span>
-
-<span class="output"><b>val</b> pr_lambda : Format.formatter -&gt; lambda -&gt; unit</span>
+  let rec pr_exp0 ppf = function
+    | Var s -> fprintf ppf "%a" ident s
+    | lam -> fprintf ppf "@[<1>(%a)@]" pr_lambda lam
+  and pr_app ppf e =
+    fprintf ppf "@[<2>%a@]" pr_other_applications e
+  and pr_other_applications ppf f =
+    match f with
+    | Apply (f, arg) -> fprintf ppf "%a@ %a" pr_app f pr_exp0 arg
+    | f -> pr_exp0 ppf f
+  and pr_lambda ppf = function
+    | Lambda (s, lam) ->
+       fprintf ppf "@[<1>%a%a%a@ %a@]"
+               kwd "\\" ident s kwd "." pr_lambda lam
+    | e -> pr_app ppf e
 </pre>
 
 <p> Armés de ces fonctions d'impression générales, les procédures
@@ -679,11 +619,9 @@ Prix TTC <b></b>=<b></b> 100 Euros
   facilement par application partielle:.
 </p>
 
-<pre class="listing">
-<b>let</b> print_lambda <b></b>=<b></b> pr_lambda std_formatter;;
-<b>let</b> eprint_lambda <b></b>=<b></b> pr_lambda err_formatter;;
-<span class="output"><b>val</b> print_lambda : lambda -&gt; unit</span>
-<span class="output"><b>val</b> eprint_lambda : lambda -&gt; unit</span>
+<pre class="listing" ml:content="ocaml">
+  let print_lambda = pr_lambda std_formatter
+  let eprint_lambda = pr_lambda err_formatter
 </pre>
 
   </body>
