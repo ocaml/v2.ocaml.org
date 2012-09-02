@@ -14,7 +14,7 @@ let time_of_secs s =
   let s = truncate s in
   let m = s / 60 and s = s mod 60 in
   let h = m / 60 and m = m mod 60 in
-  sprintf "%ih %im %is" h m s
+  sprintf "%i:%02im%is" h m s
 
 (* let cache_secs = 60. *. 60. *. 24. (\* 24h *\) *)
 let cache_secs = 60. *. 55.
@@ -23,18 +23,19 @@ let get ?(cache_secs=cache_secs) url =
   let fn = Filename.concat Filename.temp_dir_name ("ocamlorg-" ^ md5) in
   eprintf "Downloading %s... %!" url;
   if Sys.file_exists fn && age fn <= cache_secs then (
-    eprintf "done.\n  (using cache %s, updated %s ago).\n%!"
-            fn (time_of_secs(age fn));
     let fh = open_in fn in
     let data = input_value fh in
     close_in fh;
+    eprintf "done.\n  (using cache %s, updated %s ago).\n%!"
+            fn (time_of_secs(age fn));
     data
   )
   else (
     let data = http_get url in
-    eprintf "done.\n%!";
+    eprintf "done %!";
     let fh = open_out fn in
     output_value fh data;
     close_out fh;
+    eprintf "(cached).\n%!";
     data
   )
