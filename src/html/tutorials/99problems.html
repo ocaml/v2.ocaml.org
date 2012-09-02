@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>99 Problems (solved) in OCaml</title>
+  </head>
+  <body>
+
+    <div class="pull-right hero-unit" style="margin-left: 1em" >
+      <em>Table of contents</em>
+      <div ml:replace="toc"></div>
+    </div>
+
+    <h1>99 Problems (solved) in OCaml</h1>
+
+    <p>This section is inspired
+      by <a href="http://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html"
+	    >Ninety-Nine Lisp Problems</a> which in turn was based on “Prolog
+      problem list”.  For each of these questions, some simple tests are
+      shown—they may also serve to make the question clearer if needed.
+      To work on these problems, we recommend you
+      first <a href="../install.html" >install OCaml</a> or use it
+      <a href="http://try.ocamlpro.com/" target="_blank" >inside your
+      browser</a>.
+    </p>
+
+
+<script type="text/javascript">
+function toggleContent(id) {
+  // Get the DOM reference
+  var contentId = document.getElementById(id);
+  // Toggle
+  contentId.style.display == "block" ? contentId.style.display = "none" :
+    contentId.style.display = "block";
+}
+</script>
+
+<h2><a name="list"></a>Working with lists</h2>
+
+<div class="question" >Write a function <code>last : 'a list -> 'a
+  option</code> that returns the last element of a list.</div>
+<button onclick="toggleContent('q1')" class="solution">Solution</button>
+
+<pre ml:content="ocaml" id="q1" class="solution">
+  let rec last = function
+    | [] -> None
+    | [x] -> Some x
+    | _ :: t -> last t
+</pre>
+<pre ml:content="ocaml">
+  last [ `a ; `b ; `c ; `d ] = Some `d;;
+  last [] = None;; 
+</pre>
+
+
+<div class="question" >Find the last but one (last and penultimate)
+  elements of a list.</div>
+<button onclick="toggleContent('q2')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q2" class="solution">
+  let rec last_two = function
+    | [] | [_] -> None
+    | [x;y] -> Some (x,y)
+    | _::t -> last_two t
+</pre>
+<pre ml:content="ocaml">
+  last_two [ `a ; `b ; `c ; `d ] = Some (`c,`d) ;;
+  last_two [ `a ] = None;;
+</pre>
+
+<div class="question" >Find the <code>k</code>'th element of a list.</div>
+<button onclick="toggleContent('q3')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q3" class="solution">
+  let rec at k = function
+    | [] -> None
+    | h :: t -> if k = 1 then Some h else at (k-1) t
+</pre>
+<pre ml:content="ocaml">
+  at 3 [ `a ; `b ; `c ; `d ; `e ] = Some `c ;;
+  at 3 [ `a ] = None ;;
+</pre>
+
+<div class="question" >Find the number of elements of a list.</div>
+<button onclick="toggleContent('q4')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q4" class="solution">
+  (* This function is tail-recursive: it uses a constant amount of
+     stack memory regardless of list size. *)
+  let length list =
+    let rec aux n = function
+      | [] -> n
+      | _::t -> aux (n+1) t
+    in aux 0 list
+</pre>
+<pre ml:content="ocaml">
+  length [ `a ; `b ; `c] = 3;;
+  length [] = 0;;
+</pre>
+
+<div class="question" >Reverse a list.</div>
+<button onclick="toggleContent('q5')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q5" class="solution">
+  let rev list =
+    let rec aux acc = function
+      | [] -> acc
+      | h::t -> aux (h::acc) t in
+    aux [] list
+</pre>
+<pre ml:content="ocaml">
+  rev [`a ; `b ; `c] = [`c ; `b ; `a]
+</pre>
+
+<div class="question" >Find out whether a list is a palindrome.  HINT:
+  a palindrome is its own reverse. </div>
+<button onclick="toggleContent('q6')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q6" class="solution">
+  let is_palindrome list =
+    list = List.rev list 
+  (* One can use either the rev function from the previous problem, or the
+     built-in List.rev *)
+</pre>
+<pre ml:content="ocaml">
+  is_palindrome [ `x ; `a ; `m ; `a ; `x ];;
+  not (is_palindrome [ `a ; `b ]);;
+</pre>
+
+
+<div class="question" >Flatten a nested list structure.</div>
+<pre ml:content="ocaml">
+  (* There is no nested list type in OCaml, so we need to define one
+     first. A node of a nested list is either an element, or a list of
+     nodes. *)
+  type 'a node =
+    | One of 'a
+    | Many of 'a node list
+</pre>
+<button onclick="toggleContent('q7')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q7" class="solution">
+  (* This function traverses the list, prepending any encountered elements
+    to an accumulator, which flattens the list in inverse order. It can
+    then be reversed to obtain the actual flattened list. *)
+  
+  let flatten list =
+    let rec aux acc = function
+      | [] -> acc
+      | One x :: t -> aux (x :: acc) t
+      | Many l :: t -> aux (aux acc l) t in
+    List.rev (aux [] list) 
+</pre>
+<pre ml:content="ocaml">
+  flatten [ One `a ; Many [ One `b ; Many [ One `c ; One `d ] ; One `e ] ]
+  = [ `a ; `b ; `c ; `d ; `e ]
+</pre>
+
+
+<div class="question" >Eliminate consecutive duplicates of list
+  elements.</div>
+<button onclick="toggleContent('q8')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q8" class="solution">
+  let rec compress = function
+    | a :: (b :: _ as t) -> if a = b then compress t else a :: compress t
+    | smaller -> smaller
+</pre>
+<pre ml:content="ocaml">
+  compress [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`e;`e;`e;`e] = [`a;`b;`c;`a;`d;`e];;
+</pre>
+
+
+<div class="question" >Pack consecutive duplicates of list elements
+  into sublists.</div>
+<button onclick="toggleContent('q9')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q9" class="solution">
+  let pack list =
+    let rec aux current acc = function
+      | [] -> []    (* Can only be reached if original list is empty *)
+      | [x] -> (x :: current) :: acc
+      | a :: (b :: _ as t) ->
+         if a = b then aux (a :: current) acc t
+         else aux [] ((a :: current) :: acc) t  in
+    List.rev (aux [] [] list) 
+</pre>
+<pre ml:content="ocaml">
+  pack [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`d;`e;`e;`e;`e]
+  = [[`a;`a;`a;`a]; [`b]; [`c;`c]; [`a;`a]; [`d;`d]; [`e;`e;`e;`e]]
+</pre>
+
+
+<div class="question"
+     ><a href="http://en.wikipedia.org/wiki/Run-length_encoding"
+	 target="_blank" >Run-length encoding</a> of a list.</div>
+<button onclick="toggleContent('q10')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q10" class="solution">
+  let encode list =
+    let rec aux count acc = function
+      | [] -> [] (* Can only be reached if original list is empty *)
+      | [x] -> (count+1, x) :: acc
+      | a :: (b :: _ as t) -> if a = b then aux (count + 1) acc t
+                              else aux 0 ((count+1,a) :: acc) t   in
+    List.rev (aux 0 [] list) 
+</pre>
+<pre ml:content="ocaml">
+  encode [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`e;`e;`e;`e]
+  = [4,`a ; 1,`b ; 2,`c ; 2,`a ; 1,`d ; 4,`e]
+</pre>
+
+
+
+<div class="question" ></div>
+<button onclick="toggleContent('q11')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q11" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<!------------------------------------------------------------------------>
+<h2><a name="arithmetic" ></a>Arithmetic</h2>
+
+<div class="question" >Determine whether a given integer number is prime.</div>
+<button onclick="toggleContent('q31')" class="solution">Solution</button>
+
+<div id="q31" class="solution">
+<p>Recall that <code>d</code> divides <code>n</code> iff <code>n mod d =
+    0</code>.  This is a naive version.  See
+  the <a href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes"
+	 >Sieve of Eratosthenes</a> for a more clever one.</p>
+<pre ml:content="ocaml" >
+  let is_prime n =
+    let n = abs n in
+    let rec is_not_divisor d =
+      d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
+    n <> 1 && is_not_divisor 2
+</pre>
+</div>
+<pre ml:content="ocaml">
+  not(is_prime 1);;
+  is_prime 7;;
+  not (is_prime 12)
+</pre>
+
+
+<div class="question" ></div>
+<button onclick="toggleContent('q32')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q32" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+
+<!------------------------------------------------------------------------>
+<h2><a name="logic" ></a>Logic and Codes</h2>
+
+Let us define a small “language” for boolean expressions containing
+variables:
+<pre ml:content="ocaml">
+  type bool_expr =
+    | Var of string
+    | Not of bool_expr
+    | And of bool_expr * bool_expr
+    | Or of bool_expr * bool_expr
+</pre>
+A logical expression in two variables can then be written in prefix
+notation, as in the following example:
+<pre ml:content="ocaml">
+  And(Or(Var "a", Var "b"), And(Var "a", Var "b"))
+</pre>
+
+<div class="question" >Truth tables for logical expressions (2
+  variables).
+</div>
+    <p>Define a function, <code>table2</code> which returns the truth
+    table of a given logical expression in two variables (specified as
+    arguments).  The return value must be a
+    list of triples containing <code>(value_of_a, balue_of_b,
+    value_of_expr)</code>.</p>
+<button onclick="toggleContent('q46')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q46" class="solution">
+  let rec eval2 a val_a b val_b = function
+    | Var x -> if x = a then val_a
+               else if x = b then val_b
+               else failwith "The expression contains an invalid variable"
+    | Not e -> not(eval2 a val_a b val_b e)
+    | And(e1, e2) -> eval2 a val_a b val_b e1 && eval2 a val_a b val_b e2
+    | Or(e1, e2) -> eval2 a val_a b val_b e1 || eval2 a val_a b val_b e2
+  let table2 a b expr =
+    [(true,  true,  eval2 a true  b true  expr);
+     (true,  false, eval2 a true  b false expr);
+     (false, true,  eval2 a false b true  expr);
+     (false, false, eval2 a false b false expr) ]
+</pre>
+<pre ml:content="ocaml">
+  table2 "a" "b" (And(Var "a", Or(Var "a", Var "b")))
+  = [(true, true, true);
+     (true, false, true);
+     (false, true, false);
+     (false, false, false) ]
+</pre>
+
+
+<div class="question" >Truth tables for logical expressions.</div>
+    <p>Generalize the previous problem in such a way that the logical
+    expression may contain any number of logical variables.  Define
+      <code>table</code> in a way that <code>table variables
+	expr</code> returns the truth table for the
+      expression <code>expr</code>, which contains the logical
+      variables enumerated in <code>variables</code>.</p>
+<button onclick="toggleContent('q48')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q48" class="solution">
+</pre>
+<pre ml:content="ocaml">
+  let a = Var "a" and b = Var "b" and c = Var "c" in
+  table ["a"; "b"; "c"] (Or(And(a, Or(b,c)), Or(And(a,b), And(a,c))))
+</pre>
+
+
+<div class="question" >Gray code.</div>
+    <p>An n-bit Gray code is a sequence of n-bit strings constructed
+    according to certain rules. For example,</p>
+<pre>
+n = 1: C(1) = ['0','1'].
+n = 2: C(2) = ['00','01','11','10'].
+n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
+</pre>
+<p>Find out the construction rules and write a predicate with the
+  following specification: <code>gray n c</code> <em><code>c</code> is
+    the <code>n</code>-bit Gray code</em>.</p>
+<button onclick="toggleContent('q49')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q49" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+
+<div class="question" >Huffman code.</div>
+<button onclick="toggleContent('q50')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q50" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+
+<!------------------------------------------------------------------------>
+<h2><a name="bin-tree" ></a>Binary Trees</h2>
+
+<p>A binary tree is either empty or it is composed of a root element
+  and two successors, which are binary trees themselves.</p>
+
+<div class="question" ></div>
+<button onclick="toggleContent('q54')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q54" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+
+<!------------------------------------------------------------------------>
+<h2><a name="mult-tree" ></a>Multiway Trees</h2>
+
+<p>A multiway tree is composed of a root element and a (possibly
+  empty) set of successors which are multiway trees themselves.  A
+  multiway tree is never empty. The set of successor trees is sometimes
+  called a forest.</p>
+
+<div class="question" ></div>
+<button onclick="toggleContent('q70')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q70" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+
+<!------------------------------------------------------------------------>
+<h2><a name="graphs" ></a>Graphs</h2>
+
+    <p>A graph is defined as a set of nodes and a set of edges, where
+    each edge is a pair of nodes. </p>
+
+<div class="question" ></div>
+<button onclick="toggleContent('q80')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q80" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+
+<!------------------------------------------------------------------------>
+<h2><a name="misc" ></a>Miscellaneous Problems</h2>
+
+
+<div class="question" ></div>
+<button onclick="toggleContent('q90')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q90" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+
+  </body>
+</html>

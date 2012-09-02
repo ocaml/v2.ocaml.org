@@ -391,3 +391,22 @@ div.A {
   font-style: italic;
   color: #d32121;
 }
+
+/* 99 Prolems
+ ***********************************************************************/
+
+.question {
+  display: list-item;
+  list-style-type: square;
+  font-weight: bold;
+  padding: 1ex 0 0.5ex 0em;
+  margin-left: 1em;
+}
+
+.solution {
+  display: none;
+}
+
+button.solution {
+  display: inline;
+}
