@@ -21,16 +21,17 @@ let cache_secs = 60. *. 55.
 let get ?(cache_secs=cache_secs) url =
   let md5 = Digest.to_hex(Digest.string url) in
   let fn = Filename.concat Filename.temp_dir_name ("ocamlorg-" ^ md5) in
-  eprintf "Downloading %s... %!" url;
+  eprintf "Downloading %s... " url;
   if Sys.file_exists fn && age fn <= cache_secs then (
     let fh = open_in fn in
     let data = input_value fh in
     close_in fh;
-    eprintf "done.\n  (using cache %s, updated %s ago).\n%!"
+    eprintf "done.\n  (using cache %s, updated %s ago).\n"
             fn (time_of_secs(age fn));
     data
   )
   else (
+    flush stderr;
     let data = http_get url in
     eprintf "done %!";
     let fh = open_out fn in
