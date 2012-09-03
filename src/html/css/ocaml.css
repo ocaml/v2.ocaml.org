@@ -413,7 +413,7 @@ div.A {
 }
 
 .solution {
-  /* display: none; */
+  display: none;
 }
 
 button.solution {

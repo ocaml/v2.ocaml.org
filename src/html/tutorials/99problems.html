@@ -7,6 +7,14 @@
   </head>
   <body>
 
+    <div class="disclaimer">
+      <strong>Your Help is Needed</strong><br/>
+      <small>Many of the solutions below have been written
+	by <a href="https://github.com/VictorNicollet/99-Problems-OCaml"
+	      >Victor Nicollet</a>.  Please contribute more solutions or
+	improve the existing ones.</small>
+    </div>
+
     <div class="pull-right hero-unit" style="margin-left: 1em" >
       <em>Table of contents</em>
       <div ml:replace="toc"></div>
@@ -166,8 +174,8 @@ function toggleContent(id) {
 </pre>
 
 
-<div class="question" >Pack consecutive duplicates of list elements
-  into sublists.</div>
+<div class="question" ><a name="pack"></a>Pack consecutive duplicates
+  of list elements into sublists.</div>
 <button onclick="toggleContent('q9')" class="solution">Solution</button>
 <pre ml:content="ocaml" id="q9" class="solution">
   let pack list =
@@ -204,13 +212,430 @@ function toggleContent(id) {
 </pre>
 
 
-
-<div class="question" ></div>
+<div class="question" ><a name="modif-run-length"></a>Modified
+  run-length encoding.</div>
+    <p>Modify the result of the previous problem in such a way that if
+    an element has no duplicates it is simply copied into the result
+    list.  Only elements with duplicates are transferred as (N E)
+    lists.</p>
+    <p>Since OCaml lists are homogeneous, one needs to define a type
+      to hold both single elements and sub-lists.</p>
+<pre ml:content="ocaml">
+  type 'a rle =
+    | One of 'a
+    | Many of (int * 'a)
+</pre>
 <button onclick="toggleContent('q11')" class="solution">Solution</button>
 <pre ml:content="ocaml" id="q11" class="solution">
+  let pack list =
+    let rec aux current acc = function
+      | [] -> [] (* Can only be reached if original list is empty *)
+      | [x] -> (x :: current) :: acc
+      | a :: (b :: _ as t) -> if a = b then aux (a :: current) acc t
+                              else aux [] ((a :: current) :: acc) t  in
+    List.rev (aux [] [] list)
+  let encode list =
+    let rec aux = function
+      | [] -> []
+      | [] :: t -> aux t
+      | [x] :: t -> One x :: aux t
+      | (x :: l) :: t -> Many (1 + List.length l , x) :: aux t  in
+    aux (pack list) 
 </pre>
 <pre ml:content="ocaml">
+  encode [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`e;`e;`e;`e]
+  = [Many (4,`a) ; One `b ; Many (2,`c) ; Many (2,`a) ; One `d ; Many (4,`e)]
 </pre>
+
+<div class="question" >Decode a run-length encoded list.</div>
+    <p>Given a run-length code list generated as specified in the
+      previous problem, construct its uncompressed version.</p>
+<button onclick="toggleContent('q12')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q12" class="solution">
+  let decode list =
+    let rec many acc n x =
+      if n = 0 then acc else many (x :: acc) (n-1) x in
+    let rec aux acc = function
+      | [] -> acc
+      | One x :: t -> aux (x :: acc) t
+      | Many (n,x) :: t -> aux (many acc n x) t  in
+    aux [] (List.rev list)
+</pre>
+<pre ml:content="ocaml">
+  decode [Many (4,`a); One `b; Many (2,`c); Many (2,`a); One `d; Many (4,`e)]
+  = [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`e;`e;`e;`e]
+</pre>
+
+<div class="question" >Run-length encoding of a list (direct solution).</div>
+    <p>Implement the so-called run-length encoding data compression
+    method directly.  I.e.&nbsp;don't explicitly create the sublists
+    containing the duplicates, as in problem “<a href="#pack">Pack
+    consecutive duplicates of list elements into sublists</a>”, but
+    only count them. As in problem
+    “<a href="#modif-run-length" >Modified run-length encoding</a>”,
+    simplify the result list by replacing the singleton lists (1 X)
+    by X.
+    </p>
+<button onclick="toggleContent('q13')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q13" class="solution">
+  let encode list =
+    let rle count x = if count = 0 then One x else Many (count + 1, x) in
+    let rec aux count acc = function
+      | [] -> [] (* Can only be reached if original list is empty *)
+      | [x] -> rle count x :: acc
+      | a :: (b :: _ as t) -> if a = b then aux (count + 1) acc t
+                              else aux 0 (rle count a :: acc) t   in
+    List.rev (aux 0 [] list) 
+</pre>
+<pre ml:content="ocaml">
+  encode [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`e;`e;`e;`e] =
+  [Many (4,`a); One `b; Many (2,`c); Many (2,`a); One `d; Many (4,`e)]
+</pre>
+
+<div class="question" >Duplicate the elements of a list.</div>
+<button onclick="toggleContent('q14')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q14" class="solution">
+  let rec duplicate = function
+    | [] -> []
+    | h :: t -> h :: h :: duplicate t
+</pre>
+<pre ml:content="ocaml">
+  duplicate [`a;`b;`c;`c;`d] = [`a;`a;`b;`b;`c;`c;`c;`c;`d;`d]
+</pre>
+
+<div class="question" >Replicate the elements of a list a given number
+  of times.</div>
+<button onclick="toggleContent('q15')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q15" class="solution">
+  let replicate list n =
+    let rec prepend n acc x =
+      if n = 0 then acc else prepend (n-1) (x :: acc) x in
+    let rec aux acc = function
+      | [] -> acc
+      | h :: t -> aux (prepend n acc h) t  in
+    (* This could also be written as:
+       List.fold_left (prepend n) [] (List.rev list) *)
+    aux [] (List.rev list) 
+</pre>
+<pre ml:content="ocaml">
+  replicate [`a;`b;`c] 3 = [`a;`a;`a;`b;`b;`b;`c;`c;`c]
+</pre>
+
+<div class="question" >Drop every N'th element from a list.</div>
+<button onclick="toggleContent('q16')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q16" class="solution">
+  let drop list n =
+    let rec aux i = function
+      | [] -> []
+      | h :: t -> if i = n then aux 1 t else h :: aux (i+1) t  in
+    aux 1 list
+</pre>
+<pre ml:content="ocaml">
+  drop [`a;`b;`c;`d;`e;`f;`g;`h;`i;`j] 3 = [`a;`b;`d;`e;`g;`h;`j]
+</pre>
+
+<div class="question" >Split a list into two parts; the length of the
+  first part is given.</div>
+    <p>If the length of the first part is longer than the entire list,
+      then the first part is the list and the second part is
+      empty.</p>
+<button onclick="toggleContent('q17')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q17" class="solution">
+  let split list n =
+    let rec aux i acc = function
+      | [] -> List.rev acc, []
+      | h :: t as l -> if i = 0 then List.rev acc, l
+                       else aux (i-1) (h :: acc) t  in
+    aux n [] list
+</pre>
+<pre ml:content="ocaml">
+  split [`a;`b;`c;`d;`e;`f;`g;`h;`i;`j] 3
+  = ([`a;`b;`c] , [`d;`e;`f;`g;`h;`i;`j]);;
+  split [`a;`b;`c;`d] 5 = ([`a; `b; `c; `d], [])
+</pre>
+
+<div class="question" >Extract a slice from a list.</div>
+    <p>Given two indices, I and K, the slice is the list containing
+    the elements between the I'th and K'th element of the original
+    list (both limits included). Start counting the elements
+    with 1.</p>
+<button onclick="toggleContent('q18')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q18" class="solution">
+  let slice list b e =
+    let rec take n = function
+      | [] -> []
+      | h :: t -> if n = 0 then [] else h :: take (n-1) t
+    in
+    let rec drop n = function
+      | [] -> []
+      | h :: t as l -> if n = 0 then l else drop (n-1) t
+    in
+    take (e - b + 1) (drop (b - 1) list) 
+</pre>
+<pre ml:content="ocaml">
+  slice [`a;`b;`c;`d;`e;`f;`g;`h;`i;`j] 3 7 = [`c;`d;`e;`f;`g]
+</pre>
+
+<div class="question" >Rotate a list N places to the left.</div>
+<button onclick="toggleContent('q19')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q19" class="solution">
+  let split list n =
+    let rec aux i acc = function
+      | [] -> List.rev acc, []
+      | h :: t as l -> if i = 0 then List.rev acc, l
+                       else aux (i-1) (h :: acc) t    in
+    aux n [] list
+  
+  let rotate list n =
+    let len = List.length list in
+    (* Compute a rotation value between 0 and len-1 *)
+    let n = if len = 0 then 0 else (n mod len + len) mod len in
+    if n = 0 then list
+    else let a, b = split list n in b @ a 
+</pre>
+<pre ml:content="ocaml">
+  rotate [`a;`b;`c;`d;`e;`f;`g;`h] 3 = [`d;`e;`f;`g;`h;`a;`b;`c];;
+  rotate [`a;`b;`c;`d;`e;`f;`g;`h] (-2) = [`g;`h;`a;`b;`c;`d;`e;`f]
+</pre>
+
+<div class="question" >Remove the K'th element from a list.</div>
+<button onclick="toggleContent('q20')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q20" class="solution">
+  let rec remove_at n = function
+    | [] -> []
+    | h :: t -> if n = 1 then t else h :: remove_at (n-1) t
+</pre>
+<pre ml:content="ocaml">
+  remove_at 2 [`a;`b;`c;`d] = [`a;`c;`d]
+</pre>
+
+<div class="question" >Insert an element at a given position into a
+  list.</div>
+<button onclick="toggleContent('q21')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q21" class="solution">
+  let rec insert_at x n = function
+    | [] -> []
+    | h :: t as l -> if n = 1 then x :: l else h :: insert_at x (n-1) t
+</pre>
+<pre ml:content="ocaml">
+  insert_at `alfa 2 [`a;`b;`c;`d] = [`a;`alfa;`b;`c;`d]
+</pre>
+
+<div class="question" >Create a list containing all integers within a
+  given range.</div>
+    <p>If first argument is smaller than second, produce a list in
+      decreasing order.</p>
+<button onclick="toggleContent('q22')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q22" class="solution">
+  let range a b =
+    let rec aux a b =
+      if a > b then [] else a :: aux (a+1) b  in
+    if a > b then List.rev (aux b a) else aux a b
+</pre>
+<pre ml:content="ocaml">
+  range 4 9 = [4;5;6;7;8;9];;
+  range 9 4 = [9;8;7;6;5;4]
+</pre>
+
+<div class="question" >Extract a given number of randomly selected
+  elements from a list.</div>
+    <p>The selected items shall be returned in a list.</p>
+<button onclick="toggleContent('q23')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q23" class="solution">
+  let rec rand_select list n =
+    let rec extract acc n = function
+      | [] -> raise Not_found
+      | h :: t -> if n = 0 then (h, acc @ t) else extract (h::acc) (n-1) t
+    in
+    let extract_rand list len =
+      extract [] (Random.int len) list
+    in
+    let rec aux n acc list len =
+      if n = 0 then acc else
+        let picked, rest = extract_rand list len in
+        aux (n-1) (picked :: acc) rest (len-1)
+    in
+    let len = List.length list in
+    aux (min n len) [] list len 
+</pre>
+<pre ml:content="ocaml">
+  rand_select [`a;`b;`c;`d;`e;`f;`g;`h] 3
+</pre>
+
+<div class="question" >Lotto: Draw N different random numbers from the
+  set 1..M.</div>
+    <p>The selected numbers shall be returned in a list.</p>
+<button onclick="toggleContent('q24')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q24" class="solution">
+  (* [range] and [rand_select] defined in problems above *)
+  let lotto_select n m = rand_select (range 1 m) n
+</pre>
+<pre ml:content="ocaml">
+  lotto_select 6 49
+</pre>
+
+<div class="question" >Generate a random permutation of the elements
+  of a list.</div>
+<button onclick="toggleContent('q25')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q25" class="solution">
+  let rec permutation list =
+    let rec extract acc n = function
+      | [] -> raise Not_found
+      | h :: t -> if n = 0 then (h, acc @ t) else extract (h::acc) (n-1) t
+    in
+    let extract_rand list len =
+      extract [] (Random.int len) list
+    in
+    let rec aux acc list len =
+      if len = 0 then acc else
+        let picked, rest = extract_rand list len in
+        aux (picked :: acc) rest (len-1)
+    in
+    aux [] list (List.length list)
+</pre>
+<pre ml:content="ocaml">
+  permutation ['a';'b';'c';'d';'e';'f']
+</pre>
+
+<div class="question" >Generate the combinations of K distinct objects
+  chosen from the N elements of a list</div>
+    <p>In how many ways can a committee of 3 be chosen from a group of
+      12 people? We all know that there are C(12,3) = 220 possibilities
+      (C(N,K) denotes the well-known binomial coefficients). For pure
+      mathematicians, this result may be great. But we want to really
+      generate all the possibilities in a list.
+    </p>
+<button onclick="toggleContent('q26')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q26" class="solution">
+  let extract k list =  
+    let rec aux k acc emit = function
+      | [] -> acc
+      | h :: t ->
+        if k = 1 then aux k (emit [h] acc) emit t else
+          let new_emit x = emit (h :: x) in
+          aux k (aux (k-1) acc new_emit t) emit t
+    in
+    let emit x acc = x :: acc in
+    aux k [] emit list 
+</pre>
+<pre ml:content="ocaml">
+  extract 2 [`a;`b;`c;`d]
+  = [[`c;`d]; [`b;`d]; [`b;`c]; [`a;`d]; [`a;`c]; [`a;`b]]
+</pre>
+
+<div class="question" >Group the elements of a set into disjoint
+  subsets.</div>
+    <p>a) In how many ways can a group of 9 people work in 3 disjoint
+    subgroups of 2, 3 and 4 persons? Write a function that generates
+    all the possibilities and returns them in a list.</p>
+    <p>b) Generalize the above predicate in a way that we can specify
+    a list of group sizes and the predicate will return a list of
+    groups.</p>
+<button onclick="toggleContent('q27')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q27" class="solution">
+  (* This implementation is less streamlined than the one-extraction
+     version, because more work is done on the lists after each transform
+     to prepend the actual items. The end result is cleaner in terms of
+     code, though. *)
+  
+  let group list sizes =
+    let initial = List.map (fun size -> size, []) sizes in
+    (* The core of the function. Prepend accepts a list of groups, each with
+       the number of items that should be added, and prepends the item to every
+       group that can support it, thus turning [1,a ; 2,b ; 0,c] into
+       [ [0,x::a ; 2,b ; 0,c ] ; [1,a ; 1,x::b ; 0,c] ; [ 1,a ; 2,b ; 0,c ]]
+  
+       Again, in the prolog language (for which these questions are
+       originally intended), this function is a whole lot simpler.  *)
+    let prepend p list =
+      let emit l acc = l :: acc in
+      let rec aux emit acc = function
+        | [] -> emit [] acc
+        | (n,l) as h :: t ->
+           let acc = if n > 0 then emit ((n-1, p::l) :: t) acc else acc in
+           aux (fun l acc -> emit (h :: l) acc) acc t
+      in
+      aux emit [] list
+    in
+    let rec aux = function
+      | [] -> [ initial ]
+      | h :: t -> List.concat (List.map (prepend h) (aux t))
+    in
+    let all = aux list in  
+    (* Don't forget to eliminate all group sets that have non-full groups *)
+    let complete = List.filter (List.for_all (fun (x,_) -> x = 0)) all in
+    List.map (List.map snd) complete
+</pre>
+<pre ml:content="ocaml">
+  group [`a;`b;`c;`d] [2;1]
+  = [[[`a; `b]; [`c]]; [[`a; `c]; [`b]]; [[`b; `c]; [`a]]; [[`a; `b]; [`d]];
+     [[`a; `c]; [`d]]; [[`b; `c]; [`d]]; [[`a; `d]; [`b]]; [[`b; `d]; [`a]];
+     [[`a; `d]; [`c]]; [[`b; `d]; [`c]]; [[`c; `d]; [`a]]; [[`c; `d]; [`b]]]
+</pre>
+
+<div class="question" >Sorting a list of lists according to length of
+  sublists</div>
+    <p>a) We suppose that a list contains elements that are lists
+    themselves. The objective is to sort the elements of this list
+    according to their length. E.g. short lists first, longer lists
+    later, or vice versa.</p>
+    <p>b) Again, we suppose that a list contains elements that are
+    lists themselves. But this time the objective is to sort the
+    elements of this list according to their <strong>length
+    frequency</strong>; i.e., in the default, where sorting is done
+    ascendingly, lists with rare lengths are placed first, others with
+    a more frequent length come later.</p>
+<button onclick="toggleContent('q28')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q28" class="solution">
+  (* We might not be allowed to use built-in List.sort, so here's an
+     eight-line implementation of insertion sort - O(n²) time complexity. *)
+  let rec insert cmp e = function
+    | [] -> [e]
+    | h :: t as l -> if cmp e h <= 0 then e :: l else h :: insert cmp e t
+
+  let rec sort cmp = function
+    | [] -> []
+    | h :: t -> insert cmp h (sort cmp t)
+  
+  (* Sorting according to length : prepend length, sort, remove length *)
+  let length_sort lists =
+    let lists = List.map (fun list -> List.length list, list) lists in
+    let lists = sort (fun a b -> compare (fst a) (fst b)) lists in
+    List.map snd lists
+  ;;
+    
+  (* Sorting according to length frequency : prepend frequency, sort,
+     remove frequency. Frequencies are extracted by sorting lengths
+     and applying RLE to count occurences of each length (see problem
+     "Run-length encoding of a list.") *)
+  let rle list =
+    let rec aux count acc = function
+      | [] -> [] (* Can only be reached if original list is empty *)
+      | [x] -> (x, count + 1) :: acc
+      | a :: (b :: _ as t) ->
+         if a = b then aux (count + 1) acc t
+         else aux 0 ((a, count + 1) :: acc) t in
+    aux 0 [] list
+  
+  let frequency_sort lists =
+    let lengths = List.map List.length lists in
+    let freq = rle (sort compare lengths) in
+    let by_freq =
+      List.map (fun list -> List.assoc (List.length list) freq , list) lists in
+    let sorted = sort (fun a b -> compare (fst a) (fst b)) by_freq in
+    List.map snd sorted
+</pre>
+<pre ml:content="ocaml">
+  length_sort [ [`a;`b;`c]; [`d;`e]; [`f;`g;`h]; [`d;`e];
+                [`i;`j;`k;`l]; [`m;`n]; [`o] ]
+  = [[`o]; [`d; `e]; [`d; `e]; [`m; `n]; [`a; `b; `c]; [`f; `g; `h];
+     [`i; `j; `k; `l]] ;;
+  frequency_sort [ [`a;`b;`c]; [`d;`e]; [`f;`g;`h]; [`d;`e];
+                   [`i;`j;`k;`l]; [`m;`n]; [`o] ]
+  = [[`i; `j; `k; `l]; [`o]; [`a; `b; `c]; [`f; `g; `h]; [`d; `e]; [`d; `e];
+     [`m; `n]]
+</pre>
+
 
 <!------------------------------------------------------------------------>
 <h2><a name="arithmetic" ></a>Arithmetic</h2>
