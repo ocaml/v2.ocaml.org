@@ -19,8 +19,9 @@ Executable build
   Path:           src/app
   MainIs:         build.ml
   BuildDepends:   weberizer, ocamlweb, unix, str
-  ByteOpt:	  toplevellib.cma
-# toplevellib does not exist in native code...
+# The following cannot be conditional.  The correct compilations tags
+# are set in myocamlbuild.ml.  Wait for 4.00.0 to be mainstream to remove.
+#  BuildDepends+: compiler-libs.toplevel
   CompiledObject: byte
   Install:        false
 

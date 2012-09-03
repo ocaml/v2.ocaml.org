@@ -1,6 +1,5 @@
 *~
 _build/
-myocamlbuild.ml
 setup.ml
 setup.data
 setup.log
