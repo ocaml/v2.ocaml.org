@@ -8,38 +8,8 @@ open Printf
 
 let html_encode = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
 
-let input_all fh =
-  let len = 256 in
-  let buf = Buffer.create len in
-  let s = String.create len in
-  let read = ref 1 in (* enter the loop *)
-  while !read > 0 do
-    read := input fh s 0 len;
-    Buffer.add_substring buf s 0 !read;
-  done;
-  Buffer.contents buf
-
-
 let highlight ?(syntax="ocaml") phrase =
-  let pgm = sprintf "highlight --syntax=%s --out-format=xhtml --fragment"
-                    syntax in
-  let o, i = Unix.open_process pgm in
-  output_string i phrase;
-  (try close_out i with _ -> ());     (* No output is performed before *)
-  let html = input_all o in
-  match Unix.close_process (o, i) with
-  | Unix.WEXITED st ->
-     if st = 0 then
-       (* Strip final \n *)
-       if html <> "" && html.[String.length html - 1] = '\n' then
-         String.sub html 0 (String.length html - 1)
-       else
-         html
-     else
-       (* Program not found or problem *)
-       html_encode phrase
-  | Unix.WSIGNALED _ | Unix.WSTOPPED _ -> assert false
-
+  html_encode phrase
 
 
 (* Eval OCaml code — in the same way the toploop does
@@ -129,12 +99,7 @@ let end_of_phrase = Str.regexp ";;[ \t\n]*"
 let split_phrases text =
   List.map trim (Str.split end_of_phrase text)
 
-let rec concat_html_phrases = function
-  | [] -> []
-  | p :: tl ->
-     p @ (Nethtml.Element("br", [], []) :: concat_html_phrases tl)
-
 let eval_ocaml args ~content _page =
   let phrases = split_phrases(text_of_html content) in
-  concat_html_phrases (List.map html_of_eval phrases)
+  List.concat (List.map html_of_eval phrases)
 
