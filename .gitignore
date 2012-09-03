@@ -1,4 +1,5 @@
 *~
+.#*
 _build/
 setup.ml
 setup.data
