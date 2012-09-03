@@ -383,6 +383,15 @@ div.A {
 .ocamltop-input .kwc { color: #213cc9; }
 .ocamltop-input .opt { color: #08087a; } /* operators */
 
+.ocaml-function { color: #0606ee; }
+.ocaml-variable { color: #b8860b; }
+.ocaml-mod { color: #42a642; }
+.ocaml-comment, .ocaml-comment .kwa, .ocaml-comment .kwb {
+  font-weight: normal;
+  font-style: italic;
+  color: #cd6600;
+}
+
 .ocamltop-output {
   color: #7792dd;
 }
@@ -404,7 +413,7 @@ div.A {
 }
 
 .solution {
-  display: none;
+  /* display: none; */
 }
 
 button.solution {

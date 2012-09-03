@@ -8,8 +8,40 @@ open Printf
 
 let html_encode = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
 
+let highlight_ocaml =
+  (* Simple minded engine to highlight OCaml code. *)
+  let id = "\\b[a-z_][a-zA-Z0-9_']*" in
+  let subst = [ (* regex, replacement *)
+    ("\\((\\*[^)]*\\*)\\)", "<span class=\"ocaml-comment\">\\1</span>");
+    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ " +\\)\\(\\(" ^ id
+     ^ " +\\)*\\)= *function",
+     "<span class=\"kwa\">\\1</span><span class=\"ocaml-function\">\\3</span>\
+      <span class=\"ocaml-variable\">\\4</span>= \
+      <span class=\"kwb\">function</span>");
+    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ " +\\)\\(" ^ id ^ " +\\)+=",
+     "<span class=\"kwa\">\\1</span><span class=\"ocaml-function\">\\3</span>\
+     <span class=\"ocaml-variable\">\\4</span>=");
+    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ "\\) *=",
+     "<span class=\"kwa\">\\1</span>\
+      <span class=\"ocaml-variable\">\\3</span> =");
+    ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\) *=",
+     "type \\1<span class=\"ocaml-mod\">\\3</span> =");
+    ("\\b\\(type\\|in\\|begin\\|end\\|val\\)\\b",
+     "<span class=\"kwa\">\\1</span>");
+    ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
+      \\|for\\|to\\|do\\|done\\|failwith\\)\\b",
+     "<span class=\"kwb\">\\1</span>");
+  ] in
+  let subst = List.map (fun (re, t) -> (Str.regexp re, t)) subst in
+  fun phrase -> (
+    let h = html_encode phrase in
+    List.fold_left (fun h (re, t) -> Str.global_replace re t h) h subst
+  )
+
+
 let highlight ?(syntax="ocaml") phrase =
-  html_encode phrase
+  if syntax = "ocaml" then highlight_ocaml phrase
+  else html_encode phrase
 
 
 (* Eval OCaml code — in the same way the toploop does
@@ -61,7 +93,7 @@ let html_of_eval phrase =
    Element("span", ["class", "ocamltop-input"], [Data (highlight phrase)]);
    Element("span", ["class", "ocamltop-prompt"], [Data ";;"]);
    Element("br", [], []);
-   Element("span", ["class", cls], [Data (highlight out)]) ]
+   Element("span", ["class", cls], [Data (html_encode out)]) ]
 
 
 let rec text_of_html html =
