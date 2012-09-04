@@ -19,7 +19,8 @@ let highlight_ocaml =
      "<span class=\"kwa\">\\1</span><span class=\"ocaml-function\">\\3</span>\
       <span class=\"ocaml-variable\">\\4</span>= \
       <span class=\"kwb\">function</span>");
-    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ " +\\)\\(" ^ id ^ " +\\)+=",
+    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id
+     ^ " +\\)\\(\\(" ^ id ^ " +\\)+\\)=",
      "<span class=\"kwa\">\\1</span><span class=\"ocaml-function\">\\3</span>\
      <span class=\"ocaml-variable\">\\4</span>=");
     ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ "\\) *=",
