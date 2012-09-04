@@ -970,6 +970,19 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 
 
 <div class="question" >Huffman code.</div>
+  <p>First of all, consult a good book on discrete mathematics or
+    algorithms for a detailed description of Huffman codes (you can
+    start with
+    the <a href="http://en.wikipedia.org/wiki/Huffman_coding"
+    >Wikipedia</a> page)!</p>
+  <p>We suppose a set of symbols with their frequencies, given as a
+  list of fr(S,F) terms. Example:
+  [fr(a,45),fr(b,13),fr(c,12),fr(d,16),fr(e,9),fr(f,5)]. Our objective
+  is to construct a list hc(S,C) terms, where C is the Huffman code
+  word for the symbol S. In our example, the result could be Hs =
+  [hc(a,'0'), hc(b,'101'), hc(c,'100'), hc(d,'111'), hc(e,'1101'),
+  hc(f,'1100')] [hc(a,'01'),...etc.]. The task shall be performed by
+  the predicate huffman/2 defined </p>
 <button onclick="toggleContent('q50')" class="solution">Solution</button>
 <pre ml:content="ocaml" id="q50" class="solution">
 </pre>
