@@ -266,7 +266,8 @@ function toggleContent(id) {
   = [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`e;`e;`e;`e]
 </pre>
 
-<div class="question" >Run-length encoding of a list (direct solution).</div>
+<div class="question" name="run-length-direct"
+     >Run-length encoding of a list (direct solution).</div>
     <p>Implement the so-called run-length encoding data compression
     method directly.  I.e.&nbsp;don't explicitly create the sublists
     containing the duplicates, as in problem “<a href="#pack">Pack
@@ -663,11 +664,224 @@ function toggleContent(id) {
 </pre>
 
 
-<div class="question" ></div>
+<div class="question" >Determine the greatest common divisor of two
+  positive integer numbers.</div>
+  <p>Use Euclid's algorithm.</p>
 <button onclick="toggleContent('q32')" class="solution">Solution</button>
 <pre ml:content="ocaml" id="q32" class="solution">
+  let rec gcd a b =
+    if b = 0 then a else gcd b (a mod b)
 </pre>
 <pre ml:content="ocaml">
+  gcd 13 27 = 1;;
+  gcd 20536 7826 = 2
+</pre>
+
+<div class="question" >Determine whether two positive integer numbers
+  are coprime.</div>
+  <p>Two numbers are coprime if their greatest common divisor equals
+    1.</p>
+<button onclick="toggleContent('q33')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q33" class="solution">
+  (* [gcd] is defined in the previous question *)
+  let coprime a b = gcd a b = 1
+</pre>
+<pre ml:content="ocaml">
+  coprime 13 27;;
+  not (coprime 20536 7826)
+</pre>
+
+<div class="question" name="totient" >Calculate Euler's totient function
+  phi(m).</div>
+  <p>Euler's so-called totient function φ(m) is defined as the number
+    of positive integers r (1 &le; r &lt; m) that are coprime to
+    m.  We let φ(1) = 1.</p>
+  <p>Find out what the value of phi(m) is if m is a prime
+    number. Euler's totient function plays an important role in one of
+    the most widely used public key cryptography methods (RSA). In this
+    exercise you should use the most primitive method to calculate this
+    function (there are smarter ways that we shall discuss later).
+  </p>
+<button onclick="toggleContent('q34')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q34" class="solution">
+  (* [coprime] is defined in the previous question *)
+  let phi n =
+    let rec count_coprime acc d =
+      if d < n then
+        count_coprime (if coprime n d then acc + 1 else acc) (d + 1)
+      else acc
+    in
+    if n = 1 then 1 else count_coprime 0 1
+</pre>
+<pre ml:content="ocaml">
+  phi 10 = 4;;
+  phi 13 = 12
+</pre>
+
+<div class="question" >Determine the prime factors of a given positive
+  integer.</div>
+  <p>Construct a flat list containing the prime factors in ascending
+    order.</p>
+<button onclick="toggleContent('q35')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q35" class="solution">
+  (* Recall that d divides n iff [n mod d = 0] *)
+  let factors n =
+    let rec aux d n =
+      if n = 1 then [] else
+        if n mod d = 0 then d :: aux d (n / d) else aux (d+1) n
+    in
+    aux 2 n
+</pre>
+<pre ml:content="ocaml">
+  factors 315 = [3;3;5;7]
+</pre>
+
+<div class="question" >Determine the prime factors of a given positive
+  integer (2).</div>
+  <p>Construct a list containing the prime factors and their
+    multiplicity.  <em>Hint:</em> The problem is similar to problem
+    <a href="#run-length-direct" >Run-length encoding of a list
+    (direct solution)</a>.</p>
+<button onclick="toggleContent('q36')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q36" class="solution">
+  let factors n =
+    let rec aux d n =
+      if n = 1 then [] else
+        if n mod d = 0 then
+          match aux d (n / d) with
+          | (h,n) :: t when h = d -> (h,n+1) :: t
+          | l -> (d,1) :: l
+        else aux (d+1) n
+    in
+    aux 2 n
+</pre>
+<pre ml:content="ocaml">
+  factors 315 = [3,2 ; 5,1 ; 7,1]
+</pre>
+
+<div class="question" name="totient-improved"
+     >Calculate Euler's totient function phi(m) (improved).</div>
+  <p>See problem “<a href="#totient">Calculate Euler's totient
+  function phi(m)</a>” for the definition of Euler's totient function.
+  If the list of the prime factors of a number m is known in the form
+  of the previous problem then the function phi(m) can be efficiently
+  calculated as follows: Let <code>[(p1, m1); (p2, m2);
+  (p3, m3); ...]</code> be the list of prime factors (and their
+  multiplicities) of a given number m. Then φ(m) can be calculated
+  with the following formula:
+  </p>
+  <center>
+    φ(m) = (p1 - 1) × p1<sup>m1 - 1</sup>
+    × (p2 - 1) × p2<sup>m2 - 1</sup>
+    × (p3 - 1) × p3<sup>m3 - 1</sup> × ...
+  </center>
+<button onclick="toggleContent('q37')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q37" class="solution">
+  (* Naive power function. *)
+  let rec pow n p = if p < 1 then 1 else n * pow n (p-1) ;;
+  (* [factors] is defined in the previous question. *)
+  let phi_improved n =
+    let rec aux acc = function
+      | [] -> acc
+      | (p,m) :: t -> aux ((p - 1) * pow p (m - 1) * acc) t in
+    aux 1 (factors n)
+</pre>
+<pre ml:content="ocaml">
+  phi_improved 10 = 4;;
+  phi_improved 13 = 12
+</pre>
+
+<div class="question" >Compare the two methods of calculating Euler's
+  totient function.</div>
+  <p>Use the solutions of problems “<a href="#totient">Calculate
+  Euler's totient function phi(m)</a>” and
+  “<a href="#totient-improved">Calculate Euler's totient function
+  phi(m) (improved)</a>” to compare the algorithms. Take the number of
+  logical inferences as a measure for efficiency. Try to calculate
+  φ(10090) as an example.</p>
+<button onclick="toggleContent('q38')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q38" class="solution">
+  (* Naive [timeit] function.  It requires the [Unix] module to be loaded. *)
+  let timeit f a =
+    let t0 = Unix.gettimeofday() in
+    ignore(f a);
+    let t1 = Unix.gettimeofday() in
+    t1 -. t0
+</pre>
+<pre ml:content="ocaml">
+  timeit phi 10090;;
+  timeit phi_improved 10090
+</pre>
+
+<div class="question" >A list of prime numbers.</div>
+  <p>Given a range of integers by its lower and upper limit, construct
+    a list of all prime numbers in that range.</p>
+<button onclick="toggleContent('q39')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q39" class="solution">
+  let is_prime n =
+    let n = max n (-n) in
+    let rec is_not_divisor d =
+      d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
+    is_not_divisor 2
+  
+  let rec all_primes a b =
+    if a > b then [] else
+      let rest = all_primes (a + 1) b in
+      if is_prime a then a :: rest else rest
+  </pre>
+<pre ml:content="ocaml">
+  List.length (all_primes 2 7920) = 1000
+</pre>
+
+<div class="question" >Goldbach's conjecture.</div>
+  <p>Goldbach's conjecture says that every positive even number
+    greater than 2 is the sum of two prime numbers. Example: 28 =
+    5 + 23. It is one of the most famous facts in number theory that has
+    not been proved to be correct in the general case. It has been
+    <em>numerically confirmed</em> up to very large numbers.  Write a
+    predicate to find the two prime numbers that sum up to a given
+    even integer.
+  </p>
+<button onclick="toggleContent('q40')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q40" class="solution">
+  (* [is_prime] is defined in the previous solution *)
+  let goldbach n =
+    let rec aux d =
+      if is_prime d && is_prime (n - d) then (d, n-d)
+      else aux (d+1) in
+    aux 2
+</pre>
+<pre ml:content="ocaml">
+  goldbach 28 = (5,23)
+</pre>
+
+
+<div class="question" >A list of Goldbach compositions.</div>
+  <p>Given a range of integers by its lower and upper limit, print a
+    list of all even numbers and their Goldbach composition.</p>
+  <p>In most cases, if an even number is written as the sum of two
+    prime numbers, one of them is very small. Very rarely, the primes
+    are both bigger than say 50. Try to find out how many such cases
+    there are in the range 2..3000.
+  </p>
+<button onclick="toggleContent('q41')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q41" class="solution">
+  (* [goldbach] is defined in the previous question. *)
+  let rec goldbach_list a b =
+    if a > b then [] else
+      if a mod 2 = 1 then goldbach_list (a+1) b
+      else (a, goldbach a) :: goldbach_list (a+2) b
+
+  let goldbach_limit a b lim =
+    List.filter (fun (_,(a,b)) -> a > lim && b > lim) (goldbach_list a b)
+</pre>
+<pre ml:content="ocaml">
+  goldbach_list 9 20
+  = [(10, (3, 7)); (12, (5, 7)); (14, (3, 11)); (16, (3, 13)); (18, (5, 13));
+     (20, (3, 17))];;
+  goldbach_limit 1 2000 50
+  = [(992, (73, 919)); (1382, (61, 1321)); (1856, (67, 1789));
+     (1928, (61, 1867))]
 </pre>
 
 
