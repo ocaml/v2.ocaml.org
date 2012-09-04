@@ -59,7 +59,7 @@
 <p><code>prompt&gt; cc -shared -o wrapper.so wrapper.o funcs.o -lg2c</code></p>
 <p>This will create a shared object library called wrapper.so containing the fortran function and the wrapper function.  The -lg2c option is required to provide the implementations of the built in fortran functions that are used.</p>
 <h3>Step 4: Now to OCaml</h3>
-<p class="first_para">Now in an Ocaml file (gtd6.ml) we have to define the external reference to the function and a function to call it.</p>
+<p class="first_para">Now in an OCaml file (gtd6.ml) we have to define the external reference to the function and a function to call it.</p>
 <p><code></code></p>
 <pre>
  external temp :  int -&gt; float -&gt; float -&gt; float -&gt; float -&gt; float = &quot;gtd6_t&quot;
@@ -67,7 +67,7 @@
 
 <pre>
  let _ =
-   print_double (temp 1 2.0 3.0 4.0 5.0); 
+   print_double (temp 1 2.0 3.0 4.0 5.0);
    print_newline ();;
 </pre>
 

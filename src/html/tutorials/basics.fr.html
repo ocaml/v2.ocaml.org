@@ -131,7 +131,7 @@ unit           Valeur unique notée ()
 
 <p class="first_para">Un des bits de chaque <code>int</code> est utilisé en interne par OCaml pour la gestion de la mémoire (garbage collection ou récupération automatique de mémoire). C'est pourquoi le type <code>int</code> a 31 bits au lieu de 32 (63 si vous utilisez une plate-forme 64 bits). En pratique ce n'est un problème que dans quelques cas très spécifiques. Par exemple si vous comptez des choses en utilisant une boucle, OCaml vous limite à compter un milliard d'éléments au lieu de 2 milliards. Ce n'est pas un problème parce que si vous comptez autant de choses dans n'importe quel langage vous devriez de toute façon utiliser des entiers à précision infinie (modules <code>Nat</code> et <code>Big_int</code> en OCaml). Néanmoins si vous avez besoin de manipuler des types avec exactement 32 bits (par exemple si vous écrivez du code pour faire de la cryptographie ou pour des protocoles réseau), OCaml fournit un type <code>nativeint</code> qui correspond exactement au type d'entiers correspondant à votre plate-forme.</p>
 
-<p>Ocaml n'a pas de type de base pour les entiers sans signe (unsigned), mais  vous pouvez obtenir le même effet en utilisant <code>nativeint</code>. OCaml n'a pas non plus de type flottant simple précision.</p>
+<p>OCaml n'a pas de type de base pour les entiers sans signe (unsigned), mais  vous pouvez obtenir le même effet en utilisant <code>nativeint</code>. OCaml n'a pas non plus de type flottant simple précision.</p>
 <p>OCaml fournit un type <code>char</code> qui est utilisé pour les caractères,  comme par exemple <code>'x'</code>. Malheureusement le type <code>char</code> ne permet pas de représenter les caractères Unicode puisqu'il ne supporte que 256 caractères différents. C'est un problème important qui n'est pas résolu au niveau d'OCaml directement, mais cependant il y a des <a href="http://camomile.sourceforge.net/" class="external" title="http://camomile.sourceforge.net/">bibliothèques</a> qui fournissent des types et des fonctions pour manipuler les caractères Unicode et leurs différents encodages.</p>
 
 <p>Les strings ne sont pas des listes de caractères. Elles ont leur propre représentation interne qui est particulièrement efficace.</p>
@@ -156,7 +156,7 @@ This expression has type float but is here used with type int
 This expression has type int but is here used with type float
 </pre>
 
-<p class="first_para">Dans ce cas Ocaml se plaint du premier argument.</p>
+<p class="first_para">Dans ce cas OCaml se plaint du premier argument.</p>
 <p>Comment faire alors si on veut vraiment ajouter un int à un float ? (Supposons qu'ils soient stockés dans des variables appelées <code>i</code> et <code>f</code>). En OCaml la conversion doit être explicite :</p>
 <pre>
 float_of_int i +. f;;
@@ -234,7 +234,7 @@ give_me_a_three : 'a -&gt; int
 
 <p>Pour le moment l'utilité des fonctions polymorphes n'est pas évidente, mais elles sont vraiment très utiles et très communes, nous en parlerons plus tard. (nous verrons que c'est un peu comme les templates en C++ ou les generics en Java 1.5).</p>
 <a name="Inférence_de_types"></a><h2><span>Inférence de types</span></h2>
-<p class="first_para">Donc le thème de ce tutoriel est que les langages fonctionnels ont un tas de Fonctionnalités Vraiment Cool, et Ocaml est un langage qui a tous ces Trucs Bien Sympas en même temps, ce qui en fait un langage très pratique pour les programmeurs. Mais le plus bizarre est sans doute que la plupart de ces propriétés avantageuses n'ont en fait rien à voir avec la « programmation fonctionnelle ». Quoi qu'il en soit, voici donc le premier de ces Trucs Bien Sympas: l'inférence de types.</p>
+<p class="first_para">Donc le thème de ce tutoriel est que les langages fonctionnels ont un tas de Fonctionnalités Vraiment Cool, et OCaml est un langage qui a tous ces Trucs Bien Sympas en même temps, ce qui en fait un langage très pratique pour les programmeurs. Mais le plus bizarre est sans doute que la plupart de ces propriétés avantageuses n'ont en fait rien à voir avec la « programmation fonctionnelle ». Quoi qu'il en soit, voici donc le premier de ces Trucs Bien Sympas: l'inférence de types.</p>
 <p>En deux mots : vous n'avez pas besoin de déclarer le type de vos fonctions et variables puisqu'OCaml fait ça pour vous.</p>
 <p>En plus OCaml vérifie que tous vos types collent bien entre eux, même entre différents fichiers.</p>
 <p>Et comme OCaml est aussi un langage pratique, il fournit également certains moyens pour contourner le système de types et ses vérifications, pour les (très) rares cas où cela est nécessaire. Il n'y a probablement que les gourous qui auront éventuellement besoin de pratiquer ce genre de sport.</p>
