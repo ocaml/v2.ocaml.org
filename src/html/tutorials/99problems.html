@@ -974,7 +974,7 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
     algorithms for a detailed description of Huffman codes (you can
     start with
     the <a href="http://en.wikipedia.org/wiki/Huffman_coding"
-    >Wikipedia</a> page)!</p>
+    >Wikipedia page</a>)!</p>
   <p>We suppose a set of symbols with their frequencies, given as a
   list of fr(S,F) terms. Example:
   [fr(a,45),fr(b,13),fr(c,12),fr(d,16),fr(e,9),fr(f,5)]. Our objective
@@ -993,12 +993,88 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 <!------------------------------------------------------------------------>
 <h2><a name="bin-tree" ></a>Binary Trees</h2>
 
-<p>A binary tree is either empty or it is composed of a root element
-  and two successors, which are binary trees themselves.</p>
+<p><em>A binary tree is either empty or it is composed of a root element
+    and two successors, which are binary trees themselves.</em></p>
+<p>In OCaml, one can define a new type <code>binary_tree</code> that
+  carries an arbitrary value of type <code>'a</code> at each node.
+<!-- FIXME: rewrite -->
+</p>
+<pre ml:content="ocaml">
+  type 'a binary_tree =
+    | Empty
+    | Node of 'a * 'a binary_tree * 'a binary_tree
+</pre>
+  <p>An example of tree carrying <code>char</code> data is:</p>
+<pre ml:content="ocaml">
+  Node('a', Node('b', Node('d', Empty, Empty), Node('e', Empty, Empty)),
+       Node('c', Empty, Node('f', Node('g', Empty, Empty), Empty)))
+</pre>
+  <p>In OCaml, the strict type discipline <em>guarantees</em> that, if
+  you get a value of type <code>binary_tree</code>, then it must have
+  been created with the two constructors <code>Empty</code>
+  and <code>Node</code>.
+</p>
+
+<div class="question" >Construct completely balanced binary
+  trees</div>
+  <p>In a completely balanced binary tree, the following property
+    holds for every node: The number of nodes in its left subtree and
+    the number of nodes in its right subtree are almost equal, which
+    means their difference is not greater than one.</p>
+  <p>Write a function <code>cbal_tree</code> to construct completely
+    balanced binary trees for a given number of nodes.  The predicate
+    should generate all solutions via backtracking.  Put the
+    letter <code>'x'</code> as information into all nodes of the
+    tree.</p>
+  <!-- FIXME: picture of the tree below desired. -->
+<button onclick="toggleContent('q55')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q55" class="solution">
+</pre>
+<pre ml:content="ocaml">
+  cbal_tree 4
+  = Node('x', Node('x', Empty, Empty),
+         Node('x', Empty, Node('x', Empty, Empty)))
+</pre>
+
+<div class="question" >Symmetric binary trees</div>
+  <p>Let us call a binary tree symmetric if you can draw a vertical
+    line through the root node and then the right subtree is the mirror
+    image of the left subtree. Write a predicate symmetric/1 to check
+    whether a given binary tree is symmetric.</p>
+  <p>Hint: Write a predicate
+    <code>mirror</code> first to check whether one tree is the mirror
+    image of another.  We are only interested in the structure, not in
+    the contents of the nodes.</p>
+<button onclick="toggleContent('q56')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q56" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
 
 <div class="question" ></div>
-<button onclick="toggleContent('q54')" class="solution">Solution</button>
-<pre ml:content="ocaml" id="q54" class="solution">
+<button onclick="toggleContent('q57')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q57" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" ></div>
+<button onclick="toggleContent('q58')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q58" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" ></div>
+<button onclick="toggleContent('q59')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q59" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" ></div>
+<button onclick="toggleContent('q60')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q60" class="solution">
 </pre>
 <pre ml:content="ocaml">
 </pre>
