@@ -5,6 +5,10 @@
   <body>
     <h1>What is OCaml?</h1>
 
+    <div class="pull-right hero-unit" style="margin-left: 1em" >
+      <em>Table of contents</em>
+      <div ml:replace="toc"></div>
+    </div>
 
     <p>
       <strong>OCaml</strong> is a general purpose industrial-strength
@@ -28,7 +32,7 @@
     “<a href="http://caml.inria.fr/about/history.en.html">A History of
     Caml</a>” for an account of the origins of the language.
 
-    <h2>Strengths</h2>
+    <h2><a name="strengths"></a>Strengths</h2>
     <p>The OCaml language offers:</p>
     <ul>
       <li>
@@ -81,7 +85,7 @@
       </li>
     </ul>
 
-    <h2>A Widely Used Programming Language</h2>
+    <h2><a name="widely-used"></a>A Widely Used Programming Language</h2>
     <p>
       The OCaml language was initially used to develop applications
       that involve symbolic computation: automatic theorem provers,
@@ -103,9 +107,9 @@
       conditions regarding the Caml software distribution.
     </p>
 
-    <h2>Overview of the OCaml language and tools</h2>
+    <h2><a name="overview"></a>Overview of the OCaml language and tools</h2>
 
-    <h3>Safety</h3>
+    <h3><a name="safety"></a>Safety</h3>
     <p>
       OCaml is a safe language. Programs are verified by the compiler
       before they can be executed. This rules out many programming
@@ -121,7 +125,7 @@
       information is automatically inferred by the compiler.
     </p>
 
-    <h3>Functions</h3>
+    <h3><a name="functions"></a>Functions</h3>
     <p>
       OCaml is a functional programming language: there is no restriction on
       the definition and use of functions. In other words, functions are
@@ -129,20 +133,20 @@
       or returned by a function.
     </p>
 
-    <h3>Imperative features</h3>
+    <h3><a name="imperative"></a>Imperative features</h3>
     <p>
       OCaml offers a full array of imperative features. In particular,
       variables, arrays, and record components can be declared as
       modifiable. Several varieties of loops are available.
     </p>
 
-    <h3>Error recovery</h3>
+    <h3><a name="error"></a>Error recovery</h3>
     <p>
       OCaml features a general exception mechanism to signal and
       handle errors and exceptional situations.
     </p>
 
-    <h3>Data Types</h3>
+    <h3><a name="types"></a>Data Types</h3>
     <p>OCaml offers numerous built-in data types, including:</p>
     <ul>
       <li>
@@ -176,7 +180,7 @@
       which is mandatory for programming in the large.
     </p>
 
-    <h3>Aptness to symbolic computation</h3>
+    <h3><a name="symbolic"></a>Aptness to symbolic computation</h3>
     <p>
       OCaml features pattern matching, a generalization of the
       traditional case analysis construct. Pattern matching offers a
@@ -192,7 +196,7 @@
       manipulate symbolic data.
     </p>
 
-    <h3>Polymorphism</h3>
+    <h3><a name="polymorphism"></a>Polymorphism</h3>
     <p>
       OCaml features a polymorphic type system: some undetermined
       types can be represented by variables, which may later be
@@ -202,7 +206,7 @@
       duplication.
     </p>
 
-    <h3>Programming in the large</h3>
+    <h3><a name="large"></a>Programming in the large</h3>
     <p>
       An OCaml program is made of compilation units that are dealt with
       separately by the compiler. This scheme is fully compatible with the
@@ -215,7 +219,7 @@
       modules.
     </p>
 
-    <h3>Object-oriented programming</h3>
+    <h3><a name="oo"></a>Object-oriented programming</h3>
     <p>
       OCaml allows writing programs in an object-oriented style. In keeping
       with the language's philosophy, the object-oriented layer obeys the
@@ -226,7 +230,8 @@
       in a natural manner.
     </p>
 
-    <h3>Automatic memory management and incremental garbage collection</h3>
+    <h3><a name="gc"></a>Automatic memory management and incremental
+      garbage collection</h3>
     <p>
       OCaml features automatic memory management: allocation and
       deallocation of data structures is implicit, and dealt with by the
@@ -240,7 +245,7 @@
       delays.
     </p>
 
-    <h3>Evaluation regime</h3>
+    <h3><a name="strict"></a>Evaluation regime</h3>
     <p>
       OCaml's evaluation strategy is strict. A lazy evaluation regime may be
       simulated, when required, via explicit suspensions. Thus, it is
@@ -248,7 +253,8 @@
       streams.
     </p>
 
-    <h3>Efficient compiler, efficient compiled code</h3>
+    <h3><a name="efficient"></a>Efficient compiler, efficient
+      compiled code</h3>
     <p>
       OCaml offers two batch compilers: a bytecode compiler and a native
       code compiler. Both support separate compilation. Caml Light only
@@ -263,7 +269,7 @@
       performance meets the highest standards of modern compilers.
     </p>
 
-    <h3>Interactivity</h3>
+    <h3><a name="interactive"></a>Interactivity</h3>
     <p>
       OCaml provides an interactive “read-eval-print” loop, which is
       convenient both for learning and for rapid testing and debugging of
@@ -272,7 +278,7 @@
       printed by the interactive system.
     </p>
 
-    <h3>Debugging facilities</h3>
+    <h3><a name="debugging"></a>Debugging facilities</h3>
     <p>Several different methods are available to debug OCaml programs:</p>
     <ul>
       <li>
@@ -294,7 +300,7 @@
       </li>
     </ul>
 
-    <h3>Parsing</h3>
+    <h3><a name="parsing"></a>Parsing</h3>
     <p>
       OCaml offers parser generation tools analogous to “lex” and “yacc”.
       Furthermore, it offers a built-in type of data streams which eases
