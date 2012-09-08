@@ -578,8 +578,8 @@ function toggleContent(id) {
      [[`a; `d]; [`c]]; [[`b; `d]; [`c]]; [[`c; `d]; [`a]]; [[`c; `d]; [`b]]]
 </pre>
 
-<div class="question" >Sorting a list of lists according to length of
-  sublists</div>
+<div class="question" name="sort-list-sub" >Sorting a list of lists
+  according to length of sublists</div>
     <p>a) We suppose that a list contains elements that are lists
     themselves. The objective is to sort the elements of this list
     according to their length. E.g. short lists first, longer lists
@@ -1776,12 +1776,231 @@ mask the previous fields of the same name.)
 <h2><a name="misc" ></a>Miscellaneous Problems</h2>
 
 
-<div class="question" ></div>
+<div class="question" >Eight queens problem</div>
+<p>This is a classical problem in computer science. The objective is
+  to place eight queens on a chessboard so that no two queens are
+  attacking each other; i.e., no two queens are in the same row, the
+  same column, or on the same diagonal.</p>
+<p>
+  Hint: Represent the positions of the queens as a list of numbers
+  1..N. Example: <code>[4;2;7;3;6;8;5;1]</code> means that the queen
+  in the first column is in row 4, the queen in the second column is
+  in row 2, etc. Use the generate-and-test paradigm.</p>
 <button onclick="toggleContent('q90')" class="solution">Solution</button>
 <pre ml:content="ocaml" id="q90" class="solution">
 </pre>
 <pre ml:content="ocaml">
 </pre>
+
+<div class="question" >Knight's tour</div>
+<p>Another famous problem is this one: How can a knight jump on an N×N
+  chessboard in such a way that it visits every square exactly
+  once?</p>
+<p>
+  Hints: Represent the squares by pairs of their coordinates 
+  <code>(x,y)</code>, where both <code>x</code> and <code>y</code> are
+  integers between 1 and N.  Define the function <code>jump n
+  (x,y)</code> that returns all coordinates <code>(u,v)</code> to
+  which a knight can jump from <code>(x,y)</code> to on
+  a <code>n</code>×<code>n</code> chessboard.  And finally, represent
+  the solution of our problem as a list knight positions (the
+  knight's tour). </p>
+<button onclick="toggleContent('q91')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q91" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Von Koch's conjecture</div>
+<p>Several years ago I met a mathematician who was intrigued by a
+  problem for which he didn't know a solution. His name was Von Koch,
+  and I don't know whether the problem has been solved since.</p>
+<img src="https://sites.google.com/site/prologsite/_/rsrc/1264955485190/prolog-problems/7/p92a.gif"
+     alt="Tree numbering"
+     style="float: right; padding-left: 1em" />
+<p>Anyway, the puzzle goes like this: Given a tree with N nodes (and
+  hence N-1 edges). Find a way to enumerate the nodes from 1 to N and,
+  accordingly, the edges from 1 to N-1 in such a way, that for each edge
+  K the difference of its node numbers equals to K. The conjecture is
+  that this is always possible.</p>
+<p>For small trees the problem is easy to solve by hand. However, for
+  larger trees, and 14 is already very large, it is extremely difficult
+  to find a solution.  And remember, we don't know for sure whether there
+  is always a solution!</p>
+<center>
+  <img src="https://sites.google.com/site/prologsite/_/rsrc/1264955528417/prolog-problems/7/p92b.gif"
+       alt="Larger tree"
+       />
+</center>
+<p>Write a function that calculates a numbering scheme for a given
+  tree.  What is the solution for the larger tree pictured above?</p>
+<button onclick="toggleContent('q92')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q92" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >An arithmetic puzzle</div>
+<p>
+  Given a list of integer numbers, find a correct way of inserting
+  arithmetic signs (operators) such that the result is a correct
+  equation.  Example: With the list of
+  numbers <code>[2;3;5;7;11]</code> we can form the equations 2-3+5+7
+  = 11 or 2 = (3*5+7)/11 (and ten others!).</p>
+<button onclick="toggleContent('q93')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q93" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >English number words</div>
+<p>On financial documents, like cheques, numbers must sometimes be
+  written in full words.  Example: 175 must be written as
+  one-seven-five.  Write a function <code>full_words</code> to print
+  (non-negative) integer numbers in full words. </p>
+<button onclick="toggleContent('q94')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q94" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Syntax checker</div>
+<img src="https://sites.google.com/site/prologsite/_/rsrc/1264955783053/prolog-problems/7/p96.gif"
+     alt="Syntax graph"
+      />
+<p>In a certain programming language (Ada) identifiers are defined by
+  the syntax diagram (railroad chart) opposite. Transform the syntax
+  diagram into a system of syntax diagrams which do not contain loops;
+  i.e. which are purely recursive. Using these modified diagrams,
+  write a function <code>identifier : string -> bool</code> that can
+  check whether or not a given string is a legal identifier.</p>
+<button onclick="toggleContent('q95')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q95" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Sudoku</div>
+<p>Sudoku puzzles go like this: </p>
+<pre>
+   Problem statement                 Solution
+
+    .  .  4 | 8  .  . | .  1  7	     9  3  4 | 8  2  5 | 6  1  7	     
+            |         |                      |         |
+    6  7  . | 9  .  . | .  .  .	     6  7  2 | 9  1  4 | 8  5  3
+            |         |                      |         |
+    5  .  8 | .  3  . | .  .  4      5  1  8 | 6  3  7 | 9  2  4
+    --------+---------+--------      --------+---------+--------
+    3  .  . | 7  4  . | 1  .  .      3  2  5 | 7  4  8 | 1  6  9
+            |         |                      |         |
+    .  6  9 | .  .  . | 7  8  .      4  6  9 | 1  5  3 | 7  8  2
+            |         |                      |         |
+    .  .  1 | .  6  9 | .  .  5      7  8  1 | 2  6  9 | 4  3  5
+    --------+---------+--------      --------+---------+--------
+    1  .  . | .  8  . | 3  .  6	     1  9  7 | 5  8  2 | 3  4  6
+            |         |                      |         |
+    .  .  . | .  .  6 | .  9  1	     8  5  3 | 4  7  6 | 2  9  1
+            |         |                      |         |
+    2  4  . | .  .  1 | 5  .  .      2  4  6 | 3  9  1 | 5  7  8
+</pre>
+<p>Every spot in the puzzle belongs to a (horizontal) row and a
+  (vertical) column, as well as to one single 3x3 square (which we call
+  "square" for short). At the beginning, some of the spots carry a
+  single-digit number between 1 and 9. The problem is to fill the
+  missing spots with digits in such a way that every number between 1
+  and 9 appears exactly once in each row, in each column, and in each
+  square.</p>
+<button onclick="toggleContent('q96')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q96" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Nonograms</div>
+<p>Around 1994, a certain kind of puzzles was very popular in
+  England. The "Sunday Telegraph" newspaper wrote: "Nonograms are
+  puzzles from Japan and are currently published each week only in The
+  Sunday Telegraph. Simply use your logic and skill to complete the grid
+  and reveal a picture or diagram." As an OCaml programmer, you are in a
+  better situation: you can have your computer do the work!
+</p>
+<p>The puzzle goes like this: Essentially, each row and column of a
+  rectangular bitmap is annotated with the respective lengths of its
+  distinct strings of occupied cells. The person who solves the puzzle
+  must complete the bitmap given only these lengths. </p>
+<pre>
+          Problem statement:          Solution:
+
+          |_|_|_|_|_|_|_|_| 3         |_|X|X|X|_|_|_|_| 3           
+          |_|_|_|_|_|_|_|_| 2 1       |X|X|_|X|_|_|_|_| 2 1         
+          |_|_|_|_|_|_|_|_| 3 2       |_|X|X|X|_|_|X|X| 3 2         
+          |_|_|_|_|_|_|_|_| 2 2       |_|_|X|X|_|_|X|X| 2 2         
+          |_|_|_|_|_|_|_|_| 6         |_|_|X|X|X|X|X|X| 6           
+          |_|_|_|_|_|_|_|_| 1 5       |X|_|X|X|X|X|X|_| 1 5         
+          |_|_|_|_|_|_|_|_| 6         |X|X|X|X|X|X|_|_| 6           
+          |_|_|_|_|_|_|_|_| 1         |_|_|_|_|X|_|_|_| 1           
+          |_|_|_|_|_|_|_|_| 2         |_|_|_|X|X|_|_|_| 2           
+           1 3 1 7 5 3 4 3             1 3 1 7 5 3 4 3              
+           2 1 5 1                     2 1 5 1
+</pre>
+<p>For the example above, the problem can be stated as the two lists
+  <code>[[3];[2;1];[3;2];[2;2];[6];[1;5];[6];[1];[2]]</code> and
+  <code>[[1;2];[3;1];[1;5];[7;1];[5];[3];[4];[3]]</code> which give
+  the "solid" lengths of the rows and columns, top-to-bottom and
+  left-to-right, respectively. Published puzzles are larger than this
+  example, e.g. 25×20, and apparently always have unique
+  solutions. </p>
+<button onclick="toggleContent('q97')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q97" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+
+<div class="question" >Crossword puzzle</div>
+<p>Given an empty (or almost empty) framework of a crossword puzzle
+  and a set of words. The problem is to place the words into the
+  framework.</p>
+<center>
+  <img src="https://sites.google.com/site/prologsite/prolog-problems/7/p99.gif?attredirects=0"
+       alt="puzzle"
+       />
+</center>
+<p>The particular crossword puzzle is specified in a text file which
+  first lists the words (one word per line) in an arbitrary
+  order. Then, after an empty line, the crossword framework is
+  defined. In this framework specification, an empty character
+  location is represented by a dot (.). In order to make the solution
+  easier, character locations can also contain predefined character
+  values. The puzzle above is defined in the
+  file <a href="https://sites.google.com/site/prologsite/prolog-problems/7/solutions-7/p7_09a.dat?attredirects=0&d=1"
+  >p7_09a.dat</a>, other examples
+  are <a href="https://sites.google.com/site/prologsite/prolog-problems/7/solutions-7/p7_09b.dat?attredirects=0&d=1"
+  >p7_09b.dat</a>
+  and <a href="https://sites.google.com/site/prologsite/prolog-problems/7/solutions-7/p7_09d.dat?attredirects=0&d=1"
+  >p7_09d.dat</a>.  There is also an example of a puzzle
+  (<a href="https://sites.google.com/site/prologsite/prolog-problems/7/solutions-7/p7_09c.dat?attredirects=0&d=1"
+  >p7_09c.dat</a>) which does not have a solution.</p>
+<p>Words are strings (character lists) of at least two characters. A
+  horizontal or vertical sequence of character places in the crossword
+  puzzle framework is called a site. Our problem is to find a compatible
+  way of placing words onto sites. </p>
+<p><strong>Hints:</strong></p>
+<ol>
+  <li>The problem is not easy. You will need some time to thoroughly
+    understand it.  So, don't give up too early!  And remember that
+    the objective is a clean solution, not just a quick-and-dirty
+    hack!</li>
+  <li>For efficiency reasons it is important, at least for larger
+    puzzles, to sort the words and the sites in a particular
+    order. </li>
+</ol>
+<button onclick="toggleContent('q98')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q98" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
 
 
   </body>
