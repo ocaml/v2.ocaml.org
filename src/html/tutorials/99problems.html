@@ -1397,13 +1397,142 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
     empty) set of successors which are multiway trees themselves.  A
     multiway tree is never empty. The set of successor trees is sometimes
     called a forest.</em></p>
+<p>To represent multiway trees, we will use the following type which
+  is a direct translation of the definition:</p>
+<pre ml:content="ocaml">
+  type 'a mult_tree = T of 'a * 'a mult_tree list
+</pre>
+<p>The example tree depicted opposite is therefore represented by the
+  following OCaml expression:</p>
+<pre ml:content="ocaml">
+  T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])])
+</pre>
 
-
-<div class="question" ></div>
-<button onclick="toggleContent('q70')" class="solution">Solution</button>
-<pre ml:content="ocaml" id="q70" class="solution">
+<div class="question" >Count the nodes of a multiway tree</div>
+<button onclick="toggleContent('q70_c')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q70_c" class="solution">
+  let rec count_nodes (T(_, sub)) =
+    List.fold_left (fun n t -> n + count_nodes t) 1 sub
 </pre>
 <pre ml:content="ocaml">
+  count_nodes (T('a', [T('f',[]) ])) = 2
+</pre>
+
+<img src="https://sites.google.com/site/prologsite/_/rsrc/1264946214751/prolog-problems/5/p70.gif"
+     alt="multiway tree"
+     style="float:right" />
+<div class="question" >Tree construction from a node string</div>
+<p>We suppose that the nodes of a multiway tree contain single
+  characters.  In the depth-first order sequence of its nodes, a
+  special character <code>^</code> has been inserted whenever, during
+  the tree traversal, the move is a backtrack to the previous
+  level.</p>
+<p>By this rule, the tree in the figure opposite is represented as:
+  <code>afg^^c^bd^e^^^</code>.</p>
+<p>Write functions
+  <code>string_of_tree : char mult_tree -> string</code> to construct
+  the string representing the tree and
+  <code>tree_of_string : string -> char mult_tree</code> to construct
+  the tree when the string is given.  </p>
+<button onclick="toggleContent('q70')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q70" class="solution">
+  (* We could build the final string by string concatenation but this is
+     expensive due to the number of operations.  We use a buffer instead. *)
+  let rec add_string_of_tree buf (T(c, sub)) =
+    Buffer.add_char buf c;
+    List.iter (add_string_of_tree buf) sub;
+    Buffer.add_char buf '^'
+  let string_of_tree t =
+    let buf = Buffer.create 128 in
+    add_string_of_tree buf t;
+    Buffer.contents buf;;
+  let rec tree_of_substring t s i len =
+    if i >= len || s.[i] = '^' then List.rev t, i + 1
+    else
+      let sub, j = tree_of_substring [] s (i+1) len in
+      tree_of_substring (T(s.[i], sub) ::t) s j len
+  let tree_of_string s =
+    match tree_of_substring [] s 0 (String.length s) with
+    | [t], _ -> t
+    | _ -> failwith "tree_of_string"
+</pre>
+<pre ml:content="ocaml">
+  let t =
+    T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])]);;
+  string_of_tree t = "afg^^c^bd^e^^^";;
+  tree_of_string "afg^^c^bd^e^^^" = t;;
+</pre>
+
+<div class="question" >Determine the internal path length of a
+  tree</div>
+<p>We define the internal path length of a multiway tree as the total
+  sum of the path lengths from the root to all nodes of the tree.  By
+  this definition, the tree <code>t</code> in the figure of the
+  previous problem has an internal path length of 9.  Write a
+  function <code>ipl tree</code> that returns the internal path length
+  of <code>tree</code>.</p>
+<button onclick="toggleContent('q71')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q71" class="solution">
+  let rec ipl_sub len (T(_, sub)) =
+    (* [len] is the distance of the current node to the root.  Add the
+       distance of all sub-nodes. *)
+    List.fold_left (fun sum t -> sum + ipl_sub (len + 1) t) len sub
+  let ipl t = ipl_sub 0 t
+</pre>
+<pre ml:content="ocaml">
+  ipl t = 9
+</pre>
+
+<div class="question" >Construct the bottom-up order sequence of the
+  tree nodes</div>
+<p>Write a function <code>bottom_up t</code> which constructs the
+  bottom-up sequence of the nodes of the multiway
+  tree <code>t</code>.</p>
+<button onclick="toggleContent('q72')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q72" class="solution">
+  let rec prepend_bottom_up (T(c, sub)) l =
+    List.fold_right (fun t l -> prepend_bottom_up t l) sub (c :: l)
+  let bottom_up t = prepend_bottom_up t []
+</pre>
+<pre ml:content="ocaml">
+  bottom_up (T('a', [T('b', [])])) = ['b'; 'a'];;
+  bottom_up t = ['g'; 'f'; 'c'; 'd'; 'e'; 'b'; 'a']
+</pre>
+
+<div class="question" >Lisp-like tree representation</div>
+<p>There is a particular notation for multiway trees in Lisp.  The
+  following pictures show how multiway tree structures are represented
+  in Lisp.</p>
+<center>
+  <img src="https://sites.google.com/site/prologsite/_/rsrc/1264946557086/prolog-problems/5/p73.png"
+       alt="Lisp representation of multiway trees" />
+</center>
+<p>Note that in the "lispy" notation a node with successors (children)
+  in the tree is always the first element in a list, followed by its
+  children.  The "lispy" representation of a multiway tree is a sequence
+  of atoms and parentheses '(' and ')'.  This is very close to the way
+  trees are represented in OCaml, except that no
+  constructor <code>T</code> is used.  Write a function <code>lispy :
+    char mult_tree -> string</code> that returns the lispy notation of
+  the tree.</p>
+<button onclick="toggleContent('q73')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q73" class="solution">
+  let rec add_lispy buf = function
+    | T(c, []) -> Buffer.add_char buf c
+    | T(c, sub) ->
+       Buffer.add_char buf '(';
+       Buffer.add_char buf c;  
+       List.iter (fun t -> Buffer.add_char buf ' '; add_lispy buf t) sub;
+       Buffer.add_char buf ')'
+  let lispy t =
+    let buf = Buffer.create 128 in
+    add_lispy buf t;
+    Buffer.contents buf
+</pre>
+<pre ml:content="ocaml">
+  lispy (T('a', [])) = "a";;
+  lispy (T('a', [T('b', [])])) = "(a b)";;
+  lispy t = "(a (f g) c (b d e))"
 </pre>
 
 
