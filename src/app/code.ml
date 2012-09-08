@@ -11,16 +11,18 @@ let html_encode = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
 let highlight_ocaml =
   (* Simple minded engine to highlight OCaml code. *)
   let id = "\\b[a-z_][a-zA-Z0-9_']*" in
+  (* Arguments to functions may pattern match. *)
+  let args = "\\b[^=]+" in
   let subst = [ (* regex, replacement *)
     ("\\((\\*\\([^)]\\|[^*])\\)*\\*)\\)",
      "<span class=\"ocaml-comment\">\\1</span>");
-    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ " +\\)\\(\\(" ^ id
-     ^ " +\\)*\\)= *function",
+    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ " +\\)\\(" ^ args
+     ^ "\\)= *function",
      "<span class=\"kwa\">\\1</span><span class=\"ocaml-function\">\\3</span>\
       <span class=\"ocaml-variable\">\\4</span>= \
       <span class=\"kwb\">function</span>");
     ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id
-     ^ " +\\)\\(\\(" ^ id ^ " +\\)+\\)=",
+     ^ " +\\)\\(" ^ args ^ "\\)=",
      "<span class=\"kwa\">\\1</span><span class=\"ocaml-function\">\\3</span>\
      <span class=\"ocaml-variable\">\\4</span>=");
     ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ "\\) *=",
