@@ -1392,14 +1392,14 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 
 <img src="https://sites.google.com/site/prologsite/_/rsrc/1264946214751/prolog-problems/5/p70.gif"
      alt="multiway tree"
-     style="float:right" />
+     style="float:right; padding-left: 1em" />
 <p><em>A multiway tree is composed of a root element and a (possibly
     empty) set of successors which are multiway trees themselves.  A
     multiway tree is never empty. The set of successor trees is sometimes
     called a forest.</em></p>
 <p>To represent multiway trees, we will use the following type which
   is a direct translation of the definition:</p>
-<pre ml:content="ocaml">
+<pre ml:content="ocaml" style="width: 80%">
   type 'a mult_tree = T of 'a * 'a mult_tree list
 </pre>
 <p>The example tree depicted opposite is therefore represented by the
@@ -1539,12 +1539,234 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 <!------------------------------------------------------------------------>
 <h2><a name="graphs" ></a>Graphs</h2>
 
-    <p>A graph is defined as a set of nodes and a set of edges, where
-    each edge is a pair of nodes. </p>
+<p><em>A graph is defined as a set of nodes and a set of edges, where
+    each edge is a pair of different nodes.</em></p>
 
-<div class="question" ></div>
+<img src="https://sites.google.com/site/prologsite/_/rsrc/1264948248705/prolog-problems/6/graph1.gif"
+     alt="A graph"
+     style="float:right; padding-left: 1em" />
+<p>There are several ways to represent graphs in OCaml.</p>
+<ul>
+  <li style="padding-bottom: 2ex"
+      >One method is to list all edges, an edge being a pair of nodes.
+    In this form, the graph depicted opposite is represented as the
+    following expression:
+    <pre ml:content="ocaml" style="width: 80%" >
+      ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b']
+    </pre>
+    We call this <strong>edge-clause form</strong>.
+    Obviously, isolated nodes cannot be represented. 
+  </li>
+
+  <li style="padding-bottom: 2ex"
+      >Another method is to represent the whole graph as one data
+    object.  According to the definition of the graph as a pair of two
+    sets (nodes and edges), we may use the following OCaml type:
+<pre ml:content="ocaml">
+  type 'a graph_term = { nodes : 'a list;  edges : ('a * 'a) list }
+</pre>
+    Then, the above example graph is represented by:
+<pre ml:content="ocaml">
+  { nodes = ['b'; 'c'; 'd'; 'f'; 'g'; 'h'; 'k'];
+    edges = ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b'] }
+</pre>
+    <p>We call this <strong>graph-term form</strong>. Note, that the
+    lists are kept sorted, they are really sets, without duplicated
+    elements. Each edge appears only once in the edge list; i.e. an
+    edge from a node x to another node y is represented
+    as <code>(x,y)</code>, the couple <code>(y,x)</code> is not
+    present. The <strong>graph-term form is our default
+    representation.</strong> You may want to define a similar type
+    using sets instead of lists.
+    </p>
+  </li>
+
+  <li style="padding-bottom: 2ex">
+    A third representation method is to associate with each node the set
+    of nodes that are adjacent to that node. We call this the
+    <strong>adjacency-list form</strong>.  In our example:
+<pre ml:content="ocaml">
+</pre>
+  </li>
+
+  <li>The representations we introduced so far well suited for
+    automated processing, but their syntax is not very user-friendly.
+    Typing the terms by hand is cumbersome and error-prone.  We can
+    define a more compact and "human-friendly" notation as follows: A
+    graph (with char labelled nodes) is represented by a string of
+    atoms and terms of the type X-Y.  The atoms stand for isolated
+    nodes, the X-Y terms describe edges.  If an X appears as an
+    endpoint of an edge, it is automatically defined as a node. Our
+    example could be written as:
+<pre ml:content="ocaml">
+  "b-c f-c g-h d f-b k-f h-g"
+</pre>
+    <p>We call this the <strong>human-friendly form</strong>.  As the
+      example shows, the list does not have to be sorted and may even
+      contain the same edge multiple times. Notice the isolated node
+      <code>d</code>. </p>
+  </li>
+</ul>
+
+<div class="question" >Conversions</div>
+<p>Write functions to convert between the different graph
+  representations. With these functions, all representations are
+  equivalent; i.e. for the following problems you can always pick freely
+  the most convenient form.  The reason this problem is
+  not particularly difficult,  because it's a lot of
+  work to deal with all the special cases. </p>
 <button onclick="toggleContent('q80')" class="solution">Solution</button>
 <pre ml:content="ocaml" id="q80" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Path from one node to another one</div>
+<p>Write a function <code>path g a b</code> that returns an acyclic
+  path <code>p</code> from node <code>a</code> to node <code>b</code>
+  in the graph <code>g</code>. The function should return the list of
+  all paths via backtracking. </p>
+<button onclick="toggleContent('q81')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q81" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Cycle from a given node</div>
+<p>Write a functions <code>cycle g a</code> that returns a closed path
+  (cycle) <code>p</code> starting at a given node <code>a</code> in
+  the graph <code>g</code>. The predicate should return the list of
+  all cycles via backtracking. </p>
+<button onclick="toggleContent('q82')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q82" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Construct all spanning trees</div>
+<img src="https://sites.google.com/site/prologsite/_/rsrc/1264949059996/prolog-problems/6/p83.gif"
+     alt="Spanning tree graph"
+     style="float: right; padding-left: 1em" />
+<p>Write a function <code>s_tree g</code> to construct (by
+  backtracking) all
+  <a href="http://en.wikipedia.org/wiki/Spanning_tree"
+  target="_blank" >spanning
+  trees</a> of a given graph <code>g</code>.  With this predicate,
+  find out how many spanning trees there are for the graph depicted to
+  the left.  The data of this example graph can be found in the test
+  below.  When you have a correct solution for the
+  <code>s_tree</code> function, use it to define two other useful
+  functions: <code>is_tree graph</code> and <code>is_connected
+  Graph</code>.  Both are five-minutes tasks! </p>
+<button onclick="toggleContent('q83')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q83" class="solution">
+</pre>
+<pre ml:content="ocaml">
+  let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
+            edges = [('a', 'b'); ('a', 'd'); ('b', 'c'); ('b', 'e');
+                     ('c', 'e'); ('d', 'e'); ('d', 'f'); ('d', 'g');
+                     ('e', 'h'); ('f', 'g'); ('g', 'h')] }
+</pre>
+
+
+<img src="https://sites.google.com/site/prologsite/_/rsrc/1264949163407/prolog-problems/6/p84.gif"
+     alt="Spanning tree graph"
+     style="float: right; padding-left: 1em" />
+<div class="question" >Construct the minimal spanning tree</div>
+<p> Write a function <code>ms_tree graph</code> to construct
+  the minimal spanning tree of a given labelled graph.  A labelled
+  graph will be represented as follows:</p>
+<pre ml:content="ocaml" style="width: 80%">
+  type ('a, 'b) labeled_graph = { nodes : 'a list;
+                                  edges : ('a * 'a * 'b) list }
+</pre>
+(Beware that from now on <code>nodes</code> and <code>edges</code>
+mask the previous fields of the same name.)
+<p>Hint: Use the
+  <a href="http://en.wikipedia.org/wiki/Prim%27s_algorithm" >algorithm
+  of Prim</a>.  A small modification of the solution of P83 does the
+  trick. The data of the example graph to the right can be found
+  below.</p>
+<button onclick="toggleContent('q84')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q84" class="solution">
+</pre>
+<pre ml:content="ocaml">
+  let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
+            edges = [('a', 'b', 5); ('a', 'd', 3); ('b', 'c', 2); ('b', 'e', 4);
+                     ('c', 'e', 6); ('d', 'e', 7); ('d', 'f', 4); ('d', 'g', 3);
+                     ('e', 'h', 5); ('f', 'g', 4); ('g', 'h', 1)] }
+</pre>
+
+<div class="question" >Graph isomorphism</div>
+<p>Two graphs G1(N1,E1) and G2(N2,E2) are isomorphic if there is a
+  bijection f: N1 → N2 such that for any nodes X,Y of N1, X and Y are
+  adjacent if and only if f(X) and f(Y) are adjacent.</p>
+<p>Write a function that determines whether two graphs are isomorphic.
+  Hint: Use an open-ended list to represent the function f. </p>
+<button onclick="toggleContent('q85')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q85" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Node degree and graph coloration</div>
+<ul>
+  <li>Write a function <code>degree graph node</code> that determines the
+    degree of a given node.</li>
+  <li>Write a function that generates a list of all nodes of a graph
+    sorted according to decreasing degree.</li>
+  <li>Use <a href="http://en.wikipedia.org/wiki/Graph_coloring#Greedy_coloring"
+    >Welsh-Powell's algorithm</a> to paint the nodes of a graph in
+    such a way that adjacent nodes have different colors.</li>
+</ul>
+<button onclick="toggleContent('q86')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q86" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Depth-first order graph traversal</div>
+<p>Write a function that generates a depth-first order graph
+  traversal sequence.  The starting point should be specified, and the
+  output should be a list of nodes that are reachable from this starting
+  point (in depth-first order). </p>
+<button onclick="toggleContent('q87')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q87" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Connected components</div>
+<p>Write a predicate that splits a graph into its
+  <a href="http://en.wikipedia.org/wiki/Connected_component_%28graph_theory%29"
+  >connected components</a>.</p>
+<button onclick="toggleContent('q88')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q88" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Bipartite graphs</div>
+<p> Write a predicate that finds out whether a given graph is
+  <a href="http://en.wikipedia.org/wiki/Bipartite_graph" >bipartite</a>.</p>
+<button onclick="toggleContent('q89')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q89" class="solution">
+</pre>
+<pre ml:content="ocaml">
+</pre>
+
+<div class="question" >Generate K-regular simple graphs with N
+  nodes</div>
+<p>In
+  a <a href="http://en.wikipedia.org/wiki/K-regular_graph" >K-regular
+  graph</a> all nodes have a degree of K; i.e. the number of edges
+  incident in each node is K. How many (non-isomorphic!)  3-regular
+  graphs with 6 nodes are there?</p>
+<p>See also
+ the <a href="https://sites.google.com/site/prologsite/prolog-problems/6/solutions-6/p6_11.txt?attredirects=0&d=1"
+	>table of results</a>.</p>
+<button onclick="toggleContent('q89+1')" class="solution">Solution</button>
+<pre ml:content="ocaml" id="q89+1" class="solution">
 </pre>
 <pre ml:content="ocaml">
 </pre>
