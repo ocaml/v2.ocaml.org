@@ -12,19 +12,18 @@ let highlight_ocaml =
   (* Simple minded engine to highlight OCaml code. *)
   let id = "\\b[a-z_][a-zA-Z0-9_']*" in
   (* Arguments to functions may pattern match. *)
-  let args = "\\b[^=]+" in
+  let args = "[^=<>]+" in
   let subst = [ (* regex, replacement *)
     ("\\((\\*\\([^)]\\|[^*])\\)*\\*)\\)",
      "<span class=\"ocaml-comment\">\\1</span>");
-    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ " +\\)\\(" ^ args
-     ^ "\\)= *function",
-     "<span class=\"kwa\">\\1</span><span class=\"ocaml-function\">\\3</span>\
-      <span class=\"ocaml-variable\">\\4</span>= \
+    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ id ^ " +\\)\\("
+     ^ args ^ "\\)= *function",
+     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span>\
+      <span class=\"ocaml-variable\">\\3</span>= \
       <span class=\"kwb\">function</span>");
-    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id
-     ^ " +\\)\\(" ^ args ^ "\\)=",
-     "<span class=\"kwa\">\\1</span><span class=\"ocaml-function\">\\3</span>\
-     <span class=\"ocaml-variable\">\\4</span>=");
+    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ id ^ " +\\)\\(" ^ args ^ "\\)=",
+     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span>\
+      <span class=\"ocaml-variable\">\\3</span>=");
     ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ "\\) *=",
      "<span class=\"kwa\">\\1</span>\
       <span class=\"ocaml-variable\">\\3</span> =");
