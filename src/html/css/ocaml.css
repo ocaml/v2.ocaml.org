@@ -404,13 +404,17 @@ div.A {
 /* 99 Problems
  ***********************************************************************/
 
-.question {
+.question .title {
   display: list-item;
   list-style-type: square;
   font-weight: bold;
   padding: 1ex 0 0.5ex 0em;
   margin-left: 1em;
 }
+
+.easy .title:before { content: "♠ ";  color: green; }
+.medium .title:before { content: "♠♠ "; color: orange; }
+.hard .title:before { content: "♠♠♠ "; color: red; }
 
 .solution {
   display: none;
