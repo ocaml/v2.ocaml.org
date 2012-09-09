@@ -69,7 +69,7 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   last [ `a ; `b ; `c ; `d ] = Some `d;;
-  last [] = None;; 
+  last [] = None;;
 </pre>
 </div>
 
@@ -105,6 +105,10 @@ function toggleContent(id) {
 
 <div class="question easy" id="q4">
   <div class="title">Find the number of elements of a list.</div>
+  <p>OCaml standard library has <code>List.length</code> but we ask
+    that you reimplement it.  Bonus for a
+    <a href="http://en.wikipedia.org/wiki/Tail_call" >tail
+    recursive</a> solution.</p>
   <button onclick="toggleContent('q4')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
   (* This function is tail-recursive: it uses a constant amount of
@@ -123,6 +127,8 @@ function toggleContent(id) {
 
 <div class="question easy" id="q5">
   <div class="title">Reverse a list.</div>
+  <p>OCaml standard library has <code>List.rev</code> but we ask
+    that you reimplement it.</p>
   <button onclick="toggleContent('q5')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
   let rev list =
@@ -137,12 +143,12 @@ function toggleContent(id) {
 </div>
 
 <div class="question easy" id="q6">
-  <div class="title">Find out whether a list is a palindrome.  HINT:
-    a palindrome is its own reverse. </div>
+  <div class="title">Find out whether a list is a palindrome.</div>
+  <p> HINT: a palindrome is its own reverse.</p>
   <button onclick="toggleContent('q6')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
   let is_palindrome list =
-    list = List.rev list 
+    list = List.rev list
   (* One can use either the rev function from the previous problem, or the
      built-in List.rev *)
 </pre>
@@ -167,13 +173,13 @@ function toggleContent(id) {
   (* This function traverses the list, prepending any encountered elements
     to an accumulator, which flattens the list in inverse order. It can
     then be reversed to obtain the actual flattened list. *)
-  
+
   let flatten list =
     let rec aux acc = function
       | [] -> acc
       | One x :: t -> aux (x :: acc) t
       | Many l :: t -> aux (aux acc l) t in
-    List.rev (aux [] list) 
+    List.rev (aux [] list)
 </pre>
 <pre ml:content="ocaml">
   flatten [ One `a ; Many [ One `b ; Many [ One `c ; One `d ] ; One `e ] ]
@@ -207,7 +213,7 @@ function toggleContent(id) {
       | a :: (b :: _ as t) ->
          if a = b then aux (a :: current) acc t
          else aux [] ((a :: current) :: acc) t  in
-    List.rev (aux [] [] list) 
+    List.rev (aux [] [] list)
 </pre>
 <pre ml:content="ocaml">
   pack [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`d;`e;`e;`e;`e]
@@ -228,7 +234,7 @@ function toggleContent(id) {
       | [x] -> (count+1, x) :: acc
       | a :: (b :: _ as t) -> if a = b then aux (count + 1) acc t
                               else aux 0 ((count+1,a) :: acc) t   in
-    List.rev (aux 0 [] list) 
+    List.rev (aux 0 [] list)
 </pre>
 <pre ml:content="ocaml">
   encode [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`e;`e;`e;`e]
@@ -264,7 +270,7 @@ function toggleContent(id) {
       | [] :: t -> aux t
       | [x] :: t -> One x :: aux t
       | (x :: l) :: t -> Many (1 + List.length l , x) :: aux t  in
-    aux (pack list) 
+    aux (pack list)
 </pre>
 <pre ml:content="ocaml">
   encode [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`e;`e;`e;`e]
@@ -313,7 +319,7 @@ function toggleContent(id) {
       | [x] -> rle count x :: acc
       | a :: (b :: _ as t) -> if a = b then aux (count + 1) acc t
                               else aux 0 (rle count a :: acc) t   in
-    List.rev (aux 0 [] list) 
+    List.rev (aux 0 [] list)
 </pre>
 <pre ml:content="ocaml">
   encode [`a;`a;`a;`a;`b;`c;`c;`a;`a;`d;`e;`e;`e;`e] =
@@ -347,7 +353,7 @@ function toggleContent(id) {
       | h :: t -> aux (prepend n acc h) t  in
     (* This could also be written as:
        List.fold_left (prepend n) [] (List.rev list) *)
-    aux [] (List.rev list) 
+    aux [] (List.rev list)
 </pre>
 <pre ml:content="ocaml">
   replicate [`a;`b;`c] 3 = [`a;`a;`a;`b;`b;`b;`c;`c;`c]
@@ -393,13 +399,15 @@ function toggleContent(id) {
 
 <div class="question medium" id="q18" >
   <div class="title">Extract a slice from a list.</div>
-  <p>Given two indices, I and K, the slice is the list containing
-    the elements between the I'th and K'th element of the original
-    list (both limits included). Start counting the elements
-    with 1.</p>
+  <p>Given two indices, <code>i</code> and <code>k</code>, the slice
+    is the list containing the elements between the <code>i</code>'th
+    and <code>k</code>'th element of the original list (both limits
+    included).  Start counting the elements with 0 (this is the
+    way the <code>List</code> module numbers elements).</p>
   <button onclick="toggleContent('q18')" class="solution">Solution</button>
-<pre ml:content="ocaml" class="solution">
-  let slice list b e =
+  <div class="solution">
+<pre ml:content="ocaml">
+  let slice list i k =
     let rec take n = function
       | [] -> []
       | h :: t -> if n = 0 then [] else h :: take (n-1) t
@@ -408,10 +416,11 @@ function toggleContent(id) {
       | [] -> []
       | h :: t as l -> if n = 0 then l else drop (n-1) t
     in
-    take (e - b + 1) (drop (b - 1) list) 
+    take (k - i + 1) (drop i list)
 </pre>
+  </div>
 <pre ml:content="ocaml">
-  slice [`a;`b;`c;`d;`e;`f;`g;`h;`i;`j] 3 7 = [`c;`d;`e;`f;`g]
+  slice [`a;`b;`c;`d;`e;`f;`g;`h;`i;`j] 2 6 = [`c;`d;`e;`f;`g]
 </pre>
 </div>
 
@@ -425,13 +434,13 @@ function toggleContent(id) {
       | h :: t as l -> if i = 0 then List.rev acc, l
                        else aux (i-1) (h :: acc) t    in
     aux n [] list
-  
+
   let rotate list n =
     let len = List.length list in
     (* Compute a rotation value between 0 and len-1 *)
     let n = if len = 0 then 0 else (n mod len + len) mod len in
     if n = 0 then list
-    else let a, b = split list n in b @ a 
+    else let a, b = split list n in b @ a
 </pre>
 <pre ml:content="ocaml">
   rotate [`a;`b;`c;`d;`e;`f;`g;`h] 3 = [`d;`e;`f;`g;`h;`a;`b;`c];;
@@ -441,28 +450,30 @@ function toggleContent(id) {
 
 <div class="question easy" id="q20" >
   <div class="title">Remove the K'th element from a list.</div>
+  <p>The first element of the list is numbered 0, the second 1,...</p>
   <button onclick="toggleContent('q20')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
   let rec remove_at n = function
     | [] -> []
-    | h :: t -> if n = 1 then t else h :: remove_at (n-1) t
+    | h :: t -> if n = 0 then t else h :: remove_at (n-1) t
 </pre>
 <pre ml:content="ocaml">
-  remove_at 2 [`a;`b;`c;`d] = [`a;`c;`d]
+  remove_at 1 [`a;`b;`c;`d] = [`a;`c;`d]
 </pre>
 </div>
 
 <div class="question easy" id="q21" >
   <div class="title">Insert an element at a given position into a
     list.</div>
+  <p>Start counting list elements with 0.</p>
   <button onclick="toggleContent('q21')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
   let rec insert_at x n = function
     | [] -> []
-    | h :: t as l -> if n = 1 then x :: l else h :: insert_at x (n-1) t
+    | h :: t as l -> if n = 0 then x :: l else h :: insert_at x (n-1) t
 </pre>
 <pre ml:content="ocaml">
-  insert_at `alfa 2 [`a;`b;`c;`d] = [`a;`alfa;`b;`c;`d]
+  insert_at `alfa 1 [`a;`b;`c;`d] = [`a;`alfa;`b;`c;`d]
 </pre>
 </div>
 
@@ -506,7 +517,7 @@ function toggleContent(id) {
         aux (n-1) (picked :: acc) rest (len-1)
     in
     let len = List.length list in
-    aux (min n len) [] list len 
+    aux (min n len) [] list len
 </pre>
 <pre ml:content="ocaml">
   rand_select [`a;`b;`c;`d;`e;`f;`g;`h] 3
@@ -563,7 +574,7 @@ function toggleContent(id) {
   </p>
   <button onclick="toggleContent('q26')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
-  let extract k list =  
+  let extract k list =
     let rec aux k acc emit = function
       | [] -> acc
       | h :: t ->
@@ -572,7 +583,7 @@ function toggleContent(id) {
           aux k (aux (k-1) acc new_emit t) emit t
     in
     let emit x acc = x :: acc in
-    aux k [] emit list 
+    aux k [] emit list
 </pre>
 <pre ml:content="ocaml">
   extract 2 [`a;`b;`c;`d]
@@ -595,14 +606,14 @@ function toggleContent(id) {
      version, because more work is done on the lists after each transform
      to prepend the actual items. The end result is cleaner in terms of
      code, though. *)
-  
+
   let group list sizes =
     let initial = List.map (fun size -> size, []) sizes in
     (* The core of the function. Prepend accepts a list of groups, each with
        the number of items that should be added, and prepends the item to every
        group that can support it, thus turning [1,a ; 2,b ; 0,c] into
        [ [0,x::a ; 2,b ; 0,c ] ; [1,a ; 1,x::b ; 0,c] ; [ 1,a ; 2,b ; 0,c ]]
-  
+
        Again, in the prolog language (for which these questions are
        originally intended), this function is a whole lot simpler.  *)
     let prepend p list =
@@ -619,7 +630,7 @@ function toggleContent(id) {
       | [] -> [ initial ]
       | h :: t -> List.concat (List.map (prepend h) (aux t))
     in
-    let all = aux list in  
+    let all = aux list in
     (* Don't forget to eliminate all group sets that have non-full groups *)
     let complete = List.filter (List.for_all (fun (x,_) -> x = 0)) all in
     List.map (List.map snd) complete
@@ -656,14 +667,14 @@ function toggleContent(id) {
   let rec sort cmp = function
     | [] -> []
     | h :: t -> insert cmp h (sort cmp t)
-  
+
   (* Sorting according to length : prepend length, sort, remove length *)
   let length_sort lists =
     let lists = List.map (fun list -> List.length list, list) lists in
     let lists = sort (fun a b -> compare (fst a) (fst b)) lists in
     List.map snd lists
   ;;
-    
+
   (* Sorting according to length frequency : prepend frequency, sort,
      remove frequency. Frequencies are extracted by sorting lengths
      and applying RLE to count occurences of each length (see problem
@@ -676,7 +687,7 @@ function toggleContent(id) {
          if a = b then aux (count + 1) acc t
          else aux 0 ((a, count + 1) :: acc) t in
     aux 0 [] list
-  
+
   let frequency_sort lists =
     let lengths = List.map List.length lists in
     let freq = rle (sort compare lengths) in
@@ -696,6 +707,7 @@ function toggleContent(id) {
      [`m; `n]]
 </pre>
 </pre>
+</div>
 
 <!------------------------------------------------------------------------>
 <h2><a name="arithmetic" ></a>Arithmetic</h2>
@@ -899,7 +911,7 @@ function toggleContent(id) {
     let rec is_not_divisor d =
       d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
     is_not_divisor 2
-  
+
   let rec all_primes a b =
     if a > b then [] else
       let rest = all_primes (a + 1) b in
@@ -1097,8 +1109,9 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 </pre>
   <p>An example of tree carrying <code>char</code> data is:</p>
 <pre ml:content="ocaml">
-  Node('a', Node('b', Node('d', Empty, Empty), Node('e', Empty, Empty)),
-       Node('c', Empty, Node('f', Node('g', Empty, Empty), Empty)))
+  let example_tree =
+    Node('a', Node('b', Node('d', Empty, Empty), Node('e', Empty, Empty)),
+         Node('c', Empty, Node('f', Node('g', Empty, Empty), Empty)))
 </pre>
   <p>In OCaml, the strict type discipline <em>guarantees</em> that, if
   you get a value of type <code>binary_tree</code>, then it must have
@@ -1150,7 +1163,6 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 <pre ml:content="ocaml" class="solution">
 </pre>
 </div>
-
 
 <div class="question medium" id="q57" >
   <div class="title">Binary search trees (dictionaries)</div>
@@ -1261,8 +1273,14 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
     <code>count_leaves</code> to count them. </p>
   <button onclick="toggleContent('q61')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+  let rec count_leaves = function
+    | Empty -> 0
+    | Node(_, Empty, Empty) -> 1
+    | Node(_, l, r) -> count_leaves l + count_leaves r
 </pre>
 <pre ml:content="ocaml">
+  count_leaves Empty = 0;;
+  count_leaves example_tree = 3
 </pre>
 </div>
 
@@ -1273,8 +1291,14 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
     function <code>leaves</code> to collect them in a list.</p>
   <button onclick="toggleContent('q61_a')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+  let rec leaves = function
+    | Empty -> []
+    | Node(c, Empty, Empty) -> [c]
+    | Node(_, l, r) -> leaves l @ leaves r
 </pre>
 <pre ml:content="ocaml">
+  leaves Empty = [];;
+  leaves example_tree = ['d'; 'e'; 'g']
 </pre>
 </div>
 
@@ -1286,8 +1310,13 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
     in a list. </p>
   <button onclick="toggleContent('q62')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+  let rec internals = function
+    | Empty | Node(_, Empty, Empty) -> []
+    | Node(c, l, r) -> internals l @ (c :: internals r)
 </pre>
 <pre ml:content="ocaml">
+  internals (Node('a', Empty, Empty)) = [];;
+  internals example_tree = ['b'; 'a'; 'c'; 'f']
 </pre>
 </div>
 
@@ -1296,14 +1325,22 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
     list.</div>
   <p>A node of a binary tree is at level N if the path from the root to
     the node has length N-1.  The root node is at level 1.  Write a
-    function <code>atlevel t l</code> to collect all nodes of the
+    function <code>at_level t l</code> to collect all nodes of the
     tree <code>t</code> at  level <code>l</code> in a list. </p>
   <button onclick="toggleContent('q62_b')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+  let rec at_level t l = match t with
+    | Empty -> []
+    | Node(c, left, right) ->
+       if l = 1 then [c]
+       else at_level left (l - 1) @ at_level right (l - 1)
 </pre>
 <pre ml:content="ocaml">
+  at_level example_tree 2 = ['b'; 'c'];;
+  at_level example_tree 2 = ['b'; 'c'];;
+  at_level example_tree 5 = [];;
 </pre>
-  <p>Using <code>atlevel</code> it is easy to construct a function
+  <p>Using <code>at_level</code> it is easy to construct a function
     <code>levelorder</code> which creates the level-order sequence of
     the nodes. However, there are more efficient ways to do that. </p>
 </div>
@@ -1640,7 +1677,7 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
     | T(c, []) -> Buffer.add_char buf c
     | T(c, sub) ->
        Buffer.add_char buf '(';
-       Buffer.add_char buf c;  
+       Buffer.add_char buf c;
        List.iter (fun t -> Buffer.add_char buf ' '; add_lispy buf t) sub;
        Buffer.add_char buf ')'
   let lispy t =
@@ -1670,11 +1707,11 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
       >One method is to list all edges, an edge being a pair of nodes.
     In this form, the graph depicted opposite is represented as the
     following expression:
-    <pre ml:content="ocaml" style="width: 80%" >
+    <pre ml:content="ocaml" style="width: 75%" >
       ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b']
     </pre>
     We call this <strong>edge-clause form</strong>.
-    Obviously, isolated nodes cannot be represented. 
+    Obviously, isolated nodes cannot be represented.
   </li>
 
   <li style="padding-bottom: 2ex"
@@ -1686,8 +1723,9 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 </pre>
     Then, the above example graph is represented by:
 <pre ml:content="ocaml">
-  { nodes = ['b'; 'c'; 'd'; 'f'; 'g'; 'h'; 'k'];
-    edges = ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b'] }
+  let example_graph =
+    { nodes = ['b'; 'c'; 'd'; 'f'; 'g'; 'h'; 'k'];
+      edges = ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b'] }
 </pre>
     <p>We call this <strong>graph-term form</strong>. Note, that the
     lists are kept sorted, they are really sets, without duplicated
@@ -1744,14 +1782,34 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 
 <div class="question medium" id="q81" >
   <div class="title">Path from one node to another one</div>
-  <p>Write a function <code>path g a b</code> that returns an acyclic
-    path <code>p</code> from node <code>a</code> to node <code>b</code>
+  <p>Write a function <code>paths g a b</code> that returns all acyclic
+    path <code>p</code> from node <code>a</code> to node <code>b ≠ a</code>
     in the graph <code>g</code>. The function should return the list of
     all paths via backtracking. </p>
   <button onclick="toggleContent('q81')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+  (* The datastructures used here are far from the most efficient ones
+     but allow for a straightforward implementation. *)
+  (* Returns all neighbors satisfying the condition. *)
+  let neighbors g a cond =
+    let edge l (b,c) = if b = a && cond c then c :: l
+                       else if c = a && cond b then b :: l
+                       else l in
+    List.fold_left edge [] g.edges
+  let rec list_path g a to_b = match to_b with
+    | [] -> assert false (* [to_b] contains the path to [b]. *)
+    | a' :: _ ->
+       if a' = a then [to_b]
+       else
+         let n = neighbors g a' (fun c -> not(List.mem c to_b)) in
+         List.concat(List.map (fun c -> list_path g a (c :: to_b)) n)
+
+  let paths g a b =
+    assert(a <> b);
+    list_path g a [b]
 </pre>
 <pre ml:content="ocaml">
+  paths example_graph 'f' 'b' = [['f'; 'c'; 'b']; ['f'; 'b']]
 </pre>
 </div>
 
@@ -1763,8 +1821,15 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
     all cycles via backtracking. </p>
   <button onclick="toggleContent('q82')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+  let cycles g a =
+    let n = neighbors g a (fun _ -> true) in
+    let p = List.concat(List.map (fun c -> list_path g a [c]) n) in
+    List.map (fun p -> p @ [a]) p
 </pre>
 <pre ml:content="ocaml">
+  cycles example_graph 'f'
+  = [['f'; 'b'; 'c'; 'f']; ['f'; 'c'; 'f']; ['f'; 'c'; 'b'; 'f'];
+     ['f'; 'b'; 'f']; ['f'; 'k'; 'f']]
 </pre>
 </div>
 
@@ -1941,7 +2006,7 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
     chessboard in such a way that it visits every square exactly
     once?</p>
   <p>
-    Hints: Represent the squares by pairs of their coordinates 
+    Hints: Represent the squares by pairs of their coordinates
     <code>(x,y)</code>, where both <code>x</code> and <code>y</code> are
     integers between 1 and N.  Define the function <code>jump n
       (x,y)</code> that returns all coordinates <code>(u,v)</code> to
@@ -2039,7 +2104,7 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 <pre>
    Problem statement                 Solution
 
-    .  .  4 | 8  .  . | .  1  7	     9  3  4 | 8  2  5 | 6  1  7	     
+    .  .  4 | 8  .  . | .  1  7	     9  3  4 | 8  2  5 | 6  1  7
             |         |                      |         |
     6  7  . | 9  .  . | .  .  .	     6  7  2 | 9  1  4 | 8  5  3
             |         |                      |         |
@@ -2087,16 +2152,16 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 <pre>
           Problem statement:          Solution:
 
-          |_|_|_|_|_|_|_|_| 3         |_|X|X|X|_|_|_|_| 3           
-          |_|_|_|_|_|_|_|_| 2 1       |X|X|_|X|_|_|_|_| 2 1         
-          |_|_|_|_|_|_|_|_| 3 2       |_|X|X|X|_|_|X|X| 3 2         
-          |_|_|_|_|_|_|_|_| 2 2       |_|_|X|X|_|_|X|X| 2 2         
-          |_|_|_|_|_|_|_|_| 6         |_|_|X|X|X|X|X|X| 6           
-          |_|_|_|_|_|_|_|_| 1 5       |X|_|X|X|X|X|X|_| 1 5         
-          |_|_|_|_|_|_|_|_| 6         |X|X|X|X|X|X|_|_| 6           
-          |_|_|_|_|_|_|_|_| 1         |_|_|_|_|X|_|_|_| 1           
-          |_|_|_|_|_|_|_|_| 2         |_|_|_|X|X|_|_|_| 2           
-           1 3 1 7 5 3 4 3             1 3 1 7 5 3 4 3              
+          |_|_|_|_|_|_|_|_| 3         |_|X|X|X|_|_|_|_| 3
+          |_|_|_|_|_|_|_|_| 2 1       |X|X|_|X|_|_|_|_| 2 1
+          |_|_|_|_|_|_|_|_| 3 2       |_|X|X|X|_|_|X|X| 3 2
+          |_|_|_|_|_|_|_|_| 2 2       |_|_|X|X|_|_|X|X| 2 2
+          |_|_|_|_|_|_|_|_| 6         |_|_|X|X|X|X|X|X| 6
+          |_|_|_|_|_|_|_|_| 1 5       |X|_|X|X|X|X|X|_| 1 5
+          |_|_|_|_|_|_|_|_| 6         |X|X|X|X|X|X|_|_| 6
+          |_|_|_|_|_|_|_|_| 1         |_|_|_|_|X|_|_|_| 1
+          |_|_|_|_|_|_|_|_| 2         |_|_|_|X|X|_|_|_| 2
+           1 3 1 7 5 3 4 3             1 3 1 7 5 3 4 3
            2 1 5 1                     2 1 5 1
 </pre>
   <p>For the example above, the problem can be stated as the two lists
