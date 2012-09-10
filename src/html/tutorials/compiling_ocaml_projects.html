@@ -16,7 +16,7 @@ ocamlopt -o progprog module1.ml module2.ml
 <p class="first_para">That's it. The compiler produced an executable named <code>progprog</code> or <code>progprog.exe</code>. If you are wondering how to write a program in multiple files, see our <a href="modules.html" class="internal" title="Modules">Modules</a> tutorial. Don't forget that the order of the source files matters, and that <code>module1.ml</code> cannot depend on things that are defined in <code>module2.ml</code>, unless <code>module2.ml</code> comes earlier on the command line.</p>
 <p>Let's use libraries other than the standard library. The OCaml distribution is shipped with the standard library, plus several other libraries that you can use as well. There is also a large number of third-party libraries, for a wide range of applications, from networking to 3D graphics. You must understand the following:</p>
 <ol><li>The OCaml compilers know where the standard library is and uses it systematically (try: <code>ocamlc -where</code>). You don't have to worry much about it.</li>
-<li>The other libraries that ship with the OCaml distribution from INRIA (str, unix, bigarray, etc.) are installed in the same directory as the standard library.</li>
+<li>The other libraries that ship with the OCaml distribution from Inria (str, unix, bigarray, etc.) are installed in the same directory as the standard library.</li>
 <li>Third-party libraries may be installed in various places, and even a given library can be installed in different places from one system to another.</li></ol>
 <p class="first_para">If your program uses only the unix library (provides system calls not only for Unix systems), the command line would be:</p>
 <pre>

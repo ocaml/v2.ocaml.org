@@ -9,7 +9,7 @@ http://mirror.ocamlcore.org/wiki.cocan.org/features/portability.html
 (Except WxCaml and Case Studies paragraphs) [Esther]
 
 Speed: http://mirror.ocamlcore.org/wiki.cocan.org/features/speed.html
-(Just the part on the INRIA page) [Esther]
+(Just the part on the Inria page) [Esther]
 
 http://mirror.ocamlcore.org/wiki.cocan.org/getting_started_with_ocaml.html
 Imported all that I found interesting in "Choose your platform". [ChriS]
