@@ -183,6 +183,22 @@
 	  <a href="planet/" class="btn pull-right"
 	     >More news <i class="icon-arrow-right"></i></a>
 	</div>
+
+<div class="span6">
+An example (or get <a href="taste.html">a stronger taste</a>):
+
+<pre class="listing" ml:content="ocaml noeval">
+type 'a tree = Leaf of 'a  |  Node of 'a tree * 'a tree
+
+let rec exists_leaf test = function
+  | Leaf v -> test v
+  | Node (left, right) ->
+      exists_leaf test left || exists_leaf test right
+
+let has_even_leaf tree =
+  exists_leaf (fun n -> n mod 2 = 0) tree
+</pre></div>
+
       </div><!--/row-->
     </div><!--/.fluid-container-->
 
