@@ -86,17 +86,32 @@ let toploop_eval phrase =
      if not backtrace_enabled then Printexc.record_backtrace false;
      Error(Format.flush_str_formatter ())
 
+let format_eval_input phrase =
+  let open Nethtml in
+  [Element("span", ["class", "ocamltop-prompt"], [Data "# "]);
+   Element("span", ["class", "ocamltop-input"], [Data (highlight phrase)]);
+   Element("span", ["class", "ocamltop-prompt"], [Data ";;"])]
+
+let html_of_eval_silent phrase =
+  begin match toploop_eval (phrase ^ ";;") with
+    | Normal _ -> ()
+    | Error s ->
+      (* as no output shows in the rendered page,
+         we deem it useful to have errors reported
+         at least in the compilation buffer. *)
+      eprintf "Error %S during silent evaluation of the phrase %S\n" s phrase;
+      ()
+  end;
+  format_eval_input phrase   
 
 let html_of_eval phrase =
   let cls, out = match toploop_eval (phrase ^ ";;") with
     | Normal s -> "ocamltop-output", s
     | Error s ->  "ocamltop-error", s in
   let open Nethtml in
-  [Element("span", ["class", "ocamltop-prompt"], [Data "# "]);
-   Element("span", ["class", "ocamltop-input"], [Data (highlight phrase)]);
-   Element("span", ["class", "ocamltop-prompt"], [Data ";;"]);
-   Element("br", [], []);
-   Element("span", ["class", cls], [Data (html_encode out)]) ]
+   format_eval_input phrase @
+     [ Element("br", [], []);
+       Element("span", ["class", cls], [Data (html_encode out)]) ]
 
 
 let rec text_of_html html =
@@ -134,7 +149,23 @@ let end_of_phrase = Str.regexp ";;[ \t\n]*"
 let split_phrases text =
   List.map trim (Str.split end_of_phrase text)
 
-let eval_ocaml args ~content _page =
-  let phrases = split_phrases(text_of_html content) in
-  List.concat (List.map html_of_eval phrases)
+(* If option "silent" is passed, send the code to the toplevel but
+   don't render the output in result -- just the beginning "#" and ending
+   ";;" to remain coherent with other eval_ocaml phrases. 
 
+   If option "noeval" is passed, don't send the phrases to the toplevel
+   at all, only highlight. This is useful for incomplete or
+   purposedfully wrong code.
+*)
+
+let eval_ocaml args ~content _page =
+  let process_phrases f =
+    let phrases = split_phrases (text_of_html content) in
+    List.concat (List.map f phrases) in
+  match args with
+    | ["silent"] -> process_phrases html_of_eval_silent
+    | ["noeval"] -> [Nethtml.Data (highlight_ocaml (text_of_html content))]
+    | other ->
+      if other <> [] then
+        eprintf "unkonwn \"ocaml\" args %S\n" (String.concat " " args);
+      process_phrases html_of_eval
