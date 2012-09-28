@@ -96,24 +96,24 @@ let html_of_eval_silent phrase =
   begin match toploop_eval (phrase ^ ";;") with
     | Normal _ -> ()
     | Error s ->
-      (* as no output shows in the rendered page,
-         we deem it useful to have errors reported
-         at least in the compilation buffer. *)
-      eprintf "Error %S during silent evaluation of the phrase %S\n" s phrase;
-      ()
+       (* as no output shows in the rendered page,
+          we deem it useful to have errors reported
+          at least in the compilation buffer. *)
+       eprintf "Error %S during silent evaluation of the phrase %S\n" s phrase
   end;
-  format_eval_input phrase   
+  format_eval_input phrase
 
 let html_of_eval phrase =
   let cls, out = match toploop_eval (phrase ^ ";;") with
     | Normal s -> "ocamltop-output", s
     | Error s ->  "ocamltop-error", s in
   let open Nethtml in
-   format_eval_input phrase @
-     [ Element("br", [], []);
+   format_eval_input phrase
+   @ [ Element("br", [], []);
        Element("span", ["class", cls], [Data (html_encode out)]) ]
 
 
+(* Returns a string containing the data in [html]. *)
 let rec text_of_html html =
   String.concat "" (List.map text_of_el html)
 and text_of_el = function
@@ -151,7 +151,7 @@ let split_phrases text =
 
 (* If option "silent" is passed, send the code to the toplevel but
    don't render the output in result -- just the beginning "#" and ending
-   ";;" to remain coherent with other eval_ocaml phrases. 
+   ";;" to remain coherent with other eval_ocaml phrases.
 
    If option "noeval" is passed, don't send the phrases to the toplevel
    at all, only highlight. This is useful for incomplete or
