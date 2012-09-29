@@ -133,13 +133,31 @@ module Toc = struct
 
 end
 
+let safe_bind binding name renderer =
+  (* We display the returned expression on stderr, but not in the
+     rendered page. The exception may leak information and, more
+     importantly, the errors we get are often of the form "unable to
+     parse [this huge HTML bloat we got from a remote server]" and
+     displaying this is not very helpful. *)
+  let safe_renderer args ~content page =
+    try renderer args ~content page 
+    with exn ->
+      let call = 
+        sprintf "%s %s" name
+          (String.concat " " args) in
+      let msg = sprintf "Error on binding %S" call in
+      prerr_endline (sprintf "%s : %s" msg (Printexc.to_string exn));
+      [Data (sprintf "<span class=\"binding_error\">%s</span>\n" msg)]
+  in
+  Weberizer.Binding.fun_html binding name safe_renderer
+
 let () =
   let b = Weberizer.Binding.make() in
-  Weberizer.Binding.fun_html b "rss" Render_rss.of_urls;
-  Weberizer.Binding.fun_html b "news" Render_rss.news;
-  Weberizer.Binding.fun_html b "opml" Render_rss.OPML.of_urls;
-  Weberizer.Binding.fun_html b "toc" Toc.make;
-  Weberizer.Binding.fun_html b "ocaml" Code.eval_ocaml;
+  safe_bind b "rss" Render_rss.of_urls;
+  safe_bind b "news" Render_rss.news;
+  safe_bind b "opml" Render_rss.OPML.of_urls;
+  safe_bind b "toc" Toc.make;
+  safe_bind b "ocaml" Code.eval_ocaml;
 
   let re_filter = Str.regexp "\\(menu\\|OCAML\\).*" in
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in
