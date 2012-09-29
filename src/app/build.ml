@@ -4,7 +4,7 @@ module Path = Weberizer.Path
 
 
 (* Settings common to all pages. *)
-let tpl = OCamlWeb_Main.shortcut_icon OCamlWeb_Main.empty
+let tpl = Main.shortcut_icon Main.empty
   "https://static.ocamlcore.org/official/images/favicon.ico"
 
 (* more = <li class="active"><a href="#">Tutorial</a></li>
@@ -15,7 +15,7 @@ let add_menu ?(more=[]) tpl lang p =
     else "src/html/menu." ^ lang ^ ".html" in
   let m = Weberizer.body_of(Weberizer.read menu) @ more in
   let m = Weberizer.relative_url_are_from_base p m in
-  OCamlWeb_Main.menu tpl m
+  Main.menu tpl m
 
 (* To avoid symlinks for the images but still share them accross the
    various translations of the website, one need to change the paths
@@ -155,28 +155,28 @@ let () =
     else "../" ^ l2 in
   let process_html lang p =
     eprintf "Processing %s\n" (Path.full p);
-    let tpl = OCamlWeb_Main.lang tpl lang in
-    let tpl = OCamlWeb_Main.url_base tpl (Weberizer.Path.to_base p) in
+    let tpl = Main.lang tpl lang in
+    let tpl = Main.url_base tpl (Weberizer.Path.to_base p) in
     let url_base = if Path.in_base p then "" else Path.to_base p in
     Weberizer.Binding.string b "url_base" url_base;
     let page = Weberizer.read (Path.full p) ~bindings:b in
-    let tpl = OCamlWeb_Main.title tpl (Weberizer.title_of page) in
+    let tpl = Main.title tpl (Weberizer.title_of page) in
     let prefix = if lang = "en" then "" else "../" in
     let img_dir = url_base ^ prefix ^ "img/" in
-    let tpl = OCamlWeb_Main.img_dir tpl img_dir in
-    let tpl = OCamlWeb_Main.css_dir tpl (url_base ^ prefix ^ "css/") in
-    let tpl = OCamlWeb_Main.javascript_dir tpl (url_base ^ prefix ^ "js/") in
+    let tpl = Main.img_dir tpl img_dir in
+    let tpl = Main.css_dir tpl (url_base ^ prefix ^ "css/") in
+    let tpl = Main.javascript_dir tpl (url_base ^ prefix ^ "js/") in
     let body = Weberizer.body_of page in
     let body = Weberizer.protect_emails body in
     let body = img_path_translations p body ~img_dir in
-    let tpl = OCamlWeb_Main.main tpl body in
+    let tpl = Main.main tpl body in
 
     let tpl = add_menu tpl lang p in
 
-    let tpl = OCamlWeb_Main.navigation_of_path tpl p in
-    let tpl = OCamlWeb_Main.languages tpl
+    let tpl = Main.navigation_of_path tpl p in
+    let tpl = Main.languages tpl
                                       (Path.translations p ~langs ~rel_dir) in
-    OCamlWeb_Main.render tpl
+    Main.render tpl
   in
   Weberizer.iter_html ~filter ~langs "src/html" ~out_dir process_html
                       ~perm:0o755

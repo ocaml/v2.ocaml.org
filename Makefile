@@ -1,6 +1,6 @@
 # auto-generated files, deleted by distclean
-AUTOFILES = src/lib/OCamlWeb_Main.ml \
-            src/lib/OCamlWeb_Main.mli \
+AUTOFILES = src/lib/main.ml \
+            src/lib/main.mli \
             setup.ml
 
 # build the website
@@ -16,20 +16,20 @@ web: build
 	cp -a src/html/img $(WWW)
 	cp -a src/html/ext/bootstrap/img/*.png $(WWW)/img/
 
-src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli: src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
-	cd src/lib; weberizer_compile OCamlWeb_Main.html
+src/lib/main.ml src/lib/main.mli: src/lib/main.html src/lib/main.html.ml src/lib/main.html.mli
+	cd src/lib; weberizer_compile main.html
 
 setup.ml: _oasis
 	oasis setup -setup-update dynamic
 
 SETUP = ocaml setup.ml
 
-setup.data: setup.ml src/lib/OCamlWeb_Main.html src/lib/OCamlWeb_Main.html.ml src/lib/OCamlWeb_Main.html.mli
+setup.data: setup.ml src/lib/main.html src/lib/main.html.ml src/lib/main.html.mli
 	$(SETUP) -configure $(CONFIGUREFLAGS)
 
 configure: setup.data
 
-build: setup.data src/lib/OCamlWeb_Main.ml src/lib/OCamlWeb_Main.mli
+build: setup.data src/lib/main.ml src/lib/main.mli
 	$(SETUP) -build $(BUILDFLAGS)
 
 doc: setup.data build
