@@ -1,5 +1,5 @@
-OCAMLWEB PROJECT
-================
+OCAML.ORG PROJECT
+=================
 This is the source code implementing a new website for the OCaml
 community. Information here is relevant only to developers and content
 contributors. End-users of the website should simply visit the
@@ -53,6 +53,6 @@ You can reach the development team by posting to the [mailing
 list](https://lists.forge.ocamlcore.org/cgi-bin/listinfo/ocamlweb-devel).
 
 To begin contributing, visit the [master
-repo](https://github.com/agarwal/ocamlweb) on github, click the Fork
+repo](https://github.com/ocaml/ocaml.org) on github, click the "Fork"
 button, make changes to your copy, and submit pull requests. It's that
 easy!

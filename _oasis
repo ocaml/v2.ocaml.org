@@ -1,5 +1,5 @@
 OASISFormat: 0.2
-Name:        ocamlweb
+Name:        ocamlorg
 Version:     0.0-dev
 Synopsis:    OCaml Community Website
 Description: A website for and by the OCaml community.
@@ -8,7 +8,7 @@ License:     LGPL-3.0 with OCaml linking exception
 Plugins:     META (0.2)
 BuildTools:  ocamlbuild
 
-Library ocamlweb
+Library ocamlorg
   Path:         src/lib
   FindlibName:  ocamlweb
   BuildDepends: weberizer (>= 0.6.5), netstring, netclient, rss
