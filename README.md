@@ -31,7 +31,6 @@ Currently the site consists only of static html pages, and so can be
 built and run entirely on a local machine without dependencies on
 external file or database servers. Simply run:
 
-    oasis setup
     make
 
 This will generate a new folder 'www' that contains the full website.
