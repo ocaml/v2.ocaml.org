@@ -158,7 +158,8 @@ let split_phrases text =
    purposedfully wrong code.
 *)
 
-let eval_ocaml args ~content _page =
+let eval_ocaml ctx args =
+  let content = Weberizer.Binding.Context.content ctx in
   let process_phrases f =
     let phrases = split_phrases (text_of_html content) in
     List.concat (List.map f phrases) in
