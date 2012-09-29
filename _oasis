@@ -13,7 +13,7 @@ Library ocamlorg
   FindlibName:  ocamlweb
   BuildDepends: weberizer (>= 0.6.5), netstring, netclient, rss
   Install:      false
-  Modules:      OCamlWeb_Main
+  Modules:      Main
 
 Executable build
   Path:           src/app
