@@ -10,6 +10,6 @@ doclib.docdir
 src/lib/main.ml
 src/lib/main.mli
 src/lib/META
-src/lib/ocamlweb.mllib
+src/lib/ocamlorg.mllib
 src/lib/doclib.odocl
 www/
