@@ -26,7 +26,7 @@ Executable build
   Install:        false
 
 Document doclib
-  Title:                OCamlWeb API Reference
+  Title:                API reference for ocaml.org source code
   Type:                 ocamlbuild (0.2)
   Install:              false
   BuildTools+:          ocamldoc
