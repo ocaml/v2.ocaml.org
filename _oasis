@@ -1,16 +1,16 @@
-OASISFormat: 0.2
+OASISFormat: 0.3
 Name:        ocamlorg
 Version:     0.0-dev
 Synopsis:    OCaml Community Website
 Description: A website for and by the OCaml community.
 Authors:     Christophe Troestler, Esther Baruk, Ashish Agarwal
 License:     LGPL-3.0 with OCaml linking exception
-Plugins:     META (0.2)
+Plugins:     META (0.3)
 BuildTools:  ocamlbuild
 
 Library ocamlorg
   Path:         src/lib
-  FindlibName:  ocamlweb
+  FindlibName:  ocamlorg
   BuildDepends: weberizer (>= 0.6.5), netstring, netclient, rss
   Install:      false
   Modules:      OCamlWeb_Main
@@ -18,7 +18,7 @@ Library ocamlorg
 Executable build
   Path:           src/app
   MainIs:         build.ml
-  BuildDepends:   weberizer, ocamlweb, unix, str
+  BuildDepends:   weberizer, ocamlorg, unix, str
 # The following cannot be conditional.  The correct compilations tags
 # are set in myocamlbuild.ml.  Wait for 4.00.0 to be mainstream to remove.
 #  BuildDepends+: compiler-libs.toplevel
@@ -26,9 +26,9 @@ Executable build
   Install:        false
 
 Document doclib
-  Title:                OCamlWeb API Reference
-  Type:                 ocamlbuild (0.2)
+  Title:                OCamlorg API Reference
+  Type:                 ocamlbuild (0.3)
   Install:              false
   BuildTools+:          ocamldoc
   XOCamlbuildPath:      src/lib
-  XOCamlbuildLibraries: ocamlweb
+  XOCamlbuildLibraries: ocamlorg
