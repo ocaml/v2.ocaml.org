@@ -40,6 +40,14 @@ table.array th {
   font-weight: bold;
 }
 
+/* Weberizer */
+
+.weberizer-error {
+  font-weight: bold;
+  color: white;
+  background: #c60000;
+  padding: 5px;
+}
 
 /* Header
    **********************************************************************/
