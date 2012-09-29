@@ -159,13 +159,12 @@ let split_phrases text =
 *)
 
 let eval_ocaml ctx args =
-  let content = Weberizer.Binding.Context.content ctx in
   let process_phrases f =
-    let phrases = split_phrases (text_of_html content) in
+    let phrases = split_phrases (text_of_html ctx#content) in
     List.concat (List.map f phrases) in
   match args with
     | ["silent"] -> process_phrases html_of_eval_silent
-    | ["noeval"] -> [Nethtml.Data (highlight_ocaml (text_of_html content))]
+    | ["noeval"] -> [Nethtml.Data (highlight_ocaml (text_of_html ctx#content))]
     | other ->
       if other <> [] then
         eprintf "unkonwn \"ocaml\" args %S\n" (String.concat " " args);

@@ -113,7 +113,7 @@ module Toc = struct
     [Element("div", ["class", "toc"], [html])]
 
   let make ctx args =
-    let entries = collect_toc (Weberizer.Binding.Context.page ctx) in
+    let entries = collect_toc ctx#page in
     let entries, level =
       try
         match args with
