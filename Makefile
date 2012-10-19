@@ -59,9 +59,3 @@ distclean: setup.ml
 	$(RM) $(AUTOFILES)
 
 .PHONY: build doc test all install uninstall reinstall clean distclean configure
-
-# publish the site to the development site
-DEVSITE = forge.ocamlcore.org:/home/groups/ocamlweb/htdocs/
-.PHONY: dev-upload dev-publish
-dev-publish dev-upload: web
-	scp -C -r $(WWW) $(DEVSITE)
