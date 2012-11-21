@@ -15,6 +15,7 @@ web: build
 	cp -a src/html/ext/*.js $(WWW)/js/
 	cp -a src/html/img $(WWW)
 	cp -a src/html/ext/bootstrap/img/*.png $(WWW)/img/
+	cp -a src/html/CNAME $(WWW)/
 
 src/lib/main.ml src/lib/main.mli: src/lib/main.html src/lib/main.html.ml src/lib/main.html.mli
 	cd src/lib; weberizer_compile main.html
