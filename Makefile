@@ -62,15 +62,18 @@ distclean: setup.ml
 publish:
 	git checkout publish
 	make
-	temp=`mktemp -d temp-gh-pages.XXXXX`
-	git clone git@github.com:ocaml/ocaml.org.git $temp
-	cd $temp
-	git checkout gh-pages
-	rsync -av --delete --exclude=.git ../www/ .
-	git add .
-	git commit -a -m "publish"
-	git push
-	cd ..
-	rm -rf $temp
+	temp=`mktemp -d temp-gh-pages.XXXXX`; \
+	git clone git@github.com:ocaml/ocaml.org.git $$temp -b gh-pages && \
+	rsync -av --delete --exclude=.git www/ $$temp && \
+	cd $$temp && \
+	git add . && \
+	git commit -a -m "publish" && \
+	git push && \
+	cd .. && \
+	rm -rf $$temp
+
+test:
+	HELLO=XXX; \
+	echo $$HELLO
 
 .PHONY: build doc test all install uninstall reinstall clean distclean configure publish
