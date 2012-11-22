@@ -59,4 +59,18 @@ distclean: setup.ml
 	$(RM) -r $(WWW)
 	$(RM) $(AUTOFILES)
 
-.PHONY: build doc test all install uninstall reinstall clean distclean configure
+publish:
+	git checkout publish
+	make
+	temp=`mktemp -d temp-gh-pages.XXXXX`
+	git clone git@github.com:ocaml/ocaml.org.git $temp
+	cd $temp
+	git checkout gh-pages
+	rsync -av --delete --exclude=.git ../www/ .
+	git add .
+	git commit -a -m "publish"
+	git push
+	cd ..
+	rm -rf $temp
+
+.PHONY: build doc test all install uninstall reinstall clean distclean configure publish
