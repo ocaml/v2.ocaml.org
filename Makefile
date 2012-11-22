@@ -18,7 +18,7 @@ web: build
 	cp -a src/html/CNAME $(WWW)/
 
 src/lib/main.ml src/lib/main.mli: src/lib/main.html src/lib/main.html.ml src/lib/main.html.mli
-	cd src/lib; weberizer_compile main.html
+	cd src/lib; weberizer main.html
 
 setup.ml: _oasis
 	oasis setup -setup-update dynamic
