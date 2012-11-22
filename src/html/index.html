@@ -118,77 +118,10 @@
     <div class="container-fluid">
       <div class="row-fluid">
 	<div class="span6" >
-	  <h2>What&#39;s new in OCaml 4.00.1?</h2>
+	  <h2>An example</h2>
 
-	  <p>This is mostly
-	  a <a href="http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/Changes"
-	  >bugfix release</a>.</p>
-
-	  <h2>What&#39;s new in OCaml 4.00.0?</h2>
-
-	  <p>Some of the highlights in release 4.0.0 (July 2012) are:</p>
-	  <ul><li> The name of our favorite language is now officially
-              "OCaml", and this name is used consistently in all the
-              documentation and tool outputs. </li>
-	    <li> Generalized Algebraic Data Types (GADTs): this is a
-	      powerful extension of the type system that provides great
-	      flexibility and power to the programmer. </li>
-	    <li> A new and improved ARM back-end. </li>
-	    <li> Changes to first-class modules: type annotations can
-	      now be omitted when packing and unpacking modules (and are
-	      inferred from context whenever possible), and first-class
-	      modules can now be unpacked by pattern-matching. </li>
-	    <li> Support for randomized hash tables to avoid
-	      denial-of-service vulnerabilities. </li>
-	    <li>Installation of the compiler's internal libraries in
-              <code>+compiler-libs</code> for easier access by third-party
-              programming tools. </li>
-	  </ul>
-
-	  <h2>Previous release (3.12)</h2>
-
-	  <p>Some of the highlights in release 3.12 are:</p>
-	  <ul><li> Polymorphic recursion is supported, using explicit
-	      type declarations on the recursively-defined
-	      identifiers.</li>
-	    <li> First-class modules: module expressions can be
-	      embedded as values of the core language, then manipulated
-	      like any other first-class value, then projected back to
-	      the module level.</li>
-	    <li> New operator to modify a signature a posteriori:
-	      <code>S with type t := tau</code> denotes
-	      signature <code>S</code> where the <code>t</code> type
-	      component is removed and substituted by the
-	      type <code>tau</code> elsewhere.</li>
-	    <li> New notations for record expressions and record
-	      patterns: <code>{ lbl }</code> as shorthand for <code>{
-		lbl = lbl }</code>, and <code>{ ...; _ }</code> marks
-	      record patterns where some labels were intentionally
-	      omitted.</li><li> Local open <code>let open ... in
-		...</code> now supported by popular demand.</li>
-	    <li> Type variables can be bound as type parameters to
-	      functions; such types are treated like abstract types
-	      within the function body, and like type variables
-	      (possibly generalized) outside.</li>
-	    <li> The <code>module
-		type of</code> construct enables to recover the module
-	      type of a given module.</li><li> Explicit method override
-	      using the <code>method!</code> keyword, with associated
-	      warnings and errors.</li>
-	  </ul>
-
-
-	</div> <!-- span6 -->
-	<div class="span6" >
-	  <h2>News from the community</h2>    
-	  
-	  <div id="news"
-	       ml:content="news http://planet.ocaml.org/rss20.xml"
-	       ></div>
-	</div>
-
-<div class="span6">
-An example (or get <a href="taste.html">a stronger taste</a>):
+	  <p>You can also get
+	    <a href="taste.html">a stronger taste</a>.</p>
 
 <pre class="listing" ml:content="ocaml noeval">
 type 'a tree =
@@ -202,10 +135,18 @@ let rec exists_leaf test = function
 
 let has_even_leaf tree =
   exists_leaf (fun n -> n mod 2 = 0) tree
-</pre></div>
+</pre>
 
-      </div><!--/row-->
-    </div><!--/.fluid-container-->
+	</div> <!-- span6 -->
+	<div class="span6" >
+	  <h2>News from the community</h2>    
+	  
+	  <div id="news"
+	       ml:content="news http://planet.ocaml.org/rss20.xml"
+	       ></div>
+	</div>
+    </div><!--/row-->
+  </div><!--/.fluid-container-->
 
 
   </body>
