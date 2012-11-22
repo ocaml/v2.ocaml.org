@@ -27,6 +27,9 @@ type post = {
   desc : string;
 }
 
+let digest_post p =
+  Digest.to_hex (Digest.string (p.title ^ p.link))
+
 let html_title p =
   if p.link = "" then Data p.title
   else Element("a", ["href", p.link], [Data p.title])
@@ -118,7 +121,7 @@ let toggle_script =
 
 (* Transform a post [p] (i.e. story) into HTML. *)
 let html_of_post p =
-  let title_anchor = new_id() in
+  let title_anchor = digest_post p in
   let date = match p.date with
     | None -> ""
     | Some d -> Rss.string_of_date d in
@@ -145,29 +148,18 @@ let html_of_post p =
    Data "\n"]
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
-   news (e.g. needs to be more condensed). *)
+   news (only titles are shown, linked to the page with the full story). *)
 let news_of_post ?(len=400) p =
   let date = match p.date with
     | None -> ""
     | Some d -> Rss.string_of_date d in
-  let desc = Nethtml.parse (new Netchannels.input_string p.desc) in
   let span_class c html = Element("span", ["class", c], html) in
-  let more = Element("a", ["href", p.link], [Data "&nbsp;[...]"]) in
-  let desc_of_txt txt =
-    let len_txt = String.length txt in
-    if len_txt <= len || p.link = "" then [Data txt]
-    else [Data(String.sub txt 0 (min len len_txt)); more] in
-  let desc =
-    if List.mem p.author text_description then desc_of_txt p.desc
-    else
-      let d = prefix_of_html desc len in
-      if length_html d > 0 then d @ [more]
-      else desc_of_txt (text_of_html desc) in
+  let link = "planet#" ^ digest_post p in
+  let html_title = Element("a", ["href", link], [Data p.title]) in
   [Element("li", [],
-           [span_class "rss-title" [html_title p];
+           [span_class "rss-title" [html_title];
             Data(if date = "" then "" else "&nbsp;&mdash;&nbsp;");
-            span_class "rss-date" [Data date];
-            span_class "rss-description" desc; ])]
+            span_class "rss-date" [Data date] ])]
 
 let of_urls _context urls =
   let ch = channel_of_urls urls in
@@ -178,7 +170,6 @@ let of_urls _context urls =
 
 let news _context urls =
   let ch = channel_of_urls urls in
-  let ch = Rss.keep_n_items 5 ch in
   let items = Rss.sort_items_by_date ch.Rss.ch_items in
   let posts = List.map parse_item items in
   [Element("ul", [], List.concat(List.map news_of_post posts))]
