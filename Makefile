@@ -62,12 +62,13 @@ distclean: setup.ml
 publish:
 	git checkout publish
 	make
+	commit=`git log -1 --pretty=format:%H`; \
 	temp=`mktemp -d temp-gh-pages.XXXXX`; \
 	git clone git@github.com:ocaml/ocaml.org.git $$temp -b gh-pages && \
 	rsync -av --delete --exclude=.git www/ $$temp && \
 	cd $$temp && \
 	git add . && \
-	git commit -a -m "publish" && \
+	git commit -a -m "publish $$commit" && \
 	git push && \
 	cd .. && \
 	rm -rf $$temp
