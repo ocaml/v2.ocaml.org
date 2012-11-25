@@ -121,10 +121,11 @@
 	  <h2>A taste of OCaml</h2>
 
 <pre class="listing" ml:content="ocaml noeval">
-type 'a tree =
-  Leaf of 'a  |  Node of 'a tree * 'a tree
+type int_tree =
+  Leaf of int | Node of int_tree * int_tree
 
-let rec exists_leaf test = function
+let rec exists_leaf test tree =
+  match tree with
   | Leaf v -> test v
   | Node (left, right) ->
       exists_leaf test left
@@ -134,24 +135,8 @@ let has_even_leaf tree =
   exists_leaf (fun n -> n mod 2 = 0) tree
 </pre>
 
-	  <p>The code above defines the type of a binary tree with
-	  leaves holding values of an arbitrary type, as reflected
-	    by the <em>type parameter</em> <code>'a</code>.
-	  For example, <code>Leaf 1</code> is of type <code>int
-	  tree</code> while <code>Leaf "hello"</code> is
-	  a <code>string tree</code>.  The
-	  function <code>exists_leaf</code> runs through the tree to
-	  seek a leaf containing a value that
-	  satisfies <code>test</code> (a function accepting values of
-	  the same type <code>'a</code> as the tree and returning a
-	  boolean).  Then
-	    <code>has_even_leaf</code> passes to it the anonymous function
-	    <code class="listing" ml:content="ocaml noeval">fun n -> n
-	    mod 2 = 0</code> to check whether the tree contains a leaf
-	    holding an even integer (thus its
-	    argument <code>tree</code> has type
-	    <code>int tree</code>).</p>
-	  <p>Pursue with
+	  <p>OCaml is more powerful than this simple example shows.
+	  Pursue with
 	    <a href="taste.html">a stronger taste</a>!</p>
 
 	</div> <!-- span6 -->
