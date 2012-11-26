@@ -121,8 +121,8 @@
 	  <h2>A taste of OCaml</h2>
 
 <pre class="listing" ml:content="ocaml noeval">
-type int_tree =
-  Leaf of int | Node of int_tree * int_tree
+(* Binary tree with leaves carrying an integer. *)
+type tree = Leaf of int | Node of tree * tree
 
 let rec exists_leaf test tree =
   match tree with
@@ -135,7 +135,7 @@ let has_even_leaf tree =
   exists_leaf (fun n -> n mod 2 = 0) tree
 </pre>
 
-	  <p>OCaml is more powerful than this simple example shows.
+	  <p>OCaml is a lot more powerful than this simple example shows.
 	  Pursue with
 	    <a href="taste.html">a stronger taste</a>!</p>
 
