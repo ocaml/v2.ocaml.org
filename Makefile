@@ -73,8 +73,4 @@ publish:
 	cd .. && \
 	rm -rf $$temp
 
-test:
-	HELLO=XXX; \
-	echo $$HELLO
-
 .PHONY: build doc test all install uninstall reinstall clean distclean configure publish
