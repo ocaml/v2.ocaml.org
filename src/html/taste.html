@@ -254,7 +254,7 @@ sigma (fun x -> x * x) [1; 2; 3];;
 <code ml:replace="ocaml">
   let rec fib x = if x <= 1 then 1 else fib (x - 1) + fib (x - 2);;
 </code
-><span class="ocamltop-prompt"># </span>trace fib<span class="ocamltop-prompt">;;</span>
+><span class="ocamltop-prompt"># </span>#trace fib<span class="ocamltop-prompt">;;</span>
 <span class="ocamltop-output">fib is now traced.</span>
 <span class="ocamltop-prompt"># </span>fib 3<span class="ocamltop-prompt">;;</span>
 <span class="ocamltop-output"
