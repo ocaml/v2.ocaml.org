@@ -431,3 +431,24 @@ div.A {
 button.solution {
   display: inline;
 }
+
+/* Papers on OCaml
+ ***********************************************************************/
+
+.biblio tr {
+  vertical-align : top;
+}
+
+.biblio .title {
+  color : #6666FF ;
+}
+
+.biblio .ref {
+  font-style : italic ;
+}
+
+.biblio .desc {
+  color: #444444;
+  font-style: italic;
+  margin: 0.5em 0 0 2em;
+}
