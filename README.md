@@ -3,9 +3,7 @@ OCAML.ORG PROJECT
 This is the source code implementing a new website for the OCaml
 community. Information here is relevant only to developers and content
 contributors. End-users of the website should simply visit the
-website, which is currently being hosted at http://ocaml-lang.org. (It
-is hoped that this site will eventually be served by the URL
-ocaml.org, but that is not finalized yet.)
+website, which is hosted at http://ocaml.org.
 
 
 DEPENDENCIES
