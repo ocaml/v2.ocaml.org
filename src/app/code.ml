@@ -19,6 +19,7 @@ let highlight_ocaml =
     (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
      "<span class=\"ocaml-comment\">\\1</span>");
+    ("\\blet +() *=", "<span class=\"kwa\">let</span> () =");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ id ^ " +\\)\\("
      ^ args ^ "\\)= *function",
      "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span>\
