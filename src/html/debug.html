@@ -8,6 +8,12 @@
     <link href="css/ocaml.css" media="all" type="text/css" rel="stylesheet" />
   </head>
   <body class="en" onload="caml_onload()">
+
+    <div class="pull-right hero-unit" style="margin-left: 1em" >
+      <em>Table of contents</em>
+      <div ml:replace="toc"></div>
+    </div>
+
     <h1>Debugging</h1>
     <p>
       This note quickly presents two techniques to debug OCaml
@@ -23,9 +29,7 @@
       </li>
     </ul>
 
-    <h2><a name="trace"></a>
-    Tracing functions calls in the toplevel
-    </h2>
+    <h2><a name="trace"></a>Tracing functions calls in the toplevel</h2>
 
     <p>
       The simplest way to debug programs in the toplevel is to follow
@@ -53,7 +57,7 @@ fib --&gt; 3
 <span class="output">fib is no longer traced.</span>
     </pre>
 
-    <h3>Polymorphic function</h3>
+    <h3><a name="trace-poly"></a>Polymorphic function</h3>
 
     <p>
       A difficulty with polymorphic functions is that the output of
@@ -151,7 +155,7 @@ bubble_sort_vect q;;
 <span class="output">- : unit = ()</span>
     </pre>
 
-    <h3>Limitations</h3>
+    <h3><a name="trace-limit"></a>Limitations</h3>
 
     <p>
       To keep track of assignments to data structures and mutable
@@ -189,9 +193,7 @@ bubble_sort_vect q;;
       trace mechanism.
     </p>
 
-    <h2><a name="ocamldebug"></a>
-    OCaml debugger
-    </h2>
+    <h2><a name="ocamldebug"></a>The OCaml debugger</h2>
 
     <p>
       We now give a quick tutorial for the OCaml debugger
@@ -200,7 +202,7 @@ bubble_sort_vect q;;
       OCaml (but it runs under the Cygwin port.
     </p>
 
-    <h3>Launching the debugger</h3>
+    <h3><a name="ocamldebug-launch"></a>Launching the debugger</h3>
 
     <p>
       Consider the following obviously wrong program written in the
@@ -244,7 +246,8 @@ ocamldebug a.out
 (ocd)
     </pre>
 
-    <h3>Finding the cause of a spurious exception</h3>
+    <h3><a name="ocamldebug-exception"></a>Finding the cause of a
+      spurious exception</h3>
 
     <p>
       Type <tt>r</tt> (for <em>run</em>); you get
@@ -319,7 +322,8 @@ print_string (find_address "INRIA"); print_newline ();;
       and <tt>bt</tt> gives you the backtrace.
     </p>
 
-    <h3>Getting help and info in the debugger</h3>
+    <h3><a name="ocamldebug-help"></a>Getting help and info in the
+      debugger</h3>
 
     <p>
       To get more info about the current status of the debugger you
@@ -338,7 +342,7 @@ break @ [module] linenum
 break @ [module] # characternum
     </pre>
 
-    <h3>Setting break points</h3>
+    <h3><a name="ocamldebug-break"></a>Setting break points</h3>
 
     <p>
       Let's set up a breakpoint and rerun the entire program from the
@@ -381,7 +385,8 @@ $1 : (string * string) list = ["IRIA", "Rocquencourt"]
       "INRIA" in the list...
     </p>
 
-    <h3>Using the debugger under (X)Emacs</h3>
+    <h3><a name="ocamldebug-emacs"></a>Using the debugger under
+      (X)Emacs</h3>
 
     <p>
       Note also that under Emacs you call the debugger using
