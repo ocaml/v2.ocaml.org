@@ -36,13 +36,15 @@
       the function calls, by &#8220;tracing&#8221; the faulty
       function:
     </p>
-    <pre class="listing">
-<b>let</b> <b>rec</b> fib x = <b>if</b> x &lt;= 1 <b>then</b> 1 <b>else</b> fib (x - 1) + fib (x - 2);;
-<span class="output">fib : int -&gt; int = &lt;fun&gt;</span>
-#trace fib;;
-<span class="output">fib is now traced.</span>
-fib 3;;
-fib &lt;-- 3
+<pre class="listing">
+<code ml:replace="ocaml">
+  let rec fib x = if x <= 1 then 1 else fib (x - 1) + fib (x - 2);;
+</code
+><span class="ocamltop-prompt"># </span>#trace fib<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output">fib is now traced.</span>
+<span class="ocamltop-prompt"># </span>fib 3<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output"
+>fib &lt;-- 3
 fib &lt;-- 1
 fib --&gt; 1
 fib &lt;-- 2
@@ -52,10 +54,10 @@ fib &lt;-- 1
 fib --&gt; 1
 fib --&gt; 2
 fib --&gt; 3
-<span class="output">- : int = 3</span>
-#untrace fib;;
-<span class="output">fib is no longer traced.</span>
-    </pre>
+- : int = 3</span>
+<span class="ocamltop-prompt"># </span>#untrace fib<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output">fib is no longer traced.</span>
+</pre>
 
     <h3><a name="trace-poly"></a>Polymorphic function</h3>
 
@@ -65,46 +67,42 @@ fib --&gt; 3
       arguments and/or results. Consider a sorting algorithm (say
       bubble sort):
     </p>
-    <pre class="listing">
-<b>let</b> exchange i j v =
-  <b>let</b> aux = v.(i) <b>in</b>
-
-  v.(i) &lt;- v.(j); v.(j) &lt;- aux;;
-<span class="output">exchange : int -&gt; int -&gt; 'a vect -&gt; unit = &lt;fun&gt;</span>
-
-<b>let</b> one_pass_vect fin v =
-  <b>for</b> j = 1 <b>to</b> fin <b>do</b>
-   <b>if</b> v.(j - 1) &gt; v.(j) <b>then</b> exchange (j - 1) j v
+    <pre ml:content="ocaml">
+  let exchange i j v =
+    let aux = v.(i) in
+    v.(i) <- v.(j); v.(j) <- aux;;
+  
+  let one_pass_vect fin v =
+    for j = 1 to fin do
+      if v.(j - 1) > v.(j) then exchange (j - 1) j v
+    done;;
+  
+  let bubble_sort_vect v =
+    for i = Array.length v - 1 downto 0 do
+    one_pass_vect i v
   done;;
-<span class="output">one_pass_vect : int -&gt; 'a vect -&gt; unit = &lt;fun&gt;</span>
 
-<b>let</b> bubble_sort_vect v =
-  <b>for</b> i = vect_length v - 1 <b>downto</b> 0 <b>do</b>
-   one_pass_vect i v
-  done;;
-<span class="output">bubble_sort_vect : 'a vect -&gt; unit = &lt;fun&gt;</span>
-
-#trace one_pass_vect;;
-one_pass_vect is now traced.
-
-<b>let</b> q = [| 18; 3; 1 |];;
-<span class="output">q : int vect = [|18; 3; 1|]</span>
-
-bubble_sort_vect q;;
-<span class="output">one_pass_vect &lt;-- 2</span>
-<span class="output">one_pass_vect --&gt; &lt;fun&gt;</span>
-<span class="output">one_pass_vect* &lt;-- [|&lt;poly&gt;; &lt;poly&gt;; &lt;poly&gt;|]</span>
-<span class="output">one_pass_vect* --&gt; ()</span>
-<span class="output">one_pass_vect &lt;-- 1</span>
-<span class="output">one_pass_vect --&gt; &lt;fun&gt;</span>
-<span class="output">one_pass_vect* &lt;-- [|&lt;poly&gt;; &lt;poly&gt;; &lt;poly&gt;|]</span>
-<span class="output">one_pass_vect* --&gt; ()</span>
-<span class="output">one_pass_vect &lt;-- 0</span>
-<span class="output">one_pass_vect --&gt; &lt;fun&gt;</span>
-<span class="output">one_pass_vect* &lt;-- [|&lt;poly&gt;; &lt;poly&gt;; &lt;poly&gt;|]</span>
-<span class="output">one_pass_vect* --&gt; ()</span>
-- : unit = ()
-    </pre>
+  let q = [| 18; 3; 1 |];;
+</pre>
+<pre class="listing">
+<span class="ocamltop-prompt"># </span>#trace one_pass_vect<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output">one_pass_vect is now traced.</span>
+<span class="ocamltop-prompt"># </span>bubble_sort_vect q<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output"
+>one_pass_vect &lt;-- 2
+one_pass_vect --&gt; &lt;fun&gt;
+one_pass_vect* &lt;-- [|&lt;poly&gt;; &lt;poly&gt;; &lt;poly&gt;|]
+one_pass_vect* --&gt; ()
+one_pass_vect &lt;-- 1
+one_pass_vect --&gt; &lt;fun&gt;
+one_pass_vect* &lt;-- [|&lt;poly&gt;; &lt;poly&gt;; &lt;poly&gt;|]
+one_pass_vect* --&gt; ()
+one_pass_vect &lt;-- 0
+one_pass_vect --&gt; &lt;fun&gt;
+one_pass_vect* &lt;-- [|&lt;poly&gt;; &lt;poly&gt;; &lt;poly&gt;|]
+one_pass_vect* --&gt; ()
+- : unit = ()</span>
+</pre>
 
     <p>
       The function <code>one_pass_vect</code> being polymorphic, its
@@ -127,33 +125,34 @@ bubble_sort_vect q;;
       function calls:
     </p>
 
-    <pre class="listing">
-<b>let</b> exchange i j (v : int vect) =
-  [...]
-<span class="output">exchange : int -&gt; int -&gt; int vect -&gt; unit = &lt;fun&gt;</span>
-<span class="output">  [...]</span>
-<span class="output">one_pass_vect : int -&gt; int vect -&gt; unit = &lt;fun&gt;</span>
-<span class="output">  [...]</span>
-<span class="output">bubble_sort_vect : int vect -&gt; unit = &lt;fun&gt;</span>
-#trace one_pass_vect;;
-<span class="output">one_pass_vect is now traced.</span>
-<b>let</b> q = [| 18; 3; 1 |];;
-<span class="output">q : int vect = [|18; 3; 1|]</span>
-bubble_sort_vect q;;
-<span class="output">one_pass_vect &lt;-- 2</span>
-<span class="output">one_pass_vect --&gt; &lt;fun&gt;</span>
-<span class="output">one_pass_vect* &lt;-- [|18; 3; 1|]</span>
-<span class="output">one_pass_vect* --&gt; ()</span>
-<span class="output">one_pass_vect &lt;-- 1</span>
-<span class="output">one_pass_vect --&gt; &lt;fun&gt;</span>
-<span class="output">one_pass_vect* &lt;-- [|3; 1; 18|]</span>
-<span class="output">one_pass_vect* --&gt; ()</span>
-<span class="output">one_pass_vect &lt;-- 0</span>
-<span class="output">one_pass_vect --&gt; &lt;fun&gt;</span>
-<span class="output">one_pass_vect* &lt;-- [|1; 3; 18|]</span>
-<span class="output">one_pass_vect* --&gt; ()</span>
-<span class="output">- : unit = ()</span>
-    </pre>
+<pre class="listing">
+<span class="ocamltop-prompt"># </span><span class="kwa">let</span> <span class="ocaml-function">exchange</span> <span class="ocaml-variable">i j (v : int vect)</span> =
+    [...]
+<span class="ocamltop-output">exchange : int -&gt; int -&gt; int vect -&gt; unit = &lt;fun&gt;</span>
+    [...]
+<span class="ocamltop-output">one_pass_vect : int -&gt; int vect -&gt; unit = &lt;fun&gt;</span>
+    [...]
+<span class="ocamltop-output">bubble_sort_vect : int vect -&gt; unit = &lt;fun&gt;</span>
+<span class="ocamltop-prompt"># </span>#trace one_pass_vect<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output">one_pass_vect is now traced.</span>
+<span class="ocamltop-prompt"># </span><span class="kwa">let</span> q = [| 18; 3; 1 |]<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output">q : int vect = [|18; 3; 1|]</span>
+<span class="ocamltop-prompt"># </span>bubble_sort_vect q<span class="ocamltop-prompt">;;</span>
+<span class="ocamltop-output"
+>one_pass_vect &lt;-- 2
+one_pass_vect --&gt; &lt;fun&gt;
+one_pass_vect* &lt;-- [|18; 3; 1|]
+one_pass_vect* --&gt; ()
+one_pass_vect &lt;-- 1
+one_pass_vect --&gt; &lt;fun&gt;
+one_pass_vect* &lt;-- [|3; 1; 18|]
+one_pass_vect* --&gt; ()
+one_pass_vect &lt;-- 0
+one_pass_vect --&gt; &lt;fun&gt;
+one_pass_vect* &lt;-- [|1; 3; 18|]
+one_pass_vect* --&gt; ()
+- : unit = ()</span>
+</pre>
 
     <h3><a name="trace-limit"></a>Limitations</h3>
 
@@ -193,6 +192,7 @@ bubble_sort_vect q;;
       trace mechanism.
     </p>
 
+
     <h2><a name="ocamldebug"></a>The OCaml debugger</h2>
 
     <p>
@@ -209,14 +209,14 @@ bubble_sort_vect q;;
       file <tt>uncaught.ml</tt>:
     </p>
 
-    <pre class="listing">
+    <pre ml:content="ocaml noeval">
 (* file uncaught.ml *)
 <b>let</b> l = ref [];;
 <b>let</b> find_address name = List.assoc name !l;;
 <b>let</b> add_address name address = l := (name, address) :: ! l;;
 add_address "IRIA" "Rocquencourt";;
 print_string (find_address "INRIA"); print_newline ();;
-    </pre>
+</pre>
 
     <p>
       At runtime, the program raises an uncaught exception
@@ -227,13 +227,11 @@ print_string (find_address "INRIA"); print_newline ();;
     <ol>
       <li>we compile the program in debug mode:<br />
       <pre class="listing">
-ocamlc -g uncaught.ml
-      </pre>
+ocamlc -g uncaught.ml</pre>
       </li>
       <li>we launch the debugger:
       <pre class="listing">
-ocamldebug a.out
-      </pre>
+ocamldebug a.out</pre>
       </li>
     </ol>
 
@@ -241,10 +239,9 @@ ocamldebug a.out
       Then the debugger answers with a banner and a prompt:
     </p>
     <pre class="listing">
-        OCaml Debugger version 3.12.1
+        OCaml Debugger version 4.00.1
 
-(ocd)
-    </pre>
+(ocd)</pre>
 
     <h3><a name="ocamldebug-exception"></a>Finding the cause of a
       spurious exception</h3>
@@ -258,8 +255,7 @@ Loading program... done.
 Time : 12
 Program end.
 Uncaught exception: Not_found
-(ocd)
-    </pre>
+(ocd)</pre>
 
     <p>
       Self explanatory, is'nt it? So, you want to step backward to set
@@ -270,8 +266,7 @@ Uncaught exception: Not_found
     <pre class="listing">
 (ocd) b
 Time : 11 - pc : 15500 - module List
-143     [] -&gt; &lt;|b|&gt;raise Not_found
-    </pre>
+143     [] -&gt; &lt;|b|&gt;raise Not_found</pre>
 
     <p>
       The debugger tells you that you are in module <code>List</code>,
@@ -291,19 +286,18 @@ Time : 11 - pc : 15500 - module List
     <pre class="listing">
 (ocd) bt
 #0  Pc : 15500  List char 3562
-#1  Pc : 19128  Uncaught char 221
-    </pre>
+#1  Pc : 19128  Uncaught char 221</pre>
 
     <p>
       So the last function called is from module <code>List</code> at
       character 3562, that is :
     </p>
-    <pre class="listing">
-<b>let</b> <b>rec</b> assoc x = <b>function</b>
-    [] -&gt; raise Not_found
+    <pre ml:content="ocaml noeval">
+let rec assoc x = function
+    [] -> raise Not_found
           ^
-  | (a,b)::l -&gt; <b>if</b> a = x <b>then</b> b <b>else</b> assoc x l
-    </pre>
+  | (a,b)::l -> if a = x then b else assoc x l
+</pre>
 
     <p>
   The function that calls it is in module <code>Uncaught</code>, file
@@ -311,8 +305,7 @@ Time : 11 - pc : 15500 - module List
     </p>
     <pre class="listing">
 print_string (find_address "INRIA"); print_newline ();;
-                                  ^
-    </pre>
+                                  ^</pre>
 
     <p>
       To sum up: if you're developping a program you can compile it
@@ -339,8 +332,7 @@ No breakpoint.
 break : Set breakpoint at specified line or function.
 Syntax: break function-name
 break @ [module] linenum
-break @ [module] # characternum
-    </pre>
+break @ [module] # characternum</pre>
 
     <h3><a name="ocamldebug-break"></a>Setting break points</h3>
 
@@ -360,8 +352,7 @@ Beginning of program.
 (ocd) r
 Time : 6 - pc : 19112 - module Uncaught
 Breakpoint : 1
-9 add "IRIA" "Rocquencourt"&lt;|a|&gt;;;
-    </pre>
+9 add "IRIA" "Rocquencourt"&lt;|a|&gt;;;</pre>
 
     <p>
       Then, we can step and find what happens when
@@ -377,11 +368,10 @@ name : string = "INRIA"
 
 (ocd) p !l
 $1 : (string * string) list = ["IRIA", "Rocquencourt"]
-(ocd)
-    </pre>
+(ocd)</pre>
 
     <p>
-      Now we can guess why <code>List.assoc</code> will fail to find
+      Now we can guess why <code ml:content="ocaml noeval">List.assoc</code> will fail to find
       "INRIA" in the list...
     </p>
 
