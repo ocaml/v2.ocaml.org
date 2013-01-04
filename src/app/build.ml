@@ -139,7 +139,7 @@ let () =
   Weberizer.Binding.fun_html b "news" Render_rss.news;
   Weberizer.Binding.fun_html b "opml" Render_rss.OPML.of_urls;
   Weberizer.Binding.fun_html b "toc" Toc.make;
-  Weberizer.Binding.fun_html b "ocaml" Code.eval_ocaml;
+  Weberizer.Binding.fun_html b "ocaml" Code.ocaml;
 
   let re_filter = Str.regexp "\\(menu\\|OCAML\\).*" in
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in
