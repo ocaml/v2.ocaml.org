@@ -1299,6 +1299,14 @@ let rec gray n =
     tree.</p>
   <button onclick="toggleContent('q59')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+  let rec hbal_tree n =
+    if n = 0 then [Empty]
+    else if n = 1 then [Node('x', Empty, Empty)]
+    else
+      (* [add_trees_with left right trees] is defined in a question above. *)
+      let t1 = hbal_tree (n - 1)
+      and t2 = hbal_tree (n - 2) in
+      add_trees_with t1 t1 (add_trees_with t1 t2 (add_trees_with t2 t1 []))
 </pre>
 <pre ml:content="ocaml">
   let t = hbal_tree 3;;
@@ -1306,7 +1314,8 @@ let rec gray n =
   List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
                  Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)))) t;;
   List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
-                 Node(x, Node(x, Empty, Empty), Empty))) t
+                 Node(x, Node(x, Empty, Empty), Empty))) t;;
+  List.length t = 15
 </pre>
 </div>
 
