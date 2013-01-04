@@ -3,7 +3,7 @@
 <h1><span>The Basics</span></h1>
 <a name="Comments"></a><h2><span>Comments</span></h2>
 <p class="first_para">OCaml comments are delimited by <code>(*</code> and <code>*)</code>, like this:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 (* This is a single-line comment. *)
 
 (* This is a
@@ -15,7 +15,7 @@
 <p class="first_para">In other words, the commenting convention is very similar to original C (<code>/* ... */</code>).</p>
 <p>There is currently no single-line comment syntax (like <code># ...</code> in Perl or <code>// ...</code> in C99/C++/Java). At some point the use of <code>## ...</code> was mooted, and I very much recommend that the OCaml guys add this in the future (however, with <a href="http://cocan.org/tips/single_line_comment_syntax" class="external" title="http://cocan.org/tips/single_line_comment_syntax">good editor support</a>, single-line comment syntax is not really missed).</p>
 <p>OCaml counts nested <code>(* ... *)</code> blocks, and this allows you to comment out regions of code very easily:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 (* This code is broken ...
 
 (* Primality test. *)
@@ -34,11 +34,11 @@ repeated (&quot;hello&quot;, 3)  /* this is C code */
 
 <p class="first_para">This means &quot;call the function <code>repeated</code> with two arguments, first argument the string hello and second argument the number 3&quot;.</p>
 <p>OCaml, in common with other functional languages, writes and brackets function calls differently, and this is the cause of many mistakes. Here is the same function call in OCaml:</p>
-<pre>
-repeated &quot;hello&quot; 3  (* this is OCaml code *)
+<pre ml:content="ocaml noeval">
+repeated "hello" 3  (* this is OCaml code *)
 </pre>
 
-<p class="first_para">Note - <strong>no</strong> brackets, and <strong>no</strong> comma between the arguments.</p>
+<p class="first_para">Note — <strong>no</strong> brackets, and <strong>no</strong> comma between the arguments.</p>
 <p>The syntax <code>repeated (&quot;hello&quot;, 3)</code> <strong>is</strong> meaningful in OCaml. It means &quot;call the function <code>repeated</code> with ONE argument, that argument being a 'pair' structure of two elements&quot;. Of course that would be a mistake, because the <code>repeated</code> function is expecting two arguments, not one, and the first argument should be a string, not a pair. But let's not worry about pairs (&quot;tuples&quot;) just yet. Instead, just remember that it's a mistake to put the brackets and commas in around function call arguments.</p>
 <p>Let's have another function - <code>prompt_string</code> - which takes a string to prompt and returns the string entered by the user. We want to pass this string into <code>repeated</code>. Here are the C and OCaml versions:</p>
 <pre>
@@ -46,33 +46,32 @@ repeated &quot;hello&quot; 3  (* this is OCaml code *)
 repeated (prompt_string (&quot;Name please: &quot;), 3)
 </pre>
 
-<pre>
+<pre ml:content="ocaml noeval">
 (* OCaml code: *)
-repeated (prompt_string &quot;Name please: &quot;) 3
+repeated (prompt_string "Name please: ") 3
 </pre>
 
 <p class="first_para">Take a careful look at the bracketing and the missing comma. In the OCaml version, the brackets enclose the first argument of repeated because that argument is the result of another function call.  In general the rule is: &quot;bracket around the whole function call - don't put brackets around the arguments to a function call&quot;. Here are some more examples:</p>
-<pre>
-f 5 (g &quot;hello&quot;) 3    (* f has three arguments, g has one argument *)
+<pre ml:content="ocaml noeval">
+f 5 (g "hello") 3    (* f has three arguments, g has one argument *)
 f (g 3 4)            (* f has one argument, g has two arguments *)
 
-# repeated (&quot;hello&quot;, 3);;     (* OCaml will spot the mistake *)
+# repeated ("hello", 3);;     (* OCaml will spot the mistake *)
 This expression has type string * int but is here used with type string
 </pre>
 
 <a name="Defining_a_function"></a><h2><span>Defining a function</span></h2>
 <p class="first_para">You all know how to define a function (or static method, for Java-heads) in our existing languages. How do we do it in OCaml?</p>
 <p>The OCaml syntax is pleasantly concise. Here's a function which takes two floating point numbers and calculates the average:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 let average a b =
   (a +. b) /. 2.0;;
 </pre>
 
 <p class="first_para">Type this into the OCaml &quot;toplevel&quot; (on Unix, type the command <code>ocaml</code> from the shell) and you'll see this:</p>
-<pre>
-# let average a b =
+<pre ml:content="ocaml">
+let average a b =
   (a +. b) /. 2.0;;
-val average : float -&gt; float -&gt; float = &lt;fun&gt;
 </pre>
 
 <p class="first_para">If you look at the function definition closely, and also at what OCaml prints back at you, you'll have a number of questions:</p>
@@ -120,31 +119,27 @@ unit           Written as ()
 <a name="Implicit_vs__explicit_casts"></a><h2><span>Implicit vs. explicit casts</span></h2>
 <p class="first_para">In C-derived languages ints get promoted to floats in certain circumstances. For example if you write <code>1 + 2.5</code> then the first argument (which is an integer) is promoted to a floating point number, and the result is also a floating point number. It's as if you had written <code>((double) 1) + 2.5</code>, but all done implicitly.</p>
 <p>OCaml never does implicit casts like this. In OCaml, <code>1 + 2.5</code> is a type error. The <code>+</code> operator in OCaml requires two ints as arguments, and here we're giving it an int and a float, so it reports this error:</p>
-<pre>
-# 1 + 2.5;;
-      ^^^
-This expression has type float but is here used with type int
+<pre ml:content="ocaml">
+1 + 2.5;;
 </pre>
 
 <p class="first_para">(In the &quot;translated from the French&quot; language of OCaml error messages this means &quot;you put a float here, but I was expecting an int&quot;).</p>
 <p>To add two floats together you need to use a different operator, <code>+.</code> (note the trailing period).</p>
 <p>OCaml doesn't promote ints to floats automatically so this is also an error:</p>
-<pre>
-# 1 +. 2.5;;
-  ^
-This expression has type int but is here used with type float
+<pre ml:content="ocaml">
+1 +. 2.5
 </pre>
 
 <p class="first_para">Here OCaml is now complaining about the first argument.</p>
 <p>What if you actually want to add an integer and a floating point number together? (Say they are stored as <code>i</code> and <code>f</code>). In OCaml you need to explicitly cast:</p>
-<pre>
- (float_of_int i) +. f;;
+<pre ml:content="ocaml noeval">
+ (float_of_int i) +. f
 </pre>
 
 <p class="first_para"><code>float_of_int</code> is a function which takes an <code>int</code> and returns a <code>float</code>. There are a whole load of these functions, called such things as <code>int_of_float</code>, <code>char_of_int</code>, <code>int_of_char</code>, <code>string_of_int</code> and so on, and they mostly do what you expect.</p>
 <p>Since converting an <code>int</code> to a <code>float</code> is a particularly common operation, the <code>float_of_int</code> function has a shorter alias: the above example could simply have been written</p>
-<pre>
-float i +. f;;
+<pre ml:content="ocaml noeval">
+float i +. f
 </pre>
 
 <p class="first_para">(Note that unlike C, it is perfectly valid in OCaml for a type and a function to have the same name.)</p>
@@ -152,16 +147,15 @@ float i +. f;;
 <p class="first_para">You might think that these explicit casts are ugly, time-consuming even, and you have a point, but there are at least two arguments in their favour. Firstly, OCaml needs this explicit casting to be able to do type inference (see below), and type inference is such a wonderful time-saving feature that it easily offsets the extra keyboarding of explicit casts. Secondly, if you've spent time debugging C programs you'll know that (a) implicit casts cause errors which are hard to find, and (b) much of the time you're sitting there trying to work out where the implicit casts happen.  Making the casts explicit helps you in debugging.  Thirdly, some casts (particularly int &lt;-&gt; float) are actually very expensive operations.  You do yourself no favours by hiding them.</p>
 <a name="Ordinary_functions_and_recursive_functions"></a><h2><span>Ordinary functions and recursive functions</span></h2>
 <p class="first_para">Unlike in C-derived languages, a function isn't recursive unless you explicitly say so by using <code>let rec</code> instead of just <code>let</code>. Here's an example of a recursive function:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 let rec range a b =
-  if a &gt; b then []
+  if a > b then []
   else a :: range (a+1) b
-  ;;
 </pre>
 
 <p class="first_para">Notice that <code>range</code> calls itself.</p>
 <p>The only difference between <code>let</code> and <code>let rec</code> is in the scoping of the function name. If the above function had been defined with just <code>let</code>, then the call to <code>range</code> would have tried to look for an existing (previously defined) function called <code>range</code>, not the currently-being-defined function.  Using <code>let</code> (without <code>rec</code>) allows you to re-define a value in terms of the previous definition.  For example:</p>
-<pre>
+<pre ml:content="ocaml noeval">
  let positive_sum a b = 
     let a = max a 0
     and b = max b 0 in
@@ -199,13 +193,13 @@ output_char : out_channel -&gt; char -&gt; unit
 
 <h3>Polymorphic functions</h3>
 <p class="first_para">Now for something a bit stranger. What about a function which takes <em>anything</em> as an argument? Here's a odd function which takes an argument, but just ignores it and always returns 3:</p>
-<pre>
-let give_me_a_three x = 3;;
+<pre ml:content="ocaml noeval">
+let give_me_a_three x = 3
 </pre>
 
 <p class="first_para">What is the type of this function? In OCaml we use a special placeholder to mean &quot;any type you fancy&quot;. It's a single quote character followed by a letter. The type of the above function would normally be written:</p>
-<pre>
-give_me_a_three : 'a -&gt; int
+<pre ml:content="ocaml noeval">
+give_me_a_three : 'a -> int
 </pre>
 
 <p class="first_para">where <code>'a</code> really does mean any type. You can, for example, call this function as <code>give_me_a_three &quot;foo&quot;</code> or <code>give_me_a_three 2.0</code> and both are quite valid expressions in OCaml.</p>
@@ -216,17 +210,16 @@ give_me_a_three : 'a -&gt; int
 <p>In addition OCaml goes on to check all your types match up (even across different files).</p>
 <p>But OCaml is also a practical language, and for this reason it contains backdoors into the type system allowing you to bypass this checking on the rare occasions that it is sensible to do this. Only gurus will probably need to bypass the type checking.</p>
 <p>Let's go back to the <code>average</code> function which we typed into the OCaml toplevel:</p>
-<pre>
-# let average a b =
-  (a +. b) /. 2.0;;
-val average : float -&gt; float -&gt; float = &lt;fun&gt;
+<pre ml:content="ocaml">
+let average a b =
+  (a +. b) /. 2.0
 </pre>
 
 <p class="first_para">Mirabile dictu! OCaml worked out all on its own that the function takes two <code>float</code> arguments and returns a <code>float</code>.</p>
 <p>How did it do this? Firstly it looks at where <code>a</code> and <code>b</code> are used, namely in the expression <code>(a +. b)</code>. Now, <code>+.</code> is itself a function which always takes two <code>float</code> arguments, so by simple deduction, <code>a</code> and <code>b</code> must both also have type <code>float</code>.</p>
 <p>Secondly, the <code>/.</code> function returns a <code>float</code>, and this is the same as the return value of the <code>average</code> function, so <code>average</code> must return a <code>float</code>. The conclusion is that <code>average</code> has this type signature:</p>
-<pre>
-average : float -&gt; float -&gt; float
+<pre ml:content="ocaml noeval">
+average : float -> float -> float
 </pre>
 
 <p class="first_para">Type inference is obviously easy for such a short program, but it works even for large programs, and it's a major time-saving feature because it removes a whole class of errors which cause segfaults, <code>NullPointerException</code>s and <code>ClassCastException</code>s in other languages (or important but often ignored runtime warnings, as in Perl).</p>

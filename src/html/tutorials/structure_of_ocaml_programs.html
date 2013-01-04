@@ -15,22 +15,22 @@ average (double a, double b)
 </pre>
 
 <p class="first_para">Now let's do the same to our OCaml version:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 let average a b =
   let sum = a +. b in
   sum /. 2.0;;
 </pre>
 
-<p class="first_para">The standard phrase <code>let name = expression in</code> is used to define a named local expression, and <code>name</code> can then be used later on in the function instead of <code>expression</code>, till a <code>;;</code> which ends the block of code. Notice that we don't indent after the <code>in</code>. Just think of <code>let ... in</code> as if it were a statement.</p>
+<p class="first_para">The standard phrase <code ml:content="ocaml noeval">let name = expression in</code> is used to define a named local expression, and <code>name</code> can then be used later on in the function instead of <code>expression</code>, till a <code>;;</code> which ends the block of code. Notice that we don't indent after the <code>in</code>. Just think of <code>let ... in</code> as if it were a statement.</p>
 <p>Now comparing C local variables and these named local expressions is a sleight of hand. In fact they are somewhat different. The C variable <code>sum</code> has a slot allocated for it on the stack. You can assign to <code>sum</code> later in the function if you want, or even take the address of <code>sum</code>. This is NOT true for the OCaml version. In the OCaml version, <code>sum</code> is just a shorthand name for the expression <code>a +. b</code>.  There is no way to assign to <code>sum</code> or change its value in any way. (We'll see how you can do variables whose value changes in a minute).</p>
 <p>Here's another example to make this clearer. The following two code snippets should return the same value (namely (a+b) + (a+b)<sup>2</sup>):</p>
-<pre>
+<pre ml:content="ocaml noeval">
 let f a b =
   (a +. b) +. (a +. b) ** 2.
   ;;
 </pre>
 
-<pre>
+<pre ml:content="ocaml noeval">
 let f a b =
   let x = a +. b in
   x +. x ** 2.
@@ -40,7 +40,7 @@ let f a b =
 <p class="first_para">The second version might be faster (but most compilers ought to be able to perform this step of &quot;common subexpression elimination&quot; for you), and it is certainly easier to read. <code>x</code> in the second example is just shorthand for <code>a +. b</code>.</p>
 <h3>Global &quot;variables&quot; (<em>really</em> global expressions)</h3>
 <p class="first_para">You can also define global names for things at the top level, and as with our local &quot;variables&quot; above, these aren't really variable at all, just shorthand names for things. Here's a real (but cut-down) example:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 let html =
   let content = read_whole_file file in
   GHtml.html_from_string content
@@ -65,34 +65,37 @@ let main () =
 <h3>References: real variables</h3>
 <p class="first_para">What happens if you want a real variable that you can assign to and change throughout your program? You need to use a <strong>reference</strong>. References are very similar to pointers in C/C++. In Java, all variables which store objects are really references (pointers) to the objects. In Perl, references are references - the same thing as in OCaml.</p>
 <p>Here's how we create a reference to an <code>int</code> in OCaml:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 ref 0;;
 </pre>
 
 <p class="first_para">Actually that statement wasn't really very useful. We created the reference and then, because we didn't name it, the garbage collector came along and collected it immediately afterwards! (actually, it was probably thrown away at compile-time.) Let's name the reference:</p>
-<pre>
-let my_ref = ref 0;;
+<pre ml:content="ocaml">
+let my_ref = ref 0
 </pre>
 
 <p class="first_para">This reference is currently storing a zero integer. Let's put something else into it (assignment):</p>
-<pre>
-my_ref := 100;;
+<pre ml:content="ocaml">
+my_ref := 100
 </pre>
 
 <p class="first_para">And let's find out what the reference contains now:</p>
-<pre>
-# !my_ref;;
-- : int = 100
+<pre ml:content="ocaml">
+!my_ref
 </pre>
 
 <p class="first_para">So the <code>:=</code> operator is used to assign to references, and the <code>!</code> operator dereferences to get out the contents. Here's a rough-and-ready comparison with C/C++:</p>
-<pre>
-OCaml                   C/C++
-
-let my_ref = ref 0;;    int a = 0; int *my_ptr = &amp;a;
-my_ref := 100;;         *my_ptr = 100;
-!my_ref                 *my_ptr
-</pre>
+<table width="100%">
+  <tr><th>OCaml</th><th>C/C++</th></tr>
+  <tr><td><pre ml:content="ocaml noeval">
+let my_ref = ref 0;;
+my_ref := 100;;
+!my_ref</pre>
+    </td><td><pre>
+int a = 0; int *my_ptr = &amp;a;
+*my_ptr = 100;
+*my_ptr</pre></td></tr>
+</table>
 
 <p class="first_para">References have their place, but you may find that you don't use references very often. Much more often you'll be using <code>let name = expression in</code> to name local expressions in your function definitions.</p>
 <h3>Nested functions</h3>
@@ -109,7 +112,6 @@ foo (double a, double b)
 
 <p class="first_para">The nested function can access all the variables of the containing function that are visible at the point of its definition.  This is called &quot;lexical scoping&quot;.  For example, here we show a nested function which uses an inherited variable named `offset':</p>
 <pre>
-
 bar (int *array, int offset, int size)
 {
   int access (int *array, int index)
@@ -122,7 +124,7 @@ bar (int *array, int offset, int size)
 </pre>
 
 <p class="first_para">You get the idea. Nested functions are, however, very useful and very heavily used in OCaml. Here is an example of a nested function from some real code:</p>
-<pre>
+<pre ml:content="ocaml">
 let read_whole_channel chan =
   let buf = Buffer.create 4096 in
   let rec loop () =
@@ -134,7 +136,7 @@ let read_whole_channel chan =
   try
     loop ()
   with
-    End_of_file -&gt; Buffer.contents buf;;
+    End_of_file -> Buffer.contents buf;;
 </pre>
 
 <p class="first_para">Don't worry about what this code does - it contains many concepts which haven't been discussed in this tutorial yet. Concentrate instead on the central nested function called <code>loop</code> which takes just a unit argument.  You can call <code>loop ()</code> from within the function <code>read_whole_channel</code>, but it's not defined outside this function. The nested function can access variables defined in the main function (here <code>loop</code> accesses the local names <code>buf</code> and <code>chan</code>).</p>
@@ -155,7 +157,7 @@ let read_whole_channel chan =
 <p>If we want to use the functions in <code>Graphics</code> there are two ways we can do it. Either at the start of our program we have the <code>open Graphics;;</code> declaration. Or we prefix all calls to the functions like this: <code>Graphics.open_graph</code>. <code>open</code> is a little bit like Java's <code>import</code> statement, and much more like Perl's <code>use</code> statement.</p>
 <p>[Windows users: For this example to work interactively on Windows, you will need to create a custom toplevel.  Issue the command <code>ocamlmktop -o ocaml-graphics graphics.cma</code> from the command line.]</p>
 <p>A couple of examples should make this clear. (The two examples draw different things - try them out). Note the first example calls <code>open_graph</code> and the second one <code>Graphics.open_graph</code>.</p>
-<pre>
+<pre ml:content="ocaml noeval">
 (* To compile this example: ocamlc graphics.cma grtest1.ml -o grtest1 *)
 
 open Graphics;;
@@ -163,32 +165,32 @@ open Graphics;;
 open_graph &quot; 640x480&quot;;;
 for i = 12 downto 1 do
   let radius = i * 20 in
-  set_color (if (i mod 2) = 0 then red else yellow);
+  set_color (if i mod 2 = 0 then red else yellow);
   fill_circle 320 240 radius
 done;;
 read_line ();;
 </pre>
 
-<pre>
+<pre ml:content="ocaml noeval">
 (* To compile this example: ocamlc graphics.cma grtest2.ml -o grtest2 *)
 
 Random.self_init ();;
 Graphics.open_graph &quot; 640x480&quot;;;
 
 let rec iterate r x_init i =
-        if i = 1 then x_init
-        else
-                let x = iterate r x_init (i-1) in
-                r *. x *. (1.0 -. x);;
+  if i = 1 then x_init
+  else
+    let x = iterate r x_init (i-1) in
+    r *. x *. (1.0 -. x);;
 
 for x = 0 to 639 do
-        let r = 4.0 *. (float_of_int x) /. 640.0 in
-        for i = 0 to 39 do
-                let x_init = Random.float 1.0 in
-                let x_final = iterate r x_init 500 in
-                let y = int_of_float (x_final *. 480.) in
-                Graphics.plot x y
-        done
+  let r = 4.0 *. (float_of_int x) /. 640.0 in
+  for i = 0 to 39 do
+    let x_init = Random.float 1.0 in
+    let x_final = iterate r x_init 500 in
+    let y = int_of_float (x_final *. 480.) in
+    Graphics.plot x y
+  done
 done;;
 
 read_line ();;
@@ -199,10 +201,10 @@ read_line ();;
 <p class="first_para">There's one module that you never need to &quot;<code>open</code>&quot;. That is the <code>Pervasives</code> module (go and read <code>/usr/lib/ocaml/3.08/pervasives.mli</code> now). All of the symbols from the <code>Pervasives</code> module are automatically imported into every OCaml program.</p>
 <h3>Renaming modules</h3>
 <p class="first_para">What happens if you want to use symbols in the <code>Graphics</code> module, but you don't want to import all of them and you can't be bothered to type <code>Graphics</code> each time? Just rename it using this trick:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 module Gr = Graphics;;
 
-Gr.open_graph &quot; 640x480&quot;;;
+Gr.open_graph " 640x480";;
 Gr.fill_circle 320 240 240;;
 read_line ();;
 </pre>
@@ -212,15 +214,15 @@ read_line ();;
 <p class="first_para">Now we're going to look at a very important issue. When should you use <code>;;</code>, when should you use <code>;</code>, and when should you use none of these at all? This is a tricky issue until you &quot;get it&quot;, and it taxed the author for a long time while he was learning OCaml too.</p>
 <p>Rule #1 is that you should use <code>;;</code> to separate statements at the top-level of your code, and <em>never</em> within function definitions or any other kind of statement.</p>
 <p>Have a look at a section from the second graphics example above:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 Random.self_init ();;
-Graphics.open_graph &quot; 640x480&quot;;;
+Graphics.open_graph " 640x480";;
 
 let rec iterate r x_init i =
-        if i = 1 then x_init
-        else
-                let x = iterate r x_init (i-1) in
-                r *. x *. (1.0 -. x);;
+  if i = 1 then x_init
+  else
+    let x = iterate r x_init (i-1) in
+    r *. x *. (1.0 -. x);;
 </pre>
 
 <p class="first_para">We have two top-level statements and a function definition (of a function called <code>iterate</code>). Each one is followed by <code>;;</code>.</p>
@@ -231,27 +233,27 @@ let rec iterate r x_init i =
 <li>At the very end of the file.</li>
 <li>A few other (very rare) places where OCaml can &quot;guess&quot; that the next thing is the start of a new statement and not the continuation of the current statement.</li></ul>
 <p class="first_para">Here is some working code with <code>;;</code> elided wherever possible:</p>
-<pre>
+<pre ml:content="ocaml noeval">
 open Random                   (* ;; *)
 open Graphics;;
 
 self_init ();;
-open_graph &quot; 640x480&quot;         (* ;; *)
+open_graph " 640x480"         (* ;; *)
 
 let rec iterate r x_init i =
-        if i = 1 then x_init
-        else
-                let x = iterate r x_init (i-1) in
-                r *. x *. (1.0 -. x);;
+  if i = 1 then x_init
+  else
+    let x = iterate r x_init (i-1) in
+    r *. x *. (1.0 -. x);;
 
 for x = 0 to 639 do
-        let r = 4.0 *. (float_of_int x) /. 640.0 in
-        for i = 0 to 39 do
-                let x_init = Random.float 1.0 in
-                let x_final = iterate r x_init 500 in
-                let y = int_of_float (x_final *. 480.) in
-                Graphics.plot x y
-        done
+  let r = 4.0 *. (float_of_int x) /. 640.0 in
+  for i = 0 to 39 do
+    let x_init = Random.float 1.0 in
+    let x_final = iterate r x_init 500 in
+    let y = int_of_float (x_final *. 480.) in
+    Graphics.plot x y
+  done
 done;;
 
 read_line ()                  (* ;; *)
@@ -261,13 +263,13 @@ read_line ()                  (* ;; *)
 <p>Rule #3 is: Consider <code>let ... in</code> as a statement, and never put a single <code>;</code> after it.</p>
 <p>Rule #4 is: For all other statements within a block of code, follow them with a single <code>;</code>, <em>except</em> for the very last one.</p>
 <p>The inner for-loop in our example above is a good demonstration. Notice that we never use any single <code>;</code> in this code:</p>
-<pre>
-        for i = 0 to 39 do
-                let x_init = Random.float 1.0 in
-                let x_final = iterate r x_init 500 in
-                let y = int_of_float (x_final *. 480.) in
-                Graphics.plot x y
-        done
+<pre ml:content="ocaml noeval">
+for i = 0 to 39 do
+  let x_init = Random.float 1.0 in
+  let x_final = iterate r x_init 500 in
+  let y = int_of_float (x_final *. 480.) in
+  Graphics.plot x y
+done
 </pre>
 
 <p class="first_para">The only place in the above code where might think about putting in a <code>;</code> is after the <code>Graphics.plot x y</code>, but because this is the last statement in the block, Rule #4 tells us not to put one there.</p>
@@ -293,16 +295,12 @@ expression.  <code>match foo with ...</code> is an expression.  The
 following code is perfectly legal (and all do the same thing):
 </p>
 
-<pre>
- let f x b y = if b then x+y else x+0
- 
- let f x b y = x + (if b then y else 0)
- 
- let f x b y = x + (match b with true -&gt; y | false -&gt; 0)
- 
- let f x b y = x + (let g z = function true -&gt; z | false -&gt; 0 in g y b)
- 
- let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
+<pre ml:content="ocaml noeval">
+let f x b y = if b then x+y else x+0
+let f x b y = x + (if b then y else 0)
+let f x b y = x + (match b with true -> y | false -> 0)
+let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
+let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
 </pre>
 
 <p>
@@ -310,7 +308,7 @@ Note especially the last one - I'm using <code>;</code> as an operator
 to "join" two statements.  All functions in OCaml can be expressed as:
 </p>
 
-<pre>
+<pre ml:content="ocaml noeval">
  let name [parameters] = expression
 </pre>
 
@@ -328,7 +326,7 @@ instance, I can define a <code>sum_list</code> function, to sum a list of ints,
 like:
 </p>
 
-<pre>
+<pre ml:content="ocaml noeval">
  let sum_list = List.fold_left ( + ) 0
 </pre>
 </blockquote>
@@ -338,7 +336,7 @@ like:
 <ul><li><code>?foo</code> and <code>~foo</code> is OCaml's way of doing optional and named arguments to functions. There is no real parallel to this in C-derived languages, but Perl, Python and Smalltalk all have this concept that you can name the arguments in a function call, omit some of them, and supply the others in any order you like.</li>
 <li><code>foo#bar</code> is a method invocation (calling a method called <code>bar</code> on an object called <code>foo</code>).  It's similar to <code>foo-&gt;bar</code> or <code>foo.bar</code> or <code>$foo-&gt;bar</code> in C++, Java or Perl respectively.</li></ul>
 <p class="first_para">First snippet: The programmer opens a couple of standard libraries (eliding the <code>;;</code> because the next keyword is <code>open</code> and <code>let</code> respectively). He then creates a function called <code>file_dialog</code>. Inside this function he defines a named expression called <code>sel</code> using a two-line <code>let sel = ... in</code> statement. Then he calls several methods on <code>sel</code>.</p>
-<pre>
+<pre ml:content="ocaml noeval">
 (* First snippet *)
 
 open StdLabels
@@ -353,17 +351,17 @@ let file_dialog ~title ~callback ?filename () =
 </pre>
 
 <p class="first_para">Second snippet: Just a long list of global names at the top level. Notice that the author elided every single one of the <code>;;</code> because of Rule #2.</p>
-<pre>
+<pre ml:content="ocaml noeval">
 (* Second snippet *)
 
-let window = GWindow.window ~width:500 ~height:300 ~title:&quot;editor&quot; ()
+let window = GWindow.window ~width:500 ~height:300 ~title:"editor" ()
 let vbox = GPack.vbox ~packing:window#add ()
 
 let menubar = GMenu.menu_bar ~packing:vbox#pack ()
 let factory = new GMenu.factory menubar
 let accel_group = factory#accel_group
-let file_menu = factory#add_submenu &quot;File&quot;
-let edit_menu = factory#add_submenu &quot;Edit&quot;
+let file_menu = factory#add_submenu "File"
+let edit_menu = factory#add_submenu "Edit"
 
 let hbox = GPack.hbox ~packing:vbox#add ()
 let editor = new editor ~packing:hbox#add ()
@@ -372,31 +370,31 @@ let scrollbar = GRange.scrollbar `VERTICAL ~packing:hbox#pack ()
 
 <p class="first_para">Third snippet: The author imports all the symbols from the <code>GdkKeysyms</code> module. Now we have an unusual let-binding. <code>let _ = expression</code> means &quot;calculate the value of the expression (with all the side-effects that may entail), but throw away the result&quot;. In this case, &quot;calculate the value of the expression&quot; means to run <code>Main.main ()</code> which is Gtk's main loop, which has the side-effect of popping the window onto the screen and running the whole application. The &quot;result&quot; of <code>Main.main ()</code> is insignificant - probably a <code>unit</code> return value, but I haven't checked - and it doesn't get returned until the application finally exits.</p>
 <p>Notice in this snippet how we have a long series of essentially procedural commands. This is really a classic imperative program.</p>
-<pre>
+<pre ml:content="ocaml noeval">
 (* Third snippet *)
 
 open GdkKeysyms
 
-let _ =
+let () =
   window#connect#destroy ~callback:Main.quit;
   let factory = new GMenu.factory file_menu ~accel_group in
-  factory#add_item &quot;Open...&quot; ~key:_O ~callback:editor#open_file;
-  factory#add_item &quot;Save&quot; ~key:_S ~callback:editor#save_file;
-  factory#add_item &quot;Save as...&quot; ~callback:editor#save_dialog;
+  factory#add_item "Open..." ~key:_O ~callback:editor#open_file;
+  factory#add_item "Save" ~key:_S ~callback:editor#save_file;
+  factory#add_item "Save as..." ~callback:editor#save_dialog;
   factory#add_separator ();
-  factory#add_item &quot;Quit&quot; ~key:_Q ~callback:window#destroy;
+  factory#add_item "Quit" ~key:_Q ~callback:window#destroy;
   let factory = new GMenu.factory edit_menu ~accel_group in
-  factory#add_item &quot;Copy&quot; ~key:_C ~callback:editor#text#copy_clipboard;
-  factory#add_item &quot;Cut&quot; ~key:_X ~callback:editor#text#cut_clipboard;
-  factory#add_item &quot;Paste&quot; ~key:_V ~callback:editor#text#paste_clipboard;
+  factory#add_item "Copy" ~key:_C ~callback:editor#text#copy_clipboard;
+  factory#add_item "Cut" ~key:_X ~callback:editor#text#cut_clipboard;
+  factory#add_item "Paste" ~key:_V ~callback:editor#text#paste_clipboard;
   factory#add_separator ();
-  factory#add_check_item &quot;Word wrap&quot; ~active:false
+  factory#add_check_item "Word wrap" ~active:false
     ~callback:editor#text#set_word_wrap;
-  factory#add_check_item &quot;Read only&quot; ~active:false
-    ~callback:(fun b -&gt; editor#text#set_editable (not b));
+  factory#add_check_item "Read only" ~active:false
+    ~callback:(fun b -> editor#text#set_editable (not b));
   window#add_accel_group accel_group;
   editor#text#event#connect#button_press
-    ~callback:(fun ev -&gt;
+    ~callback:(fun ev ->
       let button = GdkEvent.Button.button ev in
       if button = 3 then begin
         file_menu#popup ~button ~time:(GdkEvent.Button.time ev); true
