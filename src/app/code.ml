@@ -31,6 +31,8 @@ let highlight_ocaml =
       <span class=\"ocaml-variable\">\\3</span> =");
     ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\) *=",
      "type \\1<span class=\"ocaml-mod\">\\3</span> =");
+    ("\\([A-Z][A-Za-z_]*\\)\\.",
+     "<span class=\"ocaml-mod\">\\1</span>.");
     ("\\b\\(type\\|in\\|begin\\|end\\|val\\)\\b",
      "<span class=\"kwa\">\\1</span>");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
