@@ -12,6 +12,7 @@ let highlight_ocaml =
   (* Simple minded engine to highlight OCaml code.  The [phrase] is supposed
      to be html encoded. *)
   let id = "\\b[a-z_][a-zA-Z0-9_']*" in
+  let uid = "\\b[A-Z][A-Za-z0-9_']*" in
   (* Arguments to functions may pattern match. *)
   let args = "[^=<>]+" in
   let subst = [ (* regex, replacement *)
@@ -31,12 +32,18 @@ let highlight_ocaml =
       <span class=\"ocaml-variable\">\\3</span> =");
     ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\) *=",
      "type \\1<span class=\"ocaml-mod\">\\3</span> =");
-    ("\\([A-Z][A-Za-z_]*\\)\\.",
+    ("\\(" ^ uid ^ "\\)\\.",
      "<span class=\"ocaml-mod\">\\1</span>.");
+    ("open +\\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
+     "<span class=\"kwa\">open</span> \\1<span class=\"ocaml-mod\">\\3</span>");
+    ("module +\\(" ^ uid ^ "\\) *= *\
+                            \\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
+     "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
+      = \\2<span class=\"ocaml-mod\">\\4</span>");
     ("\\b\\(type\\|in\\|begin\\|end\\|val\\)\\b",
      "<span class=\"kwa\">\\1</span>");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
-      \\|for\\|to\\|do\\|done\\|failwith\\|assert\\|ref\\)\\b",
+      \\|for\\|to\\|do\\|downto\\|done\\|failwith\\|assert\\|ref\\)\\b",
      "<span class=\"kwb\">\\1</span>");
   ] in
   let subst = List.map (fun (re, t) -> (Str.regexp re, t)) subst in
