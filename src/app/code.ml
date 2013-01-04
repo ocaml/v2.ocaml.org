@@ -44,7 +44,7 @@ let highlight_ocaml =
     ("\\b\\(type\\|in\\|begin\\|end\\|val\\)\\b",
      "<span class=\"kwa\">\\1</span>");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
-      \\|for\\|to\\|do\\|downto\\|done\\|failwith\\|assert\\|ref\\)\\b",
+      \\|for\\|to\\|do\\|downto\\|done\\|failwith\\|assert\\|ref\\|new\\)\\b",
      "<span class=\"kwb\">\\1</span>");
   ] in
   let subst = List.map (fun (re, t) -> (Str.regexp re, t)) subst in
