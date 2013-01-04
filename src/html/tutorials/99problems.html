@@ -1263,19 +1263,27 @@ let rec gray n =
     completely balanced binary trees with a given number of nodes.</p>
   <button onclick="toggleContent('q58')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+  let sym_cbal_trees n =
+    List.filter is_symmetric (cbal_tree n)
 </pre>
 <pre ml:content="ocaml">
   sym_cbal_trees 5
-  = [Node('x', Node('x', Empty, Node('x', Empty, Empty)),
-               Node('x', Node('x', Empty, Empty), Empty));
-     Node('x', Node('x', Node('x', Empty, Empty), Empty),
-               Node('x', Empty, Node('x', Empty, Empty)))]
+  = [Node('x', Node('x', Node('x', Empty, Empty), Empty),
+               Node('x', Empty, Node('x', Empty, Empty)));
+     Node('x', Node('x', Empty, Node('x', Empty, Empty)),
+               Node('x', Node('x', Empty, Empty), Empty)) ]
 </pre>
 <p>
   How many such trees are there with 57 nodes? Investigate about how
   many solutions there are for a given number of nodes? What if the
   number is even?  Write an appropriate function.
 </p>
+<pre ml:content="ocaml" class="solution">
+  List.length (sym_cbal_trees 57);;
+  List.map (fun n -> n, List.length(sym_cbal_trees n)) (range 10 20)
+  = [(10, 0); (11, 4); (12, 0); (13, 4); (14, 0); (15, 1);
+     (16, 0); (17, 8); (18, 0); (19, 16); (20, 0)]
+</pre>
 </div>
 
 <div class="question medium" id="q59" >
