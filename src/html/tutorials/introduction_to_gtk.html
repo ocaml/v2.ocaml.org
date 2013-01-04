@@ -3,9 +3,7 @@
 </head>
 <body>
 <h1><span>Introduction to Gtk</span></h1>
-<a name="Note_from_Rich"></a><h2><span>Note from Rich</span></h2>
-<p class="first_para">Chapters 12 and 13 really need to be rewritten from scratch.</p>
-<p>I've left them here - you can read them, but the formatting is screwy.</p>
+
 <a name="Lablgtk_and_writing_Gtk_applications"></a><h2><span>Lablgtk and writing Gtk applications</span></h2>
 <p class="first_para"><a href="http://www.gtk.org/" class="external" title="http://www.gtk.org/">Gtk+</a> is a toolkit for writing graphical applications, and <a href="http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html" class="external" title="http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html">lablgtk</a> is the OCaml interface for Gtk. Gtk and lablgtk are available for Unix and Windows platforms. In this tutorial I'm going to concentrate on the older but more stable Gtk version 1.2.  Gtk 2.x has some incompatibilities with Gtk 1.2, although mostly you won't notice the difference. On Windows, Gtk 1.2 has a non-native look and feel, but this is corrected in Gtk 2.x by the use of <a href="http://gtk-wimp.sourceforge.net/" class="external" title="http://gtk-wimp.sourceforge.net/">Gtk-Wimp</a> (a Windows native theme for Gtk).</p>
 <p>Lablgtk makes ambitious use of advanced features of the OCaml type system. Make sure you're familiar with labelled and optional arguments and polymorphic variants (<a href="labels.html" class="internal" title="labels">labels</a>) or you won't have any idea what's going on in this chapter.  As it is, even the author of this tutorial finds ploughing through the lablgtk source code pretty hard work!</p>
@@ -50,7 +48,7 @@ main ()
 ocamlc -g -w s -I +lablgtk lablgtk.cma gtkInit.cmo simple.ml -o simple
 </pre>
 
-<p class="first_para">This is what you should see when you run it: <img src="_image/simplee29b.gif?version=382" width="327" height="277" alt="Simple lablgtk program"/></p>
+<p class="first_para">This is what you should see when you run it: <img src="../img/simplee29b.gif" width="327" height="277" alt="Simple lablgtk program"/></p>
 <p>Let's analyse the program line by line to see what's going on.</p>
 <pre>
 open GMain
