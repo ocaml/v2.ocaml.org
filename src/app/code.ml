@@ -1,7 +1,7 @@
 (* Syntax hightlight code and eval ocaml toplevel phrases *)
 
 open Printf
-
+open Scanf
 
 (* To HTML, with syntax highlighting
  ***********************************************************************)
@@ -9,7 +9,8 @@ open Printf
 let html_encode = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
 
 let highlight_ocaml =
-  (* Simple minded engine to highlight OCaml code. *)
+  (* Simple minded engine to highlight OCaml code.  The [phrase] is supposed
+     to be html encoded. *)
   let id = "\\b[a-z_][a-zA-Z0-9_']*" in
   (* Arguments to functions may pattern match. *)
   let args = "[^=<>]+" in
@@ -38,8 +39,7 @@ let highlight_ocaml =
   ] in
   let subst = List.map (fun (re, t) -> (Str.regexp re, t)) subst in
   fun phrase -> (
-    let h = html_encode phrase in
-    List.fold_left (fun h (re, t) -> Str.global_replace re t h) h subst
+    List.fold_left (fun h (re, t) -> Str.global_replace re t h) phrase subst
   )
 
 
@@ -105,9 +105,29 @@ let html_of_eval_silent phrase =
   format_eval_input phrase
 
 let html_of_eval phrase =
-  let cls, out = match toploop_eval (phrase ^ ";;") with
-    | Normal s -> "ocamltop-output", s
-    | Error s ->  "ocamltop-error", s in
+  let phrase, cls, out = match toploop_eval (phrase ^ ";;") with
+    | Normal s -> html_encode phrase, "ocamltop-output", s
+    | Error s ->
+       (* Process the error to see whether one needs to highlight part of
+          the phrase. *)
+       try
+         let locate_error c1 c2 =
+           let len = String.length phrase in
+           if len = 0 then
+             phrase, "ocamltop-error", s
+           else
+             let p1 = String.sub phrase 0 c1
+             and p2 = String.sub phrase c1 (c2 - c1)
+             and p3 = if c2 >= len then ""
+                      else String.sub phrase c2 (len - c2) in
+             let phrase = html_encode p1 ^ "<span class=\"ocamltop-error-loc\">"
+                          ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
+             let nl = 1 + String.index s '\n' in
+             let s = String.sub s nl (String.length s - nl) in
+             phrase, "ocamltop-error", s in
+         sscanf s "Characters %i-%i: " locate_error
+       with Scan_failure _ ->
+         html_encode phrase, "ocamltop-error", s in
   let open Nethtml in
    format_eval_input phrase
    @ [ Element("br", [], []);

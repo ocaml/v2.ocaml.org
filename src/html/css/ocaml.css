@@ -410,6 +410,10 @@ div.A {
   color: #d32121;
 }
 
+.ocamltop-error-loc {
+  border-bottom: solid 4px #d32121;
+}
+
 /* 99 Problems
  ***********************************************************************/
 
