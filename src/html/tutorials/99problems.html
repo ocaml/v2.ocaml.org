@@ -1172,20 +1172,20 @@ let rec gray n =
   <button onclick="toggleContent('q55')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
   (* Build all trees with given [left] and [right] subtrees. *)
-  let trees_with left right =
+  let add_trees_with left right all =
     let add_right_tree all l =
       List.fold_left (fun a r -> Node('x', l, r) :: a) all right in
-    List.fold_left add_right_tree [] left
+    List.fold_left add_right_tree all left
   
   let rec cbal_tree n =
     if n = 0 then [Empty]
     else if n mod 2 = 1 then
       let t = cbal_tree (n / 2) in
-      trees_with t t
+      add_trees_with t t []
     else (* n even: n-1 nodes for the left & right subtrees altogether. *)
       let t1 = cbal_tree (n / 2 - 1) in
       let t2 = cbal_tree (n / 2) in
-      trees_with t1 t2 @ trees_with t2 t1
+      add_trees_with t1 t2 (add_trees_with t2 t1 [])
 </pre>
 <pre ml:content="ocaml">
   cbal_tree 4
@@ -1196,7 +1196,8 @@ let rec gray n =
      Node('x', Node('x', Node('x', Empty, Empty), Empty),
           Node('x', Empty, Empty));
      Node('x', Node('x', Empty, Node('x', Empty, Empty)),
-          Node('x', Empty, Empty)); ]
+          Node('x', Empty, Empty)); ];;
+  List.length(cbal_tree 40)
 </pre>
 </div>
 
