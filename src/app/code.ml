@@ -205,7 +205,10 @@ let ocaml ctx args =
     List.concat (List.map f phrases) in
   match args with
     | ["silent"] -> process_phrases html_of_eval_silent
-    | ["noeval"] -> [Nethtml.Data (highlight_ocaml (text_of_html ctx#content))]
+    | ["noeval"] ->
+       let open Nethtml in
+       let code = trim (highlight_ocaml (text_of_html ctx#content)) in
+       [Element("span", ["class", "listing"], [Data code])]
     | ["--inc"; fname; l1; l2]
     | ["--include"; fname; l1; l2] ->
        let l1 = int_of_string l1 and l2 = int_of_string l2 in
