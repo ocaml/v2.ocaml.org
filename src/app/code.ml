@@ -123,7 +123,7 @@ let html_of_eval phrase =
        try
          let locate_error c1 c2 =
            let len = String.length phrase in
-           if len = 0 then
+           if c1 >= len then
              phrase, "ocamltop-error", s
            else
              let p1 = String.sub phrase 0 c1
