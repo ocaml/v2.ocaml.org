@@ -1234,6 +1234,14 @@ let rec gray n =
     numbers.</p>
   <button onclick="toggleContent('q57')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+  let rec insert tree x = match tree with
+    | Empty -> Node(x, Empty, Empty)
+    | Node(y, l, r) ->
+       if x = y then tree
+       else if x < y then Node(y, insert l x, r)
+       else Node(y, l, insert r x)
+
+  let construct l = List.fold_left insert Empty l
 </pre>
 <pre ml:content="ocaml">
   construct [3;2;5;7;1]
@@ -1243,8 +1251,8 @@ let rec gray n =
   <p>Then use this function to test the solution of the previous
     problem.</p>
 <pre ml:content="ocaml">
-  is_symmetric(construct[5;3;18;1;4;12;21]);;
-  not(is_symmetric(construct[3;2;5;7;1]))
+  is_symmetric(construct [5;3;18;1;4;12;21]);;
+  not(is_symmetric(construct [3;2;5;7;4]))
 </pre>
 </div>
 
