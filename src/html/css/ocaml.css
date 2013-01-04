@@ -386,10 +386,10 @@ div.A {
   color: #8d8d8d;
 }
 
-.listing .kwa { font-weight: bold; }
-.listing .kwb { color: #9a21c9; }
-.listing .kwc { color: #213cc9; }
-.listing .opt { color: #08087a; } /* operators */
+.listing .kwa, .ocamltop-input .kwa { font-weight: bold; }
+.listing .kwb, .ocamltop-input .kwb { color: #9a21c9; }
+.listing .kwc, .ocamltop-input .kwc { color: #213cc9; }
+.listing .opt, .ocamltop-input .opt { color: #08087a; } /* operators */
 
 .ocaml-function { color: #0606ee; }
 .ocaml-variable { color: #b8860b; }
