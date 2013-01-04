@@ -394,7 +394,8 @@ div.A {
 .ocaml-function { color: #0606ee; }
 .ocaml-variable { color: #b8860b; }
 .ocaml-mod { color: #42a642; }
-.ocaml-comment, .ocaml-comment .kwa, .ocaml-comment .kwb {
+.ocaml-comment, .ocaml-comment .kwa, .ocaml-comment .kwb,
+.ocaml-comment .ocaml-function {
   font-weight: normal;
   font-style: italic;
   color: #cd6600;

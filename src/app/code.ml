@@ -14,7 +14,8 @@ let highlight_ocaml =
   (* Arguments to functions may pattern match. *)
   let args = "[^=<>]+" in
   let subst = [ (* regex, replacement *)
-    ("\\((\\*\\([^)]\\|[^*])\\)*\\*)\\)",
+    (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
+     "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
      "<span class=\"ocaml-comment\">\\1</span>");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ id ^ " +\\)\\("
      ^ args ^ "\\)= *function",
