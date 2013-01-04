@@ -1077,12 +1077,26 @@ n = 2: C(2) = ['00','01','11','10'].
 n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 </pre>
   <p>Find out the construction rules and write a function with the
-    following specification: <code>gray n c</code> <em><code>c</code> is
-      the <code>n</code>-bit Gray code</em>.</p>
+    following specification: <code>gray n</code> returns
+    the <code>n</code>-bit Gray code.</p>
   <button onclick="toggleContent('q49')" class="solution">Solution</button>
 <pre ml:content="ocaml" class="solution">
+let prepend c s =
+  (* Prepend the char [c] to the string [s]. *)
+  let s' = String.create (String.length s + 1) in
+  s'.[0] <- c;
+  String.blit s 0 s' 1 (String.length s);
+  s'
+
+let rec gray n =
+  if n <= 1 then ["0"; "1"]
+  else let g = gray (n - 1) in
+       List.map (prepend '0') g @ List.map (prepend '1') g
 </pre>
 <pre ml:content="ocaml">
+  gray 1 = ["0"; "1"];;
+  gray 2 = ["00"; "01"; "11"; "10"];;
+  gray 3 = ["000"; "001"; "011"; "010"; "110"; "111"; "101"; "100"]
 </pre>
 </div>
 
