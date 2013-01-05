@@ -12,6 +12,7 @@ let highlight_ocaml =
   (* Simple minded engine to highlight OCaml code.  The [phrase] is supposed
      to be html encoded. *)
   let id = "\\b[a-z_][a-zA-Z0-9_']*" in
+  let let_id = id ^ "\\|( +[!=+-*/^:]+ +)" in
   let uid = "\\b[A-Z][A-Za-z0-9_']*" in
   (* Arguments to functions may pattern match. *)
   let args = "[^=<>]+" in
@@ -20,18 +21,18 @@ let highlight_ocaml =
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
      "<span class=\"ocaml-comment\">\\1</span>");
     ("\\blet +() *=", "<span class=\"kwa\">let</span> () =");
-    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ id ^ " *\\)= *function",
+    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ " *\\)= *function",
      "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span>\
       = <span class=\"kwb\">function</span>");
-    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ id ^ " +\\)\\("
+    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ " +\\)\\("
      ^ args ^ "\\)= *function",
      "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span>\
       <span class=\"ocaml-variable\">\\3</span>= \
       <span class=\"kwb\">function</span>");
-    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ id ^ " +\\)\\(" ^ args ^ "\\)=",
+    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ " +\\)\\(" ^ args ^ "\\)=",
      "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span>\
       <span class=\"ocaml-variable\">\\3</span>=");
-    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ id ^ "\\) *=",
+    ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ let_id ^ "\\) *=",
      "<span class=\"kwa\">\\1</span>\
       <span class=\"ocaml-variable\">\\3</span> =");
     ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\) *=",
