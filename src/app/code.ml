@@ -48,7 +48,7 @@ let highlight_ocaml =
      "<span class=\"kwa\">\\1</span>");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
       \\|for\\|to\\|do\\|downto\\|done\\|while\
-      \\|raise\||failwith\\|try\\|assert\
+      \\|raise\\|failwith\\|try\\|assert\
       \\|ref\\|new\\)\\b",
      "<span class=\"kwb\">\\1</span>");
   ] in
