@@ -457,3 +457,20 @@ button.solution {
   font-style: italic;
   margin: 0.5em 0 0 2em;
 }
+
+/* OCaml Programming Guidelines
+ ***********************************************************************/
+
+blockquote {
+  margin-left: 5em;
+  margin-top: 1ex;
+  border: 1px solid #c9c9c9;
+  background-color: #fffed8;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+blockquote p {
+  font-size: 100%;
+}
