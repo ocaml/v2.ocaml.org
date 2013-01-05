@@ -13,13 +13,6 @@
 
     <div class="pull-right" style="margin-left: 1em" >
       <div class="span3" >
-        <div class="big-announcements" >
-          <div class="hero-unit">
-            See <a href="../whats_new.html"><strong>what's new</strong></a>
-            in the latest version!
-          </div>
-        </div>
-
         <div class="hero-unit" >
           <strong>License</strong> <br />
           The OCaml system is open
@@ -39,6 +32,32 @@
 	<p>Development versions, and <a href="http://caml.inria.fr/pub/distrib/">earlier releases</a> are also available; the
 	  most recent stable release of the the previous major version of 
 	  OCaml was <a href="http://caml.inria.fr/ocaml/release-prev.en.html">3.12.1</a>, released in 2011.</p>
+
+    <h2>What's New</h2>
+    <p>Release 4.00.1 is mostly a bugfix release.</p>
+
+    <p>Some of the highlights in release 4.0.0 (July 2012) are:</p>
+    <ul><li> The name the language is now officially
+        "OCaml", and this name is used consistently in all the
+        documentation and tool outputs. </li>
+      <li> Generalized Algebraic Data Types (GADTs): this is a
+	powerful extension of the type system that provides great
+	flexibility and power to the programmer. </li>
+      <li> A new and improved ARM back-end. </li>
+      <li> Changes to first-class modules: type annotations can
+	now be omitted when packing and unpacking modules (and are
+	inferred from context whenever possible), and first-class
+	modules can now be unpacked by pattern-matching. </li>
+      <li> Support for randomized hash tables to avoid
+	denial-of-service vulnerabilities. </li>
+      <li>Installation of the compiler's internal libraries in
+        <code>+compiler-libs</code> for easier access by third-party
+        programming tools. </li>
+    </ul>
+
+    <p>For more information, please consult the <a
+    href="http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/Changes">comprehensive
+    list of changes</a>.</p>
 
     <h2><img src="../img/source.gif" alt="" />Source distribution</h2>
     <ul>
