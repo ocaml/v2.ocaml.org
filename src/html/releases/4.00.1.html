@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <title>OCaml 4.00.1</title>
+</head>
+<body>
+
+<h1>OCaml 4.00.1</h1>
+
+<div class="pull-right" style="margin-left: 1em" >
+  <div class="span3" >
+    <div class="hero-unit" >
+      <strong>License</strong> <br /> The OCaml system is open source
+      software: the compiler is distributed under the terms of the Q
+      Public License, and its library is under LGPL; please read the
+      <a href="../license.html">license</a> document for more details.
+      A BSD-style license is also available for a fee through the <a
+      href="http://caml.inria.fr/consortium/index.en.html" >OCaml
+      Consortium</a>.
+    </div>
+  </div>
+</div>
+
+<p>The most recent released version of OCaml is <a
+href="http://caml.inria.fr/download.en.html">OCaml 4.00.1</a>,
+released on 2012-10-05.</p>
+
+<p>Development versions, and <a
+href="http://caml.inria.fr/pub/distrib/">earlier releases</a> are also
+available; the most recent stable release of the the previous major
+version of OCaml was <a
+href="http://caml.inria.fr/ocaml/release-prev.en.html">3.12.1</a>,
+released in 2011.</p>
+
+<h2>What's New</h2>
+<p>Release 4.00.1 is mostly a bugfix release.</p>
+
+<p>Some of the highlights in release 4.0.0 (July 2012) are:</p>
+<ul>
+  <li> The name the language is now officially "OCaml", and this name
+  is used consistently in all the documentation and tool
+  outputs.</li>
+
+  <li> Generalized Algebraic Data Types (GADTs): this is a powerful
+  extension of the type system that provides great flexibility and
+  power to the programmer.</li>
+
+  <li> A new and improved ARM back-end.</li>
+
+  <li> Changes to first-class modules: type annotations can now be
+  omitted when packing and unpacking modules (and are inferred from
+  context whenever possible), and first-class modules can now be
+  unpacked by pattern-matching.</li>
+
+  <li> Support for randomized hash tables to avoid denial-of-service
+  vulnerabilities.</li>
+
+  <li>Installation of the compiler's internal libraries in
+  <code>+compiler-libs</code> for easier access by third-party
+  programming tools.</li>
+</ul>
+
+<p>For more information, please consult the <a
+href="http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/Changes">comprehensive
+list of changes</a>.</p>
+
+<h2><img src="../img/source.gif" alt="" />Source distribution</h2>
+<ul>
+  <li><a
+  href="http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.gz"
+  shape="rect">Source tarball</a> (.tar.gz) for compilation under Unix
+  (including Linux and MacOS X) and Microsoft Windows (including
+  Cygwin).</li>
+
+  <li>Also available in <a
+  href="http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.bz2"
+  shape="rect">.tar.bz2</a> format.</li>
+
+  <li>You also have read-only <a href="svn.html">SVN access</a> to the
+  working sources and to all previous public releases.</li>
+</ul>
+
+<p>The <a
+href="http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/INSTALL"
+shape="rect">INSTALL</a> file of the distribution provides detailed
+compilation and installation instruction.</p>
+
+<h2><img src="../img/linux.gif" alt="" />Precompiled binaries for Linux</h2>
+<ul>
+  <li><a href="http://packages.debian.org/ocaml" shape="rect">Debian
+  packages</a>.</li>
+
+  <li><a href="https://admin.fedoraproject.org/pkgdb/acls/name/ocaml/"
+  shape="rect">Fedora packages</a>.</li>
+
+  <li><a
+  href="http://packages.gentoo.org/packages/?category=dev-lang;name=ocaml"
+  shape="rect">Gentoo packages</a>.</li>
+</ul>
+
+<h2><img src="../img/macos.gif" alt="" />Precompiled binaries for
+MacOS X</h2> <p>Binary package compiled on Mac OS 10.7.5 with XCode
+tools 4.4 (probably not compatible with earlier versions of Mac OS
+X):</p>
+
+<ul>
+  <li><a
+  href="http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1-intel.dmg"
+  shape="rect">for Intel</a> (4.00.1)</li>
+</ul>
+
+<h2><img src="../img/windows.gif" alt="" />Precompiled binaries for
+Microsoft Windows</h2> <p>Four ports of OCaml for Microsoft Windows
+are currently available. For additional information, please consult
+the list of <a href="http://caml.inria.fr/ocaml/portability.en.html"
+shape="rect">portability issues</a> or the <a
+href="http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32"
+shape="rect">Windows release notes</a>.</p>
+
+<ul>
+  <li><a href="http://protz.github.com/ocaml-installer/"
+  shape="rect">Cygwin-based native Win32 port (4.00.0)</a>.  A self
+  installer. The interactive loop comes with a simple graphical user
+  interface. Some features require the Cygwin environment, which the
+  installer can fetch for you. However, the compilers are, and
+  generate true Win32 executables, which do not require Cygwin to
+  run.</li>
+
+  <li>Microsoft-based native Win32 port. No binary distribution
+  available yet; download the source distribution and compile it.</li>
+
+  <li><a href="http://cygwin.com/" shape="rect">Cygwin</a>-based port.
+  Requires Cygwin.  No graphical user interface is provided. The
+  compilers generate executables that do require Cygwin.  The
+  precompiled binaries are part of the Cygwin distribution; you can
+  install them using the Cygwin <code>setup</code> tool.
+  Alternatively, download the source distribution and compile it under
+  Cygwin.</li>
+
+  <li>Microsoft-based native Win64 port Same features as the
+  Microsoft-based native Win32 port, but generates 64-bit code.  No
+  binary distribution available yet; download the source distribution
+  and compile it.</li>
+</ul>
+
+<h2>Precompiled binaries for Solaris</h2> <p>Available at <a
+href="http://sunfreeware.com/" shape="rect">sunfreeware.com</a>.</p>
+
+<h2>Alternative Compilers</h2> <p>Additionally, the following projects
+allow you to compile OCaml code to targets traditionally associated
+with other languages:</p>
+
+<ul>
+  <li>The <a href="http://ocsigen.org/js_of_ocaml/">js_of_ocaml
+  project</a>, an OCaml to Javascript compiler (stable)</li>
+
+  <li>The <a href="http://cafesterol.x9c.fr/">ocamljava project</a>,
+  an OCaml to Java compiler (experimental)</li>
+</ul>
+
+<h2><img src="../img/doc.gif" alt="" />User's manual</h2>
+<p>The user's manual for OCaml can be:</p>
+<ul>
+  <li><a
+  href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/index.html"
+  shape="rect">browsed online</a>,</li>
+
+  <li>downloaded as a single
+    <a href="http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00-refman.ps.gz" shape="rect">PostScript</a>,
+    <a href="http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00-refman.pdf" shape="rect">PDF</a>, or
+    <a href="http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00-refman.txt" shape="rect">plain text</a> document,
+  </li>
+
+  <li>downloaded as a single
+    <a href="http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00-refman-html.tar.gz" shape="rect">TAR</a> or
+    <a href="http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00-refman-html.zip" shape="rect">ZIP</a>
+    archive of HTML files,
+  </li>
+
+  <li>downloaded as a single
+    <a href="http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00-refman.info.tar.gz" shape="rect">tarball</a>
+    of Emacs <tt>info</tt> files.
+  </li>
+</ul>
+
+</body>
+</html>
