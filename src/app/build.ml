@@ -139,7 +139,6 @@ let () =
   Weberizer.Binding.fun_html b "news" Render_rss.news;
   Weberizer.Binding.fun_html b "opml" Render_rss.OPML.of_urls;
   Weberizer.Binding.fun_html b "toc" Toc.make;
-  Weberizer.Binding.fun_html b "ocaml" Code.ocaml;
 
   let re_filter = Str.regexp "\\(menu\\|OCAML\\).*" in
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in
@@ -159,6 +158,9 @@ let () =
     let tpl = Main.url_base tpl (Weberizer.Path.to_base p) in
     let url_base = if Path.in_base p then "" else Path.to_base p in
     Weberizer.Binding.string b "url_base" url_base;
+    let path_from_base =
+      Filename.concat "src/html/" (Weberizer.Path.from_base p) in
+    Weberizer.Binding.fun_html b "ocaml" (Code.ocaml path_from_base);
     let page = Weberizer.read (Path.full p) ~bindings:b in
     let tpl = Main.title tpl (Weberizer.title_of page) in
     let prefix = if lang = "en" then "" else "../" in

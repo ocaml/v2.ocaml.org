@@ -14,8 +14,10 @@ let highlight_ocaml =
   let id = "\\b[a-z_][a-zA-Z0-9_']*" in
   let let_id = id ^ "\\|( +[!=+-*/^:]+ +)" in
   let uid = "\\b[A-Z][A-Za-z0-9_']*" in
-  (* Arguments to functions may pattern match. *)
-  let args = "\\(\\?([^=()]+=[^=()]+) *\\)+\\|[^=<>? ][^=<>?]*" in
+  (* Arguments to functions may pattern match.  Final "\\." to allow
+     "..." in argument (sometimes used for explanations). *)
+  let args = "\\(\\?(" ^ id ^ " *=[^=()]+) +\\|[~?]" ^ id ^ "[ :]+\\|() *\\|"
+             ^ id ^ " +\\|\\.+ +\\)+" in
   let subst = [ (* regex, replacement *)
     (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
@@ -48,6 +50,9 @@ let highlight_ocaml =
                             \\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
      "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
       = \\2<span class=\"ocaml-mod\">\\4</span>");
+    ("module +\\(" ^ uid ^ "\\) *= *struct",
+     "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
+      = <span class=\"kwa\">struct</span>");
     ("\\b\\(class\\( +virtual\\|\\)?\\) +\\(" ^ id ^
        "\\) +\\(\\(" ^ args ^ "\\)?\\)=",
      "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\3</span> \
@@ -74,7 +79,7 @@ let highlight_ocaml =
 
 
 let highlight ?(syntax="ocaml") phrase =
-  if syntax = "ocaml" then highlight_ocaml phrase
+  if syntax = "ocaml" then highlight_ocaml (html_encode phrase)
   else html_encode phrase
 
 
@@ -91,7 +96,7 @@ let () =
   Toploop.max_printer_steps := 20
 
 type outcome =
-  | Normal of string * string (* exec output, stderr *)
+  | Normal of string * string * string (* exec output, stdout, stderr *)
   | Error of string
 
 let is_ready_for_read fd =
@@ -107,24 +112,31 @@ let string_of_fd fd =
   done;
   Buffer.contents buf
 
+let init_stdout = Unix.dup Unix.stdout
 let init_stderr = Unix.dup Unix.stderr
 
 let toploop_eval phrase =
-  (* Inspired by Stog. *)
   try
     flush stderr;
-    let (fd_in, fd_out) = Unix.pipe() in
-    Unix.dup2 fd_out Unix.stderr; (* Unix.stderr → fd_out *)
+    let (out_in, out_out) = Unix.pipe() in
+    Unix.dup2 out_out Unix.stdout; (* Unix.stdout → out_out *)
+    let (err_in, err_out) = Unix.pipe() in
+    Unix.dup2 err_out Unix.stderr; (* Unix.stderr → err_out *)
     let lexbuf = Lexing.from_string phrase in
     let phrase = !Toploop.parse_toplevel_phrase lexbuf in
     ignore(Toploop.execute_phrase true Format.str_formatter phrase);
     let exec_output = Format.flush_str_formatter () in
+    flush stdout;
+    let out = string_of_fd out_in in
+    Unix.close out_in;
+    Unix.close out_out;
+    Unix.dup2 init_stdout Unix.stdout; (* restore initial stdout *)
     flush stderr;
-    let out = string_of_fd fd_in in
-    Unix.close fd_in;
-    Unix.close fd_out;
-    Unix.dup2 init_stderr Unix.stderr; (* restore inital stderr *)
-    Normal(exec_output, out)
+    let err = string_of_fd err_in in
+    Unix.close err_in;
+    Unix.close err_out;
+    Unix.dup2 init_stderr Unix.stderr; (* restore initial stderr *)
+    Normal(exec_output, out, err)
   with
   | e ->
      let backtrace_enabled = Printexc.backtrace_status () in
@@ -141,7 +153,7 @@ let toploop_eval phrase =
 let format_eval_input phrase =
   let open Nethtml in
   [Element("span", ["class", "ocamltop-prompt"], [Data "# "]);
-   Element("span", ["class", "ocamltop-input"], [Data (highlight phrase)]);
+   Element("span", ["class", "ocamltop-input"], [Data(highlight_ocaml phrase)]);
    Element("span", ["class", "ocamltop-prompt"], [Data ";;"])]
 
 let html_of_eval_silent phrase =
@@ -161,7 +173,7 @@ let highlight_error phrase err_msg =
   let locate_error c1 c2 =
     let len = String.length phrase in
     if c1 >= len then
-      phrase, err_msg
+      html_encode phrase, err_msg
     else
       let p1 = String.sub phrase 0 c1
       and p2 = String.sub phrase c1 (c2 - c1)
@@ -177,10 +189,12 @@ let highlight_error phrase err_msg =
 
 let html_of_eval phrase =
   let phrase, cls, out = match toploop_eval (phrase ^ ";;") with
-    | Normal(s, err) ->
+    | Normal(s, out, err) ->
        let phrase, err = highlight_error phrase err in
        phrase, "ocamltop-output",
-       Nethtml.([Element("span", ["class", "ocamltop-stderr"],
+       Nethtml.([Element("span", ["class", "ocamltop-stdout"],
+                         [Data(html_encode out)]);
+                 Element("span", ["class", "ocamltop-stderr"],
                          [Data(html_encode err)]);
                  Data(html_encode s)])
     | Error s ->
@@ -256,21 +270,24 @@ let lines_of_file fname l1 l2 =
    purposedfully wrong code.
 *)
 
-let ocaml ctx args =
+let ocaml path_from_base ctx args =
   let process_phrases f =
     let phrases = split_phrases (text_of_html ctx#content) in
     List.concat (List.map f phrases) in
   match args with
     | ["silent"] -> process_phrases html_of_eval_silent
     | ["noeval"] ->
+       let code = html_encode (trim (text_of_html ctx#content)) in
        let open Nethtml in
-       let code = trim (highlight_ocaml (text_of_html ctx#content)) in
-       [Element("span", ["class", "listing"], [Data code])]
+       [Element("span", ["class", "listing"], [Data(highlight_ocaml code)])]
+
     | ["--inc"; fname; l1; l2]
     | ["--include"; fname; l1; l2] ->
        let l1 = int_of_string l1 and l2 = int_of_string l2 in
-       let code = lines_of_file fname l1 l2 in
-       [Nethtml.Data (highlight_ocaml (html_encode code))]
+       let code = lines_of_file (Filename.concat path_from_base fname) l1 l2 in
+       let open Nethtml in
+       [Element("span", ["class", "listing"],
+                [Data (highlight_ocaml (html_encode (trim code)))] )]
 
     | other ->
       if other <> [] then
