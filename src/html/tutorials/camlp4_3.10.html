@@ -29,17 +29,21 @@
 <p><a href="http://www.nabble.com/-Camlp4-3.10--The-rosetta-stone-(Was:-lists-without-$list:...$)-t3463823.html" class="external" title="http://www.nabble.com/-Camlp4-3.10--The-rosetta-stone-(Was:-lists-without-$list:...$)-t3463823.html">http://www.nabble.com/-Camlp4-3.10--The-rosetta-stone-(Was:-lists-without-$list:...$)-t3463823.html</a></p>
 <a name="The_command_line"></a><h2><span>The command line</span></h2>
 <p class="first_para">In the beta announcement, there was mention of new binaries camlp4xxx that come preloaded with selections of new and old syntaxes</p>
-<pre>
-# New commands:
-</pre>
 
-<pre>
-   * camlp4orf: camlp4o + Grammar, macro and revised quotation syntaxes.
-   * camlp4oof: camlp4o + Grammar, macro and the same syntax for quotations.
-   * camlp4rf: camlp4r + Grammar, macro and the same syntax for quotations. 
-</pre>
+<p>New commands:</p>
+<ul>
+  <li><strong>camlp4orf</strong>: camlp4o + Grammar, macro and revised
+    quotation syntaxes.</li>
+  <li><strong>camlp4oof</strong>: camlp4o + Grammar, macro and the
+    same syntax for quotations.</li>
+  <li><strong>camlp4rf</strong>: camlp4r + Grammar, macro and the same
+    syntax for quotations.</li>
+</ul>
 
-<p class="first_para">It is not necessary to use a .cma file to create a regular camlp4 extension.  The .cmi libraries are for creating standalone executables.  Only the .cmi files from the include path are needed.</p>
+<p>It is not necessary to use a <code>.cma</code> file to create a
+  regular camlp4 extension.  The <code>.cmi</code> libraries are for
+  creating standalone executables.  Only the <code>.cmi</code> files
+  from the include path are needed.</p>
 <p>So as an example:</p>
 <pre>
 $ ocamlc -I +camlp4 -pp camlp4orf -c dynamic_functor_example3.ml
