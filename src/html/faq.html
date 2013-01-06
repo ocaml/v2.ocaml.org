@@ -13,6 +13,7 @@
   <li class="active"><a href="#general" data-toggle="tab">General Questions</a></li>
   <li><a href="#ocaml" data-toggle="tab">Core Language</a></li>
   <li><a href="#module" data-toggle="tab">Module Language</a></li>
+  <li><a href="#tools" data-toggle="tab">Development Tools</a></li>
 </ul>
 
 
@@ -822,6 +823,32 @@ component of a compilation unit. A good example is the module
 </div>
 
 </div><!-- Module Language -->
+
+<div class="tab-pane active" id="tools">
+<h2>Development Tools</h2>
+
+<h3>Interactive loop (toplevel)</h3>
+
+<div class="Q">How to stop the evaluation (execution) of an
+expression?</div>
+<div class="A">It is often possible to interrupt a program or the Caml
+system by typing some combination of keys that is operating system
+dependent: under Unix send an interrupt signal (generally
+<tt>Control-C</tt>), under Macintosh OS type <tt>Command-.</tt>, under
+Windows use the &#8220;Caml&#8221; menu.
+</div>
+
+<div class="Q">How to quit the interactive loop?</div>
+<div class="A">With Caml Light, type <code>quit(<b></b>);;</code>.
+With OCaml, type <code>#quit;;</code>.  In both, you can also send an
+end-of-file (CTRL-D for Unix, CTRL-Z for DOS, etc.).</div>
+
+<h3>Batch Compilers</h3>
+
+<h3>Yacc</h3>
+
+<h3>Lex</h3>
+</div><!-- Development Tools -->
 
 </div><!-- tab-content -->
 </body>
