@@ -10,82 +10,100 @@
 <body>
 <h1>Books</h1>
 
+<div class="book">
+  <a id="manuals"></a>
+  <h3>The OCaml System: Documentation and User's Manual</h3>
+  <div>
+    <a href="http://caml.inria.fr/pub/docs/manual-ocaml/index.html">Online</a> |
+    <a href="http://caml.inria.fr/distrib/ocaml-3.12/ocaml-3.12-refman.pdf">PDF</a> |
+    <a href="http://caml.inria.fr/distrib/ocaml-3.12/ocaml-3.12-refman.html.tar.gz">HTML Tarball</a>
+  </div>
+  <i>Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy, and
+  Jérôme Vouillon</i>
+  <p>The complete reference guide to OCaml. Updated for each version
+  of OCaml, it contains the description of the language, of its
+  extensions, and the documentation of the tools and libraries
+  included in the official distribution.</p>
+</div>
 
-<p>OCaml currently suffers from a lack of paperback books. New books
-are on the way, but in the meantime, you can easily find up-to-date
-books on OCaml online here.</p>
+<div class="book">
+  <h3>Camlp4 - Reference Manual</h3>
+  <div>
+    <a href="http://caml.inria.fr/pub/docs/manual-camlp4/index.html">Online</a>
+  </div>
+  <i>Daniel de Rauglaudre</i>
+  <p>Camlp4 is a Pre-Processor-Pretty-Printer for OCaml. It offers
+  syntactic tools (parsers, extensible grammars), the ability to
+  extend the concrete syntax of OCaml (quotations, syntax extensions),
+  and to redefine it from scratch. This document holds the directions
+  for use of Camlp4 and describes these features. It is written for
+  programmers who already know OCaml, and are interested in concrete
+  syntax.</p>
+</div>
 
-<h2><a id="manuals"></a>User Manuals</h2>
 
-<p>The User Manual is the complete reference guide to OCaml. Updated for
-each version of OCaml, it contains the description of the language, of
-its extensions, and the documentation of the tools and libraries
-included in the official distribution.</p>
+<div class="book">
+  <h3>Introduction to OCaml</h3>
+  <div>
+    <a href="http://files.metaprl.org/doc/ocaml-book.pdf">PDF</a>
+  </div>
+  <i>Jason Hickey</i>
+  <p>This book is notoriously much more than just an introduction to
+  OCaml, it describes most of the language, and is accessible.</p>
+</div>
 
-<ul>
-  <li><a href="http://caml.inria.fr/pub/docs/manual-ocaml/index.html">Browse the manual</a></li>
-  <li><a href="http://caml.inria.fr/distrib/ocaml-3.12/ocaml-3.12-refman.pdf">Download the PDF</a></li>
-  <li><a href="http://caml.inria.fr/distrib/ocaml-3.12/ocaml-3.12-refman.html.tar.gz">Download a bundle of HTML files</a></li>
-  <li><a href="http://caml.inria.fr/pub/docs/manual-camlp4/index.html">Camlp4 - Reference Manual</a>
-</ul>
+<div class="book">
+  <h3>Developing Applications With OCaml</h3>
+  <div>
+    <a href="http://caml.inria.fr/pub/docs/oreilly-book/html/index.html">Online</a> |
+    <a href="http://caml.inria.fr/pub/docs/oreilly-book/ocaml-ora-book.pdf">PDF</a>
+  </div>
+  <i>Emmanuel Chailloux, Pascal Manoury, Bruno Pagano</i>
+  <p>This book is a translation of a French book published by
+  OReilly. It does not only cover the language, but also the runtime
+  and the tools, whose understanding is necessary to actually develop
+  a complete project in OCaml.</p>
+</div>
 
-<h2>Online Books on OCaml</h2>
+<div class="book">
+  <h3>Unix system programming in OCaml</h3>
+  <div>
+    <a href="http://ocamlunix.forge.ocamlcore.org/">Online</a>
+  </div>
+  <i>Xavier Leroy and Didier Rémy</i>
+  <p>This is an excellent book on Unix system programming, with an
+  emphasis on communications between processes. The main novelty of
+  this work is the use of OCaml, instead of the C language that is
+  customary in systems programming. This gives an unusual perspective
+  on systems programming and on OCaml.  It is assumed that the reader
+  is familiar with OCaml and Unix shell commands.</p>
+</div>
 
-<!-- Note: book names should always be underlined -->
-<ul>
-  <li> <u>Introduction to OCaml</u> by J. Hickey (<a href="http://files.metaprl.org/doc/ocaml-book.pdf">PDF</a> [<a href="files/hickey-ocaml-book.pdf">cached</a>]).
-    <p>
-      This book is notoriously much more than just an introduction to
-      OCaml, it describes most of the language, and is accessible.
-    </p>
-  </li>
-  <li><u>Developing Applications With OCaml</u> by E. Chailloux, P. Manoury and B. Pagano
-    (<a href="http://caml.inria.fr/pub/docs/oreilly-book/html/index.html">Online</a>, <a href="http://caml.inria.fr/pub/docs/oreilly-book/ocaml-ora-book.pdf">PDF</a>
-    [<a href="files/ocaml-ora-book.pdf">cached</a>]).
-    <p>
-      This book is a translation of a French book published by
-      OReilly. It does not only cover the language, but also the
-      runtime and the tools, whose understanding is necessary to
-      actually develop a complete project in OCaml.
-    </p>
-  </li>
-
-  <li><u>Unix system programming in OCaml</u> by Xavier Leroy and
-    Didier Rémy (<a href="http://ocamlunix.forge.ocamlcore.org/">Online</a>).
-    <p>
-      This is an excellent book on Unix system programming, with an
-      emphasis on communications between processes. The main novelty of
-      this work is the use of OCaml, instead of the C
-      language that is customary in systems programming. This gives an
-      unusual perspective on systems programming and on OCaml.
-      It is assumed that the reader is familiar with OCaml and Unix
-      shell commands.
-    </p>
-  </li>
-
-  <li><u>Using, Understanding, and Unraveling OCaml</u>
-    by D. Remy (<a href="http://caml.inria.fr/pub/docs/u3-ocaml/">Online</a>,
+<div>
+  <h3>Using, Understanding, and Unraveling OCaml</h3>
+  <div>
+    <a href="http://caml.inria.fr/pub/docs/u3-ocaml/">Online</a> |
     <a href="http://caml.inria.fr/pub/docs/u3-ocaml/ocaml.pdf">PDF</a>
-    [<a href="files/remy-ocaml.pdf">cached</a>]).
-    <p>
-      This book describes both the OCaml language and the theoretical
-      grounds behind its powerful type system. A good complement to
-      other books on OCaml.
-    </p>
-  </li>
+  </div>
+  <i>Didier Rémy</i>
+  <p>This book describes both the OCaml language and the theoretical
+  grounds behind its powerful type system. A good complement to other
+  books on OCaml.</p>
+</div>
 
-  <li><u>How to Think Like a Computer Scientist</u> by Nicholas
-    Monje and Allen Downey (<a href="http://thinkocaml.com/">Online</a>).
-    <p>
-      This book is an introductory programming textbook based on the
-      OCaml language. It is a modified version of <u>Think Python</u> by
-      Allen Downey. It is intended for newcomers to programming and
-      also those who know some programming but want to learn
-      programming in the function-oriented paradigm, or those who
-      simply want to learn OCaml.
-    </p>
-  </li>
-</ul>
+<div>
+  <h3>How to Think Like a Computer Scientist</h3>
+  <div>
+    <a href="http://thinkocaml.com/">Online</a>
+  </div>
+  <i>Nicholas Monje and Allen Downey</i>
+  <p>This book is an introductory programming textbook based on the
+  OCaml language. It is a modified version of <u>Think Python</u> by
+  Allen Downey. It is intended for newcomers to programming and also
+  those who know some programming but want to learn programming in the
+  function-oriented paradigm, or those who simply want to learn
+  OCaml.</p>
+</div>
 
 </body>
 </html>
