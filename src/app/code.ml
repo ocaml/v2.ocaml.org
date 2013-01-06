@@ -15,7 +15,7 @@ let highlight_ocaml =
   let let_id = id ^ "\\|( +[!=+-*/^:]+ +)" in
   let uid = "\\b[A-Z][A-Za-z0-9_']*" in
   (* Arguments to functions may pattern match. *)
-  let args = "[^=<> ][^=<>]*" in
+  let args = "\\(\\?([^=()]+=[^=()]+) *\\)+\\|[^=<>? ][^=<>?]*" in
   let subst = [ (* regex, replacement *)
     (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
