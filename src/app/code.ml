@@ -256,7 +256,7 @@ let lines_of_file fname l1 l2 =
    purposedfully wrong code.
 *)
 
-let ocaml ctx args =
+let ocaml path_from_base ctx args =
   let process_phrases f =
     let phrases = split_phrases (text_of_html ctx#content) in
     List.concat (List.map f phrases) in
@@ -270,8 +270,8 @@ let ocaml ctx args =
     | ["--inc"; fname; l1; l2]
     | ["--include"; fname; l1; l2] ->
        let l1 = int_of_string l1 and l2 = int_of_string l2 in
-       let code = lines_of_file fname l1 l2 in
-       [Nethtml.Data (highlight_ocaml (html_encode code))]
+       let code = lines_of_file (Filename.concat path_from_base fname) l1 l2 in
+       [Nethtml.Data (highlight_ocaml (html_encode (trim code)))]
 
     | other ->
       if other <> [] then
