@@ -48,7 +48,18 @@ let highlight_ocaml =
                             \\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
      "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
       = \\2<span class=\"ocaml-mod\">\\4</span>");
-    ("\\b\\(type\\|in\\|begin\\|end\\|val\\)\\b",
+    ("\\b\\(class\\( +virtual\\|\\)?\\) +\\(" ^ id ^
+       "\\) +\\(\\(" ^ args ^ "\\)?\\)=",
+     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\3</span> \
+      <span class=\"ocaml-variable\">\\4</span>=");
+    ("\\bval +\\(" ^ id ^ "\\) *=",
+     "<span class=\"kwa\">val</span> <span class=\"ocaml-variable\">\\1</span> \
+      =");
+    ("\\bmethod +\\(" ^ id ^ "\\) *=",
+     "<span class=\"kwa\">method</span> <span class=\"ocaml-function\">\
+      \\1</span> =");
+    ("\\b\\(type\\|in\\|begin\\|end\\|val\\|\
+      object\\|inherit\\|initializer\\)\\b",
      "<span class=\"kwa\">\\1</span>");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
       \\|for\\|to\\|do\\|downto\\|done\\|while\
