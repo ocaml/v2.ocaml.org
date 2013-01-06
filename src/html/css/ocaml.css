@@ -405,6 +405,10 @@ div.A {
   color: #7792dd;
 }
 
+.ocamltop-stderr {
+  font-style: italic;  
+}
+
 .ocamltop-error {
   font-style: italic;
   color: #d32121;

@@ -15,7 +15,7 @@ let highlight_ocaml =
   let let_id = id ^ "\\|( +[!=+-*/^:]+ +)" in
   let uid = "\\b[A-Z][A-Za-z0-9_']*" in
   (* Arguments to functions may pattern match. *)
-  let args = "[^=<> ][^=<>]*" in
+  let args = "\\(\\?([^=()]+=[^=()]+) *\\)+\\|[^=<>? ][^=<>?]*" in
   let subst = [ (* regex, replacement *)
     (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
@@ -35,6 +35,9 @@ let highlight_ocaml =
     ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ let_id ^ "\\) *=",
      "<span class=\"kwa\">\\1</span>\
       <span class=\"ocaml-variable\">\\3</span> =");
+    ("\\bexternal +\\(" ^ let_id ^ "\\) +:",
+     "<span class=\"kwa\">external</span> \
+      <span class=\"ocaml-function\">\\1</span>&nbsp;:");
     ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\) *=",
      "type \\1<span class=\"ocaml-mod\">\\3</span> =");
     ("\\(" ^ uid ^ "\\)\\.",
@@ -45,7 +48,18 @@ let highlight_ocaml =
                             \\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
      "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
       = \\2<span class=\"ocaml-mod\">\\4</span>");
-    ("\\b\\(type\\|in\\|begin\\|end\\|val\\)\\b",
+    ("\\b\\(class\\( +virtual\\|\\)?\\) +\\(" ^ id ^
+       "\\) +\\(\\(" ^ args ^ "\\)?\\)=",
+     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\3</span> \
+      <span class=\"ocaml-variable\">\\4</span>=");
+    ("\\bval +\\(" ^ id ^ "\\) *=",
+     "<span class=\"kwa\">val</span> <span class=\"ocaml-variable\">\\1</span> \
+      =");
+    ("\\bmethod +\\(" ^ id ^ "\\) *=",
+     "<span class=\"kwa\">method</span> <span class=\"ocaml-function\">\
+      \\1</span> =");
+    ("\\b\\(type\\|in\\|begin\\|end\\|val\\|\
+      object\\|inherit\\|initializer\\)\\b",
      "<span class=\"kwa\">\\1</span>");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
       \\|for\\|to\\|do\\|downto\\|done\\|while\
@@ -77,19 +91,40 @@ let () =
   Toploop.max_printer_steps := 20
 
 type outcome =
-  | Normal of string
+  | Normal of string * string (* exec output, stderr *)
   | Error of string
+
+let is_ready_for_read fd =
+  let fd_for_read, _, _ = Unix.select [fd] [] [] 0.001 in
+  fd_for_read <> []
+
+let string_of_fd fd =
+  let buf = Buffer.create 1024 in
+  let s = String.create 256 in
+  while is_ready_for_read fd do
+    let r = Unix.read fd s 0 256 in
+    Buffer.add_substring buf s 0 r
+  done;
+  Buffer.contents buf
+
+let init_stderr = Unix.dup Unix.stderr
 
 let toploop_eval phrase =
   (* Inspired by Stog. *)
   try
+    flush stderr;
+    let (fd_in, fd_out) = Unix.pipe() in
+    Unix.dup2 fd_out Unix.stderr; (* Unix.stderr → fd_out *)
     let lexbuf = Lexing.from_string phrase in
     let phrase = !Toploop.parse_toplevel_phrase lexbuf in
     ignore(Toploop.execute_phrase true Format.str_formatter phrase);
     let exec_output = Format.flush_str_formatter () in
-    (* FIXME: capture also stdout and stderr but only during the
-       execution of this function. *)
-    Normal exec_output
+    flush stderr;
+    let out = string_of_fd fd_in in
+    Unix.close fd_in;
+    Unix.close fd_out;
+    Unix.dup2 init_stderr Unix.stderr; (* restore inital stderr *)
+    Normal(exec_output, out)
   with
   | e ->
      let backtrace_enabled = Printexc.backtrace_status () in
@@ -120,34 +155,40 @@ let html_of_eval_silent phrase =
   end;
   format_eval_input phrase
 
+(* Process [err_msg] to see whether one needs to highlight part of the
+   [phrase].  *)
+let highlight_error phrase err_msg =
+  let locate_error c1 c2 =
+    let len = String.length phrase in
+    if c1 >= len then
+      phrase, err_msg
+    else
+      let p1 = String.sub phrase 0 c1
+      and p2 = String.sub phrase c1 (c2 - c1)
+      and p3 = if c2 >= len then ""
+               else String.sub phrase c2 (len - c2) in
+      let phrase = html_encode p1 ^ "<span class=\"ocamltop-error-loc\">"
+                   ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
+      let nl = 1 + String.index err_msg '\n' in
+      let err_msg = String.sub err_msg nl (String.length err_msg - nl) in
+      phrase, err_msg in
+  try  sscanf err_msg "Characters %i-%i: " locate_error
+  with Scan_failure _ | End_of_file -> html_encode phrase, err_msg
+
 let html_of_eval phrase =
   let phrase, cls, out = match toploop_eval (phrase ^ ";;") with
-    | Normal s -> html_encode phrase, "ocamltop-output", s
+    | Normal(s, err) ->
+       let phrase, err = highlight_error phrase err in
+       phrase, "ocamltop-output",
+       Nethtml.([Element("span", ["class", "ocamltop-stderr"],
+                         [Data(html_encode err)]);
+                 Data(html_encode s)])
     | Error s ->
-       (* Process the error to see whether one needs to highlight part of
-          the phrase. *)
-       try
-         let locate_error c1 c2 =
-           let len = String.length phrase in
-           if c1 >= len then
-             phrase, "ocamltop-error", s
-           else
-             let p1 = String.sub phrase 0 c1
-             and p2 = String.sub phrase c1 (c2 - c1)
-             and p3 = if c2 >= len then ""
-                      else String.sub phrase c2 (len - c2) in
-             let phrase = html_encode p1 ^ "<span class=\"ocamltop-error-loc\">"
-                          ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
-             let nl = 1 + String.index s '\n' in
-             let s = String.sub s nl (String.length s - nl) in
-             phrase, "ocamltop-error", s in
-         sscanf s "Characters %i-%i: " locate_error
-       with Scan_failure _ ->
-         html_encode phrase, "ocamltop-error", s in
-  let open Nethtml in
-   format_eval_input phrase
-   @ [ Element("br", [], []);
-       Element("span", ["class", cls], [Data (html_encode out)]) ]
+       let phrase, s = highlight_error phrase s in
+       phrase, "ocamltop-error", [Nethtml.Data(html_encode s)] in
+  format_eval_input phrase
+  @ Nethtml.([ Element("br", [], []);
+               Element("span", ["class", cls], out) ])
 
 
 (* Returns a string containing the data in [html]. *)
