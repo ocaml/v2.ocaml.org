@@ -141,7 +141,7 @@ let toploop_eval phrase =
 let format_eval_input phrase =
   let open Nethtml in
   [Element("span", ["class", "ocamltop-prompt"], [Data "# "]);
-   Element("span", ["class", "ocamltop-input"], [Data (highlight phrase)]);
+   Element("span", ["class", "ocamltop-input"], [Data(highlight_ocaml phrase)]);
    Element("span", ["class", "ocamltop-prompt"], [Data ";;"])]
 
 let html_of_eval_silent phrase =
@@ -272,7 +272,7 @@ let ocaml path_from_base ctx args =
        let l1 = int_of_string l1 and l2 = int_of_string l2 in
        let code = lines_of_file (Filename.concat path_from_base fname) l1 l2 in
        let open Nethtml in
-       [Element("span", ["class", "listing"], 
+       [Element("span", ["class", "listing"],
                 [Data (highlight_ocaml (html_encode (trim code)))] )]
 
     | other ->
