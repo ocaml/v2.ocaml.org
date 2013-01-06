@@ -263,15 +263,17 @@ let ocaml path_from_base ctx args =
   match args with
     | ["silent"] -> process_phrases html_of_eval_silent
     | ["noeval"] ->
-       let open Nethtml in
        let code = html_encode (trim (text_of_html ctx#content)) in
+       let open Nethtml in
        [Element("span", ["class", "listing"], [Data(highlight_ocaml code)])]
 
     | ["--inc"; fname; l1; l2]
     | ["--include"; fname; l1; l2] ->
        let l1 = int_of_string l1 and l2 = int_of_string l2 in
        let code = lines_of_file (Filename.concat path_from_base fname) l1 l2 in
-       [Nethtml.Data (highlight_ocaml (html_encode (trim code)))]
+       let open Nethtml in
+       [Element("span", ["class", "listing"], 
+                [Data (highlight_ocaml (html_encode (trim code)))] )]
 
     | other ->
       if other <> [] then
