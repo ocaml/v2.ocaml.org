@@ -96,7 +96,7 @@ let () =
   Toploop.max_printer_steps := 20
 
 type outcome =
-  | Normal of string * string (* exec output, stderr *)
+  | Normal of string * string * string (* exec output, stdout, stderr *)
   | Error of string
 
 let is_ready_for_read fd =
@@ -112,24 +112,31 @@ let string_of_fd fd =
   done;
   Buffer.contents buf
 
+let init_stdout = Unix.dup Unix.stdout
 let init_stderr = Unix.dup Unix.stderr
 
 let toploop_eval phrase =
-  (* Inspired by Stog. *)
   try
     flush stderr;
-    let (fd_in, fd_out) = Unix.pipe() in
-    Unix.dup2 fd_out Unix.stderr; (* Unix.stderr → fd_out *)
+    let (out_in, out_out) = Unix.pipe() in
+    Unix.dup2 out_out Unix.stdout; (* Unix.stdout → out_out *)
+    let (err_in, err_out) = Unix.pipe() in
+    Unix.dup2 err_out Unix.stderr; (* Unix.stderr → err_out *)
     let lexbuf = Lexing.from_string phrase in
     let phrase = !Toploop.parse_toplevel_phrase lexbuf in
     ignore(Toploop.execute_phrase true Format.str_formatter phrase);
     let exec_output = Format.flush_str_formatter () in
+    flush stdout;
+    let out = string_of_fd out_in in
+    Unix.close out_in;
+    Unix.close out_out;
+    Unix.dup2 init_stdout Unix.stdout; (* restore initial stdout *)
     flush stderr;
-    let out = string_of_fd fd_in in
-    Unix.close fd_in;
-    Unix.close fd_out;
-    Unix.dup2 init_stderr Unix.stderr; (* restore inital stderr *)
-    Normal(exec_output, out)
+    let err = string_of_fd err_in in
+    Unix.close err_in;
+    Unix.close err_out;
+    Unix.dup2 init_stderr Unix.stderr; (* restore initial stderr *)
+    Normal(exec_output, out, err)
   with
   | e ->
      let backtrace_enabled = Printexc.backtrace_status () in
@@ -182,10 +189,12 @@ let highlight_error phrase err_msg =
 
 let html_of_eval phrase =
   let phrase, cls, out = match toploop_eval (phrase ^ ";;") with
-    | Normal(s, err) ->
+    | Normal(s, out, err) ->
        let phrase, err = highlight_error phrase err in
        phrase, "ocamltop-output",
-       Nethtml.([Element("span", ["class", "ocamltop-stderr"],
+       Nethtml.([Element("span", ["class", "ocamltop-stdout"],
+                         [Data(html_encode out)]);
+                 Element("span", ["class", "ocamltop-stderr"],
                          [Data(html_encode err)]);
                  Data(html_encode s)])
     | Error s ->
