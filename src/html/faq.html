@@ -774,6 +774,53 @@ submit new ones.</div>
 </div><!-- General Questions -->
 
 <div class="tab-pane active" id="module">
+<h2>Module Language</h2>
+
+<div class="Q">Can I have two mutually recursive compilation units /
+structures / signatures / functors?</div>
+<div class="A">Currently not in the stable langage. However there
+exists an <a
+href="../../../pub/docs/manual-ocaml/manual021.html#s-recursive-modules/"
+shape="rect">OCaml extension</a> (which is subject to change or
+removal at any time) which adresses some of these problems.</div>
+
+<div class="Q">How do I express sharing constraints between
+modules?</div>
+<div class="A">Use manifest type specifications in the arguments of
+the functor. For instance, assume defined the following signatures:
+
+<pre class="listing">
+<b>module</b> <b>type</b> S1 <b></b>=<b></b> <b>sig</b> ... <b>type</b> t ... <b>end</b>
+<b>module</b> <b>type</b> S2 <b></b>=<b></b> <b>sig</b> ... <b>type</b> u ... <b>end</b>
+</pre>
+
+To define a functor <code>F</code> that takes two arguments
+<code>X:S1</code> and <code>Y:S2</code> such that <code>X.t</code> and
+<code>Y.u</code> are the same, write:
+
+<pre class="listing">
+<b>module</b> F <b></b>(X: S1)<b></b> <b></b>(Y: S2 <b>with</b> <b>type</b> u <b></b>=<b></b> X.t)<b></b> <b></b>=
+<b></b> <b></b> <b>struct</b> ... <b>end</b>
+</pre>
+
+Indeed, internally this expands to
+
+<pre class="listing">
+<b>module</b> F <b></b>(X: S1)<b></b> <b></b>(Y: <b>sig</b> ... <b>type</b> u <b></b>=<b></b> X.t ... <b>end</b>)<b></b> <b></b>=
+<b></b> <b></b> <b>struct</b> ... <b>end</b>
+</pre>
+
+</div>
+
+
+<div class="Q">Compilation units are forced to be modules. What if I
+want to make a unit with a functor or a signature instead?</div>
+<div class="A">In OCaml, functors and signatures (module types) can be
+components of modules. So, just make the functor or signature be a
+component of a compilation unit. A good example is the module
+<code>Set</code> from the standard library.
+</div>
+
 </div><!-- Module Language -->
 
 </div><!-- tab-content -->
