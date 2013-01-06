@@ -50,6 +50,9 @@ let highlight_ocaml =
                             \\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
      "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
       = \\2<span class=\"ocaml-mod\">\\4</span>");
+    ("module +\\(" ^ uid ^ "\\) *= *struct",
+     "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
+      = <span class=\"kwa\">struct</span>");
     ("\\b\\(class\\( +virtual\\|\\)?\\) +\\(" ^ id ^
        "\\) +\\(\\(" ^ args ^ "\\)?\\)=",
      "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\3</span> \
