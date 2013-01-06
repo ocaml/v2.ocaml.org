@@ -74,7 +74,7 @@ let highlight_ocaml =
 
 
 let highlight ?(syntax="ocaml") phrase =
-  if syntax = "ocaml" then highlight_ocaml phrase
+  if syntax = "ocaml" then highlight_ocaml (html_encode phrase)
   else html_encode phrase
 
 
@@ -161,7 +161,7 @@ let highlight_error phrase err_msg =
   let locate_error c1 c2 =
     let len = String.length phrase in
     if c1 >= len then
-      phrase, err_msg
+      html_encode phrase, err_msg
     else
       let p1 = String.sub phrase 0 c1
       and p2 = String.sub phrase c1 (c2 - c1)
@@ -264,8 +264,9 @@ let ocaml ctx args =
     | ["silent"] -> process_phrases html_of_eval_silent
     | ["noeval"] ->
        let open Nethtml in
-       let code = trim (highlight_ocaml (text_of_html ctx#content)) in
-       [Element("span", ["class", "listing"], [Data code])]
+       let code = html_encode (trim (text_of_html ctx#content)) in
+       [Element("span", ["class", "listing"], [Data(highlight_ocaml code)])]
+
     | ["--inc"; fname; l1; l2]
     | ["--include"; fname; l1; l2] ->
        let l1 = int_of_string l1 and l2 = int_of_string l2 in
