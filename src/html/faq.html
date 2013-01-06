@@ -19,13 +19,678 @@
 <div class="tab-content">
 <div class="tab-pane active" id="ocaml">
 <h2>Core Language</h2><hr />
-<p>Installation of OCaml?</p>
-<p><a href="http://caml.inria.fr/resources/doc/faq/core.en.html">Core
-language FAQ</a>.  Maybe we have to revisit it using the tools that we
-have today.  For example, for the first question, <code>#require
-"num"</code> would be the preferred way of loading nums and setting up
-a printer.  Also, I think on should show how delimited overloading
-makes thing easier.</p>
+
+<h3>Basic types</h3>
+
+<div class="Q">Is it possible to do computations with arbritrary
+precision arithmetics?</div>
+<div class="A">OCaml and Caml Light both provide a library that
+handles exact arithmetic computation for rational numbers. The library
+is called <code>Num</code> in OCaml and <code>camlnum</code> in Caml
+Light.<br />
+
+Operations on big numbers gets the suffix <code>/</code>: addition is
+thus <code>+/</code>. You build big numbers using conversion from
+(small) integers or character strings.  For printing in the toplevel,
+a custom printer can be used.  An example under OCaml is given below.
+
+<pre class="listing">
+$ ocaml nums.cma
+
+<b>open</b> Num;;
+<b>open</b> Format;;
+<b>let</b> print_num ff n = fprintf ff "%s" (string_of_num n);;
+<span class="output">print_num : Format.formatter -&gt; num -&gt; unit = &lt;fun&gt;;</span>
+#install_printer print_num;;
+num_of_string "2/3";;
+<span class="output">- : Num.num = 2/3</span>
+<b>let</b> n = num_of_string "1/3" +/ num_of_string "2/3";;
+<span class="output">n : Num.num = 1</span>
+<b>let</b> <b>rec</b> fact n =
+ <b>if</b> n &lt;= 0 <b>then</b> (num_of_int 1) <b>else</b> num_of_int n */ (fact (n - 1));;
+<span class="output">fact : int -&gt; Num.num = &lt;fun&gt;;</span>
+fact 100;;
+<span class="output">- : Num.num =</span>
+<span class="output">9332621544394415268169923885626670049071596826438162146859296389521759999322991</span>
+<span class="output">5608941463976156518286253697920827223758251185210916864000000000000000000000000</span>
+</pre>
+</div>
+
+
+<h3>Data structures</h3>
+
+<div class="Q">My array is modified, and I don't know why</div>
+<div class="A">This is due to the physical sharing of two arrays that
+you missed. In Caml there are no implicit array copying. If you give
+two names to the same array, every modification on one array will be
+visible to the other:
+
+<pre class="listing">
+<b>let</b> v = Array.make 3 0;;
+<span class="output"><b>val</b> v : int array = [|0; 0; 0|]</span>
+<b>let</b> w = v;;
+<span class="output"><b>val</b> w : int array = [|0; 0; 0|]</span>
+w.(0) &lt;- 4;;
+<span class="output">- : unit = ()</span>
+v;;
+<span class="output">- : int array = [|4; 0; 0|]</span>
+</pre>
+
+The physical sharing effect also applies to elements stored in
+vectors: if these elements are also vectors, the sharing of these
+vectors implies that modifying one of these elements modifies the
+others (see also the entry below).
+</div>
+
+<div class="Q">How to define multidimensional arrays?</div>
+<div class="A">The only way is to define an array whose elements are
+arrays themselves (Caml arrays are unidimensional, they modelize
+mathematical vectors).
+
+The naive way to define multidimensional arrays is bogus: the result
+is not right because there is some unexpected physical sharing between
+the lines of the new array (see also previous entry):
+
+<pre class="listing">
+<b>let</b> m = Array.make 2 (Array.make 3 0);;
+<span class="output">m : int array array = [|[|0; 0; 0|]; [|0; 0; 0|]|]</span>
+m.(0).(0) &lt;- 1;;
+<span class="output">- : unit = ()</span>
+m;;
+<span class="output">- : int array array = [|[|1; 0; 0|]; [|1; 0; 0|]|]</span>
+</pre>
+
+The allocation of a new array has two phases. First, the initial value
+is computed; then this value is written in each element of the new
+array. That's why the line which is allocated by <code>Array.make 3
+0</code> is unique and physically shared by all the lines of the array
+<code>m</code>.<br />
+
+The solution is to use the <code>make_matrix</code> primitive that
+builds the matrix with all elements equal to the initial value
+provided. Alternatively, write the program that allocates a new line
+for each line of your matrix. For instance:
+
+<pre class="listing">
+<b>let</b> matrix n m init =
+  <b>let</b> result = Array.make n (Array.make m init) <b>in</b>
+    <b>for</b> i = 1 <b>to</b> n - 1 <b>do</b>
+      result.(i) &lt;- Array.make m init
+    done;
+    result;;
+<span class="output">matrix : int -&gt; int -&gt; 'a -&gt; 'a array array = &lt;fun&gt;</span>
+</pre>
+
+In the same vein, the <code>copy_vect</code> primitive gives strange
+results, when applied to matrices: you need to write a function that
+explicitly copies each line of the matrix at hand:
+
+<pre class="listing">
+<b>let</b> copy_matrix m <b></b>=
+<b></b> <b></b> <b>let</b> l <b></b>=<b></b> Array.length m <b>in</b>
+<b></b> <b></b> <b></b> <b></b> <b>if</b> l <b></b>=<b></b> 0 <b>then</b> m <b>else</b>
+<b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b>let</b> result <b></b>=<b></b> Array.make l m.(0)<b></b> <b>in</b>
+<b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b>for</b> i <b></b>=<b></b> 0 <b>to</b> l - 1 <b>do</b>
+<b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> result.(i)<b></b> &lt;- Array.copy m.(i)
+<b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> done;
+<b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> <b></b> result
+</pre>
+
+</div>
+
+<h3>Types definitions</h3>
+
+<div class="Q">How to define an enumerated type?</div>
+<div class="A">An enumerated type is a sum type with only
+constants. For instance, a type with 3 constants:
+
+<pre class="listing">
+<b>type</b> color <b></b>=<b></b> Blue | White | Red;;
+<span class="output"><b>type</b> color <b></b>=<b></b> Blue | White | Red</span>
+Blue;;
+<span class="output">- : color <b></b>=<b></b> Blue</span>
+</pre>
+
+The names <code>Blue</code>, <code>White</code> and <code>Red</code>
+are the constructors of the <code>color</code> type.  One can define
+functions on this type by pattern matching:
+
+<pre class="listing">
+<b>let</b> string_of_color <b></b>=<b></b> <b>function</b>
+<b></b> <b></b> <b></b> <b></b> Blue -&gt; "blue"
+<b></b> <b></b> | White -&gt; "white"
+<b></b> <b></b> | Red -&gt; "red";;
+</pre>
+</div>
+
+<div class="Q">How to share a label between two different record
+types?</div>
+<div class="A">When you define two types sharing a label name, the
+last defined type hides the labels of the first type. For instance:
+
+<pre class="listing">
+<b>type</b> point_3d <b></b>=<b></b> {x : float; y : float; z : float};;
+<b>type</b> point_2d <b></b>=<b></b> {x : float; y : float};;
+
+{x <b></b>=<b></b> 10.; y <b></b>=<b></b> 20.; z <b></b>=<b></b> 30.};;
+<span class="output">The record field label z belongs <b>to</b> the <b>type</b> point_3d</span>
+<span class="output">but is here mixed <b>with</b> labels <b>of</b> <b>type</b> point_2d</span>
+</pre>
+
+The simplest way to overcome this problem is simply ... to use
+different names! For instance
+
+<pre class="listing">
+<b>type</b> point3d <b></b>=<b></b> {x3d : float; y3d : float; z3d : float};;
+<b>type</b> point2d <b></b>=<b></b> {x2d : float; y2d : float};;
+</pre>
+
+With OCaml, one can propose two others solutions.  First, it is
+possible to use modules to define the two types in different name
+spaces:
+
+<pre class="listing">
+<b>module</b> D3 = <b>struct</b>
+ <b>type</b> point = {x : float; y : float; z : float}
+end;;
+
+<b>module</b> D2 = <b>struct</b>
+ <b>type</b> point = {x : float; y : float}
+end;;
+</pre>
+
+This way labels can be fully qualified as <code>D3.x</code>
+<code>D2.x</code>:
+
+<pre class="listing">
+{D3.x = 10.; D3.y = 20.; D3.z = 30.};;
+<span class="output">- : D3.point = {D3.x = 10.000000; D3.y = 20.000000; D3.z = 30.000000}</span>
+{D2.x = 10.; D2.y = 20.};;
+<span class="output">- : D2.point = {D2.x = 10.000000; D2.y = 20.000000}</span>
+</pre>
+
+You can also use objects that provide overloading on method names:
+
+<pre class="listing">
+<b>class</b> point_3d ~x ~y ~z = <b>object</b>
+  <b>method</b> x : float = x
+  <b>method</b> y : float = y
+  <b>method</b> z : float = z
+end;;
+
+<b>class</b> point_2d ~x ~y = <b>object</b>
+  <b>method</b> x : float = x
+  <b>method</b> y : float = y
+end;;
+</pre>
+
+Note that objects provide you more than overloading: you can define
+truly polymorphic functions, working on both <code>point_3d</code> and
+<code>point_2d</code>, and you can even coerce a <code>point_3d</code>
+to a <code>point_2d</code>.
+</div>
+
+<div class="Q">How to define two sum types that share constructor
+names?</div>
+<div class="A">Generally speaking you cannot. As for all other names,
+you must use distinct name constructors. However, you can define the
+two types in two different name spaces, i.e. into two different
+modules. As for labels discussed above, you obtain constructors that
+can be qualified by their module names.
+
+With OCaml you can alternatively use polymorphic variants,
+i.e. constructors that are, in some sense, <i>predefined</i>, since
+they are not defined by a type definition. For instance:
+
+<pre class="listing">
+<b>type</b> ids = [ `Name | `Val ];;
+<b>type</b> person = [ `Name <b>of</b> string ];;
+<b>let</b> (f : person -&gt; string) = <b>function</b> `Name s -&gt; s;;
+<span class="output"><b>val</b> f : person -&gt; string = &lt;fun&gt;</span>
+<b>let</b> (is_name : ids -&gt; bool) = <b>function</b> `Name -&gt; <b>true</b> | _ -&gt; false;;
+<span class="output"><b>val</b> is_name : ids -&gt; bool = &lt;fun&gt;</span>
+</pre>
+</div>
+
+<h3>Functions and procedures</h3>
+
+<div class="Q">How to define a function?</div>
+
+<div class="A">In Caml, the syntax to define functions is close to the
+mathematical usage: the definition is introduced by the keyword
+<code><b>let</b></code>, followed by the name of the function and its
+arguments; then the formula that computes the image of the argument is
+written after an <code><b></b>=</code> sign.
+
+<pre class="listing">
+<b>let</b> successor <b></b>(n)<b></b> <b></b>=<b></b> n + 1;;
+<span class="output">successor : int -&gt; int <b></b>=<b></b> &lt;fun&gt;</span>
+</pre>
+
+In fact, parens surrounding the argument may be omitted, so we
+generally write:
+
+<pre class="listing">
+<b>let</b> successor n <b></b>=<b></b> n + 1;;
+<span class="output">successor : int -&gt; int <b></b>=<b></b> &lt;fun&gt;</span>
+</pre>
+</div>
+
+<div class="Q">How to define a recursive function?</div>
+<div class="A">You need to explicitly tell that you want to define a
+recursive function: use &#8220;let rec&#8221; instead of
+&#8220;let&#8221;. For instance:
+
+<pre class="listing">
+<b>let</b> <b>rec</b> fact n <b></b>=
+<b></b> <b></b> <b>if</b> n <b></b>=<b></b> 0 <b>then</b> 1 <b>else</b> n * fact <b></b>(n - 1);;
+<span class="output">fact : int -&gt; int <b></b>=<b></b> &lt;fun&gt;</span>
+<b>let</b> <b>rec</b> fib n <b></b>=
+<b></b> <b></b> <b>if</b> n &lt;=<b></b> 1 <b>then</b> n <b>else</b> fib <b></b>(n - 1)<b></b> + fib <b></b>(n - 2);;
+<span class="output">fib : int -&gt; int <b></b>=<b></b> &lt;fun&gt;</span>
+</pre>
+
+Functions may be mutually recursive:
+
+<pre class="listing">
+<b>let</b> <b>rec</b> odd n <b></b>=
+<b></b> <b></b> <b>if</b> n <b></b>=<b></b> 0 <b>then</b> <b>true</b>
+<b></b> <b></b> <b>else</b> <b>if</b> n <b></b>=<b></b> 1 <b>then</b> <b>false</b> <b>else</b> even <b></b>(n - 1)
+<b>and</b> even n <b></b>=
+<b></b> <b></b> <b>if</b> n <b></b>=<b></b> 0 <b>then</b> <b>false</b>
+<b></b> <b></b> <b>else</b> <b>if</b> n <b></b>=<b></b> 1 <b>then</b> <b>true</b> <b>else</b> odd <b></b>(n - 1);;
+<span class="output">odd : int -&gt; bool <b></b>=<b></b> &lt;fun&gt;</span>
+<span class="output">even : int -&gt; bool <b></b>=<b></b> &lt;fun&gt;</span>
+</pre>
+</div>
+
+<div class="Q">How to apply a function?</div>
+<div class="A">Functions are applied as in mathematics: write the
+function's name, followed by its argument enclosed in parens: f
+(x). In practice, parens are omitted in case of constants or
+identifiers: we write <code>fib 2</code> instead of <code>fib
+<b></b>(2)</code>, and <code>fact x</code> instead of <code>fact
+<b></b>(x)</code>.<br />
+
+When the argument of a function is more complex than just an
+identifier, you must enclose this argument between parentheses. In
+particular you need parens when the argument is a negative constant
+number: to apply <code>f</code> to <code>-1</code> you must write
+<code>f <b></b>(-1)</code> and <strong>not</strong> <code>f -1</code>
+that is syntactically similar to <code>f - 1</code> (hence it is a
+subtraction, not an application).
+</div>
+
+<div class="Q">How to define a procedure?</div>
+<div class="A">Recall that <em>procedures</em> are commands that
+produce an <em>effect</em> (for instance printing something on the
+terminal or writing some memory location), but have no mathematically
+meaningful result.<br />
+
+In Caml, there is no special treatment of procedures: they are just
+considered as special cases of functions that return the special
+&#8220;meaningless&#8221; value <a
+href="donnees_de_base-eng.html#units"
+shape="rect"><code><b></b>(<b></b>)</code></a>. For instance, the
+<code>print_string</code> primitive that prints a character string on
+the terminal, just returns <code><b></b>(<b></b>)</code> as a way of
+indicating that its job has been properly completed.<br />
+
+Procedures that do not need any meaningful argument, get
+<code><b></b>(<b></b>)</code> as dummy argument. For instance, the
+<code>print_newline</code> procedure, that outputs a newline on the
+terminal, gets no meaningful argument: it has type <code>unit <b></b>
+<b></b> <b></b> <b></b> <b></b> <b></b> -&gt; unit</code>.<br />
+Procedures with argument are defined exactly as ordinary
+functions. For instance:
+
+<pre class="listing">
+<b>let</b> message s <b></b>=<b></b> print_string s; print_newline(<b></b>);;
+<span class="output">message : string -&gt; unit <b></b>=<b></b> &lt;fun&gt;</span>
+message "Hello world!";;
+<span class="output">Hello world!</span>
+<span class="output">- : unit <b></b>=<b></b> <b></b>(<b></b>)</span>
+</pre>
+</div>
+
+<div class="Q">How to define a procedure/function that takes no
+argument?</div>
+<div class="A">Note that it is impossible to define a procedure
+without any argument at all: its definition would imply to execute it,
+and there would be no way to call it afterwards. In the following
+fragment <code>double_newline</code> is bound to
+<code><b></b>(<b></b>)</code>, and its further evaluation never
+produces carriage returns as may be erroneously expected by the user.
+
+<pre class="listing">
+<b>let</b> double_newline <b></b>=<b></b> print_newline(<b></b>); print_newline(<b></b>);;
+@
+@
+<span class="output">double_newline : unit <b></b>=<b></b> <b></b>(<b></b>)</span>
+double_newline;;
+<span class="output">- : unit <b></b>=<b></b> <b></b>(<b></b>)</span>
+</pre>
+
+The correct definition and usage of this procedure is:
+
+<pre class="listing">
+<b>let</b> double_newline <b></b>(<b></b>)<b></b> <b></b>=<b></b> print_newline(<b></b>); print_newline(<b></b>);;
+<span class="output">double_newline : unit -&gt; unit <b></b>=<b></b> &lt;fun&gt;</span>
+double_newline;;
+<span class="output">- : unit -&gt; unit <b></b>=<b></b> &lt;fun&gt;</span>
+double_newline <b></b>(<b></b>);;
+@
+@
+<span class="output">- : unit <b></b>=<b></b> <b></b>(<b></b>)</span>
+</pre>
+</div>
+
+<div class="Q">How to define a function with more than one
+argument?</div>
+<div class="A">Just write the list of successive arguments when
+defining the function. For instance:
+
+<pre class="listing">
+<b>let</b> sum x y <b></b>=<b></b> x + y;;
+<span class="output">sum : int -&gt; int -&gt; int <b></b>=<b></b> &lt;fun&gt;</span>
+</pre>
+
+then gives the actual arguments in the same order when applying the
+function:
+
+<pre class="listing">
+sum 1 2;;
+<span class="output">- : int <b></b>=<b></b> 3</span>
+</pre>
+
+These functions are named &#8220;curried&#8221; functions, as opposed
+to functions with tuples as argument:
+
+<pre class="listing">
+<b>let</b> sum' <b></b>(x, y)<b></b> <b></b>=<b></b> x + y;;
+<span class="output">sum' : int * int -&gt; int <b></b>=<b></b> &lt;fun&gt;</span>
+sum' <b></b>(1, 2);;
+<span class="output">- : int <b></b>=<b></b> 3</span>
+</pre>
+</div>
+
+<div class="Q">How to define a function that has several
+results?</div>
+<div class="A">You can define a function that return a pair or a
+tuple:
+
+<pre class="listing">
+<b>let</b> div_mod x y <b></b>=<b></b> <b></b>(x quo y, x <b>mod</b> y);;
+<span class="output">div_mod : int -&gt; int -&gt; int * int <b></b>=<b></b> &lt;fun&gt;</span>
+div_mod 15 7;;
+<span class="output">- : int * int <b></b>=<b></b> 2, 1</span>
+</pre>
+</div>
+
+<div class="Q">What is an &#8220;anonymous function&#8221;?</div>
+<div class="A">You may use functions that have no names: we call them
+functional values or anonymous functions. A functional value is
+introduced by the keyword <code><b>function</b></code>, followed by
+its argument, then an arrow <code>-&gt;</code> and the function body.
+For instance:
+
+<pre class="listing">
+<b>function</b> x -&gt; x + 1;;
+<span class="output">- : int -&gt; int <b></b>=<b></b> <b>fun</b></span>
+<b></b>(<b>function</b> x -&gt; x + 1)<b></b> 2;;
+<span class="output">- : int <b></b>=<b></b> 3</span>
+</pre>
+</div>
+
+<div class="Q">What is the difference between <code><b>fun</b></code>
+and <code><b>function</b></code>?</div>
+<div class="A">Functions are usually introduced by the keyword
+<code><b>function</b></code>. Each parameter is introduced by its own
+<code><b>function</b></code> construct. For instance, the construct:
+
+<pre class="listing">
+<b>function</b> x -&gt; <b>function</b> y -&gt; ...
+</pre>
+
+defines a function with two parameters <code>x</code> and
+<code>y</code>. Functions that use pattern-matching are also
+introduced by the keyword <code><b>function</b></code>.<br />
+
+The keyword <code><b>fun</b></code> introduces curried functions (with
+several successive arguments). For instance:
+
+<pre class="listing">
+<b>fun</b> x y -&gt; ...
+</pre>
+
+introduces a function with two arguments <code>x</code> and
+<code>y</code> as to the previous one.
+</div>
+
+<div class="Q">My function is never applied</div>
+<div class="A">This is probably due to a missing argument: since Caml
+is a functional programming language, there is no error when you
+evaluate a function with missing arguments: in this case, a functional
+value is returned, but the function is evidently not applied. Example:
+if you evaluate <code>print_newline</code> without argument, there is
+no error, but nothing happens. The compiler issues a warning in case
+of a blatant misuse.
+
+<pre class="listing">
+#print_newline;;
+<span class="output">- : unit -&gt; unit</span>
+#print_newline <b></b>(<b></b>);;
+@
+<span class="output">- : unit <b></b>=<b></b> <b></b>(<b></b>)</span>
+</pre>
+
+</div>
+
+
+<h3>Pattern matching</h3>
+
+<div class="Q">How to do nested pattern matching?</div>
+<div class="A">You imperatively need to enclose between parens a
+pattern matching which is written inside another pattern matching. In
+effect, the internal pattern matching &#8220;catches&#8221; all the
+pattern matching clauses that are written after it. For instance:
+
+<pre class="listing">
+<b>let</b> f <b></b>=<b></b> <b>function</b>
+<b></b> | 0 -&gt; <b>match</b> ... <b>with</b> | a -&gt; ... | b -&gt; ...
+<b></b> | 1 -&gt; ...
+<b></b> | 2 -&gt; ...;;
+</pre>
+
+is parsed as
+
+<pre class="listing">
+<b>let</b> f <b></b>=<b></b> <b>function</b>
+<b></b> | 0 -&gt;
+<b></b> <b></b> <b></b> <b></b> <b></b> <b>match</b> ... <b>with</b>
+<b></b> <b></b> <b></b> <b></b> <b></b> | a -&gt; ...
+<b></b> <b></b> <b></b> <b></b> <b></b> | b -&gt; ...
+<b></b> <b></b> <b></b> <b></b> <b></b> | 1 -&gt; ...
+<b></b> <b></b> <b></b> <b></b> <b></b> | 2 -&gt; ...;;
+</pre>
+
+This error may occur for every syntactic construct that involves
+pattern matching: <code><b>function</b></code>, <code><b>match</b>
+<b></b> <b></b> <b></b> <b></b> <b></b> <b></b> .. <b>with</b></code>
+and <code><b>try</b> ... <b>with</b></code>. The usual trick is to
+enclose inner pattern matchings with <code><b>begin</b></code> and
+<code><b>end</b></code>. One write:
+
+<pre class="listing">
+<b>let</b> f <b></b>=<b></b> <b>function</b>
+<b></b> | 0 -&gt;
+<b></b> <b></b> <b></b> <b></b> <b></b> <b>begin</b> <b>match</b> ... <b>with</b>
+<b></b> <b></b> <b></b> <b></b> <b></b> | a -&gt; ...
+<b></b> <b></b> <b></b> <b></b> <b></b> | b -&gt; ...
+<b></b> <b></b> <b></b> <b></b> <b></b> <b>end</b>
+<b></b> | 1 -&gt; ...
+<b></b> | 2 -&gt; ...;;
+</pre>
+</div>
+
+<h3>Exceptions</h3>
+
+<h3>Typing</h3>
+
+<div class="Q">Error message: a type is not compatible with
+itself</div>
+<div class="A">You may obtain the message: This expression has type
+&#8220;some type&#8221; but is used with type &#8220;the same some
+type&#8221;. This may occur very often when using the interactive
+system.<br />
+
+The reason is that two types with the same name have been defined the
+compiler does not confuse the two types, but the types are evidently
+written the same. Consider for instance:
+
+<pre class="listing">
+<b>type</b> t <b></b>=<b></b> T <b>of</b> int
+<span class="output"><b>type</b> t <b></b>=<b></b> T <b>of</b> int</span>
+<b>let</b> x <b></b>=<b></b> T 1;;
+<span class="output"><b>val</b> x : t <b></b>=<b></b> T 1</span>
+<b>type</b> t <b></b>=<b></b> T <b>of</b> int;;
+<span class="output"><b>type</b> t <b></b>=<b></b> T <b>of</b> int</span>
+<b>let</b> incr <b></b>=<b></b> <b>function</b> T x -&gt; T <b></b>(x+1);;
+<span class="output"><b>val</b> incr : t -&gt; t <b></b>=<b></b> &lt;fun&gt;</span>
+incr x;;
+<span class="output">This expression has <b>type</b> t but is here used <b>with</b> <b>type</b> t</span>
+</pre>
+
+This phenomenon appears when you load many times the same file into
+the interactive system, since each reloading redefines the types. The
+solution is to quit your interactive system and reload your files in a
+new session.
+</div>
+
+<div class="Q">A function obtained through partial application is not
+polymorphic enough</div>
+<div class="A"> The more common case to get a ``not polymorphic
+enough'' definition is when defining a function via partial
+application of a general polymorphic function. In Caml polymorphism is
+introduced only through the &#8220;let&#8221; construct, and results
+from application are weakly polymorph; hence the function resulting
+from the application is not polymorph.
+
+In this case, you recover a fully polymorphic definition by clearly
+exhibiting the functionality to the type-checker : define the function
+with an explicit functional abstraction, that is, add a
+<code><b>function</b></code> construct or an extra parameter (this
+rewriting is known as eta-expansion):
+
+<pre class="listing">
+<b>let</b> map_id = List.map (<b>function</b> x -&gt; x) (* Result is weakly polymorphic *)
+<span class="output"><b>val</b> map_id : '_a list -&gt; '_a list = &lt;fun&gt;</span>
+map_id [1;2]
+<span class="output">- : int list = [1;2]</span>
+map_id (* No longer polymorphic *)
+<span class="output">- : int list -&gt; int list = &lt;fun&gt;</span>
+<b>let</b> map_id' l = List.map (<b>function</b> x -&gt; x) l
+<span class="output"><b>val</b> map_id' : 'a list -&gt; 'a list = &lt;fun&gt;</span>
+map_id' [1;2]
+<span class="output">- : int list = [1;2]</span>
+map_id' (* Still fully polymorphic *)
+<span class="output">- : 'a list -&gt; 'a list = &lt;fun&gt;</span>
+</pre>
+
+The two definitions are semantically equivalent, and the new one can
+be assigned a polymorphic type scheme, since it is no more a function
+application.
+
+</div>
+
+<div class="Q">The type of this expression contains type variables
+that cannot be generalized</div>
+<div class="A"> This message appears when the Caml compiler tries to
+compile a function or a value which is monorphic, but for which some
+types have not been completely inferred. Some types variables are left
+in the type, which are are called &#8220;weak&#8221; (and are
+displayed by an underscore: <code>'_a</code>); they will disappear
+thanks to type inference as soon as enough informations will be given.
+
+<pre class="listing">
+<b>let</b> r <b></b>=<b></b> ref <b></b>[<b></b>]
+<span class="output"><b>val</b> r : '_a list ref <b></b>=<b></b> {contents <b></b>=<b></b> <b></b>[<b></b>]}</span>
+<b>let</b> f <b></b>=<b></b> List.map <b></b>(<b>fun</b> x -&gt; x)
+<span class="output"><b>val</b> f : '_a list -&gt; '_a list <b></b>=<b></b> &lt;fun&gt;</span>
+</pre>
+
+Since the expression mentionned in the error message cannot be
+compiled as is, two cases must be envisioned:
+
+<ul>
+  <li>The expression can really not be turned into a polymorphic
+  expression, as in <code>r</code> above. You must use an explicit
+  type annotation, in order to turn it into something completely
+  monomorphic.</li>
+
+  <li>The expression can be transformed into something polymorphic
+  through rewriting some part of the code (for example using <a
+  href="#eta-expansion" shape="rect">eta-expansion</a>) as in the case
+  of <code>f</code>.</li>
+</ul>
+</div>
+
+<div class="Q">How to write a function with polymorphic
+arguments?</div>
+<div class="A">In ML, an argument of a function cannot be polymorphic
+inside the body of the function; hence the following typing:
+
+<pre class="listing">
+<b>let</b> f <b></b>(g : 'a -&gt; 'a)<b></b> x y <b></b>=<b></b> g x, g y
+<span class="output"><b>val</b> f : <b></b>('a -&gt; 'a)<b></b> -&gt; 'a -&gt; 'a -&gt; 'a * 'a <b></b>=<b></b> &lt;fun&gt;</span>
+</pre>
+
+The function is not as polymorphic as we could have hoped.<br />
+
+Nevertheless, in OCaml it is possible to use first-order
+polymorphism. For this, you can use either records or objects; in the
+case of records, you need to declare the type before using it in the
+function.
+
+<pre class="listing">
+<b>let</b> f (o : &lt;g : 'a. 'a -&gt; 'a&gt;) x y = o#g x, o#g y
+<span class="output"><b>val</b> f : &lt; g : 'a. 'a -&gt; 'a &gt; -&gt; 'b -&gt; 'c -&gt; 'b * 'c = &lt;fun&gt;</span>
+<b>type</b> id = { g : 'a. 'a -&gt; 'a; }
+<span class="output"><b>type</b> id = { g : 'a. 'a -&gt; 'a; }</span>
+<b>let</b> f r x y = r.g x, r.g y
+<span class="output"><b>val</b> f : id -&gt; 'a -&gt; 'b -&gt; 'a * 'b = &lt;fun&gt;</span>
+</pre>
+
+</div>
+
+
+<h3>Intput/output</h3>
+
+<div class="Q">Why some printing material is mixed up and does not
+appear in the right order?</div>
+<div class="A">If you use printing functions of the
+<code>format</code> module, you might not mix printing commands from
+<code>format</code> with printing commands from the basic I/O
+system. In effect, the material printed by functions from the
+<code>format</code> module is delayed (stored into the pretty-printing
+queue) in order to find out the proper line breaking to perform with
+the material at hand. By contrast low level output is performed with
+no more buffering than usual I/O buffering.
+
+<pre class="listing">
+print_string "before";
+Format.print_string "MIDDLE";
+print_string "after";;
+<span class="output">beforeafterMIDDLE- : unit = ()</span>
+</pre>
+
+To avoid this kind of problems you should not mix printing orders from
+<code>format</code> and basic printing commands; that's the reason why
+when using functions from the <code>format</code> module, it is
+considered good programming habit to open <code>format</code> globally
+in order to completely mask low level printing functions by the high
+level printing functions provided by <code>format</code>.
+</div>
 
 </div><!-- Core Language -->
 
