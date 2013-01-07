@@ -17,7 +17,7 @@ let highlight_ocaml =
   (* Arguments to functions may pattern match.  Final "\\." to allow
      "..." in argument (sometimes used for explanations). *)
   let args = "\\(\\?(" ^ id ^ " *=[^=()]+) +\\|[~?]" ^ id ^ "[ :]+\\|() *\\|"
-             ^ id ^ " +\\|\\.+ +\\)+" in
+             ^ id ^ " +\\|(" ^ id ^ ") +\\|\\.+ +\\)+" in
   let subst = [ (* regex, replacement *)
     (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
