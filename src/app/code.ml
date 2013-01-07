@@ -176,15 +176,16 @@ let html_of_eval_silent phrase =
 (* Process [err_msg] to see whether one needs to highlight part of the
    [phrase].  *)
 let highlight_error phrase err_msg =
+  (* The indices of the error are [c1, c2[. *)
   let locate_error c1 c2 =
     let len = String.length phrase in
-    if c1 >= len then
+    if c1 >= len || c1 < 0 || c2 < 0 then
       html_encode phrase, err_msg
     else
       let p1 = String.sub phrase 0 c1
-      and p2 = String.sub phrase c1 (c2 - c1)
-      and p3 = if c2 >= len then ""
-               else String.sub phrase c2 (len - c2) in
+      and p2, p3 = if c2 >= len then (String.sub phrase c1 (len - c1), "")
+                   else (String.sub phrase c1 (c2 - c1),
+                         String.sub phrase c2 (len - c2)) in
       let phrase = html_encode p1 ^ "<span class=\"ocamltop-error-loc\">"
                    ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
       let nl = 1 + String.index err_msg '\n' in
