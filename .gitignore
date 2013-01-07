@@ -13,5 +13,4 @@ src/lib/META
 src/lib/ocamlorg.mllib
 src/lib/doclib.odocl
 www/
-src/app/conf.ml
 

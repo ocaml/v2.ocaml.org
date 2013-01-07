@@ -7,7 +7,6 @@ Authors:     Christophe Troestler, Esther Baruk, Ashish Agarwal
 License:     LGPL-3.0 with OCaml linking exception
 Plugins:     META (0.3)
 BuildTools:  ocamlbuild
-FilesAB:     src/app/conf.ml.ab
 
 Library ocamlorg
   Path:         src/lib

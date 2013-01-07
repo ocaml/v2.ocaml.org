@@ -97,13 +97,7 @@ let () =
   Toploop.input_name := ""; (* no filename *)
   Toploop.max_printer_steps := 20;
   (* Add #load and #install_printer *)
-  let load cma =
-    Dynlink.allow_unsafe_modules true;
-    let cma = Filename.(if is_relative cma then concat Conf.standard_library cma
-                        else cma) in
-    try Dynlink.loadfile (Dynlink.adapt_filename cma)
-    with Dynlink.Error e ->
-      eprintf "#load %S: %s\n" cma (Dynlink.error_message e) in
+  let load cma = Topdirs.dir_load Format.str_formatter cma in
   Toploop.(Hashtbl.add directive_table "load" (Directive_string load))
 
 type outcome =
