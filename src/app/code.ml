@@ -116,16 +116,12 @@ let init_stdout = Unix.dup Unix.stdout
 let init_stderr = Unix.dup Unix.stderr
 
 let toploop_eval phrase =
-  try
-    flush stderr;
-    let (out_in, out_out) = Unix.pipe() in
-    Unix.dup2 out_out Unix.stdout; (* Unix.stdout → out_out *)
-    let (err_in, err_out) = Unix.pipe() in
-    Unix.dup2 err_out Unix.stderr; (* Unix.stderr → err_out *)
-    let lexbuf = Lexing.from_string phrase in
-    let phrase = !Toploop.parse_toplevel_phrase lexbuf in
-    ignore(Toploop.execute_phrase true Format.str_formatter phrase);
-    let exec_output = Format.flush_str_formatter () in
+  flush stderr;
+  let (out_in, out_out) = Unix.pipe() in
+  Unix.dup2 out_out Unix.stdout; (* Unix.stdout → out_out *)
+  let (err_in, err_out) = Unix.pipe() in
+  Unix.dup2 err_out Unix.stderr; (* Unix.stderr → err_out *)
+  let get_stdout_stderr_and_restore () =
     flush stdout;
     let out = string_of_fd out_in in
     Unix.close out_in;
@@ -136,9 +132,19 @@ let toploop_eval phrase =
     Unix.close err_in;
     Unix.close err_out;
     Unix.dup2 init_stderr Unix.stderr; (* restore initial stderr *)
+    (out, err) in
+  try
+    let lexbuf = Lexing.from_string phrase in
+    let phrase = !Toploop.parse_toplevel_phrase lexbuf in
+    ignore(Toploop.execute_phrase true Format.str_formatter phrase);
+    let exec_output = Format.flush_str_formatter () in
+    let out, err = get_stdout_stderr_and_restore () in
     Normal(exec_output, out, err)
   with
   | e ->
+     let out, err = get_stdout_stderr_and_restore () in
+     print_string out;
+     prerr_string err;
      let backtrace_enabled = Printexc.backtrace_status () in
      if not backtrace_enabled then Printexc.record_backtrace true;
      (try Errors.report_error Format.str_formatter e
