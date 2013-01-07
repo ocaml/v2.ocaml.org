@@ -33,6 +33,11 @@ let highlight_ocaml =
      "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span> \
       <span class=\"ocaml-variable\">\\3</span>= \
       <span class=\"kwb\">function</span>");
+    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) +: *\\([^=]+\\)"
+     ^ "= *function",
+     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span> \
+      : <span class=\"ocaml-ty\">\\3</span>= \
+      <span class=\"kwb\">function</span>");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) +\\(" ^ args ^ "\\)=",
      "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span> \
       <span class=\"ocaml-variable\">\\3</span>=");
