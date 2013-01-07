@@ -12,36 +12,71 @@
 
 <a name="Mutually_recursive_functions"></a><h2><span>Mutually recursive functions</span></h2>
 <p>Suppose I want to define two functions which call each other. This is actually not a very common thing to do, but it can be useful sometimes. Here's a contrived example (thanks to Ryan Tarpine): The number 0 is even. Other numbers greater than 0 are even if their predecessor is odd. Hence:</p>
-<pre ml:content="ocaml --inc labels.ml 1 4">
+<pre ml:content="ocaml noeval">
+let rec even n =
+  match n with
+  | 0 -> true
+  | x -> odd (x-1)
 </pre>
 
 <p>The code above doesn't compile because we haven't defined the function <code>odd</code> yet! That's easy though. Zero is not odd, and other numbers greater than 0 are odd if their predecessor is even. So to make this complete we need that function too:</p>
-<pre ml:content="ocaml --inc labels.ml 6 14">
+<pre ml:content="ocaml noeval">
+let rec even n =
+  match n with
+  | 0 -> true
+  | x -> odd (x-1)
+
+let rec odd n =
+  match n with
+  | 0 -> false
+  | x -> even (x-1)
 </pre>
 
 <p>The only problem is... this program doesn't compile. In order to compile the <code>even</code> function, we already need the definition of <code>odd</code>, and to compile <code>odd</code> we need the definition of <code>even</code>. So swapping the two definitions around won't help either.</p>
 <p>There are no &quot;forward prototypes&quot; in OCaml but there is a special syntax for defining a set of two or more mutually recursive functions, like <code>odd</code> and <code>even</code>:</p>
-<pre ml:content="ocaml --inc labels.ml 16 23">
+<pre ml:content="ocaml noeval">
+let rec even n =
+  match n with
+  | 0 -> true
+  | x -> odd (x-1)
+and odd n =
+  match n with
+  | 0 -> false
+  | x -> even (x-1)
 </pre>
 
 <p>It's hard to know exactly how useful this is in practice, since I've never had cause to write mutually recursive functions, nor have I been able to think of a non-trivial example. However it's there. You can also use similar syntax for writing mutually recursive class definitions and modules.</p>
 <a name="Aliases_for_function_names_and_arguments"></a><h2><span>Aliases for function names and arguments</span></h2>
 <p>Recall in Chapter 5 we talked about partial function application. It's possible to use this as a neat trick to save typing: aliasing function names, and function arguments.</p>
 <p>Although we haven't looked at object-oriented programming (that's the subject for the next chapter), here's an example from OCamlNet of an aliased function call. All you need to know is that <code>cgi # output # output_string <em>&quot;string&quot;</em></code> is a method call, similar to <code>cgi.output().output_string (<em>&quot;string&quot;</em>)</code> in Java.</p>
-<pre ml:content="ocaml --inc labels.ml 26 36">
+<pre ml:content="ocaml noeval">
+let begin_page cgi title =
+  let out = cgi # output # output_string in
+  out "&lt;html&gt;\n";
+  out "&lt;head&gt;\n";
+  out ("&lt;title&gt;" ^ text title ^ "&lt;/title&gt;\n");
+  out ("&lt;style type=\"text/css\"&gt;\n");
+  out "body { background: white; color: black; }\n";
+  out "&lt;/style&gt;\n";
+  out "&lt;/head&gt;\n";
+  out "&lt;body&gt;\n";
+  out ("&lt;h1&gt;" ^ text title ^ "&lt;/h1&gt;\n")
 </pre>
 
 <p>The <code>let out = ... </code> is a partial function application for that method call (partial, because the string parameter hasn't been applied). <code>out</code> is therefore a function, which takes a string parameter.</p>
-<pre ml:content="ocaml --inc labels.ml 38 38">
+<pre ml:content="ocaml noeval">
+  out "&lt;html&gt;\n";
 </pre>
 
 <p>is equivalent to:</p>
-<pre ml:content="ocaml --inc labels.ml 40 40">
+<pre ml:content="ocaml noeval">
+  cgi # output # output_string "&lt;html&gt;\n";
 </pre>
 
 <p>We saved ourselves a lot of typing there.</p>
 <p>We can also add arguments. This alternative definition of <code>print_string</code> can be thought of as a kind of alias for a function name plus arguments:</p>
-<pre ml:content="ocaml --inc labels.ml 42 42">
+<pre ml:content="ocaml noeval">
+  let print_string = output_string stdout
 </pre>
 
 <p><code>output_string</code> takes two arguments (a channel and a string), but since we have only supplied one, it is partially applied. So <code>print_string</code> is a function, expecting one string argument.</p>
@@ -81,9 +116,9 @@ ask_ok (prompt =&gt; &quot;Are you sure?&quot;, retries =&gt; 2);
 <p>OCaml also has a way to label arguments and have optional arguments with default values.</p>
 <p>The basic syntax is:</p>
 <pre ml:content="ocaml">
-let rec range ~first:a ~last:b =
-  if a > b then []
-  else a :: range ~first:(a+1) ~last:b
+  let rec range ~first:a ~last:b =
+    if a > b then []
+    else a :: range ~first:(a+1) ~last:b
 </pre>
 
 <p>(Notice that both <code>to</code> and <code>end</code> are reserved words in OCaml, so they cannot be used as labels. So you cannot have <code>~from/~to</code> or <code>~start/~end</code>.)</p>
