@@ -7,6 +7,8 @@ open Scanf
  ***********************************************************************)
 
 let html_encode = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
+let html_decode =
+  Netencoding.Html.decode ~in_enc:`Enc_utf8 ~out_enc:`Enc_utf8 ()
 
 let highlight_ocaml =
   (* Simple minded engine to highlight OCaml code.  The [phrase] is supposed
@@ -226,7 +228,7 @@ let rec text_of_html html =
   String.concat "" (List.map text_of_el html)
 and text_of_el = function
   | Nethtml.Element(_, _, content) -> text_of_html content
-  | Nethtml.Data d -> d
+  | Nethtml.Data d -> html_decode d (* decode entities like &lt; *)
 
 (* FIXME: Use String.trim when 4.00.0 is spead enough. *)
 let is_space = function
