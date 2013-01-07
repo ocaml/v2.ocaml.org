@@ -70,8 +70,8 @@ let average a b =
 
 <p class="first_para">Type this into the OCaml &quot;toplevel&quot; (on Unix, type the command <code>ocaml</code> from the shell) and you'll see this:</p>
 <pre ml:content="ocaml">
-let average a b =
-  (a +. b) /. 2.0;;
+  let average a b =
+    (a +. b) /. 2.0;;
 </pre>
 
 <p class="first_para">If you look at the function definition closely, and also at what OCaml prints back at you, you'll have a number of questions:</p>
@@ -156,10 +156,10 @@ let rec range a b =
 <p class="first_para">Notice that <code>range</code> calls itself.</p>
 <p>The only difference between <code>let</code> and <code>let rec</code> is in the scoping of the function name. If the above function had been defined with just <code>let</code>, then the call to <code>range</code> would have tried to look for an existing (previously defined) function called <code>range</code>, not the currently-being-defined function.  Using <code>let</code> (without <code>rec</code>) allows you to re-define a value in terms of the previous definition.  For example:</p>
 <pre ml:content="ocaml noeval">
- let positive_sum a b = 
-    let a = max a 0
-    and b = max b 0 in
-    a + b
+let positive_sum a b = 
+  let a = max a 0
+  and b = max b 0 in
+  a + b
 </pre>
 
 <p class="first_para">This redefinition hides the previous &quot;bindings&quot; of <code>a</code> and <code>b</code> from the function definition.  In some situations coders prefer this pattern to using a new variable name (<code>let a_pos = max a 0</code>) as it makes the old binding inaccessible, so that only the latest values of a and b are accessible.</p>
@@ -211,8 +211,8 @@ give_me_a_three : 'a -> int
 <p>But OCaml is also a practical language, and for this reason it contains backdoors into the type system allowing you to bypass this checking on the rare occasions that it is sensible to do this. Only gurus will probably need to bypass the type checking.</p>
 <p>Let's go back to the <code>average</code> function which we typed into the OCaml toplevel:</p>
 <pre ml:content="ocaml">
-let average a b =
-  (a +. b) /. 2.0
+  let average a b =
+    (a +. b) /. 2.0
 </pre>
 
 <p class="first_para">Mirabile dictu! OCaml worked out all on its own that the function takes two <code>float</code> arguments and returns a <code>float</code>.</p>
