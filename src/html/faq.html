@@ -384,39 +384,39 @@ tuple:
 <div class="Q">What is an &#8220;anonymous function&#8221;?</div>
 <div class="A">You may use functions that have no names: we call them
 functional values or anonymous functions. A functional value is
-introduced by the keyword <code><b>function</b></code>, followed by
+introduced by the keyword <code><b>fun</b></code>, followed by
 its argument, then an arrow <code>-&gt;</code> and the function body.
 For instance:
 
 <pre ml:content="ocaml">
-  function x -> x + 1;;
-  (function x -> x + 1) 2;;
+  fun x -> x + 1;;
+  (fun x -> x + 1) 2;;
 </pre>
 </div>
 
 <div class="Q">What is the difference between <code><b>fun</b></code>
 and <code><b>function</b></code>?</div>
+
 <div class="A">Functions are usually introduced by the keyword
-<code><b>function</b></code>. Each parameter is introduced by its own
-<code><b>function</b></code> construct. For instance, the construct:
+<code><b>fun</b></code>. Each parameter is introduced by its own
+<code><b>fun</b></code> construct. For instance, the construct:
 
 <pre ml:content="ocaml noeval">
-  function x -> function y -> ...
+  fun x -> fun y -> ...
 </pre>
-
 defines a function with two parameters <code>x</code> and
-<code>y</code>. Functions that use pattern-matching are also
-introduced by the keyword <code><b>function</b></code>.<br />
-
-The keyword <code><b>fun</code> introduces curried functions (with
-several successive arguments). For instance:
-
+<code>y</code>.  An equivalent but shorter form is:
 <pre ml:content="ocaml noeval">
   fun x y -> ...
 </pre>
 
-introduces a function with two arguments <code>x</code> and
-<code>y</code> as to the previous one.
+<p> Functions that use pattern-matching are
+introduced by the keyword <code><b>function</b></code>.
+For example:
+<pre ml:content="ocaml noeval">
+  function None -> false | Some _ -> true
+</pre>
+
 </div>
 
 <div class="Q">My function is never applied</div>
@@ -609,10 +609,10 @@ the material at hand. By contrast low level output is performed with
 no more buffering than usual I/O buffering.
 
 <pre ml:content="ocaml">
-  print_string "before";
+  print_endline "before";
   Format.print_string "MIDDLE";
-  print_string "after";;
-  <!-- FIXME: stdout not shown -->
+  print_endline "after";;
+  <!-- FIXME: stdout not shown if we use print_string! -->
 </pre>
 
 To avoid this kind of problems you should not mix printing orders from
