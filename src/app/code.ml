@@ -258,25 +258,6 @@ let split_phrases text =
   List.map trim (Str.split end_of_phrase text)
 
 
-(* Include code from a file
- ***********************************************************************)
-
-let lines_of_file fname l1 l2 =
-  let buf = Buffer.create 1024 in
-  let fh = open_in fname in
-  let l = ref 1 in
-  (try
-      while !l < l1 do ignore(input_line fh); incr l done;
-      while !l <= l2 do
-        Buffer.add_string buf (input_line fh);
-        Buffer.add_char buf '\n';
-        incr l;
-      done
-    with End_of_file -> ());
-  close_in fh;
-  Buffer.contents buf
-
-
 (* If option "silent" is passed, send the code to the toplevel but
    don't render the output in result -- just the beginning "#" and ending
    ";;" to remain coherent with other eval_ocaml phrases.
@@ -296,14 +277,6 @@ let ocaml path_from_base ctx args =
        let code = html_encode (trim (text_of_html ctx#content)) in
        let open Nethtml in
        [Element("span", ["class", "listing"], [Data(highlight_ocaml code)])]
-
-    | ["--inc"; fname; l1; l2]
-    | ["--include"; fname; l1; l2] ->
-       let l1 = int_of_string l1 and l2 = int_of_string l2 in
-       let code = lines_of_file (Filename.concat path_from_base fname) l1 l2 in
-       let open Nethtml in
-       [Element("span", ["class", "listing"],
-                [Data (highlight_ocaml (html_encode (trim code)))] )]
 
     | other ->
       if other <> [] then
