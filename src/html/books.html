@@ -1,78 +1,440 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <title>Books</title>
+</head>
+<body>
 <h1>Books</h1>
 
+<h2>Books in English</h2>
 
-<p>OCaml currently suffers from a lack of paperback books. New books
-are on the way, but in the meantime, you can easily find up-to-date
-books on OCaml online here.</p>
+<div class="book">
+  <a id="manual"></a>
+  <h3>The OCaml System: Documentation and User's Manual</h3>
+  <div>
+    <a href="http://caml.inria.fr/pub/docs/manual-ocaml/index.html">Online</a> |
+    <a href="http://caml.inria.fr/distrib/ocaml-3.12/ocaml-3.12-refman.pdf">PDF</a> |
+    <a href="http://caml.inria.fr/distrib/ocaml-3.12/ocaml-3.12-refman.html.tar.gz">HTML Tarball</a>
+  </div>
+  <i>Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy, and
+  Jérôme Vouillon</i>
+  <p>This the official User's Manual. It serves as a complete reference guide to OCaml. Updated for each version
+  of OCaml, it contains the description of the language, of its
+  extensions, and the documentation of the tools and libraries
+  included in the official distribution.</p>
+</div>
 
-<h2><a id="manuals"></a>User Manuals</h2>
+<div class="book">
+  <h3>Introduction to OCaml</h3>
+  <div>
+    <a href="http://files.metaprl.org/doc/ocaml-book.pdf">PDF</a>
+  </div>
+  <i>Jason Hickey</i>
+  <p>This book is notoriously much more than just an introduction to
+  OCaml, it describes most of the language, and is accessible.</p>
+</div>
 
-<p>The User Manual is the complete reference guide to OCaml. Updated for
-each version of OCaml, it contains the description of the language, of
-its extensions, and the documentation of the tools and libraries
-included in the official distribution.</p>
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/pub/docs/oreilly-book/html/logocaml.gif" alt="" />
+  <h3>Developing Applications With OCaml</h3>
+  <div>
+    <a href="http://caml.inria.fr/pub/docs/oreilly-book/index.html">Book Website</a> |
+    <a href="http://caml.inria.fr/pub/docs/oreilly-book/html/index.html">Online</a> |
+    <a href="http://caml.inria.fr/pub/docs/oreilly-book/ocaml-ora-book.pdf">PDF</a>
+  </div>
+  <i>Emmanuel Chailloux, Pascal Manoury, Bruno Pagano</i>
+  <p>A comprehensive (742 pages) book on OCaml, covering not only the
+  core language, but also modules, objects and classes, threads and
+  systems programming, interoperability with C, and runtime
+  tools. This book is a translation of a French book published by
+  OReilly.</p>
+</div>
 
-<ul>
-  <li><a href="http://caml.inria.fr/pub/docs/manual-ocaml/index.html">Browse the manual</a></li>
-  <li><a href="http://caml.inria.fr/distrib/ocaml-3.12/ocaml-3.12-refman.pdf">Download the PDF</a></li>
-  <li><a href="http://caml.inria.fr/distrib/ocaml-3.12/ocaml-3.12-refman.html.tar.gz">Download a bundle of HTML files</a></li>
-  <li><a href="http://caml.inria.fr/pub/docs/manual-camlp4/index.html">Camlp4 - Reference Manual</a>
-</ul>
+<div class="book">
+  <h3>Unix System Programming in OCaml</h3>
+  <div>
+    <a href="http://ocamlunix.forge.ocamlcore.org/">Online</a>
+  </div>
+  <i>Xavier Leroy and Didier Rémy</i>
+  <p>This is an excellent book on Unix system programming, with an
+  emphasis on communications between processes. The main novelty of
+  this work is the use of OCaml, instead of the C language that is
+  customary in systems programming. This gives an unusual perspective
+  on systems programming and on OCaml.  It is assumed that the reader
+  is familiar with OCaml and Unix shell commands.</p>
+</div>
 
-<h2>Online Books on OCaml</h2>
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/harrop.gif" alt="" />
+  <h3>OCaml for Scientists</h3>
+  <div>
+    <a href="http://www.ffconsultancy.com/products/ocaml_for_scientists/index.html">Book Website</a> |
+    <a href="http://www.ffconsultancy.com/products/ocaml_for_scientists/index.html">Ordering Information</a>
+  </div>
+  <i>Jon D. Harrop<br/>
+  Flying Frog Consultancy Ltd, 2005.</i>
+  <p>This book teaches OCaml programming with special emphasis on
+  scientific applications.  Many examples are given, covering
+  everything from simple numerical analysis to sophisticated real-time
+  3D visualisation using OpenGL.  This book contains over 800 color
+  syntax-highlighted source code examples and dozens of diagrams that
+  elucidate the power of functional programming to explain how
+  lightning-fast and yet remarkably-simple programs can be constructed
+  in the OCaml programming language.</p>
+</div>
 
-<!-- Note: book names should always be underlined -->
-<ul>
-  <li> <u>Introduction to OCaml</u> by J. Hickey (<a href="http://files.metaprl.org/doc/ocaml-book.pdf">PDF</a> [<a href="files/hickey-ocaml-book.pdf">cached</a>]).
-    <p>
-      This book is notoriously much more than just an introduction to
-      OCaml, it describes most of the language, and is accessible.
-    </p>
-  </li>
-  <li><u>Developing Applications With OCaml</u> by E. Chailloux, P. Manoury and B. Pagano
-    (<a href="http://caml.inria.fr/pub/docs/oreilly-book/html/index.html">Online</a>, <a href="http://caml.inria.fr/pub/docs/oreilly-book/ocaml-ora-book.pdf">PDF</a>
-    [<a href="files/ocaml-ora-book.pdf">cached</a>]).
-    <p>
-      This book is a translation of a French book published by
-      OReilly. It does not only cover the language, but also the
-      runtime and the tools, whose understanding is necessary to
-      actually develop a complete project in OCaml.
-    </p>
-  </li>
-
-  <li><u>Unix system programming in OCaml</u> by Xavier Leroy and
-    Didier Rémy (<a href="http://ocamlunix.forge.ocamlcore.org/">Online</a>).
-    <p>
-      This is an excellent book on Unix system programming, with an
-      emphasis on communications between processes. The main novelty of
-      this work is the use of OCaml, instead of the C
-      language that is customary in systems programming. This gives an
-      unusual perspective on systems programming and on OCaml.
-      It is assumed that the reader is familiar with OCaml and Unix
-      shell commands.
-    </p>
-  </li>
-
-  <li><u>Using, Understanding, and Unraveling OCaml</u>
-    by D. Remy (<a href="http://caml.inria.fr/pub/docs/u3-ocaml/">Online</a>,
+<div class="book">
+  <h3>Using, Understanding, and Unraveling OCaml</h3>
+  <div>
+    <a href="http://caml.inria.fr/pub/docs/u3-ocaml/">Online</a> |
     <a href="http://caml.inria.fr/pub/docs/u3-ocaml/ocaml.pdf">PDF</a>
-    [<a href="files/remy-ocaml.pdf">cached</a>]).
-    <p>
-      This book describes both the OCaml language and the theoretical
-      grounds behind its powerful type system. A good complement to
-      other books on OCaml.
-    </p>
-  </li>
+  </div>
+  <i>Didier Rémy</i>
+  <p>This book describes both the OCaml language and the theoretical
+  grounds behind its powerful type system. A good complement to other
+  books on OCaml.</p>
+</div>
 
-  <li><u>How to Think Like a Computer Scientist</u> by Nicholas
-    Monje and Allen Downey (<a href="http://thinkocaml.com/">Online</a>).
-    <p>
-      This book is an introductory programming textbook based on the
-      OCaml language. It is a modified version of <u>Think Python</u> by
-      Allen Downey. It is intended for newcomers to programming and
-      also those who know some programming but want to learn
-      programming in the function-oriented paradigm, or those who
-      simply want to learn OCaml.
-    </p>
-  </li>
-</ul>
+<div class="book">
+  <img class="pull-right" src="http://www.thinkocaml.com/thinkocaml_cover_web.png" alt="" />
+  <h3>How to Think Like a Computer Scientist</h3>
+  <div>
+    <a href="http://thinkocaml.com/">Online</a> |
+    <a href="http://www.thinkocaml.com/thinkocaml.pdf">PDF</a>
+  </div>
+  <i>Nicholas Monje and Allen Downey</i>
+  <p>This book is an introductory programming textbook based on the
+  OCaml language. It is a modified version of <u>Think Python</u> by
+  Allen Downey. It is intended for newcomers to programming and also
+  those who know some programming but want to learn programming in the
+  function-oriented paradigm, or those who simply want to learn
+  OCaml.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/cousineau-mauny-en.gif" alt="" />
+  <h3>The Functional Approach to Programming</h3>
+  <div>
+    <a href="http://pauillac.inria.fr/cousineau-mauny/main.html">Book Website</a> |
+    <a href="http://www.amazon.com/exec/obidos/ASIN/0521571839/qid%3D911812711/sr%3D1-22/102-8668961-8838559">Order at Amazon.com</a>
+  </div>
+  <i>Guy Cousineau, Michel Mauny<br/>
+
+  Cambridge University Press, Cambridge, 1998, ISBN 0-521-57183-9
+  (hardcover) or 0-521-57681-4 (paperback)</i>
+
+  <p>This book uses OCaml as a tool to introduce several important
+  programming concepts. It is divided in three parts.  The first part
+  is an introduction to OCaml, which presents the language itself, but
+  also introduces evaluation by rewriting, evaluation strategies and
+  proofs of programs by induction.  The second part is dedicated to
+  the description of application programs which belong to various
+  fields and might interest various types of readers or students.
+  Finally, the third part is dedicated to implementation. It describes
+  interpretation and compilation, with brief descriptions of memory
+  management and type synthesis.</p>
+</div>
+
+<div class="book">
+  <h3>Camlp4 - Reference Manual</h3>
+  <div>
+    <a href="http://caml.inria.fr/pub/docs/manual-camlp4/index.html">Online</a>
+  </div>
+  <i>Daniel de Rauglaudre</i>
+  <p>Camlp4 is a Pre-Processor-Pretty-Printer for OCaml. It offers
+  syntactic tools (parsers, extensible grammars), the ability to
+  extend the concrete syntax of OCaml (quotations, syntax extensions),
+  and to redefine it from scratch. This document holds the directions
+  for use of Camlp4 and describes these features. It is written for
+  programmers who already know OCaml, and are interested in concrete
+  syntax.</p>
+</div>
+
+
+<h2>Books in French</h2>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/chailloux-manoury-pagano.jpg" alt="" />
+  <h3>Développement d'applications avec Objective Caml</h3>
+  <div>
+    <a href="http://www.pps.jussieu.fr/Livres/ora/DA-OCAML/index.html">Online</a> |
+    <a href="http://www.amazon.fr/exec/obidos/ASIN/2841771210">Order at Amazon.fr</a>
+  </div>
+
+  <i>Emmanuel Chailloux, Pascal Manoury, and Bruno Pagano<br/>
+  Éditions O'Reilly, Paris, 2000, ISBN 2-84177-121-0.</i>
+
+  <p>A comprehensive (742 pages) book on OCaml, covering not only the
+  core language, but also modules, objects and classes, threads and
+  systems programming, and interoperability with C.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/leroy-weis.jpg" alt="" />
+  <h3>Manuel de référence du langage Caml</h3>
+  <div>
+    <a href="../pub/distrib/books/manuel-cl.pdf">PDF</a>
+  </div>
+
+  <i>Xavier Leroy and Pierre Weis<br/>
+  InterEditions, Paris, 1993, ISBN 2-7296-0492-8 (out of print).</i>
+
+  <p>Written by two of the implementors of the Caml Light compiler,
+  this comprehensive book describes all constructs of the programming
+  language and provides a complete documentation for the Caml Light
+  system.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/weis-leroy.jpg" alt="" />
+  <h3>Le langage Caml</h3>
+  <div>
+    <a href="../pub/distrib/books/llc.pdf">PDF</a>
+  </div>
+
+  <i>Pierre Weis, Xavier Leroy<br/>
+  Second edition: Dunod, Paris, 1999, ISBN 2-10-004383-8.<br/>
+  First edition: InterEditions, Paris, 1993. Out of print.</i>
+
+  <p>This book is a comprehensive introduction to programming in Caml.
+  Usable as a programming course, it introduces progressively the
+  language features and shows them at work on the fundamental
+  programming problems.  In addition to many introductory code
+  samples, this book details the design and implementation of six
+  complete, realistic programs in reputedly difficult application
+  areas: compilation, type inference, automata, etc.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/cousineau-mauny-fr.gif" alt="" />
+  <h3>Approche fonctionnelle de la programmation</h3>
+  <div>
+    <a href="http://pauillac.inria.fr/cousineau-mauny/main-fr.html">Book Website</a>
+  </div>
+
+  <i>Guy Cousineau, Michel Mauny<br/>
+  Ediscience (Collection Informatique), Paris, 1995, ISBN 2-84074-114-8.</i>
+
+  <p>This book uses Caml as a tool to introduce several important
+  programming concepts.  It is divided in three parts.  The first part
+  is an introduction to Caml, which presents the language itself, but
+  also introduces evaluation by rewriting, evaluation strategies and
+  proofs of programs by induction.  The second part is dedicated to
+  the description of application programs which belong to various
+  fields and might interest various types of readers or students.
+  Finally, the third part is dedicated to implementation. It describes
+  interpretation then compilation, with brief descriptions of memory
+  management and type synthesis.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/petazzoni.jpg" alt="" />
+  <h3>Seize problèmes d'informatique</h3>
+  <div>
+    <a
+    href="http://www.springeronline.com/sgw/cda/frontpage/0,10735,5-102-22-2042496-0,00.html">Springer's
+    Catalog Page</a>
+  </div>
+
+  <i>Bruno Petazzoni<br/>
+  Éditions Springer, Paris, 2001, ISBN 3-540-67387-3.</i>
+
+  <p>This book offers sixteen problems in computer science, with
+  detailed answers to all questions and complete solutions to
+  algorithmic problems given as Caml programs.  It deals mainly with
+  automata, finite or infinite words, formal language theory, and some
+  classical algorithms such as bin-packing.  It is intended for
+  students who attend the optional computer science curriculum of the
+  &#8220;classes préparatoires MPSI/MP&#8221;.  It should also be
+  useful to all teachers and computer science students up to a masters
+  degree.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/quercia.gif" alt="" />
+  <h3>Nouveaux exercices d'algorithmique</h3>
+  <div>
+    <a href="http://www.amazon.fr/exec/obidos/ASIN/3540673873">Order at Amazon.fr</a>
+  </div>
+
+  <i>Michel Quercia<br/>
+  Éditions Vuibert, Paris, 2000, ISBN 2-7117-8990 X.</i>
+
+  <p>This book presents 103 exercises and 5 problems about algorithms,
+  for masters students. It attempts to address both practical and
+  theoretical questions.  Programs are written in Caml and expressed
+  in a purely functional style. Problem areas include programming
+  methodology, lists, formula evaluation, Boolean logic, algorithmic
+  complexity, trees, languages, and automata.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/monasse-1.gif" alt="" />
+  <h3>Option informatique MPSI</h3>
+
+  <i>Denis Monasse<br/>
+  Éditions Vuibert (Enseignement supérieur &amp; Informatique), Paris,
+  1996, ISBN 2-7117-8831-8.</i>
+
+  <p>This is a computer science course for the first year of
+  &#8220;classes préparatoires&#8221;. The course begins with an
+  introductory lesson on algorithms and a description of the Caml
+  language. Then, several fundamental algorithms are described and
+  illustrated using Caml programs. The book adopts a mathematical
+  approach: descriptions of mathematical objects are related to data
+  structures in the programming language.  This book is suitable for
+  students with some mathematical background, and for everyone who
+  wants to learn the bases of computer science.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/monasse-2.jpg" alt="" />
+  <h3>Option informatique MP/MP*</h3>
+  <div>
+    <a href="http://www.amazon.fr/exec/obidos/ASIN/2711788393">Order at Amazon.fr</a>
+  </div>
+
+  <i>Denis Monasse<br/>
+  Éditions Vuibert (Enseignement supérieur &amp;
+  Informatique), Paris 1997, ISBN 2-7117-8839-3.</i>
+
+  <p>This books is a follow-up to the previous one and is intended for
+  second year students in &#8220;classes préparatoires&#8221;. It
+  deals with trees, algebraic expressions, automata and languages, and
+  Caml streams. The book contains more than 200 Caml programs.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/albert.gif" alt="" />
+  <h3>Cours et exercices d'informatique</h3>
+
+  <i>Luc Albert<br/>
+  Thomson Publishing International, Paris, 1997, ISBN
+  2-84180-106-3.</i>
+
+  <p>This book was written by teachers at university and in
+  &#8220;classes préparatoires&#8221;. It is intended for
+  &#8220;classes préparatoires&#8221; students who study computer
+  science and for students engaged in a computer science cursus up to
+  the masters level.  It includes a tutorial of the Caml language, a
+  course on algorithms, data structures, automata theory, and formal
+  logic, as well as 135 exercises with solutions.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/hardin-donzeau-gouge.gif" alt="" />
+  <h3>Concepts et outils de programmation</h3>
+  <div>
+    <a href="http://www.amazon.fr/exec/obidos/ASIN/2729604197">Order at Amazon.fr</a>
+  </div>
+
+  <i>Thérèse Accart Hardin, Véronique Donzeau-Gouge Viguié<br/>
+  InterEditions, ISBN 2 7296 0419 7.</i>
+
+  <p>This book presents a new approach to teaching programming
+  concepts to beginners, based on language semantics. A simplified
+  semantic model is used to describe in a precise manner the features
+  found in most programming languages.  This model is powerful enough
+  to explain typechecking, polymorphism, evaluation, side-effects,
+  modularity, exceptions. Yet, it is simple enough to be manipulated
+  by hand, so that students can actually use it to compute. The book
+  begins with a functional approach, based on Caml, and continues with
+  a presentation of an imperative language, namely Ada. It also
+  provides numerous exercises with solutions.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/rouable.jpg" alt="" />
+  <h3>Programmation en Caml</h3>
+  <div>
+    <a href="http://www.amazon.fr/exec/obidos/ASIN/2212089449">Order at Amazon.fr</a>
+  </div>
+
+  <i>Jacques Rouablé<br/>
+  Eyrolles, Paris 1997, ISBN 2-212-08944-9.</i>
+
+  <p>This book is intended for beginners, who will learn basic
+  programming notions. The first part of the book is a programming
+  course that initiates the reader to the Caml language. Important
+  notions are presented from a practical point of view, and the
+  implementation of some of these is analyzed and sketched.  The
+  second part, the &#8220;Caml workshop&#8221;, is a practical
+  application of these notions to other domains connected to computer
+  science, logic, automata and grammars.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/dubois-menissier.gif" alt="" />
+  <h3>Apprentissage de la programmation avec OCaml</h3>
+
+  <i>Catherine Dubois and Valérie Ménissier Morain<br/>
+  Hermès Sciences, Paris 2004, ISBN 2-7462-0819-9.</i>
+
+  <p>Programming is a discipline by which the strengths of computers
+  can be harnessed: large amounts of reliable memory, the ability to
+  execute repetitive tasks relentlessly, and a high computation speed.
+  In order to write correct programs that fulfill their specified
+  needs, it is necessary to understand the precise semantics of the
+  programming language.  This book is targeted towards beginner
+  programmers and provides teaching material for all programmers
+  wishing to learn the functional programming style.  The programming
+  features introduced in this book are available in all dialects of
+  the ML language, notably Caml-Light, OCaml and Standard ML.  The
+  concepts presented therein and illustrated in OCaml easily transpose
+  to other programming languages.</p>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/narbel.jpg" alt="" />
+  <h3>Programmation fonctionnelle, générique et objet: une introduction avec le langage OCaml</h3>
+
+  <i>Philippe Narbel<br/>
+  Vuibert, Paris 2005, ISBN 2-7117-4843-X.</i>
+</div>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/manoury.png" alt="" />
+  <h3>Programmation de droite à gauche et vice-versa</h3>
+  <div>
+    <a href="http://paracamplus.com">Order online from Paracamplus</a>
+  </div>
+
+  <i>Pascal Manoury<br/>
+  Éditions Paracamplus, Paris, 2011, ISBN 978-2-916466-05-7.</i>
+</div>
+
+<h2>Books in German</h2>
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/wolff.gif" alt="" />
+  <h3>Algorithmen, Datenstrukturen, Funktionale Programmierung: Eine praktische Einführung mit Caml Light</h3>
+
+  <i>Juergen Wolff von Gudenberg<br/>
+  Addison-Wesley, Bonn, 1996.</i>
+
+  <p>This book gives an introduction to programming where algorithms
+  as well as data structures are considered functionally. It is
+  intended as an accompanying book for basic courses in computer
+  science, but it is also suitable for self-studies. In the first
+  part, algorithms are described in a concise and precise manner using
+  Caml Light. The second part provides a tutorial introduction into
+  the language Caml Light and in its last chapter a comprehensive
+  description of the language kernel.</p>
+</div>
+
+<h2>Books in Italian</h2> 
+
+<div class="book">
+  <img class="pull-right" src="http://caml.inria.fr/about/books-images/limongelli-cialdea.gif" alt="" />
+  <h3>Introduzione alla programmazione funzionale</h3>
+
+  <i>Carla Limongelli and Marta Cialdea<br/>
+  Societa' Editrice Esculapio, 2002, ISBN 88-7488-031-6.</i>
+</div>
+
+</body>
+</html>
