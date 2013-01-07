@@ -70,6 +70,9 @@ let highlight_ocaml =
     ("\\bmethod +\\(" ^ id ^ "\\)\\(\\( *: *[^ =]+\\)?\\) *=",
      "<span class=\"kwa\">method</span> <span class=\"ocaml-function\">\
       \\1</span><span class=\"ocaml-ty\">\\2</span> =");
+    ("\\bmethod +\\(" ^ id ^ "\\) +\\(" ^ args ^ "\\) *=",
+     "<span class=\"kwa\">method</span> <span class=\"ocaml-function\">\
+      \\1</span> <span class=\"ocaml-variable\">\\2</span>=");
     ("\\b\\(type\\|in\\|begin\\|end\\|val\\|\
       object\\|inherit\\|initializer\\)\\b",
      "<span class=\"kwa\">\\1</span>");
