@@ -57,9 +57,17 @@ let highlight_ocaml =
                             \\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
      "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
       = \\2<span class=\"ocaml-mod\">\\4</span>");
-    ("module +\\(" ^ uid ^ "\\) *= *struct",
+    ("\\(module\\|module type\\) +\\(" ^ uid ^ "\\) *"
+     ^ "\\(\\(([^)]+)\\)* *\\)=",
+     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-mod\">\\2</span> \
+      <span class=\"ocaml-variable\">\\3</span>=");
+    ("module +\\(" ^ uid ^ "\\) *\\(\\(([^)]+)\\)* *\\): *\\(" ^ uid ^ "\\) *=",
      "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
-      = <span class=\"kwa\">struct</span>");
+      <span class=\"ocaml-variable\">\\2</span>\
+      : <span class=\"ocaml-mod\">\\4</span> =");
+    ("module +\\(" ^ uid ^ "\\) *\\(\\(([^)]+)\\)* *\\):",
+     "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
+      <span class=\"ocaml-variable\">\\2</span>:");
     ("\\b\\(class\\( +virtual\\|\\)?\\) +\\(" ^ id ^
        "\\) +\\(\\(" ^ args ^ "\\)?\\)=",
      "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\3</span> \
@@ -76,8 +84,8 @@ let highlight_ocaml =
     ("\\bmethod +\\(" ^ id ^ "\\) +\\(" ^ args ^ "\\) *=",
      "<span class=\"kwa\">method</span> <span class=\"ocaml-function\">\
       \\1</span> <span class=\"ocaml-variable\">\\2</span>=");
-    ("\\b\\(type\\|in\\|begin\\|end\\|val\\|\
-      object\\|inherit\\|initializer\\)\\b",
+    ("\\b\\(type\\|in\\|begin\\|end\\|struct\\|sig\\|val\\|\
+      object\\|inherit\\|initializer\\|include\\)\\b",
      "<span class=\"kwa\">\\1</span>");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
       \\|for\\|to\\|do\\|downto\\|done\\|while\
