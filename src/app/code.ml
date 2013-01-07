@@ -47,8 +47,8 @@ let highlight_ocaml =
     ("\\bexternal +\\(" ^ let_id ^ "\\) +:",
      "<span class=\"kwa\">external</span> \
       <span class=\"ocaml-function\">\\1</span>&nbsp;:");
-    ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\) *=",
-     "type \\1<span class=\"ocaml-mod\">\\3</span> =");
+    ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\)\\( *=\\| *$\\)",
+     "type \\1<span class=\"ocaml-mod\">\\3</span>\\4");
     ("\\(" ^ uid ^ "\\)\\.",
      "<span class=\"ocaml-mod\">\\1</span>.");
     ("open +\\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
