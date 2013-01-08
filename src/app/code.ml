@@ -3,6 +3,28 @@
 open Printf
 open Scanf
 
+(* FIXME: Use String.trim when 4.00.0 is spead enough. *)
+let is_space = function
+  | ' ' | '\012' | '\n' | '\r' | '\t' -> true
+  | _ -> false
+
+let trim s =
+  let len = String.length s in
+  let i = ref 0 in
+  while !i < len && is_space (String.unsafe_get s !i) do
+    incr i
+  done;
+  let j = ref (len - 1) in
+  while !j >= !i && is_space (String.unsafe_get s !j) do
+    decr j
+  done;
+  if !i = 0 && !j = len - 1 then
+    s
+  else if !j >= !i then
+    String.sub s !i (!j - !i + 1)
+  else
+    ""
+
 (* To HTML, with syntax highlighting
  ***********************************************************************)
 
@@ -140,45 +162,48 @@ let init_stdout = Unix.dup Unix.stdout
 let init_stderr = Unix.dup Unix.stderr
 
 let toploop_eval phrase =
-  flush stderr;
-  let (out_in, out_out) = Unix.pipe() in
-  Unix.dup2 out_out Unix.stdout; (* Unix.stdout → out_out *)
-  let (err_in, err_out) = Unix.pipe() in
-  Unix.dup2 err_out Unix.stderr; (* Unix.stderr → err_out *)
-  let get_stdout_stderr_and_restore () =
-    flush stdout;
-    let out = string_of_fd out_in in
-    Unix.close out_in;
-    Unix.close out_out;
-    Unix.dup2 init_stdout Unix.stdout; (* restore initial stdout *)
+  if trim phrase = ";;" then Normal("", "", "")
+  else (
     flush stderr;
-    let err = string_of_fd err_in in
-    Unix.close err_in;
-    Unix.close err_out;
-    Unix.dup2 init_stderr Unix.stderr; (* restore initial stderr *)
-    (out, err) in
-  try
-    let lexbuf = Lexing.from_string phrase in
-    let phrase = !Toploop.parse_toplevel_phrase lexbuf in
-    ignore(Toploop.execute_phrase true Format.str_formatter phrase);
-    let exec_output = Format.flush_str_formatter () in
-    let out, err = get_stdout_stderr_and_restore () in
-    Normal(exec_output, out, err)
-  with
-  | e ->
-     let out, err = get_stdout_stderr_and_restore () in
-     print_string out;
-     prerr_string err;
-     let backtrace_enabled = Printexc.backtrace_status () in
-     if not backtrace_enabled then Printexc.record_backtrace true;
-     (try Errors.report_error Format.str_formatter e
-      with exn ->
-        printf "Code.eval: the following error was raised during phrase \
-                error reporting:\n%s\nError backtrace:\n%s\n%!"
-               (Printexc.to_string exn) (Printexc.get_backtrace ());
-     );
-     if not backtrace_enabled then Printexc.record_backtrace false;
-     Error(Format.flush_str_formatter ())
+    let (out_in, out_out) = Unix.pipe() in
+    Unix.dup2 out_out Unix.stdout; (* Unix.stdout → out_out *)
+    let (err_in, err_out) = Unix.pipe() in
+    Unix.dup2 err_out Unix.stderr; (* Unix.stderr → err_out *)
+    let get_stdout_stderr_and_restore () =
+      flush stdout;
+      let out = string_of_fd out_in in
+      Unix.close out_in;
+      Unix.close out_out;
+      Unix.dup2 init_stdout Unix.stdout; (* restore initial stdout *)
+      flush stderr;
+      let err = string_of_fd err_in in
+      Unix.close err_in;
+      Unix.close err_out;
+      Unix.dup2 init_stderr Unix.stderr; (* restore initial stderr *)
+      (out, err) in
+    try
+      let lexbuf = Lexing.from_string phrase in
+      let phrase = !Toploop.parse_toplevel_phrase lexbuf in
+      ignore(Toploop.execute_phrase true Format.str_formatter phrase);
+      let exec_output = Format.flush_str_formatter () in
+      let out, err = get_stdout_stderr_and_restore () in
+      Normal(exec_output, out, err)
+    with
+    | e ->
+       let out, err = get_stdout_stderr_and_restore () in
+       print_string out;
+       prerr_string err;
+       let backtrace_enabled = Printexc.backtrace_status () in
+       if not backtrace_enabled then Printexc.record_backtrace true;
+       (try Errors.report_error Format.str_formatter e
+        with exn ->
+          printf "Code.toploop_eval: the following error was raised during \
+                  error reporting for %S:\n%s\nError backtrace:\n%s\n%!"
+                 phrase (Printexc.to_string exn) (Printexc.get_backtrace ());
+       );
+       if not backtrace_enabled then Printexc.record_backtrace false;
+       Error(Format.flush_str_formatter ())
+  )
 
 let format_eval_input phrase =
   let open Nethtml in
@@ -242,28 +267,6 @@ let rec text_of_html html =
 and text_of_el = function
   | Nethtml.Element(_, _, content) -> text_of_html content
   | Nethtml.Data d -> html_decode d (* decode entities like &lt; *)
-
-(* FIXME: Use String.trim when 4.00.0 is spead enough. *)
-let is_space = function
-  | ' ' | '\012' | '\n' | '\r' | '\t' -> true
-  | _ -> false
-
-let trim s =
-  let len = String.length s in
-  let i = ref 0 in
-  while !i < len && is_space (String.unsafe_get s !i) do
-    incr i
-  done;
-  let j = ref (len - 1) in
-  while !j >= !i && is_space (String.unsafe_get s !j) do
-    decr j
-  done;
-  if !i = 0 && !j = len - 1 then
-    s
-  else if !j >= !i then
-    String.sub s !i (!j - !i + 1)
-  else
-    ""
 
 (* FIXME: naive, ";;" can occur inside strings and one does not want
    to split it then.  Could be more efficient *)
