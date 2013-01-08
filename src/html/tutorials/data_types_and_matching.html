@@ -135,10 +135,10 @@ Leaf 3.0;;
 
 <p>Actually the definition above doesn't quite compile. Here's a pretty-much equivalent definition:</p>
 <pre ml:content="ocaml">
-type 'a list = Nil | :: of 'a * 'a list;;
+type 'a equiv_list = Nil | Cons of 'a * 'a equiv_list;;
 Nil;;
-1 :: Nil;;
-1 :: 2 :: Nil;;
+Cons(1, Nil);;
+Cons(1, Cons(2, Nil));;
 </pre>
 
 <p>Recall earlier that we said lists could be written two ways, either with the simple syntactic sugar of <code>[1; 2; 3]</code> or more formally as <code>1 :: 2 :: 3 :: []</code>. If you look at the definition for <code>'a list</code> above, you may be able to see the reason for the formal definition.</p>
