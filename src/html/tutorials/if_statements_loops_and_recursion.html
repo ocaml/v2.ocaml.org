@@ -487,7 +487,7 @@ print_endline (string_of_filesystem fs)
 </pre>
 
 <h3>Addendum</h3>
-<p>After I posted this example to the caml-list mailing list I received many follow-ups. (You can <a href="../caml.inria.fr/pub/ml-archives/caml-list/2003/06/2732fbf1bed1ae50fefb6ea410ea9955.en.html" class="external" title="http://caml.inria.fr/pub/ml-archives/caml-list/2003/06/2732fbf1bed1ae50fefb6ea410ea9955.en.html">read the full thread</a>.)</p>
+<p>After I posted this example to the caml-list mailing list I received many follow-ups. (You can <a href="http://caml.inria.fr/pub/ml-archives/caml-list/2003/06/2732fbf1bed1ae50fefb6ea410ea9955.en.html" class="external" title="http://caml.inria.fr/pub/ml-archives/caml-list/2003/06/2732fbf1bed1ae50fefb6ea410ea9955.en.html">read the full thread</a>.)</p>
 <p>First of all there is a basic fault with <code>read_directory</code> directory which will cause it to fail if you try to run it on very large directory structures. I don't explicitly call <code>closedir</code> to close the directory handle. The garbage collector doesn't help, because in OCaml the garbage collector does <strong>not</strong> collect and close open file and directory handles.</p>
 <p>The fix is pretty trivial: add a call to <code>closedir</code> at the end of the <code>read_directory</code> function:</p>
 <pre ml:content="ocaml noeval">
