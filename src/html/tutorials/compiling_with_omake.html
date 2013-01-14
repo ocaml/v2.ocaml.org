@@ -25,9 +25,7 @@ FILES[] =
 # Another syntax for the same thing:
 # FILES = parser lexer \
 #         main
-</pre>
 
-<pre>
 # We use ocamlfind
 USE_OCAMLFIND = true
 # All ocamlfind packages that we use
@@ -42,13 +40,10 @@ OCAMLFINDFLAGS = -syntax camlp4o
 # before it attempts to run <code>ocamldep</code>.
 # (OMake knows that ocamllex and ocamlyacc should be used)
 OCamlGeneratedFiles(lexer.ml parser.mli parser.ml)
-</pre>
 
-<pre># Compile into an executable
+# Compile into an executable
 OCamlProgram($(PROGRAM), $(FILES))
-</pre>
 
-<pre>
 # Default target: compile into bytecode or native code, or both
 .DEFAULT: $(if $(BYTE_ENABLED), $(PROGRAM).run) \
           $(if $(NATIVE_ENABLED), $(PROGRAM).opt)
