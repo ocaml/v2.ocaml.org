@@ -18,7 +18,7 @@
 
 <h2><a name="Camlp4_3_10_Motivtion">Motivation</a></h2>
 
-<p>One of the greatest strengths of Objective CAML is Camlp4, a modular pre-processor pretty-printer that lets you add syntactic sugar to the language without rewriting the entire grammar from scratch. A syntactic sugar is a language construct that can be decomposed to an existing construct. For example, O'Caml doesn't have a "for-each" syntax, which can be illustrated by the following Python code:</p>
+<p>One of the greatest strengths of Objective CAML is Camlp4, a modular pre-processor pretty-printer that lets you add syntactic sugar to the language without rewriting the entire grammar from scratch. A syntactic sugar is a language construct that can be decomposed to an existing construct. For example, OCaml doesn't have a "for-each" syntax, which can be illustrated by the following Python code:</p>
 
 <pre>
 a_list = ["hello", "world"]
@@ -33,7 +33,7 @@ hello
 world
 </pre>
 
-<p>However, that doesn't mean O'Caml can't support iterators! As it turns out, many modules in O'Caml that define a data structure also provide an "iter" higher-order function that works similarly:</p>
+<p>However, that doesn't mean OCaml can't support iterators! As it turns out, many modules in OCaml that define a data structure also provide an "iter" higher-order function that works similarly:</p>
 
 <pre ml:content="ocaml noeval">
 let a_list = ["hello"; "world"] in
@@ -86,12 +86,12 @@ END
 </pre>
 
 <p class="first_para">All the prerequisites are provided by the module <code>Camlp4.PreCast</code>, including the <code>Syntax</code> module that provides the terminals <code>a_LIDENT</code> and <code>a_UIDENT</code> (for lowercase and uppercase identifiers respectively), and the non-terminals <code>expr</code> (expressions) and <code>sequence</code> (semicolon separated expressions). The <code>Gram</code> module provides functions to manipulate non-terminal rules.</p>
-<p>Suppose we save this syntax extension in the file called <code>pa_foreach.ml</code>. Notice that a syntax extension is just a regular O'Caml file with some fancy <code>EXTEND</code> syntax. It can be compiled using the command:</p>
+<p>Suppose we save this syntax extension in the file called <code>pa_foreach.ml</code>. Notice that a syntax extension is just a regular OCaml file with some fancy <code>EXTEND</code> syntax. It can be compiled using the command:</p>
 <pre>
 ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach.ml
 </pre>
 
-<ul><li>FYI: Camlp4 is complicated to learn because a syntax extension consists of two domain-specific languages that are foreign to O'Caml: parsing and code embedding. To add insult to injury, Camlp4 has a "<a href="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html" class="external" title="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html">revised syntax</a>" dialect of O'Caml that can be used, in addition to the original O'Caml dialect, both as the host (top-level) language and as the embedded language. This tutorial uses original O'Caml as the host language and revised dialect as the embedded language. This choice is reflected in the camlp4 executable that we use here, <code>camlp4orf</code>. See <a href="http://brion.inria.fr/gallium/index.php/Using_Camlp4" class="external" title="http://brion.inria.fr/gallium/index.php/Using_Camlp4">Using Camlp4</a> for the explanation and additional options.</li></ul>
+<ul><li>FYI: Camlp4 is complicated to learn because a syntax extension consists of two domain-specific languages that are foreign to OCaml: parsing and code embedding. To add insult to injury, Camlp4 has a "<a href="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html" class="external" title="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html">revised syntax</a>" dialect of OCaml that can be used, in addition to the original OCaml dialect, both as the host (top-level) language and as the embedded language. This tutorial uses original OCaml as the host language and revised dialect as the embedded language. This choice is reflected in the camlp4 executable that we use here, <code>camlp4orf</code>. See <a href="http://brion.inria.fr/gallium/index.php/Using_Camlp4" class="external" title="http://brion.inria.fr/gallium/index.php/Using_Camlp4">Using Camlp4</a> for the explanation and additional options.</li></ul>
 <p class="first_para">We can verify that it works:</p>
 <pre ml:content="ocaml noeval">
 $ ocaml
@@ -117,9 +117,9 @@ done
 
 <p class="first_para">And it doesn't support <code>Hashtbl.iter</code> yet because, so far, we can only generate functions with one argument. <code>Hashtbl.iter</code> passes two arguments to the function, the key and the value. We will address these issues in the next section.</p>
 <h2><a name="Supporting_Multiple_Patterns">Supporting Multiple Patterns</a></h2>
-<p class="first_para">We're now beginning to use Camlp4 features that are less documented. It is useful to keep in mind that syntax extension <em>is</em> modifying existing parsing rules, and we can't do without an understanding of how existing rules work. It is recommended that you take a quick look at two files in the O'Caml source distribution under <code>ocaml-3.10.0/camlp4/Camlp4Parsers</code>:</p>
+<p class="first_para">We're now beginning to use Camlp4 features that are less documented. It is useful to keep in mind that syntax extension <em>is</em> modifying existing parsing rules, and we can't do without an understanding of how existing rules work. It is recommended that you take a quick look at two files in the OCaml source distribution under <code>ocaml-3.10.0/camlp4/Camlp4Parsers</code>:</p>
 <ul><li><code>Camlp4OCamlRevisedParser.ml</code>; this provides the bulk of the syntax rules.</li>
-<li><code>Camlp4OCamlParser.ml</code> implicitly borrows most of its rules from <code>Camlp4OCamlRevisedParser</code>, but clears some of the rules that are particular to the revised syntax and replaces them with the original O'Caml syntax.</li></ul>
+<li><code>Camlp4OCamlParser.ml</code> implicitly borrows most of its rules from <code>Camlp4OCamlRevisedParser</code>, but clears some of the rules that are particular to the revised syntax and replaces them with the original OCaml syntax.</li></ul>
 <p class="first_para">From these files, we can see that <code>ipatt</code> rule supplies what we want for matching patterns, and <code>LIST1</code> modifier allows us to take one or more patterns. There is also a <code>LIST0</code> modifier for "zero or more" matching.</p>
 <pre  ml:content="ocaml noeval">
 open Camlp4.PreCast
