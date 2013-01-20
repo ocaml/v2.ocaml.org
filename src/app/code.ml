@@ -71,10 +71,10 @@ let highlight_ocaml =
       <span class=\"ocaml-function\">\\1</span>&nbsp;:");
     ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\)\\( *=\\| *$\\)",
      "type \\1<span class=\"ocaml-mod\">\\3</span>\\4");
-    ("\\(" ^ uid ^ "\\)\\.",
-     "<span class=\"ocaml-mod\">\\1</span>.");
     ("open +\\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
      "<span class=\"kwa\">open</span> \\1<span class=\"ocaml-mod\">\\3</span>");
+    ("\\(" ^ uid ^ "\\)\\.",
+     "<span class=\"ocaml-mod\">\\1</span>.");
     ("module +\\(" ^ uid ^ "\\) *= *\
                             \\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
      "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
