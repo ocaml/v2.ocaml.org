@@ -161,21 +161,26 @@ let string_of_fd fd =
 let init_stdout = Unix.dup Unix.stdout
 let init_stderr = Unix.dup Unix.stderr
 
+let flush_std_out_err () =
+  Format.pp_print_flush Format.std_formatter ();
+  flush stdout;
+  Format.pp_print_flush Format.err_formatter ();
+  flush stderr
+
 let toploop_eval phrase =
   if trim phrase = ";;" then Normal("", "", "")
   else (
-    flush stderr;
+    flush_std_out_err ();
     let (out_in, out_out) = Unix.pipe() in
     Unix.dup2 out_out Unix.stdout; (* Unix.stdout → out_out *)
     let (err_in, err_out) = Unix.pipe() in
     Unix.dup2 err_out Unix.stderr; (* Unix.stderr → err_out *)
     let get_stdout_stderr_and_restore () =
-      flush stdout;
+      flush_std_out_err ();
       let out = string_of_fd out_in in
       Unix.close out_in;
       Unix.close out_out;
       Unix.dup2 init_stdout Unix.stdout; (* restore initial stdout *)
-      flush stderr;
       let err = string_of_fd err_in in
       Unix.close err_in;
       Unix.close err_out;
