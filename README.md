@@ -46,8 +46,10 @@ have write permission to the production server.
 
 CONTACTS
 ========
-You can reach the development team by posting to the [mailing
-list](https://lists.forge.ocamlcore.org/cgi-bin/listinfo/ocamlweb-devel).
+You can reach the development team by posting to the [infrastructure
+mailing list](http://lists.ocaml.org/listinfo/infrastructure). Please
+note the older ocamlweb-devel@lists.forge.ocamlcore.org has been
+retired and is no longer in use.
 
 To begin contributing, visit the [master
 repo](https://github.com/ocaml/ocaml.org) on github, click the "Fork"
