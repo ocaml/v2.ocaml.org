@@ -73,17 +73,7 @@ done
 <p>Without going into too much detail, we can write a simple extension
   as the following: </p>
 <pre ml:content="ocaml noeval">
-open Camlp4.PreCast
-open Syntax
-
-EXTEND Gram
-  expr: LEVEL &quot;top&quot;
-    [ [ &quot;for&quot;; v = a_LIDENT; &quot;in&quot;; m = a_UIDENT; e = expr; &quot;do&quot;;
-        seq = sequence; &quot;done&quot; -&gt;
-          &lt;:expr&lt; $uid:m$.iter (fun $lid:v$ -&gt; $seq$) $e$ &gt;&gt;
-      ] ]
-  ;
-END
+  <span ml:replace="include pa_foreach.ml"></span>
 </pre>
 <p>For what follows, it is assumed that this code is written to a
   file <code>pa_foreach.ml</code>.</p>
@@ -95,20 +85,14 @@ ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach.ml
 </pre>
 
 <ul><li>FYI: Camlp4 is complicated to learn because a syntax extension consists of two domain-specific languages that are foreign to OCaml: parsing and code embedding. To add insult to injury, Camlp4 has a "<a href="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html" class="external" title="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html">revised syntax</a>" dialect of OCaml that can be used, in addition to the original OCaml dialect, both as the host (top-level) language and as the embedded language. This tutorial uses original OCaml as the host language and revised dialect as the embedded language. This choice is reflected in the camlp4 executable that we use here, <code>camlp4orf</code>. See <a href="http://brion.inria.fr/gallium/index.php/Using_Camlp4" class="external" title="http://brion.inria.fr/gallium/index.php/Using_Camlp4">Using Camlp4</a> for the explanation and additional options.</li></ul>
-<p class="first_para">We can verify that it works:</p>
-<pre ml:content="ocaml noeval">
-$ ocaml
-        Objective Caml version 3.10.0
-
-# #load "camlp4o.cma";;
-        Camlp4 Parsing version 3.10.0
-
-# #load "pa_foreach.cmo";;
-# for s in List ["hello"; "world"] do print_endline s done;;
-hello
-world
-- : unit = ()
-# 
+<p>We can verify that it works:</p>
+<pre ml:content="ocaml">
+#load "camlp4o.cma";;
+(* Add directory where the syntax extension is compiled to the module
+   path (not required if pa_foreach.cmo is in the current directory). *)
+#directory "_build/src/html/tutorials/camlp4_3.10/";;
+#load "pa_foreach.cmo";;
+for s in List ["hello"; "world"] do print_endline s done;;
 </pre>
 
 <p>Now we have a rudimentary syntax extension. However, it is quite restrictive. For example, it would be nice to do pattern matching like this:</p>
@@ -124,72 +108,40 @@ done
 <ul><li><code>Camlp4OCamlRevisedParser.ml</code>; this provides the bulk of the syntax rules.</li>
 <li><code>Camlp4OCamlParser.ml</code> implicitly borrows most of its rules from <code>Camlp4OCamlRevisedParser</code>, but clears some of the rules that are particular to the revised syntax and replaces them with the original OCaml syntax.</li></ul>
 <p>From these files, we can see that <code>ipatt</code> rule supplies what we want for matching patterns, and <code>LIST1</code> modifier allows us to take one or more patterns. There is also a <code>LIST0</code> modifier for "zero or more" matching.</p>
-<pre  ml:content="ocaml noeval">
-open Camlp4.PreCast
-open Syntax
-
-let rec mkfun _loc patts e =
-  match patts with
-  | p :: patts -&gt;
-      &lt;:expr&lt; fun $p$ -&gt; $mkfun _loc patts e$ &gt;&gt;
-  | [] -&gt;
-      e
-
-EXTEND Gram
-  expr: LEVEL &quot;top&quot;
-    [ [ &quot;for&quot;; patts = LIST1 ipatt; &quot;in&quot;; m = a_UIDENT; e = expr; &quot;do&quot;;
-        seq = sequence; &quot;done&quot; -&gt;
-          let f = mkfun _loc patts seq in
-          &lt;:expr&lt; $uid:m$.iter $f$ $e$ &gt;&gt;
-      ] ]
-  ;
-END
+<pre ml:content="ocaml noeval">
+  <span ml:replace="include pa_foreach2.ml" ></span>
 </pre>
 
 <p>In order to generate a higher-order function according to a list of patterns, we use the helper <code>mkfun</code> that essentially generates, for patterns <code>patt1</code> ... <code>pattN</code>,</p>
-<pre>
+<pre ml:content="ocaml noeval">
 fun patt1 ->
   ...
     fun pattN ->
       seq
 </pre>
 
-<p>which is the desugared form for <code>fun patt1 ... pattN -> seq</code>.</p>
+<p>which is the desugared form for <code ml:content="ocaml noeval"
+  >fun patt1 ... pattN -> seq</code>.</p>
 <p>We can verify that pattern works:</p>
-<pre ml:content="ocaml noeval">
-$ ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach.ml
-$ ocaml
-        Objective Caml version 3.10.0
-
-# #load "camlp4o.cma";;
-        Camlp4 Parsing version 3.10.0
-
-# #load "pa_foreach.cmo";;
-# for (k, v) in List [(0, "hello"); (1, "world")] do
+<pre>
+ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach2.ml
+</pre>
+<pre ml:content="ocaml">
+  #load "pa_foreach2.cmo";;
+  for (k, v) in List [(0, "hello"); (1, "world")] do
     Printf.printf "%d: %s\n" k v
   done;;
-0: hello
-1: world
-- : unit = ()
 </pre>
 
 <p>and that multiple arguments work:</p>
-<pre  ml:content="ocaml noeval">
-# let tbl = Hashtbl.create 3;;
-val tbl : ('_a, '_b) Hashtbl.t = <abstr>
-# Hashtbl.add tbl 0 "hello";;
-- : unit = ()
-# Hashtbl.add tbl 1 "world";;
-- : unit = ()
-# Hashtbl.add tbl 2 "foobar";;
-- : unit = ()
-# for k v in Hashtbl tbl do
+<pre  ml:content="ocaml">
+  let tbl = Hashtbl.create 3;;
+  Hashtbl.add tbl 0 "hello";;
+  Hashtbl.add tbl 1 "world";;
+  Hashtbl.add tbl 2 "foobar";;
+  for k v in Hashtbl tbl do
     Printf.printf "%d: %s\n" k v
   done;;
-0: hello
-1: world
-2: foobar
-- : unit = ()
 </pre>
 
 <p>There are still some subtle problems with this approach. In the next section, we'll discuss solutions to these problems.</p>
@@ -197,12 +149,11 @@ val tbl : ('_a, '_b) Hashtbl.t = <abstr>
 <p>The first problem we find out is that foreach body is supposed to be a sequence, but that doesn't work:</p>
 <pre ml:content="ocaml noeval">
 # for s in List ["hello"; "world"] do print_endline s; () done;;
-  ;;
 Failure: "expr; expr: not allowed here, use do {...} or [|...|] to surround them"
 </pre>
 
 <p>The problem is due to the desugared form, which becomes:</p>
-<pre  ml:content="ocaml noeval">
+<pre ml:content="ocaml noeval">
 List.iter (fun s -> print_endline s; ()) ["hello"; "world"]
 </pre>
 
@@ -217,47 +168,7 @@ Parse error: [ipatt] or [a_LIDENT] expected after "for" (in [expr])
 <p>It turns out that the new rule we add for "for" doesn't play nice with the original rule. The solution is to rewrite the original rule so it becomes compatible with the new rule.</p>
 <p>The code listing that addresses these issues can be found below:</p>
 <pre ml:content="ocaml noeval">
-open Camlp4.PreCast
-open Syntax
-
-let mksequence _loc e =
-  match e with
-  | &lt;:expr&lt; $_$; $_$ &gt;&gt; as e -&gt; &lt;:expr&lt; do {$e$} &gt;&gt;
-  | e -&gt; e
-
-let rec mkfun _loc patts e =
-  match patts with
-  | p :: patts -&gt;
-      &lt;:expr&lt; fun $p$ -&gt; $mkfun _loc patts e$ &gt;&gt;
-  | [] -&gt; mksequence _loc e
-
-let lident_of_patt p =
-  match p with
-  | &lt;:patt&lt; $lid:i$ &gt;&gt; -&gt; i
-  | _ -&gt; invalid_arg &quot;lident_of_patt&quot;
-
-DELETE_RULE Gram
-  expr:
-    &quot;for&quot;; a_LIDENT; &quot;=&quot;; sequence; direction_flag; sequence; &quot;do&quot;; do_sequence
-END
-
-EXTEND Gram
-  expr: LEVEL &quot;top&quot;
-    [ [ &quot;for&quot;; i = ipatt; &quot;=&quot;; e1 = sequence; df = direction_flag;
-       e2 = sequence; &quot;do&quot;; seq = do_sequence -&gt;
-         &lt;:expr&lt;
-           for $lident_of_patt i$ =
-             $mksequence _loc e1$ $to:df$ $mksequence _loc e2$
-             do { $seq$ }
-         &gt;&gt;
-      | &quot;for&quot;; p = ipatt; patts = LIST0 ipatt; &quot;in&quot;; m = a_UIDENT; e = expr;
-       &quot;do&quot;; seq = do_sequence -&gt;
-         let patts = p :: patts in
-         let f = mkfun _loc patts seq in
-         &lt;:expr&lt; $uid:m$.iter $f$ $e$ &gt;&gt;
-      ] ]
-  ;
-END
+  <span ml:replace="include pa_foreach3.ml"></span>
 </pre>
 
 <p>In order for alternative rules to "fall through" correctly, rules must share a common prefix, and the rest of the non-terminals must be distinct enough. The way we structured the "for" syntax before, we essentially have the following two rules:</p>
