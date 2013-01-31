@@ -11,7 +11,7 @@
 
     <h1>Install OCaml</h1>
 
-    
+
     <p>The most recent version is <a href="http://caml.inria.fr/download.en.html">OCaml 4.00.1</a>, released on
     2012-10-05. It can be easily installed in several ways. Broadly,
     the options are:</p>
@@ -117,7 +117,14 @@ cd godi-rocketboost-20110811
         and follow the instructions.</p>
 
 	<p>For the impatient, do the following</p>
-	<pre>
+          Quick install:
+	  <pre>
+          $ wget http://www.ocamlpro.com/pub/opam_installer.sh
+          $ sh ./opam_installer.sh /usr/local/bin  # You can change the path to install it in an other place.
+          </pre>
+
+         From source:
+	 <pre>
           $ git clone https://github.com/OCamlPro/opam
           $ ./configure # (or ./configure --prefix=$HOME if you want to install under your $HOME)
           $ make
