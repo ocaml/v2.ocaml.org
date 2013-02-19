@@ -60,14 +60,15 @@ table.array th {
 }
 
 #header .top {
-  background-image: url("../img/banner-top.jpg");
-  height: 100px;
+  /* background-image: url("../img/banner-top.jpg"); */
+  /* height: 100px; */
+  height: 12px;
   padding: 8px;
 }
 
 #header .bottom {
-  background: black url("../img/banner-bottom.jpg") no-repeat top left;
-  height: 19px;
+  /* background: black url("../img/banner-bottom.jpg") no-repeat top left; */
+  /* height: 19px; */
   padding: 5px;
   padding-top: 10px;
   padding-left: 10px;
@@ -146,12 +147,19 @@ div.short-explanation {
   /* line-height: 140%; */
 }
 
-.quick-links td {
-  width: 10%;
+.quick-links h2 {
+  font-size: 140%;
+  padding-left: 0ex;
 }
 
-.quick-links h2 {
-  padding-left: 1ex;
+div.front-news {
+  padding-left: 2ex;
+  border-left: 1px dotted;
+}
+
+.front-news h2 {
+  font-size: 110%;
+  padding-left: 0ex;
 }
 
 .read-more {

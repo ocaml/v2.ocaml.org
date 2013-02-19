@@ -168,9 +168,14 @@ let of_urls _context urls =
   List.concat(List.map html_of_post posts)
   @ toggle_script
 
+let rec list_take n = function
+  | [] -> []
+  | x :: tl -> if n > 0 then x :: list_take (n - 1) tl else []
+
 let news _context urls =
   let ch = channel_of_urls urls in
   let items = Rss.sort_items_by_date ch.Rss.ch_items in
+  let items = list_take 5 items in
   let posts = List.map parse_item items in
   [Element("ul", [], List.concat(List.map news_of_post posts))]
 

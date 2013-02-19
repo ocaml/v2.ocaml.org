@@ -9,7 +9,7 @@
     <link href="css/ocaml.css" media="all" type="text/css" rel="stylesheet" />
   </head>
   <body>
-    <div class="row-fluid">
+    <div class="row-fluid top-descr">
       <div class="span9">
 	<div class="hero-unit">
 	  <p><strong>OCaml</strong> is a general purpose
@@ -21,73 +21,11 @@
 	  benefits from one of the most advanced type systems and
 	  supports functional,
 	    imperative and object-oriented styles of programming.
-      
+
 	    <a href="description.html"
 	       class="btn btn-large pull-right"
 	       >Read more...</a></p>
 	</div>
-
-	<table width="100%" class="quick-links" >
-	<tr valign="top"><td>
-	  <h2>Discover</h2>
-	  <ul>
-	    <li><a href="description.html" >What is OCaml?</a></li>
-	    <li><a href="http://try.ocamlpro.com/"
-	       >Try it Online</a></li>
-	    <li><a href="taste.html" >100 Lines of OCaml</a></li>
-	    <li><a href="success.html" >Success Stories</a></li>
-	    <li><a href="companies.html" >Who Is Using It?</a></li>
-	    <li><a href="http://pleac.sourceforge.net/pleac_ocaml/"
-		   >Pleac</a>, 
-	      <a href="http://rosettacode.org/wiki/Category:OCaml"
-		 >Rosetta</a>,
-              <a href="http://langref.org/ocaml">langref.org</a></li>
-	  </ul>
-	</td><td>
-	  <h2>Learn</h2>
-	  <ul>
-	    <li><a href="install.html" >Install</a></li>
-	    <li><a href="tutorials/index.html" >Tutorials</a></li>
-	    <li><a href="faq.html" >FAQ</a></li>
-	    <li><a href="books.html">Books</a></li>
-	    <li><a href="videos.html" >Videos</a></li>
-	    <li><a href="papers.html" >Papers</a></li>
-	  </ul>
-	</td><td>
-	  <h2>Use</h2>
-	  <ul>
-            <li><a href="releases/" >Releases</a></li>
-	    <li><a href="libraries.html" >Libraries</a></li>
-	    <li><a href="dev_tools.html" >Development Tools</a></li>
-	    <li><a href="books.html#manual">User Manual</a></li>
-            <li><a href="cheat_sheets.html">Cheat Sheets</a></li>
-	    <li><a href="http://search.ocaml.jp/" >OCaml API Search</a></li>
-	    <li><a href="http://forge.ocamlcore.org/">Forge</a>,
-	      <a href="https://github.com/languages/OCaml"
-		 >GitHub</a>,
-	      <a href="https://bitbucket.org/repo/all?name=ocaml"
-		 >Bitbucket</a></li>
-	  </ul>
-	</td><td>
-	  <h2>Community</h2>
-	  
-	  <ul>
-	    <li><a href="mailing_lists.html"
-		   >Mailing Lists</a></li>
-	    <li><a href="planet/"
-		   >Blogs</a></li>
-	    <li><a href="meetings.html">Meetings</a></li>
-	    <li>IRC (<a href="irc://irc.freenode.net/ocaml">en</a>,
-	      <a href="irc://irc.freenode.net/ocaml-fr">fr</a>)</li>
-	    <li><a href="http://stackoverflow.com/questions/tagged?tagnames=ocaml"
-		   >Stack Overflow</a>,
-	      <a href="http://www.reddit.com/r/ocaml/">Reddit</a></li>
-            <li><a href="support.html">Commercial Support</a></li>
-	  </ul>
-	</td></tr>
-	</table>
-
-
       </div> <!-- span9 -->
       <div class="span3 pull-right big-announcements">
 	<!----------------------------------------------------
@@ -99,25 +37,64 @@
             <img src="img/download-button.png" width="120px" alt="download" />
           </a>
 	</div>
-
-	<div class="hero-unit">
-	  <h3>OCaml Meeting 2012</h3>
-
-	  <p>Colocated with ICFP!</p>
-	  <a href="http://oud.ocaml.org" class="btn pull-right"
-		>See videos &amp; slides</a><br />
-	</div>
-	<!-- <p>Dynamic content</p>
-	     <p>Major announcements</p>
-	     <p>Featured project</p>
-             <p>Package stats</p> -->
       </div>
     </div>
+    <div class="row-fluid">
+      <div class="span8">
+	<table class="quick-links">
+	  <tr valign="top"><td>
+	      <h2>Learn</h2>
+	      
+	      <!-- selected links only -->
+	      <a href="description.html" >What is OCaml?</a>
+	      • <a href="taste.html" >100 Lines of OCaml</a>
+	      • <a href="install.html" >Install</a>
+	      • <a href="tutorials/" >Tutorials</a>
+	      • <a href="learn.html">More…</a>
+	    </td><td>
+	      <h2>Documentation</h2>
+	      
+	      <a href="books.html#manual" >User manual</a>
+	      • <a href="http://ocaml.org/cheat_sheets.html" >Cheat Sheets</a>
+	      • <a href="documentation.html">More…</a>
+	  </td></tr>
+	  <tr><td>
+	      <h2>Platform</h2>
+	      
+	      <!-- FIXME: a page for OPAM on this site is needed -->
+	      <a href="http://opam.ocamlpro.com/" >OPAM</a>
+	      • <a href="platform.html" >More…</a>
+	    </td><td>
+	      <h2>Community</h2>
+	      
+	      <a href="mailing_lists.htl" >Mailing Lists</a>
+	      • <a href="planet/">Blogs</a>
+	      • <a href="meetings.html">Meetings</a>
+	      • <a href="community.html" >More…</a>
+	  </td></tr>
+	</table>
+      </div><!-- span8 -->
+      <div class="span4 front-news">
+	<h2>News</h2>
 
-    
+	<!-- Major announcements -->
+	OCaml Meeting 2012, Colocated with ICFP,
+	<a href="http://oud.ocaml.org"
+	   >See videos &amp; slides</a><br />
+
+	<h2>Blog feed</h2>
+
+	<div id="news"
+	     ml:content="news http://planet.ocaml.org/rss20.xml"
+	     ></div>
+      </div><!-- /span4 -->
+
+    </div>
+
+
     <div class="container-fluid">
       <div class="row-fluid">
-	<div class="span6" >
+	<div class="span5 quick-links" >
 	  <h2>A taste of OCaml</h2>
 
 <pre class="listing" ml:content="ocaml noeval">
@@ -139,18 +116,14 @@ let has_even_leaf tree =
 	  Pursue with
 	    <a href="taste.html">a stronger taste</a>!</p>
 
-	</div> <!-- span6 -->
-	<div class="span6" >
-	  <h2>News from the community</h2>    
-	  
-	  <div id="news"
-	       ml:content="news http://planet.ocaml.org/rss20.xml"
-	       ></div>
-	</div>
+	</div> <!-- span -->
+	<div class="span7 quick-links" >
+	  <h2>Packages</h2>
+
+      </div>
     </div><!--/row-->
-  </div><!--/.fluid-container-->
+  </div><!--/fluid-container-->
 
 
   </body>
 </html>
-    
