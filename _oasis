@@ -25,6 +25,25 @@ Executable build
   CompiledObject: byte
   Install:        false
 
+# FIXME: "Object" does not work
+Library pa_foreach
+  Path:           src/html/tutorials/camlp4_3.10
+  Modules:	  Pa_foreach
+  Install:        false
+
+Library pa_foreach2
+  Path:           src/html/tutorials/camlp4_3.10
+  Modules:	  Pa_foreach2
+  Install:        false
+  FindlibParent:  pa_foreach # sic
+
+# FIXME: does not compile
+# Library pa_foreach3
+#   Path:           src/html/tutorials/camlp4_3.10
+#   Modules:	  Pa_foreach3
+#   Install:        false
+#   FindlibParent:  pa_foreach # sic
+
 Document doclib
   Title:                API reference for ocaml.org source code
   Type:                 ocamlbuild (0.3)

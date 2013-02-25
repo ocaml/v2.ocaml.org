@@ -3,3 +3,4 @@
 
 <**/*.ml>: annot
 
+<src/html/tutorials/camlp4_3.10/*.ml>: syntax_camlp4o, pkg_camlp4.quotations.o, pkg_camlp4.extend
