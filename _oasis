@@ -11,7 +11,7 @@ BuildTools:  ocamlbuild
 Library ocamlorg
   Path:         src/lib
   FindlibName:  ocamlorg
-  BuildDepends: weberizer (>= 0.7.2), netstring, netclient, rss
+  BuildDepends: weberizer (>= 0.7.2), netstring, netclient, rss ( <= 2.0)
   Install:      false
   Modules:      Main
 
