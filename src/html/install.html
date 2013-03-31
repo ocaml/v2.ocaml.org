@@ -43,6 +43,7 @@
 	  <li><a href="#macosx" data-toggle="tab">Mac OS X</a></li>
 	  <li><a href="#suse"   data-toggle="tab">SuSE</a></li>
 	  <li><a href="#ubuntu" data-toggle="tab">Ubuntu</a></li>
+	  <li><a href="#mageia" data-toggle="tab">Mageia</a></li>
 	  <li><a href="#windows" data-toggle="tab">Windows</a></li>
 	</ul>
       </li>
@@ -244,6 +245,52 @@ cd godi-rocketboost-20110811
 	distribution. In openSuse&nbsp;12.1, the package name is
 	<code>ocaml-3.12.0-11.1.2</code> (outdated).</p>
       </div><!-- suse -->
+
+      <div id="mageia" class="tab-pane">
+	<h2>Mageia</h2>
+
+	<p><a href="http://www.mageia.org/">Mageia</a> has some support
+        for OCaml in the distribution.</p>
+
+	<p>To install the OCaml compilers just do:</p>
+	<pre>
+        urpmi ocaml-compiler</pre>
+
+        <p>ocaml-compiler has no dependency on XOrg libs,
+        the libs that have some (for example the module Graphics):</p>
+	<pre>
+        urpmi ocaml-x11</pre>
+
+	<p>To install camlp4:</p>
+	<pre>
+        urpmi camlp4</pre>
+
+	<p>To install an OCaml library called '<code>foo</code>', and any
+	dependencies it needs, you would do:</p>
+	<pre>
+        urpmi ocaml-foo-devel</pre>
+
+	<p>A good set of basic development libraries can be installed by
+	doing:</p>
+	<pre>
+        urpmi camlp4-devel ocaml-doc ocaml-findlib-devel \
+          ocaml-extlib-devel ocaml-extlib-doc ocaml-batteries-devel \
+          ocaml-ounit-devel ocaml-sexplib-devel ocaml-xml-light-devel \
+          ocamlmakefile</pre>
+
+	To list OCaml packages use:
+	<pre>
+        urpmq --list | grep ocaml</pre>
+
+	<p><strong>Packaging policy</strong></p>
+
+	<ul>
+	  <li><a href="https://wiki.mageia.org/en/OCaml_policy"
+	  >OCaml packaging policy</a> in Mageia. All Mageia OCaml packages
+	  have to obey this policy, ensuring a minimum standard for
+	  all OCaml packages we ship.</li>
+	</ul>
+      </div><!-- mageia -->
 
       <div class="tab-pane" id="windows">
 	<h2>Windows</h2>
