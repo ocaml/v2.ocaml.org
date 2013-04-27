@@ -41,7 +41,7 @@
 
 <p>
   You can program directly with explicit references if you want to,
-  but this is normally a vast of time and effort.
+  but this is normally a waste of time and effort.
 </p>
 <p>
   Let's examine the simple example of linked lists (integer lists to
@@ -137,7 +137,7 @@ and cell = { mutable hd : int; tl : list }
 </p>
 
 <pre ml:content="ocaml noeval">
-type list = | Nil | Cons of cell
+type list = Nil | Cons of cell
 and cell = {mutable hd : int; mutable tl : list};;
 </pre>
 
