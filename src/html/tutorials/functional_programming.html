@@ -9,16 +9,16 @@
 <p>We've got quite far into the tutorial, yet we haven't really considered <strong>functional programming</strong>. All of the features given so far - rich data types, pattern matching, type inference, nested functions - you could imagine could exist in a kind of &quot;super C&quot; language. These are Cool Features certainly, and make your code concise, easy to read, and have fewer bugs, but they actually have very little to do with functional programming. In fact my argument is going to be that the reason that functional languages are so great is <em>not</em> because of functional programming, but because we've been stuck with C-like languages for years and in the meantime the cutting edge of programming has moved on considerably. So while we were writing <code>struct { int type; union { ... } }</code> for the umpteenth time, ML and Haskell programmers had safe variants and pattern matching on datatypes. While we were being careful to <code>free</code> all our <code>malloc</code>s, there have been languages with garbage collectors able to outperform hand-coding since the 80s.</p>
 <p>Well, after that I'd better tell you what functional programming is anyhow.</p>
 <p>The basic, and not very enlightening definition is this: in a <strong>functional language</strong>, <strong>functions</strong> are first-class citizens.</p>
-<p>Lot of words there that don't really make much sense. So let's have an example:</p>
+<p>Lots of words there that don't really make much sense. So let's have an example:</p>
 <pre ml:content="ocaml">
   let double x = x * 2 in
   List.map double [ 1; 2; 3 ]
 </pre>
 
-<p>In this example, I've first defined a nested function called <code>double</code> which takes an argument <code>x</code> and returns <code>x * 2</code>. Then <code>map</code> calls <code>double</code> on each element of the given list (<code>[1; 2; 3]</code>) to produce the result: a list with each number doubled.</p>
+<p>In this example, I've first defined a nested function called <code>double</code> which takes an argument <code>x</code> and returns <code>x * 2</code>. Then, <code>map</code> calls <code>double</code> on each element of the given list (<code>[1; 2; 3]</code>) to produce the result: a list with each number doubled.</p>
 <p><code>map</code> is known as a <strong>higher-order function</strong> (HOF). Higher-order functions are just a fancy way of saying that the function takes a function as one of its arguments.</p>
-<p>So far so simple. If you're familiar with C/C++ then this looks like passing a function pointer around. Java has some sort of abomination called an anonymous class which is like a dumbed-down, slow and long-winded closure.  If you know Perl then you probably already know and use Perl's closures and Perl's <code>map</code> function, which is exactly what we're talking about. The fact is that Perl is actually quite a good functional language.</p>
-<p><strong>Closures</strong> are functions which carry around some of the &quot;environment&quot; in which they were defined. In particular, a closure can reference variables which were available at the point of its definition. Let's generalise the function above so that now we can take any list of integers and multiply each element by an arbitrary value <code>n</code>:</p>
+<p>Simple so far. If you're familiar with C/C++, then this looks like passing a function pointer around. Java has some sort of abomination called an anonymous class which is like a dumbed-down, slow and long-winded closure.  If you know Perl, then you probably already know and use Perl's closures and Perl's <code>map</code> function, which is exactly what we're talking about. The fact is that Perl is actually quite a good functional language.</p>
+<p><strong>Closures</strong> are functions which carry around some of the &quot;environment&quot; in which they were defined. In particular, a closure can reference variables which were available at the point of its definition. Let's generalize the function above so that now we can take any list of integers and multiply each element by an arbitrary value <code>n</code>:</p>
 <pre ml:content="ocaml">
   let multiply n list =
     let f x =
@@ -47,7 +47,7 @@ class html_skel obj = object (self)
     save obj receiver_fn
 </pre>
 
-<p>First of all you need to know that the <code>save</code> function called at the end of the method takes as its second argument a function (<code>receiver_fn</code>). It repeatedly calls <code>receiver_fn</code> with snippets of text from the widget that it's trying to save.</p>
+<p>First of all, you need to know that the <code>save</code> function called at the end of the method takes as its second argument a function (<code>receiver_fn</code>). It repeatedly calls <code>receiver_fn</code> with snippets of text from the widget that it's trying to save.</p>
 <p>Now look at the definition of <code>receiver_fn</code>. This function is a closure alright because it keeps a reference to <code>chan</code> from its environment.</p>
 <h3>Partial function applications and currying</h3>
 <p>Let's define a plus function which just adds two integers:</p>
