@@ -107,7 +107,7 @@ val sub : date -&gt; date -&gt; date
 val years : date -&gt; float
 </pre>
 
-<p>The point is that only <code>create</code> and <code>sub</code> can be used to create <code>date</code> records. Therefore it is not possible for the user of the module to create ill-formed records. Actually, our implementation uses a record, but we could change it and be sure that it will not break any code that relies on this module! This takes all its sense in a library since subsequent versions of the same library can continue to expose the same interface, while internally changing the implementation, including data structures.</p>
+<p>The point is that only <code>create</code> and <code>sub</code> can be used to create <code>date</code> records. Therefore, it is not possible for the user of the module to create ill-formed records. Actually, our implementation uses a record, but we could change it and be sure that it will not break any code that relies on this module! This takes all its sense in a library since subsequent versions of the same library can continue to expose the same interface, while internally changing the implementation, including data structures.</p>
 
 <h2><a name="Submodules"></a>Submodules</h2>
 
@@ -198,7 +198,7 @@ module F (X : X_type) = struct
 end
 </pre>
 
-<p>where <code>X</code> is the module that will passed as argument, and <code>X_type</code> is its signature, which is mandatory.</p>
+<p>where <code>X</code> is the module that will be passed as argument, and <code>X_type</code> is its signature, which is mandatory.</p>
 <p>The signature of the returned module itself can be constrained, using this syntax:</p>
 <pre ml:content="ocaml noeval">
 module F (X : X_type) : Y_type =
@@ -223,7 +223,7 @@ module M = List;;
 
 <p>Otherwise, there is online documentation for most libraries or you can use <code>ocamlbrowser</code> which comes with labltk (Tk graphical user interface for OCaml).</p>
 <h3>Module inclusion</h3>
-<p>Let's say we feel that a function is missing from the standard <code>List</code> module, but we really want as if it were part of it. In an <code>extensions.ml</code> file, we can achieve this effect by using the <code>include</code> directive:</p>
+<p>Let's say we feel that a function is missing from the standard <code>List</code> module, but we really want it as if it were part of it. In an <code>extensions.ml</code> file, we can achieve this effect by using the <code>include</code> directive:</p>
 <pre ml:content="ocaml noeval">
 module List = struct
   include List
@@ -236,7 +236,7 @@ module List = struct
 end
 </pre>
 
-<p>It creates a module <code>Extensions.List</code>, that has everything that the standard <code>List</code> module has, plus a new <code>optmap</code> function. From another file, all we have to do to override the default <code>List</code> module is <code>open Extensions</code> at the beginning of the .ml file:</p>
+<p>It creates a module <code>Extensions.List</code> that has everything the standard <code>List</code> module has, plus a new <code>optmap</code> function. From another file, all we have to do to override the default <code>List</code> module is <code>open Extensions</code> at the beginning of the .ml file:</p>
 <pre ml:content="ocaml noeval">
 open Extensions
 ...
