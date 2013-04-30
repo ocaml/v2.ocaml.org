@@ -212,7 +212,7 @@ main ()
 <p>The variable <code>a</code> is allocated on the stack, and is quite definitely unboxed.</p>
 <p>The function <code>printit</code> takes a boxed integer and prints it.</p>
 <p>The diagram below shows an array of unboxed (top) vs. boxed (below) integers:</p>
-<p><a class="image_not_found" href="http://ocaml-tutorial.org/_bin/upload_image_form.cmo?name=boxedarray.png">boxedarray.png</a></p>
+<p><img src="../img/boxedarray.png" alt="Boxed Array" /></p>
 <p>No prizes for guessing that the array of unboxed integers is much faster than the array of boxed integers. In addition, because there are fewer separate allocations, garbage collection is much faster and simpler on the array of unboxed objects.</p>
 <p>In C or C++ you should have no problems constructing either of the two types of arrays above. In Java, you have two types, <code>int</code> which is unboxed and <code>Integer</code> which is boxed, and hence considerably less efficient. In OCaml, the basic types are all unboxed.</p>
 
