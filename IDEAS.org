@@ -114,7 +114,7 @@
 
 * Blog
   - aggregate related blogs, already provided by [[http://planet.ocamlcore.org/][planet]] but we would
-    like to display healines only on the front page of the site.
+    like to display headlines only on the front page of the site.
   - one new blog where major announcements are made, show this one on
     front page
 
@@ -138,9 +138,10 @@
   - should support dynamic features where appropriate, but work
     gracefully when javascript not enabled
   - should also look good and be functional on mobile devices (lower priority)
-  - examples of sites for inspiration: [[http://www.postgresql.org][PostgreSQL]], [[http://www.mongodb.org][mongoDB]], [[http://drupal.org][Drupal]],
-    [[http://www.perl.org][Perl]]
-  - random eye-catching ideas: [[http://www.wordle.net][word clouds]], [[http://www.highcharts.com][charts]]
+  - examples of sites for inspiration: [[http://www.postgresql.org/][PostgreSQL]],
+    [[http://www.mongodb.org/][mongoDB]], [[http://drupal.org/][Drupal]],
+    [[http://www.perl.org/][Perl]]
+  - random eye-catching ideas: [[http://www.wordle.net/][word clouds]], [[http://www.highcharts.com/][charts]]
 
 * Management Structure
   - site is managed by a non-profit organization to be created
