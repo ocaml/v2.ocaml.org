@@ -64,6 +64,7 @@ distclean: setup.ml
 
 publish:
 	git checkout publish
+	git pull
 	make
 	commit=`git log -1 --pretty=format:%H`; \
 	temp=`mktemp -d temp-gh-pages.XXXXX`; \
