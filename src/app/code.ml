@@ -227,11 +227,16 @@ let html_of_eval_silent phrase =
   end;
   format_eval_input phrase
 
+let error_re =
+  Str.regexp ".*[Cc]haracters +\\([0-9]+\\)-\\([0-9]+\\)"
+
 (* Process [err_msg] to see whether one needs to highlight part of the
    [phrase].  *)
 let highlight_error phrase err_msg =
-  (* The indices of the error are [c1, c2[. *)
-  let locate_error c1 c2 =
+  if Str.string_match error_re err_msg 0 then (
+    let c1 = int_of_string(Str.matched_group 1 err_msg)
+    and c2 = int_of_string(Str.matched_group 2 err_msg) in
+    (* The indices of the error are [c1, c2[. *)
     let len = String.length phrase in
     if c1 >= len || c1 < 0 || c2 < 0 then
       html_encode phrase, err_msg
@@ -244,9 +249,10 @@ let highlight_error phrase err_msg =
                    ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
       let nl = 1 + String.index err_msg '\n' in
       let err_msg = String.sub err_msg nl (String.length err_msg - nl) in
-      phrase, err_msg in
-  try  sscanf err_msg "Characters %i-%i: " locate_error
-  with Scan_failure _ | End_of_file -> html_encode phrase, err_msg
+      phrase, err_msg
+  )
+  else
+    html_encode phrase, err_msg
 
 let html_of_eval phrase =
   let phrase, cls, out = match toploop_eval (phrase ^ ";;") with
