@@ -168,14 +168,14 @@ let news_of_post ?(len=400) p =
 let of_urls _context urls =
   let ch = channel_of_urls urls in
   let items = Rss.sort_items_by_date ch.Rss.ch_items in
-  let posts = List.rev_map parse_item items in
+  let posts = List.map parse_item items in
   List.concat(List.map html_of_post posts)
   @ toggle_script
 
 let news _context urls =
   let ch = channel_of_urls urls in
   let items = Rss.sort_items_by_date ch.Rss.ch_items in
-  let posts = List.rev_map parse_item items in
+  let posts = List.map parse_item items in
   [Element("ul", [], List.concat(List.map news_of_post posts))]
 
 
