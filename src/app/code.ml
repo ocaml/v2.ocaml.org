@@ -130,6 +130,7 @@ let highlight ?(syntax="ocaml") phrase =
  ***********************************************************************)
 
 let () =
+  eprintf "***** STARTING OCAML TOPLEVEL ******\n%!";
   Toploop.set_paths ();
   Toploop.initialize_toplevel_env();
   (* (match Hashtbl.find Toploop.directive_table "rectypes" with *)
@@ -227,29 +228,48 @@ let html_of_eval_silent phrase =
   end;
   format_eval_input phrase
 
-let error_re =
+
+(* Insert the HTML code to highligh the error located in [phrase] at
+   chars [c1 .. c2[. *)
+let highlight_error_range phrase err_msg c1 c2 =
+  let len = String.length phrase in
+  if c1 >= len || c1 < 0 || c2 < 0 then
+    html_encode phrase, err_msg
+  else
+    let p1 = String.sub phrase 0 c1
+    and p2, p3 = if c2 >= len then (String.sub phrase c1 (len - c1), "")
+                 else (String.sub phrase c1 (c2 - c1),
+                       String.sub phrase c2 (len - c2)) in
+    let phrase = html_encode p1 ^ "<span class=\"ocamltop-error-loc\">"
+                 ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
+    let nl = 1 + String.index err_msg '\n' in
+    let err_msg = String.sub err_msg nl (String.length err_msg - nl) in
+    phrase, err_msg
+
+
+let error_re312 =
   Str.regexp ".*[Cc]haracters +\\([0-9]+\\)-\\([0-9]+\\)"
+
+let error_re400 =
+  Str.regexp ".*line +\\([0-9]+\\),.*\
+              [Cc]haracters +\\([0-9]+\\)-\\([0-9]+\\)"
 
 (* Process [err_msg] to see whether one needs to highlight part of the
    [phrase].  *)
 let highlight_error phrase err_msg =
-  if Str.string_match error_re err_msg 0 then (
+  if Str.string_match error_re400 err_msg 0 then (
+    let l =  try int_of_string(Str.matched_group 1 err_msg) with _ -> 0 in
+    let c1 = int_of_string(Str.matched_group 2 err_msg)
+    and c2 = int_of_string(Str.matched_group 3 err_msg) in
+    (* Convert the line [1 .. l-1] into character count. *)
+    let c = ref 0 in
+    for line = 1 to l - 1 do c := String.index_from phrase !c '\n' + 1 done;
+    highlight_error_range phrase err_msg (c1 + !c) (c2 + !c)
+  )
+  else if Str.string_match error_re312 err_msg 0 then (
     let c1 = int_of_string(Str.matched_group 1 err_msg)
     and c2 = int_of_string(Str.matched_group 2 err_msg) in
-    (* The indices of the error are [c1, c2[. *)
-    let len = String.length phrase in
-    if c1 >= len || c1 < 0 || c2 < 0 then
-      html_encode phrase, err_msg
-    else
-      let p1 = String.sub phrase 0 c1
-      and p2, p3 = if c2 >= len then (String.sub phrase c1 (len - c1), "")
-                   else (String.sub phrase c1 (c2 - c1),
-                         String.sub phrase c2 (len - c2)) in
-      let phrase = html_encode p1 ^ "<span class=\"ocamltop-error-loc\">"
-                   ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
-      let nl = 1 + String.index err_msg '\n' in
-      let err_msg = String.sub err_msg nl (String.length err_msg - nl) in
-      phrase, err_msg
+    highlight_error_range phrase err_msg c1 c2
   )
   else
     html_encode phrase, err_msg
