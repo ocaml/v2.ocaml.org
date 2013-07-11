@@ -130,6 +130,7 @@ let highlight ?(syntax="ocaml") phrase =
  ***********************************************************************)
 
 let () =
+  eprintf "***** STARTING OCAML TOPLEVEL ******\n%!";
   Toploop.set_paths ();
   Toploop.initialize_toplevel_env();
   (* (match Hashtbl.find Toploop.directive_table "rectypes" with *)
