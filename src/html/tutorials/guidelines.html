@@ -12,8 +12,8 @@
     <h1>OCaml Programming Guidelines</h1>
 
 <p>
-  This is a set of reasonable guidelines for formatting Caml
-  programs—guidelines which reflect the consensus among veteran Caml
+  This is a set of reasonable guidelines for formatting OCaml
+  programs—guidelines which reflect the consensus among veteran OCaml
   programmers.  Nevertheless, all detailed notifications of possible
   errors or omissions will be noted with pleasure.  To send your
   comments
@@ -706,7 +706,7 @@ let rec fib = function
     I don't see any good reason for this rule, unless you are
     paid proportionally to the number of lines of code: in this case
     use this rule to get more money without adding more bugs in your
-    Caml programs!
+    OCaml programs!
 </p></blockquote>
 
 
@@ -1046,7 +1046,7 @@ let rec print_lambda lam =
 
 The function's usage must appear in the interface of the module which
 exports it, not in the program which implements it. Choose comments as
-in the Caml system's interface modules, which will subsequently allow
+in the OCaml system's interface modules, which will subsequently allow
 the documentation of the interface module to be extracted
 automatically if need be.
 
@@ -1106,7 +1106,7 @@ let f x =
   not <code>intOfString</code>)</h4>
 
 <p>
-  Case modifications are meaningful in Caml: in effect capitalized
+  Case modifications are meaningful in OCaml: in effect capitalized
   words are reserved for constructors and module names in OCaml;
   in contrast regular variables (functions or identifiers) must
   start by a lowercase letter.  Those rules prevent proper usage of
@@ -1142,7 +1142,7 @@ let print_expression expr = ...
 <p>
   An exception to the recommendation not to use capitalization to separate
   words within identifiers is tolerated in the case of interfacing with existing
-  libraries which use this naming convention: this lets Caml users of the
+  libraries which use this naming convention: this lets OCaml users of the
   library to orient themselves in the original library documentation more
   easily.
 </p>
@@ -1171,7 +1171,7 @@ For example:
   <code>sin x</code> to mean <code>sin (x)</code>. In the same way
   <code>sin x + cos x</code> means
   <code>(sin x) + (cos x)</code> not
-  <code>sin (x + (cos x))</code>. Use the same conventions in Caml: write
+  <code>sin (x + (cos x))</code>. Use the same conventions in OCaml: write
   <code>f x + g x</code> to mean <code>(f x) + (g x)</code>.
   <br />This convention generalizes <strong>to all (infix) operators</strong>:
   <code>f x :: g x</code> means <code>(f x) :: (g x)</code>,
@@ -1670,7 +1670,7 @@ with x -> close_in ic; close_out oc; raise x
 
 <h3><a name="programming-data"></a>Data structures</h3>
 <p>
-  One of the great strengths of Caml is the power of the data
+  One of the great strengths of OCaml is the power of the data
   structures which can be defined and the simplicity of manipulating
   them. So you must take advantage of this to the fullest extent; don't
   hesitate to define your own data structures. In particular, don't
@@ -1761,7 +1761,7 @@ type bit = One | Zero
 <h3><a name="programming-mutable"></a>When to use mutables</h3>
 <p>
   Mutable values are useful and sometimes indispensable to simple and clear
-  programming. Nevertheless, you must use them with discernment: Caml's normal
+  programming. Nevertheless, you must use them with discernment: OCaml's normal
   data structures are immutable. They are to be preferred for the clarity and
   safety of programming which they allow.
 </p>
@@ -1769,7 +1769,7 @@ type bit = One | Zero
 
 <h3><a name="programming-iter"></a>Iterators</h3>
 <p>
-  Caml's iterators are a powerful and useful feature. However you
+  OCaml's iterators are a powerful and useful feature. However you
   should not overuse them, nor <i>a contrario</i> neglect them: they
   are provided to you by libraries and have every chance of being
   correct and well-thought-out by the author of the library. So it's
@@ -1845,9 +1845,9 @@ let iterator f x l =
 </p>
 
 
-<h3><a name="programming-clarity"></a>Clarity of Caml code</h3>
+<h3><a name="programming-clarity"></a>Clarity of OCaml code</h3>
 <p>
-  The Caml language includes powerful constructs which allow simple
+  The OCaml language includes powerful constructs which allow simple
   and clear programming. The main problem to obtain crystal clear
   programs it to use them appropriately.
 </p>
@@ -1935,9 +1935,9 @@ below</a>).
 </li></ul>
 
 
-<h4>Caml code generally considered unreadable</h4>
+<h4>OCaml code generally considered unreadable</h4>
 
-<p>The Caml language includes powerful constructs which allow simple
+<p>The OCaml language includes powerful constructs which allow simple
   and clear programming.  However the power of these constructs also
   lets you write uselessly complicated code, to the point where you get
   a perfectly unreadable program.
@@ -2014,7 +2014,7 @@ x + y
 
 <h2><a name="programming-dev"</a>Managing program development</h2>
 <p>
-  We give here tips from veteran Caml programmers, which have served
+  We give here tips from veteran OCaml programmers, which have served
   in developing the compilers which are good examples of large complex
   programs developed by small teams.
 </p>
@@ -2024,7 +2024,7 @@ x + y
 <p>Many developers nurture a kind of veneration towards the Emacs
   editor (gnu-emacs in general) which they use to write their programs.
   The editor interfaces well with the language since it is capable of
-  syntax coloring Caml source code (rendering different categories of
+  syntax coloring OCaml source code (rendering different categories of
   words in color, coloring keywords for example).
 </p>
 
@@ -2035,7 +2035,7 @@ x + y
     <code>make</code> command).
   </li><li>
     <code>CTRL-X-`</code>: puts the cursor in the file and at the
-    exact place where the Caml compiler has signaled an error.
+    exact place where the OCaml compiler has signaled an error.
 </li></ul>
 
 <p>
@@ -2061,7 +2061,7 @@ x + y
 </p>
 <p>Under Unix, the <code>CTRL-C-CTRL-C</code> or <code>Meta-X
     compile</code> combination, followed by <code>CTRL-X-`</code> is also
-  used to find all occurrences of a certain string in a Caml program.
+  used to find all occurrences of a certain string in a OCaml program.
   Instead of launching <code>make</code> to recompile, you launch the
   <code>grep</code> command; then all the ``error messages'' from
   <code>grep</code> are compatible with the <code>CTRL-X-`</code> usage
@@ -2077,7 +2077,7 @@ x + y
   great editing capabilities ``à la emacs'' (including
   <code>ESC-/</code>!), as well as a history mechanism which lets you
   retrieve previously typed commands and even retrieve commands from one
-  session in another. <code>ledit</code> is written in Caml and can be
+  session in another. <code>ledit</code> is written in OCaml and can be
   freely down-loaded
   <a href="ftp://ftp.inria.fr/INRIA/Projects/cristal/caml-light/bazar-ocaml/ledit.tar.gz">here</a>.
 </p>
@@ -2090,7 +2090,7 @@ x + y
   files can be found
   on <a href="http://caml.inria.fr//cgi-bin/hump.en.cgi" >The
   Hump</a>.  You can also consult the <code>Makefiles</code> for the
-  Caml compilers.
+  OCaml compilers.
 </p>
 
 

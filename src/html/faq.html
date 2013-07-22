@@ -57,7 +57,7 @@ a custom printer can be used.  An example under OCaml is given below.
 
 <div class="Q">My array is modified, and I don't know why</div>
 <div class="A">This is due to the physical sharing of two arrays that
-you missed. In Caml there are no implicit array copying. If you give
+you missed. In OCaml there are no implicit array copying. If you give
 two names to the same array, every modification on one array will be
 visible to the other:
 
@@ -76,7 +76,7 @@ others (see also the entry below).
 
 <div class="Q">How to define multidimensional arrays?</div>
 <div class="A">The only way is to define an array whose elements are
-arrays themselves (Caml arrays are unidimensional, they modelize
+arrays themselves (OCaml arrays are unidimensional, they modelize
 mathematical vectors).
 
 The naive way to define multidimensional arrays is bogus: the result
@@ -234,7 +234,7 @@ they are not defined by a type definition. For instance:
 
 <div class="Q">How to define a function?</div>
 
-<div class="A">In Caml, the syntax to define functions is close to the
+<div class="A">In OCaml, the syntax to define functions is close to the
 mathematical usage: the definition is introduced by the keyword
 <code><b>let</b></code>, followed by the name of the function and its
 arguments; then the formula that computes the image of the argument is
@@ -299,7 +299,7 @@ produce an <em>effect</em> (for instance printing something on the
 terminal or writing some memory location), but have no mathematically
 meaningful result.<br />
 
-In Caml, there is no special treatment of procedures: they are just
+In OCaml, there is no special treatment of procedures: they are just
 considered as special cases of functions that return the special
 &#8220;meaningless&#8221; value <a
 href="donnees_de_base-eng.html#units"
@@ -420,7 +420,7 @@ For example:
 </div>
 
 <div class="Q">My function is never applied</div>
-<div class="A">This is probably due to a missing argument: since Caml
+<div class="A">This is probably due to a missing argument: since OCaml
 is a functional programming language, there is no error when you
 evaluate a function with missing arguments: in this case, a functional
 value is returned, but the function is evidently not applied. Example:
@@ -514,7 +514,7 @@ new session.
 polymorphic enough</div>
 <div class="A"> The more common case to get a ``not polymorphic
 enough'' definition is when defining a function via partial
-application of a general polymorphic function. In Caml polymorphism is
+application of a general polymorphic function. In OCaml polymorphism is
 introduced only through the &#8220;let&#8221; construct, and results
 from application are weakly polymorph; hence the function resulting
 from the application is not polymorph.
@@ -541,7 +541,7 @@ application.
 
 <div class="Q">The type of this expression contains type variables
 that cannot be generalized</div>
-<div class="A"> This message appears when the Caml compiler tries to
+<div class="A"> This message appears when the OCaml compiler tries to
 compile a function or a value which is monorphic, but for which some
 types have not been completely inferred. Some types variables are left
 in the type, which are are called &#8220;weak&#8221; (and are
@@ -761,11 +761,11 @@ component of a compilation unit. A good example is the module
 
 <div class="Q">How to stop the evaluation (execution) of an
 expression?</div>
-<div class="A">It is often possible to interrupt a program or the Caml
+<div class="A">It is often possible to interrupt a program or the OCaml
 system by typing some combination of keys that is operating system
 dependent: under Unix send an interrupt signal (generally
 <tt>Control-C</tt>), under Macintosh OS type <tt>Command-.</tt>, under
-Windows use the &#8220;Caml&#8221; menu.
+Windows use the &#8220;OCaml&#8221; menu.
 </div>
 
 <div class="Q">How to quit the interactive loop?</div>
