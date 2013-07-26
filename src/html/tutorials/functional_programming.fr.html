@@ -267,7 +267,7 @@ int main () {
 <p>La fonction <code>printit()</code> prends un entier «boxed» et l'affiche.</p>
 
 <p>Le diagramme ci-dessous (NDT: non-existant à l'écriture de la traduction) montre un tableau de «unboxed» (en haut) face à des entiers «unboxed» (en bas) :</p>
-<p><a class="image_not_found" href="http://ocaml-tutorial.org/_bin/upload_image_form.cmo?name=boxedarray.png">boxedarray.png</a></p>
+<p><img src="../img/boxedarray.png" alt="Boxed Array" /></p>
 <p>Pas de prix pour avoir deviné que le tableau d'entiers «unboxed» est plus rapide que le tableau d'entiers «boxed». De plus, parce qu'il y a moins d'allocations séparés, le garbage collector est plus rapide à nettoyer et plus simple sur le tableau d'objets «unboxed».</p>
 <p>En C ou C++ vous n'aurez aucun problème pour construire chacun des tableaux ci-dessus. En java, on a deux types, <code>int</code> qui est «unboxed» et <code>Integer</code> qui est «boxed», et donc considérablement moins efficace. En OCaml, tous les types primitifs sont «unboxed».</p>
 

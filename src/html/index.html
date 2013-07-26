@@ -21,7 +21,7 @@
 	  benefits from one of the most advanced type systems and
 	  supports functional,
 	    imperative and object-oriented styles of programming.
-      
+
 	    <a href="description.html"
 	       class="btn btn-large pull-right"
 	       >Read more...</a></p>
@@ -38,7 +38,7 @@
 	    <li><a href="success.html" >Success Stories</a></li>
 	    <li><a href="companies.html" >Who Is Using It?</a></li>
 	    <li><a href="http://pleac.sourceforge.net/pleac_ocaml/"
-		   >Pleac</a>, 
+		   >Pleac</a>,
 	      <a href="http://rosettacode.org/wiki/Category:OCaml"
 		 >Rosetta</a>,
               <a href="http://langref.org/ocaml">langref.org</a></li>
@@ -70,7 +70,7 @@
 	  </ul>
 	</td><td>
 	  <h2>Community</h2>
-	  
+
 	  <ul>
 	    <li><a href="mailing_lists.html"
 		   >Mailing Lists</a></li>
@@ -131,13 +131,52 @@
       </div>
     </div>
 
-    
+
     <div class="container-fluid">
       <div class="row-fluid">
 	<div class="span6" >
-	  <h2>A taste of OCaml</h2>
+	  <h2>A taste of OCaml
+<select name="example" id="choose-example" >
+  <option selected>Hello World</option>
+  <option>Binary Tree</option>
+  <option>Fibonacci</option>
+  <option>Array/List ops</option>
+</select>
+</h2>
 
-<pre class="listing" ml:content="ocaml noeval">
+
+
+<script type="text/javascript">
+    window.onload = function() {
+        var eSelect = document.getElementById('choose-example');
+        var examples = new Array();
+        examples[0] = document.getElementById('example0');
+        examples[1] = document.getElementById('example1');
+        examples[2] = document.getElementById('example2');
+        examples[3] = document.getElementById('example3');
+        function select_example(n) {
+           for (var i=0;i<examples.length;i++) {
+                examples[i].style.display = 'none';
+           }
+           examples[n].style.display = 'block';
+        }
+        eSelect.onchange = function() {
+            select_example(eSelect.selectedIndex);
+        }
+        select_example(0);
+    }
+  </script>
+
+<div style="height: 240px">
+
+<pre class="listing" ml:content="ocaml noeval" id="example0">
+(* Simplest application ! *)
+let _ =
+  print_string "Hello World !";
+  print_newline ()
+</pre>
+
+<pre class="listing" ml:content="ocaml noeval" id="example1">
 (* Binary tree with leaves carrying an integer. *)
 type tree = Leaf of int | Node of tree * tree
 
@@ -152,14 +191,46 @@ let has_even_leaf tree =
   exists_leaf (fun n -> n mod 2 = 0) tree
 </pre>
 
+
+<pre class="listing" ml:content="ocaml noeval" id="example2">
+(* Recursive fibonacci function *)
+let rec fib n =
+  match n with
+  | 0 -> 0
+  | 1 -> 1
+  | _ ->  fib (n-1) + fib (n-2)
+
+let _ =
+  for n = 0 to 10 do
+    Printf.printf "fib(%d) = %d\n" n (fib n)
+  done
+</pre>
+
+<pre class="listing" ml:content="ocaml noeval" id="example3">
+let array = [| 0, "one"; 4, "four"; 8, "height"; 12, "twelve" |]
+(* Reverse and filter elements of an array *)
+let new_array =
+  Array.of_list (
+    List.rev (
+      List.filter (fun (x,msg) -> x > 5) (
+        Array.to_list array)))
+let _ =
+  Array.iteri (fun i (x,msg) ->
+    Printf.printf "t[%d] = { %d -> %s }\n" i x msg
+  ) new_array
+</pre>
+
+
+</div>
+
 	  <p>OCaml is a lot more powerful than this simple example shows.
 	  Pursue with
 	    <a href="taste.html">a stronger taste</a>!</p>
 
 	</div> <!-- span6 -->
 	<div class="span6" >
-	  <h2>News from the community</h2>    
-	  
+	  <h2>News from the community</h2>
+
 	  <div id="news"
 	       ml:content="news http://planet.ocaml.org/rss20.xml"
 	       ></div>
@@ -170,4 +241,4 @@ let has_even_leaf tree =
 
   </body>
 </html>
-    
+
