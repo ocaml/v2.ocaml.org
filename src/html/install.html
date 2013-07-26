@@ -12,7 +12,7 @@
     <h1>Install OCaml</h1>
 
 
-    <p>The most recent version is <a href="http://caml.inria.fr/download.en.html">OCaml 4.00.1</a>, released on
+    <p>The most recent version is <a href="releases/">OCaml 4.00.1</a>, released on
     2012-10-05. It can be easily installed in several ways. Broadly,
     the options are:</p>
 
@@ -27,9 +27,7 @@
 
     <p>The different options are detailed below. Most of these tools
     allow you to download and install OCaml libraries. You can also
-    find more packages on <a href=
-    "http://caml.inria.fr/ocaml/release.en.html#id239715">Inria's
-    website</a>.</p>
+    find more packages <a href="libraries.html">here</a>.</p>
     <br />
 
     <ul class="nav nav-tabs" style="clear: both;">
@@ -41,10 +39,12 @@
 	<ul class="dropdown-menu">
 	  <li><a href="#debian" data-toggle="tab">Debian</a></li>
 	  <li><a href="#fedora" data-toggle="tab">Fedora</a></li>
+	  <li><a href="#freebsd" data-toggle="tab">FreeBSD</a></li>
 	  <li><a href="#gentoo" data-toggle="tab">Gentoo</a></li>
 	  <li><a href="#macosx" data-toggle="tab">Mac OS X</a></li>
 	  <li><a href="#suse"   data-toggle="tab">SuSE</a></li>
 	  <li><a href="#ubuntu" data-toggle="tab">Ubuntu</a></li>
+	  <li><a href="#mageia" data-toggle="tab">Mageia</a></li>
 	  <li><a href="#windows" data-toggle="tab">Windows</a></li>
 	</ul>
       </li>
@@ -126,6 +126,7 @@ cd godi-rocketboost-20110811
          From source:
 	 <pre>
           $ git clone https://github.com/OCamlPro/opam
+          $ cd opam
           $ ./configure # (or ./configure --prefix=$HOME if you want to install under your $HOME)
           $ make
           $ make install
@@ -197,8 +198,8 @@ cd godi-rocketboost-20110811
 	<p>A good set of basic development libraries can be installed by
 	doing:</p>
 	<pre>
-          yum install ocaml-camlp4-devel ocaml-ocamldoc ocaml-findlib-devel \
-        ocaml-extlib-devel ocaml-calendar-devel</pre>
+        yum install ocaml-camlp4-devel ocaml-ocamldoc ocaml-findlib-devel \
+          ocaml-extlib-devel ocaml-calendar-devel</pre>
 
 	To list all OCaml packages use:
 	<pre>
@@ -222,6 +223,35 @@ cd godi-rocketboost-20110811
 	  Enterprise Linux.</li>
 	</ul>
       </div><!-- fedora -->
+
+      <div class="tab-pane" id="freebsd">
+	<h2>FreeBSD</h2>
+
+	<p><a href="http://www.freebsd.org/">FreeBSD</a> had a great
+	support for OCaml development for a long time.  There are
+	easy to use packages available for most popular platforms
+	(i386, amd64, powerpc, sparc64) for both the core languages
+	and supplimentary libraries, documentation, examples and
+	development tools.  There is a framework available to make
+	adding new ocaml application and libraries easy.</p>
+
+	<p>To install the OCaml compiler using packages do:</p>
+	<pre>
+        pkg_add -r ocaml</pre>
+	or
+	<pre>
+	pkg_add -r ocaml-nox11</pre>
+	to install OCaml without X11-dependent libraries (e.g. to deploy
+	on a headless server).
+
+	<p>To install the developer documentation, examples and emacs
+	editing macros use the <code>ocaml-doc</code>, <code>ocaml-examples</code>
+	and <code>ocaml-mode.el</code> packages.</p>
+
+	<p>The same packages can be installed via the port system.  There is a
+	a large set of libraries available in the <code>devel</code> category
+	of the ports system as well as in the specific topic-related categories.</p>
+      </div><!-- freebsd -->
 
       <div class="tab-pane" id="gentoo">
 	<h2>Gentoo</h2>
@@ -247,13 +277,60 @@ cd godi-rocketboost-20110811
 	<code>ocaml-3.12.0-11.1.2</code> (outdated).</p>
       </div><!-- suse -->
 
+      <div id="mageia" class="tab-pane">
+	<h2>Mageia</h2>
+
+	<p><a href="http://www.mageia.org/">Mageia</a> has some support
+        for OCaml in the distribution.</p>
+
+	<p>To install the OCaml compilers just do:</p>
+	<pre>
+        urpmi ocaml-compiler</pre>
+
+        <p>ocaml-compiler has no dependency on X11 libs,
+        to install the libs that have some
+        (for example the module Graphics):</p>
+	<pre>
+        urpmi ocaml-x11</pre>
+
+	<p>To install camlp4:</p>
+	<pre>
+        urpmi camlp4</pre>
+
+	<p>To install an OCaml library called '<code>foo</code>', and any
+	dependencies it needs, you would do:</p>
+	<pre>
+        urpmi ocaml-foo-devel</pre>
+
+	<p>A good set of basic development libraries can be installed by
+	doing:</p>
+	<pre>
+        urpmi camlp4-devel ocaml-doc ocaml-findlib-devel \
+          ocaml-extlib-devel ocaml-extlib-doc ocaml-batteries-devel \
+          ocaml-ounit-devel ocaml-sexplib-devel ocaml-xml-light-devel \
+          ocamlmakefile</pre>
+
+	To list OCaml packages use:
+	<pre>
+        urpmq --list | grep ocaml</pre>
+
+	<p><strong>Packaging policy</strong></p>
+
+	<ul>
+	  <li><a href="https://wiki.mageia.org/en/OCaml_policy"
+	  >OCaml packaging policy</a> in Mageia. All Mageia OCaml packages
+	  have to obey this policy, ensuring a minimum standard for
+	  all OCaml packages we ship.</li>
+	</ul>
+      </div><!-- mageia -->
+
       <div class="tab-pane" id="windows">
 	<h2>Windows</h2>
 
 	<p>Four ports of OCaml for Microsoft Windows are currently
 	available. For additional information, please consult the list
 	of <a href=
-	"http://caml.inria.fr/ocaml/portability.en.html">portability
+	"portability.html">portability
 	issues</a> or the <a href=
 	"http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32">Windows
 	release notes</a>.</p>
@@ -308,7 +385,7 @@ cd godi-rocketboost-20110811
 
 	<p>This is the easiest way to set up a basic OCaml
 	installation for OS X. For 10.4 (Tiger), simply <a href=
-	"http://caml.inria.fr/download.en.html">download</a> Intel
+	"releases/">download</a> Intel
 	disk image, mount the disk image, double-click on the
 	ocaml.pkg file contained within, and follow the instructions
 	from there.  Requirements for this package are OS X 10.4.x
@@ -429,7 +506,7 @@ cd godi-rocketboost-20110811
 	<p>The following packages are the most beneficial to install:</p>
 
 	<ul>
-	  <li><a href="http://caml.inria.fr/download.en.html">The
+	  <li><a href="releases/">The
 	  OCaml source distribution.</a></li>
 
 	  <li><a href=

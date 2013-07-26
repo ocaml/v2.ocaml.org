@@ -9,10 +9,13 @@ let text_description =
   ["OCamlCore Forge News"]
 
 let channel_of_urls urls =
-  let download_and_parse url = Rss.channel_of_string(Http.get url) in
+  let download_and_parse url =
+    let ch, err = Rss.channel_of_string(Http.get url) in
+    List.iter (fun e -> printf "RSS error (URL=%s): %s\n" url e) err;
+    ch in
   let channels = List.map download_and_parse urls in
   match channels with
-  | [] -> Rss.channel ~title:"No channel given" ~link:"" ~desc:"" []
+  | [] -> invalid_arg "Render_rss.channel_of_urls: empty URL list"
   | [c] -> c
   | c :: tl -> List.fold_left Rss.merge_channels c tl
 
@@ -20,19 +23,20 @@ let channel_of_urls urls =
 (* Our representation of a "post". *)
 type post = {
   title : string;
-  link : string;     (* url of the original post *)
+  link : Rss.url option;   (* url of the original post *)
   date : Rss.date option;
   author : string;
   email : string;    (* the author email, "" if none *)
   desc : string;
 }
 
-let digest_post p =
-  Digest.to_hex (Digest.string (p.title ^ p.link))
+let digest_post p = match p.link with
+  | None -> Digest.to_hex (Digest.string (p.title))
+  | Some u -> Digest.to_hex (Digest.string (p.title ^ Neturl.string_of_url u))
 
-let html_title p =
-  if p.link = "" then Data p.title
-  else Element("a", ["href", p.link], [Data p.title])
+let html_title p = match p.link with
+  | None -> Data p.title
+  | Some u -> Element("a", ["href", Neturl.string_of_url u], [Data p.title])
 
 let html_author p =
   if p.email = "" then Data p.author
@@ -52,13 +56,13 @@ let parse_item it =
       (String.sub title 0 i,
        String.sub title i1 (String.length title - i1))
     with Not_found -> "", title in
-  let link = string_of_option it.item_link in
   let link = match it.item_guid with
-    | None -> link
-    | Some e ->
+    | Some(Guid_permalink u) -> Some u
+    | None -> it.item_link
+    | Some(Guid_name u) ->
        (* Sometimes the guid is indicated with isPermaLink="false" but
           is nonetheless the only URL we get (e.g. ocamlpro). *)
-       if e.guid_permalink || link = "" then e.guid_name else link in
+       try Some(Neturl.parse_url u) with _ -> it.item_link in
   { title; link; author;
     email = string_of_option it.item_author;
     desc = string_of_option it.item_desc;
