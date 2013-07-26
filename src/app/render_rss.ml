@@ -136,8 +136,8 @@ let html_of_post p =
       [Element("pre", ["class", "rss-text"], [Data p.desc])]
     else
       let desc = Nethtml.parse (new Netchannels.input_string p.desc) in
-      if length_html desc < 1000 then desc
-      else toggle (prefix_of_html desc 1000) desc ~anchor:title_anchor
+      if length_html desc < 1200 then desc
+      else toggle (prefix_of_html desc 1200) desc ~anchor:title_anchor
   in
   let span_class c html = Element("span", ["class", c], html) in
   [Element("a", ["name", title_anchor], []);
