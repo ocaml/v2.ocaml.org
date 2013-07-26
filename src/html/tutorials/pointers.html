@@ -14,13 +14,13 @@
 <h2><a name="status"></a>Status of pointers in OCaml</h2>
 
 <p>
-  Pointers exist in Caml, and in fact they spread all over the
+  Pointers exist in OCaml, and in fact they spread all over the
   place. They are used either implicitely (in the most cases), or
   explicitely (in the rare occasions where implicit pointers are not
   more handy). The vast majority of pointers usages that are found in
-  usual programming languages simply disapear in Caml, or more
+  usual programming languages simply disapear in OCaml, or more
   exactly, those pointers are totally automatically handled by the
-  compiler and the Caml programmer can safely just ignore their
+  compiler and the OCaml programmer can safely just ignore their
   existence, focusing on the semantic of its program.  <br /> For
   instance lists or trees are defined without explicit pointers using
   a concrete datatype definition. The underlying implementation uses
@@ -29,14 +29,14 @@
 </p>
 <p>
   In the rare occasions where explicit pointers are needed (the most
-  common case is when translating in Caml an algorithm described in a
-  classic imperative language), Caml provides references that are
+  common case is when translating in OCaml an algorithm described in a
+  classic imperative language), OCaml provides references that are
   full-fledged pointers, even first class citizen pointers (references
   can be passed as argument, embedded into arbitrary data structures,
   and returned as function results).
 </p>
 
-<h3><a name="explicit"></a>Explicit pointers are Caml values of
+<h3><a name="explicit"></a>Explicit pointers are OCaml values of
   type <code>ref</code></h3>
 
 <p>
@@ -68,7 +68,7 @@ type
 </pre>
 
 <p>
-  We can translate this in Caml, using a sum type definition, without
+  We can translate this in OCaml, using a sum type definition, without
   pointers:
 </p>
 
@@ -116,12 +116,12 @@ function cons (x: integer; l: list): list;
 <p>
   We thus see that fields of list cells in the C program have to be
   mutable, otherwise initialization is impossible. By contrast in
-  Caml, allocation and initialization are merged into a single basic
+  OCaml, allocation and initialization are merged into a single basic
   operation: constructor application. This way, immutable data
   structures are definable (those data types are often refered to as
   “pure” or “functionnal” data structures). If physical
   modifications are necessary for other reasons than mere
-  initialization, Caml provides records with mutable fields. For
+  initialization, OCaml provides records with mutable fields. For
   instance, a list type defining lists whose elements can be in place
   modified could be written:
 </p>
@@ -145,7 +145,7 @@ and cell = {mutable hd : int; mutable tl : list};;
   Physical assignments are still useless to allocate mutable data: you
   write <code>Cons {hd = 1; tl = l}</code> to add
   <code>1</code> to the list <code>l</code>. Physical assigments
-  that remain in Caml programs should be just those assignments
+  that remain in OCaml programs should be just those assignments
   that are mandatory to implement the algorithm at hand.
 </p>
 
@@ -153,28 +153,28 @@ and cell = {mutable hd : int; mutable tl : list};;
 
 <p>
   Very often, pointers are used to implement physical modification of
-  data structures. In Caml programs this means using vectors or
+  data structures. In OCaml programs this means using vectors or
   mutable fields in records. For this kind of use of pointers, the
   Pascal's instruction:
   <code>x^.label := <b>val</b></code> (where
   <code>x</code> is a value of a record having a <code>label</code>
-  field) corresponds to the Caml construct
+  field) corresponds to the OCaml construct
   <code>x.label &lt;- <b>val</b></code> (where <code>x</code> is a
   value of a record having a <code>label</code> mutable field). The
   Pascal's <code>^</code> symbol simply disapears, since dereferencing
-  is automatically handled by the Caml compiler.
+  is automatically handled by the OCaml compiler.
 </p>
 
 <p>
   <strong>In conclusion:</strong>
-  You can use explicit pointers in Caml, exactly as in Pascal or C,
+  You can use explicit pointers in OCaml, exactly as in Pascal or C,
   but this is not natural, since you get back the usual drawbacks
   and difficulties of explicit pointers manipulation of classical
   algorithmic languages. See a more complete example below.
 </p>
 
 
-<h2><a name="def"></a>Defining pointers in Caml</h2>
+<h2><a name="def"></a>Defining pointers in OCaml</h2>
 
 <p>
   The general pointer type can be defined using the definition of a
