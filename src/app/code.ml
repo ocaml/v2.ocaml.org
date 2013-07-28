@@ -122,7 +122,7 @@ let highlight_ocaml =
     try
       let i1 = Str.search_forward beg_quot s 0 in
       try
-        let i2 = Str.search_forward end_quot s (i1 + 6) + 7 in
+        let i2 = Str.search_forward end_quot s (i1 + 5) + 7 in
         let before = String.sub s 0 i1 in
         let qstring = String.sub s i1 (i2 - i1) in
         let tail = color_string (String.sub s i2 (String.length s - i2)) in
