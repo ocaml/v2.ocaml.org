@@ -116,7 +116,22 @@ let highlight_ocaml =
      "<span class=\"kwb\">\\1</span>");
   ] in
   let subst = List.map (fun (re, t) -> (Str.regexp re, t)) subst in
+  let beg_quot = Str.regexp "&quot;" in
+  let end_quot = Str.regexp "[^\\]&quot;" in
+  let rec color_string s =
+    try
+      let i1 = Str.search_forward beg_quot s 0 in
+      try
+        let i2 = Str.search_forward end_quot s (i1 + 6) + 7 in
+        let before = String.sub s 0 i1 in
+        let qstring = String.sub s i1 (i2 - i1) in
+        let tail = color_string (String.sub s i2 (String.length s - i2)) in
+        before ^ "<span class=\"ocaml-string\">" ^ qstring ^ "</span>" ^ tail
+      with Not_found -> s (* quoted string not well terminated, bail out *)
+    with Not_found -> s (* no quote *)
+  in
   fun phrase -> (
+    let phrase = color_string phrase in
     List.fold_left (fun h (re, t) -> Str.global_replace re t h) phrase subst
   )
 
