@@ -6,6 +6,12 @@ open Printf
 open Code_types
 open Utils
 
+(* Force the linking of some modules for #load "camlp4o.cma" *)
+module S___ = Stream
+module Q___ = Queue
+module C___ = CamlinternalOO
+module D___ = Dynlink
+
 let () =
   eprintf "***** STARTING OCAML TOPLEVEL ******\n%!";
   Toploop.set_paths ();
