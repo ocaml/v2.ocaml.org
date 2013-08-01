@@ -87,12 +87,12 @@ ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach.ml
 <ul><li>FYI: Camlp4 is complicated to learn because a syntax extension consists of two domain-specific languages that are foreign to OCaml: parsing and code embedding. To add insult to injury, Camlp4 has a "<a href="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html" class="external" title="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html">revised syntax</a>" dialect of OCaml that can be used, in addition to the original OCaml dialect, both as the host (top-level) language and as the embedded language. This tutorial uses original OCaml as the host language and revised dialect as the embedded language. This choice is reflected in the camlp4 executable that we use here, <code>camlp4orf</code>. See <a href="http://brion.inria.fr/gallium/index.php/Using_Camlp4" class="external" title="http://brion.inria.fr/gallium/index.php/Using_Camlp4">Using Camlp4</a> for the explanation and additional options.</li></ul>
 <p>We can verify that it works:</p>
 <pre ml:content="ocaml">
-#load "camlp4o.cma";;
-(* Add directory where the syntax extension is compiled to the module
-   path (not required if pa_foreach.cmo is in the current directory). *)
-#directory "_build/src/html/tutorials/camlp4_3.10/";;
-#load "pa_foreach.cmo";;
-for s in List ["hello"; "world"] do print_endline s done;;
+  #load "camlp4o.cma";;
+  (* Add directory where the syntax extension is compiled to the module
+     path (not required if pa_foreach.cmo is in the current directory). *)
+  #directory "_build/src/html/tutorials/camlp4_3.10/";;
+  #load "pa_foreach.cmo";;
+  for s in List ["hello"; "world"] do print_endline s done;;
 </pre>
 
 <p>Now we have a rudimentary syntax extension. However, it is quite restrictive. For example, it would be nice to do pattern matching like this:</p>
@@ -154,7 +154,7 @@ Failure: "expr; expr: not allowed here, use do {...} or [|...|] to surround them
 
 <p>The problem is due to the desugared form, which becomes:</p>
 <pre ml:content="ocaml noeval">
-List.iter (fun s -> print_endline s; ()) ["hello"; "world"]
+  List.iter (fun s -> print_endline s; ()) ["hello"; "world"]
 </pre>
 
 <p>and this is ambiguous. Do we interpret the expression <code>fun s -> print_endline s; ()</code> as <code>(fun s -> print_endline s); ()</code> or <code>fun s -> (print_endline (); ())</code>? In order to avoid ambiguity, we wrap the sequence using <code>do {$seq$}</code> when it is a sequence. The function <code>mksequence'</code> in <code>Camlp4OCamlRevisedParser.ml</code> provides some inspiration how to handle this.</p>
@@ -164,6 +164,8 @@ List.iter (fun s -> print_endline s; ()) ["hello"; "world"]
 # for i = 0 to 5 do print_int i done;;
 Parse error: [ipatt] or [a_LIDENT] expected after "for" (in [expr])
 </pre>
+<!-- FIXME: If one tries to eval the code, an error is raised by
+     Errors.report_error -->
 
 <p>It turns out that the new rule we add for "for" doesn't play nice with the original rule. The solution is to rewrite the original rule so it becomes compatible with the new rule.</p>
 <p>The code listing that addresses these issues can be found below:</p>
@@ -189,38 +191,20 @@ END
 <p>Once the "for" keyword is matched, the parser proceeds to match the next token, but <code>ipatt</code> also matches <code>a_LIDENT</code> (a lowercase identifier is also a legal pattern). At this point, the parser fixes on a rule (whichever comes first) and no longer backtracks to the alternative option.</p>
 <p>The solution is to make the original for loop always match <code>ipatt</code>, but refuse anything except a lowercase identifier.</p>
 <p>We can now verify that everything works as expected.</p>
-<pre  ml:content="ocaml noeval">
-$ ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach.ml
-$ ocaml
-        Objective Caml version 3.10.0
-
-# #load "camlp4o.cma";;
-        Camlp4 Parsing version 3.10.0
-
-# #load "pa_foreach.cmo";;
-# let tbl = Hashtbl.create 3;;
-val tbl : ('_a, '_b) Hashtbl.t = <abstr>
-# Hashtbl.add tbl 0 "hello";;
-- : unit = ()
-# Hashtbl.add tbl 1 "world";;
-- : unit = ()
-# Hashtbl.add tbl 2 "foo";;
-- : unit = ()
-# for k v in Hashtbl tbl do Printf.printf "%d: %s\n" k v done;;
-0: hello
-1: world
-2: foo
-- : unit = ()
-# for i = 0 to 5 do print_int i done;;
-012345- : unit = ()
-# for k, v in List [0, "hello"; 1, "world"; 2, "foo"] do
-    Printf.printf "%d: %s\n" k v;
-    ()
+<pre>
+$ ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach3.ml
+</pre>
+<pre ml:content="ocaml">
+  #load "pa_foreach3.cmo";;
+  let tbl = Hashtbl.create 3;;
+  Hashtbl.add tbl 0 "hello";;
+  Hashtbl.add tbl 1 "world";;
+  Hashtbl.add tbl 2 "foo";;
+  for k v in Hashtbl tbl do Printf.printf "%d: %s\n" k v done;;
+  for i = 0 to 5 do print_int i done;;
+  for k, v in List [0, "hello"; 1, "world"; 2, "foo"] do
+    Printf.printf "%d: %s\n" k v
   done;;
-0: hello
-1: world
-2: foo
-- : unit = ()
 </pre>
 
 <h2><a name="Conclusion">Conclusion</a></h2>

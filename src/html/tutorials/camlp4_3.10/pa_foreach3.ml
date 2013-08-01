@@ -1,14 +1,13 @@
 open Camlp4.PreCast
 open Syntax
 
-let mksequence _loc e = function
-  | <:expr< $_$; $_$ >> as e -> <:expr< do {$e$} >>
+let mksequence _loc = function
+  | <:expr< $_$; $_$ >> as e -> <:expr< $e$ >>
   | e -> e
 
 let rec mkfun _loc patts e =
   match patts with
-  | p :: patts ->
-      <:expr< fun $p$ -> $mkfun _loc patts e$ >>
+  | p :: patts -> <:expr< fun $p$ -> $mkfun _loc patts e$ >>
   | [] -> mksequence _loc e
 
 let lident_of_patt p =
@@ -29,7 +28,7 @@ let () =
          <:expr<
            for $lident_of_patt i$ =
              $mksequence _loc e1$ $to:df$ $mksequence _loc e2$
-             do { $seq$ }
+             do $seq$ done
          >>
       | "for"; p = ipatt; patts = LIST0 ipatt; "in"; m = a_UIDENT; e = expr;
         "do"; seq = do_sequence ->
