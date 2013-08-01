@@ -2,28 +2,8 @@
 
 open Printf
 open Scanf
-
-(* FIXME: Use String.trim when 4.00.0 is spead enough. *)
-let is_space = function
-  | ' ' | '\012' | '\n' | '\r' | '\t' -> true
-  | _ -> false
-
-let trim s =
-  let len = String.length s in
-  let i = ref 0 in
-  while !i < len && is_space (String.unsafe_get s !i) do
-    incr i
-  done;
-  let j = ref (len - 1) in
-  while !j >= !i && is_space (String.unsafe_get s !j) do
-    decr j
-  done;
-  if !i = 0 && !j = len - 1 then
-    s
-  else if !j >= !i then
-    String.sub s !i (!j - !i + 1)
-  else
-    ""
+open Code_types
+open Utils
 
 (* To HTML, with syntax highlighting
  ***********************************************************************)
@@ -144,87 +124,41 @@ let highlight ?(syntax="ocaml") phrase =
 (* Eval OCaml code — in the same way the toploop does
  ***********************************************************************)
 
-let () =
-  eprintf "***** STARTING OCAML TOPLEVEL ******\n%!";
-  Toploop.set_paths ();
-  Toploop.initialize_toplevel_env();
-  (* (match Hashtbl.find Toploop.directive_table "rectypes" with *)
-  (*  | Toploop.Directive_none f -> f () *)
-  (*  | _ -> assert false); *)
-  Toploop.input_name := ""; (* no filename *)
-  Toploop.max_printer_steps := 20;
-  (* Add #load and #install_printer *)
-  let load cma = Topdirs.dir_load Format.str_formatter cma in
-  Toploop.(Hashtbl.add directive_table "load" (Directive_string load))
+type toplevel_ =
+  | Sleep of string (* command to execute to start the toplevel *)
+  | Run of (in_channel * out_channel)
 
-type outcome =
-  | Normal of string * string * string (* exec output, stdout, stderr *)
-  | Error of string
+type toplevel = toplevel_ ref
 
-let is_ready_for_read fd =
-  let fd_for_read, _, _ = Unix.select [fd] [] [] 0.001 in
-  fd_for_read <> []
+(* Store the information to start the toplevel — only start it if needed. *)
+let toplevel ?(pgm="./_build/src/app/code_top.byte") () : toplevel =
+  ref(Sleep pgm)
 
-let string_of_fd fd =
-  let buf = Buffer.create 1024 in
-  let s = String.create 256 in
-  while is_ready_for_read fd do
-    let r = Unix.read fd s 0 256 in
-    Buffer.add_substring buf s 0 r
-  done;
-  Buffer.contents buf
+let get_toplevel (top: toplevel) =
+  match !top with
+  | Run t -> t
+  | Sleep pgm ->
+     let (from_top, _) as t = Unix.open_process pgm in
+     top := Run t;
+     t
 
-let init_stdout = Unix.dup Unix.stdout
-let init_stderr = Unix.dup Unix.stderr
+let close_toplevel (top: toplevel) =
+  match !top with
+  | Sleep _ -> ()
+  | Run((from_top, to_top) as top) ->
+     (match Unix.close_process top with
+      | Unix.WEXITED i -> if i <> 0 then eprintf "WEXITED %i\n%!" i
+      | Unix.WSIGNALED i -> eprintf "WSIGNALED %i\n%!" i
+      | Unix.WSTOPPED i -> eprintf "WSTOPPED %i\n%!" i)
 
-let flush_std_out_err () =
-  Format.pp_print_flush Format.std_formatter ();
-  flush stdout;
-  Format.pp_print_flush Format.err_formatter ();
-  flush stderr
+let toploop_eval (top: toplevel) (phrase: string) : outcome =
+  let (from_top, to_top) = get_toplevel top in
+  output_string to_top phrase;
+  output_string to_top "\n;;\n"; (* code_top excepts ";;" on its own line *)
+  flush to_top;
+  let o = get_outcome from_top in
+  o
 
-let toploop_eval phrase =
-  if trim phrase = ";;" then Normal("", "", "")
-  else (
-    flush_std_out_err ();
-    let (out_in, out_out) = Unix.pipe() in
-    Unix.dup2 out_out Unix.stdout; (* Unix.stdout → out_out *)
-    let (err_in, err_out) = Unix.pipe() in
-    Unix.dup2 err_out Unix.stderr; (* Unix.stderr → err_out *)
-    let get_stdout_stderr_and_restore () =
-      flush_std_out_err ();
-      let out = string_of_fd out_in in
-      Unix.close out_in;
-      Unix.close out_out;
-      Unix.dup2 init_stdout Unix.stdout; (* restore initial stdout *)
-      let err = string_of_fd err_in in
-      Unix.close err_in;
-      Unix.close err_out;
-      Unix.dup2 init_stderr Unix.stderr; (* restore initial stderr *)
-      (out, err) in
-    try
-      let lexbuf = Lexing.from_string phrase in
-      let phrase = !Toploop.parse_toplevel_phrase lexbuf in
-      ignore(Toploop.execute_phrase true Format.str_formatter phrase);
-      let exec_output = Format.flush_str_formatter () in
-      let out, err = get_stdout_stderr_and_restore () in
-      Normal(exec_output, out, err)
-    with
-    | e ->
-       let out, err = get_stdout_stderr_and_restore () in
-       print_string out;
-       prerr_string err;
-       let backtrace_enabled = Printexc.backtrace_status () in
-       if not backtrace_enabled then Printexc.record_backtrace true;
-       (try Errors.report_error Format.str_formatter e
-        with exn ->
-          printf "Code.toploop_eval: the following error was raised during \
-                  error reporting for %S:\n%s\nError backtrace:\n%s\n%!"
-                 phrase (Printexc.to_string exn) (Printexc.get_backtrace ());
-       );
-       if not backtrace_enabled then Printexc.record_backtrace false;
-       Error(Format.flush_str_formatter ())
-  )
 
 let format_eval_input phrase =
   let open Nethtml in
@@ -232,8 +166,8 @@ let format_eval_input phrase =
    Element("span", ["class", "ocamltop-input"], [Data(highlight_ocaml phrase)]);
    Element("span", ["class", "ocamltop-prompt"], [Data ";;"])]
 
-let html_of_eval_silent phrase =
-  begin match toploop_eval (phrase ^ ";;") with
+let html_of_eval_silent t phrase =
+  begin match toploop_eval t phrase with
     | Normal _ -> ()
     | Error s ->
        (* as no output shows in the rendered page,
@@ -289,8 +223,8 @@ let highlight_error phrase err_msg =
   else
     html_encode phrase, err_msg
 
-let html_of_eval phrase =
-  let phrase, cls, out = match toploop_eval (phrase ^ ";;") with
+let html_of_eval t phrase =
+  let phrase, cls, out = match toploop_eval t phrase with
     | Normal(s, out, err) ->
        let phrase, err = highlight_error phrase err in
        phrase, "ocamltop-output",
@@ -319,7 +253,7 @@ and text_of_el = function
 let end_of_phrase = Str.regexp ";;[ \t\n]*"
 
 let split_phrases text =
-  List.map trim (Str.split end_of_phrase text)
+  List.map String.trim (Str.split end_of_phrase text)
 
 
 (* If option "silent" is passed, send the code to the toplevel but
@@ -331,18 +265,18 @@ let split_phrases text =
    purposedfully wrong code.
 *)
 
-let ocaml path_from_base ctx args =
+let ocaml t path_from_base ctx args =
   let process_phrases f =
     let phrases = split_phrases (text_of_html ctx#content) in
     List.concat (List.map f phrases) in
   match args with
-    | ["silent"] -> process_phrases html_of_eval_silent
+    | ["silent"] -> process_phrases (html_of_eval_silent t)
     | ["noeval"] ->
-       let code = html_encode (trim (text_of_html ctx#content)) in
+       let code = html_encode (String.trim (text_of_html ctx#content)) in
        let open Nethtml in
        [Element("span", ["class", "listing"], [Data(highlight_ocaml code)])]
 
     | other ->
       if other <> [] then
         eprintf "unkonwn \"ocaml\" args %S\n" (String.concat " " args);
-      process_phrases html_of_eval
+      process_phrases (html_of_eval t)

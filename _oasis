@@ -18,7 +18,14 @@ Library ocamlorg
 Executable build
   Path:           src/app
   MainIs:         build.ml
-  BuildDepends:   weberizer, ocamlorg, unix, str, dynlink
+  BuildDepends:   weberizer, ocamlorg, unix, str
+  CompiledObject: best
+  Install:        false
+
+Executable code_top
+  Path:	          src/app
+  MainIs:	  code_top.ml
+  BuildDepends:   unix, dynlink
 # The following cannot be conditional.  The correct compilations tags
 # are set in myocamlbuild.ml.  Wait for 4.00.0 to be mainstream to remove.
 #  BuildDepends+: compiler-libs.toplevel

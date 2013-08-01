@@ -13,12 +13,12 @@ let my_dispatch = function
   | After_rules ->
      if has_compiler_libs then
        (* <src/app/*.ml{,i}>: pkg_compiler-libs.toplevel *)
-       let files = ["src/app/code.cmo"; "src/app/code.cmx";
-                    "src/app/build.byte"; "src/app/build.native"] in
+       let files = ["src/app/code_top.cmo"; "src/app/code_top.cmx";
+                    "src/app/code_top.byte"; "src/app/code_top.native"] in
        List.iter (fun f -> tag_file f ["pkg_compiler-libs.toplevel"]) files
      else (
        ocaml_lib ~extern:true "toplevellib";
-       tag_file "src/app/build.byte" ["use_toplevellib"];
+       tag_file "src/app/code_top.byte" ["use_toplevellib"];
      )
   | _ -> ()
 

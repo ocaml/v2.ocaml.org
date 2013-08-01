@@ -153,14 +153,15 @@ let () =
     else if l2 = "en" then ".."
     else "../" ^ l2 in
   let process_html lang p =
-    eprintf "Processing %s\n" (Path.full p);
+    eprintf "Processing %s\n%!" (Path.full p);
     let tpl = Main.lang tpl lang in
     let tpl = Main.url_base tpl (Weberizer.Path.to_base p) in
     let url_base = if Path.in_base p then "" else Path.to_base p in
     Weberizer.Binding.string b "url_base" url_base;
+    let top = Code.toplevel () in
     let path_from_base =
       Filename.concat "src/html/" (Weberizer.Path.from_base p) in
-    Weberizer.Binding.fun_html b "ocaml" (Code.ocaml path_from_base);
+    Weberizer.Binding.fun_html b "ocaml" (Code.ocaml top path_from_base);
     let page = Weberizer.read (Path.full p) ~bindings:b in
     let tpl = Main.title tpl (Weberizer.title_of page) in
     let prefix = if lang = "en" then "" else "../" in
@@ -176,8 +177,8 @@ let () =
     let tpl = add_menu tpl lang p in
 
     let tpl = Main.navigation_of_path tpl p in
-    let tpl = Main.languages tpl
-                                      (Path.translations p ~langs ~rel_dir) in
+    let tpl = Main.languages tpl (Path.translations p ~langs ~rel_dir) in
+    Code.close_toplevel top;
     Main.render tpl
   in
   Weberizer.iter_html ~filter ~langs "src/html" ~out_dir process_html
