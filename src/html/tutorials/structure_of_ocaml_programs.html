@@ -125,18 +125,18 @@ bar (int *array, int offset, int size)
 
 <p class="first_para">You get the idea. Nested functions are, however, very useful and very heavily used in OCaml. Here is an example of a nested function from some real code:</p>
 <pre ml:content="ocaml">
-let read_whole_channel chan =
-  let buf = Buffer.create 4096 in
-  let rec loop () =
-    let newline = input_line chan in
-    Buffer.add_string buf newline;
-    Buffer.add_char buf '\n';
-    loop ()
-  in
-  try
-    loop ()
-  with
-    End_of_file -> Buffer.contents buf;;
+  let read_whole_channel chan =
+    let buf = Buffer.create 4096 in
+    let rec loop () =
+      let newline = input_line chan in
+      Buffer.add_string buf newline;
+      Buffer.add_char buf '\n';
+      loop ()
+    in
+    try
+      loop ()
+    with
+      End_of_file -> Buffer.contents buf;;
 </pre>
 
 <p class="first_para">Don't worry about what this code does - it contains many concepts which haven't been discussed in this tutorial yet. Concentrate instead on the central nested function called <code>loop</code> which takes just a unit argument.  You can call <code>loop ()</code> from within the function <code>read_whole_channel</code>, but it's not defined outside this function. The nested function can access variables defined in the main function (here <code>loop</code> accesses the local names <code>buf</code> and <code>chan</code>).</p>
@@ -159,7 +159,6 @@ let read_whole_channel chan =
 <p>A couple of examples should make this clear. (The two examples draw different things - try them out). Note the first example calls <code>open_graph</code> and the second one <code>Graphics.open_graph</code>.</p>
 <pre ml:content="ocaml noeval">
 (* To compile this example: ocamlc graphics.cma grtest1.ml -o grtest1 *)
-
 open Graphics;;
 
 open_graph &quot; 640x480&quot;;;
@@ -338,7 +337,6 @@ like:
 <p class="first_para">First snippet: The programmer opens a couple of standard libraries (eliding the <code>;;</code> because the next keyword is <code>open</code> and <code>let</code> respectively). He then creates a function called <code>file_dialog</code>. Inside this function he defines a named expression called <code>sel</code> using a two-line <code>let sel = ... in</code> statement. Then he calls several methods on <code>sel</code>.</p>
 <pre ml:content="ocaml noeval">
 (* First snippet *)
-
 open StdLabels
 open GMain
 
@@ -353,7 +351,6 @@ let file_dialog ~title ~callback ?filename () =
 <p class="first_para">Second snippet: Just a long list of global names at the top level. Notice that the author elided every single one of the <code>;;</code> because of Rule #2.</p>
 <pre ml:content="ocaml noeval">
 (* Second snippet *)
-
 let window = GWindow.window ~width:500 ~height:300 ~title:"editor" ()
 let vbox = GPack.vbox ~packing:window#add ()
 
@@ -372,7 +369,6 @@ let scrollbar = GRange.scrollbar `VERTICAL ~packing:hbox#pack ()
 <p>Notice in this snippet how we have a long series of essentially procedural commands. This is really a classic imperative program.</p>
 <pre ml:content="ocaml noeval">
 (* Third snippet *)
-
 open GdkKeysyms
 
 let () =
