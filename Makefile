@@ -1,6 +1,6 @@
 # auto-generated files, deleted by distclean
-AUTOFILES = src/lib/main.ml \
-            src/lib/main.mli \
+AUTOFILES = src/lib/ocamlorg.ml \
+            src/lib/ocamlorg.mli \
             setup.ml
 
 # Needed for streams/camlp4 for now.
@@ -20,20 +20,20 @@ web: build
 	cp -a src/html/ext/bootstrap/img/*.png $(WWW)/img/
 	cp -a src/html/CNAME $(WWW)/
 
-src/lib/main.ml src/lib/main.mli: src/lib/main.html src/lib/main.html.ml src/lib/main.html.mli
-	cd src/lib; weberizer main.html
+src/lib/ocamlorg.ml src/lib/ocamlorg.mli: src/lib/ocamlorg.html src/lib/ocamlorg.html.ml src/lib/ocamlorg.html.mli
+	cd src/lib; weberizer ocamlorg.html
 
 setup.ml: _oasis
 	oasis setup -setup-update dynamic
 
 SETUP = ocaml setup.ml
 
-setup.data: setup.ml src/lib/main.html src/lib/main.html.ml src/lib/main.html.mli
+setup.data: setup.ml src/lib/ocamlorg.html src/lib/ocamlorg.html.ml src/lib/ocamlorg.html.mli
 	$(SETUP) -configure $(CONFIGUREFLAGS)
 
 configure: setup.data
 
-build: setup.data src/lib/main.ml src/lib/main.mli
+build: setup.data src/lib/ocamlorg.ml src/lib/ocamlorg.mli
 	$(SETUP) -build $(BUILDFLAGS)
 
 doc: setup.data build

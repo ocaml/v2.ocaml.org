@@ -76,7 +76,7 @@ let eval phrase =
       Normal(exec_output, out, err)
     with
     | e ->
-       let out, err = get_stdout_stderr_and_restore () in
+       let _ = get_stdout_stderr_and_restore () in
        let backtrace_enabled = Printexc.backtrace_status () in
        if not backtrace_enabled then Printexc.record_backtrace true;
        (try Errors.report_error Format.str_formatter e
