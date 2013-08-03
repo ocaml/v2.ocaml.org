@@ -1,0 +1,6 @@
+# Convert the png into the .ico format with the tool "convert" from ImageMagick:
+convert ./favicon-ocaml.png ./favicon.ico
+
+# Check the result with:
+identify ./favicon.ico
+display ./favicon.ico

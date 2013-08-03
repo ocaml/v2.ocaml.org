@@ -5,7 +5,7 @@ module Path = Weberizer.Path
 
 (* Settings common to all pages. *)
 let tpl = Ocamlorg.shortcut_icon Ocamlorg.empty
-  "https://static.ocamlcore.org/official/images/favicon.ico"
+  "http://ocaml.org/img/favicon.ico"
 
 (* more = <li class="active"><a href="#">Tutorial</a></li>
    for and additional menu. *)
