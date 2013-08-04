@@ -3,9 +3,6 @@ AUTOFILES = src/lib/ocamlorg.ml \
             src/lib/ocamlorg.mli \
             setup.ml
 
-# Needed for streams/camlp4 for now.
-export OCAMLRUNPARAM=b
-
 # build the website
 WWW = www
 .PHONY: web
