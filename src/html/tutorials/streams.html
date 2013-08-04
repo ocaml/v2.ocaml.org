@@ -46,6 +46,7 @@ while true do ignore(Stream.next lines) done;;
 
 <p>As you can see, <code>Stream.next</code> either returns the next item in the stream or raises a <code>Stream.Failure</code> exception indicating that the stream is empty. Likewise, with a little help from the <code>Stream.of_list</code> constructor and the <code>Str</code> regular expression module, we could build a stream of lines from a string in memory:</p>
 <pre ml:content="ocaml">
+#load "str.cma";;
 let line_stream_of_string string =
   Stream.of_list (Str.split (Str.regexp &quot;\n&quot;) string)
 </pre>
