@@ -133,12 +133,22 @@ module Toc = struct
 
 end
 
+let stop_on_error = ref false
+let spec = [
+  ("--stop-on-error", Arg.Set stop_on_error,
+   " stop the build if an error is encountered");
+]
+
 let () =
+  Arg.parse (Arg.align spec) (fun _ -> raise(Arg.Bad "no anonymous arguments"))
+            "build <options>";
   let b = Weberizer.Binding.make() in
   Weberizer.Binding.fun_html b "rss" Render_rss.of_urls;
   Weberizer.Binding.fun_html b "news" Render_rss.news;
   Weberizer.Binding.fun_html b "opml" Render_rss.OPML.of_urls;
   Weberizer.Binding.fun_html b "toc" Toc.make;
+  if !stop_on_error then
+    Weberizer.Binding.on_error b (fun v a e -> raise e);
 
   let re_filter = Str.regexp "\\(menu\\|OCAML\\).*" in
   let filter p = not(Str.string_match re_filter (Path.filename p) 0) in

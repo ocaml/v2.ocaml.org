@@ -5,9 +5,17 @@ AUTOFILES = src/lib/ocamlorg.ml \
 
 # build the website
 WWW = www
-.PHONY: web
+.PHONY: web web-stop-on-error post-build
 web: build
 	if [ -x ./build.native ]; then ./build.native; else ./build.byte; fi
+	$(MAKE) post-build
+
+web-stop-on-error: build
+	if [ -x ./build.native ]; then ./build.native --stop-on-error; \
+	else ./build.byte --stop-on-error; fi
+	$(MAKE) post-build
+
+post-build:
 	cp -a src/html/css $(WWW)
 	cp -a src/html/js $(WWW)
 	cp -a src/html/ext/bootstrap/css/*.css $(WWW)/css/
@@ -62,7 +70,7 @@ distclean: setup.ml
 publish:
 	git checkout publish
 	git pull
-	make
+	$(MAKE) web-stop-on-error
 	commit=`git log -1 --pretty=format:%H`; \
 	temp=`mktemp -d temp-gh-pages.XXXXX`; \
 	git clone git@github.com:ocaml/ocaml.org.git $$temp -b gh-pages && \
