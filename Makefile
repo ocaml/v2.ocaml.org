@@ -68,7 +68,7 @@ publish:
 	git clone git@github.com:ocaml/ocaml.org.git $$temp -b gh-pages && \
 	rsync -av --delete --exclude=.git www/ $$temp && \
 	cd $$temp && \
-	git add . && \
+	git add --all . && \
 	git commit -a -m "publish $$commit" && \
 	git push && \
 	cd .. && \
