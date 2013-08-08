@@ -3,6 +3,16 @@
 open Printf
 open Nethtml
 
+module Rss = struct
+  include Rss
+
+  let aug = Str.regexp_string "AUg"
+  (* Temprorary fix until a new version of OCamlnet is released. *)
+  let string_of_date d =
+    let s = string_of_date d in
+    Str.replace_first aug "Aug" s
+end
+
 (** List of "authors" that send text descriptions (as opposed to
     HTML).  The formatting of the description must then be respected. *)
 let text_description =
