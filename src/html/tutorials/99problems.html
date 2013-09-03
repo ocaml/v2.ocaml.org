@@ -68,8 +68,8 @@ function toggleContent(id) {
     | _ :: t -> last t
 </pre>
 <pre ml:content="ocaml">
-  last [ "a" ; "b" ; "c" ; "d" ] = Some "d";;
-  last [] = None;;
+  last [ "a" ; "b" ; "c" ; "d" ];;
+  last [];;
 </pre>
 </div>
 
@@ -84,8 +84,8 @@ function toggleContent(id) {
     | _::t -> last_two t
 </pre>
 <pre ml:content="ocaml">
-  last_two [ "a" ; "b" ; "c" ; "d" ] = Some ("c", "d") ;;
-  last_two [ "a" ] = None;;
+  last_two [ "a" ; "b" ; "c" ; "d" ];;
+  last_two [ "a" ];;
 </pre>
 </div>
 
@@ -98,8 +98,8 @@ function toggleContent(id) {
     | h :: t -> if k = 1 then Some h else at (k-1) t
 </pre>
 <pre ml:content="ocaml">
-  at 3 [ "a" ; "b"; "c"; "d"; "e" ] = Some "c" ;;
-  at 3 [ "a" ] = None ;;
+  at 3 [ "a" ; "b"; "c"; "d"; "e" ];;
+  at 3 [ "a" ];;
 </pre>
 </div>
 
@@ -120,8 +120,8 @@ function toggleContent(id) {
     in aux 0 list
 </pre>
 <pre ml:content="ocaml">
-  length [ "a" ; "b" ; "c"] = 3;;
-  length [] = 0;;
+  length [ "a" ; "b" ; "c"];;
+  length [];;
 </pre>
 </div>
 
@@ -138,7 +138,7 @@ function toggleContent(id) {
     aux [] list
 </pre>
 <pre ml:content="ocaml">
-  rev ["a" ; "b" ; "c"] = ["c" ; "b" ; "a"]
+  rev ["a" ; "b" ; "c"]
 </pre>
 </div>
 
@@ -183,7 +183,6 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   flatten [ One "a" ; Many [ One "b" ; Many [ One "c" ; One "d" ] ; One "e" ] ]
-  = [ "a" ; "b" ; "c" ; "d" ; "e" ]
 </pre>
 </div>
 
@@ -198,7 +197,6 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   compress ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"]
-  = ["a";"b";"c";"a";"d";"e"];;
 </pre>
 </div>
 
@@ -218,8 +216,6 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   pack ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"d";"e";"e";"e";"e"]
-  = [["a";"a";"a";"a"]; ["b"]; ["c";"c"]; ["a";"a"]; ["d";"d"];
-     ["e";"e";"e";"e"]]
 </pre>
 </div>
 
@@ -240,7 +236,6 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"]
-  = [4,"a" ; 1,"b" ; 2,"c" ; 2,"a" ; 1,"d" ; 4,"e"]
 </pre>
 </div>
 
@@ -276,7 +271,6 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"]
-  = [Many (4,"a"); One "b"; Many (2,"c"); Many (2,"a"); One "d"; Many (4,"e")]
 </pre>
 </div>
 
@@ -297,7 +291,6 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   decode [Many (4,"a"); One "b"; Many (2,"c"); Many (2,"a"); One "d"; Many (4,"e")]
-  = ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"]
 </pre>
 </div>
 
@@ -324,8 +317,7 @@ function toggleContent(id) {
     List.rev (aux 0 [] list)
 </pre>
 <pre ml:content="ocaml">
-  encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"] =
-  [Many (4,"a"); One "b"; Many (2,"c"); Many (2,"a"); One "d"; Many (4,"e")]
+  encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"]
 </pre>
 </div>
 
@@ -338,7 +330,7 @@ function toggleContent(id) {
     | h :: t -> h :: h :: duplicate t
 </pre>
 <pre ml:content="ocaml">
-  duplicate ["a";"b";"c";"c";"d"] = ["a";"a";"b";"b";"c";"c";"c";"c";"d";"d"]
+  duplicate ["a";"b";"c";"c";"d"]
 </pre>
 </div>
 
@@ -358,7 +350,7 @@ function toggleContent(id) {
     aux [] (List.rev list)
 </pre>
 <pre ml:content="ocaml">
-  replicate ["a";"b";"c"] 3 = ["a";"a";"a";"b";"b";"b";"c";"c";"c"]
+  replicate ["a";"b";"c"] 3
 </pre>
 </div>
 
@@ -374,7 +366,6 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   drop ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 3
-  = ["a";"b";"d";"e";"g";"h";"j"]
 </pre>
 </div>
 
@@ -394,9 +385,8 @@ function toggleContent(id) {
     aux n [] list
 </pre>
 <pre ml:content="ocaml">
-  split ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 3
-  = (["a";"b";"c"], ["d";"e";"f";"g";"h";"i";"j"]);;
-  split ["a";"b";"c";"d"] 5 = (["a"; "b"; "c"; "d"], [])
+  split ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 3;;
+  split ["a";"b";"c";"d"] 5
 </pre>
 </div>
 
@@ -423,7 +413,7 @@ function toggleContent(id) {
 </pre>
   </div>
 <pre ml:content="ocaml">
-  slice ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 2 6 = ["c";"d";"e";"f";"g"]
+  slice ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 2 6
 </pre>
 </div>
 
@@ -446,10 +436,8 @@ function toggleContent(id) {
     else let a, b = split list n in b @ a
 </pre>
 <pre ml:content="ocaml">
-  rotate ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"] 3
-  = ["d"; "e"; "f"; "g"; "h"; "a"; "b"; "c"];;
+  rotate ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"] 3;;
   rotate ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"] (-2)
-  = ["g"; "h"; "a"; "b"; "c"; "d"; "e"; "f"]
 </pre>
 </div>
 
@@ -463,7 +451,7 @@ function toggleContent(id) {
     | h :: t -> if n = 0 then t else h :: remove_at (n-1) t
 </pre>
 <pre ml:content="ocaml">
-  remove_at 1 ["a";"b";"c";"d"] = ["a"; "c"; "d"]
+  remove_at 1 ["a";"b";"c";"d"]
 </pre>
 </div>
 
@@ -478,7 +466,7 @@ function toggleContent(id) {
     | h :: t as l -> if n = 0 then x :: l else h :: insert_at x (n-1) t
 </pre>
 <pre ml:content="ocaml">
-  insert_at "alfa" 1 ["a";"b";"c";"d"] = ["a";"alfa";"b";"c";"d"]
+  insert_at "alfa" 1 ["a";"b";"c";"d"]
 </pre>
 </div>
 
@@ -495,8 +483,8 @@ function toggleContent(id) {
     if a > b then List.rev (aux b a) else aux a b
 </pre>
 <pre ml:content="ocaml">
-  range 4 9 = [4;5;6;7;8;9];;
-  range 9 4 = [9;8;7;6;5;4]
+  range 4 9;;
+  range 9 4
 </pre>
 </div>
 
@@ -592,7 +580,6 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   extract 2 ["a";"b";"c";"d"]
-  = [["c";"d"]; ["b";"d"]; ["b";"c"]; ["a";"d"]; ["a";"c"]; ["a";"b"]]
 </pre>
 </div>
 
@@ -642,10 +629,6 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   group ["a";"b";"c";"d"] [2;1]
-  = [[["a"; "b"]; ["c"]]; [["a"; "c"]; ["b"]]; [["b"; "c"]; ["a"]];
-     [["a"; "b"]; ["d"]]; [["a"; "c"]; ["d"]]; [["b"; "c"]; ["d"]];
-     [["a"; "d"]; ["b"]]; [["b"; "d"]; ["a"]]; [["a"; "d"]; ["c"]];
-     [["b"; "d"]; ["c"]]; [["c"; "d"]; ["a"]]; [["c"; "d"]; ["b"]]]
 </pre>
 </div>
 
@@ -704,14 +687,9 @@ function toggleContent(id) {
 </pre>
 <pre ml:content="ocaml">
   length_sort [ ["a";"b";"c"]; ["d";"e"]; ["f";"g";"h"]; ["d";"e"];
-                ["i";"j";"k";"l"]; ["m";"n"]; ["o"] ]
-  = [["o"]; ["d"; "e"]; ["d"; "e"]; ["m"; "n"]; ["a"; "b"; "c"];
-     ["f"; "g"; "h"]; ["i"; "j"; "k"; "l"]] ;;
+                ["i";"j";"k";"l"]; ["m";"n"]; ["o"] ];;
   frequency_sort [ ["a";"b";"c"]; ["d";"e"]; ["f";"g";"h"]; ["d";"e"];
                    ["i";"j";"k";"l"]; ["m";"n"]; ["o"] ]
-  = [["i"; "j"; "k"; "l"]; ["o"]; ["a"; "b"; "c"]; ["f"; "g"; "h"];
-     ["d"; "e"]; ["d"; "e"]; ["m"; "n"]]
-</pre>
 </pre>
 </div>
 
@@ -752,8 +730,8 @@ function toggleContent(id) {
     if b = 0 then a else gcd b (a mod b)
 </pre>
 <pre ml:content="ocaml">
-  gcd 13 27 = 1;;
-  gcd 20536 7826 = 2
+  gcd 13 27 ;;
+  gcd 20536 7826
 </pre>
 </div>
 
@@ -797,8 +775,8 @@ function toggleContent(id) {
     if n = 1 then 1 else count_coprime 0 1
 </pre>
 <pre ml:content="ocaml">
-  phi 10 = 4;;
-  phi 13 = 12
+  phi 10;;
+  phi 13
 </pre>
 </div>
 
@@ -818,7 +796,7 @@ function toggleContent(id) {
     aux 2 n
 </pre>
 <pre ml:content="ocaml">
-  factors 315 = [3;3;5;7]
+  factors 315
 </pre>
 </div>
 
@@ -843,7 +821,7 @@ function toggleContent(id) {
     aux 2 n
 </pre>
 <pre ml:content="ocaml">
-  factors 315 = [3,2 ; 5,1 ; 7,1]
+  factors 315
 </pre>
 </div>
 
@@ -877,8 +855,8 @@ function toggleContent(id) {
     aux 1 (factors n)
 </pre>
 <pre ml:content="ocaml">
-  phi_improved 10 = 4;;
-  phi_improved 13 = 12
+  phi_improved 10;;
+  phi_improved 13
 </pre>
 </div>
 
@@ -924,7 +902,7 @@ function toggleContent(id) {
       if is_prime a then a :: rest else rest
 </pre>
 <pre ml:content="ocaml">
-  List.length (all_primes 2 7920) = 1000
+  List.length (all_primes 2 7920)
 </pre>
 </div>
 
@@ -948,7 +926,7 @@ function toggleContent(id) {
     aux 2
 </pre>
 <pre ml:content="ocaml">
-  goldbach 28 = (5,23)
+  goldbach 28
 </pre>
 </div>
 
@@ -974,12 +952,8 @@ function toggleContent(id) {
     List.filter (fun (_,(a,b)) -> a > lim && b > lim) (goldbach_list a b)
 </pre>
 <pre ml:content="ocaml">
-  goldbach_list 9 20
-  = [(10, (3, 7)); (12, (5, 7)); (14, (3, 11)); (16, (3, 13)); (18, (5, 13));
-     (20, (3, 17))];;
+  goldbach_list 9 20;;
   goldbach_limit 1 2000 50
-  = [(992, (73, 919)); (1382, (61, 1321)); (1856, (67, 1789));
-     (1928, (61, 1867))]
 </pre>
 </div>
 
@@ -1026,10 +1000,6 @@ notation, as in the following example:
 </pre>
 <pre ml:content="ocaml">
   table2 "a" "b" (And(Var "a", Or(Var "a", Var "b")))
-  = [(true, true, true);
-     (true, false, true);
-     (false, true, false);
-     (false, false, false) ]
 </pre>
 </div>
 
@@ -1063,11 +1033,7 @@ notation, as in the following example:
   let table vars expr = table_make [] vars expr
 </pre>
 <pre ml:content="ocaml">
-  table ["a"; "b"] (And(Var "a", Or(Var "a", Var "b")))
-  = [["a", true; "b", true], true;
-     ["a", true; "b", false], true;
-     ["a", false; "b", true], false;
-     ["a", false; "b", false], false ];;
+  table ["a"; "b"] (And(Var "a", Or(Var "a", Var "b")));;
   let a = Var "a" and b = Var "b" and c = Var "c" in
   table ["a"; "b"; "c"] (Or(And(a, Or(b,c)), Or(And(a,b), And(a,c))))
 </pre>
@@ -1100,9 +1066,9 @@ let rec gray n =
        List.map (prepend '0') g @ List.map (prepend '1') g
 </pre>
 <pre ml:content="ocaml">
-  gray 1 = ["0"; "1"];;
-  gray 2 = ["00"; "01"; "11"; "10"];;
-  gray 3 = ["000"; "001"; "011"; "010"; "110"; "111"; "101"; "100"]
+  gray 1;;
+  gray 2;;
+  gray 3
 </pre>
 </div>
 
@@ -1194,15 +1160,7 @@ let rec gray n =
       add_trees_with t1 t2 (add_trees_with t2 t1 [])
 </pre>
 <pre ml:content="ocaml">
-  cbal_tree 4
-  = [Node('x', Node('x', Empty, Empty),
-          Node('x', Node('x', Empty, Empty), Empty));
-     Node('x', Node('x', Empty, Empty),
-          Node('x', Empty, Node('x', Empty, Empty)));
-     Node('x', Node('x', Node('x', Empty, Empty), Empty),
-          Node('x', Empty, Empty));
-     Node('x', Node('x', Empty, Node('x', Empty, Empty)),
-          Node('x', Empty, Empty)); ];;
+  cbal_tree 4;;
   List.length(cbal_tree 40)
 </pre>
 </div>
@@ -1252,8 +1210,6 @@ let rec gray n =
 </pre>
 <pre ml:content="ocaml">
   construct [3;2;5;7;1]
-  = Node(3, Node(2, Node(1, Empty, Empty), Empty),
-         Node(5, Empty, Node(7, Empty, Empty)))
 </pre>
   <p>Then use this function to test the solution of the previous
     problem.</p>
@@ -1274,10 +1230,6 @@ let rec gray n =
 </pre>
 <pre ml:content="ocaml">
   sym_cbal_trees 5
-  = [Node('x', Node('x', Node('x', Empty, Empty), Empty),
-               Node('x', Empty, Node('x', Empty, Empty)));
-     Node('x', Node('x', Empty, Node('x', Empty, Empty)),
-               Node('x', Node('x', Empty, Empty), Empty)) ]
 </pre>
 <p>
   How many such trees are there with 57 nodes? Investigate about how
@@ -1373,8 +1325,8 @@ let rec gray n =
     | Node(_, l, r) -> count_leaves l + count_leaves r
 </pre>
 <pre ml:content="ocaml">
-  count_leaves Empty = 0;;
-  count_leaves example_tree = 3
+  count_leaves Empty;;
+  count_leaves example_tree
 </pre>
 </div>
 
@@ -1391,8 +1343,8 @@ let rec gray n =
     | Node(_, l, r) -> leaves l @ leaves r
 </pre>
 <pre ml:content="ocaml">
-  leaves Empty = [];;
-  leaves example_tree = ['d'; 'e'; 'g']
+  leaves Empty;;
+  leaves example_tree
 </pre>
 </div>
 
@@ -1409,8 +1361,8 @@ let rec gray n =
     | Node(c, l, r) -> internals l @ (c :: internals r)
 </pre>
 <pre ml:content="ocaml">
-  internals (Node('a', Empty, Empty)) = [];;
-  internals example_tree = ['b'; 'a'; 'c'; 'f']
+  internals (Node('a', Empty, Empty));;
+  internals example_tree;;
 </pre>
 </div>
 
@@ -1430,9 +1382,9 @@ let rec gray n =
        else at_level left (l - 1) @ at_level right (l - 1)
 </pre>
 <pre ml:content="ocaml">
-  at_level example_tree 2 = ['b'; 'c'];;
-  at_level example_tree 2 = ['b'; 'c'];;
-  at_level example_tree 5 = [];;
+  at_level example_tree 2;;
+  at_level example_tree 2;;
+  at_level example_tree 5;;
 </pre>
   <p>Using <code>at_level</code> it is easy to construct a function
     <code>levelorder</code> which creates the level-order sequence of
@@ -1657,7 +1609,7 @@ let rec gray n =
     List.fold_left (fun n t -> n + count_nodes t) 1 sub
 </pre>
 <pre ml:content="ocaml">
-  count_nodes (T('a', [T('f',[]) ])) = 2
+  count_nodes (T('a', [T('f',[]) ]))
 </pre>
 </div>
 
@@ -1703,7 +1655,7 @@ let rec gray n =
 <pre ml:content="ocaml">
   let t =
     T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])]);;
-  string_of_tree t = "afg^^c^bd^e^^^";;
+  string_of_tree t;;
   tree_of_string "afg^^c^bd^e^^^" = t;;
 </pre>
 </div>
@@ -1726,7 +1678,7 @@ let rec gray n =
   let ipl t = ipl_sub 0 t
 </pre>
 <pre ml:content="ocaml">
-  ipl t = 9
+  ipl t
 </pre>
 </div>
 
@@ -1743,8 +1695,8 @@ let rec gray n =
   let bottom_up t = prepend_bottom_up t []
 </pre>
 <pre ml:content="ocaml">
-  bottom_up (T('a', [T('b', [])])) = ['b'; 'a'];;
-  bottom_up t = ['g'; 'f'; 'c'; 'd'; 'e'; 'b'; 'a']
+  bottom_up (T('a', [T('b', [])]));;
+  bottom_up t
 </pre>
 </div>
 
@@ -1780,9 +1732,9 @@ let rec gray n =
     Buffer.contents buf
 </pre>
 <pre ml:content="ocaml">
-  lispy (T('a', [])) = "a";;
-  lispy (T('a', [T('b', [])])) = "(a b)";;
-  lispy t = "(a (f g) c (b d e))"
+  lispy (T('a', []));;
+  lispy (T('a', [T('b', [])]));;
+  lispy t
 </pre>
 </div>
 
@@ -1903,7 +1855,7 @@ let rec gray n =
     list_path g a [b]
 </pre>
 <pre ml:content="ocaml">
-  paths example_graph 'f' 'b' = [['f'; 'c'; 'b']; ['f'; 'b']]
+  paths example_graph 'f' 'b'
 </pre>
 </div>
 
@@ -1922,8 +1874,6 @@ let rec gray n =
 </pre>
 <pre ml:content="ocaml">
   cycles example_graph 'f'
-  = [['f'; 'b'; 'c'; 'f']; ['f'; 'c'; 'f']; ['f'; 'c'; 'b'; 'f'];
-     ['f'; 'b'; 'f']; ['f'; 'k'; 'f']]
 </pre>
 </div>
 

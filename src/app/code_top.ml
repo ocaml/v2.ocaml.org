@@ -105,6 +105,7 @@ let rec input_phrase ch =
   Buffer.contents buf
 
 let () =
+  Toploop.max_printer_steps := 500;
   try
     while true do
       (* When [Unix.close_process] is called, the pipe is closed and
