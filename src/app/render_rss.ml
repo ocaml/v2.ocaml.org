@@ -66,13 +66,14 @@ let parse_item it =
       (String.sub title 0 i,
        String.sub title i1 (String.length title - i1))
     with Not_found -> "", title in
-  let link = match it.item_guid with
-    | Some(Guid_permalink u) -> Some u
-    | None -> it.item_link
-    | Some(Guid_name u) ->
+  let link = match it.item_guid, it.item_link with
+    | Some(Guid_permalink u), _ -> Some u
+    | _, Some _ -> it.item_link
+    | Some(Guid_name u), _ ->
        (* Sometimes the guid is indicated with isPermaLink="false" but
           is nonetheless the only URL we get (e.g. ocamlpro). *)
-       try Some(Neturl.parse_url u) with _ -> it.item_link in
+       (try Some(Neturl.parse_url u) with _ -> it.item_link)
+    | None, None -> None in
   { title; link; author;
     email = string_of_option it.item_author;
     desc = string_of_option it.item_desc;
