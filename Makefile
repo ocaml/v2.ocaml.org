@@ -24,6 +24,7 @@ post-build:
 	cp -a src/html/img $(WWW)
 	cp -a src/html/ext/bootstrap/img/*.png $(WWW)/img/
 	cp -a src/html/CNAME $(WWW)/
+	cp -a src/html/meetings/ocaml/2013/proposals/ src/html/meetings/ocaml/2013/slides/ $(WWW)/meetings/ocaml/2013/.
 
 src/lib/ocamlorg.ml src/lib/ocamlorg.mli: src/lib/ocamlorg.html src/lib/ocamlorg.html.ml src/lib/ocamlorg.html.mli
 	cd src/lib; weberizer ocamlorg.html
