@@ -1,7 +1,6 @@
 # auto-generated files, deleted by distclean
 AUTOFILES = src/lib/ocamlorg.ml \
-            src/lib/ocamlorg.mli \
-            setup.ml
+            src/lib/ocamlorg.mli
 
 # build the website
 WWW = www
