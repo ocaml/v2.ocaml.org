@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    {{!x ifdef toc
+    <div class="span4">
+      <nav id="nav-secondary">
+        <ul class="nav nav-list">
+          <li class="nav-header"><a href="#">Contents</a></li>
+          {{! cat ((! get toc !)) !}}
+        </ul>
+      </nav>
+    </div>
+    x!}}
+
+    <div id="content-primary" class="span8">
+{{! cat tpl/tryocaml.html !}}
+      <div id='main-contents' class="content">
+        {{! get contents !}}
+      </div>
+    </div>
+  </div>
+</div>
