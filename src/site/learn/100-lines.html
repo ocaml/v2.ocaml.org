@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <title>100 lines of OCaml &ndash; OCaml</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Google Web Fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Domine:400,700" rel="stylesheet">
+
+        <!-- Only part of Bootstrap that we don't load from a CDN is our own customized CSS build. -->
+        <link href="/css/bootstrap.css" rel="stylesheet" media="screen">
+        
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+        <![endif]-->
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#"><img src="/img/ocaml.png" alt="OCaml"></a>
+                    <div class="nav-collapse collapse">
+            ((! input tpl/navbar.mpp !))
+                        <form class="navbar-search pull-right">
+                            <input class="search-query" type="text" placeholder="Search">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+    <div class="row">
+
+        
+        
+            
+                
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+
+        
+            <div class="span4">
+                <nav id="nav-secondary">
+                    <ul class="nav nav-list">
+                        <li class="nav-header"><a href="#">What is OCaml?</a></li>
+                        
+                            
+                                <li><a href="#">Strengths</a></li>
+                            
+                        
+                            
+                                <li><a href="#">A widely-used programming language</a></li>
+                            
+                        
+                            
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" href="#" data-target="#" data-toggle="dropdown">Overview of OCaml lanuage and tools</a>
+                                    <ul class="dropdown-menu">
+                                        
+                                            <li><a href="#">Safety</a></li>
+                                        
+                                            <li><a href="#">Functions</a></li>
+                                        
+                                            <li><a href="#">Imperative features</a></li>
+                                        
+                                            <li><a href="#">Error recovery</a></li>
+                                        
+                                            <li><a href="#">Data types</a></li>
+                                        
+                                            <li><a href="#">Aptness to symbolic computation</a></li>
+                                        
+                                            <li><a href="#">Polymorphism</a></li>
+                                        
+                                            <li><a href="#">Programming in the large</a></li>
+                                        
+                                            <li><a href="#">Object-oriented programming</a></li>
+                                        
+                                            <li><a href="#">Automatic memory management and garbage collection</a></li>
+                                        
+                                            <li><a href="#">Evaluation regime</a></li>
+                                        
+                                            <li><a href="#">Efficient compiler, efficient compiled code</a></li>
+                                        
+                                            <li><a href="#">Interactivity</a></li>
+                                        
+                                            <li><a href="#">Debugging facilities</a></li>
+                                        
+                                            <li><a href="#">Parsing</a></li>
+                                        
+                                            <li><a href="#">Portability</a></li>
+                                        
+                                    </ul>
+                                </li>
+                            
+                        
+                    </ul>
+                </nav>
+            </div>
+        
+
+        <div id="content-primary" class="span8">
+
+            <ul class="breadcrumb hidden-phone">
+                <li><a href="#">Home</a> <span class="divider"></span></li>
+                <li><a href="#">Learn</a> <span class="divider"></span></li>
+                <li class="active">100 lines</li>
+            </ul>
+
+            <div class="content">
+                <h1>100 lines of OCaml</h1>
+                <p>OCaml possesses an <a href='#'>interactive systems</a> called “toploop”, that lets you type OCaml code and have it evaluated immediately. It is a great way to learn the language and to quickly experiment with ideas. Below, we demonstrate the use of the top loop to illustrate basic capabilities of the language.</p>
+
+<h2 id='elementary_functions'>Elementary functions</h2>
+<dl class='row'>
+    <dt class='span4'>
+        
+<div class='highlight'><pre><code class='ocaml'><span class='o'>#</span> <span class='k'>let</span> <span class='n'>square</span> <span class='n'>x</span> <span class='o'>=</span> <span class='n'>x</span> <span class='o'>*</span> <span class='n'>x</span><span class='o'>;;</span>
+<span class='k'>val</span> <span class='n'>square</span> <span class='o'>:</span> <span class='kt'>int</span> <span class='o'>-&gt;</span> <span class='kt'>int</span> <span class='o'>=</span> <span class='o'>&lt;</span><span class='k'>fun</span><span class='o'>&gt;</span>
+<span class='o'>#</span> <span class='n'>square</span> <span class='mi'>3</span><span class='o'>;;</span>
+<span class='o'>-</span> <span class='o'>:</span> <span class='kt'>int</span> <span class='o'>=</span> <span class='mi'>9</span>
+<span class='o'>#</span> <span class='k'>let</span> <span class='k'>rec</span> <span class='n'>fact</span> <span class='n'>x</span> <span class='o'>=</span>
+    <span class='k'>if</span> <span class='n'>x</span> <span class='o'>&lt;=</span> <span class='mi'>1</span> <span class='k'>then</span> <span class='mi'>1</span> <span class='k'>else</span> <span class='n'>x</span> <span class='o'>*</span> <span class='n'>fact</span> <span class='o'>(</span><span class='n'>x</span> <span class='o'>-</span> <span class='mi'>1</span><span class='o'>);;</span>
+<span class='k'>val</span> <span class='n'>fact</span> <span class='o'>:</span> <span class='kt'>int</span> <span class='o'>-&gt;</span> <span class='kt'>int</span> <span class='o'>=</span> <span class='o'>&lt;</span><span class='k'>fun</span><span class='o'>&gt;</span>
+<span class='o'>#</span> <span class='n'>fact</span> <span class='mi'>5</span><span class='o'>;;</span>
+<span class='o'>-</span> <span class='o'>:</span> <span class='kt'>int</span> <span class='o'>=</span> <span class='mi'>120</span>
+<span class='o'>#</span> <span class='n'>square</span> <span class='mi'>120</span><span class='o'>;;</span>
+<span class='o'>-</span> <span class='o'>:</span> <span class='kt'>int</span> <span class='o'>=</span> <span class='mi'>14400</span>
+</code></pre></div>
+
+    </dt>
+    <dd class='span4'>
+        Let us define the square function and the recursive factorial function. Then, let us apply these functions to sample values. Note that, contrarily to popular languages, OCaml uses parentheses for grouping but not for the arguments of a function.   
+    </dd>
+</dl>
+<h2 id='automatic_memory_management'>Automatic memory management</h2>
+<dl class='row'>
+    <dt class='span4'>
+        
+<div class='highlight'><pre><code class='ocaml'><span class='o'>#</span> <span class='k'>let</span> <span class='n'>l</span> <span class='o'>=</span> <span class='mi'>1</span> <span class='o'>::</span> <span class='mi'>2</span> <span class='o'>::</span> <span class='mi'>3</span> <span class='o'>::</span> <span class='bp'>[]</span><span class='o'>;;</span>
+<span class='k'>val</span> <span class='n'>l</span> <span class='o'>:</span> <span class='kt'>int</span> <span class='kt'>list</span> <span class='o'>=</span> <span class='o'>[</span><span class='mi'>1</span><span class='o'>;</span> <span class='mi'>2</span><span class='o'>;</span> <span class='mi'>3</span><span class='o'>]</span>
+<span class='o'>#</span> <span class='o'>[</span><span class='mi'>1</span><span class='o'>;</span> <span class='mi'>2</span><span class='o'>;</span> <span class='mi'>3</span><span class='o'>];;</span>
+<span class='o'>-</span> <span class='o'>:</span> <span class='kt'>int</span> <span class='kt'>list</span> <span class='o'>=</span> <span class='o'>[</span><span class='mi'>1</span><span class='o'>;</span> <span class='mi'>2</span><span class='o'>;</span> <span class='mi'>3</span><span class='o'>]</span>
+<span class='o'>#</span> <span class='mi'>5</span> <span class='o'>::</span> <span class='n'>l</span><span class='o'>;;</span>
+<span class='o'>-</span> <span class='o'>:</span> <span class='kt'>int</span> <span class='kt'>list</span> <span class='o'>=</span> <span class='o'>[</span><span class='mi'>5</span><span class='o'>;</span> <span class='mi'>1</span><span class='o'>;</span> <span class='mi'>2</span><span class='o'>;</span> <span class='mi'>3</span><span class='o'>]</span>
+</code></pre></div>
+
+    </dt>
+    <dd class='span4'>
+        All allocation and deallocation operations are fully automatic. For example, let us consider simply linked lists. Lists are predefined in OCaml. The empty list is written <code>[]</code>. The constructor that allows prepending an element to a list is written <code>::</code> (in infix form).
+    </dd>
+</dl>
+<h2 id='polymorphism_sorting_lists'>Polymorphism: sorting lists</h2>
+<dl class='row'>
+    <dt class='span4'>
+        
+<div class='highlight'><pre><code class='ocaml'><span class='o'>#</span> <span class='k'>let</span> <span class='k'>rec</span> <span class='n'>sort</span> <span class='o'>=</span> <span class='k'>function</span>
+  <span class='o'>|</span> <span class='bp'>[]</span> <span class='o'>-&gt;</span> <span class='bp'>[]</span>
+  <span class='o'>|</span> <span class='n'>x</span> <span class='o'>::</span> <span class='n'>l</span> <span class='o'>-&gt;</span> <span class='n'>insert</span> <span class='n'>x</span> <span class='o'>(</span><span class='n'>sort</span> <span class='n'>l</span><span class='o'>)</span>
+<span class='ow'>and</span> <span class='n'>insert</span> <span class='n'>elem</span> <span class='o'>=</span> <span class='k'>function</span>
+  <span class='o'>|</span> <span class='bp'>[]</span> <span class='o'>-&gt;</span> <span class='o'>[</span><span class='n'>elem</span><span class='o'>]</span>
+  <span class='o'>|</span> <span class='n'>x</span> <span class='o'>::</span> <span class='n'>l</span> <span class='o'>-&gt;</span> <span class='k'>if</span> <span class='n'>elem</span> <span class='o'>&lt;</span> <span class='n'>x</span> <span class='k'>then</span>                <span class='n'>elem</span> <span class='o'>::</span> <span class='n'>x</span> <span class='o'>::</span> <span class='n'>l</span>
+              <span class='k'>else</span> <span class='n'>x</span> <span class='o'>::</span> <span class='n'>insert</span>                <span class='n'>elem</span> <span class='n'>l</span><span class='o'>;;</span>
+<span class='k'>val</span> <span class='n'>sort</span> <span class='o'>:</span> <span class='k'>&#39;</span><span class='n'>a</span> <span class='kt'>list</span> <span class='o'>-&gt;</span> <span class='k'>&#39;</span><span class='n'>a</span> <span class='kt'>list</span> <span class='o'>=</span> <span class='o'>&lt;</span><span class='k'>fun</span><span class='o'>&gt;</span>
+<span class='k'>val</span> <span class='n'>insert</span> <span class='o'>:</span> <span class='k'>&#39;</span><span class='n'>a</span> <span class='o'>-&gt;</span> <span class='k'>&#39;</span><span class='n'>a</span> <span class='kt'>list</span> <span class='o'>-&gt;</span> <span class='k'>&#39;</span><span class='n'>a</span> <span class='kt'>list</span> <span class='o'>=</span> <span class='o'>&lt;</span><span class='k'>fun</span><span class='o'>&gt;</span>
+</code></pre></div>
+
+    </dt>
+    <dd class='span4'>
+        Insertion sort is defined using two recursive functions.
+    </dd>
+</dl><dl class='row'>
+    <dt class='span4'>
+        
+<div class='highlight'><pre><code class='ocaml'><span class='o'>#</span> <span class='n'>sort</span> <span class='o'>[</span><span class='mi'>2</span><span class='o'>;</span> <span class='mi'>1</span><span class='o'>;</span> <span class='mi'>0</span><span class='o'>];;</span>
+<span class='o'>-</span> <span class='o'>:</span> <span class='kt'>int</span> <span class='kt'>list</span> <span class='o'>=</span> <span class='o'>[</span><span class='mi'>0</span><span class='o'>;</span> <span class='mi'>1</span><span class='o'>;</span> <span class='mi'>2</span><span class='o'>]</span>
+<span class='o'>#</span> <span class='n'>sort</span> <span class='o'>[</span><span class='s2'>&quot;yes&quot;</span><span class='o'>;</span> <span class='s2'>&quot;ok&quot;</span><span class='o'>;</span> <span class='s2'>&quot;sure&quot;</span><span class='o'>;</span> <span class='s2'>&quot;ya&quot;</span><span class='o'>;</span> <span class='s2'>&quot;yep&quot;</span><span class='o'>];;</span>
+<span class='o'>-</span> <span class='o'>:</span> <span class='kt'>string</span> <span class='kt'>list</span> <span class='o'>=</span> <span class='o'>[</span><span class='s2'>&quot;ok&quot;</span><span class='o'>;</span> <span class='s2'>&quot;sure&quot;</span><span class='o'>;</span> <span class='s2'>&quot;ya&quot;</span><span class='o'>;</span> <span class='s2'>&quot;yep&quot;</span><span class='o'>;</span> <span class='s2'>&quot;yes&quot;</span><span class='o'>]</span>
+</code></pre></div>
+
+    </dt>
+    <dd class='span4'>
+        Note that the type of the list elements remains unspecified: it is represented by a type <em>variable</em> <code>'a</code>. Thus <code>sort</code> can be applied both to a list of integers and to a list of strings.
+    </dd>
+</dl>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+        <footer id="footer" class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <ul class="nav pull-right">
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Find us on GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Load javascript from CDN -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+    </body>
+</html>
