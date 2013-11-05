@@ -1,1 +1,1 @@
-license.html
+consortium-license.md
