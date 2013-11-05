@@ -1,155 +1,190 @@
-<head>
-<title>Common error messages</title>
-</head>
-<body>
-<h1><span>Common error messages</span></h1>
+<!-- ((! set title Common error messages !)) ((! set learn !)) -->
 
-<p>This page gives a list of quick explanations for some error or warning messages that are emitted by the OCaml compilers. Longer explanations are usually given in dedicated sections of this tutorial.</p>
-<a name="Type_errors"></a><h2><span>Type errors</span></h2>
-<h3>This expression has type ... but is here used with type ...</h3>
-<p>When the type of an object is not compatible with the context in which it is used, it is frequent to obtain this kind of message:</p>
-<pre ml:content="ocaml">
+# Common error messages
+This page gives a list of quick explanations for some error or warning
+messages that are emitted by the OCaml compilers. Longer explanations
+are usually given in dedicated sections of this tutorial.
+
+## Type errors
+###  This expression has type ... but is here used with type ...
+When the type of an object is not compatible with the context in which
+it is used, it is frequent to obtain this kind of message:
+
+```tryocaml
 1 + 2.5;;
-</pre>
+```
+"This expression has type *X* but is here used with type *Y*" means that
+if the contents of the expression is isolated (2.5), its type is
+inferred as *X* (float). But the context, i.e. everything which is
+around (1 + ...) tells that the gap expects an expression of type *Y*
+(int) which is not compatible with *X*.
 
-<p>&quot;This expression has type <em>X</em> but is here used with type <em>Y</em>&quot; means that if the contents of the expression is isolated (2.5), its type  is inferred as <em>X</em> (float). But the context, i.e. everything which is around (1 + ...) tells that the gap expects an expression of type <em>Y</em> (int) which is not compatible with <em>X</em>.</p>
-<p>More disturbing is the following message:</p>
-<pre>
+More disturbing is the following message:
+
+```tryocaml
  This expression has type my_type but is here used with type my_type
-</pre>
+```
+This error happens often while testing some type definitions using the
+toplevel. In OCaml, it is perfectly legal to define a type with a name
+that is already taken by another type. Consider the following session:
 
-<p>This error happens often while testing some type definitions using the toplevel.  In OCaml, it is perfectly legal to define a type with a name that is already taken by another type. Consider the following session:</p>
-<pre ml:content="ocaml">
+```tryocaml
 type my_type = A | B;;
 let a = A;;
 type my_type = A | B;;
 let b = B;;
 a = b;;
-</pre>
+```
+For the compiler, the second definition of my_type is totally
+independent from the first definition. So we have defined two types
+which have the same name. Since "a" was defined earlier, it belongs to
+the first type while "b" belongs to the second type. In this example,
+redefining "a" after the last definition of my_type solves the problem.
+This kind of problem should not happen in real programs unless you use
+the same name for the same type in the same module, which is highly
+discouraged.
 
-<p>For the compiler, the second definition of my_type is totally independent from the first definition. So we have defined two types which have the same name. Since &quot;a&quot; was defined earlier, it belongs to the first type while &quot;b&quot; belongs to the second type. In this example, redefining &quot;a&quot; after the last definition of my_type solves the problem. This kind of problem should not happen in real programs unless you use the same name for the same type in the same module, which is highly discouraged.</p>
-<h3>Warning: This optional argument cannot be erased</h3>
-<p>Functions with optional arguments must have at least one non-labelled argument. For instance, this is not OK:</p>
-<pre ml:content="ocaml">
+###  Warning: This optional argument cannot be erased
+Functions with optional arguments must have at least one non-labelled
+argument. For instance, this is not OK:
+
+```tryocaml
 let f ?(x = 0) ?(y = 0) = print_int (x + y)
-</pre>
+```
+The solution is simply to add one argument of type unit, like this:
 
-<p>The solution is simply to add one argument of type unit, like this:</p>
-<pre ml:content="ocaml">
+```tryocaml
 let f ?(x = 0) ?(y = 0) () = print_int (x + y);;
-</pre>
+```
+See the [Labels](labels.html "Labels") section for more details on
+functions with labelled arguments.
 
-<p>See the <a href="labels.html" class="internal" title="Labels">Labels</a> section for more details on functions with labelled arguments.</p>
+###  The type of this expression... contains type variables that cannot be generalized
+This happens in some cases when the full type of an object is not known
+by the compiler when it reaches the end of the compilation unit (file)
+but for some reason it cannot remain polymorphic. Example:
 
-<h3>The type of this expression... contains type variables that cannot be generalized</h3>
-
-<p>This happens in some cases when the full type of an object is not
-known by the compiler when it reaches the end of the compilation unit
-(file) but for some reason it cannot remain polymorphic. Example:</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
 let x = ref None
-</pre>
-<p>triggers the following message during the compilation:</p>
-<pre>
+```
+triggers the following message during the compilation:
+
+```tryocaml
 The type of this expression, '_a option ref,
 contains type variables that cannot be generalized
-</pre>
+```
+Solution: help the compiler with a type annotation, like for instance:
 
-<p>Solution: help the compiler with a type annotation, like for instance:</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
 let x : string option ref = ref None
-</pre>
-<p>or:</p>
-<pre ml:content="ocaml noeval">
+```
+or:
+
+```tryocaml
 let x = ref (None : string option)
-</pre>
+```
+Data of type `'_a` may be allowed temporarily, for instance during a
+toplevel session. It means that the given object has an unknown type,
+but it cannot be any type: it is not polymorphic data. In the toplevel,
+our example gives these results:
 
-<p>Data of type <code>'_a</code> may be allowed temporarily, for
-  instance during a toplevel session. It means that the given object has
-  an unknown type, but it cannot be any type: it is not polymorphic
-  data. In the toplevel, our example gives these results:</p>
-<pre ml:content="ocaml">
+```tryocaml
 let x = ref None
-</pre>
+```
+The compiler tells us that the type of x is not fully known yet. But by
+using `x` later, the compiler can infer the type of `x`:
 
-<p>The compiler tells us that the type of x is not fully known
-  yet. But by using <code>x</code> later, the compiler can infer the
-  type of&nbsp;<code>x</code>:</p>
-<pre ml:content="ocaml">
+```tryocaml
 x := Some 0
-</pre>
-<p>Now <code>x</code> has a known type:</p>
-<pre ml:content="ocaml">
+```
+Now `x` has a known type:
+
+```tryocaml
 x;;
-</pre>
+```
+More details are given in the [OCaml
+FAQ](http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles "http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles").
 
-<p>More details are given in the <a href="http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles" class="external" title="http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles">OCaml FAQ</a>.</p>
+## Pattern matching warnings and errors
+###  This pattern is unused
+This warning should be considered as an error, since there is no reason
+to intentionally keep such code. It may happen when the programmer
+introduced a catch-all pattern unintentionally such as in the following
+situation:
 
-<h2><a name="Pattern_matching_warnings_and_errors"></a>
-  Pattern matching warnings and errors</h2>
-
-<h3>This pattern is unused</h3>
-
-<p>This warning should be considered as an error, since there is no reason to intentionally keep such code. It may happen when the programmer introduced a catch-all pattern unintentionally such as in the following situation:</p>
-<pre ml:content="ocaml">
+```tryocaml
   let test_member x tup =
     match tup with
     | (y, _) | (_, y) when y = x -> true
     | _ -> false;;
-</pre>
+```
+Obviously, the programmer had a misconception of what OCaml's pattern
+matching is about. Remember the following:
 
-<p>Obviously, the programmer had a misconception of what OCaml's pattern matching is about. Remember the following:</p>
-<ul><li>the tree of cases is traversed linearly, from left to right. There is <em>no backtracking</em> as in regexp matching.</li>
-<li>a guard (&quot;when&quot; clause) is not part of a pattern. It is simply a condition which is evaluated at most once and is used as a last resort to jump to the next match case.</li>
-<li>lowercase identifiers (bindings such as &quot;y&quot; above) are just names, so they will always match.</li></ul>
-<p>In our example, it is now clear that only the first item of the pair will ever be tested. This leads to the following results:</p>
-<pre ml:content="ocaml">
+* the tree of cases is traversed linearly, from left to right. There
+ is *no backtracking* as in regexp matching.
+* a guard ("when" clause) is not part of a pattern. It is simply a
+ condition which is evaluated at most once and is used as a last
+ resort to jump to the next match case.
+* lowercase identifiers (bindings such as "y" above) are just names,
+ so they will always match.
+
+In our example, it is now clear that only the first item of the pair
+will ever be tested. This leads to the following results:
+
+```tryocaml
 test_member 1 (1, 0);;
 test_member 1 (0, 1);;
-</pre>
+```
+###  This pattern-matching is not exhaustive
+OCaml's pattern matching can check whether a set of patterns is
+exhaustive or not, based on the *type* only. So in the following
+example, the compiler doesn't know what range of ints the "mod" operator
+would return:
 
-<h3>This pattern-matching is not exhaustive</h3>
-<p>OCaml's pattern matching can check whether a set of patterns is exhaustive or not, based on the <em>type</em> only. So in the following example, the compiler doesn't know what range of ints the &quot;mod&quot; operator would return:</p>
-<pre  ml:content="ocaml">
+```tryocaml
   let is_even x =
     match x mod 2 with
     | 0 -> true
     | 1 | -1 -> false
-</pre>
+```
+A short solution without pattern matching would be:
 
-<p>A short solution without pattern matching would be:</p>
-<pre ml:content="ocaml">
+```tryocaml
 let is_even x = x mod 2 = 0
-</pre>
+```
+In general, that kind of simplification is not possible and the best
+solution is to add a catch-all case which should never be reached:
 
-<p>In general, that kind of simplification is not possible and the best solution is to add a catch-all case which should never be reached:</p>
-<pre ml:content="ocaml">
+```tryocaml
   let is_even x =
     match x mod 2 with
     | 0 -> true
     | 1 | -1 -> false
     | _ -> assert false
-</pre>
+```
+## Problems recompiling valid programs
+###  x.cmi is not a compiled interface
+When recompiling some old program or compiling a program from an
+external source that was not cleaned properly, it is possible to get
+this error message:
 
-
-<h2><a name="Problems_recompiling_valid_programs"></a>
-  Problems recompiling valid programs</h2>
-
-<h3>x.cmi is not a compiled interface</h3>
-<p>When recompiling some old program or compiling a program from an external source that was not cleaned properly, it is possible to get this error message:</p>
-<pre>
+```tryocaml
 some_module.cmi is not a compiled interface
-</pre>
+```
+It means that some_module.cmi is not valid according to the *current
+version* of the OCaml compiler. Most of the time, removing the old
+compiled files (*.cmi, *.cmo, *.cmx, ...) and recompiling is
+sufficient to solve this problem.
 
-<p>It means that some_module.cmi is not valid according to the <em>current version</em> of the OCaml compiler. Most of the time, removing the old compiled files (*.cmi, *.cmo, *.cmx, ...) and recompiling is sufficient to solve this problem.</p>
+###  Warning: Illegal backslash escape in string
+Recent versions of OCaml warn you against unprotected backslashes in
+strings since they should be doubled. Such a message may be displayed
+when compiling an older program, and can be turned off with the "-w x"
+option.
 
-<h3>Warning: Illegal backslash escape in string</h3>
-<p>Recent versions of OCaml warn you against unprotected backslashes in strings since they should be doubled. Such a message may be displayed when compiling an older program, and can be turned off with the &quot;-w x&quot; option.</p>
-<pre ml:content="ocaml">
+```tryocaml
 "\e\n" (* bad practice *);;
 "\\e\n" (* good practice *);;
-</pre>
 
-
-</div>
-</body>
+```

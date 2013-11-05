@@ -1,14 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns=  "http://www.w3.org/1999/xhtml">
-  <head>
-    <meta content="IE=8" http-equiv="X-UA-Compatible"/>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <title>Call for Presentations</title>
-  </head>
-  <body>
-    
-<pre>
+<!-- ((! set title Call for Presentations !)) -->
+
+```
 ==============================================================================
 
                            OCAML 2013
@@ -84,7 +76,6 @@ Program Committee
 * Sarah Zennou, EADS IW, France
 
 If you have any questions, please e-mail:
-Michel Mauny &lt;michel.mauny AT ensta-paristech DOT fr&gt;
-</pre>
-  </body>
-</html>
+Michel Mauny <michel.mauny AT ensta-paristech DOT fr>
+
+```

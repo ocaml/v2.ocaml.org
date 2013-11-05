@@ -1,25 +1,20 @@
-<head>
-<title>Camlp4 3.10 :: static_old_syntax.ml</title>
-</head>
-<body>
+<!-- ((! set title Camlp4 3.10  !)) ((! set learn !)) -->
 
-<h1>Camlp4 3.10: static old syntax</h1>
+# Camlp4 3.10: static old syntax
+static_old_syntax.ml:
 
-<p>static_old_syntax.ml:</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
 type t1 = A | B
 type t2 = Foo of string * t1
 module Gram = Grammar.GMake(...)
-let foo = Gram.Entry.mk &quot;foo&quot;
-let bar = Gram.Entry.mk &quot;bar&quot;
+let foo = Gram.Entry.mk "foo"
+let bar = Gram.Entry.mk "bar"
 GEXTEND Gram
   GLOBAL: foo bor;
-  foo: [ [ &quot;foo&quot;; i = LIDENT; b = bar -&gt; Foo(i, b) ] ];
-  bar: [ [ &quot;?&quot; -&gt; A | &quot;.&quot; -&gt; B ] ];
+  foo: [ [ "foo"; i = LIDENT; b = bar -> Foo(i, b) ] ];
+  bar: [ [ "?" -> A | "." -> B ] ];
 END;;
-Gram.Entry.parse foo (Stream.of_string &quot;foo x?&quot;) = Foo(&quot;x&quot;, A)
-GDELETE_RULE Gram foo: &quot;foo&quot;; LIDENT; bar END
-</pre>
+Gram.Entry.parse foo (Stream.of_string "foo x?") = Foo("x", A)
+GDELETE_RULE Gram foo: "foo"; LIDENT; bar END
 
-  
- 
+```
