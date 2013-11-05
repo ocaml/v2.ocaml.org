@@ -1,15 +1,8 @@
-<?xml version="1.0"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- ((! set title The OCaml License for Consortium Members !)) ((! set documentation !)) -->
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>License for Consortium Members</title>
-  </head>
-  <body>
-    <h1>The OCaml License for Consortium Members</h1>
-    <pre xml:space="preserve">
+# The OCaml License for Consortium Members
+
+```text
 Copyright (c) 1996, 1997, 1998, 1999, 2000, 2001, 2002, INRIA
 
 Permission is hereby granted, free of charge, to the Licensee
@@ -46,6 +39,6 @@ BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-    </pre>
-  </body>
-</html>
+    
+
+```

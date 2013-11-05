@@ -1,104 +1,69 @@
-<html>
-  <head>
-    <title>Development Tools</title>
-  </head>
-  <body>
-    <h1>Development Tools</h1>
+<!-- ((! set title Development Tools !)) ((! set learn !)) -->
 
-    <div class="row-fluid">
-      <div class="span1">
-        <img src="img/under_construction_icon.gif" alt="Under Construction" />
-      </div>
-    </div>
+# Development Tools
+![Under Construction](img/under_construction_icon.gif "")
 
-    <h2>Editor modes</h2>
+## Editor modes
+###  Emacs
+###  vi
+###  Acme
+[Acme](https://en.wikipedia.org/wiki/Acme_(text_editor)) is a
+minimalistic text editor from plan9. While there are no
+language-specific features to the editor, there are a few tricks one can
+use to make it friendlier:
 
-    <h3>Emacs</h3>
+####  Plumbimg
+To allow plumbing of OCaml error messages, add the following to your
+plumbing rules:
 
-
-    <h3>vi</h3>
-
-
-<h3 id="acme">Acme</h3>
-
-<p><a href="https://en.wikipedia.org/wiki/Acme_(text_editor)">Acme</a> is a minimalistic text editor from plan9. While there are no language-specific features to the editor, there are a few tricks one can use to make it friendlier:</p>
-
-<h4 id="plumbimg">Plumbimg</h4>
-
-<p>To allow plumbing of OCaml error messages, add the following to your plumbing rules:
-<pre><code>type is text
-data matches &#39;File &quot;([.a-zA-Z¡-&lt;U+FFFF&gt;0-9_/\-]*[a-zA-Z¡-&lt;U+FFFF&gt;0-9_/\-])&quot;, line ([0-9]+), characters ([0-9]+)-([0-9]+):&#39;
+```tryocaml
+type is text
+data matches 'File "([.a-zA-Z¡-<U+FFFF>0-9_/\-]*[a-zA-Z¡-<U+FFFF>0-9_/\-])", line ([0-9]+), characters ([0-9]+)-([0-9]+):'
 arg isfile      $1
 data set        $file
 attr add        addr=$2-#0+#$3,$2-#0+#$4
 plumb to edit
-plumb client $editor</code></pre>
-Once this is integrated to your plumbing rules, select the location line with the right mouse button to jump directly to the error.
-</p>
+plumb client $editor
+```
+####  OCaml top-level
+Simply execute `win` to get a shell and run `ocaml` from within this
+shell.
 
-<h4 id="ocaml-top-level">OCaml top-level</h4>
+####  Commenting
+The following `Edit` command will comment your selection.
 
-<p>Simply execute <code>win</code> to get a shell and run <code>ocaml</code> from within this shell.</p>
-<p>One can also pipe part of the file to the top-level using the standard mechanism. The following sends the whole content of the window to the top level: <code>Edit ,&gt;ocaml</code>.</p>
+```tryocaml
+Edit .{i/(*
+a/*)
+}
+```
+####  Indenting
+You can pipe your selection (or the whole file) through an external
+indenter such as [<code>ocp-indent</code>](https://github.com/OCamlPro/ocp-indent)
+middle-clicking on the command `|ocp-indent`.
 
-<h4 id="indenting">Indenting</h4>
+## Compilation tools
+###  Findlib/ocamlfind
+[<code>ocamlfind</code>](http://projects.camlcity.org/projects/findlib.html/) is
+`pkg-config` for OCaml.
 
-<p>You can pipe your selection (or the whole file) through an external indenter such as <a href="https://github.com/OCamlPro/ocp-indent"><code>ocp-indent</code></a> middle-clicking on the command <code>|ocp-indent</code>. Alternatively, the one liner <code>Edit ,|ocp-indent</code> indents the whole file.</p>
+###  ocamlbuild
+###  oasis
+###  OCamlMakefile
+###  OMake
+[OMake](http://omake.metaprl.org/index.html) is a build system designed
+for scalability and portability. It uses a syntax similar to make
+utilities you may have used, but it features many additional
+enhancements.
 
-<h4 id="module-man-pages">man pages</h4>
+See the [guide](http://omake.metaprl.org/manual/omake.html).
 
-<p>If the modules from the standard library have their man pages installed (which depends on the packaging of OCaml), you can get the documentation for a module by right-clicking <code>ModuleName(3)</code>.</p>
+## Distributing libraries
+* Oasis oasis-db
+* godi
+* [Yypkg](http://yypkg.forge.ocamlcore.org)
 
-
-
-    <h2><a id="compilation_tools">Compilation tools</a></h2>
-
-    <h3><a id="ocamlfind" ></a>Findlib/ocamlfind</h3>
-
-    <p><a href="http://projects.camlcity.org/projects/findlib.html/"
-	  ><code>ocamlfind</code></a> is <code>pkg-config</code> for
-	  OCaml.</p>
-
-    <h3><a id="ocamlbuild" ></a>ocamlbuild</h3>
-
-    <h3><a id="oasis" ></a>oasis</h3>
-
-    <h3><a id="ocamlmakefile" ></a>OCamlMakefile</h3>
-
-    <p></p>
+## Debugging
+Debugging facilities are described [here](debug.html).
 
 
-    <h3><a id="omake" ></a>OMake</h3>
-
-    <p><a href="http://omake.metaprl.org/index.html" >OMake</a> is a
-      build system designed for scalability and portability. It uses a
-      syntax similar to make utilities you may have used, but it
-      features many additional enhancements.</p>
-
-    <p>See
-      the <a href="http://omake.metaprl.org/manual/omake.html"
-	   >guide</a>.
-    </p>
-
-    <h2>Distributing libraries</h2>
-
-    <ul>
-      <li>Oasis
-
-    oasis-db
-      </li>
-      <li>
-	godi
-      </li>
-      <li><a href="http://yypkg.forge.ocamlcore.org" >Yypkg</a>
-      </li>
-    </ul>
-
-    <h2>Debugging</h2>
-    <p>
-      Debugging facilities are described <a
-      href="debug.html">here</a>.
-    </p>
-
-  </body>
-</html>

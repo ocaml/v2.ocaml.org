@@ -1,239 +1,133 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta content="IE=8" http-equiv="X-UA-Compatible" />
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-  <title>Tutorials</title>
-</head>
-<body>
-  <h1>OCaml tutorials</h1>
+<!-- ((! set title OCaml Tutorials !)) ((! set learn !)) -->
 
-  <div class="disclaimer">
-    <h4>Your Help is Needed</h4>
-    <small>Many of the tutorials below need updating and tutorials on
-    many new topics are needed. Please contribute by visiting this
-    project's repo on <a
-    href="https://github.com/ocaml/ocaml.org">GitHub</a>; you may
-    use the issue tracker there to request or offer new tutorials. 
-    Thanks!</small>
-  </div>
+# OCaml tutorials
 
-  <table border="0">
-    <tr><td style="width:50%" valign="top">
-	<ul>
-	  <li><a href="basics.html">Basics</a></li>
-	  <li><a href="structure_of_ocaml_programs.html"
-		 >Structure of OCaml Programs</a></li>
-          <li><a href="map.html">Maps (Dictionaries)</a></li>
-          <li><a href="set.html">Sets</a></li>
-          <li><a href="hashtbl.html">Hash Tables</a></li>
-          <li><a href="comparison_of_standard_containers.html">Comparison of Standard Containers</a></li>
-	  <li><a href="data_types_and_matching.html"
-		 >Data Types and Matching</a></li>
-	  <li><a href="pointers.html"
-		 >Pointers in OCaml</a></li>
-	  <li><a href="null_pointers_asserts_and_warnings.html"
-		 >Null Pointers, Asserts, and Warnings</a></li>
-	  <li><a href="functional_programming.html"
-		 >Functional Programming</a></li>
-	  <li><a href="modules.html">Modules</a></li>
-	  <li><a href="if_statements_loops_and_recursion.html"
-		 >If Statements, Loops, and Recursion</a></li>
-	  <li><a href="labels.html">Labels</a></li>
-	  <li><a href="objects.html">Objects</a></li>
-	  <li><a href="common_error_messages.html"
-		 >Common error messages</a></li>
-	  <li><a href="guidelines.html" >OCaml Programming Guidelines</a></li>
-	  <li><a href="format.html">Formatting and wrapping text</a></li>
-	  <li>
-	    <a href="99problems.html">99 Problems [solved] in
-	    OCaml</a></li>
-	</ul>
-    </td><td style="width: 50%" valign="top">
-	<ul>
-	  <li><a href="introduction_to_gtk.html">Introduction to
-	      Gtk</a></li>
-	  <li><a href="garbage_collection.html">Garbage Collection</a></li>
-	  <li><a href="performance_and_profiling.html"
-		 >Performance and Profiling</a></li>
-	  <li><a href="calling_c_libraries.html">Calling C libraries</a></li>
-	  <li><a href="calling_fortran_libraries.html"
-		 >Calling Fortran libraries</a></li>
-	  <li><a href="ocaml_and_the_web.html">OCaml and the Web</a></li>
-	  <li><a href="standard_library_examples.html"
-		 >Standard Library Examples</a></li>
-	  <li><a href="compiling_ocaml_projects.html"
-		 >Compiling OCaml projects</a></li>
-	  <li><a href="command-line_arguments.html"
-		 >Command-line arguments</a></li>
-	  <li><a href="file_manipulation.html">File manipulation</a></li>
-	  <li><a href="camlp4_3.10.html">Camlp4 3.10</a></li>
-	  <li><a href="filenames.html">Filenames and extensions</a></li>
-	  <li><a href="streams.html">Streams</a></li>
-	  <li><a href="stream_expressions.html">Stream Expressions</a></li>
-	  <li><a href="acknowledgements.html"
-		 ><em>Acknowledgements</em></a></li>
-	</ul>
-      </td></tr>
-  </table>
+####  Your Help is Needed
+Many of the tutorials below need updating and tutorials on many new
+topics are needed. Please contribute by visiting this project's repo on
+[GitHub](https://github.com/ocaml/ocaml.org); you may use the issue
+tracker there to request or offer new tutorials. Thanks!
 
-  <h2>External Links</h2>
-  <h3>Learn by Doing</h3>
-  <ul>
-    <li>
-      <a href="http://try.ocamlpro.com/">Try OCaml Online</a> (by
-      OCamlPro) allows you to immediately start learning OCaml in your
-      browser, without installing it. Compiled as a single Javascript
-      page, it gives you the full power of OCaml, even when your are
-      disconnected from the network.
-    </li>
+* [Basics](basics.html)
+* [Structure of OCaml Programs](structure_of_ocaml_programs.html)
+* [Maps (Dictionaries)](map.html)
+* [Sets](set.html)
+* [Hash Tables](hashtbl.html)
+* [Comparison of Standard
+ Containers](comparison_of_standard_containers.html)
+* [Data Types and Matching](data_types_and_matching.html)
+* [Pointers in OCaml](pointers.html)
+* [Null Pointers, Asserts, and
+ Warnings](null_pointers_asserts_and_warnings.html)
+* [Functional Programming](functional_programming.html)
+* [Modules](modules.html)
+* [If Statements, Loops, and
+ Recursion](if_statements_loops_and_recursion.html)
+* [Labels](labels.html)
+* [Objects](objects.html)
+* [Common error messages](common_error_messages.html)
+* [OCaml Programming Guidelines](guidelines.html)
+* [Formatting and wrapping text](format.html)
+* [99 Problems [solved] in OCaml](99problems.html)
 
-    <li>
-      <a
-      href="http://pleac.sourceforge.net/pleac_ocaml/">PLEAC-OCaml</a>
-      provides OCaml solutions to the complete set of problems
-      originally posed in the very successful Perl Cookbook. OCaml is
-      one of only 3 languages for which the full set of solutions has
-      been provided.
-    </li>
+* [Introduction to Gtk](introduction_to_gtk.html)
+* [Garbage Collection](garbage_collection.html)
+* [Performance and Profiling](performance_and_profiling.html)
+* [Calling C libraries](calling_c_libraries.html)
+* [Calling Fortran libraries](calling_fortran_libraries.html)
+* [OCaml and the Web](ocaml_and_the_web.html)
+* [Standard Library Examples](standard_library_examples.html)
+* [Compiling OCaml projects](compiling_ocaml_projects.html)
+* [Command-line arguments](command-line_arguments.html)
+* [File manipulation](file_manipulation.html)
+* [Camlp4 3.10](camlp4_3.10.html)
+* [Filenames and extensions](filenames.html)
+* [Streams](streams.html)
+* [Stream Expressions](stream_expressions.html)
+* [<em>Acknowledgements</em>](acknowledgements.html)
 
-    <li>
-      <a href="http://rosettacode.org/wiki/Category:OCaml">Rosetta</a>
-      is a programming chrestomathy site. It provides solutions to the
-      same task in many languages. Currently there are few tasks with
-      OCaml solutions provided, but perhaps you would like to add new
-      solutions.
-    </li>
-  </ul>
+## External Links
+###  Learn by Doing
+* [Try OCaml Online](http://try.ocamlpro.com/) (by OCamlPro) allows
+ you to immediately start learning OCaml in your browser, without
+ installing it. Compiled as a single Javascript page, it gives you
+ the full power of OCaml, even when your are disconnected from the
+ network.
+* [PLEAC-OCaml](http://pleac.sourceforge.net/pleac_ocaml/) provides
+ OCaml solutions to the complete set of problems originally posed in
+ the very successful Perl Cookbook. OCaml is one of only 3 languages
+ for which the full set of solutions has been provided.
+* [Rosetta](http://rosettacode.org/wiki/Category:OCaml) is a
+ programming chrestomathy site. It provides solutions to the same
+ task in many languages. Currently there are few tasks with OCaml
+ solutions provided, but perhaps you would like to add new solutions.
 
-  <h3>Tutorials on OCaml</h3>
-  <ul>
-    <li>
-      <a href="http://caml.inria.fr/pub/docs/manual-ocaml/"> The OCaml
-      System</a> (by Inria) is the official user's manual. The first
-      part provides an introduction to the core language, objects and
-      classes, and modules. Previous versions are <a
-      href="http://caml.inria.fr/pub/docs/">here</a>.
-    </li>
+###  Tutorials on OCaml
+* [The OCaml System](http://caml.inria.fr/pub/docs/manual-ocaml/) (by
+ Inria) is the official user's manual. The first part provides an
+ introduction to the core language, objects and classes, and modules.
+ Previous versions are [here](http://caml.inria.fr/pub/docs/).
+* [Tutorial on the C
+ API](http://www.linux-nantes.org/~fmonnier/OCaml/ocaml-wrapping-c.html)
+ (by Florent Monnier) explains how to write C stubs to call C
+ functions from OCaml and back.
+* [OCaml for scientific
+ computation](http://www.soton.ac.uk/~fangohr/software/ocamltutorial/)
+ (by Thomas Fiscbacher), covers a broad sample of OCaml, from the
+ basics to the C api.
+* [A Concise Introduction to
+ OCaml](http://www.csc.villanova.edu/~dmatusze/resources/ocaml/ocaml.html)
+ (by David Matuszek) gives a concise, yet broad, overview of the
+ language and the standard library. It is rather old but most of what
+ it says remains valid.
+* [How to wrap C functions to
+ OCaml](http://www.linux-nantes.org/~fmonnier/OCaml/ocaml-wrapping-c.html)
+ (by Florent Monnier) explains how to write extensions for OCaml in C
+ in an understandable way and features a lot of examples.
 
-    <li>
-      <a href="http://www.linux-nantes.org/~fmonnier/OCaml/ocaml-wrapping-c.html">
-      Tutorial on the C API</a> (by Florent Monnier) explains how to
-      write C stubs to call C functions from OCaml and back.
-    </li>
+###  WikiBooks on OCaml
+* [fr.wikibooks.org/wiki/OCaml](http://fr.wikibooks.org/wiki/OCaml):
+ (in French)<br />
+ Introduction on functional programming using OCaml.
+* [fr.wikiversity.org/wiki/Premiers_pas_en_OCaml](http://fr.wikiversity.org/wiki/Premiers_pas_en_OCaml):
+ (in French)<br />
+ The basics of the OCaml language.
 
-    <li>
-      <a href="http://www.soton.ac.uk/~fangohr/software/ocamltutorial/">
-      OCaml for scientific computation</a> (by Thomas Fiscbacher),
-      covers a broad sample of OCaml, from the basics to the C api.
-    </li>
+###  Tutorials on Tools
+There are also tutorials that can be useful to learn how to use popular
+tools and libraries.
 
-    <li>
-      <a href="http://www.csc.villanova.edu/~dmatusze/resources/ocaml/ocaml.html">
-      A Concise Introduction to OCaml</a> (by David Matuszek)
-      gives a concise, yet broad, overview of the language and the
-      standard library. It is rather old but most of what it says
-      remains valid.
-    </li>
+* [Camlp4
+ Tutorial](http://ambassadortothecomputers.blogspot.com/p/reading-camlp4.html)
+ (by Jake Donham), to build syntax extensions for OCaml with Camlp4.
+* [Camlp4
+ Tutorial](http://brion.inria.fr/gallium/index.php/Syntax_extension_tutorial),
+ to build syntax extensions for OCaml with Camlp4.
+* [OCamllex
+ Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamllex-tutorial/)
+ (by SooHyoung Oh), on how to create lexers using the `ocamllex` tool
+ of the standard distribution.
+* [OCamlyacc
+ Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamlyacc-tutorial/)
+ (by SooHyoung Oh), on how to create parsers using the `ocamlyacc`
+ tool of the standard distribution.
+* [LablGTK 2.0
+ Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/lablgtk2/lablgtk2-tutorial/)
+ (by SooHyoung Oh), on how to create graphical applications with the
+ LablGTK library.
+* [Camlp5](camlp5.html)
 
-    <li>
-      <a href="http://www.linux-nantes.org/~fmonnier/OCaml/ocaml-wrapping-c.html">
-      How to wrap C functions to OCaml</a> (by Florent Monnier)
-      explains how to write extensions for OCaml in C in an
-      understandable way and features a lot of examples.
-    </li>
-  </ul>
+###  Coming From Another Language
+These tutorials help learn OCaml from the perspective of being familiar
+with another language.
 
-  <h3>WikiBooks on OCaml</h3>
-  <ul>
-    <li>
-      <a href="http://fr.wikibooks.org/wiki/OCaml"
-      >fr.wikibooks.org/wiki/OCaml</a>: (in French)<br/>
-      Introduction on functional programming using OCaml.
-    </li>
+* [Beyond functional programming in Haskell: an introduction to
+ OCaml](http://www.slideshare.net/michielovereem/beyond-functional-programming-in-haskell-an-introduction-to-ocaml)
 
-    <li>
-      <a href="http://fr.wikiversity.org/wiki/Premiers_pas_en_OCaml"
-      >fr.wikiversity.org/wiki/Premiers_pas_en_OCaml</a>: (in French)<br/>
-      The basics of the OCaml language.
-    </li>
-  </ul>
+###  Advanced tutorials &amp; articles
+* [Manual](http://caml.inria.fr/pub/docs/manual-ocaml/index.html)
+* [Using, Understanding, and Unraveling The OCaml
+ Language](http://caml.inria.fr/pub/docs/u3-ocaml/index.html), *From
+ Practice to Theory and vice versa*, by Didier Rémy.
+* [Functional Unparsing](http://www.brics.dk/RS/98/12/)
 
-  <h3>Tutorials on Tools</h3>
-  <p>There are also tutorials that can be useful to learn how to use
-  popular tools and libraries.</p>
-
-  <ul>
-    <li>
-      <a
-      href="http://ambassadortothecomputers.blogspot.com/p/reading-camlp4.html">Camlp4
-      Tutorial</a> (by Jake Donham), to build syntax extensions for OCaml with Camlp4.
-    </li>
-
-    <li>
-      <a
-      href="http://brion.inria.fr/gallium/index.php/Syntax_extension_tutorial">Camlp4
-      Tutorial</a>, to build syntax extensions for OCaml with Camlp4.
-    </li>
-
-    <li>
-      <a
-      href="http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamllex-tutorial/">OCamllex
-      Tutorial</a> (by SooHyoung Oh), on how to create lexers using
-      the <code>ocamllex</code> tool of the standard distribution.
-    </li>
-
-    <li>
-      <a
-      href="http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamlyacc-tutorial/">OCamlyacc
-      Tutorial</a> (by SooHyoung Oh), on how to create parsers using
-      the <code>ocamlyacc</code> tool of the standard distribution.
-    </li>
-
-    <li>
-      <a
-      href="http://plus.kaist.ac.kr/~shoh/ocaml/lablgtk2/lablgtk2-tutorial/">LablGTK
-      2.0 Tutorial</a> (by SooHyoung Oh), on how to create graphical
-      applications with the LablGTK library.
-    </li>
-
-    <li>
-      <a href="camlp5.html">Camlp5</a>
-    </li>
-  </ul>
-
-  <h3>Coming From Another Language</h3>
-  <p>These tutorials help learn OCaml from the perspective of being
-  familiar with another language.</p>
-
-  <ul>
-    <li>
-      <a
-      href="http://www.slideshare.net/michielovereem/beyond-functional-programming-in-haskell-an-introduction-to-ocaml"
-      >Beyond functional programming in Haskell: an introduction to
-      OCaml</a>
-    </li>
-  </ul>
-
-  <h3><a name="#advanced">Advanced tutorials &amp; articles</a></h3>
-  <ul>
-    <li>
-      <a href="http://caml.inria.fr/pub/docs/manual-ocaml/index.html"
-      >Manual</a>
-    </li>
-
-    <li>
-      <a href="http://caml.inria.fr/pub/docs/u3-ocaml/index.html"
-      >Using, Understanding, and Unraveling The OCaml Language</a>,
-      <em>From Practice to Theory and vice versa</em>, by Didier Rémy.
-    </li>
-
-    <li>
-      <a href="http://www.brics.dk/RS/98/12/" >Functional
-      Unparsing</a>
-    </li>
-  </ul>
-
-</body>
-</html>

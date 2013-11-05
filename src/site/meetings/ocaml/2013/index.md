@@ -1,80 +1,66 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta content="IE=8" http-equiv="X-UA-Compatible"/>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <title>OCaml 2013</title>
-  </head>
-  <body>
-    
-    <div class="row-fluid">
-      <div class="span9">
-        <div class="hero-unit big-announcements">
-          <h2>OCaml 2013</h2>
-          <h3>The OCaml Users and Developers Workshop</h3>
-          <h4>Boston (MA, USA), September 24, 2013</h4>
-        </div>
-      </div>
+<!-- ((! set title OCaml 2013 !)) -->
 
-      <div class="span3 pull-right big-announcements">
-        <div class="hero-unit">
-          <h4>Colocated with <a href="http://icfpconference.org/icfp2013/">ICFP 2013</a></h4>
-        </div>
-      </div>
-    </div>
+OCaml 2013
+----------
 
+### The OCaml Users and Developers Workshop
 
-    <p>The meeting is an informal community gathering of users of the
-      language, library authors, and developers, using and extending
-      OCaml in new ways.</p>
+#### Boston (MA, USA), September 24, 2013
 
-    <h2>News</H2>
-    <ul>
-      <li>October 7, 2013: The <a href="program.html">final program, with links to papers and slides</a> is available.</li>
-      <li>July 11, 2013: The <a href="program.html">preliminary program</a> is available.</li>
-      <li>June 7, 2013: The submission deadline has been extended to June 18, anywhere on earth.</li>
-      <li>May 7, 2013: The <a href="https://www.easychair.org/conferences/?conf=ocaml2013">submission site</a> is now open! Please submit a presentation before June 7.</li>
-      <li>May 7, 2013: The <a href="https://www.easychair.org/conferences/?conf=ocaml2013">submission site</a> is now open! Please submit a presentation before <del>June 7</del> June 18 (anywhere on earth).</li>
-      <li>April 16, 2013: <a href="call.html">workshop
-        announcement</a>. The <a href="talks/">submission site</a>
-        should open in the next days.</li>
-    </ul>
-    
-    <h2>Important dates</h2>
-    <ul>
-      <li>June 18, 2013 (anywhere on earth): Extended deadline for submissions</li>
-      <li>July 7, 2013: Notification to speakers</li>
-      <li>September 24, 2013: Workshop</li>
-    </ul>
+#### Colocated with [ICFP 2013](http://icfpconference.org/icfp2013/)
 
-    <h2><a href="call.html">Call for presentations</a></h2>
-    <p>Please consider submitting a presentation, and/or join us in
-    Boston! See <a href="call.html">here the call for
-    presentations</a>.</p>
+The meeting is an informal community gathering of users of the language,
+library authors, and developers, using and extending OCaml in new ways.
 
-    <h2>Program Committee</h2>
-    <ul>
-      <li>Damien Doligez, INRIA Paris-Rocquencourt, France</li>
-      <li>Jun Furuse, Standard Chartered Bank, Singapore</li>
-      <li>Jacques Le Normand, Google, USA</li>
-      <li>Michel Mauny, ENSTA-ParisTech, France (chair)</li>
-      <li>Mark Shinwell, Jane Street Europe, UK</li>
-      <li>David Walker, Princeton University, USA</li>
-      <li>Jeremy Yallop, University of Cambridge, UK</li>
-      <li>Sarah Zennou, EADS IW, France</li>
-    </ul>
+News
+----
 
-    <h2>History</h2>
-    <p>
-      The <a href="http://oud.ocaml.org/2012">first occurrence of the
-        OCaml Users and Developers Workshop</a> was colocated
-      with <a href="http://icfpconference.org/icfp2012/">ICFP
-        2012</a>, in Copenhagen, following the OCaml Meetings in Paris
-      in 2010 and 2011.  Building on the success of past events, OCaml
-      2013 will be held on September 24, 2013, in Boston, colocated
-      with <a href="http://icfpconference.org/icfp2013/">ICFP
-        2013</a>.
-    </p>
-  </body>
-</html>
+-   October 7, 2013: The [final program, with links to papers and
+    slides](program.html) is available.
+-   July 11, 2013: The [preliminary program](program.html) is available.
+-   June 7, 2013: The submission deadline has been extended to June 18,
+    anywhere on earth.
+-   May 7, 2013: The [submission
+    site](https://www.easychair.org/conferences/?conf=ocaml2013) is now
+    open! Please submit a presentation before June 7.
+-   May 7, 2013: The [submission
+    site](https://www.easychair.org/conferences/?conf=ocaml2013) is now
+    open! Please submit a presentation before <s>June 7</s> June 18
+    (anywhere on earth).
+-   April 16, 2013: [workshop announcement](call.html). The [submission
+    site](talks/) should open in the next days.
+
+Important dates
+---------------
+
+-   June 18, 2013 (anywhere on earth): Extended deadline for submissions
+-   July 7, 2013: Notification to speakers
+-   September 24, 2013: Workshop
+
+[Call for presentations](call.html)
+-----------------------------------
+
+Please consider submitting a presentation, and/or join us in Boston! See
+[here the call for presentations](call.html).
+
+Program Committee
+-----------------
+
+-   Damien Doligez, INRIA Paris-Rocquencourt, France
+-   Jun Furuse, Standard Chartered Bank, Singapore
+-   Jacques Le Normand, Google, USA
+-   Michel Mauny, ENSTA-ParisTech, France (chair)
+-   Mark Shinwell, Jane Street Europe, UK
+-   David Walker, Princeton University, USA
+-   Jeremy Yallop, University of Cambridge, UK
+-   Sarah Zennou, EADS IW, France
+
+History
+-------
+
+The [first occurrence of the OCaml Users and Developers
+Workshop](http://oud.ocaml.org/2012) was colocated with [ICFP
+2012](http://icfpconference.org/icfp2012/), in Copenhagen, following the
+OCaml Meetings in Paris in 2010 and 2011. Building on the success of
+past events, OCaml 2013 will be held on September 24, 2013, in Boston,
+colocated with [ICFP 2013](http://icfpconference.org/icfp2013/).

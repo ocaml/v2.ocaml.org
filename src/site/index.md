@@ -1,173 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta content="IE=8" http-equiv="X-UA-Compatible" />
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>Home</title>
+<!-- ((! set title OCaml !)) ((! set core !)) -->
 
-    <link href="css/ocaml.css" media="all" type="text/css" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="row-fluid">
-      <div class="span9">
-	<div class="hero-unit">
-	  <p><strong>OCaml</strong> is a general purpose
-	  industrial-strength programming language with an emphasis
-	  on expressiveness
-	  and safety.
-	  Developed for more than 20 years
-	  at Inria it
-	  benefits from one of the most advanced type systems and
-	  supports functional,
-	    imperative and object-oriented styles of programming.
-      
-	    <a href="description.html"
-	       class="btn btn-large pull-right"
-	       >Read more...</a></p>
-	</div>
-
-	<table width="100%" class="quick-links" >
-	<tr valign="top"><td>
-	  <h2>Discover</h2>
-	  <ul>
-	    <li><a href="description.html" >What is OCaml?</a></li>
-	    <li><a href="http://try.ocamlpro.com/"
-	       >Try it Online</a></li>
-	    <li><a href="taste.html" >100 Lines of OCaml</a></li>
-	    <li><a href="success.html" >Success Stories</a></li>
-	    <li><a href="companies.html" >Who Is Using It?</a></li>
-	    <li><a href="http://pleac.sourceforge.net/pleac_ocaml/"
-		   >Pleac</a>, 
-	      <a href="http://rosettacode.org/wiki/Category:OCaml"
-		 >Rosetta</a>,
-              <a href="http://langref.org/ocaml">langref.org</a></li>
-	  </ul>
-	</td><td>
-	  <h2>Learn</h2>
-	  <ul>
-	    <li><a href="install.html" >Install</a></li>
-	    <li><a href="tutorials/index.html" >Tutorials</a></li>
-	    <li><a href="faq.html" >FAQ</a></li>
-	    <li><a href="books.html">Books</a></li>
-	    <li><a href="videos.html" >Videos</a></li>
-	    <li><a href="papers.html" >Papers</a></li>
-	  </ul>
-	</td><td>
-	  <h2>Use</h2>
-	  <ul>
-            <li><a href="releases/" >Releases</a></li>
-	    <li><a href="libraries.html" >Libraries</a></li>
-	    <li><a href="dev_tools.html" >Development Tools</a></li>
-	    <li><a href="http://caml.inria.fr/pub/docs/manual-ocaml/">User Manual</a></li>
-            <li><a href="cheat_sheets.html">Cheat Sheets</a></li>
-	    <li><a href="http://search.ocaml.jp/" >OCaml API Search</a></li>
-	    <li><a href="http://forge.ocamlcore.org/">Forge</a>,
-	      <a href="https://github.com/languages/OCaml"
-		 >GitHub</a>,
-	      <a href="https://bitbucket.org/repo/all?name=ocaml"
-		 >Bitbucket</a></li>
-	  </ul>
-	</td><td>
-	  <h2>Community</h2>
-	  
-	  <ul>
-	    <li><a href="mailing_lists.html"
-		   >Mailing Lists</a></li>
-	    <li><a href="planet/"
-		   >Blogs</a></li>
-	    <li><a href="meetings/">Meetings</a></li>
-	    <li>IRC (<a href="irc://irc.freenode.net/ocaml">en</a>,
-	      <a href="irc://irc.freenode.net/ocaml-fr">fr</a>)</li>
-	    <li><a href="http://stackoverflow.com/questions/tagged?tagnames=ocaml"
-		   >Stack Overflow</a>,
-	      <a href="http://www.reddit.com/r/ocaml/">Reddit</a></li>
-            <li><a href="support.html">Commercial Support</a></li>
-	  </ul>
-	</td></tr>
-	</table>
-
-
-      </div> <!-- span9 -->
-      <div class="span3 pull-right big-announcements">
-	<!----------------------------------------------------
-	  -- Main announcements to the right.
-	  ---------------------------------------------------->
-	<div class="hero-unit download">
-	  <a href="install.html">
-            <img src="img/download-orange-green-arrow.svg" width="180px" alt="download" />
-          </a>
-	</div>
-
-	<div class="hero-unit">
-	  <h4>OCaml 2013</h4>
-          <p>The OCaml Users and Developers Workshop</p>
-	  <p>Boston MA, United States, Sep 24</p>
-	  <a href="meetings/ocaml/2013/program.html" class="btn">
-	    Program, papers and slides are available
-	  </a><br />
-	</div>
-
-	<div class="hero-unit">
-	  <h4>Commercial Users of Functional Programming 2013</h4>
-	  <p>Boston MA, United States, Sep 22-24</p>
-	  <a href="http://cufp.org/2013cfp" class="btn pull-right">
-	    Submit a Talk
-	  </a><br />
-	</div>
-
-	<!--
-	<div class="hero-unit">
-	  <h3>OCaml Meeting 2012</h3>
-
-	  <p>Colocated with ICFP!</p>
-	  <a href="http://oud.ocaml.org" class="btn pull-right"
-		>See videos &amp; slides</a><br />
-	</div> -->
-	<!-- <p>Dynamic content</p>
-	     <p>Major announcements</p>
-	     <p>Featured project</p>
-             <p>Package stats</p> -->
-      </div>
+<header id="home-header">
+    <div class="container">
+        <div class="row">
+            <h1 class="span9">OCaml is an industrial strength programming language supporting functional, imperative and object-oriented styles</h1>
+            <div class="span3">
+                <div>
+                    <a class="btn" href="/platform">Download OCaml</a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    
-    <div class="container-fluid">
-      <div class="row-fluid">
-	<div class="span6" >
-	  <h2>A taste of OCaml</h2>
-
-<pre class="listing" ml:content="ocaml noeval">
-(* Binary tree with leaves carrying an integer. *)
-type tree = Leaf of int | Node of tree * tree
-
-let rec exists_leaf test tree =
-  match tree with
-  | Leaf v -> test v
-  | Node (left, right) ->
-      exists_leaf test left
-      || exists_leaf test right
-
-let has_even_leaf tree =
-  exists_leaf (fun n -> n mod 2 = 0) tree
-</pre>
-
-	  <p>OCaml is a lot more powerful than this simple example shows.
-	  Pursue with
-	    <a href="taste.html">a stronger taste</a>!</p>
-
-	</div> <!-- span6 -->
-	<div class="span6" >
-	  <h2>News from the community</h2>    
-	  
-	  <div id="news"
-	       ml:content="news http://planet.ocaml.org/rss20.xml"
-	       ></div>
-	</div>
-    </div><!--/row-->
-  </div><!--/.fluid-container-->
-
-
-  </body>
-</html>
-    
+</header>
+<div class="container">
+    <div class="row home-hero">
+        <div class="span8">
+            <div class="row">
+                <section class="span4 home-feature">
+                    <a href="/learn">
+                        <img src="/img/learn-large.png" alt="Learn">
+                    </a>
+                    <h1><a href="/learn">Learn</a></h1>
+                    <p>Find out <a href="/learn/description.html">about OCaml</a>, read about <a href="/learn/success.html">users</a>, see <a href="learn/taste.html">code examples</a>, go through <a href="/learn/tutorials">tutorials</a> and <a href="/learn">more</a>.</p>
+                </section>
+                <section class="span4 home-feature">
+                    <a href="/docs">
+                        <img src="/img/documentation-large.png" alt="Documentation">
+                    </a>
+                    <h1><a href="/docs">Documentation</a></h1>
+                    <p>Look up <a href="#">package docs</a>, access the <a href="#">Manual</a>, get the <a href="/docs/cheat_sheets.html">cheat sheets</a> and <a href="/docs">more</a>.</p>
+                </section>
+            </div>
+            <div class="row">
+                <section class="span4 home-feature">
+                    <a href="/platform">
+                        <img src="/img/platform-large.png" alt="Platform">                    </a>
+                    <h1><a href="/platform">Platform</a></h1>
+                    <p>The best way to get started for newcomers and a flexible base for experienced users.</p>
+                </section>
+                <section class="span4 home-feature">
+                    <a href="/community">
+                        <img src="/img/community-large.png" alt="Community">
+                    </a>
+                    <h1><a href="/community">Community</a></h1>
+                    <p>Read the <a href="/community/planet.html">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community">around the web</a>.</p>
+                </section>
+            </div>
+            <div id="home-learn">
+                <a href="http://try.ocamlpro.com">
+                    <img class="hidden-phone" src="/img/learn-ocaml.png" alt="">
+                    Learn OCaml in your browser with TryOCaml
+                </a>
+            </div>
+        </div>
+        <section id="home-news" class="span4 condensed">
+            <h1 class="ruled">
+                <a href="/community/planet.html">
+                    News
+                </a>
+                <a href="/community/planet.html">
+                    <img src="/img/rss.png" alt="RSS">
+                </a>
+            </h1>
+            ((! input tpl/front_news.mpp !))
+            <p><a href="/community/planet.html">More...</a></p>
+        </section>
+    </div>
+    <div class="row">
+        <section class="span6 condensed">
+            <h1>A taste of OCaml</h1>
+            ((! cat tpl/tryocaml.html !))
+            ((! input tpl/front_code_snippet.html !))
+        </section>
+        <section class="span6 condensed">
+            <h1>Packages</h1>
+            ((! input tpl/front_package.mpp !))
+        </section>
+    </div>
+</div>

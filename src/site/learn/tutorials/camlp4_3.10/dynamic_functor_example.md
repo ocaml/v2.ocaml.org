@@ -1,36 +1,34 @@
-<head>
-<title>Camlp4 3.10 dynamic_functor_example.ml</title>
-</head>
-<body>
+<!-- ((! set title Camlp4 3.10  !)) ((! set learn !)) -->
 
-<h1>Camlp4 3.10 dynamic_functor_example.ml</h1>
+# Camlp4 3.10 dynamic_functor_example.ml
+dynamic_functor_example.ml:
 
-<p>dynamic_functor_example.ml:</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
 type t1 = A | B
 type t2 = Foo of string * t1
 open Camlp4
 
 module Id = struct (* Information for dynamic loading *)
-  let name = &quot;My_extension&quot;
-  let version = &quot;$Id$&quot;
+  let name = "My_extension"
+  let version = "$Id$"
 end
 
-(* An extension is just a functor: Syntax -&gt; Syntax *)
+(* An extension is just a functor: Syntax -> Syntax *)
 module Make (Syntax : Sig.Syntax) = struct
   include Syntax
-  let foo = Gram.Entry.mk &quot;foo&quot;
-  let bar = Gram.Entry.mk &quot;bar&quot;
+  let foo = Gram.Entry.mk "foo"
+  let bar = Gram.Entry.mk "bar"
   open Camlp4.Sig
   EXTEND Gram
     GLOBAL: foo bar;
-    foo: [ [ &quot;foo&quot;; i = LIDENT; b = bar -&gt; Foo(i, b) ] ];
-    bar: [ [ &quot;?&quot; -&gt; A | &quot;.&quot; -&gt; B ] ];
+    foo: [ [ "foo"; i = LIDENT; b = bar -> Foo(i, b) ] ];
+    bar: [ [ "?" -> A | "." -> B ] ];
   END;;
-  Gram.parse_string foo (Loc.mk &quot;&lt;string&gt;&quot;) &quot;foo x?&quot; = Foo(&quot;x&quot;, A)
-  DELETE_RULE Gram foo: &quot;foo&quot;; LIDENT; bar END
+  Gram.parse_string foo (Loc.mk "<string>") "foo x?" = Foo("x", A)
+  DELETE_RULE Gram foo: "foo"; LIDENT; bar END
 end
 
 (* Register it to make it usable via the camlp4 binary. *)
 module M = Register.SyntaxExtension(Id)(Make)
-</pre>
+
+```

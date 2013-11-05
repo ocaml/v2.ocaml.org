@@ -1,65 +1,105 @@
-<title>Data Types and Matching</title>
-<body>
-<h1><span>Data Types and Matching</span></h1>
-<div id="navigation_space_div"></div><div id="content_div">
-<a name="Linked_lists"></a><h2><span>Linked lists</span></h2>
-<p>As with Perl, OCaml has support for lists built into the language. All elements of a list in OCaml must be the same type. To write a list, use:</p>
-<pre ml:content="ocaml noeval">
-[1; 2; 3]
-</pre>
+<!-- ((! set title Data Types and Matching !)) ((! set learn !)) -->
 
-<p>(Note semicolons, NOT commas).</p>
-<p><code>[]</code> is the empty list.</p>
-<p>A list has a <strong>head</strong> (the first element) and a <strong>tail</strong> (the rest of the elements). The head is an element, and the tail is a list, so in the above example, the head is the integer <code>1</code> while the tail is the <em>list</em> <code>[2; 3]</code>.</p>
-<p>An alternative way to write a list is to use the <strong>cons</strong> operator <code><em>head</em> :: <em>tail</em></code>. So the following ways to write a list are exactly the same:</p>
-<pre ml:content="ocaml noeval">
+# Data Types and Matching
+## Linked lists
+As with Perl, OCaml has support for lists built into the language. All
+elements of a list in OCaml must be the same type. To write a list, use:
+
+```tryocaml
+[1; 2; 3]
+```
+(Note semicolons, NOT commas).
+
+`[]` is the empty list.
+
+A list has a **head** (the first element) and a **tail** (the rest of
+the elements). The head is an element, and the tail is a list, so in the
+above example, the head is the integer `1` while the tail is the *list*
+`[2; 3]`.
+
+An alternative way to write a list is to use the **cons** operator
+`head :: tail`. So the following ways to write a list are exactly the
+same:
+
+```tryocaml
 [1; 2; 3]
 1 :: [2; 3]
 1 :: 2 :: [3]
 1 :: 2 :: 3 :: []
-</pre>
+```
+Why do I mention the cons operator? Well, it's useful when we start
+doing *pattern matching* on lists, which I'll talk about below.
 
-<p>Why do I mention the cons operator? Well, it's useful when we start doing <em>pattern matching</em> on lists, which I'll talk about below.</p>
-<h3>The type of a linked list</h3>
-<p>The type of a linked list of integers is <code>int list</code>, and in general the type of a linked list of <code>foo</code>s is <code>foo list</code>.</p>
-<p>This implies that all the elements of a linked list must have the same type. But the type can be polymorphic (ie. <code>'a list</code>), which is really useful if you want to write generic functions which operate on &quot;lists of anything&quot;. (But note: <code>'a list</code> doesn't mean that each individual element has a different type - you still can't use this to construct a list containing, say, a mixture of ints and strings. It means that the type of the elements is anything, but all the same type of anything.)</p>
-<p>The <code>length</code> function defined as part of the OCaml <code>List</code> module is a good example of this. It doesn't matter if the list contains ints or strings or objects or small furry animals, the <code>List.length</code> function can still be called on it. The type of <code>List.length</code> is therefore:</p>
-<pre ml:content="ocaml noeval">
-List.length : 'a list -&gt; int
-</pre>
+###  The type of a linked list
+The type of a linked list of integers is `int list`, and in general the
+type of a linked list of `foo`s is `foo list`.
 
-<a name="Structures"></a><h2><span>Structures</span></h2>
-<p>C and C++ have the concept of a simple <code>struct</code>, short for structure. Java has classes which can be used to similar effect, albeit much more laboriously.</p>
-<p>Consider this simple C structure:</p>
-<pre>
+This implies that all the elements of a linked list must have the same
+type. But the type can be polymorphic (ie. `'a list`), which is really
+useful if you want to write generic functions which operate on "lists of
+anything". (But note: `'a list` doesn't mean that each individual
+element has a different type - you still can't use this to construct a
+list containing, say, a mixture of ints and strings. It means that the
+type of the elements is anything, but all the same type of anything.)
+
+The `length` function defined as part of the OCaml `List` module is a
+good example of this. It doesn't matter if the list contains ints or
+strings or objects or small furry animals, the `List.length` function
+can still be called on it. The type of `List.length` is therefore:
+
+```tryocaml
+List.length : 'a list -> int
+```
+## Structures
+C and C++ have the concept of a simple `struct`, short for structure.
+Java has classes which can be used to similar effect, albeit much more
+laboriously.
+
+Consider this simple C structure:
+
+```tryocaml
 struct pair_of_ints {
   int a, b;
 };
-</pre>
+```
+The simplest equivalent to this in OCaml is a **tuple** such as `(3, 4)`
+which has the type `int * int`. Unlike lists, tuples can contain
+elements of different types, so for example `(3, "hello", 'x')` has type
+`int * string * char`.
 
-<p>The simplest equivalent to this in OCaml is a <strong>tuple</strong> such as <code>(3, 4)</code> which has the type <code>int * int</code>. Unlike lists, tuples can contain elements of different types, so for example <code>(3, &quot;hello&quot;, 'x')</code> has type <code>int * string * char</code>.</p>
-<p>A slightly more complex alternative way of writing a C struct is to use a <strong>record</strong>. Records, like C structs, allow you to name the elements. Tuples don't let you name the elements, but instead you have to remember the order in which they appear. Here is the equivalent record for our C struct above:</p>
-<pre ml:content="ocaml silent">
+A slightly more complex alternative way of writing a C struct is to use
+a **record**. Records, like C structs, allow you to name the elements.
+Tuples don't let you name the elements, but instead you have to remember
+the order in which they appear. Here is the equivalent record for our C
+struct above:
+
+```tryocaml
 type pair_of_ints = { a : int; b : int };;
-</pre>
+```
+That defines the type, and here is how we actually *create* objects of
+this type:
 
-<p>That defines the type, and here is how we actually <em>create</em> objects of this type:</p>
-<pre ml:content="ocaml silent">
+```tryocaml
 { a=3; b=5 }
-</pre>
+```
+Note that we use ":" in the type definition and "=" when creating
+objects of this type.
 
-<p>Note that we use &quot;:&quot; in the type definition and &quot;=&quot; when creating objects of this type.</p>
-<p>Here are some examples of this typed into the toplevel:</p>
-<pre ml:content="ocaml">
+Here are some examples of this typed into the toplevel:
+
+```tryocaml
 type pair_of_ints = { a : int; b : int };;
 {a=3; b=5};;
 {a=3};;
-</pre>
+```
+So OCaml won't let you leave some fields in your structure undefined.
 
-<p>So OCaml won't let you leave some fields in your structure undefined.</p>
-<a name="Variants__qualified_unions_and_enums_"></a><h2><span>Variants (qualified unions and enums)</span></h2>
-<p>A &quot;qualified union&quot; doesn't really exist in C, although there is support in the gcc compiler for it. Here is the pattern which one commonly uses for a qualified union in C:</p>
-<pre>
+## Variants (qualified unions and enums)
+A "qualified union" doesn't really exist in C, although there is support
+in the gcc compiler for it. Here is the pattern which one commonly uses
+for a qualified union in C:
+
+```tryocaml
 struct foo {
   int type;
 #define TYPE_INT 1
@@ -71,208 +111,279 @@ struct foo {
     char *str;    // If type == TYPE_STRING.
   } u;
 };
-</pre>
+```
+We've all seen this I should think, and it's not a pretty sight. For a
+start it's not safe: the programmer might make a mistake and
+accidentally use, say, the `u.i` field when in fact a string was stored
+in the structure. Also the compiler can't easily check if all possible
+types have been examined in a switch statement (you can use an `enum`
+type instead to solve this particular problem). The programmer might
+forget to set the `type` field, which would result in all sorts of fun
+and games. Furthermore, it's cumbersome.
 
-<p>We've all seen this I should think, and it's not a pretty sight. For a start it's not safe: the programmer might make a mistake and accidentally use, say, the <code>u.i</code> field when in fact a string was stored in the structure. Also the compiler can't easily check if all possible types have been examined in a switch statement (you can use an <code>enum</code> type instead to solve this particular problem). The programmer might forget to set the <code>type</code> field, which would result in all sorts of fun and games. Furthermore, it's cumbersome.</p>
-<p>Here is the elegant and concise equivalent in OCaml:</p>
-<pre ml:content="ocaml noeval">
+Here is the elegant and concise equivalent in OCaml:
+
+```tryocaml
 type foo = Nothing | Int of int | Pair of int * int | String of string
-</pre>
+```
+That's the type definition. First part of each `|` separated part is
+called the constructor. It can be called anything, as long as it starts
+with a capital letter. If the constructor can be used to define a value,
+it's followed by the `of type` part, where type always starts with a
+lowercase letter. In the above example, Nothing is used as a constant
+and the other constructors are used with values.
 
-<p>That's the type definition. First part of each <code>|</code> separated part is called the constructor. It can be called anything, as long as it starts with a capital letter. If the constructor can be used to define a value, it's followed by the <code>of type</code> part, where type always starts with a lowercase letter. In the above example, Nothing is used as a constant and the other constructors are used with values.</p>
-<p>To actually <em>create</em> things of this type you would write:</p>
-<pre ml:content="ocaml noeval">
+To actually *create* things of this type you would write:
+
+```tryocaml
 Nothing
 Int 3
 Pair (4, 5)
-String &quot;hello&quot;
+String "hello"
 ...
-</pre>
+```
+Each of these expressions has type `foo`.
 
-<p>Each of these expressions has type <code>foo</code>.</p>
-<p>Note that you use <code>of</code> when writing the type definition, but NOT when writing elements of the type.</p>
-<p>By extension, a simple C <code>enum</code> defined as:</p>
-<pre>
+Note that you use `of` when writing the type definition, but NOT when
+writing elements of the type.
+
+By extension, a simple C `enum` defined as:
+
+```tryocaml
 enum sign { positive, zero, negative };
-</pre>
+```
+can be written in OCaml as:
 
-<p>can be written in OCaml as:</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
 type sign = Positive | Zero | Negative
-</pre>
+```
+###  Recursive variants (used for trees)
+Variants can be recursive, and the common use for this is to define tree
+structures. This really is where the expressive power of functional
+languages come into their own:
 
-<h3>Recursive variants (used for trees)</h3>
-<p>Variants can be recursive, and the common use for this is to define tree structures. This really is where the expressive power of functional languages come into their own:</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
 type binary_tree = Leaf of int | Tree of binary_tree * binary_tree
-</pre>
+```
+Here're some binary trees. For practice, try drawing them on paper.
 
-<p>Here're some binary trees. For practice, try drawing them on paper.</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
 Leaf 3
 Tree (Leaf 3, Leaf 4)
 Tree (Tree (Leaf 3, Leaf 4), Leaf 5)
 Tree (Tree (Leaf 3, Leaf 4), Tree (Tree (Leaf 3, Leaf 4), Leaf 5))
-</pre>
+```
+###  Parameterized variants
+The binary tree in the previous section has integers at each leaf, but
+what if we wanted to describe the *shape* of a binary tree, but decide
+exactly what to store at each leaf node later? We can do this by using a
+parameterized (or polymorphic) variant, like this:
 
-<h3>Parameterized variants</h3>
-<p>The binary tree in the previous section has integers at each leaf, but what if we wanted to describe the <em>shape</em> of a binary tree, but decide exactly what to store at each leaf node later? We can do this by using a parameterized (or polymorphic) variant, like this:</p>
-<pre ml:content="ocaml">
+```tryocaml
 type 'a binary_tree = Leaf of 'a | Tree of 'a binary_tree * 'a binary_tree
-</pre>
+```
+This is a general type. The specific type which stores integers at each
+leaf is called `int binary_tree`. Similarly the specific type which
+stores strings at each leaf is called `string binary_tree`. In the next
+example we type some instances into the top-level and allow the type
+inference system to show the types for us:
 
-<p>This is a general type. The specific type which stores integers at each leaf is called <code>int binary_tree</code>. Similarly the specific type which stores strings at each leaf is called <code>string binary_tree</code>. In the next example we type some instances into the top-level and allow the type inference system to show the types for us:</p>
-<pre ml:content="ocaml">
-Leaf &quot;hello&quot;;;
+```tryocaml
+Leaf "hello";;
 Leaf 3.0;;
-</pre>
+```
+Notice how the type name is backwards. Compare this to the type names
+for lists, eg. `int list` etc.
 
-<p>Notice how the type name is backwards. Compare this to the type names for lists, eg. <code>int list</code> etc.</p>
-<p>In fact it is no coincidence that <code>'a list</code> is written &quot;backwards&quot; in the same way. Lists are simply parameterized variant types with the following slightly strange definition:</p>
-<pre ml:content="ocaml noeval">
+In fact it is no coincidence that `'a list` is written "backwards" in
+the same way. Lists are simply parameterized variant types with the
+following slightly strange definition:
+
+```tryocaml
   type 'a list = [] | :: of 'a * 'a list   (* not real OCaml code *)
-</pre>
+```
+Actually the definition above doesn't quite compile. Here's a
+pretty-much equivalent definition:
 
-<p>Actually the definition above doesn't quite compile. Here's a pretty-much equivalent definition:</p>
-<pre ml:content="ocaml">
+```tryocaml
 type 'a equiv_list = Nil | Cons of 'a * 'a equiv_list;;
 Nil;;
 Cons(1, Nil);;
 Cons(1, Cons(2, Nil));;
-</pre>
+```
+Recall earlier that we said lists could be written two ways, either with
+the simple syntactic sugar of `[1; 2; 3]` or more formally as
+`1 :: 2 :: 3 :: []`. If you look at the definition for `'a list` above,
+you may be able to see the reason for the formal definition.
 
-<p>Recall earlier that we said lists could be written two ways, either with the simple syntactic sugar of <code>[1; 2; 3]</code> or more formally as <code>1 :: 2 :: 3 :: []</code>. If you look at the definition for <code>'a list</code> above, you may be able to see the reason for the formal definition.</p>
-<a name="Lists__structures_and_variants___summary"></a><h2><span>Lists, structures and variants - summary</span></h2>
-<p>OCaml name      Example type definition                Example usage</p>
-<pre>
+## Lists, structures and variants - summary
+OCaml name Example type definition Example usage
 
+```tryocaml
 list            int list                               [1; 2; 3]
-tuple           int * string                           (3, &quot;hello&quot;)
-record          type pair = { a : int; b : string }    { a = 3; b = &quot;hello&quot; }
+tuple           int * string                           (3, "hello")
+record          type pair = { a : int; b : string }    { a = 3; b = "hello" }
 variant         type foo = Int of int                  Int 3
                            | Pair of int * string                                                                      
 variant         type sign = Positive | Zero            Positive
                             | Negative                 Zero
 parameterized   type 'a my_list = Empty                Cons (1, Cons (2, Empty))
   variant                   | Cons of 'a * 'a my_list
-</pre>
+```
+## Pattern matching (on datatypes)
+So one Really Cool Feature of functional languages is the ability to
+break apart data structures and do pattern matching on the data. This is
+again not really a "functional" feature - you could imagine some
+variation of C appearing which would let you do this, but it's a Cool
+Feature nonetheless.
 
-<h2><a name="Pattern_matching__on_datatypes_"></a>Pattern matching (on
-  datatypes)</h2>
-<p>So one Really Cool Feature of functional languages is the ability to break apart data structures and do pattern matching on the data. This is again not really a &quot;functional&quot; feature - you could imagine some variation of C appearing which would let you do this, but it's a Cool Feature nonetheless.</p>
-<p>Let's start with a real program requirement: I wish to represent simple mathematical expressions like <code>n * (x + y)</code> and multiply them out symbolically to get <code>n * x + n * y</code>.</p>
-<p>Let's define a type for these expressions:</p>
-<pre ml:content="ocaml">
+Let's start with a real program requirement: I wish to represent simple
+mathematical expressions like `n * (x + y)` and multiply them out
+symbolically to get `n * x + n * y`.
+
+Let's define a type for these expressions:
+
+```tryocaml
   type expr = Plus of expr * expr          (* means a + b *)
               | Minus of expr * expr       (* means a - b *)
               | Times of expr * expr       (* means a * b *)
-	      | Divide of expr * expr      (* means a / b *)
-              | Value of string            (* &quot;x&quot;, &quot;y&quot;, &quot;n&quot;, etc. *)
-</pre>
+          | Divide of expr * expr      (* means a / b *)
+              | Value of string            (* "x", "y", "n", etc. *)
+```
+The expression `n * (x + y)` would be written:
 
-<p>The expression <code>n * (x + y)</code> would be written:</p>
-<pre ml:content="ocaml">
-Times (Value &quot;n&quot;, Plus (Value &quot;x&quot;, Value &quot;y&quot;))
-</pre>
+```tryocaml
+Times (Value "n", Plus (Value "x", Value "y"))
+```
+Let's write a function which prints out
+`Times (Value "n", Plus (Value "x", Value "y"))` as something more like
+`n * (x + y)`. Actually, I'm going to write two functions, one which
+converts the expression to a pretty string, and one which prints it out
+(the reason is that I might want to write the same string to a file and
+I wouldn't want to repeat the whole of the function just for that).
 
-<p>Let's write a function which prints out <code>Times (Value &quot;n&quot;, Plus (Value &quot;x&quot;, Value &quot;y&quot;))</code> as something more like <code>n * (x + y)</code>.  Actually, I'm going to write two functions, one which converts the expression to a pretty string, and one which prints it out (the reason is that I might want to write the same string to a file and I wouldn't want to repeat the whole of the function just for that).</p>
-<pre ml:content="ocaml">
+```tryocaml
   let rec to_string e =
     match e with
-    | Plus (left, right)   -&gt; &quot;(&quot; ^ to_string left ^ &quot; + &quot; ^ to_string right ^ &quot;)&quot;
-    | Minus (left, right)  -&gt; &quot;(&quot; ^ to_string left ^ &quot; - &quot; ^ to_string right ^ &quot;)&quot;
-    | Times (left, right)  -&gt; &quot;(&quot; ^ to_string left ^ &quot; * &quot; ^ to_string right ^ &quot;)&quot;
-    | Divide (left, right) -&gt; &quot;(&quot; ^ to_string left ^ &quot; / &quot; ^ to_string right ^ &quot;)&quot;
-    | Value v -&gt; v ;;
+    | Plus (left, right)   -> "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
+    | Minus (left, right)  -> "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
+    | Times (left, right)  -> "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
+    | Divide (left, right) -> "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
+    | Value v -> v ;;
   
   let print_expr e =
     print_endline (to_string e);;
-</pre>
+```
+(NB: The `^` operator concatenates strings.)
 
-<p>(NB: The <code>^</code> operator concatenates strings.)</p>
-<p>Here's the print function in action:</p>
-<pre ml:content="ocaml">
-print_expr (Times (Value &quot;n&quot;, Plus (Value &quot;x&quot;, Value &quot;y&quot;)))
-</pre>
+Here's the print function in action:
 
-<p>The general form for pattern matching is:</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
+print_expr (Times (Value "n", Plus (Value "x", Value "y")))
+```
+The general form for pattern matching is:
+
+```tryocaml
 match object with
-| pattern    -&gt;  result
-| pattern    -&gt;  result
+| pattern    ->  result
+| pattern    ->  result
     ...
-</pre>
+```
+The patterns on the left hand side can be simple, as in the `to_string`
+function above, or complex and nested. The next example is our function
+to multiply out expressions of the form `n * (x + y)` or `(x + y) * n`
+and for this we will use a nested pattern:
 
-<p>The patterns on the left hand side can be simple, as in the <code>to_string</code> function above, or complex and nested. The next example is our function to multiply out expressions of the form <code>n * (x + y)</code> or <code>(x + y) * n</code> and for this we will use a nested pattern:</p>
-<pre ml:content="ocaml">
+```tryocaml
   let rec multiply_out e =
     match e with
-    | Times (e1, Plus (e2, e3)) -&gt;
+    | Times (e1, Plus (e2, e3)) ->
         Plus (Times (multiply_out e1, multiply_out e2),
               Times (multiply_out e1, multiply_out e3))
-    | Times (Plus (e1, e2), e3) -&gt;
+    | Times (Plus (e1, e2), e3) ->
         Plus (Times (multiply_out e1, multiply_out e3),
               Times (multiply_out e2, multiply_out e3))
-    | Plus (left, right) -&gt; Plus (multiply_out left, multiply_out right)
-    | Minus (left, right) -&gt; Minus (multiply_out left, multiply_out right)
-    | Times (left, right) -&gt; Times (multiply_out left, multiply_out right)
-    | Divide (left, right) -&gt; Divide (multiply_out left, multiply_out right)
-    | Value v -&gt; Value v
-</pre>
+    | Plus (left, right) -> Plus (multiply_out left, multiply_out right)
+    | Minus (left, right) -> Minus (multiply_out left, multiply_out right)
+    | Times (left, right) -> Times (multiply_out left, multiply_out right)
+    | Divide (left, right) -> Divide (multiply_out left, multiply_out right)
+    | Value v -> Value v
+```
+Here it is in action:
 
-<p>Here it is in action:</p>
-<pre ml:content="ocaml">
-print_expr (multiply_out (Times (Value &quot;n&quot;, Plus (Value &quot;x&quot;, Value &quot;y&quot;))))
-</pre>
+```tryocaml
+print_expr (multiply_out (Times (Value "n", Plus (Value "x", Value "y"))))
+```
+How does the `multiply_out` function work? The key is in the first two
+patterns. The first pattern is `Times (e1, Plus (e2, e3))` which matches
+expressions of the form `e1 * (e2 + e3)`. Now look at the right hand
+side of this first pattern match, and convince yourself that it is the
+equivalent of `(e1 * e2) + (e1 * e3)`.
 
-<p>How does the <code>multiply_out</code> function work? The key is in the first two patterns. The first pattern is <code>Times (e1, Plus (e2, e3))</code> which matches expressions of the form <code>e1 * (e2 + e3)</code>. Now look at the right hand side of this first pattern match, and convince yourself that it is the equivalent of <code>(e1 * e2) + (e1 * e3)</code>.</p>
-<p>The second pattern does the same thing, except for expressions of the form <code>(e1 + e2) * e3</code>.</p>
-<p>The remaining patterns don't change the form of the expression, but they crucially <em>do</em> call the <code>multiply_out</code> function recursively on their subexpressions. This ensures that all subexpressions within the expression get multiplied out too (if you only wanted to multiply out the very top level of an expression, then you could replace all the remaining patterns with a simple <code>e -&gt; e</code> rule).</p>
-<p>Can we do the reverse (ie. factorizing out common subexpressions)? We sure can! (But it's a bit more complicated). The following version only works for the top level expression. You could certainly extend it to cope with all levels of an expression and more complex cases:</p>
-<pre ml:content="ocaml">
+The second pattern does the same thing, except for expressions of the
+form `(e1 + e2) * e3`.
+
+The remaining patterns don't change the form of the expression, but they
+crucially *do* call the `multiply_out` function recursively on their
+subexpressions. This ensures that all subexpressions within the
+expression get multiplied out too (if you only wanted to multiply out
+the very top level of an expression, then you could replace all the
+remaining patterns with a simple `e -> e` rule).
+
+Can we do the reverse (ie. factorizing out common subexpressions)? We
+sure can! (But it's a bit more complicated). The following version only
+works for the top level expression. You could certainly extend it to
+cope with all levels of an expression and more complex cases:
+
+```tryocaml
   let factorize e =
     match e with
-    | Plus (Times (e1, e2), Times (e3, e4)) when e1 = e3 -&gt;
+    | Plus (Times (e1, e2), Times (e3, e4)) when e1 = e3 ->
        Times (e1, Plus (e2, e4))
-    | Plus (Times (e1, e2), Times (e3, e4)) when e2 = e4 -&gt;
+    | Plus (Times (e1, e2), Times (e3, e4)) when e2 = e4 ->
        Times (Plus (e1, e3), e4)
-    | e -&gt; e
-</pre>
+    | e -> e
 
-<pre ml:content="ocaml">
-factorize (Plus (Times (Value &quot;n&quot;, Value &quot;x&quot;), Times (Value &quot;n&quot;, Value &quot;y&quot;)))
-</pre>
+factorize (Plus (Times (Value "n", Value "x"), Times (Value "n", Value "y")))
+```
+The factorize function above introduces another couple of features. You
+can add what are known as **guards** to each pattern match. A guard is
+the conditional which follows the `when`, and it means that the pattern
+match only happens if the pattern matches *and* the condition in the
+`when`-clause is satisfied.
 
-<p>The factorize function above introduces another couple of features. You can add what are known as <strong>guards</strong> to each pattern match. A guard is the conditional which follows the <code>when</code>, and it means that the pattern match only happens if the pattern matches <em>and</em> the condition in the <code>when</code>-clause is satisfied.</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
 match object with
-  pattern    [ when condition ]   -&gt;  result
-  pattern    [ when condition ]   -&gt;  result
+  pattern    [ when condition ]   ->  result
+  pattern    [ when condition ]   ->  result
     ...
-</pre>
+```
+The second feature is the `=` operator which tests for "structural
+equality" between two expressions. That means it goes recursively into
+each expression checking they're exactly the same at all levels down.
 
-<p>The second feature is the <code>=</code> operator which tests for &quot;structural equality&quot; between two expressions. That means it goes recursively into each expression checking they're exactly the same at all levels down.</p>
-<p>OCaml is able to check at compile time that you have covered all possibilities in your patterns. I changed the type definition of <code>type expr</code> above by adding a <code>Product</code> variant:</p>
-<pre ml:content="ocaml silent">
+OCaml is able to check at compile time that you have covered all
+possibilities in your patterns. I changed the type definition of
+`type expr` above by adding a `Product` variant:
+
+```tryocaml
   type expr = Plus of expr * expr        (* means a + b *)
               | Minus of expr * expr     (* means a - b *)
               | Times of expr * expr     (* means a * b *)
               | Divide of expr * expr    (* means a / b *)
               | Product of expr list     (* means a * b * c * ... *)
-              | Value of string          (* &quot;x&quot;, &quot;y&quot;, &quot;n&quot;, etc. *)
-</pre>
+              | Value of string          (* "x", "y", "n", etc. *)
+```
+I then recompiled the `to_string` function without changing it. OCaml
+reported the following warning:
 
-<p>I then recompiled the <code>to_string</code> function without changing it. OCaml reported the following warning:</p>
-<pre ml:content="ocaml">
+```tryocaml
   let rec to_string e =
     match e with
-    | Plus (left, right)   -&gt; &quot;(&quot; ^ to_string left ^ &quot; + &quot; ^ to_string right ^ &quot;)&quot;
-    | Minus (left, right)  -&gt; &quot;(&quot; ^ to_string left ^ &quot; - &quot; ^ to_string right ^ &quot;)&quot;
-    | Times (left, right)  -&gt; &quot;(&quot; ^ to_string left ^ &quot; * &quot; ^ to_string right ^ &quot;)&quot;
-    | Divide (left, right) -&gt; &quot;(&quot; ^ to_string left ^ &quot; / &quot; ^ to_string right ^ &quot;)&quot;
-    | Value v -&gt; v ;;
-</pre>
+    | Plus (left, right)   -> "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
+    | Minus (left, right)  -> "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
+    | Times (left, right)  -> "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
+    | Divide (left, right) -> "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
+    | Value v -> v ;;
 
-</div>
-
-</body>
+```

@@ -1,22 +1,20 @@
-<head>
-<title>Camlp4 3.10/dynamic_old_syntax.ml</title>
-</head>
-<body>
+<!-- ((! set title Camlp4 3.10  !)) ((! set learn !)) -->
 
-<h1>Camlp4 3.10 dynamic_old_syntax.ml</h1>
+# Camlp4 3.10 dynamic_old_syntax.ml
+dynamic_old_syntax.ml:
 
-<p>dynamic_old_syntax.ml:</p>
-<pre ml:content="ocaml noeval">
+```tryocaml
 type t1 = A | B
 type t2 = Foo of string * t1
 open Pcaml
-let foo = Entry.mk gram &quot;foo&quot;
-let bar = Entry.mk gram &quot;bar&quot;
+let foo = Entry.mk gram "foo"
+let bar = Entry.mk gram "bar"
 EXTEND
   GLOBAL: foo bar;
-  foo: [ [ &quot;foo&quot;; i = LIDENT; b = bar -&gt; Foo(i, b) ] ];
-  bar: [ [ &quot;?&quot; -&gt; A | &quot;.&quot; -&gt; B ] ];
+  foo: [ [ "foo"; i = LIDENT; b = bar -> Foo(i, b) ] ];
+  bar: [ [ "?" -> A | "." -> B ] ];
 END;;
-Entry.parse foo (Stream.of_string &quot;foo x?&quot;) = Foo(&quot;x&quot;, A)
-DELETE_RULE foo: &quot;foo&quot;; LIDENT; bar END
-</pre>
+Entry.parse foo (Stream.of_string "foo x?") = Foo("x", A)
+DELETE_RULE foo: "foo"; LIDENT; bar END
+
+```

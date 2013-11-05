@@ -1,19 +1,25 @@
-<head>
-<title>Compiling with OMake</title>
-</head>
-<body>
-<h1><span>Compiling with OMake</span></h1>
+<!-- ((! set title Compiling with OMake !)) ((! set learn !)) -->
 
-<p class="first_para">Here is the summary on how to compile an OCaml program with <a href="http://omake.metaprl.org/" class="external" title="OMake">OMake</a>. It produces a native code executable or a bytecode executable if ocamlopt is not available, using ocamllex, ocamlyacc and regular ocaml files that use camlp4 syntax libraries as well as regular libraries, all managed by findlib/ocamlfind:</p>
+# Compiling with OMake
 
-<ol>
-	<li>Do <code>omake --install</code>: it creates a template OMakefile and OMakeroot in the current directory. The OMakeroot file is left unchanged. The OMakefile template doesn't show options for using ocamlfind, so we will basically rewrite it, and grab some of the additional options that are shown in the file.</li>
-	<li>Our source files are <code>parser.mly</code>, <code>lexer.mll</code> and <code>main.ml</code>. Delete or comment out the content of the automatically generated OMakefile, and put the following:</li>
-</ol>
+Here is the summary on how to compile an OCaml program with
+[OMake](http://omake.metaprl.org/ "OMake"). It produces a native code
+executable or a bytecode executable if ocamlopt is not available, using
+ocamllex, ocamlyacc and regular ocaml files that use camlp4 syntax
+libraries as well as regular libraries, all managed by
+findlib/ocamlfind:
 
+1. Do `omake --install`: it creates a template OMakefile and OMakeroot
+ in the current directory. The OMakeroot file is left unchanged. The
+ OMakefile template doesn't show options for using ocamlfind, so we
+ will basically rewrite it, and grab some of the additional options
+ that are shown in the file.
+1. Our source files are `parser.mly`, `lexer.mll` and `main.ml`. Delete
+ or comment out the content of the automatically generated OMakefile,
+ and put the following:
 
-
-<pre>
+<!-- -->
+```tryocaml
 # Program name (without extension)
 PROGRAM = myprog
 
@@ -37,7 +43,7 @@ OCAMLPACKS[] =
 OCAMLFINDFLAGS = -syntax camlp4o
 
 # We need to tell OMake that these files need to be created
-# before it attempts to run <code>ocamldep</code>.
+# before it attempts to run ocamldep.
 # (OMake knows that ocamllex and ocamlyacc should be used)
 OCamlGeneratedFiles(lexer.ml parser.mli parser.ml)
 
@@ -54,8 +60,15 @@ clean:
   rm -f \
      $(filter-proper-targets $(glob $(addsuffix .*, $(FILES)))) \
      $(PROGRAM).run $(PROGRAM).opt
-</pre>
+```
+Adapt your OMakefile to suit your needs in terms of source files, result
+files, libraries and options. Now you can run omake, it should compile
+an executable named either myprog.run (bytecode) or myprog.opt (native
+code), or whatever you chose to call it. The omake clean command removes
+files that were produced by the compilation.
 
-<p>Adapt your OMakefile to suit your needs in terms of source files, result files, libraries and options. Now you can run omake, it should compile an executable named either myprog.run (bytecode) or myprog.opt (native code), or whatever you chose to call it. The omake clean command removes files that were produced by the compilation.</p>
+Go to [OMake&#39;s official
+site](http://omake.metaprl.org/ "OMake's official site") for more
+information.
 
-<p>Go to <a href="http://omake.metaprl.org/" class="external" title="OMake's official site">OMake's official site</a> for more information.</p>
+
