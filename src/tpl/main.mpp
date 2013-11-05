@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+{{!s set contents {{!i input ((! get page !)) i!}} s!}}
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{! tryget title !}} &#8211; OCaml</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Web Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Domine:400,700" rel="stylesheet" />
+    <!-- Only part of Bootstrap that we don't load from a CDN is our own customized CSS build. -->
+    <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
+    <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />
+    <link href="/css/opamdoc.css" rel="stylesheet" media="screen" />
+    <!--[if lt IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      function octry(x){
+        if(document.getElementById('buttons').innerHTML=='') {
+          t = document.getElementById('tryocaml');
+          js = document.createElement("script"); js.type = "text/javascript"; js.src = "/try-ocaml.js";
+          t.appendChild(js);
+        } else {
+          t = document.getElementById('tryocaml');
+          t.style.display = 'block';
+          document.getElementById('console').value = x;
+          document.getElementById('console').focus();
+          document.getElementById('console').select();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/"><img src="/img/ocaml.png" alt="OCaml" /></a>
+          <div class="nav-collapse collapse">
+            ((! input tpl/navbar.mpp !))
+            <form id="searchform" class="navbar-search pull-right" method="get" action="http://www.google.com/search">
+              <input value="site:http://ocaml.org/" name="q" type="hidden" />
+              <input placeholder="Search" class="search-query" name="q" type="text" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+    {{! ifdef core ((! get contents !)) !}}
+    {{! else ((! input tpl/core.mpp !)) !}}
+    <footer id="footer" class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <ul class="nav pull-left">
+            <li><a style='cursor:pointer;' onclick="document.getElementById('footer').style.display='none'">[X]</a></li>
+{{! ifdef filename
+            <li><a href="https://github.com/ocamllabs/sandbox-ocaml.org/tree/master/((! tryget filename !))">Edit this page</a></li>
+!}}
+          </ul>
+          <ul class="nav pull-right">
+            <li><a href="https://github.com/ocamllabs/sandbox-ocaml.org/issues">Feedback</a></li>
+            <li><a href="https://github.com/ocamllabs/sandbox-ocaml.org/issues">Contact us</a></li>
+            <li><a href="https://github.com/ocamllabs/sandbox-ocaml.org/">Find us on GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <!-- Load javascript from CDN -->
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      // <!--
+      if(document.getElementsByTagName('pre').length > 0)
+         octry('')
+      // -->
+    </script>
+  </body>
+</html>
