@@ -60,7 +60,7 @@
           <ul class="nav pull-left">
             <li><a style='cursor:pointer;' onclick="document.getElementById('footer').style.display='none'">[X]</a></li>
 {{! ifdef filename
-            <li><a href="https://github.com/ocaml/ocaml.org/tree/redesign/((! tryget filename !))">Edit this page</a></li>
+            <li><a href="https://github.com/ocaml/ocaml.org/tree/redesign/src/((! tryget filename !))">Edit this page</a></li>
 !}}
           </ul>
           <ul class="nav pull-right">
