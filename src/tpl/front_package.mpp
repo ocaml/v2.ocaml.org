@@ -1,0 +1,63 @@
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="#">Recent updates</a>
+    </li>
+    <li><a href="#">Most popular</a></li>
+    <li><a href="#">Statistics</a></li>
+</ul>
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Package</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Version</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td><a href="#">obuild</a></td>
+                <td><a href="#">foo</a></td>
+                <td><a href="#">Tools</a></td>
+                <td><a href="#">0.0.1</a></td>
+                <td><a href="#">9:00  12 Feb 2013</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">obuild</a></td>
+                <td><a href="#">foo</a></td>
+                <td><a href="#">Tools</a></td>
+                <td><a href="#">0.0.1</a></td>
+                <td><a href="#">9:00  12 Feb 2013</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">obuild</a></td>
+                <td><a href="#">foo</a></td>
+                <td><a href="#">Tools</a></td>
+                <td><a href="#">0.0.1</a></td>
+                <td><a href="#">9:00  12 Feb 2013</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">obuild</a></td>
+                <td><a href="#">foo</a></td>
+                <td><a href="#">Tools</a></td>
+                <td><a href="#">0.0.1</a></td>
+                <td><a href="#">9:00  12 Feb 2013</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">obuild</a></td>
+                <td><a href="#">foo</a></td>
+                <td><a href="#">Tools</a></td>
+                <td><a href="#">0.0.1</a></td>
+                <td><a href="#">9:00  12 Feb 2013</a></td>
+            </tr>
+
+            <tr>
+                <td><a href="#">obuild</a></td>
+                <td><a href="#">foo</a></td>
+                <td><a href="#">Tools</a></td>
+                <td><a href="#">0.0.1</a></td>
+                <td><a href="#">9:00  12 Feb 2013</a></td>
+            </tr>
+    </tbody>
+</table>
