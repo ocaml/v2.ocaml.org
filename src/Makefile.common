@@ -1,0 +1,45 @@
+# -*- mode:Makefile -*-
+
+MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its 
+MPP = mpp ${MPP_OPTIONS}
+
+all:ocamltohtml
+	make ocaml.org
+	bash gen.bash site
+	make syncotherfiles
+
+rss2html:rss2html.ml
+	ocamlfind ocamlopt -package unix,equeue,bigarray,xmlm,netstring,netclient,rss bigarray.cmxa unix.cmxa str.cmxa netsys_oothr.cmxa netsys.cmxa netstring.cmxa equeue.cmxa netclient.cmxa xmlm.cmxa rss.cmxa "$<" -o "$@"
+
+ocaml.org:
+	find site -type d | while read l; do mkdir -p "$$(sed -e 's|site/|ocaml.org/|g' <<<"$$l")" ; done
+
+ocamltohtml:lexer.ml ocamltohtml.ml
+	ocamlopt -o $@ lexer.ml ocamltohtml.ml
+	rm -f ocamltohtml.cm[ix] lexer.cm[ix]
+
+tpl/front_code_snippet.html:tpl/front_code_snippet.md
+	omd $< -o $@
+
+clean:
+	rm -fr ocaml.org *~ *.cmo *.cmi *.cma
+
+htmlescape:htmlescape.ml
+	ocamlopt $< -o $@
+
+.PHONY: opamdoc pkg clean syncotherfiles
+
+syncotherfiles:
+	rsync --exclude '*.md' --exclude '*.html' -rltHprogv site/* ocaml.org/
+
+
+ocaml.org/community/planet.html:rss2html
+ocaml.org/learn/index.html:tpl/front_code_snippet.html
+ocaml.org/index.html:tpl/front_code_snippet.html tpl/front_news.mpp
+ocaml.org/community/index.html:tpl/front_news.mpp
+tpl/front_code_snippet_tpl.html:tpl/front_code_snippet.md
+	omd -r ocaml=./ocamltohtml -r tryocaml=./ocamlapplet.bash $< > $@
+
+
+
+
