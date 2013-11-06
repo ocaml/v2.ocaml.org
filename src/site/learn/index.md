@@ -48,13 +48,13 @@
         <section class="span4 condensed">
             <h1 class="ruled">Common Questions</h1>
             <ul>
-                <li><a href="/learn/faq">General Questions</a></li>
-                <li><a href="/learn/faq">Core Language</a></li>
-                <li><a href="/learn/faq">Module Language</a></li>
-                <li><a href="/learn/faq">Development Tools</a></li>
+                <li><a href="/learn/faq.html#GeneralQuestions">General Questions</a></li>
+                <li><a href="/learn/faq.html#CoreLanguage">Core Language</a></li>
+                <li><a href="/learn/faq.html#ModuleLangage">Module Language</a></li>
+                <li><a href="/learn/faq.html#DevelopmentTools">Development Tools</a></li>
             </ul>
             <footer>
-                <p><a href="/learn/faq">See full list</a></p>
+                <p><a href="/learn/faq.html">See full list</a></p>
             </footer>
         </section>
         <section class="span8 condensed">
