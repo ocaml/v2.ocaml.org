@@ -21,16 +21,16 @@ character strings. For printing in the toplevel, a custom printer can be
 used. An example under OCaml is given below.
 
 ```tryocaml
-  #load "nums.cma";;
-  open Num
-  open Format;;
-  let print_num ff n = fprintf ff "%s" (string_of_num n);;
-  #install_printer print_num;;
-  num_of_string "2/3";;
-  let n = num_of_string "1/3" +/ num_of_string "2/3";;
-  let rec fact n =
-    if n <= 0 then (num_of_int 1) else num_of_int n */ (fact (n - 1));;
-  fact 100;;
+#load "nums.cma";;
+open Num
+open Format;;
+let print_num ff n = fprintf ff "%s" (string_of_num n);;
+#install_printer print_num;;
+num_of_string "2/3";;
+let n = num_of_string "1/3" +/ num_of_string "2/3";;
+let rec fact n =
+  if n <= 0 then (num_of_int 1) else num_of_int n */ (fact (n - 1));;
+fact 100;;
 ```
 ###  Data structures
 My array is modified, and I don't know why
@@ -41,10 +41,10 @@ same array, every modification on one array will be visible to the
 other:
 
 ```tryocaml
-  let v = Array.make 3 0;;
-  let w = v;;
-  w.(0) <- 4;;
-  v;;
+let v = Array.make 3 0;;
+let w = v;;
+w.(0) <- 4;;
+v;;
 ```
 The physical sharing effect also applies to elements stored in vectors:
 if these elements are also vectors, the sharing of these vectors implies
@@ -60,9 +60,9 @@ not right because there is some unexpected physical sharing between the
 lines of the new array (see also previous entry):
 
 ```tryocaml
-  let m = Array.make 2 (Array.make 3 0);;
-  m.(0).(0) <- 1;;
-  m;;
+let m = Array.make 2 (Array.make 3 0);;
+m.(0).(0) <- 1;;
+m;;
 ```
 The allocation of a new array has two phases. First, the initial value
 is computed; then this value is written in each element of the new
@@ -74,26 +74,26 @@ Alternatively, write the program that allocates a new line for each line
 of your matrix. For instance:
 
 ```tryocaml
-  let matrix n m init =
-    let result = Array.make n (Array.make m init) in
-    for i = 1 to n - 1 do
-      result.(i) <- Array.make m init
-    done;
-    result
+let matrix n m init =
+  let result = Array.make n (Array.make m init) in
+  for i = 1 to n - 1 do
+    result.(i) <- Array.make m init
+  done;
+  result
 ```
 In the same vein, the `copy_vect` primitive gives strange results, when
 applied to matrices: you need to write a function that explicitly copies
 each line of the matrix at hand:
 
 ```tryocaml
-  let copy_matrix m =
-    let l = Array.length m in
-    if l = 0 then m else
-      let result = Array.make l m.(0) in
-      for i = 0 to l - 1 do
-        result.(i) <- Array.copy m.(i)
-      done;
-      result
+let copy_matrix m =
+  let l = Array.length m in
+  if l = 0 then m else
+    let result = Array.make l m.(0) in
+    for i = 0 to l - 1 do
+      result.(i) <- Array.copy m.(i)
+    done;
+    result
 ```
 ###  Types definitions
 How to define an enumerated type?
@@ -102,17 +102,17 @@ An enumerated type is a sum type with only constants. For instance, a
 type with 3 constants:
 
 ```tryocaml
-  type color = Blue | White | Red;;
-  Blue;;
+type color = Blue | White | Red;;
+Blue;;
 ```
 The names `Blue`, `White` and `Red` are the constructors of the `color`
 type. One can define functions on this type by pattern matching:
 
 ```tryocaml
-  let string_of_color =function
-    | Blue -> "blue"
-    | White -> "white"
-    | Red -> "red"
+let string_of_color =function
+  | Blue -> "blue"
+  | White -> "white"
+  | Red -> "red"
 ```
 How to share a label between two different record types?
 
@@ -120,48 +120,48 @@ When you define two types sharing a label name, the last defined type
 hides the labels of the first type. For instance:
 
 ```tryocaml
-  type point_3d = {x : float; y : float; z : float};;
-  type point_2d = {x : float; y : float};;
-  {x = 10.; y = 20.; z = 30.};;
+type point_3d = {x : float; y : float; z : float};;
+type point_2d = {x : float; y : float};;
+{x = 10.; y = 20.; z = 30.};;
 ```
 The simplest way to overcome this problem is simply ... to use different
 names! For instance
 
 ```tryocaml
-  type point3d = {x3d : float; y3d : float; z3d : float};;
-  type point2d = {x2d : float; y2d : float};;
+type point3d = {x3d : float; y3d : float; z3d : float};;
+type point2d = {x2d : float; y2d : float};;
 ```
 With OCaml, one can propose two others solutions. First, it is possible
 to use modules to define the two types in different name spaces:
 
 ```tryocaml
-  module D3 = struct
-    type point = {x : float; y : float; z : float}
-  end;;
+module D3 = struct
+  type point = {x : float; y : float; z : float}
+end;;
 
-  module D2 = struct
-    type point = {x : float; y : float}
-  end;;
+module D2 = struct
+  type point = {x : float; y : float}
+end;;
 ```
 This way labels can be fully qualified as `D3.x` `D2.x`:
 
 ```tryocaml
-  {D3.x = 10.; D3.y = 20.; D3.z = 30.};;
-  {D2.x = 10.; D2.y = 20.};;
+{D3.x = 10.; D3.y = 20.; D3.z = 30.};;
+{D2.x = 10.; D2.y = 20.};;
 ```
 You can also use objects that provide overloading on method names:
 
 ```tryocaml
-  class point_3d ~x ~y ~z = object
-    method x : float = x
-    method y : float = y
-    method z : float = z
-  end;;
+class point_3d ~x ~y ~z = object
+  method x : float = x
+  method y : float = y
+  method z : float = z
+end;;
 
-  class point_2d ~x ~y = object
-    method x : float = x
-    method y : float = y
-  end;;
+class point_2d ~x ~y = object
+  method x : float = x
+  method y : float = y
+end;;
 ```
 Note that objects provide you more than overloading: you can define
 truly polymorphic functions, working on both `point_3d` and `point_2d`,
@@ -178,10 +178,10 @@ i.e. constructors that are, in some sense, *predefined*, since they are
 not defined by a type definition. For instance:
 
 ```tryocaml
-  type ids = [ `Name | `Val ];;
-  type person = [ `Name of string ];;
-  let f : person -> string = function `Name s -> s;;
-  let is_name : ids -> bool = function `Name -> true | _ -> false;;
+type ids = [ `Name | `Val ];;
+type person = [ `Name of string ];;
+let f : person -> string = function `Name s -> s;;
+let is_name : ids -> bool = function `Name -> true | _ -> false;;
 ```
 ###  Functions and procedures
 How to define a function?
@@ -192,13 +192,13 @@ the name of the function and its arguments; then the formula that
 computes the image of the argument is written after an `=` sign.
 
 ```tryocaml
-  let successor (n) = n + 1;;
+let successor (n) = n + 1;;
 ```
 In fact, parens surrounding the argument may be omitted, so we generally
 write:
 
 ```tryocaml
-  let successor n = n + 1;;
+let successor n = n + 1;;
 ```
 How to define a recursive function?
 
@@ -206,20 +206,20 @@ You need to explicitly tell that you want to define a recursive
 function: use “let rec” instead of “let”. For instance:
 
 ```tryocaml
-  let rec fact n =
-    if n = 0 then 1 else n * fact (n - 1);;
-  let rec fib n =
-    if n <= 1 then n else fib (n - 1) + fib (n - 2);;
+let rec fact n =
+  if n = 0 then 1 else n * fact (n - 1);;
+let rec fib n =
+  if n <= 1 then n else fib (n - 1) + fib (n - 2);;
 ```
 Functions may be mutually recursive:
 
 ```tryocaml
-  let rec odd n =
-    if n = 0 then true
-    else if n = 1 then false else even (n - 1)
-  and even n =
-    if n = 0 then false
-    else if n = 1 then true else odd (n - 1);;
+let rec odd n =
+  if n = 0 then true
+  else if n = 1 then false else even (n - 1)
+and even n =
+  if n = 0 then false
+  else if n = 1 then true else odd (n - 1);;
 ```
 How to apply a function?
 
@@ -253,8 +253,8 @@ newline on the terminal, gets no meaningful argument: it has type
 instance:
 
 ```tryocaml
-  let message s = print_string s; print_newline();;
-  message "Hello world!";;
+let message s = print_string s; print_newline();;
+message "Hello world!";;
 ```
 How to define a procedure/function that takes no argument?
 
@@ -265,15 +265,15 @@ bound to `()`, and its further evaluation never produces carriage
 returns as may be erroneously expected by the user.
 
 ```tryocaml
-  let double_newline = print_newline(); print_newline();;
-  double_newline;;
+let double_newline = print_newline(); print_newline();;
+double_newline;;
 ```
 The correct definition and usage of this procedure is:
 
 ```tryocaml
-  let double_newline () = print_newline(); print_newline();;
-  double_newline;;
-  double_newline ();;
+let double_newline () = print_newline(); print_newline();;
+double_newline;;
+double_newline ();;
 ```
 How to define a function with more than one argument?
 
@@ -281,28 +281,28 @@ Just write the list of successive arguments when defining the function.
 For instance:
 
 ```tryocaml
-  let sum x y = x + y;;
+let sum x y = x + y;;
 ```
 then gives the actual arguments in the same order when applying the
 function:
 
 ```tryocaml
-  sum 1 2;;
+sum 1 2;;
 ```
 These functions are named “curried” functions, as opposed to functions
 with tuples as argument:
 
 ```tryocaml
-  let sum' (x, y) = x + y;;
-  sum' (1, 2);;
+let sum' (x, y) = x + y;;
+sum' (1, 2);;
 ```
 How to define a function that has several results?
 
 You can define a function that return a pair or a tuple:
 
 ```tryocaml
-  let div_mod x y = (x / y, x mod y);;
-  div_mod 15 7;;
+let div_mod x y = (x / y, x mod y);;
+div_mod 15 7;;
 ```
 What is an “anonymous function”?
 
@@ -312,8 +312,8 @@ or anonymous functions. A functional value is introduced by the keyword
 body. For instance:
 
 ```tryocaml
-  fun x -> x + 1;;
-  (fun x -> x + 1) 2;;
+fun x -> x + 1;;
+(fun x -> x + 1) 2;;
 ```
 What is the difference between `fun` and `function`?
 
@@ -321,19 +321,19 @@ Functions are usually introduced by the keyword `fun`. Each parameter is
 introduced by its own `fun` construct. For instance, the construct:
 
 ```tryocaml
-  fun x -> fun y -> ...
+fun x -> fun y -> ...
 ```
 defines a function with two parameters `x` and `y`. An equivalent but
 shorter form is:
 
 ```tryocaml
-  fun x y -> ...
+fun x y -> ...
 ```
 Functions that use pattern-matching are introduced by the keyword
 `function`. For example:
 
 ```tryocaml
-  function None -> false | Some _ -> true
+function None -> false | Some _ -> true
 ```
 My function is never applied
 
@@ -345,8 +345,8 @@ but the function is evidently not applied. Example: if you evaluate
 happens. The compiler issues a warning in case of a blatant misuse.
 
 ```tryocaml
-  print_newline;;
-  print_newline ();;
+print_newline;;
+print_newline ();;
 ```
 ###  Pattern matching
 How to do nested pattern matching?
@@ -400,11 +400,11 @@ compiler does not confuse the two types, but the types are evidently
 written the same. Consider for instance:
 
 ```tryocaml
-  type t = T of int;;
-  let x = T 1;;
-  type t = T of int;;
-  let incr = function T x -> T (x+1);;
-  incr x;;
+type t = T of int;;
+let x = T 1;;
+type t = T of int;;
+let incr = function T x -> T (x+1);;
+incr x;;
 ```
 This phenomenon appears when you load many times the same file into the
 interactive system, since each reloading redefines the types. The
@@ -426,12 +426,12 @@ construct or an extra parameter (this rewriting is known as
 eta-expansion):
 
 ```tryocaml
-  let map_id = List.map (function x -> x) (* Result is weakly polymorphic *);;
-  map_id [1;2];;
-  map_id (* No longer polymorphic *);;
-  let map_id' l = List.map (function x -> x) l;;
-  map_id' [1;2];;
-  map_id' (* Still fully polymorphic *);;
+let map_id = List.map (function x -> x) (* Result is weakly polymorphic *);;
+map_id [1;2];;
+map_id (* No longer polymorphic *);;
+let map_id' l = List.map (function x -> x) l;;
+map_id' [1;2];;
+map_id' (* Still fully polymorphic *);;
 ```
 The two definitions are semantically equivalent, and the new one can be
 assigned a polymorphic type scheme, since it is no more a function
@@ -448,8 +448,8 @@ will disappear thanks to type inference as soon as enough informations
 will be given.
 
 ```tryocaml
-  let r = ref [];;
-  let f = List.map (fun x -> x);;
+let r = ref [];;
+let f = List.map (fun x -> x);;
 ```
 Since the expression mentionned in the error message cannot be compiled
 as is, two cases must be envisioned:
@@ -468,7 +468,7 @@ In ML, an argument of a function cannot be polymorphic inside the body
 of the function; hence the following typing:
 
 ```tryocaml
-  let f (g : 'a -> 'a) x y = g x, g y;;
+let f (g : 'a -> 'a) x y = g x, g y;;
 ```
 The function is not as polymorphic as we could have hoped.<br />
  Nevertheless, in OCaml it is possible to use first-order polymorphism.
@@ -476,9 +476,9 @@ For this, you can use either records or objects; in the case of records,
 you need to declare the type before using it in the function.
 
 ```tryocaml
-  let f (o : < g : 'a. 'a -> 'a >) x y = o#g x, o#g y;;
-  type id = { g : 'a. 'a -> 'a };;
-  let f r x y = r.g x, r.g y;;
+let f (o : < g : 'a. 'a -> 'a >) x y = o#g x, o#g y;;
+type id = { g : 'a. 'a -> 'a };;
+let f r x y = r.g x, r.g y;;
 ```
 FIXME: A direct way now exists.
 
@@ -495,9 +495,9 @@ at hand. By contrast low level output is performed with no more
 buffering than usual I/O buffering.
 
 ```tryocaml
-  print_endline "before";
-  Format.print_string "MIDDLE";
-  print_endline "after";;
+print_endline "before";
+Format.print_string "MIDDLE";
+print_endline "after";;
   
 ```
 To avoid this kind of problems you should not mix printing orders from
