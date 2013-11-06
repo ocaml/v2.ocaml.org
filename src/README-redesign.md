@@ -7,7 +7,10 @@
   * gnu make
   * bash
   * ocamlopt
+  * ocamlfind
   * rss2html.ml needs packages {bigarray,unix,str,netsys,xmlm,netclient,rss} to compile (packages available in opam)
+
+If opam is installed, you may run: `opam install ocamlfind mpp omd ocamlnet xmlm ocamlrss`.
 
 # How to build the web site
 
