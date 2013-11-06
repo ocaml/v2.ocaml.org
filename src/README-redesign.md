@@ -2,7 +2,6 @@
 
   * rsync
   * mpp >= 0.1.1 (available as an opam package)
-  * frag (available as an opam package)
   * omd >= 0.6.1 (available as an opam package)
   * gnu make
   * bash
