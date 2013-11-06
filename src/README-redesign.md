@@ -5,7 +5,7 @@
   * omd >= 0.6.1 (available as an opam package)
   * gnu make
   * bash
-  * ocamlopt
+  * ocaml >= 3.12.0 (the presence of ocamlopt is required)
   * ocamlfind
   * rss2html.ml needs packages {bigarray,unix,str,netsys,xmlm,netclient,rss} to compile (packages available in opam)
 

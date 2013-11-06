@@ -2,6 +2,8 @@
 
 MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its 
 MPP = mpp ${MPP_OPTIONS}
+OMD_OPTIONS = -r ocaml=./ocamltohtml -r tryocaml=./ocamlapplet.bash
+OMD = omd ${OMD_OPTIONS}
 
 all:ocamltohtml
 	make ocaml.org
@@ -19,7 +21,7 @@ ocamltohtml:lexer.ml ocamltohtml.ml
 	rm -f ocamltohtml.cm[ix] lexer.cm[ix]
 
 tpl/front_code_snippet.html:tpl/front_code_snippet.md
-	omd $< -o $@
+	${OMD} $< -o $@
 
 clean:
 	rm -fr ocaml.org *~ *.cmo *.cmi *.cma
@@ -38,7 +40,7 @@ ocaml.org/learn/index.html:tpl/front_code_snippet.html
 ocaml.org/index.html:tpl/front_code_snippet.html tpl/front_news.mpp
 ocaml.org/community/index.html:tpl/front_news.mpp
 tpl/front_code_snippet_tpl.html:tpl/front_code_snippet.md
-	omd -r ocaml=./ocamltohtml -r tryocaml=./ocamlapplet.bash $< > $@
+	${OMD} $< > $@
 
 
 
