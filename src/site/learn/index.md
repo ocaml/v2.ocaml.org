@@ -8,7 +8,7 @@
         </div>
         <section id="learn-leader" class="span7">
             <h1>What is OCaml?</h1>
-            <p>OCaml is a general purpose industrial-strength programming language with an emphasis on expressiveness and safety. <a href="/learn/companies">Used</a> in environments where a single mistake can cost millions and speed matters, it is supported by an <a href="/community">active community</a> that has developed a <a href="/packages">rich set of libraries</a>. <small><em><a href="/learn/description">Read more</a></em></small>.</p>
+            <p>OCaml is a general purpose industrial-strength programming language with an emphasis on expressiveness and safety. <a href="/learn/companies">Used</a> in environments where a single mistake can cost millions and speed matters, it is supported by an <a href="/community">active community</a> that has developed a <a href="/packages">rich set of libraries</a>. <small><em><a href="/learn/description.html">Read more</a></em></small>.</p>
         </section>
         <div id="platform-download" class="span3">
             <p><a href="#" class="btn">Install on Mac OSX</a></p>
@@ -48,13 +48,13 @@
         <section class="span4 condensed">
             <h1 class="ruled">Common Questions</h1>
             <ul>
-                <li><a href="/learn/faq">General Questions</a></li>
-                <li><a href="/learn/faq">Core Language</a></li>
-                <li><a href="/learn/faq">Module Language</a></li>
-                <li><a href="/learn/faq">Development Tools</a></li>
+                <li><a href="/learn/faq.html">General Questions</a></li>
+                <li><a href="/learn/faq.html">Core Language</a></li>
+                <li><a href="/learn/faq.html">Module Language</a></li>
+                <li><a href="/learn/faq.html">Development Tools</a></li>
             </ul>
             <footer>
-                <p><a href="/learn/faq">See full list</a></p>
+                <p><a href="/learn/faq.html">See full list</a></p>
             </footer>
         </section>
         <section class="span8 condensed">

@@ -13,3 +13,4 @@ src/lib/ocamlorg.mllib
 src/lib/doclib.odocl
 www/
 
+.DS_Store
