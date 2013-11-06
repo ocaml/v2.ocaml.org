@@ -12,7 +12,7 @@
             <p>Creating and maintaining the Platform is an ambitious, long-term project. The v0.1 is not taking arbitrary decisions about which packages are included. Instead, we are first placing the industrial contributors on a common tool-chain and workflow so that it's easier to work together and share code. We expect a standard set of libraries to emerge from consensus over time as this workflow rises in adoption.</p>
         </section>
         <div id="platform-download" class="span3">
-            <p><a href="/docs/install" class="btn">Install</a></p>
+            <p><a href="/docs/install.html" class="btn">Install</a></p>
             <p>
                 <!-- <a href="#">Other systems</a> |
                 <a href="#">What's new?</a> -->
