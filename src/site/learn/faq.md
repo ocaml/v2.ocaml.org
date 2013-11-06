@@ -4,10 +4,7 @@
 See also [Stack Overflow](http://stackoverflow.com/tags/ocaml/info),
 which is widely used by the OCaml community.
 
-* [General Questions](#general)
-* [Core Language](#ocaml)
-* [Module Language](#module)
-* [Development Tools](#tools)
+*Table of contents*
 
 ## Core Language
 * * *
