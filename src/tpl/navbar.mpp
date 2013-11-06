@@ -1,7 +1,6 @@
             <ul class="nav">
               <li ((! ifdef learn class="active" !))><a href="/learn/">Learn</a></li>
               <li ((! ifdef documentation class="active" !))><a href="/docs/">Documentation</a></li>
-              <li ((! ifdef platform class="active" !))><a href="/platform/">Platform</a></li>
               <li ((! ifdef packages class="active" !))><a href="http://opam.ocaml.org/">Packages</a></li>
               <li ((! ifdef community class="active" !))><a href="/community/">Community</a></li>
             </ul>
