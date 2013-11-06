@@ -61,7 +61,7 @@
             <h1 class="ruled">Industrial Users</h1>
             <div class="row">
             <section class="span4 condensed">
-                <p><a href=""><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="/img/jane-street.jpg"></a>Jane Street is a quantitative proprietary trading firm with a unique focus on technology and collaborative problem solving. Almost all of our systems are written in OCaml: from statistical research code operating over terabytes of data to systems-administration tools to our real-time trading infrastructure. On our busiest days, we trade over 200 million equity shares in the US alone.</p>
+                <p><a href="http://janestreet.com"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="/img/jane-street.jpg"></a>Jane Street is a quantitative proprietary trading firm with a unique focus on technology and collaborative problem solving. Almost all of our systems are written in OCaml: from statistical research code operating over terabytes of data to systems-administration tools to our real-time trading infrastructure. On our busiest days, we trade over 200 million equity shares in the US alone.</p>
 
                 <p><a href="https://www.facebook.com"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png"></a>To handle their huge PHP codebase, Facebook developed <a href="https://github.com/facebook/pfff/wiki/Main">pfff</a>, a set of tools and APIs to perform static analysis, dynamic analysis, code visualizations, code navigations, and style-preserving source-to-source transformations such as refactorings on source code.</p>
             </section>
