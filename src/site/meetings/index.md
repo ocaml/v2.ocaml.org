@@ -14,16 +14,16 @@
  Workshop](http://oud.ocaml.org/2012/) (OUD) and [Commercial Users of
  Functional Programming](http://cufp.org) (CUFP) colocated with ICFP
  in Copenhagen (Denmark)
-* 2011:
- [Paris](https://forge.ocamlcore.org/plugins/mediawiki/wiki/ocaml-meeting/index.php/OCamlMeeting2011)
-* 2010: [Paris](http://lambda-the-ultimate.org/node/3826)
- [Videos](http://vimeo.com/13746263), [Slides
- (OASIS)](http://www.scribd.com/doc/39582083/OCaml-Meeting-2010-OASIS-Slides)
-* 2009:
- [Grenoble](http://le-gall.net/sylvain+violaine/blog/index.php?post/2008/12/19/48-ocaml-meeting-2009-in-grenoble-progress).
- Data to get from the cocan wiki (Richard).
-* 2008: Paris [Videos (to be removed
- soon!)](http://video.google.com/videoplay?docid=1704671501085578312#)
+* 2011: [Paris](https://forge.ocamlcore.org/plugins/mediawiki/wiki/ocaml-meeting/index.php/OCamlMeeting2011),
+ [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=292)
+* 2010: [Paris](http://lambda-the-ultimate.org/node/3826),
+ [Videos](http://www.youtube.com/playlist?list=PLbU5HH3lhSGYrfbHSwC7X5ZzDHddXHMM7),
+ [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=171)
+* 2009: [Grenoble](http://mirror.ocamlcore.org/wiki.cocan.org/events/europe/ocamlmeetinggrenoble2009.html),
+ [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=84)
+* 2008: [Paris](http://mirror.ocamlcore.org/wiki.cocan.org/events/europe/ocamlmeetingparis2008.html),
+ [Videos](http://www.youtube.com/playlist?list=PLbU5HH3lhSGZ2WoueuOr8LuVZThBYvoHX),
+ [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=170)
 
 ## In Japan
 * 2010: [Nagoya](http://atnd.org/events/4873)
