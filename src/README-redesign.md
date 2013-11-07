@@ -2,6 +2,7 @@
 
   * rsync
   * mpp >= 0.1.1 (available as an opam package)
+    * mpp >= 0.1.2 if your `/bin/sh` is a link to `/bin/dash` (opam package available when PR is merged)
   * omd >= 0.6.1 (available as an opam package)
   * gnu make
   * bash
