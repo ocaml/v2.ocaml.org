@@ -6,9 +6,9 @@ OMD_OPTIONS = -r ocaml=./ocamltohtml -r tryocaml=./ocamlapplet.bash
 OMD = omd ${OMD_OPTIONS}
 
 all:ocamltohtml
-	make ocaml.org
+	$(MAKE) ocaml.org
 	bash gen.bash site
-	make syncotherfiles
+	$(MAKE) syncotherfiles
 
 rss2html:rss2html.ml
 	ocamlfind ocamlopt -package unix,equeue,bigarray,xmlm,netstring,netclient,rss bigarray.cmxa unix.cmxa str.cmxa netsys_oothr.cmxa netsys.cmxa netstring.cmxa equeue.cmxa netclient.cmxa xmlm.cmxa rss.cmxa "$<" -o "$@"
