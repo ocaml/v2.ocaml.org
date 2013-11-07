@@ -25,6 +25,7 @@ tpl/front_code_snippet.html:tpl/front_code_snippet.md
 
 clean:
 	rm -fr ocaml.org *~ *.cmo *.cmi *.cma
+	rm -f tpl/front_code_snippet.html 
 
 htmlescape:htmlescape.ml
 	ocamlopt $< -o $@
@@ -39,8 +40,6 @@ ocaml.org/community/planet.html:rss2html
 ocaml.org/learn/index.html:tpl/front_code_snippet.html
 ocaml.org/index.html:tpl/front_code_snippet.html tpl/front_news.mpp
 ocaml.org/community/index.html:tpl/front_news.mpp
-tpl/front_code_snippet_tpl.html:tpl/front_code_snippet.md
-	${OMD} $< > $@
 
 
 
