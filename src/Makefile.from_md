@@ -3,14 +3,14 @@
 include Makefile.common
 
 ocaml.org/%.html:site/%.md
-	make ocaml.org
+	$(MAKE) ocaml.org
 	if grep -q '*Table of contents*' "$<" ; then ${OMD} -otoc -ts 2 "$<" > "$@.toc" ; fi
 	sed -e 's|\*Table of contents\*||g' "$<" | ${OMD} > "$@.tmp"
 	if [ -f "$@.toc" ] ; then \
 	${MPP} -set "filename=$<" -set "page=$@.tmp" -set "toc=$@.toc" tpl/main.mpp -o "$@" ; \
-	rm -f "$@.toc" ; \
+	$(RM) "$@.toc" ; \
 	else \
 	${MPP} -set "filename=$<" -set "page=$@.tmp" tpl/main.mpp -o "$@" ; \
 	fi
-	rm -f "$@.tmp"
+	$(RM) "$@.tmp"
 

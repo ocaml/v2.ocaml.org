@@ -3,6 +3,6 @@
 include Makefile.common
 
 ocaml.org/%.html:site/%.html
-	make ocaml.org
+	$(MAKE) ocaml.org
 	${MPP} "$<" -o "$@"
 

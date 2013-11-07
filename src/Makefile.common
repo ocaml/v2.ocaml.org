@@ -18,13 +18,13 @@ ocaml.org:
 
 ocamltohtml:lexer.ml ocamltohtml.ml
 	ocamlopt -o $@ lexer.ml ocamltohtml.ml
-	rm -f ocamltohtml.cm[ix] lexer.cm[ix]
+	$(RM) ocamltohtml.cm[ix] lexer.cm[ix]
 
 tpl/front_code_snippet.html:tpl/front_code_snippet.md
 	${OMD} $< -o $@
 
 clean:
-	rm -fr ocaml.org *~ *.cmo *.cmi *.cma
+	$(RM) -r ocaml.org *~ *.cmo *.cmi *.cma
 
 htmlescape:htmlescape.ml
 	ocamlopt $< -o $@
