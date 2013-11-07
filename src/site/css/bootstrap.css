@@ -5348,9 +5348,14 @@ body {
 #footer {
   background: #404040;
   font-family: Lato, sans-serif;
-  height: 74px;
+  height: 44px;
   color: #ffffff;
 }
+#footer a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 @media (max-width: 979px) {
   body {
     padding-top: 0;
