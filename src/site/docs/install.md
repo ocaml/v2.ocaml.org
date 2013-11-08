@@ -1,5 +1,7 @@
 <!-- ((! set title Install OCaml !)) ((! set documentation !)) -->
 
+*Table of contents*
+
 # Install OCaml
 The most recent version is [OCaml 4.00.1](releases/), released on
 2012-10-05. It can be easily installed in several ways. Broadly, the
@@ -16,25 +18,10 @@ to download and install OCaml libraries. You can also find more packages
 
 <br />
 
-* [By Platform ****](#)
-    * [Debian](#debian)
-    * [Fedora](#fedora)
-    * [FreeBSD](#freebsd)
-    * [Gentoo](#gentoo)
-    * [Mac OS X](#macosx)
-    * [SuSE](#suse)
-    * [Ubuntu](#ubuntu)
-    * [Mageia](#mageia)
-    * [Windows](#windows)
 
-* [By Package Manager ****](#)
-    * [GODI](#godi)
-    * [OPAM](#opam)
+## By Package Manager
 
-* [From Source ****](#)
-    * [Development Version](#devel)
-
-## GODI
+### GODI
 GODI is an independent distribution of OCaml and add-on software
 (covering both libraries and applications), running on multiple
 operating systems (Linux, MacOSX, Windows, and other). GODI compiles
@@ -48,7 +35,7 @@ the README.
 
 For the impatient, do the following
 
-```tryocaml
+```bash
 wget http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
 tar xzvf http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
 cd godi-rocketboost-20110811
@@ -57,7 +44,7 @@ cd godi-rocketboost-20110811
 You may need to use the `--prefix` option to the bootstrap command if
 you need to change the default installation location.
 
-## OPAM
+### OPAM
 OPAM is a package manager for OCaml, based on the CUDF library
 developped by the Mancoosi project, which is, among other things, used
 by Debian to manage their packages. It works well on Unix, Linux, and
@@ -70,25 +57,28 @@ For the impatient, do the following
 
 Quick install:
 
-```tryocaml
-          $ wget http://www.ocamlpro.com/pub/opam_installer.sh
-          $ sh ./opam_installer.sh /usr/local/bin  # You can change the path to install it in an other place.
+```bash
+$ wget http://www.ocamlpro.com/pub/opam_installer.sh
+$ sh ./opam_installer.sh /usr/local/bin  # You can change the path to install it in an other place.
           
 ```
 From source:
 
-```tryocaml
-          $ git clone https://github.com/OCamlPro/opam
-          $ cd opam
-          $ ./configure # (or ./configure --prefix=$HOME if you want to install under your $HOME)
-          $ make
-          $ make install
-          $ opam init
-          $ eval `opam config -env`
-          $ opam switch 4.00.1
-          
+```bash
+$ git clone https://github.com/OCamlPro/opam
+$ cd opam
+$ ./configure # (or ./configure --prefix=$HOME if you want to install under your $HOME)
+$ make
+$ make install
+$ opam init
+$ eval `opam config -env`
+$ opam switch 4.00.1
 ```
-## Debian
+
+
+## By platform
+
+### Debian
 OCaml is very easy to install under [Debian](http://www.debian.org). We
 recommend you install `ocaml-nox` to develop applications not needing
 the graphics library or `ocaml` if you need the
@@ -107,13 +97,13 @@ module. We also recommend you install
 Check the [packages available in
 Debian](http://packages.debian.org/search?keywords=ocaml&searchon=all&suite=testing&section=all).
 
-## Ubuntu
+### Ubuntu
 [Ubuntu](http://www.ubuntu.com/) being a derivative of Debian, it
 inherits its ease of install of [OCaml
 packages](http://packages.ubuntu.com/search?keywords=ocaml). The same
 recommendations as for Debian hold.
 
-## Fedora
+### Fedora
 Since [Fedora 8](http://fedoraproject.org/), Fedora has excellent
 support for OCaml in the basic distribution. There is an active group of
 maintainers who keep up to date with the latest OCaml, and there is a
@@ -121,25 +111,25 @@ wide range of packages available.
 
 To install the OCaml compiler just do:
 
-```tryocaml
-        yum install ocaml
+```bash
+yum install ocaml
 ```
 To install an OCaml library called '`foo`', and any dependencies it
 needs, you would do:
 
-```tryocaml
-        yum install ocaml-foo-devel
+```bash
+yum install ocaml-foo-devel
 ```
 A good set of basic development libraries can be installed by doing:
 
-```tryocaml
-        yum install ocaml-camlp4-devel ocaml-ocamldoc ocaml-findlib-devel \
-          ocaml-extlib-devel ocaml-calendar-devel
+```bash
+yum install ocaml-camlp4-devel ocaml-ocamldoc ocaml-findlib-devel \
+   ocaml-extlib-devel ocaml-calendar-devel
 ```
 To list all OCaml packages use:
 
-```tryocaml
-        yum search ocaml
+```bash
+yum search ocaml
 ```
 **Packaging policy and mailing lists**
 
@@ -153,7 +143,7 @@ To list all OCaml packages use:
  mailing list for people interested in OCaml on Fedora or Red Hat
  Enterprise Linux.
 
-## FreeBSD
+### FreeBSD
 [FreeBSD](http://www.freebsd.org/) had a great support for OCaml
 development for a long time. There are easy to use packages available
 for most popular platforms (i386, amd64, powerpc, sparc64) for both the
@@ -163,13 +153,13 @@ ocaml application and libraries easy.
 
 To install the OCaml compiler using packages do:
 
-```tryocaml
-        pkg_add -r ocaml
+```bash
+pkg_add -r ocaml
 ```
 or
 
-```tryocaml
-    pkg_add -r ocaml-nox11
+```bash
+pkg_add -r ocaml-nox11
 ```
 to install OCaml without X11-dependent libraries (e.g. to deploy on a
 headless server).
@@ -182,63 +172,63 @@ The same packages can be installed via the port system. There is a a
 large set of libraries available in the `devel` category of the ports
 system as well as in the specific topic-related categories.
 
-## Gentoo
+### Gentoo
 In order to get the basic tools under
 [Gentoo](http://gentoo-portage.com/dev-ml/), execute:
 
-```tryocaml
-        emerge ocaml  
+```bash
+emerge ocaml  
 ```
 while being logged in as a user that is a member of the `portage` group
 (e.g. root). If you want to see what other related packages are
 available execute
 
-```tryocaml
-        emerge -S ocaml 
+```bash
+emerge -S ocaml 
 ```
-## SuSE
+### SuSE
 Getting Started with OCaml on [SuSE](http://www.suse.com/) is part in
 the standard distribution. In openSuse 12.1, the package name is
 `ocaml-3.12.0-11.1.2` (outdated).
 
-## Mageia
+### Mageia
 [Mageia](http://www.mageia.org/) has some support for OCaml in the
 distribution.
 
 To install the OCaml compilers just do:
 
-```tryocaml
-        urpmi ocaml-compiler
+```bash
+urpmi ocaml-compiler
 ```
 ocaml-compiler has no dependency on X11 libs, to install the libs that
 have some (for example the module Graphics):
 
-```tryocaml
-        urpmi ocaml-x11
+```bash
+urpmi ocaml-x11
 ```
 To install camlp4:
 
-```tryocaml
-        urpmi camlp4
+```bash
+urpmi camlp4
 ```
 To install an OCaml library called '`foo`', and any dependencies it
 needs, you would do:
 
-```tryocaml
-        urpmi ocaml-foo-devel
+```bash
+urpmi ocaml-foo-devel
 ```
 A good set of basic development libraries can be installed by doing:
 
-```tryocaml
-        urpmi camlp4-devel ocaml-doc ocaml-findlib-devel \
-          ocaml-extlib-devel ocaml-extlib-doc ocaml-batteries-devel \
-          ocaml-ounit-devel ocaml-sexplib-devel ocaml-xml-light-devel \
-          ocamlmakefile
+```bash
+urpmi camlp4-devel ocaml-doc ocaml-findlib-devel \
+  ocaml-extlib-devel ocaml-extlib-doc ocaml-batteries-devel \
+  ocaml-ounit-devel ocaml-sexplib-devel ocaml-xml-light-devel \
+  ocamlmakefile
 ```
 To list OCaml packages use:
 
-```tryocaml
-        urpmq --list | grep ocaml
+```bash
+urpmq --list | grep ocaml
 ```
 **Packaging policy**
 
@@ -246,7 +236,7 @@ To list OCaml packages use:
  Mageia. All Mageia OCaml packages have to obey this policy, ensuring
  a minimum standard for all OCaml packages we ship.
 
-## Windows
+### Windows
 Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
 issues](portability.html) or the [Windows release
@@ -274,7 +264,7 @@ notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
 To install libraries, you may use [Godi for Windows or OPAM (see the <em>By
 Package Manager</em> tab).](http://wodi.forge.ocamlcore.org/)
 
-## Mac OS X
+### Mac OS X
 Under Mac OS X, there are, at least for the base package, five different
 ways to go: Install the binary package from Inria; Install via Fink;
 Install via MacPorts; Build via [GODI](#godi); or build it manually from
@@ -282,7 +272,7 @@ sources. For each of the four approaches, you will need to have at least
 the OS X developer tools installed — any other requirements will be
 discussed below.
 
-###  Inria's binary package
+####  Inria's binary package
 This is the easiest way to set up a basic OCaml installation for OS X.
 For 10.4 (Tiger), simply [download](releases/) Intel disk image, mount
 the disk image, double-click on the ocaml.pkg file contained within, and
@@ -297,7 +287,7 @@ installations described on this page is
 application allowing for easy interaction with the OCaml toplevel
 environment.
 
-###  Fink
+####  Fink
 [Fink](http://fink.sourceforge.net/ "Fink") is the most prevalent
 package management system for OS X, and is based on Debian's package
 management system. Fink can be installed by downloading and building the
@@ -323,7 +313,7 @@ It is likely that Fink will need to download and install a number of
 other packages required to build the OCaml packages, but this will occur
 mostly automatically.
 
-###  Godi OCaml Linking Against Fink Libraries
+####  Godi OCaml Linking Against Fink Libraries
 This method uses [GODI](#godi)'s version of OCaml and uses
 [Fink](http://fink.sourceforge.net/) to provide any additional third
 party libraries that do not come with Mac OS X. This is done because the
@@ -336,7 +326,7 @@ There is the issue of knowing which Fink packages have to be installed
 before you can install some of the Godi packages with all optioned
 enabled.
 
-###  [MacPorts](macosx-macports)
+####  [MacPorts](macosx-macports)
 [MacPorts](http://www.macports.org/), formerly known as DarwinPorts, is
 a package management system for Mac OS X based on the BSD ports system.
 You will need to have the OS X Developer Tools installed before
@@ -352,7 +342,7 @@ be used to download and build the following packages:
 * `tuareg-mode.el` A GNU Emacs/XEmacs major mode for editing OCaml
  programs.
 
-###  Godi OCaml Linking Against MacPorts Libraries
+####  Godi OCaml Linking Against MacPorts Libraries
 Just like the Fink/Godi setup mentioned above, this method uses
 [GODI](#godi)'s version of OCaml and uses
 [MacPorts](http://www.macports.org/) to provide any additional third
@@ -360,7 +350,10 @@ party libraries that do not come with Mac OS X. This way you can let
 GODI take care of your OCaml build tree, and let MacPorts take care of
 the native libraries, such as GTK2 and PCRE.
 
-###  [Building from sources](macosx-sources)
+
+
+
+####  [Building from sources](macosx-sources)
 Unfortunately, the packages available for both Fink and DarwinPorts
 don't yet include some of the more useful additions to the OCaml
 collection, such as Markus Mottl's PCRE-Ocaml library or Stolpmann's
@@ -389,7 +382,7 @@ etc. can be built as well. The most flexible solution for doing this is
 often using Fink to install the required dependencies, and build the
 OCaml packages from source distributions.
 
-###  Using Xcode for writing OCaml programs
+####  Using Xcode for writing OCaml programs
 There exists an Xcode plugin integrating OCaml developement in Xcode.
 This plugin is always under development and still lacks of features,
 however it gives useful features for developing applications:
@@ -416,7 +409,7 @@ Still being in beta it does not yet support the following:
 
 [Download and information](http://maxao.free.fr/xcode-ocaml-plugin/).
 
-###  Using labltk with OS X
+####  Using labltk with OS X
 There are a couple of different ways one can go if they wish to use
 labltk with OS X. One could download and build the Tcl/Tk libraries
 themselves and use those libraries. However, there are two easier ways
@@ -435,7 +428,7 @@ one needs to consider before installing OCaml and labltk:
  environment of a labltk enabled toplevel, then they *must* use the
  fink libraries.
 
-####  Installing the fink libraries
+#####  Installing the fink libraries
 Once Fink is [installed and
 configured](http://fink.sourceforge.net/doc/index.php?phpLang=en),
 install the Tcl/Tk libraries with the command
@@ -445,15 +438,15 @@ script should be able to locate the libraries and header files required
 to build labltk (provided fink is set up to install its packages in the
 /sw directory). Running the standard OCaml build will also build labltk.
 
-####  Installing the Tcl/Tk Aqua libraries
+#####  Installing the Tcl/Tk Aqua libraries
 This framework comes with OS X 10.4 and later. Configure the OCaml build
 by using the following flags:
 
-```tryocaml
-          ./configure -tkdefs \
-          "-I/Library/Frameworks/Tcl.framework/Headers \
-          -I/Library/Frameworks/Tk.framework/Headers" \
-        -tklibs "-framework Tcl -framework Tk" 
+```bash
+./configure -tkdefs \
+  "-I/Library/Frameworks/Tcl.framework/Headers \
+  -I/Library/Frameworks/Tk.framework/Headers" \
+  -tklibs "-framework Tcl -framework Tk" 
 ```
 Now building OCaml will also build labltk using the Tcl/Tk Aqua
 libraries.
@@ -463,15 +456,15 @@ As mentioned above, any programs using labltk must be compiled using
 application can be used. For example, with the simple program,
 `hello.ml`:
 
-```tryocaml
-          open Tk;;
-          let hello () =
-          print_endline "Hello!"; flush stdout in
-          let top = openTk () in
-          let hb =
-          Button.create ~text:"Hello" ~command:hello top in
-          pack [hb];
-          mainLoop ()       
+```ocaml
+open Tk;;
+let hello () =
+  print_endline "Hello!"; flush stdout in
+let top = openTk () in
+let hb =
+Button.create ~text:"Hello" ~command:hello top in
+pack [hb];
+mainLoop ()       
 ```
 One would compile this program with the command
 `ocamlopt -o hello -I +labltk labltk.cmxa     hello.ml`
@@ -483,10 +476,10 @@ a Mac OS X .app structure.
 To add a resource fork, one needs to use the program `Rez`, included in
 the OS X Developer tools. This can be done with the following command:
 
-```tryocaml
-          /Developer/Tools/Rez -t APPL -o hello ~/dev/mac.r \
-          -i /Library/Frameworks/Tcl.framework/Headers \
-          -i /Library/Frameworks/Tk.framework/Headers   
+```bash
+/Developer/Tools/Rez -t APPL -o hello ~/dev/mac.r \
+  -i /Library/Frameworks/Tcl.framework/Headers \
+  -i /Library/Frameworks/Tk.framework/Headers   
 ```
 Where mac.r is a Rez source file. It is part of the
 [FLTK](http://www.fltk.org/) distribution. This will add the required
@@ -504,30 +497,29 @@ To do this, after compiling with
 `ocamlopt -o hello -I     +labltk labltk.cmxa hello.ml`, the following
 steps will build the bundle:
 
-```tryocaml
-          mkdir hello.app
-          mkdir hello.app/Contents
-          mkdir hello.app/Contents/MacOS
-          mv hello hello.app/Contents/MacOS  
+```bash
+mkdir hello.app
+mkdir hello.app/Contents
+mkdir hello.app/Contents/MacOS
+mv hello hello.app/Contents/MacOS  
 ```
 Next, create a file `hello.app/Contents/Info.plist` with the following
 contents:
 
-```tryocaml
-          <?xml version="1.0" encoding="UTF-8"?>
-
-          <plist version="1.0">
-          <dict>
-          <key>CFBundleExecutable</key>
-          <string>hello</string>
-          </dict>
-          </plist>        
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+ <dict>
+   <key>CFBundleExecutable</key>
+   <string>hello</string>
+ </dict>
+</plist>        
 ```
 The hello application can now be run from the command line by typing
 `open hello.app`, or by double-clicking on the app's icon (again, this
 will send hello.app's output to the console).
 
-###  Tips
+####  Tips
 **Documentation.** To get quick access to the documentation of a module
 (whatever the editor you use) use
 [Quicksilver](http://quicksilver.blacktree.com/) to index the libref/
@@ -540,33 +532,34 @@ and hit return to get its html file loaded in your preferred browser.
 with the option -p (this is unsupported) simply use Shark. Shark can be
 invoked directly from the command line as follows :
 
-```tryocaml
-        > shark -i -1 -q myprogram.opt args   
+```bash
+shark -i -1 -q myprogram.opt args   
 ```
 This will write a .mshark file in the directory that you can open with
 Shark.app.
 
-```tryocaml
-        > open *.mshark  
+```bash
+open *.mshark  
 ```
 Note that if your executable doesn't run for long enough Shark won't be
 able to take any samples and won't report any statistics. More function
 names will show up in the profiles if you compile with `-g`.
 
-## Oasis-DB
+### Oasis-DB
 ![Under Construction](img/under_construction_icon.gif "")
 
-## ODB
+### ODB
 ![Under Construction](img/under_construction_icon.gif "")
 
-## OPAM
+### OPAM
 ![Under Construction](img/under_construction_icon.gif "")
 
-## ocamlbrew
+### ocamlbrew
 ![Under Construction](img/under_construction_icon.gif "")
 [ocamlbrew](https://github.com/hcarty/ocamlbrew)
 
-## Source
+
+## From Source
 ![Under Construction](img/under_construction_icon.gif "")
 
 Download the [latest development version](releases/svn.html) using
