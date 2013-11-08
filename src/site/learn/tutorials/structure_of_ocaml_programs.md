@@ -137,14 +137,14 @@ operator dereferences to get out the contents. Here's a rough-and-ready
 comparison with C/C++:
 
 OCaml
-
-C/C++
-
 ```tryocaml
 let my_ref = ref 0;;
 my_ref := 100;;
 !my_ref
+```
 
+C/C++
+```C
 int a = 0; int *my_ptr = &a;
 *my_ptr = 100;
 *my_ptr
@@ -163,9 +163,9 @@ about nested functions:
 A "nested function" is a function defined inside another function.
 (Nested functions are not supported for GNU C++.) The nested function's
 name is local to the block where it is defined. For example, here we
-define a nested function named `square', and call it twice:
+define a nested function named 'square', and call it twice:
 
-```tryocaml
+```C
 foo (double a, double b)
 {
   double square (double z) { return z * z; }
@@ -173,12 +173,13 @@ foo (double a, double b)
   return square (a) + square (b);
 }
 ```
+
 The nested function can access all the variables of the containing
 function that are visible at the point of its definition. This is called
 "lexical scoping". For example, here we show a nested function which
 uses an inherited variable named `offset':
 
-```tryocaml
+```C
 bar (int *array, int offset, int size)
 {
   int access (int *array, int index)
@@ -232,7 +233,7 @@ going to concentrate on one quite simple module called `Graphics`.
 
 The `Graphics` module is installed into 5 files (on my system):
 
-```tryocaml
+```
 /usr/lib/ocaml/3.08/graphics.a
 /usr/lib/ocaml/3.08/graphics.cma
 /usr/lib/ocaml/3.08/graphics.cmi
@@ -419,7 +420,6 @@ statement in the block, Rule #4 tells us not to put one there.
 ###  Note about ";"
 Brian Hurt writes to correct me on ";"
 
-> 
 > The `;` is an operator, just like `+` is. Well, not quite just like
 > `+` is, but conceptually the same. `+` has type `int -> int -> int` -
 > it takes two ints and returns an int (the sum). `;` has type
@@ -445,7 +445,7 @@ Brian Hurt writes to correct me on ";"
 > two statements. All functions in OCaml can be expressed as:
 > 
 > ```tryocaml
->  let name [parameters] = expression
+> let name [parameters] = expression
 > ```
 > 
 > OCaml's definition of what is an expression is just a little wider
@@ -458,7 +458,7 @@ Brian Hurt writes to correct me on ";"
 > function, to sum a list of ints, like:
 > 
 > ```tryocaml
->  let sum_list = List.fold_left ( + ) 0
+> let sum_list = List.fold_left ( + ) 0
 > ```
 
 ###  Putting it all together: some real code
@@ -563,5 +563,4 @@ let () =
   editor#text#set_vadjustment scrollbar#adjustment;
   window#show ();
   Main.main ()
-
 ```
