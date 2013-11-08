@@ -18,3 +18,4 @@ ocaml.org/
 ocamltohtml
 rss2html
 src/tpl/front_code_snippet.html
+.DS_Store

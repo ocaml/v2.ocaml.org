@@ -506,7 +506,7 @@ mv hello hello.app/Contents/MacOS
 Next, create a file `hello.app/Contents/Info.plist` with the following
 contents:
 
-```xml
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
  <dict>
