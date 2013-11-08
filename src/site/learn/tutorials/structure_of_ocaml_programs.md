@@ -14,7 +14,7 @@ overall shape of the programs and the features which I'll point out.
 Let's take the `average` function and add a local variable in C.
 (Compare it to the first definition we had above).
 
-```tryocaml
+```C
 double
 average (double a, double b)
 {
@@ -195,18 +195,18 @@ heavily used in OCaml. Here is an example of a nested function from some
 real code:
 
 ```tryocaml
-  let read_whole_channel chan =
-    let buf = Buffer.create 4096 in
-    let rec loop () =
-      let newline = input_line chan in
-      Buffer.add_string buf newline;
-      Buffer.add_char buf '\n';
-      loop ()
-    in
-    try
-      loop ()
-    with
-      End_of_file -> Buffer.contents buf;;
+let read_whole_channel chan =
+  let buf = Buffer.create 4096 in
+  let rec loop () =
+    let newline = input_line chan in
+    Buffer.add_string buf newline;
+    Buffer.add_char buf '\n';
+    loop ()
+  in
+  try
+    loop ()
+  with
+    End_of_file -> Buffer.contents buf;;
 ```
 Don't worry about what this code does - it contains many concepts which
 haven't been discussed in this tutorial yet. Concentrate instead on the
