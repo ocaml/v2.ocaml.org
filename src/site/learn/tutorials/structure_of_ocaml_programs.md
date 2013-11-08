@@ -177,7 +177,7 @@ foo (double a, double b)
 The nested function can access all the variables of the containing
 function that are visible at the point of its definition. This is called
 "lexical scoping". For example, here we show a nested function which
-uses an inherited variable named `offset':
+uses an inherited variable named `offset`:
 
 ```C
 bar (int *array, int offset, int size)
