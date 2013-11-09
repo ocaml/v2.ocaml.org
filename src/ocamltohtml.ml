@@ -11,6 +11,10 @@ let html_escape s =
   done;
   Buffer.contents b
 
+let governing_keywords = [
+  "external"; "open"; "include"; "sig"; "struct"; "module"; "functor";
+  "type"; "virtual"; "constraint"; "class"; "in"; "inherit";
+  "initializer"; "let"; "rec"; "object"; "and"; "begin"; "end" ]
 
 let to_html t =
   let open Printf in
@@ -23,7 +27,10 @@ let to_html t =
     | Char (_, s) ->
       bprintf b "<span class='string'>%s</span>" (html_escape s)
     | Keyword (_, s) ->
-      bprintf b "<span class='keyword'>%s</span>" (html_escape s)
+       if List.mem s governing_keywords then
+         bprintf b "<span class='governing'>%s</span>" (html_escape s)
+       else
+         bprintf b "<span class='keyword'>%s</span>" (html_escape s)
     | Keyop (_, s) ->
       bprintf b "<span class='keywordsign'>%s</span>" (html_escape s)
     | Number (_, s) ->

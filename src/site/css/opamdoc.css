@@ -96,21 +96,24 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
 #opamdoc-contents .typetable { border-style : hidden }
 #opamdoc-contents .paramstable { border-style : hidden ; padding: 5pt 5pt}
 
-
- .keyword { color: #f47421; font-weight: bold }
- .keywordsign { color: #f47421 }
- .superscript { font-size : 4 }
- .subscript { font-size : 4 }
- .comment { color: #747474; font-style: italic }
- .constructor { color: #15c17a }
- .type { color: #c746cc }
- .string { color: #09a7e2 }
- .warning { color : Red ; font-weight : bold }
- .info { margin-left : 3em; margin-right: 3em }
- .param_info { margin-top: 4px; margin-left : 3em; margin-right : 3em }
- .code { color : #465F91 ; }
- .typetable { border-style : hidden }
- .paramstable { border-style : hidden ; padding: 5pt 5pt}
+/* FIXME: OCaml code should be in <pre> with a distinct class? */
+pre { line-height: 125%; }
+code { font-family: "Inconsolata", sans-serif; font-size: 115%; }
+.governing { color: black; font-weight: bold; }
+.keyword { color: #575bf4 }
+.keywordsign { color: #b08356o; }
+.constructor { color: #829f1c; }
+.superscript { font-size : 80% }
+.subscript { font-size : 80% }
+.comment { color: #747474; font-style: italic }
+.type { color: #c746cc }
+.string { color: #09a7e2 }
+.warning { color : Red ; font-weight : bold }
+.info { margin-left : 3em; margin-right: 3em }
+.param_info { margin-top: 4px; margin-left : 3em; margin-right : 3em }
+.code { color : #465F91 ; }
+.typetable { border-style : hidden }
+.paramstable { border-style : hidden ; padding: 5pt 5pt}
 
 
 
