@@ -8,8 +8,6 @@
     <!-- Google Web Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" />
     <link href="http://fonts.googleapis.com/css?family=Domine:400,700" rel="stylesheet" />
-    <link href="http://fonts.googleapis.com/css?family=Inconsolata:400,700"
-	  rel="stylesheet" type="text/css" />
     <!-- Only part of Bootstrap that we don't load from a CDN is our own customized CSS build. -->
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />

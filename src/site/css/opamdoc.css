@@ -81,27 +81,12 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
 #opamdoc-contents td.edge_column { border-right: 3px solid lightgrey }
 
 
-#opamdoc-contents .keyword { color: #f47421; font-weight: bold }
-#opamdoc-contents .keywordsign { color: #f47421 }
-#opamdoc-contents .superscript { font-size : 4 }
-#opamdoc-contents .subscript { font-size : 4 }
-#opamdoc-contents .comment { color: #747474; font-style: italic }
-#opamdoc-contents .constructor { color: #15c17a }
-#opamdoc-contents .type { color: #c746cc }
-#opamdoc-contents .string { color: #09a7e2 }
-#opamdoc-contents .warning { color : Red ; font-weight : bold }
-#opamdoc-contents .info { margin-left : 3em; margin-right: 3em }
-#opamdoc-contents .param_info { margin-top: 4px; margin-left : 3em; margin-right : 3em }
-#opamdoc-contents .code { color : #465F91 ; }
-#opamdoc-contents .typetable { border-style : hidden }
-#opamdoc-contents .paramstable { border-style : hidden ; padding: 5pt 5pt}
-
 /* FIXME: OCaml code should be in <pre> with a distinct class? */
-pre { line-height: 125%; }
-code { font-family: "Inconsolata", sans-serif; font-size: 115%; }
+pre { line-height: 135%; }
+code { font-family: "Lato", sans-serif; font-size: 115%; }
 .governing { color: black; font-weight: bold; }
 .keyword { color: #575bf4 }
-.keywordsign { color: #b08356o; }
+.keywordsign { color: #9d754d; }
 .constructor { color: #829f1c; }
 .superscript { font-size : 80% }
 .subscript { font-size : 80% }
