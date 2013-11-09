@@ -18,7 +18,7 @@ ocaml.org:
 
 ocamltohtml:lexer.ml ocamltohtml.ml
 	ocamlopt -o $@ lexer.ml ocamltohtml.ml
-	$(RM) ocamltohtml.cm[ix] lexer.cm[ix]
+	$(RM) ocamltohtml.o ocamltohtml.cm[ix] lexer.o lexer.cm[ix]
 
 tpl/front_code_snippet.html:tpl/front_code_snippet.md
 	${OMD} $< -o $@
@@ -27,10 +27,19 @@ clean:
 	$(RM) -r ocaml.org *~ *.cmo *.cmi *.cma
 	$(RM) tpl/front_code_snippet.html 
 
+preview: relative_urls
+	$(MAKE) all
+	find ocaml.org -type f -name '*.html' | while read f; do \
+	  ./relative_urls --path ocaml.org "$$f"; done
+
+relative_urls: relative_urls.ml
+	ocamlfind ocamlopt -package netstring -linkpkg -annot -g "$<" -o "$@"
+	$(RM) $(addprefix relative_urls., o cmi cmx annot)
+
 htmlescape:htmlescape.ml
 	ocamlopt $< -o $@
 
-.PHONY: opamdoc pkg clean syncotherfiles
+.PHONY: opamdoc pkg clean preview syncotherfiles
 
 syncotherfiles:
 	rsync --exclude '*.md' --exclude '*.html' -rltHprogv site/* ocaml.org/

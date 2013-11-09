@@ -8,6 +8,7 @@ configure
 *.o
 *.cm[ioax]
 *.cmxa
+*.annot
 doclib.docdir
 src/lib/ocamlorg.ml
 src/lib/ocamlorg.mli
@@ -17,5 +18,6 @@ src/lib/doclib.odocl
 ocaml.org/
 ocamltohtml
 rss2html
+relative_urls
 src/tpl/front_code_snippet.html
 .DS_Store
