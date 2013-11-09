@@ -5343,7 +5343,7 @@ select {
 }
 body {
   padding-top: 89px;
-  padding-bottom: 88px;
+  padding-bottom: 0px;
 }
 #footer {
   background: #404040;
