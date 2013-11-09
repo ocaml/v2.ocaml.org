@@ -25,6 +25,9 @@
             <h1 class="ruled">Code examples</h1>
             ((! cat tpl/tryocaml.html !))
             ((! input tpl/front_code_snippet.html !))
+            <footer>
+                <p><a href="taste.html">See a Hundred Lines of OCaml</a></p>
+            </footer>
         </section>
         <section class="span4 condensed">
             <h1 class="ruled">Tutorials</h1>
