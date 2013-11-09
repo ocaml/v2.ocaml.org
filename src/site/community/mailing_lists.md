@@ -1,5 +1,7 @@
 <!-- ((! set title Official OCaml Mailing Lists !)) ((! set community !)) -->
 
+*Table of contents*
+
 ###  The official OCaml mailing list: caml-list AT inria.fr
 The OCaml mailing list is intended for all users of the OCaml
 implementations developed at Inria. The purpose of this list is to share
@@ -36,7 +38,7 @@ releases and new OCaml-related software, libraries, documents, etc.
 
 [(Un)subscribe](http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce)
 
-###  OCaml IRC Channel: irc.freenode.net \#ocaml
+###  OCaml IRC Channel: irc.freenode.net #ocaml
 This is real-time communication channel, where you can ask for help.
 There are about a hundred users hanging around; don't ask if you can
 ask, just ask, and be patient: not everyone is in the same timezone. The

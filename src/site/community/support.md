@@ -1,5 +1,7 @@
 <!-- ((! set title Commercial Support !)) ((! set community !)) -->
 
+*Table of contents*
+
 # Commercial Support
 ## Getting Support
 A great way to get free support is by using the active [mailing
@@ -129,7 +131,7 @@ are also several research grants associated with OCamlLabs:
 <tbody>
 <tr class="odd">
 <td align="left"><a href="http://janestreet.com/"><img src="http://www.cl.cam.ac.uk/projects/ocamllabs/images/janest.jpg" alt="Jane Street" /></a></td>
-<td align="left"><a href="http://www.xen.org/products/cloudxen.html"><img src="http://www.cl.cam.ac.uk/projects/ocamllabs/images/citrix.gif" alt="Citrix" /></a></td>
+<td align="left"><a href="http://www.xen.org/products/cloudxen.html"><img src="http://www.cl.cam.ac.uk/projects/ocamllabs/images/citrix.gif" alt="Citrix" style="padding-left: 3em" /></a></td>
 </tr>
 </tbody>
 </table>

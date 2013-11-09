@@ -1,5 +1,7 @@
 <!-- ((! set title Liste de diffusion OCaml !)) ((! set community !)) -->
 
+*Table of contents*
+
 ###  La liste de diffusion OCaml : caml-list AT inria.fr
 La liste de diffusion OCaml s'adresse à tous les utilisateurs des
 implémentations OCaml de l'Inria. Le but de cette tribune est de mettre
@@ -41,7 +43,7 @@ documents, etc. concernant OCaml.
 
 [(Dés)abonnement](http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce)
 
-###  Canal IRC OCaml : irc.freenode.net \#ocaml
+###  Canal IRC OCaml : irc.freenode.net #ocaml
 IRC est un moyen de communication en temps réel, où il est possible de
 demander de l'aide dans un salon de discussion. Il y a en moyenne une
 centaine d'utilisateurs présents dans ce canal de discussion ; ne
