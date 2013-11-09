@@ -44,6 +44,9 @@
         <section class="span4 condensed">
             <h1 class="ruled">Books</h1>
                 <a href="https://realworldocaml.org"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="/img/real-world-ocaml.jpg" alt="Real World OCaml book"></a><p>This hands-on book shows you how to take advantage of OCaml’s functional, imperative and object-oriented programming styles with recipes for many real-world tasks.</p>
+			<footer>
+                <p><a href="books.html">See full list</a></p>
+            </footer>
         </section>
     </div>
     <div class="row">

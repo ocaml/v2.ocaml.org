@@ -1,5 +1,7 @@
 <!-- ((! set title Books !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Books
 ## Books in English
 ###  The OCaml System: Documentation and User's Manual
