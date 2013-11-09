@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="span2 documentation-book">
                     <a href="https://realworldocaml.org">
-                        <img src="/img/real-world-ocaml.png" alt="Real Worl OCaml book">
+                        <img src="/img/real-world-ocaml.jpg" alt="Real Worl OCaml book">
                     </a>
                 </div>
                 <div class="span4">
