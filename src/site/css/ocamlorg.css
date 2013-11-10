@@ -80,6 +80,8 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
 #opamdoc-contents table.expanding_include_6 { background-color: #FFF5EB; } 
 #opamdoc-contents td.edge_column { border-right: 3px solid lightgrey }
 
+/* end of section for opam-doc */
+/***************************************************/
 
 /* FIXME: OCaml code should be in <pre> with a distinct class? */
 pre { line-height: 135%; }
@@ -119,6 +121,3 @@ div.subscribers {
 .subscribers li {
   line-height: 100%;
 }
-
-/* end of section for opam-doc */
-/***************************************************/

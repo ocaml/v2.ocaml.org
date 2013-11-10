@@ -15,7 +15,7 @@
     <!-- Only part of Bootstrap that we don't load from a CDN is our own customized CSS build. -->
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />
-    <link href="/css/opamdoc.css" rel="stylesheet" media="screen" />
+    <link href="/css/ocamlorg.css" rel="stylesheet" media="screen" />
     <!--[if lt IE 9]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
     <![endif]-->
