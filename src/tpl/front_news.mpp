@@ -1,7 +1,4 @@
 
 <!-- begin /tpl/front_news.mpp -->
-<ul class="news-feed">
-
-{{! cmd curl http://planet.ocamlcore.org/rss10.xml -s |grep -E '(<title|<link|<dc:date)'|(read;read;head -n 15|sed -e 's| *<..*>\(.*\)</.*>|\1|g')|while read title; read url; read date ; do printf '<li><article><h1><a href="%s">%s</a></h1><p>%s</p>' "$url" "$(sed s/[^:][^:]*://<<<$title)" "$(date -d "$date" "+%e %B %Y")"; printf "<a href='$url'><img src='/img/news.png' alt='News'></a>"; printf '</article></li>\n' ; done !}}
-</ul>
+{{! cmd ./rss2html -n 6 --headlines http://planet.ocaml.org/rss20.xml !}}
 <!-- end /tpl/front_news.mpp -->

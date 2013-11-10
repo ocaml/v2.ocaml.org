@@ -62,7 +62,7 @@
                     <img src="/img/rss.png" alt="RSS">
                 </a>
             </h1>
-			{{! cmd ./rss2html -n 6 --headlines http://planet.ocaml.org/rss20.xml !}}
+            (! input tpl/front_news.mpp !))
             <p><a href="community/planet.html">More...</a></p>
         </section>
     </div>
