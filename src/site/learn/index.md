@@ -58,29 +58,103 @@
     </div>
     <div class="row">
         <section class="span4 condensed">
-            <h1 class="ruled">Common Questions</h1>
-            <ul>
-                <li><a href="faq.html#GeneralQuestions">General Questions</a></li>
-                <li><a href="faq.html#CoreLanguage">Core Language</a></li>
-                <li><a href="faq.html#ModuleLangage">Module Language</a></li>
-                <li><a href="faq.html#DevelopmentTools">Development Tools</a></li>
-            </ul>
-            <footer>
-                <p><a href="faq.html">See full list</a></p>
-            </footer>
+          <h1 class="ruled">Common Questions</h1>
+          <ul>
+            <li><a href="faq.html#GeneralQuestions">General Questions</a></li>
+            <li><a href="faq.html#CoreLanguage">Core Language</a></li>
+            <li><a href="faq.html#ModuleLangage">Module Language</a></li>
+            <li><a href="faq.html#DevelopmentTools">Development Tools</a></li>
+          </ul>
+          <footer>
+            <p><a href="faq.html">See full list</a></p>
+          </footer>
         </section>
-        <section class="span8 condensed">
-            <h1 class="ruled">Industrial Users</h1>
-            <div class="row">
-            <section class="span4 condensed">
-                <p><a href="http://janestreet.com"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="/img/jane-street.jpg"></a>Jane Street is a quantitative proprietary trading firm with a unique focus on technology and collaborative problem solving. Almost all of our systems are written in OCaml: from statistical research code operating over terabytes of data to systems-administration tools to our real-time trading infrastructure. On our busiest days, we trade over 200 million equity shares in the US alone.</p>
+        <section class="span4 condensed">
+          <h1 class="ruled">Industrial Users</h1>
+          <p><a href="http://janestreet.com"><img style="float: left;
+          margin-right: 10px; margin-bottom: 10px"
+          src="/img/jane-street.jpg"></a>Jane Street is a quantitative
+          proprietary trading firm with a unique focus on technology
+          and collaborative problem solving. Almost all of our systems
+          are written in OCaml: from statistical research code
+          operating over terabytes of data to systems-administration
+          tools to our real-time trading infrastructure. On our
+          busiest days, we trade over 200 million equity shares in the
+          US alone.</p>
 
-                <p><a href="https://www.facebook.com"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png"></a>To handle their huge PHP codebase, Facebook developed <a href="https://github.com/facebook/pfff/wiki/Main">pfff</a>, a set of tools and APIs to perform static analysis, dynamic analysis, code visualizations, code navigations, and style-preserving source-to-source transformations such as refactorings on source code.</p>
-            </section>
-            <section class="span4 condensed">
-                <p><a href="http://caml.inria.fr/about/successes-images/unison.jpg"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="http://caml.inria.fr/about/successes-images/unison-thumb.jpg" alt="Screenshot" title="Screenshot of Unison's main window"></a></p>
-            </section>
-            </div>
+          <p><a href="https://www.facebook.com"><img style="float:
+          left; margin-right: 10px; margin-bottom: 10px"
+          src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png"
+						     ></a>To
+            handle their huge PHP codebase, Facebook
+            developed <a href="https://github.com/facebook/pfff/wiki/Main"
+			 >pfff</a>,
+            a set of tools and APIs to perform static analysis, dynamic
+            analysis, code visualizations, code navigations, and
+            style-preserving source-to-source transformations such as
+            refactorings on source code.  They also designed
+	    <em>Hack</em>, a new statically typed
+	    programming language for HHVM, a fast PHP runtime.
+	    See Julien Verlaguet's
+	    <a href="http://www.youtube.com/watch?v=gKWNjFagR9k"
+	       >CUFP talk</a> and
+	    <a href="http://cufp.org/sites/all/files/slides/2013/verlaguet.pdf"
+	       >slides</a>.</p>
+
+	  <footer>
+            <p><a href="companies.html"
+		  >See more companies using OCaml</a></p>
+          </footer>
+        </section>
+        <section class="span4 condensed">
+	  <h1 class="ruled">Success stories</h1>
+          <p><a href="http://caml.inria.fr/about/successes-images/unison.jpg"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="http://caml.inria.fr/about/successes-images/unison-thumb.jpg" alt="Screenshot" title="Screenshot of Unison's main window"></a>
+	    <a href="http://www.cis.upenn.edu/%7Ebcpierce/unison/"
+	       >Unison</a> is an innovative <em>two-way</em>
+	    file synchronizer stemming from the
+	       <a href="http://www.cis.upenn.edu/~bcpierce/papers/index.shtml#Synchronization"
+		  target="_blank"
+		  >latest research</a>.  It is resilent to failures
+	       and  runs on Windows as well as most flavors of Unix,
+	       including MacOSX.
+	       OCaml helped the authors to
+	       “organize a large and intricate codebase”.
+	  </p>
+
+          <p><a href="http://caml.inria.fr/about/successes-images/lexifi.png"
+		><img style="float: left; margin-right: 10px;
+			     margin-bottom: 3px"
+		      src="http://caml.inria.fr/about/successes-images/lexifi-thumb.png"
+		      title="Screenshot of Unison's main window"></a>
+	    Developed by <a href="http://www.lexifi.com/"
+			    >LexiFi</a>, the Modeling Language
+	    for Finance (MLFi) is the first formal language that
+	    accurately describes the most sophisticated capital
+	    market, credit, and investment products. MLFi is
+	    implemented as an extension of OCaml.
+	  </p>
+
+	  <p><img src="/img/fftw-thumb.png"
+		  style="float: left; margin-right: 10px; margin-bottom: 3px"
+		  title="FFTW" />
+	    <a href="http://www.fftw.org/" >FFTW</a>
+	    is a very Fast Fourier Transform library developed ay MIT
+	    that competes with the with vendor-tuned codes
+	    while remaining platform independent.
+	    The code is generated by <code>genfft</code>,
+	    written in OCaml, that
+	    <a href="http://www.fftw.org/pldi99.ps.gz"
+	       >“discovered” algorithms that were previously unknown</a>.
+	    It was awarded the
+	    <a href="http://www.mcs.anl.gov/research/opportunities/wilkinsonprize/3rd-1999.php"
+	       >J. H. Wilkinson Prize for Numerical Software</a>
+	    that rewards software that "best addresses all phases of
+	    the preparation of high quality numerical software."
+	  </p>
+	  <footer>
+            <p><a href="success.html"
+		  >See more success stories</a></p>
+          </footer>
         </section>
     </div>
 </div>
