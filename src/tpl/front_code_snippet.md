@@ -1,5 +1,5 @@
 ```tryocaml
-(* Binary tree with leaves carrying an integer. *)
+(* Binary tree with leaves car­rying an integer. *)
 type tree = Leaf of int | Node of tree * tree
 
 let rec exists_leaf test tree =
