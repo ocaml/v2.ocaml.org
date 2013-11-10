@@ -108,6 +108,14 @@
     <div class="row">
         <section class="span12 condensed">
             <h1 class="ruled">OCaml around the web</h1>
+                <div class="g-community" data-width="282" data-href="https://plus.google.com/u/0/communities/100872177392545601885" data-theme="dark" data-showtagline="false" data-showphoto="false"></div>
+                <script type="text/javascript">
+                    (function() {
+                        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                        po.src = 'https://apis.google.com/js/plusone.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                    })();
+                </script>
                 <p>[Insert logos here]</p>
                 <p><a href=""></a></p>
                 <p><a href=""></a></p>
