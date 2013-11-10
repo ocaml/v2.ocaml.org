@@ -508,7 +508,7 @@ printing functions by the high level printing functions provided by
 `format`.
 
 ## General Questions
-What is OCaml?
+### What is OCaml?
 
 OCaml is a programming language. It is a functional language, since the
 basic units of programs are functions. It is a strongly-typed language;
@@ -519,7 +519,7 @@ available on almost every Unix platform (including Linux and MacOS X)
 and on PCs under Windows. A brief tour on main
 [features](description.html) of OCaml.
 
-Under what licensing terms is the OCaml software available?
+### Under what licensing terms is the OCaml software available?
 
 The OCaml system is open source software: the compiler is distributed
 under the terms of the Q Public License, and its library is under LGPL;
@@ -527,7 +527,7 @@ please read the [license](license.html) document for more details. A
 BSD-style license is also available for a fee through the [OCaml
 Consortium](support.html#consortium).
 
-What is the meaning of the name “OCaml”
+### What is the meaning of the name “OCaml”
 
 “Caml” is an acronym: it stands for “Categorical Abstract Machine
 Language”. The “Categorical Abstract Machine” is an abstract machine to
@@ -540,15 +540,15 @@ object oriented features were available in the language.<br />
 by Robin Milner in 1978, and used as the programming language to write
 the “proof tactics” in the LCF proof system.
 
-Do you write “Caml” or “CAML”, “OCaml”, “Ocaml” or “OCAML”?
+### Do you write “Caml” or “CAML”, “OCaml”, “Ocaml” or “OCAML”?
 
-We write OCaml.<br />
- According to usual rules for acronyms, we should write CAML, as we
+We write OCaml.
+According to usual rules for acronyms, we should write CAML, as we
 write USA. On the other hand, this upper case name seems to yell all
 over the place, and writing OCaml is far more pretty and elegant — with
 “O” and “C” capitalized.
 
-Is OCaml a compiled or interpreted language?
+### Is OCaml a compiled or interpreted language?
 
 OCaml is compiled. However each OCaml compiler offers a top-level
 interactive loop, that is similar to an interpreter. In fact, in the
@@ -556,7 +556,7 @@ interactive system, the user may type in program chunks (we call these
 pieces OCaml “phrases”) that the system handles at once, compiling them,
 executing them, and writing their results.
 
-What are the differences between Caml V3.1, Caml Light, and OCaml?
+### What are the differences between Caml V3.1, Caml Light, and OCaml?
 
 These are different Caml implementations that have been developed
 successively at Inria. These systems share many features since they all
@@ -570,21 +570,22 @@ other users have switched to OCaml, the latest variant of the language.
 This is the version we suggest using in new software developments. See
 our brief [history](history.html) of the OCaml language.
 
-How to report a bug in the compilers?
+### How to report a bug in the compilers?
 
 Use the [bug tracking system](http://caml.inria.fr/mantis/) to browse
 bug reports and features request, and submit new ones.
 
+
 ## Module Language
-Can I have two mutually recursive compilation units / structures /
-signatures / functors?
+
+### Can I have two mutually recursive compilation units / structures / signatures / functors?
 
 Currently not in the stable langage. However there exists an [OCaml
 extension](http://caml.inria.fr/pub/docs/manual-ocaml/manual021.html#toc75)
 (which is subject to change or removal at any time) which adresses some
 of these problems.
 
-How do I express sharing constraints between modules?
+### How do I express sharing constraints between modules?
 
 Use manifest type specifications in the arguments of the functor. For
 instance, assume defined the following signatures:
