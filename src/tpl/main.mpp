@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <title>{{! tryget title !}} &#8211; OCaml</title>
+    <link href="/img/favicon.ico" rel="shortcut icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google Web Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" />
