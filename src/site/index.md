@@ -62,7 +62,7 @@
                     <img src="/img/rss.png" alt="RSS">
                 </a>
             </h1>
-            (! input tpl/front_news.mpp !))
+            ((! input tpl/front_news.mpp !))
             <p><a href="community/planet.html">More...</a></p>
         </section>
     </div>
