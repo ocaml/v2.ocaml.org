@@ -6,8 +6,6 @@ The [OCaml Planet](http://planet.ocaml.org) aggregates various blogs
 from the OCaml community. If you would like to be added, read the
 [Planet subscription HOWTO](http://www.ocamlcore.org/planet/).
 
-<br />
-
 <div class="container">
 <div class="row">
 <section class="span8">
@@ -16,12 +14,18 @@ from the OCaml community. If you would like to be added, read the
 
 </section>
 <section class="span4">
+<div class="subscribers">
 
-*Subscriptions*
+<h3>Subscriptions</h3>
 
-[<img src='../img/rss20.png' alt='' />](http://planet.ocaml.org/rss20.xml)
-[<img src='../img/opml.png' alt='' />](http://planet.ocaml.org/opml.xml)
+((! cmd ./rss2html --subscribers http://planet.ocaml.org/opml.xml !))
 
+<a href="http://planet.ocaml.org/rss20.xml"
+><img src='../img/rss20.png' alt='' /></a>
+<a href="http://planet.ocaml.org/opml.xml"
+><img src='../img/opml.png' alt='' /></a>
+
+</div>
 </section>
 </div>
 </div>

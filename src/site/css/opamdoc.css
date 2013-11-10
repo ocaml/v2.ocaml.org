@@ -108,6 +108,17 @@ a.planet-toggle {
   margin-bottom: 2ex;
 }
 
+div.subscribers {
+  margin-left: 3em;
+}
+
+.subscribers h3 {
+  margin-bottom: 2ex;
+}
+
+.subscribers li {
+  line-height: 100%;
+}
 
 /* end of section for opam-doc */
 /***************************************************/
