@@ -122,8 +122,8 @@ let html_of_post p =
     | None -> [Data p.title], []
     | Some u ->
        let url = Neturl.string_of_url u in
-       [Element("a", ["href", url], [Data p.title]) ],
-       [Element("a", ["href", url; "alt", "RSS";
+       [Element("a", ["href", url; "target", "_blank"], [Data p.title]) ],
+       [Element("a", ["href", url; "alt", "RSS"; "target", "_blank";
                       "style", "float: right; padding-top: 13px"],
                 [Element("img", ["src", "/img/rss.png"], []) ]) ] in
   let html_author =
