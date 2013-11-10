@@ -129,13 +129,14 @@ let html_of_post p =
   let html_author =
     if p.email = "" then Data p.author
     else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
-  let sep = Data " — " in
+  let sep = Data " — " in
   let additional_info = match p.date with
     | None ->
        if p.author = "" then [] else [sep; html_author]
     | Some d ->
-       if p.author = "" then [sep; Data(Rss.string_of_date d)]
-       else [sep; html_author; Data ", "; Data(Rss.string_of_date d)] in
+       if p.author = "" then [sep; Data(Netdate.format ~fmt:"%B %e, %Y" d)]
+       else [sep; html_author; Data ", ";
+             Data(Netdate.format ~fmt:"%b %e, %Y" d)] in
   let additional_info =
     [Element("span", ["style", "font-size: 65%; font-weight:normal"],
              additional_info)] in
