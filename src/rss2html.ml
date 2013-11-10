@@ -159,7 +159,7 @@ let html_of_post p =
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
 let headlines_of_post ?(len=400) p =
-  let link = "community/planet.html#" ^ digest_post p in
+  let link = "/community/planet.html#" ^ digest_post p in
   let html_icon =
     [Element("a", ["href", link],
              [Element("img", ["src", "/img/news.png"], [])])] in

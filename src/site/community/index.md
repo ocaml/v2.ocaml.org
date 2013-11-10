@@ -99,7 +99,7 @@
         </section>
         <section class="span4 condensed">
            <h1 class="ruled">News</h1>
-            ((! input tpl/front_news.mpp !))
+            ((! cmd ./rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !))
             <footer>
                 <p><a href="#">See full list</a></p>
             </footer>
