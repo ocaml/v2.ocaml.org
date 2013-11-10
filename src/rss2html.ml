@@ -35,18 +35,18 @@ let digest_post p = match p.link with
 
 let string_of_option = function None -> "" | Some s -> s
 
+let re_colon = Str.regexp " *: *"
+
 (* Transform an RSS item into a [post]. *)
 let parse_item it =
   let open Rss in
   let title = string_of_option it.item_title in
   let author, title =
     (* The author name is often put before the title, separated by ':'. *)
-    try
-      let i = String.index title ':' in
-      let i1 = i + 1 in
-      (String.sub title 0 i,
-       String.sub title i1 (String.length title - i1))
-    with Not_found -> "", title in
+    match Str.bounded_split re_colon title 2 with
+    | [_] -> "", title
+    | [author; title] -> author, title
+    | _ -> assert false in
   let link = match it.item_guid, it.item_link with
     | Some(Guid_permalink u), _ -> Some u
     | _, Some _ -> it.item_link
