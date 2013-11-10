@@ -5,7 +5,7 @@ MPP = mpp ${MPP_OPTIONS}
 OMD_OPTIONS = -r ocaml=./ocamltohtml -r tryocaml=./ocamlapplet.bash
 OMD = omd ${OMD_OPTIONS}
 
-all:ocamltohtml
+all: ocamltohtml rss2html
 	$(MAKE) ocaml.org
 	bash gen.bash site
 	$(MAKE) syncotherfiles

@@ -11,8 +11,8 @@ ocaml.org/%.html:site/%.md
 	else \
 	  ${MPP} -set "filename=$<" -set "page=$@.tmp" tpl/main.mpp -o "$@" ; \
 	fi
-#	$(RM) "$@.tmp"
-#	$(RM) "$@.toc"
+	$(RM) "$@.tmp"
+	$(RM) "$@.toc"
 
 ocaml.org/%.html.toc:site/%.md
 	${OMD} -otoc -ts 2 "$<" -o "$@"
