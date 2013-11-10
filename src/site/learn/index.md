@@ -50,10 +50,18 @@
         </section>
         <section class="span4 condensed">
             <h1 class="ruled">Books</h1>
-                <a href="https://realworldocaml.org"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="/img/real-world-ocaml.jpg" alt="Real World OCaml book"></a><p>This hands-on book shows you how to take advantage of OCaml’s functional, imperative and object-oriented programming styles with recipes for many real-world tasks.</p>
-			<footer>
-                <p><a href="books.html">See full list</a></p>
-            </footer>
+                <a href="https://realworldocaml.org"><img style="float:
+                left; margin-right: 10px; margin-bottom: 10px"
+                src="/img/real-world-ocaml.jpg" alt="Real World OCaml
+                book"></a><p>This hands-on book shows you how to take
+                advantage of OCaml’s functional, imperative and
+                object-oriented programming styles with recipes for
+                many real-world tasks.  Read
+                it <a href="http://realworldocaml.org">online!</a>
+		</p>
+		<footer>
+                  <p><a href="books.html">See full list</a></p>
+		</footer>
         </section>
     </div>
     <div class="row">
@@ -70,29 +78,29 @@
           </footer>
         </section>
         <section class="span4 condensed">
-          <h1 class="ruled">Industrial Users</h1>
-          <p><a href="http://janestreet.com"><img style="float: left;
-          margin-right: 10px; margin-bottom: 10px"
+          <h1 class="ruled">Industrial
+          Users</h1> <p><a href="http://janestreet.com"><img style="float:
+          left; margin-right: 10px; margin-bottom: 10px"
           src="/img/jane-street.jpg"></a>Jane Street is a quantitative
           proprietary trading firm with a unique focus on technology
-          and collaborative problem solving. Almost all of our systems
-          are written in OCaml: from statistical research code
-          operating over terabytes of data to systems-administration
-          tools to our real-time trading infrastructure. On our
-          busiest days, we trade over 200 million equity shares in the
-          US alone.</p>
+          and collaborative problem solving.  Almost all of our
+          systems are written in OCaml: from statistical research code
+          operating over terabytes of data to systems management tools
+          to our real-time trading infrastructure.  And those systems
+          are deployed at real scale: on an average day, our trading
+          represents between 1% and 2% of US equity volume. </p>
 
           <p><a href="https://www.facebook.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
           src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png"
 						     ></a>To
-            handle their huge PHP codebase, Facebook
-            developed <a href="https://github.com/facebook/pfff/wiki/Main"
+            handle their huge PHP codebase, Facebook developed
+            <a href="https://github.com/facebook/pfff/wiki/Main"
 			 >pfff</a>,
-            a set of tools and APIs to perform static analysis, dynamic
-            analysis, code visualizations, code navigations, and
-            style-preserving source-to-source transformations such as
-            refactorings on source code.  They also designed
+            a set of tools and APIs to perform static analysis,
+            dynamic analysis, code visualizations, code navigations,
+            and style-preserving source-to-source transformations such
+            as refactorings on source code.  They also designed
 	    <em>Hack</em>, a new statically typed
 	    programming language for HHVM, a fast PHP runtime.
 	    See Julien Verlaguet's
