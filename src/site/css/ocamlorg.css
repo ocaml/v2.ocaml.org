@@ -121,3 +121,10 @@ div.subscribers {
 .subscribers li {
   line-height: 100%;
 }
+
+
+a[name] {
+  padding-top: 75px;
+  margin-top: -70px;
+  display: inline-block; /* required for webkit browsers */
+}
