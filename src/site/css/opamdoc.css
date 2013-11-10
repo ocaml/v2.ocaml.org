@@ -101,6 +101,12 @@ code { font-family: "Droid Sans Mono", sans-serif; font-size: 100%; }
 .paramstable { border-style : hidden ; padding: 5pt 5pt}
 
 
+a.planet-toggle {
+  float: right;
+  font-size: 90%;
+  padding: 5px 10px;
+  margin-bottom: 2ex;
+}
 
 
 /* end of section for opam-doc */

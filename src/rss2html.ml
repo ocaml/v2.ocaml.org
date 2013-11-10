@@ -33,14 +33,6 @@ let digest_post p = match p.link with
   | None -> Digest.to_hex (Digest.string (p.title))
   | Some u -> Digest.to_hex (Digest.string (p.title ^ Neturl.string_of_url u))
 
-let html_title p = match p.link with
-  | None -> Data p.title
-  | Some u -> Element("a", ["href", Neturl.string_of_url u], [Data p.title])
-
-let html_author p =
-  if p.email = "" then Data p.author
-  else Element("a", ["href", "mailto:" ^ p.email], [Data p.author])
-
 let string_of_option = function None -> "" | Some s -> s
 
 (* Transform an RSS item into a [post]. *)
@@ -100,7 +92,7 @@ let new_id =
 let toggle ?(anchor="") html1 html2 =
   let button id1 id2 text =
     Element("a", ["onclick", sprintf "switchContent('%s','%s')" id1 id2;
-                  "class", "btn";
+                  "class", "btn planet-toggle";
                   "href", "#" ^ anchor],
             [Data text])
   in
@@ -126,11 +118,27 @@ let toggle_script =
 (* Transform a post [p] (i.e. story) into HTML. *)
 let html_of_post p =
   let title_anchor = digest_post p in
-  let date = match p.date with
-    | None -> ""
-    | Some d -> Rss.string_of_date d in
-  let sep = if p.author = "" && date = "" then ""
-            else "&nbsp;&mdash;&nbsp;" in
+  let html_title, rss = match p.link with
+    | None -> [Data p.title], []
+    | Some u ->
+       let url = Neturl.string_of_url u in
+       [Element("a", ["href", url], [Data p.title]) ],
+       [Element("a", ["href", url; "alt", "RSS";
+                      "style", "float: right; padding-top: 13px"],
+                [Element("img", ["src", "/img/rss.png"], []) ]) ] in
+  let html_author =
+    if p.email = "" then Data p.author
+    else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
+  let sep = Data " — " in
+  let additional_info = match p.date with
+    | None ->
+       if p.author = "" then [] else [sep; html_author]
+    | Some d ->
+       if p.author = "" then [sep; Data(Rss.string_of_date d)]
+       else [sep; html_author; Data ", "; Data(Rss.string_of_date d)] in
+  let additional_info =
+    [Element("span", ["style", "font-size: 65%; font-weight:normal"],
+             additional_info)] in
   let desc =
     if List.mem p.author text_description then
       [Element("pre", ["class", "rss-text"], [Data p.desc])]
@@ -139,16 +147,12 @@ let html_of_post p =
       if length_html desc < 1200 then desc
       else toggle (prefix_of_html desc 1200) desc ~anchor:title_anchor
   in
-  let span_class c html = Element("span", ["class", c], html) in
-  [Element("a", ["name", title_anchor], []);
-   span_class "rss-header"
-              [span_class "rss-title" [html_title p];
-               Data sep;
-               span_class "rss-author" [html_author p];
-               Data(if p.author <> "" then ", " else "");
-               span_class "rss-date" [Data date];
-              ];
-   span_class "rss-description" desc;
+  [Data "\n";
+   Element("a", ["name", title_anchor], []);
+   Element("section", ["class", " condensed"; "style", "clear: both"],
+           Element("h1", ["class", "ruled"],
+                   html_title @ additional_info @ rss)
+           :: desc);
    Data "\n"]
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
