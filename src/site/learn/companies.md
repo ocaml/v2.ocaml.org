@@ -16,6 +16,13 @@ general public informed about information security threats. See [ANSII&#39;s
 GitHub page](https://github.com/anssi-fr) for some of its OCaml
 software.
 
+[American Museum of Natural History](http://www.amnh.org/our-research/computational-sciences),
+United States.
+
+The Computational Sciences Department at the AMNH has been using OCaml for almost a decade in their software package 
+[POY](http://www.amnh.org/our-research/computational-sciences/research/projects/systematic-biology/poy)
+for phylogenetic inference. See [AMNH's GitHub page](https://github.com/AMNH) for more projects.
+
 [Ashima Group](http://ashimagroup.net/), United States.
 
 Ashima Group uses OCaml for geometric reasoning, GPU shader translation,
