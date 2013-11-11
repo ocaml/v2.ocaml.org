@@ -13,7 +13,7 @@ all: ocamltohtml rss2html
 rss2html: rss2html.ml
 	cd app && ocamlfind ocamlopt -package netstring,netclient,rss -c http.ml
 	ocamlfind ocamlopt -package netstring,netclient,rss -linkpkg \
-	  -I app/ ./app/http.cmx ./app/utils.cmx -annot "$<" -o "$@"
+	  -I app/ ./app/http.cmx -annot "$<" -o "$@"
 
 ocaml.org:
 	find site -type d | while read l; do mkdir -p "$$(echo "$$l" | sed -e 's/^site/ocaml.org/')" ; done
@@ -26,8 +26,9 @@ tpl/front_code_snippet.html:tpl/front_code_snippet.md
 	${OMD} $< -o $@
 
 clean:
-	$(RM) -r ocaml.org *~ *.cmo *.cmi *.cma
+	$(RM) -r ocaml.org *~ *.cmo *.cmi *.cma *.o
 	$(RM) tpl/front_code_snippet.html 
+	$(RM) $(addprefix app/, *~ *.cmo *.cmi *.cma *.o)
 
 preview: relative_urls
 	$(MAKE) all
