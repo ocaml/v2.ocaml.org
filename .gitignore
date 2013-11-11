@@ -19,5 +19,5 @@ ocaml.org/
 ocamltohtml
 rss2html
 relative_urls
-src/tpl/front_code_snippet.html
+tpl/front_code_snippet.html
 .DS_Store
