@@ -67,10 +67,11 @@ tracker there to request or offer new tutorials. Thanks!
  Inria) is the official user's manual. The first part provides an
  introduction to the core language, objects and classes, and modules.
  Previous versions are [here](http://caml.inria.fr/pub/docs/).
-* [Tutorial on the C
- API](http://www.linux-nantes.org/~fmonnier/OCaml/ocaml-wrapping-c.html)
- (by Florent Monnier) explains how to write C stubs to call C
- functions from OCaml and back.
+* [How to wrap C functions to
+  OCaml](http://www.linux-nantes.org/~fmonnier/OCaml/ocaml-wrapping-c.html)
+  (by Florent Monnier) explains in an understandable way how to write C
+  stubs to call C functions from OCaml and back. It features a lot of
+  examples.
 * [OCaml for scientific
  computation](http://www.soton.ac.uk/~fangohr/software/ocamltutorial/)
  (by Thomas Fiscbacher), covers a broad sample of OCaml, from the
@@ -80,10 +81,6 @@ tracker there to request or offer new tutorials. Thanks!
  (by David Matuszek) gives a concise, yet broad, overview of the
  language and the standard library. It is rather old but most of what
  it says remains valid.
-* [How to wrap C functions to
- OCaml](http://www.linux-nantes.org/~fmonnier/OCaml/ocaml-wrapping-c.html)
- (by Florent Monnier) explains how to write extensions for OCaml in C
- in an understandable way and features a lot of examples.
 
 ###  WikiBooks on OCaml
 * [fr.wikibooks.org/wiki/OCaml](http://fr.wikibooks.org/wiki/OCaml):
