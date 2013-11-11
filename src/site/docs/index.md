@@ -61,19 +61,19 @@
             <div class="row">
                     <div class="span4">
                         <p class="documentation-video">
-                            <iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933" width="370" height="208" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933" width="310" height="175" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                         </p>
                         <p>A guest lecture given by Yaron Minsky of Jane Street about how to program effectively in ML. The talk was given as part of the intro computer science class at Harvard, CS51, where the students had spent much of the semester programming in OCaml.</p>
                     </div>
                     <div class="span4">
                         <p class="documentation-video">
-                            <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="370" height="278" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                         </p>
                         <p>Talk at CMU describing the experiences that Jane Street has had using OCaml as it's primary development language.</p>
                     </div>
                     <div class="span4">
                         <p class="documentation-video">
-                            <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="370" height="278" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                         </p>
                         <p>Experience Report: OCaml for an Industrial-strength Static Analysis Framework 
                         Pascal Cuoq and Julien Signoles; CEA LIST
