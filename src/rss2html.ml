@@ -158,11 +158,11 @@ let html_of_post p =
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
-let headlines_of_post ?(len=400) p =
+let headlines_of_post ?(len=400) ~img p =
   let link = "/community/planet.html#" ^ digest_post p in
   let html_icon =
     [Element("a", ["href", link],
-             [Element("img", ["src", "/img/news.png"], [])])] in
+             [Element("img", ["src", img], [])])] in
   let html_date = match p.date with
     | None -> html_icon
     | Some d -> let d = Netdate.format ~fmt:"%B %e, %Y" d in
@@ -184,10 +184,10 @@ let posts_of_urls ?n urls =
   | None -> posts
   | Some n -> take n posts
 
-let headlines ?n urls =
+let headlines ?n ~img urls =
   let posts = posts_of_urls ?n urls in
   [Element("ul", ["class", "news-feed"],
-           List.concat(List.map headlines_of_post posts))]
+           List.concat(List.map (headlines_of_post ~img) posts))]
 
 let posts ?n urls =
   let posts = posts_of_urls ?n urls in
@@ -239,6 +239,7 @@ let () =
   let urls = ref [] in
   let action = ref `Posts in
   let n_posts = ref None in (* ≤ 0 means unlimited *)
+  let img = ref "/img/news.png" in
   let specs = [
     ("--headlines", Arg.Unit(fun () -> action := `Headlines),
      " RSS feed to feed summary (in HTML)");
@@ -247,7 +248,9 @@ let () =
     ("--posts", Arg.Unit(fun () -> action := `Posts),
      " RSS feed to HTML (default action)");
     ("-n", Arg.Int(fun n -> n_posts := Some n),
-     "n limit the number of posts to n (default: all of them)")] in
+     "n limit the number of posts to n (default: all of them)");
+    ("--img", Arg.Set_string img,
+     sprintf "url set the images URL for each headline (default: %S)" !img) ] in
   let anon_arg s = urls := s :: !urls in
   Arg.parse (Arg.align specs) anon_arg "rss2html <URLs>";
   if !urls = [] then (
@@ -255,7 +258,7 @@ let () =
     exit 1);
   let out = new Netchannels.output_channel stdout in
   (match !action with
-   | `Headlines -> Nethtml.write out (headlines ?n:!n_posts !urls)
+   | `Headlines -> Nethtml.write out (headlines ?n:!n_posts ~img:!img !urls)
    | `Posts -> Nethtml.write out (toggle_script @ posts ?n:!n_posts !urls)
    | `Subscribers -> Nethtml.write out (OPML.contributors !urls)
   );
