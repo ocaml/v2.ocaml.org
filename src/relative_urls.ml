@@ -29,7 +29,10 @@ module String = struct
 end
 
 
-let base_syntax = Hashtbl.find Neturl.common_url_syntax "http"
+let base_syntax =
+  { (Hashtbl.find Neturl.common_url_syntax "http") with
+    Neturl.url_enable_param = Neturl.Url_part_allowed;
+    Neturl.url_enable_fragment = Neturl.Url_part_allowed; }
 
 let make_relative to_base orig_url =
   let orig_url = String.trim orig_url in (* bypass bug in omd *)
