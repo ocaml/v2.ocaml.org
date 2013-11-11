@@ -1,18 +1,5 @@
-[Discover ****](#)
-
-* [What is OCaml?](description.html)
-* [Try it Online](http://try.ocamlpro.com/)
-* [100 Lines of OCaml](taste.html)
-* [Success Stories](success.html)
-* [Who Is Using It?](companies.html)
-* [Pleac](http://pleac.sourceforge.net/pleac_ocaml/)
-* [Rosetta](http://rosettacode.org/wiki/Category:OCaml)
- [langref.org](http://langref.org/ocaml)
-
 [Learn ****](#)
 
-* [Install](install.html)
-* [Tutorials](tutorials/)
 * [FAQ](faq.html)
 * [Books](books.html)
 * [Videos](videos.html)

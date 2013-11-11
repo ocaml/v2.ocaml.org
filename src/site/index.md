@@ -28,7 +28,8 @@
                         <img src="/img/documentation-large.png" alt="Documentation">
                     </a>
                     <h1><a href="/docs">Documentation</a></h1>
-                    <p>Look up <a href="#">package docs</a>, access the
+                    <p><a href="docs/install.html" >Install</a> OCaml,
+					look up <a href="#">package docs</a>, access the
 					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 					target="_blank"
 					>Manual</a>, get the <a href="/docs/cheat_sheets.html">cheat sheets</a> and <a href="/docs">more</a>.</p>

@@ -22,9 +22,9 @@ arguments of a function.
 
 ```tryocaml
 let square x = x * x;;
-  square 3;;
-  let rec fact x =
-    if x <= 1 then 1 else x * fact (x - 1);;
+square 3;;
+let rec fact x =
+  if x <= 1 then 1 else x * fact (x - 1);;
 fact 5;;
 square 120;;
 ```

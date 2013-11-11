@@ -26,7 +26,7 @@
             ((! cat tpl/tryocaml.html !))
             ((! input tpl/front_code_snippet.html !))
             <footer>
-              <p><a href="taste.html">See a Hundred Lines of OCaml</a>,
+              <p>See <a href="taste.html">a Hundred Lines of OCaml</a>,
 		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >Pleac</a>,
 		<a href="http://rosettacode.org/wiki/Category:OCaml"
 		   >Rosetta</a>, or

@@ -33,7 +33,7 @@
                 <p><strong><a href="http://lists.ocaml.org">lists.ocaml.org</a></strong><br />
                 <strong><em>Community lists and working groups</em></strong><br />
                 User-interest lists and working groups convened with specific goals.</p>
-                <p><small><em><a href="/community/mailing_lists.html">Browse all the lists</a>.</em></small></p>
+                <p><small><a href="/community/mailing_lists.html">Browse all the lists</a>.</small></p>
             </section>
             <section class="span4 condensed">
                 <h4>Recent email threads</h4>
@@ -101,7 +101,7 @@
            <h1 class="ruled">News</h1>
             ((! cmd ./rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !))
             <footer>
-                <p><a href="#">See full list</a></p>
+                <p><a href="planet.html">See full list</a></p>
             </footer>
         </section>
     </div>
