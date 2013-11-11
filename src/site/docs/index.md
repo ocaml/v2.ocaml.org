@@ -11,7 +11,8 @@
         <section class="span6 condensed">
             <h1 class="ruled">Reference</h1>
             <div class="row">
-                <a href="#" class="span3 documentation-highlight">
+                <a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
+				    target="_blank" class="span3 documentation-highlight">
                     <img src="/img/manual.png" alt="">
                     OCaml Manual
                 </a>
