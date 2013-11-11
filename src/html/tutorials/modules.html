@@ -55,7 +55,6 @@ let () = List.iter (fun s -&gt; printf &quot;%s\n&quot; s) my_data
 let message = &quot;Hello&quot;
 let hello () = print_endline message
 </pre>
-
 <p>As it is, <code>Amodule</code> has the following interface:</p>
 <pre ml:content="ocaml noeval">
 val message : string
@@ -107,7 +106,7 @@ val sub : date -&gt; date -&gt; date
 val years : date -&gt; float
 </pre>
 
-<p>The point is that only <code>create</code> and <code>sub</code> can be used to create <code>date</code> records. Therefore, it is not possible for the user of the module to create ill-formed records. Actually, our implementation uses a record, but we could change it and be sure that it will not break any code that relies on this module! This takes all its sense in a library since subsequent versions of the same library can continue to expose the same interface, while internally changing the implementation, including data structures.</p>
+<p>The point is that only <code>create</code> and <code>sub</code> can be used to create <code>date</code> records. Therefore, it is not possible for the user of the module to create ill-formed records. Actually, our implementation uses a record, but we could change it and be sure that it will not break any code that relies on this module! This makes a lot of sense in a library since subsequent versions of the same library can continue to expose the same interface, while internally changing the implementation, including data structures.</p>
 
 <h2><a name="Submodules"></a>Submodules</h2>
 
