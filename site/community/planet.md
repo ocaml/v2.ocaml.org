@@ -10,7 +10,7 @@ from the OCaml community. If you would like to be added, read the
 <div class="row">
 <section class="span8">
 
-((! cmd ./rss2html http://planet.ocaml.org/rss20.xml !))
+((! cmd script/rss2html http://planet.ocaml.org/rss20.xml !))
 
 </section>
 <section class="span4">
@@ -18,7 +18,7 @@ from the OCaml community. If you would like to be added, read the
 
 <h3>Subscriptions</h3>
 
-((! cmd ./rss2html --subscribers http://planet.ocaml.org/opml.xml !))
+((! cmd script/rss2html --subscribers http://planet.ocaml.org/opml.xml !))
 
 <a href="http://planet.ocaml.org/rss20.xml"
 ><img src='../img/rss20.png' alt='' /></a>

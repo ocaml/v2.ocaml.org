@@ -17,7 +17,7 @@ tmpfile=$(date +tmp%Y%m%d%H%M%S%N)$RANDOM
 
 cat > $tmpfile.ml
 
-./ocamltohtml < $tmpfile.ml > $tmpfile.html
+script/ocamltohtml < $tmpfile.ml > $tmpfile.html
 
 if [[ "$TRYOCAMLON" != "" ]]
 then

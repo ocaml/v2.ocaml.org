@@ -2,24 +2,26 @@
 
 MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its 
 MPP = mpp ${MPP_OPTIONS}
-OMD_OPTIONS = -r ocaml=./ocamltohtml -r tryocaml=./ocamlapplet.bash
+OMD_OPTIONS = -r ocaml=script/ocamltohtml -r tryocaml=script/ocamlapplet.bash
 OMD = omd ${OMD_OPTIONS}
 
-all: ocamltohtml rss2html
+all: script/ocamltohtml script/rss2html
 	$(MAKE) ocaml.org
-	bash gen.bash site
+	bash script/gen.bash site
 	$(MAKE) syncotherfiles
 
-rss2html: rss2html.ml
-	cd script && ocamlfind ocamlopt -package netstring,netclient,rss -c http.ml
-	ocamlfind ocamlopt -package netstring,netclient,rss -linkpkg \
-	  -I script/ ./script/http.cmx -annot "$<" -o "$@"
+script/rss2html: script/rss2html.ml
+	cd script && \
+	ocamlfind ocamlopt -package netstring,netclient,rss -c http.ml && \
+	ocamlfind ocamlopt -package netstring,netclient,rss \
+	  -linkpkg http.cmx -annot rss2html.ml -o "$@"
 
 ocaml.org:
 	find site -type d | while read l; do mkdir -p "$$(echo "$$l" | sed -e 's/^site/ocaml.org/')" ; done
 
-ocamltohtml:lexer.ml ocamltohtml.ml
-	ocamlopt -o $@ lexer.ml ocamltohtml.ml
+script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
+	cd script && \
+	ocamlopt -o $@ lexer.ml ocamltohtml.ml && \
 	$(RM) ocamltohtml.o ocamltohtml.cm[ix] lexer.o lexer.cm[ix]
 
 template/front_code_snippet.html:template/front_code_snippet.md
@@ -30,13 +32,14 @@ clean:
 	$(RM) template/front_code_snippet.html 
 	$(RM) $(addprefix script/, *~ *.cmo *.cmi *.cma *.o)
 
-preview: relative_urls
+preview: script/relative_urls
 	$(MAKE) all
 	find ocaml.org -type f -name '*.html' | while read f; do \
-	  ./relative_urls --path ocaml.org "$$f"; done
+	  script/relative_urls --path ocaml.org "$$f"; done
 
-relative_urls: relative_urls.ml
-	ocamlfind ocamlopt -package netstring -linkpkg -annot -g "$<" -o "$@"
+script/relative_urls: script/relative_urls.ml
+	cd script && \
+	ocamlfind ocamlopt -package netstring -linkpkg -annot -g relative_urls.ml -o "$@" && \
 	$(RM) $(addprefix relative_urls., o cmi cmx annot)
 
 htmlescape:htmlescape.ml
@@ -48,7 +51,7 @@ syncotherfiles:
 	rsync --exclude '*.md' --exclude '*.html' -rltHprogv site/* ocaml.org/
 
 
-ocaml.org/community/planet.html:rss2html
+ocaml.org/community/planet.html:script/rss2html
 ocaml.org/learn/index.html:template/front_code_snippet.html
 ocaml.org/index.html:template/front_code_snippet.html
 ocaml.org/index.html:template/front_code_snippet.html

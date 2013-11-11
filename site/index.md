@@ -66,7 +66,7 @@
                     <img src="/img/rss.png" alt="RSS">
                 </a>
             </h1>
-            {{! cmd ./rss2html -n 6 --headlines http://planet.ocaml.org/rss20.xml !}}
+            {{! cmd script/rss2html -n 6 --headlines http://planet.ocaml.org/rss20.xml !}}
             <p><a href="community/planet.html">More...</a></p>
         </section>
     </div>
