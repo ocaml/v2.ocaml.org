@@ -22,12 +22,12 @@ ocamltohtml:lexer.ml ocamltohtml.ml
 	ocamlopt -o $@ lexer.ml ocamltohtml.ml
 	$(RM) ocamltohtml.o ocamltohtml.cm[ix] lexer.o lexer.cm[ix]
 
-tpl/front_code_snippet.html:tpl/front_code_snippet.md
+template/front_code_snippet.html:template/front_code_snippet.md
 	${OMD} $< -o $@
 
 clean:
 	$(RM) -r ocaml.org *~ *.cmo *.cmi *.cma *.o
-	$(RM) tpl/front_code_snippet.html 
+	$(RM) template/front_code_snippet.html 
 	$(RM) $(addprefix app/, *~ *.cmo *.cmi *.cma *.o)
 
 preview: relative_urls
@@ -49,6 +49,6 @@ syncotherfiles:
 
 
 ocaml.org/community/planet.html:rss2html
-ocaml.org/learn/index.html:tpl/front_code_snippet.html
-ocaml.org/index.html:tpl/front_code_snippet.html
-ocaml.org/index.html:tpl/front_code_snippet.html
+ocaml.org/learn/index.html:template/front_code_snippet.html
+ocaml.org/index.html:template/front_code_snippet.html
+ocaml.org/index.html:template/front_code_snippet.html

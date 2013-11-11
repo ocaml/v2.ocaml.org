@@ -7,9 +7,9 @@ ocaml.org/%.html:site/%.md
 	if grep -q '*Table of contents*' "$<" ; then $(MAKE) -f Makefile.from_md "$@.toc" ; fi
 	$(MAKE) -f Makefile.from_md "$@.tmp"
 	if [ -f "$@.toc" ] ; then \
-	  ${MPP} -set "filename=$<" -set "page=$@.tmp" -set "toc=$@.toc" tpl/main.mpp -o "$@" ; \
+	  ${MPP} -set "filename=$<" -set "page=$@.tmp" -set "toc=$@.toc" template/main.mpp -o "$@" ; \
 	else \
-	  ${MPP} -set "filename=$<" -set "page=$@.tmp" tpl/main.mpp -o "$@" ; \
+	  ${MPP} -set "filename=$<" -set "page=$@.tmp" template/main.mpp -o "$@" ; \
 	fi
 	$(RM) "$@.tmp"
 	$(RM) "$@.toc"

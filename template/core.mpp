@@ -12,7 +12,7 @@
     x!}}
 
     <div id="content-primary" class="span8">
-{{! cat tpl/tryocaml.html !}}
+{{! cat template/tryocaml.html !}}
       <div id='main-contents' class="content">
         {{! get contents !}}
       </div>

@@ -80,7 +80,7 @@
         </section>
         <section class="span8 condensed">
             <h1>Packages</h1>
-        ((! input tpl/front_package.mpp !))
+        ((! input template/front_package.mpp !))
         </section>
     </div>
 </div>

@@ -73,12 +73,12 @@
     <div class="row">
         <section class="span6 condensed">
             <h1>A taste of OCaml</h1>
-            ((! cat tpl/tryocaml.html !))
-            ((! input tpl/front_code_snippet.html !))
+            ((! cat template/tryocaml.html !))
+            ((! input template/front_code_snippet.html !))
         </section>
         <section class="span6 condensed">
             <h1>Packages</h1>
-            ((! input tpl/front_package.mpp !))
+            ((! input template/front_package.mpp !))
         </section>
     </div>
 </div>
