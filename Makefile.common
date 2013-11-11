@@ -11,9 +11,9 @@ all: ocamltohtml rss2html
 	$(MAKE) syncotherfiles
 
 rss2html: rss2html.ml
-	cd app && ocamlfind ocamlopt -package netstring,netclient,rss -c http.ml
+	cd script && ocamlfind ocamlopt -package netstring,netclient,rss -c http.ml
 	ocamlfind ocamlopt -package netstring,netclient,rss -linkpkg \
-	  -I app/ ./app/http.cmx -annot "$<" -o "$@"
+	  -I script/ ./script/http.cmx -annot "$<" -o "$@"
 
 ocaml.org:
 	find site -type d | while read l; do mkdir -p "$$(echo "$$l" | sed -e 's/^site/ocaml.org/')" ; done
@@ -28,7 +28,7 @@ template/front_code_snippet.html:template/front_code_snippet.md
 clean:
 	$(RM) -r ocaml.org *~ *.cmo *.cmi *.cma *.o
 	$(RM) template/front_code_snippet.html 
-	$(RM) $(addprefix app/, *~ *.cmo *.cmi *.cma *.o)
+	$(RM) $(addprefix script/, *~ *.cmo *.cmi *.cma *.o)
 
 preview: relative_urls
 	$(MAKE) all
