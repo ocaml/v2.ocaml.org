@@ -1,4 +1,0 @@
-
-<!-- begin /tpl/front_news.mpp -->
-{{! cmd ./rss2html -n 6 --headlines http://planet.ocaml.org/rss20.xml !}}
-<!-- end /tpl/front_news.mpp -->
