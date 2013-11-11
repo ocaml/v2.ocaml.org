@@ -70,7 +70,7 @@
           <ul>
             <li><a href="faq.html#GeneralQuestions">General Questions</a></li>
             <li><a href="faq.html#CoreLanguage">Core Language</a></li>
-            <li><a href="faq.html#ModuleLangage">Module Language</a></li>
+            <li><a href="faq.html#ModuleLanguage">Module Language</a></li>
             <li><a href="faq.html#DevelopmentTools">Development Tools</a></li>
           </ul>
           <footer>
