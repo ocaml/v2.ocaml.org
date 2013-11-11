@@ -7,9 +7,9 @@ The most recent version is [OCaml 4.00.1](releases/), released on
 2012-10-05. It can be easily installed in several ways. Broadly, the
 options are:
 
-* use a package manager supported by your platform (Windows, Linux,
- Mac OS X,...);
-* or use a package manager specific to OCaml (GODI, OPAM, ...);
+* use OPAM, a source package manager specific to OCaml;
+* or use a package manager supported by your platform (Windows, Linux,
+  Mac OS X,...);
 * or install from source code.
 
 The different options are detailed below. Most of these tools allow you
@@ -19,39 +19,17 @@ to download and install OCaml libraries. You can also find more packages
 <br />
 
 
-## By Package Manager
+## OPAM
 
-### GODI
-GODI is an independent distribution of OCaml and add-on software
-(covering both libraries and applications), running on multiple
-operating systems (Linux, MacOSX, Windows, and other). GODI compiles
-software from source, and allows it to adapt it to one's needs, using
-configuration options and even patches. GODI also supports binary
-releases as a user option.
+[OPAM](http://opam.ocaml.org/) is a package manager for OCaml, based
+on the CUDF library developped by the Mancoosi project, which is,
+among other things, used by Debian to manage their packages. It works
+well on Unix, Linux, and Mac OS X systems. Windows support is comming
+soon.
 
-To get started, go to the [GODI website](http://godi.camlcity.org),
-click "Get GODI", download the tarball, and follow the instructions in
-the README.
-
-For the impatient, do the following
-
-```bash
-wget http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
-tar xzvf http://download.camlcity.org/download/godi-rocketboost-20110811.tar.gz
-cd godi-rocketboost-20110811
-./bootstrap
-```
-You may need to use the `--prefix` option to the bootstrap command if
-you need to change the default installation location.
-
-### OPAM
-OPAM is a package manager for OCaml, based on the CUDF library
-developped by the Mancoosi project, which is, among other things, used
-by Debian to manage their packages. It works well on Unix, Linux, and
-Mac OS X systems. Windows support is comming soon.
-
-To get started, go to the [OPAM website](http://opam.ocamlpro.com/),
-click "Try OPAM" and follow the instructions.
+To get started, see
+[Download and install OPAM](http://opam.ocaml.org/) and follow the
+instructions.
 
 For the impatient, do the following
 
@@ -60,7 +38,6 @@ Quick install:
 ```bash
 $ wget http://www.ocamlpro.com/pub/opam_installer.sh
 $ sh ./opam_installer.sh /usr/local/bin  # You can change the path to install it in an other place.
-          
 ```
 From source:
 
