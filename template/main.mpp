@@ -68,11 +68,6 @@
 	    style="margin-top: 4ex; margin-bottom: 0" >
       <div class="navbar-inner">
         <div class="container-fluid">
-          <ul class="nav pull-left">
-{{! ifdef filename
-            <li><a href="https://github.com/ocaml/ocaml.org/tree/redesign/((! tryget filename !))">Edit this page</a></li>
-!}}
-          </ul>
           <ul class="nav pull-right">
             <li><a href="https://github.com/ocaml/ocaml.org/issues">Feedback</a></li>
             <li><a href="https://github.com/ocaml/ocaml.org/issues">Contact us</a></li>
