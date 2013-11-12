@@ -134,9 +134,30 @@ a.edit-this-page {
   margin-left: 15px;
   width: 33px;
   height: 33px;
-  background: url(/img/edit.png);
+  background: url(/img/edit.png) no-repeat left center;
+  display: block;
+  text-decoration: none;
+}
+
+.edit-this-page span {
+  display: none;
+  color: #ffffff; /* same as the other menu entries */
 }
 
 a.edit-this-page:hover {
-  background: url(/img/edit-hover.png);
+  background-image: url(/img/edit-hover.png);
+}
+
+/* When the navigation bar is collapsed */
+@media (max-width: 979px) {
+  .nav-collapse a.edit-this-page {
+    float: none;
+    width: auto;
+    margin-left: 10px;
+  }
+  .nav-collapse .edit-this-page span {
+    display: block;
+    padding-top: 5px;
+    margin-left: 40px;
+  }
 }

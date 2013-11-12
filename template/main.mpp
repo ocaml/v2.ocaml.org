@@ -51,7 +51,7 @@
 	    {{! ifdef filename
 	    <a href="https://github.com/ocaml/ocaml.org/tree/redesign/((! tryget filename !))"
 	       title="Edit this page"  class="edit-this-page pull-right"
-	       ><!-- Image in CSS --></a>
+	       ><!-- Image in CSS --><span>Edit this page</span></a>
 	    !}}
             <form id="searchform" class="navbar-search pull-right"
 		  method="get" action="http://www.google.com/search">
