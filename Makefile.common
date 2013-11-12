@@ -14,7 +14,7 @@ script/rss2html: script/rss2html.ml
 	cd script && \
 	ocamlfind ocamlopt -package netstring,netclient,rss -c http.ml && \
 	ocamlfind ocamlopt -package netstring,netclient,rss \
-	  -linkpkg http.cmx -annot rss2html.ml -o "$@"
+	  -linkpkg http.cmx -annot rss2html.ml -o ../"$@"
 
 ocaml.org:
 	find site -type d | while read l; do mkdir -p "$$(echo "$$l" | sed -e 's/^site/ocaml.org/')" ; done
