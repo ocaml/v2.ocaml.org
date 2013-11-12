@@ -20,9 +20,8 @@ ocaml.org:
 	find site -type d | while read l; do mkdir -p "$$(echo "$$l" | sed -e 's/^site/ocaml.org/')" ; done
 
 script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
-	cd script && \
-	ocamlopt -o $@ lexer.ml ocamltohtml.ml && \
-	$(RM) ocamltohtml.o ocamltohtml.cm[ix] lexer.o lexer.cm[ix]
+	ocamlopt -o $@ $+ && \
+	cd script && $(RM) ocamltohtml.o ocamltohtml.cm[ix] lexer.o lexer.cm[ix]
 
 template/front_code_snippet.html:template/front_code_snippet.md
 	${OMD} $< -o $@
@@ -38,8 +37,8 @@ preview: script/relative_urls
 	  script/relative_urls --path ocaml.org "$$f"; done
 
 script/relative_urls: script/relative_urls.ml
+	ocamlfind ocamlopt -package netstring -linkpkg -annot -g $+ -o "$@" && \
 	cd script && \
-	ocamlfind ocamlopt -package netstring -linkpkg -annot -g relative_urls.ml -o "$@" && \
 	$(RM) $(addprefix relative_urls., o cmi cmx annot)
 
 htmlescape:htmlescape.ml
