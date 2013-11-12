@@ -6,7 +6,7 @@
         <section class="span6 condensed">
             <h1 class="ruled">Summary</h1>
             <p>Here you'll find links to documentation for the OCaml compiler, <a href="/releases">release</a> information and other resources.</p>
-            <p>Documentation for a given package can be found by following the link on that package's information page. <a href="/pkg/">Search the package list</a> to find what you need.</p>
+            <p>Documentation for a given package can be found by following the link on that package's information page. <a href="https://opam.ocaml.org/pkg/">Search the package list</a> to find what you need.</p>
         </section>
         <section class="span6 condensed">
             <h1 class="ruled">Reference</h1>
@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="row">
-                <a href="/pkg" class="span3 documentation-highlight">
+                <a href="https://opam.ocaml.org/pkg/" class="span3 documentation-highlight">
                     <img src="/img/documents.png" alt="">
                     Package Documents
                 </a>
@@ -36,11 +36,11 @@
     <div class="row">
         <section class="span6 condensed">
             <h1 class="ruled">OPAM Docs</h1>
-            <p>The OCaml Package Manager (OPAM) is a source-based package manager for OCaml. It supports multiple simultaneous compiler installations, flexible package constraints, and a Git-friendly development workflow. For documentation on installing OPAM or packaging your libraries, <a href="http://opam.ocamlpro.org/doc/Quick_Install.html">read here</a>. Packages are <a href="/docs/ocamlot">automatically tested</a> upon submission and reports sent back to maintainers. If you submit a package, you will be rewarded with regular regression tests across many diverse operating systems and platforms.</p>
-            <p>OPAM has been created and is maintained by OCamlPro and OCaml Labs. Bug reports and feature requests for the tool should be reported on <a href="https://github.com/OCamlPro/opam/issues">OPAM's issue-tracker</a>. Packaging issues or requests for a new package can be reported on the <a href="https://github.com/OCamlPro/opam-repository/issues">main repository's issue-tracker</a>. General queries for both the tool and the packages can be addressed on the <a href="http://lists.ocaml.org/listinfo/platform">OCaml-platform mailing-list</a> and insights and evolution of OPAM internals can discussed on the <a href="http://lists.ocaml.org/listinfo/opam-devel">OPAM-devel mailing-list</a>.</p>
+            <p>The OCaml Package Manager (<a href="https://opam.ocaml.org">OPAM</a>) is a source-based package manager for OCaml. It supports multiple simultaneous compiler installations, flexible package constraints, and a Git-friendly development workflow. For documentation on installing OPAM or packaging your libraries, <a href="https://opam.ocaml.org/doc/Quick_Install.html">read here</a>. Packages are automatically tested upon submission and reports sent back to maintainers. If you submit a package, you will be rewarded with regular regression tests across many diverse operating systems and platforms.</p>
+            <p>OPAM has been created and is maintained by OCamlPro and OCaml Labs. Bug reports and feature requests for the tool should be reported on <a href="https://github.com/OCaml/opam/issues">OPAM's issue-tracker</a>. Packaging issues or requests for a new package can be reported on the <a href="https://github.com/OCaml/opam-repository/issues">main repository's issue-tracker</a>. General queries for both the tool and the packages can be addressed on the <a href="http://lists.ocaml.org/listinfo/platform">OCaml-platform mailing-list</a> and insights and evolution of OPAM internals can discussed on the <a href="http://lists.ocaml.org/listinfo/opam-devel">OPAM-devel mailing-list</a>.</p>
         </section>
         <section class="span6 condensed">
-            <h1 class="ruled">OCaml Book</h1>
+            <h1 class="ruled"><a href="/learn/books.html">OCaml Books</a></h1>
             <div class="row">
                 <div class="span2 documentation-book">
                     <a href="https://realworldocaml.org">
@@ -49,8 +49,8 @@
                 </div>
                 <div class="span4">
                     <p>This hands-on book shows you how to take advantage of OCaml’s functional, imperative and object-oriented programming styles with recipes for many real-world tasks.</p>
-                    <p>Starting with OCaml basics, including interactive examples, you’ll move toward more advanced topics such as the module system, foreign-function interface and build system.</p>
-                    <p><a href="https://realworldocaml.org">Read Free Online</a></p>
+                    <p>Starting with OCaml basics, including interactive examples, you’ll move toward more advanced topics such as the module system, foreign-function interface and build system. <a href="https://realworldocaml.org">Read it free online</a></p>
+                    <p><a href="/learn/books.html">More OCaml books</a></p>
                 </div>
             </div>
         </section>
