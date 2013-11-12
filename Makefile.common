@@ -23,7 +23,7 @@ clean:
 
 preview: script/relative_urls
 	$(MAKE) all
-	find ocaml.org -type f -name '*.html' | while read f; do \
+	find ocaml.org -type f | while read f; do \
 	  script/relative_urls --path ocaml.org "$$f"; done
 
 script/rss2html: script/rss2html.ml

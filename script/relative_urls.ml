@@ -87,7 +87,7 @@ let revert_path =
   let to_base, filename = remove_common_prefix to_base filename in
   revert filename @ to_base
 
-let process to_base filename =
+let process_html to_base filename =
   let fh = open_in filename in
   let html = Nethtml.parse_document (Lexing.from_channel fh) in
   close_in fh;
@@ -97,6 +97,25 @@ let process to_base filename =
   let out = new Netchannels.output_channel fh in
   Nethtml.write out html;
   out#close_out()
+
+let process_css to_base filename =
+  let ch = new Netchannels.input_channel (open_in filename) in
+  let css = Netchannels.string_of_in_obj_channel ch in
+  (* URLs need to be a full path on the system: *)
+  let p = Filename.concat (Sys.getcwd()) (Neturl.join_path to_base) in
+  let url_re = Str.regexp "url(/\\([^()]*\\))" in
+  let css = Str.global_replace url_re ("url(" ^ p ^ "/\\1)") css in
+  let out = new Netchannels.output_channel (open_out filename) in
+  out#output_string css;
+  out#close_out()
+
+
+let process to_base filename =
+  if Filename.check_suffix filename ".html" then
+    process_html to_base filename
+  else if Filename.check_suffix filename ".css" then
+    process_css to_base filename
+  else ()
 
 let () =
   let files = ref [] in

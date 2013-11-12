@@ -128,3 +128,15 @@ a[name] {
   margin-top: -70px;
   display: inline-block; /* required for webkit browsers */
 }
+
+a.edit-this-page {
+  margin-top: 17.5px;
+  margin-left: 15px;
+  width: 33px;
+  height: 33px;
+  background: url(/img/edit.png);
+}
+
+a.edit-this-page:hover {
+  background: url(/img/edit-hover.png);
+}
