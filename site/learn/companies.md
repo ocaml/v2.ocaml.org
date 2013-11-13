@@ -93,6 +93,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/cryptosense.png" alt="Cryptosense">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.cryptosense.com/">Cryptosense</a>, France</h2>
+        <p>Based in Paris, France, Cryptosense creates security analysis software with a particular focus on cryptographic systems. A spin-off of the institute for computer science research (Inria), Cryptosense’s founders combine more than 40 years experience in research and industry. Cryptosense provides its solutions to an international clientèle in particular in the financial, industrial and government sectors.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/dassault.png" alt="Dassault">
     </dt>
     <dd class="span5">
@@ -100,7 +109,6 @@
         <p>Dassault Systèmes, the 3DEXPERIENCE Company, provides businesses and people with virtual universes to imagine sustainable innovations.</p>
     </dd>
 </dl>
-
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/hostnet.gif" alt="Digirati dba Hostnet">
