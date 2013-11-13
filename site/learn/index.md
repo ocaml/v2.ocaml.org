@@ -11,7 +11,7 @@
             <p>OCaml is a general purpose industrial-strength programming language with an emphasis on expressiveness and safety. <a href="companies.html">Used</a> in environments where a single mistake can cost millions and speed matters, it is supported by an <a href="/community/">active community</a> that has developed a <a href="https://opam.ocaml.org/pkg/">rich set of libraries</a>. <small><em><a href="description.html">Read more</a></em></small>.</p>
         </section>
         <div id="platform-download" class="span3">
-            <p><a href="/docs/install.html" class="btn">Install</a></p>
+            <p><a href="/docs/install.html" class="btn">Download OCaml</a></p>
 <!--
             <p>
                 <a href="#">Other systems</a> |
