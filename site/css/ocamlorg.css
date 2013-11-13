@@ -110,6 +110,12 @@ a.planet-toggle {
   margin-bottom: 2ex;
 }
 
+h1.planet .rss {
+  float: right;
+  padding-top: 13px;
+  margin-left: 10px;
+}
+
 div.subscribers {
   margin-left: 3em;
 }

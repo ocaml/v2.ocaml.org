@@ -122,9 +122,11 @@ let html_of_post p =
     | None -> [Data p.title], []
     | Some u ->
        let url = Neturl.string_of_url u in
-       [Element("a", ["href", url; "target", "_blank"], [Data p.title]) ],
+       [Element("a", ["href", url; "target", "_blank";
+                      "title", "Go to the original post"],
+                [Data p.title]) ],
        [Element("a", ["href", url; "alt", "RSS"; "target", "_blank";
-                      "style", "float: right; padding-top: 13px"],
+                      "class", "rss"],
                 [Element("img", ["src", "/img/rss.png"], []) ]) ] in
   let html_author =
     if p.email = "" then Data p.author
@@ -151,8 +153,8 @@ let html_of_post p =
   [Data "\n";
    Element("a", ["name", title_anchor], []);
    Element("section", ["class", " condensed"; "style", "clear: both"],
-           Element("h1", ["class", "ruled"],
-                   html_title @ additional_info @ rss)
+           Element("h1", ["class", "ruled planet"],
+                   rss @ html_title @ additional_info)
            :: desc);
    Data "\n"]
 
