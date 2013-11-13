@@ -158,7 +158,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/framtidsforum.png" alt="Framtidsforum">
+        <img src="/img/default.png" alt="Framtidsforum">
     </dt>
     <dd class="span5">
         <h2><a href="http://www.exceleverywhere.com">Framtidsforum I&amp;M</a>, Sweden</h2>
@@ -275,7 +275,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/psellos.png" alt="Psellos">
+        <img src="/img/default.png" alt="Psellos">
     </dt>
     <dd class="span5">
         <h2><a href="http://psellos.com">Psellos</a>, United States</h2>
@@ -293,7 +293,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/sakhalin.png" alt="Sakhalin">
+        <img src="/img/default.png" alt="Sakhalin">
     </dt>
     <dd class="span5">
         <h2><a href="http://www.seaiq.com/">Sakhalin</a>, United States</h2>
