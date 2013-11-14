@@ -113,7 +113,7 @@
     <div class="row">
         <section class="span12 condensed">
             <h1 class="ruled">OCaml around the web</h1>
-                <ul>
+                <ul class="inline">
                     <li><div class="g-community" data-href="https://plus.google.com/u/0/communities/100872177392545601885" data-showtagline="false" data-showphoto="false"></div></li>
                     <li><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg" title="OCaml tag on StackOverflow"></a></li>
                     <li><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png" title="OCaml repos on Github"></a></li>
