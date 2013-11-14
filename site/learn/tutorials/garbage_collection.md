@@ -294,7 +294,7 @@ let nr_records = 10000
 (* On-disk file. *)
 let diskfile = openfile "users.bin" [ O_RDWR ] 0
 ```
-Download [users.bin.gz](../img/users.bin.gz) and decompress it before
+Download [users.bin.gz](/img/users.bin.gz) and decompress it before
 running the program.
 
 Our cache of records is very simple:

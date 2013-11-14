@@ -14,7 +14,7 @@ options are:
 
 The different options are detailed below. Most of these tools allow you
 to download and install OCaml libraries. You can also find more packages
-[here](libraries.html).
+[here](/learn/libraries.html).
 
 <br />
 
@@ -216,7 +216,7 @@ urpmq --list | grep ocaml
 ### Windows
 Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
-issues](portability.html) or the [Windows release
+issues](/learn/portability.html) or the [Windows release
 notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
 
 * [Cygwin-based native Win32 port
@@ -303,7 +303,7 @@ There is the issue of knowing which Fink packages have to be installed
 before you can install some of the Godi packages with all optioned
 enabled.
 
-####  [MacPorts](macosx-macports)
+#### MacPorts
 [MacPorts](http://www.macports.org/), formerly known as DarwinPorts, is
 a package management system for Mac OS X based on the BSD ports system.
 You will need to have the OS X Developer Tools installed before
@@ -330,7 +330,7 @@ the native libraries, such as GTK2 and PCRE.
 
 
 
-####  [Building from sources](macosx-sources)
+#### Building from sources
 Unfortunately, the packages available for both Fink and DarwinPorts
 don't yet include some of the more useful additions to the OCaml
 collection, such as Markus Mottl's PCRE-Ocaml library or Stolpmann's

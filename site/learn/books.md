@@ -178,7 +178,7 @@ programming, and interoperability with C.
 ![](http://caml.inria.fr/about/books-images/leroy-weis.jpg "")
 
 ###  Manuel de référence du langage Caml
-[PDF](../pub/distrib/books/manuel-cl.pdf)
+[PDF](http://caml.inria.fr/pub/distrib/books/manuel-cl.pdf)
 
 *Xavier Leroy and Pierre Weis<br />
  InterEditions, Paris, 1993, ISBN 2-7296-0492-8 (out of print).*
@@ -190,7 +190,7 @@ and provides a complete documentation for the Caml Light system.
 ![](http://caml.inria.fr/about/books-images/weis-leroy.jpg "")
 
 ###  Le langage Caml
-[PDF](../pub/distrib/books/llc.pdf)
+[PDF](http://caml.inria.fr/pub/distrib/books/llc.pdf)
 
 *Pierre Weis, Xavier Leroy<br />
  Second edition: Dunod, Paris, 1999, ISBN 2-10-004383-8.<br />

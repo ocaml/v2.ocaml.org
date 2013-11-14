@@ -15,7 +15,7 @@ system, and another 100K of bytecode for the compiler. Two megabytes of
 memory is enough to recompile the whole system.
 
 Debugging is possible by [tracing function calls in the same way as in
-OCaml](../debug.html). In the example therein, one should write
+OCaml](/learn/tutorials/debug.html). In the example therein, one should write
 `trace "fib";;` instead of `#trace   fib;;` and `untrace "fib";;`
 instead of `#untrace fib;;`. There also exists a debugger, as a user
 contribution.

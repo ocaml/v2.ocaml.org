@@ -37,7 +37,7 @@ The OCaml Consortium federates the design and development of the OCaml
 language and its programming environment. The Consortium allow its
 members to demonstrate their interest in the OCaml language and express
 their support to its development. Moreover, they benefit of a [specific
-license](consortium/license.html).
+license](/docs/consortium-license.html).
 
 To become a member necessitates a contribution that can be as low as
 3000€ for a minimal support to OCaml. For more effective support,

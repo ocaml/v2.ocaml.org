@@ -241,14 +241,14 @@ instance printing something on the terminal or writing some memory
 location), but have no mathematically meaningful result.<br />
  In OCaml, there is no special treatment of procedures: they are just
 considered as special cases of functions that return the special
-“meaningless” value [<code>()</code>](donnees_de_base-eng.html#units). For
+“meaningless” value `()`. For
 instance, the `print_string` primitive that prints a character string on
 the terminal, just returns `()` as a way of indicating that its job has
 been properly completed.<br />
  Procedures that do not need any meaningful argument, get `()` as dummy
 argument. For instance, the `print_newline` procedure, that outputs a
 newline on the terminal, gets no meaningful argument: it has type
-`unit       -> unit`.<br />
+`unit -> unit`.<br />
  Procedures with argument are defined exactly as ordinary functions. For
 instance:
 
@@ -523,9 +523,9 @@ and on PCs under Windows. A brief tour on main
 
 The OCaml system is open source software: the compiler is distributed
 under the terms of the Q Public License, and its library is under LGPL;
-please read the [license](license.html) document for more details. A
+please read the [license](/docs/license.html) document for more details. A
 BSD-style license is also available for a fee through the [OCaml
-Consortium](support.html#consortium).
+Consortium](/community/support.html#consortium).
 
 ### What is the meaning of the name “OCaml”
 
