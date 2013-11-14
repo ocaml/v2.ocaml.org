@@ -46,8 +46,9 @@ fully supports packages installed with [ocamlfind
 so that lots of fancy libraries could be loaded very easily, from the
 script.
 
-[Discuss this
-page](ocaml_and_the_web/discussion.html "ocaml_and_the_web/discussion")
+<!--
+[Discuss this page](ocaml_and_the_web/discussion.html "ocaml_and_the_web/discussion")
+-->
 
 ## Web Servers and Frameworks
 The [PPS Computer Science

@@ -14,7 +14,7 @@ e Consortium OCaml fédère les efforts de conception et de développement
 du langage OCaml et de son environnement. Le Consortium permet à ses
 membres de montrer leur intérêt pour le langage OCaml et de soutenir son
 développement. Ils bénéficient de plus d'une [license
-spécifique](consortium/license.html).
+spécifique](/docs/consortium-license.fr.html).
 
 La cotisation annuelle des membres peut être ou bien très modeste
 (3000€) ou plus conséquente (10000€ ou plus) selon le niveau de soutien

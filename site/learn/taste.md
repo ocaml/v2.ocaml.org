@@ -200,6 +200,6 @@ fib --> 3
 - : int = 3
 ```
 Go and [try it in your browser](http://try.ocamlpro.com/) or
-[install](install.html) it and read some [tutorials](tutorials/).
+[install](/docs/install.html) it and read some [tutorials](tutorials/).
 
 

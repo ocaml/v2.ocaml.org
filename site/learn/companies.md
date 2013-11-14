@@ -93,15 +93,6 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/cryptosense.png" alt="Cryptosense">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.cryptosense.com/">Cryptosense</a>, France</h2>
-        <p>Based in Paris, France, Cryptosense creates security analysis software with a particular focus on cryptographic systems. A spin-off of the institute for computer science research (Inria), Cryptosense’s founders combine more than 40 years experience in research and industry. Cryptosense provides its solutions to an international clientèle in particular in the financial, industrial and government sectors.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
         <img src="/img/users/dassault.png" alt="Dassault">
     </dt>
     <dd class="span5">
@@ -109,6 +100,7 @@
         <p>Dassault Systèmes, the 3DEXPERIENCE Company, provides businesses and people with virtual universes to imagine sustainable innovations.</p>
     </dd>
 </dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/hostnet.gif" alt="Digirati dba Hostnet">
@@ -158,7 +150,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/default.png" alt="Framtidsforum">
+        <img src="/img/users/framtidsforum.png" alt="Framtidsforum">
     </dt>
     <dd class="span5">
         <h2><a href="http://www.exceleverywhere.com">Framtidsforum I&amp;M</a>, Sweden</h2>
@@ -275,7 +267,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/default.png" alt="Psellos">
+        <img src="/img/users/psellos.png" alt="Psellos">
     </dt>
     <dd class="span5">
         <h2><a href="http://psellos.com">Psellos</a>, United States</h2>
@@ -293,7 +285,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/default.png" alt="Sakhalin">
+        <img src="/img/users/sakhalin.png" alt="Sakhalin">
     </dt>
     <dd class="span5">
         <h2><a href="http://www.seaiq.com/">Sakhalin</a>, United States</h2>

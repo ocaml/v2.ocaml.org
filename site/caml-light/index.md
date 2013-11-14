@@ -23,7 +23,7 @@
   compiler. Two megabytes of memory is enough to recompile the whole
   system.</p>
 
-  <p>Debugging is possible by <a href="../debug.html">tracing function
+  <p>Debugging is possible by <a href="../learn/tutorials/debug.html">tracing function
   calls in the same way as in OCaml</a>. In the example therein, one
   should write <code>trace "fib";;</code> instead of <code>#trace
   fib;;</code> and <code>untrace "fib";;</code> instead of

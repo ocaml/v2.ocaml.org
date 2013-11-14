@@ -14,7 +14,7 @@ which in turn was based on “[Prolog problem
 list](https://sites.google.com/site/prologsite/prolog-problems/)”. For
 each of these questions, some simple tests are shown—they may also serve
 to make the question clearer if needed. To work on these problems, we
-recommend you first [install OCaml](../install.html) or use it [inside
+recommend you first [install OCaml](/docs/install.html) or use it [inside
 your browser](http://try.ocamlpro.com/). The source of the following
 problems is available on
 [GitHub](https://github.com/VictorNicollet/99-Problems-OCaml).

@@ -2,11 +2,6 @@
 
 # OCaml Meetings
 ## In Europe
-
-* 2013: [OCaml Users and Developers
- Workshop](ocaml/2013/) (OUD) and [Commercial Users of
- Functional Programming](http://cufp.org) (CUFP) colocated with ICFP
- in Boston (MA, USA).
 * 2013, May 21, 7:30 PM: [&quot;Rencontre de
  Mai&quot;](http://www.meetup.com/ocaml-paris/events/116100692/), IRILL
  23, avenue d'Italie 75013 Paris. Organized by [OCaml Users in PariS
@@ -18,7 +13,7 @@
 * 2012: [OCaml Users and Developers
  Workshop](http://oud.ocaml.org/2012/) (OUD) and [Commercial Users of
  Functional Programming](http://cufp.org) (CUFP) colocated with ICFP
- in Copenhagen (Denmark).
+ in Copenhagen (Denmark)
 * 2011: [Paris](https://forge.ocamlcore.org/plugins/mediawiki/wiki/ocaml-meeting/index.php/OCamlMeeting2011),
  [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=292)
 * 2010: [Paris](http://lambda-the-ultimate.org/node/3826),

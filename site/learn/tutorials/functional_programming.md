@@ -372,7 +372,7 @@ The function `printit` takes a boxed integer and prints it.
 The diagram below shows an array of unboxed (top) vs. boxed (below)
 integers:
 
-![Boxed Array](../img/boxedarray.png "")
+![Boxed Array](/img/boxedarray.png "")
 
 No prizes for guessing that the array of unboxed integers is much faster
 than the array of boxed integers. In addition, because there are fewer

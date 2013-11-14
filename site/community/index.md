@@ -57,14 +57,14 @@
 			<a href="irc://irc.freenode.net/ocaml-fr">fr</a>).
 			When you need to go beyond this and get professional support, you have a number of
 			<a href="support.html">options available</a>.</p>
-            <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support">Find out more</a>.</p>
+            <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html">Find out more</a>.</p>
         </section>
         <section class="span4 condensed">
-           <h1 class="ruled">Events</h1>
+           <h1 class="ruled">Upcoming Events</h1>
             <ul class="news-feed">
                 <li class="announcement">
                     <article>
-                        <h1><a href="/meetings/ocaml/2013/">OCaml 2013</a></h1>
+                        <h1><a href="#">OCaml 2013</a></h1>
                         <p>24 September 2013</p>
                         <a href="/meetings/ocaml/2013/">
                             <img src="/img/announcement.png" alt="Announcement">
@@ -92,7 +92,7 @@
                     <article>
                         <h1><a href="#">Consortium Meeting</a></h1>
                         <p>XX November 2013</p>
-                        <a href="/meetings/consortium">
+                        <a href="">
                             <img src="/img/news.png" alt="News">
                         </a>
                     </article>

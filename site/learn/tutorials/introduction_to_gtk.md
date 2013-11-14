@@ -65,7 +65,7 @@ ocamlc -g -w s -I +lablgtk lablgtk.cma gtkInit.cmo simple.ml -o simple
 ```
 This is what you should see when you run it:
 
-![Simple lablgtk program](../img/simplee29b.gif "")
+![Simple lablgtk program](/img/simplee29b.gif "")
 
 Let's analyse the program line by line to see what's going on.
 
