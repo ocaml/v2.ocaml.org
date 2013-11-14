@@ -114,7 +114,7 @@
         <section class="span12 condensed">
             <h1 class="ruled">OCaml around the web</h1>
                 <ul class="inline">
-                    <li><a href="/mailing_lists.html"><img src="" title="OCaml Mailing Lists"></a></li>
+                    <li><a href="/community/mailing_lists.html"><img src="" title="OCaml Mailing Lists"></a></li>
                     <li><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png" title="OCaml repos on Github"></a></li>
                     <li><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png" title="OCaml repos on BitBucket"></a></li>                
                     <li><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg" title="OCaml tag on StackOverflow"></a></li>
