@@ -2,62 +2,25 @@
     <li class="active">
         <a href="#">Recent updates</a>
     </li>
-    <li><a href="#">Most popular</a></li>
-    <li><a href="#">Statistics</a></li>
 </ul>
 <table class="table table-bordered table-condensed table-hover">
     <thead>
         <tr>
             <th>Package</th>
-            <th>Author</th>
-            <th>Category</th>
             <th>Version</th>
             <th>Date</th>
         </tr>
     </thead>
     <tbody>
-            <tr>
-                <td><a href="#">obuild</a></td>
-                <td><a href="#">foo</a></td>
-                <td><a href="#">Tools</a></td>
-                <td><a href="#">0.0.1</a></td>
-                <td><a href="#">9:00  12 Feb 2013</a></td>
-            </tr>
-            <tr>
-                <td><a href="#">obuild</a></td>
-                <td><a href="#">foo</a></td>
-                <td><a href="#">Tools</a></td>
-                <td><a href="#">0.0.1</a></td>
-                <td><a href="#">9:00  12 Feb 2013</a></td>
-            </tr>
-            <tr>
-                <td><a href="#">obuild</a></td>
-                <td><a href="#">foo</a></td>
-                <td><a href="#">Tools</a></td>
-                <td><a href="#">0.0.1</a></td>
-                <td><a href="#">9:00  12 Feb 2013</a></td>
-            </tr>
-            <tr>
-                <td><a href="#">obuild</a></td>
-                <td><a href="#">foo</a></td>
-                <td><a href="#">Tools</a></td>
-                <td><a href="#">0.0.1</a></td>
-                <td><a href="#">9:00  12 Feb 2013</a></td>
-            </tr>
-            <tr>
-                <td><a href="#">obuild</a></td>
-                <td><a href="#">foo</a></td>
-                <td><a href="#">Tools</a></td>
-                <td><a href="#">0.0.1</a></td>
-                <td><a href="#">9:00  12 Feb 2013</a></td>
-            </tr>
-
-            <tr>
-                <td><a href="#">obuild</a></td>
-                <td><a href="#">foo</a></td>
-                <td><a href="#">Tools</a></td>
-                <td><a href="#">0.0.1</a></td>
-                <td><a href="#">9:00  12 Feb 2013</a></td>
-            </tr>
+((! cmd bash
+if [[ -f opam-update-list ]]
+then
+cat opam-update-list
+else
+for i in {1..6} ; do
+echo '<tr><td><a href="#">placeholder</a></td><td><a href="#">0.0.1</a></td><td><a href="#">12 Feb 2013</a></td></tr>'
+done
+fi
+!))
     </tbody>
 </table>
