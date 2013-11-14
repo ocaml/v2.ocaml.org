@@ -122,7 +122,7 @@
                     })();
                 </script>
                 <p><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg"></a></p>
-                <p><a href=""><img src=""></a></p>
+                <p><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png"></a></p>
                 <p><a href=""><img src=""></a></p>
                 <p><a href=""><img src=""></a></p>
                 <p><a href=""><img src=""></a></p>
