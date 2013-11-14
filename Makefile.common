@@ -49,7 +49,7 @@ htmlescape:htmlescape.ml
 
 syncotherfiles:
 	rsync --exclude '*.md' --exclude '*.html' -rltHprogv site/* ocaml.org/
-	cd site && find . -type l | xargs tar c | (cd ../ocaml.org && tar xv)
+
 
 
 ocaml.org/community/planet.html:script/rss2html
