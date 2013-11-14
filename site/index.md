@@ -29,7 +29,7 @@
                     </a>
                     <h1><a href="/docs">Documentation</a></h1>
                     <p><a href="docs/install.html" >Install</a> OCaml,
-					look up <a href="#">package docs</a>, access the
+					look up <a href="https://opam.ocaml.org/pkg/">package docs</a>, access the
 					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 					target="_blank"
 					>Manual</a>, get the <a href="/docs/cheat_sheets.html">cheat sheets</a> and <a href="/docs">more</a>.</p>
@@ -40,7 +40,11 @@
                     <a href="/docs/install.html">
                         <img src="/img/platform-large.png" alt="Platform">                    </a>
                     <h1><a href="http://opam.ocaml.org">Packages</a></h1>
-                    <p>The <a href="http://opam.ocaml.org">OCaml Package Manager</a>, gives you to access multiple versions of hundreds of packages. It's the best way to get started for newcomers and a flexible base for experienced users.</p>
+                    <p>The <a href="http://opam.ocaml.org">OCaml Package
+					Manager</a>, gives you to access multiple versions of
+					<a href="https://opam.ocaml.org/pkg/">hundreds of
+					packages</a>. It's the best way to get started for
+					newcomers and a flexible base for experienced users.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/community">
@@ -75,6 +79,7 @@
             <h1>A taste of OCaml</h1>
             ((! cat template/tryocaml.html !))
             ((! input template/front_code_snippet.html !))
+            <p>OCaml is a lot more powerful than this simple example shows. See <a href="/learn/taste.html">more examples</a>!</p>
         </section>
         <section class="span6 condensed">
             <h1>Packages</h1>
