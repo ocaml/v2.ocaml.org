@@ -34,7 +34,9 @@ database servers. Simply run:
     make
 
 This will generate a new folder `ocaml.org` that contains the full
-website.
+website.  If you want to be able to point your browser to `ocaml.org`,
+run instead `make preview` which will ensure that the links work
+locally (and not only on the server).
 
 DIRECTORY STRUCTURE
 ===================
