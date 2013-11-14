@@ -10,19 +10,19 @@ DEPENDENCIES
 ============
 Building the html pages requires:
 
-* rsync
-* mpp >= 0.1.1
-* mpp >= 0.1.2 if your `/bin/sh` is a link to `/bin/dash`
-* omd >= 0.6.1
-* gnu make
 * bash
+* curl
+* rsync
+* GNU make
 * ocaml >= 3.12.0 (the presence of ocamlopt is required)
 * ocamlfind
+* mpp >= 0.1.2
+* omd >= 0.6.1
 * netstring, netclient, and rss (for rss2html.ml)
 
 If you use opam, the OCaml packages above can be installed by running:
 
-    `opam install ocamlfind mpp omd ocamlnet xmlm ocamlrss`
+    opam install ocamlfind mpp omd ocamlnet ocamlrss
 
 
 BUILD
