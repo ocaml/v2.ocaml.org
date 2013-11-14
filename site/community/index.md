@@ -118,7 +118,7 @@
                     <li><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png" title="OCaml repos on Github"></a></li>
                     <li><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png" title="OCaml repos on BitBucket"></a></li>                
                     <li><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg" title="OCaml tag on StackOverflow"></a></li>
-                    <li><a href="https://plus.google.com/u/0/communities/100872177392545601885"><img src="/img/gplus.png" title="OCaml on Google+"></a></li>
+                    <li><a href="https://plus.google.com/u/0/communities/100872177392545601885"><img src="/img/googleplus.png" title="OCaml on Google+"></a></li>
                     <li><a href="http://www.reddit.com/r/ocaml/"><img src="/img/reddit-alien.png" title="OCaml subreddit on Reddit"></a></li>
                     <li><a href="http://www.slideshare.net/search/slideshow/?q=ocaml&qf=qf2&ud=any&ft=all&lang=**&sort=relevance"><img src="/img/slideshare-icon.png" title="OCaml mentions on SlideShare"></a></li>
                     <li><a href="http://www.meetup.com/find/?keywords=ocaml&radius=Infinity"><img src="/img/meetup-logo.gif" title="OCaml groups on Meetup"></a></li>
