@@ -24,7 +24,7 @@ Tarball](http://caml.inria.fr/distrib/ocaml-4.00/ocaml-4.00-refman.html.tar.gz)
 ****
 
 ###  Real World OCaml
-<img src="https://realworldocaml.org/media/img/oreilly-cover.gif" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/real-world-ocaml.jpg" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
 *Jason Hickey, Anil Madhavapeddy, and Yaron Minsky*
 
@@ -33,7 +33,9 @@ computation, system scripting, and database-driven web applications with
 the OCaml multi-paradigm programming language. This hands-on book shows
 you how to take advantage of OCaml’s functional, imperative, and
 object-oriented programming styles with recipes for many real-world
-tasks. You’ll start with OCaml basics, including how to set up a development
+tasks. 
+
+You’ll start with OCaml basics, including how to set up a development
 environment, and move toward more advanced topics such as the module
 system, foreign-function interface, macro language, and the ocamlbuild
 system. Quickly learn how to put OCaml to work for writing succinct and
@@ -54,7 +56,9 @@ no-prerequisites approach to teaching a modern general-purpose
 programming language. Each small, self-contained chapter introduces a
 new topic, building until the reader can write quite substantial
 programs. There are plenty of questions and, crucially, worked answers
-and hints. "OCaml from the Very Beginning" will appeal both to new programmers, and experienced programmers eager to explore functional languages such as OCaml. It is suitable both for formal use within an undergraduate or graduate curriculum, and for the interested amateur.
+and hints. 
+
+"OCaml from the Very Beginning" will appeal both to new programmers, and experienced programmers eager to explore functional languages such as OCaml. It is suitable both for formal use within an undergraduate or graduate curriculum, and for the interested amateur.
 
 [Book Website](http://ocaml-book.com/) |
 [Amazon](http://www.amazon.com/gp/product/0957671105)
