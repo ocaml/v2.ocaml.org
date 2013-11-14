@@ -126,7 +126,7 @@
                 <p><a href="http://www.slideshare.net/search/slideshow/?q=ocaml&qf=qf2&ud=any&ft=all&lang=**&sort=relevance"><img src="/img/slideshare-icon.png"></a></p>
                 <p><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png"></a></p>
                 <p><a href="http://www.reddit.com/r/ocaml/"><img src="/img/reddit-alien.png"></a></p>
-                <p><a href=""><img src=""></a></p>
+                <p><a href="http://www.meetup.com/find/?keywords=ocaml&radius=Infinity"><img src="/img/meetup-logo.gif"></a></p>
 
         </section>
 
