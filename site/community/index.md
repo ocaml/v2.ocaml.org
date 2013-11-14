@@ -124,7 +124,7 @@
                 <p><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg"></a></p>
                 <p><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png"></a></p>
                 <p><a href="http://www.slideshare.net/search/slideshow/?q=ocaml&qf=qf2&ud=any&ft=all&lang=**&sort=relevance"><img src="/img/slideshare-icon.png"></a></p>
-                <p><a href=""><img src=""></a></p>
+                <p><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png"></a></p>
                 <p><a href=""><img src=""></a></p>
                 <p><a href=""><img src=""></a></p>
 
