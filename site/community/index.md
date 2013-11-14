@@ -113,24 +113,27 @@
     <div class="row">
         <section class="span12 condensed">
             <h1 class="ruled">OCaml around the web</h1>
-                <div class="g-community" data-href="https://plus.google.com/u/0/communities/100872177392545601885" data-showtagline="false" data-showphoto="false"></div>
-                <script type="text/javascript">
-                    (function() {
-                        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                        po.src = 'https://apis.google.com/js/plusone.js';
-                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                    })();
-                </script>
-                <p><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg" title="OCaml tag on StackOverflow"></a></p>
-                <p><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png" title="OCaml repos on Github"></a></p>
-                <p><a href="http://www.slideshare.net/search/slideshow/?q=ocaml&qf=qf2&ud=any&ft=all&lang=**&sort=relevance"><img src="/img/slideshare-icon.png" title="OCaml mentions on SlideShare"></a></p>
-                <p><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png" title="OCaml repos on BitBucket"></a></p>
-                <p><a href="http://www.reddit.com/r/ocaml/"><img src="/img/reddit-alien.png" title="OCaml subreddit on Reddit"></a></p>
-                <p><a href="http://www.meetup.com/find/?keywords=ocaml&radius=Infinity"><img src="/img/meetup-logo.gif" title="OCaml groups on Meetup"></a></p>
-                <p><img src="/img/irc-graphic.png" title="#ocaml on freenode"></a></p>
-
+                <ul>
+                    <li><div class="g-community" data-href="https://plus.google.com/u/0/communities/100872177392545601885" data-showtagline="false" data-showphoto="false"></div></li>
+                    <li><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg" title="OCaml tag on StackOverflow"></a></li>
+                    <li><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png" title="OCaml repos on Github"></a></li>
+                    <li><a href="http://www.slideshare.net/search/slideshow/?q=ocaml&qf=qf2&ud=any&ft=all&lang=**&sort=relevance"><img src="/img/slideshare-icon.png" title="OCaml mentions on SlideShare"></a></li>
+                    <li><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png" title="OCaml repos on BitBucket"></a></li>
+                    <li><a href="http://www.reddit.com/r/ocaml/"><img src="/img/reddit-alien.png" title="OCaml subreddit on Reddit"></a></li>
+                    <li><a href="http://www.meetup.com/find/?keywords=ocaml&radius=Infinity"><img src="/img/meetup-logo.gif" title="OCaml groups on Meetup"></a></li>
+                    <li><img src="/img/irc-graphic.png" title="#ocaml on freenode"></a></li>
+                </ul>
         </section>
-
     </div>
 </div>
+
+<!-- Script for Google Plus item-->
+<script type="text/javascript">
+    (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+</script>
+
 
