@@ -121,13 +121,12 @@
                         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
                     })();
                 </script>
-                <p>[Insert logos here]</p>
-                <p><a href=""></a></p>
-                <p><a href=""></a></p>
-                <p><a href=""></a></p>
-                <p><a href=""></a></p>
-                <p><a href=""></a></p>
-                <p><a href=""></a></p>
+                <p><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg"></a></p>
+                <p><a href=""><img src=""></a></p>
+                <p><a href=""><img src=""></a></p>
+                <p><a href=""><img src=""></a></p>
+                <p><a href=""><img src=""></a></p>
+                <p><a href=""><img src=""></a></p>
 
         </section>
 
