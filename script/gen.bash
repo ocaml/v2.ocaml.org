@@ -22,7 +22,7 @@ then
 fi
 
 IFS=
-find "$@" -type f -iname '*.md' |
+find "$@" -iname '*.md' |
 while read i
 do
     target="$(sed -e 's/\.md$/.html/' -e 's/^site/ocaml.org/' <<< "$i")"
@@ -30,7 +30,7 @@ do
     make -f Makefile.from_md "$target"
 done
 
-find "$@" -type f -iname '*.html' |
+find "$@" -iname '*.html' |
 while read i
 do
     target="$(sed -e 's/^site/ocaml.org/' <<< "$i")"
