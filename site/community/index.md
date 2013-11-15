@@ -112,7 +112,7 @@
     </div>
     <div class="row">
         <section class="span12 condensed">
-            <h1 class="ruled">OCaml around the web</h1>
+            <h1 class="ruled" id="ocaml-around-web">OCaml around the web</h1>
                 <ul class="inline">
                     <li><a href="/community/mailing_lists.html"><img src="/img/mail.png" title="OCaml Mailing Lists"></a></li>
                     <li><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png" title="OCaml repos on Github"></a></li>

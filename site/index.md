@@ -51,7 +51,7 @@
                         <img src="/img/community-large.png" alt="Community">
                     </a>
                     <h1><a href="/community">Community</a></h1>
-                    <p>Read the <a href="/community/planet.html">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community">around the web</a>.</p>
+                    <p>Read the <a href="/community/planet.html">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community/index.html#ocaml-around-web">around the web</a>.</p>
                 </section>
             </div>
             <div id="home-learn">
