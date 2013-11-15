@@ -37,10 +37,10 @@
             </div>
             <div class="row">
                 <section class="span4 home-feature">
-                    <a href="/docs/install.html">
+                    <a href="https://opam.ocaml.org">
                         <img src="/img/platform-large.png" alt="Platform">                    </a>
-                    <h1><a href="http://opam.ocaml.org">Packages</a></h1>
-                    <p>The <a href="http://opam.ocaml.org">OCaml Package
+                    <h1><a href="https://opam.ocaml.org">Packages</a></h1>
+                    <p>The <a href="https://opam.ocaml.org">OCaml Package
 					Manager</a>, gives you to access multiple versions of
 					<a href="https://opam.ocaml.org/pkg/">hundreds of
 					packages</a>. It's the best way to get started for
