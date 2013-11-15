@@ -56,5 +56,6 @@ TRASH += template/front_code_snippet.html \
   code_top relative_urls)
 
 ocaml.org/index.html:template/front_code_snippet.html script/rss2html
+ocaml.org/community/index.html:script/rss2html
 ocaml.org/community/planet.html:script/rss2html
 ocaml.org/learn/index.html:template/front_code_snippet.html

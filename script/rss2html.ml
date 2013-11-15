@@ -160,8 +160,10 @@ let html_of_post p =
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
-let headlines_of_post ?(len=400) ?(img_alt="") ~img p =
-  let link = "/community/planet.html#" ^ digest_post p in
+let headlines_of_post ?link ?(len=400) ?(img_alt="") ~img p =
+  let link = match link with
+    | None -> "/community/planet.html#" ^ digest_post p
+    | Some l -> l in
   let html_icon =
     [Element("a", ["href", link],
              [Element("img", ["src", img; "alt", img_alt], [])])] in
@@ -194,6 +196,27 @@ let headlines ?n ?img_alt ~img urls =
 let posts ?n urls =
   let posts = posts_of_urls ?n urls in
   [Element("div", [], List.concat(List.map html_of_post posts))]
+
+(** [email_threads] does basically the same as [headlines] but does
+    not use the provided links in the posts, point to Inria archives
+    instead.  It also presents the subject better. *)
+let caml_list_re = Str.regexp_case_fold "^\\(Re: *\\)*\\[[a-zA-Z-]+\\] *"
+
+let email_threads ?n ~img urls =
+  let posts = posts_of_urls ?n urls in
+  let headline_of_email p =
+    let title = Str.replace_first caml_list_re "" p.title in
+    let p = { p with title } in
+    let link =
+      match p.date with
+      | None -> "https://sympa.inria.fr/sympa/arc/caml-list/"
+      | Some d ->
+         Netdate.format d
+           ~fmt:"https://sympa.inria.fr/sympa/arc/caml-list/%Y-%m/thrd4.html"
+    in
+    headline_of_post ~link ~img p in
+  [Element("ul", ["class", "news-feed"],
+           List.concat(List.map headline_of_email posts))]
 
 
 (* OPML -- subscriber list
@@ -245,6 +268,8 @@ let () =
   let specs = [
     ("--headlines", Arg.Unit(fun () -> action := `Headlines),
      " RSS feed to feed summary (in HTML)");
+    ("--emails", Arg.Unit(fun () -> action := `Emails),
+     " RSS feed of email threads to HTML");
     ("--subscribers", Arg.Unit(fun () -> action := `Subscribers),
      " OPML feed to list of subscribers (in HTML)");
     ("--posts", Arg.Unit(fun () -> action := `Posts),
@@ -261,6 +286,7 @@ let () =
   let out = new Netchannels.output_channel stdout in
   (match !action with
    | `Headlines -> Nethtml.write out (headlines ?n:!n_posts ~img:!img !urls)
+   | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~img:!img !urls)
    | `Posts -> Nethtml.write out (toggle_script @ posts ?n:!n_posts !urls)
    | `Subscribers -> Nethtml.write out (OPML.contributors !urls)
   );
