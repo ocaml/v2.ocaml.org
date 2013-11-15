@@ -18,11 +18,11 @@ Building the html pages requires:
 * ocamlfind
 * mpp >= 0.1.2
 * omd >= 0.7.4
-* netstring, netclient, and rss (for rss2html.ml)
+* netstring, netclient, equeue-ssl, and rss (for rss2html.ml)
 
 If you use opam, the OCaml packages above can be installed by running:
 
-    opam install ocamlfind mpp omd ocamlnet ocamlrss
+    opam install ocamlfind mpp omd ssl ocamlnet ocamlrss
 
 
 BUILD

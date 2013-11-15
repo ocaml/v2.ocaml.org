@@ -24,7 +24,7 @@ template/front_code_snippet.html:template/front_code_snippet.md $(OMD_PP)
 
 script/rss2html: script/rss2html.ml
 	cd script && \
-	ocamlfind ocamlopt -package netstring,netclient,rss \
+	ocamlfind ocamlopt -package netstring,equeue-ssl,netclient,rss \
 	  -linkpkg -annot http.ml rss2html.ml -o ../"$@"
 
 script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml

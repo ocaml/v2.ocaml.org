@@ -5,6 +5,16 @@
 open Printf
 open Http_client.Convenience
 
+let () =
+  Ssl.init();
+  Http_client.Convenience.configure_pipeline
+    (fun p ->
+     let ctx = Ssl.create_context Ssl.TLSv1 Ssl.Client_context in
+     let tct = Https_client.https_transport_channel_type ctx in
+     p # configure_transport Http_client.https_cb_id tct
+    )
+
+
 let age fn =
   let now = Unix.time () in (* in sec *)
   let modif = (Unix.stat fn).Unix.st_mtime in
