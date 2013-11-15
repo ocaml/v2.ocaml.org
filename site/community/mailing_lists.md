@@ -2,6 +2,8 @@
 
 *Table of contents*
 
+# Mailing lists
+
 ###  The official OCaml mailing list: caml-list AT inria.fr
 The OCaml mailing list is intended for all users of the OCaml
 implementations developed at Inria. The purpose of this list is to share

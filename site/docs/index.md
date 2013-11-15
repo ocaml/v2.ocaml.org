@@ -61,10 +61,15 @@
             <div class="row">
                     <div class="span4">
                         <p class="documentation-video">
-                            <iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933" width="310" height="175" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+						<iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
                         </p>
-                        <p>A guest lecture given by Yaron Minsky of Jane Street about how to program effectively in ML. The talk was given as part of the intro computer science class at Harvard, CS51, where the students had spent much of the semester programming in OCaml.</p>
-                    </div>
+                      <p>In this talk, Mark Shinwell explains how to
+                      track down hard-to-find bugs in OCaml programs.
+					  It involves the new gdb functionality
+					  which OCamlPro and others have worked on recently.
+					  (<a href="http://oud.ocaml.org/2012/slides/oud2012-paper5-slides.pdf"
+                      >PDF slides</a>)</p>
+                            </div>
                     <div class="span4">
                         <p class="documentation-video">
                             <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
