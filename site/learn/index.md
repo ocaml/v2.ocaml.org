@@ -11,7 +11,7 @@
             <p>OCaml is a general purpose industrial-strength programming language with an emphasis on expressiveness and safety. <a href="companies.html">Used</a> in environments where a single mistake can cost millions and speed matters, it is supported by an <a href="/community/">active community</a> that has developed a <a href="https://opam.ocaml.org/pkg/">rich set of libraries</a>. <small><em><a href="description.html">Read more</a></em></small>.</p>
         </section>
         <div id="platform-download" class="span3">
-            <p><a href="/docs/install.html" class="btn">Install</a></p>
+            <p><a href="/docs/install.html" class="btn">Download OCaml</a></p>
 <!--
             <p>
                 <a href="#">Other systems</a> |
@@ -34,7 +34,7 @@
             </footer>
         </section>
         <section class="span4 condensed">
-            <h1 class="ruled">Tutorials</h1>
+            <h1 class="ruled">Tutorials &amp; FAQ</h1>
             <ul>
                 <li><a href="tutorials/basics.html">Basics</a></li>
                 <li><a href="tutorials/structure_of_ocaml_programs.html">Structure of OCaml Programs</a></li>
@@ -43,6 +43,7 @@
                 <li><a href="tutorials/hashtbl.html">Hash Tables</a></li>
                 <li><a href="tutorials/comparison_of_standard_containers.html">Comparison of Standard Containers</a></li>
                 <li><a href="tutorials/data_types_and_matching.html">Data Types and Matching</a></li>
+                <li><a href="faq.html">Frequently Asked Questions</a></li>
             </ul>
             <footer>
                 <p><a href="tutorials">See full list</a></p>
@@ -66,16 +67,23 @@
     </div>
     <div class="row">
         <section class="span4 condensed">
-          <h1 class="ruled">Common Questions</h1>
-          <ul>
-            <li><a href="faq.html#GeneralQuestions">General Questions</a></li>
-            <li><a href="faq.html#CoreLanguage">Core Language</a></li>
-            <li><a href="faq.html#ModuleLanguage">Module Language</a></li>
-            <li><a href="faq.html#DevelopmentTools">Development Tools</a></li>
-          </ul>
-          <footer>
-            <p><a href="faq.html">See full list</a></p>
-          </footer>
+          <h1 class="ruled">Slides &amp; Videos</h1>
+			<p class="documentation-video">
+			<script async class="speakerdeck-embed"
+			data-id="fb192c802f520131128906fa6ec08ea7"
+			data-ratio="1.33333333333333"
+			src="//speakerdeck.com/assets/embed.js"></script></p>
+		    <p>An invited talk by Xavier Leroy explaining the current state
+			of OCaml at the
+			<a href="/meetings/ocaml/2013/" >OCaml Users and Developers
+			Workshop 2013</a> in Boston
+			(<a href="/meetings/ocaml/2013/slides/leroy.pdf"
+			    target="_blank">PDF slides</a>).
+			</p>
+	        <p class="documentation-video">
+			<iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933" width="310" height="175" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			</p>
+			<p>A guest lecture given by Yaron Minsky of Jane Street about how to program effectively in ML. The talk was given as part of the intro computer science class at Harvard, CS51, where the students had spent much of the semester programming in OCaml.</p>
         </section>
         <section class="span4 condensed">
           <h1 class="ruled">Industrial
