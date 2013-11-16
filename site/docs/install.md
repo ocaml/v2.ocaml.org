@@ -16,7 +16,6 @@ The different options are detailed below. Most of these tools allow you
 to download and install OCaml libraries. You can also find more packages
 [here](/learn/libraries.html).
 
-<br />
 
 
 ## OPAM
