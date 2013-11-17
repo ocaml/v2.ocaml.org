@@ -20,81 +20,97 @@ problems is available on
 [GitHub](https://github.com/VictorNicollet/99-Problems-OCaml).
 
 ## Working with lists
-Write a function `last : 'a list -> 'a       option` that returns the
-last element of a list.
 
-Solution
+#### Write a function `last : 'a list -> 'a option` that returns the last element of a list.
+
+SOLUTION
+
+> ```tryocaml
+> let rec last = function
+>   | [] -> None
+>   | [x] -> Some x
+>   | _ :: t -> last t
+> ```
 
 ```tryocaml
-let rec last = function
-  | [] -> None
-  | [x] -> Some x
-  | _ :: t -> last t
- last [ "a" ; "b" ; "c" ; "d" ] = Some "d";;
-last [] = None;;
+last [ "a" ; "b" ; "c" ; "d" ];;
+last [];;
 ```
-Find the last but one (last and penultimate) elements of a list.
 
-Solution
+#### Find the last but one (last and penultimate) elements of a list.
+
+SOLUTION
+
+> ```tryocaml
+> let rec last_two = function
+>   | [] | [_] -> None
+>   | [x;y] -> Some (x,y)
+>   | _::t -> last_two t
+> ```
 
 ```tryocaml
-let rec last_two = function
-  | [] | [_] -> None
-  | [x;y] -> Some (x,y)
-  | _::t -> last_two t
- last_two [ "a" ; "b" ; "c" ; "d" ] = Some ("c", "d") ;;
+last_two [ "a" ; "b" ; "c" ; "d" ] = Some ("c", "d") ;;
 last_two [ "a" ] = None;;
 ```
-Find the `k`'th element of a list.
 
-Solution
+#### Find the `k`'th element of a list.
+
+SOLUTION
+
+> ```tryocaml
+> let rec at k = function
+>   | [] -> None
+>   | h :: t -> if k = 1 then Some h else at (k-1) t
+>   at 3 [ "a" ; "b"; "c"; "d"; "e" ] = Some "c" ;;
+> ```
 
 ```tryocaml
-let rec at k = function
-  | [] -> None
-  | h :: t -> if k = 1 then Some h else at (k-1) t
-  at 3 [ "a" ; "b"; "c"; "d"; "e" ] = Some "c" ;;
-
 at 3 [ "a" ] = None ;;
 ```
-Find the number of elements of a list.
+
+#### Find the number of elements of a list.
 
 OCaml standard library has `List.length` but we ask that you reimplement
 it. Bonus for a [tail recursive](http://en.wikipedia.org/wiki/Tail_call)
 solution.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+> (* This function is tail-recursive: it uses a constant amount of
+>    stack memory regardless of list size. *)
+> let length list =
+>   let rec aux n = function
+>     | [] -> n
+>     | _::t -> aux (n+1) t
+>   in aux 0 list
+> ```
 
 ```tryocaml
-(* This function is tail-recursive: it uses a constant amount of
-   stack memory regardless of list size. *)
-let length list =
-  let rec aux n = function
-    | [] -> n
-    | _::t -> aux (n+1) t
-  in aux 0 list
-
- length [ "a" ; "b" ; "c"] = 3;;
+length [ "a" ; "b" ; "c"] = 3;;
 length [] = 0;;
 ```
-Reverse a list.
+
+#### Reverse a list.
 
 OCaml standard library has `List.rev` but we ask that you reimplement
 it.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+> let rev list =
+>   let rec aux acc = function
+>     | [] -> acc
+>     | h::t -> aux (h::acc) t in
+>   aux [] list
+> ```
 
 ```tryocaml
-let rev list =
-  let rec aux acc = function
-    | [] -> acc
-    | h::t -> aux (h::acc) t in
-  aux [] list
-
 rev ["a" ; "b" ; "c"] = ["c" ; "b" ; "a"]
 ```
 
-Find out whether a list is a palindrome.
+- __Find out whether a list is a palindrome.__
 
 HINT: a palindrome is its own reverse.
 
@@ -109,7 +125,8 @@ let is_palindrome list =
 
 not (is_palindrome [ "a" ; "b" ]);;
 ```
-Flatten a nested list structure.
+
+- __Flatten a nested list structure.__
 
 ```tryocaml
 (* There is no nested list type in OCaml, so we need to define one
@@ -120,20 +137,22 @@ type 'a node =
   | Many of 'a node list
 ```
 
-Solution
+SOLUTION
+
+> ```tryocaml
+> (* This function traverses the list, prepending any encountered elements
+>   to an accumulator, which flattens the list in inverse order. It can
+>   then be reversed to obtain the actual flattened list. *)
+> 
+> let flatten list =
+>   let rec aux acc = function
+>     | [] -> acc
+>     | One x :: t -> aux (x :: acc) t
+>     | Many l :: t -> aux (aux acc l) t in
+>   List.rev (aux [] list)
+> ```
 
 ```tryocaml
-(* This function traverses the list, prepending any encountered elements
-  to an accumulator, which flattens the list in inverse order. It can
-  then be reversed to obtain the actual flattened list. *)
-
-let flatten list =
-  let rec aux acc = function
-    | [] -> acc
-    | One x :: t -> aux (x :: acc) t
-    | Many l :: t -> aux (aux acc l) t in
-  List.rev (aux [] list)
-
 flatten [ One "a" ; Many [ One "b" ; Many [ One "c" ; One "d" ] ; One "e" ] ]
 = [ "a" ; "b" ; "c" ; "d" ; "e" ]
 ```

@@ -1,5 +1,5 @@
 
-all: script/ocamltohtml script/rss2html
+all: script/ocamltohtml script/rss2html $(OMD_PP)
 	$(MAKE) ocaml.org
 	bash script/gen.bash site
 	$(MAKE) syncotherfiles

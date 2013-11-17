@@ -1,9 +1,18 @@
-# -*- mode:Makefile -*-
+# -*- mode: Makefile-gmake -*-
 
 MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its 
 MPP = mpp ${MPP_OPTIONS}
 OMD_OPTIONS = -r ocaml=script/ocamltohtml -r tryocaml=script/ocamlapplet.bash
 OMD = omd ${OMD_OPTIONS}
+OMD_PP = script/md_preprocess
+
+OCAML_VERSION = $(shell ocamlc -config | grep version | sed -e "s/version: *//")
+
+ifeq ("$(OCAML_VERSION)", "3.12.1")
+COMPILER_LIBS = dynlink.cma toplevellib.cma
+else
+COMPILER_LIBS = -package compiler-libs.toplevel
+endif
 
 ocaml.org:
 	find site -type d | while read l; do mkdir -p "$$(echo "$$l" | sed -e 's/^site/ocaml.org/')" ; done
@@ -20,6 +29,17 @@ script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
 	cd script && \
 	ocamlopt -o ../$@ lexer.ml ocamltohtml.ml && \
 	$(RM) ocamltohtml.o ocamltohtml.cm[ix] lexer.o lexer.cm[ix]
+
+script/md_preprocess: script/code_types.ml script/code.ml \
+  script/md_preprocess.ml
+	cd script && \
+	ocamlfind ocamlopt -o ../"$@" -package omd,netstring -linkpkg \
+	  -annot utils.ml code_types.ml code.ml md_preprocess.ml
+
+script/code_top: script/code_types.ml script/code_top.ml
+	cd script && \
+	ocamlfind ocamlc -o ../"$@" -package netstring $(COMPILER_LIBS) \
+	  -linkpkg -annot utils.ml code_types.ml code_top.ml
 
 script/relative_urls: script/relative_urls.ml
 	cd script && \

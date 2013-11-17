@@ -132,7 +132,7 @@ type toplevel_ =
 type toplevel = toplevel_ ref
 
 (* Store the information to start the toplevel — only start it if needed. *)
-let toplevel ?(pgm="./_build/src/app/code_top.byte") () : toplevel =
+let toplevel ?(pgm="./script/code_top") () : toplevel =
   ref(Sleep pgm)
 
 let get_toplevel (top: toplevel) =
@@ -242,42 +242,15 @@ let html_of_eval t phrase =
                Element("span", ["class", cls], out) ])
 
 
-(* Returns a string containing the data in [html]. *)
-let rec text_of_html html =
-  String.concat "" (List.map text_of_el html)
-and text_of_el = function
-  | Nethtml.Element(_, _, content) -> text_of_html content
-  | Nethtml.Data d -> html_decode d (* decode entities like &lt; *)
-
 (* FIXME: naive, ";;" can occur inside strings and one does not want
    to split it then.  Could be more efficient *)
 let end_of_phrase = Str.regexp ";;[ \t\n]*"
 
-let split_phrases text =
-  List.map String.trim (Str.split end_of_phrase text)
 
-
-(* If option "silent" is passed, send the code to the toplevel but
-   don't render the output in result -- just the beginning "#" and ending
-   ";;" to remain coherent with other eval_ocaml phrases.
-
-   If option "noeval" is passed, don't send the phrases to the toplevel
-   at all, only highlight. This is useful for incomplete or
-   purposedfully wrong code.
-*)
-
-let ocaml t path_from_base ctx args =
-  let process_phrases f =
-    let phrases = split_phrases (text_of_html ctx#content) in
-    List.concat (List.map f phrases) in
-  match args with
-    | ["silent"] -> process_phrases (html_of_eval_silent t)
-    | ["noeval"] ->
-       let code = html_encode (String.trim (text_of_html ctx#content)) in
-       let open Nethtml in
-       [Element("span", ["class", "listing"], [Data(highlight_ocaml code)])]
-
-    | other ->
-      if other <> [] then
-        eprintf "unkonwn \"ocaml\" args %S\n" (String.concat " " args);
-      process_phrases (html_of_eval t)
+let to_html t phrases =
+  (* Split phrases *)
+  let phrases = List.map String.trim (Str.split end_of_phrase phrases) in
+  let html = List.concat (List.map (html_of_eval t) phrases) in
+  let buf = Buffer.create 1024 in
+  Nethtml.write (new Netchannels.output_buffer buf) html;
+  Buffer.contents buf

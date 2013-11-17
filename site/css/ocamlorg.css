@@ -179,3 +179,14 @@ a.edit-this-page:hover {
     margin-left: 40px;
   }
 }
+
+
+button.solution {
+  margin-bottom: 0;
+}
+
+
+div.solution {
+  display: none;
+  margin-top: 0;
+}
