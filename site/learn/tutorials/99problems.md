@@ -156,19 +156,22 @@ SOLUTION
 flatten [ One "a" ; Many [ One "b" ; Many [ One "c" ; One "d" ] ; One "e" ] ]
 = [ "a" ; "b" ; "c" ; "d" ; "e" ]
 ```
-Eliminate consecutive duplicates of list elements.
 
-Solution
+#### Eliminate consecutive duplicates of list elements.
+
+SOLUTION
+
+> ```tryocaml
+> let rec compress = function
+>   | a :: (b :: _ as t) -> if a = b then compress t else a :: compress t
+>   | smaller -> smaller
+> ```
 
 ```tryocaml
-let rec compress = function
-  | a :: (b :: _ as t) -> if a = b then compress t else a :: compress t
-  | smaller -> smaller
-
 compress ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"]
-= ["a";"b";"c";"a";"d";"e"];;
 ```
-Pack consecutive duplicates of list elements into sublists.
+
+#### Pack consecutive duplicates of list elements into sublists.
 
 Solution
 
@@ -520,64 +523,67 @@ let extract k list =
 extract 2 ["a";"b";"c";"d"]
 = [["c";"d"]; ["b";"d"]; ["b";"c"]; ["a";"d"]; ["a";"c"]; ["a";"b"]];;
 ```
-Group the elements of a set into disjoint subsets.
 
-a) In how many ways can a group of 9 people work in 3 disjoint subgroups
+#### Group the elements of a set into disjoint subsets.
+
+1. In how many ways can a group of 9 people work in 3 disjoint subgroups
 of 2, 3 and 4 persons? Write a function that generates all the
 possibilities and returns them in a list.
-
-b) Generalize the above function in a way that we can specify a list of
+2. Generalize the above function in a way that we can specify a list of
 group sizes and the function will return a list of groups.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   (* This implementation is less streamlined than the one-extraction
+>   version, because more work is done on the lists after each
+>   transform to prepend the actual items. The end result is cleaner
+>   in terms of code, though. *)
+> 
+>   let group list sizes =
+>     let initial = List.map (fun size -> size, []) sizes in
+
+>     (* The core of the function. Prepend accepts a list of groups,
+>        each with the number of items that should be added, and
+>        prepends the item to every group that can support it, thus
+>        turning [1,a ; 2,b ; 0,c] into [ [0,x::a ; 2,b ; 0,c ];
+>        [1,a ; 1,x::b ; 0,c]; [ 1,a ; 2,b ; 0,c ]]
+> 
+>        Again, in the prolog language (for which these questions are
+>        originally intended), this function is a whole lot simpler.  *)
+>     let prepend p list =
+>       let emit l acc = l :: acc in
+>       let rec aux emit acc = function
+>         | [] -> emit [] acc
+>         | (n,l) as h :: t ->
+>            let acc = if n > 0 then emit ((n-1, p::l) :: t) acc
+>                      else acc in
+>            aux (fun l acc -> emit (h :: l) acc) acc t
+>       in
+>       aux emit [] list
+>     in
+>     let rec aux = function
+>       | [] -> [ initial ]
+>       | h :: t -> List.concat (List.map (prepend h) (aux t))
+>     in
+>     let all = aux list in
+>     (* Don't forget to eliminate all group sets that have non-full
+>        groups *)
+>     let complete = List.filter (List.for_all (fun (x,_) -> x = 0)) all in
+>     List.map (List.map snd) complete
+> ```
 
 ```tryocaml
-  (* This implementation is less streamlined than the one-extraction
-     version, because more work is done on the lists after each transform
-     to prepend the actual items. The end result is cleaner in terms of
-     code, though. *)
-
-  let group list sizes =
-    let initial = List.map (fun size -> size, []) sizes in
-    (* The core of the function. Prepend accepts a list of groups, each with
-       the number of items that should be added, and prepends the item to every
-       group that can support it, thus turning [1,a ; 2,b ; 0,c] into
-       [ [0,x::a ; 2,b ; 0,c ] ; [1,a ; 1,x::b ; 0,c] ; [ 1,a ; 2,b ; 0,c ]]
-
-       Again, in the prolog language (for which these questions are
-       originally intended), this function is a whole lot simpler.  *)
-    let prepend p list =
-      let emit l acc = l :: acc in
-      let rec aux emit acc = function
-        | [] -> emit [] acc
-        | (n,l) as h :: t ->
-           let acc = if n > 0 then emit ((n-1, p::l) :: t) acc else acc in
-           aux (fun l acc -> emit (h :: l) acc) acc t
-      in
-      aux emit [] list
-    in
-    let rec aux = function
-      | [] -> [ initial ]
-      | h :: t -> List.concat (List.map (prepend h) (aux t))
-    in
-    let all = aux list in
-    (* Don't forget to eliminate all group sets that have non-full groups *)
-    let complete = List.filter (List.for_all (fun (x,_) -> x = 0)) all in
-    List.map (List.map snd) complete
-
-  group ["a";"b";"c";"d"] [2;1]
-  = [[["a"; "b"]; ["c"]]; [["a"; "c"]; ["b"]]; [["b"; "c"]; ["a"]];
-     [["a"; "b"]; ["d"]]; [["a"; "c"]; ["d"]]; [["b"; "c"]; ["d"]];
-     [["a"; "d"]; ["b"]]; [["b"; "d"]; ["a"]]; [["a"; "d"]; ["c"]];
-     [["b"; "d"]; ["c"]]; [["c"; "d"]; ["a"]]; [["c"; "d"]; ["b"]]]
+group ["a";"b";"c";"d"] [2;1]
 ```
-Sorting a list of lists according to length of sublists
 
-a) We suppose that a list contains elements that are lists themselves.
+### Sorting a list of lists according to length of sublists
+
+1. We suppose that a list contains elements that are lists themselves.
 The objective is to sort the elements of this list according to their
 length. E.g. short lists first, longer lists later, or vice versa.
 
-b) Again, we suppose that a list contains elements that are lists
+2. Again, we suppose that a list contains elements that are lists
 themselves. But this time the objective is to sort the elements of this
 list according to their **length frequency**; i.e., in the default,
 where sorting is done ascendingly, lists with rare lengths are placed
@@ -633,41 +639,50 @@ Solution
   = [["i"; "j"; "k"; "l"]; ["o"]; ["a"; "b"; "c"]; ["f"; "g"; "h"];
      ["d"; "e"]; ["d"; "e"]; ["m"; "n"]]
 ```
+
+
 ## Arithmetic
-Determine whether a given integer number is prime.
 
-Solution
+#### Determine whether a given integer number is prime.
 
-Recall that `d` divides `n` iff `n mod d =     0`. This is a naive
-solution. See the [Sieve of
-Eratosthenes](http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) for a
-more clever one.
+SOLUTION
+
+> Recall that `d` divides `n` iff `n mod d = 0`.  This is a naive
+> solution.  See the [Sieve of
+> Eratosthenes](http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) for a
+> more clever one.
+> 
+> ```tryocaml
+>   let is_prime n =
+>     let n = abs n in
+>     let rec is_not_divisor d =
+>       d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
+>     n <> 1 && is_not_divisor 2
+> ```
 
 ```tryocaml
-  let is_prime n =
-    let n = abs n in
-    let rec is_not_divisor d =
-      d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
-    n <> 1 && is_not_divisor 2
-
   not(is_prime 1);;
   is_prime 7;;
   not (is_prime 12)
 ```
-Determine the greatest common divisor of two positive integer numbers.
+
+#### Determine the greatest common divisor of two positive integer numbers.
 
 Use Euclid's algorithm.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let rec gcd a b =
+>     if b = 0 then a else gcd b (a mod b)
+> ```
 
 ```tryocaml
-  let rec gcd a b =
-    if b = 0 then a else gcd b (a mod b)
-
-  gcd 13 27 = 1;;
-  gcd 20536 7826 = 2
+  gcd 13 27;;
+  gcd 20536 7826
 ```
-Determine whether two positive integer numbers are coprime.
+
+### Determine whether two positive integer numbers are coprime.
 
 Two numbers are coprime if their greatest common divisor equals 1.
 
