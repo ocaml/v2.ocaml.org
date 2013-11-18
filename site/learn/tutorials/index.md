@@ -29,7 +29,6 @@ tracker there to request or offer new tutorials. Thanks!
 * [OCaml Programming Guidelines](guidelines.html)
 * [Formatting and wrapping text](format.html)
 * [99 Problems [solved] in OCaml](99problems.html)
-
 * [Introduction to Gtk](introduction_to_gtk.html)
 * [Garbage Collection](garbage_collection.html)
 * [Performance and Profiling](performance_and_profiling.html)
