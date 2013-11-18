@@ -13,7 +13,7 @@ COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
 COMPILER_LIBS = dynlink.cma toplevellib.cma
 else
 COMPILER_LIBS_PREPARE=
-COMPILER_LIBS = -package compiler-libs.toplevel
+COMPILER_LIBS = -package dynlink,compiler-libs.toplevel
 endif
 
 ocaml.org:
