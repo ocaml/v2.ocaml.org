@@ -178,3 +178,31 @@ a.edit-this-page:hover {
     margin-left: 40px;
   }
 }
+
+/* Reduce the navbar height when the window height is small */
+@media (max-height: 600px) {
+  .navbar-inner {
+    min-height: 45px; /* instead of 75px => -15px on each side of the
+			 navbar elements */
+  }
+  body { padding-top: 59px }
+
+  .navbar-text { line-height: 45px }
+  .navbar .divider-vertical { height: 75px }
+
+  .navbar .brand { padding: 4.5px 20px 4.5px }
+  .navbar .nav > li > a {
+    padding: 10.5px 15px 10.5px;
+  }
+  .navbar-search {
+    margin-top: 5.5px;
+  }
+  a.edit-this-page {
+    margin-top: 7.5px;
+  }
+
+  a[name], h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+    padding-top: 45px;
+    margin-top: -40px;
+  }
+}
