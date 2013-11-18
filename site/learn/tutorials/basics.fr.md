@@ -4,7 +4,7 @@
 ## Commentaires
 Les commentaires OCaml sont délimités par `(*` et `*)`, comme ceci:
 
-```tryocaml
+```ocaml
 (* Ceci est une ligne de commentaire. *)
 
 (* Ceci est
@@ -23,7 +23,7 @@ l'équipe d'OCaml d'ajouter ça dans les versions à venir.
 OCaml prend en compte les commentaires imbriqués, ce qui permet
 facilement de mettre des portions de code en commentaire:
 
-```tryocaml
+```ocaml
 (* Ce code n'est pas au point...
 
 (* Test de primalité. *)
@@ -32,6 +32,7 @@ let is_prime n =
 
 *)
 ```
+
 ## Appels de fonctions
 Supposons que vous ayez écrit une fonction nommée `repeated`, qui prend
 en argument une chaîne de caractères `s` et un nombre `n` et renvoie une
@@ -40,9 +41,10 @@ nouvelle chaîne de caractères qui contient l'originale répétée `n` fois.
 Dans la plupart des languages dérivés du C, un appel de fonction
 ressemble à ça :
 
-```tryocaml
+```ocaml
 repeated ("hello", 3)  /* c'est du code C */
 ```
+
 Ca veut dire « appelle la fonction `repeated` avec deux arguments, le
 premier étant la chaîne de caractères hello et le second étant le nombre
 3 ».
@@ -51,7 +53,7 @@ OCaml, tout comme d'autres langages fonctionnels, écrit et parenthèse
 différemment les appels de fonctions, ce qui entraîne bien des erreurs
 au début. Voici le même appel de fonction en OCaml :
 
-```tryocaml
+```ocaml
 repeated "hello" 3  (* c'est du code OCaml *)
 ```
 Notez-bien : **pas** de parenthèses, et **pas** de virgule entre les
@@ -74,10 +76,11 @@ qui demande à l'utilisateur de taper quelque chose et renvoie la chaîne
 de caractère ainsi entrée. Nous voulons passer cette chaîne de
 caractères à la fonction `repeated`. Voici les versions C et OCaml :
 
-```tryocaml
+```C
 /* code C: */
 repeated (get_string_from_user ("Veuillez entrer une chaîne de caractères."), 3)
-
+```
+```ocaml
 (* code OCaml: *)
 repeated (get_string_from_user "Veuillez entrer une chaîne de caractères.") 3
 ```
@@ -86,7 +89,7 @@ règle est la suivante : « mettez des parenthèses autour de tout l'appel
 de fonction - ne mettez pas de parenthèses autour des arguments passés à
 une fonction ». Voici quelques exemples supplémentaires :
 
-```tryocaml
+```ocaml
 f 5 (g "hello") 3    (* f a 3 arguments, g a un argument *)
 f (g 3 4)            (* f a un argument, g a 2 arguments *)
 

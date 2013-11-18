@@ -4,7 +4,7 @@
 ## Commenti
 In OCaml i commenti sono delimitati da `(*` e `*)`, come segue:
 
-```tryocaml
+```ocaml
 (* Questo è un commento su un'unica riga. *)
 
 (* Questo è un
@@ -12,6 +12,7 @@ In OCaml i commenti sono delimitati da `(*` e `*)`, come segue:
  * più righe.
  *)
 ```
+
 In altre parole, la convenzione per i commenti è molto simile a quella
 originale di C (`/* ... */`).
 
@@ -23,7 +24,7 @@ OCaml di aggiungerlo in futuro.
 OCaml conta i blocchi `(* ... *)` annodati, e questo vi consente di
 commentare assai facilmente regioni di codice:
 
-```tryocaml
+```ocaml
 (* Questo codice non è valido ...
 
 (* Test di primalità. *)
@@ -32,6 +33,7 @@ let is_prime n =
 
 *)
 ```
+
 ## Chiamare funzioni
 Poniamo che abbiate scritto una funzione - la chiameremo `repeated` -
 che prende una stringa `s` ed un numero `n`, e restituisce una nuova
@@ -40,7 +42,7 @@ stringa che contiene la stringa originale `s` ripetuta `n` volte.
 Nella maggior parte dei linguaggi derivati da C una chiamata a questa
 funzione apparirà come segue:
 
-```tryocaml
+```C
 repeated ("hello", 3)  /* questo è codice C */
 ```
 Questo significa "chiama la funzione `repeated` con due argomenti, di
@@ -50,7 +52,7 @@ OCaml, in comune con altri linguaggi funzionali, scrive e mette tra
 parentesi le chiamate di funzioni in modo differente, e questo è causa
 di molti errori. Ecco la modesima chiamata di funzione in OCaml:
 
-```tryocaml
+```ocaml
 repeated "hello" 3  (* questo è codice OCaml *)
 ```
 Notate - **non** vi sono parentesi e **non** vi sono virgole fra gli
@@ -71,10 +73,11 @@ una stringa da terminale e restituisce la stringa digitata dall'utente.
 Vogliamo passare questa stringa in `repeated`. Seguono le versioni C e
 OCaml:
 
-```tryocaml
+```C
 /* codice C: */
 repeated (get_string_from_user ("Si inserisca una stringa."), 3)
-
+```
+```ocaml
 (* codice OCaml: *)
 repeated (get_string_from_user "Si inserisca una stringa.") 3
 ```
@@ -83,13 +86,14 @@ virgole. In generale la regola è: "parentesi intorno all'intera chiamata
 di funzione - non mettere parentesi intorno agli argomenti ad una
 chiamata di funzione". Seguono ulteriori esempi:
 
-```tryocaml
+```ocaml
 f 5 (g "hello") 3    (* f ha tre argomenti, g ha un argomento *)
 f (g 3 4)            (* f ha un argomento, g ha due argomenti *)
 
 # repeated ("hello", 3);;     (* OCaml segnalerà l'errore *)
 This expression has type string * int but is here used with type string
 ```
+
 ## Definire una funzione
 Tutti voi sapete come definire una funzione (o un metodo statico, per
 chi pensa in Java) nei nostri linguaggi. Come lo facciamo in OCaml?
@@ -105,9 +109,8 @@ Scrivete questo nel "toplevel" di OCaml (su Unix, scrivete il comando
 `ocaml` dalla shell) e vedrete così:
 
 ```tryocaml
-# let average a b =
-  (a +. b) /. 2.0;;
-val average : float -> float -> float = <fun>
+let average a b =
+  (a +. b) /. 2.0
 ```
 Se osservate bene la definizione di funzione, ed anche che cosa OCaml vi
 restituisce in stampa, avrete diverse domande:
@@ -121,7 +124,7 @@ Java sarebbe piuttosto simile a quella in C), e plausibilmente questo
 dovrebbe sollevare ancora più questioni. Ecco la nostra versione in C di
 `average`:
 
-```tryocaml
+```C
 double
 average (double a, double b)
 {
@@ -161,7 +164,7 @@ I dettagli effettivi seguono nelle sezioni e nei capitoli successivi.
 ## Tipi di base
 I tipi di base in OCaml sono:
 
-```tryocaml
+```
 tipo OCaml     Range
 
 int            Intero a 31 bit con segno, circa +/- 1 billion
@@ -171,6 +174,7 @@ char           Un carattere a 8 bit
 string         Una stringa
 unit           Scritto come ()
 ```
+
 OCaml utilizza uno dei bit in un `int` internamente per differenziare
 tra interi e puntatori. È perciò che l'`int` di base è a 31 bit, non a
 32 bit (63 bit se state utilizzando una piattaforma a 64 bit). Nella
@@ -213,8 +217,7 @@ int, e qui gli stiamo dando un int e un float, dunque esso riposta
 questo errore:
 
 ```tryocaml
-# 1 + 2.5;;
-This expression has type float but is here used with type int
+1 + 2.5;;
 ```
 (Nel linguaggio "tradotto dal francese" dei messaggi di errore di OCaml
 questo significa "hai messo qui un float, ma aspettavo un int").
@@ -226,8 +229,7 @@ OCaml non promuove gli int a float automaticamente, quindi è un errore
 anche il seguente:
 
 ```tryocaml
-# 1 +. 2.5;;
-This expression has type int but is here used with type float
+1 +. 2.5;;
 ```
 Qui OCaml si sta ora lamentando per il primo argomento.
 

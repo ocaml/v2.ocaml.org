@@ -46,7 +46,7 @@ do variables whose value changes in a minute).
 
 Here's another example to make this clearer. The following two code
 snippets should return the same value (namely (a+b) +
-(a+b)<sup>2</sup>):
+(a+b)²):
 
 ```tryocaml
 let f a b =
@@ -68,7 +68,7 @@ You can also define global names for things at the top level, and as
 with our local "variables" above, these aren't really variable at all,
 just shorthand names for things. Here's a real (but cut-down) example:
 
-```tryocaml
+```ocaml
 let html =
   let content = read_whole_file file in
   GHtml.html_from_string content
@@ -76,7 +76,7 @@ let html =
 
 let menu_bold () =
   match bold_button#active with
-    true -> html#set_font_style ~enable:[`BOLD] ()
+  | true -> html#set_font_style ~enable:[`BOLD] ()
   | false -> html#set_font_style ~disable:[`BOLD] ()
   ;;
 
@@ -260,7 +260,7 @@ A couple of examples should make this clear. (The two examples draw
 different things - try them out). Note the first example calls
 `open_graph` and the second one `Graphics.open_graph`.
 
-```tryocaml
+```ocaml
 (* To compile this example: ocamlc graphics.cma grtest1.ml -o grtest1 *)
 open Graphics;;
 
@@ -312,7 +312,7 @@ What happens if you want to use symbols in the `Graphics` module, but
 you don't want to import all of them and you can't be bothered to type
 `Graphics` each time? Just rename it using this trick:
 
-```tryocaml
+```ocaml
 module Gr = Graphics;;
 
 Gr.open_graph " 640x480";;
@@ -364,7 +364,7 @@ other peoples' code you'll need to know that sometimes we can elide
 
 Here is some working code with `;;` elided wherever possible:
 
-```tryocaml
+```ocaml
 open Random                   (* ;; *)
 open Graphics;;
 
@@ -389,6 +389,7 @@ done;;
 
 read_line ()                  (* ;; *)
 ```
+
 Rules #3 and #4 refer to the single `;`. This is completely different
 from `;;`. The single semicolon `;` is what is known as a **sequence
 point**, which is to say it has exactly the same purpose as the single
@@ -405,7 +406,7 @@ them with a single `;`, *except* for the very last one.
 The inner for-loop in our example above is a good demonstration. Notice
 that we never use any single `;` in this code:
 
-```tryocaml
+```ocaml
 for i = 0 to 39 do
   let x_init = Random.float 1.0 in
   let x_final = iterate r x_init 500 in
@@ -500,6 +501,7 @@ let file_dialog ~title ~callback ?filename () =
   sel#ok_button#connect#clicked ~callback:do_ok;
   sel#show ()
 ```
+
 Second snippet: Just a long list of global names at the top level.
 Notice that the author elided every single one of the `;;` because of
 Rule #2.
@@ -519,6 +521,7 @@ let hbox = GPack.hbox ~packing:vbox#add ()
 let editor = new editor ~packing:hbox#add ()
 let scrollbar = GRange.scrollbar `VERTICAL ~packing:hbox#pack ()
 ```
+
 Third snippet: The author imports all the symbols from the `GdkKeysyms`
 module. Now we have an unusual let-binding. `let _ = expression` means
 "calculate the value of the expression (with all the side-effects that
@@ -532,7 +535,7 @@ and it doesn't get returned until the application finally exits.
 Notice in this snippet how we have a long series of essentially
 procedural commands. This is really a classic imperative program.
 
-```tryocaml
+```ocaml
 (* Third snippet *)
 open GdkKeysyms
 

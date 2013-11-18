@@ -5,7 +5,7 @@
 ## Comments
 OCaml comments are delimited by `(*` and `*)`, like this:
 
-```tryocaml
+```ocaml
 (* This is a single-line comment. *)
 
 (* This is a
@@ -20,7 +20,7 @@ In other words, the commenting convention is very similar to original C
 OCaml counts nested `(* ... *)` blocks, and this allows you to comment
 out regions of code very easily:
 
-```tryocaml
+```ocaml
 (* This code is broken ...
 
 (* Primality test. *)
@@ -29,6 +29,7 @@ let is_prime n =
 
 *)
 ```
+
 ## Calling functions
 Let's say you've written a function - we'll call it `repeated` - which
 takes a string `s` and a number `n`, and returns a new string which
