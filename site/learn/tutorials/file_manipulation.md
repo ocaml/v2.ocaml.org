@@ -82,7 +82,7 @@ channels that point to regular files, use `seek_in` or `seek_out`.
  exists! Use `open_out_gen` if you want an alternate behavior.
 
 ###  Example
-```tryocaml
+```ocaml
 open Printf
 
 let file = "example.dat"
