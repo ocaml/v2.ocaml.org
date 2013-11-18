@@ -17,7 +17,7 @@ Building the html pages requires:
 * ocaml >= 3.12.0 (the presence of ocamlopt is required)
 * ocamlfind
 * mpp >= 0.1.2
-* omd >= 0.6.1
+* omd >= 0.7.0
 * netstring, netclient, and rss (for rss2html.ml)
 
 If you use opam, the OCaml packages above can be installed by running:
