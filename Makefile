@@ -15,8 +15,8 @@ syncotherfiles:
 
 clean:
 	$(RM) -r ocaml.org *~ *.cmo *.cmi *.cma *.o
-	$(RM) template/front_code_snippet.html
-	$(RM) $(addprefix script/, *~ *.cmo *.cmi *.cma *.o)
+	$(RM) $(TRASH)
+	$(RM) $(addprefix script/, *~ *.annot *.cmo *.cmi *.cma *.cmx *.o)
 
 include Makefile.common
 
