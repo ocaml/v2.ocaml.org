@@ -5498,7 +5498,7 @@ body {
 #home-header {
   margin-top: -14px;
   height: 249px;
-  background: #000000 url(../img/header.jpg) center top no-repeat;
+  background: rgb(64, 64, 64) url(../img/header.jpg) center top no-repeat;
   border-bottom: 13px #404040 solid;
   color: #ffffff;
   margin-bottom: 36px;
