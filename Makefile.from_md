@@ -15,7 +15,7 @@ ocaml.org/%.html:site/%.md
 	$(RM) "$@.toc"
 
 ocaml.org/%.html.toc:site/%.md
-	${OMD} -otoc -ts 2 "$<" -o "$@"
+	${OMD} -otoc -ts 0 "$<" -o "$@"
 
 ocaml.org/%.html.tmp:site/%.md
 	sed -e 's|\*Table of contents\*||g' "$<" | ${OMD} -o "$@"
