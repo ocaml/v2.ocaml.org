@@ -9,7 +9,7 @@ OMD_PP = script/md_preprocess
 OCAML_VERSION = $(shell ocamlc -config | grep version | sed -e "s/version: *//")
 
 ifeq ("$(OCAML_VERSION)", "3.12.1")
-COMPILER_LIBS_PREPARE = ocamlc -c errors.mli
+COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
 COMPILER_LIBS = dynlink.cma toplevellib.cma
 else
 COMPILER_LIBS_PREPARE=
@@ -39,7 +39,7 @@ script/md_preprocess: script/code_types.ml script/code.ml \
 	  -annot utils.ml code_types.ml code.ml md_preprocess.ml
 
 script/code_top: script/code_types.ml script/code_top.ml
-	cd script && $(COMPILER_LIBS_PREPARE) && \
+	cd script && $(COMPILER_LIBS_PREPARE) \
 	ocamlfind ocamlc -o ../"$@" -package netstring $(COMPILER_LIBS) \
 	  -linkpkg -annot utils.ml code_types.ml code_top.ml
 
