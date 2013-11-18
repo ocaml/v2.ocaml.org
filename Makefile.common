@@ -33,7 +33,7 @@ script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
 	$(RM) ocamltohtml.o ocamltohtml.cm[ix] lexer.o lexer.cm[ix]
 
 script/md_preprocess: script/code_types.ml script/code.ml \
-  script/md_preprocess.ml
+  script/md_preprocess.ml script/code_top
 	cd script && \
 	ocamlfind ocamlopt -o ../"$@" -package omd,netstring -linkpkg \
 	  -annot utils.ml code_types.ml code.ml md_preprocess.ml
