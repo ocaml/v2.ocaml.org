@@ -3,7 +3,7 @@
 *Table of contents*
 
 # Install OCaml
-The most recent version is [OCaml 4.00.1](releases/), released on
+The most recent version is [OCaml 4.00.1](/releases/), released on
 2012-10-05. It can be easily installed in several ways. Broadly, the
 options are:
 
