@@ -59,7 +59,9 @@ let rec toggle_solutions any_change md =
   let open Omd in
   match md with
   | Text "SOLUTION" :: NL :: Blockquote sol :: md
-  | Text "SOLUTION" :: NL :: NL :: Blockquote sol :: md ->
+  | Text "SOLUTION" :: NL :: NL :: Blockquote sol :: md
+  | Paragraph [Omd.Text "SOLUTION"] :: Blockquote sol :: md
+  | Paragraph [Omd.Text "SOLUTION"] :: NL :: Blockquote sol :: md ->
      any_change := true;
      (* FIXME: must colorize the code and execute it. *)
      let html = Omd.to_html sol in
@@ -73,7 +75,7 @@ let rec toggle_solutions any_change md =
 let () =
   let ch = new Netchannels.input_channel stdin in
   let md = Netchannels.string_of_in_obj_channel ch in
-  let md = Omd_parser.parse(Omd_lexer.lex md) in
+  let md = Omd.of_string md ~paragraph:true in
   (* Enable custom transformations. *)
   let md = eval_code_blocks md in
   let any_change = ref false in
