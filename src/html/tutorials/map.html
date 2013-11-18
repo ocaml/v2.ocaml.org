@@ -37,7 +37,7 @@ let m = MyUsers.add "pete" "linux" m;;
 <p>Now that we have some data inside of our Map module, wouldn't it be nice to be able to view that data at some point? Lets begin by creating a simple print function.</p>
 
 <pre ml:content="ocaml noeval">
-let print_users key password = print_string(key ^ " " ^ password ^ "\n");;
+let print_users key password = print_endline(key ^ " " ^ password);;
 </pre>
 
 <p>We have here a function that will take two strings, a key and a pasword, and print them out nicely, including a new line character at the end. All we need to do is to have this function applied to our mapping. Here is what that would look like.</p>

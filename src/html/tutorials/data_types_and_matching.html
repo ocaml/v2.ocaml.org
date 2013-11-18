@@ -272,6 +272,7 @@ match object with
     | Divide (left, right) -&gt; &quot;(&quot; ^ to_string left ^ &quot; / &quot; ^ to_string right ^ &quot;)&quot;
     | Value v -&gt; v ;;
 </pre>
+<p>In this case we must add an appropriate extra pattern to cover the new <code>Product</code> expression. Try to fix the error.</p>
 
 </div>
 
