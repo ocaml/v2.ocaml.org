@@ -629,7 +629,7 @@ SOLUTION
 group ["a";"b";"c";"d"] [2;1]
 ```
 
-### Sorting a list of lists according to length of sublists. (*medium*)
+#### Sorting a list of lists according to length of sublists. (*medium*)
 
 1. We suppose that a list contains elements that are lists themselves.
 The objective is to sort the elements of this list according to their
@@ -827,7 +827,7 @@ factors 315;;
 ```
 
 
-### Calculate Euler's totient function φ(m) (improved). (*medium*)
+#### Calculate Euler's totient function φ(m) (improved). (*medium*)
 
 See problem "[Calculate Euler&#39;s totient function phi(m)](#totient)" for
 the definition of Euler's totient function. If the list of the prime
