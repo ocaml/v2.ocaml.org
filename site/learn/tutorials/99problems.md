@@ -1593,8 +1593,7 @@ conversion in both directions. Use difference lists.
 ```
 
 ## Multiway Trees
-![multiway
-tree](https://sites.google.com/site/prologsite/_/rsrc/1264946214751/prolog-problems/5/p70.gif "")
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/multiway-tree.gif" title="Multiway Tree"></img>
 
 *A multiway tree is composed of a root element and a (possibly empty)
 set of successors which are multiway trees themselves. A multiway tree
@@ -1607,26 +1606,31 @@ direct translation of the definition:
 ```tryocaml
   type 'a mult_tree = T of 'a * 'a mult_tree list
 ```
+
 The example tree depicted opposite is therefore represented by the
 following OCaml expression:
 
 ```tryocaml
   T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])])
 ```
-Count the nodes of a multiway tree
 
-Solution
+
+#### Count the nodes of a multiway tree. (*easy*)
+
+SOLUTION
+
+> ```tryocaml
+>   let rec count_nodes (T(_, sub)) =
+>     List.fold_left (fun n t -> n + count_nodes t) 1 sub
+> ```
 
 ```tryocaml
-  let rec count_nodes (T(_, sub)) =
-    List.fold_left (fun n t -> n + count_nodes t) 1 sub
-
-  count_nodes (T('a', [T('f',[]) ])) = 2
+  count_nodes (T('a', [T('f',[]) ]));;
 ```
-![multiway
-tree](https://sites.google.com/site/prologsite/_/rsrc/1264946214751/prolog-problems/5/p70.gif "")
 
-Tree construction from a node string
+
+#### Tree construction from a node string. (*medium*)
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/multiway-tree.gif" title="Multiway Tree"></img>
 
 We suppose that the nodes of a multiway tree contain single characters.
 In the depth-first order sequence of its nodes, a special character `^`
@@ -1641,35 +1645,38 @@ the string representing the tree and
 `tree_of_string : string -> char mult_tree` to construct the tree when
 the string is given.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+> (* We could build the final string by string concatenation but this is expensive due to the number of operations.  We use a buffer instead. *)
+> let rec add_string_of_tree buf (T(c, sub)) =
+>   Buffer.add_char buf c;
+>   List.iter (add_string_of_tree buf) sub;
+>   Buffer.add_char buf '^'
+> let string_of_tree t =
+>   let buf = Buffer.create 128 in
+>   add_string_of_tree buf t;
+>   Buffer.contents buf;;
+> let rec tree_of_substring t s i len =
+>   if i >= len || s.[i] = '^' then List.rev t, i + 1
+>   else
+>     let sub, j = tree_of_substring [] s (i+1) len in
+>     tree_of_substring (T(s.[i], sub) ::t) s j len
+> let tree_of_string s =
+>   match tree_of_substring [] s 0 (String.length s) with
+>   | [t], _ -> t
+>   | _ -> failwith "tree_of_string"
+> ```
 
 ```tryocaml
-  (* We could build the final string by string concatenation but this is
-     expensive due to the number of operations.  We use a buffer instead. *)
-  let rec add_string_of_tree buf (T(c, sub)) =
-    Buffer.add_char buf c;
-    List.iter (add_string_of_tree buf) sub;
-    Buffer.add_char buf '^'
-  let string_of_tree t =
-    let buf = Buffer.create 128 in
-    add_string_of_tree buf t;
-    Buffer.contents buf;;
-  let rec tree_of_substring t s i len =
-    if i >= len || s.[i] = '^' then List.rev t, i + 1
-    else
-      let sub, j = tree_of_substring [] s (i+1) len in
-      tree_of_substring (T(s.[i], sub) ::t) s j len
-  let tree_of_string s =
-    match tree_of_substring [] s 0 (String.length s) with
-    | [t], _ -> t
-    | _ -> failwith "tree_of_string"
-
   let t =
     T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])]);;
-  string_of_tree t = "afg^^c^bd^e^^^";;
-  tree_of_string "afg^^c^bd^e^^^" = t;;
+  string_of_tree t;;
+  tree_of_string "afg^^c^bd^e^^^";;
 ```
-Determine the internal path length of a tree
+
+
+#### Determine the internal path length of a tree. (*easy*)
 
 We define the internal path length of a multiway tree as the total sum
 of the path lengths from the root to all nodes of the tree. By this
@@ -1677,39 +1684,47 @@ definition, the tree `t` in the figure of the previous problem has an
 internal path length of 9. Write a function `ipl tree` that returns the
 internal path length of `tree`.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+> let rec ipl_sub len (T(_, sub)) =
+>   (* [len] is the distance of the current node to the root.  Add the
+>      distance of all sub-nodes. *)
+>   List.fold_left (fun sum t -> sum + ipl_sub (len + 1) t) len sub
+> let ipl t = ipl_sub 0 t
+> ```
 
 ```tryocaml
-  let rec ipl_sub len (T(_, sub)) =
-    (* [len] is the distance of the current node to the root.  Add the
-       distance of all sub-nodes. *)
-    List.fold_left (fun sum t -> sum + ipl_sub (len + 1) t) len sub
-  let ipl t = ipl_sub 0 t
-
-  ipl t = 9
+ipl t;;
 ```
-Construct the bottom-up order sequence of the tree nodes
+
+
+#### Construct the bottom-up order sequence of the tree nodes. (*easy*)
 
 Write a function `bottom_up t` which constructs the bottom-up sequence
 of the nodes of the multiway tree `t`.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+> let rec prepend_bottom_up (T(c, sub)) l =
+>   List.fold_right (fun t l -> prepend_bottom_up t l) sub (c :: l)
+> let bottom_up t = prepend_bottom_up t []
+> ```
 
 ```tryocaml
-  let rec prepend_bottom_up (T(c, sub)) l =
-    List.fold_right (fun t l -> prepend_bottom_up t l) sub (c :: l)
-  let bottom_up t = prepend_bottom_up t []
-
-  bottom_up (T('a', [T('b', [])])) = ['b'; 'a'];;
-  bottom_up t = ['g'; 'f'; 'c'; 'd'; 'e'; 'b'; 'a']
+bottom_up (T('a', [T('b', [])]));;
+bottom_up t;;
 ```
-Lisp-like tree representation
 
-There is a particular notation for multiway trees in Lisp. The following
-pictures show how multiway tree structures are represented in Lisp.
 
-![Lisp representation of multiway
-trees](https://sites.google.com/site/prologsite/_/rsrc/1264946557086/prolog-problems/5/p73.png "")
+#### Lisp-like tree representation. (*medium*)
+
+There is a particular notation for multiway trees in Lisp. The
+picture shows how multiway tree structures are represented in Lisp.
+
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/lisp-like-tree.png" title="Lisp representation of multiway
+trees"></img>
 
 Note that in the "lispy" notation a node with successors (children) in
 the tree is always the first element in a list, followed by its
@@ -1719,24 +1734,26 @@ are represented in OCaml, except that no constructor `T` is used. Write
 a function `lispy :       char mult_tree -> string` that returns the
 lispy notation of the tree.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+> let rec add_lispy buf = function
+>   | T(c, []) -> Buffer.add_char buf c
+>   | T(c, sub) ->
+>      Buffer.add_char buf '(';
+>      Buffer.add_char buf c;
+>      List.iter (fun t -> Buffer.add_char buf ' '; add_lispy buf t) sub;
+>      Buffer.add_char buf ')'
+> let lispy t =
+>   let buf = Buffer.create 128 in
+>   add_lispy buf t;
+>   Buffer.contents buf
+> ```
 
 ```tryocaml
-  let rec add_lispy buf = function
-    | T(c, []) -> Buffer.add_char buf c
-    | T(c, sub) ->
-       Buffer.add_char buf '(';
-       Buffer.add_char buf c;
-       List.iter (fun t -> Buffer.add_char buf ' '; add_lispy buf t) sub;
-       Buffer.add_char buf ')'
-  let lispy t =
-    let buf = Buffer.create 128 in
-    add_lispy buf t;
-    Buffer.contents buf
-
-  lispy (T('a', [])) = "a";;
-  lispy (T('a', [T('b', [])])) = "(a b)";;
-  lispy t = "(a (f g) c (b d e))"
+lispy (T('a', []));;
+lispy (T('a', [T('b', [])]));;
+lispy t;;
 ```
 ## Graphs
 *A graph is defined as a set of nodes and a set of edges, where each
