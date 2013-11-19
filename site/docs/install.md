@@ -509,6 +509,6 @@ See [here](https://github.com/hcarty/ocamlbrew).
 
 ## From Source
 Download the [latest development version](releases/svn.html) using
-subversion and follow the instructions included therein.
-
-
+subversion and follow the instructions included therein. This is
+unlikely the method you want to use unless you are a developer of the
+OCaml compiler itself or trying to install on some esoteric platforms.
