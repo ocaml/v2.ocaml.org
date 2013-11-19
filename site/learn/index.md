@@ -67,7 +67,7 @@
     </div>
     <div class="row">
         <section class="span4 condensed">
-          <h1 class="ruled">Slides &amp; Videos</h1>
+          <h1 class="ruled"><a href="/community/media.html">Slides &amp; Videos</a></h1>
 			<p class="documentation-video">
 			<script async class="speakerdeck-embed"
 			data-id="fb192c802f520131128906fa6ec08ea7"
@@ -84,6 +84,10 @@
 			<iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933" width="310" height="175" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 			</p>
 			<p>A guest lecture given by Yaron Minsky of Jane Street about how to program effectively in ML. The talk was given as part of the intro computer science class at Harvard, CS51, where the students had spent much of the semester programming in OCaml.</p>
+          <footer>
+            <p>
+              <a href="/community/media.html">See more slides and videos</a></p>
+          </footer>
         </section>
         <section class="span4 condensed">
           <h1 class="ruled">Industrial
