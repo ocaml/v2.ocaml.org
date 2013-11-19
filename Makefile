@@ -1,13 +1,13 @@
 
-production: script/ocamltohtml script/rss2html
-	$(MAKE) ocaml.org
-	bash script/gen.bash production site
-	$(MAKE) syncotherfiles
-
 local: script/relative_urls
 	$(MAKE) staging
 	find ocaml.org -type f | while read f; do \
 	  script/relative_urls --path ocaml.org "$$f"; done
+
+production: script/ocamltohtml script/rss2html
+	$(MAKE) ocaml.org
+	bash script/gen.bash production site
+	$(MAKE) syncotherfiles
 
 staging: script/ocamltohtml script/rss2html
 	$(MAKE) ocaml.org
