@@ -26,4 +26,4 @@ clean:
 
 include Makefile.common
 
-.PHONY: production local syncotherfiles clean
+.PHONY: production local staging syncotherfiles clean
