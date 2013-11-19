@@ -235,14 +235,14 @@ notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
  binary distribution available yet; download the source distribution
  and compile it.
 
-To install libraries, you may use [Godi for Windows or OPAM (see the <em>By
-Package Manager</em> tab).](http://wodi.forge.ocamlcore.org/)
+To install libraries, you may use
+[Wodi](http://wodi.forge.ocamlcore.org/) or OPAM.
 
 ### Mac OS X
-Under Mac OS X, there are, at least for the base package, five different
-ways to go: Install the binary package from Inria; Install via Fink;
-Install via MacPorts; Build via [GODI](#godi); or build it manually from
-sources. For each of the four approaches, you will need to have at least
+Under Mac OS X, there are, at least for the base package, a few different
+ways to go: Use OPAM; Install the binary package from Inria; Install via Fink;
+Install via MacPorts; or build it manually from
+sources. For each of these approaches, you will need to have at least
 the OS X developer tools installed — any other requirements will be
 discussed below.
 
@@ -287,19 +287,6 @@ It is likely that Fink will need to download and install a number of
 other packages required to build the OCaml packages, but this will occur
 mostly automatically.
 
-####  Godi OCaml Linking Against Fink Libraries
-This method uses [GODI](#godi)'s version of OCaml and uses
-[Fink](http://fink.sourceforge.net/) to provide any additional third
-party libraries that do not come with Mac OS X. This is done because the
-version of OCaml in Fink is older (3.08 in the unstable branch) than the
-one in Godi. Also, Godi's package management system will recompile any
-packages when a dependent package is updated, ensuring that your OCaml
-build tree is always in good shape.
-
-There is the issue of knowing which Fink packages have to be installed
-before you can install some of the Godi packages with all optioned
-enabled.
-
 #### MacPorts
 [MacPorts](http://www.macports.org/), formerly known as DarwinPorts, is
 a package management system for Mac OS X based on the BSD ports system.
@@ -315,15 +302,6 @@ be used to download and build the following packages:
 * `ocaml-mode.el` An EMACS major mode for editing OCaml programs.
 * `tuareg-mode.el` A GNU Emacs/XEmacs major mode for editing OCaml
  programs.
-
-####  Godi OCaml Linking Against MacPorts Libraries
-Just like the Fink/Godi setup mentioned above, this method uses
-[GODI](#godi)'s version of OCaml and uses
-[MacPorts](http://www.macports.org/) to provide any additional third
-party libraries that do not come with Mac OS X. This way you can let
-GODI take care of your OCaml build tree, and let MacPorts take care of
-the native libraries, such as GTK2 and PCRE.
-
 
 
 
