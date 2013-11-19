@@ -696,7 +696,7 @@ frequency_sort [ ["a";"b";"c"]; ["d";"e"]; ["f";"g";"h"]; ["d";"e"];
 
 
 ## Arithmetic
-<br />
+
 #### Determine whether a given integer number is prime. (*medium*)
 
 SOLUTION

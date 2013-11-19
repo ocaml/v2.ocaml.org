@@ -24,7 +24,7 @@ double average (double a, double b)
 ```
 Now let's do the same to our OCaml version:
 
-```tryocaml
+```ocamltop
 let average a b =
   let sum = a +. b in
   sum /. 2.0;;
@@ -48,7 +48,7 @@ Here's another example to make this clearer. The following two code
 snippets should return the same value (namely (a+b) +
 (a+b)²):
 
-```tryocaml
+```ocamltop
 let f a b =
   (a +. b) +. (a +. b) ** 2.
   ;;
@@ -58,6 +58,7 @@ let f a b =
   x +. x ** 2.
   ;;
 ```
+
 The second version might be faster (but most compilers ought to be able
 to perform this step of "common subexpression elimination" for you), and
 it is certainly easier to read. `x` in the second example is just
@@ -85,6 +86,7 @@ let main () =
   factory#add_item "Cut" ~key:_X ~callback: html#cut
   ;;
 ```
+
 In this real piece of code, `html` is an HTML editing widget (an object
 from the lablgtk library) which is created once at the beginning of the
 program by the first `let html =` statement. It is then referred to in
@@ -110,7 +112,7 @@ Perl, references are references - the same thing as in OCaml.
 
 Here's how we create a reference to an `int` in OCaml:
 
-```tryocaml
+```ocamltop
 ref 0;;
 ```
 Actually that statement wasn't really very useful. We created the
@@ -118,18 +120,18 @@ reference and then, because we didn't name it, the garbage collector
 came along and collected it immediately afterwards! (actually, it was
 probably thrown away at compile-time.) Let's name the reference:
 
-```tryocaml
+```ocamltop
 let my_ref = ref 0
 ```
 This reference is currently storing a zero integer. Let's put something
 else into it (assignment):
 
-```tryocaml
+```ocamltop
 my_ref := 100
 ```
 And let's find out what the reference contains now:
 
-```tryocaml
+```ocamltop
 !my_ref
 ```
 So the `:=` operator is used to assign to references, and the `!`
@@ -137,7 +139,7 @@ operator dereferences to get out the contents. Here's a rough-and-ready
 comparison with C/C++:
 
 OCaml
-```tryocaml
+```ocamltop
 let my_ref = ref 0;;
 my_ref := 100;;
 !my_ref
@@ -194,7 +196,7 @@ You get the idea. Nested functions are, however, very useful and very
 heavily used in OCaml. Here is an example of a nested function from some
 real code:
 
-```tryocaml
+```ocamltop
 let read_whole_channel chan =
   let buf = Buffer.create 4096 in
   let rec loop () =
@@ -435,7 +437,7 @@ Brian Hurt writes to correct me on ";"
 > expression. The following code is perfectly legal (and all do the same
 > thing):
 > 
-> ```tryocaml
+> ```ocamltop
 > let f x b y = if b then x+y else x+0
 > let f x b y = x + (if b then y else 0)
 > let f x b y = x + (match b with true -> y | false -> 0)
@@ -459,7 +461,7 @@ Brian Hurt writes to correct me on ";"
 > `+` just like a function. For instance, I can define a `sum_list`
 > function, to sum a list of ints, like:
 > 
-> ```tryocaml
+> ```ocamltop
 > let sum_list = List.fold_left ( + ) 0
 > ```
 

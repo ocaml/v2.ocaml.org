@@ -2,6 +2,7 @@
 
 
 # The Basics
+
 ## Comments
 OCaml comments are delimited by `(*` and `*)`, like this:
 
@@ -65,7 +66,7 @@ Let's have another function - `prompt_string` - which takes a string to
 prompt and returns the string entered by the user. We want to pass this
 string into `repeated`. Here are the C and OCaml versions:
 
-```
+```C
 /* C code: */
 repeated (prompt_string ("Name please: "), 3)
 ```
@@ -102,7 +103,7 @@ let average a b =
 Type this into the OCaml "toplevel" (on Unix, type the command `ocaml`
 from the shell) and you'll see this:
 
-```tryocaml
+```ocamltop
 let average a b =
   (a +. b) /. 2.0;;
 ```
@@ -211,7 +212,7 @@ OCaml never does implicit casts like this. In OCaml, `1 + 2.5` is a type
 error. The `+` operator in OCaml requires two ints as arguments, and
 here we're giving it an int and a float, so it reports this error:
 
-```tryocaml
+```ocamltop
 1 + 2.5;;
 ```
 (In the "translated from the French" language of OCaml error messages
@@ -223,7 +224,7 @@ To add two floats together you need to use a different operator, `+.`
 OCaml doesn't promote ints to floats automatically so this is also an
 error:
 
-```tryocaml
+```ocamltop
 1 +. 2.5
 ```
 Here OCaml is now complaining about the first argument.
@@ -232,7 +233,7 @@ What if you actually want to add an integer and a floating point number
 together? (Say they are stored as `i` and `f`). In OCaml you need to
 explicitly cast:
 
-```tryocaml
+```ocamltop
 (float_of_int i) +. f
 ```
 `float_of_int` is a function which takes an `int` and returns a `float`.
@@ -244,7 +245,7 @@ Since converting an `int` to a `float` is a particularly common
 operation, the `float_of_int` function has a shorter alias: the above
 example could simply have been written
 
-```tryocaml
+```ocamltop
 float i +. f
 ```
 (Note that unlike C, it is perfectly valid in OCaml for a type and a
@@ -260,7 +261,7 @@ explicit casts. Secondly, if you've spent time debugging C programs
 you'll know that (a) implicit casts cause errors which are hard to find,
 and (b) much of the time you're sitting there trying to work out where
 the implicit casts happen. Making the casts explicit helps you in
-debugging. Thirdly, some casts (particularly int \<-\> float) are
+debugging. Thirdly, some casts (particularly int <-> float) are
 actually very expensive operations. You do yourself no favours by hiding
 them.
 
@@ -269,7 +270,7 @@ Unlike in C-derived languages, a function isn't recursive unless you
 explicitly say so by using `let rec` instead of just `let`. Here's an
 example of a recursive function:
 
-```tryocaml
+```ocamltop
 let rec range a b =
   if a > b then []
   else a :: range (a+1) b
@@ -283,7 +284,7 @@ then the call to `range` would have tried to look for an existing
 currently-being-defined function. Using `let` (without `rec`) allows you
 to re-define a value in terms of the previous definition. For example:
 
-```tryocaml
+```ocamltop
 let positive_sum a b = 
   let a = max a 0
   and b = max b 0 in
@@ -342,7 +343,7 @@ Now for something a bit stranger. What about a function which takes
 *anything* as an argument? Here's a odd function which takes an
 argument, but just ignores it and always returns 3:
 
-```tryocaml
+```ocamltop
 let give_me_a_three x = 3
 ```
 What is the type of this function? In OCaml we use a special placeholder
@@ -385,7 +386,7 @@ probably need to bypass the type checking.
 Let's go back to the `average` function which we typed into the OCaml
 toplevel:
 
-```tryocaml
+```ocamltop
 let average a b =
   (a +. b) /. 2.0
 ```

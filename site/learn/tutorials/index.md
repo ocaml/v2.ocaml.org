@@ -46,7 +46,9 @@ tracker there to request or offer new tutorials. Thanks!
 * [<em>Acknowledgements</em>](acknowledgements.html)
 
 ## External Links
+
 ###  Learn by Doing
+
 * [Try OCaml Online](http://try.ocamlpro.com/) (by OCamlPro) allows
  you to immediately start learning OCaml in your browser, without
  installing it. Compiled as a single Javascript page, it gives you
@@ -62,6 +64,7 @@ tracker there to request or offer new tutorials. Thanks!
  solutions provided, but perhaps you would like to add new solutions.
 
 ###  Tutorials on OCaml
+
 * [The OCaml System](http://caml.inria.fr/pub/docs/manual-ocaml/) (by
  Inria) is the official user's manual. The first part provides an
  introduction to the core language, objects and classes, and modules.
@@ -82,11 +85,12 @@ tracker there to request or offer new tutorials. Thanks!
  it says remains valid.
 
 ###  WikiBooks on OCaml
-* [fr.wikibooks.org/wiki/OCaml](http://fr.wikibooks.org/wiki/OCaml):
- (in French)<br />
+
+* [fr.wikibooks.org/wiki/OCaml](http://fr.wikibooks.org/wiki/OCaml)
+ (in French):
  Introduction on functional programming using OCaml.
-* [fr.wikiversity.org/wiki/Premiers_pas_en_OCaml](http://fr.wikiversity.org/wiki/Premiers_pas_en_OCaml):
- (in French)<br />
+* [fr.wikiversity.org/wiki/Premiers_pas_en_OCaml](http://fr.wikiversity.org/wiki/Premiers_pas_en_OCaml)
+ (in French):
  The basics of the OCaml language.
 
 ###  Tutorials on Tools
@@ -114,6 +118,7 @@ tools and libraries.
 * [Camlp5](camlp5.html)
 
 ###  Coming From Another Language
+
 These tutorials help learn OCaml from the perspective of being familiar
 with another language.
 
@@ -121,6 +126,7 @@ with another language.
  OCaml](http://www.slideshare.net/michielovereem/beyond-functional-programming-in-haskell-an-introduction-to-ocaml)
 
 ###  Advanced tutorials &amp; articles
+
 * [Manual](http://caml.inria.fr/pub/docs/manual-ocaml/index.html)
 * [Using, Understanding, and Unraveling The OCaml
  Language](http://caml.inria.fr/pub/docs/u3-ocaml/index.html), *From
