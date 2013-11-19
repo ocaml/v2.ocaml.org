@@ -210,3 +210,8 @@ code.c {
   color: #000000;
   font-style: normal;
 }
+
+blockquote {
+  border-left: 2px solid #cfcfcf;
+  padding-left: 2ex;
+}

@@ -28,6 +28,9 @@ let highlight_ocaml =
      "<span class=\"comment\">\\1</span>");
     (";;", "<span class=\"ocaml-prompt\">;;</span>");
     ("\\blet +() *=", "<span class=\"governing\">let</span> () =");
+    ("\\band +\\('[_a-z]+ +\\(" ^ let_id ^ "\\)\\) *= *",
+     "<span class=\"governing\">and</span> \
+      <span class=\"type\">\\1</span> = ");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) *= *function",
      "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
       \\2</span> = <span class=\"keyword\">function</span>");
@@ -50,8 +53,8 @@ let highlight_ocaml =
     ("\\bexternal +\\(" ^ let_id ^ "\\) +:",
      "<span class=\"governing\">external</span> \
       <span class=\"ocaml-function\">\\1</span>&nbsp;:");
-    ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\)\\( *=\\| *$\\)",
-     "type \\1<span class=\"ocaml-module\">\\3</span>\\4");
+    ("\\btype +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\)\\( *=\\| *$\\)",
+     "type <span class=\"type\">\\1\\3</span>\\4");
     ("open +\\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
      "<span class=\"governing\">open</span> \\1\
       <span class=\"ocaml-module\">\\3</span>");
@@ -94,8 +97,8 @@ let highlight_ocaml =
      "<span class=\"governing\">method</span> <span class=\"ocaml-function\">\
       \\1</span> <span class=\"ocaml-variable\">\\2</span>=");
     ("\\b\\(type\\|in\\|begin\\|end\\|struct\\|sig\\|val\\|\
-      object\\|inherit\\|initializer\\|include\\)\\b",
-     "<span class=\"governing\">\\1</span>");
+      object\\|inherit\\|initializer\\|include\\)\\b\\([^\"]\\)",
+     "<span class=\"governing\">\\1</span>\\2");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
       \\|for\\|to\\|do\\|downto\\|done\\|while\
       \\|raise\\|failwith\\|try\\|assert\

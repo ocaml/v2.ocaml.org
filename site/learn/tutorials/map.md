@@ -1,6 +1,7 @@
 <!-- ((! set title Map !)) ((! set learn !)) -->
 
 # Map
+
 ## Module Map
 Map creates a "mapping". For instance, lets say I have some data that is
 users and their associated passwords. I could with the Map module create
@@ -45,7 +46,8 @@ to be able to view that data at some point? Lets begin by creating a
 simple print function.
 
 ```tryocaml
-let print_users key password = print_string(key ^ " " ^ password ^ "\n");;
+let print_users key password =
+  print_string(key ^ " " ^ password ^ "\n");;
 ```
 We have here a function that will take two strings, a key and a pasword,
 and print them out nicely, including a new line character at the end.

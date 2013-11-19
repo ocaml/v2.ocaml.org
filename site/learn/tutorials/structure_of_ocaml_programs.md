@@ -1,6 +1,7 @@
 <!-- ((! set title The Structure of OCaml Programs !)) ((! set learn !)) -->
 
 # The Structure of OCaml Programs
+
 ## The structure of OCaml programs
 Now we're going to take some time out to take a high-level look at some
 real OCaml programs. I want to teach you about local and global
@@ -15,8 +16,7 @@ Let's take the `average` function and add a local variable in C.
 (Compare it to the first definition we had above).
 
 ```C
-double
-average (double a, double b)
+double average (double a, double b)
 {
   double sum = a + b;
   return sum / 2;
@@ -335,7 +335,7 @@ other kind of statement.
 
 Have a look at a section from the second graphics example above:
 
-```tryocaml
+```ocaml
 Random.self_init ();;
 Graphics.open_graph " 640x480";;
 
@@ -345,11 +345,12 @@ let rec iterate r x_init i =
     let x = iterate r x_init (i-1) in
     r *. x *. (1.0 -. x);;
 ```
+
 We have two top-level statements and a function definition (of a
 function called `iterate`). Each one is followed by `;;`.
 
-Rule #2 is that *sometimes* you can elide [omit] the `;;`. As a
-beginner you shouldn't worry about this - you should always put in the
+Rule #2 is that *sometimes* you can elide the `;;`. As a
+beginner you shouldn't worry about this — you should always put in the
 `;;` as directed by Rule #1. But since you'll also be reading a lot of
 other peoples' code you'll need to know that sometimes we can elide
 `;;`. The particular places where this is allowed are:
@@ -445,7 +446,7 @@ Brian Hurt writes to correct me on ";"
 > Note especially the last one - I'm using `;` as an operator to "join"
 > two statements. All functions in OCaml can be expressed as:
 > 
-> ```tryocaml
+> ```ocaml
 > let name [parameters] = expression
 > ```
 > 
@@ -489,7 +490,7 @@ this function he defines a named expression called `sel` using a
 two-line `let sel = ... in` statement. Then he calls several methods on
 `sel`.
 
-```tryocaml
+```ocaml
 (* First snippet *)
 open StdLabels
 open GMain
@@ -506,7 +507,7 @@ Second snippet: Just a long list of global names at the top level.
 Notice that the author elided every single one of the `;;` because of
 Rule #2.
 
-```tryocaml
+```ocaml
 (* Second snippet *)
 let window = GWindow.window ~width:500 ~height:300 ~title:"editor" ()
 let vbox = GPack.vbox ~packing:window#add ()

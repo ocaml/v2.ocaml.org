@@ -1,6 +1,7 @@
 <!-- ((! set title Set !)) ((! set learn !)) -->
 
 # Set
+
 ## Module Set
 To make a set of strings:
 
@@ -21,8 +22,9 @@ let s = SS.singleton "hello";;
 To add some elements to the the set we can do.
 
 ```tryocaml
-let s = List.fold_right SS.add ["hello"; "world"; "community"; "manager";
-                                 "stuff"; "blue"; "green"] s;;
+let s =
+  List.fold_right SS.add ["hello"; "world"; "community"; "manager";
+                          "stuff"; "blue"; "green"] s;;
 ```
 Now if we are playing around with sets we will probably want to see what
 is in the set that we have created. To do this we can write a function
@@ -63,7 +65,7 @@ SS.exists (( = ) "hello") s2;;
 ```
 The Set module also provides the set theoretic operations union,
 intersection and difference. For example, the difference of the original
-set and the set with short strings (\<=5 characters) is the set of long
+set and the set with short strings (≤ 5 characters) is the set of long
 strings:
 
 ```tryocaml

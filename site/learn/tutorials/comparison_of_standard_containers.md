@@ -20,8 +20,8 @@ Examples](standard_library_examples.html "Standard Library Examples")
 Adding an element always creates a new list l from an element x and list
 tl. tl remains unchanged, but it is not copied either.
 
-* "adding" an element: O(1), cons operator (::)
-* length: O(n), function List.length
+* "adding" an element: O(1), cons operator `::`
+* length: O(n), function `List.length`
 * accessing cell i: O(i)
 * finding an element: O(n)
 
@@ -34,7 +34,7 @@ Arrays and strings are very similar. Strings are specialized in storing
 chars (bytes), have some convenient syntax and store them compactly.
 
 * "adding" an element: O(n)
-* length: O(1), function Array.length
+* length: O(1), function `Array.length`
 * accessing cell i: O(1)
 * finding an element: O(n)
 
