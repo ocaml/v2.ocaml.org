@@ -498,22 +498,16 @@ able to take any samples and won't report any statistics. More function
 names will show up in the profiles if you compile with `-g`.
 
 ### Oasis-DB
-![Under Construction](img/under_construction_icon.gif "")
+See [here](http://oasis.ocamlcore.org/).
 
 ### ODB
-![Under Construction](img/under_construction_icon.gif "")
-
-### OPAM
-![Under Construction](img/under_construction_icon.gif "")
+See [here](https://github.com/thelema/odb).
 
 ### ocamlbrew
-![Under Construction](img/under_construction_icon.gif "")
-[ocamlbrew](https://github.com/hcarty/ocamlbrew)
+See [here](https://github.com/hcarty/ocamlbrew).
 
 
 ## From Source
-![Under Construction](img/under_construction_icon.gif "")
-
 Download the [latest development version](releases/svn.html) using
 subversion and follow the instructions included therein.
 
