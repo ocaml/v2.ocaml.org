@@ -1,6 +1,7 @@
 <!-- ((! set title Functional Programming !)) ((! set learn !)) -->
 
 # Functional Programming
+
 ## What is functional programming?
 We've got quite far into the tutorial, yet we haven't really considered
 **functional programming**. All of the features given so far - rich data
@@ -29,8 +30,8 @@ Lot of words there that don't really make much sense. So let's have an
 example:
 
 ```tryocaml
-  let double x = x * 2 in
-  List.map double [ 1; 2; 3 ]
+let double x = x * 2 in
+List.map double [ 1; 2; 3 ]
 ```
 In this example, I've first defined a nested function called `double`
 which takes an argument `x` and returns `x * 2`. Then `map` calls
@@ -56,10 +57,10 @@ generalise the function above so that now we can take any list of
 integers and multiply each element by an arbitrary value `n`:
 
 ```tryocaml
-  let multiply n list =
-    let f x =
-      n * x in
-    List.map f list
+let multiply n list =
+  let f x =
+    n * x in
+  List.map f list
 ```
 Hence:
 
@@ -87,7 +88,7 @@ Here's a real example from lablgtk. This is actually a method on a class
 (we haven't talked about classes and objects yet, but just think of it
 as a function definition for now).
 
-```tryocaml
+```ocaml
 class html_skel obj = object (self)
   ...
   ...
@@ -96,6 +97,8 @@ class html_skel obj = object (self)
       output_string chan content;
       true in
     save obj receiver_fn
+  ...
+end
 ```
 First of all you need to know that the `save` function called at the end
 of the method takes as its second argument a function (`receiver_fn`).
@@ -109,8 +112,8 @@ alright because it keeps a reference to `chan` from its environment.
 Let's define a plus function which just adds two integers:
 
 ```tryocaml
-  let plus a b =
-    a + b
+let plus a b =
+  a + b
 ```
 Some questions for people asleep at the back of the class.
 
@@ -121,21 +124,21 @@ Some questions for people asleep at the back of the class.
 Question 1 is easy. `plus` is a function, it takes two arguments which
 are integers and it returns an integer. We write its type like this:
 
-```tryocaml
-  plus : int -> int -> int
+```ocaml
+plus : int -> int -> int
 ```
 Question 2 is even easier. `plus 2 3` is a number, the integer `5`. We
 write its value and type like this:
 
-```tryocaml
-  5 : int
+```ocaml
+5 : int
 ```
 But what about question 3? It looks like `plus 2` is a mistake, a bug.
 In fact, however, it isn't. If we type this into the OCaml toplevel, it
 tells us:
 
 ```tryocaml
-  plus 2
+plus 2
 ```
 This isn't an error. It's telling us that `plus 2` is in fact a
 *function*, which takes an `int` and returns an `int`. What sort of
@@ -156,7 +159,7 @@ for us to state that `plus 2` is the function which adds 2 to things.
 Going back to the original definition, let's "fill in" the first
 argument (`a`) setting it to 2 to get:
 
-```tryocaml
+```ocaml
 let plus 2 b =       (* This is not real OCaml code! *)
   2 + b
 ```
@@ -164,11 +167,11 @@ You can kind of see, I hope, why `plus 2` is the function which adds 2
 to things.
 
 Looking at the types of these expressions we may be able to see some
-rationale for the strange -\> arrow notation used for function types:
+rationale for the strange `->` arrow notation used for function types:
 
-```tryocaml
-    plus : int -> int -> int
-  plus 2 : int -> int
+```ocaml
+plus : int -> int -> int
+plus 2 : int -> int
 plus 2 3 : int
 ```
 This process is called **currying** (or perhaps it's called
@@ -184,10 +187,10 @@ Remember our `double` and `multiply` functions from earlier on?
 `multiply` was defined as this:
 
 ```tryocaml
-  let multiply n list =
-    let f x =
-      n * x in
-    List.map f list
+let multiply n list =
+  let f x =
+    n * x in
+  List.map f list
 ```
 We can now define `double`, `triple` &amp;c functions very easily just like
 this:
@@ -265,7 +268,7 @@ advantage is that if a function is pure, then if it is called several
 times with the same arguments, the compiler only needs to actually call
 the function once. A good example in C is:
 
-```tryocaml
+```C
 for (i = 0; i < strlen (s); ++i)
   {
     // Do something which doesn't affect s.
@@ -346,7 +349,7 @@ been allocated on the heap using `malloc` in C (or equivalently `new` in
 C++), and/or is referred to through a pointer. Take a look at this
 example C program:
 
-```tryocaml
+```C
 #include <stdio.h>
 
 void
@@ -364,6 +367,7 @@ main ()
   printit (p);
 }
 ```
+
 The variable `a` is allocated on the stack, and is quite definitely
 unboxed.
 

@@ -24,7 +24,7 @@ L'autre méthode, plus correcte, est de stocker les âges dans un champ de
 type "entier ou NULL". Par exemple, en SQL, la table pour stocker les
 âges ressemblerait à :
 
-```tryocaml
+```SQL
 create table users
 (
   userid serial,
@@ -124,7 +124,7 @@ aversion pour les débogueurs autres que gdb, vous voudrez sûrement faire
 afficher des avertissements par vos fonctions. Voici un exemple (notez
 le code surligné) :
 
-```tryocaml
+```ocaml
 open Graphics;;
 
 open_graph " 640x480";;
@@ -136,12 +136,13 @@ for i = 12 downto 1 do
 done;;
 read_line ();;
 ```
+
 Si vous préférez le style `printf` du langage C, essayez plutôt le
 module `Printf` d'OCaml :
 
-```tryocaml
+```ocaml
 open Graphics;;
-<em>open Printf;;</em>
+open Printf;;
 
 open_graph " 640x480";;
 for i = 12 downto 1 do
@@ -152,5 +153,4 @@ for i = 12 downto 1 do
   fill_circle 320 240 radius
 done;;
 read_line ();;
-
 ```
