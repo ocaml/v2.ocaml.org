@@ -587,42 +587,42 @@ group sizes and the function will return a list of groups.
 SOLUTION
 
 > ```tryocaml
->   (* This implementation is less streamlined than the one-extraction
->   version, because more work is done on the lists after each
->   transform to prepend the actual items. The end result is cleaner
->   in terms of code, though. *)
+> (* This implementation is less streamlined than the one-extraction
+>    version, because more work is done on the lists after each
+>    transform to prepend the actual items. The end result is cleaner
+>    in terms of code, though. *)
 > 
->   let group list sizes =
->     let initial = List.map (fun size -> size, []) sizes in
+> let group list sizes =
+>   let initial = List.map (fun size -> size, []) sizes in
 >
->     (* The core of the function. Prepend accepts a list of groups,
->        each with the number of items that should be added, and
->        prepends the item to every group that can support it, thus
->        turning [1,a ; 2,b ; 0,c] into [ [0,x::a ; 2,b ; 0,c ];
->        [1,a ; 1,x::b ; 0,c]; [ 1,a ; 2,b ; 0,c ]]
+>   (* The core of the function. Prepend accepts a list of groups,
+>      each with the number of items that should be added, and
+>      prepends the item to every group that can support it, thus
+>      turning [1,a ; 2,b ; 0,c] into [ [0,x::a ; 2,b ; 0,c ];
+>      [1,a ; 1,x::b ; 0,c]; [ 1,a ; 2,b ; 0,c ]]
 > 
->        Again, in the prolog language (for which these questions are
->        originally intended), this function is a whole lot simpler.  *)
->     let prepend p list =
->       let emit l acc = l :: acc in
->       let rec aux emit acc = function
->         | [] -> emit [] acc
->         | (n,l) as h :: t ->
->            let acc = if n > 0 then emit ((n-1, p::l) :: t) acc
->                      else acc in
->            aux (fun l acc -> emit (h :: l) acc) acc t
->       in
->       aux emit [] list
+>      Again, in the prolog language (for which these questions are
+>      originally intended), this function is a whole lot simpler.  *)
+>   let prepend p list =
+>     let emit l acc = l :: acc in
+>     let rec aux emit acc = function
+>       | [] -> emit [] acc
+>       | (n,l) as h :: t ->
+>          let acc = if n > 0 then emit ((n-1, p::l) :: t) acc
+>                    else acc in
+>          aux (fun l acc -> emit (h :: l) acc) acc t
 >     in
->     let rec aux = function
->       | [] -> [ initial ]
->       | h :: t -> List.concat (List.map (prepend h) (aux t))
->     in
->     let all = aux list in
->     (* Don't forget to eliminate all group sets that have non-full
->        groups *)
->     let complete = List.filter (List.for_all (fun (x,_) -> x = 0)) all in
->     List.map (List.map snd) complete
+>     aux emit [] list
+>   in
+>   let rec aux = function
+>     | [] -> [ initial ]
+>     | h :: t -> List.concat (List.map (prepend h) (aux t))
+>   in
+>   let all = aux list in
+>   (* Don't forget to eliminate all group sets that have non-full
+>      groups *)
+>   let complete = List.filter (List.for_all (fun (x,_) -> x = 0)) all in
+>   List.map (List.map snd) complete
 > ```
 
 ```tryocaml
@@ -644,50 +644,51 @@ first, others with a more frequent length come later.
 SOLUTION
 
 > ```tryocaml
->   (* We might not be allowed to use built-in List.sort, so here's an
->      eight-line implementation of insertion sort - O(n²) time complexity. *)
->   let rec insert cmp e = function
->     | [] -> [e]
->     | h :: t as l -> if cmp e h <= 0 then e :: l else h :: insert cmp e t
+> (* We might not be allowed to use built-in List.sort, so here's an
+>    eight-line implementation of insertion sort — O(n²) time
+>    complexity. *)
+> let rec insert cmp e = function
+>   | [] -> [e]
+>   | h :: t as l -> if cmp e h <= 0 then e :: l else h :: insert cmp e t
 > 
->   let rec sort cmp = function
->     | [] -> []
->     | h :: t -> insert cmp h (sort cmp t)
+> let rec sort cmp = function
+>   | [] -> []
+>   | h :: t -> insert cmp h (sort cmp t)
 > 
->   (* Sorting according to length : prepend length, sort, remove length *)
->   let length_sort lists =
->     let lists = List.map (fun list -> List.length list, list) lists in
->     let lists = sort (fun a b -> compare (fst a) (fst b)) lists in
->     List.map snd lists
->   ;;
+> (* Sorting according to length : prepend length, sort, remove length *)
+> let length_sort lists =
+>   let lists = List.map (fun list -> List.length list, list) lists in
+>   let lists = sort (fun a b -> compare (fst a) (fst b)) lists in
+>   List.map snd lists
+> ;;
 > 
->   (* Sorting according to length frequency : prepend frequency, sort,
->      remove frequency. Frequencies are extracted by sorting lengths
->      and applying RLE to count occurences of each length (see problem
->      "Run-length encoding of a list.") *)
->   let rle list =
->     let rec aux count acc = function
->       | [] -> [] (* Can only be reached if original list is empty *)
->       | [x] -> (x, count + 1) :: acc
->       | a :: (b :: _ as t) ->
->          if a = b then aux (count + 1) acc t
->          else aux 0 ((a, count + 1) :: acc) t in
->     aux 0 [] list
+> (* Sorting according to length frequency : prepend frequency, sort,
+>    remove frequency. Frequencies are extracted by sorting lengths
+>    and applying RLE to count occurences of each length (see problem
+>    "Run-length encoding of a list.") *)
+> let rle list =
+>   let rec aux count acc = function
+>     | [] -> [] (* Can only be reached if original list is empty *)
+>     | [x] -> (x, count + 1) :: acc
+>     | a :: (b :: _ as t) ->
+>        if a = b then aux (count + 1) acc t
+>        else aux 0 ((a, count + 1) :: acc) t in
+>   aux 0 [] list
 > 
->   let frequency_sort lists =
->     let lengths = List.map List.length lists in
->     let freq = rle (sort compare lengths) in
->     let by_freq =
->       List.map (fun list -> List.assoc (List.length list) freq , list) lists in
->     let sorted = sort (fun a b -> compare (fst a) (fst b)) by_freq in
->     List.map snd sorted
+> let frequency_sort lists =
+>   let lengths = List.map List.length lists in
+>   let freq = rle (sort compare lengths) in
+>   let by_freq =
+>     List.map (fun list -> List.assoc (List.length list) freq , list) lists in
+>   let sorted = sort (fun a b -> compare (fst a) (fst b)) by_freq in
+>   List.map snd sorted
 > ```
 
 ```tryocaml
 length_sort [ ["a";"b";"c"]; ["d";"e"]; ["f";"g";"h"]; ["d";"e"];
-                ["i";"j";"k";"l"]; ["m";"n"]; ["o"] ];;
+              ["i";"j";"k";"l"]; ["m";"n"]; ["o"] ];;
 frequency_sort [ ["a";"b";"c"]; ["d";"e"]; ["f";"g";"h"]; ["d";"e"];
-                   ["i";"j";"k";"l"]; ["m";"n"]; ["o"] ];;
+                 ["i";"j";"k";"l"]; ["m";"n"]; ["o"] ];;
 ```
 
 
@@ -703,17 +704,17 @@ SOLUTION
 > more clever one.
 > 
 > ```tryocaml
->   let is_prime n =
->     let n = abs n in
->     let rec is_not_divisor d =
->       d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
->     n <> 1 && is_not_divisor 2
+> let is_prime n =
+>   let n = abs n in
+>   let rec is_not_divisor d =
+>     d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
+>   n <> 1 && is_not_divisor 2
 > ```
 
 ```tryocaml
-  not(is_prime 1);;
-  is_prime 7;;
-  not (is_prime 12)
+not(is_prime 1);;
+is_prime 7;;
+not (is_prime 12)
 ```
 
 #### Determine the greatest common divisor of two positive integer numbers. (*medium*)
@@ -723,13 +724,13 @@ Use Euclid's algorithm.
 SOLUTION
 
 > ```tryocaml
->   let rec gcd a b =
->     if b = 0 then a else gcd b (a mod b)
+> let rec gcd a b =
+>   if b = 0 then a else gcd b (a mod b)
 > ```
 
 ```tryocaml
-  gcd 13 27;;
-  gcd 20536 7826
+gcd 13 27;;
+gcd 20536 7826
 ```
 
 #### Determine whether two positive integer numbers are coprime. (*easy*)
@@ -739,17 +740,17 @@ Two numbers are coprime if their greatest common divisor equals 1.
 SOLUTION
 
 > ```tryocaml
->   (* [gcd] is defined in the previous question *)
->   let coprime a b = gcd a b = 1
+> (* [gcd] is defined in the previous question *)
+> let coprime a b = gcd a b = 1
 > ```
 
 ```tryocaml
-  coprime 13 27;;
-  not (coprime 20536 7826)
+coprime 13 27;;
+not (coprime 20536 7826)
 ```
 
 
-#### Calculate Euler's totient function phi(m). (*medium*)
+#### Calculate Euler's totient function φ(m). (*medium*)
 
 Euler's so-called totient function φ(m) is defined as the number of
 positive integers r (1 ≤ r \< m) that are coprime to m. We let φ(1) = 1.
@@ -763,19 +764,19 @@ ways that we shall discuss later).
 SOLUTION
 
 > ```tryocaml
->   (* [coprime] is defined in the previous question *)
->   let phi n =
->     let rec count_coprime acc d =
->       if d < n then
->         count_coprime (if coprime n d then acc + 1 else acc) (d + 1)
->       else acc
->     in
->     if n = 1 then 1 else count_coprime 0 1
+> (* [coprime] is defined in the previous question *)
+> let phi n =
+>   let rec count_coprime acc d =
+>     if d < n then
+>       count_coprime (if coprime n d then acc + 1 else acc) (d + 1)
+>     else acc
+>   in
+>   if n = 1 then 1 else count_coprime 0 1
 > ```
 
 ```tryocaml
-  phi 10;;
-  phi 13;;
+phi 10;;
+phi 13;;
 ```
 
 
@@ -786,17 +787,17 @@ Construct a flat list containing the prime factors in ascending order.
 SOLUTION
 
 > ```tryocaml
->   (* Recall that d divides n iff [n mod d = 0] *)
->   let factors n =
->     let rec aux d n =
->       if n = 1 then [] else
->         if n mod d = 0 then d :: aux d (n / d) else aux (d+1) n
->     in
->     aux 2 n
+> (* Recall that d divides n iff [n mod d = 0] *)
+> let factors n =
+>   let rec aux d n =
+>     if n = 1 then [] else
+>       if n mod d = 0 then d :: aux d (n / d) else aux (d+1) n
+>   in
+>   aux 2 n
 > ```
 
 ```tryocaml
-  factors 315;;
+factors 315;;
 ```
 
 
@@ -809,24 +810,24 @@ Construct a list containing the prime factors and their multiplicity.
 SOLUTION
 
 > ```tryocaml
->   let factors n =
->     let rec aux d n =
->       if n = 1 then [] else
->         if n mod d = 0 then
->           match aux d (n / d) with
->           | (h,n) :: t when h = d -> (h,n+1) :: t
->           | l -> (d,1) :: l
->         else aux (d+1) n
->     in
->     aux 2 n
+> let factors n =
+>   let rec aux d n =
+>     if n = 1 then [] else
+>       if n mod d = 0 then
+>         match aux d (n / d) with
+>         | (h,n) :: t when h = d -> (h,n+1) :: t
+>         | l -> (d,1) :: l
+>       else aux (d+1) n
+>   in
+>   aux 2 n
 > ```
 
 ```tryocaml
-  factors 315;;
+factors 315;;
 ```
 
 
-### Calculate Euler's totient function phi(m) (improved). (*medium*)
+### Calculate Euler's totient function φ(m) (improved). (*medium*)
 
 See problem "[Calculate Euler&#39;s totient function phi(m)](#totient)" for
 the definition of Euler's totient function. If the list of the prime
@@ -842,19 +843,19 @@ p2<sup>m2\ -\ 1</sup> × (p3 - 1) × p3<sup>m3\ -\ 1</sup> × ...
 SOLUTION
 
 > ```tryocaml
->   (* Naive power function. *)
->   let rec pow n p = if p < 1 then 1 else n * pow n (p-1) ;;
->   (* [factors] is defined in the previous question. *)
->   let phi_improved n =
->     let rec aux acc = function
->       | [] -> acc
->       | (p,m) :: t -> aux ((p - 1) * pow p (m - 1) * acc) t in
->     aux 1 (factors n)
+> (* Naive power function. *)
+> let rec pow n p = if p < 1 then 1 else n * pow n (p-1) ;;
+> (* [factors] is defined in the previous question. *)
+> let phi_improved n =
+>   let rec aux acc = function
+>     | [] -> acc
+>     | (p,m) :: t -> aux ((p - 1) * pow p (m - 1) * acc) t in
+>   aux 1 (factors n)
 > ```
 
 ```tryocaml
-  phi_improved 10;;
-  phi_improved 13;;
+phi_improved 10;;
+phi_improved 13;;
 ```
 
 
@@ -868,17 +869,17 @@ to compare the algorithms. Take the number of logical inferences as a measure fo
 SOLUTION
 
 > ```tryocaml
->   (* Naive [timeit] function.  It requires the [Unix] module to be loaded. *)
->   let timeit f a =
->     let t0 = Unix.gettimeofday() in
->     ignore(f a);
->     let t1 = Unix.gettimeofday() in
->     t1 -. t0
+> (* Naive [timeit] function.  It requires the [Unix] module to be loaded. *)
+> let timeit f a =
+>   let t0 = Unix.gettimeofday() in
+>   ignore(f a);
+>   let t1 = Unix.gettimeofday() in
+>   t1 -. t0
 > ```
 
 ```tryocaml
-  timeit phi 10090;;
-  timeit phi_improved 10090
+timeit phi 10090;;
+timeit phi_improved 10090
 ```
 
 
@@ -890,20 +891,20 @@ of all prime numbers in that range.
 SOLUTION
 
 > ```tryocaml
->   let is_prime n =
->     let n = max n (-n) in
->     let rec is_not_divisor d =
->       d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
->     is_not_divisor 2
+> let is_prime n =
+>   let n = max n (-n) in
+>   let rec is_not_divisor d =
+>     d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
+>   is_not_divisor 2
 > 
->   let rec all_primes a b =
->     if a > b then [] else
->       let rest = all_primes (a + 1) b in
->       if is_prime a then a :: rest else rest
+> let rec all_primes a b =
+>   if a > b then [] else
+>     let rest = all_primes (a + 1) b in
+>     if is_prime a then a :: rest else rest
 > ```
 
 ```tryocaml
-  List.length (all_primes 2 7920);;
+List.length (all_primes 2 7920);;
 ```
 
 
@@ -919,16 +920,16 @@ sum up to a given even integer.
 SOLUTION
 
 > ```tryocaml
->   (* [is_prime] is defined in the previous solution *)
->   let goldbach n =
->     let rec aux d =
->       if is_prime d && is_prime (n - d) then (d, n-d)
->       else aux (d+1) in
->     aux 2
+> (* [is_prime] is defined in the previous solution *)
+> let goldbach n =
+>   let rec aux d =
+>     if is_prime d && is_prime (n - d) then (d, n-d)
+>     else aux (d+1) in
+>   aux 2
 > ```
 
 ```tryocaml
-  goldbach 28;;
+goldbach 28;;
 ```
 
 
@@ -945,19 +946,19 @@ range 2..3000.
 SOLUTION
 
 > ```tryocaml
->   (* [goldbach] is defined in the previous question. *)
->   let rec goldbach_list a b =
->     if a > b then [] else
->       if a mod 2 = 1 then goldbach_list (a+1) b
->       else (a, goldbach a) :: goldbach_list (a+2) b
+> (* [goldbach] is defined in the previous question. *)
+> let rec goldbach_list a b =
+>   if a > b then [] else
+>     if a mod 2 = 1 then goldbach_list (a+1) b
+>     else (a, goldbach a) :: goldbach_list (a+2) b
 > 
->   let goldbach_limit a b lim =
->     List.filter (fun (_,(a,b)) -> a > lim && b > lim) (goldbach_list a b)
+> let goldbach_limit a b lim =
+>   List.filter (fun (_,(a,b)) -> a > lim && b > lim) (goldbach_list a b)
 > ```
 
 ```tryocaml
-  goldbach_list 9 20;;
-  goldbach_limit 1 2000 50;;
+goldbach_list 9 20;;
+goldbach_limit 1 2000 50;;
 ```
 
 ## Logic and Codes
@@ -966,18 +967,18 @@ Let us define a small "language" for boolean expressions containing
 variables:
 
 ```tryocaml
-  type bool_expr =
-    | Var of string
-    | Not of bool_expr
-    | And of bool_expr * bool_expr
-    | Or of bool_expr * bool_expr
+type bool_expr =
+  | Var of string
+  | Not of bool_expr
+  | And of bool_expr * bool_expr
+  | Or of bool_expr * bool_expr
 ```
 
 A logical expression in two variables can then be written in prefix
 notation, as in the following example:
 
 ```tryocaml
-  And(Or(Var "a", Var "b"), And(Var "a", Var "b"))
+And(Or(Var "a", Var "b"), And(Var "a", Var "b"))
 ```
 
 #### Truth tables for logical expressions (2 variables). (*medium*)
@@ -990,22 +991,22 @@ value must be a list of triples containing
 SOLUTION
 
 > ```tryocaml
->   let rec eval2 a val_a b val_b = function
->     | Var x -> if x = a then val_a
->                else if x = b then val_b
->                else failwith "The expression contains an invalid variable"
->     | Not e -> not(eval2 a val_a b val_b e)
->     | And(e1, e2) -> eval2 a val_a b val_b e1 && eval2 a val_a b val_b e2
->     | Or(e1, e2) -> eval2 a val_a b val_b e1 || eval2 a val_a b val_b e2
->   let table2 a b expr =
->     [(true,  true,  eval2 a true  b true  expr);
->      (true,  false, eval2 a true  b false expr);
->      (false, true,  eval2 a false b true  expr);
->      (false, false, eval2 a false b false expr) ]
+> let rec eval2 a val_a b val_b = function
+>   | Var x -> if x = a then val_a
+>              else if x = b then val_b
+>              else failwith "The expression contains an invalid variable"
+>   | Not e -> not(eval2 a val_a b val_b e)
+>   | And(e1, e2) -> eval2 a val_a b val_b e1 && eval2 a val_a b val_b e2
+>   | Or(e1, e2) -> eval2 a val_a b val_b e1 || eval2 a val_a b val_b e2
+> let table2 a b expr =
+>   [(true,  true,  eval2 a true  b true  expr);
+>    (true,  false, eval2 a true  b false expr);
+>    (false, true,  eval2 a false b true  expr);
+>    (false, false, eval2 a false b false expr) ]
 > ```
 
 ```tryocaml
-  table2 "a" "b" (And(Var "a", Or(Var "a", Var "b")));;
+table2 "a" "b" (And(Var "a", Or(Var "a", Var "b")));;
 ```
 
 
@@ -1020,31 +1021,32 @@ expression `expr`, which contains the logical variables enumerated in
 SOLUTION
 
 > ```tryocaml
->  (* [val_vars] is an associative list containing the truth value of
->  each variable.  For efficiency, a Map or a Hashtlb should be preferred. *)
+> (* [val_vars] is an associative list containing the truth value of
+>    each variable.  For efficiency, a Map or a Hashtlb should be
+>    preferred. *)
 > 
->   let rec eval val_vars = function
->     | Var x -> List.assoc x val_vars
->     | Not e -> not(eval val_vars e)
->     | And(e1, e2) -> eval val_vars e1 && eval val_vars e2
->     | Or(e1, e2) -> eval val_vars e1 || eval val_vars e2
+> let rec eval val_vars = function
+>   | Var x -> List.assoc x val_vars
+>   | Not e -> not(eval val_vars e)
+>   | And(e1, e2) -> eval val_vars e1 && eval val_vars e2
+>   | Or(e1, e2) -> eval val_vars e1 || eval val_vars e2
 > 
->   (* Again, this is an easy and short implementation rather than an
->      efficient one. *)
->   let rec table_make val_vars vars expr =
->     match vars with
->     | [] -> [(List.rev val_vars, eval val_vars expr)]
->     | v :: tl ->
->        table_make ((v, true) :: val_vars) tl expr
->        @ table_make ((v, false) :: val_vars) tl expr
+> (* Again, this is an easy and short implementation rather than an
+>    efficient one. *)
+> let rec table_make val_vars vars expr =
+>   match vars with
+>   | [] -> [(List.rev val_vars, eval val_vars expr)]
+>   | v :: tl ->
+>      table_make ((v, true) :: val_vars) tl expr
+>      @ table_make ((v, false) :: val_vars) tl expr
 > 
->   let table vars expr = table_make [] vars expr
+> let table vars expr = table_make [] vars expr
 > ```
 
 ```tryocaml
-  table ["a"; "b"] (And(Var "a", Or(Var "a", Var "b")));;
-  let a = Var "a" and b = Var "b" and c = Var "c" in
-  table ["a"; "b"; "c"] (Or(And(a, Or(b,c)), Or(And(a,b), And(a,c))));;
+table ["a"; "b"] (And(Var "a", Or(Var "a", Var "b")));;
+let a = Var "a" and b = Var "b" and c = Var "c" in
+table ["a"; "b"; "c"] (Or(And(a, Or(b,c)), Or(And(a,b), And(a,c))));;
 ```
 
 
@@ -1078,9 +1080,9 @@ SOLUTION
 > ```
 
 ```tryocaml
-  gray 1;;
-  gray 2;;
-  gray 3;;
+gray 1;;
+gray 2;;
+gray 3;;
 ```
 
 
@@ -1104,7 +1106,7 @@ table for the frequency table `fs`
 <!--SOLUTION-->
 
 ```ocaml
-  (* example is pending *)
+(* example is pending *)
 ```
 
 ## Binary Trees
@@ -1118,16 +1120,16 @@ In OCaml, one can define a new type `binary_tree` that carries an
 arbitrary value of type `'a` at each node.
 
 ```tryocaml
-  type 'a binary_tree =
-    | Empty
-    | Node of 'a * 'a binary_tree * 'a binary_tree
+type 'a binary_tree =
+  | Empty
+  | Node of 'a * 'a binary_tree * 'a binary_tree
 ```
 An example of tree carrying `char` data is:
 
 ```tryocaml
-  let example_tree =
-    Node('a', Node('b', Node('d', Empty, Empty), Node('e', Empty, Empty)),
-         Node('c', Empty, Node('f', Node('g', Empty, Empty), Empty)))
+let example_tree =
+  Node('a', Node('b', Node('d', Empty, Empty), Node('e', Empty, Empty)),
+       Node('c', Empty, Node('f', Node('g', Empty, Empty), Empty)))
 ```
 In OCaml, the strict type discipline *guarantees* that, if you get a
 value of type `binary_tree`, then it must have been created with the two
@@ -1148,32 +1150,32 @@ nodes of the tree.
 Solution
 
 ```tryocaml
-  (* Build all trees with given [left] and [right] subtrees. *)
-  let add_trees_with left right all =
-    let add_right_tree all l =
-      List.fold_left (fun a r -> Node('x', l, r) :: a) all right in
-    List.fold_left add_right_tree all left
-  
-  let rec cbal_tree n =
-    if n = 0 then [Empty]
-    else if n mod 2 = 1 then
-      let t = cbal_tree (n / 2) in
-      add_trees_with t t []
-    else (* n even: n-1 nodes for the left & right subtrees altogether. *)
-      let t1 = cbal_tree (n / 2 - 1) in
-      let t2 = cbal_tree (n / 2) in
-      add_trees_with t1 t2 (add_trees_with t2 t1 [])
+(* Build all trees with given [left] and [right] subtrees. *)
+let add_trees_with left right all =
+  let add_right_tree all l =
+    List.fold_left (fun a r -> Node('x', l, r) :: a) all right in
+  List.fold_left add_right_tree all left
 
-  cbal_tree 4
-  = [Node('x', Node('x', Empty, Empty),
-          Node('x', Node('x', Empty, Empty), Empty));
-     Node('x', Node('x', Empty, Empty),
-          Node('x', Empty, Node('x', Empty, Empty)));
-     Node('x', Node('x', Node('x', Empty, Empty), Empty),
-          Node('x', Empty, Empty));
-     Node('x', Node('x', Empty, Node('x', Empty, Empty)),
-          Node('x', Empty, Empty)); ];;
-  List.length(cbal_tree 40)
+let rec cbal_tree n =
+  if n = 0 then [Empty]
+  else if n mod 2 = 1 then
+    let t = cbal_tree (n / 2) in
+    add_trees_with t t []
+  else (* n even: n-1 nodes for the left & right subtrees altogether. *)
+    let t1 = cbal_tree (n / 2 - 1) in
+    let t2 = cbal_tree (n / 2) in
+    add_trees_with t1 t2 (add_trees_with t2 t1 [])
+
+cbal_tree 4
+= [Node('x', Node('x', Empty, Empty),
+        Node('x', Node('x', Empty, Empty), Empty));
+   Node('x', Node('x', Empty, Empty),
+        Node('x', Empty, Node('x', Empty, Empty)));
+   Node('x', Node('x', Node('x', Empty, Empty), Empty),
+        Node('x', Empty, Empty));
+   Node('x', Node('x', Empty, Node('x', Empty, Empty)),
+        Node('x', Empty, Empty)); ];;
+List.length(cbal_tree 40)
 ```
 Symmetric binary trees
 
@@ -1189,16 +1191,16 @@ not in the contents of the nodes.
 Solution
 
 ```tryocaml
-  let rec is_mirror t1 t2 =
-    match t1, t2 with
-    | Empty, Empty -> true
-    | Node(_, l1, r1), Node(_, l2, r2) ->
-       is_mirror l1 r2 && is_mirror r1 l2
-    | _ -> false
+let rec is_mirror t1 t2 =
+  match t1, t2 with
+  | Empty, Empty -> true
+  | Node(_, l1, r1), Node(_, l2, r2) ->
+     is_mirror l1 r2 && is_mirror r1 l2
+  | _ -> false
 
-  let is_symmetric = function
-    | Empty -> true
-    | Node(_, l, r) -> is_mirror l r
+let is_symmetric = function
+  | Empty -> true
+  | Node(_, l, r) -> is_mirror l r
 ```
 Binary search trees (dictionaries)
 
@@ -1209,24 +1211,24 @@ integer numbers.
 Solution
 
 ```tryocaml
-  let rec insert tree x = match tree with
-    | Empty -> Node(x, Empty, Empty)
-    | Node(y, l, r) ->
-       if x = y then tree
-       else if x < y then Node(y, insert l x, r)
-       else Node(y, l, insert r x)
+let rec insert tree x = match tree with
+  | Empty -> Node(x, Empty, Empty)
+  | Node(y, l, r) ->
+     if x = y then tree
+     else if x < y then Node(y, insert l x, r)
+     else Node(y, l, insert r x)
 
-  let construct l = List.fold_left insert Empty l
+let construct l = List.fold_left insert Empty l
 
-  construct [3;2;5;7;1]
-  = Node(3, Node(2, Node(1, Empty, Empty), Empty),
-         Node(5, Empty, Node(7, Empty, Empty)))
+construct [3;2;5;7;1]
+= Node(3, Node(2, Node(1, Empty, Empty), Empty),
+       Node(5, Empty, Node(7, Empty, Empty)))
 ```
 Then use this function to test the solution of the previous problem.
 
 ```tryocaml
-  is_symmetric(construct [5;3;18;1;4;12;21]);;
-  not(is_symmetric(construct [3;2;5;7;4]))
+is_symmetric(construct [5;3;18;1;4;12;21]);;
+not(is_symmetric(construct [3;2;5;7;4]))
 ```
 Generate-and-test paradigm
 
@@ -1236,25 +1238,26 @@ completely balanced binary trees with a given number of nodes.
 Solution
 
 ```tryocaml
-  let sym_cbal_trees n =
-    List.filter is_symmetric (cbal_tree n)
+let sym_cbal_trees n =
+  List.filter is_symmetric (cbal_tree n)
 
-  sym_cbal_trees 5
-  = [Node('x', Node('x', Node('x', Empty, Empty), Empty),
-               Node('x', Empty, Node('x', Empty, Empty)));
-     Node('x', Node('x', Empty, Node('x', Empty, Empty)),
-               Node('x', Node('x', Empty, Empty), Empty)) ]
+sym_cbal_trees 5
+= [Node('x', Node('x', Node('x', Empty, Empty), Empty),
+             Node('x', Empty, Node('x', Empty, Empty)));
+   Node('x', Node('x', Empty, Node('x', Empty, Empty)),
+             Node('x', Node('x', Empty, Empty), Empty)) ]
 ```
 How many such trees are there with 57 nodes? Investigate about how many
 solutions there are for a given number of nodes? What if the number is
 even? Write an appropriate function.
 
 ```tryocaml
-  List.length (sym_cbal_trees 57);;
-  List.map (fun n -> n, List.length(sym_cbal_trees n)) (range 10 20)
-  = [(10, 0); (11, 4); (12, 0); (13, 4); (14, 0); (15, 1);
-     (16, 0); (17, 8); (18, 0); (19, 16); (20, 0)]
+List.length (sym_cbal_trees 57);;
+List.map (fun n -> n, List.length(sym_cbal_trees n)) (range 10 20)
+= [(10, 0); (11, 4); (12, 0); (13, 4); (14, 0); (15, 1);
+   (16, 0); (17, 8); (18, 0); (19, 16); (20, 0)]
 ```
+
 Construct height-balanced binary trees
 
 In a height-balanced binary tree, the following property holds for every
@@ -1269,23 +1272,24 @@ tree.
 Solution
 
 ```tryocaml
-  let rec hbal_tree n =
-    if n = 0 then [Empty]
-    else if n = 1 then [Node('x', Empty, Empty)]
-    else
-      (* [add_trees_with left right trees] is defined in a question above. *)
-      let t1 = hbal_tree (n - 1)
-      and t2 = hbal_tree (n - 2) in
-      add_trees_with t1 t1 (add_trees_with t1 t2 (add_trees_with t2 t1 []))
+let rec hbal_tree n =
+  if n = 0 then [Empty]
+  else if n = 1 then [Node('x', Empty, Empty)]
+  else
+    (* [add_trees_with left right trees] is defined in a question above. *)
+    let t1 = hbal_tree (n - 1)
+    and t2 = hbal_tree (n - 2) in
+    add_trees_with t1 t1 (add_trees_with t1 t2 (add_trees_with t2 t1 []))
 
-  let t = hbal_tree 3;;
-  let x = 'x';;
-  List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
-                 Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)))) t;;
-  List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
-                 Node(x, Node(x, Empty, Empty), Empty))) t;;
-  List.length t = 15
+let t = hbal_tree 3;;
+let x = 'x';;
+List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
+               Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)))) t;;
+List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
+               Node(x, Node(x, Empty, Empty), Empty))) t;;
+List.length t = 15
 ```
+
 Construct height-balanced binary trees with a given number of nodes
 
 Consider a height-balanced binary tree of height `h`. What is the
@@ -1309,7 +1313,7 @@ list of all height-balanced binary tree with `n` nodes.
 Find out how many height-balanced trees exist for `n =       15`.
 
 ```tryocaml
-  List.length (hbal_tree_nodes 15)
+List.length (hbal_tree_nodes 15)
 ```
 Count the leaves of a binary tree
 
@@ -1319,13 +1323,13 @@ count them.
 Solution
 
 ```tryocaml
-  let rec count_leaves = function
-    | Empty -> 0
-    | Node(_, Empty, Empty) -> 1
-    | Node(_, l, r) -> count_leaves l + count_leaves r
+let rec count_leaves = function
+  | Empty -> 0
+  | Node(_, Empty, Empty) -> 1
+  | Node(_, l, r) -> count_leaves l + count_leaves r
 
-  count_leaves Empty = 0;;
-  count_leaves example_tree = 3
+count_leaves Empty = 0;;
+count_leaves example_tree = 3
 ```
 Collect the leaves of a binary tree in a list
 
@@ -1335,14 +1339,15 @@ collect them in a list.
 Solution
 
 ```tryocaml
-  let rec leaves = function
-    | Empty -> []
-    | Node(c, Empty, Empty) -> [c]
-    | Node(_, l, r) -> leaves l @ leaves r
+let rec leaves = function
+  | Empty -> []
+  | Node(c, Empty, Empty) -> [c]
+  | Node(_, l, r) -> leaves l @ leaves r
 
-  leaves Empty = [];;
-  leaves example_tree = ['d'; 'e'; 'g']
+leaves Empty = [];;
+leaves example_tree = ['d'; 'e'; 'g']
 ```
+
 Collect the internal nodes of a binary tree in a list
 
 An internal node of a binary tree has either one or two non-empty
@@ -1351,13 +1356,14 @@ successors. Write a function `internals` to collect them in a list.
 Solution
 
 ```tryocaml
-  let rec internals = function
-    | Empty | Node(_, Empty, Empty) -> []
-    | Node(c, l, r) -> internals l @ (c :: internals r)
+let rec internals = function
+  | Empty | Node(_, Empty, Empty) -> []
+  | Node(c, l, r) -> internals l @ (c :: internals r)
 
-  internals (Node('a', Empty, Empty)) = [];;
-  internals example_tree = ['b'; 'a'; 'c'; 'f']
+internals (Node('a', Empty, Empty)) = [];;
+internals example_tree = ['b'; 'a'; 'c'; 'f']
 ```
+
 Collect the nodes at a given level in a list.
 
 A node of a binary tree is at level N if the path from the root to the
@@ -1368,15 +1374,15 @@ list.
 Solution
 
 ```tryocaml
-  let rec at_level t l = match t with
-    | Empty -> []
-    | Node(c, left, right) ->
-       if l = 1 then [c]
-       else at_level left (l - 1) @ at_level right (l - 1)
+let rec at_level t l = match t with
+  | Empty -> []
+  | Node(c, left, right) ->
+     if l = 1 then [c]
+     else at_level left (l - 1) @ at_level right (l - 1)
 
-  at_level example_tree 2 = ['b'; 'c'];;
-  at_level example_tree 2 = ['b'; 'c'];;
-  at_level example_tree 5 = [];;
+at_level example_tree 2 = ['b'; 'c'];;
+at_level example_tree 2 = ['b'; 'c'];;
+at_level example_tree 5 = [];;
 ```
 Using `at_level` it is easy to construct a function `levelorder` which
 creates the level-order sequence of the nodes. However, there are more
@@ -1428,9 +1434,9 @@ In order to store the position of the nodes, we redefine the OCaml type
 representing a node (and its successors) as follows:
 
 ```tryocaml
-  type 'a pos_binary_tree =
-    | E (* represents the empty tree *)
-    | N of 'a * int * int * 'a pos_binary_tree * 'a pos_binary_tree
+type 'a pos_binary_tree =
+  | E (* represents the empty tree *)
+  | N of 'a * int * int * 'a pos_binary_tree * 'a pos_binary_tree
 ```
 `N(w,x,y,l,r)` represents a (non-empty) binary tree with root `w`
 "positioned" at `(x,y)`, and subtrees `l` and `r`. Write a function
@@ -1544,24 +1550,25 @@ To represent multiway trees, we will use the following type which is a
 direct translation of the definition:
 
 ```tryocaml
-  type 'a mult_tree = T of 'a * 'a mult_tree list
+type 'a mult_tree = T of 'a * 'a mult_tree list
 ```
 The example tree depicted opposite is therefore represented by the
 following OCaml expression:
 
 ```tryocaml
-  T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])])
+T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])])
 ```
 Count the nodes of a multiway tree
 
 Solution
 
 ```tryocaml
-  let rec count_nodes (T(_, sub)) =
-    List.fold_left (fun n t -> n + count_nodes t) 1 sub
+let rec count_nodes (T(_, sub)) =
+  List.fold_left (fun n t -> n + count_nodes t) 1 sub
 
-  count_nodes (T('a', [T('f',[]) ])) = 2
+count_nodes (T('a', [T('f',[]) ])) = 2
 ```
+
 ![multiway
 tree](https://sites.google.com/site/prologsite/_/rsrc/1264946214751/prolog-problems/5/p70.gif "")
 
@@ -1583,31 +1590,32 @@ the string is given.
 Solution
 
 ```tryocaml
-  (* We could build the final string by string concatenation but this is
-     expensive due to the number of operations.  We use a buffer instead. *)
-  let rec add_string_of_tree buf (T(c, sub)) =
-    Buffer.add_char buf c;
-    List.iter (add_string_of_tree buf) sub;
-    Buffer.add_char buf '^'
-  let string_of_tree t =
-    let buf = Buffer.create 128 in
-    add_string_of_tree buf t;
-    Buffer.contents buf;;
-  let rec tree_of_substring t s i len =
-    if i >= len || s.[i] = '^' then List.rev t, i + 1
-    else
-      let sub, j = tree_of_substring [] s (i+1) len in
-      tree_of_substring (T(s.[i], sub) ::t) s j len
-  let tree_of_string s =
-    match tree_of_substring [] s 0 (String.length s) with
-    | [t], _ -> t
-    | _ -> failwith "tree_of_string"
+(* We could build the final string by string concatenation but this is
+   expensive due to the number of operations.  We use a buffer instead. *)
+let rec add_string_of_tree buf (T(c, sub)) =
+  Buffer.add_char buf c;
+  List.iter (add_string_of_tree buf) sub;
+  Buffer.add_char buf '^'
+let string_of_tree t =
+  let buf = Buffer.create 128 in
+  add_string_of_tree buf t;
+  Buffer.contents buf;;
+let rec tree_of_substring t s i len =
+  if i >= len || s.[i] = '^' then List.rev t, i + 1
+  else
+    let sub, j = tree_of_substring [] s (i+1) len in
+    tree_of_substring (T(s.[i], sub) ::t) s j len
+let tree_of_string s =
+  match tree_of_substring [] s 0 (String.length s) with
+  | [t], _ -> t
+  | _ -> failwith "tree_of_string"
 
-  let t =
-    T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])]);;
-  string_of_tree t = "afg^^c^bd^e^^^";;
-  tree_of_string "afg^^c^bd^e^^^" = t;;
+let t =
+  T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])]);;
+string_of_tree t = "afg^^c^bd^e^^^";;
+tree_of_string "afg^^c^bd^e^^^" = t;;
 ```
+
 Determine the internal path length of a tree
 
 We define the internal path length of a multiway tree as the total sum
@@ -1619,13 +1627,13 @@ internal path length of `tree`.
 Solution
 
 ```tryocaml
-  let rec ipl_sub len (T(_, sub)) =
-    (* [len] is the distance of the current node to the root.  Add the
-       distance of all sub-nodes. *)
-    List.fold_left (fun sum t -> sum + ipl_sub (len + 1) t) len sub
-  let ipl t = ipl_sub 0 t
+let rec ipl_sub len (T(_, sub)) =
+  (* [len] is the distance of the current node to the root.  Add the
+     distance of all sub-nodes. *)
+  List.fold_left (fun sum t -> sum + ipl_sub (len + 1) t) len sub
+let ipl t = ipl_sub 0 t
 
-  ipl t = 9
+ipl t = 9
 ```
 Construct the bottom-up order sequence of the tree nodes
 
@@ -1635,12 +1643,12 @@ of the nodes of the multiway tree `t`.
 Solution
 
 ```tryocaml
-  let rec prepend_bottom_up (T(c, sub)) l =
-    List.fold_right (fun t l -> prepend_bottom_up t l) sub (c :: l)
-  let bottom_up t = prepend_bottom_up t []
+let rec prepend_bottom_up (T(c, sub)) l =
+  List.fold_right (fun t l -> prepend_bottom_up t l) sub (c :: l)
+let bottom_up t = prepend_bottom_up t []
 
-  bottom_up (T('a', [T('b', [])])) = ['b'; 'a'];;
-  bottom_up t = ['g'; 'f'; 'c'; 'd'; 'e'; 'b'; 'a']
+bottom_up (T('a', [T('b', [])])) = ['b'; 'a'];;
+bottom_up t = ['g'; 'f'; 'c'; 'd'; 'e'; 'b'; 'a']
 ```
 Lisp-like tree representation
 
@@ -1661,22 +1669,23 @@ lispy notation of the tree.
 Solution
 
 ```tryocaml
-  let rec add_lispy buf = function
-    | T(c, []) -> Buffer.add_char buf c
-    | T(c, sub) ->
-       Buffer.add_char buf '(';
-       Buffer.add_char buf c;
-       List.iter (fun t -> Buffer.add_char buf ' '; add_lispy buf t) sub;
-       Buffer.add_char buf ')'
-  let lispy t =
-    let buf = Buffer.create 128 in
-    add_lispy buf t;
-    Buffer.contents buf
+let rec add_lispy buf = function
+  | T(c, []) -> Buffer.add_char buf c
+  | T(c, sub) ->
+     Buffer.add_char buf '(';
+     Buffer.add_char buf c;
+     List.iter (fun t -> Buffer.add_char buf ' '; add_lispy buf t) sub;
+     Buffer.add_char buf ')'
+let lispy t =
+  let buf = Buffer.create 128 in
+  add_lispy buf t;
+  Buffer.contents buf
 
-  lispy (T('a', [])) = "a";;
-  lispy (T('a', [T('b', [])])) = "(a b)";;
-  lispy t = "(a (f g) c (b d e))"
+lispy (T('a', [])) = "a";;
+lispy (T('a', [T('b', [])])) = "(a b)";;
+lispy t = "(a (f g) c (b d e))"
 ```
+
 ## Graphs
 *A graph is defined as a set of nodes and a set of edges, where each
 edge is a pair of different nodes.*
@@ -1691,8 +1700,7 @@ There are several ways to represent graphs in OCaml.
  following expression:
 
 ```tryocaml
-      ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b']
-    
+['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b']
 ```
 We call this **edge-clause form**. Obviously, isolated nodes cannot
 be represented.
@@ -1704,15 +1712,16 @@ be represented.
  (nodes and edges), we may use the following OCaml type:
 
 ```tryocaml
-  type 'a graph_term = { nodes : 'a list;  edges : ('a * 'a) list }
+type 'a graph_term = { nodes : 'a list;  edges : ('a * 'a) list }
 ```
 Then, the above example graph is represented by:
 
 ```tryocaml
-  let example_graph =
-    { nodes = ['b'; 'c'; 'd'; 'f'; 'g'; 'h'; 'k'];
-      edges = ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b'] }
+let example_graph =
+  { nodes = ['b'; 'c'; 'd'; 'f'; 'g'; 'h'; 'k'];
+    edges = ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b'] }
 ```
+
 We call this **graph-term form**. Note, that the lists are kept
 sorted, they are really sets, without duplicated elements. Each edge
 appears only once in the edge list; i.e. an edge from a node x to
@@ -1736,7 +1745,7 @@ may want to define a similar type using sets instead of lists.
  automatically defined as a node. Our example could be written as:
 
 ```tryocaml
-  "b-c f-c g-h d f-b k-f h-g"
+"b-c f-c g-h d f-b k-f h-g"
 ```
 We call this the **human-friendly form**. As the example shows, the
 list does not have to be sorted and may even contain the same edge
@@ -1763,27 +1772,27 @@ the list of all paths via backtracking.
 Solution
 
 ```tryocaml
-  (* The datastructures used here are far from the most efficient ones
-     but allow for a straightforward implementation. *)
-  (* Returns all neighbors satisfying the condition. *)
-  let neighbors g a cond =
-    let edge l (b,c) = if b = a && cond c then c :: l
-                       else if c = a && cond b then b :: l
-                       else l in
-    List.fold_left edge [] g.edges
-  let rec list_path g a to_b = match to_b with
-    | [] -> assert false (* [to_b] contains the path to [b]. *)
-    | a' :: _ ->
-       if a' = a then [to_b]
-       else
-         let n = neighbors g a' (fun c -> not(List.mem c to_b)) in
-         List.concat(List.map (fun c -> list_path g a (c :: to_b)) n)
+(* The datastructures used here are far from the most efficient ones
+   but allow for a straightforward implementation. *)
+(* Returns all neighbors satisfying the condition. *)
+let neighbors g a cond =
+  let edge l (b,c) = if b = a && cond c then c :: l
+                     else if c = a && cond b then b :: l
+                     else l in
+  List.fold_left edge [] g.edges
+let rec list_path g a to_b = match to_b with
+  | [] -> assert false (* [to_b] contains the path to [b]. *)
+  | a' :: _ ->
+     if a' = a then [to_b]
+     else
+       let n = neighbors g a' (fun c -> not(List.mem c to_b)) in
+       List.concat(List.map (fun c -> list_path g a (c :: to_b)) n)
 
-  let paths g a b =
-    assert(a <> b);
-    list_path g a [b]
+let paths g a b =
+  assert(a <> b);
+  list_path g a [b]
 
-  paths example_graph 'f' 'b' = [['f'; 'c'; 'b']; ['f'; 'b']]
+paths example_graph 'f' 'b' = [['f'; 'c'; 'b']; ['f'; 'b']]
 ```
 Cycle from a given node
 
@@ -1794,15 +1803,18 @@ return the list of all cycles via backtracking.
 Solution
 
 ```tryocaml
-  let cycles g a =
-    let n = neighbors g a (fun _ -> true) in
-    let p = List.concat(List.map (fun c -> list_path g a [c]) n) in
-    List.map (fun p -> p @ [a]) p
-
-  cycles example_graph 'f'
-  = [['f'; 'b'; 'c'; 'f']; ['f'; 'c'; 'f']; ['f'; 'c'; 'b'; 'f'];
-     ['f'; 'b'; 'f']; ['f'; 'k'; 'f']]
+let cycles g a =
+  let n = neighbors g a (fun _ -> true) in
+  let p = List.concat(List.map (fun c -> list_path g a [c]) n) in
+  List.map (fun p -> p @ [a]) p
 ```
+
+```tryocaml
+cycles example_graph 'f'
+= [['f'; 'b'; 'c'; 'f']; ['f'; 'c'; 'f']; ['f'; 'c'; 'b'; 'f'];
+   ['f'; 'b'; 'f']; ['f'; 'k'; 'f']]
+```
+
 Construct all spanning trees
 
 ![Spanning tree
@@ -1819,10 +1831,10 @@ and `is_connected       Graph`. Both are five-minutes tasks!
 Solution
 
 ```tryocaml
-  let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
-            edges = [('a', 'b'); ('a', 'd'); ('b', 'c'); ('b', 'e');
-                     ('c', 'e'); ('d', 'e'); ('d', 'f'); ('d', 'g');
-                     ('e', 'h'); ('f', 'g'); ('g', 'h')] }
+let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
+          edges = [('a', 'b'); ('a', 'd'); ('b', 'c'); ('b', 'e');
+                   ('c', 'e'); ('d', 'e'); ('d', 'f'); ('d', 'g');
+                   ('e', 'h'); ('f', 'g'); ('g', 'h')] }
 ```
 ![Spanning tree
 graph](https://sites.google.com/site/prologsite/_/rsrc/1264949163407/prolog-problems/6/p84.gif "")
@@ -1834,8 +1846,8 @@ of a given labelled graph. A labelled graph will be represented as
 follows:
 
 ```tryocaml
-  type ('a, 'b) labeled_graph = { nodes : 'a list;
-                                  edges : ('a * 'a * 'b) list }
+type ('a, 'b) labeled_graph = { nodes : 'a list;
+                                edges : ('a * 'a * 'b) list }
 ```
 (Beware that from now on `nodes` and `edges` mask the previous fields of
 the same name.)
@@ -1848,10 +1860,11 @@ example graph to the right can be found below.
 Solution
 
 ```tryocaml
-  let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
-            edges = [('a', 'b', 5); ('a', 'd', 3); ('b', 'c', 2); ('b', 'e', 4);
-                     ('c', 'e', 6); ('d', 'e', 7); ('d', 'f', 4); ('d', 'g', 3);
-                     ('e', 'h', 5); ('f', 'g', 4); ('g', 'h', 1)] }
+let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
+          edges = [('a', 'b', 5); ('a', 'd', 3); ('b', 'c', 2);
+		           ('b', 'e', 4); ('c', 'e', 6); ('d', 'e', 7);
+				   ('d', 'f', 4); ('d', 'g', 3); ('e', 'h', 5);
+				   ('f', 'g', 4); ('g', 'h', 1)] }
 ```
 Graph isomorphism
 
@@ -2005,7 +2018,7 @@ Sudoku
 
 Sudoku puzzles go like this:
 
-```tryocaml
+```text
    Problem statement                 Solution
 
     .  .  4 | 8  .  . | .  1  7      9  3  4 | 8  2  5 | 6  1  7
@@ -2049,7 +2062,7 @@ rectangular bitmap is annotated with the respective lengths of its
 distinct strings of occupied cells. The person who solves the puzzle
 must complete the bitmap given only these lengths.
 
-```tryocaml
+```text
           Problem statement:          Solution:
 
           |_|_|_|_|_|_|_|_| 3         |_|X|X|X|_|_|_|_| 3
@@ -2064,6 +2077,7 @@ must complete the bitmap given only these lengths.
            1 3 1 7 5 3 4 3             1 3 1 7 5 3 4 3
            2 1 5 1                     2 1 5 1
 ```
+
 For the example above, the problem can be stated as the two lists
 `[[3];[2;1];[3;2];[2;2];[6];[1;5];[6];[1];[2]]` and
 `[[1;2];[3;1];[1;5];[7;1];[5];[3];[4];[3]]` which give the "solid"
