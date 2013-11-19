@@ -4,7 +4,7 @@ production: script/ocamltohtml script/rss2html
 	bash script/gen.bash site
 	$(MAKE) syncotherfiles
 
-preview: script/relative_urls
+local: script/relative_urls
 	$(MAKE) production
 	find ocaml.org -type f | while read f; do \
 	  script/relative_urls --path ocaml.org "$$f"; done
@@ -20,4 +20,4 @@ clean:
 
 include Makefile.common
 
-.PHONY: production preview syncotherfiles clean
+.PHONY: production local syncotherfiles clean
