@@ -3,18 +3,16 @@
 *Table of contents*
 
 # Install OCaml
-The most recent version is [OCaml 4.00.1](/releases/), released on
-2012-10-05. It can be easily installed in several ways. Broadly, the
-options are:
+The OCaml compiler and libraries can be installed in several
+ways. Broadly, the options are:
 
-* use OPAM, a source package manager specific to OCaml;
-* or use a package manager supported by your platform (Windows, Linux,
-  Mac OS X,...);
-* or install from source code.
+* use OPAM, a source package manager specific to OCaml, or
+* use a package manager supported by your platform (Windows, Linux,
+  Mac OS X,...), or
+* install from source code.
 
-The different options are detailed below. Most of these tools allow you
-to download and install OCaml libraries. You can also find more packages
-[here](/learn/libraries.html).
+The different options are detailed below. You can also find more
+packages [here](/learn/libraries.html).
 
 
 
