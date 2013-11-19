@@ -24,6 +24,9 @@ among other things, used by Debian to manage their packages. It works
 well on Unix, Linux, and Mac OS X systems. Windows support is comming
 soon.
 
+OPAM is edited by 
+[<img src="/img/ocamlpro.png" alt="OCamlPro" style="height: 2ex; vertical-align: text-bottom" />](http://www.ocamlpro.com/) and is free software.
+
 To get started, see
 [Download and install OPAM](http://opam.ocaml.org/) and follow the
 instructions.
