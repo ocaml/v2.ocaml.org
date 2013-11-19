@@ -2046,7 +2046,8 @@ results](https://sites.google.com/site/prologsite/prolog-problems/6/solutions-6/
 ```
 
 ## Miscellaneous Problems
-Eight queens problem
+<br />
+#### Eight queens problem. (*medium*)
 
 This is a classical problem in computer science. The objective is to
 place eight queens on a chessboard so that no two queens are attacking
@@ -2058,9 +2059,14 @@ Example: `[4;2;7;3;6;8;5;1]` means that the queen in the first column is
 in row 4, the queen in the second column is in row 2, etc. Use the
 generate-and-test paradigm.
 
-Solution
+<!-- SOLUTION -->
 
-Knight's tour
+```ocaml
+(* example pending *);;
+```
+
+
+#### Knight's tour. (*medium*)
 
 Another famous problem is this one: How can a knight jump on an N×N
 chessboard in such a way that it visits every square exactly once?
@@ -2072,16 +2078,20 @@ knight can jump from `(x,y)` to on a `n`×`n` chessboard. And finally,
 represent the solution of our problem as a list knight positions (the
 knight's tour).
 
-Solution
+<!-- SOLUTION -->
 
-Von Koch's conjecture
+```ocaml
+(* example pending *);;
+```
+
+
+#### Von Koch's conjecture. (*hard*)
 
 Several years ago I met a mathematician who was intrigued by a problem
 for which he didn't know a solution. His name was Von Koch, and I don't
 know whether the problem has been solved since.
 
-![Tree
-numbering](https://sites.google.com/site/prologsite/_/rsrc/1264955485190/prolog-problems/7/p92a.gif "")
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/von-koch1.gif" title="Tree numbering"></img>
 
 Anyway, the puzzle goes like this: Given a tree with N nodes (and hence
 N-1 edges). Find a way to enumerate the nodes from 1 to N and,
@@ -2094,36 +2104,47 @@ larger trees, and 14 is already very large, it is extremely difficult to
 find a solution. And remember, we don't know for sure whether there is
 always a solution!
 
-![Larger
-tree](https://sites.google.com/site/prologsite/_/rsrc/1264955528417/prolog-problems/7/p92b.gif "")
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/von-koch2.gif" title="Larger tree"></img>
 
 Write a function that calculates a numbering scheme for a given tree.
-What is the solution for the larger tree pictured above?
+What is the solution for the larger tree pictured here?
 
-Solution
+<!-- SOLUTION -->
 
-An arithmetic puzzle
+```ocaml
+(* example pending *);;
+```
+
+
+#### An arithmetic puzzle. (*hard*)
 
 Given a list of integer numbers, find a correct way of inserting
 arithmetic signs (operators) such that the result is a correct equation.
 Example: With the list of numbers `[2;3;5;7;11]` we can form the
 equations 2-3+5+7 = 11 or 2 = (3*5+7)/11 (and ten others!).
 
-Solution
+<!-- SOLUTION -->
 
-English number words
+```ocaml
+(* example pending *);;
+```
+
+#### English number words. (*medium*)
 
 On financial documents, like cheques, numbers must sometimes be written
 in full words. Example: 175 must be written as one-seven-five. Write a
 function `full_words` to print (non-negative) integer numbers in full
 words.
 
-Solution
+<!-- SOLUTION -->
 
-Syntax checker
+```ocaml
+(* example pending *);;
+```
 
-![Syntax
-graph](https://sites.google.com/site/prologsite/_/rsrc/1264955783053/prolog-problems/7/p96.gif "")
+
+#### Syntax checker. (*medium*)
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/syntax-graph.gif" title="Syntax graph"></img>
 
 In a certain programming language (Ada) identifiers are defined by the
 syntax diagram (railroad chart) opposite. Transform the syntax diagram
@@ -2132,9 +2153,13 @@ are purely recursive. Using these modified diagrams, write a function
 `identifier : string -> bool` that can check whether or not a given
 string is a legal identifier.
 
-Solution
+<!-- SOLUTION -->
 
-Sudoku
+```ocaml
+(* example pending *);;
+```
+
+#### Sudoku. (*medium*)
 
 Sudoku puzzles go like this:
 
@@ -2159,6 +2184,7 @@ Sudoku puzzles go like this:
             |         |                      |         |
     2  4  . | .  .  1 | 5  .  .      2  4  6 | 3  9  1 | 5  7  8
 ```
+
 Every spot in the puzzle belongs to a (horizontal) row and a (vertical)
 column, as well as to one single 3x3 square (which we call "square" for
 short). At the beginning, some of the spots carry a single-digit number
@@ -2166,9 +2192,14 @@ between 1 and 9. The problem is to fill the missing spots with digits in
 such a way that every number between 1 and 9 appears exactly once in
 each row, in each column, and in each square.
 
-Solution
+<!-- SOLUTION -->
 
-Nonograms
+```ocaml
+(* example pending *);;
+```
+
+
+#### Nonograms. (*hard*)
 
 Around 1994, a certain kind of puzzles was very popular in England. The
 "Sunday Telegraph" newspaper wrote: "Nonograms are puzzles from Japan
@@ -2205,14 +2236,18 @@ lengths of the rows and columns, top-to-bottom and left-to-right,
 respectively. Published puzzles are larger than this example, e.g.
 25×20, and apparently always have unique solutions.
 
-Solution
+<!-- SOLUTION -->
 
-Crossword puzzle
+```ocaml
+(* example pending *);;
+```
+
+
+#### Crossword puzzle. (*hard*)
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/crossword.gif" title="Crossword"></img>
 
 Given an empty (or almost empty) framework of a crossword puzzle and a
 set of words. The problem is to place the words into the framework.
-
-![puzzle](https://sites.google.com/site/prologsite/_/rsrc/1264956149766/prolog-problems/7/p99.gif "")
 
 The particular crossword puzzle is specified in a text file which first
 lists the words (one word per line) in an arbitrary order. Then, after
@@ -2243,5 +2278,10 @@ way of placing words onto sites.
 1. For efficiency reasons it is important, at least for larger puzzles,
  to sort the words and the sites in a particular order.
 
-Solution
+<!-- SOLUTION -->
+
+```ocaml
+(* example pending *);;
+```
+
 
