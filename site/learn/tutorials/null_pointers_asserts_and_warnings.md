@@ -3,6 +3,7 @@
 *Table of contents*
 
 # Null Pointers, Asserts and Warnings
+
 ## Null pointers
 So you've got a survey on your website which asks your readers for their
 names and ages. Only problem is that for some reason a few of your
@@ -50,24 +51,24 @@ be null, you'd have to first box it up into an object allocated by
 OCaml has an elegant solution to the problem of nulls, using a simple
 polymorphic variant type defined (in `Pervasives`) as:
 
-```tryocaml
+```ocamltop
   type 'a option = None | Some of 'a
 ```
 A "null pointer" is written `None`. The type of age in our example above
-(an `int` which can be null) is `int option` [remember: backwards like
-`int list` and `int binary_tree`].
+(an `int` which can be null) is `int option` (remember: backwards like
+`int list` and `int binary_tree`).
 
-```tryocaml
+```ocamltop
   Some 3
 ```
 What about a list of optional ints?
 
-```tryocaml
+```ocamltop
   [ None; Some 3; Some 6; None ]
 ```
 And what about an optional list of ints?
 
-```tryocaml
+```ocamltop
   Some [1; 2; 3]
 ```
 ## Assert, warnings, fatal errors, and printing to stderr
@@ -84,7 +85,7 @@ unwise to catch this exception, particularly for beginners), this
 results in the program stopping and printing out the source file and
 line number where the error occurred. An example:
 
-```tryocaml
+```ocamltop
   assert (Sys.os_type = "Win32")
 ```
 (Running this on Win32, of course, won't throw an error).
@@ -97,7 +98,7 @@ assuming you don't try to catch it, will stop the program with the given
 error message. `failwith` is often used during pattern matching, like
 this real example:
 
-```tryocaml
+```ocaml
 match Sys.os_type with
 | "Unix" | "Cygwin" ->   (* code omitted *)
 | "Win32" ->             (* code omitted *)
@@ -125,6 +126,7 @@ let () =
   done;
   read_line ()
 ```
+
 If you prefer C-style `printf`'s then try using OCaml's `Printf` module
 instead:
 

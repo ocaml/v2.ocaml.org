@@ -1,12 +1,14 @@
 <!-- ((! set title Data Types and Matching !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Data Types and Matching
 
 ## Linked lists
 As with Perl, OCaml has support for lists built into the language. All
 elements of a list in OCaml must be the same type. To write a list, use:
 
-```tryocaml
+```ocamltop
 [1; 2; 3]
 ```
 (Note semicolons, NOT commas).
@@ -74,13 +76,13 @@ Tuples don't let you name the elements, but instead you have to remember
 the order in which they appear. Here is the equivalent record for our C
 struct above:
 
-```tryocaml
+```ocamltop
 type pair_of_ints = { a : int; b : int };;
 ```
 That defines the type, and here is how we actually *create* objects of
 this type:
 
-```tryocaml
+```ocamltop
 { a=3; b=5 }
 ```
 Note that we use ":" in the type definition and "=" when creating
@@ -88,7 +90,7 @@ objects of this type.
 
 Here are some examples of this typed into the toplevel:
 
-```tryocaml
+```ocamltop
 type pair_of_ints = { a : int; b : int };;
 {a=3; b=5};;
 {a=3};;
@@ -124,7 +126,7 @@ and games. Furthermore, it's cumbersome.
 
 Here is the elegant and concise equivalent in OCaml:
 
-```tryocaml
+```ocamltop
 type foo =
   | Nothing
   | Int of int
@@ -168,7 +170,7 @@ Variants can be recursive, and the common use for this is to define tree
 structures. This really is where the expressive power of functional
 languages come into their own:
 
-```tryocaml
+```ocamltop
 type binary_tree =
   | Leaf of int
   | Tree of binary_tree * binary_tree
@@ -188,7 +190,7 @@ what if we wanted to describe the *shape* of a binary tree, but decide
 exactly what to store at each leaf node later? We can do this by using a
 parameterized (or polymorphic) variant, like this:
 
-```tryocaml
+```ocamltop
 type 'a binary_tree =
   | Leaf of 'a
   | Tree of 'a binary_tree * 'a binary_tree
@@ -199,7 +201,7 @@ stores strings at each leaf is called `string binary_tree`. In the next
 example we type some instances into the top-level and allow the type
 inference system to show the types for us:
 
-```tryocaml
+```ocamltop
 Leaf "hello";;
 Leaf 3.0;;
 ```
@@ -216,7 +218,7 @@ following slightly strange definition:
 Actually the definition above doesn't quite compile. Here's a
 pretty-much equivalent definition:
 
-```tryocaml
+```ocamltop
 type 'a equiv_list =
   | Nil
   | Cons of 'a * 'a equiv_list;;
@@ -262,7 +264,7 @@ symbolically to get `n * x + n * y`.
 
 Let's define a type for these expressions:
 
-```tryocaml
+```ocamltop
   type expr =
     | Plus of expr * expr        (* means a + b *)
     | Minus of expr * expr       (* means a - b *)
@@ -272,7 +274,7 @@ Let's define a type for these expressions:
 ```
 The expression `n * (x + y)` would be written:
 
-```tryocaml
+```ocamltop
 Times (Value "n", Plus (Value "x", Value "y"))
 ```
 Let's write a function which prints out
@@ -282,7 +284,7 @@ converts the expression to a pretty string, and one which prints it out
 (the reason is that I might want to write the same string to a file and
 I wouldn't want to repeat the whole of the function just for that).
 
-```tryocaml
+```ocamltop
 let rec to_string e =
   match e with
   | Plus (left, right) ->
@@ -303,7 +305,7 @@ let print_expr e =
 
 Here's the print function in action:
 
-```tryocaml
+```ocamltop
 print_expr (Times (Value "n", Plus (Value "x", Value "y")))
 ```
 The general form for pattern matching is:
@@ -319,7 +321,7 @@ function above, or complex and nested. The next example is our function
 to multiply out expressions of the form `n * (x + y)` or `(x + y) * n`
 and for this we will use a nested pattern:
 
-```tryocaml
+```ocamltop
 let rec multiply_out e =
   match e with
   | Times (e1, Plus (e2, e3)) ->
@@ -340,7 +342,7 @@ let rec multiply_out e =
 ```
 Here it is in action:
 
-```tryocaml
+```ocamltop
 print_expr(multiply_out(Times (Value "n", Plus (Value "x", Value "y"))))
 ```
 How does the `multiply_out` function work? The key is in the first two
@@ -364,7 +366,7 @@ sure can! (But it's a bit more complicated). The following version only
 works for the top level expression. You could certainly extend it to
 cope with all levels of an expression and more complex cases:
 
-```tryocaml
+```ocamltop
 let factorize e =
   match e with
   | Plus (Times (e1, e2), Times (e3, e4)) when e1 = e3 ->
@@ -397,7 +399,7 @@ OCaml is able to check at compile time that you have covered all
 possibilities in your patterns. I changed the type definition of
 `type expr` above by adding a `Product` variant:
 
-```tryocaml
+```ocamltop
 type expr = Plus of expr * expr      (* means a + b *)
           | Minus of expr * expr     (* means a - b *)
           | Times of expr * expr     (* means a * b *)
@@ -408,7 +410,7 @@ type expr = Plus of expr * expr      (* means a + b *)
 I then recompiled the `to_string` function without changing it. OCaml
 reported the following warning:
 
-```tryocaml
+```ocamltop
 let rec to_string e =
   match e with
   | Plus (left, right) ->

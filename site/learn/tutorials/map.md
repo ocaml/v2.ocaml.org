@@ -13,18 +13,18 @@ different types of data.
 
 To create a Map I can do:
 
-```tryocaml
+```ocamltop
 module MyUsers = Map.Make(String);;
 ```
 Ok, we have created the module. Now, lets start putting something into
 it. Where do we start? Well, lets try an empty module to begin with:
 
-```tryocaml
+```ocamltop
 let m = MyUsers.empty;;
 ```
 Hummm. An empty module is kind of boring, so lets add some data.
 
-```tryocaml
+```ocamltop
 let m = MyUsers.add "fred" "sugarplums" m;;
 ```
 We have now added "fred" and his password of "sugarplums" to our module.
@@ -36,7 +36,7 @@ to whatever we will have to create a different mapping.
 
 Lets add in some additional data just for kicks.
 
-```tryocaml
+```ocamltop
 let m = MyUsers.add "tom" "ilovelucy" m;;
 let m = MyUsers.add "mark" "ocamlrules" m;;
 let m = MyUsers.add "pete" "linux" m;;
@@ -45,7 +45,7 @@ Now that we have some data inside of our Map module, wouldn't it be nice
 to be able to view that data at some point? Lets begin by creating a
 simple print function.
 
-```tryocaml
+```ocamltop
 let print_users key password =
   print_string(key ^ " " ^ password ^ "\n");;
 ```
@@ -54,13 +54,13 @@ and print them out nicely, including a new line character at the end.
 All we need to do is to have this function applied to our mapping. Here
 is what that would look like.
 
-```tryocaml
+```ocamltop
 MyUsers.iter print_users m;;
 ```
 The reason we put our data into a mapping however is probably so we can
 quickly find the data. Lets actually show how to do a find.
 
-```tryocaml
+```ocamltop
 MyUsers.find "fred" m;;
 ```
 This should quickly and efficienty return Fred's password: "sugarplums".

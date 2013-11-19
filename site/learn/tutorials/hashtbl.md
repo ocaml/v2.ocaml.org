@@ -6,7 +6,7 @@
 The Hashtbl module implements an efficient, mutable lookup table. To
 create a hash table we could write:
 
-```tryocaml
+```ocamltop
 let my_hash = Hashtbl.create 123456;;
 ```
 The 123456 is the initial size of the hashtbl. This initial number is
@@ -34,7 +34,7 @@ another hash table is _not_ created every time you change the table. Thus,
 the code `let my_hash = Hashtbl.add my_hash ...` wouldn't make any
 sense. Instead, we would write something like this:
 
-```tryocaml
+```ocamltop
 Hashtbl.add my_hash "h" "hello";;
 Hashtbl.add my_hash "h" "hi";;
 Hashtbl.add my_hash "h" "hug";;
@@ -47,7 +47,7 @@ If we want to find one element in `my_hash` that has an "h" in it then we
 would write. Notice how it only returns just one element? That element
 was the last one entered in with the value of "h".
 
-```tryocaml
+```ocamltop
  
 Hashtbl.find my_hash "h";;
 ```
@@ -55,13 +55,13 @@ What we probably want is all the elements that start with "h". To do
 this we want to find all of them. What better name for this then
 `find_all`?
 
-```tryocaml
+```ocamltop
 Hashtbl.find_all my_hash "h";;
 ```
 returns `["hard"; "hug"; "hi"; "hello"]`. To find out if there is an
 entry in the my_hash for a letter we would do:
 
-```tryocaml
+```ocamltop
 Hashtbl.mem my_hash "h";;
 
 ```

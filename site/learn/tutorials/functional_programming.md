@@ -29,7 +29,7 @@ The basic, and not very enlightening definition is this: in a
 Lot of words there that don't really make much sense. So let's have an
 example:
 
-```tryocaml
+```ocamltop
 let double x = x * 2 in
 List.map double [ 1; 2; 3 ]
 ```
@@ -56,7 +56,7 @@ variables which were available at the point of its definition. Let's
 generalise the function above so that now we can take any list of
 integers and multiply each element by an arbitrary value `n`:
 
-```tryocaml
+```ocamltop
 let multiply n list =
   let f x =
     n * x in
@@ -64,7 +64,7 @@ let multiply n list =
 ```
 Hence:
 
-```tryocaml
+```ocamltop
 multiply 2 [1; 2; 3];;
 multiply 5 [1; 2; 3];;
 ```
@@ -111,7 +111,7 @@ alright because it keeps a reference to `chan` from its environment.
 ###  Partial function applications and currying
 Let's define a plus function which just adds two integers:
 
-```tryocaml
+```ocamltop
 let plus a b =
   a + b
 ```
@@ -137,7 +137,7 @@ But what about question 3? It looks like `plus 2` is a mistake, a bug.
 In fact, however, it isn't. If we type this into the OCaml toplevel, it
 tells us:
 
-```tryocaml
+```ocamltop
 plus 2
 ```
 This isn't an error. It's telling us that `plus 2` is in fact a
@@ -146,7 +146,7 @@ function is this? We experiment by first of all giving this mysterious
 function a name (`f`), and then trying it out on a few integers to see
 what it does:
 
-```tryocaml
+```ocamltop
 let f = plus 2;;
 f 10;;
 f 15;;
@@ -186,7 +186,7 @@ Google](http://www.google.com/search?q=currying "http://www.google.com/search?q=
 Remember our `double` and `multiply` functions from earlier on?
 `multiply` was defined as this:
 
-```tryocaml
+```ocamltop
 let multiply n list =
   let f x =
     n * x in
@@ -195,20 +195,20 @@ let multiply n list =
 We can now define `double`, `triple` &amp;c functions very easily just like
 this:
 
-```tryocaml
+```ocamltop
 let double = multiply 2;;
 let triple = multiply 3;;
 ```
 They really are functions, look:
 
-```tryocaml
+```ocamltop
 double [1; 2; 3];;
 triple [1; 2; 3];;
 ```
 You can also use partial application directly (without the intermediate
 `f` function) like this:
 
-```tryocaml
+```ocamltop
 let multiply n = List.map (( * ) n);;
 let double = multiply 2;;
 let triple = multiply 3;;
@@ -222,13 +222,13 @@ think `(*` starts a comment.
 You can put infix operators into brackets to make functions. Here's an
 identical definition of the `plus` function as before:
 
-```tryocaml
+```ocamltop
 let plus = ( + );;
 plus 2 3;;
 ```
 Here's some more currying fun:
 
-```tryocaml
+```ocamltop
 List.map (plus 2) [1; 2; 3];;
 let list_of_functions = List.map plus [1; 2; 3];;
 ```
@@ -298,7 +298,7 @@ and the results are then passed to the function. For example in a strict
 language, the call `give_me_a_three (1/0)` is always going to result in
 a divide-by-zero error:
 
-```tryocaml
+```ocamltop
 let give_me_a_three _ = 3;;
 give_me_a_three (1/0);;
 ```
@@ -322,7 +322,7 @@ OCaml is a strict language, but has a `Lazy` module that lets you write
 lazy expressions. Here's an example. First we create a lazy expression
 for `1/0`:
 
-```tryocaml
+```ocamltop
 let lazy_expr = lazy (1/0)
 ```
 Notice the type of this lazy expression is `int lazy_t`.
@@ -330,12 +330,12 @@ Notice the type of this lazy expression is `int lazy_t`.
 Because `give_me_a_three` takes `'a` (any type) we can pass this lazy
 expression into the function:
 
-```tryocaml
+```ocamltop
 give_me_a_three lazy_expr
 ```
 To evaluate a lazy expression, you must use the `Lazy.force` function:
 
-```tryocaml
+```ocamltop
 Lazy.force lazy_expr
 ```
 ###  Boxed vs. unboxed types

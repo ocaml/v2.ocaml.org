@@ -54,7 +54,7 @@ type
 We can translate this in OCaml, using a sum type definition, without
 pointers:
 
-```tryocaml
+```ocamltop
   type list = Nil | Cons of int * list
 ```
 Cell lists are thus represented as pairs, and the recursive structure of
@@ -102,7 +102,7 @@ for other reasons than mere initialization, OCaml provides records with
 mutable fields. For instance, a list type defining lists whose elements
 can be in place modified could be written:
 
-```tryocaml
+```ocamltop
 type list = Nil | Cons of cell
 and cell = { mutable hd : int; tl : list }
 ```
@@ -110,7 +110,7 @@ If the structure of the list itself must also be modified (cells must be
 physically removed from the list), the `tl` field would also be declared
 as mutable:
 
-```tryocaml
+```ocamltop
 type list = Nil | Cons of cell
 and cell = {mutable hd : int; mutable tl : list};;
 ```
@@ -139,7 +139,7 @@ The general pointer type can be defined using the definition of a
 pointer: a pointer is either null, or a pointer to an assignable memory
 location:
 
-```tryocaml
+```ocamltop
 type 'a pointer = Null | Pointer of 'a ref
 ```
 Explicit dereferencing (or reading the pointer's designated value) and
@@ -147,7 +147,7 @@ pointer assignment (or writing to the pointer's designated memory
 location) are easily defined. We define dereferencing as a prefix
 operator named `!^`, and assigment as the infix `^:=`.
 
-```tryocaml
+```ocamltop
 let ( !^ ) = function
   | Null -> invalid_arg "Attempt to dereference the null pointer"
   | Pointer r -> !r;;
@@ -160,12 +160,12 @@ let ( ^:= ) p v =
 Now we define the allocation of a new pointer initialized to points to a
 given value:
 
-```tryocaml
+```ocamltop
 let new_pointer x = Pointer (ref x);;
 ```
 For instance, let's define and then assign a pointer to an integer:
 
-```tryocaml
+```ocamltop
 let p = new_pointer 0;;
 p ^:= 1;;
 !^p;;
@@ -174,7 +174,7 @@ p ^:= 1;;
 Now we can define lists using explicit pointers as in usual imperative
 languages:
 
-```tryocaml
+```ocamltop
 (* The list type ``à la Pascal'' *)
 type ilist = cell pointer
 and cell = {mutable hd : int; mutable tl : ilist}
@@ -182,7 +182,7 @@ and cell = {mutable hd : int; mutable tl : ilist}
 We then define allocation of a new cell, the list constructor and its
 associated destructors.
 
-```tryocaml
+```ocamltop
 let new_cell () = {hd = 0; tl = Null};;
 
 let cons x l =
@@ -202,7 +202,7 @@ concatenation, as often described in litterature, physically modifies
 its first list argument, hooking the second list to the end of the
 first:
 
-```tryocaml
+```ocamltop
 (* Physical append *)
 let append (l1 : ilist) (l2 : ilist) =
   let temp = ref l1 in
@@ -221,7 +221,7 @@ append l1 l2;;
 
 The lists `l1` and `l2` are effectively catenated:
 
-```tryocaml
+```ocamltop
 l1;;
 ```
 Just a nasty side effect of physical list concatenation: `l1` now
@@ -232,12 +232,12 @@ history, that is on the sequence of function calls that use the value.
 This strange behaviour leads to a lot of difficulties when explicitely
 manipulating pointers. Try for instance, the seemingly harmless:
 
-```tryocaml
+```ocamltop
   append l1 l1;;
 ```
 Then evaluate `l1`:
 
-```tryocaml
+```ocamltop
   l1;;
 ```
 ## Polymorphic lists
@@ -245,7 +245,7 @@ To go beyond Pascal type system, we define polymorphic lists using
 pointers; here is a simple implementation of those polymorphic mutable
 lists:
 
-```tryocaml
+```ocamltop
 type 'a lists = 'a cell pointer
 and 'a cell = {mutable hd : 'a pointer; mutable tl : 'a lists};;
 
