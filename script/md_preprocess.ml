@@ -75,7 +75,7 @@ let rec toggle_solutions any_change md =
 let () =
   let ch = new Netchannels.input_channel stdin in
   let md = Netchannels.string_of_in_obj_channel ch in
-  let md = Omd.of_string md ~paragraph:true in
+  let md = Omd.of_string md in
   (* Enable custom transformations. *)
   let md = eval_code_blocks md in
   let any_change = ref false in
