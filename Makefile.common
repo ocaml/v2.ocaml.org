@@ -19,8 +19,8 @@ endif
 ocaml.org:
 	find site -type d | while read l; do mkdir -p "$$(echo "$$l" | sed -e 's/^site/ocaml.org/')" ; done
 
-template/front_code_snippet.html:template/front_code_snippet.md
-	${OMD} $< -o $@
+template/front_code_snippet.html:template/front_code_snippet.md $(OMD_PP)
+	cat "$<" | $(OMD_PP) | ${OMD} -o $@
 
 script/rss2html: script/rss2html.ml
 	cd script && \
