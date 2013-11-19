@@ -975,7 +975,7 @@ type bool_expr =
 ```
 
 A logical expression in two variables can then be written in prefix
-notation, as in the following example:
+notation.  For example, `(a ∨ b) ∧ (a ∧ b)` is written:
 
 ```tryocaml
 And(Or(Var "a", Var "b"), And(Var "a", Var "b"))
