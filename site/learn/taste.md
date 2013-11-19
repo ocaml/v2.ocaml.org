@@ -1,6 +1,8 @@
 <!-- ((! set title A Hundred Lines of OCaml !)) ((! set learn !)) -->
-# A Hundred Lines of OCaml
+
 *Table of contents*
+
+# A Hundred Lines of OCaml
 
 OCaml possesses an [interactive system](description.html#interactive),
 called “toploop”, that lets you type OCaml code and have it evaluated
