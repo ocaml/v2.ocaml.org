@@ -16,11 +16,11 @@ let rec eval_code_blocks md =
   match md with
   | Code_block("tryocaml", code) :: tl ->
      let html = Code.to_html toplevel code in
-     Html_block("<pre class=\"tryocaml\"><code>" ^ html ^ "</code></pre>")
+     Html_block("<pre><code class=\"tryocaml\">" ^ html ^ "</code></pre>")
      :: eval_code_blocks tl
   | Code_block("ocaml", code) :: tl ->
      let html = Code.highlight code in
-     Html_block("<pre class=\"ocaml\"><code>" ^ html ^ "</code></pre>")
+     Html_block("<pre><code class=\"ocaml\">" ^ html ^ "</code></pre>")
      :: eval_code_blocks tl
   | Blockquote t :: tl ->
      (* Order of evaluation is important: the code in [Blockquote] may
