@@ -692,8 +692,8 @@ frequency_sort [ ["a";"b";"c"]; ["d";"e"]; ["f";"g";"h"]; ["d";"e"];
 
 
 ## Arithmetic
-
-#### Determine whether a given integer number is prime.
+<br />
+#### Determine whether a given integer number is prime. (*medium*)
 
 SOLUTION
 
@@ -716,7 +716,7 @@ SOLUTION
   not (is_prime 12)
 ```
 
-#### Determine the greatest common divisor of two positive integer numbers.
+#### Determine the greatest common divisor of two positive integer numbers. (*medium*)
 
 Use Euclid's algorithm.
 
@@ -732,20 +732,24 @@ SOLUTION
   gcd 20536 7826
 ```
 
-### Determine whether two positive integer numbers are coprime.
+#### Determine whether two positive integer numbers are coprime. (*easy*)
 
 Two numbers are coprime if their greatest common divisor equals 1.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   (* [gcd] is defined in the previous question *)
+>   let coprime a b = gcd a b = 1
+> ```
 
 ```tryocaml
-  (* [gcd] is defined in the previous question *)
-  let coprime a b = gcd a b = 1
-
   coprime 13 27;;
   not (coprime 20536 7826)
 ```
-Calculate Euler's totient function phi(m).
+
+
+#### Calculate Euler's totient function phi(m). (*medium*)
 
 Euler's so-called totient function φ(m) is defined as the number of
 positive integers r (1 ≤ r \< m) that are coprime to m. We let φ(1) = 1.
@@ -756,63 +760,75 @@ public key cryptography methods (RSA). In this exercise you should use
 the most primitive method to calculate this function (there are smarter
 ways that we shall discuss later).
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   (* [coprime] is defined in the previous question *)
+>   let phi n =
+>     let rec count_coprime acc d =
+>       if d < n then
+>         count_coprime (if coprime n d then acc + 1 else acc) (d + 1)
+>       else acc
+>     in
+>     if n = 1 then 1 else count_coprime 0 1
+> ```
 
 ```tryocaml
-  (* [coprime] is defined in the previous question *)
-  let phi n =
-    let rec count_coprime acc d =
-      if d < n then
-        count_coprime (if coprime n d then acc + 1 else acc) (d + 1)
-      else acc
-    in
-    if n = 1 then 1 else count_coprime 0 1
-
-  phi 10 = 4;;
-  phi 13 = 12
+  phi 10;;
+  phi 13;;
 ```
-Determine the prime factors of a given positive integer.
+
+
+#### Determine the prime factors of a given positive integer. (*medium*)
 
 Construct a flat list containing the prime factors in ascending order.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   (* Recall that d divides n iff [n mod d = 0] *)
+>   let factors n =
+>     let rec aux d n =
+>       if n = 1 then [] else
+>         if n mod d = 0 then d :: aux d (n / d) else aux (d+1) n
+>     in
+>     aux 2 n
+> ```
 
 ```tryocaml
-  (* Recall that d divides n iff [n mod d = 0] *)
-  let factors n =
-    let rec aux d n =
-      if n = 1 then [] else
-        if n mod d = 0 then d :: aux d (n / d) else aux (d+1) n
-    in
-    aux 2 n
-
-  factors 315 = [3;3;5;7]
+  factors 315;;
 ```
-Determine the prime factors of a given positive integer (2).
+
+
+#### Determine the prime factors of a given positive integer (2). (*medium*)
 
 Construct a list containing the prime factors and their multiplicity.
-*Hint:* The problem is similar to problem [Run-length encoding of a list
-(direct solution)](#run-length-direct).
+*Hint:* The problem is similar to problem 
+[Run-length encoding of a list(direct solution)](#run-length-direct).
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let factors n =
+>     let rec aux d n =
+>       if n = 1 then [] else
+>         if n mod d = 0 then
+>           match aux d (n / d) with
+>           | (h,n) :: t when h = d -> (h,n+1) :: t
+>           | l -> (d,1) :: l
+>         else aux (d+1) n
+>     in
+>     aux 2 n
+> ```
 
 ```tryocaml
-  let factors n =
-    let rec aux d n =
-      if n = 1 then [] else
-        if n mod d = 0 then
-          match aux d (n / d) with
-          | (h,n) :: t when h = d -> (h,n+1) :: t
-          | l -> (d,1) :: l
-        else aux (d+1) n
-    in
-    aux 2 n
-
-  factors 315 = [3,2 ; 5,1 ; 7,1]
+  factors 315;;
 ```
-Calculate Euler's totient function phi(m) (improved).
 
-See problem “[Calculate Euler&#39;s totient function phi(m)](#totient)” for
+
+### Calculate Euler's totient function phi(m) (improved). (*medium*)
+
+See problem "[Calculate Euler&#39;s totient function phi(m)](#totient)" for
 the definition of Euler's totient function. If the list of the prime
 factors of a number m is known in the form of the previous problem then
 the function phi(m) can be efficiently calculated as follows: Let
@@ -823,64 +839,75 @@ calculated with the following formula:
 φ(m) = (p1 - 1) × p1<sup>m1\ -\ 1</sup> × (p2 - 1) ×
 p2<sup>m2\ -\ 1</sup> × (p3 - 1) × p3<sup>m3\ -\ 1</sup> × ...
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   (* Naive power function. *)
+>   let rec pow n p = if p < 1 then 1 else n * pow n (p-1) ;;
+>   (* [factors] is defined in the previous question. *)
+>   let phi_improved n =
+>     let rec aux acc = function
+>       | [] -> acc
+>       | (p,m) :: t -> aux ((p - 1) * pow p (m - 1) * acc) t in
+>     aux 1 (factors n)
+> ```
 
 ```tryocaml
-  (* Naive power function. *)
-  let rec pow n p = if p < 1 then 1 else n * pow n (p-1) ;;
-  (* [factors] is defined in the previous question. *)
-  let phi_improved n =
-    let rec aux acc = function
-      | [] -> acc
-      | (p,m) :: t -> aux ((p - 1) * pow p (m - 1) * acc) t in
-    aux 1 (factors n)
-
-  phi_improved 10 = 4;;
-  phi_improved 13 = 12
+  phi_improved 10;;
+  phi_improved 13;;
 ```
-Compare the two methods of calculating Euler's totient function.
 
-Use the solutions of problems “[Calculate Euler&#39;s totient function
-phi(m)](#totient)” and “[Calculate Euler&#39;s totient function phi(m)
-(improved)](#totient-improved)” to compare the algorithms. Take the
-number of logical inferences as a measure for efficiency. Try to
-calculate φ(10090) as an example.
 
-Solution
+#### Compare the two methods of calculating Euler's totient function. (*easy*)
+
+Use the solutions of problems 
+"[Calculate Euler&#39;s totient function phi(m)](#totient)" and 
+"[Calculate Euler&#39;s totient function phi(m) (improved)](#totient-improved)" 
+to compare the algorithms. Take the number of logical inferences as a measure for efficiency. Try to calculate φ(10090) as an example.
+
+SOLUTION
+
+> ```tryocaml
+>   (* Naive [timeit] function.  It requires the [Unix] module to be loaded. *)
+>   let timeit f a =
+>     let t0 = Unix.gettimeofday() in
+>     ignore(f a);
+>     let t1 = Unix.gettimeofday() in
+>     t1 -. t0
+> ```
 
 ```tryocaml
-  (* Naive [timeit] function.  It requires the [Unix] module to be loaded. *)
-  let timeit f a =
-    let t0 = Unix.gettimeofday() in
-    ignore(f a);
-    let t1 = Unix.gettimeofday() in
-    t1 -. t0
-
   timeit phi 10090;;
   timeit phi_improved 10090
 ```
-A list of prime numbers.
+
+
+#### A list of prime numbers. (*easy*)
 
 Given a range of integers by its lower and upper limit, construct a list
 of all prime numbers in that range.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let is_prime n =
+>     let n = max n (-n) in
+>     let rec is_not_divisor d =
+>       d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
+>     is_not_divisor 2
+> 
+>   let rec all_primes a b =
+>     if a > b then [] else
+>       let rest = all_primes (a + 1) b in
+>       if is_prime a then a :: rest else rest
+> ```
 
 ```tryocaml
-  let is_prime n =
-    let n = max n (-n) in
-    let rec is_not_divisor d =
-      d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
-    is_not_divisor 2
-
-  let rec all_primes a b =
-    if a > b then [] else
-      let rest = all_primes (a + 1) b in
-      if is_prime a then a :: rest else rest
-
-  List.length (all_primes 2 7920) = 1000
+  List.length (all_primes 2 7920);;
 ```
-Goldbach's conjecture.
+
+
+#### Goldbach's conjecture. (*medium*)
 
 Goldbach's conjecture says that every positive even number greater than
 2 is the sum of two prime numbers. Example: 28 = 5 + 23. It is one of
@@ -889,19 +916,23 @@ correct in the general case. It has been *numerically confirmed* up to
 very large numbers. Write a function to find the two prime numbers that
 sum up to a given even integer.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   (* [is_prime] is defined in the previous solution *)
+>   let goldbach n =
+>     let rec aux d =
+>       if is_prime d && is_prime (n - d) then (d, n-d)
+>       else aux (d+1) in
+>     aux 2
+> ```
 
 ```tryocaml
-  (* [is_prime] is defined in the previous solution *)
-  let goldbach n =
-    let rec aux d =
-      if is_prime d && is_prime (n - d) then (d, n-d)
-      else aux (d+1) in
-    aux 2
-
-  goldbach 28 = (5,23)
+  goldbach 28;;
 ```
-A list of Goldbach compositions.
+
+
+#### A list of Goldbach compositions. (*medium*)
 
 Given a range of integers by its lower and upper limit, print a list of
 all even numbers and their Goldbach composition.
@@ -911,25 +942,24 @@ numbers, one of them is very small. Very rarely, the primes are both
 bigger than say 50. Try to find out how many such cases there are in the
 range 2..3000.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   (* [goldbach] is defined in the previous question. *)
+>   let rec goldbach_list a b =
+>     if a > b then [] else
+>       if a mod 2 = 1 then goldbach_list (a+1) b
+>       else (a, goldbach a) :: goldbach_list (a+2) b
+> 
+>   let goldbach_limit a b lim =
+>     List.filter (fun (_,(a,b)) -> a > lim && b > lim) (goldbach_list a b)
+> ```
 
 ```tryocaml
-  (* [goldbach] is defined in the previous question. *)
-  let rec goldbach_list a b =
-    if a > b then [] else
-      if a mod 2 = 1 then goldbach_list (a+1) b
-      else (a, goldbach a) :: goldbach_list (a+2) b
-
-  let goldbach_limit a b lim =
-    List.filter (fun (_,(a,b)) -> a > lim && b > lim) (goldbach_list a b)
-
-  goldbach_list 9 20
-  = [(10, (3, 7)); (12, (5, 7)); (14, (3, 11)); (16, (3, 13)); (18, (5, 13));
-     (20, (3, 17))];;
-  goldbach_limit 1 2000 50
-  = [(992, (73, 919)); (1382, (61, 1321)); (1856, (67, 1789));
-     (1928, (61, 1867))]
+  goldbach_list 9 20;;
+  goldbach_limit 1 2000 50;;
 ```
+
 ## Logic and Codes
 Let us define a small “language” for boolean expressions containing
 variables:
