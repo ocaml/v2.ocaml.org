@@ -232,7 +232,7 @@ button.solution {
 }
 
 div.solution {
-  /* display: none; */
+  display: none;
   margin-top: 0;
 }
 
