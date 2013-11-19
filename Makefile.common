@@ -1,6 +1,6 @@
 # -*- mode:Makefile -*-
 
-MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its 
+MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its $(SET_STAGING)
 MPP = mpp ${MPP_OPTIONS}
 OMD_OPTIONS = -r ocaml=script/ocamltohtml -r tryocaml=script/ocamlapplet.bash
 OMD = omd ${OMD_OPTIONS}

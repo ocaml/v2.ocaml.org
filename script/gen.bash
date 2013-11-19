@@ -11,31 +11,45 @@ do
     fi
 done
 
-if [[ "$#" == "0" ]]
+if [[ "$#" < "2" ]]
 then
     echo "Usage:"
-    echo "$0 site/file.md"
-    echo "$0 site/file.html"
-    echo "$0 site/"
-    echo "$0 site/some-directory"
+    echo "$0 (staging | production) site/file.md"
+    echo "$0 (staging | production) site/file.html"
+    echo "$0 (staging | production) site/"
+    echo "$0 (staging | production) site/some-directory"
     exit 1
 fi
 
 IFS=
-find "$@" -iname '*.md' |
+find "$2" -iname '*.md' |
 while read i
 do
     target="$(sed -e 's/\.md$/.html/' -e 's/^site/ocaml.org/' <<< "$i")"
     mkdir -p "$(dirname "$target")"
-    make -f Makefile.from_md "$target"
+    case "$1" in
+        "staging")
+            make -f Makefile.from_md SET_STAGING='-set staging' "$target"
+            ;;
+        "production")
+            make -f Makefile.from_md "$target"
+            ;;
+    esac
 done
 
-find "$@" -iname '*.html' |
+find "$2" -iname '*.html' |
 while read i
 do
     target="$(sed -e 's/^site/ocaml.org/' <<< "$i")"
     mkdir -p "$(dirname "$target")"
-    make -f Makefile.from_html "$target"
+    case "$1" in
+        "staging")
+            make -f Makefile.from_html SET_STAGING='-set staging' "$target"
+            ;;
+        "production")
+            make -f Makefile.from_html "$target"
+            ;;
+    esac
 #    mpp -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -its < "$i" > "$target"
 done
 
