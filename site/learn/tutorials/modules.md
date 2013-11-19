@@ -1,6 +1,7 @@
 <!-- ((! set title Modules !)) ((! set learn !)) -->
 
 # Modules
+
 ## Basic usage
 In OCaml, every piece of code is wrapped into a module. Optionally, a
 module itself can be a submodule of another module, pretty much like
@@ -13,17 +14,17 @@ into the files.
 
 Here is the code that we have in our file `amodule.ml`:
 
-```tryocaml
+```ocaml
 let hello () = print_endline "Hello"
 ```
 And here is what we have in `bmodule.ml`:
 
-```tryocaml
+```ocaml
 Amodule.hello ()
 ```
 Usually files are compiled one by one, let's do it:
 
-```tryocaml
+```shell
 ocamlopt -c amodule.ml
 ocamlopt -c bmodule.ml
 ocamlopt -o hello amodule.cmx bmodule.cmx
@@ -42,14 +43,14 @@ OK, if you are using a given module heavily, you may want to make its
 contents directly accessible. For this, we use the `open` directive. In
 our example, `bmodule.ml` could have been written:
 
-```tryocaml
+```ocaml
 open Amodule;;
 hello ();;
 ```
 As a side note, people tend to avoid the ugly ";;", so it more common to
 write it like:
 
-```tryocaml
+```ocaml
 open Amodule
 let () =
   hello ()
@@ -62,13 +63,15 @@ conflicts, such as `printf`. In order to avoid writing `Printf.printf`
 all over the place, it often makes sense to place one `open Printf` at
 the beginning of the file.
 
-There is a short example illustrating what we just mentioned:
+There is a short example illustrating (in the toplevel) what we just
+mentioned:
 
-```tryocaml
+```ocamltop
 open Printf
 let my_data = [ "a"; "beautiful"; "day" ]
 let () = List.iter (fun s -> printf "%s\n" s) my_data
 ```
+
 ## Interfaces and signatures
 A module can provide a certain number of things (functions, types,
 submodules, ...) to the rest of the program that is using it. If nothing
@@ -84,13 +87,13 @@ file, the corresponding module interface or signature derives from a
 .mli file. It contains a list of values with their type, and more. Let's
 rewrite our `amodule.ml` file:
 
-```tryocaml
+```ocamltop
 let message = "Hello"
 let hello () = print_endline message
 ```
 As it is, `Amodule` has the following interface:
 
-```tryocaml
+```ocaml
 val message : string
 val hello : unit -> unit
 ```
@@ -98,9 +101,9 @@ Let's assume that accessing the `message` value directly is none of the
 others modules' business. We want to hide it by defining a restricted
 interface. This is our `amodule.mli` file:
 
-```tryocaml
+```ocaml
 val hello : unit -> unit
-(** displays a greeting message *)
+(** Displays a greeting message. *)
 ```
 (note that it is a good habit to document .mli files, using the format
 supported by
@@ -110,7 +113,7 @@ supported by
 compiled using `ocamlc`, even if .ml files are compiled to native code
 using `ocamlopt`:
 
-```tryocaml
+```shell
 ocamlc -c amodule.mli
 ocamlopt -c amodule.ml
 ...
@@ -119,13 +122,13 @@ ocamlopt -c amodule.ml
 What about type definitions? We saw that values such as functions can be
 exported by placing their name and their type in a .mli file, e.g.
 
-```tryocaml
+```ocaml
 val hello : unit -> unit
 ```
 But modules often define new types. Let's define a simple record type
 that would represent a date:
 
-```tryocaml
+```ocaml
 type date = { day : int;
               month : int;
               year : int }
@@ -140,7 +143,7 @@ file:
 
 In case 3, it would be the following code:
 
-```tryocaml
+```ocaml
 type date
 ```
 Now, users of the module can manipulate objects of type `date`, but they
@@ -149,7 +152,7 @@ that the module provides. Let's assume the module provides three
 functions, one for creating a date, one for computing the difference
 between two dates, and one that returns the date in years:
 
-```tryocaml
+```ocaml
 type date
 val create : ?days:int -> ?months:int -> ?years:int -> unit -> date
 val sub : date -> date -> date
@@ -165,7 +168,9 @@ interface, while internally changing the implementation, including data
 structures.
 
 ## Submodules
+
 ###  Submodule implementation
+
 We saw that one `example.ml` file results automatically in one module
 implementation named `Example`. Its module signature is automatically
 derived and is the broadest possible, or can be restricted by writing an
@@ -175,7 +180,7 @@ That said, a given module can also be defined explicitely from within a
 file. That makes it a submodule of the current module. Let's consider
 this `example.ml` file:
 
-```tryocaml
+```ocaml
 module Hello = struct
   let message = "Hello"
   let hello () = print_endline message
@@ -188,16 +193,17 @@ let hello_goodbye () =
 From another file, it is clear that we now have two levels of modules.
 We can write:
 
-```tryocaml
+```ocaml
 let () =
   Example.Hello.hello ();
   Example.goodbye ()
 ```
+
 ###  Submodule interface
 We can also restrict the interface of a given submodule. It is called a
 module type. Let's do it in our `example.ml` file:
 
-```tryocaml
+```ocaml
 module Hello : sig
  val hello : unit -> unit
 end = 
@@ -212,12 +218,13 @@ let hello_goodbye () =
   Hello.hello ();
   goodbye ()
 ```
+
 The definition of the `Hello` module above is the equivalent of a
 `hello.mli`/`hello.ml` pair of files. Writing all of that in one block
 of code is not elegant, so in general we prefer to define the module
 signature separately:
 
-```tryocaml
+```ocaml
 module type Hello_type = sig
  val hello : unit -> unit
 end
@@ -226,6 +233,7 @@ module Hello : Hello_type = struct
   ...
 end
 ```
+
 `Hello_type` is a named module type, and can be reused to define other
 module interfaces.
 
@@ -264,7 +272,7 @@ the programmer makes a mistake.
 
 For example, if we want to use sets of ints, we would use do this:
 
-```tryocaml
+```ocamltop
 module Int_set = Set.Make (struct
                              type t = int
                              let compare = compare
@@ -275,7 +283,7 @@ provides a `String` module with a type `t` and a function `compare`. If
 you were following carefully, by now you must have guessed how to create
 a module for the manipulation of sets of strings:
 
-```tryocaml
+```ocamltop
 module String_set = Set.Make (String)
 ```
 (the parentheses are necessary)
@@ -283,7 +291,7 @@ module String_set = Set.Make (String)
 ###  How to define a functor?
 A functor with one argument can be defined like this:
 
-```tryocaml
+```ocaml
 module F (X : X_type) = struct
  ...
 end
@@ -294,7 +302,7 @@ its signature, which is mandatory.
 The signature of the returned module itself can be constrained, using
 this syntax:
 
-```tryocaml
+```ocaml
 module F (X : X_type) : Y_type =
 struct
   ...
@@ -302,7 +310,7 @@ end
 ```
 or by specifying this in the .mli file:
 
-```tryocaml
+```ocaml
 module F (X : X_type) : Y_type
 ```
 Overall, the syntax of functors is hard to grasp. The best may be to
@@ -314,11 +322,12 @@ unless you use a defunctorizer such as ocamldefun, which requires access
 to the source code of the functor.
 
 ## Practical manipulation of modules
+
 ###  Displaying the interface of a module
 In the `ocaml` toplevel, the following trick allows to visualize the
 contents of an existing module, such as `List`:
 
-```tryocaml
+```ocamltop
 module M = List;;
 ```
 Otherwise, there is online documentation for most libraries or you can
@@ -331,7 +340,7 @@ module, but we really want it as if it were part of it. In an
 `extensions.ml` file, we can achieve this effect by using the `include`
 directive:
 
-```tryocaml
+```ocamltop
 module List = struct
   include List
   let rec optmap f = function
@@ -347,7 +356,7 @@ It creates a module `Extensions.List` that has everything the standard
 we have to do to override the default `List` module is `open Extensions`
 at the beginning of the .ml file:
 
-```tryocaml
+```ocaml
 open Extensions
 ...
 List.optmap ...
