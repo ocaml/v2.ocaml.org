@@ -50,9 +50,7 @@ $ opam switch 4.00.1
 ```
 
 
-## By platform
-
-### Debian
+## Debian
 OCaml is very easy to install under [Debian](http://www.debian.org). We
 recommend you install `ocaml-nox` to develop applications not needing
 the graphics library or `ocaml` if you need the
@@ -71,13 +69,13 @@ module. We also recommend you install
 Check the [packages available in
 Debian](http://packages.debian.org/search?keywords=ocaml&searchon=all&suite=testing&section=all).
 
-### Ubuntu
+## Ubuntu
 [Ubuntu](http://www.ubuntu.com/) being a derivative of Debian, it
 inherits its ease of install of [OCaml
 packages](http://packages.ubuntu.com/search?keywords=ocaml). The same
 recommendations as for Debian hold.
 
-### Fedora
+## Fedora
 Since [Fedora 8](http://fedoraproject.org/), Fedora has excellent
 support for OCaml in the basic distribution. There is an active group of
 maintainers who keep up to date with the latest OCaml, and there is a
@@ -117,7 +115,7 @@ yum search ocaml
  mailing list for people interested in OCaml on Fedora or Red Hat
  Enterprise Linux.
 
-### FreeBSD
+## FreeBSD
 [FreeBSD](http://www.freebsd.org/) had a great support for OCaml
 development for a long time. There are easy to use packages available
 for most popular platforms (i386, amd64, powerpc, sparc64) for both the
@@ -146,7 +144,7 @@ The same packages can be installed via the port system. There is a a
 large set of libraries available in the `devel` category of the ports
 system as well as in the specific topic-related categories.
 
-### Gentoo
+## Gentoo
 In order to get the basic tools under
 [Gentoo](http://gentoo-portage.com/dev-ml/), execute:
 
@@ -160,12 +158,12 @@ available execute
 ```bash
 emerge -S ocaml 
 ```
-### SuSE
+## SuSE
 Getting Started with OCaml on [SuSE](http://www.suse.com/) is part in
 the standard distribution. In openSuse 12.1, the package name is
 `ocaml-3.12.0-11.1.2` (outdated).
 
-### Mageia
+## Mageia
 [Mageia](http://www.mageia.org/) has some support for OCaml in the
 distribution.
 
@@ -210,7 +208,7 @@ urpmq --list | grep ocaml
  Mageia. All Mageia OCaml packages have to obey this policy, ensuring
  a minimum standard for all OCaml packages we ship.
 
-### Windows
+## Windows
 Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
 issues](/learn/portability.html) or the [Windows release
@@ -238,7 +236,7 @@ notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
 To install libraries, you may use
 [Wodi](http://wodi.forge.ocamlcore.org/) or OPAM.
 
-### Mac OS X
+## Mac OS X
 Under Mac OS X, there are, at least for the base package, a few different
 ways to go: Use OPAM; Install the binary package from Inria; Install via Fink;
 Install via MacPorts; or build it manually from
@@ -246,7 +244,7 @@ sources. For each of these approaches, you will need to have at least
 the OS X developer tools installed — any other requirements will be
 discussed below.
 
-####  Inria's binary package
+###  Inria's binary package
 This is the easiest way to set up a basic OCaml installation for OS X.
 For 10.4 (Tiger), simply [download](releases/) Intel disk image, mount
 the disk image, double-click on the ocaml.pkg file contained within, and
@@ -261,7 +259,7 @@ installations described on this page is
 application allowing for easy interaction with the OCaml toplevel
 environment.
 
-####  Fink
+###  Fink
 [Fink](http://fink.sourceforge.net/ "Fink") is the most prevalent
 package management system for OS X, and is based on Debian's package
 management system. Fink can be installed by downloading and building the
@@ -287,7 +285,7 @@ It is likely that Fink will need to download and install a number of
 other packages required to build the OCaml packages, but this will occur
 mostly automatically.
 
-#### MacPorts
+### MacPorts
 [MacPorts](http://www.macports.org/), formerly known as DarwinPorts, is
 a package management system for Mac OS X based on the BSD ports system.
 You will need to have the OS X Developer Tools installed before
@@ -305,7 +303,7 @@ be used to download and build the following packages:
 
 
 
-#### Building from sources
+### Building from sources
 Unfortunately, the packages available for both Fink and DarwinPorts
 don't yet include some of the more useful additions to the OCaml
 collection, such as Markus Mottl's PCRE-Ocaml library or Stolpmann's
@@ -334,7 +332,7 @@ etc. can be built as well. The most flexible solution for doing this is
 often using Fink to install the required dependencies, and build the
 OCaml packages from source distributions.
 
-####  Using Xcode for writing OCaml programs
+###  Using Xcode for writing OCaml programs
 There exists an Xcode plugin integrating OCaml developement in Xcode.
 This plugin is always under development and still lacks of features,
 however it gives useful features for developing applications:
@@ -361,7 +359,7 @@ Still being in beta it does not yet support the following:
 
 [Download and information](http://maxao.free.fr/xcode-ocaml-plugin/).
 
-####  Using labltk with OS X
+###  Using labltk with OS X
 There are a couple of different ways one can go if they wish to use
 labltk with OS X. One could download and build the Tcl/Tk libraries
 themselves and use those libraries. However, there are two easier ways
@@ -380,7 +378,7 @@ one needs to consider before installing OCaml and labltk:
  environment of a labltk enabled toplevel, then they *must* use the
  fink libraries.
 
-#####  Installing the fink libraries
+####  Installing the fink libraries
 Once Fink is [installed and
 configured](http://fink.sourceforge.net/doc/index.php?phpLang=en),
 install the Tcl/Tk libraries with the command
@@ -471,7 +469,7 @@ The hello application can now be run from the command line by typing
 `open hello.app`, or by double-clicking on the app's icon (again, this
 will send hello.app's output to the console).
 
-####  Tips
+###  Tips
 **Documentation.** To get quick access to the documentation of a module
 (whatever the editor you use) use
 [Quicksilver](http://quicksilver.blacktree.com/) to index the libref/
@@ -497,13 +495,13 @@ Note that if your executable doesn't run for long enough Shark won't be
 able to take any samples and won't report any statistics. More function
 names will show up in the profiles if you compile with `-g`.
 
-### Oasis-DB
+## Oasis-DB
 See [here](http://oasis.ocamlcore.org/).
 
-### ODB
+## ODB
 See [here](https://github.com/thelema/odb).
 
-### ocamlbrew
+## ocamlbrew
 See [here](https://github.com/hcarty/ocamlbrew).
 
 
