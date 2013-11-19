@@ -1,39 +1,29 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta content="IE=8" http-equiv="X-UA-Compatible" />
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-  <title>Caml Light's License</title>
-</head>
-<body>
-   <h1>Caml Light's License</h1>
-<p>
-In the following, &#8220;the Library&#8221; refers to all files marked &#8220;Copyright
-Inria&#8221; in the following directories and their sub-directories of the
-distribution:
-</p>
-<blockquote><p>
-  <tt>runtime</tt>, 
-  <tt>config</tt>, 
-  <tt>contrib</tt>, 
-  <tt>lib</tt>
-</p></blockquote>
-<p>
-and &#8220;the Compiler&#8221; refers to all files marked &#8220;Copyright Inria&#8221; in the
-other directories and their sub-directories of the distribution.
-</p>
 
-<p>
-The Compiler is distributed under the terms of the <a href="#qpl" shape="rect">Q Public License</a> version 1.0 (included below).
-</p>
+# Caml Light's License
 
-<p>
-The Library is distributed under the terms of the <a href="#lgpl" shape="rect">GNU
-Library General Public License</a> version 2 (included below). 
-</p>
+In the following, &#8220;the Library&#8221; refers to all files marked
+&#8220;Copyright Inria&#8221; in the following directories and their
+sub-directories of the distribution:
 
-<p>
+- runtime
+- config
+- contrib
+- lib
+
+and &#8220;the Compiler&#8221; refers to all files marked
+&#8220;Copyright Inria&#8221; in the other directories and their
+sub-directories of the distribution.
+
+The Compiler is distributed under the terms of the
+[Q Public License][qpl] version 1.0 (included below).
+
+The Library is distributed under the terms of the
+[GNU Library General Public License][lgpl] version 2
+(included below).
+
+[qpl]: #TheQPublicLicenseversion10
+[lgpl]: #TheGNULibraryGeneralPublicLicenseversion2
+
 As a special exception to the GNU Library General Public License, you
 may link, statically or dynamically, a "work that uses the Library"
 with a publicly distributed version of the Library to produce an
@@ -47,9 +37,9 @@ conditions defined in clause 3 of the GNU Library General Public
 License.  This exception does not however invalidate any other reasons
 why the executable file might be covered by the GNU Library General
 Public License.
-</p>
 
-<h2><a name="qpl" id="qpl"><!--0--></a>The Q Public License, version 1.0</h2>
+## The Q Public License, version 1.0
+
 <pre xml:space="preserve">
               Copyright (C) 1999 Troll Tech AS, Norway.
                   Everyone is permitted to copy and
@@ -154,8 +144,8 @@ This license is governed by the Laws of France. Disputes shall be
 settled by the Court of Versailles.
 </pre>
 
+## The GNU Library General Public License, version 2
 
-<h2><a name="lgpl" id="lgpl"><!--0--></a>The GNU Library General Public License, version 2</h2>
 <pre xml:space="preserve">
  Copyright (C) 1991 Free Software Foundation, Inc.
  59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
@@ -637,5 +627,3 @@ necessary.  Here is a sample; alter the names:
 
 That's all there is to it!
 </pre>
-</body>
-</html>
