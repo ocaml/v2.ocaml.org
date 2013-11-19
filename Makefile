@@ -8,6 +8,7 @@ production: script/ocamltohtml script/rss2html
 	$(MAKE) ocaml.org
 	bash script/gen.bash production site
 	$(MAKE) syncotherfiles
+	$(RM) ocaml.org/robots.txt
 
 staging: script/ocamltohtml script/rss2html
 	$(MAKE) ocaml.org
