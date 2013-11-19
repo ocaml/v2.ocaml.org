@@ -57,7 +57,7 @@
     </div>
     <div class="row">
         <section class="span12 condensed">
-            <h1 class="ruled">Videos</h1>
+            <h1 class="ruled"><a href="/community/media.html">Videos</a></h1>
             <div class="row">
                     <div class="span4">
                         <p class="documentation-video">
