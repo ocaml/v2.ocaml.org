@@ -1,10 +1,13 @@
-<!-- ((! set title Videos !)) ((! set documentation !)) -->
+<!-- ((! set title Media !)) ((! set community !)) -->
+
+# Videos and Media
+
+## Videos
 
 The [OCamlorg YouTube account](http://www.youtube.com/user/ocamlorg)
 gathers several videos about OCaml, including videos of [all OUD
 presentations](http://www.youtube.com/playlist?list=PLOWQ4b7rjycjjAdv6uLy9SmzkvNzSY3HY).
 
-# Videos
 [The continuation of functional programming by other
 means](http://events.inf.ed.ac.uk/Milner2012/X_Leroy-html5-mp4.html),
 Xavier Leroy.
@@ -21,14 +24,11 @@ See also the longer [Effective ML (2011, Harvard CS51), Part
 1](http://vimeo.com/21564387) and [Effective ML (2011, Harvard CS51),
 Part 2](http://vimeo.com/21564926).
 
-Caml Trading that Yaron Minsky gave at CMU. It explains how the
+[Caml Trading](http://vimeo.com/14317442) that Yaron Minsky gave at CMU. It explains how the
 robustness, efficiency, and expressiveness of OCaml is used to
 outperform the competition in the financial world.
 
 [GODI](http://video.google.com/videoplay?docid=-6322912779839034322#).
-
-<br />
-<br />
 
 [Experience Report: OCaml for an Industrial-strength Static Analysis
 Framework](http://vimeo.com/6652523) from [Malcolm
