@@ -961,7 +961,8 @@ SOLUTION
 ```
 
 ## Logic and Codes
-Let us define a small “language” for boolean expressions containing
+
+Let us define a small "language" for boolean expressions containing
 variables:
 
 ```tryocaml
@@ -971,42 +972,44 @@ variables:
     | And of bool_expr * bool_expr
     | Or of bool_expr * bool_expr
 ```
+
 A logical expression in two variables can then be written in prefix
 notation, as in the following example:
 
 ```tryocaml
   And(Or(Var "a", Var "b"), And(Var "a", Var "b"))
 ```
-Truth tables for logical expressions (2 variables).
+
+#### Truth tables for logical expressions (2 variables). (*medium*)
 
 Define a function, `table2` which returns the truth table of a given
 logical expression in two variables (specified as arguments). The return
 value must be a list of triples containing
 `(value_of_a, balue_of_b,     value_of_expr)`.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let rec eval2 a val_a b val_b = function
+>     | Var x -> if x = a then val_a
+>                else if x = b then val_b
+>                else failwith "The expression contains an invalid variable"
+>     | Not e -> not(eval2 a val_a b val_b e)
+>     | And(e1, e2) -> eval2 a val_a b val_b e1 && eval2 a val_a b val_b e2
+>     | Or(e1, e2) -> eval2 a val_a b val_b e1 || eval2 a val_a b val_b e2
+>   let table2 a b expr =
+>     [(true,  true,  eval2 a true  b true  expr);
+>      (true,  false, eval2 a true  b false expr);
+>      (false, true,  eval2 a false b true  expr);
+>      (false, false, eval2 a false b false expr) ]
+> ```
 
 ```tryocaml
-  let rec eval2 a val_a b val_b = function
-    | Var x -> if x = a then val_a
-               else if x = b then val_b
-               else failwith "The expression contains an invalid variable"
-    | Not e -> not(eval2 a val_a b val_b e)
-    | And(e1, e2) -> eval2 a val_a b val_b e1 && eval2 a val_a b val_b e2
-    | Or(e1, e2) -> eval2 a val_a b val_b e1 || eval2 a val_a b val_b e2
-  let table2 a b expr =
-    [(true,  true,  eval2 a true  b true  expr);
-     (true,  false, eval2 a true  b false expr);
-     (false, true,  eval2 a false b true  expr);
-     (false, false, eval2 a false b false expr) ]
-
-  table2 "a" "b" (And(Var "a", Or(Var "a", Var "b")))
-  = [(true, true, true);
-     (true, false, true);
-     (false, true, false);
-     (false, false, false) ]
+  table2 "a" "b" (And(Var "a", Or(Var "a", Var "b")));;
 ```
-Truth tables for logical expressions.
+
+
+#### Truth tables for logical expressions. (*medium*)
 
 Generalize the previous problem in such a way that the logical
 expression may contain any number of logical variables. Define `table`
@@ -1014,42 +1017,43 @@ in a way that `table variables     expr` returns the truth table for the
 expression `expr`, which contains the logical variables enumerated in
 `variables`.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>  (* [val_vars] is an associative list containing the truth value of
+>  each variable.  For efficiency, a Map or a Hashtlb should be preferred. *)
+> 
+>   let rec eval val_vars = function
+>     | Var x -> List.assoc x val_vars
+>     | Not e -> not(eval val_vars e)
+>     | And(e1, e2) -> eval val_vars e1 && eval val_vars e2
+>     | Or(e1, e2) -> eval val_vars e1 || eval val_vars e2
+> 
+>   (* Again, this is an easy and short implementation rather than an
+>      efficient one. *)
+>   let rec table_make val_vars vars expr =
+>     match vars with
+>     | [] -> [(List.rev val_vars, eval val_vars expr)]
+>     | v :: tl ->
+>        table_make ((v, true) :: val_vars) tl expr
+>        @ table_make ((v, false) :: val_vars) tl expr
+> 
+>   let table vars expr = table_make [] vars expr
+> ```
 
 ```tryocaml
-  (* [val_vars] is an associative list containing the truth value of
-     each variable.  For efficiency, a Map or a Hashtlb should be preferred. *)
-  let rec eval val_vars = function
-    | Var x -> List.assoc x val_vars
-    | Not e -> not(eval val_vars e)
-    | And(e1, e2) -> eval val_vars e1 && eval val_vars e2
-    | Or(e1, e2) -> eval val_vars e1 || eval val_vars e2
-
-  (* Again, this is an easy and short implementation rather than an
-     efficient one. *)
-  let rec table_make val_vars vars expr =
-    match vars with
-    | [] -> [(List.rev val_vars, eval val_vars expr)]
-    | v :: tl ->
-       table_make ((v, true) :: val_vars) tl expr
-       @ table_make ((v, false) :: val_vars) tl expr
-
-  let table vars expr = table_make [] vars expr
-
-  table ["a"; "b"] (And(Var "a", Or(Var "a", Var "b")))
-  = [["a", true; "b", true], true;
-     ["a", true; "b", false], true;
-     ["a", false; "b", true], false;
-     ["a", false; "b", false], false ];;
+  table ["a"; "b"] (And(Var "a", Or(Var "a", Var "b")));;
   let a = Var "a" and b = Var "b" and c = Var "c" in
-  table ["a"; "b"; "c"] (Or(And(a, Or(b,c)), Or(And(a,b), And(a,c))))
+  table ["a"; "b"; "c"] (Or(And(a, Or(b,c)), Or(And(a,b), And(a,c))));;
 ```
-Gray code.
+
+
+#### Gray code. (*medium*)
 
 An n-bit Gray code is a sequence of n-bit strings constructed according
 to certain rules. For example,
 
-```tryocaml
+```text
 n = 1: C(1) = ['0','1'].
 n = 2: C(2) = ['00','01','11','10'].
 n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
@@ -1057,26 +1061,30 @@ n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
 Find out the construction rules and write a function with the following
 specification: `gray n` returns the `n`-bit Gray code.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+> let prepend c s =
+>   (* Prepend the char [c] to the string [s]. *)
+>   let s' = String.create (String.length s + 1) in
+>   s'.[0] <- c;
+>   String.blit s 0 s' 1 (String.length s);
+>   s'
+> 
+> let rec gray n =
+>   if n <= 1 then ["0"; "1"]
+>   else let g = gray (n - 1) in
+>        List.map (prepend '0') g @ List.map (prepend '1') g
+> ```
 
 ```tryocaml
-let prepend c s =
-  (* Prepend the char [c] to the string [s]. *)
-  let s' = String.create (String.length s + 1) in
-  s'.[0] <- c;
-  String.blit s 0 s' 1 (String.length s);
-  s'
-
-let rec gray n =
-  if n <= 1 then ["0"; "1"]
-  else let g = gray (n - 1) in
-       List.map (prepend '0') g @ List.map (prepend '1') g
-
-  gray 1 = ["0"; "1"];;
-  gray 2 = ["00"; "01"; "11"; "10"];;
-  gray 3 = ["000"; "001"; "011"; "010"; "110"; "111"; "101"; "100"]
+  gray 1;;
+  gray 2;;
+  gray 3;;
 ```
-Huffman code.
+
+
+#### Huffman code. (*hard*)
 
 First of all, consult a good book on discrete mathematics or algorithms
 for a detailed description of Huffman codes (you can start with the
@@ -1093,7 +1101,11 @@ be
 `huffman` defined as follows: `huffman(fs)` returns the Huffman code
 table for the frequency table `fs`
 
-Solution
+<!--SOLUTION-->
+
+```ocaml
+  (* example is pending *)
+```
 
 ## Binary Trees
  ![Binary
