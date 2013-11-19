@@ -167,8 +167,12 @@ let toploop_eval (top: toplevel) (phrase: string) : outcome =
   o
 
 
+let nl_re = Str.regexp "[\n\r]"
+
 let format_eval_input phrase =
   let open Nethtml in
+  (* Due to the prompt, one must add 2 spaces at the beginnig of each line *)
+  let phrase = Str.global_replace nl_re "\n  " phrase in
   [Element("span", ["class", "ocaml-prompt"], [Data "# "]);
    Element("span", ["class", "ocaml-input"], [Data(highlight_ocaml phrase)]);
    Element("span", ["class", "ocaml-prompt"], [Data ";;"])]
@@ -251,7 +255,6 @@ let html_of_eval t phrase =
 (* FIXME: naive, ";;" can occur inside strings and one does not want
    to split it then.  Could be more efficient *)
 let end_of_phrase = Str.regexp ";;[ \t\n]*"
-
 
 let to_html t phrases =
   (* Split phrases *)

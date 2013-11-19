@@ -35,7 +35,7 @@ script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
 script/md_preprocess: script/code_types.ml script/code.ml \
   script/md_preprocess.ml script/code_top
 	cd script && \
-	ocamlfind ocamlopt -o ../"$@" -package omd,netstring -linkpkg \
+	ocamlfind ocamlopt -o ../"$@" -package omd,str,netstring -linkpkg \
 	  -annot utils.ml code_types.ml code.ml md_preprocess.ml
 
 script/code_top: script/code_types.ml script/code_top.ml
