@@ -1108,8 +1108,7 @@ table for the frequency table `fs`
 ```
 
 ## Binary Trees
- ![Binary
-tree](https://sites.google.com/site/prologsite/_/rsrc/1264934442609/prolog-problems/4/p67.gif "")
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/binary-tree.gif" title="Binary Tree"></img>
 
 *A binary tree is either empty or it is composed of a root element and
 two successors, which are binary trees themselves.*
@@ -1122,6 +1121,7 @@ arbitrary value of type `'a` at each node.
     | Empty
     | Node of 'a * 'a binary_tree * 'a binary_tree
 ```
+
 An example of tree carrying `char` data is:
 
 ```tryocaml
@@ -1129,11 +1129,12 @@ An example of tree carrying `char` data is:
     Node('a', Node('b', Node('d', Empty, Empty), Node('e', Empty, Empty)),
          Node('c', Empty, Node('f', Node('g', Empty, Empty), Empty)))
 ```
+
 In OCaml, the strict type discipline *guarantees* that, if you get a
 value of type `binary_tree`, then it must have been created with the two
 constructors `Empty` and `Node`.
 
-Construct completely balanced binary trees
+#### Construct completely balanced binary trees. (*medium*)
 
 In a completely balanced binary tree, the following property holds for
 every node: The number of nodes in its left subtree and the number of
@@ -1145,37 +1146,33 @@ trees for a given number of nodes. The function should generate all
 solutions via backtracking. Put the letter `'x'` as information into all
 nodes of the tree.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   (* Build all trees with given [left] and [right] subtrees. *)
+>   let add_trees_with left right all =
+>     let add_right_tree all l =
+>       List.fold_left (fun a r -> Node('x', l, r) :: a) all right in
+>     List.fold_left add_right_tree all left
+>   
+>   let rec cbal_tree n =
+>     if n = 0 then [Empty]
+>     else if n mod 2 = 1 then
+>       let t = cbal_tree (n / 2) in
+>       add_trees_with t t []
+>     else (* n even: n-1 nodes for the left & right subtrees altogether. *)
+>       let t1 = cbal_tree (n / 2 - 1) in
+>       let t2 = cbal_tree (n / 2) in
+>       add_trees_with t1 t2 (add_trees_with t2 t1 [])
+> ```
 
 ```tryocaml
-  (* Build all trees with given [left] and [right] subtrees. *)
-  let add_trees_with left right all =
-    let add_right_tree all l =
-      List.fold_left (fun a r -> Node('x', l, r) :: a) all right in
-    List.fold_left add_right_tree all left
-  
-  let rec cbal_tree n =
-    if n = 0 then [Empty]
-    else if n mod 2 = 1 then
-      let t = cbal_tree (n / 2) in
-      add_trees_with t t []
-    else (* n even: n-1 nodes for the left & right subtrees altogether. *)
-      let t1 = cbal_tree (n / 2 - 1) in
-      let t2 = cbal_tree (n / 2) in
-      add_trees_with t1 t2 (add_trees_with t2 t1 [])
-
-  cbal_tree 4
-  = [Node('x', Node('x', Empty, Empty),
-          Node('x', Node('x', Empty, Empty), Empty));
-     Node('x', Node('x', Empty, Empty),
-          Node('x', Empty, Node('x', Empty, Empty)));
-     Node('x', Node('x', Node('x', Empty, Empty), Empty),
-          Node('x', Empty, Empty));
-     Node('x', Node('x', Empty, Node('x', Empty, Empty)),
-          Node('x', Empty, Empty)); ];;
-  List.length(cbal_tree 40)
+  cbal_tree 4;;
+  List.length(cbal_tree 40);;
 ```
-Symmetric binary trees
+
+
+#### Symmetric binary trees. (*medium*)
 
 Let us call a binary tree symmetric if you can draw a vertical line
 through the root node and then the right subtree is the mirror image of
@@ -1186,76 +1183,79 @@ Hint: Write a function `is_mirror` first to check whether one tree is
 the mirror image of another. We are only interested in the structure,
 not in the contents of the nodes.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let rec is_mirror t1 t2 =
+>     match t1, t2 with
+>     | Empty, Empty -> true
+>     | Node(_, l1, r1), Node(_, l2, r2) ->
+>        is_mirror l1 r2 && is_mirror r1 l2
+>     | _ -> false
+> 
+>   let is_symmetric = function
+>     | Empty -> true
+>     | Node(_, l, r) -> is_mirror l r
+> ```
+
+
+#### Binary search trees (dictionaries). (*medium*)
+
+Construct a 
+[binary search tree](http://en.wikipedia.org/wiki/Binary_search_tree) 
+from a list of integer numbers.
+
+SOLUTION
+
+> ```tryocaml
+>   let rec insert tree x = match tree with
+>     | Empty -> Node(x, Empty, Empty)
+>     | Node(y, l, r) ->
+>        if x = y then tree
+>        else if x < y then Node(y, insert l x, r)
+>        else Node(y, l, insert r x)
+>   let construct l = List.fold_left insert Empty l;;
+> ```
 
 ```tryocaml
-  let rec is_mirror t1 t2 =
-    match t1, t2 with
-    | Empty, Empty -> true
-    | Node(_, l1, r1), Node(_, l2, r2) ->
-       is_mirror l1 r2 && is_mirror r1 l2
-    | _ -> false
-
-  let is_symmetric = function
-    | Empty -> true
-    | Node(_, l, r) -> is_mirror l r
+  construct [3;2;5;7;1];;
 ```
-Binary search trees (dictionaries)
 
-Construct a [binary search
-tree](http://en.wikipedia.org/wiki/Binary_search_tree) from a list of
-integer numbers.
-
-Solution
-
-```tryocaml
-  let rec insert tree x = match tree with
-    | Empty -> Node(x, Empty, Empty)
-    | Node(y, l, r) ->
-       if x = y then tree
-       else if x < y then Node(y, insert l x, r)
-       else Node(y, l, insert r x)
-
-  let construct l = List.fold_left insert Empty l
-
-  construct [3;2;5;7;1]
-  = Node(3, Node(2, Node(1, Empty, Empty), Empty),
-         Node(5, Empty, Node(7, Empty, Empty)))
-```
 Then use this function to test the solution of the previous problem.
 
 ```tryocaml
   is_symmetric(construct [5;3;18;1;4;12;21]);;
-  not(is_symmetric(construct [3;2;5;7;4]))
+  not(is_symmetric(construct [3;2;5;7;4]));;
 ```
-Generate-and-test paradigm
+
+
+#### Generate-and-test paradigm. (*medium*)
 
 Apply the generate-and-test paradigm to construct all symmetric,
 completely balanced binary trees with a given number of nodes.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let sym_cbal_trees n =
+>     List.filter is_symmetric (cbal_tree n)
+> ```
 
 ```tryocaml
-  let sym_cbal_trees n =
-    List.filter is_symmetric (cbal_tree n)
-
-  sym_cbal_trees 5
-  = [Node('x', Node('x', Node('x', Empty, Empty), Empty),
-               Node('x', Empty, Node('x', Empty, Empty)));
-     Node('x', Node('x', Empty, Node('x', Empty, Empty)),
-               Node('x', Node('x', Empty, Empty), Empty)) ]
+  sym_cbal_trees 5;;
 ```
+
 How many such trees are there with 57 nodes? Investigate about how many
 solutions there are for a given number of nodes? What if the number is
 even? Write an appropriate function.
 
 ```tryocaml
   List.length (sym_cbal_trees 57);;
-  List.map (fun n -> n, List.length(sym_cbal_trees n)) (range 10 20)
-  = [(10, 0); (11, 4); (12, 0); (13, 4); (14, 0); (15, 1);
-     (16, 0); (17, 8); (18, 0); (19, 16); (20, 0)]
+  List.map (fun n -> n, List.length(sym_cbal_trees n)) (range 10 20);;
 ```
-Construct height-balanced binary trees
+
+
+#### Construct height-balanced binary trees. (*medium*)
 
 In a height-balanced binary tree, the following property holds for every
 node: The height of its left subtree and the height of its right subtree
@@ -1266,27 +1266,34 @@ for a given height. The function should generate all solutions via
 backtracking. Put the letter `'x'` as information into all nodes of the
 tree.
 
-Solution
+SOLUTION
 
+> ```tryocaml
+>   let rec hbal_tree n =
+>     if n = 0 then [Empty]
+>     else if n = 1 then [Node('x', Empty, Empty)]
+>     else
+>     (* [add_trees_with left right trees] is defined in a question above. *)
+>       let t1 = hbal_tree (n - 1)
+>       and t2 = hbal_tree (n - 2) in
+>       add_trees_with t1 t1 (add_trees_with t1 t2 (add_trees_with t2 t1 []))
+> ```
+
+<!-- FIXME -->
 ```tryocaml
-  let rec hbal_tree n =
-    if n = 0 then [Empty]
-    else if n = 1 then [Node('x', Empty, Empty)]
-    else
-      (* [add_trees_with left right trees] is defined in a question above. *)
-      let t1 = hbal_tree (n - 1)
-      and t2 = hbal_tree (n - 2) in
-      add_trees_with t1 t1 (add_trees_with t1 t2 (add_trees_with t2 t1 []))
-
   let t = hbal_tree 3;;
   let x = 'x';;
   List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
                  Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)))) t;;
   List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
                  Node(x, Node(x, Empty, Empty), Empty))) t;;
-  List.length t = 15
+  List.length t;;
 ```
-Construct height-balanced binary trees with a given number of nodes
+
+
+#### Construct height-balanced binary trees with a given number of nodes. (*medium*)
+
+<!-- FIXME -->
 
 Consider a height-balanced binary tree of height `h`. What is the
 maximum number of nodes it can contain? Clearly, *maxN = 2<sup>`h`</sup>
@@ -1296,7 +1303,11 @@ difficult. Try to find a recursive statement and turn it into a function
 `minNodes` defined as follows: `minNodes h` returns the minimum number
 of nodes in a height-balanced binary tree of height `h`.
 
-Solution
+<!--SOLUTION-->
+
+```ocaml
+  (* solution pending *)
+```
 
 On the other hand, we might ask: what is the maximum height H a
 height-balanced binary tree with N nodes can have? `maxHeight n` returns
@@ -1306,83 +1317,99 @@ Now, we can attack the main problem: construct all the height-balanced
 binary trees with a given nuber of nodes. `hbal_tree_nodes n` returns a
 list of all height-balanced binary tree with `n` nodes.
 
-Find out how many height-balanced trees exist for `n =       15`.
+Find out how many height-balanced trees exist for `n = 15`.
 
 ```tryocaml
   List.length (hbal_tree_nodes 15)
 ```
-Count the leaves of a binary tree
+
+
+#### Count the leaves of a binary tree. (*easy*)
 
 A leaf is a node with no successors. Write a function `count_leaves` to
 count them.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let rec count_leaves = function
+>     | Empty -> 0
+>     | Node(_, Empty, Empty) -> 1
+>     | Node(_, l, r) -> count_leaves l + count_leaves r
+> ```
 
 ```tryocaml
-  let rec count_leaves = function
-    | Empty -> 0
-    | Node(_, Empty, Empty) -> 1
-    | Node(_, l, r) -> count_leaves l + count_leaves r
-
-  count_leaves Empty = 0;;
-  count_leaves example_tree = 3
+  count_leaves Empty;;
+  count_leaves example_tree;;
 ```
-Collect the leaves of a binary tree in a list
+
+
+#### Collect the leaves of a binary tree in a list. (*easy*)
 
 A leaf is a node with no successors. Write a function `leaves` to
 collect them in a list.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let rec leaves = function
+>     | Empty -> []
+>     | Node(c, Empty, Empty) -> [c]
+>     | Node(_, l, r) -> leaves l @ leaves r
+> ```
 
 ```tryocaml
-  let rec leaves = function
-    | Empty -> []
-    | Node(c, Empty, Empty) -> [c]
-    | Node(_, l, r) -> leaves l @ leaves r
-
-  leaves Empty = [];;
-  leaves example_tree = ['d'; 'e'; 'g']
+  leaves Empty;;
+  leaves example_tree;;
 ```
-Collect the internal nodes of a binary tree in a list
+
+
+#### Collect the internal nodes of a binary tree in a list. (*easy*)
 
 An internal node of a binary tree has either one or two non-empty
 successors. Write a function `internals` to collect them in a list.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let rec internals = function
+>     | Empty | Node(_, Empty, Empty) -> []
+>     | Node(c, l, r) -> internals l @ (c :: internals r)
+> ```
 
 ```tryocaml
-  let rec internals = function
-    | Empty | Node(_, Empty, Empty) -> []
-    | Node(c, l, r) -> internals l @ (c :: internals r)
-
-  internals (Node('a', Empty, Empty)) = [];;
-  internals example_tree = ['b'; 'a'; 'c'; 'f']
+  internals (Node('a', Empty, Empty));;
+  internals example_tree;;
 ```
-Collect the nodes at a given level in a list.
+
+
+#### Collect the nodes at a given level in a list. (*easy*)
 
 A node of a binary tree is at level N if the path from the root to the
 node has length N-1. The root node is at level 1. Write a function
 `at_level t l` to collect all nodes of the tree `t` at level `l` in a
 list.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+>   let rec at_level t l = match t with
+>     | Empty -> []
+>     | Node(c, left, right) ->
+>        if l = 1 then [c]
+>        else at_level left (l - 1) @ at_level right (l - 1)
+> ```
 
 ```tryocaml
-  let rec at_level t l = match t with
-    | Empty -> []
-    | Node(c, left, right) ->
-       if l = 1 then [c]
-       else at_level left (l - 1) @ at_level right (l - 1)
-
-  at_level example_tree 2 = ['b'; 'c'];;
-  at_level example_tree 2 = ['b'; 'c'];;
-  at_level example_tree 5 = [];;
+  at_level example_tree 2;;
+  at_level example_tree 5;;
 ```
+
 Using `at_level` it is easy to construct a function `levelorder` which
 creates the level-order sequence of the nodes. However, there are more
 efficient ways to do that.
 
-Construct a complete binary tree
+#### Construct a complete binary tree. (*medium*)
 
 A *complete* binary tree with height H is defined as follows: The levels
 1,2,3,...,H-1 contain the maximum number of nodes (i.e 2<sup>i-1</sup>
@@ -1406,16 +1433,20 @@ tree structure. Write a function `is_complete_binary_tree` with the
 following specification: `is_complete_binary_tree n t` returns `true`
 iff `t` is a complete binary tree with `n` nodes.
 
-Solution
+<!-- SOLUTION -->
 
-Layout a binary tree (1)
+```ocaml
+  (* solution pending *)
+```
+
+
+#### Layout a binary tree (1). (*medium*)
 
 As a preparation for drawing the tree, a layout algorithm is required to
 determine the position of each node in a rectangular grid. Several
-layout methods are conceivable, one of them is shown in the illustration
-below.
+layout methods are conceivable, one of them is shown in the illustration.
 
-![grid](https://sites.google.com/site/prologsite/_/rsrc/1264933989828/prolog-problems/4/p64.gif "")
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/tree-layout1.gif" title="Binary Tree Grid"></img>
 
 In this layout strategy, the position of a node v is obtained by the
 following two rules:
@@ -1438,25 +1469,37 @@ representing a node (and its successors) as follows:
 `layout_binary_tree t` returns the "positioned" binary tree obtained
 from the binary tree `t`.
 
-Solution
+<!-- SOLUTION -->
 
-Layout a binary tree (2)
+```ocaml
+  (* solution pending *)
+```
 
-![](https://sites.google.com/site/prologsite/_/rsrc/1264934255598/prolog-problems/4/p65.gif "")
 
-An alternative layout method is depicted in the above illustration. Find
+#### Layout a binary tree (2). (*medium*)
+
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/tree-layout2.gif" title="Binary Tree Grid"></img>
+
+An alternative layout method is depicted in this illustration. Find
 out the rules and write the corresponding OCaml function.
 
-Hint: On a given level, the horizontal distance between neighboring
+Hint: On a given level, the horizontal distance between neighbouring
 nodes is constant.
 
-Solution
+<!-- SOLUTION -->
 
-Layout a binary tree (3)
+```ocaml
+  (* solution pending *)
+```
+
+
+#### Layout a binary tree (3). (*hard*)
+
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/tree-layout3.gif" title="Binary Tree Grid"></img>
 
 Yet another layout strategy is shown in the above illustration. The
 method yields a very compact layout while maintaining a certain symmetry
-in every node. Find out the rules and write the corresponding Prolog
+in every node. Find out the rules and write the corresponding
 predicate.
 
 Hint: Consider the horizontal distance between a node and its successor
@@ -1464,14 +1507,18 @@ nodes. How tight can you pack together two subtrees to construct the
 combined binary tree? This is a difficult problem. Don't give up too
 early!
 
-Solution
+<!-- SOLUTION -->
+
+```ocaml
+  (* solution pending *)
+```
 
 Which layout do you like most?
 
-A string representation of binary trees
 
-![binary
-tree](https://sites.google.com/site/prologsite/_/rsrc/1264934442609/prolog-problems/4/p67.gif "")
+#### A string representation of binary trees. (*medium*)
+
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/binary-tree.gif" title="Binary Tree"></img>
 
 Somebody represents binary trees as strings of the following type (see
 example): `"a(b(d,e),c(,f(g,)))"`.
@@ -1489,9 +1536,14 @@ example): `"a(b(d,e),c(,f(g,)))"`.
 For simplicity, suppose the information in the nodes is a single letter
 and there are no spaces in the string.
 
-Solution
+<!-- SOLUTION -->
 
-Preorder and inorder sequences of binary trees
+```ocaml
+  (* solution pending *)
+```
+
+
+#### Preorder and inorder sequences of binary trees. (*medium*)
 
 We consider binary trees with nodes that are identified by single
 lower-case letters, as in the example of the previous problem.
@@ -1514,9 +1566,14 @@ lower-case letters, as in the example of the previous problem.
 What happens if the same character appears in more than one node. Try
 for instance `pre_in_tree "aba" "baa"`.
 
-Solution
+<!-- SOLUTION -->
 
-Dotstring representation of binary trees
+```ocaml
+  (* solution pending *)
+```
+
+
+#### Dotstring representation of binary trees. (*medium*)
 
 We consider again binary trees with nodes that are identified by single
 lower-case letters, as in the example of problem “[A string
@@ -1529,7 +1586,11 @@ representation of binary trees](#tree-string)” is represented as
 diagrams) and then write a function `tree_dotstring` which does the
 conversion in both directions. Use difference lists.
 
-Solution
+<!-- SOLUTION -->
+
+```ocaml
+  (* solution pending *)
+```
 
 ## Multiway Trees
 ![multiway
