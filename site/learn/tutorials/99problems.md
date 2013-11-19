@@ -219,11 +219,11 @@ elements with duplicates are transferred as (N E) lists.
 Since OCaml lists are homogeneous, one needs to define a type to hold
 both single elements and sub-lists.
 
-> ```tryocaml
-> type 'a rle =
->   | One of 'a
->   | Many of (int * 'a);;
-> ```
+```tryocaml
+type 'a rle =
+  | One of 'a
+  | Many of (int * 'a);;
+```
 
 SOLUTION
 
