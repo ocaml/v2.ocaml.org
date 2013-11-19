@@ -4,7 +4,7 @@
 ## Commentaires
 Les commentaires OCaml sont délimités par `(*` et `*)`, comme ceci:
 
-```tryocaml
+```ocaml
 (* Ceci est une ligne de commentaire. *)
 
 (* Ceci est
@@ -23,7 +23,7 @@ l'équipe d'OCaml d'ajouter ça dans les versions à venir.
 OCaml prend en compte les commentaires imbriqués, ce qui permet
 facilement de mettre des portions de code en commentaire:
 
-```tryocaml
+```ocaml
 (* Ce code n'est pas au point...
 
 (* Test de primalité. *)
@@ -32,6 +32,7 @@ let is_prime n =
 
 *)
 ```
+
 ## Appels de fonctions
 Supposons que vous ayez écrit une fonction nommée `repeated`, qui prend
 en argument une chaîne de caractères `s` et un nombre `n` et renvoie une
@@ -40,18 +41,19 @@ nouvelle chaîne de caractères qui contient l'originale répétée `n` fois.
 Dans la plupart des languages dérivés du C, un appel de fonction
 ressemble à ça :
 
-```tryocaml
+```C
 repeated ("hello", 3)  /* c'est du code C */
 ```
-Ca veut dire « appelle la fonction `repeated` avec deux arguments, le
+
+Ca veut dire « appelle la fonction `repeated` avec deux arguments, le
 premier étant la chaîne de caractères hello et le second étant le nombre
-3 ».
+3 ».
 
 OCaml, tout comme d'autres langages fonctionnels, écrit et parenthèse
 différemment les appels de fonctions, ce qui entraîne bien des erreurs
 au début. Voici le même appel de fonction en OCaml :
 
-```tryocaml
+```ocaml
 repeated "hello" 3  (* c'est du code OCaml *)
 ```
 Notez-bien : **pas** de parenthèses, et **pas** de virgule entre les
@@ -74,25 +76,29 @@ qui demande à l'utilisateur de taper quelque chose et renvoie la chaîne
 de caractère ainsi entrée. Nous voulons passer cette chaîne de
 caractères à la fonction `repeated`. Voici les versions C et OCaml :
 
-```tryocaml
+```C
 /* code C: */
-repeated (get_string_from_user ("Veuillez entrer une chaîne de caractères."), 3)
-
+repeated (get_string_from_user
+           ("Veuillez entrer une chaîne de caractères."), 3)
+```
+```ocaml
 (* code OCaml: *)
-repeated (get_string_from_user "Veuillez entrer une chaîne de caractères.") 3
+repeated (get_string_from_user
+           "Veuillez entrer une chaîne de caractères.") 3
 ```
 Soyez attentif au parenthésage et à l'absence de virgules. En général la
 règle est la suivante : « mettez des parenthèses autour de tout l'appel
 de fonction - ne mettez pas de parenthèses autour des arguments passés à
 une fonction ». Voici quelques exemples supplémentaires :
 
-```tryocaml
+```
 f 5 (g "hello") 3    (* f a 3 arguments, g a un argument *)
 f (g 3 4)            (* f a un argument, g a 2 arguments *)
 
 # repeated ("hello", 3);;     (* OCaml va repérer l'erreur *)
 This expression has type string * int but is here used with type string
 ```
+
 ## Définir une fonction
 Vous savez tous comment on définit une fonction (ou une méthode
 statique, pour ceux qui pensent en Java) dans d'autres langages. Comment
@@ -101,17 +107,16 @@ fait-on ça en OCaml ?
 La syntaxe d'OCaml est agréablement concise. Voici une fonction qui
 prend deux nombres flottants et calcule leur moyenne :
 
-```tryocaml
+```ocaml
 let average a b =
-  (a +. b) /. 2.0;;
+  (a +. b) /. 2.0
 ```
-Tapez ceci dans le « toplevel » OCaml (sous Unix, tapez `ocaml` depuis
+Tapez ceci dans le « toplevel » OCaml (sous Unix, tapez `ocaml` depuis
 le shell) et voici ce que vous verrez :
 
 ```tryocaml
-# let average a b =
-  (a +. b) /. 2.0;;
-val average : float -> float -> float = <fun>
+let average a b =
+  (a +. b) /. 2.0
 ```
 Si vous regardez la définition de fonction d'un peu plus près, et aussi
 ce qu'OCaml vous affiche, vous devez vous posez un certain nombre de
@@ -126,9 +131,8 @@ Java serait très semblable à la version C), et normalement ça devrait
 soulever encore plus d'interrogations. Voici notre version C de
 `average`:
 
-```tryocaml
-double
-average (double a, double b)
+```C
+double average (double a, double b)
 {
   return (a + b) / 2;
 }
@@ -168,7 +172,7 @@ chapitres qui suivent.
 ## Types de base
 En OCaml les types de base sont:
 
-```tryocaml
+```
 Type OCaml     Intervalle de définition
 
 int            Entier avec signe 31 bits (environ +/- 1 milliard) avec processeurs 32 bits
@@ -179,6 +183,7 @@ char           Un caractère à 8 bits
 string         Une chaîne de caractères à 8 bits
 unit           Valeur unique notée ()
 ```
+
 Un des bits de chaque `int` est utilisé en interne par OCaml pour la
 gestion de la mémoire (garbage collection ou récupération automatique de
 mémoire). C'est pourquoi le type `int` a 31 bits au lieu de 32 (63 si
@@ -226,9 +231,7 @@ requiert deux arguments entiers, et si on lui donne un int et un float,
 il indique cette erreur :
 
 ```tryocaml
-# 1 + 2.5;;
-      ^^^
-This expression has type float but is here used with type int
+1 + 2.5;;
 ```
 Cela signifie "ceci est un float, mais ici j'attendais un int".
 
@@ -239,9 +242,7 @@ OCaml ne convertit pas les ints en floats automatiquement, donc le code
 suivant est également incorrect :
 
 ```tryocaml
-# 1 +. 2.5;;
-  ^
-This expression has type int but is here used with type float
+1 +. 2.5;;
 ```
 Dans ce cas OCaml se plaint du premier argument.
 
@@ -249,7 +250,7 @@ Comment faire alors si on veut vraiment ajouter un int à un float ?
 (Supposons qu'ils soient stockés dans des variables appelées `i` et
 `f`). En OCaml la conversion doit être explicite :
 
-```tryocaml
+```ocaml
 float_of_int i +. f;;
 ```
 `float_of_int` est une fonction qui prend un `int` et renvoie un
@@ -262,7 +263,7 @@ particulièrement courante, la fonction `float_of_int` a également un
 autre nom, plus court : l'exemple ci-dessus aurait pu simplement être
 écrit
 
-```tryocaml
+```ocaml
 float i +. f;;
 ```
 (Remarquez bien que contrairement au C, en OCaml il est parfaitement
@@ -315,7 +316,7 @@ syntax qu'il utilise. Pour une fonction `f` qui prend comme arguments
 `arg1`, `arg2`, ... `argn`, et retourne quelque chose de type `rettype`,
 le compilateur affichera :
 
-```tryocaml
+```ocaml
 f : arg1 -> arg2 -> ... -> argn -> rettype
 ```
 Cette syntaxe avec des flèches peut vous paraître étrange pour
@@ -326,26 +327,26 @@ simplement quelques exemples.
 Notre fonction `repeated` qui prend une chaîne de caractères et un
 entier et renvoie une chaîne de caractères a le type suivant :
 
-```tryocaml
+```ocaml
 repeated : string -> int -> string
 ```
 Notre fonction `average` qui prend deux flottants et renvoie un flottant
 a le type suivant :
 
-```tryocaml
+```ocaml
 average : float -> float -> float
 ```
 La fonction de conversion OCaml standard `int_of_char` a le type suivant
 :
 
-```tryocaml
+```ocaml
 int_of_char : char -> int
 ```
 Si une fonction ne renvoie rien (`void` pour les programmeurs C et
 Java), on écrit qu'elle renvoie le type `unit`. Voici par exemple
 l'équivalent OCaml de `fputc` :
 
-```tryocaml
+```ocaml
 output_char : out_channel -> char -> unit
 ```
 ###  Fonctions polymorphes
@@ -353,7 +354,7 @@ Voyons maintenant quelqu'un d'un peu plus étrange. Que pensez-vous d'une
 fonction qui prend *n'importe quoi* comme argument ? Voici une fonction
 bizarre qui prend un argument, l'ignore et renvoie toujours 3 :
 
-```tryocaml
+```ocaml
 let give_me_a_three x = 3;;
 ```
 Quel est le type de cette fonction ? En OCaml on utilise une notation
@@ -361,7 +362,7 @@ spéciale pour dire « le type que vous voulez ». C'est un caractères
 apostrophe suivi d'une lettre. Le type de la fonction ci-dessus s'écrit
 donc normalement comme ceci :
 
-```tryocaml
+```ocaml
 give_me_a_three : 'a -> int
 ```
 où `'a` est mis pour n'importe quel type. Vous pouvez par exemple
@@ -399,9 +400,8 @@ Retournons maintenant à la fonction `average` que nous avions tapé ainsi
 dans le toplevel :
 
 ```tryocaml
-# let average a b =
-  (a +. b) /. 2.0;;
-val average : float -> float -> float = <fun>
+let average a b =
+  (a +. b) /. 2.0
 ```
 Oh merveille ! OCaml a deviné tout seul que la fonction prend deux
 arguments de type `float` et renvoie un `float`.
@@ -417,7 +417,7 @@ valeur de retour de la fonction `average`. Donc `average` doit renvoyer
 un `float`. En conclusion, le type de `average` correspond à la
 signature suivante :
 
-```tryocaml
+```ocaml
 average : float -> float -> float
 ```
 L'inférence de types est bien sûr assez simple pour un programme aussi

@@ -14,7 +14,7 @@ rileverò.
 Prendiamo la funzione `average` ed aggiungiamovi una variabile locale in
 C. (Confrontatela con la prima definizione che ne avevamo sopra).
 
-```tryocaml
+```C
 double
 average (double a, double b)
 {
@@ -22,6 +22,7 @@ average (double a, double b)
   return sum / 2;
 }
 ```
+
 Faccia ora lo stesso con la nostra versione in OCaml:
 
 ```tryocaml
@@ -47,11 +48,10 @@ l'espressione `a +. b`. Non vi è modo alcuno di assegnare un valore a
 vere variabili).
 
 Ecco un altro esempio per rendere più chiaro ciò. I due frammenti di
-codice che seguono dovrebbero restituire il medesimo valore (ossia (a+b)
+codice che seguono dovrebbero restituire il medesimo valore (ossia
+(a+b) + (a+b)²):
 
-
-* (a+b)<sup>2</sup>):
-
+```tryocaml
 let f a b =
   (a +. b) +. (a +. b) ** 2.
   ;;
@@ -60,8 +60,7 @@ let f a b =
   let x = a +. b in
   x +. x ** 2.
   ;;
-
-
+```
 
 La seconda versione potrebbe essere più veloce (ma la maggior parte dei
 compilatori dovrebbe poter compiere per voi questo passaggio di
@@ -92,6 +91,7 @@ let main () =
   factory#add_item "Cut" ~key:_X ~callback: html#cut
   ;;
 ```
+
 In questo reale pezzo di codice, `html` è un accessorio di editing HTML
 (un oggetto della libreria lablgtk) che è creato una sola volta
 all'inizio del programma dalla prima istruzione `let html =`. Vi si fa
@@ -142,7 +142,6 @@ E troviamo che cosa contiene ora il riferimento:
 
 ```tryocaml
 # !my_ref;;
-- : int = 100
 ```
 Quindi l'operatore `:=` è utilizzato per fare assegnamenti a
 riferimenti, e l'operatore `!` dereferenzia per ottenere i contenuti.
@@ -243,7 +242,7 @@ concentreremo su un modulo piuttosto semplice chiamato `Graphics`.
 
 Il modulo `Graphics` è installato in 5 file (sul mio sistema):
 
-```tryocaml
+```
 /usr/lib/ocaml/3.08/graphics.a
 /usr/lib/ocaml/3.08/graphics.cma
 /usr/lib/ocaml/3.08/graphics.cmi
@@ -270,6 +269,7 @@ disegnano cose diverse - provateli). Si noti che il primo esempio chiama
 ```tryocaml
 (* Per compilare questo esempio: ocamlc graphics.cma grtest1.ml -o grtest1 *)
 
+```ocaml
 open Graphics;;
 
 open_graph " 640x480";;
@@ -286,23 +286,25 @@ Random.self_init ();;
 Graphics.open_graph " 640x480";;
 
 let rec iterate r x_init i =
-        if i == 1 then x_init
-        else
-                let x = iterate r x_init (i-1) in
-                r *. x *. (1.0 -. x);;
+  if i = 1 then x_init
+  else
+    let x = iterate r x_init (i-1) in
+    r *. x *. (1.0 -. x);;
 
 for x = 0 to 640 do
-        let r = 4.0 *. (float_of_int x) /. 640.0 in
-        for i = 0 to 39 do
-                let x_init = Random.float 1.0 in
-                let x_final = iterate r x_init 500 in
-                let y = int_of_float (x_final *. 480.) in
-                Graphics.plot x y
-        done
+  let r = 4.0 *. (float_of_int x) /. 640.0 in
+  for i = 0 to 39 do
+    let x_init = Random.float 1.0 in
+    let x_final = iterate r x_init 500 in
+    let y = int_of_float (x_final *. 480.) in
+    Graphics.plot x y
+  done
 done;;
 
 read_line ();;
 ```
+<!-- Warning: one cannot eval the previous line, it will hang the script. -->
+
 Entrambi gli esempi fanno uso di alcune caratteristiche di cui non
 abbiamo ancora parlato: i loop for in stile imperativo, gli if-then-else
 e la ricorsione. Ne parleremo più avanti. Cionondimeno dovreste guardare
@@ -321,7 +323,7 @@ Che cosa succede se volete utilizzare i simboli del modulo `Graphics`,
 ma non volete importarli tutti e non sopportate il fastidio di digitare
 `Graphics` ogni volta? Semplicemente rinominatelo usando questo trucco:
 
-```tryocaml
+```ocaml
 module Gr = Graphics;;
 
 Gr.open_graph " 640x480";;
@@ -376,7 +378,7 @@ sono:
 
 Ecco del codice funzionante con `;;` eliso ovunque possibile:
 
-```tryocaml
+```ocaml
 open Random                   (* ;; *)
 open Graphics;;
 
@@ -401,6 +403,7 @@ done;;
 
 read_line ()                  (* ;; *)
 ```
+
 Le regole n° 3 e n° 4 sono riferite al `;` singolo. Esso è del tutto
 differente da `;;`. Il punto e virgola singolo `;` è ciò che è noto come
 **punto di sequenza**, il che vuol dire che ha esattamente la stessa
@@ -458,10 +461,11 @@ let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
 
 let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
 ```
+
 Si noti in special modo la prima - uso `;` come operatore per "unire"
 due istruzioni. Tutte le funzioni in OCaml possono essere espresse come:
 
-```tryocaml
+```ocaml
 let nome [parametri] = espressione
 ```
 La definizione di OCaml di che cos'è un'espressione è soltanto un po'
@@ -518,6 +522,7 @@ let file_dialog ~title ~callback ?filename () =
   sel#ok_button#connect#clicked ~callback:do_ok;
   sel#show ()
 ```
+
 Secondo frammento: Solo una lunga lista di nomi globali al livello
 superiore. Notate che l'autore ha eliso ogni singolo `;;` grazie alla
 regola n° 2.
@@ -538,6 +543,7 @@ let hbox = GPack.hbox ~packing:vbox#add ()
 let editor = new editor ~packing:hbox#add ()
 let scrollbar = GRange.scrollbar `VERTICAL ~packing:hbox#pack ()
 ```
+
 Terzo frammento: L'autore importa tutti i simboli dal modulo
 `GdkKeysyms`. Ora abbiamo un inusuale let-binding. `let _ = espressione`
 significa "calcola il valore dell'espressione (con tutti gli effetti
@@ -553,12 +559,12 @@ Notate che in questo frammento abbiamo una lunga serie di comandi
 essenzialmente procedurali. Questo è in realtà un classico programma
 imperativo.
 
-```tryocaml
+```ocaml
 (* Terzo frammento *)
 
 open GdkKeysyms
 
-let _ =
+let () =
   window#connect#destroy ~callback:Main.quit;
   let factory = new GMenu.factory file_menu ~accel_group in
   factory#add_item "Open..." ~key:_O ~callback:editor#open_file;
@@ -578,7 +584,6 @@ let _ =
   window#add_accel_group accel_group;
   editor#text#event#connect#button_press
     ~callback:(fun ev ->
-
       let button = GdkEvent.Button.button ev in
       if button = 3 then begin
         file_menu#popup ~button ~time:(GdkEvent.Button.time ev); true

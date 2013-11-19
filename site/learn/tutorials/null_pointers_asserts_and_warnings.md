@@ -23,7 +23,7 @@ the long words and use primary colours everywhere.
 The other, correct method is to store the age in a field which has type
 "int or null". Here's a SQL table for storing ages:
 
-```tryocaml
+```SQL
 create table users
 (
   userid serial,
@@ -31,6 +31,7 @@ create table users
   age int             -- may be null
 );
 ```
+
 If the age data isn't collected, then it goes into the database as a
 special SQL `NULL` value. SQL ignores this automatically when you ask it
 to compute averages and so on.
@@ -111,7 +112,7 @@ If you want to debug your program, but, like me, you have an aversion to
 debuggers which aren't gdb, then you'll probably want to print out a
 warning some way through your function. Here's an example:
 
-```tryocaml
+```ocaml
 open Graphics
 
 let () =
@@ -127,7 +128,7 @@ let () =
 If you prefer C-style `printf`'s then try using OCaml's `Printf` module
 instead:
 
-```tryocaml
+```ocaml
 open Graphics
 open Printf
 
@@ -140,5 +141,4 @@ let () =
     fill_circle 320 240 radius
   done;
   read_line ()
-
 ```

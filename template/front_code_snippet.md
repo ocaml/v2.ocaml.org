@@ -1,4 +1,4 @@
-```tryocaml
+```ocaml
 (* Binary tree with leaves car­rying an integer. *)
 type tree = Leaf of int | Node of tree * tree
 

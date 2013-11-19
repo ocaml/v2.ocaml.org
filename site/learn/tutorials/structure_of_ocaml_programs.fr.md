@@ -262,7 +262,7 @@ Une paire d'exemples devrait éclaircir ce point. (Les deux exemples
 dessinent des choses différentes - essayez-les). Remarquez que le
 premier exemple appelle `open_graph` et le second `Graphics.open_graph`.
 
-```tryocaml
+```ocaml
 (* To compile this example: ocamlc graphics.cma grtest1.ml -o grtest1 *)
 
 open Graphics;;
@@ -316,7 +316,7 @@ Que faire si vous voulez utiliser des symboles en provenance du module
 `Graphics`, mais ne voulez pas tous les importer, et n'avez pas envie de
 taper `Graphics.` à chaque fois ? Renommez le module avec cette astuce :
 
-```tryocaml
+```ocaml
 module Gr = Graphics;;
 
 Gr.open_graph " 640x480";;
@@ -370,7 +370,7 @@ peut parfois être omis. Les endroits où cela est possible sont :
 Voici un exemple de code correct, où `;;` a été omis quand c'était
 possible :
 
-```tryocaml
+```ocaml
 open Random                   (* ;; *)
 open Graphics;;
 
@@ -378,23 +378,24 @@ self_init ();;
 open_graph " 640x480"         (* ;; *)
 
 let rec iterate r x_init i =
-        if i = 1 then x_init
-        else
-                let x = iterate r x_init (i-1) in
-                r *. x *. (1.0 -. x);;
+  if i = 1 then x_init
+  else
+    let x = iterate r x_init (i-1) in
+    r *. x *. (1.0 -. x);;
 
 for x = 0 to 639 do
-        let r = 4.0 *. (float_of_int x) /. 640.0 in
-        for i = 0 to 39 do
-                let x_init = Random.float 1.0 in
-                let x_final = iterate r x_init 500 in
-                let y = int_of_float (x_final *. 480.) in
-                Graphics.plot x y
-        done
+  let r = 4.0 *. (float_of_int x) /. 640.0 in
+  for i = 0 to 39 do
+    let x_init = Random.float 1.0 in
+    let x_final = iterate r x_init 500 in
+    let y = int_of_float (x_final *. 480.) in
+    Graphics.plot x y
+  done
 done;;
 
 read_line ()                  (* ;; *)
 ```
+
 Les règles n°3 et n°4 concernent le simple `;`. Il n'a rien à voir avec
 `;;`. Le point-virgule simple `;` est le **séparateur de séquence**,
 c'est à dire qu'il a le même rôle que le point-virgule en C, C++, Java

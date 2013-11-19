@@ -3,6 +3,7 @@
 *Table of contents*
 
 # Pointers in OCaml
+
 ## Status of pointers in OCaml
 Pointers exist in OCaml, and in fact they spread all over the place.
 They are used either implicitely (in the most cases), or explicitely (in
@@ -32,7 +33,7 @@ Let's examine the simple example of linked lists (integer lists to be
 simple). This data type is defined in C (or in Pascal) using explicit
 pointers, for instance:
 
-```tryocaml
+```C
 /* Cells and lists type in C */
 struct cell {
   int hd;
@@ -40,7 +41,8 @@ struct cell {
 };
 
 typedef struct cell cell, *list;
-
+```
+```Pascal
 {Cells and lists type in Pascal}
 type
  list = ^cell;
@@ -63,7 +65,7 @@ when allocating list values: one just writes `Cons (x, l)` to add `x` in
 front of the list `l`. In C, you need to write this function, to
 allocate a new cell and then fill its fields. For instance:
 
-```tryocaml
+```C
 /* The empty list */
 #define nil NULL
 
@@ -79,16 +81,16 @@ list cons (element x, list l)
 ```
 Similarly, in Pascal:
 
-```tryocaml
+```Pascal
 {Creating a list cell}
 function cons (x: integer; l: list): list;
- var p: list;
- begin
-  new(p);
-  p^.hd := x;
-  p^.tl := l;
-  cons := p
- end;
+  var p: list;
+  begin
+    new(p);
+    p^.hd := x;
+    p^.tl := l;
+    cons := p
+  end;
 ```
 We thus see that fields of list cells in the C program have to be
 mutable, otherwise initialization is impossible. By contrast in OCaml,
@@ -146,52 +148,53 @@ location) are easily defined. We define dereferencing as a prefix
 operator named `!^`, and assigment as the infix `^:=`.
 
 ```tryocaml
-  let ( !^ ) = function
-    | Null -> invalid_arg "Attempt to dereference the null pointer"
-    | Pointer r -> !r;;
-  
-  let ( ^:= ) p v =
-    match p with
-    | Null -> invalid_arg "Attempt to assign the null pointer"
-    | Pointer r -> r := v;;
+let ( !^ ) = function
+  | Null -> invalid_arg "Attempt to dereference the null pointer"
+  | Pointer r -> !r;;
+
+let ( ^:= ) p v =
+  match p with
+  | Null -> invalid_arg "Attempt to assign the null pointer"
+  | Pointer r -> r := v;;
 ```
 Now we define the allocation of a new pointer initialized to points to a
 given value:
 
 ```tryocaml
-  let new_pointer x = Pointer (ref x);;
+let new_pointer x = Pointer (ref x);;
 ```
 For instance, let's define and then assign a pointer to an integer:
 
 ```tryocaml
-  let p = new_pointer 0;;
-  p ^:= 1;;
-  !^p;;
+let p = new_pointer 0;;
+p ^:= 1;;
+!^p;;
 ```
 ## Integer Lists
 Now we can define lists using explicit pointers as in usual imperative
 languages:
 
 ```tryocaml
-  (* The list type ``à la Pascal'' *)
-  type ilist = cell pointer
-  and cell = {mutable hd : int; mutable tl : ilist}
+(* The list type ``à la Pascal'' *)
+type ilist = cell pointer
+and cell = {mutable hd : int; mutable tl : ilist}
 ```
 We then define allocation of a new cell, the list constructor and its
 associated destructors.
 
 ```tryocaml
-  let new_cell () = {hd = 0; tl = Null};;
+let new_cell () = {hd = 0; tl = Null};;
 
-  let cons x l =
-    let c = new_cell () in
-    c.hd <- x;
-    c.tl <- l;
-    (new_pointer c : ilist);;
+let cons x l =
+  let c = new_cell () in
+  c.hd <- x;
+  c.tl <- l;
+  (new_pointer c : ilist);;
 
-  let hd (l : ilist) = !^l.hd;;
-  let tl (l : ilist) = !^l.tl;;
+let hd (l : ilist) = !^l.hd;;
+let tl (l : ilist) = !^l.tl;;
 ```
+
 We can now write all kind of classical algorithms, based on pointers
 manipulation, with their associated loops, their unwanted sharing
 problems and their null pointer errors. For instance, list
@@ -200,25 +203,26 @@ its first list argument, hooking the second list to the end of the
 first:
 
 ```tryocaml
-  (* Physical append *)
-  let append (l1 : ilist) (l2 : ilist) =
-    let temp = ref l1 in
-    while tl !temp <> Null do
-      temp := tl !temp
-    done;
-    !^ !temp.tl <- l2;;
+(* Physical append *)
+let append (l1 : ilist) (l2 : ilist) =
+  let temp = ref l1 in
+  while tl !temp <> Null do
+    temp := tl !temp
+  done;
+  !^ !temp.tl <- l2;;
 
-  (* An example: *)
-  let l1 = cons 1 (cons 2 Null);;
+(* An example: *)
+let l1 = cons 1 (cons 2 Null);;
 
-  let l2 = cons 3 Null;;
+let l2 = cons 3 Null;;
 
-  append l1 l2;;
+append l1 l2;;
 ```
+
 The lists `l1` and `l2` are effectively catenated:
 
 ```tryocaml
-  l1;;
+l1;;
 ```
 Just a nasty side effect of physical list concatenation: `l1` now
 contains the concatenation of the two lists `l1` and `l2`, thus the list
@@ -242,23 +246,22 @@ pointers; here is a simple implementation of those polymorphic mutable
 lists:
 
 ```tryocaml
-  type 'a lists = 'a cell pointer
-  and 'a cell = {mutable hd : 'a pointer; mutable tl : 'a lists};;
+type 'a lists = 'a cell pointer
+and 'a cell = {mutable hd : 'a pointer; mutable tl : 'a lists};;
 
-  let new_cell () = {hd = Null; tl = Null};;
-  let cons x l =
-    let c = new_cell () in
-    c.hd <- new_pointer x;
-    c.tl <- l;
-    (new_pointer c : 'a lists);;
-  let hd (l : 'a lists) = !^l.hd;;
-  let tl (l : 'a lists) = !^l.tl;;
+let new_cell () = {hd = Null; tl = Null};;
+let cons x l =
+  let c = new_cell () in
+  c.hd <- new_pointer x;
+  c.tl <- l;
+  (new_pointer c : 'a lists);;
+let hd (l : 'a lists) = !^l.hd;;
+let tl (l : 'a lists) = !^l.tl;;
 
-  let append (l1 : 'a lists) (l2 : 'a lists) =
-    let temp = ref l1 in
-    while tl !temp <> Null do
-      temp := tl !temp
-    done;
-    !^ !temp.tl <- l2;;
-
+let append (l1 : 'a lists) (l2 : 'a lists) =
+  let temp = ref l1 in
+  while tl !temp <> Null do
+    temp := tl !temp
+  done;
+  !^ !temp.tl <- l2;;
 ```

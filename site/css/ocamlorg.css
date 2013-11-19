@@ -86,13 +86,19 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
 /* FIXME: OCaml code should be in <pre> with a distinct class? */
 pre { line-height: 135%; }
 code { font-family: "Droid Sans Mono", sans-serif; font-size: 100%; }
+h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .governing { color: black; font-weight: bold; }
 .keyword { color: #575bf4 }
 .keywordsign { color: #886643; }
 .constructor { color: #829f1c; }
 .superscript { font-size : 80% }
 .subscript { font-size : 80% }
-.comment { color: #747474; font-style: italic }
+.comment, .comment .governing, .comment .keyword, .comment .ocaml-function,
+.comment .string {
+  color: #747474;
+  font-style: italic;
+  font-weight: normal;
+}
 .type { color: #c746cc }
 .string { color: rgb(176, 88, 119) }
 .warning { color : Red ; font-weight : bold }
@@ -101,6 +107,17 @@ code { font-family: "Droid Sans Mono", sans-serif; font-size: 100%; }
 .code { color : #465F91 ; }
 .typetable { border-style : hidden }
 .paramstable { border-style : hidden ; padding: 5pt 5pt}
+
+.ocaml-prompt { color: #8d8d8d }
+.ocaml-function { color: #0606ee }
+.ocaml-variable { color: #b8860b }
+.ocaml-module { inherit constructor }
+
+.ocaml-output { color: #696969 }
+.ocaml-stdout { color: #0d89dd }
+.ocaml-stderr { font-style: italic }
+.ocaml-error { font-style: italic;  color: #d32121 }
+.ocaml-error-loc { border-bottom: solid 2px #d32121; }
 
 
 a.planet-toggle {
@@ -208,3 +225,24 @@ a.edit-this-page:hover {
     margin-top: -40px;
   }
 }
+
+
+button.solution {
+  margin-bottom: 0;
+}
+
+div.solution {
+  /* display: none; */
+  margin-top: 0;
+}
+
+code.c {
+  color: #000000;
+  font-style: normal;
+}
+
+blockquote {
+  border-left: 2px solid #cfcfcf;
+  padding-left: 2ex;
+}
+

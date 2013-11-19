@@ -14,5 +14,7 @@ ocaml.org/
 ocamltohtml
 rss2html
 relative_urls
+script/md_preprocess
+script/code_top
 template/front_code_snippet.html
 .DS_Store

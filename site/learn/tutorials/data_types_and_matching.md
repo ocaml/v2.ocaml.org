@@ -1,6 +1,7 @@
 <!-- ((! set title Data Types and Matching !)) ((! set learn !)) -->
 
 # Data Types and Matching
+
 ## Linked lists
 As with Perl, OCaml has support for lists built into the language. All
 elements of a list in OCaml must be the same type. To write a list, use:
@@ -21,7 +22,7 @@ An alternative way to write a list is to use the **cons** operator
 `head :: tail`. So the following ways to write a list are exactly the
 same:
 
-```tryocaml
+```ocaml
 [1; 2; 3]
 1 :: [2; 3]
 1 :: 2 :: [3]
@@ -47,7 +48,7 @@ good example of this. It doesn't matter if the list contains ints or
 strings or objects or small furry animals, the `List.length` function
 can still be called on it. The type of `List.length` is therefore:
 
-```tryocaml
+```ocaml
 List.length : 'a list -> int
 ```
 ## Structures
@@ -57,7 +58,7 @@ laboriously.
 
 Consider this simple C structure:
 
-```tryocaml
+```C
 struct pair_of_ints {
   int a, b;
 };
@@ -99,7 +100,7 @@ A "qualified union" doesn't really exist in C, although there is support
 in the gcc compiler for it. Here is the pattern which one commonly uses
 for a qualified union in C:
 
-```tryocaml
+```C
 struct foo {
   int type;
 #define TYPE_INT 1
@@ -124,7 +125,11 @@ and games. Furthermore, it's cumbersome.
 Here is the elegant and concise equivalent in OCaml:
 
 ```tryocaml
-type foo = Nothing | Int of int | Pair of int * int | String of string
+type foo =
+  | Nothing
+  | Int of int
+  | Pair of int * int
+  | String of string
 ```
 That's the type definition. First part of each `|` separated part is
 called the constructor. It can be called anything, as long as it starts
@@ -135,7 +140,7 @@ and the other constructors are used with values.
 
 To actually *create* things of this type you would write:
 
-```tryocaml
+```ocaml
 Nothing
 Int 3
 Pair (4, 5)
@@ -149,30 +154,34 @@ writing elements of the type.
 
 By extension, a simple C `enum` defined as:
 
-```tryocaml
+```C
 enum sign { positive, zero, negative };
 ```
 can be written in OCaml as:
 
-```tryocaml
+```ocaml
 type sign = Positive | Zero | Negative
 ```
+
 ###  Recursive variants (used for trees)
 Variants can be recursive, and the common use for this is to define tree
 structures. This really is where the expressive power of functional
 languages come into their own:
 
 ```tryocaml
-type binary_tree = Leaf of int | Tree of binary_tree * binary_tree
+type binary_tree =
+  | Leaf of int
+  | Tree of binary_tree * binary_tree
 ```
 Here're some binary trees. For practice, try drawing them on paper.
 
-```tryocaml
+```ocaml
 Leaf 3
 Tree (Leaf 3, Leaf 4)
 Tree (Tree (Leaf 3, Leaf 4), Leaf 5)
 Tree (Tree (Leaf 3, Leaf 4), Tree (Tree (Leaf 3, Leaf 4), Leaf 5))
 ```
+
 ###  Parameterized variants
 The binary tree in the previous section has integers at each leaf, but
 what if we wanted to describe the *shape* of a binary tree, but decide
@@ -180,7 +189,9 @@ exactly what to store at each leaf node later? We can do this by using a
 parameterized (or polymorphic) variant, like this:
 
 ```tryocaml
-type 'a binary_tree = Leaf of 'a | Tree of 'a binary_tree * 'a binary_tree
+type 'a binary_tree =
+  | Leaf of 'a
+  | Tree of 'a binary_tree * 'a binary_tree
 ```
 This is a general type. The specific type which stores integers at each
 leaf is called `int binary_tree`. Similarly the specific type which
@@ -199,14 +210,16 @@ In fact it is no coincidence that `'a list` is written "backwards" in
 the same way. Lists are simply parameterized variant types with the
 following slightly strange definition:
 
-```tryocaml
+```ocaml
   type 'a list = [] | :: of 'a * 'a list   (* not real OCaml code *)
 ```
 Actually the definition above doesn't quite compile. Here's a
 pretty-much equivalent definition:
 
 ```tryocaml
-type 'a equiv_list = Nil | Cons of 'a * 'a equiv_list;;
+type 'a equiv_list =
+  | Nil
+  | Cons of 'a * 'a equiv_list;;
 Nil;;
 Cons(1, Nil);;
 Cons(1, Cons(2, Nil));;
@@ -219,17 +232,23 @@ you may be able to see the reason for the formal definition.
 ## Lists, structures and variants - summary
 OCaml name Example type definition Example usage
 
-```tryocaml
-list            int list                               [1; 2; 3]
-tuple           int * string                           (3, "hello")
-record          type pair = { a : int; b : string }    { a = 3; b = "hello" }
-variant         type foo = Int of int                  Int 3
-                           | Pair of int * string                                                                      
-variant         type sign = Positive | Zero            Positive
-                            | Negative                 Zero
-parameterized   type 'a my_list = Empty                Cons (1, Cons (2, Empty))
-  variant                   | Cons of 'a * 'a my_list
+```text
+list           int list                       [1; 2; 3]
+tuple          int * string                   (3, "hello")
+record         type pair =                    { a = 3; b = "hello" }
+                 { a: int; b: string }
+variant        type foo =
+	             | Int of int                 Int 3
+			     | Pair of int * string
+variant        type sign =
+                 | Positive                   Positive
+			     | Zero                       Zero
+                 | Negative
+parameterized  type 'a my_list =
+variant          | Empty                      Cons (1, Cons (2, Empty))
+                 | Cons of 'a * 'a my_list
 ```
+
 ## Pattern matching (on datatypes)
 So one Really Cool Feature of functional languages is the ability to
 break apart data structures and do pattern matching on the data. This is
@@ -244,11 +263,12 @@ symbolically to get `n * x + n * y`.
 Let's define a type for these expressions:
 
 ```tryocaml
-  type expr = Plus of expr * expr          (* means a + b *)
-              | Minus of expr * expr       (* means a - b *)
-              | Times of expr * expr       (* means a * b *)
-          | Divide of expr * expr      (* means a / b *)
-              | Value of string            (* "x", "y", "n", etc. *)
+  type expr =
+    | Plus of expr * expr        (* means a + b *)
+    | Minus of expr * expr       (* means a - b *)
+    | Times of expr * expr       (* means a * b *)
+    | Divide of expr * expr      (* means a / b *)
+    | Value of string            (* "x", "y", "n", etc. *)
 ```
 The expression `n * (x + y)` would be written:
 
@@ -263,17 +283,22 @@ converts the expression to a pretty string, and one which prints it out
 I wouldn't want to repeat the whole of the function just for that).
 
 ```tryocaml
-  let rec to_string e =
-    match e with
-    | Plus (left, right)   -> "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
-    | Minus (left, right)  -> "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
-    | Times (left, right)  -> "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
-    | Divide (left, right) -> "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
-    | Value v -> v ;;
-  
-  let print_expr e =
-    print_endline (to_string e);;
+let rec to_string e =
+  match e with
+  | Plus (left, right) ->
+     "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
+  | Minus (left, right) ->
+     "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
+  | Times (left, right) ->
+	 "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
+  | Divide (left, right) ->
+	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
+  | Value v -> v ;;
+
+let print_expr e =
+  print_endline (to_string e);;
 ```
+
 (NB: The `^` operator concatenates strings.)
 
 Here's the print function in action:
@@ -283,11 +308,11 @@ print_expr (Times (Value "n", Plus (Value "x", Value "y")))
 ```
 The general form for pattern matching is:
 
-```tryocaml
-match object with
+```ocaml
+match value with
 | pattern    ->  result
 | pattern    ->  result
-    ...
+  ...
 ```
 The patterns on the left hand side can be simple, as in the `to_string`
 function above, or complex and nested. The next example is our function
@@ -295,24 +320,28 @@ to multiply out expressions of the form `n * (x + y)` or `(x + y) * n`
 and for this we will use a nested pattern:
 
 ```tryocaml
-  let rec multiply_out e =
-    match e with
-    | Times (e1, Plus (e2, e3)) ->
-        Plus (Times (multiply_out e1, multiply_out e2),
-              Times (multiply_out e1, multiply_out e3))
-    | Times (Plus (e1, e2), e3) ->
-        Plus (Times (multiply_out e1, multiply_out e3),
-              Times (multiply_out e2, multiply_out e3))
-    | Plus (left, right) -> Plus (multiply_out left, multiply_out right)
-    | Minus (left, right) -> Minus (multiply_out left, multiply_out right)
-    | Times (left, right) -> Times (multiply_out left, multiply_out right)
-    | Divide (left, right) -> Divide (multiply_out left, multiply_out right)
-    | Value v -> Value v
+let rec multiply_out e =
+  match e with
+  | Times (e1, Plus (e2, e3)) ->
+     Plus (Times (multiply_out e1, multiply_out e2),
+           Times (multiply_out e1, multiply_out e3))
+  | Times (Plus (e1, e2), e3) ->
+     Plus (Times (multiply_out e1, multiply_out e3),
+           Times (multiply_out e2, multiply_out e3))
+  | Plus (left, right) ->
+     Plus (multiply_out left, multiply_out right)
+  | Minus (left, right) ->
+     Minus (multiply_out left, multiply_out right)
+  | Times (left, right) ->
+     Times (multiply_out left, multiply_out right)
+  | Divide (left, right) ->
+     Divide (multiply_out left, multiply_out right)
+  | Value v -> Value v
 ```
 Here it is in action:
 
 ```tryocaml
-print_expr (multiply_out (Times (Value "n", Plus (Value "x", Value "y"))))
+print_expr(multiply_out(Times (Value "n", Plus (Value "x", Value "y"))))
 ```
 How does the `multiply_out` function work? The key is in the first two
 patterns. The first pattern is `Times (e1, Plus (e2, e3))` which matches
@@ -336,27 +365,29 @@ works for the top level expression. You could certainly extend it to
 cope with all levels of an expression and more complex cases:
 
 ```tryocaml
-  let factorize e =
-    match e with
-    | Plus (Times (e1, e2), Times (e3, e4)) when e1 = e3 ->
-       Times (e1, Plus (e2, e4))
-    | Plus (Times (e1, e2), Times (e3, e4)) when e2 = e4 ->
-       Times (Plus (e1, e3), e4)
-    | e -> e
+let factorize e =
+  match e with
+  | Plus (Times (e1, e2), Times (e3, e4)) when e1 = e3 ->
+     Times (e1, Plus (e2, e4))
+  | Plus (Times (e1, e2), Times (e3, e4)) when e2 = e4 ->
+     Times (Plus (e1, e3), e4)
+  | e -> e;;
 
-factorize (Plus (Times (Value "n", Value "x"), Times (Value "n", Value "y")))
+factorize (Plus (Times (Value "n", Value "x"),
+                 Times (Value "n", Value "y")))
 ```
+
 The factorize function above introduces another couple of features. You
 can add what are known as **guards** to each pattern match. A guard is
 the conditional which follows the `when`, and it means that the pattern
 match only happens if the pattern matches *and* the condition in the
 `when`-clause is satisfied.
 
-```tryocaml
-match object with
-  pattern    [ when condition ]   ->  result
-  pattern    [ when condition ]   ->  result
-    ...
+```ocaml
+match value with
+| pattern  [ when condition ] ->  result
+| pattern  [ when condition ] ->  result
+  ...
 ```
 The second feature is the `=` operator which tests for "structural
 equality" between two expressions. That means it goes recursively into
@@ -367,23 +398,26 @@ possibilities in your patterns. I changed the type definition of
 `type expr` above by adding a `Product` variant:
 
 ```tryocaml
-  type expr = Plus of expr * expr        (* means a + b *)
-              | Minus of expr * expr     (* means a - b *)
-              | Times of expr * expr     (* means a * b *)
-              | Divide of expr * expr    (* means a / b *)
-              | Product of expr list     (* means a * b * c * ... *)
-              | Value of string          (* "x", "y", "n", etc. *)
+type expr = Plus of expr * expr      (* means a + b *)
+          | Minus of expr * expr     (* means a - b *)
+          | Times of expr * expr     (* means a * b *)
+          | Divide of expr * expr    (* means a / b *)
+          | Product of expr list     (* means a * b * c * ... *)
+          | Value of string          (* "x", "y", "n", etc. *)
 ```
 I then recompiled the `to_string` function without changing it. OCaml
 reported the following warning:
 
 ```tryocaml
-  let rec to_string e =
-    match e with
-    | Plus (left, right)   -> "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
-    | Minus (left, right)  -> "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
-    | Times (left, right)  -> "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
-    | Divide (left, right) -> "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
-    | Value v -> v ;;
-
+let rec to_string e =
+  match e with
+  | Plus (left, right) ->
+     "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
+  | Minus (left, right) ->
+     "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
+  | Times (left, right) ->
+	 "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
+  | Divide (left, right) ->
+	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
+  | Value v -> v ;;
 ```

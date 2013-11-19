@@ -12,7 +12,7 @@ Some indications for the code below. The prompt at which you type is
 “`#`”. The code must end with “`;;`” (this is only an indication to the
 interactive system that the input has to be evaluated and is not really
 part of the OCaml code). The output of the system is displayed in
-`this color`.
+<code class="ocaml-output">this color</code>.
 
 ## Elementary functions
 Let us define the square function and the recursive factorial function.

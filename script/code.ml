@@ -25,76 +25,85 @@ let highlight_ocaml =
   let subst = [ (* regex, replacement *)
     (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
-     "<span class=\"ocaml-comment\">\\1</span>");
-    (";;", "<span class=\"ocamltop-prompt\">;;</span>");
-    ("\\blet +() *=", "<span class=\"kwa\">let</span> () =");
+     "<span class=\"comment\">\\1</span>");
+    (";;", "<span class=\"ocaml-prompt\">;;</span>");
+    ("\\blet +() *=", "<span class=\"governing\">let</span> () =");
+    ("\\band +\\('[_a-z]+ +\\(" ^ let_id ^ "\\)\\) *= *",
+     "<span class=\"governing\">and</span> \
+      <span class=\"type\">\\1</span> = ");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) *= *function",
-     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span> \
-      = <span class=\"kwb\">function</span>");
+     "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
+      \\2</span> = <span class=\"keyword\">function</span>");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) +\\("
      ^ args ^ "\\)= *function",
-     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span> \
-      <span class=\"ocaml-variable\">\\3</span>= \
-      <span class=\"kwb\">function</span>");
+     "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
+      \\2</span> <span class=\"ocaml-variable\">\\3</span>= \
+      <span class=\"keyword\">function</span>");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) +: *\\([^=]+\\)"
      ^ "= *function",
-     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span> \
-      : <span class=\"ocaml-ty\">\\3</span>= \
-      <span class=\"kwb\">function</span>");
+     "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
+      \\2</span> : <span class=\"type\">\\3</span>= \
+      <span class=\"keyword\">function</span>");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) +\\(" ^ args ^ "\\)=",
-     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\2</span> \
-      <span class=\"ocaml-variable\">\\3</span>=");
+     "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
+      \\2</span> <span class=\"ocaml-variable\">\\3</span>=");
     ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ let_id ^ "\\) *=",
-     "<span class=\"kwa\">\\1</span>\
+     "<span class=\"governing\">\\1</span>\
       <span class=\"ocaml-variable\">\\3</span> =");
     ("\\bexternal +\\(" ^ let_id ^ "\\) +:",
-     "<span class=\"kwa\">external</span> \
+     "<span class=\"governing\">external</span> \
       <span class=\"ocaml-function\">\\1</span>&nbsp;:");
-    ("type +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\)\\( *=\\| *$\\)",
-     "type \\1<span class=\"ocaml-mod\">\\3</span>\\4");
+    ("\\btype +\\(\\('[a-z_]+ +\\)*\\)\\(" ^ id ^ "\\)\\( *=\\| *$\\)",
+     "type <span class=\"type\">\\1\\3</span>\\4");
     ("open +\\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
-     "<span class=\"kwa\">open</span> \\1<span class=\"ocaml-mod\">\\3</span>");
+     "<span class=\"governing\">open</span> \\1\
+      <span class=\"ocaml-module\">\\3</span>");
     ("\\(" ^ uid ^ "\\)\\.",
-     "<span class=\"ocaml-mod\">\\1</span>.");
+     "<span class=\"ocaml-module\">\\1</span>.");
     ("module +\\(" ^ uid ^ "\\) *= *\
                             \\(\\(" ^ uid ^ "\\.\\)*\\)\\(" ^ uid ^ "\\)",
-     "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
-      = \\2<span class=\"ocaml-mod\">\\4</span>");
+     "<span class=\"governing\">module</span> \
+      <span class=\"ocaml-module\">\\1</span> \
+      = \\2<span class=\"ocaml-module\">\\4</span>");
     ("\\(module\\|module type\\) +\\(" ^ uid ^ "\\) *"
      ^ "\\(\\(([^)]+)\\)* *\\)=",
-     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-mod\">\\2</span> \
+     "<span class=\"governing\">\\1</span> \
+      <span class=\"ocaml-module\">\\2</span> \
       <span class=\"ocaml-variable\">\\3</span>=");
     ("module +\\(" ^ uid ^ "\\) *\\(\\(([^)]+)\\)* *\\): *\\(" ^ uid ^ "\\) *=",
-     "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
+     "<span class=\"governing\">module</span> \
+      <span class=\"ocaml-module\">\\1</span> \
       <span class=\"ocaml-variable\">\\2</span>\
-      : <span class=\"ocaml-mod\">\\4</span> =");
+      : <span class=\"ocaml-module\">\\4</span> =");
     ("module +\\(" ^ uid ^ "\\) *\\(\\(([^)]+)\\)* *\\):",
-     "<span class=\"kwa\">module</span> <span class=\"ocaml-mod\">\\1</span> \
+     "<span class=\"governing\">module</span> \
+      <span class=\"ocaml-module\">\\1</span> \
       <span class=\"ocaml-variable\">\\2</span>:");
     ("\\b\\(class\\( +virtual\\|\\)?\\) +\\(" ^ id ^
        "\\) +\\(\\(" ^ args ^ "\\)?\\)=",
-     "<span class=\"kwa\">\\1</span> <span class=\"ocaml-function\">\\3</span> \
+     "<span class=\"governing\">\\1</span> \
+      <span class=\"ocaml-function\">\\3</span> \
       <span class=\"ocaml-variable\">\\4</span>=");
     ("\\bval +\\(" ^ id ^ "\\) *=",
-     "<span class=\"kwa\">val</span> <span class=\"ocaml-variable\">\\1</span> \
-      =");
+     "<span class=\"governing\">val</span> \
+      <span class=\"ocaml-variable\">\\1</span> =");
     ("\\bval +\\(" ^ id ^ "\\) *:",
-     "<span class=\"kwa\">val</span> <span class=\"ocaml-function\">\\1</span> \
-      :");
+     "<span class=\"governing\">val</span> \
+      <span class=\"ocaml-function\">\\1</span> :");
     ("\\bmethod +\\(" ^ id ^ "\\)\\(\\( *: *[^ =]+\\)?\\) *=",
-     "<span class=\"kwa\">method</span> <span class=\"ocaml-function\">\
-      \\1</span><span class=\"ocaml-ty\">\\2</span> =");
+     "<span class=\"governing\">method</span> <span class=\"ocaml-function\">\
+      \\1</span><span class=\"type\">\\2</span> =");
     ("\\bmethod +\\(" ^ id ^ "\\) +\\(" ^ args ^ "\\) *=",
-     "<span class=\"kwa\">method</span> <span class=\"ocaml-function\">\
+     "<span class=\"governing\">method</span> <span class=\"ocaml-function\">\
       \\1</span> <span class=\"ocaml-variable\">\\2</span>=");
     ("\\b\\(type\\|in\\|begin\\|end\\|struct\\|sig\\|val\\|\
-      object\\|inherit\\|initializer\\|include\\)\\b",
-     "<span class=\"kwa\">\\1</span>");
+      object\\|inherit\\|initializer\\|include\\)\\b\\([^\"]\\)",
+     "<span class=\"governing\">\\1</span>\\2");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
       \\|for\\|to\\|do\\|downto\\|done\\|while\
       \\|raise\\|failwith\\|try\\|assert\
       \\|ref\\|mutable\\|new\\)\\b",
-     "<span class=\"kwb\">\\1</span>");
+     "<span class=\"keyword\">\\1</span>");
   ] in
   let subst = List.map (fun (re, t) -> (Str.regexp re, t)) subst in
   let beg_quot = Str.regexp "&quot;" in
@@ -107,7 +116,7 @@ let highlight_ocaml =
         let before = String.sub s 0 i1 in
         let qstring = String.sub s i1 (i2 - i1) in
         let tail = color_string (String.sub s i2 (String.length s - i2)) in
-        before ^ "<span class=\"ocaml-string\">" ^ qstring ^ "</span>" ^ tail
+        before ^ "<span class=\"string\">" ^ qstring ^ "</span>" ^ tail
       with Not_found -> s (* quoted string not well terminated, bail out *)
     with Not_found -> s (* no quote *)
   in
@@ -132,7 +141,7 @@ type toplevel_ =
 type toplevel = toplevel_ ref
 
 (* Store the information to start the toplevel — only start it if needed. *)
-let toplevel ?(pgm="./_build/src/app/code_top.byte") () : toplevel =
+let toplevel ?(pgm="./script/code_top") () : toplevel =
   ref(Sleep pgm)
 
 let get_toplevel (top: toplevel) =
@@ -161,11 +170,15 @@ let toploop_eval (top: toplevel) (phrase: string) : outcome =
   o
 
 
+let nl_re = Str.regexp "[\n\r]"
+
 let format_eval_input phrase =
   let open Nethtml in
-  [Element("span", ["class", "ocamltop-prompt"], [Data "# "]);
-   Element("span", ["class", "ocamltop-input"], [Data(highlight_ocaml phrase)]);
-   Element("span", ["class", "ocamltop-prompt"], [Data ";;"])]
+  (* Due to the prompt, one must add 2 spaces at the beginnig of each line *)
+  let phrase = Str.global_replace nl_re "\n  " phrase in
+  [Element("span", ["class", "ocaml-prompt"], [Data "# "]);
+   Element("span", ["class", "ocaml-input"], [Data(highlight_ocaml phrase)]);
+   Element("span", ["class", "ocaml-prompt"], [Data ";;"])]
 
 let html_of_eval_silent t phrase =
   begin match toploop_eval t phrase with
@@ -190,7 +203,7 @@ let highlight_error_range phrase err_msg c1 c2 =
     and p2, p3 = if c2 >= len then (String.sub phrase c1 (len - c1), "")
                  else (String.sub phrase c1 (c2 - c1),
                        String.sub phrase c2 (len - c2)) in
-    let phrase = html_encode p1 ^ "<span class=\"ocamltop-error-loc\">"
+    let phrase = html_encode p1 ^ "<span class=\"ocaml-error-loc\">"
                  ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
     let nl = 1 + String.index err_msg '\n' in
     let err_msg = String.sub err_msg nl (String.length err_msg - nl) in
@@ -228,56 +241,28 @@ let html_of_eval t phrase =
   let phrase, cls, out = match toploop_eval t phrase with
     | Normal(s, out, err) ->
        let phrase, err = highlight_error phrase err in
-       phrase, "ocamltop-output",
-       Nethtml.([Element("span", ["class", "ocamltop-stdout"],
+       phrase, "ocaml-output",
+       Nethtml.([Element("span", ["class", "ocaml-stdout"],
                          [Data(html_encode out)]);
-                 Element("span", ["class", "ocamltop-stderr"],
+                 Element("span", ["class", "ocaml-stderr"],
                          [Data(html_encode err)]);
                  Data(html_encode s)])
     | Error s ->
        let phrase, s = highlight_error phrase s in
-       phrase, "ocamltop-error", [Nethtml.Data(html_encode s)] in
+       phrase, "ocaml-error", [Nethtml.Data(html_encode s)] in
   format_eval_input phrase
   @ Nethtml.([ Element("br", [], []);
                Element("span", ["class", cls], out) ])
 
 
-(* Returns a string containing the data in [html]. *)
-let rec text_of_html html =
-  String.concat "" (List.map text_of_el html)
-and text_of_el = function
-  | Nethtml.Element(_, _, content) -> text_of_html content
-  | Nethtml.Data d -> html_decode d (* decode entities like &lt; *)
-
 (* FIXME: naive, ";;" can occur inside strings and one does not want
    to split it then.  Could be more efficient *)
 let end_of_phrase = Str.regexp ";;[ \t\n]*"
 
-let split_phrases text =
-  List.map String.trim (Str.split end_of_phrase text)
-
-
-(* If option "silent" is passed, send the code to the toplevel but
-   don't render the output in result -- just the beginning "#" and ending
-   ";;" to remain coherent with other eval_ocaml phrases.
-
-   If option "noeval" is passed, don't send the phrases to the toplevel
-   at all, only highlight. This is useful for incomplete or
-   purposedfully wrong code.
-*)
-
-let ocaml t path_from_base ctx args =
-  let process_phrases f =
-    let phrases = split_phrases (text_of_html ctx#content) in
-    List.concat (List.map f phrases) in
-  match args with
-    | ["silent"] -> process_phrases (html_of_eval_silent t)
-    | ["noeval"] ->
-       let code = html_encode (String.trim (text_of_html ctx#content)) in
-       let open Nethtml in
-       [Element("span", ["class", "listing"], [Data(highlight_ocaml code)])]
-
-    | other ->
-      if other <> [] then
-        eprintf "unkonwn \"ocaml\" args %S\n" (String.concat " " args);
-      process_phrases (html_of_eval t)
+let to_html t phrases =
+  (* Split phrases *)
+  let phrases = List.map String.trim (Str.split end_of_phrase phrases) in
+  let html = List.concat (List.map (html_of_eval t) phrases) in
+  let buf = Buffer.create 1024 in
+  Nethtml.write (new Netchannels.output_buffer buf) html;
+  Buffer.contents buf
