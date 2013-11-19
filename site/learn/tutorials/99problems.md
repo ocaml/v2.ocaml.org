@@ -219,11 +219,11 @@ elements with duplicates are transferred as (N E) lists.
 Since OCaml lists are homogeneous, one needs to define a type to hold
 both single elements and sub-lists.
 
-```tryocaml
-type 'a rle =
-  | One of 'a
-  | Many of (int * 'a);;
-```
+> ```tryocaml
+> type 'a rle =
+>   | One of 'a
+>   | Many of (int * 'a);;
+> ```
 
 SOLUTION
 
@@ -587,13 +587,13 @@ group sizes and the function will return a list of groups.
 SOLUTION
 
 > ```tryocaml
-> (* This implementation is less streamlined than the one-extraction
->    version, because more work is done on the lists after each
->    transform to prepend the actual items. The end result is cleaner
->    in terms of code, though. *)
+>   (* This implementation is less streamlined than the one-extraction
+>   version, because more work is done on the lists after each
+>   transform to prepend the actual items. The end result is cleaner
+>   in terms of code, though. *)
 > 
-> let group list sizes =
->   let initial = List.map (fun size -> size, []) sizes in
+>   let group list sizes =
+>     let initial = List.map (fun size -> size, []) sizes in
 >
 >   (* The core of the function. Prepend accepts a list of groups,
 >      each with the number of items that should be added, and
@@ -1200,6 +1200,7 @@ SOLUTION
 >   | Node(_, l, r) -> is_mirror l r
 > ```
 
+
 #### Binary search trees (dictionaries). (*medium*)
 
 Construct a 
@@ -1254,6 +1255,7 @@ even? Write an appropriate function.
 List.length (sym_cbal_trees 57);;
 List.map (fun n -> n, List.length(sym_cbal_trees n)) (range 10 20)
 ```
+
 
 #### Construct height-balanced binary trees. (*medium*)
 
@@ -1361,6 +1363,7 @@ SOLUTION
   leaves Empty;;
   leaves example_tree;;
 ```
+
 
 #### Collect the internal nodes of a binary tree in a list. (*easy*)
 
@@ -1612,6 +1615,7 @@ following OCaml expression:
 T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])])
 ```
 
+
 #### Count the nodes of a multiway tree. (*easy*)
 
 SOLUTION
@@ -1756,11 +1760,10 @@ lispy t;;
 ```
 
 ## Graphs
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/graph1.gif" title="A graph"></img>
+
 *A graph is defined as a set of nodes and a set of edges, where each
 edge is a pair of different nodes.*
-
-![A
-graph](https://sites.google.com/site/prologsite/_/rsrc/1264948248705/prolog-problems/6/graph1.gif "")
 
 There are several ways to represent graphs in OCaml.
 
@@ -1771,9 +1774,9 @@ There are several ways to represent graphs in OCaml.
 ```tryocaml
 ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b']
 ```
+
 We call this **edge-clause form**. Obviously, isolated nodes cannot
 be represented.
-
 
 
 * Another method is to represent the whole graph as one data object.
@@ -1783,6 +1786,7 @@ be represented.
 ```tryocaml
 type 'a graph_term = { nodes : 'a list;  edges : ('a * 'a) list }
 ```
+
 Then, the above example graph is represented by:
 
 ```tryocaml
@@ -1798,11 +1802,13 @@ another node y is represented as `(x,y)`, the couple `(y,x)` is not
 present. The **graph-term form is our default representation.** You
 may want to define a similar type using sets instead of lists.
 
-
-
 * A third representation method is to associate with each node the set
  of nodes that are adjacent to that node. We call this the
  **adjacency-list form**. In our example:
+
+```ocaml
+(* example pending *)
+```
 
 * The representations we introduced so far well suited for automated
  processing, but their syntax is not very user-friendly. Typing the
@@ -1816,13 +1822,13 @@ may want to define a similar type using sets instead of lists.
 ```tryocaml
 "b-c f-c g-h d f-b k-f h-g"
 ```
+
 We call this the **human-friendly form**. As the example shows, the
 list does not have to be sorted and may even contain the same edge
 multiple times. Notice the isolated node `d`.
 
 
-
-Conversions
+#### Conversions. (*easy*)
 
 Write functions to convert between the different graph representations.
 With these functions, all representations are equivalent; i.e. for the
@@ -1830,64 +1836,70 @@ following problems you can always pick freely the most convenient form.
 This problem is not particularly difficult, but it's a lot of work to
 deal with all the special cases.
 
-Solution
+<!-- SOLUTION -->
 
-Path from one node to another one
+```ocaml
+(* example pending *)
+```
+
+
+#### Path from one node to another one. (*medium*)
 
 Write a function `paths g a b` that returns all acyclic path `p` from
 node `a` to node `b ≠ a` in the graph `g`. The function should return
 the list of all paths via backtracking.
 
-Solution
+SOLUTION
+
+> ```tryocaml
+> (* The datastructures used here are far from the most efficient ones
+>    but allow for a straightforward implementation. *)
+> (* Returns all neighbors satisfying the condition. *)
+> let neighbors g a cond =
+>   let edge l (b,c) = if b = a && cond c then c :: l
+>                      else if c = a && cond b then b :: l
+>                      else l in
+>   List.fold_left edge [] g.edges
+> let rec list_path g a to_b = match to_b with
+>   | [] -> assert false (* [to_b] contains the path to [b]. *)
+>   | a' :: _ ->
+>      if a' = a then [to_b]
+>      else
+>        let n = neighbors g a' (fun c -> not(List.mem c to_b)) in
+>        List.concat(List.map (fun c -> list_path g a (c :: to_b)) n)
+> 
+> let paths g a b =
+>   assert(a <> b);
+>   list_path g a [b]
+> ```
 
 ```tryocaml
-(* The datastructures used here are far from the most efficient ones
-   but allow for a straightforward implementation. *)
-(* Returns all neighbors satisfying the condition. *)
-let neighbors g a cond =
-  let edge l (b,c) = if b = a && cond c then c :: l
-                     else if c = a && cond b then b :: l
-                     else l in
-  List.fold_left edge [] g.edges
-let rec list_path g a to_b = match to_b with
-  | [] -> assert false (* [to_b] contains the path to [b]. *)
-  | a' :: _ ->
-     if a' = a then [to_b]
-     else
-       let n = neighbors g a' (fun c -> not(List.mem c to_b)) in
-       List.concat(List.map (fun c -> list_path g a (c :: to_b)) n)
-
-let paths g a b =
-  assert(a <> b);
-  list_path g a [b]
-
-paths example_graph 'f' 'b' = [['f'; 'c'; 'b']; ['f'; 'b']]
+paths example_graph 'f' 'b'
 ```
-Cycle from a given node
+
+
+#### Cycle from a given node. (*easy*)
 
 Write a functions `cycle g a` that returns a closed path (cycle) `p`
 starting at a given node `a` in the graph `g`. The predicate should
 return the list of all cycles via backtracking.
 
-Solution
+SOLUTION
 
-```tryocaml
-let cycles g a =
-  let n = neighbors g a (fun _ -> true) in
-  let p = List.concat(List.map (fun c -> list_path g a [c]) n) in
-  List.map (fun p -> p @ [a]) p
-```
+> ```tryocaml
+> let cycles g a =
+>   let n = neighbors g a (fun _ -> true) in
+>   let p = List.concat(List.map (fun c -> list_path g a [c]) n) in
+>   List.map (fun p -> p @ [a]) p
+> ```
 
 ```tryocaml
 cycles example_graph 'f'
-= [['f'; 'b'; 'c'; 'f']; ['f'; 'c'; 'f']; ['f'; 'c'; 'b'; 'f'];
-   ['f'; 'b'; 'f']; ['f'; 'k'; 'f']]
 ```
 
-Construct all spanning trees
 
-![Spanning tree
-graph](https://sites.google.com/site/prologsite/_/rsrc/1264949059996/prolog-problems/6/p83.gif "")
+#### Construct all spanning trees. (*medium*)
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/spanning-tree-graph1.gif" title="Spanning tree graph"></img>
 
 Write a function `s_tree g` to construct (by backtracking) all [spanning
 trees](http://en.wikipedia.org/wiki/Spanning_tree) of a given graph `g`.
@@ -1895,9 +1907,13 @@ With this predicate, find out how many spanning trees there are for the
 graph depicted to the left. The data of this example graph can be found
 in the test below. When you have a correct solution for the `s_tree`
 function, use it to define two other useful functions: `is_tree graph`
-and `is_connected       Graph`. Both are five-minutes tasks!
+and `is_connected Graph`. Both are five-minutes tasks!
 
-Solution
+<!-- SOLUTION -->
+
+```ocaml
+(* solution pending *);;
+```
 
 ```tryocaml
 let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
@@ -1905,10 +1921,10 @@ let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
                    ('c', 'e'); ('d', 'e'); ('d', 'f'); ('d', 'g');
                    ('e', 'h'); ('f', 'g'); ('g', 'h')] }
 ```
-![Spanning tree
-graph](https://sites.google.com/site/prologsite/_/rsrc/1264949163407/prolog-problems/6/p84.gif "")
 
-Construct the minimal spanning tree
+
+#### Construct the minimal spanning tree. (*medium*)
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/spanning-tree-graph2.gif" title="Spanning tree graph"></img>
 
 Write a function `ms_tree graph` to construct the minimal spanning tree
 of a given labelled graph. A labelled graph will be represented as
@@ -1918,15 +1934,19 @@ follows:
 type ('a, 'b) labeled_graph = { nodes : 'a list;
                                 edges : ('a * 'a * 'b) list }
 ```
+
 (Beware that from now on `nodes` and `edges` mask the previous fields of
 the same name.)
 
-Hint: Use the [algorithm of
-Prim](http://en.wikipedia.org/wiki/Prim%27s_algorithm). A small
-modification of the solution of P83 does the trick. The data of the
+Hint: Use the [algorithm of Prim](http://en.wikipedia.org/wiki/Prim%27s_algorithm). 
+A small modification of the solution of P83 does the trick. The data of the
 example graph to the right can be found below.
 
-Solution
+<!-- SOLUTION -->
+
+```ocaml
+(* solution pending *);;
+```
 
 ```tryocaml
 let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
@@ -1935,7 +1955,9 @@ let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
 				   ('d', 'f', 4); ('d', 'g', 3); ('e', 'h', 5);
 				   ('f', 'g', 4); ('g', 'h', 1)] }
 ```
-Graph isomorphism
+
+
+#### Graph isomorphism. (*medium*)
 
 Two graphs G1(N1,E1) and G2(N2,E2) are isomorphic if there is a
 bijection f: N1 → N2 such that for any nodes X,Y of N1, X and Y are
@@ -1944,9 +1966,14 @@ adjacent if and only if f(X) and f(Y) are adjacent.
 Write a function that determines whether two graphs are isomorphic.
 Hint: Use an open-ended list to represent the function f.
 
-Solution
+<!-- SOLUTION -->
 
-Node degree and graph coloration
+```ocaml
+(* example pending *);;
+```
+
+
+#### Node degree and graph coloration. (*medium*)
 
 * Write a function `degree graph node` that determines the degree of a
  given node.
@@ -1957,32 +1984,52 @@ Node degree and graph coloration
  to paint the nodes of a graph in such a way that adjacent nodes have
  different colors.
 
-Solution
+<!-- SOLUTION -->
 
-Depth-first order graph traversal
+```ocaml
+(* example pending *);;
+```
+
+
+#### Depth-first order graph traversal. (*medium*)
 
 Write a function that generates a depth-first order graph traversal
 sequence. The starting point should be specified, and the output should
 be a list of nodes that are reachable from this starting point (in
 depth-first order).
 
-Solution
+<!-- SOLUTION -->
 
-Connected components
+```ocaml
+(* example pending *);;
+```
+
+
+#### Connected components. (*medium*)
 
 Write a predicate that splits a graph into its [connected
 components](http://en.wikipedia.org/wiki/Connected_component_%28graph_theory%29).
 
-Solution
+<!-- SOLUTION -->
 
-Bipartite graphs
+```ocaml
+(* example pending *);;
+```
+
+
+#### Bipartite graphs. (*medium*)
 
 Write a predicate that finds out whether a given graph is
 [bipartite](http://en.wikipedia.org/wiki/Bipartite_graph).
 
-Solution
+<!-- SOLUTION -->
 
-Generate K-regular simple graphs with N nodes
+```ocaml
+(* example pending *);;
+```
+
+
+#### Generate K-regular simple graphs with N nodes. (*hard*)
 
 In a [K-regular graph](http://en.wikipedia.org/wiki/K-regular_graph) all
 nodes have a degree of K; i.e. the number of edges incident in each node
@@ -1992,7 +2039,11 @@ there?
 See also the [table of
 results](https://sites.google.com/site/prologsite/prolog-problems/6/solutions-6/p6_11.txt?attredirects=0&d=1).
 
-Solution
+<!-- SOLUTION -->
+
+```ocaml
+(* example pending *);;
+```
 
 ## Miscellaneous Problems
 Eight queens problem
