@@ -14,7 +14,8 @@ let toplevel = Code.toplevel()
 let rec eval_code_blocks md =
   let open Omd in
   match md with
-  | Code_block("tryocaml", code) :: tl ->
+  | Code_block("tryocaml", code) :: tl
+  | Code_block("ocamltop", code) :: tl ->
      let html = Code.to_html toplevel code in
      Html_block("<pre><code class=\"tryocaml\">" ^ html ^ "</code></pre>")
      :: eval_code_blocks tl
