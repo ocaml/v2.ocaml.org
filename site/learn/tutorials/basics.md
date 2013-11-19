@@ -47,7 +47,7 @@ OCaml, in common with other functional languages, writes and brackets
 function calls differently, and this is the cause of many mistakes. Here
 is the same function call in OCaml:
 
-```tryocaml
+```ocaml
 repeated "hello" 3  (* this is OCaml code *)
 ```
 Note — **no** brackets, and **no** comma between the arguments.
@@ -70,7 +70,7 @@ string into `repeated`. Here are the C and OCaml versions:
 repeated (prompt_string ("Name please: "), 3)
 ```
 
-```tryocaml
+```ocaml
 (* OCaml code: *)
 repeated (prompt_string "Name please: ") 3
 ```
@@ -95,7 +95,7 @@ in our existing languages. How do we do it in OCaml?
 The OCaml syntax is pleasantly concise. Here's a function which takes
 two floating point numbers and calculates the average:
 
-```tryocaml
+```ocaml
 let average a b =
   (a +. b) /. 2.0;;
 ```
@@ -103,8 +103,8 @@ Type this into the OCaml "toplevel" (on Unix, type the command `ocaml`
 from the shell) and you'll see this:
 
 ```tryocaml
-  let average a b =
-    (a +. b) /. 2.0;;
+let average a b =
+  (a +. b) /. 2.0;;
 ```
 If you look at the function definition closely, and also at what OCaml
 prints back at you, you'll have a number of questions:
@@ -117,9 +117,8 @@ and define the same function in C (the Java definition would be fairly
 similar to C), and hopefully that should raise even more questions.
 Here's our C version of `average`:
 
-```
-double
-average (double a, double b)
+```C
+double average (double a, double b)
 {
   return (a + b) / 2;
 }
@@ -159,17 +158,18 @@ We will present more details in the following sections and chapters.
 ## Basic types
 The basic types in OCaml are:
 
-```
-OCaml type     Range
+```text
+OCaml type  Range
 
-int            31-bit signed int (roughly +/- 1 billion) on 32-bit processors,
-               or 63-bit signed int on 64-bit processors
-float          IEEE double-precision floating point, equivalent to C's double
-bool           A boolean, written either true or false
-char           An 8-bit character
-string         A string
-unit           Written as ()
+int         31-bit signed int (roughly +/- 1 billion) on 32-bit
+            processors, or 63-bit signed int on 64-bit processors
+float       IEEE double-precision floating point, equivalent to C's double
+bool        A boolean, written either true or false
+char        An 8-bit character
+string      A string
+unit        Written as ()
 ```
+
 OCaml uses one of the bits in an `int` internally in order to be able to
 automatically manage the memory use (garbage collection). This is why
 the basic `int` is 31 bits, not 32 bits (63 bits if you're using a 64
