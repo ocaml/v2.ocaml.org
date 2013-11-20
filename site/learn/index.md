@@ -55,7 +55,7 @@
                 left; margin-right: 10px; margin-bottom: 10px"
                 src="/img/real-world-ocaml.jpg" alt="Real World OCaml
                 book"></a><a href="http://ocaml-book.com"><img style="float:
-                right; margin-left: 10px; margin-bottom: 10px"
+                right; margin-left: 10px; margin-bottom: 20px"
                 src="/img/OCaml_from_beginning.png" width="170" alt="OCaml from the very beginning"></a><p>There are a number of excellent books, with two new titles published in 2013.
 		</p>
 		<footer>
