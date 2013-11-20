@@ -122,12 +122,12 @@ let html_of_post p =
     | None -> [Data p.title], []
     | Some u ->
        let url = Neturl.string_of_url u in
-       [Element("a", ["href", url; "target", "_blank";
-                      "title", "Go to the original post"],
-                [Data p.title]) ],
-       [Element("a", ["href", url; "alt", "RSS"; "target", "_blank";
-                      "class", "rss"],
-                [Element("img", ["src", "/img/rss.png"], []) ]) ] in
+       let a_args = ["href", url; "target", "_blank";
+                     "title", "Go to the original post"] in
+       [Element("a", a_args, [Data p.title]) ],
+       [Element("a", ("class", "rss") :: a_args,
+                [Element("img", ["src", "/img/rss.png"; "alt", "RSS"],
+                         []) ]) ] in
   let html_author =
     if p.email = "" then Data p.author
     else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
@@ -160,11 +160,11 @@ let html_of_post p =
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
-let headlines_of_post ?(len=400) ~img p =
+let headlines_of_post ?(len=400) ?(img_alt="") ~img p =
   let link = "/community/planet.html#" ^ digest_post p in
   let html_icon =
     [Element("a", ["href", link],
-             [Element("img", ["src", img], [])])] in
+             [Element("img", ["src", img; "alt", img_alt], [])])] in
   let html_date = match p.date with
     | None -> html_icon
     | Some d -> let d = Netdate.format ~fmt:"%B %e, %Y" d in
@@ -186,10 +186,10 @@ let posts_of_urls ?n urls =
   | None -> posts
   | Some n -> take n posts
 
-let headlines ?n ~img urls =
+let headlines ?n ?img_alt ~img urls =
   let posts = posts_of_urls ?n urls in
   [Element("ul", ["class", "news-feed"],
-           List.concat(List.map (headlines_of_post ~img) posts))]
+           List.concat(List.map (headlines_of_post ?img_alt ~img) posts))]
 
 let posts ?n urls =
   let posts = posts_of_urls ?n urls in
