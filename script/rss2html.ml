@@ -160,10 +160,12 @@ let html_of_post p =
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
-let headline_of_post ?link ?(len=400) ?(img_alt="") ~img p =
-  let link = match link with
-    | None -> "/community/planet.html#" ^ digest_post p
-    | Some l -> l in
+let headline_of_post ?(planet=false) ?(img_alt="") ~img p =
+  let link =
+    if planet then "/community/planet.html#" ^ digest_post p
+    else match p.link with
+         | Some l -> Neturl.string_of_url l
+         | None -> "" in
   let html_icon =
     [Element("a", ["href", link],
              [Element("img", ["src", img; "alt", img_alt], [])])] in
@@ -172,7 +174,9 @@ let headline_of_post ?link ?(len=400) ?(img_alt="") ~img p =
     | Some d -> let d = Netdate.format ~fmt:"%B %e, %Y" d in
                Element("p", [], [Data d]) :: html_icon in
   let html_title =
-    Element("h1", [], [Element("a", ["href", link], [Data p.title])]) in
+    Element("h1", [],
+            if link = "" then [Data p.title]
+            else [Element("a", ["href", link], [Data p.title])] )in
   [Element("li", [], [Element("article", [], html_title :: html_date)]);
    Data "\n"]
 
@@ -188,10 +192,10 @@ let posts_of_urls ?n urls =
   | None -> posts
   | Some n -> take n posts
 
-let headlines ?n ?img_alt ~img urls =
+let headlines ?n ?planet ~img urls =
   let posts = posts_of_urls ?n urls in
   [Element("ul", ["class", "news-feed"],
-           List.concat(List.map (headline_of_post ?img_alt ~img) posts))]
+           List.concat(List.map (headline_of_post ?planet ~img) posts))]
 
 let posts ?n urls =
   let posts = posts_of_urls ?n urls in
@@ -207,14 +211,7 @@ let email_threads ?n ~img urls =
   let headline_of_email p =
     let title = Str.replace_first caml_list_re "" p.title in
     let p = { p with title } in
-    let link =
-      match p.date with
-      | None -> "https://sympa.inria.fr/sympa/arc/caml-list/"
-      | Some d ->
-         Netdate.format d
-           ~fmt:"https://sympa.inria.fr/sympa/arc/caml-list/%Y-%m/thrd4.html"
-    in
-    headline_of_post ~link ~img p in
+    headline_of_post ~img p in
   [Element("ul", ["class", "news-feed"],
            List.concat(List.map headline_of_email posts))]
 
@@ -285,7 +282,8 @@ let () =
     exit 1);
   let out = new Netchannels.output_channel stdout in
   (match !action with
-   | `Headlines -> Nethtml.write out (headlines ?n:!n_posts ~img:!img !urls)
+   | `Headlines -> Nethtml.write out (headlines ~planet:true ?n:!n_posts
+                                               ~img:!img !urls)
    | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~img:!img !urls)
    | `Posts -> Nethtml.write out (toggle_script @ posts ?n:!n_posts !urls)
    | `Subscribers -> Nethtml.write out (OPML.contributors !urls)
