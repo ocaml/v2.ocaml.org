@@ -50,7 +50,7 @@
           <div class="nav-collapse collapse">
             ((! input template/navbar.mpp !))
 	    {{! ifdef filename
-	    <a href="https://github.com/ocaml/ocaml.org/tree/redesign/((! tryget filename !))"
+	    <a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))"
 	       title="Edit this page"  class="edit-this-page pull-right"
 	       ><!-- Image in CSS --><span>Edit this page</span></a>
 	    !}}
