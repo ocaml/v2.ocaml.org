@@ -40,7 +40,7 @@
             <p>OPAM has been created and is maintained by OCamlPro and OCaml Labs. Bug reports and feature requests for the tool should be reported on <a href="https://github.com/OCaml/opam/issues">OPAM's issue-tracker</a>. Packaging issues or requests for a new package can be reported on the <a href="https://github.com/OCaml/opam-repository/issues">main repository's issue-tracker</a>. General queries for both the tool and the packages can be addressed on the <a href="http://lists.ocaml.org/listinfo/platform">OCaml-platform mailing-list</a> and insights and evolution of OPAM internals can discussed on the <a href="http://lists.ocaml.org/listinfo/opam-devel">OPAM-devel mailing-list</a>.</p>
         </section>
         <section class="span6 condensed">
-            <h1 class="ruled"><a href="/learn/books.html">OCaml Books</a></h1>
+            <h1 class="ruled"><a href="/learn/books.html">Books</a> and <a href="/docs/papers.html">Papers</a></h1>
             <div class="row">
                 <div class="span2 documentation-book">
                     <a href="https://realworldocaml.org">
@@ -50,7 +50,8 @@
                 <div class="span4">
                     <p>This hands-on book shows you how to take advantage of OCaml’s functional, imperative and object-oriented programming styles with recipes for many real-world tasks.</p>
                     <p>Starting with OCaml basics, including interactive examples, you’ll move toward more advanced topics such as the module system, foreign-function interface and build system. <a href="https://realworldocaml.org">Read it free online</a></p>
-                    <p><a href="/learn/books.html">More OCaml books</a></p>
+                    <p><a href="/learn/books.html">List of Books</a> / <a href="/docs/papers.html">List of Papers</a></p>
+                    
                 </div>
             </div>
         </section>
