@@ -176,7 +176,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/incubaid.png" alt="Incubaid">
+        <img src="/img/default.png" alt="Incubaid">
     </dt>
     <dd class="span5">
         <h2><a href="http://incubaid.com">Incubaid</a>, Belgium</h2>
