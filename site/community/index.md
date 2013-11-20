@@ -60,7 +60,7 @@
             <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html">Find out more</a>.</p>
         </section>
         <section class="span4 condensed">
-           <h1 class="ruled">Upcoming Events</h1>
+           <h1 class="ruled">Events</h1>
             <ul class="news-feed">
                 <li class="announcement">
                     <article>
@@ -72,9 +72,9 @@
                     </article>
                 <li>
                     <article>
-                        <h1><a href="#">Cambridge NonDysFunctional Programmers</a></h1>
-                        <p>18 September 2013</p>
-                        <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">
+                        <h1><a href="http://www.meetup.com/NYC-OCaml/events/150011342/">The NYC OCaml Meetup</a></h1>
+                        <p>10 November 2013</p>
+                        <a href="http://www.meetup.com/NYC-OCaml/events/150011342/">
                             <img src="/img/news.png" alt="News">
                         </a>
                     </article>
@@ -82,24 +82,24 @@
                 <li>
                     <article>
                         <h1><a href="http://www.meetup.com/ocaml-paris/events/128514752/">OCaml Users in Paris</a></h1>
-                        <p>XX October 2013</p>
-                        <a href="#">
+                        <p>9 October 2013</p>
+                        <a href="http://www.meetup.com/ocaml-paris/events/128514752/">
                             <img src="/img/news.png" alt="News">
                         </a>
                     </article>
                 </li>
                 <li>
                     <article>
-                        <h1><a href="#">Consortium Meeting</a></h1>
-                        <p>XX November 2013</p>
-                        <a href="">
+                        <h1><a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">Cambridge NonDysFunctional Programmers</a></h1>
+                        <p>18 September 2013</p>
+                        <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">
                             <img src="/img/news.png" alt="News">
                         </a>
                     </article>
                 </li>
             </ul>
             <footer>
-                <p><a href="/meetings">See full calendar</a></p>
+                <p><a href="/meetings/">See full calendar</a></p>
             </footer>
         </section>
         <section class="span4 condensed">
