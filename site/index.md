@@ -43,8 +43,7 @@
                     <p>The <a href="https://opam.ocaml.org">OCaml Package
 					Manager</a>, gives you to access multiple versions of
 					<a href="https://opam.ocaml.org/pkg/">hundreds of
-					packages</a>. It's the best way to get started for
-					newcomers and a flexible base for experienced users.</p>
+					packages</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/community">
