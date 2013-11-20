@@ -61,7 +61,7 @@ followed by a space: `(1, 2)`, `let   triplet = (x, y, z)`...
 > simultaneously, not to construct a tuple. Moreover, the
 > pattern is set off nicely between `let` and `=`.
 
-```tryocaml
+```ocaml
 -   **Matching several values simultaneously**: It's okay to omit
     parentheses around n-tuples when matching several values
     simultaneously.
@@ -131,7 +131,7 @@ plus an indication of string continuation at the end of each line (a `\`
 character at the end of the line that omits white spaces on the
 beginning of next line):
 
-```tryocaml
+```ocaml
 let universal_declaration =
   "-1- Programs are born and remain free and equal under the law;\n\
    distinctions can only be based on the common good." in
@@ -212,7 +212,7 @@ set off the definition better.
 
 With a regular indentation of 1 or 2 spaces:
 
-```tryocaml
+```ocaml
 let f x = function
   | C ->
   | D ->
@@ -233,7 +233,7 @@ Other conventions are acceptable, for example:
 
 * The body is left-justified in the case of pattern-matching.
 
-```tryocaml
+```ocaml
 let f x = function
 | C ->
 | D ->
@@ -250,7 +250,7 @@ let f x = function
 
 * The body is justified just under the name of the defined function.
 
-```tryocaml
+```ocaml
 let f x =
     let tmp = ... in
     try g x with
@@ -270,14 +270,14 @@ The expression following a definition introduced by `let` is indented to
 the same level as the keyword `let`, and the keyword `in` which
 introduces it is written at the end of the line:
 
-```tryocaml
+```ocaml
 let expr1 = ... in
 expr1 + expr1
 ```
 In the case of a series of `let` definitions, the preceding rule implies
 that these definitions should be placed at the same indentation level:
 
-```tryocaml
+```ocaml
 let expr1 = ... in
 let n = ... in
 ...
@@ -291,7 +291,7 @@ let n = ... in
 Variation: some write the keyword `in` alone on one line to set apart
 the final expression of the computation:
 
-```tryocaml
+```ocaml
 let e1 = ... in
 let e2 = ... in
 let new_expr =
@@ -310,7 +310,7 @@ Mult_expression (new_expr, new_expr)
 Write conditions with multiple branches at the same level of
 indentation:
 
-```tryocaml
+```ocaml
 if cond1 ...
 if cond2 ...
 if cond3 ...
@@ -323,7 +323,7 @@ if cond3 ...
 If the sizes of the conditions and the expressions allow, write for
 example:
 
-```tryocaml
+```ocaml
 if cond1 then e1 else
 if cond2 then e2 else
 if cond3 then e3 else
@@ -332,7 +332,7 @@ e4
 If expressions in the branches of multiple conditions have to be
 enclosed (when they include statements for instance), write:
 
-```tryocaml
+```ocaml
 if cond then begin
     e1
   end else
@@ -344,7 +344,7 @@ if cond3 then ...
 Some suggest another method for multiple conditionals, starting each
 line by the keyword `else`:
 
-```tryocaml
+```ocaml
 if cond1 ...
 else if cond2 ...
 else if cond3 ...
@@ -372,7 +372,7 @@ are used:
 > 
 > style `(` at end of line:
 > 
-> ```tryocaml
+> ```ocaml
 > if cond then (
 >   e1
 > ) else (
@@ -381,7 +381,7 @@ are used:
 > ```
 > Or alternatively first `begin` at beginning of line:
 > 
-> ```tryocaml
+> ```ocaml
 > if cond then
 >   begin
 >     e1
@@ -396,7 +396,7 @@ expressions which make them up.
 > 
 > If `cond`, `e1` and `e2` are small, simply write them on one line:
 > 
-> ```tryocaml
+> ```ocaml
 > if cond then e1 else e2
 > ```
 > If the expressions making up a conditional are purely functional
@@ -417,14 +417,14 @@ expressions which make them up.
 > > 
 > > If `e1` and `cond` are small, but `e2` large:
 > > 
-> > ```tryocaml
+> > ```ocaml
 > > if cond then e1 else
 > >   e2
 > > ```
 > > 
 > > If `e1` and `cond` are large and `e2` small:
 > > 
-> > ```tryocaml
+> > ```ocaml
 > > if cond then
 > >   e1
 > > else e2
@@ -432,7 +432,7 @@ expressions which make them up.
 > > 
 > > If all the expressions are large:
 > > 
-> > ```tryocaml
+> > ```ocaml
 > > if cond then
 > >   e1
 > > else
@@ -441,7 +441,7 @@ expressions which make them up.
 > > 
 > > If there are `( )` delimiters
 > > 
-> > ```tryocaml
+> > ```ocaml
 > > if cond then (
 > >   e1
 > > ) else (
@@ -451,7 +451,7 @@ expressions which make them up.
 > > 
 > > A mixture where `e1` requires `( )` but `e2` is small
 > > 
-> > ```tryocaml
+> > ```ocaml
 > > if cond then (
 > >     e1
 > > ) else e2
@@ -490,7 +490,7 @@ Arrows of pattern matching clauses should not be aligned.
 For a `match` or a `try` align the clauses with the beginning of the
 construct:
 
-```tryocaml
+```ocaml
 match lam with
 | Abs (x, body) -> 1 + size_lambda body
 | App (lam1, lam2) -> size_lambda lam1 + size_lambda lam2
@@ -503,7 +503,7 @@ try f x with
 Put the keyword `with` at the end of the line. If the preceding
 expression extends beyond one line, put `with` on a line by itself:
 
-```tryocaml
+```ocaml
 try
   let y = f x in
   if ...
@@ -520,7 +520,7 @@ with
 If the expression on the right of the pattern matching arrow is too
 large, cut the line after the arrow.
 
-```tryocaml
+```ocaml
 match lam with
 | Abs (x, body) ->
    1 + size_lambda body
@@ -531,14 +531,14 @@ match lam with
 Some programmers generalize this rule to all clauses, as soon as one
 expressions overflows. They will then indent the last clause like this:
 
-```tryocaml
+```ocaml
 | Var v ->
    1
 ```
 Other programmers go one step further and apply this rule systematically
 to any clause of any pattern matching.
 
-```tryocaml
+```ocaml
 let rec fib = function
   | 0 ->
      1
@@ -563,7 +563,7 @@ Similarly to `match` or `try`, pattern matching of anonymous functions,
 starting by `function`, are indented with respect to the `function`
 keyword:
 
-```tryocaml
+```ocaml
 map
   (function
    | Abs (x, body) -> 1 + size_lambda 0 body
@@ -577,7 +577,7 @@ to several reasonable styles which obey the preceding rules for pattern
 matching (the one for anonymous functions being evidently excepted). See
 above for recommanded styles.
 
-```tryocaml
+```ocaml
 let rec size_lambda accu = function
   | Abs (x, body) -> size_lambda (succ accu) body
   | App (lam1, lam2) -> size_lambda (size_lambda accu lam1) lam2
@@ -593,14 +593,14 @@ let rec size_lambda accu = function
 This consists in indenting normally under the keyword `match` or
 `function` which has previously been pushed to the right. Don't write:
 
-```tryocaml
+```ocaml
 let rec f x = function
               | [] -> ...
               ...
 ```
 but choose to indent the line under the `let` keyword:
 
-```tryocaml
+```ocaml
 let rec f x = function
   | [] -> ...
   ...
@@ -614,7 +614,7 @@ let rec f x = function
 Careful alignment of the arrows of a pattern matching is considered bad
 practice, as exemplify in the following fragment:
 
-```tryocaml
+```ocaml
 let f = function
   | C1          -> 1
   | Long_name _ -> 2
@@ -651,7 +651,7 @@ construction.
 ####  Naming complex arguments:
 In place of
 
-```tryocaml
+```ocaml
 let temp =
   f x y z
     ``large
@@ -662,7 +662,7 @@ let temp =
 ```
 write
 
-```tryocaml
+```ocaml
 let t =
   ``large
   expression''
@@ -677,7 +677,7 @@ let temp =
 In the case of an iterator whose argument is a complex function, define
 the function by a `let` binding as well. In place of
 
-```tryocaml
+```ocaml
 List.map
   (function x ->
     blabla
@@ -687,7 +687,7 @@ List.map
 ```
 write
 
-```tryocaml
+```ocaml
 let f x =
   blabla
   blabla
@@ -704,7 +704,7 @@ When an operator takes complex arguments, or in the presence of multiple
 calls to the same operator, start the next the line with the operator,
 and don't indent the rest of the operation. For example:
 
-```tryocaml
+```ocaml
 x + y + z
 + t + u
 ```
@@ -717,14 +717,14 @@ In the case of a ``large expression'' in such an operation sequence,
 to define the ``large expression'' with the help of a `let in`
 construction is preferable to having to indent the line. In place of
 
-```tryocaml
+```ocaml
 x + y + z
 + ``large
   expression''
 ```
 write
 
-```tryocaml
+```ocaml
 let t =
   ``large
    expression'' in
@@ -734,14 +734,14 @@ You most certainly must bind those expressions too large to be written
 in one operation in the case of a combination of operators. In place of
 the unreadable expression
 
-```tryocaml
+```ocaml
 (x + y + z * t)
 / (``large
     expression'')
 ```
 write
 
-```tryocaml
+```ocaml
 let u =
   ``large
   expression'' in
@@ -749,7 +749,7 @@ let u =
 ```
 These guidelines extend to all operators. For example:
 
-```tryocaml
+```ocaml
 let u =
   ``large
   expression'' in
@@ -816,7 +816,7 @@ An example of what to avoid: the following comment uses technical words
 and is thus masquerade into a real comment when it has no additional
 information of interest;
 
-```tryocaml
+```ocaml
 (*
   Function print_lambda:
   print a lambda-expression given as argument.
@@ -847,7 +847,7 @@ while allowing a useful verification upon execution.
 For example, the conditions for the arguments of a function to be valid
 are usefully verified by assertions.
 
-```tryocaml
+```ocaml
 let f x =
   assert (x >= 0);
   ...
@@ -899,7 +899,7 @@ with `1` and `0`.
 
 Example:
 
-```tryocaml
+```ocaml
 let add_expression expr1 expr2 = ...
 let print_expression expr = ...
 ```
@@ -959,7 +959,7 @@ embedded construct (otherwise subsequent clauses of the enclosing
 pattern-matching construct will automatically be associated with the
 enclosed pattern-matching construct). For example:
 
-```tryocaml
+```ocaml
 match x with
 | 1 ->
   begin match y with
@@ -972,7 +972,7 @@ match x with
 In the same way, a sequence which appears in the `then` or `else` part
 of a conditional must be delimited:
 
-```tryocaml
+```ocaml
 if cond then begin
   e1;
   e2
@@ -999,7 +999,7 @@ notation. Thus you will prefer short but meaningful module names.
 > gives rise to difficult-to-detect semantic errors.
 > 
 
-```tryocaml
+```ocaml
 let lim = String.length name - 1 in
 ...
 let lim = Array.length v - 1 in
@@ -1021,7 +1021,7 @@ printing function, and this could be perfectly silent, since many
 leads to subtle bugs in the display, that are difficult to trace. For
 instance:
 
-```tryocaml
+```ocaml
 let f () =
   Format.print_string "Hello World!"; print_newline ()
 ```
@@ -1039,7 +1039,7 @@ For the same reason, open large libraries such as the one with
 arbitrary-precision integers so as not to burden the program which uses
 them.
 
-```tryocaml
+```ocaml
 open Num
 
 let rec fib n =
@@ -1131,7 +1131,7 @@ construct.
  replaced by an explicit pattern matching. For instance, instead of
  `let [x; y] as l = List.map succ     (l1 @ l2) in expression` write:
 
-```tryocaml
+```ocaml
 match List.map succ (l1 @ l2) with
 | [x; y] as l -> expression
 | _ -> assert false
@@ -1141,7 +1141,7 @@ match List.map succ (l1 @ l2) with
 * Global definition with de-structuring lets should be rewritten with
  explicit pattern matching and tuples:
 
-```tryocaml
+```ocaml
 let x, y, l =
   match List.map succ (l1 @ l2) with
   | [x; y] as l -> x, y, l
@@ -1161,13 +1161,13 @@ result of this expression. To this end:
 
 * use a vacuous binding and suppress the sequence warning of
 
-```tryocaml
+```ocaml
 List.map f l;
 print_newline ()
 ```
 write
 
-```tryocaml
+```ocaml
 let _ = List.map f l in
 print_newline ()
 ```
@@ -1176,7 +1176,7 @@ print_newline ()
 * you can also use the predefined function `ignore : 'a     -> unit`
  that ignores its argument to return `unit`.
 
-```tryocaml
+```ocaml
 ignore (List.map f l);
 print_newline ()
 ```
@@ -1196,7 +1196,7 @@ print_newline ()
  the programmer should have called `iter` instead of `map`, and
  simply write
 
-```tryocaml
+```ocaml
 List.iter f l;
 print_newline ()
 ```
@@ -1207,7 +1207,7 @@ elegantly solves the problem, and the resulting program just looks
 better afterwards! For instance, you would turn the problematic
 definition:
 
-```tryocaml
+```ocaml
 let add x y =
   if x > 1 then print_int x;
   print_newline ();
@@ -1225,7 +1225,7 @@ sequences with this construction.
 > 
 > **Justification**: Sequences are much clearer! Compare `e1; e2; e3` to
 > 
-> ```tryocaml
+> ```ocaml
 > let _ = e1 in
 > let _ = e2 in
 > e3
@@ -1246,14 +1246,14 @@ argument explicitly.
 ####  `for` loops
 To simply traverse an array or a string, use a `for` loop.
 
-```tryocaml
+```ocaml
 for i = 0 to Array.length v - 1 do
   ...
 done
 ```
 If the loop is complex or returns a result, use a recursive function.
 
-```tryocaml
+```ocaml
 let find_index e v =
   let rec loop i =
     if i >= Array.length v then raise Not_found else
@@ -1306,7 +1306,7 @@ exceptions to maintain an invariant of an algorithm, be careful to name
 the exception and re-raise it, after having reset the invariant.
 Typically:
 
-```tryocaml
+```ocaml
 let ic = open_in ...
 and oc = open_out ... in
 try
@@ -1329,7 +1329,7 @@ define your own data structures. In particular, don't systematically
 represent enumerations by whole numbers, nor enumerations with two cases
 by booleans. Examples:
 
-```tryocaml
+```ocaml
 type figure =
    | Triangle | Square | Circle | Parallelogram
 type convexity =
@@ -1367,7 +1367,7 @@ type type_of_definition =
 > `| Let of bool * string * expression` a typical pattern matching would
 > look like:
 > 
-> ```tryocaml
+> ```ocaml
 > | Let (_, v, e) as def ->
 >    if recursivep def then code_for_recursive_case
 >    else code_for_non_recursive_case
@@ -1375,7 +1375,7 @@ type type_of_definition =
 > 
 > or, if `recursivep` can be applied to booleans:
 > 
-> ```tryocaml
+> ```ocaml
 > | Let (b, v, e) ->
 >    if recursivep def then code_for_recursive_case
 >    else code_for_non_recursive_case
@@ -1383,7 +1383,7 @@ type type_of_definition =
 > 
 > contrast with an explicit encoding:
 > 
-> ```tryocaml
+> ```ocaml
 > | Let (Recursive, v, e) -> code_for_recursive_case
 > | Let (Non_recursive, v, e) -> code_for_non_recursive_case
 > ```
@@ -1399,7 +1399,7 @@ for boolean flags, when the interpretation of constructors `true` and
 `false` is clear. The usefulness of the definition of the following
 types is then questionable:
 
-```tryocaml
+```ocaml
 type switch = On | Off
 type bit = One | Zero
 ```
@@ -1422,25 +1422,25 @@ reinvent them.
 
 So write
 
-```tryocaml
+```ocaml
 let square_elements elements = List.map carre elements
 ```
 rather than:
 
-```tryocaml
+```ocaml
 let rec square_elements = function
   | [] -> []
   | elem :: elements -> square elem :: square_elements elements
 ```
 On the other hand avoid writing:
 
-```tryocaml
+```ocaml
 let iterator f x l =
   List.fold_right (List.fold_left f) [List.map x l] l
 ```
 even though you get:
 
-```tryocaml
+```ocaml
   let iterator f x l =
     List.fold_right (List.fold_left f) [List.map x l] l;;
   iterator (fun l x -> x :: l) (fun l -> List.rev l) [[1; 2; 3]]
@@ -1508,7 +1508,7 @@ next future, but (fortunately) it is too new to be discussed here.
  is *naturally* recursive. For instance, to compute the length of
  a list, you should not write:
 
-```tryocaml
+```ocaml
 let list_length l =
   let l = ref l in
   let res = ref 0 in
@@ -1520,7 +1520,7 @@ let list_length l =
 in place of the following recursive function, so simple and
 clear:
 
-```tryocaml
+```ocaml
 let rec list_length = function
   | [] -> 0
   | _ :: l -> 1 + list_length l
@@ -1528,7 +1528,7 @@ let rec list_length = function
 (For those that would contest the equivalence of those two
 versions, see the [note below](#equivalenceprogrammes)).
 
-```tryocaml
+```ocaml
 -   Another common “over imperative error” in the imperative world
     is not to systematically choose the simple `for` loop to iter on
     the element of a vector, but instead to use a complex `while`
@@ -1563,13 +1563,13 @@ Here are a number of known ways:
 
 * Use useless (hence nocive for readability) `if then else`, as in
 
-```tryocaml
+```ocaml
 let flush_ps () =
   if not !psused then psused := true
 ```
 or (more subtle)
 
-```tryocaml
+```ocaml
 let sync b =
   if !last_is_dvi <> b then last_is_dvi := b
 ```
@@ -1579,13 +1579,13 @@ let sync b =
  the application of an anonymous function to an argument. You would
  write<br />
 
-```tryocaml
+```ocaml
 (fun x y -> x + y)
    e1 e2
 ```
 instead of simply writing
 
-```tryocaml
+```ocaml
 let x = e1
 and y = e2 in
 x + y
@@ -1616,7 +1616,7 @@ x + y
 * Another efficient way to write unreadable code is to mix all or some
  of these methods. For example:
 
-```tryocaml
+```ocaml
 (fun u -> print_string "world"; print_string u)
   (let temp = print_string "Hello"; "!" in
    ((fun x -> print_string x; flush stdout) " ";
@@ -1710,7 +1710,7 @@ is a function that just ends by a recursive call (which is not the case
 here since a call to `+` has to be perform after the recursive call has
 returned). Just use an accumulator for intermediate results, as in:
 
-```tryocaml
+```ocaml
 let list_length l =
   let rec loop accu = function
     | [] -> accu
