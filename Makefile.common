@@ -22,10 +22,10 @@ ocaml.org:
 template/front_code_snippet.html:template/front_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@
 
-script/rss2html: script/rss2html.ml
+script/rss2html: script/rss2html.ml script/http.ml
 	cd script && \
 	ocamlfind ocamlopt -package netstring,equeue-ssl,netclient,rss \
-	  -linkpkg -annot http.ml rss2html.ml -o ../"$@"
+	  -linkpkg -annot utils.ml http.ml rss2html.ml -o ../"$@"
 
 script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
 	cd script && \

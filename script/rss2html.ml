@@ -2,6 +2,7 @@
 
 open Printf
 open Nethtml
+open Utils
 
 (** List of "authors" that send text descriptions (as opposed to
     HTML).  The formatting of the description must then be respected. *)
@@ -201,19 +202,48 @@ let posts ?n urls =
   let posts = posts_of_urls ?n urls in
   [Element("div", [], List.concat(List.map html_of_post posts))]
 
-(** [email_threads] does basically the same as [headlines] but does
-    not use the provided links in the posts, point to Inria archives
-    instead.  It also presents the subject better. *)
+(* Remove the "[Caml-list]" and possible "Re:". *)
 let caml_list_re = Str.regexp_case_fold "^\\(Re: *\\)*\\[[a-zA-Z-]+\\] *"
 
+(* The author is put at the end of the title: " - author name".
+   Beware that the name may contain "-" (assumed without spaces
+   around). *)
+let delete_author title =
+  let rec seek_dash pos =
+  try
+    let i = String.rindex_from title pos '-' in
+    if i > 0 && i < pos then
+      if title.[i-1] = ' ' && title.[i+1] = ' ' then
+        String.trim(String.sub title 0 i)
+      else (* maybe a correct dash before ? *)
+        seek_dash (i-1)
+    else title
+  with Not_found -> title in
+  seek_dash (String.length title - 1)
+
+(** [email_threads] does basically the same as [headlines] but filter
+    the posts to have repeated subjects.  It also presents the subject
+    better. *)
 let email_threads ?n ~img urls =
-  let posts = posts_of_urls ?n urls in
-  let headline_of_email p =
+  (* Do not use [n] yet because posts are filtered. *)
+  let posts = posts_of_urls urls in
+  let normalize_title p =
     let title = Str.replace_first caml_list_re "" p.title in
-    let p = { p with title } in
-    headline_of_post ~img p in
+    let title = delete_author title in
+    { p with title } in
+  let posts = List.map normalize_title posts in
+  (* Keep only the more recent post of redundant subjects. *)
+  let module S = Set.Make(String) in
+  let seen = ref S.empty in
+  let must_keep p =
+    if S.mem p.title !seen then false
+    else (seen := S.add p.title !seen;  true) in
+  let posts = List.filter must_keep posts in
+  let posts = (match n with
+               | Some n -> take n posts
+               | None -> posts) in
   [Element("ul", ["class", "news-feed"],
-           List.concat(List.map headline_of_email posts))]
+           List.concat(List.map (fun p -> headline_of_post ~img p) posts))]
 
 
 (* OPML -- subscriber list
