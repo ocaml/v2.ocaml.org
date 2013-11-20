@@ -1,0 +1,21 @@
+# -*- mode: Makefile -*-
+
+include Makefile.common
+
+ocaml.org/%.html:site/%.md
+	$(MAKE) ocaml.org
+	if grep -q '*Table of contents*' "$<" ; then $(MAKE) -f Makefile.from_md "$@.toc" ; fi
+	$(MAKE) -f Makefile.from_md "$@.tmp"
+	if [ -f "$@.toc" ] ; then \
+	  ${MPP} -set "filename=$<" -set "page=$@.tmp" -set "toc=$@.toc" template/main.mpp -o "$@" ; \
+	else \
+	  ${MPP} -set "filename=$<" -set "page=$@.tmp" template/main.mpp -o "$@" ; \
+	fi
+	$(RM) "$@.tmp"
+	$(RM) "$@.toc"
+
+ocaml.org/%.html.toc:site/%.md
+	${OMD} -otoc -ts 0 "$<" -o "$@"
+
+ocaml.org/%.html.tmp:site/%.md $(OMD_PP)
+	sed -e 's|\*Table of contents\*||g' "$<" | $(OMD_PP) | ${OMD} -o "$@"

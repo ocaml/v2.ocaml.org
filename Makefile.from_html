@@ -1,0 +1,8 @@
+# -*- mode: Makefile -*-
+
+include Makefile.common
+
+ocaml.org/%.html:site/%.html
+	$(MAKE) ocaml.org
+	${MPP} "$<" -o "$@"
+
