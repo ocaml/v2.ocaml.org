@@ -1,8 +1,21 @@
 <!-- ((! set title Introduction to Gtk !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Introduction to Gtk
 
+If you intend to try the code in this tutorial in the toplevel, you
+must first issue (assuming you have installed `lablgtk` using
+[opam](../../docs/install.html)):
+
+```ocamltop
+Topdirs.dir_directory (Sys.getenv "OCAML_TOPLEVEL_PATH");;
+#use "topfind";;
+#require "lablgtk2";;
+```
+
 ## Lablgtk and writing Gtk applications
+
 [Gtk+](http://www.gtk.org/ "http://www.gtk.org/") is a toolkit for
 writing graphical applications, and
 [lablgtk](http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html "http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html")
@@ -26,13 +39,13 @@ hard work!
 Actually, not so simple. This program has a menu with a "quit" option,
 and a button in the main area which you can press:
 
-```tryocaml
+```ocaml
 open GMain
 open GdkKeysyms
 
 let main () =
   let window = GWindow.window ~width:320 ~height:240
-                 ~title:"Simple lablgtk program" () in
+                              ~title:"Simple lablgtk program" () in
   let vbox = GPack.vbox ~packing:window#add () in
   window#connect#destroy ~callback:Main.quit;
 
@@ -48,7 +61,7 @@ let main () =
 
   (* Button *)
   let button = GButton.button ~label:"Push me!"
-                 ~packing:vbox#add () in
+                              ~packing:vbox#add () in
   button#connect#clicked ~callback: (fun () -> prerr_endline "Ouch!");
 
   (* Display the windows and enter Gtk+ main loop *)
@@ -58,9 +71,10 @@ let main () =
 
 let () = main ()
 ```
+
 Save this to a file `simple.ml` and compile it like this:
 
-```tryocaml
+```shell
 ocamlc -g -w s -I +lablgtk lablgtk.cma gtkInit.cmo simple.ml -o simple
 ```
 This is what you should see when you run it:
@@ -69,7 +83,7 @@ This is what you should see when you run it:
 
 Let's analyse the program line by line to see what's going on.
 
-```tryocaml
+```ocaml
 open GMain
 open GdkKeysyms
 ```
@@ -77,11 +91,11 @@ open GdkKeysyms
 good idea to always open this module. `GdkKeysyms` provides some key
 definitions, in this case `_Q` for the Ctrl + Q key combination.
 
-```tryocaml
-  let window = GWindow.window ~width:320 ~height:240
-                 ~title:"Simple lablgtk program" () in
-  let vbox = GPack.vbox ~packing:window#add () in
-  window#connect#destroy ~callback:Main.quit;
+```ocaml
+let window = GWindow.window ~width:320 ~height:240
+                            ~title:"Simple lablgtk program" () in
+let vbox = GPack.vbox ~packing:window#add () in
+window#connect#destroy ~callback:Main.quit;
 ```
 Firstly we create the toplevel window. Every Gtk program needs at least
 one. Notice three things: firstly `GWindow.window` is actually a helper
@@ -100,9 +114,9 @@ A `vbox` is a vertical layout widget. It's a container which contains
 other widgets but isn't normally visible by itself. The `~packing`
 argument looks odd (indeed it is). It's just a shorthand way of writing:
 
-```tryocaml
-  let vbox = GPack.vbox () in
-  window#add vbox;
+```ocaml
+let vbox = GPack.vbox () in
+window#add vbox;
 ```
 The two forms are, as far as I can tell, identical. The first way is a
 bit shorter.
@@ -116,30 +130,31 @@ Creating the menubar and File -\> Quit button is straightforward enough.
 Notice the `accel_group` object which is used to keep track of
 accelerator buttons. The `menubar` is packed first into the `vbox`:
 
-```tryocaml
-  (* Menu bar *)
-  let menubar = GMenu.menu_bar ~packing:vbox#pack () in
-  let factory = new GMenu.factory menubar in
-  let accel_group = factory#accel_group in
-  let file_menu = factory#add_submenu "File" in
+```ocaml
+(* Menu bar *)
+let menubar = GMenu.menu_bar ~packing:vbox#pack () in
+let factory = new GMenu.factory menubar in
+let accel_group = factory#accel_group in
+let file_menu = factory#add_submenu "File" in
 
-  (* File menu *)
-  let factory = new GMenu.factory file_menu ~accel_group in
-  factory#add_item "Quit" ~key:_Q ~callback: Main.quit;
+(* File menu *)
+let factory = new GMenu.factory file_menu ~accel_group in
+factory#add_item "Quit" ~key:_Q ~callback: Main.quit;
 ```
+
 Next up we create the button and pack it in the `vbox`. Notice the
 `clicked` signal which is connected to an anonymous function:
 
-```tryocaml
-  (* Button *)
-  let button = GButton.button ~label:"Push me!"
-                 ~packing:vbox#add () in
-  button#connect#clicked ~callback: (fun () -> prerr_endline "Ouch!");
+```ocaml
+(* Button *)
+let button = GButton.button ~label:"Push me!"
+                            ~packing:vbox#add () in
+button#connect#clicked ~callback: (fun () -> prerr_endline "Ouch!");
 ```
 This line just causes the accelerator keys (eg. Ctrl Q) to work:
 
-```tryocaml
-  window#add_accel_group accel_group;
+```ocaml
+window#add_accel_group accel_group;
 ```
 Finally two lines which are essential. All Gtk widgets must be "shown"
 before they will appear, by calling the `#show` method. However lablgtk,
@@ -149,11 +164,13 @@ Gtk main loop - the bit which runs and handles events. Gtk is event
 driven so everything else happens in a callback as a result of some
 signal received.
 
-```tryocaml
-  window#show ();
-  Main.main ()
+```ocaml
+window#show ();
+Main.main ()
 ```
-###  Gtk tutorial
+
+##  Gtk tutorial
+
 Read [this Gtk
 tutorial](http://www.gtk.org/tutorial1.2/ "http://www.gtk.org/tutorial1.2/")
 to find out more about Gtk. Lablgtk contains a pretty complete mapping
@@ -173,7 +190,7 @@ graph widget. I'm going to have it be a vbox, with the drawing area in
 the top part, and the scrollbar in the bottom part. This is the overall
 structure of our class:
 
-```tryocaml
+```ocaml
 class graph ?width ?height ?packing ?show array =
   (* The initialization code will go here. *)
 
@@ -188,7 +205,7 @@ class graph ?width ?height ?packing ?show array =
 ```
 To create a widget you will do:
 
-```tryocaml
+```ocaml
 let graph = new graph in
 graph#init;
 ```
@@ -202,7 +219,7 @@ but basically it causes a graph to be a subclass of widget.
 
 Let's have a look at the initialization code in more detail.
 
-```tryocaml
+```ocaml
 class graph ?width ?height ?packing ?show array =
   (* Constants. *)
   let page_size = 10 in            (* Number of bars on "page". *)
@@ -241,6 +258,7 @@ class graph ?width ?height ?packing ?show array =
 
   end
 ```
+
 The let-bindings before the start of `object` define constants such as
 `page_size`, but also create the Gtk objects like vbox, drawing area,
 scrollbar and adjustment. (An adjustment is an abstract object which
@@ -253,67 +271,69 @@ responsible for drawing the graph, axes, title and so on.
 We'll see that in just a moment, but let's concentrate on the simpler
 methods of the object first:
 
-```tryocaml
-  object (self)
-    inherit widget vbox#as_widget
+```ocaml
+object (self)
+  inherit widget vbox#as_widget
 
-    (* The title of the graph. *)
-    val mutable title = "no title"
-    method set_title t = title <- t
-    method title = title
+  (* The title of the graph. *)
+  val mutable title = "no title"
+  method set_title t = title <- t
+  method title = title
 
-    (* ... *)
-  end
+  (* ... *)
+end
 ```
+
 The object is going to contain a mutable member, the title, and two
 methods to `set_title` and get `title`.
 
 Now we come to the repaint method, which is the guts of the widget. This
 draws the graph in the drawing area:
 
-```tryocaml
-    (* Repaint the widget. *)
-    method private repaint () =
-      let drawable = Lazy.force drawable in
-      let (width, height) = drawable#size in
-      drawable#set_background `WHITE;
-      drawable#set_foreground `WHITE;
-      drawable#rectangle ~x:0 ~y:0 ~width ~height ~filled:true ();
-      drawable#set_foreground `BLACK;
+```ocaml
+(* Repaint the widget. *)
+method private repaint () =
+  let drawable = Lazy.force drawable in
+  let (width, height) = drawable#size in
+  drawable#set_background `WHITE;
+  drawable#set_foreground `WHITE;
+  drawable#rectangle ~x:0 ~y:0 ~width ~height ~filled:true ();
+  drawable#set_foreground `BLACK;
 
-      (* Draw the title. *)
-      draw_text drawable font `Centre (width/2, 20) title;
+  (* Draw the title. *)
+  draw_text drawable font `Centre (width/2, 20) title;
 
-      (* Draw the axes. *)
-      drawable#line ~x:40 ~y:(height-40) ~x:(width-40) ~y:(height-40);
-      drawable#line ~x:40 ~y:(height-40) ~x:40 ~y:40;
+  (* Draw the axes. *)
+  drawable#line ~x:40 ~y:(height-40) ~x:(width-40) ~y:(height-40);
+  drawable#line ~x:40 ~y:(height-40) ~x:40 ~y:40;
 
-      (* Which part of the data to display? first .. first+page_size-1 *)
-      let first_bar = int_of_float adjustment#value in
-      let data = Array.sub array first_bar page_size in
-      let bar_width = (width - 80) / page_size in
+  (* Which part of the data to display? first .. first+page_size-1 *)
+  let first_bar = int_of_float adjustment#value in
+  let data = Array.sub array first_bar page_size in
+  let bar_width = (width - 80) / page_size in
 
-      (* Compute function mapping graph (x, y) to screen coordinates. *)
-      let map (x,y) =
-        (40 + x * bar_width, height-40 - y * (height-80) / max_y)  in
+  (* Compute function mapping graph (x, y) to screen coordinates. *)
+  let map (x,y) =
+    (40 + x * bar_width, height-40 - y * (height-80) / max_y)  in
 
-      (* Draw the axes scales. *)
-      draw_text drawable font `Right (40, height-40) "0";
-      draw_text drawable font `Right (40, 40) (string_of_int max_y);
-      for i = 0 to page_size-1 do
-        let x = 40 + i * bar_width + bar_width/2 in
-        let y = height-35 in
-        let v = first_bar + i in
-        draw_text drawable font `Centre (x, y) (string_of_int v)
-      done;
+  (* Draw the axes scales. *)
+  draw_text drawable font `Right (40, height-40) "0";
+  draw_text drawable font `Right (40, 40) (string_of_int max_y);
+  for i = 0 to page_size-1 do
+    let x = 40 + i * bar_width + bar_width/2 in
+    let y = height-35 in
+    let v = first_bar + i in
+    draw_text drawable font `Centre (x, y) (string_of_int v)
+  done;
 
-      (* Draw the data. *)
-      for i = 0 to page_size-1 do
-        let (ll_x,ll_y) = map (i, data.(i)) in
-        let (tr_x,tr_y) = map (i+1, 0) in
-        draw_rectangle drawable "red" (ll_x, ll_y) (tr_x, tr_y)
-      done
+  (* Draw the data. *)
+  for i = 0 to page_size-1 do
+    let (ll_x,ll_y) = map (i, data.(i)) in
+    let (tr_x,tr_y) = map (i+1, 0) in
+    draw_rectangle drawable "red" (ll_x, ll_y) (tr_x, tr_y)
+  done
 ```
+
 Apart from the calculation of screen coordinates from graph coordinates,
 the `repaint` method is essentially very simple. The Gtk drawing area
 contains a `drawable` object, and we use methods on this object such as
@@ -324,16 +344,17 @@ let-bindings made before `object (self)`, eg. `page_size`, `drawable`,
 `adjustment`. These let-bindings are available in any method in the
 object.
 
-The complete code for the graph is available in \<a
-href="graph.ml"\>graph.ml\</a\> and \<a href="test.ml"\>test.ml\</a\>.
+The complete code for the graph is available in
+[graph.ml](graph.ml) and [test.ml](test.ml).
 Compile it using:
 
-```tryocaml
+```ocaml
 ocamlc -g -w s -I +lablgtk lablgtk.cma gtkInit.cmo graph.ml test.ml -o graphtest
 ```
 Here is a screenshot:
 
-\<img src="graphtest.gif" width="648" height="508" alt="Screenshot"/\>
+![Screenshot](graphtest.gif)
+
 
 ###  Structure of lablgtk
 The lablgtk library has two layers, which I'm going to call the *module
@@ -341,26 +362,10 @@ layer* and the *object-oriented layer* (plus some ancillary library
 modules which we'll also talk about). The layers are arranged like this
 in relation to your code:
 
-
-
-<table>
-<tbody>
-<tr class="odd">
-<td align="left">Your code</td>
-</tr>
-<tr class="even">
-<td align="left">Object-oriented layer</td>
-<td align="left">eg. gButton.ml</td>
-</tr>
-<tr class="odd">
-<td align="left">Module layer</td>
-<td align="left">eg. gtkButton.ml<br />ml_gtkbutton.c</td>
-</tr>
-<tr class="even">
-<td align="left">Gtk+ library (or DLL on Windows)</td>
-</tr>
-</tbody>
-</table>
+<!-- FIXME: was the table well ported? -->
+Your code and the Gtk+ library (or DLL on Windows)
+- Object-oriented layer (eg. `gButton.ml`)
+- Module layer (eg. `gtkButton.ml`, depends on `ml_gtkbutton.c`)
 
 
 In theory you only need to interact with the object-oriented layer, and
@@ -387,8 +392,8 @@ garbage collector. How does lablgtk unify the two?
 
 Lablgtk starts with this type definition (in module `Gtk`):
 
-```tryocaml
-type 'a obj;;
+```ocaml
+type 'a obj
 ```
 On the face of it, this is a *very* strange type definition. It defines
 a polymorphic type called `obj` (polymorphic because you can create,
@@ -396,17 +401,17 @@ say, `int obj`, etc.). But it doesn't actually define a way of creating
 these objects! [Recall that a normal type definition might be something
 like this:
 
-```tryocaml
+```ocaml
 type 'a obj = Something of 'a
 ```
 which gives you a very definite way to create, say, an `int obj`:
 
-```tryocaml
+```ocaml
 Something 1
 ```
 But our strange, bare definition just says:
 
-```tryocaml
+```ocaml
 type 'a obj;;
 ```
 How do we create objects of this type? The answer is that we don't.
@@ -416,7 +421,7 @@ the C library. What precisely happens is that the C functions in the
 Gtk+ library are wrapped up by C functions which are called from OCaml.
 These functions look like this:
 
-```tryocaml
+```C
 CAMLprim value
 ml_gtk_toggle_button_new (value unit)
 {
@@ -429,7 +434,7 @@ the `GtkObject` returned from the Gtk+ library function
 can understand. The same function also deals with Gtk's reference
 counting.
 
-```tryocaml
+```C
 static void ml_final_GtkObject_sink (value val) {
   if (Field(val,1))
     gtk_object_unref ((GtkObject*)Field(val,1));
@@ -444,12 +449,13 @@ value Val_GtkObject_sink (GtkObject *p) {
   return ret;
 }
 ```
+
 OCaml code calls `ml_gtk_toggle_button_new` directly to create objects
 of type `'a obj`. Module `GtkButton` is in lablgtk's module layer and it
 contains an inner module called `GtkButton.ToggleButton` containing a
 function defined as:
 
-```tryocaml
+```ocaml
 module ToggleButton = struct
   external toggle_button_create : unit -> toggle_button obj
       = "ml_gtk_toggle_button_new"
@@ -463,17 +469,15 @@ end
 ```
 You can call these functions directly to see what they return:
 
-```tryocaml
-# GtkButton.ToggleButton.toggle_button_create ();;
-- : Gtk.toggle_button Gtk.obj = <abstr>
-# GtkButton.ToggleButton.create_toggle ~label:"Push me!" ();;
-- : Gtk.toggle_button Gtk.obj = <abstr>
+```ocamltop
+GtkButton.ToggleButton.toggle_button_create ();;
+GtkButton.ToggleButton.create_toggle ~label:"Push me!" ();;
 ```
 Notice the return type: `toggle_button obj` (ie. a definite instance of
 the polymorphic type `'a obj`). What is `toggle_button`? It's a type
 (think `'a list` vs. `int list`) defined like this (in module `Gtk`):
 
-```tryocaml
+```ocaml
 type widget = [`base|`widget]
 type container = [widget|`container]
 type button = [container|`button]
@@ -481,11 +485,11 @@ type toggle_button = [button|`toggle]
 ```
 Hence the full type written out is:
 
-```tryocaml
+```ocaml
 type toggle_button = [`base|`widget|`container|`button|`toggle]
 ```
-(These are polymorphic variants - see \<a href="../ch7/"\>Chapter
-7\</a\> if you don't remember them).
+(These are polymorphic variants — see [Chapter 7](../ch7)
+if you don't remember them).
 
 If you check the Gtk class hierarchy you'll see that the list of
 variants closely (but not exactly) matches the classes. A Gtk toggle
@@ -499,7 +503,7 @@ create instances of this class using `new toggle_button` (or similar).
 Instead a function is provided which generates instances for you. Here
 it is, simplified somewhat:
 
-```tryocaml
+```ocaml
 let toggle_button ?label ?border_width ?width ?height () =
   let w = ToggleButton.create_toggle ?label () in
   Container.set w ?border_width ?width ?height;
@@ -514,11 +518,8 @@ A toggle button is-a container, and the next thing we do is call
 the polymorphic variants become interesting. What is the type of
 `Container.set`?
 
-```tryocaml
-# GtkBase.Container.set;;
-- : ?border_width:int ->
-    ?width:int -> ?height:int -> [> `container | `widget] Gtk.obj -> unit
-= <fun>
+```ocamltop
+GtkBase.Container.set;;
 ```
 `Container.set` is expecting an argument of type
 `` [>`container|`widget] obj ``. Recall from our discussion of
@@ -535,7 +536,7 @@ Finally our function actually creates the class, passing the widget `w`
 as the parameter to the class. The class is defined like this
 (simplified):
 
-```tryocaml
+```ocaml
 class toggle_button w = object
   inherit button w
   method connect = new toggle_button_signals obj
@@ -546,7 +547,7 @@ end
 ```
 The base class for all objects is `GObj.gtkobj` defined as:
 
-```tryocaml
+```ocaml
 class gtkobj w = object
   val obj = w
   method destroy () = Object.destroy w
@@ -563,18 +564,17 @@ widgets).
 
 Let's try the OO interface for toggle buttons:
 
-```tryocaml
-          (* call the toggle_button function *)
-# let b = GButton.toggle_button ~label:"Push me!" ();;
-          (* note: returns object from toggle_button class *)
-val b : GButton.toggle_button = <obj>
-# b#as_widget;;
-          (* note: returns a widget obj == [`base|`widget] obj *)
-- : Gtk.widget Gtk.obj = <abstr>
+```ocamltop
+(* Call the toggle_button function.  Note: returns object from
+   toggle_button class*)
+let b = GButton.toggle_button ~label:"Push me!" ();;
+b#as_widget
+  (* note: returns a widget obj == [`base|`widget] obj *);;
 ```
+
 ####  Downcasts
 Gtk is dynamically typed, and this means you can
-\<dfn\>downcast\</dfn\>, for example, a widget into a toggle button. Gtk
+*downcast*, for example, a widget into a toggle button. Gtk
 requires downcasting in some instances: for example you can pack widgets
 into containers, but if you try and retrieve them out of the container,
 all you get is a list of widgets. The original type of the widgets is
@@ -595,13 +595,14 @@ a table widget, which we happen to know are actually all vboxes, unwrap
 each one from the `widget` class and rewrap in a `GPack.box` class.
 (Example due to Jacques Garrigue.)
 
-```tryocaml
+```ocaml
 let vbox_of_widget widget =
   let obj = GtkPack.Box.cast widget#as_widget in
   new GPack.box obj
 
 let vboxes = List.iter vbox_of_widget table#children
 ```
+
 The terminology might be a little bit confusing here because the
 `#as_widget` method returns the internal `GtkObject` of type `'a obj`.
 
@@ -616,7 +617,7 @@ strategy here is to remember what objects we put into the container
 separately, and when we take them out try to match them up. We use the
 `GUtil.memo` class for this:
 
-```tryocaml
+```ocaml
 class ['a] memo () = object
   constraint 'a = #widget
   val tbl = Hashtbl.create 7
@@ -632,59 +633,49 @@ subclass of widget).
 Here is an example of using a memo. First we will create a top-level
 window, a container (vbox) to go inside this, and a button:
 
-```tryocaml
-# let w = GWindow.window ();;
-val w : GWindow.window = <obj>
-# let c = GPack.vbox ~packing:w#add ();;
-val c : GPack.box = <obj>
-# let b = GButton.button ~label:"Push me!" ();;
-val b : GButton.button = <obj>
+```ocamltop
+let w = GWindow.window ();;
+let c = GPack.vbox ~packing:w#add ();;
+let b = GButton.button ~label:"Push me!" ();;
 ```
 Before we pack the button into the container, let's create a memo to
 remember the real object. Notice how the type of the memo is refined as
 soon as the button is added:
 
-```tryocaml
-# let m = new GUtil.memo ();;
-val m : _#GObj.widget GUtil.memo = <obj>
-# m#add b;;
-- : unit = ()
-# m;;
-- : GButton.button GUtil.memo = <obj>
+```ocamltop
+let m = new GUtil.memo ();;
+m#add b;;
+m;;
 ```
 Now we can add the button to the container, remembering to upcast it to
 a widget first of course:
 
-```tryocaml
-# c#add (b :> GObj.widget);;
-- : unit = ()
+```ocamltop
+c#add (b :> GObj.widget);;
 ```
 The method `#children` returns a list of widgets. Not much use to us:
 
-```tryocaml
-# c#children;;
-- : GObj.widget list = [<obj>]
+```ocamltop
+c#children;;
 ```
 But we can use our memo to map these widgets to the original button
 objects:
 
-```tryocaml
-# List.map (fun w -> m#find w) c#children;;
-- : GButton.button list = [<obj>]
+```ocamltop
+List.map (fun w -> m#find w) c#children;;
 ```
 Remember that this is still dynamic casting, and so unsafe. In this case
 the memo will throw a `Not_found` exception if the widget cannot be
 mapped:
 
-```tryocaml
-# let b2 = GButton.button ~label:"Don't push me!" ();;
-val b2 : GButton.button = <obj>
-# c#add (b2 :> GObj.widget);;
-- : unit = ()
-# List.map (fun w -> m#find w) c#children;;
-Exception: Not_found.
+```ocamltop
+let b2 = GButton.button ~label:"Don't push me!" ();;
+c#add (b2 :> GObj.widget);;
+List.map (fun w -> m#find w) c#children;;
 ```
+
 ###  Structure of lablgtk — summary
+
 * `GtkObject`s allocated by the C library are wrapped up in opaque
  `'a obj` abstract types.
 * The module layer is flat (not OO) but uses polymorphic variants to
@@ -698,8 +689,5 @@ Exception: Not_found.
 * Lablgtk provides two ways to perform downcasting, but this doesn't
  change the fact that downcasting is unsafe and can throw exceptions
  at runtime.
-
-\<a href="../ch13/"\>Chapter 13\</a\> continues with a discussion of
-wrapping up external C libraries. We look at another way to wrap up Gtk.
 
 

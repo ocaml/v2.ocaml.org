@@ -11,6 +11,7 @@ module S___ = Stream
 module Q___ = Queue
 module C___ = CamlinternalOO
 module D___ = Dynlink
+module St__ = StdLabels
 
 let () =
   eprintf "***** STARTING OCAML TOPLEVEL ******\n%!";
