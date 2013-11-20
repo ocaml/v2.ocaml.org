@@ -54,11 +54,9 @@
                 <a href="https://realworldocaml.org"><img style="float:
                 left; margin-right: 10px; margin-bottom: 10px"
                 src="/img/real-world-ocaml.jpg" alt="Real World OCaml
-                book"></a><p>This hands-on book shows you how to take
-                advantage of OCaml’s functional, imperative and
-                object-oriented programming styles with recipes for
-                many real-world tasks.  Read
-                it <a href="http://realworldocaml.org">online!</a>
+                book"></a><a href="http://ocaml-book.com"><img style="float:
+                right; margin-left: 10px; margin-bottom: 10px"
+                src="/img/OCaml_from_beginning.png" width="170" alt="OCaml from the very beginning"></a><p>There are a number of excellent books, with two new titles published in 2013.
 		</p>
 		<footer>
                   <p><a href="books.html">See full list</a></p>
