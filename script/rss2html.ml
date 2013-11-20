@@ -160,7 +160,7 @@ let html_of_post p =
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
-let headlines_of_post ?link ?(len=400) ?(img_alt="") ~img p =
+let headline_of_post ?link ?(len=400) ?(img_alt="") ~img p =
   let link = match link with
     | None -> "/community/planet.html#" ^ digest_post p
     | Some l -> l in
@@ -191,7 +191,7 @@ let posts_of_urls ?n urls =
 let headlines ?n ?img_alt ~img urls =
   let posts = posts_of_urls ?n urls in
   [Element("ul", ["class", "news-feed"],
-           List.concat(List.map (headlines_of_post ?img_alt ~img) posts))]
+           List.concat(List.map (headline_of_post ?img_alt ~img) posts))]
 
 let posts ?n urls =
   let posts = posts_of_urls ?n urls in
