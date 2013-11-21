@@ -202,8 +202,6 @@ let posts ?n urls =
   let posts = posts_of_urls ?n urls in
   [Element("div", [], List.concat(List.map html_of_post posts))]
 
-(* Remove the "[Caml-list]" and possible "Re:". *)
-let caml_list_re = Str.regexp_case_fold "^\\(Re: *\\)*\\[[a-zA-Z-]+\\] *"
 
 (* The author is put at the end of the title: " - author name".
    Beware that the name may contain "-" (assumed without spaces
@@ -220,6 +218,10 @@ let delete_author title =
     else title
   with Not_found -> title in
   seek_dash (String.length title - 1)
+
+(* Remove the "[Caml-list]" and possible "Re:". *)
+let caml_list_re =
+  Str.regexp_case_fold "^\\(Re: *\\)*\\(\\[[a-zA-Z0-9-]+\\] *\\)*"
 
 (** [email_threads] does basically the same as [headlines] but filter
     the posts to have repeated subjects.  It also presents the subject
