@@ -37,9 +37,7 @@
             </section>
             <section class="span4 condensed">
                 <h4>Recent email threads</h4>
-            <ul class="news-feed">
-((! input template/last_ml_topics.mpp !))
-            </ul>
+                {{! cmd script/rss2html -n 4 --emails 'https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40' !}}
             <footer>
                 <p><a href="https://sympa.inria.fr/sympa/arc/caml-list/">See archives</a></p>
             </footer>

@@ -2,6 +2,7 @@
 
 open Printf
 open Nethtml
+open Utils
 
 (** List of "authors" that send text descriptions (as opposed to
     HTML).  The formatting of the description must then be respected. *)
@@ -160,8 +161,12 @@ let html_of_post p =
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
-let headlines_of_post ?(len=400) ?(img_alt="") ~img p =
-  let link = "/community/planet.html#" ^ digest_post p in
+let headline_of_post ?(planet=false) ?(img_alt="") ~img p =
+  let link =
+    if planet then "/community/planet.html#" ^ digest_post p
+    else match p.link with
+         | Some l -> Neturl.string_of_url l
+         | None -> "" in
   let html_icon =
     [Element("a", ["href", link],
              [Element("img", ["src", img; "alt", img_alt], [])])] in
@@ -170,7 +175,9 @@ let headlines_of_post ?(len=400) ?(img_alt="") ~img p =
     | Some d -> let d = Netdate.format ~fmt:"%B %e, %Y" d in
                Element("p", [], [Data d]) :: html_icon in
   let html_title =
-    Element("h1", [], [Element("a", ["href", link], [Data p.title])]) in
+    Element("h1", [],
+            if link = "" then [Data p.title]
+            else [Element("a", ["href", link], [Data p.title])] )in
   [Element("li", [], [Element("article", [], html_title :: html_date)]);
    Data "\n"]
 
@@ -186,14 +193,59 @@ let posts_of_urls ?n urls =
   | None -> posts
   | Some n -> take n posts
 
-let headlines ?n ?img_alt ~img urls =
+let headlines ?n ?planet ~img urls =
   let posts = posts_of_urls ?n urls in
   [Element("ul", ["class", "news-feed"],
-           List.concat(List.map (headlines_of_post ?img_alt ~img) posts))]
+           List.concat(List.map (headline_of_post ?planet ~img) posts))]
 
 let posts ?n urls =
   let posts = posts_of_urls ?n urls in
   [Element("div", [], List.concat(List.map html_of_post posts))]
+
+
+(* The author is put at the end of the title: " - author name".
+   Beware that the name may contain "-" (assumed without spaces
+   around). *)
+let delete_author title =
+  let rec seek_dash pos =
+  try
+    let i = String.rindex_from title pos '-' in
+    if i > 0 && i < pos then
+      if title.[i-1] = ' ' && title.[i+1] = ' ' then
+        String.trim(String.sub title 0 i)
+      else (* maybe a correct dash before ? *)
+        seek_dash (i-1)
+    else title
+  with Not_found -> title in
+  seek_dash (String.length title - 1)
+
+(* Remove the "[Caml-list]" and possible "Re:". *)
+let caml_list_re =
+  Str.regexp_case_fold "^\\(Re: *\\)*\\(\\[[a-zA-Z0-9-]+\\] *\\)*"
+
+(** [email_threads] does basically the same as [headlines] but filter
+    the posts to have repeated subjects.  It also presents the subject
+    better. *)
+let email_threads ?n ~img urls =
+  (* Do not use [n] yet because posts are filtered. *)
+  let posts = posts_of_urls urls in
+  let normalize_title p =
+    let title = Str.replace_first caml_list_re "" p.title in
+    let title = delete_author title in
+    { p with title } in
+  let posts = List.map normalize_title posts in
+  (* Keep only the more recent post of redundant subjects. *)
+  let module S = Set.Make(String) in
+  let seen = ref S.empty in
+  let must_keep p =
+    if S.mem p.title !seen then false
+    else (seen := S.add p.title !seen;  true) in
+  let posts = List.filter must_keep posts in
+  let posts = (match n with
+               | Some n -> take n posts
+               | None -> posts) in
+  [Element("ul", ["class", "news-feed"],
+           List.concat(List.map (fun p -> headline_of_post ~img p) posts))]
 
 
 (* OPML -- subscriber list
@@ -245,6 +297,8 @@ let () =
   let specs = [
     ("--headlines", Arg.Unit(fun () -> action := `Headlines),
      " RSS feed to feed summary (in HTML)");
+    ("--emails", Arg.Unit(fun () -> action := `Emails),
+     " RSS feed of email threads to HTML");
     ("--subscribers", Arg.Unit(fun () -> action := `Subscribers),
      " OPML feed to list of subscribers (in HTML)");
     ("--posts", Arg.Unit(fun () -> action := `Posts),
@@ -260,7 +314,9 @@ let () =
     exit 1);
   let out = new Netchannels.output_channel stdout in
   (match !action with
-   | `Headlines -> Nethtml.write out (headlines ?n:!n_posts ~img:!img !urls)
+   | `Headlines -> Nethtml.write out (headlines ~planet:true ?n:!n_posts
+                                               ~img:!img !urls)
+   | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~img:!img !urls)
    | `Posts -> Nethtml.write out (toggle_script @ posts ?n:!n_posts !urls)
    | `Subscribers -> Nethtml.write out (OPML.contributors !urls)
   );
