@@ -81,7 +81,7 @@
             <p>OCaml is a lot more powerful than this simple example shows. See <a href="/learn/taste.html">more examples</a>!</p>
         </section>
         <section class="span6 condensed">
-            <h1>Packages</h1>
+            <h1><a href='http://opam.ocaml.org/pkg/index-date.html'>Packages</a></h1>
             ((! input template/front_package.mpp !))
         </section>
     </div>
