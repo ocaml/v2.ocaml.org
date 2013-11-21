@@ -66,60 +66,57 @@ the value of the break that is explained below):
 
 * within a “h” box:
 
-```ocaml
-   --b--b--
-```
-
+    ```text
+    --b--b--
+    ```
 
 * within a “v” box:
 
-```ocaml
-   --b
-   --b
-   --
-```
-
+    ```text
+    --b
+    --b
+    --
+    ```
 
 * within a “hv” box:
 
-If there is enough room to print the box on the line:
+    If there is enough room to print the box on the line:
 
-```ocaml
-   --b--b--
-```
-But "---b---b---" that cannot fit on the line is written
+    ```text
+    --b--b--
+    ```
+    But "---b---b---" that cannot fit on the line is written
 
-```ocaml
-   ---b
-   ---b
-   ---
-```
-
-
-* within a “hov” box:
-
-If there is enough room to print the box on the line:
-
-```ocaml
-   --b--b--
-```
-But if "---b---b---" cannot fit on the line, it is written as
-
-```ocaml
-   ---b---b
-   ---
-```
-The first break hint does not lead to a new line, since there is
-enough room on the line. The second one leads to a new line since
-there is no more room to print the material following it. If the
-room left on the line were even shorter, the first break hint may
-lead to a new line and "---b---b---" is written as:
-
-```ocaml
+    ```text
     ---b
     ---b
     ---
-```
+    ```
+
+* within a “hov” box:
+
+    If there is enough room to print the box on the line:
+
+    ```text
+    --b--b--
+    ```
+    But if "---b---b---" cannot fit on the line, it is written as
+
+    ```text
+    ---b---b
+    ---
+    ```
+    The first break hint does not lead to a new line, since there is
+    enough room on the line. The second one leads to a new line since
+    there is no more room to print the material following it. If the
+    room left on the line were even shorter, the first break hint may
+    lead to a new line and "---b---b---" is written as:
+
+    ```text
+    ---b
+    ---b
+    ---
+    ```
 
 
 ## Printing spaces
@@ -134,33 +131,30 @@ For instance, if b is `break 1 0` in the output "--b--b--", we get
 
 * within a “h” box:
 
-```ocaml
-   -- -- --
-```
-
+    ```text
+    -- -- --
+    ```
 
 * within a “v” box:
 
-```ocaml
-   --
-   --
-   --
-```
-
+    ```text
+    --
+    --
+    --
+    ```
 
 * within a “hv” box:
 
-```ocaml
-   -- -- --
-```
-or, according to the remaining room on the line:
+    ```text
+    -- -- --
+    ```
+    or, according to the remaining room on the line:
 
-```ocaml
-   --
-   --
-   --
-```
-
+    ```text
+    --
+    --
+    --
+    ```
 
 * and similarly for “hov” boxes.
 
@@ -169,6 +163,7 @@ directly output white spaces: the routine should use break hints
 instead. (For instance `print_space ()` that is a convenient
 abbreviation for `print_break 1 0` and outputs a single space or break
 the line.)
+
 
 ## Indentation of new lines
 The user gets 2 ways to fix the indentation of new lines:
@@ -179,25 +174,24 @@ The user gets 2 ways to fix the indentation of new lines:
  indented 1 more than the initial indentation of the box. With output
  "---[--b--b--b--", we get:
 
-```ocaml
-   ---[--b--b
-        --b--
-```
-with `open_hovbox 2`, we get
-
-```ocaml
-   ---[--b--b
+    ```text
+    ---[--b--b
          --b--
-```
-Note: the `[` sign in the display is not visible on the screen, it
-is just there to materialise the aperture of the pretty-printing
-box. Last “screen” stands for:
+    ```
+    with `open_hovbox 2`, we get
 
-```ocaml
+    ```text
+    ---[--b--b
+          --b--
+    ```
+    Note: the `[` sign in the display is not visible on the screen, it
+    is just there to materialise the aperture of the pretty-printing
+    box. Last “screen” stands for:
+
+    ```text
     -----b--b
          --b--
-```
-
+    ```
 
 * **when defining the break that makes the new line**. As said above,
  you output a break hint using `print_break     sp           indent`.
@@ -209,15 +203,16 @@ box. Last “screen” stands for:
  `print_break       1       2`, then from output "---[--b--b--b--",
  we get:
 
-```ocaml
-   ---[-- --
-         --
-         --
-```
+    ```text
+    ---[-- --
+          --
+          --
+    ```
 
 
 ## Refinement on “hov” boxes
 ###  Packing and structural “hov” boxes
+
 The “hov” box type is refined into two categories.
 
 * **the vertical or horizontal *packing* box** (as obtained by the
@@ -236,21 +231,21 @@ a routine that closes boxes and parentheses at the end of printing: with
 packing boxes, the closure of boxes and parentheses do not lead to new
 lines if there is enough room on the line, whereas with structural boxes
 each break hint will lead to a new line. For instance, when printing
-"[(---[(----[(---b)]b)]b)]", where "b" is a break hint without extra
-indentation (`print_cut ()`). If "[" means opening of a packing “hov”
-box (open_hovbox), "[(---[(----[(---b)]b)]b)]" is printed as follows:
+`[(---[(----[(---b)]b)]b)]`, where `b` is a break hint without extra
+indentation (`print_cut ()`). If `[` means opening of a packing “hov”
+box (open_hovbox), `[(---[(----[(---b)]b)]b)]` is printed as follows:
 
-```ocaml
+```text
 (---
  (----
   (---)))
 ```
 If we replace the packing boxes by structural boxes (open_box), each
 break hint that precedes a closing parenthesis can show the boxes
-structure, if it leads to a new line; hence "[(---[(----[(---b)]b)]b)]"
+structure, if it leads to a new line; hence `[(---[(----[(---b)]b)]b)]`
 is printed like this:
 
-```ocaml
+```text
 (---
  (----
   (---
@@ -258,7 +253,9 @@ is printed like this:
  )
 )
 ```
+
 ## Practical advice
+
 When writing a pretty-printing routine, follow these simple rules:
 
 1. Boxes must be opened and closed consistently (`open_*` and
@@ -321,15 +318,14 @@ be called from within a `printf` format string. For instance
 
 For instance
 
-```ocaml
+```ocamltop
 printf "@[<1>%s@ =@ %d@ %s@]@." "Prix TTC" 100 "Euros";;
-Prix TTC = 100 Euros
-
-- : unit = ()
 ```
+
 ## A concrete example
+
 Let me give a full example: the shortest non trivial example you could
-imagine, that is the λ-calculus :)
+imagine, that is the λ-calculus. :)
 
 Thus the problem is to pretty-print the values of a concrete data type
 that models a language of expressions that defines functions and their
@@ -338,42 +334,44 @@ applications to arguments.
 First, I give the abstract syntax of lambda-terms (we illustrate is in
 the [interactive system](../description.html#interactive)):
 
-```tryocaml
-  type lambda =
-    | Lambda of string * lambda
-    | Var of string
-    | Apply of lambda * lambda
+```ocamltop
+type lambda =
+  | Lambda of string * lambda
+  | Var of string
+  | Apply of lambda * lambda
 ```
 I use the format library to print the lambda-terms:
 
-```tryocaml
-  open Format;;
+```ocamltop
+open Format;;
 
-  let ident = print_string
-  let kwd = print_string;;
+let ident = print_string
+let kwd = print_string;;
 
-  let rec print_exp0 = function
-    | Var s ->  ident s
-    | lam -> open_hovbox 1; kwd "("; print_lambda lam; kwd ")"; close_box ()
-  and print_app = function
-    | e -> open_hovbox 2; print_other_applications e; close_box ()
-  and print_other_applications f =
-    match f with
-    | Apply (f, arg) -> print_app f; print_space (); print_exp0 arg
-    | f -> print_exp0 f
-  and print_lambda = function
-    | Lambda (s, lam) ->
-        open_hovbox 1;
-        kwd "\\"; ident s; kwd "."; print_space(); print_lambda lam;
-        close_box()
-    | e -> print_app e
+let rec print_exp0 = function
+  | Var s ->  ident s
+  | lam -> open_hovbox 1; kwd "("; print_lambda lam; kwd ")"; close_box ()
+and print_app = function
+  | e -> open_hovbox 2; print_other_applications e; close_box ()
+and print_other_applications f =
+  match f with
+  | Apply (f, arg) -> print_app f; print_space (); print_exp0 arg
+  | f -> print_exp0 f
+and print_lambda = function
+  | Lambda (s, lam) ->
+      open_hovbox 1;
+      kwd "\\"; ident s; kwd "."; print_space(); print_lambda lam;
+      close_box()
+  | e -> print_app e
 ```
 In Caml Light, replace the first line by:
 
 ```ocaml
 #open "format";;
 ```
+
 ###  Most general pretty-printing: using `fprintf`
+
 We use the `fprintf` function to write the most versatile version of the
 pretty-printing functions for lambda-terms. Now, the functions get an
 extra argument, namely a pretty-printing formatter (the `ppf` argument)
@@ -389,32 +387,32 @@ argument).
 Using `fprintf`, the lambda-terms printing routines can be written as
 follows:
 
-```tryocaml
-  open Format;;
+```ocamltop
+open Format;;
 
-  let ident ppf s = fprintf ppf "%s" s
-  let kwd ppf s = fprintf ppf "%s" s;;
+let ident ppf s = fprintf ppf "%s" s
+let kwd ppf s = fprintf ppf "%s" s;;
 
-  let rec pr_exp0 ppf = function
-    | Var s -> fprintf ppf "%a" ident s
-    | lam -> fprintf ppf "@[<1>(%a)@]" pr_lambda lam
-  and pr_app ppf e =
-    fprintf ppf "@[<2>%a@]" pr_other_applications e
-  and pr_other_applications ppf f =
-    match f with
-    | Apply (f, arg) -> fprintf ppf "%a@ %a" pr_app f pr_exp0 arg
-    | f -> pr_exp0 ppf f
-  and pr_lambda ppf = function
-    | Lambda (s, lam) ->
-       fprintf ppf "@[<1>%a%a%a@ %a@]"
-               kwd "\\" ident s kwd "." pr_lambda lam
-    | e -> pr_app ppf e
+let rec pr_exp0 ppf = function
+  | Var s -> fprintf ppf "%a" ident s
+  | lam -> fprintf ppf "@[<1>(%a)@]" pr_lambda lam
+and pr_app ppf e =
+  fprintf ppf "@[<2>%a@]" pr_other_applications e
+and pr_other_applications ppf f =
+  match f with
+  | Apply (f, arg) -> fprintf ppf "%a@ %a" pr_app f pr_exp0 arg
+  | f -> pr_exp0 ppf f
+and pr_lambda ppf = function
+  | Lambda (s, lam) ->
+     fprintf ppf "@[<1>%a%a%a@ %a@]"
+             kwd "\\" ident s kwd "." pr_lambda lam
+  | e -> pr_app ppf e
 ```
+
 Given those general printing routines, procedures to print to `stdout`
 or `stderr` is just a matter of partial application:
 
-```tryocaml
-  let print_lambda = pr_lambda std_formatter
-  let eprint_lambda = pr_lambda err_formatter
-
+```ocamltop
+let print_lambda = pr_lambda std_formatter
+let eprint_lambda = pr_lambda err_formatter
 ```
