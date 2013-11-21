@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs">
     <li class="active">
-        <a href="#">Recent updates</a>
+        <a>Recent updates</a>
     </li>
 </ul>
 <table class="table table-bordered table-condensed table-hover">
