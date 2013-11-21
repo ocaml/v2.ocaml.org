@@ -17,13 +17,16 @@ Building the html pages requires:
 * ocaml >= 3.12.0 (the presence of ocamlopt is required)
 * ocamlfind
 * mpp >= 0.1.2
-* omd >= 0.7.4
+* omd >= 0.7.5
 * netstring, netclient, equeue-ssl, and rss (for rss2html.ml)
 
 If you use opam, the OCaml packages above can be installed by running:
 
     opam install ocamlfind mpp omd ssl ocamlnet ocamlrss
 
+Note that you need `libssl-dev` to be able to compile and use `ssl`.
+`libssl-dev` is the name of a debian package, if you're using another system,
+it might be available under a different name.
 
 BUILD
 =====
