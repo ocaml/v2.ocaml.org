@@ -8,7 +8,13 @@ open Utils
 (* To HTML, with syntax highlighting
  ***********************************************************************)
 
-let html_encode = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
+let html_encode =
+  let enc = Netencoding.Html.encode ~in_enc:`Enc_utf8 () in
+  fun s ->
+  try enc s
+  with Netconversion.Malformed_code ->
+    failwith(sprintf "Code.html_encode: \"%s\" cannot be encoded to HTML" s)
+
 let html_decode =
   Netencoding.Html.decode ~in_enc:`Enc_utf8 ~out_enc:`Enc_utf8 ()
 
@@ -125,7 +131,6 @@ let highlight_ocaml =
     List.fold_left (fun h (re, t) -> Str.global_replace re t h) phrase subst
   )
 
-
 let highlight ?(syntax="ocaml") phrase =
   if syntax = "ocaml" then highlight_ocaml (html_encode phrase)
   else html_encode phrase
@@ -193,7 +198,7 @@ let html_of_eval_silent t phrase =
 
 
 (* Insert the HTML code to highligh the error located in [phrase] at
-   chars [c1 .. c2[. *)
+   chars [c1 .. c2[.  Can raise [Netconversion.Malformed_code]. *)
 let highlight_error_range phrase err_msg c1 c2 =
   let len = String.length phrase in
   if c1 >= len || c1 < 0 || c2 < 0 then
@@ -258,6 +263,7 @@ let html_of_eval t phrase =
 (* FIXME: naive, ";;" can occur inside strings and one does not want
    to split it then.  Could be more efficient *)
 let end_of_phrase = Str.regexp ";;[ \t\n]*"
+
 
 let to_html t phrases =
   (* Split phrases *)

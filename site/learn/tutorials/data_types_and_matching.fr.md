@@ -1,12 +1,14 @@
 <!-- ((! set title Types de données et filtrage de motif !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Types de données et filtrage de motif
 ## Listes chaînées
 Comme en Perl, la notion de liste est directement supportée dans le
 langage OCaml. En OCaml, tous les éléments d'une liste doivent avoir le
 même type. Une liste s'écrit :
 
-```tryocaml
+```ocaml
 [1; 2; 3]
 ```
 (Remarquez l'utilisation de points-virgules, et non de virgules).
@@ -19,10 +21,9 @@ dans cet exemple la tête est l'entier `1` alors que la queue est la
 *liste* `[2; 3]`.
 
 Une autre façon d'écrire une liste est d'utiliser l'opérateur **cons**
-`tête :: queue`. Toutes les expressions suivantes sont donc équivalentes
-:
+`tête :: queue`. Toutes les expressions suivantes sont donc équivalentes :
 
-```tryocaml
+```ocaml
 [1; 2; 3]
 1 :: [2; 3]
 1 :: 2 :: [3]
@@ -51,9 +52,10 @@ est un bon exemple. Peu importe si une liste contient des entiers, des
 chaînes, des objets ou des ratons-laveurs, la fonction `List.length`
 peut être utilisée dessus. Le type de `List.length` est donc :
 
-```tryocaml
+```ocaml
 List.length : 'a list -> int
 ```
+
 ## Structures
 Le C et le C++ proposent le concept simple de `struct`, abbréviation de
 structure. En Java on peut utiliser des classes à la place, mais c'est
@@ -61,7 +63,7 @@ beaucoup plus laborieux.
 
 Considérons cette simple structure C :
 
-```tryocaml
+```C
 struct paire_dentiers {
   int a, b;
 };
@@ -78,28 +80,25 @@ n-uplets ne peuvent pas être nommées, et il faut se souvenir de l'ordre
 dans lequel ils apparaissent. Voici l'enregistrement équivalent au
 struct C ci-dessus :
 
-```tryocaml
+```ocamltop
 type paire_dentiers = { a : int; b : int };;
 ```
 Ceci définit le type, et voici comment *créer* effectivement des valeurs
 de ce type :
 
-```tryocaml
+```ocamltop
 { a=3; b=5 }
 ```
-Remarquez l'utilisation de ":" dans la définition du type et de "=" pour
+Remarquez l'utilisation de « : » dans la définition du type et de « = » pour
 créer des valeurs de ce type.
 
 Voici un exemple d'utilisation des enregistrements, testé avec la boucle
 interactive :
 
-```tryocaml
-# type paire_dentiers = { a : int; b : int };;
-type paire_dentiers = { a : int; b : int; }
-# {a=3; b=5};;
-- : paire_dentiers = {a = 3; b = 5}
-# {a=3};;
-Some record field labels are undefined: b
+```ocamltop
+type paire_dentiers = { a : int; b : int };;
+{a=3; b=5};;
+{a=3};;
 ```
 Donc OCaml refuse de laisser certains champs d'un enregistrement non
 définis.
@@ -109,7 +108,7 @@ Le concept d'"union marquée" n'existe pas vraiment en C, bien qu'il
 existe dans le compileur gcc. Voici comment on traduit d'habitude une
 union marquée en C:
 
-```tryocaml
+```C
 struct foo {
   int type;
 #define TYPE_INT 1
@@ -134,8 +133,12 @@ finir, c'est lourdingue.
 
 Voici l'équivalent en OCaml, élégant et concis:
 
-```tryocaml
-type foo = Nothing | Int of int | Pair of int * int | String of string;;
+```ocamltop
+type foo =
+  | Nothing
+  | Int of int
+  | Pair of int * int
+  | String of string;;
 ```
 Voilà pour la définition du type. Au début de chacune des sections,
 séparées par des `|`, se trouve un constructeur. On peut les nommer
@@ -147,12 +150,12 @@ constructeurs définissent des valeurs.
 
 Pour *créer* effectivement des valeurs de ce type, on peut écrire:
 
-```tryocaml
-Nothing
-Int 3
-Pair (4, 5)
+```ocamltop
+Nothing;;
+Int 3;;
+Pair (4, 5);;
 String "hello"
-     etc.
+(* etc. *)
 ```
 Toutes ces expressions ont pour type `foo`.
 
@@ -161,35 +164,33 @@ retrouve PAS dans l'écriture des valeurs de ce type.
 
 Par extension, un simple `enum` C définit comme
 
-```tryocaml
+```ocaml
 enum sign { positive, zero, negative };
 ```
 peut être traduit en OCaml par
 
-```tryocaml
+```ocamltop
 type sign = Positive | Zero | Negative;;
 ```
+
 ###  Variants récursifs (utilisés pour les arbres)
 Les variants peuvent être récursifs, ce qui est souvent utilisé pour
 définir des structures de données arborescentes. C'est vraiment là que
 se révèle l'expressivité des langages fonctionnels :
 
-```tryocaml
+```ocamltop
 type binary_tree = Leaf of int | Tree of binary_tree * binary_tree;;
 ```
 Voilà quelques arbres binaires. Comme exercice, essayez de les dessiner
 sur un bout de papier.
 
-```tryocaml
-Leaf 3
-
-Tree (Leaf 3, Leaf 4)
-
-
-Tree (Tree (Leaf 3, Leaf 4), Leaf 5)
-
-Tree (Tree (Leaf 3, Leaf 4), Tree (Tree (Leaf 3, Leaf 4), Leaf 5))
+```ocamltop
+Leaf 3;;
+Tree (Leaf 3, Leaf 4);;
+Tree (Tree (Leaf 3, Leaf 4), Leaf 5);;
+Tree (Tree (Leaf 3, Leaf 4), Tree (Tree (Leaf 3, Leaf 4), Leaf 5));;
 ```
+
 ###  Variants paramétrés
 L'arbre binaire de la section précédente comporte un entier à chaque
 feuille, mais comment faire pour décrire la *forme* de la structure de
@@ -197,8 +198,10 @@ données, en laissant le choix de ce qui doit être stocké dans chaque
 feuille pour plus tard ? On peut utiliser un variant paramétré (ou
 polymorphique), comme ceci :
 
-```tryocaml
-type 'a binary_tree = Leaf of 'a | Tree of 'a binary_tree * 'a binary_tree;;
+```ocamltop
+type 'a binary_tree =
+  | Leaf of 'a
+  | Tree of 'a binary_tree * 'a binary_tree;;
 ```
 C'est le type général. Le type où chaque feuille stocke un entier
 s'appelle `int binary_tree`. De la même façon, le type où chaque feuille
@@ -206,35 +209,29 @@ stocke une chaîne s'appelle `string binary_tree`. Pour l'exemple suivant
 nous allons taper des valeurs dans la boucle interactive, et laisser le
 système d'inférence de types nous donner leurs types :
 
-```tryocaml
-# Leaf "hello";;
-- : string binary_tree = Leaf "hello"
-# Leaf 3.0;;
-- : float binary_tree = Leaf 3.
+```ocamltop
+Leaf "hello";;
+Leaf 3.0;;
 ```
 Remarquez que le nom des types est à l'envers (arbre binaire de
-flottants -\> float binary_tree). C'est comparable avec le nom des
-types pour les listes, ie `int list`, etc.
+flottants → float binary_tree). C'est comparable avec le nom des
+types pour les listes, i.e. `int list`, etc.
 
-En fait ce n'est pas une coïncidence si `'a list` est écrit lui aussi "à
-l'envers". Les types listes ne sont que des types variants paramétrés,
+En fait ce n'est pas une coïncidence si `'a list` est écrit lui aussi « à
+l'envers ». Les types listes ne sont que des types variants paramétrés,
 avec une définition légèrement spéciale :
 
-```tryocaml
- type 'a list = [] | :: of 'a * 'a list   (* ceci n'est pas du vrai code OCaml *)
+```ocaml
+type 'a list = [] | :: of 'a * 'a list   (* ceci n'est pas du vrai code OCaml *)
 ```
 En fait la définition ci-dessus ne compile pas. La définition suivante,
 très similaire, compile correctement :
 
-```tryocaml
-# type 'a list = Nil | :: of 'a * 'a list;;
-type 'a list = Nil | :: of 'a * 'a list
-# Nil;;
-- : 'a list = Nil
-# 1 :: Nil;;
-- : int list = :: (1, Nil)
-# 1 :: 2 :: Nil;;
-- : int list = :: (1, :: (2, Nil))
+```ocamltop
+type 'a list = Nil | :: of 'a * 'a list;;
+Nil;;
+1 :: Nil;;
+1 :: 2 :: Nil;;
 ```
 Rappelez vous quand nous avons dit précédemment que les listes pouvaient
 être écrites de deux façons, soit sous la forme syntaxiquement édulcorée
@@ -245,18 +242,23 @@ formelle devrait vous paraître plus clairement.
 ## Listes, structures et variants — Résumé
 tableau en 3 colonnes avec nom et exemples de définition et de valeur.
 
-```tryocaml
-nom OCaml        Example de définition de type          Exemple(s) de valeur(s) 
-liste            int list                               [1; 2; 3]
-n-uplet          int * string                           (3, "hello")
-enregistrement   type pair = { a : int; b : string }    { a = 3; b = "hello" }
-variant          type foo = Int of int                  Int 3
-                           | Pair of int * string                                                                      
-variant          type sign = Positive | Zero            Positive
-                           | Negative                   Zero
-variant          type 'a my_list = Empty                Cons (1, Cons (2, Empty))
-  paramétré                | Cons of 'a * 'a my_list
+```text
+list           int list                       [1; 2; 3]
+tuple          int * string                   (3, "hello")
+record         type pair =                    { a = 3; b = "hello" }
+                 { a: int; b: string }
+variant        type foo =
+	             | Int of int                 Int 3
+			     | Pair of int * string
+variant        type sign =
+                 | Positive                   Positive
+			     | Zero                       Zero
+                 | Negative
+parameterized  type 'a my_list =
+variant          | Empty                      Cons (1, Cons (2, Empty))
+                 | Cons of 'a * 'a my_list
 ```
+
 ## Filtrage (sur les structures de données)
 Une "Fonctionnalité Vraiment Cool"(tm) des langages fonctionnels est
 leur capacité à démonter les structures de données et à effectuer du
@@ -271,17 +273,17 @@ multiplications symboliquement pour obtenir `n * x + n * y`.
 
 Définissons un type pour ces expressions:
 
-```tryocaml
-type expr = Plus of expr * expr        (* pour a + b *)
-          | Minus of expr * expr       (* pour a - b *)
-          | Times of expr * expr       (* pour a * b *)
-      | Divide of expr * expr      (* pour a / b *)
-          | Value of string            (* "x", "y", "n", etc. *)
-      ;;
+```ocamltop
+  type expr =
+    | Plus of expr * expr        (* means a + b *)
+    | Minus of expr * expr       (* means a - b *)
+    | Times of expr * expr       (* means a * b *)
+    | Divide of expr * expr      (* means a / b *)
+    | Value of string            (* "x", "y", "n", etc. *)
 ```
 L'expression `n * (x + y)` s'écrirait:
 
-```tryocaml
+```ocamltop
 Times (Value "n", Plus (Value "x", Value "y"))
 ```
 Ecrivons une fonction qui affiche
@@ -291,36 +293,37 @@ en une jolie chaîne, et une autre qui l'affiche (comme ça si j'ai envie
 d'écrire la même chaîne dans un fichier, je n'aurais pas à réécrire la
 fonction en entier juste pour ça).
 
-```tryocaml
+```ocamltop
 let rec to_string e =
   match e with
-    Plus (left, right)   -> "(" ^ (to_string left) ^ " + " ^ (to_string right) ^ ")"
-  | Minus (left, right)  -> "(" ^ (to_string left) ^ " - " ^ (to_string right) ^ ")"
-
-  | Times (left, right)  -> "(" ^ (to_string left) ^ " * " ^ (to_string right) ^ ")"
-  | Divide (left, right) -> "(" ^ (to_string left) ^ " / " ^ (to_string right) ^ ")"
-
-  | Value v -> v
-  ;;
+  | Plus (left, right) ->
+     "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
+  | Minus (left, right) ->
+     "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
+  | Times (left, right) ->
+	 "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
+  | Divide (left, right) ->
+	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
+  | Value v -> v ;;
 
 let print_expr e =
   print_endline (to_string e);;
 ```
+
 (NB: L'opérateur `^` sert à concaténer les chaînes.)
 
 Voilà la fonction d'affichage à l'oeuvre:
 
-```tryocaml
-# print_expr (Times (Value "n", Plus (Value "x", Value "y")));;
-(n * (x + y))
+```ocamltop
+print_expr (Times (Value "n", Plus (Value "x", Value "y")));;
 ```
 La forme générale pour le filtrage est:
 
-```tryocaml
+```ocaml
 match valeur with
-  motif    ->  résultat
 | motif    ->  résultat
-    ...
+| motif    ->  résultat
+  ...
 ```
 Les motifs dans la colonne de gauche peuvent être simples, comme dans la
 fonction `to_string` ci-dessus, ou plus complexe et imbriqués. L'exemple
@@ -328,27 +331,29 @@ suivant est notre fonction de distribution symbolique de la
 multiplication des expressions de la forme `n * (x + y)` ou
 `(x + y) * n`, et pour cela on va utiliser un motif imbriqué :
 
-```tryocaml
+```ocamltop
 let rec multiply_out e =
   match e with
-    Times (e1, Plus (e2, e3)) ->
-      Plus (Times (multiply_out e1, multiply_out e2),
-            Times (multiply_out e1, multiply_out e3))
+  | Times (e1, Plus (e2, e3)) ->
+     Plus (Times (multiply_out e1, multiply_out e2),
+           Times (multiply_out e1, multiply_out e3))
   | Times (Plus (e1, e2), e3) ->
-      Plus (Times (multiply_out e1, multiply_out e3),
-            Times (multiply_out e2, multiply_out e3))
-  | Plus (left, right) -> Plus (multiply_out left, multiply_out right)
-  | Minus (left, right) -> Minus (multiply_out left, multiply_out right)
-  | Times (left, right) -> Times (multiply_out left, multiply_out right)
-  | Divide (left, right) -> Divide (multiply_out left, multiply_out right)
+     Plus (Times (multiply_out e1, multiply_out e3),
+           Times (multiply_out e2, multiply_out e3))
+  | Plus (left, right) ->
+     Plus (multiply_out left, multiply_out right)
+  | Minus (left, right) ->
+     Minus (multiply_out left, multiply_out right)
+  | Times (left, right) ->
+     Times (multiply_out left, multiply_out right)
+  | Divide (left, right) ->
+     Divide (multiply_out left, multiply_out right)
   | Value v -> Value v
-  ;;
 ```
 La voilà en action:
 
-```tryocaml
-# print_expr (multiply_out (Times (Value "n", Plus (Value "x", Value "y"))));;
-((n * x) + (n * y))
+```ocamltop
+print_expr (multiply_out (Times (Value "n", Plus (Value "x", Value "y"))));;
 ```
 Comment est-ce que marche la fonction `multiply_out` ? L'essentiel se
 trouve dans les deux premiers motifs. Le premier est
@@ -373,24 +378,26 @@ La version suivante ne marche que pour l'expression la plus externe.
 Vous pourriez certainement l'améliorer pour gérer tous les niveaux de
 sous-expressions, et des cas plus complexes :
 
-```tryocaml
+```ocamltop
 let factorize e =
   match e with
-    Plus (Times (e1, e2), Times (e3, e4)) when e1 = e3 -> Times (e1, Plus (e2, e4))
-  | Plus (Times (e1, e2), Times (e3, e4)) when e2 = e4 -> Times (Plus (e1, e3), e4)
-  | e -> e
-  ;;
+  | Plus (Times (e1, e2), Times (e3, e4)) when e1 = e3 ->
+     Times (e1, Plus (e2, e4))
+  | Plus (Times (e1, e2), Times (e3, e4)) when e2 = e4 ->
+     Times (Plus (e1, e3), e4)
+  | e -> e;;
 
-# factorize (Plus (Times (Value "n", Value "x"), Times (Value "n", Value "y")));;
-- : expr = Times (Value "n", Plus (Value "x", Value "y"))
+factorize (Plus (Times (Value "n", Value "x"),
+                 Times (Value "n", Value "y")))
 ```
+
 La fonction de factorisation ci-dessus introduit une paire de nouvelles
 fonctionnalités. Vous pouvez ajouter ce qui s'appelle une **garde** à
 chaque motif. Une garde est une condition précédée de `when`, et qui
 signifie que le filtrage n'est fructueux que si le motif correspond *et*
 la condition après la clause `when` est satisfaite.
 
-```tryocaml
+```ocaml
 match valeur with
   motif      [ when condition ]   ->  résultat
   motif      [ when condition ]   ->  résultat
@@ -405,21 +412,27 @@ OCaml est capable de vérifier au moment de la compilation que tous les
 cas sont couverts par vos motifs. J'ai modifié la définition du
 `type expr` précédent pour y ajouter le constructeur `Product` :
 
-```tryocaml
-type expr = Plus of expr * expr        (* pour a + b *)
-          | Minus of expr * expr       (* pour a - b *)
-          | Times of expr * expr       (* pour a * b *)
-      | Divide of expr * expr      (* pour a / b *)
-      | Product of expr list       (* pour a * b * c * ... *)
-          | Value of string            (* "x", "y", "n", etc. *)
-      ;;
+```ocamltop
+type expr = Plus of expr * expr      (* means a + b *)
+          | Minus of expr * expr     (* means a - b *)
+          | Times of expr * expr     (* means a * b *)
+          | Divide of expr * expr    (* means a / b *)
+          | Product of expr list     (* means a * b * c * ... *)
+          | Value of string          (* "x", "y", "n", etc. *)
 ```
 J'ai ensuite recompilé la fonction `to_string` sans modifications. OCaml
 a renvoyé l'avertissement suivant :
 
-```tryocaml
-Warning: this pattern-matching is not exhaustive.
-Here is an example of a value that is not matched:
-Product _
-
+```ocamltop
+let rec to_string e =
+  match e with
+  | Plus (left, right) ->
+     "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
+  | Minus (left, right) ->
+     "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
+  | Times (left, right) ->
+	 "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
+  | Divide (left, right) ->
+	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
+  | Value v -> v ;;
 ```

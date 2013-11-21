@@ -1,5 +1,7 @@
 <!-- ((! set title Structure des programmes OCaml !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Structure des programmes OCaml
 Maintenant nous allons passer un peu de temps à observer la structure
 d'ensemble de quelque vrais programmes en OCaml. Je veux vous parler des
@@ -14,7 +16,7 @@ et aux fonctionnalités mises en avant.
 Prenons la fonction `average` écrite en C, et ajoutons lui une variable
 locale. (à comparer avec la première version que nous avions)
 
-```tryocaml
+```C
 double
 average (double a, double b)
 {
@@ -24,7 +26,7 @@ average (double a, double b)
 ```
 Faisons la même chose avec notre version OCaml :
 
-```tryocaml
+```ocamltop
 let average a b =
   let sum = a +. b in
   sum /. 2.0;;
@@ -49,21 +51,21 @@ Voyons un autre exemple qui devrait clarifier les choses. Les deux bouts
 de code suivants devraient retourner la même valeur (à savoir (a+b) +
 (a+b)<sup>2</sup>):
 
-```tryocaml
+```ocamltop
 let f a b =
-  (a +. b) +. (a +. b) ** 2.
-  ;;
+  (a +. b) +. (a +. b) ** 2. ;;
 
 let f a b =
   let x = a +. b in
-  x +. x ** 2.
-  ;;
+  x +. x ** 2. ;;
 ```
+
 Il se peut que la seconde version soit plus rapide (bien que la plupart
 des compilateurs devraient être capable de faire cette étape
 d'"élimination de sous-expressions communes" à votre place), et en tout
 cas elle est plus lisible. Dans le second exemple, `x` est une
 abréviation pour l'expression `a +. b`.
+
 
 ## « Variables » globales (*plus précisément* expressions globales)
 Vous pouvez aussi donner des noms à des choses dans l'environnement
@@ -71,7 +73,7 @@ global, et comme pour les "variables" locales ci-dessus, ce ne sont pas
 vraiment des variables, mais des abbréviations pour ces choses. Voici un
 exemple pris dans un programme réel :
 
-```tryocaml
+```ocaml
 let html =
   let content = read_whole_file file in
   GHtml.html_from_string content
@@ -79,7 +81,7 @@ let html =
 
 let menu_bold () =
   match bold_button#active with
-    true -> html#set_font_style ~enable:[`BOLD] ()
+  | true -> html#set_font_style ~enable:[`BOLD] ()
   | false -> html#set_font_style ~disable:[`BOLD] ()
   ;;
 
@@ -88,6 +90,7 @@ let main () =
   factory#add_item "Cut" ~key:_X ~callback: html#cut
   ;;
 ```
+
 Dans ce vrai morceau de code, `html` est un "widget" ("contrôle")
 d'édition de HTML (un objet provenant de la bibliothèque lablgtk), créé
 une fois pour toute au début du programme par la première instruction
@@ -116,7 +119,7 @@ références - comme en OCaml.
 
 Voici comment créer une référence sur un entier (`int`) en OCaml :
 
-```tryocaml
+```ocamltop
 ref 0;;
 ```
 En fait cette instruction n'est pas très utile. Nous avons créé une
@@ -125,32 +128,32 @@ fait son travail et l'a immédiatement libérée! (Il est même probable que
 le compileur ait éliminé cette instruction à la compilation). Donnons un
 nom à cette référence :
 
-```tryocaml
+```ocamltop
 let my_ref = ref 0;;
 ```
 Cette référence contient maintenant l'entier 0. Mettons une autre valeur
 à la place (assignement) :
 
-```tryocaml
+```ocamltop
 my_ref := 100;;
 ```
 Voyons ce que la référence contient à présent :
 
-```tryocaml
-# !my_ref;;
-- : int = 100
+```ocamltop
+!my_ref;;
 ```
 Donc l'opérateur `:=` est utilisé pour assigner les références, et `!`
 pour les déréférencer et accéder au contenu. Voici une comparaison
 approximative avec C/C++ :
 
-```tryocaml
+```text
 OCaml                   C/C++
 
 let my_ref = ref 0;;    int a = 0; int *my_ptr = &a;
 my_ref := 100;;         *my_ptr = 100;
 !my_ref                 *my_ptr
 ```
+
 Les références ont leurs usages, mais vous vous apercevrez que vous ne
 les utiliserez pas si souvent. La plupart du temps, vous utiliserez
 `let nom = expression in` pour nommer des expressions locales dans vos
@@ -162,13 +165,13 @@ les supporte, mais je ne connais pas de programme qui en tire parti. En
 tout cas, voici ce que la page info de gcc dit sur les fonctions
 imbriquées :
 
-Une "fonction imbriquée" est une fonction définie à l'intérieur d'une
+Une « fonction imbriquée » est une fonction définie à l'intérieur d'une
 autre fonction (les fonctions imbriquées ne sont pas supportées par GNU
 C++.) Le nom de la fonction imbriquée est local au bloc dans lequel il
 est défini. Par exemple, définissons une fonction imbriquée nommée
-`square', et appelons-là deux fois :
+`square`, et appelons-là deux fois :
 
-```tryocaml
+```C
 foo (double a, double b)
 {
   double square (double z) { return z * z; }
@@ -176,12 +179,13 @@ foo (double a, double b)
   return square (a) + square (b);
 }
 ```
+
 La fonction imbriquée a accès à toutes les variables de la fonction
 englobante qui sont visibles à l'emplacement de sa définition. Cela
-s'appelle la "portée lexicale". Par exemple, voici une fonction
-imbriquée qui utilise une variable héritée nommée `offset' :
+s'appelle la « portée lexicale ». Par exemple, voici une fonction
+imbriquée qui utilise une variable héritée nommée `offset` :
 
-```tryocaml
+```C
 bar (int *array, int offset, int size)
 {
   int access (int *array, int index)
@@ -196,7 +200,7 @@ Vous comprenez l'idée. Les fonctions imbriquées sont, cependant, très
 utiles et largement employées en OCaml. Voici un exemple d'utilisation
 réel de fonction imbriquées :
 
-```tryocaml
+```ocamltop
 let read_whole_channel chan =
   let buf = Buffer.create 4096 in
   let rec loop () =
@@ -210,7 +214,7 @@ let read_whole_channel chan =
   with
     End_of_file -> Buffer.contents buf;;
 ```
-Ne vous inquiétez pas de ce que ce code fait - il utilise beaucoup de
+Ne vous inquiétez pas de ce que ce code fait — il utilise beaucoup de
 concepts que nous n'avons pas encore vu dans ce tutorial.
 Concentrez-vous plutôt sur la fonction imbriquée principale nommée
 `loop` qui ne prend qu'un argument unit. On peut appeler `loop ()`
@@ -239,7 +243,7 @@ relativement simple appelé `Graphics`.
 
 Le module `Graphics` est constitué de cinq fichiers (sur mon système) :
 
-```tryocaml
+```text
 /usr/lib/ocaml/graphics.a
 /usr/lib/ocaml/graphics.cma
 /usr/lib/ocaml/graphics.cmi
@@ -340,16 +344,17 @@ d'une définition de fonction ou d'aucune autre instruction.
 
 Reprenons un bout du second exemple graphique précédent:
 
-```tryocaml
+```ocamltop
 Random.self_init ();;
 Graphics.open_graph " 640x480";;
 
 let rec iterate r x_init i =
-        if i = 1 then x_init
-        else
-                let x = iterate r x_init (i-1) in
-                r *. x *. (1.0 -. x);;
+  if i = 1 then x_init
+  else
+    let x = iterate r x_init (i-1) in
+    r *. x *. (1.0 -. x);;
 ```
+
 Nous avons deux instructions au niveau global et une définition de
 fonction (la fonction nommée `iterate`). Chacune est suivie par `;;`.
 
@@ -413,13 +418,13 @@ La boucle for interne de notre exemple ci-dessus est une bonne
 démonstration. Remarquez que nous n'utilisons jamais de simple `;` dans
 ce code :
 
-```tryocaml
-        for i = 0 to 39 do
-                let x_init = Random.float 1.0 in
-                let x_final = iterate r x_init 500 in
-                let y = int_of_float (x_final *. 480.) in
-                Graphics.plot x y
-        done
+```ocaml
+for i = 0 to 39 do
+  let x_init = Random.float 1.0 in
+  let x_final = iterate r x_init 500 in
+  let y = int_of_float (x_final *. 480.) in
+  Graphics.plot x y
+done
 ```
 Le seul endroit dans ce code où on pourrait imaginer mettre un `;` est
 après `Graphics.plot x y`, mais comme c'est la dernière instruction de
@@ -442,7 +447,7 @@ est une expression. `a ; b` est une expression. `match foo with ...` est
 une expression. Les codes suivants sont parfaitement légaux (et tous
 font la même chose) :
 
-```tryocaml
+```ocaml
 let f x b y = if b then x+y else x+0
 
 let f x b y = x + (if b then y else 0)
@@ -453,11 +458,12 @@ let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
 
 let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
 ```
-Notez tout particulièrement la dernière fonction - j'utilise `;` comme
+
+Notez tout particulièrement la dernière fonction — j'utilise `;` comme
 opérateur pour "joindre" deux instructions. En OCaml, toutes les
 fonctions peuvent être exprimées par :
 
-```tryocaml
+```ocaml
 let nom [paramètres] = expression
 ```
 La définition de ce qu'est une expression en OCaml est juste un peu plus
@@ -469,7 +475,7 @@ Une différence entre `;` et `+` est que je peux utiliser `+` comme une
 fonction. Par exemple, je peux définir une fonction `sum_list` pour
 calculer la somme d'une liste d'entier comme ceci :
 
-```tryocaml
+```ocamltop
 let sum_list = List.fold_left ( + ) 0
 ```
 ## Toutes ces notions ensemble : un exemple de code réel
@@ -502,9 +508,8 @@ Premier fragment : Le programmeur ouvre une paire de modules standards
 appelée `sel` en utilisant une instruction `let sel = ... in` de deux
 lignes. Puis il appelle plusieurs méthodes de `sel`.
 
-```tryocaml
+```ocaml
 (* First snippet *)
-
 open StdLabels
 open GMain
 
@@ -519,7 +524,7 @@ Deuxième fragment : Juste une longue liste de définitions au niveau
 global. Remarquez que l'auteur a omis toutes les occurrences de `;;`
 grâce à la règle n°2.
 
-```tryocaml
+```ocaml
 (* Second snippet *)
 
 let window = GWindow.window ~width:500 ~height:300 ~title:"editor" ()
@@ -535,6 +540,7 @@ let hbox = GPack.hbox ~packing:vbox#add ()
 let editor = new editor ~packing:hbox#add ()
 let scrollbar = GRange.scrollbar `VERTICAL ~packing:hbox#pack ()
 ```
+
 Troisième fragment : L'auteur importe tous les symboles du module
 `GdkKeysyms`. Puis nous avons un let-binding inhabituel.
 `let _ = expression` signifie "évalue la valeur de expression (avec tous
@@ -549,7 +555,7 @@ est en train de se terminer.
 Remarquez que dans ce fragment nous avons de longues successions de
 commandes procédurales. C'est un programme impératif classique.
 
-```tryocaml
+```ocaml
 (* Third snippet *)
 
 open GdkKeysyms
@@ -582,5 +588,4 @@ let _ =
   editor#text#set_vadjustment scrollbar#adjustment;
   window#show ();
   Main.main ()
-
 ```

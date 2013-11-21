@@ -231,7 +231,7 @@ the simple syntactic sugar of `[1; 2; 3]` or more formally as
 `1 :: 2 :: 3 :: []`. If you look at the definition for `'a list` above,
 you may be able to see the reason for the formal definition.
 
-## Lists, structures and variants - summary
+## Lists, structures and variants — summary
 OCaml name Example type definition Example usage
 
 ```text

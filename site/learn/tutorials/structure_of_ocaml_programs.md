@@ -1,5 +1,7 @@
 <!-- ((! set title The Structure of OCaml Programs !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # The Structure of OCaml Programs
 
 ## The structure of OCaml programs
