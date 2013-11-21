@@ -176,7 +176,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/default.png" alt="Incubaid">
+        <img src="/img/users/Incubaid.png" alt="Incubaid">
     </dt>
     <dd class="span5">
         <h2><a href="http://incubaid.com">Incubaid</a>, Belgium</h2>
@@ -275,7 +275,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/default.png" alt="Psellos">
+        <img src="/img/users/psellos.png" alt="Psellos">
     </dt>
     <dd class="span5">
         <h2><a href="http://psellos.com">Psellos</a>, United States</h2>
