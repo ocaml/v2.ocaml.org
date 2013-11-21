@@ -4,13 +4,14 @@
     <h1>Learn</h1>
     <div class="row">
         <div id="platform-logo" class="span2">
-            <img src="/img/ocaml-large.png" alt="OCaml">
+            <img src="/img/learn-large.png" alt="OCaml">
         </div>
         <section id="learn-leader" class="span7">
-            <h1>What is OCaml?</h1>
-            <p>OCaml is a general purpose industrial-strength programming language with an emphasis on expressiveness and safety. <a href="companies.html">Used</a> in environments where a single mistake can cost millions and speed matters, it is supported by an <a href="/community/">active community</a> that has developed a <a href="https://opam.ocaml.org/pkg/">rich set of libraries</a>. <small><em><a href="description.html">Read more</a></em></small>.</p>
+            <p><strong style="font-size: 110%">What is OCaml?</strong>
+			OCaml is a general purpose industrial-strength programming language with an emphasis on expressiveness and safety. <a href="companies.html">Used</a> in environments where a single mistake can cost millions and speed matters, it is supported by an <a href="/community/">active community</a> that has developed a <a href="https://opam.ocaml.org/pkg/">rich set of libraries</a>. <small><em><a href="description.html">Read more</a></em></small>.</p>
         </section>
-        <div id="platform-download" class="span3">
+        <div id="platform-download" class="span3"
+		  style="padding-top:2ex">
             <p><a href="/docs/install.html" class="btn">Download OCaml</a></p>
 <!--
             <p>
