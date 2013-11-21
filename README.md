@@ -34,30 +34,30 @@ database servers. Simply run:
     make
 
 This will generate a new folder `ocaml.org` that contains the full
-website.  If you want to be able to point your browser to `ocaml.org`,
-run instead `make preview` which will ensure that the links work
-locally (and not only on the server).
+website.  Note that building the site will attempt to connect to the
+internet to download the news and latest email conversations.  As
+usual, use `make clean` to delete the files generation by the
+compilation.
 
 DIRECTORY STRUCTURE
 ===================
-`site` - Main content of the site. Most files are in Markdown syntax
+`site` — Main content of the site. Most files are in Markdown syntax
          and converted to HTML by the build scripts.
 
-`template` - Templates governing the overall look and feel of the
+`template` — Templates governing the overall look and feel of the
              site. These are applied to the pages within site/ when
              the site is built. References to templates within site
              pages should be of the form `template/template-file-name`
              because the build script assumes this directory
              structure.
 
-`script` - Scripts used to build the site.
+`script` — Scripts used to build the site.
 
 
 CONTACTS
 ========
 For general discussion about the site's implementation, you can post
-to the
-[infrastructure](http://lists.ocaml.org/listinfo/infrastructure)
+to the [infrastructure](http://lists.ocaml.org/listinfo/infrastructure)
 mailing list.
 
 For a specific bug report, content suggestion, or feature request,
