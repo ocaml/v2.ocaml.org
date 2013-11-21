@@ -226,7 +226,7 @@ a.edit-this-page:hover {
   }
 }
 
-
+/* Solutions to questions */
 button.solution {
   margin-bottom: 0;
 }
@@ -241,8 +241,16 @@ code.c {
   font-style: normal;
 }
 
+/* Show quoted blocks */
 blockquote {
   border-left: 2px solid #cfcfcf;
   padding-left: 2ex;
 }
 
+/* Section headers too close to the following text. */
+h1.ruled + ul {
+  padding-top: 1ex;
+}
+h1.ruled + pre {
+  margin-top: 1ex;
+}

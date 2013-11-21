@@ -24,7 +24,6 @@
     <div class="row">
         <section class="span4 condensed">
             <h1 class="ruled">Code examples</h1>
-            ((! cat template/tryocaml.html !))
             ((! input template/front_code_snippet.html !))
             <footer>
               <p>See <a href="taste.html">a Hundred Lines of OCaml</a>,
