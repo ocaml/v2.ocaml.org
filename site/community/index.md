@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <section class="span12 condensed">
-            <h1 class="ruled">Mailing Lists</h1>
+            <h1 class="ruled"><a href="mailing_lists.html">Mailing Lists</a></h1>
             <div class="row">
             <section class="span4 condensed">
                 <p><strong><a href="https://sympa.inria.fr/sympa/arc/caml-list">caml-list@inria.fr</a></strong><br />
@@ -58,7 +58,7 @@
             <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html">Find out more</a>.</p>
         </section>
         <section class="span4 condensed">
-           <h1 class="ruled">Events</h1>
+           <h1 class="ruled"><a href="/meetings/">Events</a></h1>
             <ul class="news-feed">
                 <li class="announcement">
                     <article>
@@ -101,7 +101,7 @@
             </footer>
         </section>
         <section class="span4 condensed">
-           <h1 class="ruled">News</h1>
+           <h1 class="ruled"><a href="planet.html">News</a></h1>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <footer>
                 <p><a href="planet.html">See full list</a></p>

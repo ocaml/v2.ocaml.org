@@ -34,7 +34,7 @@
             </footer>
         </section>
         <section class="span4 condensed">
-            <h1 class="ruled">Tutorials &amp; FAQ</h1>
+            <h1 class="ruled"><a href="tutorials">Tutorials</a> &amp; <a href="faq.html">FAQ</a></h1>
             <ul>
                 <li><a href="tutorials/basics.html">Basics</a></li>
                 <li><a href="tutorials/structure_of_ocaml_programs.html">Structure of OCaml Programs</a></li>
@@ -50,7 +50,7 @@
             </footer>
         </section>
         <section class="span4 condensed">
-            <h1 class="ruled">Books</h1>
+            <h1 class="ruled"><a href="books.html">Books</a></h1>
                 <a href="https://realworldocaml.org"><img style="float:
                 left; margin-right: 2px; margin-bottom: 10px"
                 src="/img/real-world-ocaml.jpg" width="48%"
@@ -92,8 +92,8 @@
           </footer>
         </section>
         <section class="span4 condensed">
-          <h1 class="ruled">Industrial
-          Users</h1> <p><a href="http://janestreet.com"><img style="float:
+          <h1 class="ruled"><a href="companies.html">Industrial
+          Users</a></h1> <p><a href="http://janestreet.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
           src="/img/jane-street.jpg"></a>Jane Street is a quantitative
           proprietary trading firm with a unique focus on technology
@@ -129,7 +129,7 @@
           </footer>
         </section>
         <section class="span4 condensed">
-	  <h1 class="ruled">Success stories</h1>
+	  <h1 class="ruled"><a href="success.html">Success stories</a></h1>
           <p><a href="http://caml.inria.fr/about/successes-images/unison.jpg"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="http://caml.inria.fr/about/successes-images/unison-thumb.jpg" alt="Screenshot" title="Screenshot of Unison's main window"></a>
 	    <a href="http://www.cis.upenn.edu/%7Ebcpierce/unison/"
 	       >Unison</a> is an innovative <em>two-way</em>
