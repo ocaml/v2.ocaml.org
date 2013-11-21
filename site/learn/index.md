@@ -53,11 +53,15 @@
         <section class="span4 condensed">
             <h1 class="ruled">Books</h1>
                 <a href="https://realworldocaml.org"><img style="float:
-                left; margin-right: 10px; margin-bottom: 10px"
-                src="/img/real-world-ocaml.jpg" alt="Real World OCaml
-                book"></a><a href="http://ocaml-book.com"><img style="float:
-                right; margin-left: 10px; margin-bottom: 20px"
-                src="/img/OCaml_from_beginning.png" width="170" alt="OCaml from the very beginning"></a><p>There are a number of excellent books, with two new titles published in 2013.
+                left; margin-right: 2px; margin-bottom: 10px"
+                src="/img/real-world-ocaml.jpg" width="48%"
+				alt="Real World OCaml book"></a><a
+				href="http://ocaml-book.com"><img style="float:
+                right; margin-left: 2px; margin-bottom: 10px"
+                src="/img/OCaml_from_beginning.png" width="48%"
+				alt="OCaml from the very beginning"></a>
+				<p style="clear:both">There are a number of excellent
+				books, with two new titles published in 2013.
 		</p>
 		<footer>
                   <p><a href="books.html">See full list</a></p>
