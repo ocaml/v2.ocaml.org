@@ -41,8 +41,8 @@ system, foreign-function interface, macro language, and the ocamlbuild
 system. Quickly learn how to put OCaml to work for writing succinct and
 readable code.
 
-[Book Website](https://realworldocaml.org/) | [O&#39;Reilly Early
-Release](http://shop.oreilly.com/product/0636920024743.do?code=WKERRLS)
+[Book Website](https://realworldocaml.org/) | [O'Reilly](http://shop.oreilly.com/product/0636920024743.do) | [Amazon](http://www.amazon.com/Real-World-OCaml-Functional-programming/dp/144932391X/ref=tmm_pap_title_0?ie=UTF8&qid=1385006524&sr=8-1)
+
 
 ****
 
