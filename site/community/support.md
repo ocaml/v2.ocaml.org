@@ -32,18 +32,19 @@ for domain-specific languages), and much more. Also visit his [website
 on OCaml](http://camlcity.org).
 
 ## Giving Support
-###  The OCaml Consortium at Inria
-The OCaml Consortium federates the design and development of the OCaml
+###  The Caml Consortium at Inria
+
+<img src="/img/inria.png" alt="Inria" style="height: 70px">
+
+The [Caml Consortium](http://caml.inria.fr/consortium/) federates the design and development of the OCaml
 language and its programming environment. The Consortium allow its
 members to demonstrate their interest in the OCaml language and express
 their support to its development. Moreover, they benefit of a [specific
 license](/docs/consortium-license.html).
 
-To become a member necessitates a contribution that can be as low as
-3000€ for a minimal support to OCaml. For more effective support,
-contributions can be of 10000€ or higher. Membership is important not
-only for the development of OCaml, its promotion and its dissemination,
-but also for its continuity.
+Membership is cheap (3000€, VAT excluded), but important, not only for
+the development of OCaml, its promotion and its dissemination, but
+also for its continuity.
 
 ####  Current Members
 
@@ -81,7 +82,7 @@ but also for its continuity.
 
 ####  How to become a member?
 In order to fully understand the Consortium membership, it is advised to
-read the OCaml Consortium membership agreement and its appendices, which
+read the Caml Consortium membership agreement and its appendices, which
 is online as [PDF](http://caml.inria.fr/consortium/agreement.en.pdf).
 Extra information about VAT are given in this [information
 sheet](http://caml.inria.fr/consortium/vat.en.html).
