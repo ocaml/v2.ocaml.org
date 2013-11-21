@@ -66,14 +66,14 @@ the value of the break that is explained below):
 
 * within a “h” box:
 
-```tryocaml
+```ocaml
    --b--b--
 ```
 
 
 * within a “v” box:
 
-```tryocaml
+```ocaml
    --b
    --b
    --
@@ -84,12 +84,12 @@ the value of the break that is explained below):
 
 If there is enough room to print the box on the line:
 
-```tryocaml
+```ocaml
    --b--b--
 ```
 But "---b---b---" that cannot fit on the line is written
 
-```tryocaml
+```ocaml
    ---b
    ---b
    ---
@@ -100,12 +100,12 @@ But "---b---b---" that cannot fit on the line is written
 
 If there is enough room to print the box on the line:
 
-```tryocaml
+```ocaml
    --b--b--
 ```
 But if "---b---b---" cannot fit on the line, it is written as
 
-```tryocaml
+```ocaml
    ---b---b
    ---
 ```
@@ -115,7 +115,7 @@ there is no more room to print the material following it. If the
 room left on the line were even shorter, the first break hint may
 lead to a new line and "---b---b---" is written as:
 
-```tryocaml
+```ocaml
     ---b
     ---b
     ---
@@ -134,14 +134,14 @@ For instance, if b is `break 1 0` in the output "--b--b--", we get
 
 * within a “h” box:
 
-```tryocaml
+```ocaml
    -- -- --
 ```
 
 
 * within a “v” box:
 
-```tryocaml
+```ocaml
    --
    --
    --
@@ -150,12 +150,12 @@ For instance, if b is `break 1 0` in the output "--b--b--", we get
 
 * within a “hv” box:
 
-```tryocaml
+```ocaml
    -- -- --
 ```
 or, according to the remaining room on the line:
 
-```tryocaml
+```ocaml
    --
    --
    --
@@ -179,13 +179,13 @@ The user gets 2 ways to fix the indentation of new lines:
  indented 1 more than the initial indentation of the box. With output
  "---[--b--b--b--", we get:
 
-```tryocaml
+```ocaml
    ---[--b--b
         --b--
 ```
 with `open_hovbox 2`, we get
 
-```tryocaml
+```ocaml
    ---[--b--b
          --b--
 ```
@@ -193,7 +193,7 @@ Note: the `[` sign in the display is not visible on the screen, it
 is just there to materialise the aperture of the pretty-printing
 box. Last “screen” stands for:
 
-```tryocaml
+```ocaml
     -----b--b
          --b--
 ```
@@ -209,7 +209,7 @@ box. Last “screen” stands for:
  `print_break       1       2`, then from output "---[--b--b--b--",
  we get:
 
-```tryocaml
+```ocaml
    ---[-- --
          --
          --
@@ -240,7 +240,7 @@ each break hint will lead to a new line. For instance, when printing
 indentation (`print_cut ()`). If "[" means opening of a packing “hov”
 box (open_hovbox), "[(---[(----[(---b)]b)]b)]" is printed as follows:
 
-```tryocaml
+```ocaml
 (---
  (----
   (---)))
@@ -250,7 +250,7 @@ break hint that precedes a closing parenthesis can show the boxes
 structure, if it leads to a new line; hence "[(---[(----[(---b)]b)]b)]"
 is printed like this:
 
-```tryocaml
+```ocaml
 (---
  (----
   (---
@@ -321,7 +321,7 @@ be called from within a `printf` format string. For instance
 
 For instance
 
-```tryocaml
+```ocaml
 printf "@[<1>%s@ =@ %d@ %s@]@." "Prix TTC" 100 "Euros";;
 Prix TTC = 100 Euros
 
@@ -370,7 +370,7 @@ I use the format library to print the lambda-terms:
 ```
 In Caml Light, replace the first line by:
 
-```tryocaml
+```ocaml
 #open "format";;
 ```
 ###  Most general pretty-printing: using `fprintf`
