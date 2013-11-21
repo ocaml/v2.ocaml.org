@@ -41,7 +41,7 @@
                         <img src="/img/platform-large.png" alt="Platform">                    </a>
                     <h1><a href="https://opam.ocaml.org">Packages</a></h1>
                     <p>The <a href="https://opam.ocaml.org">OCaml Package
-					Manager</a>, gives you to access multiple versions of
+					Manager</a>, gives you access to multiple versions of
 					<a href="https://opam.ocaml.org/pkg/">hundreds of
 					packages</a>.</p>
                 </section>
