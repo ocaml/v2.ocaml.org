@@ -246,7 +246,7 @@ discussed below.
 
 ###  Inria's binary package
 This is the easiest way to set up a basic OCaml installation for OS X.
-For 10.4 (Tiger), simply [download](releases/) Intel disk image, mount
+For 10.4 (Tiger), simply [download](../releases/) Intel disk image, mount
 the disk image, double-click on the ocaml.pkg file contained within, and
 follow the instructions from there. Requirements for this package are OS
 X 10.4.x (Tiger), with X11 and the XCode tools (v2.4) installed. It
@@ -312,7 +312,7 @@ them from source.
 
 The following packages are the most beneficial to install:
 
-* [The OCaml source distribution.](releases/)
+* [The OCaml source distribution.](../releases/)
 * [Findlib](http://www.ocaml-programming.de/programming/findlib.html),
  an OCaml library management system.
 * [Batteries](http://batteries.forge.ocamlcore.org/), a collection of
