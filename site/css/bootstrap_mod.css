@@ -65,3 +65,7 @@ h1.ruled + pre {
 li > ul {
   padding-top: 2ex;
 }
+
+p + pre {
+  margin-top: -13px;
+}
