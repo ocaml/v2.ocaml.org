@@ -153,18 +153,7 @@ div.subscribers {
   line-height: 100%;
 }
 
-
-a[name], h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
-  padding-top: 75px;
-  margin-top: -70px;
-  position: relative;
-  z-index: -10; /* below the text (and hyperlinks that one can
-		   otherwise not click) */
-}
-a[name] {
-  display: inline-block; /* required for webkit browsers */
-}
-
+/* Edit buttom, right of the navbar. */
 a.edit-this-page {
   margin-top: 22.5px;
   margin-left: 15px;
@@ -198,34 +187,6 @@ a.edit-this-page:hover {
   }
 }
 
-/* Reduce the navbar height when the window height is small */
-@media (max-height: 600px) and (min-width: 979px) {
-  .navbar-inner {
-    min-height: 45px; /* instead of 75px => -15px on each side of the
-			 navbar elements */
-  }
-  body { padding-top: 59px }
-
-  .navbar-text { line-height: 45px }
-  .navbar .divider-vertical { height: 75px }
-
-  .navbar .brand { padding: 4.5px 20px 4.5px }
-  .navbar .nav > li > a {
-    padding: 10.5px 15px 10.5px;
-  }
-  .navbar-search {
-    margin-top: 5.5px;
-  }
-  a.edit-this-page {
-    margin-top: 7.5px;
-  }
-
-  a[name], h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
-    padding-top: 45px;
-    margin-top: -40px;
-  }
-}
-
 /* Solutions to questions */
 button.solution {
   margin-bottom: 0;
@@ -239,18 +200,4 @@ div.solution {
 code.c {
   color: #000000;
   font-style: normal;
-}
-
-/* Show quoted blocks */
-blockquote {
-  border-left: 2px solid #cfcfcf;
-  padding-left: 2ex;
-}
-
-/* Section headers too close to the following text. */
-h1.ruled + ul {
-  padding-top: 1ex;
-}
-h1.ruled + pre {
-  margin-top: 1ex;
 }
