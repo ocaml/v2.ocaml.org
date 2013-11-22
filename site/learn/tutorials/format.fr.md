@@ -1,6 +1,6 @@
 <!-- ((! set title Format !)) ((! set learn !)) -->
 
-*Table des matières*
+*Table of contents*
 
 # Utiliser le module Format
 Le module Format des librairies standard de Caml Light et OCaml propose
@@ -39,8 +39,8 @@ La coupure des lignes repose sur trois concepts:
  l'indication de coupure `bh`.
 
 ## Les boîtes
-Il y a 4 types de boîtes. (La plus communément utilisée est la boîte «
-hov », laissez tomber les autres types en première lecture.)
+Il y a 4 types de boîtes. (La plus communément utilisée est la boîte
+« hov », laissez tomber les autres types en première lecture.)
 
 * **Boîte horizontale** (boîte *h*, ouverte par la procédure
  `open_hbox`) : dans cette boîte les indications de coupures ne
@@ -70,64 +70,61 @@ et `]`, et `b` signifie une indication de coupure (blanc ou « break »).
 La sortie "--b--b--" est imprimée comme suit (le symbole b vaut la
 valeur de la coupure comme expliqué ci-après) :
 
-* dans une boîte « h » :
+* dans une boîte « h » :
 
-```tryocaml
-   --b--b--
-```
+    ```text
+    --b--b--
+    ```
 
+* dans une boîte « v » :
 
-* dans une boîte « v » :
+    ```text
+    --b
+    --b
+    --
+    ```
 
-```tryocaml
-   --b
-   --b
-   --
-```
+* dans une boîte « hv » :
 
+    S'il y a assez de place pour imprimer toute la boîte sur la ligne :
 
-* dans une boîte « hv » :
+    ```text
+    --b--b--
+    ```
+    Mais si `---b---b---` ne peut tenir sur la ligne, la sortie est
 
-S'il y a assez de place pour imprimer toute la boîte sur la ligne :
-
-```tryocaml
-   --b--b--
-```
-Mais si "---b---b---" ne peut tenir sur la ligne, la sortie est
-
-```tryocaml
-   ---b
-   ---b
-   ---
-```
-
-
-* dans une boîte « hov » :
-
-S'il y a assez de place pour imprimer toute la boîte sur la ligne :
-
-```tryocaml
-   --b--b--
-```
-Mais si "---b---b---" ne peut tenir sur la ligne, la sortie est
-
-```tryocaml
-   ---b---b
-   ---
-```
-La première indication de coupure ne donne pas lieu à un retour à la
-ligne, puisque la ligne n'est pas pleine. La seconde indication de
-coupure entraîne un retour à la ligne, puisqu'il n'y a plus la place
-d'imprimer ce qui suit l'indication de coupure. Si la place restante
-sur la ligne était encore plus courte, la première indication de
-coupure aurait aussi donné lieu à un retour à la ligne et
-"---b---b---" aurait été imprimé ainsi:
-
-```tryocaml
+    ```text
     ---b
     ---b
     ---
-```
+    ```
+
+* dans une boîte « hov » :
+
+    S'il y a assez de place pour imprimer toute la boîte sur la ligne :
+
+    ```text
+    --b--b--
+    ```
+    Mais si `---b---b---` ne peut tenir sur la ligne, la sortie est
+
+    ```text
+    ---b---b
+    ---
+    ```
+    La première indication de coupure ne donne pas lieu à un retour à la
+    ligne, puisque la ligne n'est pas pleine. La seconde indication de
+    coupure entraîne un retour à la ligne, puisqu'il n'y a plus la place
+    d'imprimer ce qui suit l'indication de coupure. Si la place restante
+    sur la ligne était encore plus courte, la première indication de
+    coupure aurait aussi donné lieu à un retour à la ligne et
+    `---b---b---` aurait été imprimé ainsi:
+
+    ```text
+    ---b
+    ---b
+    ---
+    ```
 
 
 ## Impression des espaces
@@ -146,35 +143,32 @@ suivante :
 
 * dans une boîte « h » :
 
-```tryocaml
-   -- -- --
-```
-
+    ```text
+    -- -- --
+    ```
 
 * dans une boîte « v » :
 
-```tryocaml
-   --
-   --
-   --
-```
+    ```text
+    --
+    --
+    --
+    ```
 
+* dans une boîte « hv » :
 
-* dans une boîte « hv » :
+    ```text
+    -- -- --
+    ```
+    ou, suivant la place restante sur la ligne :
 
-```tryocaml
-   -- -- --
-```
-ou, suivant la place restante sur la ligne :
+    ```text
+    --
+    --
+    --
+    ```
 
-```tryocaml
-   --
-   --
-   --
-```
-
-
-* et de même pour les boîtes « hov ».
+* et de même pour les boîtes « hov ».
 
 De façon générale, un programme qui utilise `format`, n'écrit pas
 d'espaces lui-même mais émet des indications de coupure. (Par exemple à
@@ -189,27 +183,26 @@ On dispose de deux moyens de fixer l'indentation des lignes :
  dans la boîte.<br />
  Par exemple: `open_hovbox 1` ouvre une boîte hovbox dont les lignes
  seront indentées de 1 par rapport à l'indentation initiale de la
- boîte. Ainsi avec "---[--b--b--b--", on obtient :
+ boîte. Ainsi avec `---[--b--b--b--`, on obtient :
 
-```tryocaml
-   ---[--b--b
-        --b--
-```
-tandis qu'avec `open_hovbox 2`, on obtient :
-
-```tryocaml
-   ---[--b--b
+    ```text
+    ---[--b--b
          --b--
-```
-Note: le symbole `[` n'est évidemment pas visible sur la sortie
-écran, je l'écris pour matérialiser l'ouverture de la boîte
-d'impression. Ainsi le dernier « écran » est en fait :
+    ```
+    tandis qu'avec `open_hovbox 2`, on obtient :
 
-```tryocaml
+    ```text
+    ---[--b--b
+          --b--
+    ```
+    Note: le symbole `[` n'est évidemment pas visible sur la sortie
+    écran, je l'écris pour matérialiser l'ouverture de la boîte
+    d'impression. Ainsi le dernier « écran » est en fait :
+
+    ```text
     -----b--b
          --b--
-```
-
+    ```
 
 * En définissant l'indication de coupure qui a provoqué le retour à la
  ligne. On émet une indication de coupure avec
@@ -222,11 +215,11 @@ d'impression. Ainsi le dernier « écran » est en fait :
  `print_break       1       2`, alors la sortie de "---[--b--b--b--",
  sera imprimée :
 
-```tryocaml
-   ---[-- --
-         --
-         --
-```
+    ```text
+    ---[-- --
+          --
+          --
+    ```
 
 
 ## Raffinement sur les boîtes « hov »
@@ -249,6 +242,7 @@ boîte qui l'englobe. On distingue :
  évidence la structure de boîtes sont effectuées même s'il reste
  assez de place sur la ligne courante.
 
+
 ###  Différences entre boîte « hov » tassante et boîte « hov » structurelle
 La différence de comportement entre la boîte « hov » tassante et la
 boîte « hov » structurelle (ou « box ») est mise en évidence par la
@@ -257,12 +251,12 @@ d'impression: avec la boîte « hov » tassante les boîtes et les
 parenthèses sont fermées sur la même ligne (si la place disponible le
 permet), tandis qu'avec la boîte « hov » structurelle chaque indication
 de coupure produira un saut de ligne. Prenons l'exemple de la sortie de
-"[(---[(----[(---b)]b)]b)]" où "b" représente une indication de coupure
+`[(---[(----[(---b)]b)]b)]` où `b` représente une indication de coupure
 sans indentation supplémentaire (`print_cut     ()`). Ainsi, si "["
 représente l'ouverture de boîtes « hov » tassantes (`open_hovbox`),
-"[(---[(----[(---b)]b)]b)]" est imprimé ainsi:
+`[(---[(----[(---b)]b)]b)]` est imprimé ainsi:
 
-```tryocaml
+```text
 (---
  (----
   (---)))
@@ -272,7 +266,7 @@ hov » structurelles (`open_box`), chaque indication de coupure placée
 avant chaque parenthèse fermante est susceptible de montrer la structure
 de boîte et produit donc une coupure; on obtient alors :
 
-```tryocaml
+```text
 (---
  (----
   (---
@@ -280,6 +274,8 @@ de boîte et produit donc une coupure; on obtient alors :
  )
 )
 ```
+
+
 ## Conseils pratiques
 En écrivant vos fonctions d'impression, suivez les règles simples
 suivantes :
@@ -350,12 +346,11 @@ Ainsi :
 
 Par exemple
 
-```tryocaml
-printf "@[<1>%s@ =@ %d@ %s@]@." "Prix TTC" 100 "Euros";;
-Prix TTC = 100 Euros
-
-- : unit = ()
+```ocamltop
+Format.printf "@[<1>%s@ =@ %d@ %s@]@." "Prix TTC" 100 "Euros";;
 ```
+
+
 ## Un exemple concret
 Voici un exemple complet : le plus petit exemple non trivial qu'on
 puisse imaginer, c'est-à-dire le \$\lambda-\$calculus :)
@@ -368,7 +363,7 @@ D'abord, je donne la syntaxe abstraite des lambda-termes (nous utilisons
 le [système interactif](../description.html#interactive) pour évaluer ce
 code) :
 
-```tryocaml
+```ocamltop
   type lambda =
     | Lambda of string * lambda
     | Var of string
@@ -376,7 +371,7 @@ code) :
 ```
 J'utilise le module format pour imprimer les lambda-termes:
 
-```tryocaml
+```ocamltop
   open Format;;
 
   let ident = print_string
@@ -400,9 +395,10 @@ J'utilise le module format pour imprimer les lambda-termes:
 ```
 En Caml Light, remplacez la première ligne par :
 
-```tryocaml
+```ocaml
 #open "format";;
 ```
+
 ###  Impression la plus générale: utilisation de `fprintf`
 On utilise maintenant la fonction `fprintf` et toutes les fonctions
 d'impression prennent en argument supplémentaire le formatteur (c'est
@@ -417,7 +413,7 @@ l'utilisateur prennent aussi un formatteur en premier argument).
 Voici la fonction d'impression des lambda-termes à l'aide des formats
 d'impression à la `fprintf`.
 
-```tryocaml
+```ocamltop
   open Format;;
 
   let ident ppf s = fprintf ppf "%s" s
@@ -442,7 +438,7 @@ Armés de ces fonctions d'impression générales, les procédures
 d'impression sur la sortie standard ou la sortie d'erreur s'obtiennent
 facilement par application partielle:.
 
-```tryocaml
+```ocamltop
   let print_lambda = pr_lambda std_formatter
   let eprint_lambda = pr_lambda err_formatter
 
