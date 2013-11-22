@@ -75,7 +75,7 @@
     </div>
     <div class="row">
         <section class="span6 condensed">
-            <h1>A taste of OCaml</h1>
+            <h1><a href="learn/taste.html">A taste of OCaml</a></h1>
             ((! cat template/tryocaml.html !))
             ((! input template/front_code_snippet.html !))
             <p>OCaml is a lot more powerful than this simple example shows. See <a href="/learn/taste.html">more examples</a>!</p>
