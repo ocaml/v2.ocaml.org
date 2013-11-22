@@ -319,7 +319,7 @@ be called from within a `printf` format string. For instance
 For instance
 
 ```ocamltop
-printf "@[<1>%s@ =@ %d@ %s@]@." "Prix TTC" 100 "Euros";;
+Format.printf "@[<1>%s@ =@ %d@ %s@]@." "Prix TTC" 100 "Euros";;
 ```
 
 ## A concrete example
