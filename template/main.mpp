@@ -21,21 +21,6 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
     <![endif]-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      function octry(x){
-        if(document.getElementById('buttons').innerHTML=='') {
-          t = document.getElementById('tryocaml');
-          js = document.createElement("script"); js.type = "text/javascript"; js.src = "/try-ocaml.js";
-          t.appendChild(js);
-        } else {
-          t = document.getElementById('tryocaml');
-          t.style.display = 'block';
-          document.getElementById('console').value = x;
-          document.getElementById('console').focus();
-          document.getElementById('console').select();
-        }
-      }
-    </script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
