@@ -62,7 +62,7 @@ h1.ruled + pre {
 }
 
 /* Adjustments for lists */
-li > ul {
+.content li > ul {
   padding-top: 2ex;
 }
 
