@@ -222,11 +222,11 @@ elements with duplicates are transferred as (N E) lists.
 Since OCaml lists are homogeneous, one needs to define a type to hold
 both single elements and sub-lists.
 
-> ```ocamltop
-> type 'a rle =
->   | One of 'a
->   | Many of (int * 'a);;
-> ```
+```ocamltop
+type 'a rle =
+  | One of 'a
+  | Many of int * 'a;;
+```
 
 SOLUTION
 
@@ -235,13 +235,13 @@ SOLUTION
 >   let create_tuple cnt elem =
 >     if cnt = 1 then One elem
 >     else Many (cnt, elem) in
->   let rec aux acc cur = function
->     | [x] -> (create_tuple (cur+1) x)::acc
+>   let rec aux count acc = function
 >     | [] -> []
->     | hd::(snd::_ as tl) ->
->         if hd = snd then aux acc (cur+1) tl
->         else aux ((create_tuple (cur+1) hd)::acc) 0 tl in
->     List.rev (aux [] 0 l)
+>     | [x] -> (create_tuple (count+1) x) :: acc
+>     | hd :: (snd :: _ as tl) ->
+>         if hd = snd then aux (count + 1) acc tl
+>         else aux 0 ((create_tuple (count + 1) hd) :: acc) tl in
+>     List.rev (aux 0 [] l)
 > ```
 
 ```ocamltop
