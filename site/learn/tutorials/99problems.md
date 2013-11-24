@@ -231,21 +231,17 @@ both single elements and sub-lists.
 SOLUTION
 
 > ```ocamltop
-> let pack list =
->   let rec aux current acc = function
->     | [] -> [] (* Can only be reached if original list is empty *)
->     | [x] -> (x :: current) :: acc
->     | a :: (b :: _ as t) -> if a = b then aux (a :: current) acc t
->                             else aux [] ((a :: current) :: acc) t  in
->   List.rev (aux [] [] list)
->
-> let encode list =
->   let rec aux = function
+> let encode l =
+>   let create_tuple cnt elem =
+>     if cnt = 1 then One elem
+>     else Many (cnt, elem) in
+>   let rec aux acc cur = function
+>     | [x] -> (create_tuple (cur+1) x)::acc
 >     | [] -> []
->     | [] :: t -> aux t
->     | [x] :: t -> One x :: aux t
->     | (x :: l) :: t -> Many (1 + List.length l , x) :: aux t  in
->   aux (pack list)
+>     | hd::(snd::_ as tl) ->
+>         if hd = snd then aux acc (cur+1) tl
+>         else aux ((create_tuple (cur+1) hd)::acc) 0 tl in
+>     List.rev (aux [] 0 l)
 > ```
 
 ```ocamltop
