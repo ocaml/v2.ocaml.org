@@ -23,9 +23,9 @@ on the CUDF library developped by the Mancoosi project, which is,
 among other things, used by Debian to manage their packages. It works
 well on Unix, Linux, and Mac OS X systems. Windows support is comming
 soon.
-
-OPAM is edited by 
-[<img src="/img/ocamlpro.png" alt="OCamlPro" style="height: 2ex; vertical-align: text-bottom" />](http://www.ocamlpro.com/) and is free software.
+OPAM is written and maintained by [OCamlPro](http://www.ocamlpro.com/) and
+[OCaml Labs](http://www.cl.cam.ac.uk/projects/ocamllabs/), and is free software
+([commercial support](opam.ocamlpro.com) is available).
 
 To get started, see
 [Download and install OPAM](http://opam.ocaml.org/) and follow the

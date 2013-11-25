@@ -13,7 +13,7 @@ professional support, you have the following options:
 [OCamlPro](http://www.ocamlpro.com/) is the creator of many open-source tools
 widely used throughout the community, such as
 [Try OCaml](http://try.ocamlpro.com/), the
-[OPAM package manager](http://opam.ocamlpro.com/) or
+[OPAM package manager](http://opam.ocamlpro.com/) and
 [ocp-indent](http://typerex.org/ocp-indent.html), as well as a
 [large contributor](http://www.ocamlpro.com/blog/2012/08/20/ocamlpro-and-4.00.0.html)
 to OCaml itself. Besides commercially supporting their tools, they offer to
