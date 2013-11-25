@@ -5,29 +5,29 @@
 
 ## Jane Street
 [<img src='/img/jane-street.jpg' alt='Jane Street'
-style='float: left; margin-right: 10px' />](img/jane-street.jpg)
+style='float: left; margin-right: 10px' />](http://janestreet.com/technology)
 
-Jane Street is a quantitative proprietary trading firm with a unique
-focus on technology and collaborative problem solving. Our business
-requires us to consume, analyze, and respond to an enormous amount of
-data from multiple sources in real time. On our busiest days, we trade
-over 200 million equity shares in the US alone.
+Jane Street is a proprietary trading firm that uses OCaml as its primary
+development platform.  Our operation runs at a large scale,
+generating billions of dollars of transactions every day from our offices 
+in Hong Kong, London and New York, with strategies that span many asset classes,
+time-zones and regulatory regimes.
 
-We view software as a way to maximize the potential of the people who
-work here, and so we invest heavily in building systems to do just that.
-Almost all of these systems are written in OCaml: from statistical
-research code operating over terabytes of data to systems-administration
-tools to our real-time trading infrastructure.
-
-Our trading crosses multiple exchanges, regulatory regimes, asset
-classes and time zones. The complexity and dynamism of our business are
-two of the reasons we use OCaml. It helps us to quickly adapt to
-changing market conditions, and go from prototypes to production systems
-with less effort. Moreover, OCaml’s type system acts as a rich and
+Almost all of of our software is written in OCaml, from statistical
+research code to systems-administration tools to our real-time trading 
+infrastructure.  OCaml’s type system acts as a rich and
 well-integrated set of static analysis tools that help improve the
 quality of our code, catching bugs at the earliest possible stage.
 Billions of dollars of transactions flow through our systems every day,
-so getting it right matters.
+so getting it right matters.  At the same time, OCaml is highly productive,
+helping us quickly adapt to changing market conditions.
+
+Jane Street has been contributing open-source libraries back to the wider
+community for many years, including Core, our alternative standard 
+library, Async, a cooperative concurrency library,
+and several syntax extensions like binprot and sexplib.  All of these can
+be found at <http://janestreet.github.io>.  All in, we've open-sourced 
+more than 200k lines of code.
 
 ## The Unison File Synchronizer
 [<img src='http://caml.inria.fr/about/successes-images/unison-thumb.jpg'
