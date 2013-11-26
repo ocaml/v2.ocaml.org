@@ -70,9 +70,9 @@
                     </article>
                 <li>
                     <article>
-                        <h1><a href="http://www.meetup.com/NYC-OCaml/events/150011342/">The NYC OCaml Meetup</a></h1>
-                        <p>10 November 2013</p>
-                        <a href="http://www.meetup.com/NYC-OCaml/events/150011342/">
+                        <h1><a href="http://www.meetup.com/NYC-OCaml/events/152153412/">NYC Functional Holiday Party</a></h1>
+                        <p>9 December 2013</p>
+                        <a href="http://www.meetup.com/NYC-OCaml/events/152153412/">
                             <img src="/img/news.png" alt="News">
                         </a>
                     </article>
