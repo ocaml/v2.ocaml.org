@@ -25,6 +25,9 @@ system, with an emphasis on type inference. The type inference algorithm
 is described as the composition of a constraint generator, which
 produces a system of type equations, and a constraint solver, which is
 presented as a set of rewrite rules.
+[
+[Gzipped PostScript](http://cristal.inria.fr/attapl/preversion.ps.gz)
+]
 
 3. Jacques Garrigue. Relaxing the value restriction. In International
 Symposium on Functional and Logic Programming, 2004.
