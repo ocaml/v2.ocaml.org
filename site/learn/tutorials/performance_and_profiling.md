@@ -306,7 +306,7 @@ at compile time, might have an impact on performance. Suppose we require
 a function to work out the maximum of two integers. Our first attempt
 is:
 
-```tryocaml
+```ocamltop
 let max a b =
   if a > b then a else b
 ```
@@ -314,7 +314,7 @@ Simple enough, but recall that the \> (greater than) operator in OCaml
 is polymorphic. It has type `'a -> 'a -> bool`, and this means that the
 `max` function we defined above is going to be polymorphic:
 
-```tryocaml
+```ocamltop
   let max a b =
     if a > b then a else b
 ```
@@ -375,7 +375,7 @@ hint to the OCaml compiler that the arguments are in fact integers. Then
 OCaml will generate a specialised version of `max` which only works on
 `int` arguments:
 
-```tryocaml
+```ocamltop
 let max (a : int) (b : int) =
   if a > b then a else b
 ```
@@ -404,7 +404,7 @@ it.
 
 What about this code:
 
-```tryocaml
+```ocamltop
 let max a b =
   if a > b then a else b
 
@@ -419,7 +419,7 @@ module), and it doesn't inline the function.
 
 Here's another variation:
 
-```tryocaml
+```ocamltop
 let max a b =
   if a > b then a else b in
 print_int (max 2 3)
@@ -439,7 +439,7 @@ happens to the "missing" bit?
 
 Write this to `int.ml`:
 
-```tryocaml
+```ocamltop
 print_int 3;;
 ```
 and compile with `ocamlopt -S int.ml -o int` to generate assembly
@@ -536,7 +536,7 @@ this at run time however.
 Floats are, by default, boxed (allocated on the heap). Save this as
 `float.ml` and compile it with `ocamlopt -S float.ml -o float`:
 
-```tryocaml
+```ocamltop
 print_float 3.0
 ```
 The number is not passed directly to `string_of_float` in the `%eax`
@@ -704,7 +704,7 @@ about this array).
 Next the closure `((+) 2)` is created. The closure is represented by
 this block allocated in the data segment:
 
-```tryocaml
+```assembly
         .data
         .long   3319
         .globl  Closure__1

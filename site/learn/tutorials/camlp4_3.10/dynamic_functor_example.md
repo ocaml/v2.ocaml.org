@@ -3,7 +3,7 @@
 # Camlp4 3.10 dynamic_functor_example.ml
 dynamic_functor_example.ml:
 
-```tryocaml
+```ocaml
 type t1 = A | B
 type t2 = Foo of string * t1
 open Camlp4

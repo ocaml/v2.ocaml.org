@@ -1,5 +1,7 @@
 <!-- ((! set title Notions de base  !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Notions de base
 ## Commentaires
 Les commentaires OCaml sont délimités par `(*` et `*)`, comme ceci:
@@ -114,7 +116,7 @@ let average a b =
 Tapez ceci dans le « toplevel » OCaml (sous Unix, tapez `ocaml` depuis
 le shell) et voici ce que vous verrez :
 
-```tryocaml
+```ocamltop
 let average a b =
   (a +. b) /. 2.0
 ```
@@ -230,7 +232,7 @@ En OCaml, `1 + 2.5` est une erreur de type. L'opérateur `+` en OCaml
 requiert deux arguments entiers, et si on lui donne un int et un float,
 il indique cette erreur :
 
-```tryocaml
+```ocamltop
 1 + 2.5;;
 ```
 Cela signifie "ceci est un float, mais ici j'attendais un int".
@@ -241,7 +243,7 @@ Pour ajouter deux floats, il faut utiliser un opérateur différent, `+.`
 OCaml ne convertit pas les ints en floats automatiquement, donc le code
 suivant est également incorrect :
 
-```tryocaml
+```ocamltop
 1 +. 2.5;;
 ```
 Dans ce cas OCaml se plaint du premier argument.
@@ -290,7 +292,7 @@ Contrairement au langage C et ses dérivés, une fonction en OCaml n'est
 récursive que si vous le précisez en utilisant `let rec` au lieu de
 seulement `let`. Voici un exemple de fonction récursive :
 
-```tryocaml
+```ocamltop
 let rec range a b =
   if a > b then []
   else a :: range (a+1) b
@@ -399,7 +401,7 @@ pratiquer ce genre de sport.
 Retournons maintenant à la fonction `average` que nous avions tapé ainsi
 dans le toplevel :
 
-```tryocaml
+```ocamltop
 let average a b =
   (a +. b) /. 2.0
 ```

@@ -1,6 +1,9 @@
 <!-- ((! set title La struttura dei programmi OCaml !)) ((! set learn !)) -->
 
-## La struttura dei programmi OCaml
+# La struttura dei programmi OCaml
+
+*Table of contents*
+
 Ci prenderemo ora del tempo per dare uno sguardo ad alto livello a
 qualche programma OCaml reale. Voglio istruirvi sulle definizioni locali
 e globali, su quando usare `;;` piuttosto che `;`, sui moduli, sulle
@@ -10,7 +13,7 @@ visti prima. Non preoccupatevi dei dettagli, per ora. Concentratevi
 invece sulla forma complessiva dei programmi e sulle caratteristiche che
 rileverò.
 
-###  "Variabili" locali (*in realtà* espressioni locali)
+##  "Variabili" locali (*in realtà* espressioni locali)
 Prendiamo la funzione `average` ed aggiungiamovi una variabile locale in
 C. (Confrontatela con la prima definizione che ne avevamo sopra).
 
@@ -25,7 +28,7 @@ average (double a, double b)
 
 Faccia ora lo stesso con la nostra versione in OCaml:
 
-```tryocaml
+```ocamltop
 let average a b =
   let sum = a +. b in
   sum /. 2.0;;
@@ -51,7 +54,7 @@ Ecco un altro esempio per rendere più chiaro ciò. I due frammenti di
 codice che seguono dovrebbero restituire il medesimo valore (ossia
 (a+b) + (a+b)²):
 
-```tryocaml
+```ocamltop
 let f a b =
   (a +. b) +. (a +. b) ** 2.
   ;;
@@ -68,13 +71,13 @@ compilatori dovrebbe poter compiere per voi questo passaggio di
 leggere. `x` nel secondo esempio non è che una forma abbreviata per
 `a +. b`.
 
-###  "Variabili" globali (*in realtà* espressioni globali)
+##  "Variabili" globali (*in realtà* espressioni globali)
 Potete anche definire nomi globali per cose al livello superiore, e come
 le nostre "variabili" locali sopra queste non sono affatto realmente
 variabili, ma soltanto nomi abbreviati per queste cose. Ecco un esempio
 reale (ma ridotto):
 
-```tryocaml
+```ocaml
 let html =
   let content = read_whole_file file in
   GHtml.html_from_string content
@@ -105,12 +108,12 @@ ad `html`, per esempio per riassegnarlo perché punti ad un accessorio
 differente. Nella prossima sezione parleremo dei riferimenti, che sono
 vere variabili.
 
-###  Let-binding
+##  Let-binding
 Ciascun utilizzo di `let ...`, sia esso al livello superiore
 (globalmente) o all'interno di una funzione, è spesso chiamato
 **let-binding**.
 
-###  Riferimenti: vere variabili
+##  Riferimenti: vere variabili
 Che cosa succede se volete una vera variabile a cui possiate assegnare
 valori e che possiate modificare all'interno del vostro programma?
 Dovrete utilizzare un **riferimento**. I riferimenti sono molto simili
@@ -120,7 +123,7 @@ riferimenti sono riferimenti - la medesima cosa che sono in OCaml.
 
 Ecco come creiamo un riferimento ad un `int` in OCaml:
 
-```tryocaml
+```ocamltop
 ref 0;;
 ```
 In realtà tale istruzione non era veramente molto utile. Abbiamo creato
@@ -129,29 +132,29 @@ garbage collector è arrivato e l'ha raccolto immediatamente dopo! (in
 realtà, è stato probabilmente gettato via durante la compilazione.)
 Diamo un nome al riferimento:
 
-```tryocaml
+```ocamltop
 let my_ref = ref 0;;
 ```
 Questo riferimento sta attualmente immagazzinando un intero pari a zero.
 Mettiamoci dentro qualcosa d'altro (assegnamento):
 
-```tryocaml
+```ocamltop
 my_ref := 100;;
 ```
 E troviamo che cosa contiene ora il riferimento:
 
-```tryocaml
-# !my_ref;;
+```ocamltop
+!my_ref;;
 ```
 Quindi l'operatore `:=` è utilizzato per fare assegnamenti a
 riferimenti, e l'operatore `!` dereferenzia per ottenere i contenuti.
 Ecco un pronto ed approssimativo confronto con C/C++:
 
-```tryocaml
+```
 OCaml                   C/C++
 
-let my_ref = ref 0;;    int a = 0; int *my_ptr = &a;
-my_ref := 100;;         *my_ptr = 100;
+let my_ref = ref 0      int a = 0; int *my_ptr = &a;
+my_ref := 100           *my_ptr = 100;
 !my_ref                 *my_ptr
 ```
 I riferimenti hanno il loro posto, ma potrete trovare di non utilizzare
@@ -159,7 +162,7 @@ i riferimenti molto spesso. Molto più spesso utilizzerete
 `let name = espressione in` per dare nomi ad espressioni locali nelle
 vostre definizioni di funzione.
 
-###  Funzioni annidate
+##  Funzioni annidate
 C non ha realmente un concetto di funzioni annidate. GCC supporta le
 funzioni annidate per programmi C, ma non so di programmi che utilizzino
 effettivamente tale estensione. Ecco comunque che cos'ha da dire la
@@ -172,7 +175,7 @@ annidata è locale rispetto al blocco in cui essa è definita. Ad esempio,
 di seguito definiamo una funzione annidata chiamata `square', e la
 chiamiamo due volte:
 
-```tryocaml
+```C
 foo (double a, double b)
 {
   double square (double z) { return z * z; }
@@ -180,13 +183,14 @@ foo (double a, double b)
   return square (a) + square (b);
 }
 ```
+
 La funzione annidata può accedere a tutte le variabili della funzione
 che la contiene le quali siano visibili al punto a cui essa è definita.
 Ciò è detto "scoping lessicale" ("lexical scoping" nell'originale, NdT).
 Ad esempio, mostriamo qui una funzione annidata che utilizza una
 variabile ereditata chiamata `offset':
 
-```tryocaml
+```C
 bar (int *array, int offset, int size)
 {
   int access (int *array, int index)
@@ -201,7 +205,7 @@ Afferrate l'idea. Le funzioni annidate sono tuttavia molto utili e molto
 diffusamente utilizzate in OCaml. Ecco un esempio di funzione annidata
 proveniente da codice reale:
 
-```tryocaml
+```ocamltop
 let read_whole_channel chan =
   let buf = Buffer.create 4096 in
   let rec loop () =
@@ -231,7 +235,7 @@ Normalmente indenterete la definizione della funzione in una nuova riga
 come nell'esempio sopra, e ricorderete di usare `let rec` al posto di
 `let` se la vostra funzione è ricorsiva (com'è in quell'esempio).
 
-###  Moduli e `open`
+##  Moduli e `open`
 OCaml è distribuito con parecchi moduli divertenti ed interessanti
 (librerie di codice utile). Vi sono ad esempio librerie standard per
 disegnare grafici, interfacciarsi con insiemi di accessori di
@@ -266,10 +270,10 @@ Un paio di esempi dovrebbero rendere chiaro quanto detto. (I due esempi
 disegnano cose diverse - provateli). Si noti che il primo esempio chiama
 `open_graph` ed il secondo `Graphics.open_graph`.
 
-```tryocaml
-(* Per compilare questo esempio: ocamlc graphics.cma grtest1.ml -o grtest1 *)
-
 ```ocaml
+(* Per compilare questo esempio:
+   ocamlc graphics.cma grtest1.ml -o grtest1 *)
+
 open Graphics;;
 
 open_graph " 640x480";;
@@ -311,14 +315,14 @@ e la ricorsione. Ne parleremo più avanti. Cionondimeno dovreste guardare
 questi programmi e provarli e trovare (1) come funzionano, e (2) come
 l'inferenza dei tipi vi aiuta ad eliminare i bug.
 
-###  Il modulo `Pervasives`
+##  Il modulo `Pervasives`
 C'è un solo modulo per cui non serve mai usare "`open`". È il modulo
 `Pervasives` (andate ora a leggervi
 `/usr/lib/ocaml/3.08/pervasives.mli`). Tutti i simboli del modulo
 `Pervasives` sono importati automaticamente in qualunque programma
 OCaml.
 
-###  Rinominare moduli
+##  Rinominare moduli
 Che cosa succede se volete utilizzare i simboli del modulo `Graphics`,
 ma non volete importarli tutti e non sopportate il fastidio di digitare
 `Graphics` ogni volta? Semplicemente rinominatelo usando questo trucco:
@@ -334,7 +338,7 @@ In realtà questo è utile quando volete importare un modulo annidato (i
 moduli possono essere annidati l'uno dentro l'altro), ma non volete
 digitare ogni volta il percorso completo per il modulo annidato.
 
-###  Uso ed omissione di `;;` e `;`
+##  Uso ed omissione di `;;` e `;`
 Veniamo ora ad esaminare una questione assai importante. Quando dovreste
 usare `;;`, quando dovreste usare `;`, e quando non dovreste usare
 affatto alcuno di essi? È una questione ingannevole finché non "la
@@ -347,15 +351,15 @@ funzioni o di qualunque altro tipo di istruzione.
 
 Osservate una sezione dal secondo esempio su "graphics" sopra:
 
-```tryocaml
+```ocaml
 Random.self_init ();;
 Graphics.open_graph " 640x480";;
 
 let rec iterate r x_init i =
-        if i == 1 then x_init
-        else
-                let x = iterate r x_init (i-1) in
-                r *. x *. (1.0 -. x);;
+  if i = 1 then x_init
+  else
+    let x = iterate r x_init (i-1) in
+    r *. x *. (1.0 -. x);;
 ```
 Abbiamo due istruzioni del livello più alto ed una definizione di
 funzione (per una funzione chiamata `iterate`). Ciascuna è seguita da
@@ -386,19 +390,19 @@ self_init ();;
 open_graph " 640x480"         (* ;; *)
 
 let rec iterate r x_init i =
-        if i == 1 then x_init
-        else
-                let x = iterate r x_init (i-1) in
-                r *. x *. (1.0 -. x);;
+  if i = 1 then x_init
+  else
+    let x = iterate r x_init (i-1) in
+    r *. x *. (1.0 -. x);;
 
 for x = 0 to 640 do
-        let r = 4.0 *. (float_of_int x) /. 640.0 in
-        for i = 0 to 39 do
-                let x_init = Random.float 1.0 in
-                let x_final = iterate r x_init 500 in
-                let y = int_of_float (x_final *. 480.) in
-                Graphics.plot x y
-        done
+  let r = 4.0 *. (float_of_int x) /. 640.0 in
+  for i = 0 to 39 do
+    let x_init = Random.float 1.0 in
+    let x_final = iterate r x_init 500 in
+    let y = int_of_float (x_final *. 480.) in
+    Graphics.plot x y
+  done
 done;;
 
 read_line ()                  (* ;; *)
@@ -422,13 +426,13 @@ fondo.
 Il ciclo for interno nel nostro esempio sopra è una buona dimostrazione.
 Notate che in questo codice non usiamo mai un singolo `;`:
 
-```tryocaml
-        for i = 0 to 39 do
-                let x_init = Random.float 1.0 in
-                let x_final = iterate r x_init 500 in
-                let y = int_of_float (x_final *. 480.) in
-                Graphics.plot x y
-        done
+```ocaml
+for i = 0 to 39 do
+  let x_init = Random.float 1.0 in
+  let x_final = iterate r x_init 500 in
+  let y = int_of_float (x_final *. 480.) in
+  Graphics.plot x y
+done
 ```
 L'unico posto nel codice sopra dove si potrebbe pensare di inserire un
 `;` è dopo il `Graphics.plot x y`, ma poiché questa è l'ultima
@@ -450,15 +454,11 @@ un'espressione. `a ; b` è un'espressione. `match foo with ...` è un
 espressione. Il codice che segue è perfettamente legale (e tutto fa la
 medesima cosa):
 
-```tryocaml
-let f x b y = if b then x+y else x+0
-
-let f x b y = x + (if b then y else 0)
-
-let f x b y = x + (match b with true -> y | false -> 0)
-
-let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
-
+```ocamltop
+let f x b y = if b then x+y else x+0;;
+let f x b y = x + (if b then y else 0);;
+let f x b y = x + (match b with true -> y | false -> 0);;
+let f x b y = x + (let g z = function true -> z | false -> 0 in g y b);;
 let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
 ```
 
@@ -477,7 +477,7 @@ L'unico punto in cui `;` differisce da `+` è che posso fare riferimento
 a `+` semplicemente come ad una funzione. Ad esempio, posso definire una
 funzione `sum_list`, per sommare una lista di int, come segue:
 
-```tryocaml
+```ocamltop
 let sum_list = List.fold_left ( + ) 0
 ```
 ###  Mettere tutto insieme: del codice reale
@@ -509,7 +509,7 @@ All'interno di questa funzione definisce un'espressione con nome
 chiamata `sel` usando un'istruzione `let sel = ... in` su due righe.
 Quindi chiama diversi metodi su `sel`.
 
-```tryocaml
+```ocaml
 (* Primo frammento *)
 
 open StdLabels
@@ -527,7 +527,7 @@ Secondo frammento: Solo una lunga lista di nomi globali al livello
 superiore. Notate che l'autore ha eliso ogni singolo `;;` grazie alla
 regola n° 2.
 
-```tryocaml
+```ocaml
 (* Secondo frammento *)
 
 let window = GWindow.window ~width:500 ~height:300 ~title:"editor" ()
@@ -591,5 +591,4 @@ let () =
   editor#text#set_vadjustment scrollbar#adjustment;
   window#show ();
   Main.main ()
-
 ```

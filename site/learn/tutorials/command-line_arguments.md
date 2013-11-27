@@ -17,7 +17,7 @@ array. It is obtained using the `Array.length` function.
 The following program displays the arguments with their position in
 `Sys.argv`:
 
-```tryocaml
+```ocamltop
 open Printf
 
 let () =
@@ -28,7 +28,7 @@ let () =
 If you save the program above as `args.ml`, and run
 `ocaml args.ml arg1 arg2 arg3`, here is what you get:
 
-```tryocaml
+```
 [0] args.ml
 [1] arg1
 [2] arg2
@@ -39,7 +39,7 @@ where argv is `args.ml arg1 arg2 arg3`. You can also compile your
 program using `ocamlopt -o args args.ml`, and then run
 `./args arg1 arg2 arg3` and you will get:
 
-```tryocaml
+```
 [0] ./args
 [1] arg1
 [2] arg2

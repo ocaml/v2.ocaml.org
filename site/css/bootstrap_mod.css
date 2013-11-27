@@ -53,6 +53,12 @@ blockquote {
   padding-left: 2ex;
 }
 
+blockquote p {
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
 /* Section headers too close to the following text. */
 h1.ruled + ul {
   padding-top: 1ex;

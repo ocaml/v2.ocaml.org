@@ -3,7 +3,7 @@
 # Camlp4 3.10: quick non extensible example
 quick_non_extensible_example.ml
 
-```tryocaml
+```ocaml
 (* This scheme only works when the grammar value is not really
    used for other things than entry creation. In fact grammars
    are now static by default. *)

@@ -19,7 +19,7 @@ findlib/ocamlfind:
  and put the following:
 
 <!-- -->
-```tryocaml
+```
 # Program name (without extension)
 PROGRAM = myprog
 

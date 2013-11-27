@@ -3,7 +3,8 @@
 # Camlp4 3.10 dynamic_old_syntax.ml
 dynamic_old_syntax.ml:
 
-```tryocaml
+```ocamltop
+#load "camlp4o.cma";;
 type t1 = A | B
 type t2 = Foo of string * t1
 open Pcaml

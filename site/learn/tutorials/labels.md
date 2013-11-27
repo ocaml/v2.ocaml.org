@@ -2,6 +2,8 @@
 
 # Labels
 
+*Table of contents*
+
 ## Exceptions and hash tables
 *(unfinished)*
 
@@ -12,18 +14,19 @@ Here's a contrived example (thanks to Ryan Tarpine): The number 0 is
 even. Other numbers greater than 0 are even if their predecessor is odd.
 Hence:
 
-```tryocaml
+```ocamltop
 let rec even n =
   match n with
   | 0 -> true
   | x -> odd (x-1)
 ```
+
 The code above doesn't compile because we haven't defined the function
 `odd` yet! That's easy though. Zero is not odd, and other numbers
 greater than 0 are odd if their predecessor is even. So to make this
 complete we need that function too:
 
-```tryocaml
+```ocamltop
 let rec even n =
   match n with
   | 0 -> true
@@ -34,6 +37,7 @@ let rec odd n =
   | 0 -> false
   | x -> even (x-1)
 ```
+
 The only problem is... this program doesn't compile. In order to compile
 the `even` function, we already need the definition of `odd`, and to
 compile `odd` we need the definition of `even`. So swapping the two
@@ -43,7 +47,7 @@ There are no "forward prototypes" in OCaml but there is a special syntax
 for defining a set of two or more mutually recursive functions, like
 `odd` and `even`:
 
-```tryocaml
+```ocamltop
 let rec even n =
   match n with
   | 0 -> true
@@ -70,7 +74,7 @@ aliased function call. All you need to know is that
 `cgi # output # output_string "string"` is a method call, similar to
 `cgi.output().output_string ("string")` in Java.
 
-```tryocaml
+```ocaml
 let begin_page cgi title =
   let out = cgi # output # output_string in
   out "<html>\n";
@@ -87,21 +91,21 @@ The `let out = ... ` is a partial function application for that method
 call (partial, because the string parameter hasn't been applied). `out`
 is therefore a function, which takes a string parameter.
 
-```tryocaml
-  out "<html>\n";
+```ocaml
+out "<html>\n";
 ```
 is equivalent to:
 
-```tryocaml
-  cgi # output # output_string "<html>\n";
+```ocaml
+cgi # output # output_string "<html>\n";
 ```
 We saved ourselves a lot of typing there.
 
 We can also add arguments. This alternative definition of `print_string`
 can be thought of as a kind of alias for a function name plus arguments:
 
-```tryocaml
-  let print_string = output_string stdout
+```ocaml
+let print_string = output_string stdout
 ```
 `output_string` takes two arguments (a channel and a string), but since
 we have only supplied one, it is partially applied. So `print_string` is
@@ -109,17 +113,18 @@ a function, expecting one string argument.
 
 ## Labelled and optional arguments to functions
 ###  Labelled arguments
-Python has the nicest syntax for writing arguments to functions. Here's
+
+Python has a nice syntax for writing arguments to functions. Here's
 an example (from the Python tutorial, since I'm not a Python
 programmer):
 
-```tryocaml
+```python
 def ask_ok(prompt, retries=4, complaint='Yes or no, please!'):
   # function definition omitted
 ```
 Here are the ways we can call this Python function:
 
-```tryocaml
+```python
 ask_ok ('Do you really want to quit?')
 ask_ok ('Overwrite the file?', 2)
 ask_ok (prompt='Are you sure?')
@@ -131,7 +136,7 @@ arguments with default values.
 
 You can do something similar in Perl:
 
-```tryocaml
+```perl
 sub ask_ok
 {
   my %params = @_;
@@ -144,15 +149,16 @@ sub ask_ok
 
 ask_ok (prompt => "Are you sure?", retries => 2);
 ```
+
 OCaml also has a way to label arguments and have optional arguments with
 default values.
 
 The basic syntax is:
 
-```tryocaml
-  let rec range ~first:a ~last:b =
-    if a > b then []
-    else a :: range ~first:(a+1) ~last:b
+```ocamltop
+let rec range ~first:a ~last:b =
+  if a > b then []
+  else a :: range ~first:(a+1) ~last:b
 ```
 (Notice that both `to` and `end` are reserved words in OCaml, so they
 cannot be used as labels. So you cannot have `~from/~to` or
@@ -160,12 +166,12 @@ cannot be used as labels. So you cannot have `~from/~to` or
 
 The type of our previous `range` function was:
 
-```tryocaml
+```ocaml
 range : int -> int -> int list
 ```
 And the type of our new `range` function with labelled arguments is:
 
-```tryocaml
+```ocaml
 range : first:int -> last:int -> int list
 ```
 (Confusingly, the `~` (tilde) is *not* shown in the type definition, but
@@ -174,7 +180,7 @@ you need to use it everywhere else).
 With labelled arguments, it doesn't matter which order you give the
 arguments anymore:
 
-```tryocaml
+```ocamltop
 range ~first:1 ~last:10;;
 range ~last:10 ~first:1;;
 ```
@@ -183,11 +189,11 @@ is the same as the variable in the function definition. Here is a
 function defined in `lablgtk/gaux.ml` (a library of useful oddities used
 in lablgtk):
 
-```tryocaml
-  let may ~f x =
-    match x with
-    | None -> ()
-    | Some x -> ignore(f x)
+```ocamltop
+let may ~f x =
+  match x with
+  | None -> ()
+  | Some x -> ignore(f x)
 ```
 It's worth spending some time working out exactly what this function
 does, and also working out by hand its type signature. There's a lot
@@ -213,17 +219,17 @@ The `may` function as a whole returns `unit`. Notice in each case of the
 Thus the type of the `may` function is (and you can verify this in the
 OCaml toplevel if you want):
 
-```tryocaml
+```ocaml
 may : f:('a -> 'b) -> 'a option -> unit
 ```
 What does this function do? Running the function in the OCaml toplevel
 gives us some clues:
 
-```tryocaml
+```ocamltop
 may ~f:print_endline None;;
 may ~f:print_endline (Some "hello");;
 ```
-If the unlabelled argument is a "null pointer" then `may` does nothing.
+If the unlabelled argument is a “null pointer” then `may` does nothing.
 Otherwise `may` calls the `f` function on the argument. Why is this
 useful? We're just about to find out ...
 
@@ -231,15 +237,15 @@ useful? We're just about to find out ...
 Optional arguments are like labelled arguments, but we use `?` instead
 of `~` in front of them. Here is an example:
 
-```tryocaml
-  let rec range ?(step=1) a b =
-    if a > b then []
-    else a :: range ~step (a+step) b
+```ocamltop
+let rec range ?(step=1) a b =
+  if a > b then []
+  else a :: range ~step (a+step) b
 ```
 Note the somewhat confusing syntax, switching between `?` and `~`. We'll
 talk about that in the next section. Here is how you call this function:
 
-```tryocaml
+```ocamltop
 range 1 10;;
 range 1 10 ~step:2;;
 ```
@@ -248,47 +254,48 @@ optional argument which defaults to 1. We can also omit the default
 value and just have an optional argument. This example is modified from
 lablgtk:
 
-```tryocaml
-  type window = { mutable title: string;
-                  mutable width: int;
-                  mutable height: int }
-  
-  let create_window () =
-    { title = "none"; width = 640; height = 480; }
-  
-  let set_title window title =
-    window.title <- title
-  
-  let set_width window width =
-    window.width <- width
-  
-  let set_height window height =
-    window.height <- height
-  
-  let open_window ?title ?width ?height () =
-    let window = create_window () in
-    may ~f:(set_title window) title;
-    may ~f:(set_width window) width;
-    may ~f:(set_height window) height;
-    window
+```ocamltop
+type window = { mutable title: string;
+                mutable width: int;
+                mutable height: int }
+
+let create_window () =
+  { title = "none"; width = 640; height = 480; }
+
+let set_title window title =
+  window.title <- title
+
+let set_width window width =
+  window.width <- width
+
+let set_height window height =
+  window.height <- height
+
+let open_window ?title ?width ?height () =
+  let window = create_window () in
+  may ~f:(set_title window) title;
+  may ~f:(set_width window) width;
+  may ~f:(set_height window) height;
+  window
 ```
+
 This example is significantly complex and quite subtle, but the pattern
 used is very common in the lablgtk source code. Let's concentrate on the
 simple `create_window` function first. This function takes a `unit` and
 returns a `window`, initialized with default settings for title, width
 and height:
 
-```tryocaml
+```ocamltop
 create_window ();;
 ```
 The `set_title`, `set_width` and `set_height` functions are impure
 functions which modify the `window` structure, in the obvious way. For
 example:
 
-```tryocaml
-  let w = create_window () in
-  set_title w "My Application";
-  w;;
+```ocamltop
+let w = create_window () in
+set_title w "My Application";
+w;;
 ```
 So far this is just the imperative "mutable records" which we talked
 about in the previous chapter. Now the complex part is the `open_window`
@@ -296,7 +303,7 @@ function. This function takes *4* arguments, three of them optional,
 followed by a required, unlabelled `unit`. Let's first see this function
 in action:
 
-```tryocaml
+```ocamltop
 open_window ~title:"My Application" ();;
 open_window ~title:"Clock" ~width:128 ~height:128 ();;
 ```
@@ -312,13 +319,18 @@ Remember the `may` function? It takes a function and an argument, and
 calls the function on the argument provided the argument isn't `None`.
 So:
 
-```tryocaml
+```ocaml
 may ~f:(set_title window) title;
 ```
 If the optional title argument is not specified by the caller, then
 `title` = `None`, so `may` does nothing. But if we call the function
-with, for example, `open_window ~title:"My Application" ();;`, then
-`title` = `Some "My Application"`, and `may` therefore calls
+with, for example,
+
+```ocaml
+open_window ~title:"My Application" ()
+```
+
+then `title` = `Some "My Application"`, and `may` therefore calls
 `set_title window "My Application"`.
 
 You should make sure you fully understand this example before proceeding
@@ -330,20 +342,20 @@ brief explanation should have raised several questions. The first may be
 why the extra `unit` argument to `open_window`? Let's try defining this
 function without the extra `unit`:
 
-```tryocaml
-  let open_window ?title ?width ?height =
-    let window = create_window () in
-    may ~f:(set_title window) title;
-    may ~f:(set_width window) width;
-    may ~f:(set_height window) height;
-    window
+```ocamltop
+let open_window ?title ?width ?height =
+  let window = create_window () in
+  may ~f:(set_title window) title;
+  may ~f:(set_width window) width;
+  may ~f:(set_height window) height;
+  window
 ```
 Although OCaml has compiled the function, it has generated a somewhat
 infamous warning: "This optional argument cannot be erased", referring
 to the final `?height` argument. To try to show what's going on here,
 let's call our modified `open_window` function:
 
-```tryocaml
+```ocamltop
 open_window;;
 open_window ~title:"My Application";;
 ```
@@ -354,17 +366,17 @@ information. What's going on?
 Recall currying and uncurrying, and partial application of functions. If
 we have a function `plus` defined as:
 
-```tryocaml
-  let plus x y =
-    x + y
+```ocamltop
+let plus x y =
+  x + y
 ```
 We can partially apply this, for example as `plus 2` which is "the
 function that adds 2 to things":
 
-```tryocaml
-  let f = plus 2;;
-  f 5;;
-  f 100;;
+```ocamltop
+let f = plus 2;;
+f 5;;
+f 100;;
 ```
 In the `plus` example, the OCaml compiler can easily work out that
 `plus 2` doesn't have enough arguments supplied yet. It needs another
@@ -385,24 +397,24 @@ literally evaluates to a function value.
 Let's go back to the original and working definition of `open_window`
 where we had the extra unlabelled `unit` argument at the end:
 
-```tryocaml
-  let open_window ?title ?width ?height () =
-    let window = create_window () in
-    may ~f:(set_title window) title;
-    may ~f:(set_width window) width;
-    may ~f:(set_height window) height;
-    window
+```ocamltop
+let open_window ?title ?width ?height () =
+  let window = create_window () in
+  may ~f:(set_title window) title;
+  may ~f:(set_width window) width;
+  may ~f:(set_height window) height;
+  window
 ```
 If you want to pass optional arguments to `open_window` you must do so
 before the final `unit`, so if you type:
 
-```tryocaml
-  open_window ();;
+```ocamltop
+open_window ();;
 ```
 you must mean "execute `open_window` now with all optional arguments
 unspecified". Whereas if you type:
 
-```tryocaml
+```ocamltop
 open_window;;
 ```
 you mean "give me the functional value" or (more usually in the
@@ -412,10 +424,10 @@ toplevel) "print out the type of `open_window`".
 Let's rewrite the `range` function yet again, this time using as much
 shorthand as possible for the labels:
 
-```tryocaml
-  let rec range ~first ~last =
-    if first > last then []
-    else first :: range ~first:(first+1) ~last
+```ocamltop
+let rec range ~first ~last =
+  if first > last then []
+  else first :: range ~first:(first+1) ~last
 ```
 Recall that `~foo` on its own is short for `~foo:foo`. This applies also
 when calling functions as well as declaring the arguments to functions,
@@ -426,9 +438,9 @@ hence in the above the highlighted red `~last` is short for
 There's another little wrinkle concerning optional arguments. Suppose we
 write a function around `open_window` to open up an application:
 
-```tryocaml
-  let open_application ?width ?height () =
-    open_window ~title:"My Application" ~width ~height
+```ocamltop
+let open_application ?width ?height () =
+  open_window ~title:"My Application" ~width ~height
 ```
 Recall that `~width` is shorthand for `~width:width`. The type of
 `width` is `'a option`, but `open_window ~width:` expects an `int`.
@@ -440,10 +452,11 @@ would be a function which would remove the "`option` wrapper" around
 this, but conceptually that's the idea). So the correct way to write
 this function is:
 
-```tryocaml
-  let open_application ?width ?height () =
-    open_window ~title:"My Application" ?width ?height
+```ocamltop
+let open_application ?width ?height () =
+  open_window ~title:"My Application" ?width ?height
 ```
+
 ###  When and when not to use `~` and `?`
 The syntax for labels and optional arguments is confusing, and you may
 often wonder when to use `~foo`, when to use `?foo` and when to use
@@ -452,15 +465,15 @@ right.
 
 `?foo` is only used when declaring the arguments of a function, ie:
 
-```tryocaml
+```ocaml
 let f ?arg1 ... =
 ```
 or when using the specialised "unwrap `option` wrapper" form for
 function calls:
 
-```tryocaml
-  let open_application ?width ?height () =
-    open_window ~title:"My Application" ?width ?height
+```ocamltop
+let open_application ?width ?height () =
+  open_window ~title:"My Application" ?width ?height
 ```
 The declaration `?foo` creates a variable called `foo`, so if you need
 the value of `?foo`, use just `foo`.
@@ -468,7 +481,7 @@ the value of `?foo`, use just `foo`.
 The same applies to labels. Only use the `~foo` form when declaring
 arguments of a function, ie:
 
-```tryocaml
+```ocaml
 let f ~foo:foo ... =
 ```
 The declaration `~foo:foo` creates a variable called simply `foo`, so if
@@ -482,7 +495,7 @@ shorthand form.
 Here is some apparently obscure code from lablgtk to demonstrate all of
 this:
 
-```tryocaml
+```ocaml
 let html ?border_width ?width ?height ?packing ?show () =  (* line 1 *)
   let w = create () in
   load_empty w;
@@ -498,15 +511,15 @@ On line 4 we use the special `?foo` form for passing optional arguments
 to functions which take optional arguments. `Container.set` has the
 following type:
 
-```tryocaml
+```ocaml
 module Container = struct
   let set ?border_width ?(width = -2) ?(height = -2) w =
     (* ... *)
 ```
 Line 5 uses the `~`shorthand. Writing this in long form:
 
-```tryocaml
-  pack_return (new html w) ~packing:packing ~show:show
+```ocaml
+pack_return (new html w) ~packing:packing ~show:show
 ```
 The `pack_return` function actually takes mandatory labelled arguments
 called `~packing` and `~show`, each of type `'a option`. In other words,
@@ -519,10 +532,10 @@ OCaml, and it's not yet widely used. In fact if you're not hacking on
 lablgtk, it's unlikely you'll see labels and optional arguments used at
 all (at the moment).
 
-## More variants ("polymorphic variants")
+## More variants (“polymorphic variants”)
 Try compiling the following C code:
 
-```tryocaml
+```C
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -542,7 +555,7 @@ main ()
 ```
 When I compile the code I get a whole bunch of errors including:
 
-```tryocaml
+```text
 test.c: In function `main':
 test.c:12: error: called object is not a function
 test.c:15: error: called object is not a function
@@ -551,13 +564,13 @@ This illustrates one problem with enumerated types (enums) in C. In the
 example above, one enum statement reserves *three* symbols, namely
 `lock`, `open` and `close`. Here's another example:
 
-```tryocaml
+```C
 enum lock { open, close };
 enum door { open, close };
 ```
 Compiling gives:
 
-```tryocaml
+```text
 test.c:2: error: conflicting types for `open'
 test.c:1: error: previous declaration of `open'
 test.c:2: error: conflicting types for `close'
@@ -572,14 +585,14 @@ variants, but OCaml provides a way to work around it.
 
 Here is some OCaml code, which actually *does* compile:
 
-```tryocaml
+```ocamltop
 type lock = Open | Close
 type door = Open | Close
 ```
 After running those two statements, what is the type of `Open`? We can
 find out easily enough in the toplevel:
 
-```tryocaml
+```ocamltop
 type lock = Open | Close;;
 type door = Open | Close;;
 Open;;
@@ -598,7 +611,7 @@ which one I mean.
 
 The syntax is slightly different, but here is how we do it:
 
-```tryocaml
+```ocamltop
 type lock = [ `Open | `Close ];;
 type door = [ `Open | `Close ];;
 ```
@@ -609,36 +622,36 @@ Notice the syntactic differences:
 
 The question naturally arises: What is the type of `` `Open``?
 
-```tryocaml
+```ocamltop
 `Open;;
 ```
 `` [> `Open] `` can be read as
 `` [ `Open | and some other possibilities which we don't know about ] ``.
-The \> (greater than) sign indicates that the set of possibilities is
+The “>” (greater than) sign indicates that the set of possibilities is
 bigger than those listed (open-ended).
 
-There's nothing special about `` `Open``. *Any* back-ticked word can be
+There's nothing special about `` `Open ``. *Any* back-ticked word can be
 used as a type, even one which we haven't mentioned before:
 
-```tryocaml
+```ocamltop
 `Foo;;
 `Foo 42;;
 ```
 Let's write a function to print the state of a `lock`:
 
-```tryocaml
-  let print_lock st =
-    match st with
-    | `Open -> print_endline "The lock is open"
-    | `Close -> print_endline "The lock is closed"
+```ocamltop
+let print_lock st =
+  match st with
+  | `Open -> print_endline "The lock is open"
+  | `Close -> print_endline "The lock is closed"
 ```
 Take a careful look at the type of that function. Type inference has
 worked out that the `st` argument has type `` [< `Close | `Open] ``. The
-\< (less than) sign means that this is a \<dfn\>closed class\</dfn\>. In
+“<” (less than) sign means that this is a __closed class__. In
 other words, this function will only work on `` `Close`` or `` `Open``
 and not on anything else.
 
-```tryocaml
+```ocamltop
 print_lock `Open;;
 ```
 Notice that `print_lock` works just as well with a `door` as with a

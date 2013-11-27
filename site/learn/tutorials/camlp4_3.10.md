@@ -73,7 +73,7 @@ Only the `.cmi` files from the include path are needed.
 
 So as an example:
 
-```tryocaml
+```
 $ ocamlc -I +camlp4 -pp camlp4orf -c dynamic_functor_example3.ml
 ```
 ## The .cma files

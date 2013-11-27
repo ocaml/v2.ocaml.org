@@ -1,6 +1,9 @@
 <!-- ((! set title Pointeurs nuls, asserts et warnings !)) ((! set learn !)) -->
 
 # Pointeurs nuls, asserts et warnings
+
+*Table of contents*
+
 ## Pointeurs nuls
 Supposons que votre site web dispose d'un sondage, demandant à vos
 lecteurs leurs noms et leurs âges. Le problème, c'est que pour une
@@ -53,30 +56,28 @@ OCaml propose une solution élégante pour les valeurs nulles, en
 utilisant un simple type variant polymorphique, défini (jusqu'à
 récemment, dans le module `Pervasives`) comme :
 
-```tryocaml
+```ocaml
 type 'a option = None | Some of 'a
 ```
-Une "valeur nulle" s'écrit `None`. Le type de age dans notre exemple (un
-entier ou la valeur nulle) est `int option` (le type est écrit "à
-l'envers", comme `int list` ou `int binary_tree` dans le chapitre
+Une « valeur nulle » s'écrit `None`. Le type de age dans notre exemple (un
+entier ou la valeur nulle) est `int option` (le type est écrit « à
+l'envers », comme `int list` ou `int binary_tree` dans le chapitre
 précédent).
 
-```tryocaml
-# Some 3;;
-- : int option = Some 3
+```ocamltop
+Some 3;;
 ```
 Une liste d'entiers optionels ?
 
-```tryocaml
-# [ None; Some 3; Some 6; None ];;
-- : int option list = [None; Some 3; Some 6; None]
+```ocamltop
+[ None; Some 3; Some 6; None ];;
 ```
 Et une liste optionelle d'entiers ?
 
-```tryocaml
-# Some [1; 2; 3];;
-- : int list option = Some [1; 2; 3]
+```ocamltop
+Some [1; 2; 3];;
 ```
+
 ## Assertions, avertissements, erreurs fatales, et écriture vers stderr
 Perl se distingue par un riche ensemble de commandes pour déboguer les
 programmes et gérer les erreurs inattendues, en particulier la
@@ -93,9 +94,8 @@ recommandé, tout particulièrement pour les débutants), son effet sera de
 stopper le programme, et d'afficher l'emplacement (nom du fichier,
 numéro de ligne et de colonne) où l'erreur est survenue. Par exemple :
 
-```tryocaml
-# assert (Sys.os_type = "Win32");;
-Exception: Assert_failure ("", 0, 30).
+```ocamltop
+assert (Sys.os_type = "Win32");;
 ```
 (Bien entendu, cette exception ne sera pas levée sous Win32.)
 
@@ -107,12 +107,12 @@ elle aussi, à moins d'être rattrappée, va stopper le programme et
 afficher le message d'erreur fourni. `failwith` est souvent utilisé lors
 du filtrage, comme dans cet exemple réel :
 
-```tryocaml
-  match Sys.os_type with
-    "Unix" | "Cygwin" ->   (* code omit *)
-  | "Win32" ->             (* code omit *)
-  | "MacOS" ->             (* code omit *)
-  | _ -> failwith "Ce système n'est pas supporté"
+```ocaml
+match Sys.os_type with
+| "Unix" | "Cygwin" ->   (* code omit *)
+| "Win32" ->             (* code omit *)
+| "MacOS" ->             (* code omit *)
+| _ -> failwith "Ce système n'est pas supporté"
 ```
 A noter l'utilisation d'un couple de fonctionnalités supplémentaires du
 système de filtrage. L'union de motifs est utilisée pour reconnaître
@@ -138,7 +138,7 @@ read_line ();;
 ```
 
 Si vous préférez le style `printf` du langage C, essayez plutôt le
-module `Printf` d'OCaml :
+module `Printf` d'OCaml :
 
 ```ocaml
 open Graphics;;

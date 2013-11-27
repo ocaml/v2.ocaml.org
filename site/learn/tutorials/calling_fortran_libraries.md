@@ -76,7 +76,7 @@ second element of the temperature array as computed by the function and
 ignore the other return values (this is a very frequent use of the
 function). This function will be in the source file wrapper.c.
 
-```tryocaml
+```C
 CAMLprim value gtd6_t (value iydV, value secVal, value altVal, value latVal, value lonVal) {
    CAMLparam5( iydV, secVal, altVal, latVal, lonVal );
    long iyd = Long_val( iydV );
@@ -123,7 +123,7 @@ functions that are used.
 Now in an OCaml file (gtd6.ml) we have to define the external reference
 to the function and a function to call it.
 
-```tryocaml
+```ocaml
 external temp : int -> float -> float -> float -> float -> float = "gtd6_t"
 
 let () =
@@ -137,7 +137,7 @@ At this point, the steps that are given are to compile this into
 bytecode. I don't yet have much experience compiling to native so I'll
 let some else help out (or wait until I learn how to do it).
 
-```tryocaml
+```
 prompt> ocamlc -c gtd6.ml prompt> ocamlc -o test gtd6.cmo wrapper.so
 ```
 And voila, we've called the fortran function from OCaml.

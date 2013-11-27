@@ -1,6 +1,9 @@
 <!-- ((! set title Programmation Fonctionnelle !)) ((! set learn !)) -->
 
 # Programmation fonctionnelle
+
+*Table of contents*
+
 ## Qu'est-ce que la programmation fonctionnelle ?
 Nous sommes arrivé relativement loin dans ce tutorial et nous n'avons
 pas encore abordé la **programmation fonctionnelle**. Il serait
@@ -31,10 +34,9 @@ langage fonctionnel, les fonctions sont des citoyens de première classe»
 
 Que de mots qui n'ont pas vraiment de sens. Voyons plutôt un exemple :
 
-```tryocaml
-# let double x= x *2 in
-   List.map double [ 1; 2; 3 ];;
-- : int list = [2; 4, 6]
+```ocamltop
+let double x = x *2 in
+List.map double [ 1; 2; 3 ];;
 ```
 Dans cet exemple, j'ai d'abord définit une fonction imbriquée appelée
 `double` qui prend un argument `x` et qui retourne `x * 2`. Puis `map`
@@ -59,21 +61,17 @@ de la définition. Généralisons la fonction précédente de façons à
 prendre n'importe quelle liste d'entiers et multiplier chaque élément
 par une valeur `n` arbitraire :
 
-```tryocaml
+```ocamltop
 let multiply n list =
-    let f x =
-        n * x
-    in
-    List.map f list
-    ;:
+  let f x =
+    n * x in
+  List.map f list
 ```
 Ainsi :
 
-```tryocaml
-# multiply 2 [1; 2; 3];;
-- : int list = [2; 4; 6]
-# multiply 5 [1; 2; 3];;
-- : int list = [5; 10; 15]
+```ocamltop
+multiply 2 [1; 2; 3];;
+multiply 5 [1; 2; 3];;
 ```
 Le point important à noter à propos de la fonction `multiply` est la
 fonction imbriquée `f`. C'est une clôture. Regardez comment `f` utilise
@@ -97,17 +95,16 @@ Voici un exemple concret de lablgtk. Ceci est une méthode d'une classe
 l'instant, mais considérons juste cela comme une définition de fonction
 pour l'instant).
 
-` class html_skel obj = object (self)`
-
-```tryocaml
- ...
- ...
- method save_to_channel chan =
-   let receiver_fn content =
-     output_string chan content;
-     true
-   in
-   save obj receiver_fn
+```ocaml
+class html_skel obj = object (self)
+  ...
+  ...
+  method save_to_channel chan =
+    let receiver_fn content =
+      output_string chan content;
+      true in
+    save obj receiver_fn
+end
 ```
 Tout d'abord, il faut savoir que la fonction `save` appelée à la fin de
 la méthode prend en second argument une fonction, en l'occurence
@@ -121,8 +118,8 @@ son environnement.
 ## Application partielle et curryfication
 Définissons une fonction plus qui ne fait qu'ajouter deux entiers :
 
-```tryocaml
-let plus a b = a + b ;;
+```ocamltop
+let plus a b = a + b
 ```
 Quelques questions pour les endormis du fond de la classe :
 
@@ -134,37 +131,32 @@ La première réponse est facile. `plus` est uen fonction qui prend deux
 arguments qui sont entiers et qui retourne un entier. Son type s'écrit
 ainsi :
 
-```tryocaml
+```ocaml
 plus : int -> int -> int
 ```
 La deuxième réponse est encore plus évidente. `plus 2 3` est un nombre,
 l'entier `5`. Sa valeur et son type s'écrivent :
 
-```tryocaml
+```ocaml
 5 : int
 ```
 Mais quid de la question 3 ? Il semblerait que `plus 2` soit une erreur,
 un bug. Alors qu'en fait, il n'en est point. Si nous typons cela dans le
 toplevel d'OCaml, nous obtenons :
 
-```tryocaml
-# plus 2;;
-- : int -> int = <fun>
+```ocamltop
+plus 2;;
 ```
 Ceci n'est pas une erreur. Il nous dit que `plus 2` est en fait une
 *fonction*, qui prend un `int` et qui retourne un `int`. Quelle genre de
 fonction cela est-il ? Essayons d'abord de lui donner un nom, puis de
 lui donner quelques entiers en argument, pour voir ce que ça donne :
 
-```tryocaml
-# let f = plus 2;;
-val f : int -> int = <fun>
-# f 10;;
-- : int = 12
-# f 15;;
-- : int = 17
-# f 99;;
-- : int = 101
+```ocamltop
+let f = plus 2;;
+f 10;;
+f 15;;
+f 99;;
 ```
 Ceci est une [preuve par
 l&#39;exemple](http://www.princeton.edu/~sacm/humor/proof.html "http://www.princeton.edu/~sacm/humor/proof.html")
@@ -174,7 +166,7 @@ choses.
 Revenons à la définition originelle, et remplaçons le premier argument,
 soit `a`, par la valeur `2` pour obtenir :
 
-```tryocaml
+```ocaml
 let plus 2 b = 2 + b ;;
 (* /!\ Ce n'est pas du code OCaml valide *)
 ```
@@ -184,7 +176,7 @@ ajoute `2` à quelque chose.
 En regardant le type de ces expressions, on peut démystifier la notation
 flèchée bizarre utilisée pour les types de fonctions :
 
-```tryocaml
+```ocaml
      plus : int -> int -> int
    plus 2 : int -> int
  plus 2 3 : int
@@ -202,42 +194,33 @@ suffit.
 Vous rappelez-vous des fonctions `double` et `multiply` vues
 précédemment ? `multiply` était définit ainsi :
 
-```tryocaml
+```ocamltop
 let multiply n list =
-    let f x = n * x in
-    List.map f list
-    ;;
+  let f x = n * x in
+  List.map f list
 ```
 Nous pouvons maintenant définir `double`, `triple`, etc, très facilement
 comme suit :
 
-```tryocaml
+```ocamltop
 let double = multiply 2;;
 let triple = multiply 3;;
 ```
 Ce sont de réelles fonctions, la preuve :
 
-```tryocaml
-# double [1; 2; 3];;
-- : int list = [2; 4; 6]
-# triple [1; 2; 3];;
-- : int list = [3; 6; 9]
+```ocamltop
+double [1; 2; 3];;
+triple [1; 2; 3];;
 ```
 On peut aussi utiliser l'application partielle (sans la fonction
 intermédiaire `f`) de cette façon :
 
-```tryocaml
-# let multiply n = List.map (( * ) n);;
-val multiply : int -> int list -> int list = <fun>
-
-# let double = multiply 2;;
-val double : int list -> int list = <fun>
-# let triple = multiply 3;;
-val triple : int list -> int list = <fun>
-# double [1; 2; 3];;
-- : int list = [2; 4; 6]
-# triple [1; 2; 3];;
-- : int list = [3; 6; 9]
+```ocamltop
+let multiply n = List.map (( * ) n);;
+let double = multiply 2;;
+let triple = multiply 3;;
+double [1; 2; 3];;
+triple [1; 2; 3];;
 ```
 Dans l'exemple ci-dessus,
 `((*) n) est l'application partielle de la fonction (*)`, c'est-à-dire,
@@ -248,20 +231,17 @@ On peut mettre des opérateurs infixes entre parenthèses pour faire des
 fonction. Voici une définition identique à la précédente avec la
 fonction `plus` :
 
-```tryocaml
-# let plus = (+);;
-val plus : int -> int -> int = <fun>
-# plus 2 3;;
-- : int = 5
+```ocamltop
+let plus = (+);;
+plus 2 3;;
 ```
 Voici encore plus de curryfication :
 
-```tryocaml
-# List.map (plus 2) [1; 2; 3];;
-- : int list = [3; 4; 5]
-# let list_of_functions = List.map plus [1; 2; 3];;
-val list_of_functions : (int -> int) list = [<fun>; <fun>; <fun>]
+```ocamltop
+List.map (plus 2) [1; 2; 3];;
+let list_of_functions = List.map plus [1; 2; 3];;
 ```
+
 ## En quoi la programmation fonctionnelle est utile ?
 La programmation fonctionnelle, comme n'importe quelle technique de
 programmation, est un outil utile dans votre boite à outils pour
@@ -297,7 +277,7 @@ est que si une fonction est pure, alors elle peut être appelée plusieurs
 fois avec les même arguments, le compilateur n'aura qu'a appeler la
 fonction qu'une seule fois. Un bon exemple en C est :
 
-```tryocaml
+```C
 for (i = 0; i < strlen(s); ++i) {
     // Du code qui n'affecte pas s
 }
@@ -329,8 +309,9 @@ toujours évalués en premier, et le résultat est alors passé à la
 fonction. Par exemple dans un langage à évaluation stricte, cet appel va
 toujours sortir par une erreur de division par zéro :
 
-```tryocaml
- give_me_a_three (1/0);;
+```ocamltop
+let give_me_a_three x = 3;;
+give_me_a_three (1/0);;
 ```
 Si vous avez programmé dans n'importe quel langage conventionnel, c'est
 le comportement auquel vous vous attendrez, et vous serez surpris qu'il
@@ -353,31 +334,29 @@ paresseuse (`Lazy`) qui permettent d'écrire des expressions paresseuses.
 Voici un exemple. D'abord nous créons une expression paresseuse pour
 `1/0` :
 
-```tryocaml
-# let lazy_expr = lazy (1/0);;
-val lazy_expr : int lazy_t = <lazy>
+```ocamltop
+let lazy_expr = lazy (1/0);;
 ```
 A noter que le type de l'expression est `int lazy_t`
 
 Parce que `give_me_a_three` prend un `'a` (tout type) nous pouvons passé
 cette expression à la fonction :
 
-```tryocaml
-# give_me_a_three lazy_expr;;
-- : int = 3;;
+```ocamltop
+give_me_a_three lazy_expr
 ```
 Pour évaluer une expression paresseuse, nous devons utiliser la fonction
 `Lazy.force` :
 
-```tryocaml
-# Lazy.force lazy_expr;;
-Exception : Division_by_zero.
+```ocamltop
+Lazy.force lazy_expr
 ```
+
 ## Boxed vs. unboxed types
-(NDT: trouver une traduction correcte pour «boxed» et «unboxed»)
+(NDT: trouver une traduction correcte pour « boxed » et « unboxed »)
 
 Un terme qu'on entend beaucoup lorsqu'on parle de langages fonctionnels
-est «boxed». J'étais très confus lorsque j'ai entendu ce terme pour la
+est « boxed ». J'étais très confus lorsque j'ai entendu ce terme pour la
 première fois, mais en fait la distinction entre types «boxed» et
 «unboxed» est très simple si vous avez déjà fait du C, du C++ ou du java
 avant (en Perl tout est «boxed»).
@@ -386,7 +365,7 @@ La façon de voir un objet «boxed» est de penser à un objet qui a été
 alloué dans le tas en utilisant `malloc()` en C (ou `new` en C++), et/ou
 qui est y est réferré via un pointeur. Prenons ce programme C :
 
-```tryocaml
+```C
 #include <stdio.h>
 
 void printit (int* ptr) {
@@ -408,18 +387,18 @@ La fonction `printit()` prends un entier «boxed» et l'affiche.
 
 Le diagramme ci-dessous (NDT: non-existant à l'écriture de la
 traduction) montre un tableau de «unboxed» (en haut) face à des entiers
-«unboxed» (en bas) :
+« unboxed » (en bas) :
 
 ![Boxed Array](/img/boxedarray.png "")
 
 Pas de prix pour avoir deviné que le tableau d'entiers «unboxed» est
 plus rapide que le tableau d'entiers «boxed». De plus, parce qu'il y a
 moins d'allocations séparés, le garbage collector est plus rapide à
-nettoyer et plus simple sur le tableau d'objets «unboxed».
+nettoyer et plus simple sur le tableau d'objets « unboxed ».
 
 En C ou C++ vous n'aurez aucun problème pour construire chacun des
 tableaux ci-dessus. En java, on a deux types, `int` qui est «unboxed» et
 `Integer` qui est «boxed», et donc considérablement moins efficace. En
-OCaml, tous les types primitifs sont «unboxed».
+OCaml, tous les types primitifs sont « unboxed ».
 
 

@@ -2,6 +2,8 @@
 
 # Garbage Collection
 
+*Table of contents*
+
 ## Garbage collection, reference counting, explicit allocation
 As with all modern languages, OCaml provides a garbage collector so that
 you don't need to explicitly allocate and free memory as in C/C++.
@@ -9,11 +11,11 @@ you don't need to explicitly allocate and free memory as in C/C++.
 As JWZ writes in his [&quot;Java sucks&quot;
 rant](http://www.jwz.org/doc/java.html "http://www.jwz.org/doc/java.html"):
 
-*First the good stuff: Java doesn't have `free()`. I have to admit right
-off that, after that, all else is gravy. That one point makes me able to
-forgive just about anything else, no matter how egregious. Given this
-one point, everything else in this document fades nearly to
-insignificance. **But...***
+> First the good stuff: Java doesn't have `free()`. I have to admit right
+> off that, after that, all else is gravy. That one point makes me able to
+> forgive just about anything else, no matter how egregious. Given this
+> one point, everything else in this document fades nearly to
+> insignificance. **But...**
 
 The OCaml garbage collector is a modern hybrid generational/incremental
 collector which outperforms hand-allocation in most cases. Unlike the
@@ -62,7 +64,7 @@ computer scientists, yet it has one big practical advantage over full
 garbage collectors. With reference counting, you can avoid many explicit
 calls to `close`/`closedir` in code. For example:
 
-```tryocaml
+```
 foreach (@files)
 {
   my $io = new IO::File "< $_" or die;
@@ -78,7 +80,7 @@ closed).
 
 Consider the equivalent OCaml code:
 
-```tryocaml
+```ocaml
 let read_file filename =
   let chan = open_in filename in
   (* read from chan *) in
@@ -117,7 +119,7 @@ the garbage collector from OCaml programs.
 Here is a program which runs and then prints out GC statistics just
 before quitting:
 
-```tryocaml
+```ocaml
 let rec iterate r x_init i =
   if i = 1 then x_init
   else
@@ -126,7 +128,7 @@ let rec iterate r x_init i =
 
 let () =
   Random.self_init ();
-  Graphics.open_graph " 640x480"
+  Graphics.open_graph " 640x480";
   for x = 0 to 640 do
     let r = 4.0 *. (float_of_int x) /. 640.0 in
     for i = 0 to 39 do
@@ -136,18 +138,17 @@ let () =
       Graphics.plot x y
     done
   done;
-  read_line ();
   Gc.print_stat stdout
 ```
 Here is what it printed out for me:
 
-```tryocaml
-minor_words: 115926165          # Total number of words allocated
-promoted_words: 31217           # Promoted from minor -> major
-major_words: 31902              # Large objects allocated in major directly
-minor_collections: 3538         # Number of minor heap collections
-major_collections: 39           # Number of major heap collections
-heap_words: 63488               # Size of the heap, in words = approx. 256K
+```
+minor_words: 115926165     # Total number of words allocated
+promoted_words: 31217      # Promoted from minor -> major
+major_words: 31902         # Large objects allocated in major directly
+minor_collections: 3538    # Number of minor heap collections
+major_collections: 39      # Number of major heap collections
+heap_words: 63488          # Size of the heap, in words = approx. 256K
 heap_chunks: 1
 top_heap_words: 63488
 live_words: 2694
@@ -171,7 +172,7 @@ We can instruct the GC to print out debugging messages when one of
 several events happen (eg. on every major collection). Try adding the
 following code to the example above near the beginning:
 
-```tryocaml
+```ocaml
 Gc.set { (Gc.get ()) with Gc.verbose = 0x01 }
 ```
 (We haven't seen the `{ expression with field = value }` form before,
@@ -205,9 +206,8 @@ when we hold copies of them in memory.
 The *public* interface to our "in-memory object database cache" is going
 to be just two functions:
 
-```tryocaml
+```ocaml
 type record = { mutable name : string; mutable address : string }
-
 val get_record : int -> record
 val sync_records : unit -> unit
 ```
@@ -225,7 +225,7 @@ OCaml doesn't currently run finalisers at exit. However you can easily
 force it to by adding the following command to your code. This command
 causes a full major GC cycle on exit:
 
-```tryocaml
+```ocaml
 at_exit Gc.full_major
 ```
 Our code is also going to implement a cache of recently accessed records
@@ -245,8 +245,8 @@ the in-memory copy is written back out to the file, the program must
 release the lock. Here is some code to define the on-disk format and
 some low-level functions to read, write, lock and unlock records:
 
-```tryocaml
-open Unix
+```ocaml
+type record = { mutable name : string; mutable address : string }
 
 (* On-disk format. *)
 let record_size = 256
@@ -255,30 +255,31 @@ let addr_size = 192
 
 (* Low-level load/save records to file. *)
 let seek_record n fd =
-  lseek fd (n * record_size) SEEK_SET
+  ignore(Unix.lseek fd (n * record_size) Unix.SEEK_SET)
 
 let write_record record n fd =
   seek_record n fd;
-  write fd record.name 0 name_size;
-  write fd record.address 0 addr_size
+  ignore(Unix.write fd record.name 0 name_size);
+  Unix.write fd record.address 0 addr_size
 
 let read_record record n fd =
   seek_record n fd;
-  read fd record.name 0 name_size;
-  read fd record.address 0 addr_size
+  ignore(Unix.read fd record.name 0 name_size);
+  Unix.read fd record.address 0 addr_size
 
 (* Lock/unlock the nth record in a file. *)
 let lock_record n fd =
   seek_record n fd;
-  lockf fd F_LOCK record_size
+  Unix.lockf fd Unix.F_LOCK record_size
 
 let unlock_record n fd =
   seek_record n fd;
-  lockf fd F_ULOCK record_size
+  Unix.lockf fd Unix.F_ULOCK record_size
 ```
+
 We also need a function to create new, empty in-memory `record` objects:
 
-```tryocaml
+```ocaml
 (* Create a new, empty record. *)
 let new_record () =
   { name = (String.make name_size ' ');
@@ -287,19 +288,19 @@ let new_record () =
 Because this is a really simple program, we're going to fix the number
 of records in advance:
 
-```tryocaml
+```ocaml
 (* Total number of records. *)
 let nr_records = 10000
 
 (* On-disk file. *)
-let diskfile = openfile "users.bin" [ O_RDWR ] 0
+let diskfile = Unix.openfile "users.bin" [ Unix.O_RDWR ] 0
 ```
 Download [users.bin.gz](/img/users.bin.gz) and decompress it before
 running the program.
 
 Our cache of records is very simple:
 
-```tryocaml
+```ocaml
 (* Cache of records. *)
 let cache = Weak.create nr_records
 ```
@@ -311,7 +312,7 @@ from the cache. If the cache gives us `Some record` then we just return
 `record` (this promotes the weak pointer to the record to a normal
 pointer).
 
-```tryocaml
+```ocaml
 open Printf
 
 (* The finaliser function. *)
@@ -335,6 +336,7 @@ let get_record n =
       Weak.set cache n (Some record);
       record
 ```
+
 The `sync_records` function is even easier. First of all it empties the
 cache by replacing all the weak pointers with `None`. This now means
 that the garbage collector *can* collect and finalise all of those
@@ -342,7 +344,7 @@ records. But it doesn't necessarily mean that the GC *will* collect the
 records straightaway (in fact it's not likely that it will), so to force
 the GC to collect the records immediately, we also invoke a major cycle:
 
-```tryocaml
+```ocaml
 (* Synchronise all records. *)
 let sync_records () =
   Weak.fill cache 0 nr_records None;
@@ -352,9 +354,10 @@ Finally we have some test code. I won't reproduce the test code, but you
 can download the complete program and test code
 [objcache.ml](_file/objcache.ml), and compile it with:
 
-```tryocaml
+```
 ocamlc -w s unix.cma objcache.ml -o objcache
 ```
+
 ## Exercises
 Here are some ways to extend the example above, in approximately
 increasing order of difficulty:

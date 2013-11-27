@@ -3,7 +3,7 @@
 # Camlp4 3.10: static functor example
 static_functor_example.ml
 
-```tryocaml
+```ocaml
 type t1 = A | B
 type t2 = Foo of string * t1
 open Camlp4.PreCast
@@ -20,5 +20,4 @@ EXTEND Gram
 END;;
 Gram.parse_string foo (Loc.mk "<string>") "foo x?" = Foo("x", A)
 DELETE_RULE Gram foo: "foo"; LIDENT; bar END
-
 ```

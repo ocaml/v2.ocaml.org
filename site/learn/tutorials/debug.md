@@ -13,67 +13,42 @@ This note quickly presents two techniques to debug OCaml programs:
 The simplest way to debug programs in the toplevel is to follow the
 function calls, by “tracing” the faulty function:
 
-```tryocaml
-  let rec fib x = if x <= 1 then 1 else fib (x - 1) + fib (x - 2);;
-# #trace fib;;
-fib is now traced.
-# fib 3;;
-fib <-- 3
-fib <-- 1
-fib --> 1
-fib <-- 2
-fib <-- 0
-fib --> 1
-fib <-- 1
-fib --> 1
-fib --> 2
-fib --> 3
-- : int = 3
-# #untrace fib;;
-fib is no longer traced.
+```ocamltop
+let rec fib x = if x <= 1 then 1 else fib (x - 1) + fib (x - 2);;
+#trace fib;;
+fib 3;;
+#untrace fib;;
 ```
+
 ###  Polymorphic function
 A difficulty with polymorphic functions is that the output of the trace
 system is not very informative in case of polymorphic arguments and/or
 results. Consider a sorting algorithm (say bubble sort):
 
-```tryocaml
-  let exchange i j v =
-    let aux = v.(i) in
-    v.(i) <- v.(j); v.(j) <- aux;;
-  
-  let one_pass_vect fin v =
-    for j = 1 to fin do
-      if v.(j - 1) > v.(j) then exchange (j - 1) j v
-    done;;
-  
-  let bubble_sort_vect v =
-    for i = Array.length v - 1 downto 0 do
+```ocamltop
+let exchange i j v =
+  let aux = v.(i) in
+  v.(i) <- v.(j); v.(j) <- aux
+
+let one_pass_vect fin v =
+  for j = 1 to fin do
+    if v.(j - 1) > v.(j) then exchange (j - 1) j v
+  done
+
+let bubble_sort_vect v =
+  for i = Array.length v - 1 downto 0 do
     one_pass_vect i v
   done;;
 
-  let q = [| 18; 3; 1 |];;
+let q = [| 18; 3; 1 |];;
 
-# #trace one_pass_vect;;
-one_pass_vect is now traced.
-# bubble_sort_vect q;;
-one_pass_vect <-- 2
-one_pass_vect --> <fun>
-one_pass_vect* <-- [|<poly>; <poly>; <poly>|]
-one_pass_vect* --> ()
-one_pass_vect <-- 1
-one_pass_vect --> <fun>
-one_pass_vect* <-- [|<poly>; <poly>; <poly>|]
-one_pass_vect* --> ()
-one_pass_vect <-- 0
-one_pass_vect --> <fun>
-one_pass_vect* <-- [|<poly>; <poly>; <poly>|]
-one_pass_vect* --> ()
-- : unit = ()
+#trace one_pass_vect;;
+bubble_sort_vect q;;
 ```
+
 The function `one_pass_vect` being polymorphic, its vector argument is
 printed as a vector containing polymorphic values,
-`[|<poly>; <poly>;           <poly>|]`, and thus we cannot properly
+`[|<poly>; <poly>; <poly>|]`, and thus we cannot properly
 follow the computation.
 
 A simple way to overcome this problem is to define a monomorphic version
@@ -85,33 +60,27 @@ polymorphic version of the function. For our sorting routine, a single
 type constraint on the argument of the `exchange` function warranties a
 monomorphic typing, that allows a proper trace of function calls:
 
-```tryocaml
-# let exchange i j (v : int vect) =
-    [...]
-exchange : int -> int -> int vect -> unit = <fun>
-    [...]
-one_pass_vect : int -> int vect -> unit = <fun>
-    [...]
-bubble_sort_vect : int vect -> unit = <fun>
-# #trace one_pass_vect;;
-one_pass_vect is now traced.
-# let q = [| 18; 3; 1 |];;
-q : int vect = [|18; 3; 1|]
-# bubble_sort_vect q;;
-one_pass_vect <-- 2
-one_pass_vect --> <fun>
-one_pass_vect* <-- [|18; 3; 1|]
-one_pass_vect* --> ()
-one_pass_vect <-- 1
-one_pass_vect --> <fun>
-one_pass_vect* <-- [|3; 1; 18|]
-one_pass_vect* --> ()
-one_pass_vect <-- 0
-one_pass_vect --> <fun>
-one_pass_vect* <-- [|1; 3; 18|]
-one_pass_vect* --> ()
-- : unit = ()
+```ocamltop
+let exchange i j (v : int array) =    (* notice the type constraint *)
+  let aux = v.(i) in
+  v.(i) <- v.(j); v.(j) <- aux
+
+let one_pass_vect fin v =
+  for j = 1 to fin do
+    if v.(j - 1) > v.(j) then exchange (j - 1) j v
+  done
+
+let bubble_sort_vect v =
+  for i = Array.length v - 1 downto 0 do
+    one_pass_vect i v
+  done;;
+
+let q = [| 18; 3; 1 |];;
+
+#trace one_pass_vect;;
+bubble_sort_vect q;;
 ```
+
 ###  Limitations
 To keep track of assignments to data structures and mutable variables in
 a program, the trace facility is not powerful enough. You need an extra
@@ -146,41 +115,46 @@ native Windows ports of OCaml (but it runs under the Cygwin port.
 Consider the following obviously wrong program written in the file
 `uncaught.ml`:
 
-```tryocaml
+```ocaml
 (* file uncaught.ml *)
-let l = ref [];;
-let find_address name = List.assoc name !l;;
-let add_address name address = l := (name, address) :: ! l;;
-add_address "IRIA" "Rocquencourt";;
-print_string (find_address "INRIA"); print_newline ();;
+let l = ref []
+let find_address name = List.assoc name !l
+let add_address name address = l := (name, address) :: ! l
+
+let () =
+  add_address "IRIA" "Rocquencourt";;
+  print_string (find_address "INRIA"); print_newline ();;
 ```
+
 At runtime, the program raises an uncaught exception `Not_found`.
 Suppose we want to find where and why this exception has been raised, we
 can proceed as follows:
 
-1. we compile the program in debug mode:<br />
+1. we compile the program in debug mode:
 
-```tryocaml
-ocamlc -g uncaught.ml
-```
+    ```
+    ocamlc -g uncaught.ml
+    ```
+
 1. we launch the debugger:
 
-```tryocaml
-ocamldebug a.out
-```
+    ```
+    ocamldebug a.out
+    ```
 
+	Then the debugger answers with a banner and a prompt:
 
-Then the debugger answers with a banner and a prompt:
-
-```tryocaml
+	```
         OCaml Debugger version 4.00.1
+	
+	(ocd)
+	```
 
-(ocd)
-```
+
 ###  Finding the cause of a spurious exception
 Type `r` (for *run*); you get
 
-```tryocaml
+```
 (ocd) r
 Loading program... done.
 Time : 12
@@ -192,7 +166,7 @@ Self explanatory, is'nt it? So, you want to step backward to set the
 program counter before the time the exception is raised; hence type in
 `b` as *backstep*, and you get
 
-```tryocaml
+```
 (ocd) b
 Time : 11 - pc : 15500 - module List
 143     [] -> <|b|>raise Not_found
@@ -206,7 +180,7 @@ But, as you know, you want the debugger to tell you which procedure
 calls the one from `List`, and also who calls the procedure that calls
 the one from `List`; hence, you want a backtrace of the execution stack:
 
-```tryocaml
+```
 (ocd) bt
 #0  Pc : 15500  List char 3562
 #1  Pc : 19128  Uncaught char 221
@@ -214,16 +188,16 @@ the one from `List`; hence, you want a backtrace of the execution stack:
 So the last function called is from module `List` at character 3562,
 that is :
 
-```tryocaml
+```ocaml
 let rec assoc x = function
-    [] -> raise Not_found
+  | [] -> raise Not_found
           ^
   | (a,b)::l -> if a = x then b else assoc x l
 ```
 The function that calls it is in module `Uncaught`, file `uncaught.ml`
 char 221:
 
-```tryocaml
+```ocaml
 print_string (find_address "INRIA"); print_newline ();;
                                   ^
 ```
@@ -236,7 +210,7 @@ find a spurious exception you just need to type `ocamldebug a.out`, then
 To get more info about the current status of the debugger you can ask it
 directly at the toplevel prompt of the debugger; for instance:
 
-```tryocaml
+```
 (ocd) info breakpoints
 No breakpoint.
 
@@ -247,11 +221,12 @@ Syntax: break function-name
 break @ [module] linenum
 break @ [module] # characternum
 ```
+
 ###  Setting break points
 Let's set up a breakpoint and rerun the entire program from the
 beginning (`(g)oto 0` then `(r)un`):
 
-```tryocaml
+```ocamltop
 (ocd) break @Uncaught 9
 Breakpoint 3 at 19112 : file Uncaught, line 9 column 34
 
@@ -264,10 +239,11 @@ Time : 6 - pc : 19112 - module Uncaught
 Breakpoint : 1
 9 add "IRIA" "Rocquencourt"<|a|>;;
 ```
+
 Then, we can step and find what happens when `find_address` is about to
 be called
 
-```tryocaml
+```
 (ocd) s
 Time : 7 - pc : 19012 - module Uncaught
 5 let find_address name = <|b|>List.assoc name !l;;
@@ -279,14 +255,17 @@ name : string = "INRIA"
 $1 : (string * string) list = ["IRIA", "Rocquencourt"]
 (ocd)
 ```
+
 Now we can guess why `List.assoc` will fail to find "INRIA" in the
 list...
 
+
 ###  Using the debugger under (X)Emacs
+
 Note also that under Emacs you call the debugger using `ESC-x`
 `camldebug a.out`. Then Emacs will set you directly to the file and
 character reported by the debugger, and you can step back and forth
 using `ESC-b` and `ESC-s`, you can set up break points using
-`CTRL-X       space`, and so on...
+`CTRL-X space`, and so on...
 
 

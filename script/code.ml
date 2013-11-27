@@ -105,6 +105,7 @@ let highlight_ocaml =
     ("\\b\\(type\\|in\\|begin\\|end\\|struct\\|sig\\|val\\|\
       object\\|inherit\\|initializer\\|include\\)\\b\\([^\"]\\)",
      "<span class=\"governing\">\\1</span>\\2");
+    ("\\b\\(end\\)$", "<span class=\"governing\">\\1</span>");
     ("\\b\\(fun\\|as\\|of\\|if\\|then\\|else\\|match\\|with\
       \\|for\\|to\\|do\\|downto\\|done\\|while\
       \\|raise\\|failwith\\|try\\|assert\

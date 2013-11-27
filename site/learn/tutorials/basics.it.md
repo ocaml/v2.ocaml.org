@@ -1,6 +1,9 @@
 <!-- ((! set title Le basi  !)) ((! set learn !)) -->
 
 # Le basi
+
+*Table of contents*
+
 ## Commenti
 In OCaml i commenti sono delimitati da `(*` e `*)`, come segue:
 
@@ -101,14 +104,14 @@ chi pensa in Java) nei nostri linguaggi. Come lo facciamo in OCaml?
 La sintassi di OCaml è piacevolmente concisa. Ecco una funzione che
 prende due numeri floating point e ne calcola la media:
 
-```tryocaml
+```ocamltop
 let average a b =
   (a +. b) /. 2.0;;
 ```
 Scrivete questo nel "toplevel" di OCaml (su Unix, scrivete il comando
 `ocaml` dalla shell) e vedrete così:
 
-```tryocaml
+```ocamltop
 let average a b =
   (a +. b) /. 2.0
 ```
@@ -216,7 +219,7 @@ errore di tipo. L'operatore `+` in OCaml richiede come argomenti due
 int, e qui gli stiamo dando un int e un float, dunque esso riposta
 questo errore:
 
-```tryocaml
+```ocamltop
 1 + 2.5;;
 ```
 (Nel linguaggio "tradotto dal francese" dei messaggi di errore di OCaml
@@ -228,7 +231,7 @@ Per sommare insieme due float dovete utilizzare un operatore differente,
 OCaml non promuove gli int a float automaticamente, quindi è un errore
 anche il seguente:
 
-```tryocaml
+```ocamltop
 1 +. 2.5;;
 ```
 Qui OCaml si sta ora lamentando per il primo argomento.
@@ -237,7 +240,7 @@ E se davvere volete sommare insieme un intero ed un numero floating
 point? (Mettiamo che siano conservati in variabili chiamate `i` e `f`).
 In OCaml dovete fare un cast esplicito:
 
-```tryocaml
+```ocaml
 float_of_int i +. f;;
 ```
 `float_of_int` è una funzione che prende un `int` e restituisce un
@@ -249,7 +252,7 @@ Visto che convertire un `int` in un `float` è un'operazione
 particolarmente comune, la funzione `float_of_int` ha un alias più
 breve: l'esempio sopra avrebbe potuto essere semplicemente scritto
 
-```tryocaml
+```ocaml
 float i +. f;;
 ```
 (Si noti che diversamente da quanto si ha in C, è perfettamente valido
@@ -275,7 +278,7 @@ Diversamente che nei linguaggi derivati da C, una funzione non è
 ricorsiva se non lo dite esplicitamente utilizzando `let rec` invece che
 semplicemente `let`. Ecco un esempio di funzione ricorsiva:
 
-```tryocaml
+```ocamltop
 let rec range a b =
   if a > b then []
   else a :: range (a+1) b
@@ -300,7 +303,7 @@ quindi dovete conoscere la relativa sintassi Per una funzione `f` che
 prende gli argomenti `arg1`, `arg2`, ... `argn`, e restituisce il tipo
 `rettype`, il compilatore stamperà:
 
-```tryocaml
+```ocaml
 f : arg1 -> arg2 -> ... -> argn -> rettype
 ```
 La sintassi con le frecce sembrerà ora strana, ma quando più tardi
@@ -310,25 +313,25 @@ vi darò soltanto degli esempi.
 La nostra funzione `repeated` che prende una stringa e un intero e
 restituisce una stringa ha tipo:
 
-```tryocaml
+```ocaml
 repeated : string -> int -> string
 ```
 La nostra funzione `average` che prende due float e restituisce un float
 ha tipo:
 
-```tryocaml
+```ocaml
 average : float -> float -> float
 ```
 La funzione standard OCaml di cast `int_of_char`:
 
-```tryocaml
+```ocaml
 int_of_char : char -> int
 ```
 Se una funzione non ritorna nulla (`void` per programmatori C e Java),
 scriviamo che restituisce il tipo `unit`. Ecco, per esempio,
 l'equivalente in OCaml di `fputc`:
 
-```tryocaml
+```ocaml
 output_char : out_channel -> char -> unit
 ```
 ###  Funzioni polimorfiche
@@ -336,7 +339,7 @@ Vediamo qualche cosa di un po' più particolare. Che dire di una funzione
 che prende *qualsiasi cosa* come argomento? Ecco una strana funzione che
 prende un argomento, ma semplicemente lo ignora e restituisce sempre 3:
 
-```tryocaml
+```ocaml
 let give_me_a_three x = 3;;
 ```
 Qual è il tipo di questa funzione? In OCaml utilizziamo uno speciale
@@ -344,7 +347,7 @@ segnaposto per significare "qualsiasi tipo voi immaginiate". È un
 carattere di virgoletta singola (NdT: un apice) seguito da una lettera.
 Il tipo dela funzione sopra sarebbe normalmente scritto:
 
-```tryocaml
+```ocaml
 give_me_a_three : 'a -> int
 ```
 Dove `'a` significa in realtà qualsiasi tipo. Potete, ad esempio,
@@ -382,10 +385,9 @@ guru probabilmente necessiteranno di aggirare il controllo dei tipi.
 Ritorniamo alla funzione `average` che abbiamo digitato nel toplevel di
 OCaml:
 
-```tryocaml
-# let average a b =
+```ocamltop
+let average a b =
   (a +. b) /. 2.0;;
-val average : float -> float -> float = <fun>
 ```
 Mirabile dictu! OCaml ha ricavato tutto da solo che la funzione prende
 due argomenti `float` e restituisce un `float`.
@@ -400,7 +402,7 @@ medesimo del valore restituito dalla funzione `average`, dunque
 `average` deve restituire un `float`. La conclusione è che `average` ha
 la seguente traccia di tipi:
 
-```tryocaml
+```ocaml
 average : float -> float -> float
 ```
 L'inferenza dei tipi è ovviamente facile per un programma così corto, ma

@@ -3,7 +3,7 @@
 # Camlp4 3.10: static old syntax
 static_old_syntax.ml:
 
-```tryocaml
+```ocaml
 type t1 = A | B
 type t2 = Foo of string * t1
 module Gram = Grammar.GMake(...)
@@ -16,5 +16,4 @@ GEXTEND Gram
 END;;
 Gram.Entry.parse foo (Stream.of_string "foo x?") = Foo("x", A)
 GDELETE_RULE Gram foo: "foo"; LIDENT; bar END
-
 ```

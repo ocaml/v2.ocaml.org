@@ -32,7 +32,7 @@ does not however invalidate any other reasons why the executable file
 might be covered by the GNU Library General Public License.
 
 ## The Q Public License, version 1.0
-```tryocaml
+```
               Copyright (C) 1999 Troll Tech AS, Norway.
                   Everyone is permitted to copy and
                   distribute this license document.
@@ -136,7 +136,7 @@ This license is governed by the Laws of France. Disputes shall be
 settled by the Court of Versailles.
 ```
 ## The GNU Library General Public License, version 2
-```tryocaml
+```
  Copyright (C) 1991 Free Software Foundation, Inc.
  59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  Everyone is permitted to copy and distribute verbatim copies

@@ -16,7 +16,7 @@ use to make it friendlier:
 To allow plumbing of OCaml error messages, add the following to your
 plumbing rules:
 
-```tryocaml
+```ocamltop
 type is text
 data matches 'File "([.a-zA-Z¡-<U+FFFF>0-9_/\-]*[a-zA-Z¡-<U+FFFF>0-9_/\-])", line ([0-9]+), characters ([0-9]+)-([0-9]+):'
 arg isfile      $1
@@ -32,7 +32,7 @@ shell.
 ####  Commenting
 The following `Edit` command will comment your selection.
 
-```tryocaml
+```ocamltop
 Edit .{i/(*
 a/*)
 }

@@ -2,6 +2,8 @@
 
 # Compiling with GNU make
 
+*Table of contents*
+
 ## Using GNU make with OCamlMakefile
 [OCamlMakefile](http://omake.metaprl.org/index.html "OCamlMakefile") is
 a generic Makefile that greatly facilitates the process of compiling
@@ -11,7 +13,7 @@ For a basic OCaml program or library that doesn't use any library
 besides the standard library, just copy OCamlMakefile to the current
 directory and create the following Makefile:
 
-```tryocaml
+```makefile
 RESULT = myprogram
 SOURCES = \
   mymodule1.mli mymodule1.ml \
@@ -30,7 +32,7 @@ The included OCamlMakefile provides a variety of targets. For details
 please refer to the documentation of OCamlMakefile, but here are the
 main ones:
 
-```tryocaml
+```text
 nc     make a native code executable
 bc     make a bytecode executable
 ncl    make a native code library
@@ -41,6 +43,7 @@ top    make a custom toplevel from all your modules
 clean  remove everything that matches one of the files that could have been
        automatically created by OCamlMakefile
 ```
+
 ## OCamlMakefile + libraries + Camlp4 parsing
 The recommended tool for installing OCaml libraries is
 [Findlib](http://www.camlcity.org/archive/programming/findlib.html "Findlib")
@@ -53,14 +56,14 @@ by setting the LIBS and INCDIRS variable. LIBS is the list of the name
 of the library files (xxx.cma or xxx.cmxa) without the .cma or .cmxa
 extension:
 
-```tryocaml
+```makefile
 LIBS = str unix
 ```
 If you use non-standard libraries that are not installed in the same
 directory as the standard library, the INCDIRS variable must contain the
 list of these directories:
 
-```tryocaml
+```makefile
 INCDIRS = /path/to/somelibdirectory/
 ```
 Usually this requires some preliminary configuration as it is
@@ -70,13 +73,13 @@ directories which are not included in the search path by default such as
 /path/to/stdlib/camlp4. In this case, this should be enough and
 portable:
 
-```tryocaml
+```makefile
 INCDIRS = +camlp4
 ```
 OK, but we prefer libraries that are installed with ocamlfind. To use
 them with OCamlMakefile, the PACKS variable must be set:
 
-```tryocaml
+```makefile
 PACKS = netstring num
 ```
 Note that libraries that not part of the standard library but are
@@ -90,25 +93,25 @@ extensions, which are bytecode units that are loaded by the
 preprocessor. With OCamlMakefile, a preprocessor to be used can be
 defined in the first line of the file:
 
-```tryocaml
+```ocaml
 (*pp ...
 ```
 So it could be something like:
 
-```tryocaml
+```ocaml
 (*pp camlp4o -I /path/to/pa_infix pa_infix.cmo *)
 ```
 Well, this form is not very convenient, so we will use the same
 preprocessor for each file and store its value in the PP variable of the
 Makefile:
 
-```tryocaml
+```makefile
 PP = camlp4o -I /path/to/pa_infix pa_infix.cmo
 export PP
 ```
 So each OCaml file will start with:
 
-```tryocaml
+```ocaml
 (*pp $PP *)
 ```
 This way of defining the preprocessor is still not satisfying: we would
@@ -119,13 +122,14 @@ Every package which we use will listed as usual in the PACKS variable,
 and camlp4find will call ocamlfind to know which syntax extensions to
 load:
 
-```tryocaml
+```makefile
 PACKS = unix micmatch_pcre \
    pa_tryfinally pa_lettry pa_forin pa_forstep pa_repeat pa_arg
 PP = camlp4find $(PACKS)
 export PP
 ```
-**Summary:**
+
+## Summary
 
 You need:
 
@@ -140,7 +144,7 @@ You need:
 Full example using ocamllex and the unix and micmatch_pcre libraries.
 The Makefile file would be:
 
-```tryocaml
+```makefile
 RESULT = myprogram
 SOURCES = mymodule1.mll mymodule2.mli mymodule2.ml mymainmodule.ml
 PACKS = unix micmatch_pcre
@@ -152,7 +156,6 @@ include $(OCAMLMAKEFILE)
 ```
 And each .ml or .mli file starts with:
 
-```tryocaml
+```ocaml
 (*pp $PP *)
-
 ```

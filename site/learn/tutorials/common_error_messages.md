@@ -1,5 +1,7 @@
 <!-- ((! set title Common error messages !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Common error messages
 This page gives a list of quick explanations for some error or warning
 messages that are emitted by the OCaml compilers. Longer explanations
@@ -10,7 +12,7 @@ are usually given in dedicated sections of this tutorial.
 When the type of an object is not compatible with the context in which
 it is used, it is frequent to obtain this kind of message:
 
-```tryocaml
+```ocamltop
 1 + 2.5;;
 ```
 "This expression has type *X* but is here used with type *Y*" means that
@@ -21,14 +23,14 @@ around (1 + ...) tells that the gap expects an expression of type *Y*
 
 More disturbing is the following message:
 
-```tryocaml
- This expression has type my_type but is here used with type my_type
+```text
+This expression has type my_type but is here used with type my_type
 ```
 This error happens often while testing some type definitions using the
 toplevel. In OCaml, it is perfectly legal to define a type with a name
 that is already taken by another type. Consider the following session:
 
-```tryocaml
+```ocamltop
 type my_type = A | B;;
 let a = A;;
 type my_type = A | B;;
@@ -48,12 +50,12 @@ discouraged.
 Functions with optional arguments must have at least one non-labelled
 argument. For instance, this is not OK:
 
-```tryocaml
+```ocamltop
 let f ?(x = 0) ?(y = 0) = print_int (x + y)
 ```
 The solution is simply to add one argument of type unit, like this:
 
-```tryocaml
+```ocamltop
 let f ?(x = 0) ?(y = 0) () = print_int (x + y);;
 ```
 See the [Labels](labels.html "Labels") section for more details on
@@ -64,23 +66,23 @@ This happens in some cases when the full type of an object is not known
 by the compiler when it reaches the end of the compilation unit (file)
 but for some reason it cannot remain polymorphic. Example:
 
-```tryocaml
+```ocamltop
 let x = ref None
 ```
 triggers the following message during the compilation:
 
-```tryocaml
+```text
 The type of this expression, '_a option ref,
 contains type variables that cannot be generalized
 ```
 Solution: help the compiler with a type annotation, like for instance:
 
-```tryocaml
+```ocamltop
 let x : string option ref = ref None
 ```
 or:
 
-```tryocaml
+```ocamltop
 let x = ref (None : string option)
 ```
 Data of type `'_a` may be allowed temporarily, for instance during a
@@ -88,18 +90,18 @@ toplevel session. It means that the given object has an unknown type,
 but it cannot be any type: it is not polymorphic data. In the toplevel,
 our example gives these results:
 
-```tryocaml
+```ocamltop
 let x = ref None
 ```
 The compiler tells us that the type of x is not fully known yet. But by
 using `x` later, the compiler can infer the type of `x`:
 
-```tryocaml
+```ocamltop
 x := Some 0
 ```
 Now `x` has a known type:
 
-```tryocaml
+```ocamltop
 x;;
 ```
 More details are given in the [OCaml
@@ -112,11 +114,11 @@ to intentionally keep such code. It may happen when the programmer
 introduced a catch-all pattern unintentionally such as in the following
 situation:
 
-```tryocaml
-  let test_member x tup =
-    match tup with
-    | (y, _) | (_, y) when y = x -> true
-    | _ -> false;;
+```ocamltop
+let test_member x tup =
+  match tup with
+  | (y, _) | (_, y) when y = x -> true
+  | _ -> false;;
 ```
 Obviously, the programmer had a misconception of what OCaml's pattern
 matching is about. Remember the following:
@@ -132,7 +134,7 @@ matching is about. Remember the following:
 In our example, it is now clear that only the first item of the pair
 will ever be tested. This leads to the following results:
 
-```tryocaml
+```ocamltop
 test_member 1 (1, 0);;
 test_member 1 (0, 1);;
 ```
@@ -142,26 +144,26 @@ exhaustive or not, based on the *type* only. So in the following
 example, the compiler doesn't know what range of ints the "mod" operator
 would return:
 
-```tryocaml
-  let is_even x =
-    match x mod 2 with
-    | 0 -> true
-    | 1 | -1 -> false
+```ocamltop
+let is_even x =
+  match x mod 2 with
+  | 0 -> true
+  | 1 | -1 -> false
 ```
 A short solution without pattern matching would be:
 
-```tryocaml
+```ocamltop
 let is_even x = x mod 2 = 0
 ```
 In general, that kind of simplification is not possible and the best
 solution is to add a catch-all case which should never be reached:
 
-```tryocaml
-  let is_even x =
-    match x mod 2 with
-    | 0 -> true
-    | 1 | -1 -> false
-    | _ -> assert false
+```ocamltop
+let is_even x =
+  match x mod 2 with
+  | 0 -> true
+  | 1 | -1 -> false
+  | _ -> assert false
 ```
 ## Problems recompiling valid programs
 ###  x.cmi is not a compiled interface
@@ -169,22 +171,21 @@ When recompiling some old program or compiling a program from an
 external source that was not cleaned properly, it is possible to get
 this error message:
 
-```tryocaml
+```text
 some_module.cmi is not a compiled interface
 ```
 It means that some_module.cmi is not valid according to the *current
 version* of the OCaml compiler. Most of the time, removing the old
 compiled files (*.cmi, *.cmo, *.cmx, ...) and recompiling is
 sufficient to solve this problem.
-
+	
 ###  Warning: Illegal backslash escape in string
 Recent versions of OCaml warn you against unprotected backslashes in
 strings since they should be doubled. Such a message may be displayed
-when compiling an older program, and can be turned off with the "-w x"
+when compiling an older program, and can be turned off with the `-w x`
 option.
 
-```tryocaml
+```ocamltop
 "\e\n" (* bad practice *);;
 "\\e\n" (* good practice *);;
-
 ```
