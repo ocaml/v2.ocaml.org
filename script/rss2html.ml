@@ -177,7 +177,8 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~img p =
   let html_title =
     Element("h1", [],
             if link = "" then [Data p.title]
-            else [Element("a", ["href", link], [Data p.title])] )in
+            else [Element("a", ["href", link; "title", p.title],
+                          [Data p.title])] )in
   [Element("li", [], [Element("article", [], html_title :: html_date)]);
    Data "\n"]
 
