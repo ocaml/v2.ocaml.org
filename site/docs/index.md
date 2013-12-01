@@ -54,9 +54,9 @@
                 </div>
                 <div class="span2">                    
                     <p>There are a number of excellent books, with two new titles published in 2013. Real World OCaml is available to <a href="https://realworldocaml.org">read online</a>.</p>
-                    <p><a href="/learn/books.html">List of Books</a> / <a href="/docs/papers.html">List of Papers</a></p>
                 </div>
             </div>
+            <p><a href="/learn/books.html">List of Books</a> / <a href="/docs/papers.html">List of Papers</a></p>
         </section>
     </div>
     <div class="row">
