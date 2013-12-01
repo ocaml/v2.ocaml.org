@@ -33,7 +33,9 @@
                 <p><strong><a href="http://lists.ocaml.org">lists.ocaml.org</a></strong><br />
                 <strong><em>Community lists and working groups</em></strong><br />
                 User-interest lists and working groups convened with specific goals.</p>
-                <p><small><a href="/community/mailing_lists.html">Browse all the lists</a></small></p>
+                <footer>
+                  <p><a href="/community/mailing_lists.html">See more lists</a></p>
+                </footer>
             </section>
             <section class="span4 condensed">
                 <h4>Recent email threads</h4>
