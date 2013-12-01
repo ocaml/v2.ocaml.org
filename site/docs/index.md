@@ -89,6 +89,7 @@
                         International Conference on Functional Programming (ICFP) Edinburgh 2009.</p>
                     </div>
             </div>
+            <p><a href="/community/media.html">List of Videos</a></p>
         </section>
     </div>
 </div>
