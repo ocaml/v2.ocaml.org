@@ -1307,15 +1307,28 @@ difficult. Try to find a recursive statement and turn it into a function
 `minNodes` defined as follows: `minNodes h` returns the minimum number
 of nodes in a height-balanced binary tree of height `h`.
 
-<!--SOLUTION-->
+SOLUTION
 
-```ocaml
-  (* solution pending *)
-```
+> ```ocamltop
+> let rec minNodes n =
+>   if n <= 0 then 0 
+>   else if n = 1 then 1
+>   else minNodes (n - 1) + minNodes (n - 2) + 1
+> ```
 
 On the other hand, we might ask: what is the maximum height H a
 height-balanced binary tree with N nodes can have? `maxHeight n` returns
 the maximum height of a height-balanced binary tree with `n` nodes.
+
+SOLUTION
+
+> ```ocamltop
+> let rec maxHeight = function
+>   | 0 -> 0 
+>   | n ->
+>     let h = maxHeight (n - 1) in
+>     if maxHeight (n - minNodes (h - 1) - 1) = h then h + 1 else h
+> ```
 
 Now, we can attack the main problem: construct all the height-balanced
 binary trees with a given nuber of nodes. `hbal_tree_nodes n` returns a
