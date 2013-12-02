@@ -503,7 +503,7 @@ let f r x y = r.g x, r.g y;;
 FIXME: A direct way now exists.
 
 
-###  Intput/output
+###  Input/output
 
 #### Why some printing material is mixed up and does not appear in the right order?
 
