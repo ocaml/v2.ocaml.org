@@ -1273,6 +1273,9 @@ tree.
 
 SOLUTION
 
+> The function `add_trees_with` is defined in the solution of
+> [Construct completely balanced binary trees](#Constructcompletelybalancedbinarytreesmedium).
+>
 > ```ocamltop
 > let rec hbal_tree n =
 >   if n = 0 then [Empty]
