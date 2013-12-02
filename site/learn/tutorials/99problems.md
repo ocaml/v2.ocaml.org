@@ -1303,34 +1303,34 @@ List.length t;;
 <!-- FIXME -->
 
 Consider a height-balanced binary tree of height `h`. What is the
-maximum number of nodes it can contain? Clearly, *maxN = 2<sup>`h`</sup>
-* 1
-*. However, what is the minimum number *minN*? This question is more
+maximum number of nodes it can contain? Clearly,
+_maxN = 2<sup>`h`</sup> - 1_.
+However, what is the minimum number *minN*? This question is more
 difficult. Try to find a recursive statement and turn it into a function
-`minNodes` defined as follows: `minNodes h` returns the minimum number
+`min_nodes` defined as follows: `min_nodes h` returns the minimum number
 of nodes in a height-balanced binary tree of height `h`.
 
 SOLUTION
 
 > ```ocamltop
-> let rec minNodes n =
->   if n <= 0 then 0 
->   else if n = 1 then 1
->   else minNodes (n - 1) + minNodes (n - 2) + 1
+> let rec min_nodes h =
+>   if h <= 0 then 0 
+>   else if h = 1 then 1
+>   else min_nodes (h - 1) + min_nodes (h - 2) + 1
 > ```
 
 On the other hand, we might ask: what is the maximum height H a
-height-balanced binary tree with N nodes can have? `maxHeight n` returns
+height-balanced binary tree with N nodes can have? `max_height n` returns
 the maximum height of a height-balanced binary tree with `n` nodes.
 
 SOLUTION
 
 > ```ocamltop
-> let rec maxHeight = function
+> let rec max_height = function
 >   | 0 -> 0 
 >   | n ->
->     let h = maxHeight (n - 1) in
->     if maxHeight (n - minNodes (h - 1) - 1) = h then h + 1 else h
+>     let h = max_height (n - 1) in
+>     if max_height (n - min_nodes (h - 1) - 1) = h then h + 1 else h
 > ```
 
 Now, we can attack the main problem: construct all the height-balanced
