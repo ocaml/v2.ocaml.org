@@ -11,56 +11,11 @@
 
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/facebook.png" alt="Facebook">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.facebook.com/">Facebook</a>, United States</h2>
-        <p>To handle their huge PHP codebase, Facebook developed <a href="https://github.com/facebook/pfff/wiki/Main">pfff</a>, a set of tools and APIs to perform some static analysis, dynamic analysis, code visualizations, code navigations, and style-preserving source-to-source transformations such as refactorings on source code.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/jane-street.jpg" alt="Jane Street">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.janestreet.com">Jane Street</a>, United States</h2>
-        <p>Jane Street is a quantitative proprietary trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. Jane Street is perhaps the largest commercial user of OCaml, and has attracted a very strong team of functional programmers. They use OCaml for everything, from research infrastructure to trading systems to operations and accounting systems. Jane Street has over 50 OCaml programmers and over a million lines of OCaml, powering a technology platform that trades billions of dollars every day. See the <a href="http://janestreet.github.io">GitHub page</a> for their open source software.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/citrix.png" alt="Citrix">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
-        <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
         <img src="/img/users/acunu.png" alt="Acunu">
     </dt>
     <dd class="span5">
         <h2><a href="http://www.acunu.com">Acunu</a>, United Kingdom</h2>
         <p>Acunu is writing, from the ground-up, a Storage and Analytics Platform for Massive Data.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/ashima.png" alt="Ashima Group">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://ashimagroup.net">Ashima Group</a>, United States</h2>
-        <p>Ashima Group uses OCaml for geometric reasoning, GPU shader translation, and high-performance servers. OCaml's type system, compiler, tools, community, and design philosophy make it an extremely powerful and versatile tool for diverse systems development tasks.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/cea.png" alt="CEA">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.cea.fr">CEA</a>, France</h2>
-        <p>CEA is a French state company, member of the OCaml Consortium. It uses OCaml mainly to develop a platform dedicated to source-code analysis of C software, called <a href="http://frama-c.com">Frama-C</a>.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -81,7 +36,42 @@
         <p>The ANSSI core missions are: to detect and react to cyber attacks, to prevent threats, to provide advice and support to governmental entities and operators of critical infrastructure, and to keep companies and the general public informed about information security threats. See <a href="https://github.com/anssi-fr">ANSII's GitHub page</a> for some of its OCaml software.</p>
     </dd>
 </dl>
-
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/ashima.png" alt="Ashima Group">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://ashimagroup.net">Ashima Group</a>, United States</h2>
+        <p>Ashima Group uses OCaml for geometric reasoning, GPU shader translation, and high-performance servers. OCaml's type system, compiler, tools, community, and design philosophy make it an extremely powerful and versatile tool for diverse systems development tasks.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/bloomberg.jpg" alt="Bloomberg Finance L.P.">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.bloomberg.com/">Bloomberg Finance L.P.</a>, United States </h2>
+        <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in a advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p> 
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/cea.png" alt="CEA">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.cea.fr">CEA</a>, France</h2>
+        <p>CEA is a French state company, member of the OCaml Consortium. It uses OCaml mainly to develop a platform dedicated to source-code analysis of C software, called <a href="http://frama-c.com">Frama-C</a>.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/citrix.png" alt="Citrix">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
+        <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>.</p>
+    </dd>
+</dl>
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/coherent.png" alt="Coherent Graphics">
@@ -118,7 +108,6 @@
         <p>Digirati dba Hostnet is a web hosting company. We use OCaml mostly for internal systems programming and infrastructure services. We also have contributed with the community by releasing a few open source <a href="http://github.com/andrenth">OCaml libraries</a>.</p>
     </dd>
 </dl>
-
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/digital.gif" alt="Digital Solutions">
@@ -128,7 +117,6 @@
         <p>General programming, with wide base and experience in Mobile Telephony programming and web application development.</p>
     </dd>
 </dl>
-
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/esterel.jpg" alt="Esterel Technologies">
@@ -136,6 +124,15 @@
     <dd class="span5">
         <h2><a href="http://www.esterel-technologies.com/">Esterel Technologies</a>, France</h2>
         <p>Esterel Technologies is a leading provider of critical systems and software development solutions for the aerospace, defense, rail transportation, nuclear, and industrial and automotive domains.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/facebook.png" alt="Facebook">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.facebook.com/">Facebook</a>, United States</h2>
+        <p>To handle their huge PHP codebase, Facebook developed <a href="https://github.com/facebook/pfff/wiki/Main">pfff</a>, a set of tools and APIs to perform some static analysis, dynamic analysis, code visualizations, code navigations, and style-preserving source-to-source transformations such as refactorings on source code.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -190,6 +187,15 @@
     <dd class="span5">
         <h2><a href="http://www.itpl.co.jp/">IT Planning</a>, Japan</h2>
         <p>We use OCaml for some kind of enterprise systems (i.e. production control, portfolio risk management and web services).</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/jane-street.jpg" alt="Jane Street">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.janestreet.com">Jane Street</a>, United States</h2>
+        <p>Jane Street is a quantitative proprietary trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. Jane Street is perhaps the largest commercial user of OCaml, and has attracted a very strong team of functional programmers. They use OCaml for everything, from research infrastructure to trading systems to operations and accounting systems. Jane Street has over 50 OCaml programmers and over a million lines of OCaml, powering a technology platform that trades billions of dollars every day. See the <a href="http://janestreet.github.io">GitHub page</a> for their open source software.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -334,15 +340,6 @@
     <dd class="span5">
         <h2><a href="http://www.vectorfabrics.com/">Vector Fabrics</a>, The Netherlands</h2>
         <p>Vector Fabrics is a high-tech software company, developing tools for embedded multicore programming. Its technology and expertise is getting widespread recognition in the industry as being innovative and unique in their ability to address heterogeneous multicore application-specific silicon platforms. Due to the advanced nature of its tools, Vector Fabrics operates at the forefront of the next generation of embedded platforms for diverse markets ranging from supercomputers to automotive to cell phones.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/bloomberg.jpg" alt="Bloomberg Finance L.P.">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.bloomberg.com/">Bloomberg Finance L.P.</a>, United States </h2>
-        <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in a advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p> 
     </dd>
 </dl>
 
