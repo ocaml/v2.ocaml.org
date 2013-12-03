@@ -11,7 +11,7 @@ let text_description = []
 let channel_of_urls urls =
   let download_and_parse url =
     let ch, err = Rss.channel_of_string(Http.get url) in
-    List.iter (fun e -> printf "RSS error (URL=%s): %s\n" url e) err;
+    List.iter (fun e -> eprintf "RSS error (URL=%s): %s\n" url e) err;
     ch in
   let channels = List.map download_and_parse urls in
   match channels with
