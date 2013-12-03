@@ -336,6 +336,15 @@
         <p>Vector Fabrics is a high-tech software company, developing tools for embedded multicore programming. Its technology and expertise is getting widespread recognition in the industry as being innovative and unique in their ability to address heterogeneous multicore application-specific silicon platforms. Due to the advanced nature of its tools, Vector Fabrics operates at the forefront of the next generation of embedded platforms for diverse markets ranging from supercomputers to automotive to cell phones.</p>
     </dd>
 </dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/bloomberg.jpg" alt="Bloomberg Finance L.P.">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.bloomberg.com/">Bloomberg Finance L.P.</a>, United States </h2>
+        <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in a advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p> 
+    </dd>
+</dl>
 
 <h4>Disclaimer</h4>
 Appearance of a company's name here does not necessarily imply
