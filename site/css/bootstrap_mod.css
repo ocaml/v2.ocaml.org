@@ -60,7 +60,7 @@ blockquote p {
 }
 
 /* Section headers too close to the following text. */
-h1.ruled + ul {
+h1.ruled + ul, h1.ruled + ol {
   padding-top: 1ex;
 }
 h1.ruled + pre {
