@@ -8,6 +8,23 @@ open Utils
     HTML).  The formatting of the description must then be respected. *)
 let text_description = []
 
+(** Our representation of a "post". *)
+type post = {
+  title  : string;
+  link   : Rss.url option;   (* url of the original post *)
+  date   : Rss.date option;
+  author : string;
+  email  : string;    (* the author email, "" if none *)
+  desc   : string;
+}
+
+(** Transformation applied to each post. *)
+let special_processing (p: post) =
+  if p.author = "Caml Weekly News" then
+    {p with title = "Weekly News" }
+  else p
+
+
 let channel_of_urls urls =
   let download_and_parse url =
     let ch, err = Rss.channel_of_string(Http.get url) in
@@ -19,16 +36,6 @@ let channel_of_urls urls =
   | [c] -> c
   | c :: tl -> List.fold_left Rss.merge_channels c tl
 
-
-(* Our representation of a "post". *)
-type post = {
-  title  : string;
-  link   : Rss.url option;   (* url of the original post *)
-  date   : Rss.date option;
-  author : string;
-  email  : string;    (* the author email, "" if none *)
-  desc   : string;
-}
 
 let digest_post p = match p.link with
   | None -> Digest.to_hex (Digest.string (p.title))
@@ -56,10 +63,11 @@ let parse_item it =
           is nonetheless the only URL we get (e.g. ocamlpro). *)
        (try Some(Neturl.parse_url u) with _ -> it.item_link)
     | None, None -> None in
-  { title; link; author;
-    email = string_of_option it.item_author;
-    desc = string_of_option it.item_desc;
-    date = it.item_pubdate }
+  special_processing
+    { title; link; author;
+      email = string_of_option it.item_author;
+      desc = string_of_option it.item_desc;
+      date = it.item_pubdate }
 
 
 (* Limit the length of the description presented to the reader. *)
