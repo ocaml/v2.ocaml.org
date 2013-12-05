@@ -11,6 +11,33 @@
 
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/facebook.png" alt="Facebook">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.facebook.com/">Facebook</a>, United States</h2>
+        <p>To handle their huge PHP codebase, Facebook developed <a href="https://github.com/facebook/pfff/wiki/Main">pfff</a>, a set of tools and APIs to perform some static analysis, dynamic analysis, code visualizations, code navigations, and style-preserving source-to-source transformations such as refactorings on source code.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/bloomberg.jpg" alt="Bloomberg L.P.">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.bloomberg.com/">Bloomberg L.P.</a>, United States </h2>
+        <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in a advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p> 
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/citrix.png" alt="Citrix">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
+        <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/acunu.png" alt="Acunu">
     </dt>
     <dd class="span5">
@@ -47,29 +74,11 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/bloomberg.jpg" alt="Bloomberg L.P.">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.bloomberg.com/">Bloomberg L.P.</a>, United States </h2>
-        <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in a advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p> 
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
         <img src="/img/users/cea.png" alt="CEA">
     </dt>
     <dd class="span5">
         <h2><a href="http://www.cea.fr">CEA</a>, France</h2>
         <p>CEA is a French state company, member of the OCaml Consortium. It uses OCaml mainly to develop a platform dedicated to source-code analysis of C software, called <a href="http://frama-c.com">Frama-C</a>.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/citrix.png" alt="Citrix">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
-        <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -124,15 +133,6 @@
     <dd class="span5">
         <h2><a href="http://www.esterel-technologies.com/">Esterel Technologies</a>, France</h2>
         <p>Esterel Technologies is a leading provider of critical systems and software development solutions for the aerospace, defense, rail transportation, nuclear, and industrial and automotive domains.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/facebook.png" alt="Facebook">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.facebook.com/">Facebook</a>, United States</h2>
-        <p>To handle their huge PHP codebase, Facebook developed <a href="https://github.com/facebook/pfff/wiki/Main">pfff</a>, a set of tools and APIs to perform some static analysis, dynamic analysis, code visualizations, code navigations, and style-preserving source-to-source transformations such as refactorings on source code.</p>
     </dd>
 </dl>
 <dl class="row">
