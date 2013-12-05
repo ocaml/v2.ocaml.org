@@ -85,12 +85,12 @@ delimiter, hence followed by a space).
 Be careful to keep operator symbols well separated by spaces: not only
 will your formulas be more readable, but you will avoid confusion with
 multi-character operators. (Obvious exceptions to this rule: the symbols
-```!`'' and ```.`'' are not separated from their arguments.)<br />
+`!` and `.` are not separated from their arguments.)<br />
 Example: write `x + 1` or `x + !y`.
 
 > 
 > **Justification**: If you left out the spaces then `x+1` would be
-> understood, but `x+!y` would change its meaning since ```+!`'' would
+> understood, but `x+!y` would change its meaning since `+!` would
 > be interpreted as a multi-character operator.
 > 
 > **Criticism**: The absence of spaces around an operator improves the
@@ -636,7 +636,7 @@ or 2 spaces according to the chosen convention). Write small arguments
 on the same line, and change lines at the start of an argument.
 
 As far as possible, avoid arguments which consist of complex
-expressions: in these cases define the ``large'' argument by a `let`
+expressions: in these cases define the “large” argument by a `let`
 construction.
 
 > 
@@ -654,21 +654,21 @@ In place of
 ```ocaml
 let temp =
   f x y z
-    ``large
-    expression''
-    ``other large
-    expression'' in
+    “large
+    expression”
+    “other large
+    expression” in
 ...
 ```
 write
 
 ```ocaml
 let t =
-  ``large
-  expression''
+  “large
+  expression”
 and u =
-  ``other large
-  expression'' in
+  “other large
+  expression” in
 let temp =
   f x y z t u in
 ...
@@ -713,21 +713,21 @@ x + y + z
 > the operation continues on this line.
 > 
 
-In the case of a ``large expression'' in such an operation sequence,
-to define the ``large expression'' with the help of a `let in`
+In the case of a “large expression” in such an operation sequence,
+to define the “large expression” with the help of a `let in`
 construction is preferable to having to indent the line. In place of
 
 ```ocaml
 x + y + z
-+ ``large
-  expression''
++ “large
+  expression”
 ```
 write
 
 ```ocaml
 let t =
-  ``large
-   expression'' in
+  “large
+   expression” in
 x + y + z + t
 ```
 You most certainly must bind those expressions too large to be written
@@ -736,23 +736,23 @@ the unreadable expression
 
 ```ocaml
 (x + y + z * t)
-/ (``large
-    expression'')
+/ (“large
+    expression”)
 ```
 write
 
 ```ocaml
 let u =
-  ``large
-  expression'' in
+  “large
+  expression” in
 (x + y + z * t) / u
 ```
 These guidelines extend to all operators. For example:
 
 ```ocaml
 let u =
-  ``large
-  expression'' in
+  “large
+  expression” in
 x :: y
 :: z + 1 :: t :: u
 ```
@@ -938,7 +938,7 @@ sensible interpretation) the expression `f x < x + 2` means
 
 ####  The relative precedences of the boolean operators are those of mathematics
 Although mathematicians have a tendency to overuse parens in this case,
-the boolean ``or'' operator is analogous to addition and the ``and''
+the boolean “or” operator is analogous to addition and the “and”
 to multiplication. So, just as `1 + 2 * x` means `1 + (2 * x)`,
 `true || false && x` means `true || (false && x)`.
 
@@ -1078,7 +1078,7 @@ Warnings about pattern-matching must be treated with the upmost care:
 
 * For non-exhaustive pattern-matching you must complete the
  corresponding pattern-matching construct, without adding a default
- case ``catch-all'', such as `| _ -> ... `, but with an explicit
+ case “catch-all”, such as `| _ -> ... `, but with an explicit
  list of the constructors not examined by the rest of the construct,
  for example `| Cn _ | Cn1 _ -> ... `.
 
@@ -1088,7 +1088,7 @@ Warnings about pattern-matching must be treated with the upmost care:
 > effect the addition of a new constructor to the datatype being
 > matched will produce an alert anew, which will allow the
 > programmer to add a clause corresponding to the new constructor if
-> that is warranted. On the contrary, the ``catch-all'' clause
+> that is warranted. On the contrary, the “catch-all” clause
 > will make the function compile silently and it might be thought
 > that the function is correct as the new constructor will be
 > handled by the default case.
@@ -1100,7 +1100,7 @@ Warnings about pattern-matching must be treated with the upmost care:
  redundant guard.
 
 ####  De-structuring `let` bindings
-[Translator's note: a ``de-structuring `let` binding'' is one which
+[Translator's note: a “de-structuring `let` binding” is one which
 binds several names to several expressions simultaneously. You pack all
 the names you want bound into a collection such as a tuple or a list,
 and you correspondingly pack all the expressions into a collective
@@ -1497,13 +1497,13 @@ easiest way the computation that implements the algorithm.
 
 ####  Style dangers
 Concerning programming styles, one can usually observe the two
-symmetrical problematic behaviors: on the one hand, the ``all
-imperative'' way (*systematic* usage of loops and assignment), and on
-the other hand the ``purely functional'' way (*never* use loops nor
-assignments); the ``100% object'' style will certainly appear in the
+symmetrical problematic behaviors: on the one hand, the “all
+imperative” way (*systematic* usage of loops and assignment), and on
+the other hand the “purely functional” way (*never* use loops nor
+assignments); the “100% object” style will certainly appear in the
 next future, but (fortunately) it is too new to be discussed here.
 
-* **The ``Too much imperative'' danger**:
+* **The “Too much imperative” danger**:
     * It is a bad idea to use imperative style to code a function that
  is *naturally* recursive. For instance, to compute the length of
  a list, you should not write:
@@ -1665,14 +1665,14 @@ subsequent `ESC-/` proposes an alternate completion.
 Under Unix, the `CTRL-C-CTRL-C` or `Meta-X     compile` combination,
 followed by `` CTRL-X-` `` is also used to find all occurrences of a
 certain string in a OCaml program. Instead of launching `make` to
-recompile, you launch the `grep` command; then all the ``error
-messages'' from `grep` are compatible with the `` CTRL-X-` `` usage
+recompile, you launch the `grep` command; then all the “error
+messages” from `grep` are compatible with the `` CTRL-X-` `` usage
 which automatically takes you to the file and the place where the string
 is found.
 
 ###  How to edit with the interactive system
 Under Unix: use the line editor `ledit` which offers great editing
-capabilities ``à la emacs'' (including `ESC-/`!), as well as a history
+capabilities “à la emacs” (including `ESC-/`!), as well as a history
 mechanism which lets you retrieve previously typed commands and even
 retrieve commands from one session in another. `ledit` is written in
 OCaml and can be freely down-loaded
