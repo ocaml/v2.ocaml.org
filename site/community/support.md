@@ -8,20 +8,27 @@ A great way to get free support is by using the active [mailing
 lists](mailing_lists.html). When you need to go beyond this and get
 professional support, you have the following options:
 
-[OCamlPro](http://www.ocamlpro.com/)<br />
-OCamlPro is an INRIA spin-off that provides professional support on
-OCaml for companies. OCamlPro is a team of highly skilled experienced
-OCaml programmers, including members of the OCaml core development team.
-OCamlPro contributes open-source software to the OCaml community, such
-as [Try OCaml](http://try.ocamlpro.com/) and the [OPAM package
-manager](http://opam.ocamlpro.com/). For its customers, OCamlPro can
-develop specialized software components in OCaml, train developers on
-any OCaml related topic, and provide strong expertise to debug and
-optimize OCaml software and support on the OCaml distribution itself.
-OCamlPro is a member of the OCaml Consortium.
+### <img src="/img/ocamlpro.png" alt="OCamlPro" style="height: 2ex; vertical-align: text-bottom" />
 
-[Gerd Stolpmann](http://www.gerd-stolpmann.de/buero/work_ocaml_search.html.en)<br />
-Gerd Stolpmann has been helping companies master OCaml since 2005. He is
+[OCamlPro](http://www.ocamlpro.com/) is the creator of many open-source tools
+widely used throughout the community, such as
+[Try OCaml](http://try.ocamlpro.com/), the
+[OPAM package manager](http://opam.ocamlpro.com/) and
+[ocp-indent](http://typerex.org/ocp-indent.html), as well as a
+[large contributor](http://www.ocamlpro.com/blog/2012/08/20/ocamlpro-and-4.00.0.html)
+to OCaml itself. Besides commercially supporting their tools, they offer to
+share their expertise through
+[full OCaml support packages](http://www.ocamlpro.com/services/typerex-pro.html).
+They also provide trainings and specialized software developments.
+
+OCamlPro is an INRIA spin-off with a team of highly skilled experienced OCaml
+programmers, including members of the OCaml core development team, and they have
+expertise to help debug and optimize OCaml projects as well as improve specific
+work environments.
+
+### Gerd Stolpmann
+[Gerd Stolpmann](http://www.gerd-stolpmann.de/buero/work_ocaml_search.html.en)
+has been helping companies master OCaml since 2005. He is
 an expert of the ecosystem surrounding OCaml and developed the
 [GODI](http://godi.camlcity.org/godi/) platform. Stolpmann is a computer
 scientist who has been a contractor for several long-running OCaml

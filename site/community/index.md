@@ -51,13 +51,14 @@
     <div class="row">
         <section class="span4 condensed">
             <h1 class="ruled">Support</h1>
-            <p>A great way to get free support is by using the active <a href="/community/mailing_lists.html">mailing lists</a>
-			as well as the IRC channels
-			(<a href="irc://irc.freenode.net/ocaml">en</a>,
-			<a href="irc://irc.freenode.net/ocaml-fr">fr</a>).
-			When you need to go beyond this and get professional support, you have a number of
-			<a href="support.html">options available</a>.</p>
-            <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html">Find out more</a>.</p>
+            <p>Besides the above <a href="/community/mailing_lists.html">mailing lists</a>, you
+            can ask questions on the OCaml IRC channels
+            (<a href="irc://irc.freenode.net/ocaml">en</a>,
+             <a href="irc://irc.freenode.net/ocaml-fr">fr</a>).</p>
+
+            <p>Or see the <a href="support.html">Professional support</a> providers.</p>
+
+            <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html#GivingSupport">Find out more</a>.</p>
         </section>
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/">Events</a></h1>
