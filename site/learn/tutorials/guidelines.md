@@ -56,26 +56,25 @@ followed by a space: `(1, 2)`, `let   triplet = (x, y, z)`...
     * **Definition of the components of a pair**: In place of
  `let (x, y) =       ...`, you can write `let x, y = ...`.
 
-> 
 > **Justification**: The point is to define several values
 > simultaneously, not to construct a tuple. Moreover, the
 > pattern is set off nicely between `let` and `=`.
 
-```ocaml
--   **Matching several values simultaneously**: It's okay to omit
-    parentheses around n-tuples when matching several values
-    simultaneously.
+- **Matching several values simultaneously**: It's okay to omit
+  parentheses around n-tuples when matching several values
+  simultaneously.
 
         match x, y with
         | 1, _ -> ...
         | x, 1 -> ...
         | x, y -> ...
 
-    > **Justification**: The point is to match several values in
-    > parallel, not to construct a tuple. Moreover, the expressions
-    > being matched are set off by `match` and `with`, while the
-    > patterns are set off nicely by `|` and `->`.
-```
+  > **Justification**: The point is to match several values in
+  > parallel, not to construct a tuple. Moreover, the expressions
+  > being matched are set off by `match` and `with`, while the
+  > patterns are set off nicely by `|` and `->`.
+
+
 ####  How to write lists
 Write `x :: l` with spaces around the `::` (since `::` is an infix
 operator, hence surrounded by spaces) and `[1; 2; 3]` (since `;` is a
@@ -88,7 +87,7 @@ multi-character operators. (Obvious exceptions to this rule: the symbols
 `!` and `.` are not separated from their arguments.)<br />
 Example: write `x + 1` or `x + !y`.
 
-> 
+ 
 > **Justification**: If you left out the spaces then `x+1` would be
 > understood, but `x+!y` would change its meaning since `+!` would
 > be interpreted as a multi-character operator.
@@ -120,10 +119,10 @@ Example: write `x + 1` or `x + !y`.
 > end of a comment. All those difficulties are easily avoided if you
 > adopt the simple rule proposed here: keep operator symbols well
 > separated by spaces.<br />
->  In fact you will quickly feel that this rule is not so difficult to
+> In fact you will quickly feel that this rule is not so difficult to
 > follow: the space bar is the greatest and best situated key of the
 > keyboard, it is the easiest to enter and you cannot miss it!
-> 
+
 
 ####  How to write long character strings
 Indent long character strings with the convention in force at that line
@@ -137,6 +136,7 @@ let universal_declaration =
    distinctions can only be based on the common good." in
   ...
 ```
+
 ## Indentation of programs
 > 
 > **Landin's pseudo law**: Treat the indentation of your programs as if
@@ -164,22 +164,21 @@ systematically throughout the whole application.
 ###  Width of the page
 The page is 80 columns wide.
 
-> 
 > **Justification**: This width makes it possible to read the code on
 > all displays and to print it in a legible font on a standard sheet.
-> 
+ 
 
 ###  Height of the page
 A function should always fit within one screenful (of about 70 lines),
 or in exceptional cases two, at the very most three. To go beyond this
 is unreasonable.
 
-> 
+ 
 > **Justification**: When a function goes beyond one screenful, it's
 > time to divide it into subproblems and handle them independently.
 > Beyond a screenful, one gets lost in the code. The indentation is not
 > readable and is difficult to keep correct.
-> 
+
 
 ###  How much to indent
 The change in indentation between successive lines of the program is
@@ -190,7 +189,7 @@ throughout the program.
 Using the tab character (ASCII character 9) is absolutely *not*
 recommended.
 
-> 
+
 > **Justification**: Between one display and another, the indentation of
 > the program changes completely; it can also becomes completely wrong,
 > if the programmer used both tabulations and spaces to indent the
@@ -203,7 +202,7 @@ recommended.
 > 
 > **Answer**: It seems almost impossible to use this method since you
 > should always use tabulations to indent, which is hard and unnatural.
-> 
+ 
 
 ###  How to indent global `let ... ;;` definitions
 The body of a function defined globally in a module is generally
