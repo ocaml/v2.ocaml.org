@@ -369,8 +369,7 @@ of the expressions in question and especially the presence of `begin`
 In the case of delimiting the branches of a conditional, several styles
 are used:
 
-> 
-> style `(` at end of line:
+> `(` at end of line:
 > 
 > ```ocaml
 > if cond then (
@@ -1528,15 +1527,16 @@ let rec list_length = function
 (For those that would contest the equivalence of those two
 versions, see the [note below](#equivalenceprogrammes)).
 
-```ocaml
--   Another common “over imperative error” in the imperative world
-    is not to systematically choose the simple `for` loop to iter on
-    the element of a vector, but instead to use a complex `while`
-    loop, with one or two references (too many useless assignments,
-    too many opportunity for errors).
--   This category of programmer consider that the `mutable` keyword
-    in the record type definitions should be implicit.
-```
+
+* Another common “over imperative error” in the imperative world is
+  not to systematically choose the simple `for` loop to iter on the
+  element of a vector, but instead to use a complex `while` loop, with
+  one or two references (too many useless assignments, too many
+  opportunity for errors).
+
+* This category of programmer consider that the `mutable` keyword in
+  the record type definitions should be implicit.
+
 * **The “Too much functional” danger**:
     * The programmer that suffers from this disease carefully avoids
  to use arrays and assignment. In the most severe forms, one
