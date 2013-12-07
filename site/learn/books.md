@@ -184,7 +184,6 @@ synthesis.
 Amazon.com](http://www.amazon.com/exec/obidos/ASIN/0521571839/qid%3D911812711/sr%3D1-22/102-8668961-8838559)
 
 ****
-****
 
 ## Books in French
 
@@ -349,9 +348,6 @@ study computer science and for students engaged in a computer science
 cursus up to the masters level. It includes a tutorial of the OCaml
 language, a course on algorithms, data structures, automata theory, and
 formal logic, as well as 135 exercises with solutions.
-<br />
-<br />
-<br />
 
 ****
 
@@ -430,7 +426,7 @@ illustrated in OCaml easily transpose to other programming languages.
 
 [Order Online from Paracamplus](http://paracamplus.com)
 
-****
+
 ****
 
 ## Books in German
@@ -448,10 +444,7 @@ suitable for self-studies. In the first part, algorithms are described
 in a concise and precise manner using Caml Light. The second part
 provides a tutorial introduction into the language Caml Light and in its
 last chapter a comprehensive description of the language kernel.
-<br />
-<br />
-<br />
-****
+
 ****
 
 ## Books in Italian
