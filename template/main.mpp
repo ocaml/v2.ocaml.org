@@ -17,6 +17,9 @@
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />
     <link href="/css/ocamlorg.css" rel="stylesheet" media="screen" />
+    <script type="text/javascript"
+	    src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"
+	    ></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
