@@ -131,7 +131,7 @@ for more information.
 OCaml Labs is primarily funded by [Jane Street](http://janestreet.com)
 with a platform grant for the first three years. It is also supported by
 [Citrix Systems R&amp;D](http://www.xen.org/products/cloudxen.html). There
-are also several research grants associated with OCamlLabs:
+are also several research grants associated with OCaml Labs:
 
 * RCUK [Horizon Digital Economy Research](http://www.horizon.ac.uk)
  Hub grant,
