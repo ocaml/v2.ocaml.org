@@ -304,6 +304,26 @@ be used to download and build the following packages:
 * `tuareg-mode.el` A GNU Emacs/XEmacs major mode for editing OCaml
  programs.
 
+### Homebrew
+[Homebrew](http://brew.sh/) is a new and upcoming package management
+system for Mac OS X and has a very large community.
+Homebrew requires the command line tools for Xcode and either bash or zsh to
+[install](https://github.com/Homebrew/homebrew/wiki/Installation).
+
+After installing Homebrew, you can install OCaml by issuing the following
+command:
+
+```bash
+brew install ocaml
+```
+
+You can then install [OPAM](http://opam.ocaml.org/), the
+OCaml package manager, which will give you access to all its
+[packages](http://opam.ocaml.org/pkg/) by running:
+
+```bash
+brew install opam
+```
 
 
 ### Building from sources
