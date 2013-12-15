@@ -11,7 +11,8 @@ let () =
     (fun p ->
      let ctx = Ssl.create_context Ssl.TLSv1 Ssl.Client_context in
      let tct = Https_client.https_transport_channel_type ctx in
-     p # configure_transport Http_client.https_cb_id tct
+     p # configure_transport Http_client.https_cb_id tct;
+     p#set_options { p#get_options with Http_client.connection_timeout = 5. }
     )
 
 
@@ -31,21 +32,23 @@ let get ?(cache_secs=cache_secs) url =
   let md5 = Digest.to_hex(Digest.string url) in
   let fn = Filename.concat Filename.temp_dir_name ("ocamlorg-" ^ md5) in
   eprintf "Downloading %s... %!" url;
-  if Sys.file_exists fn && age fn <= cache_secs then (
+  let get_from_cache () =
     let fh = open_in fn in
     let data = input_value fh in
     close_in fh;
     eprintf "done.\n  (using cache %s, updated %s ago).\n%!"
             fn (time_of_secs(age fn));
-    data
-  )
+    data in
+  if Sys.file_exists fn && age fn <= cache_secs then get_from_cache()
   else (
-    flush stderr;
-    let data = http_get url in
-    eprintf "done %!";
-    let fh = open_out fn in
-    output_value fh data;
-    close_out fh;
-    eprintf "(cached).\n%!";
-    data
+    try
+      let data = http_get url in
+      eprintf "done %!";
+      let fh = open_out fn in
+      output_value fh data;
+      close_out fh;
+      eprintf "(cached).\n%!";
+      data
+    with Http_client.Http_protocol(Http_client.Timeout _) ->
+      get_from_cache()
   )
