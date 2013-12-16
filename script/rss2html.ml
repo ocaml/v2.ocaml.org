@@ -8,6 +8,8 @@ open Utils
     HTML).  The formatting of the description must then be respected. *)
 let text_description = []
 
+let planet_url = "http://ocaml.org/community/planet.html"
+
 (** Our representation of a "post". *)
 type post = {
   title  : string;
@@ -130,13 +132,34 @@ let html_of_post p =
   let html_title, rss = match p.link with
     | None -> [Data p.title], []
     | Some u ->
-       let url = Neturl.string_of_url u in
-       let a_args = ["href", url; "target", "_blank";
+       let url_orig = Neturl.string_of_url u in
+       let a_args = ["href", url_orig; "target", "_blank";
                      "title", "Go to the original post"] in
+       let post = Netencoding.Url.encode (planet_url ^ "#" ^ title_anchor) in
+       let google = ["href", "https://plus.google.com/share?url="
+                             ^ (Netencoding.Url.encode url_orig);
+                     "target", "_blank"; "title", "Share on Google+"] in
+       let fb = ["href", "http://www.facebook.com/share.php?u=" ^ post
+                         ^ "&amp;t=" ^ (Netencoding.Url.encode p.title);
+                 "target", "_blank"; "title", "Share on Facebook"] in
+       let tw = ["href", "http://twitter.com/intent/tweet?url=" ^ post
+                         ^ "&text=" ^ (Netencoding.Url.encode p.title);
+                 "target", "_blank"; "title", "Share on Twitter"] in
        [Element("a", a_args, [Data p.title]) ],
-       [Element("a", ("class", "rss") :: a_args,
-                [Element("img", ["src", "/img/rss.png"; "alt", "RSS"],
-                         []) ]) ] in
+       [Element("span", ["class", "share"],
+                [Element("a", ("class", "googleplus") :: google,
+                         [Element("img", ["src", "/img/googleplus.png";
+                                          "alt", "Google+"], []) ]);
+                  Element("a", ("class", "facebook") :: fb,
+                         [Element("img", ["src", "/img/facebook.png";
+                                          "alt", "FB"], []) ]);
+                 Element("a", ("class", "twitter") :: tw,
+                         [Element("img", ["src", "/img/twitter.png";
+                                          "alt", "Twitter"], []) ]);
+                 Element("a", ("class", "rss") :: a_args,
+                         [Element("img", ["src", "/img/rss.png";
+                                          "alt", "RSS"], []) ]);
+       ] )] in
   let html_author =
     if p.email = "" then Data p.author
     else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
@@ -161,7 +184,7 @@ let html_of_post p =
   in
   [Data "\n";
    Element("a", ["name", title_anchor], []);
-   Element("section", ["class", " condensed"; "style", "clear: both"],
+   Element("section", ["class", "condensed"; "style", "clear: both"],
            Element("h1", ["class", "ruled planet"],
                    rss @ html_title @ additional_info)
            :: desc);

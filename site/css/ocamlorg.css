@@ -135,10 +135,15 @@ a.planet-toggle:hover, a.planet-toggle:focus {
   background: #c77a27;
 }
 
-h1.planet .rss {
+h1.planet .share {
   float: right;
-  padding-top: 3px;
-  margin-left: 10px;
+  padding-top: 1px;
+  margin-left: 5px;
+}
+h1.planet .rss, h1.planet .facebook, h1.planet .twitter,
+h1.planet .googleplus {
+  margin-left: 5px;
+  font-size: 50%;
 }
 
 div.subscribers {
