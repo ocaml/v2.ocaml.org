@@ -8,6 +8,10 @@ OMD_PP = script/md_preprocess
 
 OCAML_VERSION = $(shell ocamlc -config | grep version | sed -e "s/version: *//")
 
+OCAMLFLAGS = -annot
+OCAMLOPT = ocamlfind ocamlopt $(OCAMLFLAGS)
+OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
+
 ifeq ("$(OCAML_VERSION)", "3.12.1")
 COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
 COMPILER_LIBS = dynlink.cma toplevellib.cma
@@ -24,32 +28,32 @@ template/front_code_snippet.html:template/front_code_snippet.md $(OMD_PP)
 
 script/rss2html: script/rss2html.ml script/http.ml
 	cd script && \
-	ocamlfind ocamlopt -package netstring,equeue-ssl,netclient,rss \
-	  -linkpkg -annot utils.ml http.ml rss2html.ml -o ../"$@"
+	$(OCAMLOPT) -package netstring,equeue-ssl,netclient,rss \
+	  -linkpkg utils.ml http.ml rss2html.ml -o ../"$@"
 
 script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
 	cd script && \
-	ocamlopt -o ../$@ lexer.ml ocamltohtml.ml && \
+	$(OCAMLOPT) -o ../$@ lexer.ml ocamltohtml.ml && \
 	$(RM) ocamltohtml.o ocamltohtml.cm[ix] lexer.o lexer.cm[ix]
 
 script/md_preprocess: script/code_types.ml script/code.ml \
   script/md_preprocess.ml script/code_top
 	cd script && \
-	ocamlfind ocamlopt -o ../"$@" -package omd,str,netstring -linkpkg \
-	  -annot utils.ml code_types.ml code.ml md_preprocess.ml
+	$(OCAMLOPT) -o ../"$@" -package omd,str,netstring -linkpkg \
+	  utils.ml code_types.ml code.ml md_preprocess.ml
 
 script/code_top: script/code_types.ml script/code_top.ml
 	cd script && $(COMPILER_LIBS_PREPARE) \
-	ocamlfind ocamlc -o ../"$@" -package netstring $(COMPILER_LIBS) \
-	  -linkpkg -annot utils.ml code_types.ml code_top.ml
+	$(OCAMLC) -o ../"$@" -package netstring $(COMPILER_LIBS) \
+	  -linkpkg utils.ml code_types.ml code_top.ml
 
 script/relative_urls: script/relative_urls.ml
 	cd script && \
-	ocamlfind ocamlopt -package netstring -linkpkg -annot -g relative_urls.ml -o ../"$@" && \
+	$(OCAMLOPT) -package netstring -linkpkg relative_urls.ml -o ../"$@" && \
 	$(RM) $(addprefix relative_urls., o cmi cmx annot)
 
 htmlescape:htmlescape.ml
-	ocamlopt $< -o $@
+	$(OCAMLOPT) $< -o $@
 
 TRASH += template/front_code_snippet.html \
   $(addprefix script/, rss2html ocamltohtml md_preprocess \
