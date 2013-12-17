@@ -1,5 +1,7 @@
 <!-- ((! set title File Manipulation !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # File manipulation
 This is a guide to basic file manipulation in OCaml using only what the
 standard library provides.

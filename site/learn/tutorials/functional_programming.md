@@ -1,5 +1,7 @@
 <!-- ((! set title Functional Programming !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Functional Programming
 
 ## What is functional programming?
@@ -108,7 +110,7 @@ that it's trying to save.
 Now look at the definition of `receiver_fn`. This function is a closure
 alright because it keeps a reference to `chan` from its environment.
 
-###  Partial function applications and currying
+## Partial function applications and currying
 Let's define a plus function which just adds two integers:
 
 ```ocamltop
@@ -232,7 +234,7 @@ Here's some more currying fun:
 List.map (plus 2) [1; 2; 3];;
 let list_of_functions = List.map plus [1; 2; 3];;
 ```
-###  What is functional programming good for?
+##  What is functional programming good for?
 Functional programming, like any good programming technique, is a useful
 tool in your armoury for solving some classes of problems. It's very
 good for callbacks, which have multiple uses from GUIs through to
@@ -243,7 +245,7 @@ Certain types of numerical problems can be solved more quickly with
 functional programming (for example, numerically calculating the
 derivative of a mathematical function).
 
-###  Pure and impure functional programming
+##  Pure and impure functional programming
 A **pure function** is one without any **side-effects**. A side-effect
 really means that the function keeps some sort of hidden state inside
 it. `strlen` is a good example of a pure function in C. If you call
@@ -288,7 +290,7 @@ you go along. The current fashion is for carefully planning your
 programs using a top-down approach, but in the author's opinion this
 often results in projects failing.
 
-###  Strictness vs laziness
+##  Strictness vs laziness
 C-derived and ML-derived languages are strict. Haskell and Miranda are
 non-strict, or lazy, languages. OCaml is strict by default but allows a
 lazy style of programming where it is needed.
@@ -338,7 +340,7 @@ To evaluate a lazy expression, you must use the `Lazy.force` function:
 ```ocamltop
 Lazy.force lazy_expr
 ```
-###  Boxed vs. unboxed types
+##  Boxed vs. unboxed types
 One term which you'll hear a lot when discussing functional languages is
 "boxed". I was very confused when I first heard this term, but in fact
 the distinction between boxed and unboxed types is quite simple if

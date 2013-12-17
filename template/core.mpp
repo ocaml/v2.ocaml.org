@@ -9,13 +9,31 @@
         </ul>
       </nav>
     </div>
-    x!}}
-
     <div id="content-primary" class="span8">
 {{! cat template/tryocaml.html !}}
       <div id='main-contents' class="content">
         {{! get contents !}}
       </div>
     </div>
+    x!}}
+    {{!x ifdef center
+    <div class="span1"></div>
+    <div id="content-primary" class="span10">
+      {{! cat template/tryocaml.html !}}
+      <div id='main-contents' class="content">
+        {{! get contents !}}
+      </div>
+    </div>
+    x!}}
+    {{!x ifndef toc
+    {{!y ifndef center
+    <div id="content-primary" class="span12">
+      {{! cat template/tryocaml.html !}}
+      <div id='main-contents' class="content">
+        {{! get contents !}}
+      </div>
+    </div>
+    y!}}
+    x!}}
   </div>
 </div>

@@ -1,5 +1,7 @@
 <!-- ((! set title Compiling OCaml projects !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Compiling OCaml projects
 
 This tutorial describes the base compilation commands provided with

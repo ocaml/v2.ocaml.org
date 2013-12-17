@@ -1,4 +1,5 @@
 <!-- ((! set title Compiling with OMake !)) ((! set learn !)) -->
+<!-- ((! set center !)) -->
 
 # Compiling with OMake
 
@@ -18,7 +19,6 @@ findlib/ocamlfind:
  or comment out the content of the automatically generated OMakefile,
  and put the following:
 
-<!-- -->
 ```
 # Program name (without extension)
 PROGRAM = myprog

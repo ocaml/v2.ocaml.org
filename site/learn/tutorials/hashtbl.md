@@ -1,4 +1,5 @@
 <!-- ((! set title Hash Tables !)) ((! set learn !)) -->
+<!-- ((! set center !)) -->
 
 # Hashtbl
 

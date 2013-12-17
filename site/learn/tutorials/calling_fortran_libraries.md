@@ -1,5 +1,7 @@
 <!-- ((! set title Calling Fortran libraries  !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Calling Fortran libraries
 
 Fortran isn't a language the many people write new codes in but it still

@@ -1,5 +1,6 @@
 <!-- ((! set title The Basics  !)) ((! set learn !)) -->
 
+*Table of contents*
 
 # The Basics
 

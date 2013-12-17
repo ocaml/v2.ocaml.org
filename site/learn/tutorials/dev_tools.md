@@ -1,5 +1,7 @@
 <!-- ((! set title Development Tools !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Development Tools
 ![Under Construction](img/under_construction_icon.gif "")
 

@@ -1,10 +1,12 @@
 <!-- ((! set title Calling C libraries  !)) ((! set learn !)) -->
+<!-- ((! set center !)) -->
 
 # Calling C libraries
+
 ## Note from Rich
 Chapters 12 and 13 really need to be rewritten from scratch.
 
-I've left them here - you can read them, but the formatting is screwy.
+I've left them here — you can read them, but the formatting is screwy.
 
 ## MiniGtk
 While the structure of lablgtk outlined in [Introduction to

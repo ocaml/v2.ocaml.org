@@ -1,5 +1,7 @@
 <!-- ((! set title If Statements, Loops and Recursion !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # If Statements, Loops and Recursion
 
 ## If statements (actually these are if expressions)

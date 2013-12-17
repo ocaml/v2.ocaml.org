@@ -1,5 +1,7 @@
 <!-- ((! set title Camlp4 3.10 !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Camlp4 3.10
 
 ## Camlp4 3.10

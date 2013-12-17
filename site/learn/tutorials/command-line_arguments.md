@@ -1,4 +1,5 @@
 <!-- ((! set title Command-line arguments !)) ((! set learn !)) -->
+<!-- ((! set center !)) -->
 
 # Command-line arguments
 This is a short tutorial for those who are writing their first OCaml

@@ -1,4 +1,5 @@
 <!-- ((! set title Filenames !)) ((! set learn !)) -->
+<!-- ((! set center !)) -->
 
 # Filenames
 This is a reference to the standard **filenames** and extensions used by

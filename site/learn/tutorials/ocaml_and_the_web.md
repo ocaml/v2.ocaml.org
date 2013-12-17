@@ -1,4 +1,5 @@
 <!-- ((! set title OCaml and the Web !)) ((! set learn !)) -->
+<!-- ((! set center !)) -->
 
 # OCaml and the Web
 ## Advantages and Disadvantages

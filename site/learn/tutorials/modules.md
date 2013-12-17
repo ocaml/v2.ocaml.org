@@ -1,5 +1,7 @@
 <!-- ((! set title Modules !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Modules
 
 ## Basic usage

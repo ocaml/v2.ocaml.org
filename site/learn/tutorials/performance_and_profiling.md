@@ -1,5 +1,7 @@
 <!-- ((! set title Performance and Profiling !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Performance and Profiling
 
 ## ObQuote...

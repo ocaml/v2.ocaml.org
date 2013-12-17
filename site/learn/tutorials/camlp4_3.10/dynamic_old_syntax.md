@@ -1,4 +1,5 @@
 <!-- ((! set title Camlp4 3.10  !)) ((! set learn !)) -->
+<!-- ((! set center !)) -->
 
 # Camlp4 3.10 dynamic_old_syntax.ml
 dynamic_old_syntax.ml:
