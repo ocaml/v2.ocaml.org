@@ -1537,9 +1537,9 @@ versions, see the [note below](#equivalenceprogrammes)).
   the record type definitions should be implicit.
 
 * **The “Too much functional” danger**:
-    * The programmer that suffers from this disease carefully avoids
- to use arrays and assignment. In the most severe forms, one
- observe a complete denial of writing any imperative
+    * The programmer that adheres to this dogma avoids
+ using arrays and assignment. In the most severe case, one
+ observes a complete denial of writing any imperative
  construction, even in case it is evidently the most elegant way
  to solve the problem.
     * Characteristic symptoms: systematic rewriting of `for` loops
