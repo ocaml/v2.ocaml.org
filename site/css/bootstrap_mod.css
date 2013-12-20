@@ -28,7 +28,7 @@ a[name] {
   body { padding-top: 59px }
 
   .navbar-text { line-height: 45px }
-  .navbar .divider-vertical { height: 75px }
+  .navbar .divider-vertical { height: 45px }
 
   .navbar .brand { padding: 4.5px 20px 4.5px }
   .navbar .nav > li > a {
@@ -42,6 +42,16 @@ a[name] {
     padding-top: 45px;
     margin-top: -40px;
   }
+}
+
+/* Reduce the size of the collapsed nav-bar */
+@media (max-width: 979px) {
+  .navbar-inner {
+    min-height: 45px; /* instead of 75px => -15px above and below */
+  }
+
+  .navbar .brand { padding: 4.5px 20px 4.5px }
+  .navbar .btn-navbar { margin-top: 7.5px }
 }
 
 /* Show quoted blocks */
