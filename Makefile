@@ -16,7 +16,8 @@ staging: script/ocamltohtml script/rss2html
 	$(MAKE) syncotherfiles
 
 syncotherfiles:
-	rsync --exclude '*.md' --exclude '*.html' -rltHprogv site/* ocaml.org/
+	rsync --exclude '*~' --exclude '*.md' --exclude '*.html' \
+	  -rltHprogv site/* ocaml.org/
 
 
 clean:
