@@ -7,7 +7,7 @@ open Printf
 
 let toplevel = Code.toplevel()
 
-(* FIXME: One evaluated, the code blocks are rendered to HTML <pre>.
+(* FIXME: Once evaluated, the code blocks are rendered to HTML <pre>.
    These must necessarily start at the beginning of lines and thus
    cannot be, say, in blockquotes (this does not seem to be a problem
    with omd though). *)
