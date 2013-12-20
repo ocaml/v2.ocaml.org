@@ -17,21 +17,20 @@
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />
     <link href="/css/ocamlorg.css" rel="stylesheet" media="screen" />
-    <script type="text/javascript"
-	    src="http://code.jquery.com/jquery.min.js"
-	    ></script>
+    <script src="/js/collapsed-menu.js" type="text/javascript"></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <button type="button" class="btn btn-navbar"
+		  onclick="toggleVisibilityMenu('menu-items')">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="/"><img src="/img/ocaml.png" alt="OCaml" /></a>
-          <div class="nav-collapse collapse">
+          <div id="menu-items" class="nav-collapse collapse">
             ((! input template/navbar.mpp !))
 	    {{! ifdef filename
 	    <a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))"
@@ -41,7 +40,8 @@
             <form id="searchform" class="navbar-search pull-right"
 		  method="get" action="http://www.google.com/search">
               <input value="site:http://ocaml.org/" name="q" type="hidden" />
-              <input placeholder="Search" class="search-query" name="q" type="text" />
+              <input placeholder="Search" class="search-query"
+		     name="q" type="text" />
             </form>
           </div>
         </div>

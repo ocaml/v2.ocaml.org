@@ -63,13 +63,13 @@ and make_local_links_relative_element to_base = function
       | (_, url) :: _ ->
          let args = ("href", make_relative to_base url) :: args in
          Nethtml.Element(e, args, make_local_links_relative to_base sub))
-  | Nethtml.Element("img", args, sub) ->
+  | Nethtml.Element(("img" | "script") as e, args, sub) ->
      let src, args = List.partition (fun (a, _) -> a = "src") args in
      (match src with
-      | [] -> Nethtml.Element("img", args, sub)
+      | [] -> Nethtml.Element(e, args, sub)
       | (_, url) :: _ ->
          let args = ("src", make_relative to_base url) :: args in
-         Nethtml.Element("img", args, sub))
+         Nethtml.Element(e, args, sub))
   | Nethtml.Element(e, args, sub) ->
      Nethtml.Element(e, args, make_local_links_relative to_base sub)
 
