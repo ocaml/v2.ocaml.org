@@ -185,6 +185,19 @@ Amazon.com](http://www.amazon.com/exec/obidos/ASIN/0521571839/qid%3D911812711/sr
 
 ****
 
+###  OCaml Book
+<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+
+*Hongbo Zhang*
+
+This book is a work in progress. It currently includes sections on the
+core OCaml language, Camlp4, parsing, various libraries, the OCaml
+runtime, interoperating with C, and pearls.
+
+[GitHub](https://github.com/bobzhang/ocaml-book)
+
+****
+
 ## Books in French
 
 
