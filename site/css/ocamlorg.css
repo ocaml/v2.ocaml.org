@@ -178,6 +178,13 @@ a.edit-this-page:hover {
   background-image: url(/img/edit-hover.png);
 }
 
+/* When the navigation bar has reduced size */
+@media (max-height: 600px) and (min-width: 980px) {
+  a.edit-this-page {
+    margin-top: 7.5px;
+  }
+}
+
 /* When the navigation bar is collapsed */
 @media (max-width: 979px) {
   .nav-collapse a.edit-this-page {

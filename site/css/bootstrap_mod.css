@@ -20,7 +20,7 @@ a[name] {
 }
 
 /* Reduce the navbar height when the window height is small */
-@media (max-height: 600px) and (min-width: 979px) {
+@media (max-height: 600px) and (min-width: 980px) {
   .navbar-inner {
     min-height: 45px; /* instead of 75px => -15px on each side of the
 			 navbar elements */
@@ -36,9 +36,6 @@ a[name] {
   }
   .navbar-search {
     margin-top: 5.5px;
-  }
-  a.edit-this-page {
-    margin-top: 7.5px;
   }
 
   a[name], h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
