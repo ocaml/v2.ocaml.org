@@ -17,22 +17,22 @@
         <div class="span8">
             <div class="row">
                 <section class="span4 home-feature">
-                    <a href="/learn">
+                    <a href="/learn/">
                         <img src="/img/learn-large.png" alt="Learn">
                     </a>
-                    <h1><a href="/learn">Learn</a></h1>
-                    <p>Find out <a href="/learn/description.html">about OCaml</a>, read about <a href="/learn/success.html">users</a>, see <a href="learn/taste.html">code examples</a>, go through <a href="/learn/tutorials">tutorials</a> and <a href="/learn">more</a>.</p>
+                    <h1><a href="/learn/">Learn</a></h1>
+                    <p>Find out <a href="/learn/description.html">about OCaml</a>, read about <a href="/learn/success.html">users</a>, see <a href="learn/taste.html">code examples</a>, go through <a href="/learn/tutorials/">tutorials</a> and <a href="/learn/">more</a>.</p>
                 </section>
                 <section class="span4 home-feature">
-                    <a href="/docs">
+                    <a href="/docs/">
                         <img src="/img/documentation-large.png" alt="Documentation">
                     </a>
-                    <h1><a href="/docs">Documentation</a></h1>
+                    <h1><a href="/docs/">Documentation</a></h1>
                     <p><a href="docs/install.html" >Install</a> OCaml,
 					look up <a href="https://opam.ocaml.org/pkg/">package docs</a>, access the
 					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 					target="_blank"
-					>Manual</a>, get the <a href="/docs/cheat_sheets.html">cheat sheets</a> and <a href="/docs">more</a>.</p>
+					>Manual</a>, get the <a href="/docs/cheat_sheets.html">cheat sheets</a> and <a href="/docs/">more</a>.</p>
                 </section>
             </div>
             <div class="row">
@@ -46,11 +46,11 @@
 					packages</a>.</p>
                 </section>
                 <section class="span4 home-feature">
-                    <a href="/community">
+                    <a href="/community/">
                         <img src="/img/community-large.png" alt="Community">
                     </a>
-                    <h1><a href="/community">Community</a></h1>
-                    <p>Read the <a href="/community/planet.html">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community/index.html#ocaml-around-web">around the web</a>.</p>
+                    <h1><a href="/community/">Community</a></h1>
+                    <p>Read the <a href="/community/planet.html">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community/#ocaml-around-web">around the web</a>.</p>
                 </section>
             </div>
             <div id="home-learn">
