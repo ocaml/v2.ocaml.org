@@ -4,7 +4,7 @@
 
 <blockquote>
     <p>
-        <em>“OCaml helps us to quickly adapt to changing market conditions, and go from prototypes to production systems with less effort ... Billions of dollars of transactions flow through our systems every day, so getting it right matters.”</em> -- Jane Street
+        <em>“OCaml helps us to quickly adapt to changing market conditions, and go from prototypes to production systems with less effort ... Billions of dollars of transactions flow through our systems every day, so getting it right matters.”</em> — Jane Street
     </p>
 </blockquote>
 
