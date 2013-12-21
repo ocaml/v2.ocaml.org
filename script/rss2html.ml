@@ -142,7 +142,7 @@ let html_of_post p =
        let fb = ["href", "http://www.facebook.com/share.php?u=" ^ post
                          ^ "&amp;t=" ^ (Netencoding.Url.encode p.title);
                  "target", "_blank"; "title", "Share on Facebook"] in
-       let tw = ["href", "http://twitter.com/intent/tweet?url=" ^ post
+       let tw = ["href", "https://twitter.com/intent/tweet?url=" ^ post
                          ^ "&text=" ^ (Netencoding.Url.encode p.title);
                  "target", "_blank"; "title", "Share on Twitter"] in
        [Element("a", a_args, [Data p.title]) ],

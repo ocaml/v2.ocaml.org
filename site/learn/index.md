@@ -34,7 +34,7 @@
             </footer>
         </section>
         <section class="span4 condensed">
-            <h1 class="ruled"><a href="tutorials">Tutorials</a> &amp; <a href="faq.html">FAQ</a></h1>
+            <h1 class="ruled"><a href="tutorials/">Tutorials</a> &amp; <a href="faq.html">FAQ</a></h1>
             <ul>
                 <li><a href="tutorials/basics.html">Basics</a></li>
                 <li><a href="tutorials/structure_of_ocaml_programs.html">Structure of OCaml Programs</a></li>
@@ -46,7 +46,7 @@
                 <li><a href="faq.html">Frequently Asked Questions</a></li>
             </ul>
             <footer>
-                <p><a href="tutorials">See full list</a></p>
+                <p><a href="tutorials/">See full list</a></p>
             </footer>
         </section>
         <section class="span4 condensed">

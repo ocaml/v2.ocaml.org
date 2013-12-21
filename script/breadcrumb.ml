@@ -48,7 +48,7 @@ let rec breadcrumb_of_path path =
       else
         (* Remove the prefix "site". *)
         let link = String.sub path 4 (String.length path - 4) in
-        let li = sprintf "<li><a href=\"%s\">%s</a><span class=\"divider\">\
+        let li = sprintf "<li><a href=\"%s/\">%s</a><span class=\"divider\">\
                           </span></li>\n" link title in
         Filename.dirname path, li in
     breadcrumb_of_path dir ^ entry
