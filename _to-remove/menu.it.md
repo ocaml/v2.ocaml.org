@@ -1,6 +1,0 @@
-[Scoprire](#)
-[Imparare](#)
-[Documentazione](#)
-[Comunità](#)
-
-
