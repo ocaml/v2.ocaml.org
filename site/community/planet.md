@@ -2,9 +2,9 @@
 
 #OCaml Planet
 
-The [OCaml Planet](http://planet.ocaml.org) aggregates various blogs
+The OCaml Planet aggregates various blogs
 from the OCaml community. If you would like to be added, read the
-[Planet subscription HOWTO](http://www.ocamlcore.org/planet/).
+[Planet subscription HOWTO](planet_subscription.html).
 
 <div class="container">
 <div class="row">
