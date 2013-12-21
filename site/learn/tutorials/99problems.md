@@ -208,6 +208,15 @@ SOLUTION
 >                             else aux 0 ((count+1,a) :: acc) t in
 >   List.rev (aux 0 [] list);;
 > ```
+> An alternative solution, which is shorter but requires more memory, is to use
+> the [pack](#Packconsecutiveduplicatesoflistelementsintosublistsmedium)
+> function declared above:
+> ```ocamltop
+> let encode list =
+>   List.map (fun l -> (List.length l, List.hd l)) (pack list)
+> ```
+
+Here is an example:
 
 ```ocamltop
 encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"];;
