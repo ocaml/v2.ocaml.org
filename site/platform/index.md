@@ -1,14 +1,14 @@
 <!-- ((! set title OCaml Platform !)) ((! set platform !)) -->
+<!-- ((! set nobreadcrumb !)) -->
 
 <div class="container">
-    <h1>Platform</h1>
+    <h1>The OCaml Platform</h1>
     <div class="row">
         <div id="platform-logo" class="span2">
             <img src="/img/ocaml-large.png" alt="OCaml">
         </div>
         <section id="platform-leader" class="span7">
-            <h1>OCaml Platform</h1>
-            <p>The OCaml Platform represents the best way for developers, both new and old, to write software in OCaml. It combines the core OCaml compiler with a coherent set of tools, documentation, libraries and testing resources. It’s a project led by the <a href="/community/support.html">OCaml Labs</a> group in Cambridge, working closely with <a href="/community/support.html">OCaml-Pro</a> in France, and the requirements of the Platform are being guided by the industrial OCaml Consortium.</p>
+            <p>The <strong>OCaml Platform</strong> represents the best way for developers, both new and old, to write software in OCaml. It combines the core OCaml compiler with a coherent set of tools, documentation, libraries and testing resources. It’s a project led by the <a href="/community/support.html">OCaml Labs</a> group in Cambridge, working closely with <a href="/community/support.html">OCaml-Pro</a> in France, and the requirements of the Platform are being guided by the industrial OCaml Consortium.</p>
             <p>Creating and maintaining the Platform is an ambitious, long-term project. The v0.1 is not taking arbitrary decisions about which packages are included. Instead, we are first placing the industrial contributors on a common tool-chain and workflow so that it's easier to work together and share code. We expect a standard set of libraries to emerge from consensus over time as this workflow rises in adoption.</p>
         </section>
         <div id="platform-download" class="span3">

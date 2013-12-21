@@ -6,11 +6,16 @@
   box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
 }
 
+h1 {
+  margin-top: 0px;
+  line-height: 50px;
+}
+
 /* Avoid the anchors to be underneath the banner when a one clicks on
    a link pointing to them. */
-a[name], h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+a[name], h2[id], h3[id], h4[id], h5[id], h6[id] {
   padding-top: 75px;
-  margin-top: -70px;
+  margin-top: -75px;
   position: relative;
   z-index: -10; /* below the text (and hyperlinks that one can
 		   otherwise not click) */
@@ -38,9 +43,9 @@ a[name] {
     margin-top: 5.5px;
   }
 
-  a[name], h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+  a[name], h2[id], h3[id], h4[id], h5[id], h6[id] {
     padding-top: 45px;
-    margin-top: -40px;
+    margin-top: -45px;
   }
 }
 
@@ -52,6 +57,12 @@ a[name] {
 
   .navbar .brand { padding: 4.5px 20px 4.5px }
   .navbar .btn-navbar { margin-top: 7.5px }
+
+  /* The collapsed navbar scrolls with the page. */
+  a[name], h2[id], h3[id], h4[id], h5[id], h6[id] {
+    padding-top: 0px;
+    margin-top: 0px;
+  }
 }
 
 /* Show quoted blocks */
@@ -81,4 +92,13 @@ h1.ruled + pre {
 
 p + pre {
   margin-top: -13px;
+}
+
+.breadcrumb {
+  font-weight: normal;
+  color: #6f6f6f; /* current page name */
+  border: 0;
+  padding: 0;
+  margin: -10px 0px 0px 0px;
+  *z-index: 1;
 }

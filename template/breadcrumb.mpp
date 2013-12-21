@@ -1,0 +1,10 @@
+<!--								-*-html-*- -->
+{{!z ifndef nobreadcrumb
+<div class="row">
+  <div class="span12">
+    <ol class="breadcrumb">
+      {{! cmd script/breadcrumb "((! get filename !))" !}}
+    </ol>
+  </div>
+</div>
+z!}}

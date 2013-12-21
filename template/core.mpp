@@ -1,3 +1,4 @@
+<!--								-*-html-*- -->
 <div class="container">
   <div class="row">
     {{!x ifdef toc
@@ -12,6 +13,7 @@
     <div id="content-primary" class="span8">
 {{! cat template/tryocaml.html !}}
       <div id='main-contents' class="content">
+	((! input template/breadcrumb.mpp !))
         {{! get contents !}}
       </div>
     </div>
@@ -21,6 +23,7 @@
     <div id="content-primary" class="span10">
       {{! cat template/tryocaml.html !}}
       <div id='main-contents' class="content">
+	((! input template/breadcrumb.mpp !))
         {{! get contents !}}
       </div>
     </div>
@@ -30,6 +33,7 @@
     <div id="content-primary" class="span12">
       {{! cat template/tryocaml.html !}}
       <div id='main-contents' class="content">
+	((! input template/breadcrumb.mpp !))
         {{! get contents !}}
       </div>
     </div>

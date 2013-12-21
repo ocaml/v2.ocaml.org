@@ -2,7 +2,7 @@
 
 include Makefile.common
 
-ocaml.org/%.html:site/%.md
+ocaml.org/%.html: site/%.md template/main.mpp script/breadcrumb
 	$(MAKE) ocaml.org
 	if grep -q '*Table of contents*' "$<" ; then $(MAKE) -f Makefile.from_md "$@.toc" ; fi
 	$(MAKE) -f Makefile.from_md "$@.tmp"

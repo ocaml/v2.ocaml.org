@@ -26,6 +26,10 @@ ocaml.org:
 template/front_code_snippet.html:template/front_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@
 
+script/breadcrumb: script/breadcrumb.ml
+	cd script && \
+	$(OCAMLOPT) -o ../"$@" -package str -linkpkg utils.ml breadcrumb.ml
+
 script/rss2html: script/rss2html.ml script/http.ml
 	cd script && \
 	$(OCAMLOPT) -package netstring,equeue-ssl,netclient,rss \
