@@ -213,3 +213,23 @@ code.c {
   color: #000000;
   font-style: normal;
 }
+
+
+/* Blogs generated with Hevea. */
+div.lstlisting { /* = <pre><code> */
+  display: block;
+  white-space: pre-wrap;
+  padding: 2px 4px 2px 4px;
+  margin: 10px 0;
+  font-family: "Droid Sans Mono", sans-serif;
+  color: #000000;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  /* code */
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+}
+p + div.lstlisting {
+  margin-top: -14px;
+}
