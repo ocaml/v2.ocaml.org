@@ -601,7 +601,7 @@ bug reports and features request, and submit new ones.
 #### Can I have two mutually recursive compilation units / structures / signatures / functors?
 
 Currently not in the stable langage. However there exists an [OCaml
-extension](http://caml.inria.fr/pub/docs/manual-ocaml/manual021.html#toc75)
+extension](http://caml.inria.fr/pub/docs/manual-ocaml/extn.html#sec220)
 (which is subject to change or removal at any time) which adresses some
 of these problems.
 

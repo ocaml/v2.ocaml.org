@@ -7,8 +7,10 @@ This is a guide to basic file manipulation in OCaml using only what the
 standard library provides.
 
 Official documentation for the modules of interest:
-[Pervasives](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html "http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html"),
-[Printf](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Printf.html "http://caml.inria.fr/pub/docs/manual-ocaml/libref/Printf.html").
+the [core library](http://caml.inria.fr/pub/docs/manual-ocaml/core.html)
+including the initially opened module
+[Pervasives](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html),
+[Printf](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Printf.html).
 
 The standard library doesn't provide functions that directly read a file
 into a string or save a string into a file. Such functions can be found

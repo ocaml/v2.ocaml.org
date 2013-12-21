@@ -57,7 +57,7 @@ $ opam switch 4.00.1
 OCaml is very easy to install under [Debian](http://www.debian.org). We
 recommend you install `ocaml-nox` to develop applications not needing
 the graphics library or `ocaml` if you need the
-[<code> Graphics</code>](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Graphics.html)
+[Graphics](http://caml.inria.fr/pub/docs/manual-ocaml/libgraph.html)
 module. We also recommend you install
 
 * `ocaml-native-compilers` to be able to compile your program the
