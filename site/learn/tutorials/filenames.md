@@ -7,7 +7,7 @@ various parts of the OCaml build system.
 
 Note: There is an [extended mailing list posting about filenames used by
 OCaml
-here](http://caml.inria.fr/pub/ml-archives/caml-list/2008/09/2bc9b38171177af5dc0d832a365d290d.en.html "http://caml.inria.fr/pub/ml-archives/caml-list/2008/09/2bc9b38171177af5dc0d832a365d290d.en.html").
+here](http://caml.inria.fr/pub/ml-archives/caml-list/2008/09/2bc9b38171177af5dc0d832a365d290d.en.html).
 
 ## Source and object files
 The basic source, object and binary files, with comparisons to C

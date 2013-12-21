@@ -80,7 +80,7 @@ $ ocamlc -I +camlp4 -pp camlp4orf -c dynamic_functor_example3.ml
 ```
 ## The .cma files
 From N. Poulliard
-[http://caml.inria.fr/pub/ml-archives/caml-list/2007/04/47c5c935136351afaefee6a0aa9cc506.en.html](http://caml.inria.fr/pub/ml-archives/caml-list/2007/04/47c5c935136351afaefee6a0aa9cc506.en.html "http://caml.inria.fr/pub/ml-archives/caml-list/2007/04/47c5c935136351afaefee6a0aa9cc506.en.html")
+[http://caml.inria.fr/pub/ml-archives/caml-list/2007/04/47c5c935136351afaefee6a0aa9cc506.en.html](http://caml.inria.fr/pub/ml-archives/caml-list/2007/04/47c5c935136351afaefee6a0aa9cc506.en.html)
 
 There is a list of libraries provided with camlp4:
 

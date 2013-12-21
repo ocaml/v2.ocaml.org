@@ -724,7 +724,7 @@ print_endline (string_of_filesystem fs)
 ###  Addendum
 After I posted this example to the caml-list mailing list I received
 many follow-ups. (You can [read the full
-thread](http://caml.inria.fr/pub/ml-archives/caml-list/2003/06/2732fbf1bed1ae50fefb6ea410ea9955.en.html "http://caml.inria.fr/pub/ml-archives/caml-list/2003/06/2732fbf1bed1ae50fefb6ea410ea9955.en.html").)
+thread](http://caml.inria.fr/pub/ml-archives/caml-list/2003/06/2732fbf1bed1ae50fefb6ea410ea9955.en.html).)
 
 First of all there is a basic fault with `read_directory` directory
 which will cause it to fail if you try to run it on very large directory

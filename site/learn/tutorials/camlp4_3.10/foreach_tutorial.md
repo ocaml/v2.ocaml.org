@@ -291,7 +291,7 @@ to handle this.
 
 <ul><li>
 FYI: see
-<a href="http://caml.inria.fr/pub/ml-archives/caml-list/2007/07/40966461d8ade5dcee6790fa32cc9983.en.html" class="external" title="http://caml.inria.fr/pub/ml-archives/caml-list/2007/07/40966461d8ade5dcee6790fa32cc9983.en.html">this
+<a href="http://caml.inria.fr/pub/ml-archives/caml-list/2007/07/40966461d8ade5dcee6790fa32cc9983.en.html" title="http://caml.inria.fr/pub/ml-archives/caml-list/2007/07/40966461d8ade5dcee6790fa32cc9983.en.html">this
 post</a> by Nicolas Pouillard for a discussion of a similar issue.
 </li></ul>
 

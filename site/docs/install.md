@@ -114,7 +114,7 @@ yum search ocaml
  minimum standard for all OCaml packages we ship.
 * [OCaml Special Interest
  Group](http://fedoraproject.org/wiki/SIGs/OCaml).
-* [fedora-ocaml-list](https://www.redhat.com/mailman/listinfo/fedora-ocaml-list):
+* [fedora-ocaml-list](https://lists.fedoraproject.org/mailman/listinfo/Ocaml-devel):
  mailing list for people interested in OCaml on Fedora or Red Hat
  Enterprise Linux.
 

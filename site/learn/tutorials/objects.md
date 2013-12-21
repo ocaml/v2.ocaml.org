@@ -473,7 +473,7 @@ the few problem domains where it really makes sense.
 
 [Yamagata Yoriyuki writes that type-safe downcasts are possible.
 Advanced users should see:
-[http://caml.inria.fr/pub/ml-archives/caml-list/2002/05/a6520926c4eac029206a31d6aa22f967.fr.html](http://caml.inria.fr/pub/ml-archives/caml-list/2002/05/a6520926c4eac029206a31d6aa22f967.fr.html "http://caml.inria.fr/pub/ml-archives/caml-list/2002/05/a6520926c4eac029206a31d6aa22f967.fr.html")
+[http://caml.inria.fr/pub/ml-archives/caml-list/2002/05/a6520926c4eac029206a31d6aa22f967.fr.html](http://caml.inria.fr/pub/ml-archives/caml-list/2002/05/a6520926c4eac029206a31d6aa22f967.fr.html)
 , that leads to
 [hweak](http://remi.vanicat.free.fr/ocaml/hweak/ "http://remi.vanicat.free.fr/ocaml/hweak/")]
 

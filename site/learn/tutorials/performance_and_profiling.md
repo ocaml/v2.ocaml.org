@@ -178,7 +178,7 @@ padding:       \0 \0 \002
 ```
 The format is unusual. It's documented in [this posting on the OCaml
 mailing
-list](http://caml.inria.fr/pub/ml-archives/caml-list/2002/08/e109df224ff0150b302033e2002dbf87.en.html "http://caml.inria.fr/pub/ml-archives/caml-list/2002/08/e109df224ff0150b302033e2002dbf87.en.html").
+list](http://caml.inria.fr/pub/ml-archives/caml-list/2002/08/e109df224ff0150b302033e2002dbf87.en.html).
 \<!-- (old: http://caml.inria.fr/archives/200208/msg00463.html) --\>
 
 Firstly the padding brings the total length of the string up to a whole
