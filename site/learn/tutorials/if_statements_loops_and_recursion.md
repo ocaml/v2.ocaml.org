@@ -87,8 +87,7 @@ let f x y =
   x + if y > 0 then y else 0
 ```
 Clue: add brackets around the whole of the if expression. It clips `y`
-like an [electronic
-diode](http://www.noir-medical.com/graphics/diode_graph.gif "http://www.noir-medical.com/graphics/diode_graph.gif").
+like an [electronic diode](https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic).
 
 The `abs` (absolute value) function is defined in `Pervasives` as:
 
