@@ -158,8 +158,7 @@ f 10;;
 f 15;;
 f 99;;
 ```
-Ceci est une [preuve par
-l&#39;exemple](http://www.princeton.edu/~sacm/humor/proof.html "http://www.princeton.edu/~sacm/humor/proof.html")
+Ceci est une [preuve par l'exemple](humor_proof.html)
 suffisante pour nous dire que `plus 2` est la fonction qu'ajoute 2 à des
 choses.
 

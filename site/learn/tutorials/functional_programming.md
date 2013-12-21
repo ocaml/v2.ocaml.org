@@ -154,8 +154,7 @@ f 10;;
 f 15;;
 f 99;;
 ```
-In engineering this is sufficient [proof by
-example](http://www.princeton.edu/~sacm/humor/proof.html "http://www.princeton.edu/~sacm/humor/proof.html")
+In engineering this is sufficient [proof by example](humor_proof.html)
 for us to state that `plus 2` is the function which adds 2 to things.
 
 Going back to the original definition, let's "fill in" the first
