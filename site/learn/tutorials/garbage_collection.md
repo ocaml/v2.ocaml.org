@@ -352,7 +352,7 @@ let sync_records () =
 ```
 Finally we have some test code. I won't reproduce the test code, but you
 can download the complete program and test code
-[objcache.ml](_file/objcache.ml), and compile it with:
+[objcache.ml](objcache.ml), and compile it with:
 
 ```
 ocamlc -w s unix.cma objcache.ml -o objcache
