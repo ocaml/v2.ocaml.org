@@ -232,17 +232,19 @@ OCaml comes with lots of fun and interesting modules (libraries of
 useful code). For example there are standard libraries for drawing
 graphics, interfacing with GUI widget sets, handling large numbers, data
 structures, and making POSIX system calls. These libraries are located
-in `/usr/lib/ocaml/VERSION/` (on Unix anyway). For these examples we're
+in `/usr/lib/ocaml/` (on Unix anyway). For these examples we're
 going to concentrate on one quite simple module called `Graphics`.
 
-The `Graphics` module is installed into 5 files (on my system):
+The `Graphics` module is installed into 7 files (on my system):
 
 ```
-/usr/lib/ocaml/3.08/graphics.a
-/usr/lib/ocaml/3.08/graphics.cma
-/usr/lib/ocaml/3.08/graphics.cmi
-/usr/lib/ocaml/3.08/graphics.cmxa
-/usr/lib/ocaml/3.08/graphics.mli
+/usr/lib/ocaml/graphics.a
+/usr/lib/ocaml/graphics.cma
+/usr/lib/ocaml/graphics.cmi
+/usr/lib/ocaml/graphics.cmx
+/usr/lib/ocaml/graphics.cmxa
+/usr/lib/ocaml/graphics.cmxs
+/usr/lib/ocaml/graphics.mli
 ```
 For the moment let's just concentrate on the file `graphics.mli`. This
 is a text file, so you can read it now. Notice first of all that the
@@ -256,9 +258,16 @@ declaration. Or we prefix all calls to the functions like this:
 `Graphics.open_graph`. `open` is a little bit like Java's `import`
 statement, and much more like Perl's `use` statement.
 
-[Windows users: For this example to work interactively on Windows, you
-will need to create a custom toplevel. Issue the command
-`ocamlmktop -o ocaml-graphics graphics.cma` from the command line.]
+To use `Graphics` in the interactive toplevel, you must first first
+load the library with
+
+```ocaml
+#load "graphics.cma";;
+```
+Windows users: For this example to work interactively on Windows, you
+will need to create a custom toplevel. Issue the command `ocamlmktop
+-o ocaml-graphics graphics.cma` from the command line.
+<!-- FIXME: is this last remark still true? -->
 
 A couple of examples should make this clear. (The two examples draw
 different things - try them out). Note the first example calls

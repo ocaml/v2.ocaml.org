@@ -237,17 +237,19 @@ de bibliothèques de code utile. Par exemple on y trouve une bibliothèque
 pour dessiner des graphismes, interagir avec la collection de contrôles
 de l'interface-utilisateur graphique, pour manipuler des grands nombres,
 des structures de données, ou pour faire des appels systèmes POSIX. Ces
-bibliothèques se trouvent dans `/usr/lib/ocaml/VERSION/` (sous Unix en
+bibliothèques se trouvent dans `/usr/lib/ocaml/` (sous Unix en
 tout cas). Pour ces exemples, nous allons nous concentrer sur un module
 relativement simple appelé `Graphics`.
 
-Le module `Graphics` est constitué de cinq fichiers (sur mon système) :
+Le module `Graphics` est constitué de sept fichiers (sur mon système) :
 
 ```text
 /usr/lib/ocaml/graphics.a
 /usr/lib/ocaml/graphics.cma
 /usr/lib/ocaml/graphics.cmi
+/usr/lib/ocaml/graphics.cmx
 /usr/lib/ocaml/graphics.cmxa
+/usr/lib/ocaml/graphics.cmxs
 /usr/lib/ocaml/graphics.mli
 ```
 Pour l'instant occupons-nous de `graphics.mli`. C'est un fichier texte,
@@ -262,8 +264,15 @@ préfixe tous les appels de fonctions comme ceci : `Graphics.open_graph`.
 `open` ressemble un peu à l'instruction `import` en Java, ou plus encore
 comme l'instruction `use` en Perl.
 
+Pour utiliser les module `Graphics` dans la boucle interactive, il
+faut au préalable charger la librairie avec
+
+```ocaml
+#load "graphics.cma";;
+```
+
 Une paire d'exemples devrait éclaircir ce point. (Les deux exemples
-dessinent des choses différentes - essayez-les). Remarquez que le
+dessinent des choses différentes — essayez-les). Remarquez que le
 premier exemple appelle `open_graph` et le second `Graphics.open_graph`.
 
 ```ocaml

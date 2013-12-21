@@ -241,17 +241,19 @@ OCaml è distribuito con parecchi moduli divertenti ed interessanti
 disegnare grafici, interfacciarsi con insiemi di accessori di
 interfaccia grafica, trattare grandi numeri, strutture di dati, e fare
 chiamate di sistema POSIX. Tali librerie sono collocate in
-`/usr/lib/ocaml/VERSIONE/` (negli Unix comunque). Per questi esempi ci
+`/usr/lib/ocaml/` (negli Unix comunque). Per questi esempi ci
 concentreremo su un modulo piuttosto semplice chiamato `Graphics`.
 
-Il modulo `Graphics` è installato in 5 file (sul mio sistema):
+Il modulo `Graphics` è installato in 7 file (sul mio sistema):
 
 ```
-/usr/lib/ocaml/3.08/graphics.a
-/usr/lib/ocaml/3.08/graphics.cma
-/usr/lib/ocaml/3.08/graphics.cmi
-/usr/lib/ocaml/3.08/graphics.cmxa
-/usr/lib/ocaml/3.08/graphics.mli
+/usr/lib/ocaml/graphics.a
+/usr/lib/ocaml/graphics.cma
+/usr/lib/ocaml/graphics.cmi
+/usr/lib/ocaml/graphics.cmx
+/usr/lib/ocaml/graphics.cmxa
+/usr/lib/ocaml/graphics.cmxs
+/usr/lib/ocaml/graphics.mli
 ```
 Concentriamoci per un momento soltanto sul file `graphics.mli`. Questo è
 un file di testo, per cui lo potete leggere ora. Notate innanzitutto che
@@ -265,6 +267,14 @@ dichiarazione `open Graphics;;`. Oppure dotiamo di prefisso tutte le
 chiamate alle funzioni come segue: `Graphics.open_graph`. `open` è un
 poco come l'istruzione `import` di Java, e molto più come l'istruzione
 `use` di Perl.
+
+Per utilizzare il modulo `Graphics` nel *toplevel*, deve prima
+caricare la libreria con
+
+```ocaml
+#load "graphics.cma";;
+```
+
 
 Un paio di esempi dovrebbero rendere chiaro quanto detto. (I due esempi
 disegnano cose diverse - provateli). Si noti che il primo esempio chiama
