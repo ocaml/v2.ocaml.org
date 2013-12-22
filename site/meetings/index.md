@@ -2,6 +2,9 @@
 
 # OCaml Meetings
 ## In Europe
+
+* 2013, September 24, [OCaml Users and Developers Workshop](ocaml/2013),
+  Boston (MA, USA), Colocated with ICFP 2013.
 * 2013, May 21, 7:30 PM: [&quot;Rencontre de
  Mai&quot;](http://www.meetup.com/ocaml-paris/events/116100692/), IRILL
  23, avenue d'Italie 75013 Paris. Organized by [OCaml Users in PariS
@@ -14,14 +17,14 @@
  Workshop](http://oud.ocaml.org/2012/) (OUD) and [Commercial Users of
  Functional Programming](http://cufp.org) (CUFP) colocated with ICFP
  in Copenhagen (Denmark)
-* 2011: [Paris](https://forge.ocamlcore.org/plugins/mediawiki/wiki/ocaml-meeting/index.php/OCamlMeeting2011),
+* 2011: [Paris](ocaml/2011/),
  [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=292)
 * 2010: [Paris](http://lambda-the-ultimate.org/node/3826),
  [Videos](http://www.youtube.com/playlist?list=PLbU5HH3lhSGYrfbHSwC7X5ZzDHddXHMM7),
  [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=171)
-* 2009: [Grenoble](http://mirror.ocamlcore.org/wiki.cocan.org/events/europe/ocamlmeetinggrenoble2009.html),
+* 2009: [Grenoble](ocaml/2009/),
  [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=84)
-* 2008: [Paris](http://mirror.ocamlcore.org/wiki.cocan.org/events/europe/ocamlmeetingparis2008.html),
+* 2008: [Paris](ocaml/2008/),
  [Videos](http://www.youtube.com/playlist?list=PLbU5HH3lhSGZ2WoueuOr8LuVZThBYvoHX),
  [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=170)
 

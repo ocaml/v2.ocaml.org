@@ -19,15 +19,20 @@ let string_of_file fname =
 let title_re = Str.regexp "((! *set *title *\\([^ ][^!]*\\)!))"
 
 let get_title path =
-  let fname =
-    if Sys.is_directory path then Filename.concat path "index.md"
-    else path in
-  let s = string_of_file fname in
+  let s =
+    if Sys.is_directory path then
+      let fn = Filename.concat path "index.md" in
+      if Sys.file_exists fn then string_of_file fn
+      else
+        let fn = Filename.concat path "index.html" in
+        if Sys.file_exists fn then string_of_file fn
+        else string_of_file path
+    else string_of_file path in
   try
     ignore(Str.search_forward title_re s 0); (* or Not_found *)
     String.trim (Str.matched_group 1 s)
   with Not_found ->
-    String.capitalize(Filename.basename path) ^ "XX"
+    String.capitalize(Filename.basename path)
 
 
 let rec breadcrumb_of_path path =

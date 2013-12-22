@@ -1,13 +1,13 @@
-<!-- ((! set title OCaml 2013 !)) -->
+<!-- ((! set title 2013 !)) -->
+
+*Table of contents*
 
 OCaml 2013
-----------
+==========
 
-### The OCaml Users and Developers Workshop
-
-#### Boston (MA, USA), September 24, 2013
-
-#### Colocated with [ICFP 2013](http://icfpconference.org/icfp2013/)
+**The OCaml Users and Developers Workshop**  
+Boston (MA, USA), September 24, 2013  
+Colocated with [ICFP 2013](http://icfpconference.org/icfp2013/)
 
 The meeting is an informal community gathering of users of the language,
 library authors, and developers, using and extending OCaml in new ways.
@@ -37,8 +37,8 @@ Important dates
 -   July 7, 2013: Notification to speakers
 -   September 24, 2013: Workshop
 
-[Call for presentations](call.html)
------------------------------------
+Call for presentations
+----------------------
 
 Please consider submitting a presentation, and/or join us in Boston! See
 [here the call for presentations](call.html).
