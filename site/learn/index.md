@@ -83,7 +83,7 @@
 			    target="_blank">PDF slides</a>).
 			</p>
 	        <p class="documentation-video">
-			<iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933" width="310" height="175" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933" width="290" height="164" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 			</p>
 			<p>A guest lecture given by Yaron Minsky of Jane Street about how to program effectively in ML. The talk was given as part of the intro computer science class at Harvard, CS51, where the students had spent much of the semester programming in OCaml.</p>
           <footer>
