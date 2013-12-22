@@ -3,8 +3,6 @@
 # OCaml Meetings
 ## In Europe
 
-* 2013, September 24, [OCaml Users and Developers Workshop](ocaml/2013),
-  Boston (MA, USA), Colocated with ICFP 2013.
 * 2013, May 21, 7:30 PM: [&quot;Rencontre de
  Mai&quot;](http://www.meetup.com/ocaml-paris/events/116100692/), IRILL
  23, avenue d'Italie 75013 Paris. Organized by [OCaml Users in PariS
@@ -37,6 +35,8 @@
 * 2009: [Tokyo](http://atnd.org/events/738)
 
 ## In the US
+* 2013, September 24, [OCaml Users and Developers Workshop](ocaml/2013),
+  Boston (MA, USA), Colocated with ICFP 2013.
 * 2012: [NYC OCaml Meetup](http://www.meetup.com/NYC-OCaml/)
 
 ## In the UK
