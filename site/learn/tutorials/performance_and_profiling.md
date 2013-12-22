@@ -814,8 +814,7 @@ Profiling native code is done using your operating system's native
 support for profiling. In the case of Linux, we use `gprof`.
 
 To demonstrate native code profiling, I'm going to calculate the first
-3000 primes using the Sieve of Eratosthenes ([original
-code](http://www.bagley.org/~doug/ocaml/Notes/lazy.shtml "http://www.bagley.org/~doug/ocaml/Notes/lazy.shtml")).
+3000 primes using the Sieve of Eratosthenes.
 This program uses streams and camlp4, techniques which we haven't
 covered in this tutorial.
 

@@ -1119,7 +1119,6 @@ imperative in style:
 ```ocamltop
 (*
  * $Id: index.shtml,v 1.3 2004/04/23 12:33:00 rich Exp $
- * http://www.bagley.org/~doug/shootout/
  * from Markus Mottl
  *)
 
