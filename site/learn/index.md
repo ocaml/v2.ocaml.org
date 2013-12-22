@@ -82,9 +82,9 @@
 			(<a href="/meetings/ocaml/2013/slides/leroy.pdf"
 			    target="_blank">PDF slides</a>).
 			</p>
-	  <p class="documentation-video">
+	  <p class="documentation-video video16-9"
+	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
 	    <iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933"
-		    style="width: 100%; height: auto"
 		    frameborder="0" webkitallowfullscreen
 		    mozallowfullscreen allowfullscreen></iframe>
 	  </p>
