@@ -17,7 +17,7 @@ let rec eval_code_blocks md =
   | Code_block("tryocaml", code) :: tl
   | Code_block("ocamltop", code) :: tl ->
      let html = Code.to_html toplevel code in
-     Html_block("<pre><code class=\"tryocaml\">" ^ html ^ "</code></pre>")
+     Html_block("<pre><code class=\"ocamltop\">" ^ html ^ "</code></pre>")
      :: eval_code_blocks tl
   | Code_block("ocaml", code) :: tl ->
      let html = Code.highlight code in

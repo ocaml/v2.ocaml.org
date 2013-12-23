@@ -6,7 +6,7 @@ let html_escape s =
     match s.[i] with
     | '&' | '<' | '>' | '\'' | '"' as c ->
       Printf.bprintf b "&#%d;" (int_of_char c);
-    | c -> 
+    | c ->
       Buffer.add_char b c
   done;
   Buffer.contents b

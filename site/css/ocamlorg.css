@@ -111,7 +111,7 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .ocaml-prompt { color: #8d8d8d }
 .ocaml-function { color: #0606ee }
 .ocaml-variable { color: #b8860b }
-.ocaml-module { inherit constructor }
+.ocaml-module { color: #829f1c; } /* same as "constructor" */
 
 .ocaml-output { color: #696969 }
 .ocaml-stdout { color: #0d89dd }

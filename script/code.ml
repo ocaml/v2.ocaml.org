@@ -32,7 +32,7 @@ let highlight_ocaml =
     (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
      "<span class=\"comment\">\\1</span>");
-    (";;", "<span class=\"ocaml-prompt\">;;</span>");
+    (";; *\n", "<span class=\"ocaml-prompt\">;;</span><br/>");
     ("\\blet +() *=", "<span class=\"governing\">let</span> () =");
     ("\\band +\\('[_a-z]+ +\\(" ^ let_id ^ "\\)\\) *= *",
      "<span class=\"governing\">and</span> \
