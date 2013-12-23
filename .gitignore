@@ -18,4 +18,5 @@ script/md_preprocess
 script/code_top
 script/breadcrumb
 template/front_code_snippet.html
+template/learn_code_snippet.html
 .DS_Store

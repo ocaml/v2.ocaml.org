@@ -24,7 +24,7 @@
     <div class="row">
         <section class="span4 condensed">
             <h1 class="ruled"><a href="taste.html">Code examples</a></h1>
-            ((! input template/front_code_snippet.html !))
+            ((! input template/learn_code_snippet.html !))
             <footer>
               <p>See <a href="taste.html">a Hundred Lines of OCaml</a>,
 		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >Pleac</a>,

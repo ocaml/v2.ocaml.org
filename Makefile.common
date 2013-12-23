@@ -23,7 +23,7 @@ endif
 ocaml.org:
 	find site -type d | while read l; do mkdir -p "$$(echo "$$l" | sed -e 's/^site/ocaml.org/')" ; done
 
-template/front_code_snippet.html:template/front_code_snippet.md $(OMD_PP)
+template/%_code_snippet.html:template/%_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@
 
 script/breadcrumb: script/breadcrumb.ml
@@ -66,4 +66,4 @@ TRASH += template/front_code_snippet.html \
 ocaml.org/index.html:template/front_code_snippet.html script/rss2html
 ocaml.org/community/index.html:script/rss2html
 ocaml.org/community/planet.html:script/rss2html
-ocaml.org/learn/index.html:template/front_code_snippet.html
+ocaml.org/learn/index.html: template/learn_code_snippet.html

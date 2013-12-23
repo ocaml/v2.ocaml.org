@@ -94,6 +94,13 @@ p + pre {
   margin-top: -13px;
 }
 
+pre, pre code {
+  /* white-space: pre; */
+  /* overflow-x: auto; */
+  line-break: loose;
+  word-break: normal;
+}
+
 .breadcrumb {
   font-weight: normal;
   color: #6f6f6f; /* current page name */
