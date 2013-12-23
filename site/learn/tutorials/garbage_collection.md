@@ -260,12 +260,12 @@ let seek_record n fd =
 let write_record record n fd =
   seek_record n fd;
   ignore(Unix.write fd record.name 0 name_size);
-  Unix.write fd record.address 0 addr_size
+  ignore(Unix.write fd record.address 0 addr_size)
 
 let read_record record n fd =
   seek_record n fd;
   ignore(Unix.read fd record.name 0 name_size);
-  Unix.read fd record.address 0 addr_size
+  ignore(Unix.read fd record.address 0 addr_size)
 
 (* Lock/unlock the nth record in a file. *)
 let lock_record n fd =
@@ -282,8 +282,8 @@ We also need a function to create new, empty in-memory `record` objects:
 ```ocaml
 (* Create a new, empty record. *)
 let new_record () =
-  { name = (String.make name_size ' ');
-    address = (String.make addr_size ' ') }
+  { name = String.make name_size ' ';
+    address = String.make addr_size ' ' }
 ```
 Because this is a really simple program, we're going to fix the number
 of records in advance:
@@ -293,7 +293,8 @@ of records in advance:
 let nr_records = 10000
 
 (* On-disk file. *)
-let diskfile = Unix.openfile "users.bin" [ Unix.O_RDWR ] 0
+let diskfile =
+  Unix.openfile "users.bin" [ Unix.O_RDWR; Unix.O_CREAT ] 0o666
 ```
 Download [users.bin.gz](/img/users.bin.gz) and decompress it before
 running the program.
@@ -317,7 +318,7 @@ open Printf
 
 (* The finaliser function. *)
 let finaliser n record =
-  printf "*** objcache: finalising record %d\n" n;
+  printf "*** objcache: finalising record %d\n%!" n;
   write_record record n diskfile;
   unlock_record n diskfile
 
@@ -325,10 +326,10 @@ let finaliser n record =
 let get_record n =
   match Weak.get cache n with
   | Some record ->
-      printf "*** objcache: fetching record %d from memory cache\n" n;
+      printf "*** objcache: fetching record %d from memory cache\n%!" n;
       record
   | None ->
-      printf "*** objcache: loading record %d from disk\n" n;
+      printf "*** objcache: loading record %d from disk\n%!" n;
       let record = new_record () in
       Gc.finalise (finaliser n) record;
       lock_record n diskfile;
@@ -355,7 +356,7 @@ can download the complete program and test code
 [objcache.ml](objcache.ml), and compile it with:
 
 ```
-ocamlc -w s unix.cma objcache.ml -o objcache
+ocamlc unix.cma objcache.ml -o objcache
 ```
 
 ## Exercises
