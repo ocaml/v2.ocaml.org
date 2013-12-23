@@ -25,7 +25,7 @@ can be asked, answered and discussed here. In early 2004, the list has
 about 300 subscribers, who exchange about 100 messages per month.
 
 [List&#39;s page at
-Yahoo!](http://tech.groups.yahoo.com/group/ocaml_beginners/)
+Yahoo!](http://groups.yahoo.com/neo/groups/ocaml_beginners/info)
 
 ###  OCaml jobs and internships mailing list: ocaml-jobs AT inria.fr
 This list is for exchanges between people looking for a job or an

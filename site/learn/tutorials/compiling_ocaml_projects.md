@@ -8,7 +8,7 @@ This tutorial describes the base compilation commands provided with
 OCaml. It is useful to learn these commands to understand OCaml's
 compilation model. However, eventually you will want to use a build tool
 that automatically calls these commands internally. See [Compilation
-Tools](dev_tools.html#compilation_tools) for more information on the
+Tools](dev_tools.html#Compilationtools) for more information on the
 available options.
 
 ## Compilation basics
@@ -23,7 +23,7 @@ automatically.
 In this section, we will first see how to compile a simple program using
 only ocamlc or ocamlopt. Then we will see how to use libraries and how
 to take advantage of the
-[findlib](http://www.ocaml-programming.de/programming/findlib.html "http://www.ocaml-programming.de/programming/findlib.html")
+[findlib](http://www.camlcity.org/archive/programming/findlib.html)
 system, which provides the `ocamlfind` command.
 
 ###  `ocamlc` and `ocamlopt`

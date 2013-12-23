@@ -4,7 +4,7 @@
 
 # A Hundred Lines of OCaml
 
-OCaml possesses an [interactive system](description.html#interactive),
+OCaml possesses an [interactive system](description.html#Interactivity),
 called “toploop”, that lets you type OCaml code and have it evaluated
 immediately. It is a great way to learn the language and to quickly
 experiment with ideas. Below, we demonstrate the use of the toploop to

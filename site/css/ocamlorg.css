@@ -85,7 +85,7 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
 
 /* FIXME: OCaml code should be in <pre> with a distinct class? */
 pre { line-height: 135%; }
-code { font-family: "Droid Sans Mono", sans-serif; font-size: 100%; }
+code, .gutter { font-family: "Droid Sans Mono", sans-serif; font-size: 100%; }
 h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .governing { color: black; font-weight: bold; }
 .keyword { color: #575bf4 }

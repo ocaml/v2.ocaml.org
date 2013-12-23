@@ -14,7 +14,7 @@ professional support, you have the following options:
 widely used throughout the community, such as
 [Try OCaml](http://try.ocamlpro.com/), the
 [OPAM package manager](http://opam.ocamlpro.com/) and
-[ocp-indent](http://typerex.org/ocp-indent.html), as well as a
+[ocp-indent](http://www.typerex.org/ocp-indent.html), as well as a
 [large contributor](http://www.ocamlpro.com/blog/2012/08/20/ocamlpro-and-4.00.0.html)
 to OCaml itself. Besides commercially supporting their tools, they offer to
 share their expertise through
@@ -65,7 +65,7 @@ also for its continuity.
 <tr style="height: 70px">
 <td align="center"><a href="http://www.3ds.com"><img src="/img/3ds.png" alt="Dassault System" /></a></td>
 <td align="center"><a href="http://www.esterel-technologies.com"><img src="/img/esterel.png" alt="Esterel Technologies" /></a></td>
-<td align="center"><a href="http://www.janestreet.com"><img src="/img/janestreet.png" alt="Jane Street" /></a></td>
+<td align="center"><a href="http://janestreet.com/"><img src="/img/janestreet.png" alt="Jane Street" /></a></td>
 </tr>
 <tr style="height: 70px">
 <td align="center"><a href="http://www.lexifi.com"><img src="/img/lexifi.png" alt="Lexifi" /></a></td>
@@ -105,7 +105,7 @@ company/institution and by a representative of Inria, an invoice will be
 sent to you.
 
 ###  OCaml Labs
-The goal of [OCaml Labs](http://www.cl.cam.ac.uk/projects/ocamllabs) is
+The goal of [OCaml Labs](http://www.cl.cam.ac.uk/projects/ocamllabs/) is
 to push OCaml and functional programming forward as a platform, making
 it a more effective tool for all users, including significant industrial
 users, while at the same time growing the appeal of the language,
@@ -130,7 +130,8 @@ for more information.
 ####  Current Funding
 OCaml Labs is primarily funded by [Jane Street](http://janestreet.com)
 with a platform grant for the first three years. It is also supported by
-[Citrix Systems R&amp;D](http://www.xen.org/products/cloudxen.html). There
+[Citrix Systems R&amp;D](http://www.xenproject.org/developers/teams/xapi.html).
+There
 are also several research grants associated with OCaml Labs:
 
 * RCUK [Horizon Digital Economy Research](http://www.horizon.ac.uk)

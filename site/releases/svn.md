@@ -7,7 +7,7 @@ enables advanced users to track changes and bug-fixes in real-time,
 without having to wait for the next release.
 
 Bugs can be reported and followed on
-[Mantis](http://caml.inria.fr/mantis).
+[Mantis](http://caml.inria.fr/mantis/).
 
 There is also a [read-only mirror on
 GitHub](https://github.com/ocaml/ocaml), which is automatically

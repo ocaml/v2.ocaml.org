@@ -26,7 +26,7 @@ ici. Début 2004, la liste compte environ 300 abonnés, qui échangent de
 l'ordre de 100 messages par mois.
 
 [Page de la liste sur
-Yahoo!](http://tech.groups.yahoo.com/group/ocaml_beginners/)
+Yahoo!](http://groups.yahoo.com/neo/groups/ocaml_beginners/info)
 
 ###  Liste de diffusion pour les stages et offres d'emplois concernant OCaml : ocaml-jobs AT inria.fr
 Cette liste permet les échanges entre les personnes qui cherchent un

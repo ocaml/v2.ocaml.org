@@ -52,8 +52,8 @@ without having to scan the `Sys.argv` array yourself:
 
 * `Arg` is a module of the standard library.
 * `Getopt` for OCaml is similar to [GNU
- getopt](http://www.gnu.org/software/libc/manual/html_node/Getopt.html "http://www.gnu.org/software/libc/manual/html_node/Getopt.html").
+  getopt](http://www.gnu.org/software/libc/manual/html_node/Getopt.html).
 * The
- [Pa_arg](http://www.cs.cornell.edu/~ebreck/pa_arg/ "http://www.cs.cornell.edu/~ebreck/pa_arg/")
- library offers a convenient syntax for defining and reading options.
+  [Pa_arg](http://www-personal.umich.edu/~ebreck/code/pa_arg/)
+  library offers a convenient syntax for defining and reading options.
 

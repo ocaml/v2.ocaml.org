@@ -3,7 +3,7 @@
 *Table of contents*
 
 # Development Tools
-![Under Construction](img/under_construction_icon.gif "")
+![Under Construction](/img/under_construction_icon.gif "")
 
 ## Editor modes
 ###  Emacs

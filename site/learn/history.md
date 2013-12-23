@@ -10,7 +10,7 @@ Caml has remained throughout the evolution of the language, even though
 the present implementation has no relation with the CAM.
 
 Caml was first designed and implemented by
-[Inria](http://www.inria.fr/index.en.html)'s *Formel* team, headed by
+[Inria](http://www.inria.fr/)'s *Formel* team, headed by
 [Gérard Huet](http://cristal.inria.fr/~huet/). Its development continued
 within the [Cristal](http://cristal.inria.fr/) team, and its current
 successor, [Gallium](http://gallium.inria.fr/).
@@ -18,31 +18,34 @@ successor, [Gallium](http://gallium.inria.fr/).
 ## The Origin
 The Formel team became interested in the ML language in 1980–81. ML was
 the *meta-language* of the Edinburgh version of the LCF proof assistant,
-both designed by [Robin Milner](http://www.cl.cam.ac.uk/~rm135/). It was
+both designed by [Robin Milner][]. It was
 implemented by a kind of interpreter written in Lisp by [Mike
-Gordon](http://www.cl.cam.ac.uk/users/mjcg/), [Robin
-Milner](http://www.cl.cam.ac.uk/~rm135/) and Christopher Wadsworth. LCF
+Gordon](http://www.cl.cam.ac.uk/~mjcg/), [Robin Milner][]
+and Christopher Wadsworth. LCF
 itself was written partly in ML and partly in Lisp. In order to be able
 to use the LCF proof assistant on the various systems in use at Formel
 at that time (Multics, Berkeley Unix on Vax, Symbolics), [Gérard
 Huet](http://cristal.inria.fr/~huet/) decided to make the ML
 implementation compatible with various Lisp compilers (MacLisp,
-FranzLisp, LeLisp, ZetaLisp). This work involved [Guy
-Cousineau](http://www.pps.jussieu.fr/~cousinea/) and [Larry
-Paulson](http://www.cl.cam.ac.uk/users/lcp/). The performance of the ML
+FranzLisp, LeLisp, ZetaLisp). This work involved [Guy Cousineau][] and
+[Larry Paulson][]. The performance of the ML
 implementation was improved by the addition of a compiler.
 
-[Guy Cousineau](http://www.pps.jussieu.fr/~cousinea/) also added
-algebraic data types and pattern-matching, following ideas from [Robin
-Milner](http://www.cl.cam.ac.uk/~rm135/), which he in turn had borrowed
+[Robin Milner]: http://www.cl.cam.ac.uk/archive/rm135/
+[Guy Cousineau]: http://www.pps.univ-paris-diderot.fr/~cousinea/
+[Larry Paulson]: http://www.cl.cam.ac.uk/~lp15/
+
+[Guy Cousineau][] also added
+algebraic data types and pattern-matching, following ideas from
+[Robin Milner][], which he in turn had borrowed
 from Hope, a programming language designed by [Rod
-Burstall](http://www.dcs.ed.ac.uk/home/rb/) and [Dave
+Burstall](http://homepages.inf.ed.ac.uk/rburstall/) and [Dave
 McQueen](http://people.cs.uchicago.edu/~dbm/). At some point, this
 implementation was called Le_ML, a name that did not survive. It was
-used by [Larry Paulson](http://www.cl.cam.ac.uk/users/lcp/) to develop
+used by [Larry Paulson][] to develop
 Cambridge LCF and by [Mike Gordon](http://www.cl.cam.ac.uk/users/mjcg/)
 for the first version of HOL, as recalled in Gordon's [short history of
-HOL](http://www.cl.cam.ac.uk/users/mjcg/papers/HolHistory.html).
+HOL](http://www.cl.cam.ac.uk/~mjcg/papers/HolHistory.html).
 
 Around 1984, three events motivated us to get even more involved in the
 development of ML:
@@ -51,29 +54,29 @@ development of ML:
  much faster implementation of ML using his *Functional Abstract
  Machine (FAM)*. He also designed his own version of the language,
  known at that time as *Cardelli's ML*.
-* [Robin Milner](http://www.cl.cam.ac.uk/~rm135/) thought it was a
+* [Robin Milner][] thought it was a
  good moment to propose a new definition of ML in order to avoid
  divergence between various implementations. He defined the core
  Standard ML language, which was later complemented by a module
  system designed by [Dave
  McQueen](http://people.cs.uchicago.edu/~dbm/).
 * At the same time, [Pierre-Louis
- Curien](http://www.pps.jussieu.fr/~curien/) developed a calculus of
+ Curien](http://www.pps.univ-paris-diderot.fr/~curien/) developed a calculus of
  categorical combinators, as well as a correspondence between
  lambda-calculus and categorical combinators, which, as noticed by
- [Guy Cousineau](http://www.pps.jussieu.fr/~cousinea/), could be seen
+ [Guy Cousineau][], could be seen
  as a compilation technique for ML. Indeed, it was quite close to the
  original implementation technique of Edinburgh ML, but could be
  described, proved correct, and optimized in a simple way. This led
  to the definition of the Categorical Abstract Machine (CAM).
 
-This urged [Guy Cousineau](http://www.pps.jussieu.fr/~cousinea/) to
+This urged [Guy Cousineau][] to
 develop a new implementation of ML, based on the CAM. However, the
 language that we ended up implementing was not Standard ML, but... Caml.
 Why? Our main reason for developing Caml was to use it for software
 development inside Formel. Indeed, it was used for developing the
 [Coq](http://coq.inria.fr/) system, which, following [Thierry
-Coquand](http://www.cs.chalmers.se/~coquand/)'s thesis in 1985, became
+Coquand](http://www.cse.chalmers.se/~coquand/)'s thesis in 1985, became
 the team's main aim. We were reluctant to adopt a standard that could
 later prevent us from adapting the language to our programming needs. In
 particular, Philippe Le Chenadec and [Michel
@@ -94,7 +97,7 @@ Ascander left in 1988, [Pierre Weis](http://cristal.inria.fr/~weis/) and
 development and maintenance of the system. This implementation compiled
 Caml down to LLM3, the virtual machine of the Le_Lisp system.
 
-[Guy Cousineau](http://www.pps.jussieu.fr/~cousinea/) modestly recalls:
+[Guy Cousineau][] modestly recalls:
 “I must admit that when the Caml development started, my experience with
 programming language implementation was very limited. Relying on the
 LLM3 abstract machine and on the Le_Lisp memory allocation and garbage
@@ -139,7 +142,8 @@ and parametrization facilities for programming in the large.
 Type systems and type inference for object-oriented programming has been
 a hot area of research since the early 1990's. [Didier
 Rémy](http://cristal.inria.fr/~remy/), later joined by [Jérôme
-Vouillon](http://www.pps.jussieu.fr/~vouillon/), designed an elegant and
+Vouillon](http://www.pps.univ-paris-diderot.fr/~vouillon/),
+designed an elegant and
 highly expressive type system for objects and classes. This design was
 integrated and implemented within Caml Special Light, leading to the
 Objective Caml language and implementation, first released in 1996 and
@@ -179,13 +183,13 @@ offered in the Camlp4 pre-processor for OCaml.
 [Pierre Weis](http://cristal.inria.fr/~weis/) created BIGLOO. Régis
 Cridlig made Camlot. Jean Goubault-Larrecq wrote HimML, which features
 implicit hash-consing and efficient operations on sets and maps.
-[Emmanuel Chailloux](http://www.pps.jussieu.fr/~emmanuel/) published
+[Emmanuel Chailloux](http://www-apr.lip6.fr/~chaillou/) published
 CeML. In the *Para* team, Francis Dupont implemented Caml for parallel
 machines, while [Luc Maranget](http://cristal.inria.fr/~maranget/) built
 Gaml, a compiler for a lazy functional programming language.
 
 ## Final Quote
-In 1996, [Guy Cousineau](http://www.pps.jussieu.fr/~cousinea/) wrote:
+In 1996, [Guy Cousineau][] wrote:
 “Certainly, the history of Caml could have been more linear. However,
 through trial and error, a capacity for producing high performance,
 portable, and flexible functional programming language implementations

@@ -1620,7 +1620,7 @@ lower-case letters, as in the example of the previous problem.
  unambiguously. Write a function `pre_in_tree` that does the job.
 1. Solve problems 1. to 3. using difference lists. Cool! Use the
  function `timeit` (defined in problem “[Compare the two methods of
- calculating Euler&#39;s totient function.](#timeit)”) to compare the
+ calculating Euler&#39;s totient function.](#ComparethetwomethodsofcalculatingEuler39stotientfunctioneasy)”) to compare the
  solutions.
 
 What happens if the same character appears in more than one node. Try

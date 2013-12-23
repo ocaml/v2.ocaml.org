@@ -35,7 +35,7 @@
 * 2009: [Tokyo](http://atnd.org/events/738)
 
 ## In the US
-* 2013, September 24, [OCaml Users and Developers Workshop](ocaml/2013),
+* 2013, September 24, [OCaml Users and Developers Workshop](ocaml/2013/),
   Boston (MA, USA), Colocated with ICFP 2013.
 * 2012: [NYC OCaml Meetup](http://www.meetup.com/NYC-OCaml/)
 

@@ -799,7 +799,7 @@ best, *particularly* as in this case where
 designed for C programmers. It's no surprise, therefore, that the
 imperative solution is easier. OCaml, not being a [bondage and
 discipline
-language](http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html "http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html"),
+language](http://dictionary.reference.com/browse/bondage-and-discipline+language),
 doesn't mind you using the imperative approach when it makes sense.
 
 Here is the outline of the imperative approach by Fabrice Le Fessant:

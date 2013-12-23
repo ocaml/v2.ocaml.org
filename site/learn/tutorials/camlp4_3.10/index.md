@@ -19,7 +19,7 @@ The semi-official documentation:
 [http://brion.inria.fr/gallium/index.php/Camlp4](http://brion.inria.fr/gallium/index.php/Camlp4 "http://brion.inria.fr/gallium/index.php/Camlp4")
 
 The ocaml beta announcement:
-[http://pauillac.inria.fr/&#92;~pouillar/camlp4-changes.html](http://pauillac.inria.fr/~pouillar/camlp4-changes.html "http://pauillac.inria.fr/~pouillar/camlp4-changes.html")
+[camlp4-changes](http://nicolaspouillard.fr/camlp4-changes.html)
 
 ## The examples
 An example written for Camlp4 3.10:
@@ -45,15 +45,12 @@ Poulliard.
 
 The patch:
 
-[http://gallium.inria.fr/&#92;~pouillar/pub/camlp4/rosetta/pa_json_static/pa_json_static.patch](http://gallium.inria.fr/~pouillar/pub/camlp4/rosetta/pa_json_static/pa_json_static.patch "http://gallium.inria.fr/~pouillar/pub/camlp4/rosetta/pa_json_static/pa_json_static.patch")
+[pa_json_static.patch](http://nicolaspouillard.fr/pub/camlp4/rosetta/pa_json_static/pa_json_static.patch)
 
 The new version (compiles with camlp4orf):
 
-[http://gallium.inria.fr/&#92;~pouillar/pub/camlp4/rosetta/pa_json_static/pa_json_static.ml](http://gallium.inria.fr/~pouillar/pub/camlp4/rosetta/pa_json_static/pa_json_static.ml "http://gallium.inria.fr/~pouillar/pub/camlp4/rosetta/pa_json_static/pa_json_static.ml")
+[pa_json_static.ml](http://nicolaspouillard.fr/pub/camlp4/rosetta/pa_json_static/pa_json_static.ml)
 
-Commentary:
-
-[http://www.nabble.com/-Camlp4-3.10--The-rosetta-stone-(Was:-lists-without-&#92;$list:...&#92;$)-t3463823.html](http://www.nabble.com/-Camlp4-3.10--The-rosetta-stone-(Was:-lists-without-$list:...$)-t3463823.html "http://www.nabble.com/-Camlp4-3.10--The-rosetta-stone-(Was:-lists-without-$list:...$)-t3463823.html")
 
 ## The command line
 In the beta announcement, there was mention of new binaries camlp4xxx

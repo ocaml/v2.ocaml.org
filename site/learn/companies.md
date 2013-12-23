@@ -95,7 +95,7 @@
         <img src="/img/users/cryptosense.png" alt="Cryptosense">
     </dt>
     <dd class="span5">
-        <h2><a href="http://www.cryptosense.com/">Cryptosense</a>, France</h2>
+        <h2><a href="http://cryptosense.com/">Cryptosense</a>, France</h2>
         <p>Based in Paris, France, Cryptosense creates security analysis software with a particular focus on cryptographic systems. A spin-off of the institute for computer science research (Inria), Cryptosense’s founders combine more than 40 years experience in research and industry. Cryptosense provides its solutions to an international clientèle in particular in the financial, industrial and government sectors.</p>
     </dd>
 </dl>
@@ -113,8 +113,9 @@
         <img src="/img/users/hostnet.gif" alt="Digirati dba Hostnet">
     </dt>
     <dd class="span5">
-        <h2><a href="http://www.hostnet.com">Digirati dba Hostnet</a>, Brazil</h2>
-        <p>Digirati dba Hostnet is a web hosting company. We use OCaml mostly for internal systems programming and infrastructure services. We also have contributed with the community by releasing a few open source <a href="http://github.com/andrenth">OCaml libraries</a>.</p>
+        <h2><a href="http://www.hostnet.com.br/">Digirati dba Hostnet</a>,
+		Brazil</h2>
+        <p>Digirati dba Hostnet is a web hosting company. We use OCaml mostly for internal systems programming and infrastructure services. We also have contributed with the community by releasing a few open source <a href="https://github.com/andrenth">OCaml libraries</a>.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -194,7 +195,7 @@
         <img src="/img/jane-street.jpg" alt="Jane Street">
     </dt>
     <dd class="span5">
-        <h2><a href="http://www.janestreet.com">Jane Street</a>, United States</h2>
+        <h2><a href="http://janestreet.com/">Jane Street</a>, United States</h2>
         <p>Jane Street is a quantitative proprietary trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. Jane Street is perhaps the largest commercial user of OCaml, and has attracted a very strong team of functional programmers. They use OCaml for everything, from research infrastructure to trading systems to operations and accounting systems. Jane Street has over 50 OCaml programmers and over a million lines of OCaml, powering a technology platform that trades billions of dollars every day. See the <a href="http://janestreet.github.io">GitHub page</a> for their open source software.</p>
     </dd>
 </dl>
@@ -212,7 +213,7 @@
         <img src="/img/users/medit.jpg" alt="MEDIT">
     </dt>
     <dd class="span5">
-        <h2><a href="http://www.medit.fr">MEDIT</a>, France</h2>
+        <h2><a href="http://www.medit-pharma.com/">MEDIT</a>, France</h2>
         <p>MEDIT develops <a href="http://mjambon.com/phd.html">SuMo, an advanced bioinformatic system</a> for the analysis of protein 3D structures and the identification of drug-design targets. SuMo is written entirely in OCaml and provides interfaces to several commercial molecular-modelling packages.</p>
     </dd>
 </dl>
@@ -248,7 +249,7 @@
         <img src="/img/users/mylife.jpg" alt="MyLife">
     </dt>
     <dd class="span5">
-        <h2><a href="http://mylife.com">MyLife</a>, United States</h2>
+        <h2><a href="http://www.mylife.com/">MyLife</a>, United States</h2>
         <p>MyLife has developed a powerful people search tool that will empower those in need to find anyone, regardless of years past and the life that was built in between.</p>
     </dd>
 </dl>

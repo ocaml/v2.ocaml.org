@@ -59,9 +59,9 @@ History
 -------
 
 The [first occurrence of the OCaml Users and Developers
-Workshop](http://oud.ocaml.org/2012) was colocated with [ICFP
+Workshop](http://oud.ocaml.org/2012/) was colocated with [ICFP
 2012](http://icfpconference.org/icfp2012/), in Copenhagen, following the
-*OCaml User Meetings* in Paris in 2008, 2010 and 2011
-and in Grenoble in 2009.  Building on the success of
+*OCaml User Meetings* in Paris in [2008](../2008/), 2010 and [2011](../2011/)
+and in Grenoble in [2009](../2009/).  Building on the success of
 past events, OCaml 2013 will be held on September 24, 2013, in Boston,
 colocated with [ICFP 2013](http://icfpconference.org/icfp2013/).

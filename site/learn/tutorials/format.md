@@ -52,7 +52,7 @@ so skip the rest at first reading).
  open_box or open_hovbox procedures): within this box, break hints
  are used to cut the line when there is no more room on the line.
  There are two kinds of “hov” boxes, you can find the details
- [below](#hov-boxes). In first approximation, let me consider these
+ [below](#Refinementonhovboxes). In first approximation, let me consider these
  two kinds of “hov” boxes as equivalent and obtained by calling the
  `open_box` procedure.
 
@@ -203,11 +203,11 @@ The user gets 2 ways to fix the indentation of new lines:
  `print_break       1       2`, then from output "---[--b--b--b--",
  we get:
 
-    ```text
-    ---[-- --
-          --
-          --
-    ```
+        ```text
+        ---[-- --
+              --
+              --
+        ```
 
 
 ## Refinement on “hov” boxes
@@ -332,7 +332,7 @@ that models a language of expressions that defines functions and their
 applications to arguments.
 
 First, I give the abstract syntax of lambda-terms (we illustrate is in
-the [interactive system](../description.html#interactive)):
+the [interactive system](../description.html#Interactivity)):
 
 ```ocamltop
 type lambda =

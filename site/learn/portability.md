@@ -72,8 +72,7 @@ work.
 There are no less than four ports of Objective Caml for Microsoft
 Windows available:
 
-* a native Win32 port, built with the
- [MinGW](http://sourceforge.net/projects/mingw/files/Automated%20MinGW%0A%20%20Installer/mingw-get-inst/)
+* a native Win32 port, built with the [MinGW](http://www.mingw.org/)
  development tools;
 * a native Win32 port, built with the Microsoft development tools
  (Microsoft Visual C++ and Microsoft Assembler);

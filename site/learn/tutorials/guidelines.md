@@ -1524,7 +1524,7 @@ let rec list_length = function
   | _ :: l -> 1 + list_length l
 ```
 (For those that would contest the equivalence of those two
-versions, see the [note below](#equivalenceprogrammes)).
+versions, see the [note below](#Imperativeandfunctionalversionsoflistlength)).
 
 
 * Another common “over imperative error” in the imperative world is
@@ -1696,8 +1696,8 @@ An anonymous Git read-only mirror [contains the working sources of the
 OCaml compilers](https://github.com/ocaml/ocaml), and the sources of
 other software related to OCaml.
 
-###  Notes
-####  Imperative and functional versions of `list_length`
+##  Notes
+###  Imperative and functional versions of `list_length`
 The two versions of `list_length` are not completely equivalent in term
 of complexity, since the imperative version uses a constant amount of
 stack room to execute, whereas the functional version needs to store

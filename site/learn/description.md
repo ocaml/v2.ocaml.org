@@ -67,7 +67,8 @@ large corporations develop significant industrial projects in OCaml:
 these include Dassault Systèmes, Microsoft, IBM, and CEA (Commissariat à
 l'Énergie Atomique).
 
-The [OCaml Consortium](/community/support.html#consortium) offers industrial and
+The [OCaml Consortium](/community/support.html#TheCamlConsortiumatInria)
+offers industrial and
 academic partners a formal framework for participating in the
 development, maintenance, and evolution of OCaml. Partners also enjoy
 very liberal licensing conditions regarding the OCaml software

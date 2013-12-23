@@ -25,7 +25,7 @@ well on Unix, Linux, and Mac OS X systems. Windows support is comming
 soon.
 OPAM is written and maintained by [OCamlPro](http://www.ocamlpro.com/) and
 [OCaml Labs](http://www.cl.cam.ac.uk/projects/ocamllabs/), and is free software
-([commercial support](opam.ocamlpro.com) is available).
+([commercial support](http://www.ocamlpro.com/) is available).
 
 To get started, see
 [Download and install OPAM](http://opam.ocaml.org/) and follow the
@@ -149,7 +149,7 @@ system as well as in the specific topic-related categories.
 
 ## Gentoo
 In order to get the basic tools under
-[Gentoo](http://gentoo-portage.com/dev-ml/), execute:
+[Gentoo](http://www.gentoo.org/), execute:
 
 ```bash
 emerge ocaml  
@@ -162,7 +162,7 @@ available execute
 emerge -S ocaml 
 ```
 ## SuSE
-Getting Started with OCaml on [SuSE](http://www.suse.com/) is part in
+Getting Started with OCaml on [SuSE](https://www.suse.com/) is part in
 the standard distribution. In openSuse 12.1, the package name is
 `ocaml-3.12.0-11.1.2` (outdated).
 
@@ -218,7 +218,7 @@ issues](/learn/portability.html) or the [Windows release
 notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
 
 * [Cygwin-based native Win32 port
- (4.00.1)](http://protz.github.com/ocaml-installer/). A self
+ (4.00.1)](http://protz.github.io/ocaml-installer/). A self
  installer. The interactive loop comes with a simple graphical user
  interface. Some features require the Cygwin environment, which the
  installer can fetch for you. However, the compilers are, and
@@ -336,11 +336,11 @@ them from source.
 The following packages are the most beneficial to install:
 
 * [The OCaml source distribution.](../releases/)
-* [Findlib](http://www.ocaml-programming.de/programming/findlib.html),
+* [Findlib](http://www.camlcity.org/archive/programming/findlib.html),
  an OCaml library management system.
 * [Batteries](http://batteries.forge.ocamlcore.org/), a collection of
  libraries that extend and improve upon the OCaml Standard Library
-* [PCRE-OCaml](http://www.ocaml.info/home/ocaml_sources.html), a
+* [PCRE-OCaml](https://bitbucket.org/mmottl/pcre-ocaml), a
  library for working with Perl Compatible Regular Expressions in
  OCaml (this will require you to build [the PCRE
  library](http://www.pcre.org/) as well).
@@ -495,7 +495,7 @@ will send hello.app's output to the console).
 ###  Tips
 **Documentation.** To get quick access to the documentation of a module
 (whatever the editor you use) use
-[Quicksilver](http://quicksilver.blacktree.com/) to index the libref/
+[Quicksilver](http://qsapp.com/) to index the libref/
 directory of ocaml's documentation. Since ocamldoc generates the
 documentation of a module M in a file M.html, you can access it by
 invoking Quicksilver, type an abbreviation of the module's name you want

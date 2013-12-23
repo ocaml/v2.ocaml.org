@@ -408,8 +408,7 @@ We begin with a simple Camlp4 syntax extension for the for-each iterator
 syntax, then explored further refinements to that idea that works around
 parsing issues both in embedded code and in the rules.
 
-This tutorial is written by
-<a href="http://cs-people.bu.edu/liulk" class="external" title="http://cs-people.bu.edu/liulk">Likai
-Liu</a>. The text has not been peer reviewed, so use this at your own
+This tutorial is written by [Likai Liu](http://cs.likai.org/).
+The text has not been peer reviewed, so use this at your own
 risk. Questions and comments are welcome.
 

@@ -75,7 +75,7 @@ let () = main ()
 Save this to a file `simple.ml` and compile it like this:
 
 ```shell
-ocamlc -g -w s -I +lablgtk lablgtk.cma gtkInit.cmo simple.ml -o simple
+ocamlc -g -I +lablgtk lablgtk.cma gtkInit.cmo simple.ml -o simple
 ```
 This is what you should see when you run it:
 
@@ -236,9 +236,10 @@ class graph ?width ?height ?packing ?show array =
   let drawable = lazy (new GDraw.drawable da#misc#window) in
 
   (* Create the scrollbar. *)
-  let adjustment = GData.adjustment
-                     ~lower:0. ~upper:(float_of_int (array_size-1))
-                     ~step_incr:1. ~page_incr:(float_of_int page_size) () in
+  let adjustment =
+    GData.adjustment
+      ~lower:0. ~upper:(float_of_int (array_size-1))
+      ~step_incr:1. ~page_incr:(float_of_int page_size) () in
   let scrollbar =
     GRange.scrollbar `HORIZONTAL ~adjustment ~packing:vbox#pack () in
 
@@ -349,11 +350,11 @@ The complete code for the graph is available in
 Compile it using:
 
 ```ocaml
-ocamlc -g -w s -I +lablgtk lablgtk.cma gtkInit.cmo graph.ml test.ml -o graphtest
+ocamlc -g -I +lablgtk lablgtk.cma gtkInit.cmo graph.ml test.ml -o graphtest
 ```
 Here is a screenshot:
 
-![Screenshot](graphtest.gif)
+![Screenshot](/img/graphtest.gif)
 
 
 ###  Structure of lablgtk
@@ -488,8 +489,7 @@ Hence the full type written out is:
 ```ocaml
 type toggle_button = [`base|`widget|`container|`button|`toggle]
 ```
-(These are polymorphic variants — see [Chapter 7](../ch7)
-if you don't remember them).
+(These are [polymorphic variants](labels.html#Morevariantspolymorphicvariants)).
 
 If you check the Gtk class hierarchy you'll see that the list of
 variants closely (but not exactly) matches the classes. A Gtk toggle

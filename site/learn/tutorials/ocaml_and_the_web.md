@@ -43,14 +43,14 @@ compiled, when needed, using the native code compiler. So you actually
 **can** have your cake and eat it too. [Ocamlscript version
 2](http://martin.jambon.free.fr/ocamlscript.html "http://martin.jambon.free.fr/ocamlscript.html")
 fully supports packages installed with [ocamlfind
-(Findlib)](http://www.ocaml-programming.de/packages/ "http://www.ocaml-programming.de/packages/"),
+(Findlib)](http://www.camlcity.org/),
 so that lots of fancy libraries could be loaded very easily, from the
 script.
 
 ## Web Servers and Frameworks
 The [PPS Computer Science
-Laboratory](http://www.pps.jussieu.fr/ "http://www.pps.jussieu.fr/") has
-created [Ocsigen](http://www.ocsigen.org/ "http://www.ocsigen.org/"), a
+Laboratory](http://www.pps.univ-paris-diderot.fr/ "Jussieu") has
+created [Ocsigen](http://ocsigen.org/), a
 web server and framework written in and for OCaml. The scheme is
 functions registered to a url, with pattern matching allowed on GET
 arguments, among other neat features.

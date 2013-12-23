@@ -5,7 +5,7 @@
 
 ## Jane Street
 [<img src='/img/jane-street.jpg' alt='Jane Street'
-style='float: left; margin-right: 10px' />](http://janestreet.com/technology)
+style='float: left; margin-right: 10px' />](http://janestreet.com/technology/)
 
 Jane Street is a proprietary trading firm that uses OCaml as its primary
 development platform.  Our operation runs at a large scale,
@@ -76,7 +76,8 @@ downloaded from and uploaded to multiple peers concurrently.
 program a network application in the emerging world of peer-to-peer
 systems. The result of our work, MLdonkey, has surpassed our hopes:
 MLdonkey is currently the most popular peer-to-peer file-sharing client
-according to [freshmeat.net](http://freshmeat.net/), with about 10,000
+according to [free(code)](http://freecode.com/) (formerly “freshmeat.net”),
+with about 10,000
 daily users. Moreover, MLdonkey is the only client able to connect to
 several peer-to-peer networks, to download and share files. It works as
 a daemon, running unattended on the computer, and can be controlled
@@ -123,7 +124,7 @@ spread the use of OCaml in the financial services industry.
 style='float: left; margin-right: 10px'
 alt='Screenshot'  title='Screenshot of Coq&#39;s integrated development environment' />](http://caml.inria.fr/about/successes-images/coq.jpg)
 
-*[Jean-Christophe Filliâtre](http://www.lri.fr/%7Efilliatr/) (CNRS), a
+*[Jean-Christophe Filliâtre](https://www.lri.fr/~filliatr/) (CNRS), a
 Coq developer, says:* “The [Coq](http://coq.inria.fr/) tool is a system
 for manipulating formal mathematical proofs; a proof carried out in Coq
 is mechanically verified by the machine. In addition to its applications
@@ -144,7 +145,7 @@ precisely rigor.”
 ## The ASTRÉE Static Analyzer
 [<img src='http://caml.inria.fr/about/successes-images/astree.gif' alt='A340'
 style='float: left; margin-right: 10px'
-title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](http://www.airbus.com/product/a330_a340_backgrounder.asp)
+title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](http://www.airbus.com/)
 
 *[David Monniaux](http://www-verimag.imag.fr/~monniaux/) (CNRS), member
 of the ASTRÉE project, says:* “[ASTRÉE](http://www.astree.ens.fr/) is a
