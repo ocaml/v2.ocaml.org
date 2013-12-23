@@ -1,4 +1,4 @@
-<!-- ((! set title Camlp4 3.10 Foreach Tutorial !)) ((! set learn !)) -->
+<!-- ((! set title Foreach Tutorial !)) ((! set learn !)) -->
 
 *Table of contents*
 
@@ -27,7 +27,7 @@ sugar is a language construct that can be decomposed to an existing
 construct. For example, OCaml doesn't have a "for-each" syntax, which
 can be illustrated by the following Python code:
 
-```ocaml
+```python
 a_list = ["hello", "world"]
 for s in a_list:
   print s

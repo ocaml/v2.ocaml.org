@@ -4,7 +4,6 @@
 
 # Camlp4 3.10
 
-## Camlp4 3.10
 **Camlp4**, the OCaml "pre-processor pretty printer" is an advanced
 macro system which allows complex abstract syntax tree transformations
 on ocaml programs, and on other recursive decent grammars.
@@ -26,20 +25,20 @@ The ocaml beta announcement:
 An example written for Camlp4 3.10:
 
 * [Camlp4 3.10/Foreach
- Tutorial](camlp4_3.10/foreach_tutorial.html "Camlp4 3.10/Foreach Tutorial")
+ Tutorial](foreach_tutorial.html "Camlp4 3.10/Foreach Tutorial")
 
 These examples are from the camlp4 beta announcement:
 
 * [Camlp4
- 3.10/dynamic_old_syntax.ml](camlp4_3.10/dynamic_old_syntax.html "Camlp4 3.10/dynamic_old_syntax.ml")
+ 3.10/dynamic_old_syntax.ml](dynamic_old_syntax.html "Camlp4 3.10/dynamic_old_syntax.ml")
 * [Camlp4
- 3.10/static_old_syntax.ml](camlp4_3.10/static_old_syntax.html "Camlp4 3.10/static_old_syntax.ml")
+ 3.10/static_old_syntax.ml](static_old_syntax.html "Camlp4 3.10/static_old_syntax.ml")
 * [Camlp4
- 3.10/quick_non_extensible_example.ml](camlp4_3.10/quick_non_extensible_example.html "Camlp4 3.10/quick_non_extensible_example.ml")
+ 3.10/quick_non_extensible_example.ml](quick_non_extensible_example.html "Camlp4 3.10/quick_non_extensible_example.ml")
 * [Camlp4
- 3.10/dynamic_functor_example.ml](camlp4_3.10/dynamic_functor_example.html "Camlp4 3.10/dynamic_functor_example.ml")
+ 3.10/dynamic_functor_example.ml](dynamic_functor_example.html "Camlp4 3.10/dynamic_functor_example.ml")
 * [Camlp4
- 3.10/static_functor_example.ml](camlp4_3.10/static_functor_example.html "Camlp4 3.10/static_functor_example.ml")
+ 3.10/static_functor_example.ml](static_functor_example.html "Camlp4 3.10/static_functor_example.ml")
 
 This is a translation of M. Jambon's json_static to Camlp4 3.10 by N.
 Poulliard.

@@ -39,7 +39,7 @@ tracker there to request or offer new tutorials. Thanks!
 * [Compiling OCaml projects](compiling_ocaml_projects.html)
 * [Command-line arguments](command-line_arguments.html)
 * [File manipulation](file_manipulation.html)
-* [Camlp4 3.10](camlp4_3.10.html)
+* [Camlp4 3.10](camlp4_3.10/)
 * [Filenames and extensions](filenames.html)
 * [Streams](streams.html)
 * [Stream Expressions](stream_expressions.html)
