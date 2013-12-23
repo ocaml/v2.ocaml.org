@@ -26,7 +26,7 @@ let get_title path =
       else
         let fn = Filename.concat path "index.html" in
         if Sys.file_exists fn then string_of_file fn
-        else string_of_file path
+        else String.capitalize(Filename.basename path)
     else string_of_file path in
   try
     ignore(Str.search_forward title_re s 0); (* or Not_found *)
