@@ -139,7 +139,7 @@ let html_of_post p =
        let google = ["href", "https://plus.google.com/share?url="
                              ^ (Netencoding.Url.encode url_orig);
                      "target", "_blank"; "title", "Share on Google+"] in
-       let fb = ["href", "http://www.facebook.com/share.php?u=" ^ post
+       let fb = ["href", "https://www.facebook.com/share.php?u=" ^ post
                          ^ "&amp;t=" ^ (Netencoding.Url.encode p.title);
                  "target", "_blank"; "title", "Share on Facebook"] in
        let tw = ["href", "https://twitter.com/intent/tweet?url=" ^ post
