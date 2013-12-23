@@ -86,17 +86,32 @@ and text_of_el = function
   | Element(_, _, content) -> text_of_html content
   | Data d -> d
 
-let rec prefix_of_html html len = match html with
-  | [] -> []
-  | el :: tl ->
-     let l = length_html_el el in
-     if l < len then el :: prefix_of_html tl (len - l)
-     else [] (* FIXME: naive, descend into el *)
+let rec len_prefix_of_html html len =
+  if len <= 0 then 0, []
+  else match html with
+       | [] -> len, []
+       | el :: tl -> let len, prefix_el = len_prefix_of_el el len in
+                    let len, prefix_tl = len_prefix_of_html tl len in
+                    len, prefix_el :: prefix_tl
+and len_prefix_of_el el len =
+  match el with
+  | Data d ->
+     let len' = len - String.length d in
+     len', (if len' >= 0 then el else Data(String.sub d 0 len ^ "…"))
+  | Element(tag, args, content) ->
+     (* Remove "id" and "name" to avoid duplicate anchors with the
+        whole post. *)
+     let args = List.filter (fun (n,_) -> n <> "id" && n <> "name") args in
+     let len, prefix_content = len_prefix_of_html content len in
+     len, Element(tag, args, prefix_content)
+
+let rec prefix_of_html html len =
+  snd(len_prefix_of_html html len)
 
 
 let new_id =
   let id = ref 0 in
-  fun () -> incr id; sprintf "post%i" !id
+  fun () -> incr id; sprintf "ocamlorg-post%i" !id
 
 (* [toggle html1 html2] return some piece of html with buttons to pass
    from [html1] to [html2] and vice versa. *)
@@ -179,8 +194,8 @@ let html_of_post p =
       [Element("pre", ["class", "rss-text"], [Data p.desc])]
     else
       let desc = Nethtml.parse (new Netchannels.input_string p.desc) in
-      if length_html desc < 1200 then desc
-      else toggle (prefix_of_html desc 1200) desc ~anchor:title_anchor
+      if length_html desc < 500 then desc
+      else toggle (prefix_of_html desc 500) desc ~anchor:title_anchor
   in
   [Data "\n";
    Element("a", ["name", title_anchor], []);
