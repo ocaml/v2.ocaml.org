@@ -62,12 +62,11 @@
         </div>
         <section id="home-news" class="span4 condensed">
             <h1 class="ruled">
-                <a href="/community/planet.html">
-                    News
-                </a>
-                <a href="/community/planet.html">
-                    <img src="/img/rss.png" alt="RSS">
-                </a>
+                <a href="/community/planet.html"
+				title="See planet posts">News</a>
+                <a href="http://planet.ocaml.org/rss20.xml"
+				title="Planet RSS feed"
+				><img src="/img/rss.png" alt="RSS"></a>
             </h1>
             {{! cmd script/rss2html -n 6 --headlines http://planet.ocaml.org/rss20.xml !}}
             <p><a href="community/planet.html">More...</a></p>

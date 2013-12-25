@@ -146,6 +146,7 @@ h1.planet .googleplus {
   font-size: 50%;
 }
 
+
 div.subscribers {
   margin-left: 3em;
 }
@@ -156,6 +157,16 @@ div.subscribers {
 
 .subscribers li {
   line-height: 100%;
+}
+
+h1.news a > img {
+  float: right;
+  padding-top: 12px;
+}
+
+h4.news img {
+  float: right;
+  margin-top: 3px;
 }
 
 /* Edit buttom, right of the navbar. */

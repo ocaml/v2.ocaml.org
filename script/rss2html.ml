@@ -10,6 +10,54 @@ let text_description = []
 
 let planet_url = "http://ocaml.org/community/planet.html"
 
+
+(* OPML -- subscriber list
+ ***********************************************************************)
+
+module OPML = struct
+  type contributor = {
+    name  : string;
+    title : string;
+    url   : string;
+  }
+
+  (* Use Xmlm for the parsing, mostly because it is already needed by
+     the [Rss] module => no additional dep. *)
+
+  let contributors_of_url url =
+    let fh = Xmlm.make_input (`String(0, Http.get url))  in
+    let contrib = ref [] in
+    try
+      while true do
+        match Xmlm.input fh with
+        | `El_start((_, "outline"), args) ->
+           contrib := { name = List.assoc ("", "text") args;
+                        title = List.assoc ("", "text") args;
+                        url = List.assoc ("", "xmlUrl") args;
+                      } :: !contrib
+        | _ -> ()
+      done;
+      assert false
+    with Xmlm.Error(_, `Unexpected_eoi) ->
+      !contrib
+
+  let contributors_of_urls urls =
+    let contribs = List.concat (List.map contributors_of_url urls) in
+    List.sort (fun c1 c2 -> String.compare c1.name c2.name) contribs
+
+  let to_html contributors =
+    let contrib_html c =
+      Element("li", [], [Element("a", ["href", c.url], [Data c.name])]) in
+    Element("ul", [], List.map contrib_html contributors)
+
+  let contributors urls =
+    [to_html (contributors_of_urls urls)]
+end
+
+
+(* Blog feed
+ ***********************************************************************)
+
 (** Our representation of a "post". *)
 type post = {
   title  : string;
@@ -141,15 +189,14 @@ let toggle_script =
   [Element("script", ["type", "text/javascript"], [Data script])]
 
 
-(* Transform a post [p] (i.e. story) into HTML. *)
-let html_of_post p =
+(* Transform a post [p] (i.e. story) into HTML.
+   [rss_feed] returns the feed for a given author (or "" of none is found). *)
+let html_of_post rss_feed p =
   let title_anchor = digest_post p in
-  let html_title, rss = match p.link with
+  let html_title, share = match p.link with
     | None -> [Data p.title], []
     | Some u ->
        let url_orig = Neturl.string_of_url u in
-       let a_args = ["href", url_orig; "target", "_blank";
-                     "title", "Go to the original post"] in
        let post = Netencoding.Url.encode (planet_url ^ "#" ^ title_anchor) in
        let google = ["href", "https://plus.google.com/share?url="
                              ^ (Netencoding.Url.encode url_orig);
@@ -160,21 +207,27 @@ let html_of_post p =
        let tw = ["href", "https://twitter.com/intent/tweet?url=" ^ post
                          ^ "&text=" ^ (Netencoding.Url.encode p.title);
                  "target", "_blank"; "title", "Share on Twitter"] in
-       [Element("a", a_args, [Data p.title]) ],
+       let feed = rss_feed p.author in
+       let rss =
+         if feed <> "" then
+           [Element("a", ["class", "rss";  "target", "_blank";
+                          "title", "Original RSS feed"; "href", feed],
+                    [Element("img", ["src", "/img/rss.png"; "alt", "RSS"],
+                             [])] )]
+         else [] in
+       [Element("a", ["href", url_orig; "target", "_blank";
+                      "title", "Go to the original post"], [Data p.title]) ],
        [Element("span", ["class", "share"],
-                [Element("a", ("class", "googleplus") :: google,
-                         [Element("img", ["src", "/img/googleplus.png";
-                                          "alt", "Google+"], []) ]);
-                  Element("a", ("class", "facebook") :: fb,
-                         [Element("img", ["src", "/img/facebook.png";
-                                          "alt", "FB"], []) ]);
-                 Element("a", ("class", "twitter") :: tw,
-                         [Element("img", ["src", "/img/twitter.png";
-                                          "alt", "Twitter"], []) ]);
-                 Element("a", ("class", "rss") :: a_args,
-                         [Element("img", ["src", "/img/rss.png";
-                                          "alt", "RSS"], []) ]);
-       ] )] in
+                Element("a", ("class", "googleplus") :: google,
+                        [Element("img", ["src", "/img/googleplus.png";
+                                         "alt", "Google+"], []) ])
+                :: Element("a", ("class", "facebook") :: fb,
+                           [Element("img", ["src", "/img/facebook.png";
+                                            "alt", "FB"], []) ])
+                :: Element("a", ("class", "twitter") :: tw,
+                           [Element("img", ["src", "/img/twitter.png";
+                                            "alt", "Twitter"], []) ])
+                :: rss) ] in
   let html_author =
     if p.email = "" then Data p.author
     else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
@@ -201,7 +254,7 @@ let html_of_post p =
    Element("a", ["name", title_anchor], []);
    Element("section", ["class", "condensed"; "style", "clear: both"],
            Element("h1", ["class", "ruled planet"],
-                   rss @ html_title @ additional_info)
+                   share @ html_title @ additional_info)
            :: desc);
    Data "\n"]
 
@@ -245,10 +298,17 @@ let headlines ?n ?planet ~img urls =
   [Element("ul", ["class", "news-feed"],
            List.concat(List.map (headline_of_post ?planet ~img) posts))]
 
-let posts ?n urls =
+let posts ?n opml urls =
+  let contributors = OPML.contributors_of_urls opml in
+  let rss_feed author =
+    try (List.find (fun c -> c.OPML.name = author) contributors).OPML.url
+    with Not_found -> "" in
   let posts = posts_of_urls ?n urls in
-  [Element("div", [], List.concat(List.map html_of_post posts))]
+  [Element("div", [], List.concat(List.map (html_of_post rss_feed) posts))]
 
+
+(* Email threads
+ ***********************************************************************)
 
 (* The author is put at the end of the title: " - author name".
    Beware that the name may contain "-" (assumed without spaces
@@ -295,50 +355,14 @@ let email_threads ?n ~img urls =
            List.concat(List.map (fun p -> headline_of_post ~img p) posts))]
 
 
-(* OPML -- subscriber list
+
+(* Main
  ***********************************************************************)
-
-module OPML = struct
-  type contributor = {
-    name  : string;
-    title : string;
-    url   : string;
-  }
-
-  (* Use Xmlm for the parsing, mostly because it is already needed by
-     the [Rss] module => no additional dep. *)
-
-  let contributors_of_url url =
-    let fh = Xmlm.make_input (`String(0, Http.get url))  in
-    let contrib = ref [] in
-    try
-      while true do
-        match Xmlm.input fh with
-        | `El_start((_, "outline"), args) ->
-           contrib := { name = List.assoc ("", "text") args;
-                        title = List.assoc ("", "text") args;
-                        url = List.assoc ("", "xmlUrl") args;
-                      } :: !contrib
-        | _ -> ()
-      done;
-      assert false
-    with Xmlm.Error(_, `Unexpected_eoi) ->
-      let cs =
-        List.sort (fun c1 c2 -> String.compare c1.name c2.name) !contrib
-      in
-      let contrib_html c =
-        Element("li", [], [Element("a", ["href", c.url], [Data c.name])])
-      in
-      Element("ul", [], List.map contrib_html cs)
-
-  let contributors urls =
-    List.map contributors_of_url urls
-end
-
 
 let () =
   let urls = ref [] in
-  let action = ref `Posts in
+  let opml = ref [] in
+  let action = ref `Undecided in
   let n_posts = ref None in (* ≤ 0 means unlimited *)
   let img = ref "/img/news.png" in
   let specs = [
@@ -346,8 +370,12 @@ let () =
      " RSS feed to feed summary (in HTML)");
     ("--emails", Arg.Unit(fun () -> action := `Emails),
      " RSS feed of email threads to HTML");
-    ("--subscribers", Arg.Unit(fun () -> action := `Subscribers),
-     " OPML feed to list of subscribers (in HTML)");
+    ("--subscribers",
+     Arg.String(fun c ->
+                (* Also enable subscriber RSS => do not overrule action *)
+                if !action = `Undecided then action := `Subscribers;
+                opml := c :: !opml),
+     "url OPML feed to list of subscribers (rendered to HTML if alone)");
     ("--posts", Arg.Unit(fun () -> action := `Posts),
      " RSS feed to HTML (default action)");
     ("-n", Arg.Int(fun n -> n_posts := Some n),
@@ -356,7 +384,7 @@ let () =
      sprintf "url set the images URL for each headline (default: %S)" !img) ] in
   let anon_arg s = urls := s :: !urls in
   Arg.parse (Arg.align specs) anon_arg "rss2html <URLs>";
-  if !urls = [] then (
+  if !urls = [] && !opml = [] then (
     Arg.usage (Arg.align specs) "rss2html <at least 1 URL>";
     exit 1);
   let out = new Netchannels.output_channel stdout in
@@ -364,7 +392,14 @@ let () =
    | `Headlines -> Nethtml.write out (headlines ~planet:true ?n:!n_posts
                                                ~img:!img !urls)
    | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~img:!img !urls)
-   | `Posts -> Nethtml.write out (toggle_script @ posts ?n:!n_posts !urls)
-   | `Subscribers -> Nethtml.write out (OPML.contributors !urls)
+   | `Undecided
+   | `Posts ->
+      Nethtml.write out (toggle_script @ posts ?n:!n_posts !opml !urls)
+   | `Subscribers -> Nethtml.write out (OPML.contributors(!opml @ !urls))
   );
   out#close_out()
+
+
+(* Local Variables: *)
+(* compile-command: "make --no-print-directory -k -C .. script/rss2html" *)
+(* End: *)

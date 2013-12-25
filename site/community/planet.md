@@ -10,7 +10,7 @@ from the OCaml community. If you would like to be added, read the
 <div class="row">
 <section class="span8">
 
-((! cmd script/rss2html http://planet.ocaml.org/rss20.xml !))
+((! cmd script/rss2html --posts http://planet.ocaml.org/rss20.xml --subscribers http://planet.ocaml.org/opml.xml !))
 
 </section>
 <section class="span4">
