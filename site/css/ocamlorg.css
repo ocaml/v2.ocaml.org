@@ -139,11 +139,10 @@ h1.planet .share {
   float: right;
   padding-top: 1px;
   margin-left: 5px;
-}
-h1.planet .rss, h1.planet .facebook, h1.planet .twitter,
-h1.planet .googleplus {
-  margin-left: 5px;
   font-size: 50%;
+}
+h1.planet .share a {
+  margin-left: 5px;
 }
 
 

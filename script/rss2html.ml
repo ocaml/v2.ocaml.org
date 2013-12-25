@@ -197,6 +197,8 @@ let html_of_post rss_feed p =
     | None -> [Data p.title], []
     | Some u ->
        let url_orig = Neturl.string_of_url u in
+       let a_args = ["href", url_orig; "target", "_blank";
+                     "title", "Go to the original post"] in
        let post = Netencoding.Url.encode (planet_url ^ "#" ^ title_anchor) in
        let google = ["href", "https://plus.google.com/share?url="
                              ^ (Netencoding.Url.encode url_orig);
@@ -215,12 +217,14 @@ let html_of_post rss_feed p =
                     [Element("img", ["src", "/img/rss.png"; "alt", "RSS"],
                              [])] )]
          else [] in
-       [Element("a", ["href", url_orig; "target", "_blank";
-                      "title", "Go to the original post"], [Data p.title]) ],
+       [Element("a", a_args, [Data p.title]) ],
        [Element("span", ["class", "share"],
-                Element("a", ("class", "googleplus") :: google,
-                        [Element("img", ["src", "/img/googleplus.png";
-                                         "alt", "Google+"], []) ])
+                Element("a", a_args,
+                        [Element("img", ["src", "/img/chain-link-icon.png ";
+                                         "alt", ""], []) ])
+                :: Element("a", ("class", "googleplus") :: google,
+                           [Element("img", ["src", "/img/googleplus.png";
+                                            "alt", "Google+"], []) ])
                 :: Element("a", ("class", "facebook") :: fb,
                            [Element("img", ["src", "/img/facebook.png";
                                             "alt", "FB"], []) ])
