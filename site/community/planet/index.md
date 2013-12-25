@@ -4,7 +4,7 @@
 
 The OCaml Planet aggregates various blogs
 from the OCaml community. If you would like to be added, read the
-[Planet subscription HOWTO](planet_subscription.html).
+[Planet subscription HOWTO](syndication.html).
 
 <div class="container">
 <div class="row">
