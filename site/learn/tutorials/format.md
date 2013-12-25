@@ -203,11 +203,11 @@ The user gets 2 ways to fix the indentation of new lines:
  `print_break       1       2`, then from output "---[--b--b--b--",
  we get:
 
-        ```text
-        ---[-- --
-              --
-              --
-        ```
+    ```text
+    ---[-- --
+          --
+          --
+    ```
 
 
 ## Refinement on “hov” boxes
