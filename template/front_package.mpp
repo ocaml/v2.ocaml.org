@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs">
     <li class="active">
-        <a>Recent updates</a>
+        <a>New packages</a>
     </li>
 </ul>
 <table class="table table-bordered table-condensed table-hover">
