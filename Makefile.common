@@ -53,7 +53,8 @@ script/code_top: script/code_types.ml script/code_top.ml
 
 script/relative_urls: script/relative_urls.ml
 	cd script && \
-	$(OCAMLOPT) -package netstring -linkpkg relative_urls.ml -o ../"$@" && \
+	$(OCAMLOPT) -package netstring -linkpkg \
+	  utils.ml relative_urls.ml -o ../"$@" && \
 	$(RM) $(addprefix relative_urls., o cmi cmx annot)
 
 htmlescape:htmlescape.ml

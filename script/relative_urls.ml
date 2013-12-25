@@ -1,33 +1,7 @@
 (* Convert absolute links to relative ones — the path to the root
    being taken from the path of the file if not set explicitly. *)
 open Printf
-
-(* Until OCaml 4.01.0 is in Debian testing *)
-module String = struct
-  include String
-
-  let is_space = function
-    | ' ' | '\012' | '\n' | '\r' | '\t' -> true
-    | _ -> false
-
-  let trim s =
-    let len = length s in
-    let i = ref 0 in
-    while !i < len && is_space (unsafe_get s !i) do
-      incr i
-    done;
-    let j = ref (len - 1) in
-    while !j >= !i && is_space (unsafe_get s !j) do
-      decr j
-    done;
-    if !i = 0 && !j = len - 1 then
-      s
-    else if !j >= !i then
-      sub s !i (!j - !i + 1)
-    else
-      ""
-end
-
+open Utils
 
 let base_syntax =
   { (Hashtbl.find Neturl.common_url_syntax "http") with
@@ -89,7 +63,8 @@ let revert_path =
 
 let process_html to_base filename =
   let fh = open_in filename in
-  let html = Nethtml.parse_document (Lexing.from_channel fh) in
+  let html = Nethtml.parse_document (Lexing.from_channel fh)
+                                    ~dtd:Utils.relaxed_html40_dtd in
   close_in fh;
   let to_base = revert_path to_base filename in
   let html = make_local_links_relative to_base html in

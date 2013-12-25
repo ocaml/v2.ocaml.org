@@ -1,4 +1,13 @@
 
+let relaxed_html40_dtd =
+  (* Allow <font> inside <pre> because blogspot uses it! :-( *)
+  let constr = `Sub_exclusions([ "img"; "object"; "applet"; "big"; "small";
+                                 "sub"; "sup"; "basefont"],
+                               `Inline) in
+  let dtd = Nethtml.relaxed_html40_dtd in
+  ("pre", (`Block, constr)) :: List.remove_assoc "pre" dtd
+
+
 module String = struct
   include String
 
