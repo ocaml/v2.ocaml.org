@@ -8,7 +8,8 @@ open Utils
     HTML).  The formatting of the description must then be respected. *)
 let text_description = []
 
-let planet_url = "http://ocaml.org/community/planet.html"
+let planet_url = "/community/planet/"
+let planet_full_url = "http://ocaml.org/community/planet/"
 
 
 (* OPML -- subscriber list
@@ -199,7 +200,8 @@ let html_of_post rss_feed p =
        let url_orig = Neturl.string_of_url u in
        let a_args = ["href", url_orig; "target", "_blank";
                      "title", "Go to the original post"] in
-       let post = Netencoding.Url.encode (planet_url ^ "#" ^ title_anchor) in
+       let post =
+         Netencoding.Url.encode (planet_full_url ^ "#" ^ title_anchor) in
        let google = ["href", "https://plus.google.com/share?url="
                              ^ (Netencoding.Url.encode url_orig);
                      "target", "_blank"; "title", "Share on Google+"] in
@@ -267,7 +269,7 @@ let html_of_post rss_feed p =
    news (only titles are shown, linked to the page with the full story). *)
 let headline_of_post ?(planet=false) ?(img_alt="") ~img p =
   let link =
-    if planet then "/community/planet.html#" ^ digest_post p
+    if planet then planet_url ^ "#" ^ digest_post p
     else match p.link with
          | Some l -> Neturl.string_of_url l
          | None -> "" in
