@@ -1,4 +1,5 @@
 <!-- ((! set title OCaml !)) ((! set core !)) -->
+<!-- ((! set advertise_rss true !)) -->
 
 <header id="home-header">
     <div class="container">
