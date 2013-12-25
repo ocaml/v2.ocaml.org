@@ -246,7 +246,8 @@ let html_of_post rss_feed p =
     if List.mem p.author text_description then
       [Element("pre", ["class", "rss-text"], [Data p.desc])]
     else
-      let desc = Nethtml.parse (new Netchannels.input_string p.desc) in
+      let desc = Nethtml.parse (new Netchannels.input_string p.desc)
+                               ~dtd:Nethtml.relaxed_html40_dtd in
       if length_html desc < 500 then desc
       else toggle (prefix_of_html desc 500) desc ~anchor:title_anchor
   in
