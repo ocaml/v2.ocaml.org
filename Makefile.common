@@ -12,6 +12,8 @@ OCAMLFLAGS = -annot
 OCAMLOPT = ocamlfind ocamlopt $(OCAMLFLAGS)
 OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
 
+DEP_CONTENT_GEN = template/main.mpp script/breadcrumb script/translations
+
 ifeq ("$(OCAML_VERSION)", "3.12.1")
 COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
 COMPILER_LIBS = dynlink.cma toplevellib.cma
@@ -19,9 +21,6 @@ else
 COMPILER_LIBS_PREPARE=
 COMPILER_LIBS = -package dynlink,compiler-libs.toplevel
 endif
-
-ocaml.org:
-	find site -type d | while read l; do mkdir -p "$$(echo "$$l" | sed -e 's/^site/ocaml.org/')" ; done
 
 template/%_code_snippet.html:template/%_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@

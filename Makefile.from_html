@@ -2,7 +2,7 @@
 
 include Makefile.common
 
-ocaml.org/%.html: site/%.html template/main.mpp script/breadcrumb
-	$(MAKE) ocaml.org
+ocaml.org/%.html: site/%.html $(DEP_CONTENT_GEN)
+	mkdir -p "$(shell dirname $@)"
 	${MPP} "$<" -o "$@"
 
