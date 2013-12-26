@@ -24,9 +24,9 @@ MD_FILES = $(patsubst %.md, %.html, \
 HTML_FILES = $(shell find site/ -type f -name '*.html' -printf "ocaml.org/%P\n")
 
 gen_md:
-	$(MAKE) -f Makefile.from_md $(MD_FILES)
+	@$(MAKE) -f Makefile.from_md $(MD_FILES)
 gen_html:
-	$(MAKE) -f Makefile.from_html $(HTML_FILES)
+	@$(MAKE) -f Makefile.from_html $(HTML_FILES)
 
 
 clean:
