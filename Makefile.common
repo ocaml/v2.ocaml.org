@@ -61,7 +61,7 @@ htmlescape:htmlescape.ml
 	$(OCAMLOPT) $< -o $@
 
 TRASH += template/front_code_snippet.html \
-  $(addprefix script/, rss2html ocamltohtml md_preprocess \
+  $(addprefix script/, breadcrumb rss2html ocamltohtml md_preprocess \
   code_top relative_urls)
 
 ocaml.org/index.html:template/front_code_snippet.html script/rss2html
