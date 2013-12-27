@@ -1667,6 +1667,13 @@ let i = inorder example_tree;;
 pre_in_tree p i = example_tree
 ```
 
+Solution using
+[difference lists](https://en.wikipedia.org/wiki/Difference_list).
+
+```ocaml
+  (* solution pending *)
+```
+
 
 #### Dotstring representation of binary trees. (*medium*)
 
