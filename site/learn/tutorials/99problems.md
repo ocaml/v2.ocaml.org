@@ -1608,17 +1608,20 @@ and there are no spaces in the string.
 We consider binary trees with nodes that are identified by single
 lower-case letters, as in the example of the previous problem.
 
-1. Write functions `preorder` and `inorder` that construct the preorder
+1. Write functions
+   [`preorder`](https://en.wikipedia.org/wiki/Tree_traversal#Pre-order)
+   and [`inorder`](https://en.wikipedia.org/wiki/Tree_traversal#In-order_.28symmetric.29)
+   that construct the preorder
  and inorder sequence of a given binary tree, respectively. The
  results should be atoms, e.g. 'abdecfg' for the preorder sequence of
  the example in the previous problem.
-1. Can you use `preorder` from problem part 1. in the reverse
+1. Can you use `preorder` from problem part 1 in the reverse
  direction; i.e. given a preorder sequence, construct a corresponding
  tree? If not, make the necessary arrangements.
 1. If both the preorder sequence and the inorder sequence of the nodes
  of a binary tree are given, then the tree is determined
  unambiguously. Write a function `pre_in_tree` that does the job.
-1. Solve problems 1. to 3. using difference lists. Cool! Use the
+1. Solve problems 1 to 3 using difference lists.  Cool!  Use the
  function `timeit` (defined in problem “[Compare the two methods of
  calculating Euler&#39;s totient function.](#ComparethetwomethodsofcalculatingEuler39stotientfunctioneasy)”) to compare the
  solutions.
@@ -1630,32 +1633,35 @@ for instance `pre_in_tree "aba" "baa"`.
 
 We use lists to represent the result. Note that `preorder` and `inorder` can be made more efficient by making them tail-recursive.
 
-```ocaml
+```ocamltop
 let rec preorder = function
-    | Empty -> []
-    | Node (v, l, r) -> v::((preorder l)@(preorder r))
+  | Empty -> []
+  | Node (v, l, r) -> v :: (preorder l @ preorder r)
 
 let rec inorder = function
-    | Empty -> []
-    | Node (v, l, r) -> ((inorder l)@(v::inorder r))
+  | Empty -> []
+  | Node (v, l, r) -> inorder l @ (v :: inorder r)
 ```
 
 It is not possible to reconstruct a tree from just the preorder sequence. E.g. the trees `Node (1, Node (2, Empty, Empty), Empty)` and `Node (1, Empty, Node (2, Empty, Empty))` have the same preorder sequence `1 2`.
 
-```ocaml
+```ocamltop
 let rec split_pre_in p i x accp acci = match (p, i) with
-    | [], [] -> (List.rev accp, List.rev acci), ([], [])
-    | h1::t1, h2::t2 -> if x=h2 
-                        then (List.tl (List.rev (h1::accp)), t1), 
-                             (List.rev (List.tl (h2::acci)), t2)
-                        else split_pre_in t1 t2 x (h1::accp) (h2::acci)
-    | _ -> ([],[]),([],[]) (* should not happen *)
+  | [], [] -> (List.rev accp, List.rev acci), ([], [])
+  | h1::t1, h2::t2 ->
+     if x=h2 then
+       (List.tl (List.rev (h1::accp)), t1),
+       (List.rev (List.tl (h2::acci)), t2)
+     else
+       split_pre_in t1 t2 x (h1::accp) (h2::acci)
+  | _ -> assert false
 
 let rec pre_in_tree p i= match (p, i) with
-    | [], [] -> Empty
-    | (h1::t1), (h2::t2) -> let (lp, rp), (li, ri) = split_pre_in p i h1 [] []
-                            in Node (h1, pre_in_tree lp li, pre_in_tree rp ri)
-    | _ -> Node (-1, Empty, Empty) (* should not happen *)
+  | [], [] -> Empty
+  | (h1::t1), (h2::t2) ->
+     let (lp, rp), (li, ri) = split_pre_in p i h1 [] [] in
+     Node (h1, pre_in_tree lp li, pre_in_tree rp ri)
+  | _ -> invalid_arg "pre_in_tree"
 ```
 
 
