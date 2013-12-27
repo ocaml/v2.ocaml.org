@@ -1628,8 +1628,34 @@ for instance `pre_in_tree "aba" "baa"`.
 
 <!-- SOLUTION -->
 
+We use lists to represent the result. Note that `preorder` and `inorder` can be made more efficient by making them tail-recursive.
+
 ```ocaml
-  (* solution pending *)
+let rec preorder = function
+    | Empty -> []
+    | Node (v, l, r) -> v::((preorder l)@(preorder r))
+
+let rec inorder = function
+    | Empty -> []
+    | Node (v, l, r) -> ((inorder l)@(v::inorder r))
+```
+
+It is not possible to reconstruct a tree from just the preorder sequence. E.g. the trees `Node (1, Node (2, Empty, Empty), Empty)` and `Node (1, Empty, Node (2, Empty, Empty))` have the same preorder sequence `1 2`.
+
+```ocaml
+let rec split_pre_in p i x accp acci = match (p, i) with
+    | [], [] -> (List.rev accp, List.rev acci), ([], [])
+    | h1::t1, h2::t2 -> if x=h2 
+                        then (List.tl (List.rev (h1::accp)), t1), 
+                             (List.rev (List.tl (h2::acci)), t2)
+                        else split_pre_in t1 t2 x (h1::accp) (h2::acci)
+    | _ -> ([],[]),([],[]) (* should not happen *)
+
+let rec pre_in_tree p i= match (p, i) with
+    | [], [] -> Empty
+    | (h1::t1), (h2::t2) -> let (lp, rp), (li, ri) = split_pre_in p i h1 [] []
+                            in Node (h1, pre_in_tree lp li, pre_in_tree rp ri)
+    | _ -> Node (-1, Empty, Empty) (* should not happen *)
 ```
 
 
