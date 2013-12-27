@@ -51,7 +51,7 @@
                         <img src="/img/community-large.png" alt="Community">
                     </a>
                     <h1><a href="/community/">Community</a></h1>
-                    <p>Read the <a href="/community/planet.html">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community/#ocaml-around-web">around the web</a>.</p>
+                    <p>Read the <a href="/community/planet/">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community/#ocaml-around-web">around the web</a>.</p>
                 </section>
             </div>
             <div id="home-learn">
@@ -63,14 +63,14 @@
         </div>
         <section id="home-news" class="span4 condensed">
             <h1 class="ruled">
-                <a href="/community/planet.html"
+                <a href="/community/planet/"
 				title="See planet posts">News</a>
                 <a href="http://planet.ocaml.org/rss20.xml"
 				title="Planet RSS feed"
 				><img src="/img/rss.png" alt="RSS"></a>
             </h1>
             {{! cmd script/rss2html -n 6 --headlines http://planet.ocaml.org/rss20.xml !}}
-            <p><a href="community/planet.html">More...</a></p>
+            <p><a href="community/planet/">More...</a></p>
         </section>
     </div>
     <div class="row">

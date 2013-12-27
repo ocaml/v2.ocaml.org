@@ -6,7 +6,7 @@
 
 ## Guidelines
 
-Two types of feeds are aggregated by the [OCaml Planet](planet.html):
+Two types of feeds are aggregated by the [OCaml Planet](.):
 personal and institutional.
 
 Personal feeds are for individuals working with OCaml.  Writing

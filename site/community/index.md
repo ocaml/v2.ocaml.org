@@ -109,7 +109,7 @@
             </footer>
         </section>
         <section class="span4 condensed">
-           <h1 class="ruled news"><a href="planet.html"
+           <h1 class="ruled news"><a href="planet/"
 		       title="See planet posts"
 			   >News</a><a href="http://planet.ocaml.org/rss20.xml"
 			   title="Planet RSS feed"
@@ -117,7 +117,7 @@
 		   </h1>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <footer>
-                <p><a href="planet.html">See full list</a></p>
+                <p><a href="planet/">See full list</a></p>
             </footer>
         </section>
     </div>
