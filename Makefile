@@ -19,10 +19,10 @@ syncotherfiles:
 
 # List of files to build, sorted according to their source format
 MD_FILES = $(patsubst site/%, ocaml.org/%, $(patsubst %.md, %.html, \
-  $(shell find site/ -type f -name '*.md' -print)))
+  $(shell find site -type f -name '*.md' -print)))
 
 HTML_FILES = $(patsubst site/%, ocaml.org/%, \
-  $(shell find site/ -type f -name '*.html' -print))
+  $(shell find site -type f -name '*.html' -print))
 
 gen_md:
 	@$(MAKE) -f Makefile.from_md $(MD_FILES)
