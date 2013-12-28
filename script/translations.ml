@@ -15,7 +15,8 @@ let translations path =
   Array.iter (fun fn ->
               let p, l, e = prefix_lang_ext_of_filename fn in
               if p = p0 && e = e0 then
-                let fhtml = if l = "" then p ^ ".html"
+                let fhtml = if l = "" then
+                              if p = "index" then "." else p ^ ".html"
                             else p ^ "." ^ l ^ ".html" in
                 t := (l, fhtml) :: !t
              ) d;
