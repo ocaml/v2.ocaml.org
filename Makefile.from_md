@@ -2,7 +2,7 @@
 
 include Makefile.common
 
-DEP_CONTENT_MD = $(OMD_PP) script/ocamltohtml script/rss2html
+DEP_CONTENT_MD = script/code_top $(OMD_PP) script/ocamltohtml script/rss2html
 
 ocaml.org/%.html: site/%.md $(DEP_CONTENT_GEN) $(DEP_CONTENT_MD)
 	mkdir -p "$(shell dirname $@)"

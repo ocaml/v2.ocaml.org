@@ -22,48 +22,54 @@ COMPILER_LIBS_PREPARE=
 COMPILER_LIBS = -package dynlink,compiler-libs.toplevel
 endif
 
+UTILS_DEP = $(addprefix script/utils., cmi cmo cmx)
+CODE_TYPE_DEP = $(addprefix script/code_types., cmi cmo cmx)
+
 template/%_code_snippet.html:template/%_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@
 
-script/breadcrumb: script/breadcrumb.ml
+script/breadcrumb: script/breadcrumb.ml $(UTILS_DEP)
 	cd script && \
 	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg \
-	  utils.ml breadcrumb.ml
+	  utils.cmx breadcrumb.ml
 
-script/rss2html: script/rss2html.ml script/http.ml
+script/rss2html: script/rss2html.ml script/http.ml $(UTILS_DEP)
 	cd script && \
 	$(OCAMLOPT) -package netstring,equeue-ssl,netclient,rss \
-	  -linkpkg utils.ml http.ml rss2html.ml -o ../"$@"
+	  -linkpkg utils.cmx http.ml rss2html.ml -o ../"$@"
 
 script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
 	cd script && \
-	$(OCAMLOPT) -o ../$@ lexer.ml ocamltohtml.ml && \
-	$(RM) ocamltohtml.o ocamltohtml.cm[ix] lexer.o lexer.cm[ix]
+	$(OCAMLOPT) -o ../$@ lexer.ml ocamltohtml.ml
 
-script/md_preprocess: script/code_types.ml script/code.ml \
-  script/md_preprocess.ml script/code_top
+script/md_preprocess: $(CODE_TYPE_DEP) script/code.ml \
+  script/md_preprocess.ml $(UTILS_DEP)
 	cd script && \
 	$(OCAMLOPT) -o ../"$@" -package omd,str,netstring -linkpkg \
-	  utils.ml code_types.ml code.ml md_preprocess.ml
+	  utils.cmx code_types.cmx code.ml md_preprocess.ml
 
-script/code_top: script/code_types.ml script/code_top.ml
+script/code_top: $(CODE_TYPE_DEP) script/code_top.ml $(UTILS_DEP)
 	cd script && $(COMPILER_LIBS_PREPARE) \
 	$(OCAMLC) -o ../"$@" -package netstring $(COMPILER_LIBS) \
-	  -linkpkg utils.ml code_types.ml code_top.ml
+	  -linkpkg utils.cmo code_types.cmo code_top.ml
 
-script/relative_urls: script/relative_urls.ml
+script/relative_urls: script/relative_urls.ml $(UTILS_DEP)
 	cd script && \
 	$(OCAMLOPT) -package netstring -linkpkg \
-	  utils.ml relative_urls.ml -o ../"$@" && \
-	$(RM) $(addprefix relative_urls., o cmi cmx annot)
+	  utils.cmx relative_urls.ml -o ../"$@"
 
 htmlescape:htmlescape.ml
 	$(OCAMLOPT) $< -o $@
 
-script/translations: script/translations.ml
+script/translations: script/translations.ml $(UTILS_DEP)
 	cd script && \
 	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg \
-	  utils.ml translations.ml
+	  utils.cmx translations.ml
+
+script/%.cmx: script/%.ml script/%.cmi
+	$(OCAMLOPT) -package netstring -c $< -o $@
+script/%.cmi script/%.cmo: script/%.ml
+	$(OCAMLC) -package netstring -c $< -o $@
 
 TRASH += template/front_code_snippet.html \
   $(addprefix script/, breadcrumb rss2html ocamltohtml md_preprocess \
