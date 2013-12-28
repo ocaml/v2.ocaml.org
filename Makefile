@@ -18,10 +18,11 @@ syncotherfiles:
 	  -rltHprogv site/* ocaml.org/
 
 # List of files to build, sorted according to their source format
-MD_FILES = $(patsubst %.md, %.html, \
-  $(shell find site/ -type f -name '*.md' -printf "ocaml.org/%P\n"))
+MD_FILES = $(patsubst site/%, ocaml.org/%, $(patsubst %.md, %.html, \
+  $(shell find site/ -type f -name '*.md' -print)))
 
-HTML_FILES = $(shell find site/ -type f -name '*.html' -printf "ocaml.org/%P\n")
+HTML_FILES = $(patsubst site/%, ocaml.org/%, \
+  $(shell find site/ -type f -name '*.html' -print))
 
 gen_md:
 	@$(MAKE) -f Makefile.from_md $(MD_FILES)
