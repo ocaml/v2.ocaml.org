@@ -28,7 +28,8 @@ template/%_code_snippet.html:template/%_code_snippet.md $(OMD_PP)
 
 script/breadcrumb: script/breadcrumb.ml
 	cd script && \
-	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg utils.ml breadcrumb.ml
+	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg \
+	  utils.ml breadcrumb.ml
 
 script/rss2html: script/rss2html.ml script/http.ml
 	cd script && \
@@ -62,7 +63,8 @@ htmlescape:htmlescape.ml
 
 script/translations: script/translations.ml
 	cd script && \
-	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg translations.ml
+	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg \
+	  utils.ml translations.ml
 
 TRASH += template/front_code_snippet.html \
   $(addprefix script/, breadcrumb rss2html ocamltohtml md_preprocess \
