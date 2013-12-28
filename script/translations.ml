@@ -1,5 +1,10 @@
 open Printf
 
+(* Translate the language 2 letters to HTML if resired *)
+let lang_to_html l =
+  if l = "zh" then "中文"
+  else l
+
 let prefix_lang_ext_of_fname fn =
   try
     let i0 = String.rindex fn '.' in
@@ -23,8 +28,8 @@ let translations path =
   let t = List.sort (fun (l1,_) (l2,_) -> String.compare l1 l2) !t in
   (* Convert to HTML *)
   let to_html (l, fn) =
-    if l = l0 then sprintf "<li class=\"acrive\">%s</li>\n" l
-    else sprintf "<li><a href=\"%s\">%s</a></li>\n" fn l in
+    if l = l0 then sprintf "<li class=\"acrive\">%s</li>\n" (lang_to_html l)
+    else sprintf "<li><a href=\"%s\">%s</a></li>\n" fn (lang_to_html l) in
   String.concat "" (List.map to_html t)
 
 
