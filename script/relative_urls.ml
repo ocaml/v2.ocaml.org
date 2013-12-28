@@ -70,6 +70,8 @@ let process_html to_base filename =
   let html = make_local_links_relative to_base html in
   let fh = open_out filename in
   let out = new Netchannels.output_channel fh in
+  (* Nethtml does not represent <!DOCTYPE HTML>, add it. *)
+  out#output_string "<!DOCTYPE HTML>\n";
   Nethtml.write out html;
   out#close_out()
 
