@@ -37,6 +37,7 @@ database servers. Simply run:
 
     make
 
+(or `make -j` for a faster build on multicore machines).
 This will generate a new folder `ocaml.org` that contains the full
 website.  Note that building the site will attempt to connect to the
 internet to download the news and latest email conversations.  As
