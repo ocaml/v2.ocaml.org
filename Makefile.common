@@ -60,9 +60,13 @@ script/relative_urls: script/relative_urls.ml
 htmlescape:htmlescape.ml
 	$(OCAMLOPT) $< -o $@
 
+script/translations: script/translations.ml
+	cd script && \
+	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg translations.ml
+
 TRASH += template/front_code_snippet.html \
   $(addprefix script/, breadcrumb rss2html ocamltohtml md_preprocess \
-  code_top relative_urls)
+  code_top relative_urls translations)
 
 ocaml.org/index.html:template/front_code_snippet.html script/rss2html
 ocaml.org/community/index.html:script/rss2html

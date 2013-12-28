@@ -1,10 +1,18 @@
 <!--								-*-html-*- -->
 {{!z ifndef nobreadcrumb
 <div class="row">
-  <div class="span12">
-    <ol class="breadcrumb">
-      {{! cmd script/breadcrumb "((! get filename !))" !}}
-    </ol>
-  </div>
+  <ul class="translations">
+    {{! cmd script/translations "((! get filename !))" !}}
+  </ul>
+  <ol class="breadcrumb">
+    {{! cmd script/breadcrumb "((! get filename !))" !}}
+  </ol>
+</div>
+z!}}
+{{!z ifdef nobreadcrumb
+<div class="row">
+  <ul class="translations">
+    {{! cmd script/translations "((! get filename !))" !}}
+  </ul>
 </div>
 z!}}
