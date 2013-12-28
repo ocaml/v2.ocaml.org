@@ -13,7 +13,6 @@
     <div id="content-primary" class="span8">
       {{! cat template/tryocaml.html !}}
       ((! input template/running-header.mpp !))
-      </div>
       <div id='main-contents' class="content">
         {{! get contents !}}
       </div>
