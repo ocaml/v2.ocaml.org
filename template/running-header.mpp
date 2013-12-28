@@ -1,0 +1,18 @@
+<!--								-*-html-*- -->
+<div class="running-header">
+  <div class="row">
+    {{!z ifndef nobreadcrumb
+    <ul class="translations">
+      {{! cmd script/translations "((! get filename !))" !}}
+    </ul>
+    <ol class="breadcrumb">
+      {{! cmd script/breadcrumb "((! get filename !))" !}}
+    </ol>
+    z!}}
+    {{!z ifdef nobreadcrumb
+    <ul class="translations">
+      {{! cmd script/translations "((! get filename !))" !}}
+    </ul>
+    z!}}
+  </div>
+</div>

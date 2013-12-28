@@ -260,6 +260,18 @@ p + div.lstlisting {
   height: 100%;
 }
 
+.running-header {
+  margin-left: 20px; /* as span... */
+}
+
+.span8 .running-header {
+  margin-bottom: 8px;
+}
+
+.span12 .running-header {
+  margin-bottom: -10px;
+}
+
 /* Translations (alike breadcrumb) */
 .translations {
   float: right;
@@ -274,7 +286,6 @@ p + div.lstlisting {
   border: 0;
   padding: 0;
   margin: -10px 1ex 0px 0px;
-  *z-index: 1;
 }
 .translations:before { content: "["; }
 .translations:after { content: "]"; }

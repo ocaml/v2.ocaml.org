@@ -12,8 +12,7 @@
     </div>
     <div id="content-primary" class="span8">
       {{! cat template/tryocaml.html !}}
-      <div class="span8">
-	((! input template/breadcrumb.mpp !))
+      ((! input template/running-header.mpp !))
       </div>
       <div id='main-contents' class="content">
         {{! get contents !}}
@@ -24,9 +23,7 @@
     <div class="span1"></div>
     <div id="content-primary" class="span10">
       {{! cat template/tryocaml.html !}}
-      <div class="span10">
-	((! input template/breadcrumb.mpp !))
-      </div>
+      ((! input template/running-header.mpp !))
       <div id='main-contents' class="content">
         {{! get contents !}}
       </div>
@@ -36,9 +33,7 @@
     {{!y ifndef center
     <div id="content-primary" class="span12">
       {{! cat template/tryocaml.html !}}
-      <div class="span12">
-	((! input template/breadcrumb.mpp !))
-      </div>
+      ((! input template/running-header.mpp !))
       <div id='main-contents' class="content">
         {{! get contents !}}
       </div>
