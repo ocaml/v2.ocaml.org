@@ -1,8 +1,10 @@
 open Printf
 
-(* Translate the language 2 letters to HTML if resired *)
+(* Translate the language to HTML.  [l] is a 2 letter code:
+   https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes *)
 let lang_to_html l =
-  if l = "zh" then "中文"
+  if l = "" then "en" (* default language *)
+  else if l = "zh" then "中文"
   else l
 
 let prefix_lang_ext_of_fname fn =
@@ -13,9 +15,9 @@ let prefix_lang_ext_of_fname fn =
       let i1 = String.rindex_from fn (i0 - 1) '.' in
       String.sub fn 0 i1, String.sub fn (i1 + 1) (i0 - i1 - 1), ext
     with Not_found ->
-      String.sub fn 0 i0,  "en" (* default language *), ext
+      String.sub fn 0 i0,  "", ext
   with Not_found ->
-    fn, "en", ""
+    fn, "", ""
 
 let translations path =
   let p0, l0, e0 = prefix_lang_ext_of_fname (Filename.basename path) in
@@ -23,7 +25,10 @@ let translations path =
   let t = ref [] in (* (lang, fname) *)
   Array.iter (fun fn ->
               let p, l, e = prefix_lang_ext_of_fname fn in
-              if p = p0 && e = e0 then t := (l, fn) :: !t;
+              if p = p0 && e = e0 then
+                let fhtml = if l = "" then p ^ ".html"
+                            else p ^ "." ^ l ^ ".html" in
+                t := (l, fhtml) :: !t
              ) d;
   let t = List.sort (fun (l1,_) (l2,_) -> String.compare l1 l2) !t in
   (* Convert to HTML *)
