@@ -269,7 +269,7 @@ p + div.lstlisting {
 }
 
 .span12 .running-header {
-  margin-bottom: -10px;
+  margin-bottom: 0px;
 }
 
 /* Translations (alike breadcrumb) */
