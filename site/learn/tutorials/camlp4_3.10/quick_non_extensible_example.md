@@ -1,7 +1,8 @@
-<!-- ((! set title Camlp4 3.10   !)) ((! set learn !)) -->
+<!-- ((! set title Quick Non Extensible Example !)) ((! set learn !)) -->
 <!-- ((! set center !)) -->
 
-# Camlp4 3.10: quick non extensible example
+# Quick Non Extensible Example
+
 quick_non_extensible_example.ml
 
 ```ocaml
@@ -14,12 +15,12 @@ open Camlp4.PreCast
 open Syntax
 let foo = Gram.Entry.mk "foo"
 let bar = Gram.Entry.mk "bar"
-EXTEND Gram
-  GLOBAL: foo bar;
-  foo: [ [ "foo"; i = LIDENT; b = bar -> Foo(i, b) ] ];
-  bar: [ [ "?" -> A | "." -> B ] ];
-END;;
-Gram.parse_string foo (Loc.mk "<string>") "foo x?" = Foo("x", A)
+let () =
+  EXTEND Gram
+    GLOBAL: foo bar;
+    foo: [ [ "foo"; i = LIDENT; b = bar -> Foo(i, b) ] ];
+    bar: [ [ "?" -> A | "." -> B ] ];
+  END;;
+Gram.parse_string foo (Loc.mk "<string>") "foo x?" = Foo("x", A);;
 DELETE_RULE Gram foo: "foo"; LIDENT; bar END
-
 ```

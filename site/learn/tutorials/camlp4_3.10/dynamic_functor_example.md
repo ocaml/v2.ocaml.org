@@ -1,7 +1,8 @@
-<!-- ((! set title Camlp4 3.10  !)) ((! set learn !)) -->
+<!-- ((! set title Dynamic Functor Example !)) ((! set learn !)) -->
 <!-- ((! set center !)) -->
 
-# Camlp4 3.10 dynamic_functor_example.ml
+# Dynamic Functor Example
+
 dynamic_functor_example.ml:
 
 ```ocaml
@@ -20,16 +21,16 @@ module Make (Syntax : Sig.Syntax) = struct
   let foo = Gram.Entry.mk "foo"
   let bar = Gram.Entry.mk "bar"
   open Camlp4.Sig
-  EXTEND Gram
-    GLOBAL: foo bar;
-    foo: [ [ "foo"; i = LIDENT; b = bar -> Foo(i, b) ] ];
-    bar: [ [ "?" -> A | "." -> B ] ];
-  END;;
+  let () =
+    EXTEND Gram
+      GLOBAL: foo bar;
+      foo: [ [ "foo"; i = LIDENT; b = bar -> Foo(i, b) ] ];
+      bar: [ [ "?" -> A | "." -> B ] ];
+    END;;
   Gram.parse_string foo (Loc.mk "<string>") "foo x?" = Foo("x", A)
   DELETE_RULE Gram foo: "foo"; LIDENT; bar END
 end
 
 (* Register it to make it usable via the camlp4 binary. *)
 module M = Register.SyntaxExtension(Id)(Make)
-
 ```
