@@ -79,3 +79,16 @@ ocaml.org/index.html:template/front_code_snippet.html script/rss2html
 ocaml.org/community/index.html:script/rss2html
 ocaml.org/community/planet.html:script/rss2html
 ocaml.org/learn/index.html: template/learn_code_snippet.html
+
+# Camlp4 tutorials
+CAMLP4_TUT_DIR = learn/tutorials/camlp4_3.10
+CAMLP4_TUT_SOURCES = \
+  $(addprefix site/$(CAMLP4_TUT_DIR)/pa_foreach, .ml 2.ml 3.ml)
+ocaml.org/$(CAMLP4_TUT_DIR)/foreach_tutorial.html: \
+  $(CAMLP4_TUT_SOURCES:.ml=.cmo)
+
+site/$(CAMLP4_TUT_DIR)/%.cmo: site/$(CAMLP4_TUT_DIR)/%.ml
+	$(OCAMLC) -I +camlp4 camlp4lib.cma -pp camlp4orf -c $< -o $@
+
+TRASH += $(CAMLP4_TUT_SOURCES:.ml=.cmi) $(CAMLP4_TUT_SOURCES:.ml=.cmo) \
+  $(CAMLP4_TUT_SOURCES:.ml=.annot)

@@ -2,7 +2,7 @@
 
 *Table of contents*
 
-# Camlp4 3.10 Foreach Tutorial
+# Foreach Tutorial (Camlp4 3.10)
 
 This is a tutorial that guides you, step by step, how to write syntax
 extension using Camlp4 in Objective CAML. The example we present in this
@@ -113,7 +113,7 @@ let () =
 ```
 
 For what follows, it is assumed that this code is written to a file
-`pa_foreach.ml`.
+[pa_foreach.ml](pa_foreach.ml).
 
 All the prerequisites are provided by the module
 `Camlp4.PreCast`, including the `Syntax` module
@@ -133,28 +133,26 @@ compiled using the command:
 ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach.ml
 ```
 
-<ul><li>
 FYI: Camlp4 is complicated to learn because a syntax extension consists
 of two domain-specific languages that are foreign to OCaml: parsing and
 code embedding. To add insult to injury, Camlp4 has a
-"<a href="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html" class="external" title="http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html">revised
-syntax</a>" dialect of OCaml that can be used, in addition to the
+[revised syntax](http://caml.inria.fr/pub/docs/manual-camlp4/manual007.html)
+dialect of OCaml that can be used, in addition to the
 original OCaml dialect, both as the host (top-level) language and as the
 embedded language. This tutorial uses original OCaml as the host
 language and revised dialect as the embedded language. This choice is
 reflected in the camlp4 executable that we use here,
 `camlp4orf`. See
-<a href="http://brion.inria.fr/gallium/index.php/Using_Camlp4" class="external" title="http://brion.inria.fr/gallium/index.php/Using_Camlp4">Using
-Camlp4</a> for the explanation and additional options.
-</li></ul>
+[Using Camlp4](http://brion.inria.fr/gallium/index.php/Using_Camlp4)
+for the explanation and additional options.
 
 We can verify that it works:
 
-```ocaml
+```ocamltop
 #load "camlp4o.cma";;
 (* Add directory where the syntax extension is compiled to the module
    path (not required if pa_foreach.cmo is in the current directory). *)
-#directory "_build/src/html/tutorials/camlp4_3.10/";;
+#directory "site/learn/tutorials/camlp4_3.10/";;
 #load "pa_foreach.cmo";;
 for s in List ["hello"; "world"] do print_endline s done;;
 ```
@@ -169,12 +167,11 @@ for (k, v) in List [(0, "hello"); (1, "world")] do
 done
 ```
 
-```ocaml
-And it doesn't support `Hashtbl.iter` yet because, so far, we
+It doesn't support `Hashtbl.iter` yet because, so far, we
 can only generate functions with one argument. `Hashtbl.iter`
 passes two arguments to the function, the key and the value. We will
 address these issues in the next section.
-```
+
 
 ## Supporting Multiple Patterns
 
@@ -182,36 +179,34 @@ We're now beginning to use Camlp4 features that are less documented. It
 is useful to keep in mind that syntax extension <em>is</em> modifying
 existing parsing rules, and we can't do without an understanding of how
 existing rules work. It is recommended that you take a quick look at two
-files in the OCaml source distribution under
-`ocaml-3.10.0/camlp4/Camlp4Parsers`:
+files in the source distribution under
+[camlp4/Camlp4Parsers](https://github.com/ocaml/camlp4/tree/trunk/camlp4/Camlp4Parsers):
 
-<ul><li>
-`Camlp4OCamlRevisedParser.ml`; this provides the bulk of the
-syntax rules.
-</li>
-<li>
-`Camlp4OCamlParser.ml` implicitly borrows most of its rules
-from `Camlp4OCamlRevisedParser`, but clears some of the rules
-that are particular to the revised syntax and replaces them with the
-original OCaml syntax.
-</li></ul>
+- [Camlp4OCamlRevisedParser.ml](https://github.com/ocaml/camlp4/blob/trunk/camlp4/Camlp4Parsers/Camlp4OCamlRevisedParser.ml);
+  this provides the bulk of the syntax rules.
+- [Camlp4OCamlParser.ml](https://github.com/ocaml/camlp4/blob/trunk/camlp4/Camlp4Parsers/Camlp4OCamlParser.ml)
+  implicitly borrows most of its rules
+  from `Camlp4OCamlRevisedParser`, but clears some of the rules
+  that are particular to the revised syntax and replaces them with the
+  original OCaml syntax.
 
 From these files, we can see that `ipatt` rule supplies what
 we want for matching patterns, and `LIST1` modifier allows us
 to take one or more patterns. There is also a `LIST0`
-modifier for "zero or more" matching.
+modifier for "zero or more" matching.  Here is our second version,
+[pa_foreach2.ml](pa_foreach2.ml), of the syntax extension:
 
 ```ocaml
 open Camlp4.PreCast
 open Syntax
-
+  
 let rec mkfun _loc patts e =
   match patts with
   | p :: patts ->
       <:expr< fun $p$ -> $mkfun _loc patts e$ >>
   | [] ->
       e
-
+  
 let () =
   EXTEND Gram
     expr: LEVEL "top"
@@ -242,22 +237,22 @@ We can verify that pattern works:
 ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach2.ml
 ```
 
-```ocaml
+```ocamltop
 #load "pa_foreach2.cmo";;
 for (k, v) in List [(0, "hello"); (1, "world")] do
-  Printf.printf "%d: %sn" k v
+  Printf.printf "%d: %s\n" k v
 done;;
 ```
 
 and that multiple arguments work:
 
-```ocaml
+```ocamltop
 let tbl = Hashtbl.create 3;;
-Hashtbl.add tbl 0 "hello";;
-Hashtbl.add tbl 1 "world";;
+Hashtbl.add tbl 0 "hello";
+Hashtbl.add tbl 1 "world";
 Hashtbl.add tbl 2 "foobar";;
 for k v in Hashtbl tbl do
-  Printf.printf "%d: %sn" k v
+  Printf.printf "%d: %s\n" k v
 done;;
 ```
 
@@ -269,48 +264,45 @@ section, we'll discuss solutions to these problems.
 The first problem we find out is that foreach body is supposed to be a
 sequence, but that doesn't work:
 
-```ocaml
-# for s in List ["hello"; "world"] do print_endline s; () done;;
-Failure: "expr; expr: not allowed here, use do {...} or [|...|] to surround them"
+```ocamltop
+for s in List ["hello"; "world"] do print_endline s; () done;;
 ```
+<!-- Failure: "expr; expr: not allowed here, use do {...} or [|...|] to surround them" -->
 
 The problem is due to the desugared form, which becomes:
 
 ```ocaml
-  List.iter (fun s -> print_endline s; ()) ["hello"; "world"]
+List.iter (fun s -> print_endline s; ()) ["hello"; "world"]
 ```
 
 and this is ambiguous. Do we interpret the expression 
 `fun s -> print_endline s; ()` as 
 `(fun s -> print_endline s); ()`
 or `fun s -> (print_endline (); ())`? 
-In order to avoid ambiguity, we wrap the sequence using `do {*s**e**q*}`
+In order to avoid ambiguity, we wrap the sequence using `do {…}`
 when it is a sequence. The function `mksequence'` in
-`Camlp4OCamlRevisedParser.ml` provides some inspiration how
+[Camlp4OCamlRevisedParser.ml](https://github.com/ocaml/camlp4/blob/trunk/camlp4/Camlp4Parsers/Camlp4OCamlRevisedParser.ml)
+provides some inspiration how
 to handle this.
 
-<ul><li>
 FYI: see
-<a href="http://caml.inria.fr/pub/ml-archives/caml-list/2007/07/40966461d8ade5dcee6790fa32cc9983.en.html" title="http://caml.inria.fr/pub/ml-archives/caml-list/2007/07/40966461d8ade5dcee6790fa32cc9983.en.html">this
-post</a> by Nicolas Pouillard for a discussion of a similar issue.
-</li></ul>
+[this post](http://caml.inria.fr/pub/ml-archives/caml-list/2007/07/40966461d8ade5dcee6790fa32cc9983.en.html)
+by Nicolas Pouillard for a discussion of a similar issue.
 
 We also notice that the original for-loop syntax ceases working:
 
-```ocaml
-# for i = 0 to 5 do print_int i done;;
-Parse error: [ipatt] or [a_LIDENT] expected after "for" (in [expr])
+```ocamltop
+for i = 0 to 5 do print_int i done;;
 ```
-
-<!-- FIXME: If one tries to eval the code, an error is raised by
-     Errors.report_error -->
+<!-- Parse error: [ipatt] or [a_LIDENT] expected after "for" (in [expr]) -->
 
 It turns out that the new rule we add for `for` doesn't play nice with
 the original rule. The solution is to rewrite the original rule so it
 becomes compatible with the new rule.
 
 
-The code listing that addresses these issues can be found below:
+The code listing, [pa_foreach3.ml](pa_foreach3.ml), that addresses
+these issues can be found below:
 
 ```ocaml
 open Camlp4.PreCast
@@ -333,7 +325,8 @@ let lident_of_patt p =
 let () =
   DELETE_RULE Gram
   expr:
-    "for"; a_LIDENT; "="; sequence; direction_flag; sequence; "do"; do_sequence
+    "for"; a_LIDENT; "="; sequence; direction_flag; sequence;
+    "do"; do_sequence
   END;
 
   EXTEND Gram
@@ -345,15 +338,14 @@ let () =
              $mksequence _loc e1$ $to:df$ $mksequence _loc e2$
              do $seq$ done
          >>
-      | "for"; p = ipatt; patts = LIST0 ipatt; "in"; m = a_UIDENT; e = expr;
-        "do"; seq = do_sequence ->
+      | "for"; p = ipatt; patts = LIST0 ipatt; "in";
+	    m = a_UIDENT; e = expr; "do"; seq = do_sequence ->
          let patts = p :: patts in
          let f = mkfun _loc patts seq in
          <:expr< $uid:m$.iter $f$ $e$ >>
       ] ];
   END
 ```
-
 
 In order for alternative rules to "fall through" correctly, rules must
 share a common prefix, and the rest of the non-terminals must be
@@ -389,16 +381,16 @@ We can now verify that everything works as expected.
 $ ocamlc -I +camlp4 camlp4lib.cma -pp camlp4orf -c pa_foreach3.ml
 ```
 
-```ocaml
+```ocamltop
 #load "pa_foreach3.cmo";;
 let tbl = Hashtbl.create 3;;
-Hashtbl.add tbl 0 "hello";;
-Hashtbl.add tbl 1 "world";;
+Hashtbl.add tbl 0 "hello";
+Hashtbl.add tbl 1 "world";
 Hashtbl.add tbl 2 "foo";;
-for k v in Hashtbl tbl do Printf.printf "%d: %sn" k v done;;
+for k v in Hashtbl tbl do Printf.printf "%d: %s\n" k v done;;
 for i = 0 to 5 do print_int i done;;
 for k, v in List [0, "hello"; 1, "world"; 2, "foo"] do
-  Printf.printf "%d: %sn" k v
+  Printf.printf "%d: %s\n" k v
 done;;
 ```
 
@@ -409,6 +401,7 @@ syntax, then explored further refinements to that idea that works around
 parsing issues both in embedded code and in the rules.
 
 This tutorial is written by [Likai Liu](http://cs.likai.org/).
-The text has not been peer reviewed, so use this at your own
-risk. Questions and comments are welcome.
+The text has been barely peer reviewed, so use this at your own
+risk.  [Questions and comments](https://github.com/ocaml/ocaml.org/issues)
+are welcome.
 

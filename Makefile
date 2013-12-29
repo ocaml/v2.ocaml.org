@@ -15,6 +15,7 @@ staging:
 
 syncotherfiles:
 	rsync --exclude '*~' --exclude '*.md' --exclude '*.html' \
+	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
 	  -rltHprogv site/* ocaml.org/
 
 # List of files to build, sorted according to their source format
