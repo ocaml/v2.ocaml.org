@@ -100,7 +100,9 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
   font-weight: normal;
 }
 .type { color: #c746cc }
-.string { color: rgb(176, 88, 119) }
+.string, .string .keyword, .string .keywordsign, .string .constructor {
+  color: rgb(176, 88, 119)
+}
 .warning { color : Red ; font-weight : bold }
 .info { margin-left : 3em; margin-right: 3em }
 .param_info { margin-top: 4px; margin-left : 3em; margin-right : 3em }
