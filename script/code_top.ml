@@ -77,17 +77,26 @@ let eval phrase =
       Normal(exec_output, out, err)
     with
     | e ->
-       let _ = get_stdout_stderr_and_restore () in
+       let out, err = get_stdout_stderr_and_restore () in
        let backtrace_enabled = Printexc.backtrace_status () in
        if not backtrace_enabled then Printexc.record_backtrace true;
        (try Errors.report_error Format.str_formatter e
         with exn ->
           eprintf "Code_top.toploop_eval: the following error was raised \
-                   during error reporting for %S:\n%s\nError backtrace:\n%s\n%!"
-                  phrase (Printexc.to_string exn) (Printexc.get_backtrace ());
+                   during error reporting for %S (normal if the problem \
+                   occurred during preprocessing):\n%s\nError backtrace: %s\n\
+                   stdout: %S\nstderr: %S\n%!"
+                  phrase (Printexc.to_string exn) (Printexc.get_backtrace ())
+                  out err;
        );
        if not backtrace_enabled then Printexc.record_backtrace false;
-       Error(Format.flush_str_formatter ())
+       let error = Format.flush_str_formatter () in
+       (* If [Errors.report_error] failed (e.g., in case the failure
+          happens in a camlp4 extension), use [out] and [err]. *)
+       let error = if error <> "" then error
+                   else if err <> "" then err
+                   else out in
+       Error error
   )
 
 
