@@ -15,6 +15,7 @@ Building the html pages requires:
 * rsync
 * GNU make
 * ocaml >= 3.12.0 (the presence of ocamlopt is required)
+* camlp4orf (comes with the compiler in OPAM, in `camlp4-extra` in Debian)
 * ocamlfind
 * mpp >= 0.1.2
 * omd >= 0.7.5
