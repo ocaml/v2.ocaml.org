@@ -261,13 +261,14 @@ p + div.lstlisting {
   width: 100%;
   height: 100%;
 }
-
-.running-header {
-  margin-left: 20px; /* as span... */
-}
-
-.span8 .running-header {
-  margin-bottom: 8px;
+@media (min-width: 768px) {
+  /* When TOC is on the side. */
+  .running-header {
+    margin-left: 20px; /* as span... */
+  }
+  .span8 .running-header {
+    margin-bottom: 8px;
+  }
 }
 
 .span12 .running-header {

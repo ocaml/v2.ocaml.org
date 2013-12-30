@@ -2,6 +2,10 @@
 <div class="container">
   <div class="row">
     {{!x ifdef toc
+    <div class="span4"></div>
+    <div class="span8">
+      ((! input template/running-header.mpp !))
+    </div>
     <div class="span4">
       <nav id="nav-secondary">
         <ul class="nav nav-list">
@@ -12,7 +16,6 @@
     </div>
     <div id="content-primary" class="span8">
       {{! cat template/tryocaml.html !}}
-      ((! input template/running-header.mpp !))
       <div id='main-contents' class="content">
         {{! get contents !}}
       </div>
