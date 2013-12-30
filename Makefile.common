@@ -12,7 +12,8 @@ OCAMLFLAGS = -annot
 OCAMLOPT = ocamlfind ocamlopt $(OCAMLFLAGS)
 OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
 
-DEP_CONTENT_GEN = template/main.mpp script/breadcrumb script/translations
+DEP_CONTENT_GEN = template/main.mpp template/footer.mpp \
+  script/breadcrumb script/translations
 
 ifeq ("$(OCAML_VERSION)", "3.12.1")
 COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
