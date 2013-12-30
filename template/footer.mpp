@@ -1,0 +1,40 @@
+<!-- footer							-*-html-*- -->
+<div class="entry">
+  <h1><a href="/learn/">Learn</a></h1>
+  <ul>
+    <li><a href="/learn/taste.html">Code examples</a></li>
+    <li><a href="/learn/tutorials/">Tutorials</a></li>
+    <li><a href="/learn/books.html">Books</a></li>
+    <li><a href="/learn/success.html">Success stories</a></li>
+    <li><a href=""></a></li>
+  </ul>
+</div>
+  <div class="entry">
+    <h1><a href="/docs/">Documentation</a></h1>
+    <ul>
+      <li><a href="http://caml.inria.fr/pub/docs/manual-ocaml/">Manual</a></li>
+      <li><a href="https://github.com/ocaml/ocaml">Compiler sources</a></li>
+      <li><a href="https://opam.ocaml.org/pkg/">Packages</a></li>
+    </ul>
+  </div>
+  <div class="entry">
+    <h1><a href="/community/">Community</a></h1>
+    <ul>
+      <li><a href="/community/mailing_lists.html">Mailing Lists</a></li>
+      <li><a href="/meetings/">Meetings</a></li>
+      <li><a href="/community/planet/">News</a></li>
+      <li><a href="/community/support.html">Support</a></li>
+      <li><a href="http://caml.inria.fr/mantis/my_view_page.php"
+	     target="_blank" >Bug tracker</a></li>
+    </ul>
+  </div>
+  <div class="entry">
+    <h1>Contact</h1>
+    <ul>
+      <li><a href="https://github.com/ocaml/ocaml.org/issues"
+	     target="_blank" >Feedback</a></li>
+      <li><a href="about.html">About this site</a></li>
+    <li><a href="https://github.com/ocaml/ocaml.org/"
+	   target="_blank" >Find us on GitHub</a></li>
+    </ul>
+  </div>

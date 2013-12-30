@@ -57,16 +57,9 @@
     </nav>
     {{! ifdef core ((! get contents !)) !}}
     {{! else ((! input template/core.mpp !)) !}}
-    <footer id="footer" class="navbar navbar-inverse"
-	    style="margin-top: 4ex; margin-bottom: 0" >
+    <footer id="footer" class="navbar navbar-inverse">
       <div class="navbar-inner">
-        <div class="container-fluid">
-          <ul class="nav pull-right">
-            <li><a href="https://github.com/ocaml/ocaml.org/issues">Feedback</a></li>
-            <li><a href="https://github.com/ocaml/ocaml.org/issues">Contact us</a></li>
-            <li><a href="https://github.com/ocaml/ocaml.org/">Find us on GitHub</a></li>
-          </ul>
-        </div>
+	((! input template/footer.mpp !))
       </div>
     </footer>
     <!-- Load javascript from CDN -->

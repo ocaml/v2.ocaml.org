@@ -301,7 +301,8 @@ p + div.lstlisting {
   text-shadow: 0 1px 0 #ffffff;
 }
 
-/* Two columns mode */
+/* Two columns mode
+ ***********************************************************************/
 .begin_two_columns {
   clear: both;
 }
@@ -319,4 +320,47 @@ p + div.lstlisting {
     clear: both;
     height: 0px;
   }
+}
+
+/* Footer
+ ***********************************************************************/
+/* Footer */
+#footer {
+  font-size: 95%;
+  margin-top: 4ex;
+  margin-bottom: 0;
+  height: auto;
+  text-align: right;
+}
+
+#footer .entry {
+  display: inline-block;
+  /* text-align: left; */
+  vertical-align: text-top;
+  min-width: 22%;
+}
+
+@media (max-width: 767px) {
+  #footer .entry { min-width: 47%; }
+}
+#footer h1 {
+  font-size: 109%;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+#footer h1, #footer h1 a {
+  color: #FFFFFF;
+}
+#footer ul {
+  margin-left: 0;
+}
+#footer li {
+  list-style: none;
+}
+#footer li a {
+  padding: 0;
+  color: #cbcbcb;
+}
+#footer li a:hover {
+  color: #FFFFFF;
 }
