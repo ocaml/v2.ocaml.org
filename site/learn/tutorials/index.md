@@ -1,4 +1,5 @@
 <!-- ((! set title OCaml Tutorials !)) ((! set learn !)) -->
+<!-- {{! input template/macros.mpp !}} -->
 
 # OCaml tutorials
 
@@ -8,6 +9,7 @@ topics are needed. Please contribute by visiting this project's repo on
 [GitHub](https://github.com/ocaml/ocaml.org); you may use the issue
 tracker there to request or offer new tutorials. Thanks!
 
+{{! get begin_two_columns !}}
 * [Basics](basics.html)
 * [Structure of OCaml Programs](structure_of_ocaml_programs.html)
 * [Maps (Dictionaries)](map.html)
@@ -24,11 +26,14 @@ tracker there to request or offer new tutorials. Thanks!
 * [If Statements, Loops, and
  Recursion](if_statements_loops_and_recursion.html)
 * [Labels](labels.html)
-* [Objects](objects.html)
 * [Common error messages](common_error_messages.html)
 * [OCaml Programming Guidelines](guidelines.html)
 * [Formatting and wrapping text](format.html)
-* [99 Problems [solved] in OCaml](99problems.html)
+* [99 Problems (solved) in OCaml](99problems.html)
+
+((! get second_of_two_columns !))
+
+* [Objects](objects.html)
 * [Introduction to Gtk](introduction_to_gtk.html)
 * [Garbage Collection](garbage_collection.html)
 * [Performance and Profiling](performance_and_profiling.html)
@@ -43,7 +48,10 @@ tracker there to request or offer new tutorials. Thanks!
 * [Filenames and extensions](filenames.html)
 * [Streams](streams.html)
 * [Stream Expressions](stream_expressions.html)
-* [<em>Acknowledgements</em>](acknowledgements.html)
+* [_Acknowledgements_](acknowledgements.html)
+
+((! get end_two_columns !))
+
 
 ## External Links
 

@@ -1,0 +1,4 @@
+{{! set begin_two_columns <div class="two-columns">
+  <div class="two-columns-first"> !}}
+{{! set second_of_two_columns </div><div class="two-columns-second"> !}}
+{{! set end_two_columns </div></div><div class="two-columns-end"></div> !}}

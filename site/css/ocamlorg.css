@@ -299,3 +299,23 @@ p + div.lstlisting {
   *zoom: 1;
   text-shadow: 0 1px 0 #ffffff;
 }
+
+/* Two columns mode */
+.begin_two_columns {
+  clear: both;
+}
+/* Same point where the 3 columns (say on "Learn") are next to each other. */
+@media (min-width: 768px) {
+  .two-columns-first {
+    width: 49%;
+    float: left;
+  }
+  .two-columns-second {
+    width: 49%;
+    float: right;
+  }
+  .two-columns-end {
+    clear: both;
+    height: 0px;
+  }
+}
