@@ -1,9 +1,9 @@
-<!-- ((! set title CompCert award !)) -->
+<!-- ((! set title CompCert award !)) ((! set community !)) -->
 <!-- ((! set date December 19, 2012 !)) -->
 
-#  Microsoft Research: 2012 Verified Software Milestone Award Winner
+# Microsoft Research: 2012 Verified Software Milestone Award Winner
 
-_Date: December 19, 2012_  
+_Date: ((! get date !))_  
 _Press Release_
 
 We are delighted to announce that the recipient of the 2012 Microsoft
