@@ -387,13 +387,12 @@ SOLUTION
 
 > ```ocamltop
 > let slice list i k =
->   let rec split acc i = function
->     | [] -> (acc, []) 
->     | hd::tl as l -> if i = 0 then (acc, l)
->       else split (hd::acc) (i - 1) tl in
->   let (_, r) = split [] i list in
->   let (l, _) = split [] (k - i + 1) r in
->   List.rev l
+>   let rec aux acc i k cur = function
+>     | [] -> acc
+>     | h :: t -> if cur < i then aux acc i k (cur+1) t
+>         else if cur <= k then aux (h::acc) i k (cur+1) t
+>         else acc in
+>   List.rev (aux [] i k 0 list)
 > ```
 
 ```ocamltop
