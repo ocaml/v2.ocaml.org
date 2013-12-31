@@ -137,6 +137,16 @@ a.planet-toggle:hover, a.planet-toggle:focus {
   background: #c77a27;
 }
 
+h1.planet { line-height: 24px; }
+
+h1.planet a {
+  line-height: 35px;
+}
+h1.planet .additional-info {
+  font-size: 65%;
+  font-weight: normal;
+}
+
 h1.planet .share {
   float: right;
   padding-top: 1px;
