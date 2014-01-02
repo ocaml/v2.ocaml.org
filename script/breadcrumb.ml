@@ -34,13 +34,19 @@ let rec breadcrumb_of_path bc lang path =
                 else (lang, "index." ^ lang ^ ".md")
                      :: (lang, "index." ^ lang ^ ".html") :: index in
     let index = List.map (fun (l,f) -> (l, Filename.concat path f)) index in
-    let index_lang, index = List.find (fun (_,f) -> Sys.file_exists f) index in
-    let title = get_title lang index in
     (* Remove the prefix "site". *)
     let link = String.sub path 4 (String.length path - 4) in
-    let link = if index_lang = "" then link ^ "/"
-               else link ^ "/index." ^ index_lang ^ ".html" in
-    breadcrumb_of_path ((link, title) :: bc) lang (Filename.dirname path)
+    let entry =
+      try
+        let index_lang, index = List.find (fun (_,f) -> Sys.file_exists f) index in
+        let title = get_title lang index in
+        let link = if index_lang = "" then link ^ "/"
+                   else link ^ "/index." ^ index_lang ^ ".html" in
+        (link, title)
+      with Not_found ->
+        (* No index file found. *)
+        (link ^ "/", String.capitalize(Filename.basename path)) in
+    breadcrumb_of_path (entry :: bc) lang (Filename.dirname path)
   )
 
 let rec to_html bc =

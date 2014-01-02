@@ -246,8 +246,7 @@ let html_of_post rss_feed p =
        else [sep; html_author; Data ", ";
              Data(Netdate.format ~fmt:"%b %e, %Y" d)] in
   let additional_info =
-    [Element("span", ["style", "font-size: 65%; font-weight:normal"],
-             additional_info)] in
+    [Element("span", ["class", "additional-info"], additional_info)] in
   let desc =
     if List.mem p.author text_description then
       [Element("pre", ["class", "rss-text"], [Data p.desc])]
