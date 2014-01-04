@@ -411,9 +411,9 @@ SOLUTION
 >                    else fold_until f (f acc h) (n-1) t
 >
 > let slice list i k =
->   let _, l = fold_until (fun _ _ -> []) [] i list in
->   let r, _ = fold_until (fun acc h -> h :: acc) [] (k - i + 1) l in
->   List.rev r
+>   let _, list = fold_until (fun _ _ -> []) [] i list in
+>   let taken, _ = fold_until (fun acc h -> h :: acc) [] (k - i + 1) list in
+>   List.rev taken
 > ```
 
 ```ocamltop
