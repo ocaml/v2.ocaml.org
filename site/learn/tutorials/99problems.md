@@ -398,7 +398,7 @@ SOLUTION
 >   take (k - i + 1) (drop i list);;
 > ```
 >
-> This solution gas a drawback, namely that the `take` function is not
+> This solution has a drawback, namely that the `take` function is not
 > [tail recurvive](https://en.wikipedia.org/wiki/Tail_call) so it may
 > exhaust the stack when given a very long list.  You may also notice that
 > the structure of `take` and `drop` is similar and you may want to
