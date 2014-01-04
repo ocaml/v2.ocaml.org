@@ -397,6 +397,24 @@ SOLUTION
 >   in
 >   take (k - i + 1) (drop i list);;
 > ```
+>
+> This solution gas a drawback, namely that the `take` function is not
+> [tail recurvive](https://en.wikipedia.org/wiki/Tail_call) so it may
+> exhaust the stack when given a very long list.  You may also notice that
+> the structure of `take` and `drop` is similar and you may want to
+> abstract their common skeleton in a single function.  Here is a solution.
+>
+> ```ocamltop
+> let rec fold_until f acc n = function
+>   | [] -> (acc, [])
+>   | h :: t as l -> if n = 0 then (acc, l)
+>                    else fold_until f (f acc h) (n-1) t
+>
+> let slice list i k =
+>   let _, l = fold_until (fun _ _ -> []) [] i list in
+>   let r, _ = fold_until (fun acc h -> h :: acc) [] (k - i + 1) l in
+>   List.rev r
+> ```
 
 ```ocamltop
 slice ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 2 6;;
