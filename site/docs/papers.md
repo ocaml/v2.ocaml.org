@@ -1,6 +1,6 @@
 <!-- ((! set title Papers !)) ((! set documentation !)) -->
 
-# Papers on OCaml
+# Papers and Talks
 *Table of contents*
 
 ## Language Features
@@ -189,6 +189,12 @@ DVI](http://caml.inria.fr/pub/papers/garrigue-labels-ppl01.dvi.gz) ]
     This paper offers a dynamic semantics, a static semantics, and a
 compilation scheme for OCaml's labeled and optional function parameters.
 
+### Meta-Programming
+
+* Jake Donham. Meta-programming tutorial with CamlP4. Commercial Users of Functional Programming, 2010.  
+[GitHub](https://github.com/jaked/cufp-metaprogramming-tutorial)
+
+
 ## Compilers and Runtime System
 ### Bytecode Compiler and Bytecode Interpreter
 
@@ -250,3 +256,38 @@ PostScript](http://caml.inria.fr/pub/papers/doligez-these.ps.gz) |
 Light and OCaml's runtime system.
 
 
+## Industrial Uses
+
+* Yaron Minsky. OCaml for the Masses. ACM Queue, Sep 27, 2011.  
+[Online](http://queue.acm.org/detail.cfm?id=2038036) |
+[PDF](http://portal.acm.org/ft_gateway.cfm?id=2038036&type=pdf)
+
+* Anil Madhavapeddy. Xen and the Art of OCaml. Commercial Users of Functional Programming (CUFP), 2008.  
+[Abstract](http://cufp.org/archive/2008/abstracts.html#MadhavapeddyAnil) |
+[PDF](http://cufp.org/archive/2008/slides/MadhavapeddyAnil.pdf)
+
+* David Scott, Richard Mortier, Anil Madhavapeddy. Programming the Xen cloud using OCaml. OCaml Users and Developers Workshop, 2012.  
+[PDF](http://oud.ocaml.org/2012/abstracts/oud2012-paper14.pdf) |
+[Video](http://www.youtube.com/watch?v=dJlHBS7sP_c&feature=plcp)
+
+* Pascal Cuoq, Julien Signoles, Patrick Baudin, Richard Bonichon, Géraud Canet, Loïc Correnson, Benjamin Monate, Virgile Prevosto, Armand Puccetti. Experience report: OCaml for an industrial-strength static analysis framework. Proceedings of the 14th ACM SIGPLAN International Conference on Functional Programming, 2009.  
+[Online](http://dl.acm.org/citation.cfm?id=1596591)
+
+* Yaron Minsky, Stephen Weeks. Caml trading – experiences with functional programming on Wall Street. Journal of Functional Programming.  
+[Online](http://journals.cambridge.org/action/displayAbstract?fromPage=online&aid=1899164)
+
+* Xavier Leroy. Industrial uses of Caml: examples and lessons learned from the smart card industry. Proceedings of the 4th ACM SIGPLAN Workshop on Commercial Users of Functional Programming, 2007.  
+[Online](http://dl.acm.org/citation.cfm?id=1362704)
+
+* Jake Donham. From OCaml to Javascript at Skydeck.  
+[Slides](http://cufp.org/archive/2008/slides/DonhamJake.pdf)
+
+* Tom Wilkie. Acunu & OCaml: Experience Report.  
+[Slides](http://www.slideshare.net/acunu/acunu-ocaml-experience-report-cufp)
+
+* Xavier Leroy. Some uses of Caml in industry. Commercial Users of Functional Programming, 2007.  
+[Slides](http://cufp.org/archive/2007/slides/XavierLeroy.pdf)
+
+* Warren Harris. Functional Programming at Freebase. Commercial Users of Functional Programming, 2010.  
+[Abstract](http://cufp.org/videos/functional-programming-freebase-warren-harris-metaweb) |
+[Video](http://cufp.org/videos/functional-programming-freebase-warren-harris-metaweb)
