@@ -96,3 +96,9 @@ occasions, where there may be disagreement, we will do the following:
 
 In general, we expect to generate consensus among the community to
 resolve any conflicts.
+
+## Logos
+
+OCaml logos are available for your use [here](/docs/logos.html). You
+are encouraged to use them in your own projects and websites to
+promote and show your support for OCaml.
