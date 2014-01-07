@@ -1,8 +1,8 @@
-<!-- ((! set title Common error messages !)) ((! set learn !)) -->
+<!-- ((! set title Common Error Messages !)) ((! set learn !)) -->
 
 *Table of contents*
 
-# Common error messages
+# Common Error Messages
 This page gives a list of quick explanations for some error or warning
 messages that are emitted by the OCaml compilers. Longer explanations
 are usually given in dedicated sections of this tutorial.

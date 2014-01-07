@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <section class="span4 condensed">
-            <h1 class="ruled"><a href="taste.html">Code examples</a></h1>
+            <h1 class="ruled"><a href="taste.html">Code Examples</a></h1>
             ((! input template/learn_code_snippet.html !))
             <footer>
               <p>See <a href="taste.html">a Hundred Lines of OCaml</a>,
@@ -132,7 +132,7 @@
           </footer>
         </section>
         <section class="span4 condensed">
-	  <h1 class="ruled"><a href="success.html">Success stories</a></h1>
+	  <h1 class="ruled"><a href="success.html">Success Stories</a></h1>
           <p><a href="http://caml.inria.fr/about/successes-images/unison.jpg"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="http://caml.inria.fr/about/successes-images/unison-thumb.jpg" alt="Screenshot" title="Screenshot of Unison's main window"></a>
 	    <a href="http://www.cis.upenn.edu/%7Ebcpierce/unison/"
 	       >Unison</a> is an innovative <em>two-way</em>

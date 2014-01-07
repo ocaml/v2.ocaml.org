@@ -26,9 +26,9 @@ tracker there to request or offer new tutorials. Thanks!
 * [If Statements, Loops, and
  Recursion](if_statements_loops_and_recursion.html)
 * [Labels](labels.html)
-* [Common error messages](common_error_messages.html)
+* [Common Error Messages](common_error_messages.html)
 * [OCaml Programming Guidelines](guidelines.html)
-* [Formatting and wrapping text](format.html)
+* [Formatting and Wrapping Text](format.html)
 * [99 Problems (solved) in OCaml](99problems.html)
 
 ((! get second_of_two_columns !))
@@ -42,10 +42,10 @@ tracker there to request or offer new tutorials. Thanks!
 * [OCaml and the Web](ocaml_and_the_web.html)
 * [Standard Library Examples](standard_library_examples.html)
 * [Compiling OCaml projects](compiling_ocaml_projects.html)
-* [Command-line arguments](command-line_arguments.html)
+* [Command-Line Arguments](command-line_arguments.html)
 * [File manipulation](file_manipulation.html)
 * [Camlp4 3.10](camlp4_3.10/)
-* [Filenames and extensions](filenames.html)
+* [Filenames and Extensions](filenames.html)
 * [Streams](streams.html)
 * [Stream Expressions](stream_expressions.html)
 * [_Acknowledgements_](acknowledgements.html)
@@ -133,7 +133,7 @@ with another language.
 * [Beyond functional programming in Haskell: an introduction to
  OCaml](http://www.slideshare.net/michielovereem/beyond-functional-programming-in-haskell-an-introduction-to-ocaml)
 
-###  Advanced tutorials & articles
+###  Advanced Tutorials & Articles
 
 * [Manual](http://caml.inria.fr/pub/docs/manual-ocaml/)
 * [Using, Understanding, and Unraveling The OCaml

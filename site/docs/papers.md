@@ -1,6 +1,6 @@
 <!-- ((! set title Papers !)) ((! set documentation !)) -->
 
-# A few papers on OCaml
+# Papers on OCaml
 *Table of contents*
 
 ## Language features
