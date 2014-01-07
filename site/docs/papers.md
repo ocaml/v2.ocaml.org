@@ -3,8 +3,8 @@
 # Papers on OCaml
 *Table of contents*
 
-## Language features
-###  The core language
+## Language Features
+### Core Language
 
 1. Andrew K. Wright and Matthias Felleisen. A Syntactic Approach to Type
 Soundness. In Information &amp; Computation, 115(1):38−94, 1994.
@@ -42,7 +42,7 @@ at a `let` binding, even when the expression that is being `let`-bound
 is not a value. This relaxed version of Wright's classic “value
 restriction” was introduced in OCaml 3.07.
 
-###  Modules
+### Modules
 
 4. Xavier Leroy. Manifest types, modules, and separate compilation. In
 Principles of Programming Languages, 1994.
@@ -101,7 +101,7 @@ PostScript](http://caml.inria.fr/pub/papers/xleroy-recursive_modules-03.ps.gz)
     This note describes the experimental recursive modules introduced in
     OCaml 3.07.
 
-###  Objects
+### Objects
 
 8. Didier Rémy and Jérôme Vouillon. Objective ML: An effective
 object-oriented extension to ML. In Theory And Practice of Objects
@@ -130,7 +130,7 @@ DVI](http://caml.inria.fr/pub/papers/garrigue_remy-poly-ic99.dvi.gz) ]
 values into ML while preserving its type inference mechanism. This
 technology underlies OCaml's polymorphic methods.
 
-###  Polymorphic variants
+### Polymorphic Variants
 
 10.  Jacques Garrigue. Programming with polymorphic variants. In ML Workshop,
 1998.
@@ -176,7 +176,7 @@ PostScript](http://caml.inria.fr/pub/papers/garrigue-deep-variants-2004.ps.gz)
 polymorphic variants, focusing on the rules for typechecking *deep*
 pattern matching constructs.
 
-###  Labeled and optional parameters
+### Labeled and Optional Parameters
 
 14. Jacques Garrigue. Labeled and optional arguments for Objective Caml. In
 JSSST Workshop on Programming and Programming Languages, 2001.
@@ -189,8 +189,8 @@ DVI](http://caml.inria.fr/pub/papers/garrigue-labels-ppl01.dvi.gz) ]
     This paper offers a dynamic semantics, a static semantics, and a
 compilation scheme for OCaml's labeled and optional function parameters.
 
-## Compilers and runtime system
-###  The bytecode compiler and bytecode interpreter
+## Compilers and Runtime System
+### Bytecode Compiler and Bytecode Interpreter
 
 15. Xavier Leroy. The ZINC experiment, an economical implementation of the
 ML language. Technical report 117, INRIA, 1990.
@@ -204,7 +204,7 @@ out of date, but it is still valuable as a description of the abstract
 machine used in Caml Light and (with some further simplifications and
 speed improvements) in OCaml.
 
-###  The native-code compiler
+### Native-Code Compiler
 
 16. Xavier Leroy. The effectiveness of type-based unboxing. In Workshop on
 Types in Compilation, 1997.
@@ -216,7 +216,7 @@ PostScript](http://caml.inria.fr/pub/papers/xleroy-unboxing-tic97.ps.gz)
 including the one used in the OCaml native-code compiler.
 
 
-###  The garbage collector
+### Garbage Collector
 
 17. Damien Doligez and Xavier Leroy. A concurrent, generational garbage
 collector for a multithreaded implementation of ML. In Principles of
