@@ -1,4 +1,4 @@
-<!-- ((! set title Official OCaml Mailing Lists !)) ((! set community !)) -->
+<!-- ((! set title Mailing Lists and Forums !)) ((! set community !)) -->
 
 *Table of contents*
 
