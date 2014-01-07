@@ -81,3 +81,10 @@ Groups](http://groups.google.com/groups?group=comp.lang.functional) |
 [FAQ](http://www.cs.nott.ac.uk/~gmh/faq.html)
 
 
+## Other
+
+### Mantis Bug Tracker
+
+Inria manages the official distribution of OCaml and uses
+[Mantis](http://caml.inria.fr/mantis/my_view_page.php) to track bugs
+and feature requests.
