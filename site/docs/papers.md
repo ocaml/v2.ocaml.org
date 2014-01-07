@@ -6,7 +6,7 @@
 ## Language Features
 ### Core Language
 
-1. Andrew K. Wright and Matthias Felleisen. A Syntactic Approach to Type
+* Andrew K. Wright and Matthias Felleisen. A Syntactic Approach to Type
 Soundness. In Information &amp; Computation, 115(1):38−94, 1994.
 [ [Gzipped
 PostScript](http://www.cs.rice.edu/CS/PLT/Publications/Scheme/ic94-wf.ps.gz)
@@ -16,7 +16,7 @@ PostScript](http://www.cs.rice.edu/CS/PLT/Publications/Scheme/ic94-wf.ps.gz)
 uses a simple syntactic technique to prove that well-typed programs
 cannot go wrong.
 
-2. François Pottier and Didier Rémy. The Essence of ML Type Inference. In
+* François Pottier and Didier Rémy. The Essence of ML Type Inference. In
 Benjamin C. Pierce, editor, Advanced Topics in Types and Programming
 Languages, MIT Press, 2005.
 
@@ -29,7 +29,7 @@ presented as a set of rewrite rules.
 [Gzipped PostScript](http://cristal.inria.fr/attapl/preversion.ps.gz)
 ]
 
-3. Jacques Garrigue. Relaxing the value restriction. In International
+* Jacques Garrigue. Relaxing the value restriction. In International
 Symposium on Functional and Logic Programming, 2004.
 [
 [PDF](http://caml.inria.fr/pub/papers/garrigue-value_restriction-fiwflp04.pdf)
@@ -44,7 +44,7 @@ restriction” was introduced in OCaml 3.07.
 
 ### Modules
 
-4. Xavier Leroy. Manifest types, modules, and separate compilation. In
+* Xavier Leroy. Manifest types, modules, and separate compilation. In
 Principles of Programming Languages, 1994.
 [
 [PDF](http://caml.inria.fr/pub/papers/xleroy-manifest_types-popl94.pdf)
@@ -62,7 +62,7 @@ expressive power of the Standard ML module system, while providing much
 better support for separate compilation. This work sets the formal bases
 for OCaml's module system.
 
-5. Xavier Leroy. Applicative functors and fully transparent higher-order
+* Xavier Leroy. Applicative functors and fully transparent higher-order
 modules. In Principles of Programming Languages, 1995.
 [
 [PDF](http://caml.inria.fr/pub/papers/xleroy-applicative_functors-popl95.pdf)
@@ -77,7 +77,7 @@ functors, that is, functors that produce compatible abstract types when
 applied to provably equal arguments. Applicative functors are also a
 feature of OCaml.
 
-6. Xavier Leroy. A Modular Module System. In Journal of Functional
+* Xavier Leroy. A Modular Module System. In Journal of Functional
 Programming, 10(3):269-303, 2000.
 [ [PDF](http://caml.inria.fr/pub/papers/xleroy-modular_modules-jfp.pdf)
 | [Gzipped
@@ -91,7 +91,7 @@ module system, emphasizing the fact that the module system is largely
 independent of the underlying core language. This is a good tutorial to
 learn both how modules can be used and how they are typechecked.
 
-7.  Xavier Leroy. A proposal for recursive modules in Objective Caml.
+*  Xavier Leroy. A proposal for recursive modules in Objective Caml.
 Unpublished.
 [ [PDF](http://caml.inria.fr/pub/papers/xleroy-recursive_modules-03.pdf)
 | [Gzipped
@@ -103,7 +103,7 @@ PostScript](http://caml.inria.fr/pub/papers/xleroy-recursive_modules-03.ps.gz)
 
 ### Objects
 
-8. Didier Rémy and Jérôme Vouillon. Objective ML: An effective
+* Didier Rémy and Jérôme Vouillon. Objective ML: An effective
 object-oriented extension to ML. In Theory And Practice of Objects
 Systems, 4(1):27−50, 1998.
 [
@@ -117,7 +117,7 @@ DVI](http://caml.inria.fr/pub/papers/remy_vouillon-objective_ml-tapos98.dvi.gz)
     This paper provides theoretical foundations for OCaml's object-oriented
 layer, including dynamic and static semantics.
 
-9. Jacques Garrigue and Didier Rémy. Extending ML with Semi-Explicit
+* Jacques Garrigue and Didier Rémy. Extending ML with Semi-Explicit
 Higher-Order Polymorphism. In Information &amp; Computation,
 155(1/2):134−169, 1999.
 [ [PDF](http://caml.inria.fr/pub/papers/garrigue_remy-poly-ic99.pdf) |
@@ -132,7 +132,7 @@ technology underlies OCaml's polymorphic methods.
 
 ### Polymorphic Variants
 
-10.  Jacques Garrigue. Programming with polymorphic variants. In ML Workshop,
+*  Jacques Garrigue. Programming with polymorphic variants. In ML Workshop,
 1998.
 [
 [PDF](http://caml.inria.fr/pub/papers/garrigue-polymorphic_variants-ml98.pdf)
@@ -143,7 +143,7 @@ PostScript](http://caml.inria.fr/pub/papers/garrigue-polymorphic_variants-ml98.p
     This paper briefly explains what polymorphic variants are about and how
 they are compiled.
 
-11. Jacques Garrigue. Code reuse through polymorphic variants. In Workshop
+* Jacques Garrigue. Code reuse through polymorphic variants. In Workshop
 on Foundations of Software Engineering, 2000.
 [ [Gzipped
 PostScript](http://caml.inria.fr/pub/papers/garrigue-variant-reuse-2000.ps.gz)
@@ -152,7 +152,7 @@ PostScript](http://caml.inria.fr/pub/papers/garrigue-variant-reuse-2000.ps.gz)
     This short paper explains how to design a modular, extensible
 interpreter using polymorphic variants.
 
-12. Jacques Garrigue. Simple Type Inference for Structural Polymorphism. In
+* Jacques Garrigue. Simple Type Inference for Structural Polymorphism. In
 Workshop on Foundations of Object-Oriented Languages, 2002.
 [
 [PDF](http://caml.inria.fr/pub/papers/garrigue-structural_poly-fool02.pdf)
@@ -164,7 +164,7 @@ PostScript](http://caml.inria.fr/pub/papers/garrigue-structural_poly-fool02.ps.g
 polymorphic variants. At its heart is an extension of Core ML's type
 discipline with so-called *local* constraints.
 
-13. Jacques Garrigue. Typing deep pattern-matching in presence of
+* Jacques Garrigue. Typing deep pattern-matching in presence of
 polymorphic variants. In JSSST Workshop on Programming and Programming
 Languages, 2004.
 [ [PDF](http://caml.inria.fr/pub/papers/garrigue-deep-variants-2004.pdf)
@@ -178,7 +178,7 @@ pattern matching constructs.
 
 ### Labeled and Optional Parameters
 
-14. Jacques Garrigue. Labeled and optional arguments for Objective Caml. In
+* Jacques Garrigue. Labeled and optional arguments for Objective Caml. In
 JSSST Workshop on Programming and Programming Languages, 2001.
 [ [PDF](http://caml.inria.fr/pub/papers/garrigue-labels-ppl01.pdf) |
 [Gzipped
@@ -192,7 +192,7 @@ compilation scheme for OCaml's labeled and optional function parameters.
 ## Compilers and Runtime System
 ### Bytecode Compiler and Bytecode Interpreter
 
-15. Xavier Leroy. The ZINC experiment, an economical implementation of the
+* Xavier Leroy. The ZINC experiment, an economical implementation of the
 ML language. Technical report 117, INRIA, 1990.
 [ [Gzipped
 PostScript](http://caml.inria.fr/pub/papers/xleroy-zinc.ps.gz) |
@@ -206,7 +206,7 @@ speed improvements) in OCaml.
 
 ### Native-Code Compiler
 
-16. Xavier Leroy. The effectiveness of type-based unboxing. In Workshop on
+* Xavier Leroy. The effectiveness of type-based unboxing. In Workshop on
 Types in Compilation, 1997.
 [ [Gzipped
 PostScript](http://caml.inria.fr/pub/papers/xleroy-unboxing-tic97.ps.gz)
@@ -218,7 +218,7 @@ including the one used in the OCaml native-code compiler.
 
 ### Garbage Collector
 
-17. Damien Doligez and Xavier Leroy. A concurrent, generational garbage
+* Damien Doligez and Xavier Leroy. A concurrent, generational garbage
 collector for a multithreaded implementation of ML. In Principles of
 Programming Languages, 1993.
 [ [Gzipped
@@ -229,7 +229,7 @@ PostScript](http://caml.inria.fr/pub/papers/doligez_xleroy-concurrent_gc-popl93.
 
     Superseded by the next paper.
 
-18. Damien Doligez and Georges Gonthier. Portable, Unobtrusive Garbage
+* Damien Doligez and Georges Gonthier. Portable, Unobtrusive Garbage
 Collection for Multiprocessor Systems. In Principles of Programming
 Languages, 1994.
 [ [Gzipped
@@ -240,7 +240,7 @@ PostScript](http://caml.inria.fr/pub/papers/doligez_gonthier-gc-popl94.ps.gz)
     This paper describes a concurrent version of the garbage collector found
 in Caml Light and OCaml's runtime system.
 
-19. Damien Doligez. Conception, réalisation et certification d'un glaneur de
+* Damien Doligez. Conception, réalisation et certification d'un glaneur de
 cellules concurrent. Ph.D. thesis, Université Paris 7, 1995.
 [ [Gzipped
 PostScript](http://caml.inria.fr/pub/papers/doligez-these.ps.gz) |
