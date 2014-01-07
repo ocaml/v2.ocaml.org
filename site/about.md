@@ -1,6 +1,7 @@
 <!-- ((! set title About This Site !)) -->
 
 # About This Site
+*Table of contents*
 
 ## Aims
 
