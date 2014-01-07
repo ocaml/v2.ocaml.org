@@ -15,7 +15,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.facebook.com/">Facebook</a>, United States</h2>
-        <p>To handle their huge PHP codebase, Facebook developed <a href="https://github.com/facebook/pfff/wiki/Main">pfff</a>, a set of tools and APIs to perform some static analysis, dynamic analysis, code visualizations, code navigations, and style-preserving source-to-source transformations such as refactorings on source code.</p>
+        <p>To handle their huge PHP codebase, Facebook developed <a href="https://github.com/facebook/pfff/wiki/Main">pfff</a> and <a href="http://cufp.org/conference/sessions/2013/julien-verlaguet-facebook-analyzing-php-statically">Hack</a>. Pfff is a set of tools and APIs to perform static analysis, dynamic analysis, code visualization, code navigation, and style-preserving source-to-source transformations such as refactorings on source code. Hack is an extension of PHP with static typing. The language and most of the tools supporting Hack were implemented in OCaml.</p>
     </dd>
 </dl>
 <dl class="row">
