@@ -26,7 +26,7 @@
             <h1 class="ruled"><a href="taste.html">Code Examples</a></h1>
             ((! input template/learn_code_snippet.html !))
             <footer>
-              <p>See <a href="taste.html">a Hundred Lines of OCaml</a>,
+              <p>See more <a href="taste.html">Code Examples</a>,
 		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >Pleac</a>,
 		<a href="http://rosettacode.org/wiki/Category:OCaml"
 		   >Rosetta</a>, or

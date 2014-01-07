@@ -2,7 +2,7 @@
 
 *Table of contents*
 
-# A Hundred Lines of OCaml
+# Code Examples
 
 OCaml possesses an [interactive system](description.html#Interactivity),
 called “toploop”, that lets you type OCaml code and have it evaluated
@@ -15,6 +15,12 @@ Some indications for the code below. The prompt at which you type is
 interactive system that the input has to be evaluated and is not really
 part of the OCaml code). The output of the system is displayed in
 <code class="ocaml-output">this color</code>.
+
+More code examples can be found in the
+[Pleac](http://pleac.sourceforge.net/pleac_ocaml/) project, the [99
+Problems (solved)](tutorials/99problems.html) page, on the
+[Rosetta](http://rosettacode.org/wiki/Category:OCaml) site, and at
+[langref.org](http://langref.org/ocaml).
 
 ## Elementary functions
 Let us define the square function and the recursive factorial function.
