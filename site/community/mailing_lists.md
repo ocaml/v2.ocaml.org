@@ -4,6 +4,15 @@
 
 # Mailing Lists and Forums
 
+Mailing lists and other forums used to discuss OCaml in general are
+listed below. Their are thousands of other forums related to
+individual projects. Several mailing lists are hosted on
+[lists.ocaml.org](http://lists.ocaml.org) domain. Projects on the
+[OCaml Forge](http://forge.ocamlcore.org/) often have mailing lists
+associated with them, and projects on
+[GitHub](https://github.com/trending?l=ocaml&since=monthly) actively
+use GitHub's Issue system for discussions.
+
 ## Mailing Lists
 
 ### Official OCaml List
