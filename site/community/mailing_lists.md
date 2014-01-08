@@ -5,8 +5,8 @@
 # Mailing Lists and Forums
 
 Mailing lists and other forums used to discuss OCaml in general are
-listed below. Their are thousands of other forums related to
-individual projects. Several mailing lists are hosted on
+listed below. There are thousands of other forums related to
+individual projects. Several mailing lists are hosted on the
 [lists.ocaml.org](http://lists.ocaml.org) domain. Projects on the
 [OCaml Forge](http://forge.ocamlcore.org/) often have mailing lists
 associated with them, and projects on
@@ -73,8 +73,8 @@ As above, but for French speakers.
 ### About ML
 *comp.lang.ml*  
 This is a moderated Usenet newsgroup about all variants of ML.
-Discussions generally concerns Standard ML implementations (such as
-SML-NJ), but some threads concerns the OCaml branch.
+Discussions generally concern Standard ML implementations (such as
+SML-NJ), but some threads concern the OCaml branch.
 
 [Archives at Google
 Groups](http://groups.google.com/groups?group=comp.lang.ml) |
