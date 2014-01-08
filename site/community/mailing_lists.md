@@ -57,6 +57,10 @@ ask, just ask, and be patient: not everyone is in the same timezone. The
 IRC Channel can be accessed through a web interface or any regular IRC
 client.
 
+### IRC Channel - French
+*irc.freenode.net #ocaml-fr*  
+As above, but for French speakers.
+
 ### About ML
 *comp.lang.ml*  
 This is a moderated Usenet newsgroup about all variants of ML.
