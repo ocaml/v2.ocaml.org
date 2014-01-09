@@ -64,7 +64,10 @@ live within a few minutes.
 ### Contribution Guidelines
 
 * Please fork the repo and use the Pull Request system to submit
-  changes.
+  changes.  To add or modify content, you can also click the pen in
+  the top right corner which will take you to the corresponding Github
+  page.  There you can edit it and perform a pull request (Gihub will
+  take care of doing the fork for you).
 * Please don't add large files, you should put them elsewhere and link
   to them. It is possible to host some files in the separate
   [ocaml.org-media](https://github.com/ocaml/ocaml.org-media).
