@@ -699,7 +699,7 @@ containing 5 words, with tag zero. The tag of zero means it's a
 and 5 to the appropriate places in the array. Notice the OCaml
 representation of integers is used. Because this is a structured block,
 the garbage collector will scan each word in this block, and the GC
-needs to be able to distriguish between integers and pointers to other
+needs to be able to distinguish between integers and pointers to other
 heap-allocated blocks (the GC does not have access to type information
 about this array).
 
