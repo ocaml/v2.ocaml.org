@@ -129,6 +129,28 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/default.png" alt="Esper">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://esper.com/">Esper</a>, United States</h2>
+        <p>Esper's software assists
+        assistants. In doing so, we save
+        the time of executives. We want to lead the way to a more
+        productive world with an assistant for every professional and
+        Esper for every assistant. We envision a future without
+        endless e-mail scheduling, without cognitive overload, and
+        where technology serves us, not distracts us. To accomplish
+        these goals, we're building a mobile/web suite that
+        streamlines communication between assistants and executives,
+        automates rote tasks, and shares information.</p>
+        <p>Our <a href="http://stackoverflow.com/a/19355173/597517">Web
+        backend is written in OCaml</a> and provides an API used
+        by our own Web, Android, and iOS clients.
+        </p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/esterel.jpg" alt="Esterel Technologies">
     </dt>
     <dd class="span5">
@@ -241,7 +263,12 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://mrnumber.com/">Mr. Number</a>, United States</h2>
-        <p>Mr. Number is a Silicon Valley startup that developed the Mr. Number app for call blocking, and more recently <a href="http://skydeck.com">Skydeck</a>, a photo-centric mobile app for meeting new people. OCaml is used on the server side as the glue between the various third-party components and services.</p>
+        <p>Mr. Number started as a Silicon Valley startup and
+        developed the Mr. Number app for call blocking,
+        later <a href="http://allthingsd.com/20130601/whitepages-scoops-up-mr-number-an-android-app-for-blocking-unwanted-calls/">acquired
+        by WhitePages</a>.
+        OCaml is used on the server side as the glue between the
+        various third-party components and services.</p>
     </dd>
 </dl>
 <dl class="row">
