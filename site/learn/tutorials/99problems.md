@@ -333,7 +333,15 @@ SOLUTION
 >      List.fold_left (prepend n) [] (List.rev list) *)
 >   aux [] (List.rev list);;
 > ```
-
+> An alternative solution:
+> ```ocamltop
+> let replicate list n =
+>   let rec aux = function
+>     | (_, []) -> []
+>     | (1, h :: t) -> h :: (aux (n, t))
+>     | (n', (h :: _ as xs)) -> h :: (aux (n' - 1, xs)) in
+>   aux (n, list)
+> ```
 ```ocamltop
 replicate ["a";"b";"c"] 3;;
 ```
