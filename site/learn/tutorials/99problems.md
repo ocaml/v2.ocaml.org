@@ -312,6 +312,8 @@ SOLUTION
 >   | [] -> []
 >   | h :: t -> h :: h :: duplicate t;;
 > ```
+> Remark: this function is not tail recursive.  Can you modify it so
+> it becomes so?
 
 ```ocamltop
 duplicate ["a";"b";"c";"c";"d"];;
@@ -333,6 +335,8 @@ SOLUTION
 >      List.fold_left (prepend n) [] (List.rev list) *)
 >   aux [] (List.rev list);;
 > ```
+> Note that `List.rev list` is needed only because we want `aux` to be
+> [tail recursive](http://en.wikipedia.org/wiki/Tail_call).
 
 ```ocamltop
 replicate ["a";"b";"c"] 3;;
