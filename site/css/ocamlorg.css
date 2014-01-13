@@ -229,6 +229,8 @@ button.solution {
 div.solution {
   display: none;
   margin-top: 0;
+  padding-left: 2ex;
+  border-left: 2px solid #dedede;
 }
 
 code.c {
