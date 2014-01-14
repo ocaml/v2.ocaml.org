@@ -21,6 +21,7 @@ More code examples are available on the following sites:
 - [99 Problems (solved)](tutorials/99problems.html)
 - [Rosetta](http://rosettacode.org/wiki/Category:OCaml)
 - [langref.org](http://langref.org/ocaml)
+- [code codex](http://www.codecodex.com/wiki/Category:Objective_Caml)
 
 ## Elementary functions
 Let us define the square function and the recursive factorial function.
