@@ -29,8 +29,9 @@
               <p>See more <a href="taste.html">Code Examples</a>,
 		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >Pleac</a>,
 		<a href="http://rosettacode.org/wiki/Category:OCaml"
-		   >Rosetta</a>, or
-		<a href="http://langref.org/ocaml" >langref.org</a></p>
+		   >Rosetta</a>,
+		<a href="http://langref.org/ocaml" >langref.org</a>, or
+                <a href="http://www.codecodex.com/wiki/Category:Objective_Caml">code codex</a>.</p>
             </footer>
         </section>
         <section class="span4 condensed">
