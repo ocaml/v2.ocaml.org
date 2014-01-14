@@ -16,11 +16,11 @@ interactive system that the input has to be evaluated and is not really
 part of the OCaml code). The output of the system is displayed in
 <code class="ocaml-output">this color</code>.
 
-More code examples can be found in the
-[Pleac](http://pleac.sourceforge.net/pleac_ocaml/) project, the [99
-Problems (solved)](tutorials/99problems.html) page, on the
-[Rosetta](http://rosettacode.org/wiki/Category:OCaml) site, and at
-[langref.org](http://langref.org/ocaml).
+More code examples are available on the following sites:
+- [Pleac](http://pleac.sourceforge.net/pleac_ocaml/)
+- [99 Problems (solved)](tutorials/99problems.html)
+- [Rosetta](http://rosettacode.org/wiki/Category:OCaml)
+- [langref.org](http://langref.org/ocaml)
 
 ## Elementary functions
 Let us define the square function and the recursive factorial function.
