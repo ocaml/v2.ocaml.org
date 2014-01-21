@@ -40,7 +40,7 @@
     <ul>
       <li><a href="https://github.com/ocaml/ocaml.org/issues"
 	     target="_blank" >Feedback</a></li>
-      <li><a href="about.html">About This Site</a></li>
+      <li><a href="/about.html">About This Site</a></li>
     <li><a href="https://github.com/ocaml/ocaml.org/"
 	   target="_blank" >Find Us on GitHub</a></li>
     </ul>
