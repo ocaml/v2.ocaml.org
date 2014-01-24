@@ -110,7 +110,7 @@ pretty-printer used by the trace mechanism.
 ## The OCaml debugger
 We now give a quick tutorial for the OCaml debugger (`ocamldebug`).
 Before starting, please note that `ocamldebug` does not work under
-native Windows ports of OCaml (but it runs under the Cygwin port.
+native Windows ports of OCaml (but it runs under the Cygwin port).
 
 ###  Launching the debugger
 Consider the following obviously wrong program written in the file
