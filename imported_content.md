@@ -21,7 +21,7 @@ ocaml-tutorial.org website
 Imported all tutorials from
 [ocaml-tutorial.org](http://mirror.ocamlcore.org/ocaml-tutorial.org/index.html):
 
-* The Basics [en, fr, it]
+* The Basics [en, fr, it, de]
 * The Structure of OCaml Programs [en, fr, it]
 * Data Types and Matching [en, fr]
 * Null Pointers, Asserts and Warnings [en, fr]
