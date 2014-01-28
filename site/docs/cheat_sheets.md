@@ -13,7 +13,7 @@ Overview of OCaml compilers and their options, tools for lexing and
 parsing, Makefile rules, etc.
 
 * [OCaml Standard Library](http://www.ocamlpro.com/files/ocaml-stdlib.pdf) (PDF, June 2011)  
-Overview of the standard library most common modules.
+Overview of the standard library's most common modules.
 
 * [OCaml Emacs Mode (Tuareg)](http://www.ocamlpro.com/files/tuareg-mode.pdf) (PDF, June 2011)  
 Overview of the Emacs Tuareg mode keyboard shortcuts.
