@@ -1,4 +1,4 @@
-<!-- ((! set title The Basics  !)) ((! set learn !)) -->
+<!-- ((! set title Die Grundlagen !)) ((! set learn !)) -->
 
 *Table of contents*
 
