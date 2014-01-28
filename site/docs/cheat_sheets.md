@@ -2,7 +2,7 @@
 
 # Cheat Sheets
 [<img src="/img/ocamlpro.png" alt="OCamlPro" style="height: 2ex; vertical-align: text-bottom" />](http://www.ocamlpro.com/) has published cheat sheets (one or
-two-pages summaries) on OCaml:
+two-page summaries) on OCaml:
 
 * [The OCaml Language](http://www.ocamlpro.com/files/ocaml-lang.pdf) (PDF, June 2011)  
 General overview of the OCaml language: basic data types, basic
