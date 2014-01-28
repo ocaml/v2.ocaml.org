@@ -94,7 +94,8 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .superscript { font-size : 80% }
 .subscript { font-size : 80% }
 .comment, .comment .governing, .comment .keyword, .comment .ocaml-function,
-.comment .string, .ocaml .co, .comment .ocaml-module {
+.comment .string, .ocaml .co, .comment .ocaml-module,
+.comment .ocaml-variable {
   color: #747474;
   font-style: italic;
   font-weight: normal;
