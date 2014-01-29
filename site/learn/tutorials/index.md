@@ -9,7 +9,7 @@ topics are needed. Please contribute by visiting this project's repo on
 [GitHub](https://github.com/ocaml/ocaml.org); you may use the issue
 tracker there to request or offer new tutorials. Thanks!
 
-{{! get begin_two_columns !}}
+((! get begin_two_columns !))
 * [Basics](basics.html)
 * [Structure of OCaml Programs](structure_of_ocaml_programs.html)
 * [Maps (Dictionaries)](map.html)
