@@ -22,8 +22,8 @@ Imported all tutorials from
 [ocaml-tutorial.org](http://mirror.ocamlcore.org/ocaml-tutorial.org/index.html):
 
 * The Basics [en, fr, it, de, ja, ko, zh]
-* The Structure of OCaml Programs [en, fr, it, ja; zh]
-* Data Types and Matching [en, fr, zh (part)]
+* The Structure of OCaml Programs [en, fr, it, ja, zh]
+* Data Types and Matching [en, fr, it, zh (part)]
 * Null Pointers, Asserts and Warnings [en, fr]
 * Functional Programming [en, fr]
 * Modules [en, fr]

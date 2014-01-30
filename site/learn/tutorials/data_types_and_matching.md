@@ -265,12 +265,12 @@ symbolically to get `n * x + n * y`.
 Let's define a type for these expressions:
 
 ```ocamltop
-  type expr =
-    | Plus of expr * expr        (* means a + b *)
-    | Minus of expr * expr       (* means a - b *)
-    | Times of expr * expr       (* means a * b *)
-    | Divide of expr * expr      (* means a / b *)
-    | Value of string            (* "x", "y", "n", etc. *)
+type expr =
+  | Plus of expr * expr        (* means a + b *)
+  | Minus of expr * expr       (* means a - b *)
+  | Times of expr * expr       (* means a * b *)
+  | Divide of expr * expr      (* means a / b *)
+  | Value of string            (* "x", "y", "n", etc. *)
 ```
 The expression `n * (x + y)` would be written:
 
