@@ -26,8 +26,8 @@ Imported all tutorials from
 * Data Types and Matching [en, fr, zh (part)]
 * Null Pointers, Asserts and Warnings [en, fr]
 * Functional Programming [en, fr]
-* Modules
-* If Statements, Loops and Recursion
+* Modules [en, fr]
+* If Statements, Loops and Recursion [en, fr]
 * Labels
 * Objects
 * Garbage Collection
@@ -35,9 +35,9 @@ Imported all tutorials from
 * Introduction to Gtk
 * Calling C libraries
 * Calling Fortran libraries
-* Common error messages
+* Common error messages [en, fr]
 * OCaml and the Web
-* Programming style
+* Programming style [replaced with "OCaml Programming Guidelines"]
 * Standard Library Examples
 * Compiling OCaml projects
 * Command-line arguments

@@ -12,20 +12,24 @@
 * [Types de données et matching](data_types_and_matching.fr.html)
 * [Pointeurs nuls, asserts et warnings](null_pointers_asserts_and_warnings.fr.html)
 * [Programmation fonctionnelle](functional_programming.fr.html)
-* Modules (Modules )
-* Ifs, boucles et récursion (If Statements, Loops and Recursion)
-* Etiquettes (Labels)
+* [Modules](modules.fr.html)
+* [If, boucles et récursion](if_statements_loops_and_recursion.fr.html)
+* Etiquettes ([Labels](labels.html))
 
 ((! get second_of_two_columns !))
 
-* Objets (Objects)
-* Récupération de mémoire (Garbage Collection)
-* Analyse de performance (Performance and Profiling)
-* Introduction à Gtk (Introduction to Gtk)
-* Appel de bibliothèques C (Calling C libraries)
-* Messages d'erreur courants (Common error messages)
-* Style de programmation (Programming style)
-* Exemples d'utilisation de la bibliothèque standard (Standard Library Examples)
-* Compiler des projets OCaml (Compiling OCaml projects)
+* Objets ([Objects](objects.html))
+* Récupération de mémoire ([Garbage Collection](garbage_collection.html))
+* Analyse de performance
+  ([Performance and Profiling](performance_and_profiling.html))
+* Introduction à Gtk ([Introduction to Gtk](introduction_to_gtk.html))
+* Appel de bibliothèques C ([Calling C libraries](calling_c_libraries.html))
+* [Messages d'erreur courants](common_error_messages.fr.html)
+* Style de programmation
+  ([OCaml Programming Guidelines](guidelines.html))
+* Exemples d'utilisation de la bibliothèque standard
+  ([Standard Library Examples](standard_library_examples.html))
+* Compiler des projets OCaml
+  ([Compiling OCaml projects](compiling_ocaml_projects.html))
 
 ((! get end_two_columns !))

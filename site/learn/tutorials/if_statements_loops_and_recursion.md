@@ -9,7 +9,7 @@ OCaml has an if statement with two variations, and the obvious meaning:
 
 ```ocaml
 if boolean-condition then expression
-
+  
 if boolean-condition then expression else other-expression
 ```
 
