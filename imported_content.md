@@ -23,7 +23,7 @@ Imported all tutorials from
 
 * The Basics [en, fr, it, de, ja, ko, zh]
 * The Structure of OCaml Programs [en, fr, it, ja, zh]
-* Data Types and Matching [en, fr, it, zh (part)]
+* Data Types and Matching [en, fr, it, ja, zh (part)]
 * Null Pointers, Asserts and Warnings [en, fr, it]
 * Functional Programming [en, fr, it]
 * Modules [en, fr]

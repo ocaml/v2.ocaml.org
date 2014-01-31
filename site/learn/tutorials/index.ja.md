@@ -7,7 +7,7 @@
 
 * [はじめの一歩](basics.ja.html) — 基本中の基本
 * [OCamlプログラムの構造](structure_of_ocaml_programs.ja.html)
-* データ型とパターンマッチング
+* [データ型とパターンマッチング](data_types_and_matching.ja.html)
 * ヌルポインタ、assert、警告
 * 関数型プログラミング
 * モジュール

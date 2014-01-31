@@ -213,7 +213,7 @@ the same way. Lists are simply parameterized variant types with the
 following slightly strange definition:
 
 ```ocaml
-  type 'a list = [] | :: of 'a * 'a list   (* not real OCaml code *)
+type 'a list = [] | :: of 'a * 'a list   (* not real OCaml code *)
 ```
 Actually the definition above doesn't quite compile. Here's a
 pretty-much equivalent definition:
@@ -296,7 +296,7 @@ let rec to_string e =
   | Divide (left, right) ->
 	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
   | Value v -> v ;;
-
+  
 let print_expr e =
   print_endline (to_string e);;
 ```
