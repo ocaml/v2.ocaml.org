@@ -6,7 +6,7 @@ let font =
   try
     Gdk.Font.load font_name
   with
-    Gpointer.Null -> failwith ("graph.ml: " ^ font_name ^ ": not found")
+    Gpointer.Null -> failwith ("graph.ml: font " ^ font_name ^ ": not found")
 
 (* Draw text left, centre or right justified at point. (x,y) point is
  * either top left, top middle or top right of text.
@@ -23,7 +23,7 @@ let draw_text drawable font position (x, y) text =
       drawable#string text ~font ~x:(x - string_width) ~y:(y+string_height)
 
 (* Filled, black-outlined rectangle. *)
-let draw_rectangle (drawable : [`window] GDraw.drawable)
+let draw_rectangle (drawable : GDraw.drawable)
     fill_col (ll_x, ll_y) (tr_x, tr_y) =
   let width = tr_x - ll_x in
   let height = tr_y - ll_y in

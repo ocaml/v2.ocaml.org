@@ -75,8 +75,17 @@ let () = main ()
 Save this to a file `simple.ml` and compile it like this:
 
 ```shell
-ocamlc -g -I +lablgtk lablgtk.cma gtkInit.cmo simple.ml -o simple
+ocamlc -g -I path/to/lablgtk lablgtk.cma gtkInit.cmo simple.ml -o simple
 ```
+
+where you have to replace `path/to/lablgtk` by the actual path where
+`lablgtk.cmi`, `lablgtk.cma`,... are.  If you use *findlib*
+(recommended), you can use the following command:
+
+```shell
+ocamlfind ocamlc -g -package lablgtk2 -linkpkg simple.ml -o simple
+```
+
 This is what you should see when you run it:
 
 ![Simple lablgtk program](/img/simplee29b.gif "")
@@ -350,7 +359,7 @@ The complete code for the graph is available in
 Compile it using:
 
 ```ocaml
-ocamlc -g -I +lablgtk lablgtk.cma gtkInit.cmo graph.ml test.ml -o graphtest
+ocamlfind ocamlc -g -package lablgtk2 -linkpkg graph.ml test.ml -o graphtest
 ```
 Here is a screenshot:
 
