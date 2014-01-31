@@ -25,7 +25,7 @@ Imported all tutorials from
 * The Structure of OCaml Programs [en, fr, it, ja, zh]
 * Data Types and Matching [en, fr, it, zh (part)]
 * Null Pointers, Asserts and Warnings [en, fr, it]
-* Functional Programming [en, fr]
+* Functional Programming [en, fr, it]
 * Modules [en, fr]
 * If Statements, Loops and Recursion [en, fr]
 * Labels

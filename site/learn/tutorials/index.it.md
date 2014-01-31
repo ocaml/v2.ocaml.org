@@ -10,7 +10,7 @@
 * [La struttura dei programmi OCaml](structure_of_ocaml_programs.it.html)
 * [Tipi di dati e matching](data_types_and_matching.it.html)
 * [Puntatori nulli, assert e warning](null_pointers_asserts_and_warnings.it.html)
-* Programmazione funzionale
+* [Programmazione funzionale](functional_programming.it.html)
 * if, loop e ricorsione
 * Label
 * Oggetti
