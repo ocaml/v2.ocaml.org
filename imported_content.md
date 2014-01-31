@@ -27,7 +27,7 @@ Imported all tutorials from
 * Null Pointers, Asserts and Warnings [en, fr, it]
 * Functional Programming [en, fr, it]
 * Modules [en, fr]
-* If Statements, Loops and Recursion [en, fr]
+* If Statements, Loops and Recursion [en, fr, it]
 * Labels
 * Objects
 * Garbage Collection

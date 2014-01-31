@@ -11,7 +11,7 @@
 * [Tipi di dati e matching](data_types_and_matching.it.html)
 * [Puntatori nulli, assert e warning](null_pointers_asserts_and_warnings.it.html)
 * [Programmazione funzionale](functional_programming.it.html)
-* if, loop e ricorsione
+* [If, loop e ricorsione](if_statements_loops_and_recursion.it.html)
 * Label
 * Oggetti
 

@@ -960,7 +960,7 @@ argument to store the "result so far":
 ```ocaml
 let rec range2 a b accum =
   (* ... *)
-
+  
 let range a b =
   range2 a b []
 ```
@@ -1007,7 +1007,7 @@ because it does not need to reverse a list:
 let rec range2 a b accum =
   if b < a then accum
   else range2 a (b-1) (b :: accum);;
-
+  
 let range a b =
   range2 a b [];;
 ```
@@ -1117,11 +1117,6 @@ multiplication. Notice that it uses for-loops and is generally very
 imperative in style:
 
 ```ocamltop
-(*
- * $Id: index.shtml,v 1.3 2004/04/23 12:33:00 rich Exp $
- * from Markus Mottl
- *)
-
 let size = 30
 
 let mkmatrix rows cols =
