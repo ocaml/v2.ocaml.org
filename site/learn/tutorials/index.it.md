@@ -9,7 +9,7 @@
   programmazione funzionale, leggi questo per primo.
 * [La struttura dei programmi OCaml](structure_of_ocaml_programs.it.html)
 * [Tipi di dati e matching](data_types_and_matching.it.html)
-* Puntatori nulli, assert e warning
+* [Puntatori nulli, assert e warning](null_pointers_asserts_and_warnings.it.html)
 * Programmazione funzionale
 * if, loop e ricorsione
 * Label
