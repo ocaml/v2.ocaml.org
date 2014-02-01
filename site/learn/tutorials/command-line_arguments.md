@@ -20,7 +20,7 @@ The following program displays the arguments with their position in
 
 ```ocamltop
 open Printf
-
+  
 let () =
   for i = 0 to Array.length Sys.argv - 1 do
     printf "[%i] %s\n" i Sys.argv.(i)
@@ -29,23 +29,21 @@ let () =
 If you save the program above as `args.ml`, and run
 `ocaml args.ml arg1 arg2 arg3`, here is what you get:
 
-```
-[0] args.ml
-[1] arg1
-[2] arg2
-[3] arg3
-```
+    [0] args.ml
+    [1] arg1
+    [2] arg2
+    [3] arg3
+
 Note that `ocaml` launched a subprocess that actually runs the program
 where argv is `args.ml arg1 arg2 arg3`. You can also compile your
 program using `ocamlopt -o args args.ml`, and then run
 `./args arg1 arg2 arg3` and you will get:
 
-```
-[0] ./args
-[1] arg1
-[2] arg2
-[3] arg3
-```
+    [0] ./args
+    [1] arg1
+    [2] arg2
+    [3] arg3
+
 ## Tools for parsing command-line options
 A few libraries exist that let you process command-line arguments
 without having to scan the `Sys.argv` array yourself:
