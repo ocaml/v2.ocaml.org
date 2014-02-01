@@ -13,7 +13,7 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 * [Ocaml程序的结构](structure_of_ocaml_programs.zh.html)
 * [数据类型和匹配](data_types_and_matching.zh.html)
 * 空指针(Null Pointers),断言(Asserts)和警告(Warnings)
-* 函数式编程
+* [函数式编程](functional_programming.zh.html)
 * 模块
 * If语句，循环和递归
 * 标签

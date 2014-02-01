@@ -233,6 +233,7 @@ Here's some more currying fun:
 List.map (plus 2) [1; 2; 3];;
 let list_of_functions = List.map plus [1; 2; 3];;
 ```
+
 ##  What is functional programming good for?
 Functional programming, like any good programming technique, is a useful
 tool in your armoury for solving some classes of problems. It's very
@@ -339,6 +340,7 @@ To evaluate a lazy expression, you must use the `Lazy.force` function:
 ```ocamltop
 Lazy.force lazy_expr
 ```
+
 ##  Boxed vs. unboxed types
 One term which you'll hear a lot when discussing functional languages is
 "boxed". I was very confused when I first heard this term, but in fact
