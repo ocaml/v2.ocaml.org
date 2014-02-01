@@ -43,6 +43,6 @@ Imported all tutorials from
 * Command-line arguments [en, zh]
 * File manipulation [en, zh (part)]
 * Camlp4 3.10
-* Filenames and extensions
+* Filenames and extensions [en, zh]
 * Streams
 * Stream Expressions
