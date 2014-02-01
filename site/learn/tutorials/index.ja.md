@@ -12,7 +12,7 @@
 * [はじめの一歩](basics.ja.html) — 基本中の基本
 * [OCamlプログラムの構造](structure_of_ocaml_programs.ja.html)
 * [データ型とパターンマッチング](data_types_and_matching.ja.html)
-* ヌルポインタ、assert、警告
+* [ヌルポインタ、assert、警告](null_pointers_asserts_and_warnings.ja.html)
 * 関数型プログラミング
 * モジュール
 * If文、ループと再帰

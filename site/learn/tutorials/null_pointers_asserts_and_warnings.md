@@ -51,25 +51,25 @@ be null, you'd have to first box it up into an object allocated by
 OCaml has an elegant solution to the problem of nulls, using a simple
 polymorphic variant type defined (in `Pervasives`) as:
 
-```ocamltop
-  type 'a option = None | Some of 'a
+```ocaml
+type 'a option = None | Some of 'a
 ```
 A "null pointer" is written `None`. The type of age in our example above
 (an `int` which can be null) is `int option` (remember: backwards like
 `int list` and `int binary_tree`).
 
 ```ocamltop
-  Some 3
+Some 3
 ```
 What about a list of optional ints?
 
 ```ocamltop
-  [ None; Some 3; Some 6; None ]
+[ None; Some 3; Some 6; None ]
 ```
 And what about an optional list of ints?
 
 ```ocamltop
-  Some [1; 2; 3]
+Some [1; 2; 3]
 ```
 ## Assert, warnings, fatal errors, and printing to stderr
 One great feature of Perl is the rich set of commands for debugging
@@ -86,7 +86,7 @@ results in the program stopping and printing out the source file and
 line number where the error occurred. An example:
 
 ```ocamltop
-  assert (Sys.os_type = "Win32")
+assert (Sys.os_type = "Win32")
 ```
 (Running this on Win32, of course, won't throw an error).
 
@@ -115,7 +115,7 @@ warning some way through your function. Here's an example:
 
 ```ocaml
 open Graphics
-
+  
 let () =
   open_graph " 640x480";
   for i = 12 downto 1 do
@@ -133,7 +133,7 @@ instead:
 ```ocaml
 open Graphics
 open Printf
-
+  
 let () =
   open_graph " 640x480";
   for i = 12 downto 1 do
