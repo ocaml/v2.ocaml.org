@@ -112,5 +112,4 @@ let () =
                                     channels are not flushed *)
 
   (* normal exit: all channels are flushed and closed *)
-
 ```

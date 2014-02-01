@@ -41,7 +41,7 @@ Imported all tutorials from
 * Standard Library Examples [en, zh]
 * Compiling OCaml projects
 * Command-line arguments [en, zh]
-* File manipulation
+* File manipulation [en, zh (part)]
 * Camlp4 3.10
 * Filenames and extensions
 * Streams

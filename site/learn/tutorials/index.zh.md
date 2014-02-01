@@ -32,8 +32,8 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 * [标准库示例](standard_library_examples.zh.html)
 * 编译OCaml项目
 * [命令行参数](command-line_arguments.zh.html)
-* 文件操作
-* Camlp4 3.10
+* [文件操作](file_manipulation.zh.html)
+* Camlp4 3.10 — [en](camlp4_3.10/index.html)
 * 文件名和后缀
 
 ((! get end_two_columns !))
