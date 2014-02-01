@@ -38,7 +38,7 @@ Imported all tutorials from
 * Common error messages [en, fr]
 * OCaml and the Web
 * Programming style [replaced with "OCaml Programming Guidelines"]
-* Standard Library Examples
+* Standard Library Examples [en, zh]
 * Compiling OCaml projects
 * Command-line arguments
 * File manipulation

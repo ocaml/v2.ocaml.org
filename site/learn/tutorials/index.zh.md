@@ -29,7 +29,7 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 * 常见错误信息
 * OCaml和Web
 * 编程风格
-* 标准库示例
+* [标准库示例](standard_library_examples.zh.html)
 * 编译OCaml项目
 * 命令行参数
 * 文件操作
