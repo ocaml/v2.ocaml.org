@@ -14,7 +14,7 @@
 * [データ型とパターンマッチング](data_types_and_matching.ja.html)
 * [ヌルポインタ、assert、警告](null_pointers_asserts_and_warnings.ja.html)
 * [関数型プログラミング](functional_programming.ja.html)
-* モジュール
+* [モジュール](modules.ja.html)
 * If文、ループと再帰
 * ラベル
 * オブジェクト

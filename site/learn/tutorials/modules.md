@@ -131,10 +131,9 @@ But modules often define new types. Let's define a simple record type
 that would represent a date:
 
 ```ocaml
-type date = { day : int;
-              month : int;
-              year : int }
+type date = { day : int;  month : int;  year : int }
 ```
+
 There are not two, but four options when it comes to writing the .mli
 file:
 
@@ -213,7 +212,7 @@ struct
   let message = "Hello"
   let hello () = print_endline message
 end
-
+  
 (* At this point, Hello.message is not accessible anymore. *)
 let goodbye () = print_endline "Goodbye"
 let hello_goodbye () =
@@ -230,7 +229,7 @@ signature separately:
 module type Hello_type = sig
  val hello : unit -> unit
 end
-
+  
 module Hello : Hello_type = struct
   ...
 end

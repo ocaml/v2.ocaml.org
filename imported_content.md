@@ -26,7 +26,7 @@ Imported all tutorials from
 * Data Types and Matching [en, fr, it, ja, zh (part)]
 * Null Pointers, Asserts and Warnings [en, fr, it, ja]
 * Functional Programming [en, fr, it, ja]
-* Modules [en, fr]
+* Modules [en, fr, ja]
 * If Statements, Loops and Recursion [en, fr, it]
 * Labels
 * Objects
