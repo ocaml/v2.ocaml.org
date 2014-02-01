@@ -171,8 +171,8 @@ Looking at the types of these expressions we may be able to see some
 rationale for the strange `->` arrow notation used for function types:
 
 ```ocaml
-plus : int -> int -> int
-plus 2 : int -> int
+    plus : int -> int -> int
+  plus 2 : int -> int
 plus 2 3 : int
 ```
 This process is called **currying** (or perhaps it's called
