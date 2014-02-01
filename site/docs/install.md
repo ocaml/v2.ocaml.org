@@ -223,18 +223,26 @@ notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
  interface. Some features require the Cygwin environment, which the
  installer can fetch for you. However, the compilers are, and
  generate true Win32 executables, which do not require Cygwin to run.
-* Microsoft-based native Win32 port. No binary distribution available
- yet; download the source distribution and compile it.
+* Microsoft-based native Win32 ports. No binary distributions
+ available yet; download the source distribution and compile it. Build
+ instructions including required tools (Cygwin required) and download
+ links in the source distribution (README.win32).
+  - Configurations supported include 32-bit/64-bit;
+  - Microsoft toolset support provided by Windows 7 SDK;
+  - Tested with XP/Windows 7/Windows 8.1.
+  - On Windows 8.1
+    - Cygwin chmod 0600 appears broken : comment L367 of Makefile.nt
+       (@chmod -w utils/config.ml);
+    - This same problem with Cygwin chmod also affects ssh
+      configuration setup (may affect interaction with github
+      projects). See [this page](http://superuser.com/questions/397288/using-cygwin-in-windows-8-chmod-600-does-not-work-as-expected)
+      for a suggested workaround.
 * [Cygwin](http://cygwin.com/)-based port. Requires Cygwin. No
  graphical user interface is provided. The compilers generate
  executables that do require Cygwin. The precompiled binaries are
  part of the Cygwin distribution; you can install them using the
  Cygwin `setup` tool. Alternatively, download the source distribution
  and compile it under Cygwin.
-* Microsoft-based native Win64 port Same features as the
- Microsoft-based native Win32 port, but generates 64-bit code. No
- binary distribution available yet; download the source distribution
- and compile it.
 
 To install libraries, you may use
 [Wodi](http://wodi.forge.ocamlcore.org/) or OPAM.
