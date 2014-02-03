@@ -15,7 +15,7 @@
 * [ヌルポインタ、assert、警告](null_pointers_asserts_and_warnings.ja.html)
 * [関数型プログラミング](functional_programming.ja.html)
 * [モジュール](modules.ja.html)
-* If文、ループと再帰
+* [If文、ループと再帰](if_statements_loops_and_recursion.ja.html)
 * ラベル
 * オブジェクト
 * ガベージコレクション

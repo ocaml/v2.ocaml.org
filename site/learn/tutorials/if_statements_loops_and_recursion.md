@@ -206,7 +206,7 @@ OCaml supports a rather limited form of the familiar `for` loop:
 for variable = start_value to end_value do
   expression
 done
-
+  
 for variable = start_value downto end_value do
   expression
 done
@@ -564,7 +564,7 @@ directory:
 
 ```ocamltop
 open Unix  (*  You may need to #load "Unix.cma" *)
-
+  
 let readdir_no_ex dirh =
   try
     Some (readdir dirh)
@@ -684,41 +684,40 @@ away from this are:
 
 * The use of recursion to build a list:
 
-<!-- -->
-```ocaml
-let rec loop () =
-  a match or if statement
-  | base case -> []
-  | recursive case -> element :: loop ()
-```
-Compare this to our previous `range` function. The pattern of recursion
-is exactly the same:
-
-```ocamltop
-let rec range a b =
-  if a > b then []            (* Base case *)
-  else a :: range (a+1) b     (* Recursive case *)
-  ;;
-```
+    ```ocaml
+    let rec loop () =
+      a match or if statement
+      | base case -> []
+      | recursive case -> element :: loop ()
+    ```
+    Compare this to our previous `range` function. The pattern of recursion
+    is exactly the same:
+    
+    ```ocamltop
+    let rec range a b =
+      if a > b then []            (* Base case *)
+      else a :: range (a+1) b     (* Recursive case *)
+      ;;
+    ```
+	
 * The use of recursion to build up trees:
 
-<!-- -->
-```ocaml
-let rec read_directory path =
-  (* blah blah *)
-  if file-is-a-directory then
-    read_directory path-to-file
-  else
-    Leaf file
-```
-All that remains now to make this a working program is a little bit of
-code to call `read_directory` and display the result:
-
-```ocaml
-let path = Sys.argv.(1) in
-let fs = read_directory path in
-print_endline (string_of_filesystem fs)
-```
+    ```ocaml
+    let rec read_directory path =
+      (* blah blah *)
+      if file-is-a-directory then
+        read_directory path-to-file
+      else
+        Leaf file
+    ```
+    All that remains now to make this a working program is a little bit of
+    code to call `read_directory` and display the result:
+    
+    ```ocaml
+    let path = Sys.argv.(1) in
+    let fs = read_directory path in
+    print_endline (string_of_filesystem fs)
+    ```
 
 ###  Addendum
 After I posted this example to the caml-list mailing list I received
@@ -768,7 +767,7 @@ let rec read_filesystem path =
     Directory (read_directory path)
   else
     File path
-
+  
 and read_directory path =
   let dirh = opendir path in
   let rec loop entries =
