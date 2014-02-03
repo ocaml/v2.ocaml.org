@@ -22,7 +22,8 @@ Building the html pages requires:
 * netstring, netclient, equeue-ssl, and rss (for rss2html.ml)
 * lablgtk2 (optional, for the Gtk tutorial)
 
-If you use opam, the OCaml packages above can be installed by running:
+If you use opam (>= 1.1), the OCaml packages above can be installed by
+running:
 
     opam install ocamlfind mpp omd ssl ocamlnet ocamlrss
 
