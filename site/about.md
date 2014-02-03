@@ -70,7 +70,7 @@ live within a few minutes.
   take care of doing the fork for you).
 * Please don't add large files, you should put them elsewhere and link
   to them. It is possible to host some files in the separate
-  [ocaml.org-media](https://github.com/ocaml/ocaml.org-media).
+  [ocaml.org-media](https://github.com/ocaml/ocaml.org-media) repo.
 * Please be aware that Pull Requests are prioritised over issues.
 * Please be aware that content submitted will be licenced as (TBD).
 * If you are submitting substantial changes please do try building
