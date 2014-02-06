@@ -17,7 +17,7 @@
 * [モジュール](modules.ja.html)
 * [If文、ループと再帰](if_statements_loops_and_recursion.ja.html)
 * [ラベル](labels.ja.html)
-* オブジェクト
+* [オブジェクト](objects.ja.html)
 * ガベージコレクション
 * 性能とプロファイル
 

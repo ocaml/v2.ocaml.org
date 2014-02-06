@@ -29,7 +29,7 @@ Imported all tutorials from
 * Modules [en, fr, ja]
 * If Statements, Loops and Recursion [en, fr, it, ja]
 * Labels [en, ja]
-* Objects
+* Objects [en, ja]
 * Garbage Collection
 * Performance and Profiling
 * Introduction to Gtk

@@ -224,7 +224,7 @@ class contains an **initializer**. This is an argument to the class
 (`name`) which you can think of as exactly the equivalent of an argument
 to a constructor in, eg., Java:
 
-```
+```java
 public class Widget
 {
   public Widget (String name)
@@ -321,7 +321,7 @@ simple in fact, but nevermind that):
 
 ```ocamltop
 type button_state = Released | Pressed;;
-
+  
 class button ?callback name =
   object (self)
     inherit container name as super
@@ -399,7 +399,7 @@ In all the examples above we defined classes using the general pattern:
 class name =
   object (self)
     (* ... *)
-  end;;
+  end
 ```
 I didn't explain the reference to `self`. In fact this names the object,
 allowing you to call methods in the same class or pass the object to
@@ -412,6 +412,7 @@ the class and require the reference to `self`. There is no penalty for
 having it.
 
 ###  Inheritance and coercions
+
 ```ocamltop
 let b = new button "button";;
 let l = new label "label" "Press me!";;
@@ -564,7 +565,7 @@ class t =
   object
     val x = 0
     method get = x
- end
+  end
 ```
 `object val x : int method get : int end` is a class type.
 
