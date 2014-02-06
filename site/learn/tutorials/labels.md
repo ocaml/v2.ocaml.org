@@ -31,7 +31,7 @@ let rec even n =
   match n with
   | 0 -> true
   | x -> odd (x-1)
-
+  
 let rec odd n =
   match n with
   | 0 -> false
@@ -140,13 +140,13 @@ You can do something similar in Perl:
 sub ask_ok
 {
   my %params = @_;
-
+  
   my $prompt = $params{prompt};
   my $retries = exists $params{retries} ? $params{retries} : 4;
-
+  
   # ... etc.
 }
-
+  
 ask_ok (prompt => "Are you sure?", retries => 2);
 ```
 
@@ -258,19 +258,19 @@ lablgtk:
 type window = { mutable title: string;
                 mutable width: int;
                 mutable height: int }
-
+  
 let create_window () =
   { title = "none"; width = 640; height = 480; }
-
+  
 let set_title window title =
   window.title <- title
-
+  
 let set_width window width =
   window.width <- width
-
+  
 let set_height window height =
   window.height <- height
-
+  
 let open_window ?title ?width ?height () =
   let window = create_window () in
   may ~f:(set_title window) title;

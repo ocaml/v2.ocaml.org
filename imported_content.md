@@ -28,7 +28,7 @@ Imported all tutorials from
 * Functional Programming [en, fr, it, ja, zh]
 * Modules [en, fr, ja]
 * If Statements, Loops and Recursion [en, fr, it, ja]
-* Labels
+* Labels [en, ja]
 * Objects
 * Garbage Collection
 * Performance and Profiling

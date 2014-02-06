@@ -16,7 +16,7 @@
 * [関数型プログラミング](functional_programming.ja.html)
 * [モジュール](modules.ja.html)
 * [If文、ループと再帰](if_statements_loops_and_recursion.ja.html)
-* ラベル
+* [ラベル](labels.ja.html)
 * オブジェクト
 * ガベージコレクション
 * 性能とプロファイル
