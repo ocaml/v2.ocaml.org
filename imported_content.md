@@ -35,7 +35,7 @@ Imported all tutorials from
 * Introduction to Gtk
 * Calling C libraries
 * Calling Fortran libraries
-* Common error messages [en, fr]
+* Common error messages [en, fr, ja]
 * OCaml and the Web
 * Programming style [replaced with "OCaml Programming Guidelines"]
 * Standard Library Examples [en, zh]

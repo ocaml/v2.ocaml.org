@@ -23,9 +23,9 @@
 
 ((! get second_of_two_columns !))
 
-* GTKプログラミング入門
-* Cライブラリを呼ぶ
-* よくあるエラーメッセージ
+* GTKプログラミング入門 — [en](introduction_to_gtk.html)
+* Cライブラリを呼ぶ — [en](calling_c_libraries.html)
+* [よくあるエラーメッセージ](common_error_messages.ja.html)
 * OCamlでWebプログラミング
 * プログラミングのスタイル
 * 標準ライブラリの例
