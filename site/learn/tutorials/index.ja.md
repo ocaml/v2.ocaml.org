@@ -32,6 +32,7 @@
 * [OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)
 * [コマンドライン引数](command-line_arguments.ja.html)
 * [ファイル操作](file_manipulation.ja.html)
+* [標準コンテナの比較](comparison_of_standard_containers.ja.html)
 
 ((! get end_two_columns !))
 
