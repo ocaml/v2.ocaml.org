@@ -1,11 +1,14 @@
-<!-- ((! set title If Statements, Loops and Recursion !)) ((! set learn !)) -->
+<!-- ((! set title If 문, 루프, 재귀 !)) ((! set learn !)) -->
 
 *Table of contents*
 
-# If Statements, Loops and Recursion
+If 문, 루프, 재귀
+=================
 
-## If statements (actually these are if expressions)
-OCaml has an if statement with two variations, and the obvious meaning:
+if 문 - 사실은 if 표현식(expression)
+------------------------------------
+
+Ocaml은 다음 두가지 형태의 명백한 의미의 if 문이 있다:
 
 ```ocaml
 if boolean-condition then expression
@@ -13,58 +16,58 @@ if boolean-condition then expression
 if boolean-condition then expression else other-expression
 ```
 
-Unlike in the conventional languages you'll be used to, if statements
-are really expressions. In other words, they're much more like
-`boolean-condition ? expression : other-expression` than like the if
-statements you may be used to.
+여태까지 사용해왔던 다른 언어들과는 다르게, ocaml에서 if문은 진짜
+표현식(expression)이다. Ocaml의 if문은 사실 다음과 더 비슷하다.
+`boolean-condition ? expression :other-expression`
 
-Here's a simple example of an `if` statement:
+다음은 if문의 간단한 예제이다:
 
 ```ocamltop
 let max a b =
   if a > b then a else b
 ```
-As a short aside, if you type this into the OCaml toplevel, you'll
-notice that OCaml decides that this function is polymorphic, with the
-following type:
+
+잠깐 위 예제를 OCaml 톱레벨에서 입력해 보면 이 함수가 아래의 타입인
+다형적(polymorphic) 함수라는 것을 알 수 있다.
 
 ```ocaml
 max : 'a -> 'a -> 'a
 ```
-And indeed OCaml lets you use `max` on any type:
+
+따라서 OCaml에서 위의 `max` 함수는 어떤 타입에도 사용할 수 있다:
 
 ```ocamltop
 max 3 5;;
 max 3.5 13.0;;
 max "a" "b";;
 ```
-This is because `>` is in fact polymorphic. It works on any type, even
-objects (it does a binary comparison).
 
-[Note that the `Pervasives` module defines `min` and `max` for you.]
+이는 `>`가 사실상 다형적(polymorphic)이기 때문에, 심지어 객체를 비롯한
+어떠한 타입에도 동작한다. (사실 비트를 가지고 비교하기 때문).
 
-Let's look a bit more closely at the `if` expression. Here's the `range`
-function which I showed you earlier without much explanation. You should
-be able to combine your knowledge of recursive functions, lists and if
-expressions to see what it does:
+[참고: `max`와 `min`는 라이브러리에 포함되어 있다]
+
+이제 if 문에 대해서 좀더 자세히 알아보자. `range`는 충분히 설명하지
+않았던 함수인데, 아마도 여태까지 배웠던 재귀 함수, 리스트, if 표현식을
+조합하면, 이해할 수 있을 것이다:
 
 ```ocamltop
 let rec range a b =
   if a > b then []
   else a :: range (a+1) b
 ```
-Let's examine some typical calls to this function. Let's start with the
-easy case of `a > b`. A call to `range 11 10` returns `[]` (the empty
-list) and that's it.
 
-What about calling `range 10 10`? Since `10 > 10` is false, the
-`else`-clause is evaluated, which is: `10 :: (range 11 10)` (I've added
-the brackets to make the order of evaluation more clear). We've just
-worked out that `range 11 10` = `[]`, so this is: `10 :: []`. Remember
-our formal description of lists and the `::` (cons) operator? `10 :: []`
-is just the same as `[ 10 ]`.
+이제 이 함수에 몇가지 예제를 적용해 보자. 먼저 쉬운 예로 `a > b` 부터
+해보도록 하자. `range 11 10` 하면 `[]` 가 되돌려 진다.(빈 리스트) 그리곤
+끝이다.
 
-Let's try `range 9 10`:
+`range 10 10`를 했을때는 어떨까? `10 > 10`가 거짓이 되니까 `else`부분이
+계산되어진다, 그렇다면: `10 :: (range 11 10)` (가독성을 위해 괄호를
+넣었다). 방금전에 했던 것처럼 `range 11 10` = `[]`다, 따라서 이것은:
+`10 :: []`이다. 앞에서 설명했던 리스트의 `::` (cons) 연산자가
+기억나는가? `10 :: []`는 `[ 10 ]` 같다.
+
+이것을 한번 해보자 `range 9 10`:
 
 ```ocaml
 range 9 10
@@ -72,31 +75,34 @@ range 9 10
 → 9 :: [ 10 ]
 → [9; 10]
 ```
-It should be fairly clear that `range 1 10` evaluates to
+
+`range 1 10` 은 명확하게 다음과 같이 계산되어진다.
 `[ 1; 2; 3; 4; 5; 6; 7; 8; 9; 10 ]`.
 
-What we've got here is a simple case of recursion. Functional
-programming can be said to prefer recursion over loops, but I'm jumping
-ahead of myself. We'll discuss recursion more at the end of this
-chapter.
+여기서 우리가 얻은 것은 단순한 케이스의 재귀호출이다. 미리 이야기
+하자면, 함수형 프로그래밍은 루프 보다는 재귀호출을 선호한다고 말할수
+있다. 이 장의 마지막 부분에서 재귀호출에 대해 더 논의 할 것이다.
 
-Back, temporarily, to if statements. What does this function do?
+잠시 if 문으로 돌아가면, 아래 함수는 무엇을 하는 것일까?
 
 ```ocamltop
 let f x y =
   x + if y > 0 then y else 0
 ```
-Clue: add brackets around the whole of the if expression. It clips `y`
-like an [electronic diode](https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic).
 
-The `abs` (absolute value) function is defined in `Pervasives` as:
+단서: 전체 if 표현식에 괄호를 쳐보자. 이 함수는 마치 [전기
+다이오드](https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic)처럼
+`y`를 클립(clip)한다.
+
+`abs` (절대값) 함수는 `Pervasives`에서 다음과 같이 정의된다:
 
 ```ocamltop
 let abs x =
   if x >= 0 then x else -x
 ```
-Also in `Pervasives`, the `string_of_float` function contains a complex
-pair of nested if expressions:
+
+역시 `Pervasives`에서 `string_of_float`함수는 중첩된 if 표현식의 복잡한
+쌍을 가지고 있다:
 
 ```ocaml
 let string_of_float f =
@@ -108,33 +114,31 @@ let string_of_float f =
     else loop (i+1) in
   loop 0
 ```
-Let's examine this function. Suppose the function is called with `f` =
-12.34. Then `s` = "12.34", and `l` = 5. We call `loop` the first time
-with `i` = 0.
 
-`i` is not greater than or equal to `l`, and `s.[i]` (the
-`i`<sup>th</sup> character in `s`) is not a period or `'e'`. So
-`loop (i+1)` is called, ie. `loop 1`.
+이 함수를 살펴보자. 이 함수를 인자 `f` = 12.34로 호출 한다면, `s` =
+"12.34", 그리고 `l` = 5가 된다. 우리는 `loop`를 초기값 `i` = 0로
+호출한다.
 
-We go through the same dance for `i` = 1, and end up calling `loop 2`.
+`i`가 `l` 보다 크거나 같지 않고 `s.[i]` (`s`내에서 `i`번째 문자)가
+마침표 또는 `'e'`가 아니므로 `loop (i+1)`가 호출된다, 즉 `loop 1`.
 
-For `i` = 2, however, `s.[i]` is a period (refer to the original string,
-`s` = "12.34"). So this immediately returns `s`, and the function
-`string_of_float` returns "12.34".
+`i` = 1로 다시 반복하면 `loop 2`를 호출한다.
 
-What is `loop` doing? In fact it's checking whether the string returned
-from `format_float` contains a period (or `'e'`). Suppose that we called
-`string_of_float` with `12.0`. `format_float` would return the string
-"12", but `string_of_float` must return "12." or "12.0" (because
-floating point constants in OCaml must contain a period to differentiate
-them from integer constants). Hence the check.
+`i` = 2의 경우는 `s.[i]`가 마침표 이므로 (원 문자열을 상기하면 `s` =
+"12.34"), 이는 즉시 `s`를 반환하고 함수 `string_of_float`는 "12.34"를
+반환한다.
 
-The strange use of recursion in this function is almost certainly for
-efficiency. OCaml supports for loops, so why didn't the authors use for
-loops? We'll see in the next section that OCaml's for loops are limited
-in a way which prevents them from being used in `string_of_float`. Here,
-however, is a more straightforward, but approximately twice as slow, way
-of writing `string_of_float`:
+`loop`가 무엇을 하는 것일까? 사실 이 함수는 `format_float`이 반환한
+문자열이 마침표 (또는 `'e'`)를 포함하고 있는지 검사한다. 만일 `12.0`로
+`string_of_float`를 호출한다면, `format_float`는 문자열 "12"를
+반환하겠지만, `string_of_float`는 "12." 또는 "12.0"를 반환해야 한다
+(OCaml의 부동소수점 상수는 정수 상수와 구별하기 위해 마침표를 포함해야
+하기 때문에). 그래서 마침표 유무를 검사하는 것이다.
+
+이 함수에서 사용된 이상한 재귀호출은 거의 효율 때문이다. OCaml은 루프를
+지원하는데 왜 루프를 사용하지 않았을까? 다음 섹션에서 OCaml의 `for`
+루프가 `string_of_float` 사용이 불가능 하다는 것을 배울 것이다. 하지만
+여기 좀더 직관적이지만 두배 정도 느린 `string_of_float` 코드가 있다:
 
 ```ocaml
 let string_of_float f =
@@ -144,8 +148,10 @@ let string_of_float f =
   else s ^ "."
 ```
 
-## Using begin ... end
-Here is some code from lablgtk:
+begin ... end 사용하기
+----------------------
+
+lablgtk의 코드 일부를 보자:
 
 ```ocaml
 if GtkBase.Object.is_a obj cls then
@@ -155,10 +161,11 @@ else begin
   raise Not_found
 end
 ```
-`begin` and `end` are what is known as **syntactic sugar** for open and
-close parentheses. In the example above, all they do is group the two
-statements in the `else`-clause together. Suppose the author had written
-this instead:
+
+`begin`와 `end`는 열기 및 닫기 괄호에 해당하는 소위 **문법 설탕**이다.
+위의 예에서 이들이 하는 것은 `else` 절 내의 두 개의 문(statement)을
+하나로 묶어 주는 것이 전부이다. 대신에 다음과 같이 작성했다고 가정해
+보자:
 
 ```ocaml
 if GtkBase.Object.is_a obj cls then
@@ -167,7 +174,8 @@ else
   eprintf "Glade-warning: %s expects a %s argument.\n" name cls;
   raise Not_found
 ```
-Fully bracketing and properly indenting the above expression gives:
+
+완전히 괄호를 치고 적절히 인덴트를 한다면 다음과 같이 된다:
 
 ```ocaml
 (if GtkBase.Object.is_a obj cls then
@@ -177,11 +185,12 @@ Fully bracketing and properly indenting the above expression gives:
 );
 raise Not_found
 ```
-Not what was intended at all. So the `begin` and `end` are necessary to
-group together multiple statements in a `then` or `else` clause of an if
-expression. You can also use plain ordinary parentheses `( ... )` if you
-prefer (and I do prefer, because I **loathe** Pascal :-). Here are two
-simple examples:
+
+의도한 바와 전혀 다르다. 따라서 if 표현식의 `then` 또는 `else` 절 내에
+있는 여러개의 문(statement)를 묶기 위해서 `begin`과 `end`가 필요한
+것이다. 또한 원한다면 `( ... )` 와 같은 일반적인 괄호를 사용할 수도
+있다. (나 역시 Pascal을 **질색**하기 때문에 괄호를 더 선호한다 :-).
+간단한 예제 두 개를 보자:
 
 ```ocamltop
   if 1 = 0 then
@@ -199,8 +208,10 @@ simple examples:
   );;
 ```
 
-## For loops and while loops
-OCaml supports a rather limited form of the familiar `for` loop:
+for 루프와 while 루프
+---------------------
+
+OCaml은 우리에게 익숙한 `for`를 약간 제한된 형태로 지원한다:
 
 ```ocaml
 for variable = start_value to end_value do
@@ -211,14 +222,16 @@ for variable = start_value downto end_value do
   expression
 done
 ```
-A simple but real example from lablgtk:
+
+lablgtk의 단순하지만 실제 코드를 보면:
 
 ```ocaml
 for i = 1 to n_jobs () do
   do_next_job ()
 done
 ```
-In OCaml, `for` loops are just shorthand for writing:
+
+OCaml에서 `for` 루프는 단지 아래의 축약형일 뿐이다:
 
 ```ocaml
 let i = 1 in
@@ -232,39 +245,42 @@ let i = n_jobs () in
 do_next_job ();
 ()
 ```
-OCaml doesn't support the concept of breaking out of a `for` loop early
-i.e. it has no `break`, `continue` or `last` statements. (You *could*
-throw an exception and catch it outside, and this would run fast but
-often looks clumsy.)
 
-The expression inside an OCaml for loop should evaluate to `unit`
-(otherwise you'll get a warning), and the for loop expression as a whole
-returns `unit`:
+OCaml은 `for` 에서 루프의 종료전 빠져나오는 개념을 지원하지 않는다 -
+i.e. `break`, `continue`, `last` 문과 같은 것이 없다. (예외를 발생
+시키고 외부에서 캐치 하는 방법을 *쓸 수도* 있는데, 빠르긴 하지만 종종
+지저분해 보인다.)
+
+OCaml의 for 루프 내의 표현식은 `unit` 타입이어야 하며 (그렇지 않으면
+컴파일러 경고를 받는다.), 따라서 for 루프 전체의 표현식 역시 `unit`를
+반환한다:
 
 ```ocamltop
-for i = 1 to 10 do i done;;
+for i = 1 to 10 do
+  i (* 경고: 이 표현식은 unit 이다. *)
+done
 ```
-Functional programmers tend to use recursion instead of explicit loops,
-and regard **for** loops with suspicion since it can't return anything,
-hence OCaml's relatively powerless **for** loop. We talk about recursion
-below.
 
-**While loops** in OCaml are written:
+함수형 프로그래머들은 명시적인 루프 대신 재귀호출을 사용하는 경향이
+있으며, OCaml의 상대적으로 능력이 약한 **for** 루프 때문에 **for**
+루프를 의심스럽게 대한다. 아래에서 재귀호출에 대해 이야기 할 예정이다.
+
+OCaml의 **while 루프**는 다음과 같다:
 
 ```ocaml
 while boolean-condition do
   expression
 done
 ```
-As with for loops, there is no way provided by the language to break out
-of a while loop, except by throwing an exception, and this means that
-while loops have fairly limited use. Again, remember that functional
-programmers like recursion, and so while loops are second-class citizens
-in the language.
 
-If you stop to consider while loops, you may see that they aren't really
-any use at all, except in conjunction with our old friend references.
-Let's imagine that OCaml didn't have references for a moment:
+for 루프와 같이, 예외를 발생시키지 않고는 while 루프 바깥으로 빠져
+나오는 방법은 없다. 이는 while 루프 역시 사용이 제한되어 있다는 점을
+의미한다. 다시 말하자면 함수형 프로그래머들은 재귀호출을 좋아 하기
+때문에 while 루프는 이 언어에서는 이등 시민으로 간주된다.
+
+만일 while 루프에 한 고려를 중단하면, 이 while 루프가 별다른 쓸모가
+없다는 것을 볼 수 있을 것이다, 우리의 오랜 친구 레퍼런스(reference)와
+함께 사용하지 않는다면. 잠시 OCaml이 레퍼런스가 없다고 상상해 보자:
 
 ```ocaml
 let quit_loop = false in
@@ -275,16 +291,18 @@ while not quit_loop do
     (* how do I set quit_loop to true ?!? *)
 done
 ```
-Remember that `quit_loop` is not a real "variable" - the let-binding
-just makes `quit_loop` a shorthand for `false`. This means the while
-loop condition (shown in red) is always true, and the loop runs on
-forever!
 
-Luckily OCaml *does have* references, so we can write the code above if
-we want. Don't get confused and think that the `!` (exclamation mark)
-means "not" as in C/Java. It's used here to mean "dereference the
-pointer", similar in fact to Forth. You're better off reading `!` as
-"get" or "deref".
+`quit_loop`가 진짜 "변수"가 아니라는 점을 기억하자 - let-바인딩은 단지
+`quit_loop`를 `false`의 약칭으로 만들어 줄 뿐이다. 이는 while 루프의
+조건 (붉은 색의)이 언제나 참이며 루프는 무한히 반복한다는 것이다!
+
+다행스럽게도 OCaml은 레퍼런스가 *있어서*, 우리는 원하는대로 위 코드를
+작성할 수 있다. 느낌표 `!`가 C/Java에서 처럼 부정을 의미한다고 혼돈하지
+말기 바란다. 여기서 의미는 Forth와 비슷하게 "포인터를 디레퍼런스"하는
+것을 의미한다. `!`를 "get" 또는 "deref"라고 읽는 것이 좋다. (역주:
+dereference를 역참조로 번역하는 것도 고려했지만, 의미가 잘 통하지 않고
+사전에서도 디레퍼런스 - '프로그래밍 언어에서 포인터가 가리키는 번지에
+수납된 데이터에 접근하기'로 나와있어 그대로 사용합니다)
 
 ```ocaml
 let quit_loop = ref false in
@@ -293,88 +311,90 @@ while not !quit_loop do
   let str = read_line () in
   if str.[0] = 'y' then
     quit_loop := true
-done;;
+done
 ```
-## Looping over lists
-If you want to loop over a list, don't be an imperative programmer and
-reach for your trusty six-shooter Mr. For Loop! OCaml has some better
-and faster ways to loop over lists, and they are all located in the
-`List` module. There are in fact dozens of good functions in `List`, but
-I'll only talk about the most useful ones here.
 
-First off, let's define a list for us to use:
+리스트를 따라 루프 돌기
+-----------------------
+
+리스트를 따라 루프를 돌고 싶다고, 명령형 (imperative) 프로그래머가 되어
+믿음직한 총잡이 Mr. For Loop씨를 찾을 필요는 없다. OCaml은 리스트를 따라
+루프를 돌 수 있는 더 낫고 빠른 방법을 가지고 있으며, 이들은 모두 `List`
+모듈 내에 들어 있다. 사실 `List` 모듈 내에는 수십가지의 좋은 함수들이
+있지만, 나는 단지 가장 유용한 몇가지만 여기서 이야기 하겠다.
+
+먼저 사용할 리스트를 하나 정의해 보자:
 
 ```ocamltop
 let my_list = [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
 ```
-If you want to call a function once on every element of the list, use
-`List.iter`, like this:
+
+만일 리스트 내의 모든 요소에 대해 함수를 호출하고 싶다면 `List.iter`를
+다음과 같이 쓰면 된다:
 
 ```ocamltop
 let f elem =
   Printf.printf "I'm looking at element %d now\n" elem in
   List.iter f my_list
 ```
-`List.iter` is in fact what you should think about using first every
-time your cerebellum suggests you use a for loop.
 
-If you want to *transform* each element separately in the list - for
-example, doubling each element in the list - then use `List.map`. This
-function will be familiar to people who've
+`List.iter`는 사실 당신의 소뇌가 for 루프 사용을 제안할 때 마다 첫번째로
+고려해야할 것이다.
 
-programmed in Perl before.
+만일 리스트내의 모든 요소를 각각 *변화*시키고 싶다면 - 예를 들어 각
+요소를 두배로 하는 - `List.map`를 사용하라. 이 함수는 이전에 Perl
+프로그래밍을 해 본 사람이라면 친숙할 것이다.
 
 ```ocamltop
 List.map (( * ) 2) my_list
 ```
-Perl has the useful function "grep" for filtering only elements of a
-list which satisfy some condition - eg. returning all even numbers in a
-list. In OCaml this function is called `List.filter`:
+
+펄에는 리스트 내에서 조건을 만족하는 요소들만 골라낼 수 있는 "grep"
+이라는 유용한 함수가 있다 - 예를 들어, 리스트 내에서 짝수만 반환하는.
+OCaml에서 이 함수는 `List.filter` 이다:
 
 ```ocamltop
 let is_even i =
   i mod 2 = 0 in
 List.filter is_even my_list
 ```
-To find out if a list contains some element, use `List.mem` (short for
-member):
+
+리스트가 어떤 요소를 가지고 있는지를 확인하기 위해서는 `List.mem`를
+사용하면 된다 (member의 약자):
 
 ```ocamltop
 List.mem 12 my_list
 ```
-`List.for_all` and `List.exists` are the same as the "forall" and
-"exist" operators in predicate logic.
 
-For operating over two lists at the same time, there are "-2" variants
-of some of these functions, namely `iter2`, `map2`, `for_all2`,
-`exists2`.
+`List.for_all`와 `List.exists`는 술어 논리(predicate logic)의 "forall"과
+"exist" 연산자와 동일 하다.
 
-The `map` and `filter` functions operate on individual list elements in
-isolation. \<dfn\>Fold\</dfn\> is a more unusual operation that is best
-thought about as "inserting an operator between each element of the
-list". Suppose I wanted to add all the numbers in my list together. In
-hand-waving terms what I want to do is insert a plus sign between the
-elements in my list:
+두개의 리스트에 대해 동시에 연산을 하고 싶다면, `iter2`, `map2`,
+`for_all2`, `exists2` 등과 같은 접두사 "2"로 끝나는 함수들이 있다.
 
-```ocamltop
-1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
-```
-The fold operation does this, although the exact details are a little
-bit more tricky. First of all, what happens if I try to fold an empty
-list? In the case of summing the list it would be nice if the answer was
-zero, instead of error. However if I was trying to find the product of
-the list, I'd like the answer to be one instead. So I obviously have to
-provide some sort of "default" argument to my fold. The second issue
-doesn't arise with simple operators like `+` and `*`: what happens if
-the operator I'm using isn't associative, ie. (a *op* b) *op* c not
-equal to a *op* (b *op* c)? In that case it would matter if I started
-from the left hand end of the list and worked right, versus if I started
-from the right and worked left. For this reason there are two versions
-of fold, called `List.fold_left` (works left to right) and
-`List.fold_right` (works right to left, and is also less efficient).
+`map`과 `filter` 함수는 개별적인 리스트 요소들에 대해 독립적으로
+동작한다. \<dfn\>Fold\</dfn\>는 좀 더 일반적이지 않은 동작으로 "리스트의
+각 요소들 사이에 연산자를 삽입한다"라고 생각할 수 있다. 리스트 내의 모든
+숫자들을 더하고 싶다고 가정해 보자. 대충 이야기 하자면, 내가 원하는 것은
+리스트 내의 요소들 사이에 덧셈 기호를 삽입하는 것이다:
 
-Let's use `List.fold_left` to define `sum` and `product` functions for
-integer lists:
+    1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
+
+fold 연산은 이를 해 준다. 비록 정확한 디테일은 약간 더 어렵지만. 맨
+먼저, 내가 빈 리스트를 fold 하려 하면 어떤 일이 벌어질까? 이런 경우
+에러를 내는 것 보다는 답이 0이면 좋을 것이다. 하지만 내가 리스트의
+내적(product)을 구하고자 한다면 다른 답을 원할 것이다. 따라서 fold를
+정의하기 위해서는 일종의 "디폴트" 인자를 제공해야 한다. 두 번째 문제는
+`+` 나 `*`와 같은 단순한 연산자에서는 문제가 발생하지 않는다: 만일
+사용하려는 연산자가 결합법칙을 만족하지 않는다면 어떻게 할까, 예를 들어
+(a *op* b) *op* c 가 a *op* (b *op* c)와 다르다면? 이러한 경우 리스트의
+왼쪽에서 연산을 시작해 오른쪽으로 가느냐, 오른쪽에서 시작해 왼쪽으로
+가느냐가 문제가 된다. 이러한 이유로 fold는 두개의 버전이 존재한다.
+`List.fold_left`는 왼쪽에서 오른쪽으로 가며 `List.fold_right`는
+오른쪽에서 왼쪽으로 오는데 약간 효율이 떨어진다.
+
+`List.fold_left`를 써서 정수 리스트에 대한 `sum`(합)과 `product`(곱)
+함수를 정의해 보자:
 
 ```ocamltop
 let sum = List.fold_left ( + ) 0;;
@@ -382,67 +402,70 @@ let product = List.fold_left ( * ) 1;;
 sum my_list;;
 product my_list;;
 ```
-That was easy! Notice that I've accidentally come up with a way to do
-mathematical factorials:
+
+쉽다! 팩토리얼도 같은 방법을 쓸 수 있다:
 
 ```ocamltop
 let fact n = product (range 1 n);;
 fact 10;;
 ```
-(Notice that this factorial function isn't very useful because it
-overflows the integers and gives wrong answers even for quite small
-values of `n`. A real factorial function would use the `Big_int`
-module.)
 
-## Looping over strings
-The `String` module also contains many dozens of useful string-related
-functions, and some of them are concerned with looping over strings.
+(이 팩토리얼 함수는 정수의 오버플로우 때문에 그다지 크지 않은 `n` 값에
+대해서도 잘못된 값을 반환할 수 있으므로 별로 유용하지는 않다. 실제
+팩토리얼 함수는 `Big_int` 모듈을 사용하여야 한다.)
 
-`String.fill` and `String.blit` are the equivalents to C `memset` and
-`strcpy` respectively. `String.copy` copies a string, like `strdup`.
+문자열을 따라 루프 돌기
+-----------------------
 
-There is also a `String.iter` function which works like `List.iter`,
-except over the characters of the string.
+`String` 모듈 역시 수십개의 유용한 문자열 관련 함수들을 가지고 있으며,
+이 함수들중 일부는 문자열을 따라 루프를 도는 데 사용된다.
 
-## Recursion
-Now we come to a hard topic - recursion. Functional programmers are
-defined by their love of recursive functions, and in many ways recursive
-functions in f.p. are the equivalent of loops in imperative programming.
-In functional languages loops are second-class citizens, whilest
-recursive functions get all the best support.
+`String.fill`과 `String.blit`는 C의 `memset`과 `strcpy`에 해당한다.
+`String.copy`은 `strdup`와 같이 문자열을 복사한다.
 
-Writing recursive functions requires a change in mindset from writing
-for loops and while loops. So what I'll give you in this section will be
-just an introduction and examples.
+또한 `String.iter` 함수가 있어 `List.iter`와 비슷하게 문자열 내의
+문자들에 대해 동작한다.
 
-In the first example we're going to read the whole of a file into memory
-(into a long string). There are essentially three possible approaches to
-this:
+재귀 호출 (recursion)
+---------------------
 
-###  Approach 1
-Get the length of the file, and read it all in one go using the
-`really_input` method. This is the simplest, but it might not work on
-channels which are not really files (eg. reading keyboard input) which
-is why we look at the other two approaches.
+이제 어려운 주제, 재귀 호출로 넘어 왔다. 함수형 프로그래머들은 이들의
+재귀 함수에 대한 사랑으로 정의될 수 있으며, 여러가지로 함수형
+프로그래밍에서 재귀 함수는 명령형 프로그래밍에서의 루프와 동일한 것으로
+간주된다. 함수형 언어에서 루프는 이등 시민으로 간주되지만, 재귀 함수는
+최고의 지원을 받는다.
 
-###  Approach 2
-The imperative approach, using a while loop which is broken out of using
-an exception.
+for 루프와 while 루프를 작성하다 재귀 함수를 작성하는 것은 마인드셋의
+변화가 필요하다. 따라서 이 섹션은 소개와 예제를 제공할 것이다.
 
-###  Approach 3
-A recursive loop, breaking out of the recursion again using an
-exception.
+첫번째 예제에서 우리는 파일 전체를 메모리로(하나의 긴 스트링 형태로)
+읽어들일 것이다. 이를 위해서 본질적으로 세가지의 가능한 접근 방법이
+있다:
 
-We're going to introduce a few new concepts here. Our second two
-approaches will use the `Buffer` module - an expandable buffer which you
-can think of like a string onto which you can efficiently append more
-text at the end. We're also going to be catching the `End_of_file`
-exception which the input functions throw when they reach the end of the
-input. Also we're going to use `Sys.argv.(1)` to get the first command
-line parameter.
+### 방법 1
+
+파일의 길이를 얻어온 후, `really_input` 메소드를 사용하여 한번에 모두
+읽어 들인다. 가장 쉬운 방법이지만 실제 파일이 아닌 채널(예, 키보드
+입력)에서의 경우라면 전체 길이를 미리 알 수 없기 때문에 불가능하고
+따라서 다른 접근 방법을 찾아야 한다.
+
+### 방법 2
+
+명령형 접근으로 예외를 이용한 while 루프를 사용한다.
+
+### 방법 3
+
+재귀적 루프로 역시 예외를 이용하여 끝을 낸다.
+
+
+여기서 몇가지 새로운 개념을 소개하겠다. 마지만 두 접근 방법들은 `Buffer`
+모듈 - 확장 가능한 버퍼로 효율적으로 뒤에 텍스트를 덧붙일 수 있는
+스트링과 같이 생각할 수 있다. 입력이 종료되면 `End_of_file` 예외를 캐치
+할 수도 있다. 또한 `Sys.argv.(1)`를 사용하여 커맨드라인 파라미터를 얻을
+것이다.
 
 ```ocaml
-(* Read whole file: Approach 1 *)
+(* 전체 파일 읽기: 방법 1 *)
 open Printf
   
 let read_whole_chan chan =
@@ -461,12 +484,11 @@ let () =
   printf "I read %d characters from %s\n" (String.length str) filename
 ```
 
-Approach 1 works but is not very satisfactory because `read_whole_chan`
-won't work on non-file channels like keyboard input or sockets. Approach
-2 involves a while loop:
+방법 1은 별로 만족스럽지 않은데 `read_whole_chan`가 키보드나 소켓과 같은
+비-파일 채널에는 동작하지 않기 때문이다. 방법 2는 while 루프를 사용한다:
 
 ```ocaml
-(* Read whole file: Approach 2 *)
+(* 전체 파일 읽기: 방법 2 *)
 open Printf
   
 let read_whole_chan chan =
@@ -492,29 +514,25 @@ let () =
   printf "I read %d characters from %s\n" (String.length str) filename
 ```
 
-The key to approach 2 is to look at the central while loop. Remember
-that I said the only way to break out of a while loop early was with an
-exception? This is exactly what we're doing here. Although I haven't
-covered exceptions yet, you probably won't have any trouble
-understanding the `End_of_file` exception thrown in the code above by
-`input_line` when it hits the end of the file. The buffer `buf`
-accumulates the contents of the file, and when we hit the end of the
-file we return it (`Buffer.contents buf`).
+방법 2의 핵심은 while 루프의 내부를 보면 된다. while 루프에서 빠져
+나오는 유일한 방법은 예외라는 것을 기억하는가? 바로 우리가 하고 있는
+것이 그것이다. 비록 예외에 대해 아직 배우지 않았지만, 파일의 끝에
+도착했을 때 `input_line`에 의해 `End_of_file` 예외가 발생하는 것은 쉽게
+이해할 수 있을 것이다. 버퍼 `buf`는 파일의 내용을 누적시키고, 파일의
+끝에 도달했을 때 우리는 이 버퍼를 반환한다 (`Buffer.contents buf`).
 
-One curious point about this is the apparently superfluous extra set of
-quotes (`""`) just after the while loop. What are they for? Remember
-that while loops, like for loops, are just expressions, and they return
-the `unit` object (`()`). However OCaml demands that the return type
-inside a `try` matches the return type of each caught exception. In this
-case because `End_of_file` results in a `string`, the main body of the
-`try` must also "return" a string - even though because of the infinite
-while loop the string could never actually be returned.
+여기서 궁금한 점은 while 루프 직후에 나오는 불필요해 보이는
+따옴표(`""`)이다. 왜 있는 것일까? while 루프는 for 루프와 마찬가지로
+단지 표현식이며, `unit` 객체(`()`)를 반환한다. 그러나 OCaml은 `try` 내의
+타입이 각 예외의 반환 타입과 매치 되어야 한다. 이 경우 `End_of_file`이
+`string`를 반환하기 때문에, `try`의 본체도 문자열을 "반환"하여야 한다 -
+무한 루프를 돌기 때문에 문자열을 반환할 일이 절대 없는 경우에요.
 
-Here's our recursive version. Notice that it's *shorter* than approach
-2, but not so easy to understand for imperative programmers at least:
+이제 재귀적인 버전의 차례다. 방법 2에 비해 *짧다*는 것을 주의하기
+바란다. 하지만 명령형 프로그래머에게는 이해하기 쉽지 않다:
 
 ```ocaml
-(* Read whole file: Approach 3 *)
+(* 전체 파일 읽기: 방법 3 *)
 open Printf
   
 let read_whole_chan chan =
@@ -539,31 +557,30 @@ let () =
   printf "I read %d characters from %s\n" (String.length str) filename
 ```
 
-Again we have an infinite loop - but in this case done using recursion.
-`loop` calls itself at the end of the function. The infinite recursion
-is broken when `input_line` throws an `End_of_file` exception.
+역시 무한 루프이지만 이번은 재귀 호출을 이용한다. `loop`는 함수의
+마지막에 자기 자신을 다시 호출한다. 이 무한 재귀 호출은 `input_line`가
+`End_of_file` 예외를 발생시킬 때 끝이 난다.
 
-It looks like approach 3 might overflow the stack if you gave it a
-particularly large file, but this is in fact not the case. Because of
-tail recursion (discussed below) the compiler will turn the recursive
-`loop` function into a real while loop (!) which runs in constant stack
-space.
+방법 3은 매우 큰 파일을 읽을 때 스택 오버플로우를 일으킬 것으로
+보이지만, 사실은 그렇지 않다. 아래에서 논의 예정인 꼬리 재귀(tail
+recursion) 덕분에 컴파일러는 재귀적인 `loop` 함수를 실제 while 루프로
+바꾸어 정해진 스택 공간내에서 작동할 수 있게 한다.
 
-In the next example we will show how recursion is great for constructing
-or examining certain types of data structures, particularly trees. Let's
-have a recursive type to represent files in a filesystem:
+다음 예에서 우리는 얼마나 재귀 호출이 특히 트리와 같은 특정 타입의 자료
+구조를 만드는데 대단한지를 보여줄 것이다. 파일 시스템 내에서 파일을
+표현하기 위한 재귀적 타입을 만들어 보자:
 
 ```ocamltop
 type filesystem = File of string | Directory of filesystem list
 ```
-The `opendir` and `readdir` functions are used to open a directory and
-read elements from the directory. I'm going to define a handy
-`readdir_no_ex` function which hides the annoying `End_of_file`
-exception that `readdir` throws when it reaches the end of the
-directory:
+
+`opendir`과 `readdir` 함수가 디렉토리를 열고 디렉토리 내의 요소들을
+읽는데 사용될 것이다. 디렉토리의 끝에 다달았을 때 `readdir`가 내는
+성가신 `End_of_file` 예외를 숨기는 간단한 `readdir_no_ex` 함수를
+정의했다:
 
 ```ocamltop
-open Unix  (*  You may need to #load "Unix.cma" *)
+open Unix  (*  #load "Unix.cma"를 해야 할 수도 있다 *)
   
 let readdir_no_ex dirh =
   try
@@ -571,14 +588,16 @@ let readdir_no_ex dirh =
   with
     End_of_file -> None
 ```
-The type of `readdir_no_ex` is this. Recall our earlier discussion about
-null pointers.
+
+`readdir_no_ex`의 타입은 다음과 같다. Null 포인터에 대한 이전의 논의를
+기억해보자.
 
 ```ocaml
 readdir_no_ex : dir_handle -> string option
 ```
-I'm also going to define a simple recursive function which I can use to
-convert the `filesystem` type into a string for (eg) printing:
+
+나는 또한 `filesystem` 타입을 (예를 들어) 인쇄가 가능한 문자열로 바꿀 수
+있는 간단한 재귀 함수를 정의할 것이다:
 
 ```ocamltop
 let rec string_of_filesystem fs =
@@ -587,17 +606,17 @@ let rec string_of_filesystem fs =
   | Directory fs_list ->
       List.fold_left (^) "" (List.map string_of_filesystem fs_list)
 ```
-Note the use of `fold_left` and `map`. The `map` is used to
-(recursively) convert each `filesystem` in the list into a `string`.
-Then the `fold_left (^) ""` concatenates the list together into one big
-string. Notice also the use of pattern matching. (The library defines a
-function called `String.concat` which is essentially equivalent to
-`fold_left (^) `, but implemented more efficiently).
 
-Now let's define a function to read a directory structure, recursively,
-and return a recursive `filesystem` data structure. I'm going to show
-this function in steps, but I'll print out the entire function at the
-end of this section. First the outline of the function:
+`fold_left`와 `map` 함수의 사용에 주의하라. `map`는 리스트 내의 각
+`filesystem`을 `string`로 (재귀적으로) 바꾸는 데 사용된다.
+`fold_left (^) ""`는 리스트들을 하나의 큰 문자열로 합친다. 또한 패턴
+매칭의 사용도 주의하라. (라이브러리에는 `fold_left (^) `과 본질적으로
+동일하며 더 효율적으로 구현된 `String.concat` 함수가 정의되어 있다).
+
+자 이제 디렉토리 구조를 재귀적으로 읽고, 재귀적인 `filesystem` 자료
+구조를 반환하는 함수를 정의해 보자. 이 함수는 단계적으로 보여줄
+것이지만, 전체 함수는 이 섹션의 마지막에 다시 보여줄 것이다. 먼저 함수의
+개괄은 다음과 같다:
 
 ```ocaml
 let rec read_directory path =
@@ -606,29 +625,31 @@ let rec read_directory path =
     (* ..... *) in
   Directory (loop ())
 ```
-The call to `opendir` opens up the given path and returns a `dir_handle`
-from which we will be able to read the names using `readdir_no_ex`
-later. The return value of the function is going to be a
-`Directory fs_list`, so all we need to do to complete the function is to
-write our function `loop` which returns a list of `filesystem`s. The
-type of `loop` will be:
+
+`opendir`를 호출하면 주어진 패스를 열고 추후 `readdir_no_ex`를 이용해
+이름들을 읽을 수 있게 해 주는 `dir_handle`를 반환한다. 반환값은
+`Directory fs_list`이 되며 우리가 해주어야 할 모든 것은 함수 `loop`를
+작성하여 `filesystem`의 리스트를 반환하게 하는 것이다. `loop`의 타입은
+다음과 같다:
 
 ```ocaml
 loop : unit -> filesystem list
 ```
-How do we define loop? Let's take it in steps again.
+
+어떻게 loop를 정의해야 할까? 다시 한 단계 들어가 보자.
 
 ```ocaml
 let rec loop () =
   let filename = readdir_no_ex dirh in
   (* ..... *)
 ```
-First we read the next filename from the directory handle. `filename`
-has type `string option`, in other words it could be `None` or
-`Some "foo"` where `foo` is the name of the next filename in the
-directory. We also need to ignore the `"."` and `".."` files (ie. the
-current directory and the parent directory). We can do all this with a
-nice pattern match:
+
+먼저 우리는 디렉토리 핸들(directory handle)에서 다음 파일 이름
+(filename)을 읽는다. `filename`은 `string option` 타입이며, 다시 말해
+`None`가 되거나 `foo`가 디렉토리 내의 다음 파일명이라면 `Some "foo"`가
+될 수 있다. 또한 `"."` 과 `".."` 파일들을 무시해야 한다. (현재
+디렉토리와 부모 디렉토리). 이 모든 것을 우리는 패턴 매치를 통해 훌륭히
+해 낼 수 있다:
 
 ```ocaml
 let rec loop () =
@@ -640,23 +661,22 @@ let rec loop () =
   | Some filename ->
      (* ..... *)
 ```
-The `None` case is easy. Thinking recursively (!) if `loop` is called
-and we've reached the end of the directory, `loop` needs to return a
-list of entries - and there's no entries - so it returns the empty list
-(`[]`).
 
-For `"."` and `".."` we just ignore the file and call `loop` again.
+`None`의 경우는 쉽다. 재귀적으로 생각하면(!) 만일 `loop`가 호출되고
+디렉토리의 끝에 도달했을 때, `loop`는 엔트리들의 리스트를 반환해야 하고
+- 그런데 엔트리가 없다 - 따라서 빈 리스트를 반환해야 한다 (`[]`).
 
-What do we do when `loop` reads a real filename (the `Some filename`
-match below)? Let `pathname` be the full path to the file. We 'stat' the
-file to see if it's really a directory. If it *is* a directory, we set
-`this` by recursively calling `read_directory` which will return
-`Directory something`. Notice that the overall result of
-`read_directory` is `Directory (loop ())`. If the file is really a file
-(not a directory) then we let `this` be `File pathname`. Then we do
-something clever: we return `this :: loop ()`. This is the recursive
-call to `loop ()` to calculate the remaining directory members (a list),
-to which we prepend `this`.
+`"."`와 `".."`의 경우에는 단순히 무시하고 `loop`를 다시 호출한다.
+
+`loop`가 실제 파일명(`Some filename`에서 매치되는)을 읽을 때는 우리는
+무엇을 할까? `pathname`이 파일의 전체 경로라 하자. 이것이 실제
+디렉토리인지를 확인하기 위해 파일을 'stat'해 본다. 만일 그것이
+디렉토리라면 `read_directory`를 재귀적으로 호출해 반환되는
+`Directory something`를 `this`라 하자. `read_directory`의 최종 결과가
+`Directory (loop ())`라는 것에 주목하자. 만일 파일이 (디렉토리가 아닌)
+실제 파일이라면, `this`가 `File pathname`라 하자. 자 이제 영리한 짓을 해
+보자: `this :: loop ()`를 반환한다. 이것은 `loop ()`에 대한 재귀적
+호출로 앞에 있는 `this`에서 남아 있는 디렉토리 멤버들(list)을 계산한다.
 
 ```ocamltop
 let rec read_directory path =
@@ -677,12 +697,13 @@ let rec read_directory path =
         this :: loop () in
   Directory (loop ())
 ```
+
 That's quite a complex bit of recursion, but although this is a made-up
 example, it's fairly typical of the complex patterns of recursion found
 in real-world functional programs. The two important lessons to take
 away from this are:
 
-* The use of recursion to build a list:
+-   The use of recursion to build a list:
 
     ```ocaml
     let rec loop () =
@@ -690,16 +711,17 @@ away from this are:
       | base case -> []
       | recursive case -> element :: loop ()
     ```
+
     Compare this to our previous `range` function. The pattern of recursion
     is exactly the same:
-    
+
     ```ocamltop
     let rec range a b =
       if a > b then []            (* Base case *)
       else a :: range (a+1) b     (* Recursive case *)
     ```
-	
-* The use of recursion to build up trees:
+
+-   The use of recursion to build up trees:
 
     ```ocaml
     let rec read_directory path =
@@ -709,9 +731,10 @@ away from this are:
       else
         Leaf file
     ```
+
     All that remains now to make this a working program is a little bit of
     code to call `read_directory` and display the result:
-    
+
     ```ocaml
     let path = Sys.argv.(1) in
     let fs = read_directory path in
@@ -1116,7 +1139,7 @@ imperative in style:
 
 ```ocamltop
 let size = 30
-
+  
 let mkmatrix rows cols =
   let count = ref 1
   and last_col = cols - 1
@@ -1129,11 +1152,11 @@ let mkmatrix rows cols =
     done;
   done;
   m
-
+  
 let rec inner_loop k v m1i m2 j =
   if k < 0 then v
   else inner_loop (k - 1) (v + m1i.(k) * m2.(k).(j)) m1i m2 j
-
+  
 let mmult rows cols m1 m2 m3 =
   let last_col = cols - 1
   and last_row = rows - 1 in
@@ -1143,7 +1166,7 @@ let mmult rows cols m1 m2 m3 =
       m3i.(j) <- inner_loop last_row 0 m1i m2 j
     done;
   done
-
+  
 let () =
   let n =
     try int_of_string Sys.argv.(1)
@@ -1156,5 +1179,4 @@ let () =
   done;
   mmult size size m1 m2 m3;
   Printf.printf "%d %d %d %d\n" m3.(0).(0) m3.(2).(3) m3.(3).(2) m3.(4).(4)
-
 ```

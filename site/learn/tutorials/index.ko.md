@@ -14,8 +14,8 @@ OCaml은 응용 프로그램 개발을 위한 빠르고, 간결하며 강력한 
 * 데이타 타입과 매칭
 * 널 포인터, 어설트(Assert), 경고(Warning)
 * 함수형 프로그래밍
-* 모듈
-* If 문, 루프, 재귀
+* [모듈](modules.ko.html)
+* [If 문, 루프, 재귀](if_statements_loops_and_recursion.ko.html)
 * 레이블
 * 객체
 * 가비지 콜렉션

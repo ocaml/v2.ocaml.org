@@ -294,7 +294,7 @@ A functor with one argument can be defined like this:
 
 ```ocaml
 module F (X : X_type) = struct
- ...
+  ...
 end
 ```
 where `X` is the module that will be passed as argument, and `X_type` is
@@ -361,5 +361,4 @@ at the beginning of the .ml file:
 open Extensions
 ...
 List.optmap ...
-
 ```
