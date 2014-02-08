@@ -36,7 +36,7 @@ Imported all tutorials from
 * Calling C libraries
 * Calling Fortran libraries
 * Common error messages [en, fr, ja]
-* OCaml and the Web
+* OCaml and the Web [en, ja]
 * Programming style [replaced with "OCaml Programming Guidelines"]
 * Standard Library Examples [en, zh]
 * Compiling OCaml projects

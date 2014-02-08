@@ -1,5 +1,6 @@
 <!-- ((! set title OCaml and the Web !)) ((! set learn !)) -->
-<!-- ((! set center !)) -->
+
+*Table of contents*
 
 # OCaml and the Web
 ## Advantages and Disadvantages
@@ -8,7 +9,7 @@ advantages of using OCaml for CGI scripting are the same a using OCaml
 for programming. The disadvantages are the fact that few CGI libraries
 exist for the language. One that sticks out in my mind comes as part of
 the [OCamlNet
-library](http://ocamlnet.sourceforge.net/ "http://ocamlnet.sourceforge.net/").
+library](http://projects.camlcity.org/projects/ocamlnet.html).
 
 More to come...
 
