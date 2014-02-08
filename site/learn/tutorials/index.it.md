@@ -12,19 +12,19 @@
 * [Puntatori nulli, assert e warning](null_pointers_asserts_and_warnings.it.html)
 * [Programmazione funzionale](functional_programming.it.html)
 * [If, loop e ricorsione](if_statements_loops_and_recursion.it.html)
-* Label
-* Oggetti
+* Label — [en](labels.html)
+* Oggetti — [en](objects.html)
 
 ((! get second_of_two_columns !))
 
-* Garbage collection
-* Performance e profiling
-* Introduzione a Gtk
-* Chiamate a librerie C
-* Messaggi di errore comuni
-* OCaml e il Web
-* Stile di programmazione
-* Esempi di librerie standard
-* Compilare progetti OCaml
+* Garbage collection — [en](garbage_collection.html)
+* Performance e profiling — [en](performance_and_profiling.html)
+* Introduzione a Gtk — [en](introduction_to_gtk.html)
+* Chiamate a librerie C — [en](calling_c_libraries.html)
+* Messaggi di errore comuni — [en](common_error_messages.html)
+* OCaml e il Web — [en](ocaml_and_the_web.html)
+* Stile di programmazione — [en](guidelines.html)
+* Esempi di librerie standard — [en](standard_library_examples.html)
+* Compilare progetti OCaml — [en](compiling_ocaml_projects.html)
 
 ((! get end_two_columns !))
