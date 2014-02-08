@@ -5,7 +5,7 @@
 *Table of contents*
 
 ## Using GNU make with OCamlMakefile
-[OCamlMakefile](http://omake.metaprl.org/index.html "OCamlMakefile") is
+[OCamlMakefile](https://bitbucket.org/mmottl/ocaml-makefile) is
 a generic Makefile that greatly facilitates the process of compiling
 complex OCaml projects.
 
@@ -19,7 +19,7 @@ SOURCES = \
   mymodule1.mli mymodule1.ml \
   myparser.mli myparser.mly mylexer.mll mymodule2.ml \
   mymainprogram.ml
-
+  
 OCAMLMAKEFILE = OCamlMakefile
 include $(OCAMLMAKEFILE)
 ```
@@ -117,7 +117,7 @@ So each OCaml file will start with:
 This way of defining the preprocessor is still not satisfying: we would
 like to take advantage of ocamlfind to load the appropriate syntax
 extension files. For this, we will use the [camlp4find
-script](http://martin.jambon.free.fr/ocaml.html "camlp4find script").
+script](http://martin.jambon.free.fr/ocaml.html).
 Every package which we use will listed as usual in the PACKS variable,
 and camlp4find will call ocamlfind to know which syntax extensions to
 load:

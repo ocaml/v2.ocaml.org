@@ -29,7 +29,7 @@
 * [OCamlでWebプログラミング](ocaml_and_the_web.ja.html)
 * プログラミングのスタイル — [en](guidelines.html)
 * [標準ライブラリの例](standard_library_examples.ja.html)
-* OCamlプログラムをコンパイルする
+* [OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)
 * コマンドライン引数
 * ファイル操作
 

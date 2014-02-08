@@ -39,7 +39,7 @@ Imported all tutorials from
 * OCaml and the Web [en, ja]
 * Programming style [replaced with "OCaml Programming Guidelines"]
 * Standard Library Examples [en, ja, zh]
-* Compiling OCaml projects
+* Compiling OCaml projects [en, ja]
 * Command-line arguments [en, zh]
 * File manipulation [en, zh (part)]
 * Camlp4 3.10
