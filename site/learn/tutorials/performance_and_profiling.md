@@ -52,14 +52,14 @@ known as \<dfn\>assembler directives\</dfn\>. These directives begin
 with a . (period) and they literally *direct* the assembler to do
 something. Here are the common ones for the Linux assembler:
 
-**.text**
+#### .text
 
 **Text** is the Unix way of saying "program code". The **text segment**
 simply means the part of the executable where program code is stored.
 The `.text` directive switches the assembler so it starts writing into
 the text segment.
 
-**.data**
+#### .data
 
 Similarly, the `.data` directive switches the assembler so it starts
 writing into the data segment (part) of the executable.
@@ -103,32 +103,32 @@ Here are the edited highlights of the `smallest.s` file with my comments
 added. First of all the data segment:
 
 ```assembly
-        .data
-        .long   4348                     ; header for string
-        .globl  Smallest__1
-Smallest__1:
-        .ascii  "hello, world\12"        ; string
-        .space  2                        ; padding ..
-        .byte   2                        ;  .. after string
+    .data
+    .long   4348                     ; header for string
+    .globl  Smallest__1
+lest__1:
+    .ascii  "hello, world\12"        ; string
+    .space  2                        ; padding ..
+    .byte   2                        ;  .. after string
 ```
 Next up the text (program code) segment:
 
-```
-        .text
-        .globl  Smallest__entry          ; entry point to the program
-Smallest__entry:
+```assembly
+    .text
+    .globl  Smallest__entry          ; entry point to the program
+lest__entry:
 
-        ; this is equivalent to the C pseudo-code:
-        ; Pervasives.output_string (stdout, &Smallest__1)
+    ; this is equivalent to the C pseudo-code:
+    ; Pervasives.output_string (stdout, &Smallest__1)
 
-        movl    $Smallest__1, %ebx
-        movl    Pervasives + 92, %eax    ; Pervasives + 92 == stdout
-        call    Pervasives__output_string_212
+    movl    $Smallest__1, %ebx
+    movl    Pervasives + 92, %eax    ; Pervasives + 92 == stdout
+    call    Pervasives__output_string_212
 
-        ; return 1
+    ; return 1
 
-        movl    $1, %eax
-        ret
+    movl    $1, %eax
+    ret
 ```
 
 In C everything has to be inside a function. Think about how you can't
@@ -205,7 +205,7 @@ length of the object in words:  0000 0000 0000 0000 0001 00 (4 words)
 color (used by GC):             00
 tag:                            1111 1100 (String_tag)
 ```
-See `/usr/include/ocaml/3.08/caml/mlvalues.h` for more information about
+See `/usr/include/caml/mlvalues.h` for more information about
 the format of heap allocated objects in OCaml.
 
 One unusual thing is that the code passes a pointer to the start of the
@@ -238,7 +238,7 @@ simple tail recursion compiles to:
 let rec loop () =
   print_string "I go on forever ...";
   loop ()
-
+  
 let () = loop ()
 ```
 
@@ -317,8 +317,8 @@ is polymorphic. It has type `'a -> 'a -> bool`, and this means that the
 `max` function we defined above is going to be polymorphic:
 
 ```ocamltop
-  let max a b =
-    if a > b then a else b
+let max a b =
+  if a > b then a else b
 ```
 This is indeed reflected in the code that OCaml generates for this
 function, which is pretty complex:
@@ -409,7 +409,7 @@ What about this code:
 ```ocamltop
 let max a b =
   if a > b then a else b
-
+  
 let () = print_int (max 2 3)
 ```
 
@@ -525,9 +525,9 @@ It uses the following decision tree:
  heap-allocated memory blocks. Look at the header word of the memory
  blocks, specifically the bottom 8 bits of the header word, which tag
  the content of the block.
-*     * **String_tag:** Compare two strings.
-*     * **Double_tag:** Compare two floats.
-* etc.
+     * **String_tag:** Compare two strings.
+     * **Double_tag:** Compare two floats.
+     * etc.
 
 Note that because \> has type `'a -> 'a -> bool`, both arguments must
 have the same type. The compiler should enforce this at compile time. I
@@ -741,7 +741,7 @@ where `a` and `b` are the actual integer arguments. So this function
 returns:
 
 ```
-  %eax + %ebx - 1
+%eax + %ebx - 1
 = 2 * a + 1 + 2 * b + 1 - 1
 = 2 * a + 2 * b + 1
 = 2 * (a + b) + 1
@@ -786,25 +786,27 @@ Here is an example:
 (* $ ocamlcp -p a graphics.cma graphtest.ml -o graphtest
    $ ./graphtest
    $ ocamlprof graphtest.ml *)
-
-Random.self_init ();;
-Graphics.open_graph " 640x480";;
-
+  
+let () =
+  Random.self_init ();
+  Graphics.open_graph " 640x480"
+  
 let rec iterate r x_init i =
   (* 12820000 *) if i == 1 then (* 25640 *) x_init
   else
     (* 12794360 *) let x = iterate r x_init (i-1) in
     r *. x *. (1.0 -. x);;
-
-for x = 0 to 640 do
-  (* 641 *) let r = 4.0 *. (float_of_int x) /. 640.0 in
-  for i = 0 to 39 do
-    (* 25640 *) let x_init = Random.float 1.0 in
-    let x_final = iterate r x_init 500 in
-    let y = int_of_float (x_final *. 480.) in
-    Graphics.plot x y
+  
+let () =
+  for x = 0 to 640 do
+    (* 641 *) let r = 4.0 *. (float_of_int x) /. 640.0 in
+    for i = 0 to 39 do
+      (* 25640 *) let x_init = Random.float 1.0 in
+      let x_final = iterate r x_init 500 in
+      let y = int_of_float (x_final *. 480.) in
+      Graphics.plot x y
+    done
   done
-done;;
 ```
 
 The comments `(* nnn *)` are added by `ocamlprof`, showing how many
@@ -821,15 +823,15 @@ covered in this tutorial.
 ```ocaml
 let rec filter p = parser
   [< 'n; s >] -> if p n then [< 'n; filter p s >] else [< filter p s >]
-
+  
 let naturals =
   let rec gen n = [< 'n; gen (succ n) >] in gen 2
-
+  
 let primes =
   let rec sieve = parser
     [< 'n; s >] -> [< 'n; sieve (filter (fun m -> m mod n <> 0) s) >] in
   sieve naturals
-
+  
 let () =
   for i = 1 to 3000 do
     ignore (Stream.next primes)
@@ -840,7 +842,7 @@ We compile it using the `-p` option to `ocamlopt` which tells the
 compiler to include profiling information for `gprof`:
 
 ```shell
-$ ocamlopt -p -pp "camlp4o pa_extend.cmo" -I +camlp4 sieve.ml -o sieve
+ocamlopt -p -pp "camlp4o pa_extend.cmo" -I +camlp4 sieve.ml -o sieve
 ```
 After running the program as normal, the profiling code dumps out a file
 `gmon.out` which we can interpret with `gprof`:
@@ -848,7 +850,7 @@ After running the program as normal, the profiling code dumps out a file
 ```
 $ gprof ./sieve
 Flat profile:
-
+  
 Each sample counts as 0.01 seconds.
   %   cumulative   self              self     total
  time   seconds   seconds    calls   s/call   s/call  name
@@ -873,7 +875,7 @@ Each sample counts as 0.01 seconds.
   1.52      4.98     0.08  4575034     0.00     0.00  Stream__icons_207
   1.52      5.06     0.08  4575034     0.00     0.00  Stream__junk_165
   1.14      5.12     0.06     1112     0.00     0.00  do_local_roots
-
+  
 [ etc. ]
 ```
 In fact this program spends much of its time in the garbage collector

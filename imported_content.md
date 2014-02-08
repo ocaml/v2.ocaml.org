@@ -31,7 +31,7 @@ Imported all tutorials from
 * Labels [en, ja]
 * Objects [en, ja]
 * Garbage Collection [en, ja]
-* Performance and Profiling
+* Performance and Profiling [en, ja]
 * Introduction to Gtk
 * Calling C libraries
 * Calling Fortran libraries

@@ -19,7 +19,7 @@
 * [ラベル](labels.ja.html)
 * [オブジェクト](objects.ja.html)
 * [ガベージコレクション](garbage_collection.ja.html)
-* 性能とプロファイル
+* [性能とプロファイル](performance_and_profiling.ja.html)
 
 ((! get second_of_two_columns !))
 
