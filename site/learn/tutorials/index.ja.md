@@ -18,7 +18,7 @@
 * [If文、ループと再帰](if_statements_loops_and_recursion.ja.html)
 * [ラベル](labels.ja.html)
 * [オブジェクト](objects.ja.html)
-* ガベージコレクション
+* [ガベージコレクション](garbage_collection.ja.html)
 * 性能とプロファイル
 
 ((! get second_of_two_columns !))

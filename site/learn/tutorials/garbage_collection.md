@@ -64,7 +64,7 @@ computer scientists, yet it has one big practical advantage over full
 garbage collectors. With reference counting, you can avoid many explicit
 calls to `close`/`closedir` in code. For example:
 
-```
+```perl
 foreach (@files)
 {
   my $io = new IO::File "< $_" or die;
@@ -125,7 +125,7 @@ let rec iterate r x_init i =
   else
     let x = iterate r x_init (i-1) in
     r *. x *. (1.0 -. x)
-
+  
 let () =
   Random.self_init ();
   Graphics.open_graph " 640x480";
@@ -247,31 +247,31 @@ some low-level functions to read, write, lock and unlock records:
 
 ```ocaml
 type record = { mutable name : string; mutable address : string }
-
+  
 (* On-disk format. *)
 let record_size = 256
 let name_size = 64
 let addr_size = 192
-
+  
 (* Low-level load/save records to file. *)
 let seek_record n fd =
   ignore(Unix.lseek fd (n * record_size) Unix.SEEK_SET)
-
+  
 let write_record record n fd =
   seek_record n fd;
   ignore(Unix.write fd record.name 0 name_size);
   ignore(Unix.write fd record.address 0 addr_size)
-
+  
 let read_record record n fd =
   seek_record n fd;
   ignore(Unix.read fd record.name 0 name_size);
   ignore(Unix.read fd record.address 0 addr_size)
-
+  
 (* Lock/unlock the nth record in a file. *)
 let lock_record n fd =
   seek_record n fd;
   Unix.lockf fd Unix.F_LOCK record_size
-
+  
 let unlock_record n fd =
   seek_record n fd;
   Unix.lockf fd Unix.F_ULOCK record_size
@@ -291,7 +291,7 @@ of records in advance:
 ```ocaml
 (* Total number of records. *)
 let nr_records = 10000
-
+  
 (* On-disk file. *)
 let diskfile =
   Unix.openfile "users.bin" [ Unix.O_RDWR; Unix.O_CREAT ] 0o666
@@ -315,13 +315,13 @@ pointer).
 
 ```ocaml
 open Printf
-
+  
 (* The finaliser function. *)
 let finaliser n record =
   printf "*** objcache: finalising record %d\n%!" n;
   write_record record n diskfile;
   unlock_record n diskfile
-
+  
 (* Get a record from the cache or off disk. *)
 let get_record n =
   match Weak.get cache n with
@@ -355,7 +355,7 @@ Finally we have some test code. I won't reproduce the test code, but you
 can download the complete program and test code
 [objcache.ml](objcache.ml), and compile it with:
 
-```
+```shell
 ocamlc unix.cma objcache.ml -o objcache
 ```
 

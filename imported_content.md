@@ -30,7 +30,7 @@ Imported all tutorials from
 * If Statements, Loops and Recursion [en, fr, it, ja]
 * Labels [en, ja]
 * Objects [en, ja]
-* Garbage Collection
+* Garbage Collection [en, ja]
 * Performance and Profiling
 * Introduction to Gtk
 * Calling C libraries
