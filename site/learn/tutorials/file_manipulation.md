@@ -15,9 +15,9 @@ including the initially opened module
 The standard library doesn't provide functions that directly read a file
 into a string or save a string into a file. Such functions can be found
 in third-party libraries such as
-[Extlib](http://ocaml-lib.sourceforge.net/ "http://ocaml-lib.sourceforge.net/").
+[Extlib](http://code.google.com/p/ocaml-extlib/).
 See [Std.input_file and
-Std.output_file](http://ocaml-lib.sourceforge.net/doc/Std.html "http://ocaml-lib.sourceforge.net/doc/Std.html").
+Std.output_file](http://ocaml-extlib.googlecode.com/svn/doc/apiref/Std.html).
 
 ## Buffered channels
 The normal way of opening a file in OCaml returns a **channel**. There
@@ -88,16 +88,16 @@ channels that point to regular files, use `seek_in` or `seek_out`.
 ###  Example
 ```ocaml
 open Printf
-
+  
 let file = "example.dat"
 let message = "Hello!"
-
+  
 let () =
   (* Write message to file *)
   let oc = open_out file in    (* create or truncate file, return channel *)
   fprintf oc "%s\n" message;   (* write something *)   
   close_out oc;                (* flush and close the channel *)
-
+  
   (* Read file and display the first line *)
   let ic = open_in file in
   try 
@@ -105,11 +105,11 @@ let () =
     print_endline line;          (* write the result to stdout *)
     flush stdout;                (* write on the underlying device now *)
     close_in ic                  (* close the input channel *) 
-
+  
   with e ->                      (* some unexpected exception occurs *)
     close_in_noerr ic;           (* emergency closing *)
     raise e                      (* exit with error: files are closed but
                                     channels are not flushed *)
-
+  
   (* normal exit: all channels are flushed and closed *)
 ```
