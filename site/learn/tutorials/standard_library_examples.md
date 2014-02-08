@@ -2,7 +2,6 @@
 
 # Standard Library Examples
 
-## Standard Library Examples
 * [Hashtbl](hashtbl.html "Hashtbl")
 * [Set](set.html "Set")
 * [Map](map.html "Map")

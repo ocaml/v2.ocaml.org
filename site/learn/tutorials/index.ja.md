@@ -27,8 +27,8 @@
 * Cライブラリを呼ぶ — [en](calling_c_libraries.html)
 * [よくあるエラーメッセージ](common_error_messages.ja.html)
 * [OCamlでWebプログラミング](ocaml_and_the_web.ja.html)
-* プログラミングのスタイル
-* 標準ライブラリの例
+* プログラミングのスタイル — [en](guidelines.html)
+* [標準ライブラリの例](standard_library_examples.ja.html)
 * OCamlプログラムをコンパイルする
 * コマンドライン引数
 * ファイル操作
