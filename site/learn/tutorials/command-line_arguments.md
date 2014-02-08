@@ -49,7 +49,8 @@ A few libraries exist that let you process command-line arguments
 without having to scan the `Sys.argv` array yourself:
 
 * `Arg` is a module of the standard library.
-* `Getopt` for OCaml is similar to [GNU
+* [Getopt](http://www.eleves.ens.fr/home/frisch/soft.html#Getopt)
+  for OCaml is similar to [GNU
   getopt](http://www.gnu.org/software/libc/manual/html_node/Getopt.html).
 * The
   [Pa_arg](http://www-personal.umich.edu/~ebreck/code/pa_arg/)

@@ -30,7 +30,7 @@
 * プログラミングのスタイル — [en](guidelines.html)
 * [標準ライブラリの例](standard_library_examples.ja.html)
 * [OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)
-* コマンドライン引数
+* [コマンドライン引数](command-line_arguments.ja.html)
 * ファイル操作
 
 ((! get end_two_columns !))

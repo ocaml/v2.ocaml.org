@@ -40,7 +40,7 @@ Imported all tutorials from
 * Programming style [replaced with "OCaml Programming Guidelines"]
 * Standard Library Examples [en, ja, zh]
 * Compiling OCaml projects [en, ja]
-* Command-line arguments [en, zh]
+* Command-line arguments [en, ja, zh]
 * File manipulation [en, zh (part)]
 * Camlp4 3.10
 * Filenames and extensions [en, zh]
