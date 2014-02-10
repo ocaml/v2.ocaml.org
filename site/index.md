@@ -69,7 +69,17 @@
 				title="Planet RSS feed"
 				><img src="/img/rss.png" alt="RSS"></a>
             </h1>
-            {{! cmd script/rss2html -n 6 --headlines http://planet.ocaml.org/rss20.xml !}}
+			<ul class="news-feed" style="margin-bottom: 0px">
+			<li><article>
+			  <h1><a title="OCaml Users and Developers Workshop"
+			       href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
+			  <p>September 5, 2014</p>
+			  <a title="OCaml Users and Developers Workshop"
+			     href="/meetings/ocaml/2014/">
+			  <img alt="" src="/img/announcement.png" /></a>
+			</article></li>
+	        </ul>
+            {{! cmd script/rss2html -n 5 --headlines http://planet.ocaml.org/rss20.xml !}}
             <p><a href="community/planet/">More...</a></p>
         </section>
     </div>
