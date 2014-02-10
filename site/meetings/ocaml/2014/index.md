@@ -21,8 +21,7 @@ OCaml with academics and hackers who are working on extending the language,
 type system and tools.
 Previous editions have been colocated with ICFP 2012 in
 [Copenhagen](http://oud.ocaml.org/2012/), and ICFP 2013 in
-[Boston](../2013), following the OCaml Meetings in Paris in
-[2010](../2012) and [2011](../2011).
+[Boston](../2013), following the OCaml Meetings that ran until [2011](../2011).
 
 Scope
 -----
