@@ -67,7 +67,8 @@ Schedule
 ML family workshop and post-proceedings
 ---------------------------------------
 
-The ML family workshop, held on the previous day, deals with general issues
+The [ML family workshop](http://okmij.org/ftp/ML/ML14.html), held on
+the previous day, deals with general issues
 of the ML-style programming and type systems, and is seen as more research
 oriented. Yet there is an overlap with the OCaml workshop, which we are
 keen to explore, for instance by having a common session.  The authors who
@@ -84,7 +85,8 @@ Program Committee
 -----------------
 
 - Esther Baruk, LexiFi, France
-- Jacques Garrigue, Nagoya University, Japan (chair)
+- [Jacques Garrigue](http://www.math.nagoya-u.ac.jp/~garrigue/),
+  Nagoya University, Japan (chair)
 - Oleg Kyseliov, Monterey, CA, USA
 - Pierre Letouzey, Universite Paris 7, France
 - Luc Maranget, INRIA Paris-Rocquencourt, France
