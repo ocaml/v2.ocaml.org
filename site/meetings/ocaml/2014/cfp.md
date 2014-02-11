@@ -93,7 +93,7 @@ Program Committee
 * Pierre Letouzey, Universite Paris 7, France
 * Luc Maranget, INRIA Paris-Rocquencourt, France
 * Keisuke Nakano, University of Electro-Communications, Japan
-* Yoan Padioleau, Facebook, USA
+* Yoann Padioleau, Facebook, USA
 * Andreas Rossberg, Max Planck Institute for Software Systems, Germany
 * Julien Signoles, CEA LIST, France
 * Leo White, University of Cambridge, UK
