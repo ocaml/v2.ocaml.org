@@ -37,7 +37,7 @@ fact 100;;
 #### My array is modified, and I don't know why
 
 This is due to the physical sharing of two arrays that you missed. In
-OCaml there are no implicit array copying. If you give two names to the
+OCaml there is no implicit array copying. If you give two names to the
 same array, every modification on one array will be visible to the
 other:
 

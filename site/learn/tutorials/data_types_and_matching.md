@@ -166,8 +166,8 @@ type sign = Positive | Zero | Negative
 ```
 
 ###  Recursive variants (used for trees)
-Variants can be recursive, and the common use for this is to define tree
-structures. This really is where the expressive power of functional
+Variants can be recursive, and one common use for this is to define tree
+structures. This is where the expressive power of functional
 languages come into their own:
 
 ```ocamltop
@@ -232,9 +232,10 @@ the simple syntactic sugar of `[1; 2; 3]` or more formally as
 you may be able to see the reason for the formal definition.
 
 ## Lists, structures and variants — summary
-OCaml name Example type definition Example usage
 
 ```text
+OCaml name     Example type definition        Example usage
+
 list           int list                       [1; 2; 3]
 tuple          int * string                   (3, "hello")
 record         type pair =                    { a = 3; b = "hello" }
