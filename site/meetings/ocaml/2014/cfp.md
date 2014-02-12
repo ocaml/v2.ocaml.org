@@ -94,7 +94,7 @@ Program Committee
 * Luc Maranget, INRIA Paris-Rocquencourt, France
 * Keisuke Nakano, University of Electro-Communications, Japan
 * Yoann Padioleau, Facebook, USA
-* Andreas Rossberg, Max Planck Institute for Software Systems, Germany
+* Andreas Rossberg, Google, Germany
 * Julien Signoles, CEA LIST, France
 * Leo White, University of Cambridge, UK
 
