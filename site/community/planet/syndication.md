@@ -1,8 +1,8 @@
-<!-- ((! set title OCaml Planet Subscription !)) ((! set community !)) -->
+<!-- ((! set title OCaml Planet Syndication !)) ((! set community !)) -->
 
 *Table of contents*
 
-# OCaml Planet Subscription
+# OCaml Planet Syndication
 
 ## Guidelines
 
@@ -27,7 +27,7 @@ way to define what they are is by giving some examples:
 ## How to subscribe your feed
 
 Due to spam, the `ocaml.org` team has disabled automatic planet
-subscription. You can still ask to be added to the planet by
+syndication. You can still ask to be added to the planet by
 [submitting an issue](https://github.com/ocaml/ocaml.org/issues) with
 the title "Add URL to planet".
 
@@ -42,9 +42,9 @@ You need to provide three pieces of information in your issue:
 
 - Whether this feed is Personal or an official OCaml
   information channel (Institutional). See the above guidelines
-  concerning subscription for these two different kinds of feed.
+  concerning syndication for these two different kinds of feed.
 
-Once you have provided this information, your subscription will be
+Once you have provided this information, your syndication will be
 reviewed by an administrator and put online. If you want to have a
 good chance to join the feed there must be at least one post about
 OCaml in the most recent entries.

@@ -5,7 +5,7 @@
 
 The OCaml Planet aggregates various blogs
 from the OCaml community. If you would like to be added, read the
-[Planet subscription HOWTO](syndication.html).
+[Planet syndication HOWTO](syndication.html).
 
 <div class="container">
 <div class="row">
@@ -17,7 +17,7 @@ from the OCaml community. If you would like to be added, read the
 <section class="span4">
 <div class="subscribers">
 
-<h3>Subscriptions</h3>
+<h3>Syndications</h3>
 
 ((! cmd script/rss2html --subscribers http://planet.ocaml.org/opml.xml !))
 
