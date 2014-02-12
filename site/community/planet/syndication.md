@@ -24,7 +24,7 @@ way to define what they are is by giving some examples:
 - [Caml Weekly News](http://alan.petitepomme.net/cwn/index.html)
 - ...
 
-## How to subscribe your feed
+## How to syndicate your feed
 
 Due to spam, the `ocaml.org` team has disabled automatic planet
 syndication. You can still ask to be added to the planet by
