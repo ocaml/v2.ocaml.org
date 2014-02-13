@@ -69,6 +69,10 @@ a[name] {
 blockquote {
   border-left: 2px solid #cfcfcf;
   padding-left: 2ex;
+  padding-top: 0ex;
+  padding-bottom: 0ex;
+  margin-top: 1ex;
+  margin-bottom: 1ex;
 }
 
 blockquote p {
