@@ -44,6 +44,7 @@ OCaml Meetings
 
 ## In the US
 * 2012: [NYC OCaml Meetup](http://www.meetup.com/NYC-OCaml/)
+* 2014-: [Silicon Valley OCaml meetups](http://www.meetup.com/sv-ocaml/)
 
 ## In the UK
 * 2012: [Cambridge NonDysFunctional
