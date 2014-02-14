@@ -216,7 +216,7 @@ let triple = multiply 3;;
 double [1; 2; 3];;
 triple [1; 2; 3];;
 ```
-In the example above, `((*) n)` is the partial application of the `(*)`
+In the example above, `(( * ) n)` is the partial application of the `( * )`
 (times) function. Note the extra spaces needed so that OCaml doesn't
 think `(*` starts a comment.
 
