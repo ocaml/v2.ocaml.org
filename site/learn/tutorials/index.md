@@ -12,6 +12,7 @@ tracker there to request or offer new tutorials. Thanks!
 ((! get begin_two_columns !))
 * [Basics](basics.html)
 * [Structure of OCaml Programs](structure_of_ocaml_programs.html)
+* [Modules](modules.html)
 * [Maps (Dictionaries)](map.html)
 * [Sets](set.html)
 * [Hash Tables](hashtbl.html)
@@ -22,7 +23,6 @@ tracker there to request or offer new tutorials. Thanks!
 * [Null Pointers, Asserts, and
  Warnings](null_pointers_asserts_and_warnings.html)
 * [Functional Programming](functional_programming.html)
-* [Modules](modules.html)
 * [If Statements, Loops, and
  Recursion](if_statements_loops_and_recursion.html)
 * [Labels](labels.html)
