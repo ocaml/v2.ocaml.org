@@ -39,11 +39,11 @@
             <ul>
                 <li><a href="tutorials/basics.html">Basics</a></li>
                 <li><a href="tutorials/structure_of_ocaml_programs.html">Structure of OCaml Programs</a></li>
+                <li><a href="tutorials/modules.html">Modules</a></li>
                 <li><a href="tutorials/map.html">Maps (Dictionaries)</a></li>
                 <li><a href="tutorials/set.html">Sets</a></li>
                 <li><a href="tutorials/hashtbl.html">Hash Tables</a></li>
                 <li><a href="tutorials/comparison_of_standard_containers.html">Comparison of Standard Containers</a></li>
-                <li><a href="tutorials/data_types_and_matching.html">Data Types and Matching</a></li>
                 <li><a href="faq.html">Frequently Asked Questions</a></li>
             </ul>
             <footer>
