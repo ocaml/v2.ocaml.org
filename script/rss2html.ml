@@ -69,11 +69,23 @@ type post = {
   desc   : string;
 }
 
+let notextile_ore = Str.regexp_string "&lt;notextile&gt;"
+let notextile_cre = Str.regexp_string "&lt;/notextile&gt;"
+let figure_ore = Str.regexp "&lt;figure\\b\\([^&]*\\)&gt;"
+let figure_cre = Str.regexp_string "&lt;/figure&gt;"
+
 (** Transformation applied to each post. *)
 let special_processing (p: post) =
+  (* FIXME: The planet aggregator escapes <notextile> and <figure>.
+     Revert that. *)
+  let desc = Str.global_replace notextile_ore "<notextile>" p.desc in
+  let desc = Str.global_replace notextile_cre "</notextile>" desc in
+  let desc = Str.global_replace figure_ore "<figure \\1>" desc in
+  let desc = Str.global_replace figure_cre "</figure>" desc in
   if p.author = "Caml Weekly News" then
-    {p with title = "Weekly News" }
-  else p
+    {p with title = "Weekly News"; desc }
+  else
+    {p with desc}
 
 
 let channel_of_urls urls =
