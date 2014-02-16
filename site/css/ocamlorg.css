@@ -85,7 +85,8 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
 
 /* FIXME: OCaml code should be in <pre> with a distinct class? */
 pre { line-height: 135%; }
-code, .gutter { font-family: "Droid Sans Mono", sans-serif; font-size: 100%; }
+code, .gutter pre { font-family: "Droid Sans Mono", sans-serif; }
+code { font-size: 100%; }
 h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .governing, .ocaml .ot { color: black; font-weight: bold; }
 .keyword, .ocaml .kw, .ocaml .k { color: #575bf4 }
@@ -266,11 +267,19 @@ p + div.lstlisting {
 figure.code {
   padding: 0px;
   border: 0px none;
-  margin: 0 0 1em 0;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
+  margin: 0 0 1ex 0;
+  /* overflow-x: auto; */
 }
 td.code {
   width: 100%;
+}
+.gutter pre {
+  color: #808080;
+  line-height: 140%;
+}
+.planet pre code {
+  white-space: pre;
+  overflow-x: auto;
 }
 
 
