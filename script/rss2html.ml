@@ -73,6 +73,8 @@ let notextile_ore = Str.regexp_string "&lt;notextile&gt;"
 let notextile_cre = Str.regexp_string "&lt;/notextile&gt;"
 let figure_ore = Str.regexp "&lt;figure\\b\\([^&]*\\)&gt;"
 let figure_cre = Str.regexp_string "&lt;/figure&gt;"
+let figure_caption_ore = Str.regexp_string "&lt;figcaption&gt;"
+let figure_caption_cre = Str.regexp_string "&lt;/figcaption&gt;"
 
 (** Transformation applied to each post. *)
 let special_processing (p: post) =
@@ -82,6 +84,8 @@ let special_processing (p: post) =
   let desc = Str.global_replace notextile_cre "</notextile>" desc in
   let desc = Str.global_replace figure_ore "<figure \\1>" desc in
   let desc = Str.global_replace figure_cre "</figure>" desc in
+  let desc = Str.global_replace figure_caption_ore "<figcaption>" desc in
+  let desc = Str.global_replace figure_caption_cre "</figcaption>" desc in
   if p.author = "Caml Weekly News" then
     {p with title = "Weekly News"; desc }
   else

@@ -243,6 +243,10 @@ code.c {
   font-style: normal;
 }
 
+.planet figcaption {
+  padding-bottom: 0.5ex;
+}
+
 
 /* Blogs generated with Hevea. */
 div.lstlisting { /* = <pre><code> */
