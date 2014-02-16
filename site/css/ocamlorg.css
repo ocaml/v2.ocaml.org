@@ -311,7 +311,13 @@ td.code {
   margin-bottom: 0px;
 }
 
-/* Translations (alike breadcrumb) */
+/* Translations and breadcrumb */
+div.running-header {
+  margin-top: -10px;
+}
+.breadcrumb {
+  display: inline;
+}
 .translations {
   float: right;
 
@@ -324,7 +330,7 @@ td.code {
   color: #6f6f6f; /* current language name */
   border: 0;
   padding: 0;
-  margin: -10px 1ex 0px 0px;
+  margin: 0px 1ex 0px 2ex;
 }
 .translations:before { content: "["; }
 .translations:after { content: "]"; }

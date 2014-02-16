@@ -2,12 +2,12 @@
 <div class="running-header">
   {{!z ifndef nobreadcrumb
   <div class="row">
-    <ul class="translations">
-      {{! cmd script/translations "((! get filename !))" !}}
-    </ul>
     <ol class="breadcrumb">
       {{! cmd script/breadcrumb "((! get filename !))" !}}
     </ol>
+    <ul class="translations">
+      {{! cmd script/translations "((! get filename !))" !}}
+    </ul>
   </div>
   z!}}
   {{!z ifdef nobreadcrumb
