@@ -177,7 +177,7 @@ implementation named `Example`. Its module signature is automatically
 derived and is the broadest possible, or can be restricted by writing an
 `example.mli` file.
 
-That said, a given module can also be defined explicitely from within a
+That said, a given module can also be defined explicitly from within a
 file. That makes it a submodule of the current module. Let's consider
 this `example.ml` file:
 
