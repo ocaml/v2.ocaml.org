@@ -94,11 +94,11 @@
       _paq.push(["setCookieDomain", "*.ocaml.org"]);
       _paq.push(["setDocumentTitle", "((! tryget title !))"]);
       _paq.push(["setDoNotTrack", true]);
-      _paq.push(["trackPageView"]);
-      _paq.push(["enableLinkTracking"]);
       _paq.push(["setCustomVariable", 1, "Page language",
          "{{! cmd script/lang_of_filename --long ((! get filename !)) !}}",
          "page"]);
+      _paq.push(["trackPageView"]);
+      _paq.push(["enableLinkTracking"]);
 
       (function() {
         var u=(("https:" == document.location.protocol) ? "https" : "http") + "://ocaml.org/piwik/";
