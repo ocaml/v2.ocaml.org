@@ -13,7 +13,7 @@ OCAMLOPT = ocamlfind ocamlopt $(OCAMLFLAGS)
 OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
 
 DEP_CONTENT_GEN = template/main.mpp template/footer.mpp \
-  script/breadcrumb script/translations
+  script/breadcrumb script/translations script/lang_of_filename
 
 ifeq ("$(OCAML_VERSION)", "3.12.1")
 COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
@@ -28,6 +28,11 @@ CODE_TYPE_DEP = $(addprefix script/code_types., cmi cmo cmx)
 
 template/%_code_snippet.html:template/%_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@
+
+script/lang_of_filename: script/lang_of_filename.ml $(UTILS_DEP)
+	cd script && \
+	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg \
+	  utils.cmx lang_of_filename.ml
 
 script/breadcrumb: script/breadcrumb.ml $(UTILS_DEP)
 	cd script && \

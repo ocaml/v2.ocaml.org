@@ -1,4 +1,6 @@
 
+let is_lowercase c = 'a' <= c && c <= 'z'
+
 (* Split a filename accoreding to the conventions of the site
    regarding the language. *)
 let prefix_lang_ext_of_filename fn =
@@ -7,7 +9,11 @@ let prefix_lang_ext_of_filename fn =
     let ext = String.sub fn (i0 + 1) (String.length fn - i0 - 1) in
     try
       let i1 = String.rindex_from fn (i0 - 1) '.' in
-      String.sub fn 0 i1, String.sub fn (i1 + 1) (i0 - i1 - 1), ext
+      (* Make sure the lang is made of 2 letters *)
+      if 2 <> i0 - i1 - 1 (* = lang length *)
+         || not(is_lowercase fn.[i1 + 1] && is_lowercase fn.[i1 + 2]) then
+        raise Not_found; (* no language *)
+      String.sub fn 0 i1, String.sub fn (i1 + 1) 2, ext
     with Not_found ->
       String.sub fn 0 i0,  "", ext
   with Not_found ->

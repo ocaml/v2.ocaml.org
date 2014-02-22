@@ -17,6 +17,7 @@ relative_urls
 script/md_preprocess
 script/code_top
 script/breadcrumb
+script/lang_of_filename
 script/translations
 template/front_code_snippet.html
 template/learn_code_snippet.html
