@@ -73,7 +73,7 @@
       // -->
     </script>
 
-    {{! ifndef staging
+    {{!S ifndef staging
     <script type="text/javascript">
 
     var _gaq = _gaq || [];
@@ -111,7 +111,7 @@
     <noscript><p><img src="http://ocaml.org/piwik/piwik.php?idsite=1"
 		      style="border:0;" alt="" /></p></noscript>
     <!-- End Piwik Code -->
-    !}} <!-- ifndef staging -->
+    S!}} <!-- ifndef staging -->
 
   </body>
 </html>
