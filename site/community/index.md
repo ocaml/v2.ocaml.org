@@ -58,8 +58,8 @@
             <h1 class="ruled">Support</h1>
             <p>Besides the above <a href="/community/mailing_lists.html">mailing lists</a>, you
             can ask questions on the OCaml IRC channels
-            (<a href="irc://irc.freenode.net/ocaml">en</a>,
-             <a href="irc://irc.freenode.net/ocaml-fr">fr</a>).</p>
+            (<a href="irc://irc.freenode.net/ocaml">en</a
+			>, <a href="irc://irc.freenode.net/ocaml-fr">fr</a>).</p>
 
             <p>Or see the <a href="support.html">Professional support</a> providers.</p>
 
@@ -68,15 +68,15 @@
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/">Meetings</a></h1>
             <ul class="news-feed">
-                <li class="announcement">
-                    <article>
-                        <h1><a href="/meetings/ocaml/2013/">OCaml 2013</a></h1>
-                        <p>24 September 2013</p>
-                        <a href="/meetings/ocaml/2013/">
-                            <img src="/img/announcement.png" alt="Announcement">
-                        </a>
-                    </article>
-                <li>
+			<li><article>
+			  <h1><a title="OCaml Users and Developers Workshop"
+			       href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
+			  <p>September 5, 2014</p>
+			  <a title="OCaml Users and Developers Workshop"
+			     href="/meetings/ocaml/2014/">
+			  <img alt="" src="/img/announcement.png" /></a>
+			</article></li>
+			    <li>
                     <article>
                         <h1><a href="http://www.meetup.com/NYC-OCaml/events/152153412/">NYC Functional Holiday Party</a></h1>
                         <p>9 December 2013</p>
