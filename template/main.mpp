@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 {{!s set contents {{!i input ((! get page !)) i!}} s!}}
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      lang="{{! cmd script/lang_of_filename ((! get filename !)) !}}"
+      xml:lang="{{! cmd script/lang_of_filename ((! get filename !)) !}}" >
   <head>
     <meta charset="utf-8" />
     {{! ifdef redirect
