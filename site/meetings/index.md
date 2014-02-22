@@ -35,16 +35,14 @@ OCaml Meetings
  [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=170)
 
 ## In Japan
-* 2010: [Nagoya](http://atnd.org/events/4873)
- [ocamlspotter](http://www.slideshare.net/camlspotter/um2010) [OCaml
- API search](http://www.slideshare.net/mzpi/ocamlapisearch)
- [ocsigen](http://www.slideshare.net/keigoi/ocaml-web-ocsigen-osc2009nagoya)
- (in japanese)
+
+* 2013: [Nagoya](http://ocaml.jp/um2013)
+* 2010: [Nagoya](http://ocaml.jp/um2010)
 * 2009: [Tokyo](http://atnd.org/events/738)
 
 ## In the US
-* 2012: [NYC OCaml Meetup](http://www.meetup.com/NYC-OCaml/)
-* 2014-: [Silicon Valley OCaml meetups](http://www.meetup.com/sv-ocaml/)
+* 2012–present: [NYC OCaml Meetup](http://www.meetup.com/NYC-OCaml/)
+* 2014-present: [Silicon Valley OCaml meetups](http://www.meetup.com/sv-ocaml/)
 
 ## In the UK
 * 2012: [Cambridge NonDysFunctional
