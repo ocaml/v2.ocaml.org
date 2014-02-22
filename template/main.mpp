@@ -96,7 +96,7 @@
       _paq.push(["setDoNotTrack", true]);
       _paq.push(["trackPageView"]);
       _paq.push(["enableLinkTracking"]);
-      _paq.push(["setCustomVariable", 1, "Language",
+      _paq.push(["setCustomVariable", 1, "Page language",
          "{{! cmd script/lang_of_filename --long ((! get filename !)) !}}",
          "page"]);
 
