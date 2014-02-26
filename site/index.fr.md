@@ -11,10 +11,11 @@
     </ul>
 
         <div class="row">
-            <h1 class="span9">OCaml est un langage de programmation de classe industrielle, permettant des styles de programmation fonctionels, impératifs et orienté objet.</h1>
+            <h1 class="span9">OCaml est un langage de programmation de niveau industriel<br/>
+             puissamment fonctionnel, impératif et orienté-objet</h1>
             <div class="span3">
                 <div>
-                    <a class="btn" href="/docs/install.html">Installer OCaml</a>
+                    <a class="btn" href="/docs/install.fr.html">Installer OCaml</a>
                 </div>
             </div>
         </div>
