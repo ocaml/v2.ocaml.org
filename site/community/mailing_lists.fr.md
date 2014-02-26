@@ -2,6 +2,8 @@
 
 *Table of contents*
 
+# Liste de diffusion OCaml
+
 ###  La liste de diffusion OCaml : caml-list AT inria.fr
 La liste de diffusion OCaml s'adresse à tous les utilisateurs des
 implémentations OCaml de l'Inria. Le but de cette tribune est de mettre
