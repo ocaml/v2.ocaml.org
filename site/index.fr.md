@@ -6,8 +6,8 @@
 
 
     <ul class="translations">
-      <li><a href="index.html"><img src="img/flag_en.png"/></a></li>
-      <li class="active"><img src="img/flag_fr.png"/></li>
+      <li><a href="index.html"><img src="img/flag_en.png" alt="en"/></a></li>
+      <li class="active"><img src="img/flag_fr.png" alt="fr"/></li>
     </ul>
 
         <div class="row">
