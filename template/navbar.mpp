@@ -1,6 +1,6 @@
             <ul class="nav">
-              <li ((! ifdef learn class="active" !))><a href="/learn/">Learn</a></li>
-              <li ((! ifdef documentation class="active" !))><a href="/docs/">Documentation</a></li>
-              <li ((! ifdef packages class="active" !))><a href="https://opam.ocaml.org/">Packages</a></li>
-              <li ((! ifdef community class="active" !))><a href="/community/">Community</a></li>
+              <li ((! ifdef learn class="active" !))><a href="/learn/">{{! cmd script/translate ((! get filename !)) Learn !}}</a></li>
+              <li ((! ifdef documentation class="active" !))><a href="/docs/">{{! cmd script/translate ((! get filename !)) Documentation !}}</a></li>
+              <li ((! ifdef packages class="active" !))><a href="https://opam.ocaml.org/">{{! cmd script/translate ((! get filename !)) Packages !}}</a></li>
+              <li ((! ifdef community class="active" !))><a href="/community/">{{! cmd script/translate ((! get filename !)) Community !}}</a></li>
             </ul>
