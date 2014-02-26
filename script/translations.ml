@@ -23,8 +23,14 @@ let translations path =
   let t = List.sort (fun (l1,_) (l2,_) -> String.compare l1 l2) !t in
   (* Convert to HTML *)
   let to_html (l, fn) =
-    if l = l0 then sprintf "<li class=\"active\">%s</li>\n" (lang_to_html l)
-    else sprintf "<li><a href=\"%s\">%s</a></li>\n" fn (lang_to_html l) in
+    let html =
+      let l = if l = "" then "en" (* default language *) else l in
+      if Sys.file_exists (Printf.sprintf "site/img/flag_%s.png" l) then
+        sprintf "<img src=\"/img/flag_%s.png\"/>" l
+      else
+        lang_to_html l in
+    if l = l0 then sprintf "<li class=\"active\">%s</li>\n" html
+    else sprintf "<li><a href=\"%s\">%s</a></li>\n" fn html in
   String.concat "" (List.map to_html t)
 
 
