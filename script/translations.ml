@@ -26,7 +26,7 @@ let translations path =
     let html =
       let l = if l = "" then "en" (* default language *) else l in
       if Sys.file_exists (Printf.sprintf "site/img/flag_%s.png" l) then
-        sprintf "<img src=\"/img/flag_%s.png\"/>" l
+        sprintf "<img src=\"/img/flag_%s.png\" alt=\"%s\"/>" l l
       else
         lang_to_html l in
     if l = l0 then sprintf "<li class=\"active\">%s</li>\n" html
