@@ -3,11 +3,6 @@
 
 <header id="home-header">
     <div class="container">
-
-    <ul class="translations">
-      <li class="active"><img src="img/flag_en.png" alt="en"/></li>
-      <li><a href="index.fr.html"><img src="img/flag_fr.png" alt="fr"/></a></li>
-    </ul>
         <div class="row">
             <h1 class="span9">OCaml is an industrial strength programming language supporting functional, imperative and object-oriented styles</h1>
             <div class="span3">

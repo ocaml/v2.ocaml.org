@@ -1,15 +1,8 @@
-<!-- ((! set title OCaml !)) ((! set core !)) -->
+<!-- ((! set title OCaml !)) ((! set core !)) ((! set nobreadcrumb !)) -->
 <!-- ((! set advertise_rss true !)) -->
 
 <header id="home-header">
     <div class="container">
-
-
-    <ul class="translations">
-      <li><a href="index.html"><img src="img/flag_en.png" alt="en"/></a></li>
-      <li class="active"><img src="img/flag_fr.png" alt="fr"/></li>
-    </ul>
-
         <div class="row">
             <h1 class="span9">OCaml est un langage de programmation de niveau industriel<br/>
              puissamment fonctionnel, impératif et orienté-objet</h1>
@@ -21,6 +14,9 @@
         </div>
     </div>
 </header>
+<div class="container core-running-header">
+((! input template/running-header.mpp !))
+</div>
 <div class="container">
     <div class="row home-hero">
         <div class="span8">
