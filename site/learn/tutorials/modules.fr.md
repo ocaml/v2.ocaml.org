@@ -2,8 +2,7 @@
 
 *Table of contents*
 
-Modules
--------
+# Modules
 
 ## Usage standard
 
