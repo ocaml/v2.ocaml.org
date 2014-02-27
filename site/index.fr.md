@@ -4,8 +4,9 @@
 <header id="home-header">
     <div class="container">
         <div class="row">
-            <h1 class="span9">OCaml est un langage de programmation de niveau industriel<br/>
-             puissamment fonctionnel, impératif et orienté-objet</h1>
+            <h1 class="span9">OCaml est un langage de programmation
+			de niveau industriel
+            supportant les syles fonctionnel, impératif et orienté-objet</h1>
             <div class="span3">
                 <div>
                     <a class="btn" href="/docs/install.fr.html">Installer OCaml</a>
@@ -82,7 +83,7 @@
 			</article></li>
 	        </ul>
             {{! cmd script/rss2html -n 5 --headlines http://planet.ocaml.org/rss20.xml !}}
-            <p><a href="community/planet/">More...</a></p>
+            <p><a href="community/planet/">Plus...</a></p>
         </section>
     </div>
     <div class="row">
@@ -90,7 +91,9 @@
             <h1><a href="learn/taste.html">Un peu d'OCaml</a></h1>
             ((! cat template/tryocaml.html !))
             ((! input template/front_code_snippet.html !))
-            <p>OCaml est bien plus puissant que ce petit exemple. Découvrez <a href="/learn/taste.html">d'autres exemples</a>!</p>
+            <p>OCaml est bien plus puissant que ce petit exemple le
+			montre. Découvrez
+			<a href="/learn/taste.html">d'autres exemples</a>!</p>
         </section>
         <section class="span6 condensed">
             <h1><a href='http://opam.ocaml.org/pkg/index-date.html'>Paquets</a></h1>
