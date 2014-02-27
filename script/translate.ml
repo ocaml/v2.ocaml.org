@@ -1,17 +1,6 @@
 (* Small utility to extract the language of the filename. *)
 
-open Printf
 open Utils
-
-let language_of_ISO639 = function
-  | "en" -> "English"
-  | "de" -> "German"
-  | "fr" -> "French"
-  | "it" -> "Italian"
-  | "ja" -> "Japanese"
-  | "ko" -> "Korean"
-  | "zh" -> "Chinese"
-  | l -> failwith(sprintf "Add the full language name for %S" l)
 
 let () =
   let filename = Sys.argv.(1) in
