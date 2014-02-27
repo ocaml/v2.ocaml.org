@@ -51,7 +51,7 @@
             <form id="searchform" class="navbar-search pull-right"
 		  method="get" action="http://www.google.com/search">
               <input value="site:http://ocaml.org/" name="q" type="hidden" />
-              <input placeholder="Search" class="search-query"
+              <input placeholder="{{! cmd script/translate ((! get filename !)) "Search" !}}" class="search-query"
 		     name="q" type="text" />
             </form>
           </div>
