@@ -315,6 +315,13 @@ td.code {
   margin-bottom: 0px;
 }
 
+/* Running header on the front page */
+
+header + .core-running-header {
+  margin-top: -27px;
+  margin-bottom: 12px;
+}
+
 /* Translations and breadcrumb */
 div.running-header {
   margin-top: -10px;
