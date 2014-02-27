@@ -2,6 +2,9 @@
 
 open Utils
 
+let lexer = Genlex.make_lexer [ "->" ]
+exception Found of string
+
 let () =
   let filename = Sys.argv.(1) in
   let to_translate = Sys.argv.(2) in
@@ -10,19 +13,24 @@ let () =
     if lang = "" then "en" else lang
   in
   let translation =
-    match lang with
-    | "fr" ->
-      begin
-        match to_translate with
-        | "Learn" -> "Apprendre"
-        | "Documentation" -> "Documentation"
-        | "Packages" -> "Contributions"
-        | "Community" -> "Communauté"
-        | "Feedback" -> "Suggestions"
-        | "About This Site" -> "A propos de ce site"
-        | "Find Us on GitHub" -> "Dépôt GitHub"
-        | _ -> to_translate
-      end
+    try
+      let filename = Printf.sprintf "translations/en_to_%s.txt" lang in
+      let ic = open_in filename in
+      try
+        let stream = lexer (Stream.of_channel ic) in
+        let tokens = ref [] in
+        Stream.iter (fun token ->
+          match token :: !tokens with
+          | Genlex.String translated :: Genlex.Kwd "->" ::
+              Genlex.String english :: _ when english = to_translate ->
+            raise (Found translated)
+          | x :: y :: _ -> tokens := [x;y]
+          | _ -> tokens := token :: !tokens
+        ) stream;
+        raise Not_found
+      with exn -> close_in ic; raise exn
+    with Found translated ->
+      translated
     | _ -> to_translate
   in
   Printf.printf "%s%!" translation
