@@ -19,6 +19,7 @@ script/code_top
 script/breadcrumb
 script/lang_of_filename
 script/translations
+script/translate
 template/front_code_snippet.html
 template/learn_code_snippet.html
 .DS_Store
