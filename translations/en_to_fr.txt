@@ -21,3 +21,4 @@
 "Package" -> "Logiciel"
 "Version" -> "Version"
 "Date" -> "Date"
+"Search" -> "Rechercher"
