@@ -1,4 +1,4 @@
-<!-- ((! set title OCaml !)) ((! set core !)) -->
+<!-- ((! set title OCaml !)) ((! set core !)) ((! set nobreadcrumb !)) -->
 <!-- ((! set advertise_rss true !)) -->
 
 <header id="home-header">
@@ -18,6 +18,9 @@
         </div>
     </div>
 </header>
+<div class="container core-running-header">
+((! input template/running-header.mpp !))
+</div>
 <div class="container">
     <div class="row home-hero">
         <div class="span8">
