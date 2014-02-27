@@ -490,7 +490,7 @@ funzione `sum_list`, per sommare una lista di int, come segue:
 ```ocamltop
 let sum_list = List.fold_left ( + ) 0
 ```
-###  Mettere tutto insieme: del codice reale
+## Mettere tutto insieme: del codice reale
 In questa sezione mostreremo dei frammenti di codice reale provenienti
 dalla libreria lablgtk 1.2. (Lablgtk è l'interfaccia di OCaml alla
 libreria nativa Unix degli accessori di Gtk). Un'avvertenza: questi

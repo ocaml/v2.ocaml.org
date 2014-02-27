@@ -4,7 +4,6 @@
 
 # The Structure of OCaml Programs
 
-## The structure of OCaml programs
 Now we're going to take some time out to take a high-level look at some
 real OCaml programs. I want to teach you about local and global
 definitions, when to use `;;` vs. `;`, modules, nested functions, and
@@ -13,7 +12,7 @@ which won't yet make sense because we haven't seen them before. Don't
 worry about the details for the moment. Concentrate instead on the
 overall shape of the programs and the features which I'll point out.
 
-###  Local "variables" (*really* local expressions)
+##  Local "variables" (*really* local expressions)
 Let's take the `average` function and add a local variable in C.
 (Compare it to the first definition we had above).
 
@@ -66,7 +65,7 @@ to perform this step of "common subexpression elimination" for you), and
 it is certainly easier to read. `x` in the second example is just
 shorthand for `a +. b`.
 
-###  Global "variables" (*really* global expressions)
+##  Global "variables" (*really* global expressions)
 You can also define global names for things at the top level, and as
 with our local "variables" above, these aren't really variable at all,
 just shorthand names for things. Here's a real (but cut-down) example:
@@ -101,11 +100,11 @@ Nor is it possible to assign anything to `html`, for example to reassign
 it to point to a different widget. In the next section we'll talk about
 references, which are real variables.
 
-###  Let-bindings
+## Let-bindings
 Any use of `let ...`, whether at the top level (globally) or within a
 function, is often called a **let-binding**.
 
-###  References: real variables
+## References: real variables
 What happens if you want a real variable that you can assign to and
 change throughout your program? You need to use a **reference**.
 References are very similar to pointers in C/C++. In Java, all variables
@@ -158,7 +157,7 @@ references very often. Much more often you'll be using
 `let name = expression in` to name local expressions in your function
 definitions.
 
-###  Nested functions
+## Nested functions
 C doesn't really have a concept of nested functions. GCC supports nested
 functions for C programs but I don't know of any program which actually
 uses this extension. Anyway, here's what the gcc info page has to say
@@ -227,7 +226,7 @@ You normally indent the function definition on a new line as in the
 example above, and remember to use `let rec` instead of `let` if your
 function is recursive (as it is in that example).
 
-###  Modules and `open`
+## Modules and `open`
 OCaml comes with lots of fun and interesting modules (libraries of
 useful code). For example there are standard libraries for drawing
 graphics, interfacing with GUI widget sets, handling large numbers, data
@@ -314,13 +313,13 @@ about those later. Nevertheless you should look at these programs and
 try and find out (1) how they work, and (2) how type inference is
 helping you to eliminate bugs.
 
-###  The `Pervasives` module
+## The `Pervasives` module
 There's one module that you never need to "`open`". That is the
 `Pervasives` module (go and read `/usr/lib/ocaml/3.08/pervasives.mli`
 now). All of the symbols from the `Pervasives` module are automatically
 imported into every OCaml program.
 
-###  Renaming modules
+## Renaming modules
 What happens if you want to use symbols in the `Graphics` module, but
 you don't want to import all of them and you can't be bothered to type
 `Graphics` each time? Just rename it using this trick:
@@ -336,7 +335,7 @@ Actually this is really useful when you want to import a nested module
 (modules can be nested inside one another), but you don't want to type
 out the full path to the nested module name each time.
 
-###  Using and omitting `;;` and `;`
+## Using and omitting `;;` and `;`
 Now we're going to look at a very important issue. When should you use
 `;;`, when should you use `;`, and when should you use none of these at
 all? This is a tricky issue until you "get it", and it taxed the author
@@ -432,7 +431,7 @@ The only place in the above code where might think about putting in a
 `;` is after the `Graphics.plot x y`, but because this is the last
 statement in the block, Rule #4 tells us not to put one there.
 
-###  Note about ";"
+## Note about ";"
 Brian Hurt writes to correct me on ";"
 
 > The `;` is an operator, just like `+` is. Well, not quite just like
@@ -476,7 +475,7 @@ Brian Hurt writes to correct me on ";"
 > let sum_list = List.fold_left ( + ) 0
 > ```
 
-###  Putting it all together: some real code
+## Putting it all together: some real code
 In this section we're going to show some real code fragments from the
 lablgtk 1.2 library. (Lablgtk is the OCaml interface to the native Unix
 Gtk widget library). A word of warning: these fragments contain a lot of
