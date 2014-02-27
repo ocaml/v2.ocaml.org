@@ -5,6 +5,7 @@
       xml:lang="{{! cmd script/lang_of_filename ((! get filename !)) !}}" >
   <head>
     <meta charset="utf-8" />
+    {{! cmd script/translations --hreflang "((! get filename !))" !}}
     {{! ifdef redirect
     <meta http-equiv="refresh"
 	  content="0; url=((! get redirect !))" />
