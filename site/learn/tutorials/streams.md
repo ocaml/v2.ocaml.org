@@ -2,7 +2,7 @@
 
 *Table of contents*
 
-## Streams
+# Streams
 Suppose you need to process each line of a text file. One way to do this
 is to read the file in as a single large string and use something like
 `Str.split` to turn it into a list. This works when the file is small,
