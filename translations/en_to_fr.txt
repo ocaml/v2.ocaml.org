@@ -17,3 +17,7 @@
 "Meetings" -> "Rencontres"
 "Support" -> "Support"
 "Bug Tracker" -> "Reporter un problème"
+"New packages" -> "Nouvelles versions"
+"Package" -> "Logiciel"
+"Version" -> "Version"
+"Date" -> "Date"

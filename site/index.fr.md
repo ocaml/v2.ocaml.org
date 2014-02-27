@@ -96,7 +96,7 @@
 			<a href="/learn/taste.html">d'autres exemples</a>!</p>
         </section>
         <section class="span6 condensed">
-            <h1><a href='http://opam.ocaml.org/pkg/index-date.html'>Paquets</a></h1>
+            <h1><a href='http://opam.ocaml.org/pkg/index-date.html'>Nouveautés dans OPAM</a></h1>
             ((! input template/front_package.mpp !))
         </section>
     </div>

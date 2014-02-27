@@ -1,14 +1,14 @@
 <ul class="nav nav-tabs">
     <li class="active">
-        <a>New packages</a>
+        <a>{{! cmd script/translate ((! get filename !)) "New packages" !}}</a>
     </li>
 </ul>
 <table class="table table-bordered table-condensed table-hover">
     <thead>
         <tr>
-            <th>Package</th>
-            <th>Version</th>
-            <th>Date</th>
+            <th>{{! cmd script/translate ((! get filename !)) "Package" !}}</th>
+            <th>{{! cmd script/translate ((! get filename !)) "Version" !}}</th>
+            <th>{{! cmd script/translate ((! get filename !)) "Date" !}}</th>
         </tr>
     </thead>
     <tbody>
