@@ -40,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/"><img src="/img/ocaml.png" alt="OCaml" /></a>
+          <a class="brand" href="{{! cmd script/link_of_lang ((! get filename !)) "/" !}}"><img src="/img/ocaml.png" alt="OCaml" /></a>
           <div id="menu-items" class="nav-collapse collapse">
             ((! input template/navbar.mpp !))
 	    {{! ifdef filename
