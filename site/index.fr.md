@@ -23,11 +23,11 @@
         <div class="span8">
             <div class="row">
                 <section class="span4 home-feature">
-                    <a href="/learn/">
+                    <a href="/learn/index.fr.html">
                         <img src="/img/learn-large.png" alt="Apprendre">
                     </a>
-                    <h1><a href="/learn/">Apprendre</a></h1>
-                    <p>Une <a href="/learn/description.html">description d'OCaml</a>, ses <a href="/learn/success.html">utilisateurs</a>, des <a href="learn/taste.html">exemples de code</a>, des <a href="/learn/tutorials/">tutoriaux à lire</a> et <a href="/learn/">bien plus</a>.</p>
+                    <h1><a href="/learn/index.fr.html">Apprendre</a></h1>
+                    <p>Une <a href="/learn/description.html">description d'OCaml</a>, ses <a href="/learn/success.html">utilisateurs</a>, des <a href="learn/taste.html">exemples de code</a>, des <a href="/learn/tutorials/">tutoriaux à lire</a> et <a href="/learn/index.fr.html">bien plus</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/docs/">

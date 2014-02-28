@@ -1,0 +1,14 @@
+
+<pre><code class="ocaml"><span class="comment">(* Si [l] est la liste [e1;&hellip;;eN] *)</span>
+<span class="comment">(* Additionner tous les éléments: *)</span>
+<span class="ocaml-module">List</span>.fold_left ( +. ) 0. l
+
+<span class="comment">(* Multiplier tous les éléments: *)</span>
+<span class="ocaml-module">List</span>.fold_left ( *. ) 1. l
+
+<span class="comment">(* Concaténer la liste dans une chaîne: *)</span>
+<span class="ocaml-module">List</span>.fold_left ( &amp;&amp; ) true l
+
+<span class="comment">(* Inverser la liste : [eN;&hellip;;e1] *)</span>
+<span class="ocaml-module">List</span>.fold_left  (<span class="keyword">fun</span> r e -&gt; e&nbsp;::&nbsp;r) [] l
+</code></pre>
