@@ -23,3 +23,4 @@ script/translate
 template/front_code_snippet.html
 template/learn_code_snippet.html
 .DS_Store
+script/link_of_lang
