@@ -1,15 +1,10 @@
 (* Small utility to extract the language of the filename. *)
 
-open Utils
-
-let lexer = Genlex.make_lexer [ "->" ]
-exception Found of string
-
 let () =
   let filename = Sys.argv.(1) in
   let link = Sys.argv.(2) in
   let lang =
-    let _, lang, _ = prefix_lang_ext_of_filename (Filename.basename filename) in
+    let _, lang, _ = Utils.prefix_lang_ext_of_filename (Filename.basename filename) in
     if lang = "" then "en" else lang
   in
 (*  Printf.eprintf "Link = %S\n%!" link; *)
@@ -35,7 +30,3 @@ let () =
   in
 (*  Printf.eprintf "Returning %S\n%!" translation; *)
   Printf.printf "%s%!" translation
-
-(* Local Variables: *)
-(* compile-command: "make --no-print-directory -k -C .. script/lang_of_filename" *)
-(* End: *)
