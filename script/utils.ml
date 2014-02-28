@@ -1,6 +1,9 @@
 
 let is_lowercase c = 'a' <= c && c <= 'z'
 
+let latin1_to_utf8 s =
+  Netconversion.convert `Enc_iso88591 `Enc_utf8 s
+
 (* Split a filename accoreding to the conventions of the site
    regarding the language. *)
 let prefix_lang_ext_of_filename fn =

@@ -36,5 +36,5 @@ let () =
   Printf.printf "%s%!" translation
 
 (* Local Variables: *)
-(* compile-command: "make --no-print-directory -k -C .. script/lang_of_filename" *)
+(* compile-command: "make --no-print-directory -k -C .. script/translate" *)
 (* End: *)

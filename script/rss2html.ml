@@ -282,7 +282,7 @@ let html_of_post rss_feed p =
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
-let headline_of_post ?(planet=false) ?(img_alt="") ~img p =
+let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img p =
   let link =
     if planet then planet_url ^ "#" ^ digest_post p
     else match p.link with
@@ -293,8 +293,14 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~img p =
              [Element("img", ["src", img; "alt", img_alt], [])])] in
   let html_date = match p.date with
     | None -> html_icon
-    | Some d -> let d = Netdate.format ~fmt:"%B %e, %Y" d in
-               Element("p", [], [Data d]) :: html_icon in
+    | Some d ->
+       let d =
+         if Netdate.format ~fmt:"%x" d = Netdate.format ~fmt:"%x" d ~l9n then
+           (* English style *)
+           Netdate.format ~fmt:"%B %e, %Y" d ~l9n
+         else
+           Netdate.format ~fmt:"%e %B %Y" d ~l9n in
+       Element("p", [], [Data (latin1_to_utf8 d)]) :: html_icon in
   let html_title =
     Element("h1", [],
             if link = "" then [Data p.title]
@@ -315,10 +321,10 @@ let posts_of_urls ?n urls =
   | None -> posts
   | Some n -> take n posts
 
-let headlines ?n ?planet ~img urls =
+let headlines ?n ?planet ~l9n ~img urls =
   let posts = posts_of_urls ?n urls in
   [Element("ul", ["class", "news-feed"],
-           List.concat(List.map (headline_of_post ?planet ~img) posts))]
+           List.concat(List.map (headline_of_post ?planet ~l9n ~img) posts))]
 
 let posts ?n opml urls =
   let contributors = OPML.contributors_of_urls opml in
@@ -355,7 +361,7 @@ let caml_list_re =
 (** [email_threads] does basically the same as [headlines] but filter
     the posts to have repeated subjects.  It also presents the subject
     better. *)
-let email_threads ?n ~img urls =
+let email_threads ?n ~l9n ~img urls =
   (* Do not use [n] yet because posts are filtered. *)
   let posts = posts_of_urls urls in
   let normalize_title p =
@@ -374,7 +380,7 @@ let email_threads ?n ~img urls =
                | Some n -> take n posts
                | None -> posts) in
   [Element("ul", ["class", "news-feed"],
-           List.concat(List.map (fun p -> headline_of_post ~img p) posts))]
+           List.concat(List.map (fun p -> headline_of_post ~l9n ~img p) posts))]
 
 
 
@@ -386,6 +392,7 @@ let () =
   let opml = ref [] in
   let action = ref `Undecided in
   let n_posts = ref None in (* ≤ 0 means unlimited *)
+  let l9n = ref Netdate.posix_l9n in
   let img = ref "/img/news.png" in
   let specs = [
     ("--headlines", Arg.Unit(fun () -> action := `Headlines),
@@ -402,6 +409,9 @@ let () =
      " RSS feed to HTML (default action)");
     ("-n", Arg.Int(fun n -> n_posts := Some n),
      "n limit the number of posts to n (default: all of them)");
+    ("--localization",
+     Arg.String(fun l -> l9n := Netdate.(l9n_from_locale l)),
+     "l Translate dates for the locale l");
     ("--img", Arg.Set_string img,
      sprintf "url set the images URL for each headline (default: %S)" !img) ] in
   let anon_arg s = urls := s :: !urls in
@@ -409,11 +419,13 @@ let () =
   if !urls = [] && !opml = [] then (
     Arg.usage (Arg.align specs) "rss2html <at least 1 URL>";
     exit 1);
+  let l9n = Netdate.compile_l9n !l9n in
   let out = new Netchannels.output_channel stdout in
   (match !action with
    | `Headlines -> Nethtml.write out (headlines ~planet:true ?n:!n_posts
-                                               ~img:!img !urls)
-   | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~img:!img !urls)
+                                               ~l9n ~img:!img !urls)
+   | `Emails -> Nethtml.write out (email_threads ?n:!n_posts
+                                                ~l9n ~img:!img !urls)
    | `Undecided
    | `Posts ->
       Nethtml.write out (toggle_script @ posts ?n:!n_posts !opml !urls)

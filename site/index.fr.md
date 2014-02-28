@@ -76,13 +76,13 @@
 			<li><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
-			  <p>September 5, 2014</p>
+			  <p>5 septembre 2014</p>
 			  <a title="OCaml Users and Developers Workshop"
 			     href="/meetings/ocaml/2014/">
 			  <img alt="" src="/img/announcement.png" /></a>
 			</article></li>
 	        </ul>
-            {{! cmd script/rss2html -n 5 --headlines http://planet.ocaml.org/rss20.xml !}}
+            {{! cmd script/rss2html -n 5 --localization french --headlines http://planet.ocaml.org/rss20.xml !}}
             <p><a href="community/planet/">Plus...</a></p>
         </section>
     </div>
