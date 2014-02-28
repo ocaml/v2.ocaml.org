@@ -14,7 +14,7 @@ OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
 
 DEP_CONTENT_GEN = template/main.mpp template/footer.mpp \
   script/breadcrumb script/translations \
-  script/lang_of_filename script/translate
+  script/lang_of_filename script/translate script/link_of_lang
 
 ifeq ("$(OCAML_VERSION)", "3.12.1")
 COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
@@ -39,6 +39,11 @@ script/translate: script/translate.ml $(UTILS_DEP)
 	cd script && \
 	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg \
 	  utils.cmx translate.ml
+
+script/link_of_lang: script/link_of_lang.ml $(UTILS_DEP)
+	cd script && \
+	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg \
+	  utils.cmx link_of_lang.ml
 
 script/breadcrumb: script/breadcrumb.ml $(UTILS_DEP)
 	cd script && \
