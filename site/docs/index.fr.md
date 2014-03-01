@@ -4,43 +4,43 @@
     <h1>Documentation</h1>
     <div class="row">
         <section class="span6 condensed">
-            <h1 class="ruled">Summary</h1>
-            <p>Here you'll find links to documentation for the OCaml compiler, <a href="/releases/">release</a> information and other resources.</p>
-            <p>Documentation for a given package can be found by following the link on that package's information page. <a href="https://opam.ocaml.org/pkg/">Search the package list</a> to find what you need.</p>
+            <h1 class="ruled">Résumé</h1>
+            <p>Ici vous trouverez des liens vers la documentation du compilateur OCaml, de l'information sur <a href="/releases/">ses versions</a> et d'autres ressources.</p>
+            <p>La documentation de chaque contribution est disponible en suivant le lien sur la page d'information de la contribution. <a href="https://opam.ocaml.org/pkg/">Rechercher dans la liste des contributions</a> pour trouver ce dont vous avez besoin.</p>
         </section>
         <section class="span6 condensed">
-            <h1 class="ruled">Reference</h1>
+            <h1 class="ruled">Références</h1>
             <div class="row">
                 <a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 				    target="_blank" class="span3 documentation-highlight">
                     <img src="/img/manual.png" alt="">
-                    OCaml Manual
+                    Le manuel d'OCaml
                 </a>
                 <a href="license.html" class="span3 documentation-highlight">
                     <img src="/img/license.png" alt="">
-                    OCaml License
+                    La licence d'OCaml
                 </a>
             </div>
             <div class="row">
                 <a href="https://opam.ocaml.org/pkg/" class="span3 documentation-highlight">
                     <img src="/img/documents.png" alt="">
-                    Package Documents
+                    Docs des contributions
                 </a>
                 <a href="cheat_sheets.html" class="span3 documentation-highlight">
                     <img src="/img/cheat.png" alt="">
-                    Cheat Sheets
+                    Mémentos
                 </a>
             </div>
         </section>
     </div>
     <div class="row">
         <section class="span6 condensed">
-            <h1 class="ruled">OPAM Docs</h1>
+            <h1 class="ruled">Documentation d'OPAM</h1>
             <p>The OCaml Package Manager (<a href="https://opam.ocaml.org">OPAM</a>) is a source-based package manager for OCaml. It supports multiple simultaneous compiler installations, flexible package constraints, and a Git-friendly development workflow. For documentation on installing OPAM or packaging your libraries, <a href="https://opam.ocaml.org/doc/Quick_Install.html">read here</a>. Packages are automatically tested upon submission and reports sent back to maintainers. If you submit a package, you will be rewarded with regular regression tests across many diverse operating systems and platforms.</p>
             <p>OPAM has been created and is maintained by OCamlPro and OCaml Labs. Bug reports and feature requests for the tool should be reported on <a href="https://github.com/OCaml/opam/issues">OPAM's issue-tracker</a>. Packaging issues or requests for a new package can be reported on the <a href="https://github.com/OCaml/opam-repository/issues">main repository's issue-tracker</a>. General queries for both the tool and the packages can be addressed on the <a href="http://lists.ocaml.org/listinfo/platform">OCaml-platform mailing-list</a> and insights and evolution of OPAM internals can discussed on the <a href="http://lists.ocaml.org/listinfo/opam-devel">OPAM-devel mailing-list</a>.</p>
         </section>
         <section class="span6 condensed">
-            <h1 class="ruled"><a href="/learn/books.html">Books</a> and <a href="/docs/papers.html">Papers</a></h1>
+            <h1 class="ruled"><a href="/learn/books.html">Livres</a> et <a href="/docs/papers.html">articles</a></h1>
             <div class="row">
                 <div class="span2 documentation-book">
                     <a href="https://realworldocaml.org">
@@ -53,46 +53,48 @@
                     </a>
                 </div>
                 <div class="span2">                    
-                    <p>There are a number of excellent books, with two new titles published in 2013. Real World OCaml is available to <a href="https://realworldocaml.org">read online</a>.</p>
+                    <p>Il y a plusieurs excellents livres sur OCaml, dont deux nouveaux titres publiés en 2013. Ainsi, Real World OCaml est disponible <a href="https://realworldocaml.org">online</a> en anglais.</p>
                 </div>
             </div>
             <footer>
-            <p><a href="/learn/books.html">See more books</a> / <a href="/docs/papers.html">See more papers</a></p>
+            <p><a href="/learn/books.html">Voir plus de livres</a> et <a href="/docs/papers.html">articles</a></p>
             </footer>
         </section>
     </div>
     <div class="row">
         <section class="span12 condensed">
-            <h1 class="ruled"><a href="/community/media.html">Videos</a></h1>
+            <h1 class="ruled"><a href="/community/media.html">Vidéos</a></h1>
             <div class="row">
                     <div class="span4">
                         <p class="documentation-video">
 						<iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
                         </p>
-                      <p>In this talk, Mark Shinwell explains how to
-                      track down hard-to-find bugs in OCaml programs.
-					  It involves the new gdb functionality
-					  which OCamlPro and others have worked on recently.
+                      <p>Dans cet exposé, Mark Shinwell explique comment
+                      trouver des bugs difficiles dans les programmes OCaml.
+		      Cela nécessite l'utilisation du nouveau support de gdb,
+		      récemment développé par OCamlPro et d'autres contributeurs.
 					  (<a href="http://oud.ocaml.org/2012/slides/oud2012-paper5-slides.pdf"
-                      >PDF slides</a>)</p>
+                      >PDF</a>)</p>
                             </div>
                     <div class="span4">
                         <p class="documentation-video">
                             <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                         </p>
-                        <p>Talk at CMU describing the experiences that Jane Street has had using OCaml as it's primary development language.</p>
+                        <p>Exposé de Yaron Minsky à CMU présentant
+le retour d'expérience de Jane Street sur l'utilisation d'OCaml comme
+principal langage de développement.</p>
                     </div>
                     <div class="span4">
                         <p class="documentation-video">
                             <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                         </p>
-                        <p>Experience Report: OCaml for an Industrial-strength Static Analysis Framework 
-                        Pascal Cuoq and Julien Signoles; CEA LIST
-                        International Conference on Functional Programming (ICFP) Edinburgh 2009.</p>
+                        <p>Rapport d'expérience: OCaml utilisé pour une
+plateforme d'analyse statique de niveau industriel, par
+                        Pascal Cuoq et Julien Signoles du CEA LIST, à ICFP'2009.</p>
                     </div>
             </div>
             <footer>
-                <p><a href="/community/media.html">See more videos</a></p>
+                <p><a href="/community/media.html">Voir plus de vidéos</a></p>
             </footer>
         </section>
     </div>
