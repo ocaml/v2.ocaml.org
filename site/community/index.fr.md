@@ -1,51 +1,51 @@
-<!-- ((! set title Community !)) ((! set community !)) -->
+<!-- ((! set title Communauté !)) ((! set community !)) -->
 
 <div class="container">
-    <h1>Community</h1>
+    <h1>Communauté</h1>
     <div class="row">
         <div class="span2">
             <img src="/img/community-large.png" alt="Community">
         </div>
         <section id="community-leader" class="span6">
-            <p>OCaml has a diverse, worldwide community and one of the main benefits is the ability to easily reach each other.  <a href="mailing_lists.html">Mailing lists</a> are the most common way people interact although you will always find users on IRC, around the web and at any of the <a href="/meetings/">meetings</a>.</p>
+            <p>La communauté OCaml est diverse et internationnale, avec de nombreux moyens de discussion : les <a href="mailing_lists.fr.html">listes de discussion</a> sont le moyen le plus utilisé, mais il existe aussi de nombreux autres canaux de discussion autour du web, ainsi que de nombreux <a href="/meetings/">groupes de rencontre</a>.</p>
         </section>
         <div class="span4">
             <img src="/img/ocaml-large.png" alt="OCaml">
-            <p><a href="/docs/logos.html">More logos</a></p>
+            <p><a href="/docs/logos.html">Plus de logos</a></p>
         </div>
     </div>
     <div class="row">
         <section class="span12 condensed">
-            <h1 class="ruled"><a href="mailing_lists.html">Mailing Lists</a></h1>
+            <h1 class="ruled"><a href="mailing_lists.fr.html">Listes de discussion</a></h1>
             <div class="row">
             <section class="span4 condensed">
                 <p><strong><a href="https://sympa.inria.fr/sympa/arc/caml-list">caml-list@inria.fr</a></strong><br />
-                <strong><em>Main OCaml List</em></strong><br />
-                Intended for all users of OCaml. The purpose of this list is to share experience, exchange ideas and code, and discuss applications of the language.</p>
+                <strong><em>La liste OCaml principale</em></strong><br />
+                Visant tous les utilisateurs, cette liste a pour but de permettre le partage d'expérience, d'échanger les idées et le code, et de discuter des applications du langage.</p>
                 <p><strong><a href="http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce">caml-announce@inria.fr</a></strong><br />
-                <strong><em>Low volume annoncements</em></strong><br />
-                This is a low-traffic, moderated list for announcements of OCaml releases and new OCaml-related software, libraries, documents, etc.</p>
+                <strong><em>Liste d'annonces</em></strong><br />
+                Cette liste permet de recevoir les annonces des nouvelles version d'OCaml et des autres logiciels en OCaml. C'est une liste modérée avec un faible traffic.</p>
             </section>
             <section class="span4 condensed">
                 <p><strong><a href="http://groups.yahoo.com/neo/groups/ocaml_beginners/info">ocaml_beginners@yahoogroups.com</a></strong><br />
-                <strong><em>Beginners' List</em></strong><br />
-                Everything you wanted to ask about OCaml, but were afraid to submit in the main list can be asked, answered and discussed here.</p>
+                <strong><em>Liste des débutants sur Yahoo</em></strong><br />
+                Cette liste permet aux débutants de discuter en évitant les discussions les plus théoriques qui peuvent parfois apparaître sur la liste officielle.</p>
                 <p><strong><a href="http://lists.ocaml.org">lists.ocaml.org</a></strong><br />
-                <strong><em>Community lists and working groups</em></strong><br />
-                User-interest lists and working groups convened with specific goals.</p>
+                <strong><em>Autres listes et groupes de travail</em></strong><br />
+                Un ensemble de listes spécialisées et de groupes de travail sur des sujets dédiés.</p>
                 <footer>
-                  <p><a href="/community/mailing_lists.html">See more lists</a></p>
+                  <p><a href="/community/mailing_lists.fr.html">Voir plus de listes</a></p>
                 </footer>
             </section>
             <section class="span4 condensed">
-                <h4 class="news" >Recent Email Threads
+                <h4 class="news" >Les derniers sujets de discussion
 				<a href="https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40"
 				target="_blank"
 				title="Email RSS feed"
 				><img src="/img/rss.png" alt="RSS" /></a></h4>
                 {{! cmd script/rss2html -n 4 --emails 'https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40' !}}
             <footer>
-                <p><a href="https://sympa.inria.fr/sympa/arc/caml-list/">See archives</a></p>
+                <p><a href="https://sympa.inria.fr/sympa/arc/caml-list/">Voir les archives</a></p>
             </footer>
             </section>
 
@@ -54,18 +54,18 @@
     </div>
     <div class="row">
         <section class="span4 condensed">
-            <h1 class="ruled">Support</h1>
-            <p>Besides the above <a href="/community/mailing_lists.html">mailing lists</a>, you
-            can ask questions on the OCaml IRC channels
+            <h1 class="ruled">Obtenir du support</h1>
+            <p>En plus des <a href="/community/mailing_lists.fr.html">listes de discussion</a>, vous
+            pouvez poser des questions sur les canaux IRC OCaml
             (<a href="irc://irc.freenode.net/ocaml">en</a
 			>, <a href="irc://irc.freenode.net/ocaml-fr">fr</a>).</p>
 
-            <p>Or see the <a href="support.html">Professional support</a> providers.</p>
+            <p>ou voir la <a href="support.fr.html">liste des fournisseurs</a> de support professionnel.</p>
 
-            <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html#GivingSupport">Find out more</a>.</p>
+            <p>Si vous voulez soutenir OCaml, vous pouvez financer les acteurs qui développent des logiciels libres pour OCaml, comme le Consortium Caml à l'INRIA, OCaml Labs à Cambridge ou OCamlPro. <a href="/community/support.fr.html#GivingSupport">Plus d'informations</a>.</p>
         </section>
         <section class="span4 condensed">
-           <h1 class="ruled"><a href="/meetings/">Meetings</a></h1>
+           <h1 class="ruled"><a href="/meetings/">Rencontres et réunions</a></h1>
             <ul class="news-feed">
 			<li><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
@@ -80,7 +80,7 @@
                         <h1><a href="http://www.meetup.com/NYC-OCaml/events/152153412/">NYC Functional Holiday Party</a></h1>
                         <p>9 December 2013</p>
                         <a href="http://www.meetup.com/NYC-OCaml/events/152153412/">
-                            <img src="/img/news.png" alt="News">
+                            <img src="/img/news.png" alt="Nouvelles">
                         </a>
                     </article>
                 </li>
@@ -89,7 +89,7 @@
                         <h1><a href="http://www.meetup.com/ocaml-paris/events/128514752/">OCaml Users in Paris</a></h1>
                         <p>9 October 2013</p>
                         <a href="http://www.meetup.com/ocaml-paris/events/128514752/">
-                            <img src="/img/news.png" alt="News">
+                            <img src="/img/news.png" alt="Nouvelles">
                         </a>
                     </article>
                 </li>
@@ -98,33 +98,33 @@
                         <h1><a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">Cambridge NonDysFunctional Programmers</a></h1>
                         <p>18 September 2013</p>
                         <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">
-                            <img src="/img/news.png" alt="News">
+                            <img src="/img/news.png" alt="Nouvelles">
                         </a>
                     </article>
                 </li>
             </ul>
             <footer>
-                <p><a href="/meetings/">See full calendar</a></p>
+                <p><a href="/meetings/">Voir le calendrier complet</a></p>
             </footer>
         </section>
         <section class="span4 condensed">
            <h1 class="ruled news"><a href="planet/"
 		       title="See planet posts"
-			   >News</a><a href="http://planet.ocaml.org/rss20.xml"
+			   >Nouvelles</a><a href="http://planet.ocaml.org/rss20.xml"
 			   title="Planet RSS feed"
 			   ><img src="/img/rss.png" alt="RSS" /></a>
 		   </h1>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <footer>
-                <p><a href="planet/">See full list</a></p>
+                <p><a href="planet/">Voir la liste complète</a></p>
             </footer>
         </section>
     </div>
     <div class="row">
         <section class="span12 condensed">
-            <h1 class="ruled" id="ocaml-around-web">OCaml Around the Web</h1>
+            <h1 class="ruled" id="ocaml-around-web">OCaml autour du Web</h1>
                 <ul class="inline">
-                    <li><a href="/community/mailing_lists.html"><img src="/img/mail.png" title="OCaml Mailing Lists"></a></li>
+                    <li><a href="/community/mailing_lists.fr.html"><img src="/img/mail.png" title="OCaml Mailing Lists"></a></li>
                     <li><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png" title="OCaml repos on Github"></a></li>
                     <li><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png" title="OCaml repos on BitBucket"></a></li>                
                     <li><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg" title="OCaml tag on StackOverflow"></a></li>
