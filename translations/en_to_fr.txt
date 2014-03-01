@@ -23,3 +23,4 @@
 "Date" -> "Date"
 "Search" -> "Rechercher"
 "Edit this page" -> "Éditer cette page"
+"Credits" -> "Crédits"
