@@ -22,11 +22,7 @@ let () =
   ] in
   Arg.parse specs (fun f -> filenames := f :: !filenames)
             "script/lang_of_filename [options] <filenames>";
-  let to_lang fn =
-    let _, lang, _ = prefix_lang_ext_of_filename (Filename.basename fn) in
-    if lang = "" then "en" else lang
-  in
-  let langs = List.map to_lang !filenames in
+  let langs = List.map Utils.lang_of_filename !filenames in
   (* Always compute full language names to avoid surprises of the
      build failing when "staging" is enabled (the only place where the
      full language is used so far). *)

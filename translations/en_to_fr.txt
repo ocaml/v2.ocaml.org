@@ -3,7 +3,7 @@
 "Packages" -> "Contributions"
 "Community" -> "Communauté"
 "Feedback" -> "Suggestions"
-"About This Site" -> "A propos de ce site"
+"About This Site" -> "À propos de ce site"
 "Find Us on GitHub" -> "Dépôt GitHub"
 "News" -> "Nouvelles"
 "Code Examples" -> "Exemples de code"
@@ -22,3 +22,4 @@
 "Version" -> "Version"
 "Date" -> "Date"
 "Search" -> "Rechercher"
+"Edit this page" -> "Éditer cette page"
