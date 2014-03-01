@@ -1,8 +1,8 @@
 
 let is_lowercase c = 'a' <= c && c <= 'z'
 
-(* Split a filename accoreding to the conventions of the site
-   regarding the language. *)
+(** Split a filename according to the conventions of the site
+    regarding the language. *)
 let prefix_lang_ext_of_filename fn =
   try
     let i0 = String.rindex fn '.' in
@@ -19,6 +19,11 @@ let prefix_lang_ext_of_filename fn =
   with Not_found ->
     fn, "", ""
 
+
+(** Return the ISO 639-1 language code of the filename. *)
+let lang_of_filename fn =
+  let _, lang, _ = prefix_lang_ext_of_filename (Filename.basename fn) in
+  if lang = "" then "en" else lang
 
 
 let relaxed_html40_dtd =

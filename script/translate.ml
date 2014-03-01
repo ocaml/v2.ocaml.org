@@ -6,10 +6,7 @@ exception Found of string
 let () =
   let filename = Sys.argv.(1) in
   let to_translate = Sys.argv.(2) in
-  let lang =
-    let _, lang, _ = Utils.prefix_lang_ext_of_filename (Filename.basename filename) in
-    if lang = "" then "en" else lang
-  in
+  let lang = Utils.lang_of_filename filename in
   let translation =
     try
       let filename = Printf.sprintf "translations/en_to_%s.txt" lang in
