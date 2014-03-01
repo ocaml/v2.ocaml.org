@@ -43,11 +43,12 @@
           <a class="brand" href="{{! cmd script/link_of_lang ((! get filename !)) "/" !}}"><img src="/img/ocaml.png" alt="OCaml" /></a>
           <div id="menu-items" class="nav-collapse collapse">
             ((! input template/navbar.mpp !))
-	    {{! ifdef filename
+	    {{!f ifdef filename
 	    <a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))"
-	       title="Edit this page"  class="edit-this-page pull-right"
+	       title="{{! cmd script/translate ((! get filename !)) 'Edit this page' !}}"
+	       class="edit-this-page pull-right"
 	       ><!-- Image in CSS --><span>Edit this page</span></a>
-	    !}}
+	    f!}}
             <form id="searchform" class="navbar-search pull-right"
 		  method="get" action="http://www.google.com/search">
               <input value="site:http://ocaml.org/" name="q" type="hidden" />
