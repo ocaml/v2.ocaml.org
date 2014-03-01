@@ -27,14 +27,14 @@
                         <img src="/img/learn-large.png" alt="Apprendre">
                     </a>
                     <h1><a href="/learn/index.fr.html">Apprendre</a></h1>
-                    <p>Une <a href="/learn/description.html">description d'OCaml</a>, ses <a href="/learn/success.html">utilisateurs</a>, des <a href="learn/taste.html">exemples de code</a>, des <a href="/learn/tutorials/">tutoriaux à lire</a> et <a href="/learn/index.fr.html">bien plus</a>.</p>
+                    <p>Une <a href="/learn/description.html">description d'OCaml</a>, ses <a href="/learn/success.fr.html">utilisateurs</a>, des <a href="learn/taste.fr.html">exemples de code</a>, des <a href="/learn/tutorials/">tutoriaux à lire</a> et <a href="/learn/index.fr.html">bien plus</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/docs/">
                         <img src="/img/documentation-large.png" alt="Documentation">
                     </a>
                     <h1><a href="/docs/">Documentation</a></h1>
-                    <p><a href="docs/install.html" >Installer</a> OCaml,
+                    <p><a href="docs/install.fr.html" >Installer</a> OCaml,
 					trouver des <a href="https://opam.ocaml.org/pkg/">docs de paquets</a>, accéder au
 					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 					target="_blank"
@@ -88,7 +88,7 @@
     </div>
     <div class="row">
         <section class="span6 condensed">
-            <h1><a href="learn/taste.html">Un peu d'OCaml</a></h1>
+            <h1><a href="learn/taste.fr.html">Un peu d'OCaml</a></h1>
             ((! cat template/tryocaml.html !))
             ((! input template/front_code_snippet.html !))
             <p>OCaml est bien plus puissant que ce petit exemple le
