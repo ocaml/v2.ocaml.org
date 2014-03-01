@@ -1,3 +1,4 @@
+HEADACHE = headache -c _headache.conf
 
 local: script/relative_urls
 	$(MAKE) staging
@@ -30,6 +31,14 @@ gen_md:
 gen_html:
 	@$(MAKE) -f Makefile.from_html $(HTML_FILES)
 
+headache:
+	find site/ \! -name '*.js' \! -name '*.css' -type f \
+	  | xargs $(HEADACHE) -h _header_content
+	find script/ -type f \! -perm /0100 \
+	  | xargs $(HEADACHE) -h _header_scripts
+	find site/ -name '*.css' -type f \
+	  | xargs $(HEADACHE) -h _header_design
+
 
 clean:
 	$(RM) -r ocaml.org *~ *.cmo *.cmi *.cma *.o
@@ -38,4 +47,4 @@ clean:
 
 include Makefile.common
 
-.PHONY: production local staging syncotherfiles gen_md gen_html clean
+.PHONY: production local staging syncotherfiles gen_md gen_html headache clean
