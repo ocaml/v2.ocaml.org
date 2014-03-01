@@ -1,4 +1,4 @@
-<!-- ((! set title Community !)) ((! set community !)) -->
+<!-- ((! set title Community !)) ((! set community !)) ((! set nobreadcrumb !)) -->
 
 <div class="container">
     <h1>Community</h1>
