@@ -82,7 +82,7 @@
 			  <img alt="" src="/img/announcement.png" /></a>
 			</article></li>
 	        </ul>
-            {{! cmd script/rss2html -n 5 --localization french --headlines http://planet.ocaml.org/rss20.xml !}}
+            {{! cmd script/rss2html -n 5 --locale fr_FR.utf8 --headlines http://planet.ocaml.org/rss20.xml !}}
             <p><a href="community/planet/">Plus...</a></p>
         </section>
     </div>

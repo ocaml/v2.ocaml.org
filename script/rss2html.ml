@@ -300,7 +300,7 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img p =
            Netdate.format ~fmt:"%B %e, %Y" d ~l9n
          else
            Netdate.format ~fmt:"%e %B %Y" d ~l9n in
-       Element("p", [], [Data (latin1_to_utf8 d)]) :: html_icon in
+       Element("p", [], [Data d]) :: html_icon in
   let html_title =
     Element("h1", [],
             if link = "" then [Data p.title]
@@ -409,7 +409,7 @@ let () =
      " RSS feed to HTML (default action)");
     ("-n", Arg.Int(fun n -> n_posts := Some n),
      "n limit the number of posts to n (default: all of them)");
-    ("--localization",
+    ("--locale",
      Arg.String(fun l -> l9n := Netdate.(l9n_from_locale l)),
      "l Translate dates for the locale l");
     ("--img", Arg.Set_string img,
