@@ -47,7 +47,8 @@
 	    <a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))"
 	       title="{{! cmd script/translate ((! get filename !)) 'Edit this page' !}}"
 	       class="edit-this-page pull-right"
-	       ><!-- Image in CSS --><span>Edit this page</span></a>
+	       ><!-- Image in CSS
+	      --><span>{{! cmd script/translate ((! get filename !)) "Edit this page" !}}</span></a>
 	    f!}}
             <form id="searchform" class="navbar-search pull-right"
 		  method="get" action="http://www.google.com/search">
