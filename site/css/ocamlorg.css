@@ -329,8 +329,10 @@ div.running-header {
 .breadcrumb {
   display: inline;
 }
-.translations {
+ul.translations {
   float: right;
+  position: relative;
+  z-index: 10;
 
   padding: 8px 0;
   list-style: none;
@@ -343,8 +345,8 @@ div.running-header {
   padding: 0;
   margin: 0px 1ex 0px 2ex;
 }
-.translations:before { content: "["; }
-.translations:after { content: "]"; }
+ul.translations:before { content: "["; }
+ul.translations:after { content: "]"; }
 .translations > li  {
   display: inline-block;
   *display: inline;
