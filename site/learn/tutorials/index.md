@@ -48,7 +48,7 @@ tracker there to request or offer new tutorials. Thanks!
 * [Filenames and Extensions](filenames.html)
 * [Streams](streams.html)
 * [Stream Expressions](stream_expressions.html)
-* [_Acknowledgements_](acknowledgements.html)
+* [_Acknowledgements_](../../contributors.html#Oldercontributorstothetutorials)
 
 ((! get end_two_columns !))
 

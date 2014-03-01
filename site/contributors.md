@@ -1,8 +1,20 @@
-<!-- ((! set title Acknowledgements  !)) ((! set learn !)) -->
+<!-- ((! set title Contributors !)) -->
 
-# Acknowledgements
-Here are some of the people who have helped write these tutorials.
-(Please add your name in alphabetical order if you contributed.)
+Contributors
+============
+
+The contributors to this site, extracted from the Git log, are:
+
+<ul>
+((! cmd git log --format="%aN" | sort -k 2 | uniq | sed -e "/^[^ ]*$/ d" -e "s|\(.*\)|<li>\1</li>|" !))
+</ul>
+
+
+Older contributors to the tutorials
+-----------------------------------
+
+Many of tutorials on this site originate from `cocan.org`.  Here are
+the people who contributed to them:
 
 * Doug Bagley
 * Nicolas Cannasse

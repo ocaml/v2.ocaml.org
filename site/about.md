@@ -79,6 +79,11 @@ live within a few minutes.
   issues](https://github.com/ocaml/ocaml.org/issues)!
 * Please remember that the site is managed by volunteers!
 
+As the [list of contributors](contributors.html) is automatically
+generated from the Git logs, make sure you commit with your real first
+and last names ([set up your identity](http://git-scm.com/book/en/Getting-Started-First-Time-Git-Setup#Your-Identity)
+in Git before committing).
+
 
 ### Conflict Resolution
 
