@@ -1,13 +1,12 @@
 (* Small utility to extract the language of the filename. *)
 
+open Printf
+
 let () =
   let filename = Sys.argv.(1) in
   let link = Sys.argv.(2) in
-  let lang =
-    let _, lang, _ = Utils.prefix_lang_ext_of_filename (Filename.basename filename) in
-    if lang = "" then "en" else lang
-  in
-(*  Printf.eprintf "Link = %S\n%!" link; *)
+  let lang = Utils.lang_of_filename filename in
+  (* eprintf "Link = %S\n%!" link; *)
   let dirname,basename =
     if Filename.check_suffix link ".html" then
       Filename.dirname link,
@@ -20,13 +19,18 @@ let () =
       link,
       "index"
   in
-(*  Printf.eprintf "Checking for 'site%s/%s.%s.md'\n%!" dirname basename lang; *)
+  (* eprintf "Checking for 'site%s/%s.%s.md'\n%!" dirname basename lang; *)
   let translation =
-    if Sys.file_exists (Printf.sprintf "site%s/%s.%s.md"
-          dirname basename lang) then
-      Printf.sprintf "%s/%s.%s.html" dirname basename lang
-    else
-      link
+    let base = sprintf "%s.%s.md" basename lang in
+    let fn_trans = Filename.concat dirname base in
+    if Sys.file_exists (Filename.concat "site" fn_trans) then fn_trans
+    else link (* English file *)
   in
-(*  Printf.eprintf "Returning %S\n%!" translation; *)
-  Printf.printf "%s%!" translation
+  (* eprintf "Returning %S\n%!" translation; *)
+  printf "%s%!" translation
+
+
+
+(* Local Variables: *)
+(* compile-command: "make --no-print-directory -k -C .. script/link_of_lang" *)
+(* End: *)
