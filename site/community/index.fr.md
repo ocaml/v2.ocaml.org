@@ -7,7 +7,7 @@
             <img src="/img/community-large.png" alt="Community">
         </div>
         <section id="community-leader" class="span6">
-            <p>La communauté OCaml est diverse et internationnale, avec de nombreux moyens de discussion : les <a href="mailing_lists.fr.html">listes de discussion</a> sont le moyen le plus utilisé, mais il existe aussi de nombreux autres canaux de discussion autour du web, ainsi que de nombreux <a href="/meetings/">groupes de rencontre</a>.</p>
+            <p>La communauté OCaml est diverse et internationnale, avec de nombreux moyens de discussion : les <a href="mailing_lists.fr.html">listes de discussion</a> sont le moyen le plus utilisé, mais il existe aussi de nombreux autres canaux de discussion autour du web, ainsi que de nombreux <a href="/meetings/index.fr.html">groupes de rencontre</a>.</p>
         </section>
         <div class="span4">
             <img src="/img/ocaml-large.png" alt="OCaml">
@@ -65,7 +65,7 @@
             <p>Si vous voulez soutenir OCaml, vous pouvez financer les acteurs qui développent des logiciels libres pour OCaml, comme le Consortium Caml à l'INRIA, OCaml Labs à Cambridge ou OCamlPro. <a href="/community/support.fr.html#GivingSupport">Plus d'informations</a>.</p>
         </section>
         <section class="span4 condensed">
-           <h1 class="ruled"><a href="/meetings/">Rencontres et réunions</a></h1>
+           <h1 class="ruled"><a href="/meetings/index.fr.html">Rencontres et réunions</a></h1>
             <ul class="news-feed">
 			<li><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
@@ -104,7 +104,7 @@
                 </li>
             </ul>
             <footer>
-                <p><a href="/meetings/">Voir le calendrier complet</a></p>
+                <p><a href="/meetings/index.fr.html">Voir le calendrier complet</a></p>
             </footer>
         </section>
         <section class="span4 condensed">
