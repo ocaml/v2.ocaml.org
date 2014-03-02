@@ -21,9 +21,9 @@ let () =
   in
   (* eprintf "Checking for 'site%s/%s.%s.md'\n%!" dirname basename lang; *)
   let translation =
-    let base = sprintf "%s.%s.md" basename lang in
-    let fn_trans = Filename.concat dirname base in
-    if Sys.file_exists (Filename.concat "site" fn_trans) then fn_trans
+    let fn_trans = Filename.concat dirname (sprintf "%s.%s.md" basename lang) in
+    if Sys.file_exists (Filename.concat "site" fn_trans) then
+      Filename.concat dirname (sprintf "%s.%s.html" basename lang)
     else link (* English file *)
   in
   (* eprintf "Returning %S\n%!" translation; *)
