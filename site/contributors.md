@@ -18,6 +18,7 @@ Many of tutorials on this site originate from `ocaml-tutorial.org`.  Here are
 the people who contributed to them:
 
 * Doug Bagley
+* Daniel Bünzli
 * Nicolas Cannasse
 * Eric C. Cooper
 * Richard Donkin
@@ -28,6 +29,7 @@ the people who contributed to them:
 * Flavio Grossi
 * Damien Guichard
 * Brian Hurt
+* Richard Jones
 * Neel Krishnaswami
 * Michel Levy
 * Sven Luther
@@ -43,7 +45,7 @@ the people who contributed to them:
 * Paul Steckler
 * Fabian Sturm
 * Ryan Tarpine
-* Remi Vanicat
+* Rémi Vanicat
 * Yamagata Yoriyuki
 * Stefano Zacchiroli
 

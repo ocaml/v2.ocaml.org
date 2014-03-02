@@ -18,6 +18,7 @@ Beaucoup des tutoriaux de ce site étaient à l'origine sur `ocaml-tutorial.org`
 Voici la liste de ceux qui y ont contribué :
 
 * Doug Bagley
+* Daniel Bünzli
 * Nicolas Cannasse
 * Eric C. Cooper
 * Richard Donkin
@@ -28,6 +29,7 @@ Voici la liste de ceux qui y ont contribué :
 * Flavio Grossi
 * Damien Guichard
 * Brian Hurt
+* Richard Jones
 * Neel Krishnaswami
 * Michel Levy
 * Sven Luther
@@ -43,7 +45,7 @@ Voici la liste de ceux qui y ont contribué :
 * Paul Steckler
 * Fabian Sturm
 * Ryan Tarpine
-* Remi Vanicat
+* Rémi Vanicat
 * Yamagata Yoriyuki
 * Stefano Zacchiroli
 
