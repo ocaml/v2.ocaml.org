@@ -14,7 +14,7 @@ nom y est bien configuré.
 Anciens contributeurs aux tutoriels
 -----------------------------------
 
-Beaucoup des tutoriaux de ce site étaient à l'origine sur `cocan.org`.
+Beaucoup des tutoriaux de ce site étaient à l'origine sur `ocaml-tutorial.org`.
 Voici la liste de ceux qui y ont contribué :
 
 * Doug Bagley

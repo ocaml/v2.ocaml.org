@@ -14,7 +14,7 @@ The contributors to this site, extracted from the
 Older contributors to the tutorials
 -----------------------------------
 
-Many of tutorials on this site originate from `cocan.org`.  Here are
+Many of tutorials on this site originate from `ocaml-tutorial.org`.  Here are
 the people who contributed to them:
 
 * Doug Bagley
