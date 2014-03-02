@@ -16,7 +16,7 @@
  "Mailing Lists" -> "Lieux de discussion"
 "Meetings" -> "Rencontres"
 "Support" -> "Support"
-"Bug Tracker" -> "Reporter un problème"
+"Bug Tracker" -> "Signaler un bug d'OCaml"
 "New packages" -> "Nouvelles versions"
 "Package" -> "Logiciel"
 "Version" -> "Version"
