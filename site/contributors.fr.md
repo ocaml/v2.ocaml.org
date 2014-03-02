@@ -8,7 +8,7 @@ Les contributeurs à ce site :
 ((! cmd git log --format="%aN" | sort -k 2 | uniq | sed -e "/^[^ ]*$/ d" -e "s|\(.*\)|<li>\1</li>|" !))
 </ul>
 
-Cette liste est obtenue depuis le log GIT, pensez à vérifier que votre
+Cette liste est obtenue depuis [le log GIT](https://github.com/ocaml/ocaml.org/commits/master), pensez à vérifier que votre
 nom y est bien configuré.
 
 Anciens contributeurs aux tutoriels

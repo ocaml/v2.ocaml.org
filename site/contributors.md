@@ -3,7 +3,8 @@
 Contributors
 ============
 
-The contributors to this site, extracted from the Git log, are:
+The contributors to this site, extracted from the
+[Git log](https://github.com/ocaml/ocaml.org/commits/master), are:
 
 <ul>
 ((! cmd git log --format="%aN" | sort -k 2 | uniq | sed -e "/^[^ ]*$/ d" -e "s|\(.*\)|<li>\1</li>|" !))
