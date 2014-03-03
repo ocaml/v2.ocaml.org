@@ -9,7 +9,7 @@
     <div class="span4">
       <nav id="nav-secondary">
         <ul class="nav nav-list">
-          <li class="nav-header"><a href="#">Contents</a></li>
+          <li class="nav-header"><a href="#">{{! cmd script/translate ((! get filename !)) "Contents" !}}</a></li>
           {{! cat ((! get toc !)) !}}
         </ul>
       </nav>
