@@ -9,7 +9,7 @@ Pointers exist in OCaml, and in fact they spread all over the place.
 They are used either implicitely (in the most cases), or explicitely (in
 the rare occasions where implicit pointers are not more handy). The vast
 majority of pointers usages that are found in usual programming
-languages simply disapear in OCaml, or more exactly, those pointers are
+languages simply disappear in OCaml, or more exactly, those pointers are
 totally automatically handled by the compiler and the OCaml programmer
 can safely just ignore their existence, focusing on the semantic of its
 program.<br />
