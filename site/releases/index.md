@@ -8,3 +8,6 @@ Official releases of OCaml occur about once per year.
 * OCaml [3.12.1](3.12.1.html), released July 4, 2011.
 * Earlier releases are available
   [here](http://caml.inria.fr/pub/distrib/).
+
+You may also want to check the [development version](svn.html) of
+OCaml.

@@ -10,3 +10,6 @@ d'une version par an :
 * OCaml [3.12.1](3.12.1.html), publiée le 4 juillet 2011.
 * Les versions plus anciennes sont disponibles 
   [ici](http://caml.inria.fr/pub/distrib/).
+
+Vous pouvez aussi consulter la
+[version en développement](svn.html) [en] d'OCaml.
