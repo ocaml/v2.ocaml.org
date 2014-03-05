@@ -89,7 +89,7 @@ code, .gutter pre { font-family: "Droid Sans Mono", sans-serif; }
 code { font-size: 100%; }
 h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .governing, .ocaml .ot { color: black; font-weight: bold; }
-.keyword, .ocaml .kw, .ocaml .k { color: #575bf4 }
+.keyword, .ocaml .kw, .ocaml .k, .planet .Keyword { color: #575bf4 }
 .keywordsign { color: #886643; }
 .constructor, .ocaml .dt, .ocaml .nc {
   color: #829f1c;
@@ -99,7 +99,7 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .subscript { font-size : 80% }
 .comment, .comment .governing, .comment .keyword, .comment .ocaml-function,
 .comment .string, .ocaml .co, .comment .ocaml-module,
-.comment .ocaml-variable {
+.comment .ocaml-variable, .planet .Comment {
   color: #747474;
   font-style: italic;
   font-weight: normal;
@@ -118,8 +118,11 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 
 .ocaml-prompt { color: #8d8d8d }
 .ocaml-function { color: #0606ee }
-.ocaml-variable { color: #b8860b }
-.ocaml-module { color: #829f1c; } /* same as "constructor" */
+.ocaml-variable, .planet .Identifier { color: #b8860b }
+.ocaml-module, .planet .Include {
+  color: #829f1c; /* same as "constructor" */
+}
+.planet .Operator { color: #93827c }
 
 .ocaml-output { color: #696969 }
 .ocaml-stdout { color: #0d89dd }
