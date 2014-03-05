@@ -16,6 +16,8 @@ DEP_CONTENT_GEN = template/main.mpp template/footer.mpp \
   script/breadcrumb script/translations \
   script/lang_of_filename script/translate script/link_of_lang
 
+DEP_SNIPPETS = template/front_code_snippet.html template/learn_code_snippet.html
+
 ifeq ("$(OCAML_VERSION)", "3.12.1")
 COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
 COMPILER_LIBS = dynlink.cma toplevellib.cma
@@ -91,11 +93,6 @@ script/%.cmi script/%.cmo: script/%.ml
 TRASH += template/front_code_snippet.html \
   $(addprefix script/, breadcrumb rss2html ocamltohtml md_preprocess \
   code_top relative_urls translations)
-
-ocaml.org/index.html:template/front_code_snippet.html script/rss2html
-ocaml.org/community/index.html:script/rss2html
-ocaml.org/community/planet.html:script/rss2html
-ocaml.org/learn/index.html: template/learn_code_snippet.html
 
 # Camlp4 tutorials
 CAMLP4_TUT_DIR = learn/tutorials/camlp4_3.10

@@ -4,7 +4,7 @@ include Makefile.common
 
 DEP_CONTENT_MD = script/code_top $(OMD_PP) script/ocamltohtml script/rss2html
 
-ocaml.org/%.html: site/%.md $(DEP_CONTENT_GEN) $(DEP_CONTENT_MD)
+ocaml.org/%.html: site/%.md $(DEP_CONTENT_GEN) $(DEP_CONTENT_MD) $(DEP_SNIPPETS)
 	mkdir -p "$(shell dirname $@)"
 	if grep -q '*Table of contents*' "$<" ; then $(MAKE) -f Makefile.from_md "$@.toc" ; fi
 	$(MAKE) -f Makefile.from_md "$@.tmp"
