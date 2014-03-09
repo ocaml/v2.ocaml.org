@@ -5,7 +5,7 @@
 # Books
 ## Books in English
 ###  The OCaml System: Documentation and User's Manual
-<img src="/img/ocaml-large.png" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/colour-icon-170x148.png" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
 *Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy, and Jérôme
 Vouillon*

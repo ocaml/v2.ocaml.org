@@ -11,7 +11,7 @@
 	  content="0; url=((! get redirect !))" />
     !}}
     <title>{{! tryget title !}} &#8211; OCaml</title>
-    <link href="/img/favicon.ico" rel="shortcut icon"
+    <link href="/img/favicon32x32.ico" rel="shortcut icon"
           type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google Web Fonts -->
@@ -40,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="{{! cmd script/link_of_lang ((! get filename !)) "/" !}}"><img src="/img/ocaml.png" alt="OCaml" /></a>
+          <a class="brand" href="{{! cmd script/link_of_lang ((! get filename !)) "/" !}}"><img src="/img/colour-logo-white.png" alt="OCaml" /></a>
           <div id="menu-items" class="nav-collapse collapse">
             ((! input template/navbar.mpp !))
 	    {{!f ifdef filename

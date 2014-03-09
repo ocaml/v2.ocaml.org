@@ -5,7 +5,7 @@
     <h1>The OCaml Platform</h1>
     <div class="row">
         <div id="platform-logo" class="span2">
-            <img src="/img/ocaml-large.png" alt="OCaml">
+            <img src="/img/colour-icon-170x148.png" alt="OCaml">
         </div>
         <section id="platform-leader" class="span7">
             <p>The <strong>OCaml Platform</strong> represents the best way for developers, both new and old, to write software in OCaml. It combines the core OCaml compiler with a coherent set of tools, documentation, libraries and testing resources. It’s a project led by the <a href="/community/support.html">OCaml Labs</a> group in Cambridge, working closely with <a href="/community/support.html">OCaml-Pro</a> in France, and the requirements of the Platform are being guided by the industrial OCaml Consortium.</p>
