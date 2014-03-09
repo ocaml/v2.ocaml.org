@@ -4,6 +4,13 @@ include Makefile.common
 
 DEP_CONTENT_MD = script/code_top $(OMD_PP) script/ocamltohtml script/rss2html
 
+USE_OPAM_UPDATE_LIST = \
+	ocaml.org/index.html \
+	ocaml.org/index.fr.html \
+	ocaml.org/platform/index.html
+
+$(USE_OPAM_UPDATE_LIST): opam_update_list
+
 ocaml.org/%.html: site/%.md $(DEP_CONTENT_GEN) $(DEP_CONTENT_MD) $(DEP_SNIPPETS)
 	mkdir -p "$(shell dirname $@)"
 	if grep -q '*Table of contents*' "$<" ; then $(MAKE) -f Makefile.from_md "$@.toc" ; fi
