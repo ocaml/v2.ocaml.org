@@ -32,6 +32,14 @@ CODE_TYPE_DEP = $(addprefix script/code_types., cmi cmo cmx)
 template/%_code_snippet.html:template/%_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@
 
+opam_update_list: script/generate_opam_update_list
+	script/generate_opam_update_list
+
+script/generate_opam_update_list: script/generate_opam_update_list.ml
+	cd script && \
+	$(OCAMLOPT) -o ../"$@" -package opam,opamfu,opam2web,cow.syntax \
+	  -linkpkg -syntax camlp4o generate_opam_update_list.ml
+
 script/lang_of_filename: script/lang_of_filename.ml $(UTILS_DEP)
 	cd script && \
 	$(OCAMLOPT) -o ../"$@" -package str,netstring -linkpkg \
