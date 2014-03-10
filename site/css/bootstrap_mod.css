@@ -24,8 +24,11 @@ a[name] {
   display: inline-block; /* required for webkit browsers */
 }
 
-.navbar .nav > li > a {
-  padding: 27.5px 15px 23.5px;
+@media (min-width: 980px) {
+  /* navbar not collapsed */
+  .navbar .nav > li > a {
+    padding: 27.5px 15px 23.5px;
+  }
 }
 
 /* Reduce the navbar height when the window height is small */
