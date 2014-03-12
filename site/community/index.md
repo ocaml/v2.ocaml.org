@@ -38,11 +38,14 @@
                 </footer>
             </section>
             <section class="span4 condensed">
-                <h4 class="news" >Recent Email Threads
-				<a href="https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40"
-				target="_blank"
-				title="Email RSS feed"
-				><img src="/img/rss.png" alt="RSS" /></a></h4>
+                <h4 class="news">
+                  <a href="https://sympa.inria.fr/sympa/arc/caml-list/">
+                    Recent Email Threads
+                  </a>
+		  <a href="https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40"
+		     target="_blank"
+		     title="Email RSS feed"
+		     ><img src="/img/rss.png" alt="RSS" /></a></h4>
                 {{! cmd script/rss2html -n 4 --emails 'https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40' !}}
             <footer>
                 <p><a href="https://sympa.inria.fr/sympa/arc/caml-list/">See archives</a></p>
