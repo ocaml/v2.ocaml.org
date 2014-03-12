@@ -42,10 +42,11 @@
                   <a href="https://sympa.inria.fr/sympa/arc/caml-list/">
                     Recent Email Threads
                   </a>
-		  <a href="https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40"
-		     target="_blank"
-		     title="Email RSS feed"
-		     ><img src="/img/rss.png" alt="RSS" /></a></h4>
+                  <a href="https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40"
+                     target="_blank"
+                     title="Email RSS feed"
+                     ><img src="/img/rss.png" alt="RSS" /></a>
+                </h4>
                 {{! cmd script/rss2html -n 4 --emails 'https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40' !}}
             <footer>
                 <p><a href="https://sympa.inria.fr/sympa/arc/caml-list/">See archives</a></p>
@@ -61,7 +62,7 @@
             <p>Besides the above <a href="/community/mailing_lists.html">mailing lists</a>, you
             can ask questions on the OCaml IRC channels
             (<a href="irc://irc.freenode.net/ocaml">en</a
-			>, <a href="irc://irc.freenode.net/ocaml-fr">fr</a>).</p>
+                       >, <a href="irc://irc.freenode.net/ocaml-fr">fr</a>).</p>
 
             <p>Or see the <a href="support.html">Professional support</a> providers.</p>
 
@@ -70,54 +71,57 @@
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/">Meetings</a></h1>
             <ul class="news-feed">
-			<li><article>
-			  <h1><a title="OCaml Users and Developers Workshop"
-			       href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
-			  <p>September 5, 2014</p>
-			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2014/">
-			  <img alt="" src="/img/announcement.png" /></a>
-			</article></li>
-			    <li>
-                    <article>
-                        <h1><a href="http://www.meetup.com/NYC-OCaml/events/152153412/">NYC Functional Holiday Party</a></h1>
-                        <p>9 December 2013</p>
-                        <a href="http://www.meetup.com/NYC-OCaml/events/152153412/">
-                            <img src="/img/news.png" alt="News">
-                        </a>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <h1><a href="http://www.meetup.com/ocaml-paris/events/128514752/">OCaml Users in Paris</a></h1>
-                        <p>9 October 2013</p>
-                        <a href="http://www.meetup.com/ocaml-paris/events/128514752/">
-                            <img src="/img/news.png" alt="News">
-                        </a>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <h1><a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">Cambridge NonDysFunctional Programmers</a></h1>
-                        <p>18 September 2013</p>
-                        <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">
-                            <img src="/img/news.png" alt="News">
-                        </a>
-                    </article>
-                </li>
+              <li>
+                <article>
+                  <h1><a title="OCaml Users and Developers Workshop"
+                         href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
+                  <p>September 5, 2014</p>
+                  <a title="OCaml Users and Developers Workshop"
+                     href="/meetings/ocaml/2014/">
+                    <img alt="" src="/img/announcement.png" /></a>
+                </article>
+              </li>
+              <li>
+                <article>
+                  <h1><a href="http://www.meetup.com/NYC-OCaml/events/152153412/">NYC Functional Holiday Party</a></h1>
+                  <p>9 December 2013</p>
+                  <a href="http://www.meetup.com/NYC-OCaml/events/152153412/">
+                    <img src="/img/news.png" alt="News">
+                  </a>
+                </article>
+              </li>
+              <li>
+                <article>
+                  <h1><a href="http://www.meetup.com/ocaml-paris/events/128514752/">OCaml Users in Paris</a></h1>
+                  <p>9 October 2013</p>
+                  <a href="http://www.meetup.com/ocaml-paris/events/128514752/">
+                    <img src="/img/news.png" alt="News">
+                  </a>
+                </article>
+              </li>
+              <li>
+                <article>
+                  <h1><a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">Cambridge NonDysFunctional Programmers</a></h1>
+                  <p>18 September 2013</p>
+                  <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">
+                    <img src="/img/news.png" alt="News">
+                  </a>
+                </article>
+              </li>
             </ul>
             <footer>
                 <p><a href="/meetings/">See full calendar</a></p>
             </footer>
         </section>
         <section class="span4 condensed">
-           <h1 class="ruled news"><a href="planet/"
-		       title="See planet posts"
-			   >News</a><a href="http://planet.ocaml.org/rss20.xml"
-			   title="Planet RSS feed"
-			   ><img src="/img/rss.png" alt="RSS" /></a>
-		   </h1>
-            {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
+           <h1 class="ruled news">
+             <a href="planet/"
+                title="See planet posts"
+                >News</a><a href="http://planet.ocaml.org/rss20.xml"
+                            title="Planet RSS feed"
+                            ><img src="/img/rss.png" alt="RSS" /></a>
+           </h1>
+           {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <footer>
                 <p><a href="planet/">See full list</a></p>
             </footer>
