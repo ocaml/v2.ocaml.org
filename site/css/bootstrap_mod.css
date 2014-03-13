@@ -11,6 +11,10 @@ h1 {
   line-height: 50px;
 }
 
+h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: inherit;
+}
+
 /* Avoid the anchors to be underneath the banner when a one clicks on
    a link pointing to them. */
 a[name], h2[id], h3[id], h4[id], h5[id], h6[id] {
