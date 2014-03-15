@@ -86,7 +86,7 @@ Program Committee
 - Esther Baruk, LexiFi, France
 - [Jacques Garrigue](http://www.math.nagoya-u.ac.jp/~garrigue/),
   Nagoya University, Japan (chair)
-- Oleg Kyseliov, Monterey, CA, USA
+- Oleg Kiselyov, Monterey, CA, USA
 - Pierre Letouzey, Universite Paris 7, France
 - Luc Maranget, INRIA Paris-Rocquencourt, France
 - Keisuke Nakano, University of Electro-Communications, Japan
