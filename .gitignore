@@ -24,3 +24,5 @@ template/front_code_snippet.html
 template/learn_code_snippet.html
 .DS_Store
 script/link_of_lang
+script/generate_opam_update_list
+opam_update_list
