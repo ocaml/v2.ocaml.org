@@ -19,7 +19,7 @@ packages [here](/learn/libraries.html).
 ## OPAM
 
 [OPAM](http://opam.ocaml.org/) is a package manager for OCaml, based
-on the CUDF library developped by the Mancoosi project, which is,
+on the CUDF library developed by the Mancoosi project, which is,
 among other things, used by Debian to manage their packages. It works
 well on Unix, Linux, and Mac OS X systems. Windows support is comming
 soon.
