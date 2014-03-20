@@ -435,3 +435,14 @@ ul.translations:after { content: "]"; }
 #footer li a:hover {
   color: #FFFFFF;
 }
+
+/* SVG
+ ***********************************************************************/
+/* Combined with the Javascript in main.mpp */
+
+img.svg { display: none; }
+img.png { display: inline; }
+html.svg img.svg { display: inline; }
+html.svg img.png { display: none; }
+
+.brand img.svg { width: 131px;  height: 36px; }
