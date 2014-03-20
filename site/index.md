@@ -25,7 +25,7 @@
                         <img src="/img/learn-large.png" alt="Learn">
                     </a>
                     <h1><a href="/learn/">Learn</a></h1>
-                    <p>Find out <a href="/learn/description.html">about OCaml</a>, read about <a href="/learn/success.html">users</a>, see <a href="learn/taste.html">code examples</a>, go through <a href="/learn/tutorials/">tutorials</a> and <a href="/learn/">more</a>.</p>
+                    <p>Find out <a href="/learn/description.html">about OCaml</a>, read about <a href="/learn/companies.html">users</a>, see <a href="learn/taste.html">code examples</a>, go through <a href="/learn/tutorials/">tutorials</a> and <a href="/learn/">more</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/docs/">
