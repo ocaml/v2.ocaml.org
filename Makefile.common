@@ -101,7 +101,7 @@ script/%.cmi script/%.cmo: script/%.ml
 
 TRASH += template/front_code_snippet.html \
   $(addprefix script/, breadcrumb rss2html ocamltohtml md_preprocess \
-  code_top relative_urls translations)
+  code_top relative_urls translations generate_opam_update_list)
 
 # Camlp4 tutorials
 CAMLP4_TUT_DIR = learn/tutorials/camlp4_3.10
