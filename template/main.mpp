@@ -61,7 +61,7 @@
 	      --><span>{{! cmd script/translate ((! get filename !)) "Edit this page" !}}</span></a>
 	    <script language="JavaScript">
 	      // <!-- Preload the hover image
-	      Image1= new Image(175,50);
+	      Image1= new Image(33,33);
 	      Image1.src = "/img/edit-hover.png";
 	      // -->
 	    </script>
