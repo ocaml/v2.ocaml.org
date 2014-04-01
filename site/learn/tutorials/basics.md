@@ -234,7 +234,7 @@ What if you actually want to add an integer and a floating point number
 together? (Say they are stored as `i` and `f`). In OCaml you need to
 explicitly cast:
 
-```ocamltop
+```ocaml
 (float_of_int i) +. f
 ```
 `float_of_int` is a function which takes an `int` and returns a `float`.
@@ -246,7 +246,7 @@ Since converting an `int` to a `float` is a particularly common
 operation, the `float_of_int` function has a shorter alias: the above
 example could simply have been written
 
-```ocamltop
+```ocaml
 float i +. f
 ```
 (Note that unlike C, it is perfectly valid in OCaml for a type and a
