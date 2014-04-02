@@ -9,7 +9,7 @@ To make a set of strings:
 ```ocamltop
 module SS = Set.Make(String);;
 ```
-To create a set you need to start somewhere so here is the empty set
+To create a set you need to start somewhere so here is the empty set:
 
 ```ocamltop
 let s = SS.empty;;
@@ -57,13 +57,9 @@ If we want to check and see if an element is in the set it might look
 like this.
 
 ```ocamltop
-SS.exists (fun str -> str = "hello") s2;;
+SS.mem "hello" s2;;
 ```
-or even:
 
-```ocamltop
-SS.exists (( = ) "hello") s2;;
-```
 The Set module also provides the set theoretic operations union,
 intersection and difference. For example, the difference of the original
 set and the set with short strings (≤ 5 characters) is the set of long
