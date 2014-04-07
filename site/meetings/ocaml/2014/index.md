@@ -74,8 +74,9 @@ keen to explore, for instance by having a common session.  The authors who
 feel their submission fits both workshops are encouraged to mention it at
 submission time and/or contact the Program Chairs.
 
-As another form of cooperation, we are considering combined post-conference
-proceedings of selected papers from the two workshops. The Program
+As another form of cooperation, combined post-proceedings of selected
+papers from the two workshops will be published in the [Electronic
+Proceedings in Theoretical Computer Science](http://www.eptcs.org) series. The Program
 Committees shall invite interested authors of selected presentations to
 expand their abstract for inclusion in the proceedings. The submissions
 would be reviewed according to the standards of the publication.
