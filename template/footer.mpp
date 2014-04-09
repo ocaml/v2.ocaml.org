@@ -18,6 +18,8 @@
       <li><a href="http://caml.inria.fr/pub/docs/manual-ocaml/">{{! cmd script/translate ((! get filename !)) "Manual" !}}</a></li>
       <li><a href="https://github.com/ocaml/ocaml">{{! cmd script/translate ((! get filename !)) "Compiler Sources" !}}</a></li>
       <li><a href="https://opam.ocaml.org/pkg/">{{! cmd script/translate ((! get filename !)) "Packages" !}}</a></li>
+      <li><a href="{{! cmd script/link_of_lang ((! get filename !)) /docs/logos.html !}}"
+	     >{{! cmd script/translate ((! get filename !)) "Logos" !}}</a></li>
     </ul>
   </div>
 </div>
