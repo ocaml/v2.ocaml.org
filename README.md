@@ -46,7 +46,10 @@ database servers. Simply run:
 
     make
 
-(or `make -j` for a faster build on multicore machines).
+(or `make -j` for a faster build on multicore machines.
+NB: you might need to limit the number of forks e.g `make -j 64`
+[ref](https://github.com/ocaml/ocaml.org/issues/462#issuecomment-40318537)).
+
 This will generate a new folder `ocaml.org` that contains the full
 website.  Note that building the site will attempt to connect to the
 internet to download the news and latest email conversations.  As
