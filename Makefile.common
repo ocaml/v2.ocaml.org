@@ -20,14 +20,6 @@ DEP_CONTENT_GEN = template/main.mpp template/footer.mpp \
 
 DEP_SNIPPETS = template/front_code_snippet.html template/learn_code_snippet.html
 
-ifeq ("$(OCAML_VERSION)", "3.12.1")
-COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
-COMPILER_LIBS = dynlink.cma toplevellib.cma
-else
-COMPILER_LIBS_PREPARE=
-COMPILER_LIBS = -package dynlink,compiler-libs.toplevel
-endif
-
 UTILS_DEP = $(addprefix script/utils., cmi cmo cmx)
 CODE_TYPE_DEP = $(addprefix script/code_types., cmi cmo cmx)
 
@@ -78,8 +70,8 @@ script/md_preprocess: $(CODE_TYPE_DEP) script/code.ml \
 	  utils.cmx code_types.cmx code.ml md_preprocess.ml
 
 script/code_top: $(CODE_TYPE_DEP) script/code_top.ml $(UTILS_DEP)
-	cd script && $(COMPILER_LIBS_PREPARE) \
-	$(OCAMLC) -o ../"$@" -package netstring $(COMPILER_LIBS) \
+	cd script && \
+	$(OCAMLC) -o ../"$@" -package netstring,dynlink,compiler-libs.toplevel \
 	  -linkpkg utils.cmo code_types.cmo code_top.ml
 
 script/relative_urls: script/relative_urls.ml $(UTILS_DEP)
