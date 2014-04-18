@@ -4,7 +4,6 @@
 
 open Printf
 open Code_types
-open Utils
 
 (* Force the linking of some modules for #load "camlp4o.cma" *)
 module S___ = Stream

@@ -2,7 +2,6 @@
 
 open Printf
 open Nethtml
-open Utils
 
 (** List of "authors" that send text descriptions (as opposed to
     HTML).  The formatting of the description must then be respected. *)

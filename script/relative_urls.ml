@@ -1,7 +1,6 @@
 (* Convert absolute links to relative ones — the path to the root
    being taken from the path of the file if not set explicitly. *)
 open Printf
-open Utils
 
 let base_syntax =
   { (Hashtbl.find Neturl.common_url_syntax "http") with
