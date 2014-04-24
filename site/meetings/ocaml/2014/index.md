@@ -12,9 +12,10 @@ Colocated with [ICFP 2014](http://icfpconference.org/icfp2014/)
 News
 ----
 
--   February 10, 2014: [workshop announcement](cfp.html). The [submission
+-   April 24, 2014: The [submission
     site](https://www.easychair.org/conferences/?conf=ocaml2014) is
-    not open yet.
+    now open.
+-   February 10, 2014: [workshop announcement](cfp.html). 
 
 The OCaml Users and Developers Workshop brings together industrial users of
 OCaml with academics and hackers who are working on extending the language,
