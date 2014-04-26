@@ -129,7 +129,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/default.png" alt="Esper">
+        <img src="/img/esper.png" alt="Esper">
     </dt>
     <dd class="span5">
         <h2><a href="http://esper.com/">Esper</a>, United States</h2>
