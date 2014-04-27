@@ -18,11 +18,8 @@ In OCaml i commenti sono delimitati da `(*` e `*)`, come segue:
 
 In altre parole, la convenzione per i commenti è molto simile a quella
 originale di C (`/* ... */`).
-
 Non esiste attualmente una sintassi per commenti su singole righe (come
-`# ...` in Perl o `// ...` in C99/C++/Java). Ad un certo punto si era
-discusso dell'utilizzo di `## ...`, ed io raccomando molto alla gente di
-OCaml di aggiungerlo in futuro.
+`# ...` in Perl o `// ...` in C99/C++/Java).
 
 OCaml conta i blocchi `(* ... *)` annodati, e questo vi consente di
 commentare assai facilmente regioni di codice:
