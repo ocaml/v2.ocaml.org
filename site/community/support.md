@@ -8,7 +8,7 @@ A great way to get free support is by using the active [mailing
 lists](mailing_lists.html). When you need to go beyond this and get
 professional support, you have the following options:
 
-### <img src="/img/ocamlpro.png" alt="OCamlPro" style="height: 2ex; vertical-align: text-bottom" />
+### <img src="/img/users/ocamlpro.png" alt="OCamlPro" style="height: 2.5ex; vertical-align: text-bottom" />
 
 [OCamlPro](http://www.ocamlpro.com/) is the creator of many open-source tools
 widely used throughout the community, such as
@@ -58,29 +58,31 @@ also for its continuity.
 <table style="width: 100%">
 <tbody>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.cea.fr"><img src="/img/cea.png" alt="CEA" /></a></td>
-<td align="center"><a href="http://www.citrix.com"><img src="/img/citrix.png" alt="Citrix" /></a></td>
-<td align="center"><a href="http://www.dassault-aviation.com"><img src="/img/dassault-aviation.png" alt="Dassault Aviation" /></a></td>
+<td align="center"><a href="http://www.cea.fr"><img src="/img/users/cea.png" alt="CEA" style="height: 65px" /></a></td>
+<td align="center"><a href="http://www.citrix.com"><img src="/img/users/citrix.png" alt="Citrix" /></a></td>
+<td align="center"><a href="http://www.dassault-aviation.com"><img src="/img/users/dassault-aviation.png" alt="Dassault Aviation" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.3ds.com"><img src="/img/3ds.png" alt="Dassault System" /></a></td>
-<td align="center"><a href="http://www.esterel-technologies.com"><img src="/img/esterel.png" alt="Esterel Technologies" /></a></td>
-<td align="center"><a href="http://janestreet.com/"><img src="/img/janestreet.png" alt="Jane Street" /></a></td>
+<td align="center"><a href="http://www.3ds.com"><img src="/img/users/dassault.png" alt="Dassault System" style="height: 60px" /></a></td>
+<td align="center"><a href="http://www.esterel-technologies.com"><img src="/img/users/esterel.jpg" alt="Esterel Technologies" style="height: 60px" /></a></td>
+<td align="center"><a href="http://janestreet.com/"><img src="/img/users/jane-street.jpg" alt="Jane Street" style="height: 50px" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.lexifi.com"><img src="/img/lexifi.png" alt="Lexifi" /></a></td>
+<td align="center"><a href="http://www.lexifi.com"><img src="/img/users/lexifi.png" alt="Lexifi" style="height: 50px" /></a></td>
 <td align="center"><a href="http://www.microsoft.com"><img
-  src="/img/microsoft.png" alt="Microsoft"
+  src="/img/users/microsoft.png" alt="Microsoft"
   style="width: 170px" /></a></td>
-<td align="center"><a href="http://www.mlstate.com"><img src="/img/mlstate.png" alt="MLState" /></a></td>
+<td align="center"><a href="http://www.mlstate.com"><img
+  src="/img/users/mlstate.jpg" alt="MLState" style="height: 50px" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.mylife.com"><img src="/img/mylife.png" alt="Mylife.com" /></a></td>
+<td align="center"><a href="http://www.mylife.com"><img
+  src="/img/users/mylife.jpg" alt="Mylife.com" style="height: 70px" /></a></td>
 <td align="center"><a href="http://www.simcorp.com"><img
-  src="/img/simcorp.png" alt="SimCorp"
+  src="/img/users/simcorp.png" alt="SimCorp"
   style="width: 170px" /></a></td>
 <td align="center"><a href="http://www.ocamlpro.com"><img
-  src="/img/ocamlpro.png" alt="OCamlPro"
+  src="/img/users/ocamlpro.png" alt="OCamlPro"
   style="width: 170px" /></a></td>
 </tr>
 </tbody>

@@ -129,7 +129,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/esper.png" alt="Esper">
+        <img src="/img/users/esper.png" alt="Esper">
     </dt>
     <dd class="span5">
         <h2><a href="http://esper.com/">Esper</a>, United States</h2>
@@ -214,7 +214,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/jane-street.jpg" alt="Jane Street">
+        <img src="/img/users/jane-street.jpg" alt="Jane Street">
     </dt>
     <dd class="span5">
         <h2><a href="http://janestreet.com/">Jane Street</a>, United States</h2>
