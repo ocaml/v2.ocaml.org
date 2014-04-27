@@ -62,7 +62,9 @@
 	    <script language="JavaScript">
 	      // <!-- Preload the hover image
 	      Image1= new Image(33,33);
-	      Image1.src = "/img/edit-hover.png";
+	      Image1.src = "/img/edit-hover.svg";
+	      Image2= new Image(33,33);
+	      Image2.src = "/img/edit-hover.png";
 	      // -->
 	    </script>
 	    f!}}

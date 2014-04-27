@@ -28,6 +28,10 @@ a[name] {
   display: inline-block; /* required for webkit browsers */
 }
 
+html.svg .navbar-search .search-query {
+  background-image: url(../img/search.svg);
+}
+
 @media (min-width: 980px) {
   /* navbar not collapsed */
   .navbar .nav > li > a {
@@ -123,4 +127,18 @@ pre, pre code {
   padding: 0;
   margin: 0px 0px 5px 0px;
   *z-index: 1;
+}
+
+/* News */
+
+html.svg .news-feed li {
+  background: url(../img/news-go.svg) right center no-repeat;
+}
+
+.news-feed li.announcement {
+  padding: 15px 30px 15px 10px; /* same as normal news items */
+  background-image: url(../img/announcement-go.png);
+}
+html.svg .news-feed li.announcement {
+  background-image: url(../img/announcement-go.svg);
 }

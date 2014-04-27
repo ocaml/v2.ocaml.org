@@ -196,9 +196,14 @@ a.edit-this-page {
   margin-left: 15px;
   width: 33px;
   height: 33px;
-  background: url(/img/edit.png) no-repeat left center;
   display: block;
   text-decoration: none;
+}
+a.edit-this-page {
+  background: url(/img/edit.png) no-repeat left center;
+}
+html.svg a.edit-this-page {
+  background: url(/img/edit.svg) no-repeat left center;
 }
 
 .edit-this-page span {
@@ -208,6 +213,9 @@ a.edit-this-page {
 
 a.edit-this-page:hover {
   background-image: url(/img/edit-hover.png);
+}
+html.svg a.edit-this-page:hover {
+  background-image: url(/img/edit-hover.svg);
 }
 
 /* When the navigation bar has reduced size */

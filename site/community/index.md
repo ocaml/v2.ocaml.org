@@ -4,13 +4,16 @@
     <h1>Community</h1>
     <div class="row">
         <div class="span2">
-            <img src="/img/community-large.png" alt="Community">
+            <img src="/img/community-large.svg" alt="Community" class="svg" />
+            <img src="/img/community-large.png" alt="Community" class="png" />
         </div>
         <section id="community-leader" class="span6">
             <p>OCaml has a diverse, worldwide community and one of the main benefits is the ability to easily reach each other.  <a href="mailing_lists.html">Mailing lists</a> are the most common way people interact although you will always find users on IRC, around the web and at any of the <a href="/meetings/">meetings</a>.</p>
         </section>
         <div class="span4">
-            <img src="/img/colour-icon-170x148.png" alt="OCaml">
+            <img src="/img/colour-transparent-icon.svg" alt="OCaml"
+			 class="svg" />
+            <img src="/img/colour-icon-170x148.png" alt="OCaml" class="png" />
             <p><a href="/docs/logos.html">More logos</a></p>
         </div>
     </div>
@@ -71,14 +74,16 @@
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/">Meetings</a></h1>
             <ul class="news-feed">
-              <li>
+              <li class="announcement">
                 <article>
                   <h1><a title="OCaml Users and Developers Workshop"
                          href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
                   <p>September 5, 2014</p>
                   <a title="OCaml Users and Developers Workshop"
                      href="/meetings/ocaml/2014/">
-                    <img alt="" src="/img/announcement.png" /></a>
+                    <img alt="" src="/img/announcement.svg" class="svg" />
+                    <img alt="" src="/img/announcement.png" class="png" />
+				  </a>
                 </article>
               </li>
               <li>
@@ -86,7 +91,8 @@
                   <h1><a href="http://www.meetup.com/NYC-OCaml/events/152153412/">NYC Functional Holiday Party</a></h1>
                   <p>9 December 2013</p>
                   <a href="http://www.meetup.com/NYC-OCaml/events/152153412/">
-                    <img src="/img/news.png" alt="News">
+                    <img src="/img/news.svg" alt="News" class="svg" />
+                    <img src="/img/news.png" alt="News" class="png" />
                   </a>
                 </article>
               </li>
@@ -95,7 +101,8 @@
                   <h1><a href="http://www.meetup.com/ocaml-paris/events/128514752/">OCaml Users in Paris</a></h1>
                   <p>9 October 2013</p>
                   <a href="http://www.meetup.com/ocaml-paris/events/128514752/">
-                    <img src="/img/news.png" alt="News">
+                    <img src="/img/news.svg" alt="News" class="svg" />
+                    <img src="/img/news.png" alt="News" class="png" />
                   </a>
                 </article>
               </li>
@@ -104,7 +111,8 @@
                   <h1><a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">Cambridge NonDysFunctional Programmers</a></h1>
                   <p>18 September 2013</p>
                   <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">
-                    <img src="/img/news.png" alt="News">
+                    <img src="/img/news.svg" alt="News" class="svg" />
+                    <img src="/img/news.png" alt="News" class="png" />
                   </a>
                 </article>
               </li>

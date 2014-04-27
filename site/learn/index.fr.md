@@ -4,7 +4,8 @@
     <h1>Apprendre</h1>
     <div class="row">
         <div id="platform-logo" class="span2">
-            <img src="/img/learn-large.png" alt="OCaml">
+            <img src="/img/learn-large.svg" alt="OCaml" class="svg">
+            <img src="/img/learn-large.png" alt="OCaml" class="png">
         </div>
         <section id="learn-leader" class="span7">
             <p><strong style="font-size: 110%">Qu'est-ce que OCaml ?</strong>

@@ -22,14 +22,20 @@
             <div class="row">
                 <section class="span4 home-feature">
                     <a href="/learn/index.fr.html">
-                        <img src="/img/learn-large.png" alt="Apprendre">
+                        <img src="/img/learn-large.svg" alt="Apprendre"
+						 class="svg">
+                        <img src="/img/learn-large.png" alt="Apprendre"
+						 class="png">
                     </a>
                     <h1><a href="/learn/index.fr.html">Apprendre</a></h1>
                     <p>Une <a href="/learn/description.html">description d'OCaml</a>, ses <a href="/learn/success.fr.html">utilisateurs</a>, des <a href="learn/taste.fr.html">exemples de code</a>, des <a href="/learn/tutorials/">tutoriaux à lire</a> et <a href="/learn/index.fr.html">bien plus</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/docs/">
-                        <img src="/img/documentation-large.png" alt="Documentation">
+                        <img src="/img/documentation-large.svg"
+						 alt="Documentation" class="svg">
+                        <img src="/img/documentation-large.png"
+						 alt="Documentation" class="png">
                     </a>
                     <h1><a href="/docs/">Documentation</a></h1>
                     <p><a href="docs/install.fr.html" >Installer</a> OCaml,
@@ -42,14 +48,21 @@
             <div class="row">
                 <section class="span4 home-feature">
                     <a href="https://opam.ocaml.org">
-                        <img src="/img/platform-large.png" alt="Contributions">                    </a>
+                        <img src="/img/platform-large.svg"
+						 alt="Contributions" class="svg">
+                        <img src="/img/platform-large.png"
+						 alt="Contributions" class="png">
+					</a>
                     <h1><a href="https://opam.ocaml.org">Contributions</a></h1>
                     <p>Le gestionnaire de paquets <a href="https://opam.ocaml.org">OPAM</a> vous donne accès aux multiples versions de
 					<a href="https://opam.ocaml.org/pkg/">centaines de paquets</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/community/">
-                        <img src="/img/community-large.png" alt="Communauté">
+                        <img src="/img/community-large.svg"
+						 alt="Communauté" class="svg">
+                        <img src="/img/community-large.png"
+						 alt="Communauté" class="png">
                     </a>
                     <h1><a href="/community/">Communauté</a></h1>
                     <p>Lire <a href="/community/planet/">les fils de news</a>,  <a href="/community/mailing_lists.fr.html">discuter et échanger</a>, obtenir <a href="/community/support.fr.html">du support</a> et retrouver <a href="/community/#ocaml-around-web">OCaml sur le web</a>.</p>
@@ -57,7 +70,10 @@
             </div>
             <div id="home-learn">
                 <a href="http://try.ocamlpro.com">
-                    <img class="hidden-phone" src="/img/learn-ocaml.png" alt="">
+                    <img class="svg hidden-phone" src="/img/try-ocaml.svg"
+					 alt="">
+                    <img class="png hidden-phone" src="/img/try-ocaml.png"
+					 alt="">
                     Apprendre OCaml dans son navigateur avec TryOCaml
                 </a>
             </div>
@@ -71,13 +87,15 @@
 				><img src="/img/rss.png" alt="RSS"></a>
             </h1>
 			<ul class="news-feed" style="margin-bottom: 0px">
-			<li><article>
+			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
 			  <p>5 septembre 2014</p>
 			  <a title="OCaml Users and Developers Workshop"
 			     href="/meetings/ocaml/2014/">
-			  <img alt="" src="/img/announcement.png" /></a>
+			    <img alt="" src="/img/announcement.png" class="svg" />
+			    <img alt="" src="/img/announcement.png" class="png" />
+			  </a>
 			</article></li>
 	        </ul>
             {{! cmd script/rss2html -n 5 --locale fr_FR.utf8 --headlines http://planet.ocaml.org/rss20.xml !}}

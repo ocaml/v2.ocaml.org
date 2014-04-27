@@ -13,21 +13,25 @@
             <div class="row">
                 <a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 				    target="_blank" class="span3 documentation-highlight">
-                    <img src="/img/manual.png" alt="">
+                    <img src="/img/manual.svg" alt="" class="svg" />
+                    <img src="/img/manual.png" alt="" class="png" />
                     Le manuel d'OCaml
                 </a>
                 <a href="license.html" class="span3 documentation-highlight">
-                    <img src="/img/license.png" alt="">
+                    <img src="/img/license.svg" alt="" class="svg" />
+                    <img src="/img/license.png" alt="" class="png" />
                     La licence d'OCaml
                 </a>
             </div>
             <div class="row">
                 <a href="https://opam.ocaml.org/pkg/" class="span3 documentation-highlight">
-                    <img src="/img/documents.png" alt="">
+                    <img src="/img/documents.svg" alt="" class="svg" />
+                    <img src="/img/documents.png" alt="" class="png" />
                     Docs des contributions
                 </a>
                 <a href="cheat_sheets.html" class="span3 documentation-highlight">
-                    <img src="/img/cheat.png" alt="">
+                    <img src="/img/cheat.svg" alt="" class="svg" />
+                    <img src="/img/cheat.png" alt="" class="png" />
                     Mémentos
                 </a>
             </div>
