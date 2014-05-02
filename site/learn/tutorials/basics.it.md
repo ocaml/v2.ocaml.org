@@ -176,7 +176,7 @@ unit           Scritto come ()
 ```
 
 OCaml utilizza uno dei bit in un `int` internamente per differenziare
-tra interi e puntatori. È perciò che l'`int` di base è a 31 bit, non a
+tra interi e puntatori. È per questo che l'`int` di base è a 31 bit, non a
 32 bit (63 bit se state utilizzando una piattaforma a 64 bit). Nella
 pratica questo non è un problema eccetto che in pochi casi specifici.
 Per esempio, se state implementando un conteggio in un loop, OCaml vi
@@ -206,7 +206,7 @@ Il tipo `unit` è un po' come il `void` del C, ma ne parleremo più sotto.
 
 ## Cast impliciti e cast espliciti
 Nei linguaggi derivati da C gli interi sono promossi in alcune
-circostanze a float float. Per esempio, se scrivete `1 + 2.5`, il primo
+circostanze a float. Per esempio, se scrivete `1 + 2.5`, il primo
 argomento (che è un intero) è promosso a numero floating point, ed anche
 il risultato è un numero floating point. È come se aveste scritto
 `((double) 1) + 2.5`, ma tutto fatto implicitamente.
@@ -296,7 +296,7 @@ medesima semantica dei linguaggi come C.
 Grazie all'inferenza dei tipi, dovrete raramente, se mai dovrete,
 scrivere esplicitamante il tipo delle vostre funzioni. Comunque, OCaml
 spesso stampa quelli che pensa siano i tipi delle vostre funzioni,
-quindi dovete conoscere la relativa sintassi Per una funzione `f` che
+quindi dovete conoscere la relativa sintassi. Per una funzione `f` che
 prende gli argomenti `arg1`, `arg2`, ... `argn`, e restituisce il tipo
 `rettype`, il compilatore stamperà:
 
@@ -342,7 +342,7 @@ let give_me_a_three x = 3;;
 Qual è il tipo di questa funzione? In OCaml utilizziamo uno speciale
 segnaposto per significare "qualsiasi tipo voi immaginiate". È un
 carattere di virgoletta singola (NdT: un apice) seguito da una lettera.
-Il tipo dela funzione sopra sarebbe normalmente scritto:
+Il tipo della funzione sopra sarebbe normalmente scritto:
 
 ```ocaml
 give_me_a_three : 'a -> int
@@ -359,7 +359,7 @@ generic in Java 1.5).
 ## Inferenza dei tipi
 Dunque l'argomento di questo tutorial è che i linguaggi funzionali hanno
 molte Caratteristiche Veramente Fiche, e che OCaml è un linguaggio che
-ha tutte queste Cratteristiche Veramente Fiche infilate dentro insieme,
+ha tutte queste Cartteristiche Veramente Fiche infilate dentro insieme,
 il che lo rende dunque un linguaggio molto pratico da usare per veri
 programmatori. Ma la cosa strana è che la maggior parte di queste
 caratteristiche fiche non hanno proprio nulla a che fare con la
