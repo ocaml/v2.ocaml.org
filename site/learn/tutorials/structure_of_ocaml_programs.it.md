@@ -104,7 +104,7 @@ Notate che il nome `html` nel frammento di codice sopra non dovrebbe
 essere realmente confrontato con una vera variabile globale come in C o
 in altri linguaggi imperativi. Non vi è spazio allocato per
 "immagazzinare" il "puntatore `html`". Né è possibile assegnare alcunché
-ad `html`, per esempio per riassegnarlo perché punti ad un accessorio
+ad `html`, per esempio per riassegnarlo affinché punti ad un accessorio
 differente. Nella prossima sezione parleremo dei riferimenti, che sono
 vere variabili.
 
@@ -127,9 +127,9 @@ Ecco come creiamo un riferimento ad un `int` in OCaml:
 ref 0;;
 ```
 In realtà tale istruzione non era veramente molto utile. Abbiamo creato
-il riferimento e quindi, poiché che non gli abbiamo dato un nome, il
+il riferimento e quindi, poiché non gli abbiamo dato un nome, il
 garbage collector è arrivato e l'ha raccolto immediatamente dopo! (in
-realtà, è stato probabilmente gettato via durante la compilazione.)
+realtà, è stato probabilmente gettato via durante la compilazione).
 Diamo un nome al riferimento:
 
 ```ocamltop
@@ -356,7 +356,7 @@ afferri", e ha messo a lungo alla prova l'autore quando anch'egli stava
 imparando OCaml.
 
 La regola n° 1 è che dovreste usare `;;` per separare istruzioni al più
-altto livello del vostro codice, e *mai* all'interno di definizioni di
+alto livello del vostro codice, e *mai* all'interno di definizioni di
 funzioni o di qualunque altro tipo di istruzione.
 
 Osservate una sezione dal secondo esempio su "graphics" sopra:
@@ -472,7 +472,7 @@ let f x b y = x + (let g z = function true -> z | false -> 0 in g y b);;
 let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
 ```
 
-Si noti in special modo la prima - uso `;` come operatore per "unire"
+Si noti in special modo l'ultima - uso `;` come operatore per "unire"
 due istruzioni. Tutte le funzioni in OCaml possono essere espresse come:
 
 ```ocaml
@@ -557,10 +557,10 @@ let scrollbar = GRange.scrollbar `VERTICAL ~packing:hbox#pack ()
 Terzo frammento: L'autore importa tutti i simboli dal modulo
 `GdkKeysyms`. Ora abbiamo un inusuale let-binding. `let _ = espressione`
 significa "calcola il valore dell'espressione (con tutti gli effetti
-laterali che può comportare), ma getta via il risultato". In questo
+collaterali che può comportare), ma getta via il risultato". In questo
 caso, "calcola il valore dell'espressione" significa eseguire
 `Main.main ()` che è il loop principale (main) di Gtk, che ha l'effetto
-laterale di far sbucare la finestra sullo schermo ed eseguire l'intera
+collaterale di far sbucare la finestra sullo schermo ed eseguire l'intera
 applicazione. Il "risultato" di `Main.main ()` è insignificante -
 probabilmente un valore di ritorno `unit`, ma non ho verificato - e non
 è restituito finché l'applicazione non esce infine.
