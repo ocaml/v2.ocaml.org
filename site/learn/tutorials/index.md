@@ -41,6 +41,7 @@ tracker there to request or offer new tutorials. Thanks!
 * [Calling Fortran libraries](calling_fortran_libraries.html)
 * [OCaml and the Web](ocaml_and_the_web.html)
 * [Standard Library Examples](standard_library_examples.html)
+* [Setting up OCaml projects with OASIS](setting_up_with_oasis.html)
 * [Compiling OCaml projects](compiling_ocaml_projects.html)
 * [Command-Line Arguments](command-line_arguments.html)
 * [File manipulation](file_manipulation.html)
@@ -140,4 +141,3 @@ with another language.
  Language](http://caml.inria.fr/pub/docs/u3-ocaml/index.html), *From
  Practice to Theory and vice versa*, by Didier Rémy.
 * [Functional Unparsing](http://www.brics.dk/RS/98/12/)
-
