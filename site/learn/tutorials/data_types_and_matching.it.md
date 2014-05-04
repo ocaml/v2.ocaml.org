@@ -35,7 +35,7 @@ esattamente equivalenti:
 1 :: 2 :: 3 :: []
 ```
 
-Perché menziono l'opratore cons? Bene, è utile quando cominciamo a fare
+Perché menziono l'operatore cons? Bene, è utile quando cominciamo a fare
 *pattern matching* sulle liste, riguardo la qual cosa parlerò sotto.
 
 ### Il tipo di una lista linkata
@@ -46,8 +46,8 @@ tipo di una lista linkata di `foo` è `foo list`.
 Ciò implica che tutti gli elementi di una lista linkata devono avere il
 medesimo tipo. Ma il tipo può essere polimorfico (cioè `'a list`), che è
 davvero utile se volete scrivere funzioni generiche che operano su
-"liste di checchessia". (Ma si noti: `'a list` non significa che ogni
-ciascun elemnto preso singolamente ha un diverso tipo - non potte
+"liste di checchessia". (Ma si noti: `'a list` non significa che
+ciascun elemento preso singolamente ha un diverso tipo - non potete
 comunque usare questo per costruire una lista contenente, diciamo, int e
 string insieme. Significa che il tipo degli elementi è qualsiasi, ma
 tutti del medesimo qualsiasi tipo.)
@@ -96,7 +96,7 @@ di questo tipo:
 { a=3; b=5 }
 ```
 
-Si noti che usiamo `:` nella definizione di tipo e `=` quando creiamo
+Si noti che usiamo `:` nella definizione di tipo mentre usiamo `=` quando creiamo
 oggetti di questo tipo.
 
 Seguono alcuni esempi di ciò digitati nel toplevel:
@@ -146,8 +146,8 @@ Ecco l'equivalente elegante e conciso in OCaml:
 type foo = Nothing | Int of int | Pair of int * int | String of string
 ```
 
-Quella è la definizione del tipo. Laprima parte di ciascuna parte
-separata è detta costruttore. Esso può essere chiamata in qualunque
+Quella è la definizione del tipo. La prima parte di ciascun `|` separato a parte è detto costruttore. 
+Esso può essere chiamata in qualunque
 modo, purché cominci con una lettera maiuscola. Se il costruttore può
 essere usato per la definizione di un valore, è seguito dalla parte
 `of type`, dove type comincia sempre per lettera minuscola. Nell'esempio
@@ -181,7 +181,7 @@ type sign = Positive | Zero | Negative
 ### Varianti ricorsive (utilizzate per gli alberi)
 
 Le varianti possono essere ricorsive, e l'utilizzo comune di ciò è per
-la definizione di struttyre ad albero. Qui è davvero dove la potenza
+la definizione di strutture ad albero. Qui è davvero dove la potenza
 espressiva dei linguaggi funzionali li contraddistingue:
 
 ```ocaml
@@ -245,7 +245,7 @@ Nil;;
 1 :: 2 :: Nil;;
 ```
 
-Ricordate quando im precedenza avevamo detto che le liste potevano
+Ricordate quando in precedenza avevamo detto che le liste potevano
 essere scritte in due modi, con il semplice "zucchero sintattico" di
 `[1; 2; 3]` o più formalmente come `1 :: 2 :: 3 :: []`. Se osservate la
 definizione di `'a list` scritta sopra, potreste riuscire a scorgere la
@@ -254,9 +254,8 @@ ragione della definizione formale.
 Liste, strutture e varianti - sommario
 --------------------------------------
 
-Nome in OCaml Esempio di definizione di tipo Esempio di utilizzo
-
 ```text
+Nome in OCaml  Esempio di definizione di tipo Esempio di utilizzo
 lista          int list                       [1; 2; 3]
 tupla          int * string                   (3, "hello")
 record         type pair =                    { a = 3; b = "hello" }
@@ -387,7 +386,7 @@ I restanti pattern non cambiano la forma dell'espressione, ma *chiamano*
 ricorsivamente in modo cruciale la funzione `multiply_out` sulle loro
 sottoespressioni. Questo assicura che vengano moltiplicate anche tutte
 le sottoespressioni all'interno dell'espressione (se voleste soltanto
-moltiplicare in un espressione gli elementi di livello più alto,
+moltiplicare in un'espressione gli elementi di livello più alto,
 potreste sostituire tutti i restanti pattern con una semplice regola
 `e -> e`).
 
@@ -426,7 +425,7 @@ match value with
 
 La seconda caratteristica è l'operatore `=` che indaga l'"uguaglianza
 strutturale" fra due espressioni. Il che significa che va a verificare
-in ciascun'espressione ricorsivamente che esse siano esattamente le
+in ciascuna espressione ricorsivamente che esse siano esattamente le
 medesime a tutti i livelli sottostanti.
 
 OCaml può verificare durante la compilazione che nei pattern siano state
