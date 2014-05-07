@@ -12,6 +12,7 @@ Colocated with [ICFP 2014](http://icfpconference.org/icfp2014/)
 News
 ----
 
+-   May 7, 2014: Sent the last CFP. Deadline is May 19!
 -   April 24, 2014: The [submission
     site](https://www.easychair.org/conferences/?conf=ocaml2014) is
     now open.
