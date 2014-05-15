@@ -12,6 +12,7 @@ Colocated with [ICFP 2014](http://icfpconference.org/icfp2014/)
 News
 ----
 
+-   May 16, 2014: Precise deadline is May 19, 23:59 UTC-11 (i.e. May 20 10:59 UTC)
 -   May 7, 2014: Sent the last CFP. Deadline is May 19!
 -   April 24, 2014: The [submission
     site](https://www.easychair.org/conferences/?conf=ocaml2014) is
