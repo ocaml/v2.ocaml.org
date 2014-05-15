@@ -10,11 +10,15 @@
 
 You first need to install OASIS. The preferred way is with opam:
 
-`opam install oasis`.
+```
+opam install oasis
+```
 
 You can also install it under debian-based system.
 
-`sudo apt-get install oasis`
+```
+sudo apt-get install oasis
+```
 
 Finally, a tarball is available on [OASIS's main page](http://oasis.forge.ocamlcore.org/).
 
@@ -66,14 +70,18 @@ Executable "foo"
 
 Now that the `_oasis` file is defined, we can generate a build system. At the root of your project, run the following command:
 
-`oasis setup -setup-update dynamic`
+```
+oasis setup -setup-update dynamic
+```
 
 This will produce the following files : `setup.ml`, `configure` and a `Makefile`.
 These files are the only one necessary for OASIS to work, and you should put only those in a version control system. OASIS will produce some other files during building that you can safely ignore. More details about the various OASIS files are given [here](#Theoasisfiles).
 
 You can now build your project by running:
 
-`make`
+```
+make
+```
 
 It will produce the `foo.byte` file than you can execute.
 
