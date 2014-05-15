@@ -419,11 +419,7 @@ We used during this tutorial some plugins without explaining exactly what they d
 - [Features](http://oasis.forge.ocamlcore.org/MANUAL.html#features) (`AlphaFeatures` and `BetaFeatures` fields) are various recent additions to OASIS that are not completely battle-tested.
 We give here only those that are stable enough to be used.
 Note that they will be integrated into OASIS properly in a short to mid term.
-
  - `ocamlbuild_more_args` (alpha) enables the `XOCamlbuildExtraArgs` field that allows to provide arguments to Ocamlbuild directly. It's a way to internalize in `_oasis` some information that would be in `_tags` otherwise.
-
  - `compiled_setup_ml` (alpha) will make OASIS compiles the `setup.ml` file instead of interpreting it, giving a significant speed up.
-
  - `pure_interface` (alpha) is necessary to be able to compile standalone `.mli` files (without any `.ml`). This feature is used in tyxml for example.
-
  - `stdfiles_markdown` (alpha) makes OASIS generate StdFiles in markdown format.
