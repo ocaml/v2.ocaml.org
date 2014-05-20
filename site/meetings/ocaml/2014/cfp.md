@@ -13,7 +13,7 @@
 
                       Co-located with ICFP 2014
                          Sponsored by SIGPLAN
-           Talk Proposal Submission Deadline: May 19, 2014
+           Talk Proposal Submission Deadline: May 23, 2014 (Extended)
 
 ==============================================================================
 
@@ -64,7 +64,7 @@ accommodate you.
 Schedule
 ========
 
-Abstract Submission Deadline: Monday, May 19, 2014
+Abstract Submission Deadline: Friday, May 23, 2014 23:59 UTC-11
 Notification to Speakers: Monday, June 30, 2014
 Workshop: Friday, September 5, 2014
 
