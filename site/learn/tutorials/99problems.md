@@ -2174,52 +2174,37 @@ module Dfs : S = struct
   }
 
   let string_of_state {d; f; pred; color} =
-    let e_i k i acc = 
-     Printf.sprintf "'%c':%d, %s" k i acc in
-    let e_c k v acc =
-     Printf.sprintf "'%c':%c, %s" k (Char_map.find k pred) acc in
-    "  d = {" ^ Char_map.fold e_i d "" ^ "}\n"^
-    "  f = {" ^ Char_map.fold e_i f "" ^ "}\n"^
-    "  pred ={" ^ Char_map.fold e_c pred "" ^ "}\n"
+    let cat = String.concat ", " in
+    " d = {"^(cat (List.map (fun (x, y)->Printf.sprintf "'%c':'%d'" x y) (Char_map.bindings d)))^"}\n"^
+    " f = {"^(cat (List.map (fun (x, y)->Printf.sprintf "'%c':'%d'" x y) (Char_map.bindings f)))^"}\n"^
+    " pred = {"^(cat (List.map (fun (x, y)->Printf.sprintf "'%c':'%c'" x y) (Char_map.bindings pred)))^"}\n"
 
   let depth_first_search {v; e} =
-    let initial_state v =
-      Char_set.fold (
-        fun n {d;f;pred;color} -> 
-          { d; f; pred; color = Char_map.add n `White color }
-      ) v {d=Char_map.empty; f=Char_map.empty; 
-           pred=Char_map.empty; color=Char_map.empty} 
-    in
-
     let node u (t, {d; f; pred; color}) =
-
       let rec dfs_visit t u {d; f; pred; color} =
         let edge (t, {d; f; pred; color}) v =
           if Char_map.find v color = `White then
-            dfs_visit t v {d; f; 
-                           pred=(Char_map.add v u pred); color}  (*Visit [v]*)
+            dfs_visit t v {d; f; pred=(Char_map.add v u pred); color}
           else  (t, {d; f; pred; color})
         in
-
-        let t, {d; f; pred; color} = 
+        let t, {d; f; pred; color} =
           let t = t + 1 in
-          List.fold_left edge 
-            (t, {d=Char_map.add u t d; f; 
-                 pred; color=Char_map.add u `Gray color}) 
-            (Char_map.find u e) 
-
+          List.fold_left edge
+            (t, {d=Char_map.add u t d; f;
+                 pred; color=Char_map.add u `Gray color})
+            (Char_map.find u e)
         in
-
         let t = t + 1 in
-        t , {d; f=(Char_map.add u t f); 
-             pred; color=Char_map.add u `Black color}
-
+        t , {d; f=(Char_map.add u t f); pred; color=Char_map.add u `Black color}
       in
       if Char_map.find u color = `White then dfs_visit t u {d; f; pred; color}
       else (t, {d; f; pred; color})
-
-    in 
-    snd (Char_set.fold node v (0, (initial_state v)))
+    in
+    snd (Char_set.fold node v
+           (0, {d=Char_map.empty;
+                f=Char_map.empty;
+                pred=Char_map.empty;
+                color=Char_set.fold (fun x -> Char_map.add x `White) v Char_map.empty}))
 
 end
 
@@ -2227,13 +2212,13 @@ end
 
 let () =
   let g = {
-    v = List.fold_right 
-          (Char_set.add) 
-          ['u'; 'v'; 'w'; 'x'; 'y'; 'z'] 
+    v = List.fold_right
+          (Char_set.add)
+          ['u'; 'v'; 'w'; 'x'; 'y'; 'z']
           Char_set.empty
     ;
-    e = List.fold_right 
-          (fun (x, y) -> Char_map.add x y) 
+    e = List.fold_right
+          (fun (x, y) -> Char_map.add x y)
           ['u', ['v'; 'x'] ;
            'v',      ['y'] ;
            'w', ['z'; 'y'] ;
