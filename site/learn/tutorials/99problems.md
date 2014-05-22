@@ -2138,12 +2138,12 @@ depth-first order).
   restrict the search, replace the fold over all vertices of the last
   line
   {[
-  snd (List.fold_right node v (*... initial state ...*))
+  snd (List.fold_right node v initial_state)
   ]}
   with a direct call to [node] on the 'source' vertex of interest ([s]
   say)
   {[
-  snd (node s (*... initial state ...*))
+  snd (node s initial_state)
   ]}.
 
   (2) To build the 'list of nodes reachable from the starting point',
@@ -2161,7 +2161,7 @@ depth-first order).
 
 module Char_map = Map.Make (Char)
 
-type graph = { e:(char list) Char_map.t }
+type graph = (char list) Char_map.t
 
 module type S = sig
   type state
@@ -2189,7 +2189,7 @@ module Dfs : S = struct
       (bindings d "'%c':'%d'") (bindings f "'%c':'%d'")
       (bindings pred "'%c':'%c'")
 
-  let depth_first_search {e} =
+  let depth_first_search g =
     let node u (t, {d; f; pred; color}) =
       let rec dfs_visit t u {d; f; pred; color} =
         let edge (t, {d; f; pred; color}) v =
@@ -2200,8 +2200,9 @@ module Dfs : S = struct
         let t, {d; f; pred; color} =
           let t = t + 1 in
           List.fold_left edge
-            (t, {d=Char_map.add u t d; f; pred; color=Char_map.add u Gray color})
-            (Char_map.find u e)
+            (t, {d=Char_map.add u t d; f;
+                 pred; color=Char_map.add u Gray color})
+            (Char_map.find u g)
         in
         let t = t + 1 in
         t , {d; f=(Char_map.add u t f); pred; color=Char_map.add u Black color}
@@ -2209,24 +2210,24 @@ module Dfs : S = struct
       if Char_map.find u color = White then dfs_visit t u {d; f; pred; color}
       else (t, {d; f; pred; color})
     in
-    let v = List.fold_left (fun acc (x, _) -> x::acc) [] (Char_map.bindings e)
+    let v = List.fold_left (fun acc (x, _) -> x::acc) [] (Char_map.bindings g) in
+    let initial_state= 
+      (0,
+       {d=Char_map.empty;
+        f=Char_map.empty;
+        pred=Char_map.empty;
+        color=List.fold_right (fun x->Char_map.add x White) v Char_map.empty}
+      )
     in
-    snd (
-      List.fold_right node v
-        (0,
-         {d=Char_map.empty;
-          f=Char_map.empty;
-          pred=Char_map.empty;
-          color=List.fold_right (fun x->Char_map.add x White) v Char_map.empty}
-        ))
+    snd (List.fold_right node v initial_state)
 
 end
 
 (* Test *)
 
 let () =
-  let g = {
-    e = List.fold_right
+  let g =
+       List.fold_right
           (fun (x, y) -> Char_map.add x y)
           ['u', ['v'; 'x'] ;
            'v',      ['y'] ;
@@ -2236,7 +2237,6 @@ let () =
            'z',      ['z'] ;
           ]
           Char_map.empty
-  }
   in
   let s = Dfs.depth_first_search g in
   Printf.printf "%s\n" (Dfs.string_of_state s)
