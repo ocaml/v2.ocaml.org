@@ -2212,14 +2212,12 @@ module Dfs : S = struct
     in
     let v = List.fold_left (fun acc (x, _) -> x::acc) [] (Char_map.bindings g) in
     let initial_state= 
-      (0,
        {d=Char_map.empty;
         f=Char_map.empty;
         pred=Char_map.empty;
         color=List.fold_right (fun x->Char_map.add x White) v Char_map.empty}
-      )
     in
-    snd (List.fold_right node v initial_state)
+    snd (List.fold_right node v (0, initial_state))
 
 end
 
