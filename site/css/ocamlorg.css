@@ -132,6 +132,9 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .ocaml-error { font-style: italic;  color: #d32121 }
 .ocaml-error-loc { border-bottom: solid 2px #d32121; }
 
+h1 img.rss {
+  height: 1.3ex;
+}
 
 a.planet-toggle {
   float: right;
@@ -168,6 +171,10 @@ h1.planet .share a {
   margin-left: 5px;
 }
 
+h1.planet .share img.svg {
+  height: 16px;  /* same as alternative PNG image */
+}
+
 div.subscribers {
   margin-left: 3em;
 }
@@ -188,6 +195,10 @@ h1.news a > img {
 h4.news img {
   float: right;
   margin-top: 3px;
+}
+
+h4.news img.rss {
+  height: 1.5ex;
 }
 
 /* Edit buttom, right of the navbar. */

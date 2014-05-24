@@ -26,3 +26,5 @@ template/learn_code_snippet.html
 script/link_of_lang
 script/generate_opam_update_list
 opam_update_list
+*.bz2
+*.ai

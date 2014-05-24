@@ -84,7 +84,8 @@
 				title="See planet posts">News</a>
                 <a href="http://planet.ocaml.org/rss20.xml"
 				title="Planet RSS feed"
-				><img src="/img/rss.png" alt="RSS"></a>
+				><img class="svg rss" src="/img/rss.svg" alt="RSS"
+				/><img class="png" src="/img/rss.png" alt="RSS" /></a>
             </h1>
 			<ul class="news-feed" style="margin-bottom: 0px">
 			<li class="announcement"><article>

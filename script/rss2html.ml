@@ -231,8 +231,10 @@ let html_of_post rss_feed p =
          if feed <> "" then
            [Element("a", ["class", "rss";  "target", "_blank";
                           "title", "Original RSS feed"; "href", feed],
-                    [Element("img", ["src", "/img/rss.png"; "alt", "RSS"],
-                             [])] )]
+                    [Element("img", ["src", "/img/rss.svg"; "alt", "RSS";
+                                     "class", "svg"], []);
+                     Element("img", ["src", "/img/rss.png"; "alt", "RSS";
+                                     "class", "png"], [])] )]
          else [] in
        [Element("a", a_args, [Data p.title]) ],
        [Element("span", ["class", "share"],

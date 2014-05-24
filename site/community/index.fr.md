@@ -48,7 +48,8 @@
 				  <a href="https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40"
 				     target="_blank"
 					 title="Email RSS feed"
-				     ><img src="/img/rss.png" alt="RSS" /></a>
+				     ><img class="svg rss" src="/img/rss.svg" alt="RSS"
+					 /><img class="png" src="/img/rss.png" alt="RSS" /></a>
 				</h4>
                 {{! cmd script/rss2html -n 4 --emails 'https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40' !}}
             <footer>
@@ -129,7 +130,8 @@
 		       title="See planet posts"
 			   >Nouvelles</a><a href="http://planet.ocaml.org/rss20.xml"
 			   title="Planet RSS feed"
-			   ><img src="/img/rss.png" alt="RSS" /></a>
+			   ><img class="svg rss" src="/img/rss.svg" alt="RSS"
+			   /><img class="png" src="/img/rss.png" alt="RSS" /></a>
 		   </h1>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <footer>
