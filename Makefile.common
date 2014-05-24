@@ -16,7 +16,7 @@ DEP_CONTENT_GEN = template/main.mpp template/footer.mpp \
   script/breadcrumb script/translations \
   script/code_top script/ocamltohtml script/rss2html \
   script/lang_of_filename script/translate script/link_of_lang \
-  script/generate_opam_update_list
+  opam_update_list
 
 DEP_SNIPPETS = template/front_code_snippet.html template/learn_code_snippet.html
 
