@@ -93,8 +93,9 @@ script/%.cmi script/%.cmo: script/%.ml
 	$(OCAMLC) -package netstring -c $< -o $@
 
 TRASH += template/front_code_snippet.html opam_update_list \
-  $(addprefix script/, breadcrumb rss2html ocamltohtml md_preprocess \
-  code_top relative_urls translations generate_opam_update_list)
+  $(addprefix script/, generate_opam_update_list lang_of_filename translate \
+  link_of_lang breadcrumb rss2html ocamltohtml md_preprocess \
+  code_top relative_urls translations )
 
 # Camlp4 tutorials
 CAMLP4_TUT_DIR = learn/tutorials/camlp4_3.10
