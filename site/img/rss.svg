@@ -51,50 +51,11 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0" />
-  <defs
-     id="defs3">
-    <linearGradient
-       x1="0.085000001"
-       y1="0.085000001"
-       x2="0.91500002"
-       y2="0.91500002"
-       id="RSSg">
-      <stop
-         offset="0.0"
-         stop-color="#E3702D"
-         id="stop6" />
-      <stop
-         offset="0.1071"
-         stop-color="#EA7D31"
-         id="stop8" />
-      <stop
-         offset="0.3503"
-         stop-color="#F69537"
-         id="stop10" />
-      <stop
-         offset="0.5"
-         stop-color="#FB9E3A"
-         id="stop12" />
-      <stop
-         offset="0.7016"
-         stop-color="#EA7C31"
-         id="stop14" />
-      <stop
-         offset="0.8866"
-         stop-color="#DE642B"
-         id="stop16" />
-      <stop
-         offset="1.0"
-         stop-color="#D95B29"
-         id="stop18" />
-    </linearGradient>
-  </defs>
   <g
      id="g3011"
-     style="fill:#000000"
+     style="fill:#5b5b5b"
      transform="translate(-44,-38)">
     <circle
-       style="fill:#000000"
        id="circle26"
        r="24"
        cy="189"
@@ -105,12 +66,10 @@
        sodipodi:ry="24"
        d="m 92,189 c 0,13.25483 -10.745166,24 -24,24 -13.254834,0 -24,-10.74517 -24,-24 0,-13.25483 10.745166,-24 24,-24 13.254834,0 24,10.74517 24,24 z" />
     <path
-       style="fill:#000000"
        id="path28"
        d="M 160,213 H 126 A 82,82 0 0 0 44,131 V 97 a 116,116 0 0 1 116,116 z"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:#000000"
        id="path30"
        d="M 184,213 A 140,140 0 0 0 44,73 V 38 a 175,175 0 0 1 175,175 z"
        inkscape:connector-curvature="0" />
