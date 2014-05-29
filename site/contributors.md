@@ -1,5 +1,11 @@
 <!-- ((! set title Contributors !)) -->
 
+Hosting
+=======
+
+<p>Generously donated by <img src="/img/rackspace_300x109.jpg" alt="Rackspace">.</p>
+
+
 Contributors
 ============
 
