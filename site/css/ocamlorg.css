@@ -309,6 +309,10 @@ td.code {
   white-space: pre;
   overflow-x: auto;
 }
+.planet code {
+  /* without <pre> */
+  white-space: pre-wrap;
+}
 
 
 .video16-9 {
