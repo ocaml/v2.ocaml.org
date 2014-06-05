@@ -2147,7 +2147,7 @@ depth-first order).
   ]}.
 
   (2) To build the 'list of nodes reachable from the starting point',
-  prepend each node to a running list just when it's finishing time
+  prepend each node to a running list just when its finishing time
   has become known and it's about to be colored black.
 
   That is...
@@ -2237,7 +2237,7 @@ let () =
           Char_map.empty
   in
   let s = Dfs.depth_first_search g in
-  Printf.printf "%s\n" (Dfs.string_of_state s)
+  print_endline (Dfs.string_of_state s)
 ```
 
 #### Connected components. (*medium*)
