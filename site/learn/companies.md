@@ -48,6 +48,28 @@
         <p>Acunu is writing, from the ground-up, a Storage and Analytics Platform for Massive Data.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/ahrefs.png" alt="Ahrefs">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://ahrefs.com">Ahrefs</a>, Singapore</h2>
+        <p>Ahrefs is a multinational team with roots from Ukraine and
+        headquarters in Singapore. Ahrefs history dates back to 2011
+        when our first version of Site Explorer was introduced to
+        public after one year of thorough preparation and data
+        mining. With the launch of Site Explorer, Ahrefs stirred the
+        stagnant field of backlink analysis and kick-started a new
+        round of competition among SEO tool providers back then and
+        quickly became one of the world 's best backlink analysis
+        tools. Today, our index is updated with freshest backlinks
+        found on the web every 15 minutes, and the crawler processes
+        up to 6 billion pages a day. Hard to believe – it is only
+        three times less than what Googlebot does!</p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/amnh.png" alt="AMNH">
