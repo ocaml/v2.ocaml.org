@@ -179,6 +179,24 @@
         <p>Flying Frog Consultancy Ltd. consult and write books and software on the use of OCaml in the context of scientific computing. OCaml excels in the niche of intrinsically complicated programs between large-scale, array-based programs written in languages such as HPF and small-scale, graphical programs written in languages such as Mathematica.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/forallsecure.png" alt="ForAllSecure">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://forallsecure.com">ForAllSecure</a>, United States</h2>
+        <p>ForAllSecure's mission is to test the world's software and
+        provide actionable information to our customers. We have
+        started with Linux. Our mission with Linux is to test all
+        programs in current distributions, such as Debian, Ubuntu, and
+        Red Hat. With time, we will cover other platforms, such as
+        Mac, Windows, and mobile. In the mean time, we promise to do
+        one thing well.</p>
+    </dd>
+</dl>
+
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/default.png" alt="Framtidsforum">
