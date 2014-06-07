@@ -2,12 +2,15 @@
 
 # Companies using OCaml
 
+<div class="row">
+<div class="span8">
 <blockquote>
     <p>
         <em>“OCaml helps us to quickly adapt to changing market conditions, and go from prototypes to production systems with less effort ... Billions of dollars of transactions flow through our systems every day, so getting it right matters.”</em> — Jane Street
     </p>
 </blockquote>
-
+</div>
+</div>
 
 <dl class="row">
     <dt class="span3">
