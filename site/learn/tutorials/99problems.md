@@ -2156,19 +2156,18 @@ module M : GRAPH = struct
     let rec dfs_visit t u {d; f; pred; color; acc} =
       let edge (t, state) v =
         if Char_map.find v state.color = White then
-          dfs_visit t v {state with pred=(Char_map.add v u state.pred)}
+          dfs_visit t v {state with pred=Char_map.add v u state.pred;}
         else  (t, state)
       in
       let t, {d; f; pred; color; acc} =
         let t = t + 1 in
         List.fold_left edge
           (t, {d=Char_map.add u t d; f;
-               pred; color=Char_map.add u Gray color; acc})
+               pred; color=Char_map.add u Gray color; acc = fn acc u})
           (Char_map.find u g)
       in
       let t = t + 1 in
-      t , {d; f=(Char_map.add u t f); pred; 
-           color=Char_map.add u Black color; acc = fn acc u}
+      t , {d; f=(Char_map.add u t f); pred; color=Char_map.add u Black color; acc}
     in
     let v = List.fold_left (fun k (x, _) -> x :: k) [] (Char_map.bindings g) in
     let initial_state= 
