@@ -55,3 +55,23 @@ the people who contributed to them:
 * Yamagata Yoriyuki
 * Stefano Zacchiroli
 
+The ocamlbuild documentation was imported from a former wiki at
+Inria. The contributors to that wiki were:
+
+* Aravantv
+* Romain Bardou
+* Berke Durak
+* Bruno de Fraine
+* ChriS
+* Cstork
+* Daniel Weil
+* Daniel Buenzli
+* Maxence Guesdon
+* Martin Jambon
+* Mwipliez
+* Na (Dana) Xu
+* Alexandre Pilkiewicz
+* Nicolas Pouillard
+* Hendrik Tews
+* Thelema
+* Xavier Clerc
