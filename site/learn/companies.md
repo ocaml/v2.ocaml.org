@@ -36,7 +36,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
-        <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>.</p>
+        <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>. This work was originally presented by Anil Madhavapeddy at CUFP 2008. See his <a href="http://cufp.org/archive/2008/abstracts.html#MadhavapeddyAnil">abstract</a> and <a href="http://cufp.org/archive/2008/slides/MadhavapeddyAnil.pdf">slides</a>.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -261,7 +261,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://janestreet.com/">Jane Street</a>, United States</h2>
-        <p>Jane Street is a quantitative proprietary trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. Jane Street is perhaps the largest commercial user of OCaml, and has attracted a very strong team of functional programmers. They use OCaml for everything, from research infrastructure to trading systems to operations and accounting systems. Jane Street has over 50 OCaml programmers and over a million lines of OCaml, powering a technology platform that trades billions of dollars every day. See the <a href="http://janestreet.github.io">GitHub page</a> for their open source software.</p>
+        <p>Jane Street is a quantitative proprietary trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. Jane Street is perhaps the largest commercial user of OCaml, and has attracted a very strong team of functional programmers. <a href="http://cufp.org/2012/yaron-minsky-jane-street-jane-street-status-report.html">They use OCaml for everything</a>, from research infrastructure to trading systems to operations and accounting systems. Jane Street has over 50 OCaml programmers and over a million lines of OCaml, powering a technology platform that trades billions of dollars every day. See the <a href="http://janestreet.github.io">GitHub page</a> for their open source software.</p>
     </dd>
 </dl>
 <dl class="row">
