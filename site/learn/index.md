@@ -13,7 +13,7 @@
         </section>
         <div id="platform-download" class="span3"
 		  style="padding-top:2ex">
-            <p><a href="/docs/install.html" class="btn">Download OCaml</a></p>
+            <p><a href="/docs/install.html" class="btn">Install OCaml</a></p>
 <!--
             <p>
                 <a href="#">Other systems</a> |
