@@ -246,7 +246,7 @@ Test "test_foo"
   Command: $foo test/some_test_input
 ```
 
-`TestTools` allows to give the dependency
+`TestTools` allows to give the dependency.
 To enable and run the tests, run `configure --enable-tests` and `make test`. Tests are disabled by default.
 
 For unit testing, we can declare an executable only for tests, using the [oUnit](http://ounit.forge.ocamlcore.org/) testing framework for example, and a test using it. For this, we use the predefined flag `tests`.
