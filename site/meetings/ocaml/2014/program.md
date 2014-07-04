@@ -69,7 +69,7 @@ by Fabrice Le Fessant (INRIA)
 LibreS3: design, challenges, and steps toward reusable libraries,
 by Edwin Török (Skylable Ltd.)
 
-Nullable Type Inference,
+Nullable Type Inference (#),
 by Michel Mauny and Benoit Vaugon (ENSTA-ParisTech)
 
 #### 16:30-17:50 - Applications
@@ -93,4 +93,10 @@ by Tom Ridge (University of Leicester)
 
 #### 17:50 - Closing
 
-(*) short presentation
+#### Notes
+- (*) short presentation
+- (#) on behalf of the ML Family workshop
+- A Simple and Practical Linear Algebra Library Interface with Static
+Size Checking, by Akinori Abe and Eijiro Sumii (Tohoku University), will be
+presented at the ML Family Workshop.
+
