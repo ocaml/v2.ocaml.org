@@ -7,7 +7,8 @@ OCaml 2014
 
 **The OCaml Users and Developers Workshop**  
 Gothenburg, Sweden, September 5, 2014  
-Colocated with [ICFP 2014](http://icfpconference.org/icfp2014/)
+Colocated with [ICFP 2014](http://icfpconference.org/icfp2014/),
+the day after the [ML Family Workshop](http://okmij.org/ftp/ML/ML14.html).
 
 News
 ----

@@ -98,5 +98,5 @@ by Tom Ridge (University of Leicester)
 - (#) on behalf of the ML Family workshop
 - A Simple and Practical Linear Algebra Library Interface with Static
 Size Checking, by Akinori Abe and Eijiro Sumii (Tohoku University), will be
-presented at the ML Family Workshop.
+presented at the [ML Family Workshop](http://okmij.org/ftp/ML/ML14.html).
 
