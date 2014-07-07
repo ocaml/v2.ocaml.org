@@ -104,20 +104,14 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://cacaoweb.org">CACAOWEB</a>, United Kingdom and Hong Kong</h2>
-
         <p>Cacaoweb is a developing an application platform of a new
         kind. It runs on top of our peer-to-peer network, which
         happens to be one of the largest in the world. The
         capabilities of the platform are diverse and range from
         multimedia streaming to social communication, offline storage
-        or data synchronisation.</p>
-
-        <p>We design and implement massively distributed data stores,
-        programming languages, runtime systems and parallel
-        computation frameworks. Although what we do seems cutting
-        edge, we understand that we are merely implementing ideas that
-        have been around for the last 50 years</p>
-
+        or data synchronisation. We design and implement massively
+        distributed data stores, programming languages, runtime
+        systems and parallel computation frameworks.</p>
     </dd>
 </dl>
 
