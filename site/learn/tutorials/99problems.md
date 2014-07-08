@@ -1548,24 +1548,26 @@ type 'a pos_binary_tree =
 from the binary tree `t`.
 
 The tree pictured above is
-``` ocamltop
+```ocamltop
 let example_layout_tree =
-  Node ('n',Node ('k',Node ('c',Node ('a',Empty,Empty),
-                                Node ('h',Node ('g',Node ('e',Empty,Empty),Empty),Empty)),
-                      Node ('m', Empty,Empty)),
-            Node ('u',Node ('p',Empty,Node ('s',Node ('q',Empty,Empty),Empty)),Empty))
+  let leaf x = Node (x, Empty, Empty) in
+  Node('n', Node('k', Node('c', leaf 'a',
+                           Node('h', Node('g', leaf 'e',Empty), Empty)),
+                 leaf 'm'),
+       Node('u', Node('p', Empty, Node('s', leaf 'q', Empty)), Empty))
 ```
 SOLUTION
 
-> ```ocaml
+> ```ocamltop
 > let layout_binary_tree_1 t =
 >   let rec layout depth x_left = function
 >     (* This function returns a pair: the laid out tree and the first
 >      * free x location *)
 >     | Empty -> (E,x_left)
->     | Node (x,l,r) -> let (l',l_x_max) = layout (depth + 1) x_left l in
->                       let (r',r_x_max) = layout (depth + 1) (l_x_max + 1) r in
->                       (N (x,l_x_max,depth,l',r'),r_x_max)
+>     | Node (x,l,r) ->
+>        let (l',l_x_max) = layout (depth + 1) x_left l in
+>        let (r',r_x_max) = layout (depth + 1) (l_x_max + 1) r in
+>        (N (x,l_x_max,depth,l',r'),r_x_max)
 >   in fst (layout 1 1 t)
 > ```
 
