@@ -1114,7 +1114,7 @@ SOLUTION
 > let rec gray n =
 >   if n <= 1 then ["0"; "1"]
 >   else let g = gray (n - 1) in
->        List.map (prepend '0') g @ List.map (prepend '1') (List.rev g)
+>        List.map (prepend '0') g @ List.rev_map (prepend '1') g
 > ```
 
 ```ocamltop
