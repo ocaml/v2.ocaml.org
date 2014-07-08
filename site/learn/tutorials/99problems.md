@@ -1111,9 +1111,9 @@ SOLUTION
 >   String.blit s 0 s' 1 (String.length s);
 >   s'
 > 
-> let rec gray n =
->   if n <= 1 then ["0"; "1"]
->   else let g = gray (n - 1) in
+> let rec gray = function
+>   | 1 then ["0"; "1"]
+>   | n let g = gray (n - 1) in
 >        List.map (prepend '0') g @ List.map (prepend '1') (List.rev g)
 > ```
 
