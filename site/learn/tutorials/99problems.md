@@ -1543,16 +1543,36 @@ type 'a pos_binary_tree =
 ```
 `N(w,x,y,l,r)` represents a (non-empty) binary tree with root `w`
 "positioned" at `(x,y)`, and subtrees `l` and `r`. Write a function
-`layout_binary_tree` with the following specification:
-`layout_binary_tree t` returns the "positioned" binary tree obtained
+`layout_binary_tree_1` with the following specification:
+`layout_binary_tree_1 t` returns the "positioned" binary tree obtained
 from the binary tree `t`.
 
-<!-- SOLUTION -->
-
-```ocaml
-  (* solution pending *)
+The tree pictured above is
+``` ocamltop
+let example_layout_tree =
+  Node ('n',Node ('k',Node ('c',Node ('a',Empty,Empty),
+                                Node ('h',Node ('g',Node ('e',Empty,Empty),Empty),Empty)),
+                      Node ('m', Empty,Empty)),
+            Node ('u',Node ('p',Empty,Node ('s',Node ('q',Empty,Empty),Empty)),Empty))
 ```
+SOLUTION
 
+> ```ocaml
+> let layout_binary_tree_1 t =
+>   let rec layout depth start_x = function
+>     (* This function returns a pair: the laid out tree and the first
+>      * free x location *)
+>     | Empty -> (E,start_x)
+>     | Node (x,l,r) -> let (l',l_x_max) = layout (depth + 1) start_x l in
+>                       let pos = l_x_max in
+>                       let (r',r_x_max) = layout (depth + 1) (pos + 1) r in
+>                       (N (x,pos,depth,l',r'),r_x_max)
+>   in fst (layout 1 1 t)
+> ```
+
+```ocamltop
+layout_binary_tree_1 example_layout_tree ;;
+```
 
 #### Layout a binary tree (2). (*medium*)
 
