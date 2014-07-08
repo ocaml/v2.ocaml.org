@@ -13,7 +13,7 @@
 "Manual" -> "Manuel"
 "Compiler Sources" -> "Sources d'OCaml"
 "Packages" -> "Contributions"
- "Mailing Lists" -> "Lieux de discussion"
+"Mailing Lists" -> "Lieux de discussion"
 "Meetings" -> "Rencontres"
 "Support" -> "Support"
 "Bug Tracker" -> "Signaler un bug d'OCaml"
@@ -25,3 +25,4 @@
 "Edit this page" -> "Éditer cette page"
 "Credits" -> "Crédits"
 "Contents" -> "Contenu"
+"Install" -> "Installer OCaml"
