@@ -1559,14 +1559,13 @@ SOLUTION
 
 > ```ocaml
 > let layout_binary_tree_1 t =
->   let rec layout depth start_x = function
+>   let rec layout depth x_left = function
 >     (* This function returns a pair: the laid out tree and the first
 >      * free x location *)
->     | Empty -> (E,start_x)
->     | Node (x,l,r) -> let (l',l_x_max) = layout (depth + 1) start_x l in
->                       let pos = l_x_max in
->                       let (r',r_x_max) = layout (depth + 1) (pos + 1) r in
->                       (N (x,pos,depth,l',r'),r_x_max)
+>     | Empty -> (E,x_left)
+>     | Node (x,l,r) -> let (l',l_x_max) = layout (depth + 1) x_left l in
+>                       let (r',r_x_max) = layout (depth + 1) (l_x_max + 1) r in
+>                       (N (x,l_x_max,depth,l',r'),r_x_max)
 >   in fst (layout 1 1 t)
 > ```
 
