@@ -17,7 +17,7 @@ OCaml Meetings
 * 2014, July 8, 7:00 PM: [&quot;Rencontre d'&eacute;t&eacute;&quot;](http://www.meetup.com/ocaml-paris/events/188634632/), Mozilla Paris, 16 boulevard Montmartre 75009 Paris. Organized by [OCaml Users in PariS
  (OUPS)](http://www.meetup.com/ocaml-paris/).
 * 2014, May 22, 7:00 PM: [&quot;Rencontre de
- Printempts&quot;](http://www.meetup.com/ocaml-paris/events/181647232/), IRILL
+ Printemps&quot;](http://www.meetup.com/ocaml-paris/events/181647232/), IRILL
  23, avenue d'Italie 75013 Paris. Organized by [OCaml Users in PariS
  (OUPS)](http://www.meetup.com/ocaml-paris/).
 * 2013, May 21, 7:30 PM: [&quot;Rencontre de

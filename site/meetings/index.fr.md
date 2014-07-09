@@ -20,8 +20,10 @@
 
 ### En France
 
-* 2021-présent: Meetup OCaml Users in Paris ( [OUPS](http://www.meetup.com/ocaml-paris/) )
-   * 9 Octobre 2013 (IRILL, 23, avenue d'Italie 75013 Paris)
+* 2012-présent: Meetup OCaml Users in Paris ( [OUPS](http://www.meetup.com/ocaml-paris/) )
+   * 9 Juillet 2014 (Mozilla Paris, 16 boulevard Montmartre 75009 Paris)
+   * 22 Mai 2014 (IRILL, 23, avenue d'Italie 75013 Paris)
+   * 9 Octobre 2013 (IRILL)
    * 2 Juillet 2013 (IRILL)
    * 21 Mai 2013 (IRILL)
    * 29 Janvier 2013 (IRILL)
