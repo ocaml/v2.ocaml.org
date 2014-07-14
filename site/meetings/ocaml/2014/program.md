@@ -54,9 +54,6 @@ by Gabriel Scherer (INRIA)
 
 #### 15:10-16:30 - Joint Poster Session (with ML Family workshop)
 
-Core.Sequence: a unified interface for sequences,
-by Nicolas Oury (Jane Street)
-
 Irminsule; a branch-consistent distributed library database,
 by Thomas Gazagnaire (C), Amir Chaudhry (C), Anil Madhavapeddy (C), Richard
 Mortier (University of Nottingham), David Scott (Citrix System), David
