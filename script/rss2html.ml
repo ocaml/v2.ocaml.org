@@ -68,29 +68,6 @@ type post = {
   desc   : string;
 }
 
-let notextile_ore = Str.regexp_string "&lt;notextile&gt;"
-let notextile_cre = Str.regexp_string "&lt;/notextile&gt;"
-let figure_ore = Str.regexp "&lt;figure\\b\\([^&]*\\)&gt;"
-let figure_cre = Str.regexp_string "&lt;/figure&gt;"
-let figure_caption_ore = Str.regexp_string "&lt;figcaption&gt;"
-let figure_caption_cre = Str.regexp_string "&lt;/figcaption&gt;"
-
-(** Transformation applied to each post. *)
-let special_processing (p: post) =
-  (* FIXME: The planet aggregator escapes <notextile> and <figure>.
-     Revert that. *)
-  let desc = Str.global_replace notextile_ore "<notextile>" p.desc in
-  let desc = Str.global_replace notextile_cre "</notextile>" desc in
-  let desc = Str.global_replace figure_ore "<figure \\1>" desc in
-  let desc = Str.global_replace figure_cre "</figure>" desc in
-  let desc = Str.global_replace figure_caption_ore "<figcaption>" desc in
-  let desc = Str.global_replace figure_caption_cre "</figcaption>" desc in
-  if p.author = "Caml Weekly News" then
-    {p with title = "Weekly News"; desc }
-  else
-    {p with desc}
-
-
 let channel_of_urls urls =
   let download_and_parse url =
     let ch, err = Rss.channel_of_string(Http.get url) in
@@ -129,11 +106,10 @@ let parse_item it =
           is nonetheless the only URL we get (e.g. ocamlpro). *)
        (try Some(Neturl.parse_url u) with _ -> it.item_link)
     | None, None -> None in
-  special_processing
-    { title; link; author;
-      email = string_of_option it.item_author;
-      desc = string_of_option it.item_desc;
-      date = it.item_pubdate }
+  { title; link; author;
+    email = string_of_option it.item_author;
+    desc = string_of_option it.item_desc;
+    date = it.item_pubdate }
 
 
 (* Limit the length of the description presented to the reader. *)
