@@ -1,0 +1,69 @@
+Alex Leighton|http://alexleighton.tumblr.com/tagged/ocaml/rss
+Amir Chaudhry|http://amirchaudhry.com/tags/ocaml-atom.xml
+Andrei Formiga|http://andreiformiga.com/blog/?cat=5&feed=rss2
+Andrej Bauer|http://math.andrej.com/feed/
+Anil Madhavapeddy|http://anil.recoil.org/feeds/atom.xml
+Ashish Agarwal|http://ashishagarwal.org/tag/ocaml/feed/
+CUFP|http://cufp.org/blog/all.rss.xml
+Cameleon news|http://www.blogger.com/feeds/7617521785419311079/posts/default
+Caml INRIA|http://caml.inria.fr/news.en.rss
+Caml Spotting|http://camlspotter.blogspot.com/feeds/posts/default?alt=rss
+Caml Weekly News|http://alan.petitepomme.net/cwn/cwn.rss
+Coherent Graphics|http://coherentpdf.com/blog/?tag=ocaml&feed=rss2
+Coq|http://coq.inria.fr/news/feed
+Cranial Burnout|http://www.blogger.com/feeds/9108979482982930820/posts/default/-/OCaml
+Daniel Bünzli|http://erratique.ch/feeds/news.atom
+Daniel Bünzli (log)|http://erratique.ch/log/feed.atom
+Dario Teixeira|http://nleyten.com:82/feed/tag/ocaml/atom
+David Baelde|http://www.blogger.com/feeds/17133288/posts/default/-/ocaml
+David Mentré|http://blog.bentobako.org/index.php?feed/tag/ocaml/atom
+David Teller|http://dutherenverseauborddelatable.wordpress.com/category/ocaml/feed/
+Eray Özkural|http://www.examachine.net/blog/cat/ocaml/feed/
+Erik de Castro Lopo|http://www.mega-nerd.com/erikd/Blog/index.rss20
+Etienne Millon|http://blog.emillon.org/feeds/ocaml.xml
+Frama-C|http://frama-c.com/rss.xml
+Functional Jobs|http://functionaljobs.com/jobs/search/?q=ocaml&format=rss
+GaGallium|http://gallium.inria.fr/blog/index.rss
+Gaius Hammond|http://gaiustech.wordpress.com/category/ocaml/feed/
+Gerd Stolpmann|http://blog.camlcity.org/blog/rss
+Github OCaml jobs|http://jobs.github.com/positions.atom?description=ocaml&location=
+Grant Rettke|http://www.wisdomandwonder.com/tag/OCaml/feed
+Hong bo Zhang|http://hongboz.wordpress.com/feed/
+Incubaid Research|http://blog.incubaid.com/tag/ocaml/feed/
+Jake Donham|http://ambassadortothecomputers.blogspot.com/feeds/posts/default?alt=rss
+Jamie Brandon|http://scattered-thoughts.net/blog/categories/ocaml/atom.xml
+Jane Street|https://blogs.janestreet.com/category/ocaml/feed/
+Leo White|http://lpw25.net/rss.xml
+LexiFi|http://www.lexifi.com/blogs/ocaml/feed
+Marc Simpson|http://newblog.0branch.com/rss.xml
+Matthias Puech|http://syntaxexclamation.wordpress.com/tag/ocaml/feed/
+Matías Giovannini|http://www.blogger.com/feeds/5888658295182480819/posts/default
+Mike Lin|http://www.blogger.com/feeds/3693082774051755513/posts/default/-/OCaml
+Mike McClurg|http://mcclurmc.wordpress.com/feed/
+Mindy Preston|http://www.somerandomidiot.com/blog/categories/ocaml/atom.xml
+OCaml Book|http://ocaml-book.com/blog?format=rss
+OCaml Labs compiler hacking|http://ocamllabs.github.com/compiler-hacking/rss.xml
+OCamlCore Forge News|http://forge.ocamlcore.org/export/rss20_news.php
+OCamlCore Forge Projects|http://forge.ocamlcore.org/export/rss20_projects.php
+OCamlCore.com|http://www.ocamlcore.com/wp/feed/?amp;language=en&language=en
+OCamlPro|http://www.ocamlpro.com/feed/atom.xml
+ODNS project|http://odns.tuxfamily.org/feed/
+Ocaml XMPP project|http://ox.tuxfamily.org/feed/
+Ocsigen project|http://ocsigen.org/news.atom
+Opa|http://www.blogger.com/feeds/2073503406800427577/posts/default
+Open Mirage|http://openmirage.org/blog/atom.xml
+Orbitz|http://functional-orbitz.blogspot.com/feeds/posts/default/-/planetocaml?alt=rss
+Paolo Donadeo|http://www.donadeo.net/facets/programming-languages/objective-caml/feed/
+Peter Zotov|http://whitequark.org/blog/categories/ocaml/atom.xml
+Pietro Abate|https://mancoosi.org/~abate/taxonomy/term/5/0/feed
+Richard Jones|http://rwmj.wordpress.com/tag/ocaml/feed/
+Romain Beauxis|http://blog.rastageeks.org/spip.php?page=rss&id_mot=2
+Sebastien Mondet|http://seb.mondet.org/blog/feed/ocaml.rss
+Shayne Fletcher|http://www.blogger.com/feeds/5012565255225108517/posts/default/-/OCaml
+Stefano Zacchiroli|http://upsilon.cc/~zack/tags/ocaml/index.rss
+Sylvain Le Gall|http://le-gall.net/sylvain+violaine/blog/index.php?feed/tag/ocaml/atom
+The Caml Humps|http://caml.inria.fr/hump.rss
+Thomas Leonard|http://roscidus.com/blog/blog/categories/ocaml/atom.xml
+Till Varoquaux|http://www.blogger.com/feeds/6115529230232389198/posts/default
+WODI|http://wodi.forge.ocamlcore.org/atom.xml
+Y-node|http://y-node.com/blog/feeds/latest/
