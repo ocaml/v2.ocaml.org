@@ -31,7 +31,7 @@ let cache_secs = 3600. (* 1h *)
 let get ?(cache_secs=cache_secs) url =
   let md5 = Digest.to_hex(Digest.string url) in
   let fn = Filename.concat Filename.temp_dir_name ("ocamlorg-" ^ md5) in
-  eprintf "Downloading %s... %!" url;
+  eprintf "Downloading %s ... %!" url;
   let get_from_cache () =
     let fh = open_in fn in
     let data = input_value fh in
@@ -49,6 +49,10 @@ let get ?(cache_secs=cache_secs) url =
       close_out fh;
       eprintf "(cached).\n%!";
       data
-    with Http_client.Http_protocol(Http_client.Timeout _) ->
-      get_from_cache()
+    with Http_client.Http_protocol(Http_client.Timeout _) as e ->
+      if Sys.file_exists fn then get_from_cache()
+      else (
+        eprintf "FAILED!\n%!";
+        raise e
+      )
   )
