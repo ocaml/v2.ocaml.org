@@ -7,19 +7,19 @@ The OCaml Planet aggregates various blogs
 from the OCaml community. If you would like to be added, read the
 [Planet syndication HOWTO](syndication.html).
 
-((! cmd script/rss2html --nposts !)) blog posts are available.
-You can read the 15 more recent ones below.
-<!-- FIXME: Make pages for older ones -->
-
 <div class="container">
 <div class="row">
 <section class="span8 planet">
 
-((! cmd script/rss2html --posts -n 15 !))
+((! cmd script/rss2html --nposts !)) blog posts are available.
+You can read the 30 more recent ones below.
+<!-- FIXME: Make pages for older ones -->
+
+((! cmd script/rss2html --posts -n 30 !))
 
 </section>
 <section class="span4">
-<div class="subscribers">
+<div class="subscribers" style="float:right">
 
 <h3>Syndications</h3>
 
