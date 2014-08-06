@@ -108,12 +108,18 @@ let html_of_text s =
  |> decode_document |> remove_undesired_tags
 
 
-let rec html_of_syndic els =
+let rec html_of_syndic = function
+  | [XML.Leaf d] ->
+     (* Even though Syndic does its best, there may be HTML that is
+        not decoded.  Try with the specialized Nethtml *)
+     (try html_of_text d with _ -> [Nethtml.Data d])
+  | els -> html_of_syndic_list els
+and html_of_syndic_list els =
   List.map html_of_syndic_el els
 and html_of_syndic_el = function
   | XML.Node(((_, tag), attr), sub) ->
      Nethtml.Element(tag, List.map (fun ((_,n), v) -> n, encode_html v) attr,
-                     html_of_syndic sub)
+                     html_of_syndic_list sub)
   | XML.Leaf d ->
      Nethtml.Data(encode_html d)
 
@@ -157,7 +163,7 @@ let post_of_atom ~author (entry: Atom.entry) =
     | None ->
        match entry.summary with
        | Some(Text s) -> html_of_text s
-       | Some(Xhtml h) -> html_of_syndic h
+       | Some(Html h) | Some(Xhtml h) -> html_of_syndic h
        | None -> [] in
   { title = entry.title;
     link;  date;
