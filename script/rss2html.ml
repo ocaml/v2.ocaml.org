@@ -4,10 +4,6 @@ open Printf
 open Nethtml
 open Syndic
 
-(** List of "authors" that send text descriptions (as opposed to
-    HTML).  The formatting of the description must then be respected. *)
-let text_description = []
-
 let planet_url = "/community/planet/"
 let planet_full_url = "http://ocaml.org/community/planet/"
 
@@ -316,11 +312,8 @@ let html_of_post p =
   let additional_info =
     [Element("span", ["class", "additional-info"], additional_info)] in
   let desc =
-    if List.mem p.author text_description then
-      [Element("pre", ["class", "rss-text"], p.desc)]
-    else
-      if length_html p.desc < 500 then p.desc
-      else toggle (prefix_of_html p.desc 500) p.desc ~anchor:title_anchor
+    if length_html p.desc < 500 then p.desc
+    else toggle (prefix_of_html p.desc 500) p.desc ~anchor:title_anchor
   in
   [Data "\n";
    Element("a", ["name", title_anchor], []);
