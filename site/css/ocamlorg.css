@@ -175,6 +175,9 @@ h1.planet .share img.svg {
   height: 16px;  /* same as alternative PNG image */
 }
 
+.planet-post h1 { font-size: 20px; }
+.planet-post h2 { font-size: 18px; }
+
 div.subscribers {
   margin-left: 3em;
 }
