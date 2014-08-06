@@ -2,6 +2,7 @@
 
 open Printf
 open Nethtml
+open Syndic
 
 (** List of "authors" that send text descriptions (as opposed to
     HTML).  The formatting of the description must then be respected. *)
@@ -10,106 +11,180 @@ let text_description = []
 let planet_url = "/community/planet/"
 let planet_full_url = "http://ocaml.org/community/planet/"
 
+let planet_feeds_file = "planet_feeds.txt"
 
-(* OPML -- subscriber list
+(* Feeds
  ***********************************************************************)
 
-module OPML = struct
-  type contributor = {
+type feed =
+  | Atom of Atom.feed
+  | Rss2 of Rss2.channel
+  | Broken
+
+let classify_feed (xml: string) =
+  try Atom(Atom.parse (Xmlm.make_input (`String(0, xml))))
+  with Atom.Error.Expected _
+       | Atom.Error.Expected_Leaf
+       | Atom.Error.Duplicate_Link _ ->
+          try Rss2(Rss2.parse (Xmlm.make_input (`String(0, xml))))
+          with Rss2.Error.Expected _
+             | Rss2.Error.Expected_Leaf
+             | Rss2.Error.Size_Exceeded _
+             | Rss2.Error.Item_expectation -> Broken
+
+type contributor = {
     name  : string;
     title : string;
     url   : string;
+    feed  : feed;
   }
 
-  (* Use Xmlm for the parsing, mostly because it is already needed by
-     the [Rss] module => no additional dep. *)
+let feed_of_url ~name url =
+  try
+    let feed = classify_feed (Http.get url) in
+    let title = match feed with
+      | Atom atom -> atom.Atom.title
+      | Rss2 ch -> ch.Rss2.title
+      | Broken -> "" in
+    { name;  title;  url;  feed }
+  with Http_client.Http_protocol _ ->
+    { name;  title = "";  url;  feed = Broken }
 
-  let contributors_of_url url =
-    let fh = Xmlm.make_input (`String(0, Http.get url))  in
-    let contrib = ref [] in
+let planet_feeds() =
+  let add_feed acc line =
     try
-      while true do
-        match Xmlm.input fh with
-        | `El_start((_, "outline"), args) ->
-           contrib := { name = List.assoc ("", "text") args;
-                        title = List.assoc ("", "text") args;
-                        url = List.assoc ("", "xmlUrl") args;
-                      } :: !contrib
-        | _ -> ()
-      done;
-      assert false
-    with Xmlm.Error(_, `Unexpected_eoi) ->
-      !contrib
+      let i = String.index line '|' in
+      let name = String.sub line 0 i in
+      let url = String.sub line (i+1) (String.length line - i - 1) in
+      feed_of_url ~name url :: acc
+    with Not_found -> acc in
+  List.fold_left add_feed [] (Utils.lines_of_file planet_feeds_file)
 
-  let contributors_of_urls urls =
-    let contribs = List.concat (List.map contributors_of_url urls) in
-    List.sort (fun c1 c2 -> String.compare c1.name c2.name) contribs
-
-  let to_html contributors =
-    let contrib_html c =
-      Element("li", [], [Element("a", ["href", c.url], [Data c.name])]) in
-    Element("ul", [], List.map contrib_html contributors)
-
-  let contributors urls =
-    [to_html (contributors_of_urls urls)]
-end
+let html_contributors () =
+  let contributors =
+    List.sort (fun c1 c2 -> String.compare c1.name c2.name) (planet_feeds()) in
+  let contrib_html c =
+    let attr = if c.feed = Broken then ["class", "broken"] else [] in
+    Element("li", [], [Element("a", ("href", c.url) :: attr, [Data c.name])]) in
+  [Element("ul", [], List.map contrib_html contributors)]
 
 
 (* Blog feed
  ***********************************************************************)
 
+type html = Nethtml.document list
+
+let encode_html = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
+
+let rec encode_data html =
+  List.map encode_data_el html
+and encode_data_el = function
+  | Nethtml.Element(t, a, sub) -> Nethtml.Element(t, a, encode_data sub)
+  | Nethtml.Data s -> Nethtml.Data(encode_html s)
+
+(* Things that posts should not contain *)
+let undesired_tags = ["style"; "script"]
+let undesired_attr = ["id"]
+
+let remove_undesired_attr =
+  List.filter (fun (a,_) -> not(List.mem a undesired_attr))
+
+let rec remove_undesired_tags html =
+  Utils.filter_map html remove_undesired_tags_el
+and remove_undesired_tags_el = function
+  | Nethtml.Element(t, a, sub) ->
+     if List.mem t undesired_tags then None
+     else Some(Nethtml.Element(t, remove_undesired_attr a,
+                               remove_undesired_tags sub))
+  | Data _ as d -> Some d
+
+let html_of_text s =
+  Nethtml.parse (new Netchannels.input_string s)
+                ~dtd:Utils.relaxed_html40_dtd
+ |> encode_data |> remove_undesired_tags
+
+
+let rec html_of_syndic els =
+  List.map html_of_syndic_el els
+and html_of_syndic_el = function
+  | XML.Node(((_, tag), attr), sub) ->
+     Nethtml.Element(tag, List.map (fun ((_,n), v) -> n, encode_html v) attr,
+                     html_of_syndic sub)
+  | XML.Leaf d ->
+     Nethtml.Data(encode_html d)
+
 (** Our representation of a "post". *)
 type post = {
   title  : string;
-  link   : Rss.url option;   (* url of the original post *)
-  date   : Rss.date option;
-  author : string;
+  link   : Uri.t option;   (* url of the original post *)
+  date   : CalendarLib.Calendar.t option;
+  author : contributor;
   email  : string;    (* the author email, "" if none *)
-  desc   : string;
+  desc   : html;
 }
 
-let channel_of_urls urls =
-  let download_and_parse url =
-    let ch, err = Rss.channel_of_string(Http.get url) in
-    List.iter (fun e -> eprintf "RSS error (URL=%s): %s\n" url e) err;
-    ch in
-  let channels = List.map download_and_parse urls in
-  match channels with
-  | [] -> invalid_arg "rss2html.channel_of_urls: empty URL list"
-  | [c] -> c
-  | c :: tl -> List.fold_left Rss.merge_channels c tl
-
+let post_compare p1 p2 =
+  (* Most recent posts first.  Posts with no date are always last *)
+  match p1.date, p2.date with
+  | Some d1, Some d2 -> CalendarLib.Calendar.compare d2 d1
+  | None, Some _ -> 1
+  | Some _, None -> -1
+  | None, None -> 1
 
 let digest_post p = match p.link with
   | None -> Digest.to_hex (Digest.string (p.title))
-  | Some u -> Digest.to_hex (Digest.string (p.title ^ Neturl.string_of_url u))
+  | Some u -> Digest.to_hex (Digest.string (p.title ^ Uri.to_string u))
 
 let string_of_option = function None -> "" | Some s -> s
 
-let re_colon = Str.regexp " *: *"
+let post_of_atom ~author (entry: Atom.entry) =
+  let open Atom in
+  let link = try Some (List.find (fun l -> l.rel = Alternate) entry.links).href
+             with Not_found -> match entry.links with
+                              | l :: _ -> Some l.href
+                              | [] -> None in
+  let date = match entry.published with
+    | Some _ -> entry.published
+    | None -> Some entry.updated in
+  let desc = match entry.content with
+    | Some(Text s) -> html_of_text s
+    | Some(Html h) | Some(Xhtml h) -> html_of_syndic h
+    | Some(Mime _) | Some(Src _)
+    | None ->
+       match entry.summary with
+       | Some(Text s) -> html_of_text s
+       | Some(Xhtml h) -> html_of_syndic h
+       | None -> [] in
+  { title = entry.title;
+    link;  date;
+    author = author;
+    email = (fst entry.authors).name;
+    desc }
 
-(* Transform an RSS item into a [post]. *)
-let parse_item it =
-  let open Rss in
-  let title = string_of_option it.item_title in
-  let author, title =
-    (* The author name is often put before the title, separated by ':'. *)
-    match Str.bounded_split re_colon title 2 with
-    | [_] -> "", title
-    | [author; title] -> author, title
-    | _ -> assert false in
-  let link = match it.item_guid, it.item_link with
-    | Some(Guid_permalink u), _ -> Some u
-    | _, Some _ -> it.item_link
-    | Some(Guid_name u), _ ->
+let post_of_rss2 ~author it =
+  let open Syndic.Rss2 in
+  let title, desc = match it.story with
+    | All (t, d) -> t, html_of_text d
+    | Title t -> t, []
+    | Description d -> "", html_of_text d in
+  let link = match it.guid, it.link with
+    | Some u, _ when u.permalink -> Some u.data
+    | _, Some _ -> it.link
+    | Some u, _ ->
        (* Sometimes the guid is indicated with isPermaLink="false" but
           is nonetheless the only URL we get (e.g. ocamlpro). *)
-       (try Some(Neturl.parse_url u) with _ -> it.item_link)
+       Some u.data
     | None, None -> None in
   { title; link; author;
-    email = string_of_option it.item_author;
-    desc = string_of_option it.item_desc;
-    date = it.item_pubdate }
+    email = string_of_option it.author;
+    desc;
+    date = it.pubDate }
+
+let posts_of_contributor c =
+  match c.feed with
+  | Atom f -> List.map (post_of_atom ~author:c) f.Atom.entries
+  | Rss2 ch -> List.map (post_of_rss2 ~author:c) ch.Rss2.items
+  | Broken -> []
 
 
 (* Limit the length of the description presented to the reader. *)
@@ -183,12 +258,12 @@ let toggle_script =
 
 (* Transform a post [p] (i.e. story) into HTML.
    [rss_feed] returns the feed for a given author (or "" of none is found). *)
-let html_of_post rss_feed p =
+let html_of_post p =
   let title_anchor = digest_post p in
   let html_title, share = match p.link with
     | None -> [Data p.title], []
     | Some u ->
-       let url_orig = Neturl.string_of_url u in
+       let url_orig = Uri.to_string u in
        let a_args = ["href", url_orig; "target", "_blank";
                      "title", "Go to the original post"] in
        let post =
@@ -202,7 +277,7 @@ let html_of_post rss_feed p =
        let tw = ["href", "https://twitter.com/intent/tweet?url=" ^ post
                          ^ "&text=" ^ (Netencoding.Url.encode p.title);
                  "target", "_blank"; "title", "Share on Twitter"] in
-       let feed = rss_feed p.author in
+       let feed = p.author.url in
        let rss =
          if feed <> "" then
            [Element("a", ["class", "rss";  "target", "_blank";
@@ -228,26 +303,24 @@ let html_of_post rss_feed p =
                                             "alt", "Twitter"], []) ])
                 :: rss) ] in
   let html_author =
-    if p.email = "" then Data p.author
-    else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
+    if p.email = "" then Data p.author.name
+    else Element("a", ["href", "mailto:" ^ p.email], [Data p.author.name]) in
   let sep = Data " — " in
   let additional_info = match p.date with
     | None ->
-       if p.author = "" then [] else [sep; html_author]
+       if p.author.name = "" then [] else [sep; html_author]
     | Some d ->
-       if p.author = "" then [sep; Data(Netdate.format ~fmt:"%B %e, %Y" d)]
-       else [sep; html_author; Data ", ";
-             Data(Netdate.format ~fmt:"%b %e, %Y" d)] in
+       let date = CalendarLib.Printer.Calendar.sprint "%b %d, %Y" d in
+       if p.author.name = "" then [sep; Data date]
+       else [sep; html_author; Data ", "; Data date] in
   let additional_info =
     [Element("span", ["class", "additional-info"], additional_info)] in
   let desc =
     if List.mem p.author text_description then
-      [Element("pre", ["class", "rss-text"], [Data p.desc])]
+      [Element("pre", ["class", "rss-text"], p.desc)]
     else
-      let desc = Nethtml.parse (new Netchannels.input_string p.desc)
-                               ~dtd:Utils.relaxed_html40_dtd in
-      if length_html desc < 500 then desc
-      else toggle (prefix_of_html desc 500) desc ~anchor:title_anchor
+      if length_html p.desc < 500 then p.desc
+      else toggle (prefix_of_html p.desc 500) p.desc ~anchor:title_anchor
   in
   [Data "\n";
    Element("a", ["name", title_anchor], []);
@@ -257,13 +330,29 @@ let html_of_post rss_feed p =
            :: desc);
    Data "\n"]
 
+
+let netdate_of_calendar d =
+  let open CalendarLib in
+  let month =
+    let open Calendar in
+    match Calendar.month d with
+    | Jan -> 1 | Feb -> 2 | Mar -> 3 | Apr -> 4 | May -> 5 | Jun -> 6
+    | Jul -> 7 | Aug -> 8 | Sep -> 9 | Oct -> 10 | Nov -> 11 | Dec -> 12 in
+  { Netdate.year = Calendar.year d;
+    month;
+    day = Calendar.day_of_month d;
+    hour = Calendar.hour d;
+    minute = Calendar.minute d;
+    second = Calendar.second d;
+    nanos = 0;  zone = 0;  week_day = -1 }
+
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
 let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img p =
   let link =
     if planet then planet_url ^ "#" ^ digest_post p
     else match p.link with
-         | Some l -> Neturl.string_of_url l
+         | Some l -> Uri.to_string l
          | None -> "" in
   let html_icon =
     [Element("a", ["href", link],
@@ -274,7 +363,9 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img p =
   let html_date = match p.date with
     | None -> html_icon
     | Some d ->
+       (* Netdate internationalization functions are more developed. *)
        let d =
+         let d = netdate_of_calendar d in
          if Netdate.format ~fmt:"%x" d = Netdate.format ~fmt:"%x" d ~l9n then
            (* English style *)
            Netdate.format ~fmt:"%B %e, %Y" d ~l9n
@@ -293,28 +384,24 @@ let rec take n = function
   | [] -> []
   | e :: tl -> if n > 0 then e :: take (n-1) tl else []
 
-let posts_of_urls ?n urls =
-  let ch = channel_of_urls urls in
-  let items = Rss.sort_items_by_date ch.Rss.ch_items in
-  let posts = List.map parse_item items in
+let get_posts ?n () =
+  let posts = List.concat (List.map posts_of_contributor (planet_feeds())) in
+  let posts = List.sort post_compare posts in
   match n with
   | None -> posts
   | Some n -> take n posts
 
-let headlines ?n ?planet ~l9n urls =
-  let posts = posts_of_urls ?n urls in
+let headlines ?n ?planet ~l9n () =
+  let posts = get_posts ?n () in
   let img = "/img/news" in
   [Element("ul", ["class", "news-feed"],
            List.concat(List.map (headline_of_post ?planet ~l9n ~img) posts))]
 
-let posts ?n opml urls =
-  let contributors = OPML.contributors_of_urls opml in
-  let rss_feed author =
-    try (List.find (fun c -> c.OPML.name = author) contributors).OPML.url
-    with Not_found -> "" in
-  let posts = posts_of_urls ?n urls in
-  [Element("div", [], List.concat(List.map (html_of_post rss_feed) posts))]
+let posts ?n () =
+  let posts = get_posts ?n () in
+  [Element("div", [], List.concat(List.map html_of_post posts))]
 
+let nposts () = List.length (get_posts ())
 
 (* Email threads
  ***********************************************************************)
@@ -342,9 +429,10 @@ let caml_list_re =
 (** [email_threads] does basically the same as [headlines] but filter
     the posts to have repeated subjects.  It also presents the subject
     better. *)
-let email_threads ?n ~l9n urls =
+let email_threads ?n ~l9n url =
   (* Do not use [n] yet because posts are filtered. *)
-  let posts = posts_of_urls urls in
+  let posts = posts_of_contributor (feed_of_url ~name:"" url) in
+  let posts = List.sort post_compare posts in
   let normalize_title p =
     let title = Str.replace_first caml_list_re "" p.title in
     let title = delete_author title in
@@ -365,50 +453,41 @@ let email_threads ?n ~l9n urls =
            List.concat(List.map (fun p -> headline_of_post ~l9n ~img p) posts))]
 
 
-
 (* Main
  ***********************************************************************)
 
 let () =
-  let urls = ref [] in
-  let opml = ref [] in
-  let action = ref `Undecided in
-  let n_posts = ref None in (* ≤ 0 means unlimited *)
+  let url = ref "" in
+  let action = ref `Posts in
+  let n_posts = ref None in (* means unlimited *)
   let l9n = ref Netdate.posix_l9n in
   let specs = [
     ("--headlines", Arg.Unit(fun () -> action := `Headlines),
      " RSS feed to feed summary (in HTML)");
     ("--emails", Arg.Unit(fun () -> action := `Emails),
      " RSS feed of email threads to HTML");
-    ("--subscribers",
-     Arg.String(fun c ->
-                (* Also enable subscriber RSS => do not overrule action *)
-                if !action = `Undecided then action := `Subscribers;
-                opml := c :: !opml),
-     "url OPML feed to list of subscribers (rendered to HTML if alone)");
+    ("--subscribers", Arg.Unit(fun () -> action := `Subscribers),
+     " list of subscribers (rendered to HTML if alone)");
     ("--posts", Arg.Unit(fun () -> action := `Posts),
      " RSS feed to HTML (default action)");
+    ("--nposts", Arg.Unit(fun () -> action := `NPosts),
+     " number of posts in the RSS feed");
     ("-n", Arg.Int(fun n -> n_posts := Some n),
      "n limit the number of posts to n (default: all of them)");
     ("--locale",
      Arg.String(fun l -> l9n := Netdate.(l9n_from_locale l)),
      "l Translate dates for the locale l")  ] in
-  let anon_arg s = urls := s :: !urls in
-  Arg.parse (Arg.align specs) anon_arg "rss2html <URLs>";
-  if !urls = [] && !opml = [] then (
-    Arg.usage (Arg.align specs) "rss2html <at least 1 URL>";
-    exit 1);
+  let anon_arg s = url := s in
+  Arg.parse (Arg.align specs) anon_arg "rss2html <URL>";
   let l9n = Netdate.compile_l9n !l9n in
   let out = new Netchannels.output_channel stdout in
   (match !action with
-   | `Headlines -> Nethtml.write out (headlines ~planet:true ?n:!n_posts
-                                               ~l9n !urls)
-   | `Emails -> Nethtml.write out (email_threads ?n:!n_posts
-                                                ~l9n !urls)
-   | `Undecided
-   | `Posts ->
-      Nethtml.write out (toggle_script @ posts ?n:!n_posts !opml !urls)
-   | `Subscribers -> Nethtml.write out (OPML.contributors(!opml @ !urls))
+   | `Headlines ->
+      Nethtml.write out (headlines ~planet:true ?n:!n_posts ~l9n ())
+   | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~l9n !url)
+   | `Posts -> Nethtml.write out (toggle_script @ posts ?n:!n_posts ())
+   | `NPosts -> printf "%i" (nposts())
+   | `Subscribers -> Nethtml.write out (html_contributors())
   );
   out#close_out()
 

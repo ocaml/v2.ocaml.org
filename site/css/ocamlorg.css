@@ -187,6 +187,10 @@ div.subscribers {
   line-height: 100%;
 }
 
+.subscribers .broken {
+  text-decoration: line-through;
+}
+
 h1.news a > img {
   float: right;
   padding-top: 12px;

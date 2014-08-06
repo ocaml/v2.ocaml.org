@@ -46,3 +46,22 @@ let string_of_file fname =
   done;
   close_in fh;
   Buffer.contents buf
+
+let lines_of_file fname =
+  let lines = ref [] in
+  let fh = open_in fname in
+  try
+    while true do
+      lines := input_line fh :: !lines
+    done;
+    assert false
+  with End_of_file ->
+    close_in fh;
+    List.rev !lines
+
+let rec filter_map l f =
+  match l with
+  | [] -> []
+  | a :: tl -> match f a with
+              | None -> filter_map tl f
+              | Some a -> a :: filter_map tl f
