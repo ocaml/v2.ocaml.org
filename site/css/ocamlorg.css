@@ -188,6 +188,7 @@ div.subscribers {
 }
 
 .subscribers .broken {
+  color: #dcc8c4;
   text-decoration: line-through;
 }
 

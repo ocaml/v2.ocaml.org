@@ -9,13 +9,24 @@ let planet_full_url = "http://ocaml.org/community/planet/"
 
 let planet_feeds_file = "planet_feeds.txt"
 
+(* Utils
+ ***********************************************************************)
+
+type html = Nethtml.document list
+
+let encode_html = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
+
+let decode_document html = Nethtml.decode ~enc:`Enc_utf8 html
+
+let encode_document html = Nethtml.encode ~enc:`Enc_utf8 html
+
 (* Feeds
  ***********************************************************************)
 
 type feed =
   | Atom of Atom.feed
   | Rss2 of Rss2.channel
-  | Broken
+  | Broken of string (* the argument gives the reason *)
 
 let classify_feed (xml: string) =
   try Atom(Atom.parse (Xmlm.make_input (`String(0, xml))))
@@ -26,7 +37,8 @@ let classify_feed (xml: string) =
           with Rss2.Error.Expected _
              | Rss2.Error.Expected_Leaf
              | Rss2.Error.Size_Exceeded _
-             | Rss2.Error.Item_expectation -> Broken
+             | Rss2.Error.Item_expectation ->
+                Broken "Neither Atom nor RSS2 feed"
 
 type contributor = {
     name  : string;
@@ -41,10 +53,14 @@ let feed_of_url ~name url =
     let title = match feed with
       | Atom atom -> atom.Atom.title
       | Rss2 ch -> ch.Rss2.title
-      | Broken -> "" in
+      | Broken _ -> "" in
     { name;  title;  url;  feed }
-  with Http_client.Http_protocol _ ->
-    { name;  title = "";  url;  feed = Broken }
+  with
+  | Http_client.Http_protocol(Http_client.Timeout s)
+  | Http_client.Http_protocol(Http_client.Name_resolution_error s) ->
+     { name;  title = "";  url;  feed = Broken s }
+  | Http_client.Http_protocol Http_client.Too_many_redirections ->
+     { name;  title = "";  url;  feed = Broken "Too many redirections" }
 
 let planet_feeds() =
   let add_feed acc line =
@@ -60,23 +76,15 @@ let html_contributors () =
   let contributors =
     List.sort (fun c1 c2 -> String.compare c1.name c2.name) (planet_feeds()) in
   let contrib_html c =
-    let attr = if c.feed = Broken then ["class", "broken"] else [] in
+    let attr = match c.feed with
+      | Broken s -> ["class", "broken";  "title", encode_html s]
+      | _ -> [] in
     Element("li", [], [Element("a", ("href", c.url) :: attr, [Data c.name])]) in
   [Element("ul", [], List.map contrib_html contributors)]
 
 
 (* Blog feed
  ***********************************************************************)
-
-type html = Nethtml.document list
-
-let encode_html = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
-
-let rec encode_data html =
-  List.map encode_data_el html
-and encode_data_el = function
-  | Nethtml.Element(t, a, sub) -> Nethtml.Element(t, a, encode_data sub)
-  | Nethtml.Data s -> Nethtml.Data(encode_html s)
 
 (* Things that posts should not contain *)
 let undesired_tags = ["style"; "script"]
@@ -97,7 +105,7 @@ and remove_undesired_tags_el = function
 let html_of_text s =
   Nethtml.parse (new Netchannels.input_string s)
                 ~dtd:Utils.relaxed_html40_dtd
- |> encode_data |> remove_undesired_tags
+ |> decode_document |> remove_undesired_tags
 
 
 let rec html_of_syndic els =
@@ -180,7 +188,7 @@ let posts_of_contributor c =
   match c.feed with
   | Atom f -> List.map (post_of_atom ~author:c) f.Atom.entries
   | Rss2 ch -> List.map (post_of_rss2 ~author:c) ch.Rss2.items
-  | Broken -> []
+  | Broken _ -> []
 
 
 (* Limit the length of the description presented to the reader. *)
@@ -252,8 +260,7 @@ let toggle_script =
   [Element("script", ["type", "text/javascript"], [Data script])]
 
 
-(* Transform a post [p] (i.e. story) into HTML.
-   [rss_feed] returns the feed for a given author (or "" of none is found). *)
+(* Transform a post [p] (i.e. story) into HTML. *)
 let html_of_post p =
   let title_anchor = digest_post p in
   let html_title, share = match p.link with
