@@ -14,11 +14,10 @@ Coq|http://coq.inria.fr/news/feed
 Cranial Burnout|http://www.blogger.com/feeds/9108979482982930820/posts/default/-/OCaml
 Daniel Bünzli|http://erratique.ch/feeds/news.atom
 Daniel Bünzli (log)|http://erratique.ch/log/feed.atom
-Dario Teixeira|http://nleyten.com:82/feed/tag/ocaml/atom
+Dario Teixeira|http://nleyten.com/feed/tag/ocaml/atom
 David Baelde|http://www.blogger.com/feeds/17133288/posts/default/-/ocaml
 David Mentré|http://blog.bentobako.org/index.php?feed/tag/ocaml/atom
 David Teller|http://dutherenverseauborddelatable.wordpress.com/category/ocaml/feed/
-Eray Özkural|http://www.examachine.net/blog/cat/ocaml/feed/
 Erik de Castro Lopo|http://www.mega-nerd.com/erikd/Blog/index.rss20
 Etienne Millon|http://blog.emillon.org/feeds/ocaml.xml
 Frama-C|http://frama-c.com/rss.xml
@@ -57,7 +56,6 @@ Paolo Donadeo|http://www.donadeo.net/facets/programming-languages/objective-caml
 Peter Zotov|http://whitequark.org/blog/categories/ocaml/atom.xml
 Pietro Abate|https://mancoosi.org/~abate/taxonomy/term/5/0/feed
 Richard Jones|http://rwmj.wordpress.com/tag/ocaml/feed/
-Romain Beauxis|http://blog.rastageeks.org/spip.php?page=rss&id_mot=2
 Sebastien Mondet|http://seb.mondet.org/blog/feed/ocaml.rss
 Shayne Fletcher|http://www.blogger.com/feeds/5012565255225108517/posts/default/-/OCaml
 Stefano Zacchiroli|http://upsilon.cc/~zack/tags/ocaml/index.rss
