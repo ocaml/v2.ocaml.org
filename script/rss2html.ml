@@ -14,7 +14,8 @@ let planet_feeds_file = "planet_feeds.txt"
 
 type html = Nethtml.document list
 
-let encode_html = Netencoding.Html.encode ~in_enc:`Enc_utf8 ()
+let encode_html =
+  Netencoding.Html.encode ~prefer_name:false ~in_enc:`Enc_utf8 ()
 
 let decode_document html = Nethtml.decode ~enc:`Enc_utf8 html
 
@@ -96,6 +97,30 @@ let html_contributors () =
       | _ -> [] in
     Element("li", [], [Element("a", ("href", c.url) :: attr, [Data c.name])]) in
   [Element("ul", [], List.map contrib_html contributors)]
+
+(** Output the list of feeds to [fname] using OMPL syntax.
+    Bsed on http://dev.opml.org/spec2.html *)
+let opml fname =
+  let fh = open_out fname in
+  let today =
+    let open CalendarLib in
+    Printer.Calendar.sprint "%a, %0d %b %Y %T %:z" (Calendar.now()) in
+  fprintf fh
+          "<?xml version=\"1.0\"?>\n<opml version=\"1.1\">\n\
+           <head>\n\
+           <title>OCaml Planet</title>\n\
+           <dateModified>%s</dateModified>\n\
+           <ownerName>ocaml.org</ownerName>\n\
+           <ownerEmail>infrastructure@lists.ocaml.org</ownerEmail>\n\
+           </head>\n<body>\n" today;
+  let output_feed c =
+    fprintf fh "<outline type=\"rss\" text=\"%s\" \
+                title=\"%s\" xmlUrl=\"%s\"/>\n"
+            (encode_html c.name) (encode_html c.title) (encode_html c.url) in
+  List.iter output_feed (planet_feeds());
+  fprintf fh "</body>\n</opml>\n";
+  close_out fh
+
 
 
 (* Blog feed
@@ -487,6 +512,8 @@ let () =
      " RSS feed to HTML (default action)");
     ("--nposts", Arg.Unit(fun () -> action := `NPosts),
      " number of posts in the RSS feed");
+    ("--opml", Arg.String(fun fn -> action := `Opml fn),
+     "fname output an OMPL document to the given file");
     ("-n", Arg.Int(fun n -> n_posts := Some n),
      "n limit the number of posts to n (default: all of them)");
     ("--locale",
@@ -503,6 +530,7 @@ let () =
    | `Posts -> Nethtml.write out (toggle_script @ posts ?n:!n_posts ())
    | `NPosts -> printf "%i" (nposts())
    | `Subscribers -> Nethtml.write out (html_contributors())
+   | `Opml fn -> opml fn
   );
   out#close_out()
 
