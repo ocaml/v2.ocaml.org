@@ -124,21 +124,13 @@ let html_of_text s =
   with _ ->
     [Nethtml.Data(encode_html s)]
 
+(* Do not trust sites using XML for HTML content.  Convert to string
+   and parse back.  (Does not always fix bad HTML unfortunately.) *)
+let rec html_of_syndic =
+  let ns_prefix _ = Some "" in
+  fun h ->
+  html_of_text(String.concat "" (List.map (XML.to_string ~ns_prefix) h))
 
-let rec html_of_syndic = function
-  | [XML.Leaf d] ->
-     (* Even though Syndic does its best, there may be HTML that is
-        not decoded.  Try with the specialized Nethtml *)
-     (try html_of_text d with _ -> [Nethtml.Data d])
-  | els -> html_of_syndic_list els
-and html_of_syndic_list els =
-  List.map html_of_syndic_el els
-and html_of_syndic_el = function
-  | XML.Node(((_, tag), attr), sub) ->
-     Nethtml.Element(tag, List.map (fun ((_,n), v) -> n, encode_html v) attr,
-                     html_of_syndic_list sub)
-  | XML.Leaf d ->
-     Nethtml.Data(encode_html d)
 
 (** Our representation of a "post". *)
 type post = {
