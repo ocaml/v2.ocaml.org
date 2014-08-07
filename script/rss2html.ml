@@ -20,6 +20,21 @@ let decode_document html = Nethtml.decode ~enc:`Enc_utf8 html
 
 let encode_document html = Nethtml.encode ~enc:`Enc_utf8 html
 
+(* Remove all tags *)
+let rec syndic_to_buffer b = function
+  | XML.Node (_, subs) -> List.iter (syndic_to_buffer b) subs
+  | XML.Leaf d -> Buffer.add_string b d
+
+let syndic_to_string x =
+  let b = Buffer.create 1024 in
+  List.iter (syndic_to_buffer b) x;
+  Buffer.contents b
+
+let string_of_text_construct : Atom.text_construct -> string = function
+  (* FIXME: we probably would like to parse the HTML and remove the tags *)
+  | Atom.Text s | Atom.Html s -> s
+  | Atom.Xhtml x -> syndic_to_string x
+
 (* Feeds
  ***********************************************************************)
 
@@ -51,7 +66,7 @@ let feed_of_url ~name url =
   try
     let feed = classify_feed (Http.get url) in
     let title = match feed with
-      | Atom atom -> atom.Atom.title
+      | Atom atom -> string_of_text_construct atom.Atom.title
       | Rss2 ch -> ch.Rss2.title
       | Broken _ -> "" in
     { name;  title;  url;  feed }
@@ -103,9 +118,11 @@ and remove_undesired_tags_el = function
   | Data _ as d -> Some d
 
 let html_of_text s =
-  Nethtml.parse (new Netchannels.input_string s)
-                ~dtd:Utils.relaxed_html40_dtd
- |> decode_document |> remove_undesired_tags
+  try Nethtml.parse (new Netchannels.input_string s)
+                    ~dtd:Utils.relaxed_html40_dtd
+      |> decode_document |> remove_undesired_tags
+  with _ ->
+    [Nethtml.Data(encode_html s)]
 
 
 let rec html_of_syndic = function
@@ -157,15 +174,15 @@ let post_of_atom ~author (entry: Atom.entry) =
     | Some _ -> entry.published
     | None -> Some entry.updated in
   let desc = match entry.content with
-    | Some(Text s) -> html_of_text s
-    | Some(Html h) | Some(Xhtml h) -> html_of_syndic h
+    | Some(Text s) | Some(Html s) -> html_of_text s
+    | Some(Xhtml h) -> html_of_syndic h
     | Some(Mime _) | Some(Src _)
     | None ->
        match entry.summary with
-       | Some(Text s) -> html_of_text s
-       | Some(Html h) | Some(Xhtml h) -> html_of_syndic h
+       | Some(Text s) | Some(Html s) -> html_of_text s
+       | Some(Xhtml h) -> html_of_syndic h
        | None -> [] in
-  { title = entry.title;
+  { title = string_of_text_construct entry.title;
     link;  date;
     author = author;
     email = (fst entry.authors).name;

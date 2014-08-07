@@ -49,7 +49,7 @@ let get ?(cache_secs=cache_secs) url =
       close_out fh;
       eprintf "(cached).\n%!";
       data
-    with Http_client.Http_protocol(Http_client.Timeout _) as e ->
+    with Http_client.Http_protocol _ as e ->
       if Sys.file_exists fn then get_from_cache()
       else (
         eprintf "FAILED!\n%!";
