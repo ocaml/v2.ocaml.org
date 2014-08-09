@@ -1585,10 +1585,39 @@ out the rules and write the corresponding OCaml function.
 Hint: On a given level, the horizontal distance between neighbouring
 nodes is constant.
 
-<!-- SOLUTION -->
+The tree shown is 
+```ocamltop
+let example_layout_tree = 
+  let leaf x = Node (x,Empty,Empty) in
+  Node('n', Node('k', Node('c', leaf 'a', Node('e', leaf 'd', leaf 'g')),
+                      leaf 'm'),
+            Node('u', Node('p', Empty, leaf 'q'), Empty))
+```
 
-```ocaml
-  (* solution pending *)
+SOLUTION
+
+> ```ocamltop
+> let layout_binary_tree_2 t =
+>   let rec height = function
+>     | Empty -> 0
+>     | Node (_,l,r) -> 1+max (height l) (height r) in
+>   let tree_height = height t in
+>   let rec find_missing_left depth = function
+>     | Empty -> tree_height - depth
+>     | Node (_,l,_) -> find_missing_left (depth+1) l in
+>   let translate_dst = find_missing_left 0 t in
+>   let rec layout depth x_root = function
+>     | Empty -> E
+>     | Node (x,l,r) ->
+>       let spacing = 1 lsl (tree_height-depth-1) in
+>       let l' = layout (depth+1) (x_root-spacing) l and
+>       r' = layout (depth+1) (x_root+spacing) r in
+>       N (x,x_root,depth,l',r')
+>   in layout 1 ((1 lsl (tree_height-1)) - translate_dst) t
+> ```
+
+```ocamltop
+layout_binary_tree_2 example_layout_tree ;;
 ```
 
 
