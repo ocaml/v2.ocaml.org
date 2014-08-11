@@ -364,7 +364,7 @@ let html_of_post p =
   in
   [Data "\n";
    Element("a", ["name", title_anchor], []);
-   Element("section", ["class", "condensed"; "style", "clear: both"],
+   Element("section", ["style", "clear: both"],
            [Element("h1", ["class", "ruled planet"],
                     share @ html_title @ additional_info);
             Element("div", ["class", "planet-post"], desc)]);

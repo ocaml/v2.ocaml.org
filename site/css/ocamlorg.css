@@ -151,7 +151,19 @@ a.planet-toggle:hover, a.planet-toggle:focus {
   background: #c77a27;
 }
 
-h1.planet { line-height: 24px; }
+h1.planet {
+  font-size: 24px;
+  line-height: 24px;
+  padding-bottom: 6px;
+  border-bottom: 1px #ACACAC solid;
+}
+h1.planet a {
+  color: #404040;
+}
+h1.planet a:hover {
+  color: #c45641;
+}
+
 
 h1.planet a {
   line-height: 35px;
