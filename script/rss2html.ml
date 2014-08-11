@@ -438,6 +438,32 @@ let posts ?n () =
 
 let nposts () = List.length (get_posts ())
 
+(* Aggregation of posts
+ ***********************************************************************)
+
+let aggregate ?n fname =
+  let feeds = planet_feeds () in
+  let to_atom (c: contributor) =
+    match c.feed with
+    | Atom a -> Some(Some (Uri.of_string c.url), a)
+    | Rss2 ch -> Some(Some (Uri.of_string c.url), Rss2.to_atom ch)
+    | Broken _ -> None in
+  let atoms = Utils.filter_map feeds to_atom in
+  let feed = Atom.aggregate atoms in
+  let feed = match n with
+    | Some n ->
+       (* Sort the entries by date and the the [n] most recent ones. *)
+       let open Atom in
+       let by_date (e1: entry) (e2: entry) =
+         CalendarLib.Calendar.compare e2.updated e1.updated in
+       let entries = List.sort by_date feed.entries in
+       { feed with entries = take n entries }
+    | None -> feed in
+  let fh = open_out fname in
+  Atom.output feed (`Channel fh);
+  close_out fh
+
+
 (* Email threads
  ***********************************************************************)
 
@@ -508,7 +534,9 @@ let () =
     ("--nposts", Arg.Unit(fun () -> action := `NPosts),
      " number of posts in the RSS feed");
     ("--opml", Arg.String(fun fn -> action := `Opml fn),
-     "fname output an OMPL document to the given file");
+     "fname write an OMPL document to the given file");
+    ("--aggregate", Arg.String(fun fn -> action := `Aggregate fn),
+     "fname write the aggregated feed to the given file");
     ("-n", Arg.Int(fun n -> n_posts := Some n),
      "n limit the number of posts to n (default: all of them)");
     ("--locale",
@@ -526,6 +554,7 @@ let () =
    | `NPosts -> printf "%i" (nposts())
    | `Subscribers -> Nethtml.write out (html_contributors())
    | `Opml fn -> opml fn
+   | `Aggregate fn -> aggregate fn ?n:!n_posts
   );
   out#close_out()
 
