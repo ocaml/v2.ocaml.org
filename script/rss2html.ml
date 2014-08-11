@@ -23,8 +23,8 @@ let encode_document html = Nethtml.encode ~enc:`Enc_utf8 html
 
 (* Remove all tags *)
 let rec syndic_to_buffer b = function
-  | XML.Node (_, subs) -> List.iter (syndic_to_buffer b) subs
-  | XML.Data d -> Buffer.add_string b d
+  | XML.Node (_, _, subs) -> List.iter (syndic_to_buffer b) subs
+  | XML.Data (_, d) -> Buffer.add_string b d
 
 let syndic_to_string x =
   let b = Buffer.create 1024 in
@@ -46,14 +46,9 @@ type feed =
 
 let classify_feed (xml: string) =
   try Atom(Atom.parse (Xmlm.make_input (`String(0, xml))))
-  with Atom.Error.Expected _
-       | Atom.Error.Expected_Data
-       | Atom.Error.Duplicate_Link _ ->
+  with Atom.Error.Error _ ->
           try Rss2(Rss2.parse (Xmlm.make_input (`String(0, xml))))
-          with Rss2.Error.Expected _
-             | Rss2.Error.Expected_Data
-             | Rss2.Error.Size_Exceeded _
-             | Rss2.Error.Item_expectation ->
+          with Rss2.Error.Error _ ->
                 Broken "Neither Atom nor RSS2 feed"
 
 type contributor = {
