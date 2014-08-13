@@ -37,7 +37,7 @@
                     </a>
                     <h1><a href="/docs/">Documentation</a></h1>
                     <p><a href="docs/install.html" >Install</a> OCaml,
-					look up <a href="https://opam.ocaml.org/pkg/">package docs</a>, access the
+					look up <a href="https://opam.ocaml.org/packages/">package docs</a>, access the
 					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 					target="_blank"
 					>Manual</a>, get the <a href="/docs/cheat_sheets.html">cheat sheets</a> and <a href="/docs/">more</a>.</p>
@@ -54,7 +54,7 @@
                     <h1><a href="https://opam.ocaml.org">Packages</a></h1>
                     <p>The <a href="https://opam.ocaml.org">OCaml Package
 					Manager</a>, gives you access to multiple versions of
-					<a href="https://opam.ocaml.org/pkg/">hundreds of
+					<a href="https://opam.ocaml.org/packages/">hundreds of
 					packages</a>.</p>
                 </section>
                 <section class="span4 home-feature">
@@ -111,7 +111,7 @@
             <p>OCaml is a lot more powerful than this simple example shows. See <a href="/learn/taste.html">more examples</a>!</p>
         </section>
         <section class="span6 condensed">
-            <h1><a href='http://opam.ocaml.org/pkg/index-date.html'>Packages</a></h1>
+            <h1><a href='http://opam.ocaml.org/packages/index-date.html'>Packages</a></h1>
             ((! input template/front_package.mpp !))
         </section>
     </div>
