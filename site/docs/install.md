@@ -327,7 +327,7 @@ brew install ocaml
 
 You can then install [OPAM](http://opam.ocaml.org/), the
 OCaml package manager, which will give you access to all its
-[packages](http://opam.ocaml.org/pkg/) by running:
+[packages](http://opam.ocaml.org/packages/) by running:
 
 ```bash
 brew install opam

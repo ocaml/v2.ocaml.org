@@ -6,7 +6,7 @@
         <section class="span6 condensed">
             <h1 class="ruled">Summary</h1>
             <p>Here you'll find links to documentation for the OCaml compiler, <a href="/releases/">release</a> information, <a href="install.html">installation instructions</a>, and other resources.</p>
-            <p>Documentation for a given package can be found by following the link on that package's information page. <a href="https://opam.ocaml.org/pkg/">Search the package list</a> to find what you need.</p>
+            <p>Documentation for a given package can be found by following the link on that package's information page. <a href="https://opam.ocaml.org/packages/">Search the package list</a> to find what you need.</p>
         </section>
         <section class="span6 condensed">
             <h1 class="ruled">Reference</h1>
@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="row">
-                <a href="https://opam.ocaml.org/pkg/"
+                <a href="https://opam.ocaml.org/packages/"
 				   class="span3 documentation-highlight">
                     <img src="/img/documents.svg" alt="" class="svg" />
                     <img src="/img/documents.png" alt="" class="png" />
