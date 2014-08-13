@@ -449,7 +449,8 @@ let aggregate ?n fname =
     | Rss2 ch -> Some(Some (Uri.of_string c.url), Rss2.to_atom ch)
     | Broken _ -> None in
   let atoms = Utils.filter_map feeds to_atom in
-  let feed = Atom.aggregate atoms in
+  let feed = Atom.aggregate atoms
+                            ~title:(Atom.Text "OCaml Planet") in
   let feed = match n with
     | Some n ->
        (* Sort the entries by date and the the [n] most recent ones. *)
