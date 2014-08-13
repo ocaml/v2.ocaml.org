@@ -211,10 +211,10 @@ a.edit-this-page {
   text-decoration: none;
 }
 a.edit-this-page {
-  background: url(/img/edit.png) no-repeat left center;
+  background: url(../img/edit.png) no-repeat left center;
 }
 html.svg a.edit-this-page {
-  background: url(/img/edit.svg) no-repeat left center;
+  background: url(../img/edit.svg) no-repeat left center;
 }
 
 .edit-this-page span {
@@ -223,10 +223,10 @@ html.svg a.edit-this-page {
 }
 
 a.edit-this-page:hover {
-  background-image: url(/img/edit-hover.png);
+  background-image: url(../img/edit-hover.png);
 }
 html.svg a.edit-this-page:hover {
-  background-image: url(/img/edit-hover.svg);
+  background-image: url(../img/edit-hover.svg);
 }
 
 /* When the navigation bar has reduced size */
