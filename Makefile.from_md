@@ -10,19 +10,21 @@ USE_OPAM_UPDATE_LIST = \
 $(USE_OPAM_UPDATE_LIST): opam_update_list
 
 ocaml.org/%.html: site/%.md
-	mkdir -p "$(shell dirname $@)"
-	if grep -q '*Table of contents*' "$<" ; then $(MAKE) -f Makefile.from_md "$@.toc" ; fi
-	$(MAKE) -f Makefile.from_md "$@.tmp"
-	if [ -f "$@.toc" ] ; then \
+	@echo "HTML for $*"
+	@mkdir -p "$(shell dirname $@)"
+	@if grep -q '*Table of contents*' "$<" ; then $(MAKE) -f Makefile.from_md "$@.toc" ; fi
+	@$(MAKE) -f Makefile.from_md "$@.tmp"
+	@if [ -f "$@.toc" ] ; then \
 	  ${MPP} -set "filename=$<" -set "page=$@.tmp" -set "toc=$@.toc" template/main.mpp -o "$@" ; \
 	else \
 	  ${MPP} -set "filename=$<" -set "page=$@.tmp" template/main.mpp -o "$@" ; \
 	fi
-	$(RM) "$@.tmp"
-	$(RM) "$@.toc"
+	@$(RM) "$@.tmp" "$@.toc"
 
 ocaml.org/%.html.toc:site/%.md
-	${OMD} -otoc -ts 0 "$<" -o "$@"
+	@echo "TOC for $*"
+	@${OMD} -otoc -ts 0 "$<" -o "$@"
 
-ocaml.org/%.html.tmp:site/%.md $(OMD_PP)
-	sed -e 's|\*Table of contents\*||g' "$<" | $(OMD_PP) | ${OMD} -o "$@"
+ocaml.org/%.html.tmp:site/%.md
+	@echo "Preprocess $*"
+	@sed -e 's|\*Table of contents\*||g' "$<" | $(OMD_PP) | ${OMD} -o "$@"
