@@ -53,8 +53,24 @@ let map_css_file f in_file out_file =
   out#close_out()
 
 let map_file f in_file out_file =
-  if Filename.check_suffix in_file ".html"
+  if   Filename.check_suffix in_file ".html"
+    || Filename.check_suffix in_file ".xhtml"
   then map_html_file f in_file out_file
   else if Filename.check_suffix in_file ".css"
   then map_css_file f in_file out_file
   else raise (Unknown_file_type in_file)
+
+let rec remove_common_prefix p1 p2 =
+  match p1, p2 with
+  | d1 :: p1, d2 :: p2 when d1 = d2 -> remove_common_prefix p1 p2
+  | _ -> p1, p2
+
+let revert_path =
+  let rec revert filename =
+    match filename with
+    | [] | [ _ ]-> [] (* the last component is a filename or "" *)
+    | _ :: tl -> ".." :: revert tl in
+  fun to_base filename ->
+    let filename = Neturl.norm_path (Neturl.split_path filename) in
+    let to_base, filename = remove_common_prefix to_base filename in
+    revert filename @ to_base

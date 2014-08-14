@@ -1,3 +1,4 @@
 PKG netstring
+PKG uri
 S script
 B script

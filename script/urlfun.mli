@@ -18,3 +18,8 @@ val map_css_file : (string -> string) -> string -> string -> unit
     [Unknown_file_type filename] when no map function exists for the
     given file type. *)
 val map_file : (string -> string) -> string -> string -> unit
+
+val remove_common_prefix :
+  string list -> string list -> (string list * string list)
+
+val revert_path : string list -> string -> string list
