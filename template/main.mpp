@@ -15,10 +15,10 @@
           type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google Web Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" />
-    <link href="http://fonts.googleapis.com/css?family=Domine:400,700"
+    <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Domine:400,700"
 	  rel="stylesheet" />
-    <link href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono"
+    <link href="//fonts.googleapis.com/css?family=Droid+Sans+Mono"
 	  rel="stylesheet" type="text/css">
     <!-- Only part of Bootstrap that we don't load from a CDN is our own customized CSS build. -->
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
@@ -69,7 +69,7 @@
 	    </script>
 	    f!}}
             <form id="searchform" class="navbar-search pull-right"
-		  method="get" action="http://www.google.com/search">
+		  method="get" action="//www.google.com/search">
               <input value="site:http://ocaml.org/" name="q" type="hidden" />
               <input placeholder="{{! cmd script/translate ((! get filename !)) "Search" !}}" class="search-query"
 		     name="q" type="text" />
@@ -86,7 +86,7 @@
       </div>
     </footer>
     <!-- Load javascript from CDN -->
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">
       // <!--
       if(document.getElementsByTagName('pre').length > 0)
@@ -129,7 +129,7 @@
         g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
       })();
     </script>
-    <noscript><p><img src="http://ocaml.org/piwik/piwik.php?idsite=1"
+    <noscript><p><img src="//ocaml.org/piwik/piwik.php?idsite=1"
 		      style="border:0;" alt="" /></p></noscript>
     <!-- End Piwik Code -->
     S!}} <!-- ifndef staging -->
