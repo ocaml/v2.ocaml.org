@@ -2,7 +2,7 @@
 
 include Makefile.common
 
-ocaml.org/%.html: site/%.html $(DEP_CONTENT_GEN)
+ocaml.org/%.html: site/%.html
 	mkdir -p "$(shell dirname $@)"
 	${MPP} "$<" -o "$@"
 

@@ -9,7 +9,7 @@ USE_OPAM_UPDATE_LIST = \
 
 $(USE_OPAM_UPDATE_LIST): opam_update_list
 
-ocaml.org/%.html: site/%.md $(DEP_CONTENT_GEN) $(OMD_PP) $(DEP_SNIPPETS)
+ocaml.org/%.html: site/%.md
 	mkdir -p "$(shell dirname $@)"
 	if grep -q '*Table of contents*' "$<" ; then $(MAKE) -f Makefile.from_md "$@.toc" ; fi
 	$(MAKE) -f Makefile.from_md "$@.tmp"

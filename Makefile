@@ -5,12 +5,12 @@ local: script/relative_urls
 	find ocaml.org -type f | while read f; do \
 	  script/relative_urls --path ocaml.org "$$f"; done
 
-production:
+production: pre-build
 	$(MAKE) gen_md gen_html
 	$(MAKE) syncotherfiles
 	$(RM) ocaml.org/robots.txt
 
-staging: 
+staging: pre-build
 	$(MAKE) gen_md gen_html SET_STAGING='-set staging'
 	$(MAKE) syncotherfiles
 
