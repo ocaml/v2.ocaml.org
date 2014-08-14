@@ -1,0 +1,24 @@
+TITLE=<t:insert xmlns:t='http://ocaml.org/xmlns/template\#' name='title'/>
+TOOLS=\
+	script/absolute_urls \
+	script/lang_of_filename \
+	script/link_of_lang \
+	script/translate \
+	script/translations
+DEPS=$(TOOLS) template/main.mpp
+opam.ocaml.org_template: $(TOOLS)
+	$(MPP) -set "notranslations" \
+	       -set "title=$(TITLE)" \
+               -set "filename=opam.ocaml.org/packages" \
+	       -set "custom-head=opam.ocaml.org/head.xhtml" \
+	       -set "custom-edit=opam.ocaml.org/edit.xhtml" \
+	       -set "custom-search=opam.ocaml.org/search.xhtml" \
+	       -set "custom-contact=opam.ocaml.org/contact.xhtml" \
+	       -set "nobreadcrumb" \
+	       -set "packages" \
+	       -set "page=opam.ocaml.org/page.xhtml" \
+	       template/main.mpp \
+	       -o opam.ocaml.org/template.xhtml
+	script/absolute_urls --path opam.ocaml.org opam.ocaml.org/template.xhtml
+
+include Makefile.common
