@@ -5,7 +5,9 @@
       xml:lang="{{! cmd script/lang_of_filename ((! get filename !)) !}}" >
   <head>
     <meta charset="utf-8" />
+    {{!n ifndef notranslations
     {{! cmd script/translations --hreflang "((! get filename !))" !}}
+    n!}}
     {{! ifdef redirect
     <meta http-equiv="refresh"
 	  content="0; url=((! get redirect !))" />
@@ -29,6 +31,7 @@
     <link rel="alternate" type="application/rss+xml" title="RSS"
 	  href="http://planet.ocaml.org/rss20.xml" />
     !}}
+    {{!c ifdef custom-head {{!i input ((! get custom-head !)) i!}} c!}}
     <script>
       if (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1")) {
       document.documentElement.className = "svg";
@@ -53,12 +56,13 @@
 			  class="png" alt="OCaml" /></a>
           <div id="menu-items" class="nav-collapse collapse">
             ((! input template/navbar.mpp !))
-	    {{!f ifdef filename
-	    <a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))"
-	       title="{{! cmd script/translate ((! get filename !)) 'Edit this page' !}}"
+            {{!c ifdef custom-edit {{!i input ((! get custom-edit !)) i!}} c!}}
+            {{!c else <a
+               href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))"
+	       title="{{!t cmd script/translate ((! get filename !)) 'Edit this page' t!}}"
 	       class="edit-this-page pull-right"
 	       ><!-- Image in CSS
-	      --><span>{{! cmd script/translate ((! get filename !)) "Edit this page" !}}</span></a>
+	      --><span>{{!t cmd script/translate ((! get filename !)) "Edit this page" t!}}</span></a>
 	    <script language="JavaScript">
 	      // <!-- Preload the hover image
 	      Image1= new Image(33,33);
@@ -67,13 +71,16 @@
 	      Image2.src = "/img/edit-hover.png";
 	      // -->
 	    </script>
-	    f!}}
-            <form id="searchform" class="navbar-search pull-right"
+            c!}}
+            {{!c ifdef custom-search {{!i input ((! get custom-search !)) i!}} c!}}
+            {{!c else <form
+                  id="searchform" class="navbar-search pull-right"
 		  method="get" action="//www.google.com/search">
               <input value="site:http://ocaml.org/" name="q" type="hidden" />
               <input placeholder="{{! cmd script/translate ((! get filename !)) "Search" !}}" class="search-query"
 		     name="q" type="text" />
             </form>
+            c!}}
           </div>
         </div>
       </div>
