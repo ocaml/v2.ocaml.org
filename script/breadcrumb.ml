@@ -21,8 +21,8 @@ let rec breadcrumb_of_path bc lang path =
                 else (lang, "index." ^ lang ^ ".md")
                      :: (lang, "index." ^ lang ^ ".html") :: index in
     let index = List.map (fun (l,f) -> (l, Filename.concat path f)) index in
-    (* Remove the prefix "site". *)
-    let link = String.sub path 4 (String.length path - 4) in
+    (* Remove the first directory. *)
+    let link = "/" ^ (String.concat "/" (List.tl (Neturl.split_path path))) in
     let entry =
       try
         let index_lang, index = List.find (fun (_,f) -> Sys.file_exists f) index in
