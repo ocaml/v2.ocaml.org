@@ -74,10 +74,11 @@ script/code_top: $(CODE_TYPE_DEP) script/code_top.ml $(UTILS_DEP)
 	$(OCAMLC) -o ../"$@" -package netstring,dynlink,compiler-libs.toplevel \
 	  -linkpkg utils.cmo code_types.cmo code_top.ml
 
-script/relative_urls: script/relative_urls.ml $(UTILS_DEP)
+RELATIVE_URLS_DEP=script/urlfun.ml script/urlfun.mli $(UTILS_DEP)
+script/relative_urls: script/relative_urls.ml $(RELATIVE_URLS_DEP)
 	cd script && \
 	$(OCAMLOPT) -package netstring -linkpkg \
-	  utils.cmx relative_urls.ml -o ../"$@"
+	  utils.cmx urlfun.mli urlfun.ml relative_urls.ml -o ../"$@"
 
 htmlescape:htmlescape.ml
 	$(OCAMLOPT) $< -o $@

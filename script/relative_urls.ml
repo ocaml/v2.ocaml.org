@@ -11,40 +11,13 @@ let make_relative to_base orig_url =
   let orig_url = String.trim orig_url in (* bypass bug in omd *)
   try
     let url = Neturl.parse_url ~base_syntax orig_url in
-    let path = Neturl.url_path url in
-    match path with
+    if Neturl.url_provides url ~host:true then orig_url
+    else match Neturl.url_path url with
     | "" :: rel_path -> (* absolute *)
-       if Neturl.url_provides url ~scheme:true then orig_url
-       else
-         let path = Neturl.norm_path(to_base @ rel_path) in
-         (try Neturl.string_of_url (Neturl.modify_url url ~path)
-          with Neturl.Malformed_URL -> orig_url)
+      let path = Neturl.norm_path (to_base @ rel_path) in
+      Neturl.string_of_url (Neturl.modify_url url ~path)
     | _ -> orig_url
-  with Neturl.Malformed_URL ->
-    orig_url
-
-
-let rec make_local_links_relative to_base html =
-  List.map (make_local_links_relative_element to_base) html
-and make_local_links_relative_element to_base = function
-  | Nethtml.Data _ as d -> d
-  | Nethtml.Element(("a" | "link") as e, args, sub) ->
-     let href, args = List.partition (fun (a, _) -> a = "href") args in
-     (match href with
-      | [] -> (* no href (maybe an anchor); nothing to do *)
-         Nethtml.Element(e, args, sub)
-      | (_, url) :: _ ->
-         let args = ("href", make_relative to_base url) :: args in
-         Nethtml.Element(e, args, make_local_links_relative to_base sub))
-  | Nethtml.Element(("img" | "script") as e, args, sub) ->
-     let src, args = List.partition (fun (a, _) -> a = "src") args in
-     (match src with
-      | [] -> Nethtml.Element(e, args, sub)
-      | (_, url) :: _ ->
-         let args = ("src", make_relative to_base url) :: args in
-         Nethtml.Element(e, args, sub))
-  | Nethtml.Element(e, args, sub) ->
-     Nethtml.Element(e, args, make_local_links_relative to_base sub)
+  with Neturl.Malformed_URL -> orig_url
 
 let revert_path =
   let rec remove_common_prefix p1 p2 =
@@ -56,27 +29,9 @@ let revert_path =
     | [] | [ _ ]-> [] (* the last component is a filename or "" *)
     | _ :: tl -> ".." :: revert tl in
   fun to_base filename ->
-  let filename = Neturl.norm_path (Neturl.split_path filename) in
-  let to_base, filename = remove_common_prefix to_base filename in
-  revert filename @ to_base
-
-let process_html to_base filename =
-  let fh = open_in filename in
-  let html = Nethtml.parse_document (Lexing.from_channel fh)
-                                    ~dtd:Utils.relaxed_html40_dtd in
-  close_in fh;
-  let to_base = revert_path to_base filename in
-  let html = make_local_links_relative to_base html in
-  let fh = open_out filename in
-  let out = new Netchannels.output_channel fh in
-  (* Nethtml does not represent <!DOCTYPE HTML>, add it. *)
-  out#output_string "<!DOCTYPE HTML>\n";
-  Nethtml.write out html;
-  out#close_out()
-
-let process to_base filename =
-  if Filename.check_suffix filename ".html" then
-    process_html to_base filename
+    let filename = Neturl.norm_path (Neturl.split_path filename) in
+    let to_base, filename = remove_common_prefix to_base filename in
+    revert filename @ to_base
 
 let () =
   let files = ref [] in
@@ -85,7 +40,14 @@ let () =
     ("--path", Arg.Set_string path_to_base,
      "path path to the root of the site (default: \".\")") ] in
   let anon_arg a = files := a :: !files in
-  Arg.parse (Arg.align specs) anon_arg "relative_urls <filename>";
-  let to_base = if !path_to_base <> "" then Neturl.split_path !path_to_base
-                else [] in
-  List.iter (process to_base) !files
+  Arg.parse (Arg.align specs) anon_arg "relative_urls [<filename> ..]";
+  let to_base =
+    if !path_to_base <> ""
+    then Neturl.split_path !path_to_base
+    else []
+  in
+  List.iter Urlfun.(fun file ->
+    let to_base = revert_path to_base file in
+    try map_file (make_relative to_base) file file
+    with (Unknown_file_type _) -> ()
+  ) !files
