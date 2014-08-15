@@ -6,7 +6,7 @@
         <section class="span6 condensed">
             <h1 class="ruled">Résumé</h1>
             <p>Ici vous trouverez des liens vers la documentation du compilateur OCaml, de l'information sur <a href="/releases/">ses versions</a> et d'autres ressources.</p>
-            <p>La documentation de chaque contribution est disponible en suivant le lien sur la page d'information de la contribution. <a href="https://opam.ocaml.org/pkg/">Rechercher dans la liste des contributions</a> pour trouver ce dont vous avez besoin.</p>
+            <p>La documentation de chaque contribution est disponible en suivant le lien sur la page d'information de la contribution. <a href="https://opam.ocaml.org/packages/">Rechercher dans la liste des contributions</a> pour trouver ce dont vous avez besoin.</p>
         </section>
         <section class="span6 condensed">
             <h1 class="ruled">Références</h1>
@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="row">
-                <a href="https://opam.ocaml.org/pkg/" class="span3 documentation-highlight">
+                <a href="https://opam.ocaml.org/packages/" class="span3 documentation-highlight">
                     <img src="/img/documents.svg" alt="" class="svg" />
                     <img src="/img/documents.png" alt="" class="png" />
                     Docs des contributions

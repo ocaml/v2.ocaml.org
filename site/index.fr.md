@@ -39,7 +39,7 @@
                     </a>
                     <h1><a href="/docs/">Documentation</a></h1>
                     <p><a href="docs/install.fr.html" >Installer</a> OCaml,
-					trouver des <a href="https://opam.ocaml.org/pkg/">docs de paquets</a>, accéder au
+					trouver des <a href="https://opam.ocaml.org/packages/">docs de paquets</a>, accéder au
 					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 					target="_blank"
 					>Manuel</a>, obtenir <a href="/docs/cheat_sheets.html">des mémentos</a> et <a href="/docs/">bien plus</a>.</p>
@@ -55,7 +55,7 @@
 					</a>
                     <h1><a href="https://opam.ocaml.org">Contributions</a></h1>
                     <p>Le gestionnaire de paquets <a href="https://opam.ocaml.org">OPAM</a> vous donne accès aux multiples versions de
-					<a href="https://opam.ocaml.org/pkg/">centaines de paquets</a>.</p>
+					<a href="https://opam.ocaml.org/packages/">centaines de paquets</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/community/">
@@ -113,7 +113,7 @@
 			<a href="/learn/taste.html">d'autres exemples</a>!</p>
         </section>
         <section class="span6 condensed">
-            <h1><a href='http://opam.ocaml.org/pkg/index-date.html'>Nouveautés dans OPAM</a></h1>
+            <h1><a href='http://opam.ocaml.org/packages/index-date.html'>Nouveautés dans OPAM</a></h1>
             ((! input template/front_package.mpp !))
         </section>
     </div>

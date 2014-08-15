@@ -73,7 +73,7 @@ allocate a new cell and then fill its fields. For instance:
 list cons (element x, list l)
 {
   list result;
-  result = (list) malloc (sizeof (cellule));
+  result = (list) malloc (sizeof (cell));
   result -> hd = x;
   result -> tl = l;
   return (result);

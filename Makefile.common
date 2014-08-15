@@ -12,13 +12,13 @@ OCAMLFLAGS = -annot
 OCAMLOPT = ocamlfind ocamlopt $(OCAMLFLAGS)
 OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
 
-DEP_CONTENT_GEN = template/main.mpp template/footer.mpp \
+# Things to create before launching the parallel page build
+pre-build: template/main.mpp template/footer.mpp \
+  template/front_code_snippet.html template/learn_code_snippet.html \
   script/breadcrumb script/translations \
   script/code_top script/ocamltohtml script/rss2html \
   script/lang_of_filename script/translate script/link_of_lang \
-  opam_update_list
-
-DEP_SNIPPETS = template/front_code_snippet.html template/learn_code_snippet.html
+  opam_update_list $(OMD_PP)
 
 UTILS_DEP = $(addprefix script/utils., cmi cmo cmx)
 CODE_TYPE_DEP = $(addprefix script/code_types., cmi cmo cmx)
@@ -31,7 +31,7 @@ opam_update_list: script/generate_opam_update_list
 
 script/generate_opam_update_list: script/generate_opam_update_list.ml
 	cd script && \
-	$(OCAMLOPT) -o ../"$@" -package opam2web,cow.syntax \
+	$(OCAMLOPT) -o ../"$@" -package opamfu,opam2web,cow.syntax \
 	  -linkpkg -syntax camlp4o generate_opam_update_list.ml
 
 script/lang_of_filename: script/lang_of_filename.ml $(UTILS_DEP)
@@ -109,3 +109,5 @@ site/$(CAMLP4_TUT_DIR)/%.cmo: site/$(CAMLP4_TUT_DIR)/%.ml
 
 TRASH += $(CAMLP4_TUT_SOURCES:.ml=.cmi) $(CAMLP4_TUT_SOURCES:.ml=.cmo) \
   $(CAMLP4_TUT_SOURCES:.ml=.annot)
+
+.PHONY: pre-build
