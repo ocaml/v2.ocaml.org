@@ -166,6 +166,12 @@ type post = {
   desc   : html;
 }
 
+let special_processing (p: post) =
+  if p.author.name = "Caml Weekly News" then
+    { p with title = "Weekly News" }
+  else
+    p
+
 let post_compare p1 p2 =
   (* Most recent posts first.  Posts with no date are always last *)
   match p1.date, p2.date with
@@ -198,11 +204,11 @@ let post_of_atom ~author (entry: Atom.entry) =
        | Some(Text s) | Some(Html s) -> html_of_text s
        | Some(Xhtml h) -> html_of_syndic h
        | None -> [] in
-  { title = string_of_text_construct entry.title;
-    link;  date;
-    author = author;
-    email = (fst entry.authors).name;
-    desc }
+  special_processing { title = string_of_text_construct entry.title;
+                       link;  date;
+                       author = author;
+                       email = (fst entry.authors).name;
+                       desc }
 
 let post_of_rss2 ~author it =
   let open Syndic.Rss2 in
@@ -218,10 +224,10 @@ let post_of_rss2 ~author it =
           is nonetheless the only URL we get (e.g. ocamlpro). *)
        Some u.data
     | None, None -> None in
-  { title; link; author;
-    email = string_of_option it.author;
-    desc;
-    date = it.pubDate }
+  special_processing { title; link; author;
+                       email = string_of_option it.author;
+                       desc;
+                       date = it.pubDate }
 
 let posts_of_contributor c =
   match c.feed with
