@@ -72,6 +72,9 @@ let feed_of_url ~name url =
      { name;  title = "";  url;  feed = Broken s }
   | Http_client.Http_protocol Http_client.Too_many_redirections ->
      { name;  title = "";  url;  feed = Broken "Too many redirections" }
+  | Http_client.Http_error(err, _) ->
+     let msg = Nethttp.(string_of_http_status (http_status_of_int err)) in
+     { name;  title = "";  url;  feed = Broken msg }
 
 let planet_feeds() =
   let add_feed acc line =
