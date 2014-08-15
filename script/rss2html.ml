@@ -36,6 +36,38 @@ let string_of_text_construct : Atom.text_construct -> string = function
   | Atom.Text s | Atom.Html s -> s
   | Atom.Xhtml x -> syndic_to_string x
 
+
+(* Things that posts should not contain *)
+let undesired_tags = ["style"; "script"]
+let undesired_attr = ["id"]
+
+let remove_undesired_attr =
+  List.filter (fun (a,_) -> not(List.mem a undesired_attr))
+
+let rec remove_undesired_tags html =
+  Utils.filter_map html remove_undesired_tags_el
+and remove_undesired_tags_el = function
+  | Nethtml.Element(t, a, sub) ->
+     if List.mem t undesired_tags then None
+     else Some(Nethtml.Element(t, remove_undesired_attr a,
+                               remove_undesired_tags sub))
+  | Data _ as d -> Some d
+
+let html_of_text s =
+  try Nethtml.parse (new Netchannels.input_string s)
+                    ~dtd:Utils.relaxed_html40_dtd
+      |> decode_document |> remove_undesired_tags
+  with _ ->
+    [Nethtml.Data(encode_html s)]
+
+(* Do not trust sites using XML for HTML content.  Convert to string
+   and parse back.  (Does not always fix bad HTML unfortunately.) *)
+let rec html_of_syndic =
+  let ns_prefix _ = Some "" in
+  fun h ->
+  html_of_text(String.concat "" (List.map (XML.to_string ~ns_prefix) h))
+
+
 (* Feeds
  ***********************************************************************)
 
@@ -123,37 +155,6 @@ let opml fname =
 
 (* Blog feed
  ***********************************************************************)
-
-(* Things that posts should not contain *)
-let undesired_tags = ["style"; "script"]
-let undesired_attr = ["id"]
-
-let remove_undesired_attr =
-  List.filter (fun (a,_) -> not(List.mem a undesired_attr))
-
-let rec remove_undesired_tags html =
-  Utils.filter_map html remove_undesired_tags_el
-and remove_undesired_tags_el = function
-  | Nethtml.Element(t, a, sub) ->
-     if List.mem t undesired_tags then None
-     else Some(Nethtml.Element(t, remove_undesired_attr a,
-                               remove_undesired_tags sub))
-  | Data _ as d -> Some d
-
-let html_of_text s =
-  try Nethtml.parse (new Netchannels.input_string s)
-                    ~dtd:Utils.relaxed_html40_dtd
-      |> decode_document |> remove_undesired_tags
-  with _ ->
-    [Nethtml.Data(encode_html s)]
-
-(* Do not trust sites using XML for HTML content.  Convert to string
-   and parse back.  (Does not always fix bad HTML unfortunately.) *)
-let rec html_of_syndic =
-  let ns_prefix _ = Some "" in
-  fun h ->
-  html_of_text(String.concat "" (List.map (XML.to_string ~ns_prefix) h))
-
 
 (** Our representation of a "post". *)
 type post = {
