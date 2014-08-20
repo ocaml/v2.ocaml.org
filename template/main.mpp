@@ -21,7 +21,7 @@
     <link href="//fonts.googleapis.com/css?family=Domine:400,700"
 	  rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Droid+Sans+Mono"
-	  rel="stylesheet" type="text/css">
+	  rel="stylesheet" type="text/css" />
     <!-- Only part of Bootstrap that we don't load from a CDN is our own customized CSS build. -->
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />
@@ -33,8 +33,8 @@
     !}}
     {{!c ifdef custom-head {{!i input ((! get custom-head !)) i!}} c!}}
     <script>
-      if (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1")) {
-      document.documentElement.className = "svg";
+      if (document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Image', '1.1')) {
+      document.documentElement.className = 'svg';
       }
     </script>
   </head>
@@ -64,12 +64,11 @@
 	       ><!-- Image in CSS
 	      --><span>{{!t cmd script/translate ((! get filename !)) "Edit this page" t!}}</span></a>
 	    <script language="JavaScript">
-	      // <!-- Preload the hover image
+	      // Preload the hover image
 	      Image1= new Image(33,33);
-	      Image1.src = "/img/edit-hover.svg";
+	      Image1.src = '/img/edit-hover.svg';
 	      Image2= new Image(33,33);
-	      Image2.src = "/img/edit-hover.png";
-	      // -->
+	      Image2.src = '/img/edit-hover.png';
 	    </script>
             c!}}
             {{!c ifdef custom-search {{!i input ((! get custom-search !)) i!}} c!}}
@@ -97,12 +96,6 @@
     {{!j ifdef extra-js {{!i input ((! get extra-js !)) i!}} j!}}
     <!-- Load javascript from CDN -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-      // <!--
-      if(document.getElementsByTagName('pre').length > 0)
-         octry('')
-      // -->
-    </script>
 
     {{!S ifndef staging
     <script type="text/javascript">
@@ -122,21 +115,21 @@
     <!-- Piwik -->
     <script type="text/javascript">
       var _paq = _paq || [];
-      _paq.push(["setCookieDomain", "*.ocaml.org"]);
-      _paq.push(["setDocumentTitle", "((! tryget title !))"]);
-      _paq.push(["setDoNotTrack", true]);
-      _paq.push(["setCustomVariable", 1, "Page language",
-         "{{! cmd script/lang_of_filename --long ((! get filename !)) !}}",
-         "page"]);
-      _paq.push(["trackPageView"]);
-      _paq.push(["enableLinkTracking"]);
+      _paq.push(['setCookieDomain', '*.ocaml.org']);
+      _paq.push(['setDocumentTitle', '((! tryget title !))']);
+      _paq.push(['setDoNotTrack', true]);
+      _paq.push(['setCustomVariable', 1, 'Page language',
+         '{{! cmd script/lang_of_filename --long ((! get filename !)) !}}',
+         'page']);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
 
       (function() {
-        var u=(("https:" == document.location.protocol) ? "https" : "http") + "://ocaml.org/piwik/";
-        _paq.push(["setTrackerUrl", u+"piwik.php"]);
-        _paq.push(["setSiteId", "1"]);
-        var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-        g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+        var u=(('https:' == document.location.protocol) ? 'https' : 'http') + '://ocaml.org/piwik/';
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+        g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
       })();
     </script>
     <noscript><p><img src="//ocaml.org/piwik/piwik.php?idsite=1"
