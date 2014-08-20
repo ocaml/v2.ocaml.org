@@ -6,7 +6,7 @@ TOOLS=\
 	script/translate \
 	script/translations
 DEPS=$(TOOLS) template/main.mpp
-opam.ocaml.org_template: $(TOOLS)
+opam.ocaml.org_template: pre-build $(TOOLS)
 	$(MPP) -set "notranslations" \
 	       -set "title=$(TITLE)" \
                -set "filename=opam.ocaml.org/packages" \
