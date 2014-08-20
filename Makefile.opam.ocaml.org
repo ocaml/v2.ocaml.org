@@ -24,3 +24,5 @@ opam.ocaml.org_template: pre-build $(TOOLS)
 	script/absolute_urls --path opam.ocaml.org opam.ocaml.org/template.xhtml
 
 include Makefile.common
+
+.PHONY: opam.ocaml.org_template

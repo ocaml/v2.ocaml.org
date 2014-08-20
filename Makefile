@@ -19,6 +19,12 @@ syncotherfiles:
 	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
 	  -rltHprogv site/* ocaml.org/
 
+# This target is PHONY (see end) because we don't want to enumerate
+# all the dependents that invalidate the resulting
+# opam.ocaml.org/template.xhtml for fear of that enumeration being
+# incomplete or falling out of date. That is, we treat ocaml.org's
+# page generation process as a black box here and suffer no noticeable
+# performance degradation.
 opam.ocaml.org_template:
 	$(MAKE) -f Makefile.opam.ocaml.org
 
