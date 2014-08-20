@@ -84,14 +84,17 @@
           </div>
         </div>
       </div>
+      {{!s ifdef subheader {{!i input ((! get subheader !)) i!}} s!}}
     </nav>
     {{! ifdef core ((! get contents !)) !}}
     {{! else ((! input template/core.mpp !)) !}}
+    {{!f ifdef superfooter {{!i input ((! get superfooter !)) i!}} f!}}
     <footer id="footer" class="navbar navbar-inverse">
       <div class="navbar-inner">
 	((! input template/footer.mpp !))
       </div>
     </footer>
+    {{!j ifdef extra-js {{!i input ((! get extra-js !)) i!}} j!}}
     <!-- Load javascript from CDN -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">

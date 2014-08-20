@@ -1,4 +1,4 @@
-TITLE=<t:insert xmlns:t='http://ocaml.org/xmlns/template\#' name='title'/>
+TITLE=OPAM <t:insert xmlns:t='http://ocaml.org/xmlns/template\#' name='title'/>
 TOOLS=\
 	script/absolute_urls \
 	script/lang_of_filename \
@@ -13,10 +13,12 @@ opam.ocaml.org_template: $(TOOLS)
 	       -set "custom-head=opam.ocaml.org/head.xhtml" \
 	       -set "custom-edit=opam.ocaml.org/edit.xhtml" \
 	       -set "custom-search=opam.ocaml.org/search.xhtml" \
-	       -set "custom-contact=opam.ocaml.org/contact.xhtml" \
 	       -set "nobreadcrumb" \
 	       -set "packages" \
+               -set "subheader=opam.ocaml.org/subheader.xhtml" \
 	       -set "page=opam.ocaml.org/page.xhtml" \
+               -set "superfooter=opam.ocaml.org/superfooter.xhtml" \
+               -set "extra-js=opam.ocaml.org/js.xhtml" \
 	       template/main.mpp \
 	       -o opam.ocaml.org/template.xhtml
 	script/absolute_urls --path opam.ocaml.org opam.ocaml.org/template.xhtml
