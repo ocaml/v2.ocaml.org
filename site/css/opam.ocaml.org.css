@@ -1,0 +1,143 @@
+body {
+  padding-top: 140px;
+  padding-bottom: 40px;
+}
+
+.navbar-inner.subnavbar {
+  min-height: 0;
+}
+
+.subnavbar .nav > li > a {
+  padding: 10px 15px;
+}
+
+body > .navbar .subnavbar {
+  font-size: 13px;
+  padding-left: 171px; /* main navbar logo box width */
+}
+
+.table th, .table td {
+  text-align: left;
+}
+
+/* Change the docs' brand */
+body > .navbar .subnavbar .brand {
+  padding: 10px 171px 10px 0px; /* main navbar logo box width */
+  margin-left: 20px;
+  float: right;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+  -webkit-transition: all .2s linear;
+     -moz-transition: all .2s linear;
+          transition: all .2s linear;
+}
+body > .navbar .subnavbar .brand:hover {
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+}
+
+.menu-spacer {
+/* dunno why... gotta have it to get menu/content floats to interact properly */
+  height: 25px;
+}
+
+.footer {
+  position: relative;
+  margin-top: -50px; /* negative value of footer height */
+  height: 50px;
+  clear: both;
+  text-align: center;
+  padding-top:20px;
+} 
+
+.footer .copyright {
+  clear: both;
+}
+
+.footer .icons {
+  margin: auto;
+  padding-bottom: 20px;
+  width: 150px;
+  overflow: auto;
+}
+
+.footer .icons .icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  margin: 0 2px;
+  float: left;
+}
+
+.footer a {
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+.footer a:hover {
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+th.operator {
+  vertical-align: middle;
+  text-align: center;
+}
+
+table.formula-wrap th, table.formula-wrap td,
+table.formula      th, table.formula      td {
+  border: none;
+  white-space: nowrap;
+}
+
+table.formula th.operator {
+  font-size: 150%;
+  border-right: 1px solid rgb(221, 221, 221);
+}
+
+table.formula td.pkgname {
+  vertical-align: middle;
+}
+
+td table.formula {
+  margin-left: -8px;
+}
+
+table.formula-wrap {
+  width: 100%;
+  margin-left: -8px;
+}
+
+table.formula-wrap > tbody > tr > th,
+table.formula-wrap > tbody > tr > td {
+  padding-top: 0;
+  padding-bottom: 0;
+  border: none;
+}
+
+table.formula-wrap > tbody > tr > td:last-child,
+table.formula      > tbody > tr > td:last-child {
+  width: 100%;
+}
+
+tr.embedded-formula > th, tr.embedded-formula > td {
+  font-size: 85%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-top: 0;
+}
+
+tr.embedded-formula > td:last-child {
+  width: 100%;
+  text-align: right;
+}
+
+
+h2 {
+  border-bottom: 1px solid lightgrey;
+  padding-top: 5px;
+}
+
+h2, h3, h4 {
+  margin-top: 1ex;
+}

@@ -1,0 +1,77 @@
+<t:seq xmlns:t="http://ocaml.org/xmlns/template#">
+<!-- Main hero unit for a primary marketing message or call to action -->
+<div class="hero-unit">
+  <h1>
+    <img style="width: 1em;vertical-align:middle;" src="ext/img/opam.png"/>
+    &#160;OCaml Package Manager
+  </h1>
+  <br/>
+  <p>OPAM is a source-based package manager for OCaml. It supports multiple simultaneous
+    compiler installations, flexible package constraints, and a Git-friendly development
+    workflow. Managing your OCaml installation can be as simple as:</p>
+  <pre class="prettyprint lang-sh linenums">
+opam list -a         # List the available packages
+opam install lwt     # Install LWT
+opam update          # Update the package list
+...
+opam upgrade         # Upgrade the installed packages to their latest version
+</pre>
+  <br/>
+  <br/>
+  <div class="text-right">
+    <div class="btn-group">
+      <a class="btn btn-large"
+         href="doc/Quick_Install.html">
+        Download and install OPAM »
+      </a>
+      <a class="btn btn-large"
+         href="doc/Basic_Usage.html">
+        How to use OPAM »
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Example row of columns -->
+<div class="row">
+  <div class="span4">
+    <h2>News</h2>
+    <t:insert name="news" />
+  </div>
+  <div class="span4">
+    <h2>Contribute</h2>
+    <p>
+      <i class="icon-tag"> </i>
+      <a href="https://github.com/ocaml/opam" title="ocaml/opam">Report bugs</a> and
+      <a href="https://github.com/ocaml/opam" title="ocaml/opam">ask for features</a> in
+      the OPAM tool<br/>
+      <i class="icon-tags"> </i>
+      <a href="https://github.com/ocaml/opam-repository" title="ocaml/opam-repository">Report</a> packaging issues or
+      <a href="https://github.com/ocaml/opam-repository" title="ocaml/opam-repository">request</a> new packages<br/></p>
+    <p>
+      <i class="icon-pencil"> </i> <a href="http://lists.ocaml.org/listinfo/platform">Address</a> general queries on the tool and packages<br/>
+      <i class="icon-pencil"> </i> <a href="http://lists.ocaml.org/listinfo/opam-devel">Discuss</a> the tool internals<br/>
+    </p>
+  </div>
+
+  <div class="span4">
+    <h2>Tutorials</h2>
+    <p><a href="doc/Quick_Install.html" title="Installing OPAM">Installing OPAM</a></p>
+    <p><a href="doc/Packaging.html" title="Creating OPAM packages">Creating Packages</a></p>
+    <p><a href="https://github.com/ocaml/opam/raw/master/doc/dev-manual/dev-manual.pdf" title="Developer Manual for OPAM">Developer Manual</a></p>
+  </div>
+  <!--
+      <div class="span2">
+        <img src="ext/img/camel_rider.png" alt="Camel Rider" />
+      </div>
+      -->
+</div>
+<hr />
+<!-- tag_cloud -->
+<hr />
+<div class="row">
+  <t:insert name="stats" />
+  <t:insert name="updates_last10" />
+  <t:insert name="packages_top10" />
+</div>
+</t:seq>

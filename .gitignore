@@ -14,6 +14,7 @@ ocaml.org/
 ocamltohtml
 rss2html
 relative_urls
+absolute_urls
 script/md_preprocess
 script/code_top
 script/breadcrumb
@@ -22,6 +23,7 @@ script/translations
 script/translate
 template/front_code_snippet.html
 template/learn_code_snippet.html
+opam.ocaml.org/template.xhtml
 .DS_Store
 script/link_of_lang
 script/generate_opam_update_list
