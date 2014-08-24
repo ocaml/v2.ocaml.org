@@ -18,6 +18,10 @@ syncotherfiles:
 	rsync --exclude '*~' --exclude '*.md' --exclude '*.html' \
 	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
 	  -rltHprogv site/* ocaml.org/
+	if test -d ../ocaml.org-media; then \
+	 rsync --exclude '*~' --exclude '*.md' --exclude '*.html' \
+	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
+	  -rltHprogv ../ocaml.org-media/* ocaml.org/ ; fi
 
 # This target is PHONY (see end) because we don't want to enumerate
 # all the dependents that invalidate the resulting
