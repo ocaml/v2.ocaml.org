@@ -20,7 +20,7 @@ Building the html pages requires:
 * mpp >= 0.1.2
 * omd >= 0.9.7
 * opam2web >= 1.3.1
-* netstring, netclient, equeue-ssl, and syndic (for rss2html.ml)
+* ocamlnet (>= 3.7.4-1), and syndic (>= 1.1) for rss2html.ml
 * lablgtk2 (optional, for the Gtk tutorial)
 
 Implicit dependencies exist and may not be on this list (for instance, opam2web depends on quite a set of packages, so it's strongly adviced to use opam to compute and install automatically such packages).
