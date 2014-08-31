@@ -6,51 +6,47 @@
 The OCaml compiler and libraries can be installed in several
 ways. Broadly, the options are:
 
-* use OPAM, a source package manager specific to OCaml, or
+* use OPAM, a package manager specific to OCaml
 * use a package manager supported by your platform (Windows, Linux,
-  Mac OS X,...), or
+  Mac OS X, ...)
 * install from source code.
 
-The different options are detailed below. You can also find more
-packages [here](/learn/libraries.html).
-
+These different options are detailed below and explain how to install
+the OCaml compiler and libraries that have been packaged in one way or
+another. Also, see [here](/learn/libraries.html) for additional
+resources to find OCaml libraries.
 
 
 ## OPAM
 
+OPAM is the recommended method to install the OCaml compiler and OCaml
+packages. The [default OPAM
+repository](http://opam.ocaml.org/packages/) is actively maintained
+and serves as the de facto master set of OCaml packages. OPAM also
+provides features that would be unavailable with the other methods,
+such as the ability to have multiple versions of OCaml installed at
+the same time, or have multiple universes of packages for different
+projects with conflicting package constraints. Get an overview by
+visiting [OPAM's main page](http://opam.ocaml.org/).
+
+Note there is a bootstrapping issue since OPAM is itself implemented
+in OCaml. You can follow the instructions
+[here](http://software.opensuse.org/download.html?project=home%3Aocaml&package=ocaml)
+to first install OPAM using an OS specific package
+manager. Alternatively, you can compile from source by grabbing one
+the recent [releases](https://github.com/ocaml/opam/releases). More
+information is available in the [Quick
+Install](http://opam.ocaml.org/doc/Quick_Install.html) and [Advanced
+Install](http://opam.ocaml.org/doc/Advanced_Install.html) pages.
+
 [OPAM](http://opam.ocaml.org/) is a package manager for OCaml, based
 on the CUDF library developed by the Mancoosi project, which is,
 among other things, used by Debian to manage their packages. It works
-well on Unix, Linux, and Mac OS X systems. Windows support is comming
+well on Unix, Linux, and Mac OS X systems. Windows support is comming
 soon.
 OPAM is written and maintained by [OCamlPro](http://www.ocamlpro.com/) and
 [OCaml Labs](http://www.cl.cam.ac.uk/projects/ocamllabs/), and is free software
 ([commercial support](http://www.ocamlpro.com/) is available).
-
-To get started, see
-[Download and install OPAM](http://opam.ocaml.org/) and follow the
-instructions.
-
-For the impatient, do the following
-
-Quick install:
-
-```bash
-$ wget http://www.ocamlpro.com/pub/opam_installer.sh
-$ sh ./opam_installer.sh /usr/local/bin  # You can change the path to install it in an other place.
-```
-From source:
-
-```bash
-$ git clone https://github.com/OCamlPro/opam
-$ cd opam
-$ ./configure # (or ./configure --prefix=$HOME if you want to install under your $HOME)
-$ make
-$ make install
-$ opam init
-$ eval `opam config -env`
-$ opam switch 4.00.1
-```
 
 
 ## Debian
