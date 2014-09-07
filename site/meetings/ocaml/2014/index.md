@@ -13,6 +13,9 @@ the day after the [ML Family Workshop](http://okmij.org/ftp/ML/ML14.html).
 News
 ----
 
+-   September 7, 2004: Links to
+    [videos](https://www.youtube.com/channel/UCP9g4dLR7xt6KzCYntNqYcw/videos)
+    of the talks added to the [program](#Program).
 -   August 24, 2014: Add abstracts to the [program](#Program).
 -   July 4, 2014: [preliminary program](program.html).
 -   May 20, 2014: Extended deadline is Friday May 23, 23:59 UTC-11.
@@ -38,25 +41,30 @@ Program
 #### 09:10-10:00 - Runtime system
 Multicore OCaml, by Stephen Dolan, Leo White, Anil Madhavapeddy
 (University of Cambridge).
-[PDF Abstract](ocaml2014_1.pdf).
+[PDF Abstract](ocaml2014_1.pdf),
+[Video](https://www.youtube.com/watch?v=FzmQTC_X5R4&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Ephemerons meet OCaml GC, by François Bobot (CEA).
-[PDF Abstract](ocaml2014_2.pdf).
+[PDF Abstract](ocaml2014_2.pdf),
+[Video](https://www.youtube.com/watch?v=2fzjoxLMOXA&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 <!-- #### 10:00-10:25 - Coffee break -->
 
 #### 10:25-11:20 - Tools and libraries
 Introduction to 0install, by Thomas Leonard (University of Cambridge) .
-[PDF Abstract](ocaml2014_3.pdf).
+[PDF Abstract](ocaml2014_3.pdf),
+[Video](https://www.youtube.com/watch?v=dYRT6z0NGII&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Transport Layer Security purely in OCaml (*),
 by Hannes Mehnert (University of Cambridge),
 David Kaloper Meršinjak (University of Nottingham).
-[PDF Abstract](ocaml2014_4.pdf).
+[PDF Abstract](ocaml2014_4.pdf),
+[Video](https://www.youtube.com/watch?v=hJk2lQXbkNk&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 OCamlOScope: a New OCaml API Search (*), by Jun Furuse (Standard
 Chartered Bank, Singapore).
-[PDF Abstract](ocaml2014_5.pdf).
+[PDF Abstract](ocaml2014_5.pdf),
+[Video](https://www.youtube.com/watch?v=zRwXIGs42iY&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 <!-- #### 11:20-11:40 - Break -->
 
@@ -64,12 +72,14 @@ Chartered Bank, Singapore).
 
 The State of OCaml (invited), Xavier Leroy
 (INRIA Paris-Rocquencourt).
+[Video](https://www.youtube.com/watch?v=DMzZy1bqj6Q&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 The OCaml Platform v1.0, by Anil Madhavapeddy (C), Amir Chaudhry (C),
 Jeremie Diminio (JS), Thomas Gazagnaire (C), Louis Gesbert (OCamlPro),
 Thomas Leonard (C),  David Sheets (C), Mark Shinwell (JS), Leo White
 (C), Jeremy Yallop (C); (C = University of Cambridge, JS = Jane Street).
-[PDF Abstract](ocaml2014_7.pdf).
+[PDF Abstract](ocaml2014_7.pdf),
+[Video](https://www.youtube.com/watch?v=jxhtpQ5nJHg&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 #### 12:30-14:00 - Lunch
 
@@ -78,15 +88,18 @@ Thomas Leonard (C),  David Sheets (C), Mark Shinwell (JS), Leo White
 A Proposal for Non-Intrusive Namespaces in OCaml, 
 by Pierrick Couderc (I), Fabrice Le Fessant (I+O), Benjamin Canou
 (O), Pierre Chambart (O); (I = INRIA, O = OCamlPro).
-[PDF Abstract](ocaml2014_8.pdf).
+[PDF Abstract](ocaml2014_8.pdf),
+[Video](https://www.youtube.com/watch?v=ltkBqVMVQeo&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Improving Type Error Messages in OCaml (*), by Arthur Charguéraud (INRIA &
 Université Paris Sud).
-[PDF Abstract](ocaml2014_9.pdf).
+[PDF Abstract](ocaml2014_9.pdf),
+[Video](https://www.youtube.com/watch?v=V_ipQZeBueg&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Github Pull Requests for OCaml development: a field report (*),
 by Gabriel Scherer (INRIA).
-[Abstract](ocaml2014_10.html).
+[Abstract](ocaml2014_10.html),
+[Video](https://www.youtube.com/watch?v=PGgAsnxlt4U&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 <!-- #### 14:55-15:10 - Break -->
 
@@ -97,44 +110,52 @@ by Thomas Gazagnaire (C), Amir Chaudhry (C), Anil Madhavapeddy (C), Richard
 Mortier (University of Nottingham), David Scott (Citrix System), David
 Sheets (C), Gregory Tsipenyuk (C), Jon Crowcroft (C); (C = University
 of Cambridge).
-[PDF Abstract](ocaml2014_11.pdf).
+[PDF Abstract](ocaml2014_11.pdf),
+[Video](https://www.youtube.com/watch?v=_RzF1mAHUAA&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 A Case for Multi-Switch Constraints in OPAM,
 by Fabrice Le Fessant (INRIA).
-[PDF Abstract](ocaml2014_12.pdf).
+[PDF Abstract](ocaml2014_12.pdf),
+[Video](https://www.youtube.com/watch?v=uMCnThFtDA4&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 LibreS3: design, challenges, and steps toward reusable libraries,
 by Edwin Török (Skylable Ltd.).
 [PDF Abstract](ocaml2014_13.pdf)
 [Slides](ocaml2014_13_slides.pdf)
-[Poster](ocaml2014_13_poster.pdf).
+[Poster](ocaml2014_13_poster.pdf),
+[Video](https://www.youtube.com/watch?v=vedtdREomTw&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Nullable Type Inference (#),
 by Michel Mauny and Benoit Vaugon (ENSTA-ParisTech).
-[PDF Abstract](ocaml2014_14.pdf).
+[PDF Abstract](ocaml2014_14.pdf),
+[Video](https://www.youtube.com/watch?v=0xOQTv88v5o&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 #### 16:30-17:50 - Applications
 
 Coq of OCaml,
 by Guillaume Claret (Université Paris Diderot).
-[PDF Abstract](ocaml2014_15.pdf).
+[PDF Abstract](ocaml2014_15.pdf),
+[Video](https://www.youtube.com/watch?v=2t9-ZtYTu1Q&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 High Performance Client-Side Web Programming with SPOC and Js of
 ocaml (*),
 by Mathias Bourgoin and Emmmanuel Chailloux (Université Pierre et
 Marie Curie).
-[PDF Abstract](ocaml2014_16.pdf).
+[PDF Abstract](ocaml2014_16.pdf),
+[Video](https://www.youtube.com/watch?v=xRw2m5V1avI&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Using Preferences to Tame your Package Manager,
 Roberto Di Cosmo (D+I), Pietro Abate (D), Stefano Zacchiroli (D),
 Fabrice Le Fessant (I), Louis Gesbert (OCamlPro); (D = Université Paris
 Diderot, I = INRIA).
-[PDF Abstract](ocaml2014_17.pdf).
+[PDF Abstract](ocaml2014_17.pdf),
+[Video](https://www.youtube.com/watch?v=E-gtFnbHcv0&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Simple, efficient, sound-and-complete combinator parsing for all
 context-free grammars, using an oracle (*),
 by Tom Ridge (University of Leicester).
-[PDF Abstract](ocaml2014_18.pdf).
+[PDF Abstract](ocaml2014_18.pdf),
+[Video](https://www.youtube.com/watch?v=qEqB755feLY&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 #### 17:50 - Closing
 
