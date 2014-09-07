@@ -181,13 +181,14 @@ let toploop_eval (top: toplevel) (phrase: string) : outcome =
 
 let nl_re = Str.regexp "[\n\r]"
 
-let format_eval_input phrase =
-  let open Nethtml in
+let format_eval_input phrase : Omd.t =
+  let open Omd in
   (* Due to the prompt, one must add 2 spaces at the beginnig of each line *)
   let phrase = Str.global_replace nl_re "\n  " phrase in
-  [Element("span", ["class", "ocaml-prompt"], [Data "# "]);
-   Element("span", ["class", "ocaml-input"], [Data(highlight_ocaml phrase)]);
-   Element("span", ["class", "ocaml-prompt"], [Data ";;"])]
+  [Html("span", ["class", Some "ocaml-prompt"], [Text "# "]);
+   Html("span", ["class", Some "ocaml-input"],
+        Omd.of_string(highlight_ocaml phrase));
+   Html("span", ["class", Some "ocaml-prompt"], [Text ";;"])]
 
 let html_of_eval_silent t phrase =
   begin match toploop_eval t phrase with
@@ -206,17 +207,19 @@ let html_of_eval_silent t phrase =
 let highlight_error_range phrase err_msg c1 c2 =
   let len = String.length phrase in
   if c1 >= len || c1 < 0 || c2 < 0 then
-    html_encode phrase, err_msg
+    [Omd.Text(html_encode phrase)], err_msg
   else
     let p1 = String.sub phrase 0 c1
     and p2, p3 = if c2 >= len then (String.sub phrase c1 (len - c1), "")
                  else (String.sub phrase c1 (c2 - c1),
                        String.sub phrase c2 (len - c2)) in
-    let phrase = html_encode p1 ^ "<span class=\"ocaml-error-loc\">"
-                 ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
+    let phrase = [Omd.Text(html_encode p1);
+                  Omd.Html("span", ["class", Some "ocaml-error-loc"],
+                           [Omd.Text(html_encode p2)]);
+                  Omd.Text(html_encode p3)] in
     let nl = 1 + String.index err_msg '\n' in
     let err_msg = String.sub err_msg nl (String.length err_msg - nl) in
-    phrase, err_msg
+    (phrase: Omd.t), err_msg
 
 
 let error_re312 =
@@ -244,24 +247,24 @@ let highlight_error phrase err_msg =
     highlight_error_range phrase err_msg c1 c2
   )
   else
-    html_encode phrase, err_msg
+    [Omd.Text(html_encode phrase)], err_msg
 
 let html_of_eval t phrase =
   let phrase, cls, out = match toploop_eval t phrase with
     | Normal(s, out, err) ->
        let phrase, err = highlight_error phrase err in
        phrase, "ocaml-output",
-       Nethtml.([Element("span", ["class", "ocaml-stdout"],
-                         [Data(html_encode out)]);
-                 Element("span", ["class", "ocaml-stderr"],
-                         [Data(html_encode err)]);
-                 Data(html_encode s)])
+       [Omd.Html("span", ["class", Some "ocaml-stdout"],
+                 [Omd.Text(html_encode out)]);
+        Omd.Html("span", ["class", Some "ocaml-stderr"],
+                 [Omd.Text(html_encode err)]);
+        Omd.Text(html_encode s)]
     | Error s ->
        let phrase, s = highlight_error phrase s in
-       phrase, "ocaml-error", [Nethtml.Data(html_encode s)] in
+       phrase, "ocaml-error", [Omd.Text(html_encode s)] in
   format_eval_input phrase
-  @ Nethtml.([ Element("br", [], []);
-               Element("span", ["class", cls], out) ])
+  @ [ Omd.Html("br", [], []);
+      Omd.Html("span", ["class", Some cls], out) ]
 
 
 (* FIXME: naive, ";;" can occur inside strings and one does not want
@@ -269,10 +272,7 @@ let html_of_eval t phrase =
 let end_of_phrase = Str.regexp ";;[ \t\n]*"
 
 
-let to_html t phrases =
+let to_html t phrases : Omd.t =
   (* Split phrases *)
   let phrases = List.map String.trim (Str.split end_of_phrase phrases) in
-  let html = List.concat (List.map (html_of_eval t) phrases) in
-  let buf = Buffer.create 1024 in
-  Nethtml.write (new Netchannels.output_buffer buf) html;
-  Buffer.contents buf
+  List.concat (List.map (html_of_eval t) phrases)

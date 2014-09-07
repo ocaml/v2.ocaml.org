@@ -17,11 +17,13 @@ let rec eval_code_blocks md =
   | Code_block("tryocaml", code) :: tl
   | Code_block("ocamltop", code) :: tl ->
      let html = Code.to_html toplevel code in
-     Html_block("<pre><code class=\"ocamltop\">" ^ html ^ "</code></pre>")
+     Html_block("pre", [], [Html_block("code", ["class", Some "ocamltop"],
+                                       html)])
      :: eval_code_blocks tl
   | Code_block("ocaml", code) :: tl ->
      let html = Code.highlight code in
-     Html_block("<pre><code class=\"ocaml\">" ^ html ^ "</code></pre>")
+     Html_block("pre", [], [Html_block("code", ["class", Some "ocaml"],
+                                       [Text html])])
      :: eval_code_blocks tl
   | Blockquote t :: tl ->
      (* Order of evaluation is important: the code in [Blockquote] may
@@ -38,25 +40,29 @@ let rec eval_code_blocks md =
  ***********************************************************************)
 
 let toggle_js =
-  Omd.Html "<script type=\"text/javascript\">
-function toggleContent(id) {
-  // Get the DOM reference
-  var el = document.getElementById(id);
-  // Toggle
-  el.style.display == \"block\" ? el.style.display = \"none\"
-                                : el.style.display = \"block\";
-}
-</script>\n"
+  let open Omd in
+  Html("script", ["type", Some "text/javascript"],
+       [Text "function toggleContent(id) {
+              // Get the DOM reference
+              var el = document.getElementById(id);
+              // Toggle
+              el.style.display == \"block\" ? el.style.display = \"none\"
+              : el.style.display = \"block\";
+              }
+              </script>\n"])
 
 let n_button = ref 0
 
-let make_toggle_button title html =
+let add_toggle_button title html doc : Omd.t =
   incr n_button;
-  let h = sprintf "<button onclick=\"toggleContent('ocamlorg%i')\" \
-                   class=\"solution\">%s</button>\n<div class=\"solution\" \
-                   id=\"ocamlorg%i\">%s</div>"
-                  !n_button title !n_button html in
-  Omd.Html h
+  let attr_button =
+    ["onclick", Some(sprintf "toggleContent('ocamlorg%i')" !n_button);
+     "class", Some "solution"] in
+  let attr_div = ["id", Some(sprintf "ocamlorg%i" !n_button);
+                  "class", Some "solution"] in
+  Omd.Html("button", attr_button, [Omd.Text title])
+  :: Omd.Html("div", attr_div, html)
+  :: doc
 
 (** Finds "SOLUTION" directly followed by a Blockquote and transform
     those to HTML. *)
@@ -69,8 +75,7 @@ let rec toggle_solutions any_change md =
   | Paragraph [Omd.Text "SOLUTION"] :: NL :: Blockquote sol :: md ->
      any_change := true;
      (* FIXME: must colorize the code and execute it. *)
-     let html = Omd.to_html sol in
-     make_toggle_button "Solution" html :: toggle_solutions any_change md
+     add_toggle_button "Solution" sol (toggle_solutions any_change md)
   | e :: md ->
 
      e :: toggle_solutions any_change md
@@ -90,5 +95,5 @@ let () =
 
 
 (* Local Variables: *)
-(* compile-command: "make -k -C .. script/md_preprocess" *)
+(* compile-command: "make --no-print-directory -k -C .. script/md_preprocess" *)
 (* End: *)
