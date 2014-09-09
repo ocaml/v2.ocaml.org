@@ -13,7 +13,8 @@ the day after the [ML Family Workshop](http://okmij.org/ftp/ML/ML14.html).
 News
 ----
 
--   September 7, 2004: Links to
+-   September 9, 2014: Add links to slides.
+-   September 7, 2014: Links to
     [videos](https://www.youtube.com/channel/UCP9g4dLR7xt6KzCYntNqYcw/videos)
     of the talks added to the [program](#Program).
 -   August 24, 2014: Add abstracts to the [program](#Program).
@@ -53,12 +54,14 @@ Ephemerons meet OCaml GC, by François Bobot (CEA).
 #### 10:25-11:20 - Tools and libraries
 Introduction to 0install, by Thomas Leonard (University of Cambridge) .
 [PDF Abstract](ocaml2014_3.pdf),
+[PDF Slides](0install-slides.pdf),
 [Video](https://www.youtube.com/watch?v=dYRT6z0NGII&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Transport Layer Security purely in OCaml (*),
 by Hannes Mehnert (University of Cambridge),
 David Kaloper Meršinjak (University of Nottingham).
 [PDF Abstract](ocaml2014_4.pdf),
+[PDF Slides](ocaml-tls-slides.pdf),
 [Video](https://www.youtube.com/watch?v=hJk2lQXbkNk&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 OCamlOScope: a New OCaml API Search (*), by Jun Furuse (Standard
@@ -79,6 +82,7 @@ Jeremie Diminio (JS), Thomas Gazagnaire (C), Louis Gesbert (OCamlPro),
 Thomas Leonard (C),  David Sheets (C), Mark Shinwell (JS), Leo White
 (C), Jeremy Yallop (C); (C = University of Cambridge, JS = Jane Street).
 [PDF Abstract](ocaml2014_7.pdf),
+[PDF Slides](ocl-platform-2014-slides.pdf),
 [Video](https://www.youtube.com/watch?v=jxhtpQ5nJHg&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 #### 12:30-14:00 - Lunch
@@ -89,6 +93,7 @@ A Proposal for Non-Intrusive Namespaces in OCaml,
 by Pierrick Couderc (I), Fabrice Le Fessant (I+O), Benjamin Canou
 (O), Pierre Chambart (O); (I = INRIA, O = OCamlPro).
 [PDF Abstract](ocaml2014_8.pdf),
+[PDF Slides](ocaml2014-talk-namespaces.pdf),
 [Video](https://www.youtube.com/watch?v=ltkBqVMVQeo&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Improving Type Error Messages in OCaml (*), by Arthur Charguéraud (INRIA &
@@ -99,6 +104,7 @@ Université Paris Sud).
 Github Pull Requests for OCaml development: a field report (*),
 by Gabriel Scherer (INRIA).
 [Abstract](ocaml2014_10.html),
+[Slides](scherer/slides-scherer-ocaml-2014.html),
 [Video](https://www.youtube.com/watch?v=PGgAsnxlt4U&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 <!-- #### 14:55-15:10 - Break -->
@@ -111,23 +117,26 @@ Mortier (University of Nottingham), David Scott (Citrix System), David
 Sheets (C), Gregory Tsipenyuk (C), Jon Crowcroft (C); (C = University
 of Cambridge).
 [PDF Abstract](ocaml2014_11.pdf),
+[PDF Slides](irmin-slides.pdf),
 [Video](https://www.youtube.com/watch?v=_RzF1mAHUAA&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 A Case for Multi-Switch Constraints in OPAM,
 by Fabrice Le Fessant (INRIA).
 [PDF Abstract](ocaml2014_12.pdf),
+[PDF Slides](lefessant-slides.pdf),
 [Video](https://www.youtube.com/watch?v=uMCnThFtDA4&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 LibreS3: design, challenges, and steps toward reusable libraries,
 by Edwin Török (Skylable Ltd.).
-[PDF Abstract](ocaml2014_13.pdf)
-[Slides](ocaml2014_13_slides.pdf)
-[Poster](ocaml2014_13_poster.pdf),
+[PDF Abstract](ocaml2014_13.pdf),
+[PDF Slides](ocaml2014_13_slides.pdf),
+[PDF Poster](ocaml2014_13_poster.pdf),
 [Video](https://www.youtube.com/watch?v=vedtdREomTw&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Nullable Type Inference (#),
 by Michel Mauny and Benoit Vaugon (ENSTA-ParisTech).
 [PDF Abstract](ocaml2014_14.pdf),
+[PDF Slides](nullable-slides.pdf),
 [Video](https://www.youtube.com/watch?v=0xOQTv88v5o&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 #### 16:30-17:50 - Applications
@@ -149,12 +158,14 @@ Roberto Di Cosmo (D+I), Pietro Abate (D), Stefano Zacchiroli (D),
 Fabrice Le Fessant (I), Louis Gesbert (OCamlPro); (D = Université Paris
 Diderot, I = INRIA).
 [PDF Abstract](ocaml2014_17.pdf),
+[PDF Slides](preferences-2014-09-05-slides.pdf),
 [Video](https://www.youtube.com/watch?v=E-gtFnbHcv0&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Simple, efficient, sound-and-complete combinator parsing for all
 context-free grammars, using an oracle (*),
 by Tom Ridge (University of Leicester).
 [PDF Abstract](ocaml2014_18.pdf),
+[Slides](tom-ridge-slides.html),
 [Video](https://www.youtube.com/watch?v=qEqB755feLY&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 #### 17:50 - Closing
@@ -165,7 +176,8 @@ by Tom Ridge (University of Leicester).
 - A Simple and Practical Linear Algebra Library Interface with Static
 Size Checking, by Akinori Abe and Eijiro Sumii (Tohoku University), will be
 presented at the [ML Family Workshop](http://okmij.org/ftp/ML/ML14.html).
-[PDF Abstract](ocaml2014_19.pdf).
+[PDF Abstract](ocaml2014_19.pdf),
+[PDF Slides](abe-sumii-slides.pdf).
 
 Scope
 -----
