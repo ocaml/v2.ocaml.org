@@ -65,7 +65,10 @@
 						 class="png">
                     </a>
                     <h1><a href="/community/">Community</a></h1>
-                    <p>Read the <a href="/community/planet/">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community/#ocaml-around-web">around the web</a>.</p>
+                    <p>Read the <a href="/community/planet/">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a>,
+                    attend <a href="/meetings/">meetings</a>, and find OCaml
+                    <a href="/community/#ocaml-around-web"
+                        >around the web</a>.</p>
                 </section>
             </div>
             <div id="home-learn">
