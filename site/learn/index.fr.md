@@ -118,7 +118,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 	    Voir
 	    <a href="http://www.youtube.com/watch?v=gKWNjFagR9k"
 	       >l'exposé à CUFP</a> de Julien Verlaguet et
-	    <a href="http://cufp.org/sites/all/files/slides/2013/verlaguet.pdf"
+	    <a href="http://cufp.org/2013/slides/verlaguet.pdf"
 	       >sa présentation</a>.</p>
 
 	  <footer>
