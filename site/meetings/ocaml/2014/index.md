@@ -75,6 +75,7 @@ Chartered Bank, Singapore).
 
 The State of OCaml (invited), Xavier Leroy
 (INRIA Paris-Rocquencourt).
+[PDF Slides](OCaml2014-Leroy-slides.pdf),
 [Video](https://www.youtube.com/watch?v=DMzZy1bqj6Q&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 The OCaml Platform v1.0, by Anil Madhavapeddy (C), Amir Chaudhry (C),
