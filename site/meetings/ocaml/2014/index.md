@@ -67,6 +67,7 @@ David Kaloper Meršinjak (University of Nottingham).
 OCamlOScope: a New OCaml API Search (*), by Jun Furuse (Standard
 Chartered Bank, Singapore).
 [PDF Abstract](ocaml2014_5.pdf),
+[PDF Slides](ocamloscope-slides.pdf),
 [Video](https://www.youtube.com/watch?v=zRwXIGs42iY&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 <!-- #### 11:20-11:40 - Break -->
