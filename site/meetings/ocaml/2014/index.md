@@ -101,6 +101,7 @@ by Pierrick Couderc (I), Fabrice Le Fessant (I+O), Benjamin Canou
 Improving Type Error Messages in OCaml (*), by Arthur Charguéraud (INRIA &
 Université Paris Sud).
 [PDF Abstract](ocaml2014_9.pdf),
+[PDF Slides](chargueraud-slides.pdf),
 [Video](https://www.youtube.com/watch?v=V_ipQZeBueg&list=UUP9g4dLR7xt6KzCYntNqYcw).
 
 Github Pull Requests for OCaml development: a field report (*),
