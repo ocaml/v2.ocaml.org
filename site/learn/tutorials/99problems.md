@@ -1639,6 +1639,8 @@ early!
 SOLUTION
 
 >```ocamltop
+>   open Core.Std;; 
+>   
 >   let together left right father =
 >      let get_one all value =
 >         List.fold_left ~f:(fun a value2 -> ( (value, value2), father ) :: ( (value2, value), father ) :: a) ~init:all left in
@@ -1695,6 +1697,7 @@ SOLUTION
 >
 >   let get = function
 >      | Some x -> x
+>      | None -> failwith "unexpected get fail"
 >
 >   let must_change lista =
 >      let akt = List.find_a_dup ~compare:compare_list lista in
