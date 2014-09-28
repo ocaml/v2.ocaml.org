@@ -1638,7 +1638,7 @@ early!
 
 SOLUTION
 
-```ocamltop
+>```ocamltop
 >   let together left right father =
 >      let get_one all value =
 >         List.fold_left ~f:(fun a value2 -> ( (value, value2), father ) :: ( (value2, value), father ) :: a) ~init:all left in
@@ -1763,7 +1763,9 @@ SOLUTION
 >      | Node(j, x, y) ->
 >         let (val1, val2) = List.Assoc.find_exn rev_done_tree j in
 >         N(j, (val1+add_to_all), val2 , (build_answer x), (build_answer y));;
+>...
 
+...ocamptop
 build_answer example_layout_tree;;
 ```
 
