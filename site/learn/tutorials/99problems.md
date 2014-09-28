@@ -1763,7 +1763,7 @@ SOLUTION
 >      | Node(j, x, y) ->
 >         let (val1, val2) = List.Assoc.find_exn rev_done_tree j in
 >         N(j, (val1+add_to_all), val2 , (build_answer x), (build_answer y));;
->...
+>```
 
 ```ocamltop
 build_answer example_layout_tree;;
