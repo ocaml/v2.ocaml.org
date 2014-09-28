@@ -1765,7 +1765,7 @@ SOLUTION
 >         N(j, (val1+add_to_all), val2 , (build_answer x), (build_answer y));;
 >...
 
-...ocamptop
+```ocamltop
 build_answer example_layout_tree;;
 ```
 
