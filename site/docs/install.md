@@ -17,7 +17,7 @@ see the [libraries](/learn/libraries.html) page.
 
 ## OPAM
 
-OPAM is the recommended method to install the OCaml compiler and OCaml
+[OPAM](http://opam.ocaml.org/) is a package manager for OCaml. It is the recommended method to install the OCaml compiler and OCaml
 packages. The [default OPAM
 repository](http://opam.ocaml.org/packages/) is actively maintained
 and serves as the de facto master set of OCaml packages. OPAM also
@@ -37,7 +37,7 @@ information is available in the [Quick
 Install](http://opam.ocaml.org/doc/Quick_Install.html) and [Advanced
 Install](http://opam.ocaml.org/doc/Advanced_Install.html) pages.
 
-[OPAM](http://opam.ocaml.org/) is a package manager for OCaml, based
+OPAM is based
 on the CUDF library developed by the Mancoosi project, which is,
 among other things, used by Debian to manage their packages. It works
 well on Unix, Linux, and Mac OS X systems. Windows support is comming
