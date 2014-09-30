@@ -18,24 +18,50 @@ see the [libraries](/learn/libraries.html) page.
 ## OPAM
 
 [OPAM](http://opam.ocaml.org/) is a package manager for OCaml. It is the recommended method to install the OCaml compiler and OCaml
-packages. The [default OPAM
-repository](http://opam.ocaml.org/packages/) is actively maintained
+packages. The default OPAM
+[repository](http://opam.ocaml.org/packages/) is actively maintained
 and serves as the de facto master set of OCaml packages. OPAM also
 provides features that would be unavailable with the other methods,
 such as the ability to have multiple versions of OCaml installed at
 the same time, or have multiple universes of packages for different
-projects with conflicting package dependencies. Get an overview by
-visiting [OPAM's main page](http://opam.ocaml.org/).
+projects with conflicting package dependencies.
 
-Note that there is a bootstrapping issue, since OPAM is itself implemented
-in OCaml. You can follow the instructions
-[here](http://software.opensuse.org/download.html?project=home%3Aocaml&package=ocaml)
-to first install OPAM using an OS specific package
-manager. Alternatively, you can compile from source by grabbing one of
-the recent [releases](https://github.com/ocaml/opam/releases). More
-information is available in the [Quick
+Note that there is a bootstrapping issue, since OPAM is itself
+implemented in OCaml. To address this, binary OPAM packages are made
+available on many platforms. See
+[here](http://software.opensuse.org/download.html?project=home%3Aocaml&package=opam)
+and below, in the platform specific sections, for installation
+instructions. Alternatively, you can compile from source by grabbing
+one of the recent
+[releases](https://github.com/ocaml/opam/releases). More information
+is available in the [Quick
 Install](http://opam.ocaml.org/doc/Quick_Install.html) and [Advanced
 Install](http://opam.ocaml.org/doc/Advanced_Install.html) pages.
+
+Once you have OPAM installed, the `switch` and `install` commands are
+the ones you're likely to need first. For example:
+
+```
+opam switch 4.02.0
+eval `opam config env`
+```
+
+will compile OCaml 4.02.0 and install it in a location managed by
+OPAM. The second line assures you are now using this version of the
+compiler. You can skip this step if you're happy with the version of
+OCaml available on your system , but this lags substantially on many
+platforms.
+
+Next you can install packages, e.g.
+
+```
+opam install batteries core
+```
+
+will install Batteries and Core, two widely used standard
+libraries. See the main [repository](http://opam.ocaml.org/packages/)
+to find hundreds more, and visit [OPAM's main
+page](http://opam.ocaml.org/) to learn about many additional features.
 
 OPAM is based
 on the CUDF library developed by the Mancoosi project, which is,
