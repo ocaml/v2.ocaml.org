@@ -104,6 +104,17 @@ manager, so Debian instructions are applicable to it too.
 You can view the list of OCaml packages in Ubuntu repositories
 [here](http://packages.ubuntu.com/search?keywords=ocaml).
 
+Ubuntu's official repositories often lag substantially behind the
+latest official releases of OCaml and OPAM. More recent versions are
+made available by Anil Madhavapeddy in his
+[PPAs](https://launchpad.net/~avsm). You can mimic the
+opam-repository's test
+[script](https://github.com/ocaml/opam-repository/blob/master/.travis-ci.sh)
+to add these PPAs on your own Ubuntu box. Please note PPAs are not
+reviewed at all by Ubuntu's security team and you are trusting the
+PPA's distributor by adding them to your system.
+
+
 ## Fedora
 Since [Fedora 8](http://fedoraproject.org/), Fedora has excellent
 support for OCaml in the basic distribution. There is an active group of
