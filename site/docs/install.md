@@ -252,7 +252,7 @@ urpmq --list | grep ocaml
  a minimum standard for all OCaml packages we ship.
 
 ## Windows
-Four ports of OCaml for Microsoft Windows are currently available. For
+Three ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
 issues](/learn/portability.html) or the [Windows release
 notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
