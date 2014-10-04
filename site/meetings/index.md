@@ -2,7 +2,7 @@
 
 OCaml Users and Developers Workshop
 ===================================
-##
+
 * [OCaml 2014](ocaml/2014/):
   Gothenburg (Sweden), September 5, colocated with ICFP 2014.
 * [OCaml 2013](ocaml/2013/):

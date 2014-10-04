@@ -65,7 +65,10 @@
 						 alt="Communauté" class="png">
                     </a>
                     <h1><a href="/community/">Communauté</a></h1>
-                    <p>Lire <a href="/community/planet/">les fils de news</a>,  <a href="/community/mailing_lists.fr.html">discuter et échanger</a>, obtenir <a href="/community/support.fr.html">du support</a> et retrouver <a href="/community/#ocaml-around-web">OCaml sur le web</a>.</p>
+                    <p>Lire <a href="/community/planet/">les fils de news</a>,  <a href="/community/mailing_lists.fr.html">discuter et échanger</a>, obtenir <a href="/community/support.fr.html">du support</a>,
+                    <a href="/meetings/index.fr.html" >rencontrer</a>
+                    d'autres utilisateurs
+                    et trouver <a href="/community/#ocaml-around-web">OCaml sur le web</a>.</p>
                 </section>
             </div>
             <div id="home-learn">

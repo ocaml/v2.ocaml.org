@@ -22,8 +22,8 @@
             <div class="row">
                 <section class="span4 home-feature">
                     <a href="/learn/">
-                        <img src="/img/learn-large.svg" alt="Learn" class="svg">
-                        <img src="/img/learn-large.png" alt="Learn" class="png">
+                        <img src="/img/learn-large.svg" alt="Learn" class="svg" />
+                        <img src="/img/learn-large.png" alt="Learn" class="png" />
                     </a>
                     <h1><a href="/learn/">Learn</a></h1>
                     <p>Find out <a href="/learn/description.html">about OCaml</a>, read about <a href="/learn/companies.html">users</a>, see <a href="learn/taste.html">code examples</a>, go through <a href="/learn/tutorials/">tutorials</a> and <a href="/learn/">more</a>.</p>
@@ -31,9 +31,9 @@
                 <section class="span4 home-feature">
                     <a href="/docs/">
                         <img src="/img/documentation-large.svg"
-						alt="Documentation" class="svg">
+						alt="Documentation" class="svg" />
                         <img src="/img/documentation-large.png"
-						alt="Documentation" class="png">
+						alt="Documentation" class="png" />
                     </a>
                     <h1><a href="/docs/">Documentation</a></h1>
                     <p><a href="docs/install.html" >Install</a> OCaml,
@@ -47,9 +47,9 @@
                 <section class="span4 home-feature">
                     <a href="https://opam.ocaml.org">
                         <img src="/img/platform-large.svg" alt="Platform"
-						 class="svg">
+						 class="svg" />
                         <img src="/img/platform-large.png" alt="Platform"
-						 class="png">
+						 class="png" />
 					</a>
                     <h1><a href="https://opam.ocaml.org">Packages</a></h1>
                     <p>The <a href="https://opam.ocaml.org">OCaml Package
@@ -60,20 +60,23 @@
                 <section class="span4 home-feature">
                     <a href="/community/">
                         <img src="/img/community-large.svg" alt="Community"
-						 class="svg">
+						 class="svg" />
                         <img src="/img/community-large.png" alt="Community"
-						 class="png">
+						 class="png" />
                     </a>
                     <h1><a href="/community/">Community</a></h1>
-                    <p>Read the <a href="/community/planet/">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community/#ocaml-around-web">around the web</a>.</p>
+                    <p>Read the <a href="/community/planet/">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a>,
+                    attend <a href="/meetings/">meetings</a>, and find OCaml
+                    <a href="/community/#ocaml-around-web"
+                        >around the web</a>.</p>
                 </section>
             </div>
             <div id="home-learn">
                 <a href="http://try.ocamlpro.com">
                     <img class="svg hidden-phone" src="/img/try-ocaml.svg"
-					  alt="">
+					  alt="" />
                     <img class="png hidden-phone" src="/img/try-ocaml.png"
-					 alt="">
+					 alt="" />
                     Learn OCaml in your browser with TryOCaml
                 </a>
             </div>

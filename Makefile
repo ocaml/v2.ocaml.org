@@ -19,7 +19,7 @@ syncotherfiles:
 	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
 	  -rltHprogv site/* ocaml.org/
 	if test -d ../ocaml.org-media; then \
-	 rsync --exclude '*~' --exclude '*.md' --exclude '*.html' \
+	 rsync --exclude '*~' --exclude '*.md' \
 	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
 	  -rltHprogv ../ocaml.org-media/* ocaml.org/ ; fi
 

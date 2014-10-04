@@ -4,13 +4,12 @@
 
 ## Conférence OCaml
 
-### Prochains événements
-
-* [OCaml 2014](ocaml/2014/):
-  Gothenburg (Suède), 5 Septembre 2014, colocalisé avec ICFP 2014.
+<!-- ### Prochains événements -->
 
 ### Événements passés
 
+* [OCaml 2014](ocaml/2014/):
+  Gothenburg (Suède), 5 Septembre 2014, colocalisé avec ICFP 2014.
 * [OCaml 2013](ocaml/2013/):
   Boston (MA, USA), 24 Septembre 2013, colocalisé avec ICFP 2013.
 * [OUD 2012](http://oud.ocaml.org/2012/):
