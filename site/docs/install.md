@@ -258,19 +258,16 @@ sources. For each of these approaches, you will need to have at least
 the OS X developer tools installed — any other requirements will be
 discussed below.
 
-If you want a graphical interface for the interactive interpreter,
-you may use [CocOCaml](http://www.cs.unm.edu/~wneumann/cococaml/).
-It will work with any OCaml installation, regardless of the installation
-method you choose.
-
 ###  Inria's binary package
 This is the easiest way to set up a basic OCaml installation for OS X.
-For 10.4 (Tiger), simply [download](../releases/) Intel disk image, mount
+Simply [download](../releases/) Intel disk image, mount
 the disk image, double-click on the ocaml.pkg file contained within, and
 follow the instructions from there. Requirements for this package are OS
-X 10.4.x (Tiger), with X11 and the XCode tools (v2.4) installed. It
-appears that that this installation was built with the TCL/TK interface.
-Also, X11 is not needed to compile code.
+X 10.7.x (Lion) or later, with XCode tools (v4.3.3 or later) installed.
+Earlier versions may or may not work.
+
+The package only includes command-line tools and does not include any
+graphical applications.
 
 ###  Fink
 [Fink](http://fink.sourceforge.net/ "Fink") is the most prevalent
@@ -365,32 +362,6 @@ etc. can be built as well. The most flexible solution for doing this is
 often using Fink to install the required dependencies, and build the
 OCaml packages from source distributions.
 
-###  Using Xcode for writing OCaml programs
-There exists an Xcode plugin integrating OCaml developement in Xcode.
-This plugin is always under development and still lacks of features,
-however it gives useful features for developing applications:
-
-* create an OCaml project or target with Xcode
-* add files to this target like you do for a C program
-* modify the OCaml compiler or linker settings through the Xcode's
- build-in build setting GUI.
-* add a library in library build phase of an OCaml target
-* syntax higlighting
-* use ocamllex and ocamlyacc
-* use of the native compiler (select architecture "ppc" instead of the
- default "ocaml")
-* dependance between source files
-* mixing OCaml and C code
-
-Still being in beta, it does not yet support the following:
-
-* better dependance between source files (you must put them manually
- in the good order in the target build phase)
-* targeting the intel procs (only bytecode &amp; ppc support at this time)
-* ocamlp4 preprocessor
-* debugging from Xcode (but possible with direct use of ocamldebug)
-
-[Download and information](http://maxao.free.fr/xcode-ocaml-plugin/).
 
 ###  Using labltk with OS X
 There are a couple of different ways one can go if they wish to use
