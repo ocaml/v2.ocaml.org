@@ -7,7 +7,7 @@
             <h1 class="span9">OCaml is an industrial strength programming language supporting functional, imperative and object-oriented styles</h1>
             <div class="span3">
                 <div>
-                    <a class="btn" href="/docs/install.html">Download OCaml</a>
+                    <a class="btn" href="/docs/install.html">Install OCaml</a>
                 </div>
             </div>
         </div>
@@ -22,18 +22,22 @@
             <div class="row">
                 <section class="span4 home-feature">
                     <a href="/learn/">
-                        <img src="/img/learn-large.png" alt="Learn">
+                        <img src="/img/learn-large.svg" alt="Learn" class="svg" />
+                        <img src="/img/learn-large.png" alt="Learn" class="png" />
                     </a>
                     <h1><a href="/learn/">Learn</a></h1>
-                    <p>Find out <a href="/learn/description.html">about OCaml</a>, read about <a href="/learn/success.html">users</a>, see <a href="learn/taste.html">code examples</a>, go through <a href="/learn/tutorials/">tutorials</a> and <a href="/learn/">more</a>.</p>
+                    <p>Find out <a href="/learn/description.html">about OCaml</a>, read about <a href="/learn/companies.html">users</a>, see <a href="learn/taste.html">code examples</a>, go through <a href="/learn/tutorials/">tutorials</a> and <a href="/learn/">more</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/docs/">
-                        <img src="/img/documentation-large.png" alt="Documentation">
+                        <img src="/img/documentation-large.svg"
+						alt="Documentation" class="svg" />
+                        <img src="/img/documentation-large.png"
+						alt="Documentation" class="png" />
                     </a>
                     <h1><a href="/docs/">Documentation</a></h1>
                     <p><a href="docs/install.html" >Install</a> OCaml,
-					look up <a href="https://opam.ocaml.org/pkg/">package docs</a>, access the
+					look up <a href="https://opam.ocaml.org/packages/">package docs</a>, access the
 					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 					target="_blank"
 					>Manual</a>, get the <a href="/docs/cheat_sheets.html">cheat sheets</a> and <a href="/docs/">more</a>.</p>
@@ -42,24 +46,37 @@
             <div class="row">
                 <section class="span4 home-feature">
                     <a href="https://opam.ocaml.org">
-                        <img src="/img/platform-large.png" alt="Platform">                    </a>
+                        <img src="/img/platform-large.svg" alt="Platform"
+						 class="svg" />
+                        <img src="/img/platform-large.png" alt="Platform"
+						 class="png" />
+					</a>
                     <h1><a href="https://opam.ocaml.org">Packages</a></h1>
                     <p>The <a href="https://opam.ocaml.org">OCaml Package
 					Manager</a>, gives you access to multiple versions of
-					<a href="https://opam.ocaml.org/pkg/">hundreds of
+					<a href="https://opam.ocaml.org/packages/">hundreds of
 					packages</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/community/">
-                        <img src="/img/community-large.png" alt="Community">
+                        <img src="/img/community-large.svg" alt="Community"
+						 class="svg" />
+                        <img src="/img/community-large.png" alt="Community"
+						 class="png" />
                     </a>
                     <h1><a href="/community/">Community</a></h1>
-                    <p>Read the <a href="/community/planet/">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a> and find OCaml <a href="/community/#ocaml-around-web">around the web</a>.</p>
+                    <p>Read the <a href="/community/planet/">news feed</a>, join the <a href="/community/mailing_lists.html">mailing lists</a>, get <a href="/community/support.html">support</a>,
+                    attend <a href="/meetings/">meetings</a>, and find OCaml
+                    <a href="/community/#ocaml-around-web"
+                        >around the web</a>.</p>
                 </section>
             </div>
             <div id="home-learn">
                 <a href="http://try.ocamlpro.com">
-                    <img class="hidden-phone" src="/img/learn-ocaml.png" alt="">
+                    <img class="svg hidden-phone" src="/img/try-ocaml.svg"
+					  alt="" />
+                    <img class="png hidden-phone" src="/img/try-ocaml.png"
+					 alt="" />
                     Learn OCaml in your browser with TryOCaml
                 </a>
             </div>
@@ -70,16 +87,19 @@
 				title="See planet posts">News</a>
                 <a href="http://planet.ocaml.org/rss20.xml"
 				title="Planet RSS feed"
-				><img src="/img/rss.png" alt="RSS"></a>
+				><img class="svg rss" src="/img/rss.svg" alt="RSS"
+				/><img class="png" src="/img/rss.png" alt="RSS" /></a>
             </h1>
 			<ul class="news-feed" style="margin-bottom: 0px">
-			<li><article>
+			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
 			  <p>September 5, 2014</p>
 			  <a title="OCaml Users and Developers Workshop"
 			     href="/meetings/ocaml/2014/">
-			  <img alt="" src="/img/announcement.png" /></a>
+			    <img alt="" src="/img/announcement.svg" class="svg" />
+			    <img alt="" src="/img/announcement.png" class="png" />
+			  </a>
 			</article></li>
 	        </ul>
             {{! cmd script/rss2html -n 5 --headlines http://planet.ocaml.org/rss20.xml !}}
@@ -94,7 +114,7 @@
             <p>OCaml is a lot more powerful than this simple example shows. See <a href="/learn/taste.html">more examples</a>!</p>
         </section>
         <section class="span6 condensed">
-            <h1><a href='http://opam.ocaml.org/pkg/index-date.html'>Packages</a></h1>
+            <h1><a href='http://opam.ocaml.org/packages/index-date.html'>Packages</a></h1>
             ((! input template/front_package.mpp !))
         </section>
     </div>

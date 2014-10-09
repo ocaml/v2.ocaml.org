@@ -17,21 +17,25 @@ To create a Map I can do:
 ```ocamltop
 module MyUsers = Map.Make(String);;
 ```
-Ok, we have created the module. Now, lets start putting something into
-it. Where do we start? Well, lets try an empty module to begin with:
+
+OK, we have created the module `MyUsers`.  Now, lets start putting
+something into it.  Where do we start?  Well, let's create an empty
+map to begin with:
 
 ```ocamltop
 let m = MyUsers.empty;;
 ```
-Hummm. An empty module is kind of boring, so lets add some data.
+Hummm. An empty map is kind of boring, so lets add some data.
 
 ```ocamltop
 let m = MyUsers.add "fred" "sugarplums" m;;
 ```
-We have now added "fred" and his password of "sugarplums" to our module.
+We have now created a new map—again called `m`, thus masking the previous
+one—by adding
+"fred" and his password "sugarplums" to our previous empty map.
 There is a fairly important point to make here. Once we have added the
 string "sugarplums" we have fixed the types of mappings that we can do.
-This means our mapping in our module MyUsers is from strings to strings.
+This means our mapping in our module `MyUsers` is from strings _to strings_.
 If we want a mapping from strings to integers or a mapping from integers
 to whatever we will have to create a different mapping.
 
@@ -42,7 +46,7 @@ let m = MyUsers.add "tom" "ilovelucy" m;;
 let m = MyUsers.add "mark" "ocamlrules" m;;
 let m = MyUsers.add "pete" "linux" m;;
 ```
-Now that we have some data inside of our Map module, wouldn't it be nice
+Now that we have some data inside of our map, wouldn't it be nice
 to be able to view that data at some point? Lets begin by creating a
 simple print function.
 

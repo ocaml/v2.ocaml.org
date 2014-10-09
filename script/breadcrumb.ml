@@ -3,19 +3,6 @@
 open Printf
 open Utils
 
-let string_of_file fname =
-  let buf = Buffer.create 4096 in
-  let fh = open_in fname in
-  let s = String.create 1024 in
-  let n = ref 1 in (* enter the loop *)
-  while !n > 0 do
-    n := input fh s 0 1024;
-    if !n > 0 then Buffer.add_substring buf s 0 !n;
-  done;
-  close_in fh;
-  Buffer.contents buf
-
-
 let title_re = Str.regexp "((! *set *title *\\([^ ][^!]*\\)!))"
 
 let get_title lang path =
@@ -34,8 +21,8 @@ let rec breadcrumb_of_path bc lang path =
                 else (lang, "index." ^ lang ^ ".md")
                      :: (lang, "index." ^ lang ^ ".html") :: index in
     let index = List.map (fun (l,f) -> (l, Filename.concat path f)) index in
-    (* Remove the prefix "site". *)
-    let link = String.sub path 4 (String.length path - 4) in
+    (* Remove the first directory. *)
+    let link = "/" ^ (String.concat "/" (List.tl (Neturl.split_path path))) in
     let entry =
       try
         let index_lang, index = List.find (fun (_,f) -> Sys.file_exists f) index in

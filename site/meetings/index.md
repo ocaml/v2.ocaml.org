@@ -2,7 +2,7 @@
 
 OCaml Users and Developers Workshop
 ===================================
-##
+
 * [OCaml 2014](ocaml/2014/):
   Gothenburg (Sweden), September 5, colocated with ICFP 2014.
 * [OCaml 2013](ocaml/2013/):
@@ -14,7 +14,12 @@ OCaml Meetings
 ==============
 
 ## In Europe
-
+* 2014, July 8, 7:00 PM: [&quot;Rencontre d'&eacute;t&eacute;&quot;](http://www.meetup.com/ocaml-paris/events/188634632/), Mozilla Paris, 16 boulevard Montmartre 75009 Paris. Organized by [OCaml Users in PariS
+ (OUPS)](http://www.meetup.com/ocaml-paris/).
+* 2014, May 22, 7:00 PM: [&quot;Rencontre de
+ Printemps&quot;](http://www.meetup.com/ocaml-paris/events/181647232/), IRILL
+ 23, avenue d'Italie 75013 Paris. Organized by [OCaml Users in PariS
+ (OUPS)](http://www.meetup.com/ocaml-paris/).
 * 2013, May 21, 7:30 PM: [&quot;Rencontre de
  Mai&quot;](http://www.meetup.com/ocaml-paris/events/116100692/), IRILL
  23, avenue d'Italie 75013 Paris. Organized by [OCaml Users in PariS

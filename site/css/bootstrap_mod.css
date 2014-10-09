@@ -11,6 +11,10 @@ h1 {
   line-height: 50px;
 }
 
+h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: inherit;
+}
+
 /* Avoid the anchors to be underneath the banner when a one clicks on
    a link pointing to them. */
 a[name], h2[id], h3[id], h4[id], h5[id], h6[id] {
@@ -22,6 +26,17 @@ a[name], h2[id], h3[id], h4[id], h5[id], h6[id] {
 }
 a[name] {
   display: inline-block; /* required for webkit browsers */
+}
+
+html.svg .navbar-search .search-query {
+  background-image: url(../img/search.svg);
+}
+
+@media (min-width: 980px) {
+  /* navbar not collapsed */
+  .navbar .nav > li > a {
+    padding: 27.5px 15px 23.5px;
+  }
 }
 
 /* Reduce the navbar height when the window height is small */
@@ -37,7 +52,7 @@ a[name] {
 
   .navbar .brand { padding: 4.5px 20px 4.5px }
   .navbar .nav > li > a {
-    padding: 10.5px 15px 10.5px;
+    padding: 11.5px 15px 9.5px;
   }
   .navbar-search {
     margin-top: 5.5px;
@@ -112,4 +127,18 @@ pre, pre code {
   padding: 0;
   margin: 0px 0px 5px 0px;
   *z-index: 1;
+}
+
+/* News */
+
+html.svg .news-feed li {
+  background: url(../img/news-go.svg) right center no-repeat;
+}
+
+.news-feed li.announcement {
+  padding: 15px 30px 15px 10px; /* same as normal news items */
+  background-image: url(../img/announcement-go.png);
+}
+html.svg .news-feed li.announcement {
+  background-image: url(../img/announcement-go.svg);
 }

@@ -256,6 +256,14 @@ PostScript](http://caml.inria.fr/pub/papers/doligez-these.ps.gz) |
 Light and OCaml's runtime system.
 
 
+### Pattern Matching
+
+* Fabrice Le Fessant and Luc Maranget. Optimizing Pattern Matching. In
+  Proceedings of the sixth ACM SIGPLAN International Conference on
+  Functional Programming (ICFP), pp 26-37.  
+[Online](http://dl.acm.org/citation.cfm?id=507641)
+
+
 ## Industrial Uses
 
 * Yaron Minsky. OCaml for the Masses. ACM Queue, Sep 27, 2011.  

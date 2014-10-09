@@ -424,3 +424,9 @@ let rec to_string e =
 	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
   | Value v -> v ;;
 ```
+
+As you see, the compiler tells you that the new `Product` constructor
+was not handled.
+
+Exercise: Extend the pattern matching with a `Product` case so
+`to_string` compiles without warning.

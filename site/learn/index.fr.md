@@ -4,11 +4,12 @@
     <h1>Apprendre</h1>
     <div class="row">
         <div id="platform-logo" class="span2">
-            <img src="/img/learn-large.png" alt="OCaml">
+            <img src="/img/learn-large.svg" alt="OCaml" class="svg">
+            <img src="/img/learn-large.png" alt="OCaml" class="png">
         </div>
         <section id="learn-leader" class="span7">
             <p><strong style="font-size: 110%">Qu'est-ce que OCaml ?</strong>
-OCaml est un langage générique de programmation, de puissance industrielle, qui met l'accent sur l'expressivité et la sûreté. C'est la technologie de choix pour les <a href="companies.html">entreprises</a> où la qualité du code, sa performance et sa maintenabilité sont critiques. La <a href="/community/">communauté</a>  est très active, et a développé un <a href="https://opam.ocaml.org/pkg/">riche écosystème de bibliothèques</a>. <small><em><a href="description.html">Lire plus.</a></em></small>.</p>
+OCaml est un langage générique de programmation, de puissance industrielle, qui met l'accent sur l'expressivité et la sûreté. C'est la technologie de choix pour les <a href="companies.html">entreprises</a> où la qualité du code, sa performance et sa maintenabilité sont critiques. La <a href="/community/">communauté</a>  est très active, et a développé un <a href="https://opam.ocaml.org/packages/">riche écosystème de bibliothèques</a>. <small><em><a href="description.html">Lire plus.</a></em></small>.</p>
         </section>
         <div id="platform-download" class="span3"
 		  style="padding-top:2ex">
@@ -117,7 +118,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 	    Voir
 	    <a href="http://www.youtube.com/watch?v=gKWNjFagR9k"
 	       >l'exposé à CUFP</a> de Julien Verlaguet et
-	    <a href="http://cufp.org/sites/all/files/slides/2013/verlaguet.pdf"
+	    <a href="http://cufp.org/2013/slides/verlaguet.pdf"
 	       >sa présentation</a>.</p>
 
 	  <footer>

@@ -19,7 +19,7 @@ size so don't worry about it too much. The type of my_hash is:
 val my_hash : ('_a, '_b) Hashtbl.t
 ```
 The `'_a` and `'_b` correspond to the key and value types, respectively.
-There are no concrete types (e.g., `int or float * string`) filled in in
+There are no concrete types (e.g., `int` or `float * string`) filled in in
 those slots because the type of the key and value are not yet
 determined. The underscore indicates that the key and data types, once
 chosen, will be fixed. In other words, you can't sometimes use a given
@@ -44,22 +44,45 @@ Hashtbl.add my_hash "w" "wimp";
 Hashtbl.add my_hash "w" "world";
 Hashtbl.add my_hash "w" "wine";;
 ```
-If we want to find one element in `my_hash` that has an "h" in it then we
+If we want to find one element in `my_hash` that has an `"h"` in it then we
 would write. Notice how it only returns just one element? That element
-was the last one entered in with the value of "h".
+was the last one entered in with the value of `"h"`.
 
 ```ocamltop 
 Hashtbl.find my_hash "h"
 ```
-What we probably want is all the elements that start with "h". To do
+What we probably want is all the elements that start with `"h"`. To do
 this we want to find all of them. What better name for this then
 `find_all`?
 
 ```ocamltop
 Hashtbl.find_all my_hash "h"
 ```
-returns `["hard"; "hug"; "hi"; "hello"]`. To find out if there is an
-entry in the my_hash for a letter we would do:
+returns `["hard"; "hug"; "hi"; "hello"]`.
+If you remove a key, its previous value becomes again the default one
+associated to the key.
+```ocamltop
+Hashtbl.remove my_hash "h";;
+Hashtbl.find my_hash "h";;
+```
+This behavior is interesting for the above example or when, say, the
+keys represent variables that can be temporarily masked by a local
+variables of the same name.
+
+In other contexts, one may prefer new values to *replace* the previous
+ones.  In this case, one uses `Hashtbl.replace`:
+
+```ocamltop
+Hashtbl.replace my_hash "t" "try";
+Hashtbl.replace my_hash "t" "test";
+Hashtbl.find_all my_hash "t";;
+Hashtbl.remove my_hash "t";
+Hashtbl.find my_hash "t"
+```
+
+
+To find out whether there is an
+entry in the `my_hash` for a letter we would do:
 
 ```ocamltop
 Hashtbl.mem my_hash "h"

@@ -20,11 +20,8 @@ In OCaml werden Kommentare von `(*` und `*)` umschlossen. Beispiel:
 
 In anderen Worten: Die Regeln für Kommentare sind denen in C
 (`/* ... */`) sehr ähnlich.
-
 Derzeit gibt es keine Syntax für einzeilige Kommentare (wie `# ...` in
-Perl oder `// ...` in C99/C++/Java). In der Vergangenheit wurde schon
-die Verwendung von `## ...` diskutiert und ich empfehle den Jungs hinter
-OCaml, dies in der Zukunft hinzuzufügen.
+Perl oder `// ...` in C99/C++/Java).
 
 OCaml zählt verschachtelte `(* ... *)`-Blöcke, was bedeutet, daß Sie
 ganze Codebereiche einfach auskommentieren können.

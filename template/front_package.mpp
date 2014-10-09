@@ -13,14 +13,7 @@
     </thead>
     <tbody>
 ((! cmd bash
-if [[ -f opam-update-list ]]
-then
-cat opam-update-list
-else
-for i in {1..6} ; do
-echo '<tr><td><a href="#">placeholder</a></td><td><a href="#">0.0.1</a></td><td><a href="#">12 Feb 2013</a></td></tr>'
-done
-fi
+cat opam_update_list
 !))
     </tbody>
 </table>

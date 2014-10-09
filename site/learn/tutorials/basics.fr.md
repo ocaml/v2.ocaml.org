@@ -16,11 +16,8 @@ Les commentaires OCaml sont délimités par `(*` et `*)`, comme ceci:
 ```
 Autrement dit, les commentaires ressemblent fortement aux commentaires
 du C traditionnel (`/* ... */`).
-
 Il n'y a pas actuellement de syntaxe pour les commentaires de fin de
-ligne comme `# ...` en Perl ou `// ...` en C99/C++/Java. L'emploi de
-`## ...` a été évoqué à quelques occasions, et je recommande fortement à
-l'équipe d'OCaml d'ajouter ça dans les versions à venir.
+ligne comme `# ...` en Perl ou `// ...` en C99/C++/Java.
 
 OCaml prend en compte les commentaires imbriqués, ce qui permet
 facilement de mettre des portions de code en commentaire:

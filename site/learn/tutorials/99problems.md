@@ -1114,7 +1114,7 @@ SOLUTION
 > let rec gray n =
 >   if n <= 1 then ["0"; "1"]
 >   else let g = gray (n - 1) in
->        List.map (prepend '0') g @ List.map (prepend '1') g
+>        List.map (prepend '0') g @ List.rev_map (prepend '1') g
 > ```
 
 ```ocamltop
@@ -1543,16 +1543,37 @@ type 'a pos_binary_tree =
 ```
 `N(w,x,y,l,r)` represents a (non-empty) binary tree with root `w`
 "positioned" at `(x,y)`, and subtrees `l` and `r`. Write a function
-`layout_binary_tree` with the following specification:
-`layout_binary_tree t` returns the "positioned" binary tree obtained
+`layout_binary_tree_1` with the following specification:
+`layout_binary_tree_1 t` returns the "positioned" binary tree obtained
 from the binary tree `t`.
 
-<!-- SOLUTION -->
-
-```ocaml
-  (* solution pending *)
+The tree pictured above is
+```ocamltop
+let example_layout_tree =
+  let leaf x = Node (x, Empty, Empty) in
+  Node('n', Node('k', Node('c', leaf 'a',
+                           Node('h', Node('g', leaf 'e',Empty), Empty)),
+                 leaf 'm'),
+       Node('u', Node('p', Empty, Node('s', leaf 'q', Empty)), Empty))
 ```
+SOLUTION
 
+> ```ocamltop
+> let layout_binary_tree_1 t =
+>   let rec layout depth x_left = function
+>     (* This function returns a pair: the laid out tree and the first
+>      * free x location *)
+>     | Empty -> (E,x_left)
+>     | Node (x,l,r) ->
+>        let (l',l_x_max) = layout (depth + 1) x_left l in
+>        let (r',r_x_max) = layout (depth + 1) (l_x_max + 1) r in
+>        (N (x,l_x_max,depth,l',r'),r_x_max)
+>   in fst (layout 1 1 t)
+> ```
+
+```ocamltop
+layout_binary_tree_1 example_layout_tree ;;
+```
 
 #### Layout a binary tree (2). (*medium*)
 
@@ -1564,10 +1585,40 @@ out the rules and write the corresponding OCaml function.
 Hint: On a given level, the horizontal distance between neighbouring
 nodes is constant.
 
-<!-- SOLUTION -->
+The tree shown is 
+```ocamltop
+let example_layout_tree =
+  let leaf x = Node (x,Empty,Empty) in
+  Node('n', Node('k', Node('c', leaf 'a',
+                           Node('e', leaf 'd', leaf 'g')),
+                 leaf 'm'),
+       Node('u', Node('p', Empty, leaf 'q'), Empty))
+```
 
-```ocaml
-  (* solution pending *)
+SOLUTION
+
+> ```ocamltop
+> let layout_binary_tree_2 t =
+>   let rec height = function
+>     | Empty -> 0
+>     | Node (_,l,r) -> 1 + max (height l) (height r) in
+>   let tree_height = height t in
+>   let rec find_missing_left depth = function
+>     | Empty -> tree_height - depth
+>     | Node (_,l,_) -> find_missing_left (depth + 1) l in
+>   let translate_dst = find_missing_left 0 t in
+>   let rec layout depth x_root = function
+>     | Empty -> E
+>     | Node (x,l,r) ->
+>        let spacing = 1 lsl (tree_height - depth - 1) in
+>        let l' = layout (depth + 1) (x_root - spacing) l
+>        and r' = layout (depth + 1) (x_root + spacing) r in
+>        N (x, x_root,depth, l',r') in
+>   layout 1 ((1 lsl (tree_height - 1)) - translate_dst) t
+> ```
+
+```ocamltop
+layout_binary_tree_2 example_layout_tree ;;
 ```
 
 
@@ -2118,17 +2169,115 @@ Hint: Use an open-ended list to represent the function f.
 
 #### Depth-first order graph traversal. (*medium*)
 
-Write a function that generates a depth-first order graph traversal
+Write a function that generates a
+[depth-first order graph traversal](https://en.wikipedia.org/wiki/Depth-first_search)
 sequence. The starting point should be specified, and the output should
 be a list of nodes that are reachable from this starting point (in
 depth-first order).
 
-<!-- SOLUTION -->
+Specifically, the graph will be provided by its
+[adjacency-list representation](https://en.wikipedia.org/wiki/Adjacency_list)
+and you must create a module `M` with the following signature:
 
-```ocaml
-(* example pending *);;
+```ocamltop
+module type GRAPH = sig
+  type node = char
+  type t
+  val of_adjacency : (node * node list) list -> t
+  val dfs_fold : t -> node -> ('a -> node -> 'a) -> 'a -> 'a
+end
 ```
 
+where `M.dfs_fold g n f a` applies `f` on the nodes of the graph
+`g` in depth first order, starting with node `n`.
+
+SOLUTION
+
+> In a depth-first search you fully explore the edges of the most
+> recently discovered node *v* before 'backtracking' to explore edges
+> leaving the node from which *v* was discovered. To do a depth-first
+> search means keeping careful track of what vertices have been visited
+> and when.
+> 
+> We compute timestamps for each vertex discovered in the search. A
+> discovered vertex has two timestamps associated with it : its
+> discovery time (in map `d`) and its finishing time (in map `f`) (a
+> vertex is finished when its adjacency list has been completely
+> examined). These timestamps are often useful in graph algorithms and
+> aid in reasoning about the behavior of depth-first search.
+> 
+> We color nodes during the search to help in the bookkeeping (map
+> `color`). All vertices of the graph are initially `White`. When a
+> vertex is discovered it is marked `Gray` and when it is finished, it
+> is marked `Black`.
+> 
+> If vertex *v* is discovered in the adjacency list of previously
+> discovered node *u*, this fact is recorded in the predecessor subgraph
+> (map `pred`).
+>
+> ```ocamltop
+> module M : GRAPH = struct
+> 
+>   module Char_map = Map.Make (Char)
+>   type node = char
+>   type t = (node list) Char_map.t
+> 
+>   let of_adjacency l = 
+>     List.fold_right (fun (x, y) -> Char_map.add x y) l Char_map.empty
+> 
+>   type colors = White|Gray|Black
+> 
+>   type 'a state = {
+>     d : int Char_map.t ; (*discovery time*)
+>     f : int Char_map.t ; (*finishing time*)
+>     pred : char Char_map.t ; (*predecessor*)
+>     color : colors Char_map.t ; (*vertex colors*)
+>     acc : 'a ; (*user specified type used by 'fold'*)
+>   }
+> 
+>   let dfs_fold g c fn acc =
+>     let rec dfs_visit t u {d; f; pred; color; acc} =
+>       let edge (t, state) v =
+>         if Char_map.find v state.color = White then
+>           dfs_visit t v {state with pred=Char_map.add v u state.pred;}
+>         else  (t, state)
+>       in
+>       let t, {d; f; pred; color; acc} =
+>         let t = t + 1 in
+>         List.fold_left edge
+>           (t, {d=Char_map.add u t d; f;
+>                pred; color=Char_map.add u Gray color; acc = fn acc u})
+>           (Char_map.find u g)
+>       in
+>       let t = t + 1 in
+>       t , {d; f=(Char_map.add u t f); pred;
+>            color=Char_map.add u Black color; acc}
+>     in
+>     let v = List.fold_left (fun k (x, _) -> x :: k) []
+>                            (Char_map.bindings g) in
+>     let initial_state= 
+>       {d=Char_map.empty;
+>        f=Char_map.empty;
+>        pred=Char_map.empty;
+>        color=List.fold_right (fun x->Char_map.add x White)
+>                              v Char_map.empty;
+>        acc=acc}
+>     in
+>     (snd (dfs_visit 0 c initial_state)).acc
+> end
+> ```
+
+```ocamltop
+let g = M.of_adjacency
+          ['u', ['v'; 'x'];
+           'v',      ['y'];
+           'w', ['z'; 'y'];
+           'x',      ['v'];
+           'y',      ['x'];
+           'z',      ['z'];
+          ];;
+List.rev (M.dfs_fold g 'w' (fun acc c -> c :: acc) [])
+```
 
 #### Connected components. (*medium*)
 

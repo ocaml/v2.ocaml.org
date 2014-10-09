@@ -2,12 +2,15 @@
 
 # Companies using OCaml
 
+<div class="row">
+<div class="span8">
 <blockquote>
     <p>
         <em>“OCaml helps us to quickly adapt to changing market conditions, and go from prototypes to production systems with less effort ... Billions of dollars of transactions flow through our systems every day, so getting it right matters.”</em> — Jane Street
     </p>
 </blockquote>
-
+</div>
+</div>
 
 <dl class="row">
     <dt class="span3">
@@ -33,7 +36,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
-        <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>.</p>
+        <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>. This work was originally presented by Anil Madhavapeddy at CUFP 2008. See his <a href="http://cufp.org/archive/2008/abstracts.html#MadhavapeddyAnil">abstract</a> and <a href="http://cufp.org/archive/2008/slides/MadhavapeddyAnil.pdf">slides</a>.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -45,6 +48,28 @@
         <p>Acunu is writing, from the ground-up, a Storage and Analytics Platform for Massive Data.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/ahrefs.png" alt="Ahrefs">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://ahrefs.com">Ahrefs</a>, Singapore</h2>
+        <p>Ahrefs is a multinational team with roots from Ukraine and
+        headquarters in Singapore. Ahrefs history dates back to 2011
+        when our first version of Site Explorer was introduced to
+        public after one year of thorough preparation and data
+        mining. With the launch of Site Explorer, Ahrefs stirred the
+        stagnant field of backlink analysis and kick-started a new
+        round of competition among SEO tool providers back then and
+        quickly became one of the world 's best backlink analysis
+        tools. Today, our index is updated with freshest backlinks
+        found on the web every 15 minutes, and the crawler processes
+        up to 6 billion pages a day. Hard to believe – it is only
+        three times less than what Googlebot does!</p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/amnh.png" alt="AMNH">
@@ -72,6 +97,24 @@
         <p>Ashima Group uses OCaml for geometric reasoning, GPU shader translation, and high-performance servers. OCaml's type system, compiler, tools, community, and design philosophy make it an extremely powerful and versatile tool for diverse systems development tasks.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/cacaoweb.png" alt="cacaoweb">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://cacaoweb.org">CACAOWEB</a>, United Kingdom and Hong Kong</h2>
+        <p>Cacaoweb is a developing an application platform of a new
+        kind. It runs on top of our peer-to-peer network, which
+        happens to be one of the largest in the world. The
+        capabilities of the platform are diverse and range from
+        multimedia streaming to social communication, offline storage
+        or data synchronisation. We design and implement massively
+        distributed data stores, programming languages, runtime
+        systems and parallel computation frameworks.</p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/cea.png" alt="CEA">
@@ -129,7 +172,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/default.png" alt="Esper">
+        <img src="/img/users/esper.png" alt="Esper">
     </dt>
     <dd class="span5">
         <h2><a href="http://esper.com/">Esper</a>, United States</h2>
@@ -176,6 +219,24 @@
         <p>Flying Frog Consultancy Ltd. consult and write books and software on the use of OCaml in the context of scientific computing. OCaml excels in the niche of intrinsically complicated programs between large-scale, array-based programs written in languages such as HPF and small-scale, graphical programs written in languages such as Mathematica.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/forallsecure.png" alt="ForAllSecure">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://forallsecure.com">ForAllSecure</a>, United States</h2>
+        <p>ForAllSecure's mission is to test the world's software and
+        provide actionable information to our customers. We have
+        started with Linux. Our mission with Linux is to test all
+        programs in current distributions, such as Debian, Ubuntu, and
+        Red Hat. With time, we will cover other platforms, such as
+        Mac, Windows, and mobile. In the mean time, we promise to do
+        one thing well.</p>
+    </dd>
+</dl>
+
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/default.png" alt="Framtidsforum">
@@ -214,11 +275,11 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/jane-street.jpg" alt="Jane Street">
+        <img src="/img/users/jane-street.jpg" alt="Jane Street">
     </dt>
     <dd class="span5">
         <h2><a href="http://janestreet.com/">Jane Street</a>, United States</h2>
-        <p>Jane Street is a quantitative proprietary trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. Jane Street is perhaps the largest commercial user of OCaml, and has attracted a very strong team of functional programmers. They use OCaml for everything, from research infrastructure to trading systems to operations and accounting systems. Jane Street has over 50 OCaml programmers and over a million lines of OCaml, powering a technology platform that trades billions of dollars every day. See the <a href="http://janestreet.github.io">GitHub page</a> for their open source software.</p>
+        <p>Jane Street is a quantitative proprietary trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. Jane Street is perhaps the largest commercial user of OCaml, and has attracted a very strong team of functional programmers. <a href="http://cufp.org/2012/yaron-minsky-jane-street-jane-street-status-report.html">They use OCaml for everything</a>, from research infrastructure to trading systems to operations and accounting systems. Jane Street has over 50 OCaml programmers and over a million lines of OCaml, powering a technology platform that trades billions of dollars every day. See the <a href="http://janestreet.github.io">GitHub page</a> for their open source software.</p>
     </dd>
 </dl>
 <dl class="row">

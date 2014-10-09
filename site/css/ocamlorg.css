@@ -85,11 +85,13 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
 
 /* FIXME: OCaml code should be in <pre> with a distinct class? */
 pre { line-height: 135%; }
-code, .gutter pre { font-family: "Droid Sans Mono", sans-serif; }
+code, .gutter pre {
+  font-family: "Droid Sans Mono", Consolas, monospace;
+}
 code { font-size: 100%; }
 h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .governing, .ocaml .ot { color: black; font-weight: bold; }
-.keyword, .ocaml .kw, .ocaml .k { color: #575bf4 }
+.keyword, .ocaml .kw, .ocaml .k, .planet .Keyword { color: #575bf4 }
 .keywordsign { color: #886643; }
 .constructor, .ocaml .dt, .ocaml .nc {
   color: #829f1c;
@@ -99,7 +101,7 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .subscript { font-size : 80% }
 .comment, .comment .governing, .comment .keyword, .comment .ocaml-function,
 .comment .string, .ocaml .co, .comment .ocaml-module,
-.comment .ocaml-variable {
+.comment .ocaml-variable, .planet .Comment {
   color: #747474;
   font-style: italic;
   font-weight: normal;
@@ -118,8 +120,11 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 
 .ocaml-prompt { color: #8d8d8d }
 .ocaml-function { color: #0606ee }
-.ocaml-variable { color: #b8860b }
-.ocaml-module { color: #829f1c; } /* same as "constructor" */
+.ocaml-variable, .planet .Identifier { color: #b8860b }
+.ocaml-module, .planet .Include {
+  color: #829f1c; /* same as "constructor" */
+}
+.planet .Operator { color: #93827c }
 
 .ocaml-output { color: #696969 }
 .ocaml-stdout { color: #0d89dd }
@@ -127,6 +132,9 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .ocaml-error { font-style: italic;  color: #d32121 }
 .ocaml-error-loc { border-bottom: solid 2px #d32121; }
 
+h1 img.rss {
+  height: 1.3ex;
+}
 
 a.planet-toggle {
   float: right;
@@ -163,6 +171,10 @@ h1.planet .share a {
   margin-left: 5px;
 }
 
+h1.planet .share img.svg {
+  height: 16px;  /* same as alternative PNG image */
+}
+
 div.subscribers {
   margin-left: 3em;
 }
@@ -185,15 +197,24 @@ h4.news img {
   margin-top: 3px;
 }
 
+h4.news img.rss {
+  height: 1.5ex;
+}
+
 /* Edit buttom, right of the navbar. */
 a.edit-this-page {
   margin-top: 22.5px;
   margin-left: 15px;
   width: 33px;
   height: 33px;
-  background: url(/img/edit.png) no-repeat left center;
   display: block;
   text-decoration: none;
+}
+a.edit-this-page {
+  background: url(../img/edit.png) no-repeat left center;
+}
+html.svg a.edit-this-page {
+  background: url(../img/edit.svg) no-repeat left center;
 }
 
 .edit-this-page span {
@@ -202,7 +223,10 @@ a.edit-this-page {
 }
 
 a.edit-this-page:hover {
-  background-image: url(/img/edit-hover.png);
+  background-image: url(../img/edit-hover.png);
+}
+html.svg a.edit-this-page:hover {
+  background-image: url(../img/edit-hover.svg);
 }
 
 /* When the navigation bar has reduced size */
@@ -284,6 +308,10 @@ td.code {
 .planet pre code {
   white-space: pre;
   overflow-x: auto;
+}
+.planet code {
+  /* without <pre> */
+  white-space: pre-wrap;
 }
 
 
@@ -432,3 +460,14 @@ ul.translations:after { content: "]"; }
 #footer li a:hover {
   color: #FFFFFF;
 }
+
+/* SVG
+ ***********************************************************************/
+/* Combined with the Javascript in main.mpp */
+
+img.svg { display: none; }
+img.png { display: inline; }
+html.svg img.svg { display: inline; }
+html.svg img.png { display: none; }
+
+.brand img.svg { width: 131px;  height: 36px; }

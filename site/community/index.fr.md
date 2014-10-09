@@ -4,13 +4,16 @@
     <h1>Communauté</h1>
     <div class="row">
         <div class="span2">
-            <img src="/img/community-large.png" alt="Community">
+            <img src="/img/community-large.svg" alt="Community" class="svg" />
+            <img src="/img/community-large.png" alt="Community" class="png" />
         </div>
         <section id="community-leader" class="span6">
-            <p>La communauté OCaml est diverse et internationnale, avec de nombreux moyens de discussion : les <a href="mailing_lists.fr.html">listes de discussion</a> sont le moyen le plus utilisé, mais il existe aussi de nombreux autres canaux de discussion autour du web, ainsi que de nombreux <a href="/meetings/">groupes de rencontre</a>.</p>
+            <p>La communauté OCaml est diverse et internationnale, avec de nombreux moyens de discussion : les <a href="mailing_lists.fr.html">listes de discussion</a> sont le moyen le plus utilisé, mais il existe aussi de nombreux autres canaux de discussion autour du web, ainsi que de nombreux <a href="/meetings/index.fr.html">groupes de rencontre</a>.</p>
         </section>
         <div class="span4">
-            <img src="/img/ocaml-large.png" alt="OCaml">
+            <img src="/img/colour-transparent-icon.svg" alt="OCaml"
+			 class="svg" />
+            <img src="/img/colour-icon-170x148.png" alt="OCaml" class="png" />
             <p><a href="/docs/logos.html">Plus de logos</a></p>
         </div>
     </div>
@@ -38,11 +41,16 @@
                 </footer>
             </section>
             <section class="span4 condensed">
-                <h4 class="news" >Les derniers sujets de discussion
-				<a href="https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40"
-				target="_blank"
-				title="Email RSS feed"
-				><img src="/img/rss.png" alt="RSS" /></a></h4>
+                <h4 class="news">
+				  <a href="https://sympa.inria.fr/sympa/arc/caml-list/">
+				    Les derniers sujets de discussion
+				  </a>
+				  <a href="https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40"
+				     target="_blank"
+					 title="Email RSS feed"
+				     ><img class="svg rss" src="/img/rss.svg" alt="RSS"
+					 /><img class="png" src="/img/rss.png" alt="RSS" /></a>
+				</h4>
                 {{! cmd script/rss2html -n 4 --emails 'https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40' !}}
             <footer>
                 <p><a href="https://sympa.inria.fr/sympa/arc/caml-list/">Voir les archives</a></p>
@@ -65,22 +73,26 @@
             <p>Si vous voulez soutenir OCaml, vous pouvez financer les acteurs qui développent des logiciels libres pour OCaml, comme le Consortium Caml à l'INRIA, OCaml Labs à Cambridge ou OCamlPro. <a href="/community/support.fr.html#GivingSupport">Plus d'informations</a>.</p>
         </section>
         <section class="span4 condensed">
-           <h1 class="ruled"><a href="/meetings/">Rencontres et réunions</a></h1>
+           <h1 class="ruled"><a href="/meetings/index.fr.html">Rencontres et réunions</a></h1>
             <ul class="news-feed">
-			<li><article>
+			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
 			  <p>September 5, 2014</p>
 			  <a title="OCaml Users and Developers Workshop"
 			     href="/meetings/ocaml/2014/">
-			  <img alt="" src="/img/announcement.png" /></a>
+                <img alt="" src="/img/announcement.svg" class="svg" />
+                <img alt="" src="/img/announcement.png" class="png" />
 			</article></li>
 			    <li>
                     <article>
                         <h1><a href="http://www.meetup.com/NYC-OCaml/events/152153412/">NYC Functional Holiday Party</a></h1>
                         <p>9 December 2013</p>
                         <a href="http://www.meetup.com/NYC-OCaml/events/152153412/">
-                            <img src="/img/news.png" alt="Nouvelles">
+                          <img src="/img/news.svg" alt="Nouvelles"
+						  class="svg" />
+                          <img src="/img/news.png" alt="Nouvelles"
+						  class="png" />
                         </a>
                     </article>
                 </li>
@@ -89,7 +101,10 @@
                         <h1><a href="http://www.meetup.com/ocaml-paris/events/128514752/">OCaml Users in Paris</a></h1>
                         <p>9 October 2013</p>
                         <a href="http://www.meetup.com/ocaml-paris/events/128514752/">
-                            <img src="/img/news.png" alt="Nouvelles">
+                          <img src="/img/news.svg" alt="Nouvelles"
+						  class="svg" />
+                          <img src="/img/news.png" alt="Nouvelles"
+						  class="png" />
                         </a>
                     </article>
                 </li>
@@ -98,13 +113,16 @@
                         <h1><a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">Cambridge NonDysFunctional Programmers</a></h1>
                         <p>18 September 2013</p>
                         <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">
-                            <img src="/img/news.png" alt="Nouvelles">
+                          <img src="/img/news.svg" alt="Nouvelles"
+						  class="svg" />
+                          <img src="/img/news.png" alt="Nouvelles"
+						  class="png" />
                         </a>
                     </article>
                 </li>
             </ul>
             <footer>
-                <p><a href="/meetings/">Voir le calendrier complet</a></p>
+                <p><a href="/meetings/index.fr.html">Voir le calendrier complet</a></p>
             </footer>
         </section>
         <section class="span4 condensed">
@@ -112,7 +130,8 @@
 		       title="See planet posts"
 			   >Nouvelles</a><a href="http://planet.ocaml.org/rss20.xml"
 			   title="Planet RSS feed"
-			   ><img src="/img/rss.png" alt="RSS" /></a>
+			   ><img class="svg rss" src="/img/rss.svg" alt="RSS"
+			   /><img class="png" src="/img/rss.png" alt="RSS" /></a>
 		   </h1>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <footer>

@@ -27,7 +27,8 @@ let highlight_ocaml =
   (* Arguments to functions may pattern match.  Final "\\." to allow
      "..." in argument (sometimes used for explanations). *)
   let args = "\\(\\?(" ^ id ^ " *=[^=()]+) +\\|[~?]" ^ id ^ "[ :]+\\|() *\\|"
-             ^ id ^ " +\\|(" ^ id ^ "\\( *:[^)]+\\)?) +\\|\\.+ +\\)+" in
+             ^ id ^ " +\\|(" ^ id ^ "\\( *:[^)]+\\)?) +\\|([a-zA-Z0-9_', ]+) *"
+             ^ "\\|{[a-zA-Z0-9_',; ]+} *\\|\\.+ +\\)+" in
   let subst = [ (* regex, replacement *)
     (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
@@ -56,6 +57,8 @@ let highlight_ocaml =
     ("\\b\\(let +\\(rec +\\)?\\|and +\\)\\(" ^ let_id ^ "\\) *=",
      "<span class=\"governing\">\\1</span>\
       <span class=\"ocaml-variable\">\\3</span> =");
+    ("\\b\\(let +\\(rec\\)?\\|and\\)\\b",
+     "<span class=\"governing\">\\1</span>");
     ("\\bexternal +\\(" ^ let_id ^ "\\) +:",
      "<span class=\"governing\">external</span> \
       <span class=\"ocaml-function\">\\1</span>&nbsp;:");

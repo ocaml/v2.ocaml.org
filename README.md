@@ -14,18 +14,26 @@ Building the html pages requires:
 * curl
 * rsync
 * GNU make
-* ocaml >= 3.12.0 (the presence of ocamlopt is required)
+* ocaml >= 4.01.0 (the presence of ocamlopt is required)
 * camlp4orf (comes with the compiler in OPAM, in `camlp4-extra` in Debian)
 * ocamlfind
 * mpp >= 0.1.2
-* omd >= 0.7.5
+* omd >= 0.9.7
+* opam2web >= 1.3.1
+* uri >= 1.3.11
 * netstring, netclient, equeue-ssl, and rss (for rss2html.ml)
 * lablgtk2 (optional, for the Gtk tutorial)
+
+Implicit dependencies exist and may not be on this list (for instance, opam2web depends on quite a set of packages, so it's strongly adviced to use opam to compute and install automatically such packages).
+
+If your opam environment isn't using OCaml 4.01.0, you may switch to it by using this command:
+
+    opam switch 4.01.0
 
 If you use opam (>= 1.1), the OCaml packages above can be installed by
 running:
 
-    opam install ocamlfind mpp omd ssl ocamlnet ocamlrss
+    opam install ocamlfind mpp omd ssl ocamlnet ocamlrss opam2web uri
 
 Note that you need `libssl-dev` to be able to compile and use `ssl`.
 `libssl-dev` is the name of a debian package, if you're using another system,
@@ -39,7 +47,10 @@ database servers. Simply run:
 
     make
 
-(or `make -j` for a faster build on multicore machines).
+(or `make -j` for a faster build on multicore machines.
+NB: you might need to limit the number of forks e.g `make -j 8`
+[ref](https://github.com/ocaml/ocaml.org/issues/462#issuecomment-40318537)).
+
 This will generate a new folder `ocaml.org` that contains the full
 website.  Note that building the site will attempt to connect to the
 internet to download the news and latest email conversations.  As

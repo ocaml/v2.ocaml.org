@@ -8,16 +8,17 @@ Les contributeurs à ce site :
 ((! cmd git log --format="%aN" | sort -k 2 | uniq | sed -e "/^[^ ]*$/ d" -e "s|\(.*\)|<li>\1</li>|" !))
 </ul>
 
-Cette liste est obtenue depuis le log GIT, pensez à vérifier que votre
+Cette liste est obtenue depuis [le log GIT](https://github.com/ocaml/ocaml.org/commits/master), pensez à vérifier que votre
 nom y est bien configuré.
 
 Anciens contributeurs aux tutoriels
 -----------------------------------
 
-Beaucoup des tutoriaux de ce site étaient à l'origine sur `cocan.org`.
+Beaucoup des tutoriaux de ce site étaient à l'origine sur `ocaml-tutorial.org`.
 Voici la liste de ceux qui y ont contribué :
 
 * Doug Bagley
+* Daniel Bünzli
 * Nicolas Cannasse
 * Eric C. Cooper
 * Richard Donkin
@@ -28,6 +29,7 @@ Voici la liste de ceux qui y ont contribué :
 * Flavio Grossi
 * Damien Guichard
 * Brian Hurt
+* Richard Jones
 * Neel Krishnaswami
 * Michel Levy
 * Sven Luther
@@ -43,7 +45,7 @@ Voici la liste de ceux qui y ont contribué :
 * Paul Steckler
 * Fabian Sturm
 * Ryan Tarpine
-* Remi Vanicat
+* Rémi Vanicat
 * Yamagata Yoriyuki
 * Stefano Zacchiroli
 

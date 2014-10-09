@@ -12,23 +12,27 @@ OCAMLFLAGS = -annot
 OCAMLOPT = ocamlfind ocamlopt $(OCAMLFLAGS)
 OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
 
-DEP_CONTENT_GEN = template/main.mpp template/footer.mpp \
+# Things to create before launching the parallel page build
+pre-build: template/main.mpp template/footer.mpp \
+  template/front_code_snippet.html template/learn_code_snippet.html \
   script/breadcrumb script/translations \
-  script/lang_of_filename script/translate script/link_of_lang
-
-ifeq ("$(OCAML_VERSION)", "3.12.1")
-COMPILER_LIBS_PREPARE = ocamlc -c errors.mli &&
-COMPILER_LIBS = dynlink.cma toplevellib.cma
-else
-COMPILER_LIBS_PREPARE=
-COMPILER_LIBS = -package dynlink,compiler-libs.toplevel
-endif
+  script/code_top script/ocamltohtml script/rss2html \
+  script/lang_of_filename script/translate script/link_of_lang \
+  opam_update_list $(OMD_PP)
 
 UTILS_DEP = $(addprefix script/utils., cmi cmo cmx)
 CODE_TYPE_DEP = $(addprefix script/code_types., cmi cmo cmx)
 
 template/%_code_snippet.html:template/%_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@
+
+opam_update_list: script/generate_opam_update_list
+	script/generate_opam_update_list
+
+script/generate_opam_update_list: script/generate_opam_update_list.ml
+	cd script && \
+	$(OCAMLOPT) -o ../"$@" -package opamfu,opam2web,cow.syntax \
+	  -linkpkg -syntax camlp4o generate_opam_update_list.ml
 
 script/lang_of_filename: script/lang_of_filename.ml $(UTILS_DEP)
 	cd script && \
@@ -66,14 +70,21 @@ script/md_preprocess: $(CODE_TYPE_DEP) script/code.ml \
 	  utils.cmx code_types.cmx code.ml md_preprocess.ml
 
 script/code_top: $(CODE_TYPE_DEP) script/code_top.ml $(UTILS_DEP)
-	cd script && $(COMPILER_LIBS_PREPARE) \
-	$(OCAMLC) -o ../"$@" -package netstring $(COMPILER_LIBS) \
+	cd script && \
+	$(OCAMLC) -o ../"$@" -package netstring,dynlink,compiler-libs.toplevel \
 	  -linkpkg utils.cmo code_types.cmo code_top.ml
 
-script/relative_urls: script/relative_urls.ml $(UTILS_DEP)
+RELATIVE_URLS_DEP=script/urlfun.ml script/urlfun.mli $(UTILS_DEP)
+script/relative_urls: script/relative_urls.ml $(RELATIVE_URLS_DEP)
 	cd script && \
-	$(OCAMLOPT) -package netstring -linkpkg \
-	  utils.cmx relative_urls.ml -o ../"$@"
+	$(OCAMLOPT) -package uri,netstring -linkpkg \
+	  utils.cmx urlfun.mli urlfun.ml relative_urls.ml -o ../"$@"
+
+RELATIVE_URLS_DEP=script/urlfun.ml script/urlfun.mli $(UTILS_DEP)
+script/absolute_urls: script/absolute_urls.ml $(RELATIVE_URLS_DEP)
+	cd script && \
+	$(OCAMLOPT) -package uri,netstring -linkpkg \
+	  utils.cmx urlfun.mli urlfun.ml absolute_urls.ml -o ../"$@"
 
 htmlescape:htmlescape.ml
 	$(OCAMLOPT) $< -o $@
@@ -88,14 +99,10 @@ script/%.cmx: script/%.ml script/%.cmi
 script/%.cmi script/%.cmo: script/%.ml
 	$(OCAMLC) -package netstring -c $< -o $@
 
-TRASH += template/front_code_snippet.html \
-  $(addprefix script/, breadcrumb rss2html ocamltohtml md_preprocess \
-  code_top relative_urls translations)
-
-ocaml.org/index.html:template/front_code_snippet.html script/rss2html
-ocaml.org/community/index.html:script/rss2html
-ocaml.org/community/planet.html:script/rss2html
-ocaml.org/learn/index.html: template/learn_code_snippet.html
+TRASH += template/front_code_snippet.html opam_update_list \
+  $(addprefix script/, generate_opam_update_list lang_of_filename translate \
+  link_of_lang breadcrumb rss2html ocamltohtml md_preprocess \
+  code_top relative_urls translations )
 
 # Camlp4 tutorials
 CAMLP4_TUT_DIR = learn/tutorials/camlp4_3.10
@@ -109,3 +116,5 @@ site/$(CAMLP4_TUT_DIR)/%.cmo: site/$(CAMLP4_TUT_DIR)/%.ml
 
 TRASH += $(CAMLP4_TUT_SOURCES:.ml=.cmi) $(CAMLP4_TUT_SOURCES:.ml=.cmo) \
   $(CAMLP4_TUT_SOURCES:.ml=.annot)
+
+.PHONY: pre-build

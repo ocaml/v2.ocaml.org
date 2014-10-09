@@ -16,7 +16,7 @@ very small. This page is experimental and user supported content.
 
 ## External Documents
 The semi-official documentation:
-[http://brion.inria.fr/gallium/index.php/Camlp4](http://brion.inria.fr/gallium/index.php/Camlp4 "http://brion.inria.fr/gallium/index.php/Camlp4")
+[Camlp4 Wiki](https://github.com/ocaml/camlp4/wiki)
 
 The ocaml beta announcement:
 [camlp4-changes](http://nicolaspouillard.fr/camlp4-changes.html)

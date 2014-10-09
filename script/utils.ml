@@ -35,28 +35,14 @@ let relaxed_html40_dtd =
   ("pre", (`Block, constr)) :: List.remove_assoc "pre" dtd
 
 
-module String = struct
-  include String
-
-  (* FIXME: Remove when 4.00.0 is spread enough. *)
-  let is_space = function
-    | ' ' | '\012' | '\n' | '\r' | '\t' -> true
-    | _ -> false
-
-  let trim s =
-    let len = String.length s in
-    let i = ref 0 in
-    while !i < len && is_space (String.unsafe_get s !i) do
-      incr i
-    done;
-    let j = ref (len - 1) in
-    while !j >= !i && is_space (String.unsafe_get s !j) do
-      decr j
-    done;
-    if !i = 0 && !j = len - 1 then
-      s
-    else if !j >= !i then
-      String.sub s !i (!j - !i + 1)
-    else
-      ""
-end
+let string_of_file fname =
+  let buf = Buffer.create 4096 in
+  let fh = open_in fname in
+  let s = String.create 1024 in
+  let n = ref 1 in (* enter the loop *)
+  while !n > 0 do
+    n := input fh s 0 1024;
+    if !n > 0 then Buffer.add_substring buf s 0 !n;
+  done;
+  close_in fh;
+  Buffer.contents buf
