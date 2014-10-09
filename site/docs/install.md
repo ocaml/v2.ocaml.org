@@ -15,7 +15,12 @@ The following sections explain how to use each of these methods.
 For additional information about finding and installing OCaml libraries,
 see the [libraries](/learn/libraries.html) page.
 
-## OPAM
+## Multi-Platform Package Managers
+
+Some dedicated package managers are available for OCaml, that can be used
+on multiple platforms:
+
+### OPAM
 
 [OPAM](http://opam.ocaml.org/) is a package manager for OCaml. It is the recommended method to install the OCaml compiler and OCaml
 packages. The default OPAM
@@ -72,8 +77,21 @@ OPAM is written and maintained by [OCamlPro](http://www.ocamlpro.com/) and
 [OCaml Labs](http://www.cl.cam.ac.uk/projects/ocamllabs/), and is free software
 ([commercial support](http://www.ocamlpro.com/) is available).
 
+### Oasis-DB
+See [here](http://oasis.ocamlcore.org/).
 
-## Debian
+### ODB
+See [here](https://github.com/thelema/odb).
+
+### ocamlbrew
+See [here](https://github.com/hcarty/ocamlbrew).
+
+## Linux Distributions
+
+OCaml is directly available in most Linux distributions, through their
+package managers. We provide details here for the most popular ones.
+
+### Debian
 OCaml is very easy to install on [Debian](http://www.debian.org).
 
 ```
@@ -97,7 +115,7 @@ We also recommend you to install the following packages:
 Check the [packages available in
 Debian](http://packages.debian.org/search?keywords=ocaml&searchon=all&suite=testing&section=all).
 
-## Ubuntu
+### Ubuntu
 [Ubuntu](http://www.ubuntu.com/) is a Debian derivative and uses the same package 
 manager, so Debian instructions are applicable to it too.
 
@@ -114,8 +132,7 @@ to add these PPAs on your own Ubuntu box. Please note PPAs are not
 reviewed at all by Ubuntu's security team and you are trusting the
 PPA's distributor by adding them to your system.
 
-
-## Fedora
+### Fedora
 Since [Fedora 8](http://fedoraproject.org/), Fedora has excellent
 support for OCaml in the basic distribution. There is an active group of
 maintainers who keep up to date with the latest OCaml, and there is a
@@ -155,36 +172,7 @@ yum search ocaml
  mailing list for people interested in OCaml on Fedora or Red Hat
  Enterprise Linux.
 
-## FreeBSD
-[FreeBSD](http://www.freebsd.org/) had a great support for OCaml
-development for a long time. There are easy to use packages available
-for most popular platforms (i386, amd64, powerpc, sparc64) for both the
-core languages and supplimentary libraries, documentation, examples and
-development tools. There is a framework available to make adding new
-ocaml application and libraries easy.
-
-To install the OCaml compiler from packages, do:
-
-```bash
-pkg_add -r ocaml
-```
-or
-
-```bash
-pkg_add -r ocaml-nox11
-```
-to install OCaml without X11-dependent libraries (e.g. to deploy on a
-headless server).
-
-To install the developer documentation, examples and emacs editing
-macros use the `ocaml-doc`, `ocaml-examples` and `ocaml-mode.el`
-packages.
-
-The same packages can be installed via the port system. There is a
-large set of libraries available in the `devel` category of the ports
-system as well as in the specific topic-related categories.
-
-## Gentoo
+### Gentoo
 In order to get the basic tools under
 [Gentoo](http://www.gentoo.org/), execute:
 
@@ -199,14 +187,14 @@ available execute
 emerge -S ocaml 
 ```
 
-## SuSE
+### SuSE
 OCaml can be installed from the repositories on both OpenSuSE and SLES:
 
 ```
 zypper install ocaml
 ```
 
-## Mageia
+### Mageia
 [Mageia](http://www.mageia.org/) has some support for OCaml in the
 distribution.
 
@@ -536,15 +524,34 @@ Note that if your executable doesn't run for long enough Shark won't be
 able to take any samples and won't report any statistics. More function
 names will show up in the profiles if you compile with `-g`.
 
-## Oasis-DB
-See [here](http://oasis.ocamlcore.org/).
+## FreeBSD
+[FreeBSD](http://www.freebsd.org/) had a great support for OCaml
+development for a long time. There are easy to use packages available
+for most popular platforms (i386, amd64, powerpc, sparc64) for both the
+core languages and supplimentary libraries, documentation, examples and
+development tools. There is a framework available to make adding new
+ocaml application and libraries easy.
 
-## ODB
-See [here](https://github.com/thelema/odb).
+To install the OCaml compiler from packages, do:
 
-## ocamlbrew
-See [here](https://github.com/hcarty/ocamlbrew).
+```bash
+pkg_add -r ocaml
+```
+or
 
+```bash
+pkg_add -r ocaml-nox11
+```
+to install OCaml without X11-dependent libraries (e.g. to deploy on a
+headless server).
+
+To install the developer documentation, examples and emacs editing
+macros use the `ocaml-doc`, `ocaml-examples` and `ocaml-mode.el`
+packages.
+
+The same packages can be installed via the port system. There is a
+large set of libraries available in the `devel` category of the ports
+system as well as in the specific topic-related categories.
 
 ## From Source
 
