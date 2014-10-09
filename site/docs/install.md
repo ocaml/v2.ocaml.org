@@ -304,7 +304,7 @@ Windows terminal, without installing other software. The license
 agreement allows both commercial and non-commercial use, as long as
 the compiler parts themselves are not redistributed. A binary
 installer is provided for OCaml 4.01.0. Some additional features have
-been added to OCaml for a better support of Windows.
+been added to OCaml for better support of Windows.
 
 ## Mac OS X
 On Mac OS X, there are, at least for the base package, a few different
