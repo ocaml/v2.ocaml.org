@@ -240,6 +240,13 @@ urpmq --list | grep ocaml
  a minimum standard for all OCaml packages we ship.
 
 ## Windows
+
+Under Windows, two solutions are available to use OCaml: the official
+OCaml distribution relies on Cygwin, while OCamlPro provides OCPWin, a
+binary distribution working without Cygwin.
+
+### OCaml on Cygwin
+
 Three ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
 issues](/learn/portability.html) or the [Windows release
@@ -274,6 +281,18 @@ notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
 
 To install libraries, you may use
 [Wodi](http://wodi.forge.ocamlcore.org/) or OPAM.
+
+### OCPWIN, Self-Contained OCaml for Windows
+
+[OCPWin is a self-contained binary
+distribution](http://www.typerex.org/ocpwin.html) of OCaml for
+Windows. It supports both 32-bit and 64-bit Windows platforms, and can
+compile both bytecode and native code applications, directly from a
+Windows terminal, without installing other software. The license
+agreement allows both commercial and non-commercial use, as long as
+the compiler parts themselves are not redistributed. A binary
+installer is provided for OCaml 4.01.0. Some additional features have
+been added to OCaml for better support of Windows.
 
 ## Mac OS X
 On Mac OS X, there are, at least for the base package, a few different
