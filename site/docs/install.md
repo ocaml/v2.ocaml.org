@@ -22,9 +22,9 @@ on multiple platforms:
 
 ### OPAM
 
-[OPAM](http://opam.ocaml.org/) is a package manager for OCaml. It is the recommended method to install the OCaml compiler and OCaml
+[OPAM](https://opam.ocaml.org/) is a package manager for OCaml. It is the recommended method to install the OCaml compiler and OCaml
 packages. The default OPAM
-[repository](http://opam.ocaml.org/packages/) is actively maintained
+[repository](https://opam.ocaml.org/packages/) is actively maintained
 and serves as the de facto master set of OCaml packages. OPAM also
 provides features that would be unavailable with the other methods,
 such as the ability to have multiple versions of OCaml installed at
@@ -47,11 +47,11 @@ Once you have OPAM installed, the `switch` and `install` commands are
 the ones you're likely to need first. For example:
 
 ```
-opam switch 4.02.0
+opam switch 4.02.1
 eval `opam config env`
 ```
 
-will compile OCaml 4.02.0 and install it in a location managed by
+will compile OCaml 4.02.1 and install it in a location managed by
 OPAM. The second line assures you are now using this version of the
 compiler. You can skip this step if you're happy with the version of
 OCaml available on your system , but this lags substantially on many
@@ -64,7 +64,7 @@ opam install batteries core
 ```
 
 will install Batteries and Core, two widely used standard
-libraries. See the main [repository](http://opam.ocaml.org/packages/)
+libraries. See the main [repository](https://opam.ocaml.org/packages/)
 to find hundreds more, and visit [OPAM's main
 page](http://opam.ocaml.org/) to learn about many additional features.
 
