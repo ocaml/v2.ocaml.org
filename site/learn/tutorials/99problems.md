@@ -3,7 +3,7 @@
 **Your Help is Needed**   
 Many of the solutions below have been written by [Victor
 Nicollet](https://github.com/VictorNicollet/99-Problems-OCaml). Please
-contribute more solutions or improve the existing ones.
+<a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))">contribute</a> more solutions or improve the existing ones.
 
 *Table of contents*
 
