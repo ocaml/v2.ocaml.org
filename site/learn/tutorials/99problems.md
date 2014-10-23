@@ -1141,11 +1141,31 @@ be
 `huffman` defined as follows: `huffman(fs)` returns the Huffman code
 table for the frequency table `fs`
 
-<!--SOLUTION-->
+let cmp (s1,f1) (s2,f2) = f1 - f2
 
-```ocaml
-(* example is pending *)
-```
+let remove x l = List.filter (fun y -> y <> x) l
+
+let rec insert (s,f) = function
+  | [] -> [(s,f)]
+  | (s',f')::t as l-> 
+      if f <= f'
+      then (s,f) :: l
+      else (s',f') :: insert (s,f) t
+
+let huffman l = 
+  if List.length l = 1 
+  then [(fst (List.hd l), "0")]
+  else 
+    let rec aux = function 
+      | [] -> failwith "no huffman for empty lists"
+      | [(ch,f)] -> [(ch,"")]  
+      | (a,f1)::(b,f2)::rest -> 
+        let l' = aux ( insert (a ^ b, f1+f2) rest) in
+        let parent = List.find (fun (s,f) -> s = a ^ b) l' in
+        let code = snd parent in 
+        let l' = remove parent l' in
+        (a, code ^ "0") :: (b, code ^ "1") :: l'
+    in aux (List.sort cmp l) 
 
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/binary-tree.gif" title="Binary Tree"></img>
 ## Binary Trees
