@@ -2538,7 +2538,81 @@ lengths of the rows and columns, top-to-bottom and left-to-right,
 respectively. Published puzzles are larger than this example, e.g.
 25×20, and apparently always have unique solutions.
 
-<!-- SOLUTION -->
+let check table l = 
+  let height = Array.length table
+  and width = Array.length table.(0) in
+  let rec walk row l = 
+    if row = height then
+      l = []
+    else(
+      match l with
+      | [] -> false
+      | cur_row :: rest -> 
+        let rec check_row l col = 
+          if col = width then 
+            l = []
+          else(
+            match l,table.(row).(col) with
+            | h::t, 'X' -> if h + col > width then false
+                           else if (
+                                    List.for_all (fun x -> x = 'X')
+                                    (Array.to_list (Array.sub table.(row) col h))
+                           ) then (((col + h < width) && (table.(row).(col+h) <> 'X'))
+                                 || (col + h = width))
+                                 && (check_row t (col + h))
+                           else false
+            | h::t, '_' -> check_row l (succ col)
+            | [], 'X' -> false
+            | [], '_' -> check_row [] (col + 1) 
+          )
+        in (check_row cur_row 0 ) && walk (succ row) rest
+    )
+  in walk 0 l 
+
+
+let print_tbl table = 
+  Array.iter (fun a ->
+    Array.iter (fun ch -> print_char '|'; print_char ch) a ;
+    print_endline "|"
+  ) table
+
+
+let solve lr lc = 
+  let height = List.length lr
+  and width  = List.length lc in
+  let table = Array.make_matrix height width '_' in
+  let rec gen col row l = 
+    if row >= height then
+      if List.hd l = [] then
+        gen (succ col) 0 (List.tl l)
+      else
+        ()
+    else if col = width then
+      if check table lr then
+        print_tbl table
+      else
+        ()
+    else
+      match l with
+      | cur_col :: rest_col -> 
+          match cur_col with
+          | hd::tl -> 
+              gen col (succ row) l;
+              if hd + row <= height then
+              (
+                for r = row to pred (row + hd) do
+                  table.(r).(col) <- 'X'
+                done;
+                gen col (row + hd + 1) (tl :: rest_col);
+                for r = row to pred (row + hd) do 
+                  table.(r).(col) <- '_'
+                done
+              )
+          | [] -> gen (succ col) 0 rest_col 
+  in gen 0 0 lc
+
+
+
 
 ```ocaml
 (* example pending *);;
