@@ -248,11 +248,11 @@ ocamlc -c -thread bla.ml
 The second argument of the action is usually called "build" and is used
 to build new dependencies that you couldn't write in the \\~deps
 parameter. It takes a conjunction of alternative targets. For instance,
-build \[["a"; "b"]; ["c"]] will try to build two targets: "a" and "c", or
+build \[["a"; "b"]; \["c"]] will try to build two targets: "a" and "c", or
 "b" and "c".
 
 The value returned by "build" tells you which files have been built. For
-instance, build [["a"; "b"]; ["c"]] may return [Good "a"; Bad exn]. This
+instance, build \[["a"; "b"]; \["c"]] may return \[Good "a"; Bad exn]. This
 means that "a" have been built, but that "c" couldn't be built. You
 should raise the "exn" exception if you can't do without "c".
 
