@@ -1,3 +1,5 @@
+<!-- ((! set title Automatic version generation !)) ((! set learn !)) -->
+
 # Automatic Version Generation
 The following plugin produces a file "version.ml" looking like this:
 

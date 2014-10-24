@@ -1,3 +1,5 @@
+<!-- ((! set title Odocl !)) ((! set learn !)) -->
+
 # Odocl
 <Ocamlbuild\> can build the ocamldoc documentation of your project for
 you. Just write an ".odocl" file with the list of modules you want. For

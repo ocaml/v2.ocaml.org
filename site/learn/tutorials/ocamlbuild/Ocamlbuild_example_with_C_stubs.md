@@ -1,3 +1,5 @@
+<!-- ((! set title Ocamlbuild example with C stubs !)) ((! set learn !)) -->
+
 # Ocamlbuild example with C stubs
 This example is a plugin for compiling cryptokit OCaml library.
 

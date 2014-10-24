@@ -1,5 +1,7 @@
+<!-- ((! set title Projects tried with ocamlbuild !)) ((! set learn !)) -->
+
 # Projects tried with ocamlbuild
-I've Nicolas Pouillard successfully
+I, Nicolas Pouillard, successfully
 built all these projects using ocamlbuild, with little effort:
 
 - alphaCaml

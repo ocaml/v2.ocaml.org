@@ -1,3 +1,5 @@
+<!-- ((! set title Ocamlbuild !)) ((! set learn !)) -->
+
 # Ocamlbuild
 ## Documentation
 
@@ -70,9 +72,6 @@
 +     [Ocamlbuild example with C
  stubs](Ocamlbuild_example_with_C_stubs.html) and an
  [abstracted example](C_stub_functions.html)
-
-+     [Full examples using
- ocamlbuild](Full_examples_using_ocamlbuild.html)
 
 +     [Projects using ocamlbuild](Projects_using_ocamlbuild.html)
 
