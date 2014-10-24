@@ -247,21 +247,21 @@ ocamlc -c -thread bla.ml
 ```
 
 ##### Dynamic dependencies
-The second argument of the action is usually called "build" and is used
+The second argument of the action is usually called `build` and is used
 to build new dependencies that you couldn't write in the \\~deps
 parameter. It takes a conjunction of alternative targets. For instance,
-build \[["a"; "b"]; \["c"]] will try to build two targets: "a" and "c", or
-"b" and "c".
+`build [["a"; "b"]; ["c"]]` will try to build two targets: `"a"` and `"c"`, or
+`"b"` and `"c"`.
 
-The value returned by "build" tells you which files have been built. For
-instance, build \[["a"; "b"]; \["c"]] may return \[Good "a"; Bad exn]. This
-means that "a" have been built, but that "c" couldn't be built. You
-should raise the "exn" exception if you can't do without "c".
+The value returned by `build` tells you which files have been built. For
+instance, `build [["a"; "b"]; ["c"]]` may return `[Good "a"; Bad exn]`. This
+means that `"a"` has been built, but that `"c"` couldn't be built. You
+should raise the `exn` exception if you can't do without `"c"`.
 
 The
 [Outcome](http://gallium.inria.fr/~pouillar/ocamlbuild/html/Signatures.OUTCOME.html)
 module has some handy functions to help you with the return values of
-"build".
+`build`.
 
 ##### Examples
 
@@ -272,12 +272,12 @@ module has some handy functions to help you with the return values of
 
 #### Tags and flags
 
-You can also use the "dep" and "flag" functions. The "dep" function
+You can also use the `dep` and `flag` functions. The `dep` function
 allows you to automatically build some dependencies when a file is
-tagged with some given tags, and the "flag" function allows you to
+tagged with some given tags, and the `flag` function allows you to
 associate command options with tags (to fill the holes of a command).
-For instance, here is how to declare that tags "ocaml", "compile" and
-"thread" should become "-thread":
+For instance, here is how to declare that tags `"ocaml"`, `"compile"` and
+`"thread"` should become `"-thread"`:
 
 ```
 flag ["ocaml"; "compile"; "thread"] (A "-thread")
