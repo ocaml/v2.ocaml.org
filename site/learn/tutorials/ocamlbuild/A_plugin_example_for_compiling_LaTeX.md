@@ -1,3 +1,5 @@
+<!-- ((! set title A LaTeX plugin example !)) ((! set learn !)) -->
+
 # A plugin example for compiling LaTeX
 Besides the example below, another plugin for LaTeX can be found
 [here](http://darcs.ocamlcore.org/ocamlunix/myocamlbuild.ml) it handles

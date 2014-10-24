@@ -1,3 +1,5 @@
+<!-- ((! set title Itarget !)) ((! set learn !)) -->
+
 # Itarget
 An .itarget file allows you to build several targets just by asking
 <Ocamlbuild\> to build one target \(the .otarget file\). For instance: \\$

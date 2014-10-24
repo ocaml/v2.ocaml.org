@@ -1,3 +1,5 @@
+<!-- ((! set title Making Plugins !)) ((! set learn !)) -->
+
 # Making plugins
 ## Getting started
 An OCamlbuild plugin is a single Ocaml file, named "myocamlbuild.ml",

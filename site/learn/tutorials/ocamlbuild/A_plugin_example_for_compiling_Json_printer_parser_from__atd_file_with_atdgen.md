@@ -1,3 +1,5 @@
+<!-- ((! set title An atdgen plugin example !)) ((! set learn !)) -->
+
 # A plugin example for compiling Json printer/parser from .atd file with atdgen
 ```
 open Ocamlbuild_plugin;;

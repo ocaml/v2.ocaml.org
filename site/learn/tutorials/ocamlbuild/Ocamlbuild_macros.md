@@ -1,3 +1,5 @@
+<!-- ((! set title Ocamlbuild macros !)) ((! set learn !)) -->
+
 # Ocamlbuild macros
 ## OCamlbuild with macro preprocessing
 To enable the use of the Camlp4 INCLUDE macro facility, one has to
