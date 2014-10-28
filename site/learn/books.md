@@ -77,7 +77,7 @@ programming. This gives an unusual perspective on systems programming
 and on OCaml. It is assumed that the reader is familiar with OCaml and
 Unix shell commands.
 
-[Online](http://ocamlunix.forge.ocamlcore.org/)
+[Online](http://ocaml.github.io/ocamlunix)
 
 ****
 
