@@ -41,15 +41,15 @@ let rec eval_code_blocks md =
 
 let toggle_js =
   let open Omd in
-  Html("script", ["type", Some "text/javascript"],
-       [Text "function toggleContent(id) {
-              // Get the DOM reference
-              var el = document.getElementById(id);
-              // Toggle
-              el.style.display == \"block\" ? el.style.display = \"none\"
-              : el.style.display = \"block\";
-              }
-              </script>\n"])
+  let js = "function toggleContent(id) {
+            // Get the DOM reference
+            var el = document.getElementById(id);
+            // Toggle
+            el.style.display == \"block\" ? el.style.display = \"none\"
+            : el.style.display = \"block\";
+            }
+            \n" in
+  Html_block("script", ["type", Some "text/javascript"], [Text js])
 
 let n_button = ref 0
 
