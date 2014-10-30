@@ -132,12 +132,16 @@ let highlight_ocaml =
   in
   fun phrase -> (
     let phrase = color_string phrase in
-    List.fold_left (fun h (re, t) -> Str.global_replace re t h) phrase subst
+    let p = List.fold_left (fun h (re, t) -> Str.global_replace re t h)
+                           phrase subst in
+    match Omd.of_string p with
+    | [Omd.Paragraph o] -> o (* this is code, do not wrap into a paragraph *)
+    | o -> o
   )
 
 let highlight ?(syntax="ocaml") phrase =
   if syntax = "ocaml" then highlight_ocaml (html_encode phrase)
-  else html_encode phrase
+  else [Omd.Text(html_encode phrase)]
 
 
 (* Eval OCaml code — in the same way the toploop does
@@ -186,8 +190,7 @@ let format_eval_input phrase : Omd.t =
   (* Due to the prompt, one must add 2 spaces at the beginnig of each line *)
   let phrase = Str.global_replace nl_re "\n  " phrase in
   [Html("span", ["class", Some "ocaml-prompt"], [Text "# "]);
-   Html("span", ["class", Some "ocaml-input"],
-        Omd.of_string(highlight_ocaml phrase));
+   Html("span", ["class", Some "ocaml-input"], highlight_ocaml phrase);
    Html("span", ["class", Some "ocaml-prompt"], [Text ";;"])]
 
 let html_of_eval_silent t phrase =
@@ -276,3 +279,8 @@ let to_html t phrases : Omd.t =
   (* Split phrases *)
   let phrases = List.map String.trim (Str.split end_of_phrase phrases) in
   List.concat (List.map (html_of_eval t) phrases)
+
+
+(* Local Variables: *)
+(* compile-command: "make --no-print-directory -k -C .. script/md_preprocess" *)
+(* End: *)

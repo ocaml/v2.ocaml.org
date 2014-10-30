@@ -22,8 +22,7 @@ let rec eval_code_blocks md =
      :: eval_code_blocks tl
   | Code_block("ocaml", code) :: tl ->
      let html = Code.highlight code in
-     Html_block("pre", [], [Html_block("code", ["class", Some "ocaml"],
-                                       [Text html])])
+     Html_block("pre", [], [Html("code", ["class", Some "ocaml"], html)])
      :: eval_code_blocks tl
   | Blockquote t :: tl ->
      (* Order of evaluation is important: the code in [Blockquote] may
