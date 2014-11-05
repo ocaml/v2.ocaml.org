@@ -17,8 +17,7 @@ let rec eval_code_blocks md =
   | Code_block("tryocaml", code) :: tl
   | Code_block("ocamltop", code) :: tl ->
      let html = Code.to_html toplevel code in
-     Html_block("pre", [], [Html_block("code", ["class", Some "ocamltop"],
-                                       html)])
+     Html_block("pre", [], [Html("code", ["class", Some "ocamltop"], html)])
      :: eval_code_blocks tl
   | Code_block("ocaml", code) :: tl ->
      let html = Code.highlight code in
@@ -48,7 +47,7 @@ let toggle_js =
             : el.style.display = \"block\";
             }
             \n" in
-  Html_block("script", ["type", Some "text/javascript"], [Text js])
+  Html_block("script", ["type", Some "text/javascript"], [Raw js])
 
 let n_button = ref 0
 
@@ -59,8 +58,9 @@ let add_toggle_button title html doc : Omd.t =
      "class", Some "solution"] in
   let attr_div = ["id", Some(sprintf "ocamlorg%i" !n_button);
                   "class", Some "solution"] in
-  Omd.Html("button", attr_button, [Omd.Text title])
-  :: Omd.Html("div", attr_div, html)
+  let open Omd in
+  Html("button", attr_button, [Raw(Code.html_encode title)])
+  :: NL :: Html_block("div", attr_div, html)
   :: doc
 
 (** Finds "SOLUTION" directly followed by a Blockquote and transform
@@ -73,7 +73,6 @@ let rec toggle_solutions any_change md =
   | Paragraph [Omd.Text "SOLUTION"] :: Blockquote sol :: md
   | Paragraph [Omd.Text "SOLUTION"] :: NL :: Blockquote sol :: md ->
      any_change := true;
-     (* FIXME: must colorize the code and execute it. *)
      add_toggle_button "Solution" sol (toggle_solutions any_change md)
   | e :: md ->
 
