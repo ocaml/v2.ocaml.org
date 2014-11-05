@@ -26,7 +26,7 @@ let rec eval_code_blocks md =
      :: eval_code_blocks tl
   | Blockquote t :: tl ->
      (* Order of evaluation is important: the code in [Blockquote] may
-        be needed by later blocks. *)
+        have toplevel effects needed by later blocks. *)
      let t = eval_code_blocks t in
      Blockquote t :: eval_code_blocks tl
   | e :: tl ->
