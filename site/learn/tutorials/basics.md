@@ -86,10 +86,21 @@ examples:
 ```ocaml
 f 5 (g "hello") 3    (* f has three arguments, g has one argument *)
 f (g 3 4)            (* f has one argument, g has two arguments *)
-
-# repeated ("hello", 3);;     (* OCaml will spot the mistake *)
-This expression has type string * int but is here used with type string
 ```
+
+<div media:type="text/omd" style="display: none">
+
+```ocamltop
+let repeated (s: string) (i: int) =
+  failwith "implementation not given"
+```
+
+</div>
+
+```ocamltop
+repeated ("hello", 3)     (* OCaml will spot the mistake *)
+```
+
 ## Defining a function
 You all know how to define a function (or static method, for Java-heads)
 in our existing languages. How do we do it in OCaml?

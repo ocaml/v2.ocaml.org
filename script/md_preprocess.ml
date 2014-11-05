@@ -28,6 +28,12 @@ let rec eval_code_blocks md =
         have toplevel effects needed by later blocks. *)
      let t = eval_code_blocks t in
      Blockquote t :: eval_code_blocks tl
+  | Html(name, args, t) :: tl ->
+     let t = eval_code_blocks t in
+     Html(name, args, t) :: eval_code_blocks tl
+  | Html_block(name, args, t) :: tl ->
+     let t = eval_code_blocks t in
+     Html_block(name, args, t) :: eval_code_blocks tl
   | e :: tl ->
      (* FIXME: do we want to recurse in other tags? *)
      e :: eval_code_blocks tl
