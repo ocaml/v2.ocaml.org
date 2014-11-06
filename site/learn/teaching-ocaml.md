@@ -68,12 +68,13 @@ info fields and you are done!)_
 
 ## Suggested Textbooks 
 
-<!-- Go though course pages and add books that are actually used in courses -->
 
 This is a list of books and lecture notes that are being used for
 teaching OCaml.  There is a wider list of book to choose from at For
 the full list refer to
 [Textbook section](http://ocaml.org/learn/books.html)
+
+1. [The OCaml System: Documentation and User's Manual](http://caml.inria.fr/pub/docs/manual-ocaml/) This the official User's Manual. It serves as a complete reference guide to OCaml. Updated for each version of OCaml, it contains the description of the language, of its extensions, and the documentation of the tools and libraries included in the official distribution. (Cornell)
 
 1. [Lecture notes](http://www.seas.upenn.edu/~cis120/current/notes/120notes.pdf)
    for Penn's CIS120.  Like the course, this book covers both OCaml
@@ -83,10 +84,8 @@ the full list refer to
    also available [online](https://realworldocaml.org/).  Not really
    intended as a textbook, and probably not ideal as a first programming book.  But it
    has been used in a few university classes, including Harvard's CS51.
-1. Jason Hickey's
-   [Introduction to Objective Caml](http://files.metaprl.org/doc/ocaml-book.pdf),
-   originally developed as lecture notes for Jason's course at Cal
-   Tech.
+1. Jason Hickey's [Introduction to Objective Caml](http://files.metaprl.org/doc/ocaml-book.pdf),
+   originally developed as lecture notes for Jason's course at Cal Tech.
 
 
 
@@ -95,10 +94,9 @@ the full list refer to
 This section lists some of the available tools that are or can be used in a classroom or lab.
 
 ### In the browser
-<!-- Fill out this paragraph with a bit more detail. Why should ppl
-look at browser versions first? -->
-For a quick example of OCaml in the browser Run and explore OCaml
-without installing it.
+
+OCaml's bytecode is reletively starightforward to convert to Javascipt. This allows any OCaml code to run in the browser.
+For a quick example of OCaml in the browser Run and explore OCaml without installing it.
 
 1. [IOCaml Notebooks](https://github.com/andrewray/iocaml/blob/master/README.md)
 1. [A compiler from OCaml bytecode to Javascript](http://ocsigen.github.io/js_of_ocaml/)
