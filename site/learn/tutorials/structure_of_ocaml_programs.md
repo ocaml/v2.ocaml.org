@@ -315,7 +315,7 @@ helping you to eliminate bugs.
 
 ## The `Pervasives` module
 There's one module that you never need to "`open`". That is the
-`Pervasives` module (go and read `/usr/lib/ocaml/3.08/pervasives.mli`
+`Pervasives` module (go and read `/usr/lib/ocaml/pervasives.mli`
 now). All of the symbols from the `Pervasives` module are automatically
 imported into every OCaml program.
 
