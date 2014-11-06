@@ -1,12 +1,32 @@
 # Teaching OCaml
 
-OCaml's support for widely used in industry functional, imperative and object-oriented programming styles is arguably the reason behind it OCamlb being used more and more commonly as a teaching language. 
+OCaml is a high-level language that supports functional, imperative
+and object-oriented programming styles. As such, it is an excellent
+tool for teaching the fundamental concepts behind programming
+languages, type theory and systems.
 
-For the full description of the benefits behind the OCaml language please refer to the [Why OCaml?](https://realworldocaml.org/v1/en/html/prologue.html).
+For the full description of the benefits of the OCaml language
+please refer to the article on "
+[Why OCaml?](https://realworldocaml.org/v1/en/html/prologue.html)".
 
-This page is devoted to resources for people who are teaching OCaml in a university setting. It contains a list courses in different universities that use OCaml as a teaching language. This can help with setting up a course structure  as well as finding the relevant contacts to discuss and share experiences. We also include relevant resources such as references to widely used textbooks, VMs, installation and guides for setting your favourite IDE to work with OCaml. We hope that this will make a job of setting a programming course which uses OCaml as a primary teaching language as slightly easier task.
+This page is devoted to resources for people who are teaching OCaml in
+a University setting. It contains a list of courses in different
+Universities that use OCaml as a teaching language. It can help with
+setting up a course structure as well as finding the relevant contacts
+to discuss and share experiences. We also include relevant resources
+such as references to commonly used textbooks, VMs and IDE guides for
+setting up your preferred environment to work with OCaml. We hope that
+this will make the task of shaping a programming course that uses
+OCaml a slightly easier task.
 
-**Don't worry if things do not work**! OCaml has a vibrant and rapidly growing community behind it that is eager to help. If you find any problems with any of the tutorials or something is missing please let us know by [creating an issue](https://github.com/ocaml/ocaml.org/issues) so we can help in making your experience with OCaml more pleasant.
+**Don't worry if things do not work**! OCaml has a vibrant and rapidly
+  growing community behind it that is eager to help. If you find any
+  problems with any of the tutorials or something is missing please
+  let us know by
+  [creating an issue](https://github.com/ocaml/ocaml.org/issues/new) so we
+  can help in making your experience with OCaml more pleasant. If you
+  would like to add your course or other resources please also
+  [create an issue](https://github.com/ocaml/ocaml.org/issues/new).
 
 
 ## Courses taught in OCaml
@@ -32,11 +52,13 @@ Here's a list of courses we know about that teach in OCaml.
 1. [Université Paris-Diderot (pf5)](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/)
 1. [Aarhus University](https://services.brics.dk/java/courseadmin/dOvs) (along with Java)
 
-### Goolge map of the course
+### Google map of the course
 
 [Add your course to the map!](https://www.google.com/maps/d/edit?mid=zk8_K4G_usic.kkzYvEvqV44Q)
 
-_(Tip: Click on the relevant layer (e.g., US,EU) if missing add a new one, search for your university, click on the markup and click on "Add to map", fill in the info fields and you are done.)_
+_(Tip: Click on the relevant layer (e.g., US,EU), search for your
+University, click on the marker and click on "Add to map", fill in the
+info fields and you are done!)_
 
 <iframe src="https://www.google.com/maps/d/embed?mid=zk8_K4G_usic.kkzYvEvqV44Q" width="640" height="480"></iframe>
 
@@ -44,10 +66,14 @@ _(Tip: Click on the relevant layer (e.g., US,EU) if missing add a new one, searc
 # Resources
 
 
-## Recommended Textbooks 
+## Suggested Textbooks 
 
-This is a list of books and lecture notes that are being used for teaching OCaml. 
-For the full list refer to [Textbook section](http://ocaml.org/learn/books.html)
+<!-- Go though course pages and add books that are actually used in courses -->
+
+This is a list of books and lecture notes that are being used for
+teaching OCaml.  There is a wider list of book to choose from at For
+the full list refer to
+[Textbook section](http://ocaml.org/learn/books.html)
 
 1. [Lecture notes](http://www.seas.upenn.edu/~cis120/current/notes/120notes.pdf)
    for Penn's CIS120.  Like the course, this book covers both OCaml
@@ -64,13 +90,17 @@ For the full list refer to [Textbook section](http://ocaml.org/learn/books.html)
 
 
 
-## Lab
+## Teaching tools
 
-This section lists some of the available tools that are or can be used in the lab
+This section lists some of the available tools that are or can be used in a classroom or lab.
 
-### In the browser 
-Run and explore OCaml without installing it.
+### In the browser
+<!-- Fill out this paragraph with a bit more detail. Why should ppl
+look at browser versions first? -->
+For a quick example of OCaml in the browser Run and explore OCaml
+without installing it.
 
+1. [IOCaml Notebooks](https://github.com/andrewray/iocaml/blob/master/README.md)
 1. [A compiler from OCaml bytecode to Javascript](http://ocsigen.github.io/js_of_ocaml/)
 1. [Try OCaml](http://try.ocamlpro.com/)
 1. [Compile OCaml Online](http://www.compileonline.com/compile_ocaml_online.php)
@@ -84,25 +114,20 @@ Check out our [Install OCaml section](http://ocaml.org/docs/install.html)
 
 Alternative guides
 
-1. [Installation Instructions from Real World OCaml book](https://github.com/realworldocaml/book/wiki/Installation-Instructions)
+1. [Installation Instructions from Real World OCaml](https://github.com/realworldocaml/book/wiki/Installation-Instructions)
 
 
 ### VM images
 
-This is a list of VM that some universities used to avoid setup delays. 
-Add you VP to the list.
+This is a list of VM images that some Universities use to avoid setup
+delays and provide a consistent environment.
 
-1. [Ocaml 4.01 for MAC](http://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0-intel.dmg)
+1. [OCaml 4.01 for MAC](http://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0-intel.dmg)
 1. [Cornell's Linux VM VirtualBox image](https://cornell.app.box.com/s/acqwpvnidu5yq1osd8lb) ([more info here](http://www.cs.cornell.edu/courses/CS3110/2014sp/hw/0/ps0.pdf))
 1. [Princeton's Ubuntu VirtualBox VM](http://www.cs.princeton.edu/~cos326/Ubuntu326.ova) (more info on the course's [site ](http://www.cs.princeton.edu/courses/archive/fall14/cos326/resources.php))
 
 ### IDEs and other development tools
 
-1. [Turn your editor into a full fledged OCaml IDE](https://opam.ocaml.org/blog/turn-your-editor-into-an-ocaml-ide/)
-1. [OCaml-Top](http://www.typerex.org/ocaml-top.html)
-1. Eclipse
-  * [OcaIDE](http://www.algo-prog.info/ocaide/index.php) [[1](http://www.princeton.edu/~crmarsh/ocaml_dev_environment/)] , [[2](http://www.seas.upenn.edu/~cis120e/ocaml_setup.shtml)]
-  * [OCaml Development Tools](http://ocamldt.free.fr/) (OCD)
 1. EMACS with OCaml 
   * [Setting Up Your OCaml Development Environment on OS X](http://www.princeton.edu/~crmarsh/ocaml_dev_environment/)
   * [Installing Emacs with Tuareg Mode](http://www.cs.cornell.edu/courses/CS3110/2014sp/resources.php)
@@ -110,24 +135,28 @@ Add you VP to the list.
 1. VIM with OCaml 
   * [Intellisense for OCaml with Vim and Merlin](http://anil.recoil.org/2013/10/03/merlin-and-vim.html)
   * [Vim from scartch](https://github.com/the-lambda-church/merlin/wiki/vim-from-scratch)
+1. Eclipse
+  * [OcaIDE](http://www.algo-prog.info/ocaide/index.php) [[1](http://www.princeton.edu/~crmarsh/ocaml_dev_environment/)] , [[2](http://www.seas.upenn.edu/~cis120e/ocaml_setup.shtml)]
+  * [OCaml Development Tools](http://ocamldt.free.fr/) (OCD)
+1. [More information on using Merlin with Vim/Emacs](https://opam.ocaml.org/blog/turn-your-editor-into-an-ocaml-ide/)
+1. [OCaml-Top](http://www.typerex.org/ocaml-top.html)
 
 
-### Exercises
 
-First check out the [our OCaml code examples section](http://ocaml.org/learn/taste.html) and [99 Problems (solved) in OCaml](http://ocaml.org/learn/tutorials/99problems.html)
+### Tutorials and Exercises
 
-1. [Examples and Exercises for the book "More OCaml"](https://github.com/johnwhitington/more-ocaml-exercises)
-1. [From UMass's CS691F Programming languages course](http://people.cs.umass.edu/~arjun/courses/cs691f/assignments/ocaml-tutorial.html)
-1. [Try OCaml](http://try.ocamlpro.com/)
-
-### Tutorials 
-
-First check out the [our OCaml tutorials section](http://ocaml.org/learn/tutorials/)
+**University tutorials and notes**
 
 1. [From UMass's CS691F Programming languages course](http://people.cs.umass.edu/~arjun/courses/cs691f/assignments/ocaml-tutorial.html)
-1. [OCaml Core turotials](http://mirror.ocamlcore.org/ocaml-tutorial.org/)
-1. [A Concise Introduction to Objective Caml](http://www.csc.villanova.edu/~dmatusze/resources/ocaml/ocaml.html)
-1. [Beginner's guide to OCaml beginner's guides.](http://blog.nullspace.io/beginners-guide-to-ocaml-beginners-guides.html)
 1. [CSE 130: Programming Languages Course at UCSA](http://cseweb.ucsd.edu/classes/wi11/cse130/). Click on [Lectures] (http://cseweb.ucsd.edu/classes/wi11/cse130/) and [Discussion Notes] (http://cseweb.ucsd.edu/classes/wi11/cse130/). Have a look at Lec 7 (a pp presentation by Zach) for an inspiring introduction into map and fold.
 1. [CS 3110 Fall 2013 :: Data Structures and Functional Programming at Cornell](http://www.cs.cornell.edu/courses/cs3110/2013fa/lecture_notes.php). The lecturing materials explain OCaml on the basis of the fundamental concepts of functional programming languages.
 1. [CIS 500: Software Foundations at UPenn](http://www.seas.upenn.edu/~cis500/cis500-f05/index.html). A Software Fundations course with strong emphasis on Types. The [OCaml Tutorial] (http://www.seas.upenn.edu/~cis500/cis500-f05/resources/seas-ocaml.html) includes a gentle introduction to the OCaml interactive top-level system and compilation in OCaml.
+
+**Other sources**
+
+1. You can also check out the [OCaml tutorials section](http://ocaml.org/learn/tutorials/) for ideas and code.
+1. Also check out the [OCaml code examples section](http://ocaml.org/learn/taste.html) and [99 Problems (solved) in OCaml](http://ocaml.org/learn/tutorials/99problems.html)
+1. [OCaml Core turotials](http://mirror.ocamlcore.org/ocaml-tutorial.org/)
+1. [Beginner's guide to OCaml beginner's guides.](http://blog.nullspace.io/beginners-guide-to-ocaml-beginners-guides.html)
+1. [Examples and Exercises for the book "More OCaml"](https://github.com/johnwhitington/more-ocaml-exercises)
+1. [A Concise Introduction to Objective Caml](http://www.csc.villanova.edu/~dmatusze/resources/ocaml/ocaml.html)
