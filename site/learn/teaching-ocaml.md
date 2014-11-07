@@ -91,7 +91,7 @@ This section lists some of the available tools that are or can be used in a clas
 
 ### In the browser
 
-The OCaml bytecode is reletively starightforward to convert to Javascipt. This allows any OCaml code to run in the browser, which is very convenient when delivering individual tutorials to a class as there's minimal set up time involved. Browser enviromnets can serve as good introduction to OCaml syntax and a great platform for exercise solving because they do not require any setup. 
+The OCaml bytecode is reletively starightforward to convert to Javascipt. This allows any OCaml code to run in the browser, which is very convenient when delivering individual tutorials to a class as there's minimal set up time involved. 
 
 For a quick example of OCaml in the browser, try visiting any of the following: 
 
