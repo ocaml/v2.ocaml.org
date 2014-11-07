@@ -149,7 +149,7 @@ delays and provide a consistent environment.
 
 **Other sources**
 
-1. You can also check out the [OCaml tutorials section](http://ocaml.org/learn/tutorials/) for ideas and code.
+1. You can check out the [OCaml tutorials section](http://ocaml.org/learn/tutorials/) for ideas and code.
 1. Also check out the [OCaml code examples section](http://ocaml.org/learn/taste.html) and [99 Problems (solved) in OCaml](http://ocaml.org/learn/tutorials/99problems.html)
 1. [OCaml Core turotials](http://mirror.ocamlcore.org/ocaml-tutorial.org/)
 1. [Beginner's guide to OCaml beginner's guides.](http://blog.nullspace.io/beginners-guide-to-ocaml-beginners-guides.html)
