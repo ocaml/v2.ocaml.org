@@ -79,11 +79,9 @@ teaching OCaml. There is also a wider list of books to choose from, which you ca
    and Java, and is intended for students with no programming
    background.
 1. [Real World OCaml](http://shop.oreilly.com/product/0636920024743.do),
-   also available [online](https://realworldocaml.org/).  Not really
-   intended as a textbook, and probably not ideal as a first programming book.  But it
-   has been used in a few university classes, including Harvard's CS51.
+   also available [online](https://realworldocaml.org/).  Used by Harvard's CS51 course.
 1. Jason Hickey's [Introduction to Objective Caml](http://files.metaprl.org/doc/ocaml-book.pdf),
-   originally developed as lecture notes for Jason's course at Cal Tech.
+   originally developed as lecture notes for Jason's course at Cal Tech 
 
 
 
@@ -93,10 +91,9 @@ This section lists some of the available tools that are or can be used in a clas
 
 ### In the browser
 
-The OCaml bytecode is reletively starightforward to convert to Javascipt, which allows any OCaml code to be executed in the browser.
-Browser enviromnets can serve as good introduction to OCaml syntax and a great platform for exercise solving because they do not require any setup. 
+The OCaml bytecode is reletively starightforward to convert to Javascipt. This allows any OCaml code to run in the browser, which is very convenient when delivering individual tutorials to a class as there's minimal set up time involved. Browser enviromnets can serve as good introduction to OCaml syntax and a great platform for exercise solving because they do not require any setup. 
 
-For a quick example of OCaml in the browser Run and explore OCaml without installing it.
+For a quick example of OCaml in the browser, try visiting any of the following: 
 
 1. [IOCaml Notebooks](https://github.com/andrewray/iocaml/blob/master/README.md)
 1. [A compiler from OCaml bytecode to Javascript](http://ocsigen.github.io/js_of_ocaml/)
