@@ -70,11 +70,9 @@ info fields and you are done!)_
 
 
 This is a list of books and lecture notes that are being used for
-teaching OCaml.  There is a wider list of book to choose from at For
-the full list refer to
-[Textbook section](http://ocaml.org/learn/books.html)
+teaching OCaml. There is also a wider list of books to choose from, which you can find on the [books page](http://ocaml.org/learn/books.html).
 
-1. [The OCaml System: Documentation and User's Manual](http://caml.inria.fr/pub/docs/manual-ocaml/) This the official User's Manual. It serves as a complete reference guide to OCaml. Updated for each version of OCaml, it contains the description of the language, of its extensions, and the documentation of the tools and libraries included in the official distribution. (Cornell)
+1. [The OCaml System: Documentation and User's Manual](http://caml.inria.fr/pub/docs/manual-ocaml/) This the official User's Manual. It serves as a complete reference guide to OCaml. Updated for each version of OCaml, it contains the description of the language, of its extensions, and the documentation of the tools and libraries included in the official distribution. 
 
 1. [Lecture notes](http://www.seas.upenn.edu/~cis120/current/notes/120notes.pdf)
    for Penn's CIS120.  Like the course, this book covers both OCaml
@@ -95,7 +93,9 @@ This section lists some of the available tools that are or can be used in a clas
 
 ### In the browser
 
-OCaml's bytecode is reletively starightforward to convert to Javascipt. This allows any OCaml code to run in the browser.
+The OCaml bytecode is reletively starightforward to convert to Javascipt, which allows any OCaml code to be executed in the browser.
+Browser enviromnets can serve as good introduction to OCaml syntax and a great platform for exercise solving because they do not require any setup. 
+
 For a quick example of OCaml in the browser Run and explore OCaml without installing it.
 
 1. [IOCaml Notebooks](https://github.com/andrewray/iocaml/blob/master/README.md)
