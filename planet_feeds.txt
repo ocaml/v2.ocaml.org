@@ -65,5 +65,6 @@ Thomas Leonard|http://roscidus.com/blog/blog/categories/ocaml/atom.xml
 Till Varoquaux|http://www.blogger.com/feeds/6115529230232389198/posts/default
 WODI|http://wodi.forge.ocamlcore.org/atom.xml
 Y-node|http://y-node.com/blog/feeds/latest/
+Yan Shvartzshnaider|http://yansnotes.blogspot.com/feeds/posts/default/-/ocaml
 OCaml-Java|http://www.ocamljava.org/feed.xml
 OCaml Platform|http://opam.ocaml.org/blog/feed.xml
