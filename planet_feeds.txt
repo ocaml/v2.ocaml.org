@@ -55,6 +55,7 @@ Orbitz|http://functional-orbitz.blogspot.com/feeds/posts/default/-/planetocaml?a
 Paolo Donadeo|http://www.donadeo.net/facets/programming-languages/objective-caml/feed/
 Peter Zotov|http://whitequark.org/blog/categories/ocaml/atom.xml
 Pietro Abate|https://mancoosi.org/~abate/taxonomy/term/5/0/feed
+Psellos|http://psellos.com/atom.xml
 Richard Jones|http://rwmj.wordpress.com/tag/ocaml/feed/
 Sebastien Mondet|http://seb.mondet.org/blog/feed/ocaml.rss
 Shayne Fletcher|http://www.blogger.com/feeds/5012565255225108517/posts/default/-/OCaml
