@@ -14,7 +14,7 @@ a University setting. It contains a list of courses in different
 Universities that use OCaml as a teaching language. It can help with
 setting up a course structure as well as finding the relevant contacts
 to discuss and share experiences. We also include relevant resources
-such as references to commonly used textbooks, VMs and IDE guides for
+such as references to commonly used textbooks and tools for
 setting up your preferred environment to work with OCaml. We hope that
 this will make the task of shaping a programming course that uses
 OCaml a slightly easier task.
@@ -23,9 +23,9 @@ OCaml a slightly easier task.
   growing community behind it that is eager to help. If you find any
   problems with any of the tutorials or something is missing please
   let us know by
-  [creating an issue](https://github.com/ocaml/ocaml.org/issues/new) so we
+  [getting in touch](http://lists.ocaml.org/listinfo/teaching) so we
   can help in making your experience with OCaml more pleasant. If you
-  would like to add your course or other resources please also
+  would like to add your course or other resources please feel free to
   [create an issue](https://github.com/ocaml/ocaml.org/issues/new).
 
 ### Mailing list
@@ -33,7 +33,8 @@ We set-up a [mailing list](http://lists.ocaml.org/listinfo/teaching) for profess
 
 ## Courses taught in OCaml
 
-Here's a list of courses we know about that teach in OCaml. 
+Here's a list of courses we know about that teach in OCaml.
+Please add yours if you don't see it listed!
 
 1. [Brown University](http://cs.brown.edu/courses/cs017/) - An Integrated introducion (CS 17/18)  (along with Racket, Scala and Java)
 1. [Cornell University](http://www.cs.cornell.edu/courses/cs3110/2012sp/courseinfo.php) - Data Structures and Functional Programming (CS 3110)
@@ -56,7 +57,7 @@ Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [Université Paris-Diderot](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/) - Functional Programming (PF5)
 1. [Aarhus University](https://services.brics.dk/java/courseadmin/dOvs) - The compilation course (along with Java)
 
-### Google map of the course
+### Map of courses around the world
 
 [Add your course to the map!](https://www.google.com/maps/d/edit?mid=zk8_K4G_usic.kkzYvEvqV44Q)
 
@@ -123,7 +124,7 @@ delays and provide a consistent environment.
 
 1. [OCaml 4.01 for MAC](http://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0-intel.dmg)
 1. [Cornell's Linux VM VirtualBox image](https://cornell.app.box.com/s/acqwpvnidu5yq1osd8lb) ([more info here](http://www.cs.cornell.edu/courses/CS3110/2014sp/hw/0/ps0.pdf))
-1. [Princeton's Ubuntu VirtualBox VM](http://www.cs.princeton.edu/~cos326/Ubuntu326.ova) (more info on the course's [site ](http://www.cs.princeton.edu/courses/archive/fall14/cos326/resources.php))
+1. [Princeton's Ubuntu VirtualBox VM](http://www.cs.princeton.edu/~cos326/Ubuntu326.ova) (more info on the course's [site](http://www.cs.princeton.edu/courses/archive/fall14/cos326/resources.php))
 1. [Mirage Virtualbox VMs via Vagrant](https://github.com/mirage/mirage-vagrant-vms)
 
 
