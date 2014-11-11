@@ -47,11 +47,11 @@ Here's a list of courses we know about that teach in OCaml.
 1. [University of Birmingham](https://sites.google.com/site/focs1112/) - Foundations of Computer Science (FOCS1112)
 1. [University of California, San Diego](http://cseweb.ucsd.edu/classes/wi14/cse130-a/) Programming Languages:
 Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
-1. [University of Cambridge (L28)](http://www.cl.cam.ac.uk/teaching/1415/L28/) - Advanced Functional Programming (L28)
-1. [University of Illinois at Urbana-Champaign (CS 421](https://courses.engr.illinois.edu/cs421/) - Programming Languages and Compilers (CS 421)
-1. [University of Innsbruck (SS6)](http://cl-informatik.uibk.ac.at/teaching/ss06/ocaml/schedule.php) -  Programming in OCAML (SS 06)
-1. [University of Maryland (CMSC 330)](http://www.cs.umd.edu/class/spring2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages (CMSC 330)
-1. [University of Massachusetts Amherst (CMPSCI631)](http://people.cs.umass.edu/~arjun/teaching/631/) - Programming Languages (CMPSCI 631)
+1. [University of Cambridge](http://www.cl.cam.ac.uk/teaching/1415/L28/) - Advanced Functional Programming (L28)
+1. [University of Illinois at Urbana-Champaign](https://courses.engr.illinois.edu/cs421/) - Programming Languages and Compilers (CS 421)
+1. [University of Innsbruck ](http://cl-informatik.uibk.ac.at/teaching/ss06/ocaml/schedule.php) -  Programming in OCAML (SS 06)
+1. [University of Maryland](http://www.cs.umd.edu/class/spring2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages (CMSC 330)
+1. [University of Massachusetts Amherst](http://people.cs.umass.edu/~arjun/teaching/631/) - Programming Languages (CMPSCI 631)
 1. [University of Wrocław](https://international.uni.wroc.pl/en/course/functional-programming) - Functional Programming
 1. [Université Paris-Diderot](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/) - Functional Programming (PF5)
 1. [Aarhus University](https://services.brics.dk/java/courseadmin/dOvs) - The compilation course (along with Java)
