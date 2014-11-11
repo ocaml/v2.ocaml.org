@@ -35,25 +35,25 @@ We set-up a [mailing list](http://lists.ocaml.org/listinfo/teaching) for profess
 
 Here's a list of courses we know about that teach in OCaml. 
 
-1. [Brown (CS-17)](http://cs.brown.edu/courses/cs017/) - An Integrated introducion [CS 17/18]  (along with Racket, Scala and Java)
-1. [Cornell (CS3110)](http://www.cs.cornell.edu/courses/cs3110/2012sp/courseinfo.php) - Data Structures and Functional Programming [CS 3110]
-1. [Harvard (CS51)](http:/www.fas.harvard.edu/~cs51) - Introduction to Computer Science II: Abstraction & Design  [CS51]
-1. [Indian Institute of Technology, Delhi (CSL 101) ](http://www.cse.iitd.ernet.in/~ssen/csl101/details.html) - Introduction to Computers and Programming (CSL 101) (along with Pascal and Java)
-1. [Princeton](http://www.cs.princeton.edu/courses/archive/fall14/cos326/) - Functional Programming [COS 326]
-1. [Rice University)](http://www.cs.rice.edu/~javaplt/311/info.html) - Principles of Programming Languages [COMP 311]
-1. [UMass (CS691F)](http://people.cs.umass.edu/~arjun/courses/cs691f/) - Programming Language [CS691F]
-1. [UPenn](http://www.seas.upenn.edu/~cis120/current/) - Programming Languages and Techniques I [CIS120]
-1. [UPenn ](http://www.cis.upenn.edu/~cis341/current/) - Compilers  [CIS341]
-1. [University of Birmingham](https://sites.google.com/site/focs1112/) - Foundations of Computer Science [FOCS1112]
+1. [Brown University](http://cs.brown.edu/courses/cs017/) - An Integrated introducion (CS 17/18)  (along with Racket, Scala and Java)
+1. [Cornell University](http://www.cs.cornell.edu/courses/cs3110/2012sp/courseinfo.php) - Data Structures and Functional Programming (CS 3110)
+1. [Harvard University](http:/www.fas.harvard.edu/~cs51) - Introduction to Computer Science II: Abstraction & Design  (CS51)
+1. [Indian Institute of Technology, Delhi](http://www.cse.iitd.ernet.in/~ssen/csl101/details.html) - Introduction to Computers and Programming (CSL 101) (along with Pascal and Java)
+1. [Princeton University](http://www.cs.princeton.edu/courses/archive/fall14/cos326/) - Functional Programming (COS 326)
+1. [Rice University](http://www.cs.rice.edu/~javaplt/311/info.html) - Principles of Programming Languages (COMP 311)
+1. [University of Massachusetts](http://people.cs.umass.edu/~arjun/courses/cs691f/) - Programming Languages (CS691F)
+1. [University of Pennsylvania](http://www.seas.upenn.edu/~cis120/current/) - Programming Languages and Techniques I (CIS120)
+1. [University of Pennsylvania](http://www.cis.upenn.edu/~cis341/current/) - Compilers  (CIS341)
+1. [University of Birmingham](https://sites.google.com/site/focs1112/) - Foundations of Computer Science (FOCS1112)
 1. [University of California, San Diego](http://cseweb.ucsd.edu/classes/wi14/cse130-a/) Programming Languages:
-Principles and Paradigms [CSE130-a]  (along with Python and Prolog)
-1. [University of Cambridge (L28)](http://www.cl.cam.ac.uk/teaching/1415/L28/) - Advanced Functional Programming [L28]
-1. [University of Illinois at Urbana-Champaign (CS 421](https://courses.engr.illinois.edu/cs421/) - Programming Languages and Compilers [CS 421]
-1. [University of Innsbruck (SS6)](http://cl-informatik.uibk.ac.at/teaching/ss06/ocaml/schedule.php) -  Programming in OCAML [SS 06]
-1. [University of Maryland (CMSC 330)](http://www.cs.umd.edu/class/spring2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages [CMSC 330]
-1. [University of Massachusetts Amherst (CMPSCI631)](http://people.cs.umass.edu/~arjun/teaching/631/) - Programming Languages [CMPSCI 631]
+Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
+1. [University of Cambridge (L28)](http://www.cl.cam.ac.uk/teaching/1415/L28/) - Advanced Functional Programming (L28)
+1. [University of Illinois at Urbana-Champaign (CS 421](https://courses.engr.illinois.edu/cs421/) - Programming Languages and Compilers (CS 421)
+1. [University of Innsbruck (SS6)](http://cl-informatik.uibk.ac.at/teaching/ss06/ocaml/schedule.php) -  Programming in OCAML (SS 06)
+1. [University of Maryland (CMSC 330)](http://www.cs.umd.edu/class/spring2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages (CMSC 330)
+1. [University of Massachusetts Amherst (CMPSCI631)](http://people.cs.umass.edu/~arjun/teaching/631/) - Programming Languages (CMPSCI 631)
 1. [University of Wrocław](https://international.uni.wroc.pl/en/course/functional-programming) - Functional Programming
-1. [Université Paris-Diderot (pf5)](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/) - Functional Programming [PF5]
+1. [Université Paris-Diderot](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/) - Functional Programming (PF5)
 1. [Aarhus University](https://services.brics.dk/java/courseadmin/dOvs) - The compilation course (along with Java)
 
 ### Google map of the course
@@ -121,10 +121,10 @@ Alternative guides
 This is a list of VM images that some Universities use to avoid setup
 delays and provide a consistent environment.
 
-1. [Mirage Virtualbox VMs via Vagrant](https://github.com/mirage/mirage-vagrant-vms)
 1. [OCaml 4.01 for MAC](http://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0-intel.dmg)
 1. [Cornell's Linux VM VirtualBox image](https://cornell.app.box.com/s/acqwpvnidu5yq1osd8lb) ([more info here](http://www.cs.cornell.edu/courses/CS3110/2014sp/hw/0/ps0.pdf))
 1. [Princeton's Ubuntu VirtualBox VM](http://www.cs.princeton.edu/~cos326/Ubuntu326.ova) (more info on the course's [site ](http://www.cs.princeton.edu/courses/archive/fall14/cos326/resources.php))
+1. [Mirage Virtualbox VMs via Vagrant](https://github.com/mirage/mirage-vagrant-vms)
 
 
 ### Tutorials and Exercises
