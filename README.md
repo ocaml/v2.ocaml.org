@@ -18,7 +18,7 @@ Building the html pages requires:
 * camlp4orf (comes with the compiler in OPAM, in `camlp4-extra` in Debian)
 * ocamlfind
 * mpp >= 0.1.2
-* omd >= 0.9.7
+* omd >= 1.2.1
 * opam2web >= 1.3.1
 * uri >= 1.3.11
 * netstring, netclient, equeue-ssl, and rss (for rss2html.ml)
