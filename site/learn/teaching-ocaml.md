@@ -133,7 +133,7 @@ delays and provide a consistent environment.
 **University tutorials and notes**
 
 1. [From UMass's CS691F Programming languages course](http://people.cs.umass.edu/~arjun/courses/cs691f/assignments/ocaml-tutorial.html)
-1. [CSE 130: Programming Languages Course at UCSA](http://cseweb.ucsd.edu/classes/wi11/cse130/). Click on [Lectures] (http://cseweb.ucsd.edu/classes/wi11/cse130/) and [Discussion Notes] (http://cseweb.ucsd.edu/classes/wi11/cse130/). Have a look at Lec 7 (a pp presentation by Zach) for an inspiring introduction into map and fold.
+1. [CSE 130: Programming Languages Course at UCSA](http://cseweb.ucsd.edu/classes/wi11/cse130/). Click on [Lectures](http://cseweb.ucsd.edu/classes/wi11/cse130/) and [Discussion Notes](http://cseweb.ucsd.edu/classes/wi11/cse130/). Have a look at Lec 7 (a pp presentation by Zach) for an inspiring introduction into map and fold.
 1. [CS 3110 Fall 2013 :: Data Structures and Functional Programming at Cornell](http://www.cs.cornell.edu/courses/cs3110/2013fa/lecture_notes.php). The lecturing materials explain OCaml on the basis of the fundamental concepts of functional programming languages.
-1. [CIS 500: Software Foundations at UPenn](http://www.seas.upenn.edu/~cis500/cis500-f05/index.html). A Software Fundations course with strong emphasis on Types. The [OCaml Tutorial] (http://www.seas.upenn.edu/~cis500/cis500-f05/resources/seas-ocaml.html) includes a gentle introduction to the OCaml interactive top-level system and compilation in OCaml.
+1. [CIS 500: Software Foundations at UPenn](http://www.seas.upenn.edu/~cis500/cis500-f05/index.html). A Software Fundations course with strong emphasis on Types. The [OCaml Tutorial](http://www.seas.upenn.edu/~cis500/cis500-f05/resources/seas-ocaml.html) includes a gentle introduction to the OCaml interactive top-level system and compilation in OCaml.
 
