@@ -1,3 +1,5 @@
+<!-- ((! set title The traverse tag !)) ((! set learn !)) -->
+
 # The traverse tag
 Each time ocamlbuild want to traverse a directory, it checks that the
 directory is traversable. To do so it applies tagging rules and look for

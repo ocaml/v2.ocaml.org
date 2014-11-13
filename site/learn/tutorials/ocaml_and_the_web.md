@@ -28,7 +28,7 @@ powerful than, to PHP. Code could be surrounded by special tags (maybe
 unchanged. Any takers? :)
 
 Answer: It exists already, and it's called
-[Camlmix](http://martin.jambon.free.fr/camlmix/ "http://martin.jambon.free.fr/camlmix/")
+[Camlmix](http://mjambon.com/camlmix/index.html "http://mjambon.com/camlmix/index.html")
 :-) The latest version (1.3) allows one to compile such programs either
 as-is (the text is printed when the module is evaluated) or embedded
 into a `render` function that can be called by other modules.
@@ -38,11 +38,11 @@ For more permanent "deep-web" content, or for actions that need to be
 executed with significant speed (i.e., performing complex calculations),
 scripting may not be the solution. Compilation of scripts into binary
 format (especially native code) can give a significant boost in speed.
-[Ocamlscript](http://martin.jambon.free.fr/ocamlscript.html "http://martin.jambon.free.fr/ocamlscript.html")
+[Ocamlscript](http://mjambon.com/ocamlscript.html "http://mjambon.com/ocamlscript.html")
 allows one to write one-file scripts that would be transparently
 compiled, when needed, using the native code compiler. So you actually
 **can** have your cake and eat it too. [Ocamlscript version
-2](http://martin.jambon.free.fr/ocamlscript.html "http://martin.jambon.free.fr/ocamlscript.html")
+2](http://mjambon.com/ocamlscript.html "http://mjambon.com/ocamlscript.html")
 fully supports packages installed with [ocamlfind
 (Findlib)](http://www.camlcity.org/),
 so that lots of fancy libraries could be loaded very easily, from the

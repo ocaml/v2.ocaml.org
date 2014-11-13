@@ -1,3 +1,5 @@
+<!-- ((! set title Ocamlbuild log output !)) ((! set learn !)) -->
+
 # Ocamlbuild "Hello, world!" or how to output to the log file
 ## Hello, world!
 Put the following in the file myocamlbuild.ml in the root of your

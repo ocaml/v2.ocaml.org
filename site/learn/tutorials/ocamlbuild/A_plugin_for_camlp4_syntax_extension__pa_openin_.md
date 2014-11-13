@@ -1,3 +1,5 @@
+<!-- ((! set title A camlp4 plugin !)) ((! set learn !)) -->
+
 # A plugin for camlp4 syntax extension \(pa openin\)
 If you just want to use a syntax extension included in an installed
 package, see [Using ocamlfind with

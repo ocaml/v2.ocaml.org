@@ -1,3 +1,5 @@
+<!-- ((! set title Solver mechanism !)) ((! set learn !)) -->
+
 # Solver mechanism
 ## Rules
 <Ocamlbuild\> has rules which say how to build targets. These rules are

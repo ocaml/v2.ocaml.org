@@ -3,7 +3,7 @@
 **Your Help is Needed**   
 Many of the solutions below have been written by [Victor
 Nicollet](https://github.com/VictorNicollet/99-Problems-OCaml). Please
-contribute more solutions or improve the existing ones.
+<a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))">contribute</a> more solutions or improve the existing ones.
 
 *Table of contents*
 
@@ -582,8 +582,7 @@ permutation ["a"; "b"; "c"; "d"; "e"; "f"];;
 ```
 
 
-#### Generate the combinations of K distinct objects chosen from the N
-elements of a list. (*medium*)
+#### Generate the combinations of K distinct objects chosen from the N elements of a list. (*medium*)
 
 In how many ways can a committee of 3 be chosen from a group of 12
 people? We all know that there are C(12,3) = 220 possibilities (C(N,K)
@@ -1322,7 +1321,7 @@ SOLUTION
 >     add_trees_with t1 t1 (add_trees_with t1 t2 (add_trees_with t2 t1 []))
 > ```
 
-<!-- FIXME -->
+
 ```ocamltop
 let t = hbal_tree 3;;
 let x = 'x';;
@@ -1982,9 +1981,9 @@ may want to define a similar type using sets instead of lists.
  of nodes that are adjacent to that node. We call this the
  **adjacency-list form**. In our example:
 
-```ocaml
-(* example pending *)
-```
+    ```ocaml
+    (* example pending *)
+    ```
 
 * The representations we introduced so far well suited for automated
  processing, but their syntax is not very user-friendly. Typing the
@@ -1995,13 +1994,13 @@ may want to define a similar type using sets instead of lists.
  edges. If an X appears as an endpoint of an edge, it is
  automatically defined as a node. Our example could be written as:
 
-```ocamltop
-"b-c f-c g-h d f-b k-f h-g"
-```
+    ```ocamltop
+    "b-c f-c g-h d f-b k-f h-g"
+    ```
 
-We call this the **human-friendly form**. As the example shows, the
-list does not have to be sorted and may even contain the same edge
-multiple times. Notice the isolated node `d`.
+ We call this the **human-friendly form**. As the example shows, the
+ list does not have to be sorted and may even contain the same edge
+ multiple times. Notice the isolated node `d`.
 
 
 #### Conversions. (*easy*)

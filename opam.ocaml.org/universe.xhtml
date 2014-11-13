@@ -1,0 +1,27 @@
+<t:seq xmlns:t="http://ocaml.org/xmlns/template#">
+    <div class="row">
+      <div class="span9">
+        <ul class="nav nav-pills">
+          <t:insert name="nav" />
+        </ul>
+      </div>
+      <form class="span3 form-search">
+        <div class="input-append">
+          <input id="search" class="search-query" type="text" placeholder="Search packages" />
+          <button id="search-button" class="btn add-on">
+            <i class="icon-search"> </i>
+          </button>
+        </div>
+      </form>
+    </div>
+    <table class="table table-hover"  id="packages">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Version</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <t:insert name="pkgs" />
+    </table>
+</t:seq>

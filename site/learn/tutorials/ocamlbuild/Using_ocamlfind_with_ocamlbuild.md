@@ -1,3 +1,5 @@
+<!-- ((! set title Using ocamlfind with ocamlbuild !)) ((! set learn !)) -->
+
 # Using ocamlfind with ocamlbuild
 There are many ways to make ocamlbuild use ocamlfind. The first section
 gives the simplest one, starting from ocamlfind 3.12\. The second section

@@ -23,8 +23,8 @@ Ainsi pendant que nous écrivions `struct { int type; union { ... } }`
 pour la n-ième fois, les programmeurs ML et haskell avaient déjà les
 safe variants et le pattern matching sur les types de données. Pendant
 qu'on faisait attention à bien faire des `free()` pour chaque
-`malloc()`, les langages à garbage collectors étaient arrivaient à faire
-mieux depuis les années 80.
+`malloc()`, les langages à garbage collectors avaient implémenté une
+façon de gérer automatiquement la mémoire depuis les années 80.
 
 Maintenant, arrêtons de tourner autour du pot, et abordons ce qu'est la
 programmation fonctionnelle.

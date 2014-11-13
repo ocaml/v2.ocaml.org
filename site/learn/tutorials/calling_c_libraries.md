@@ -16,7 +16,7 @@ layers. To appreciate this, you really need to get your hands dirty and
 look at other ways that a Gtk wrapper might have been written.
 
 To this end I played around with something I call
-\<dfn\>MiniGtk\</dfn\>, intended as a simple Gtk wrapper. All MiniGtk is
+<dfn>MiniGtk</dfn>, intended as a simple Gtk wrapper. All MiniGtk is
 capable of is opening a window with a label, but after writing MiniGtk I
 had renewed respect for the author of lablgtk!
 
@@ -60,8 +60,8 @@ this way:
 ```ocaml
 external gtk_label_new : string -> obj = "gtk_label_new_c"
 ```
-This strange function definition defines an \<dfn\>external
-function\</dfn\>, one coming from C. The C function is called
+This strange function definition defines an <dfn>external
+function</dfn>, one coming from C. The C function is called
 `gtk_label_new_c`, and it takes a string and returns one of our abstract
 `obj` types.
 
@@ -302,16 +302,16 @@ adequately covered in the OCaml manual. To use `value` you need to just
 know what macros are available to convert between a `value` and some C
 type. The macros look like this:
 
-\<dl\> \<dt\>`String_val (val)`\</dt\> \<dd\> Convert from a `value`
-which is known to be a string to a C string (ie. `char *`). \</dd\>
-\<dt\>`Val_unit`\</dt\> \<dd\> The OCaml unit `()` as a `value`. \</dd\>
-\<dt\>`Int_val (val)`\</dt\> boolean \<dd\> Convert from a `value` which
-is known to be an integer to a C `int`. \</dd\>
-\<dt\>`Val_int (i)`\</dt\> \<dd\> Convert from a C integer `i` into an
-integer `value`. \</dd\> \<dt\>`Bool_val (val)`\</dt\> \<dd\> Convert
+<dl> <dt>`String_val (val)`</dt> <dd> Convert from a `value`
+which is known to be a string to a C string (ie. `char *`). </dd>
+<dt>`Val_unit`</dt> <dd> The OCaml unit `()` as a `value`. </dd>
+<dt>`Int_val (val)`</dt> boolean <dd> Convert from a `value` which
+is known to be an integer to a C `int`. </dd>
+<dt>`Val_int (i)`</dt> <dd> Convert from a C integer `i` into an
+integer `value`. </dd> <dt>`Bool_val (val)`</dt> <dd> Convert
 from a `value` which is known to be a boolean to a C boolean (ie. an
-`int`). \</dd\> \<dt\>`Val_bool (i)`\</dt\> \<dd\> Convert from a C
-integer `i` into a boolean `value`. \</dd\> \</dl\>
+`int`). </dd> <dt>`Val_bool (i)`</dt> <dd> Convert from a C
+integer `i` into a boolean `value`. </dd> </dl>
 
 You can guess the others or consult the manual. Note that there is no
 straightforward conversion from C `char *` to a value. This involves

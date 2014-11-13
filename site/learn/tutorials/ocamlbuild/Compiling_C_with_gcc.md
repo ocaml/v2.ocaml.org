@@ -1,3 +1,5 @@
+<!-- ((! set title A gcc plugin example !)) ((! set learn !)) -->
+
 # Compiling C with gcc
 The following is a plugin that tries to handle simple C projects with
 `gcc` in the same way `ocamlbuild` handles your caml projects, i.e. you

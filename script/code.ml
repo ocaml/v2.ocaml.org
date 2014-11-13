@@ -18,9 +18,10 @@ let html_encode =
 let html_decode =
   Netencoding.Html.decode ~in_enc:`Enc_utf8 ~out_enc:`Enc_utf8 ()
 
+
 let highlight_ocaml =
   (* Simple minded engine to highlight OCaml code.  The [phrase] is supposed
-     to be html encoded. *)
+     NOT to be html encoded. *)
   let id = "\\b[a-z_][a-zA-Z0-9_']*" in
   let let_id = id ^ "\\|( +[!=+-*/^:]+ +)" in
   let uid = "\\b[A-Z][A-Za-z0-9_']*" in
@@ -131,13 +132,18 @@ let highlight_ocaml =
     with Not_found -> s (* no quote *)
   in
   fun phrase -> (
-    let phrase = color_string phrase in
-    List.fold_left (fun h (re, t) -> Str.global_replace re t h) phrase subst
+    let phrase = color_string(html_encode phrase) in
+    let p = List.fold_left (fun h (re, t) -> Str.global_replace re t h)
+                           phrase subst in
+    (* Wrap the code in a <pre> block so no Omd.Paragraph are generated, etc. *)
+    match Omd.of_string ("<pre>" ^ p ^ "</pre>") with
+    | [Omd.Html_block(_,_,o)] -> o
+    | _ -> assert false
   )
 
 let highlight ?(syntax="ocaml") phrase =
-  if syntax = "ocaml" then highlight_ocaml (html_encode phrase)
-  else html_encode phrase
+  if syntax = "ocaml" then highlight_ocaml phrase
+  else [Omd.Raw(html_encode phrase)]
 
 
 (* Eval OCaml code — in the same way the toploop does
@@ -178,16 +184,50 @@ let toploop_eval (top: toplevel) (phrase: string) : outcome =
   let o = get_outcome from_top in
   o
 
+(** Return the same document as [md] but with all strings transformed
+    by [f].  [f] is applied in the order of appearance of the strings. *)
+let rec omd_map_string f md =
+  List.map (omd_map_string_el f) md
+and omd_map_string_el f md =
+  let open Omd in
+  match md with
+  | H1 o -> H1(omd_map_string f o)
+  | H2 o -> H2(omd_map_string f o)
+  | H3 o -> H3(omd_map_string f o)
+  | H4 o -> H4(omd_map_string f o)
+  | H5 o -> H5(omd_map_string f o)
+  | H6 o -> H6(omd_map_string f o)
+  | Paragraph o -> Paragraph(omd_map_string f o)
+  | Text s -> Text(f s)
+  | Emph o -> Emph(omd_map_string f o)
+  | Bold o -> Bold(omd_map_string f o)
+  | Ul o -> Ul(List.map (omd_map_string f) o)
+  | Ol o -> Ol(List.map (omd_map_string f) o)
+  | Ulp o -> Ulp(List.map (omd_map_string f) o)
+  | Olp o -> Olp(List.map (omd_map_string f) o)
+  | Code(name, s) -> Code(name, f s)
+  | Code_block(name, s) -> Code_block(name, f s)
+  | Url(h, o, t) -> Url(h, omd_map_string f o, t)
+  | Html(name, args, o) -> Html(name, args, omd_map_string f o)
+  | Html_block(name, args, o) -> Html_block(name, args, omd_map_string f o)
+  | Raw s -> Raw(f s)
+  | Raw_block s -> Raw_block(f s)
+  | Blockquote o -> Blockquote(omd_map_string f o)
+  | e -> e
 
-let nl_re = Str.regexp "[\n\r]"
-
-let format_eval_input phrase =
-  let open Nethtml in
+let add_prompt =
+  let nl_re = Str.regexp "[\n\r]" in
+  let indent_string s = Str.global_replace nl_re "\n  " s in
+  fun phrase ->
   (* Due to the prompt, one must add 2 spaces at the beginnig of each line *)
-  let phrase = Str.global_replace nl_re "\n  " phrase in
-  [Element("span", ["class", "ocaml-prompt"], [Data "# "]);
-   Element("span", ["class", "ocaml-input"], [Data(highlight_ocaml phrase)]);
-   Element("span", ["class", "ocaml-prompt"], [Data ";;"])]
+  let phrase = omd_map_string indent_string phrase in
+  let open Omd in
+  [Html("span", ["class", Some "ocaml-prompt"], [Raw "# "]);
+   Html("span", ["class", Some "ocaml-input"],  phrase);
+   Html("span", ["class", Some "ocaml-prompt"], [Raw ";;"])]
+
+let format_eval_input phrase : Omd.t =
+  add_prompt (highlight_ocaml phrase)
 
 let html_of_eval_silent t phrase =
   begin match toploop_eval t phrase with
@@ -201,22 +241,68 @@ let html_of_eval_silent t phrase =
   format_eval_input phrase
 
 
+let rec omd_transform_text f md =
+  List.rev (List.fold_left (omd_transform_text_el f) [] md)
+and omd_transform_text_el f acc md =
+  let open Omd in
+  match md with
+  | H1 o -> H1(omd_transform_text f o) :: acc
+  | H2 o -> H2(omd_transform_text f o) :: acc
+  | H3 o -> H3(omd_transform_text f o) :: acc
+  | H4 o -> H4(omd_transform_text f o) :: acc
+  | H5 o -> H5(omd_transform_text f o) :: acc
+  | H6 o -> H6(omd_transform_text f o) :: acc
+  | Paragraph o -> Paragraph(omd_transform_text f o) :: acc
+  | Text s | Raw s -> List.rev_append (f s) acc
+  | Emph o -> Emph(omd_transform_text f o) :: acc
+  | Bold o -> Bold(omd_transform_text f o) :: acc
+  | Ul o -> Ul(List.map (omd_transform_text f) o) :: acc
+  | Ol o -> Ol(List.map (omd_transform_text f) o) :: acc
+  | Ulp o -> Ulp(List.map (omd_transform_text f) o) :: acc
+  | Olp o -> Olp(List.map (omd_transform_text f) o) :: acc
+  | Url(h, o, t) -> Url(h, omd_transform_text f o, t) :: acc
+  | Html(name, args, o) -> Html(name, args, omd_transform_text f o) :: acc
+  | Html_block(name, args, o) ->
+     Html_block(name, args, omd_transform_text f o) :: acc
+  | Blockquote o -> Blockquote(omd_transform_text f o) :: acc
+  | e -> e :: acc
+
+let html_error txt =
+  Omd.Html("span", ["class", Some "ocaml-error-loc"],
+           [Omd.Raw(html_encode txt)])
+
 (* Insert the HTML code to highligh the error located in [phrase] at
-   chars [c1 .. c2[.  Can raise [Netconversion.Malformed_code]. *)
+   chars [c1 .. c2[.  [phrase] is a syntax highlighted HTML
+   representation of the code. *)
 let highlight_error_range phrase err_msg c1 c2 =
-  let len = String.length phrase in
-  if c1 >= len || c1 < 0 || c2 < 0 then
-    html_encode phrase, err_msg
-  else
-    let p1 = String.sub phrase 0 c1
-    and p2, p3 = if c2 >= len then (String.sub phrase c1 (len - c1), "")
-                 else (String.sub phrase c1 (c2 - c1),
-                       String.sub phrase c2 (len - c2)) in
-    let phrase = html_encode p1 ^ "<span class=\"ocaml-error-loc\">"
-                 ^ html_encode p2 ^ "</span>" ^ html_encode p3 in
-    let nl = 1 + String.index err_msg '\n' in
-    let err_msg = String.sub err_msg nl (String.length err_msg - nl) in
-    phrase, err_msg
+  let c1 = ref c1 and c2 = ref c2 in
+  let split html =
+    let txt = html_decode html in
+    let len = String.length txt in
+    let r =
+      if len <= !c1 || !c2 < 0 then [Omd.Raw html]
+      else if !c1 > 0 then
+        let p1 = String.sub txt 0 !c1 in
+        if !c2 < len then
+          let p2 = String.sub txt !c1 (!c2 - !c1)
+          and p3 = String.sub txt !c2 (len - !c2) in
+          [Omd.Raw(html_encode p1);  html_error p2;  Omd.Raw(html_encode p3)]
+        else (* c2 >= len *)
+          let p2 = String.sub txt !c1 (len - !c1) in
+          [Omd.Raw(html_encode p1);  html_error p2]
+      else (* c1 <= 0 *)
+        if !c2 < len then
+          let p2 = String.sub txt 0 !c2
+          and p3 = String.sub txt !c2 (len - !c2) in
+          [html_error p2;  Omd.Raw(html_encode p3)]
+        else (* c2 >= len *)
+          [html_error txt] in
+    c1 := !c1 - len;  c2 := !c2 - len;
+    r in
+  let phrase = omd_transform_text split phrase in
+  let nl = 1 + String.index err_msg '\n' in
+  let err_msg = String.sub err_msg nl (String.length err_msg - nl) in
+  (phrase: Omd.t), err_msg
 
 
 let error_re312 =
@@ -236,32 +322,34 @@ let highlight_error phrase err_msg =
     (* Convert the line [1 .. l-1] into character count. *)
     let c = ref 0 in
     for line = 1 to l - 1 do c := String.index_from phrase !c '\n' + 1 done;
+    let phrase = highlight_ocaml phrase in
     highlight_error_range phrase err_msg (c1 + !c) (c2 + !c)
   )
   else if Str.string_match error_re312 err_msg 0 then (
     let c1 = int_of_string(Str.matched_group 1 err_msg)
     and c2 = int_of_string(Str.matched_group 2 err_msg) in
+    let phrase = highlight_ocaml phrase in
     highlight_error_range phrase err_msg c1 c2
   )
   else
-    html_encode phrase, err_msg
+    highlight_ocaml phrase, err_msg
 
 let html_of_eval t phrase =
   let phrase, cls, out = match toploop_eval t phrase with
     | Normal(s, out, err) ->
        let phrase, err = highlight_error phrase err in
        phrase, "ocaml-output",
-       Nethtml.([Element("span", ["class", "ocaml-stdout"],
-                         [Data(html_encode out)]);
-                 Element("span", ["class", "ocaml-stderr"],
-                         [Data(html_encode err)]);
-                 Data(html_encode s)])
+       [Omd.Html("span", ["class", Some "ocaml-stdout"],
+                 [Omd.Raw(html_encode out)]);
+        Omd.Html("span", ["class", Some "ocaml-stderr"],
+                 [Omd.Raw(html_encode err)]);
+        Omd.Raw(html_encode s)]
     | Error s ->
        let phrase, s = highlight_error phrase s in
-       phrase, "ocaml-error", [Nethtml.Data(html_encode s)] in
-  format_eval_input phrase
-  @ Nethtml.([ Element("br", [], []);
-               Element("span", ["class", cls], out) ])
+       phrase, "ocaml-error", [Omd.Raw(html_encode s)] in
+  add_prompt phrase
+  @ [ Omd.Html("br", [], []);
+      Omd.Html("span", ["class", Some cls], out) ]
 
 
 (* FIXME: naive, ";;" can occur inside strings and one does not want
@@ -269,10 +357,12 @@ let html_of_eval t phrase =
 let end_of_phrase = Str.regexp ";;[ \t\n]*"
 
 
-let to_html t phrases =
+let to_html t phrases : Omd.t =
   (* Split phrases *)
   let phrases = List.map String.trim (Str.split end_of_phrase phrases) in
-  let html = List.concat (List.map (html_of_eval t) phrases) in
-  let buf = Buffer.create 1024 in
-  Nethtml.write (new Netchannels.output_buffer buf) html;
-  Buffer.contents buf
+  List.concat (List.map (html_of_eval t) phrases)
+
+
+(* Local Variables: *)
+(* compile-command: "make --no-print-directory -k -C .. script/md_preprocess" *)
+(* End: *)

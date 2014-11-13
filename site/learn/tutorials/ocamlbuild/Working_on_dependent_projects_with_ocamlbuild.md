@@ -1,3 +1,5 @@
+<!-- ((! set title Working on dependent projects with ocamlbuild !)) ((! set learn !)) -->
+
 # Working on dependent projects with ocamlbuild
 If you are on a file system that supports symbolic links, the following
 setup allows to work simultaneously on a `base` project and two

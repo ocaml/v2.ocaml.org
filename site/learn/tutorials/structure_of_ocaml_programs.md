@@ -257,8 +257,8 @@ declaration. Or we prefix all calls to the functions like this:
 `Graphics.open_graph`. `open` is a little bit like Java's `import`
 statement, and much more like Perl's `use` statement.
 
-To use `Graphics` in the interactive toplevel, you must first first
-load the library with
+To use `Graphics` in the interactive toplevel, you must first load the
+library with
 
 ```ocaml
 #load "graphics.cma";;
@@ -315,7 +315,7 @@ helping you to eliminate bugs.
 
 ## The `Pervasives` module
 There's one module that you never need to "`open`". That is the
-`Pervasives` module (go and read `/usr/lib/ocaml/3.08/pervasives.mli`
+`Pervasives` module (go and read `/usr/lib/ocaml/pervasives.mli`
 now). All of the symbols from the `Pervasives` module are automatically
 imported into every OCaml program.
 

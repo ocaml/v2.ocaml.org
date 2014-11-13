@@ -1,3 +1,5 @@
+<!-- ((! set title Using internal libraries !)) ((! set learn !)) -->
+
 # Using internal libraries
 Using internal libraries is almost the same thing that [Using an
 external library](Using_an_external_library.html).

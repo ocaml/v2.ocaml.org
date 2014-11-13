@@ -1,3 +1,5 @@
+<!-- ((! set title Ocamlbuild and module packs !)) ((! set learn !)) -->
+
 # Ocamlbuild and module packs
 The -pack option of ocamlc and ocamlopt allows you to build a module
 which contains several other modules built separately. Ocamlbuild can

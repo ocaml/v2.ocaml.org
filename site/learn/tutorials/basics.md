@@ -33,7 +33,7 @@ let is_prime n =
 ```
 
 ## Calling functions
-Let's say you've written a function - we'll call it `repeated` - which
+Let's say you've written a function — we'll call it `repeated` — which
 takes a string `s` and a number `n`, and returns a new string which
 contains original `s` repeated `n` times.
 
@@ -63,7 +63,7 @@ about pairs ("tuples") just yet. Instead, just remember that it's a
 mistake to put the brackets and commas in around function call
 arguments.
 
-Let's have another function - `prompt_string` - which takes a string to
+Let's have another function — `prompt_string` — which takes a string to
 prompt and returns the string entered by the user. We want to pass this
 string into `repeated`. Here are the C and OCaml versions:
 
@@ -79,17 +79,28 @@ repeated (prompt_string "Name please: ") 3
 Take a careful look at the bracketing and the missing comma. In the
 OCaml version, the brackets enclose the first argument of repeated
 because that argument is the result of another function call. In general
-the rule is: "bracket around the whole function call - don't put
+the rule is: "bracket around the whole function call — don't put
 brackets around the arguments to a function call". Here are some more
 examples:
 
 ```ocaml
 f 5 (g "hello") 3    (* f has three arguments, g has one argument *)
 f (g 3 4)            (* f has one argument, g has two arguments *)
-
-# repeated ("hello", 3);;     (* OCaml will spot the mistake *)
-This expression has type string * int but is here used with type string
 ```
+
+<div media:type="text/omd" style="display: none">
+
+```ocamltop
+let repeated (s: string) (i: int) =
+  failwith "implementation not given"
+```
+
+</div>
+
+```ocamltop
+repeated ("hello", 3)     (* OCaml will spot the mistake *)
+```
+
 ## Defining a function
 You all know how to define a function (or static method, for Java-heads)
 in our existing languages. How do we do it in OCaml?
@@ -152,7 +163,7 @@ OK, let's get some answers.
  the *integer* addition function. To add floats, use `+.` (note the
  trailing period). Similarly, use `-.`, `*.`, `/.` for other float
  operations.
-* OCaml doesn't have a `return` keyword - the last expression in a
+* OCaml doesn't have a `return` keyword — the last expression in a
  function becomes the result of the function automatically.
 
 We will present more details in the following sections and chapters.

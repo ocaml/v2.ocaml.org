@@ -1,3 +1,5 @@
+<!-- ((! set title New kinds of build errors !)) ((! set learn !)) -->
+
 # New kinds of build errors
 This page describes build errors that are reported differently when
 ocamlbuild is used.

@@ -6,65 +6,108 @@
 The OCaml compiler and libraries can be installed in several
 ways. Broadly, the options are:
 
-* use OPAM, a source package manager specific to OCaml, or
+* use OPAM, a package manager specific to OCaml
 * use a package manager supported by your platform (Windows, Linux,
-  Mac OS X,...), or
+  Mac OS X, ...)
 * install from source code.
 
-The different options are detailed below. You can also find more
-packages [here](/learn/libraries.html).
+The following sections explain how to use each of these methods.
+For additional information about finding and installing OCaml libraries,
+see the [libraries](/learn/libraries.html) page.
 
+## Multi-Platform Package Managers
 
+Some dedicated package managers are available for OCaml, that can be used
+on multiple platforms:
 
-## OPAM
+### OPAM
 
-[OPAM](http://opam.ocaml.org/) is a package manager for OCaml, based
+[OPAM](https://opam.ocaml.org/) is a package manager for OCaml. It is the recommended method to install the OCaml compiler and OCaml
+packages. The default OPAM
+[repository](https://opam.ocaml.org/packages/) is actively maintained
+and serves as the de facto master set of OCaml packages. OPAM also
+provides features that would be unavailable with the other methods,
+such as the ability to have multiple versions of OCaml installed at
+the same time, or have multiple universes of packages for different
+projects with conflicting package dependencies.
+
+Note that there is a bootstrapping issue, since OPAM is itself
+implemented in OCaml. To address this, binary OPAM packages are made
+available on many platforms. See
+[here](http://software.opensuse.org/download.html?project=home%3Aocaml&package=opam)
+and below, in the platform specific sections, for installation
+instructions. Alternatively, you can compile from source by grabbing
+one of the recent
+[releases](https://github.com/ocaml/opam/releases). More information
+is available in the [Quick
+Install](http://opam.ocaml.org/doc/Quick_Install.html) and [Advanced
+Install](http://opam.ocaml.org/doc/Advanced_Install.html) pages.
+
+Once you have OPAM installed, the `switch` and `install` commands are
+the ones you're likely to need first. For example:
+
+```
+opam switch 4.02.1
+eval `opam config env`
+```
+
+will compile OCaml 4.02.1 and install it in a location managed by
+OPAM. The second line assures you are now using this version of the
+compiler. You can skip this step if you're happy with the version of
+OCaml available on your system , but this lags substantially on many
+platforms.
+
+Next you can install packages, e.g.
+
+```
+opam install batteries core
+```
+
+will install Batteries and Core, two widely used standard
+libraries. See the main [repository](https://opam.ocaml.org/packages/)
+to find hundreds more, and visit [OPAM's main
+page](http://opam.ocaml.org/) to learn about many additional features.
+
+OPAM is based
 on the CUDF library developed by the Mancoosi project, which is,
 among other things, used by Debian to manage their packages. It works
-well on Unix, Linux, and Mac OS X systems. Windows support is comming
+well on Unix, Linux, and Mac OS X systems. Windows support is comming
 soon.
 OPAM is written and maintained by [OCamlPro](http://www.ocamlpro.com/) and
 [OCaml Labs](http://www.cl.cam.ac.uk/projects/ocamllabs/), and is free software
 ([commercial support](http://www.ocamlpro.com/) is available).
 
-To get started, see
-[Download and install OPAM](http://opam.ocaml.org/) and follow the
-instructions.
+### Oasis-DB
+See [here](http://oasis.ocamlcore.org/).
 
-For the impatient, do the following
+### ODB
+See [here](https://github.com/thelema/odb).
 
-Quick install:
+### ocamlbrew
+See [here](https://github.com/hcarty/ocamlbrew).
 
-```bash
-$ wget http://www.ocamlpro.com/pub/opam_installer.sh
-$ sh ./opam_installer.sh /usr/local/bin  # You can change the path to install it in an other place.
+## Linux Distributions
+
+OCaml is directly available in most Linux distributions, through their
+package managers. We provide details here for the most popular ones.
+
+### Debian
+OCaml is very easy to install on [Debian](http://www.debian.org).
+
 ```
-From source:
-
-```bash
-$ git clone https://github.com/OCamlPro/opam
-$ cd opam
-$ ./configure # (or ./configure --prefix=$HOME if you want to install under your $HOME)
-$ make
-$ make install
-$ opam init
-$ eval `opam config -env`
-$ opam switch 4.00.1
+apt-get install ocaml
 ```
 
+If you are not going to develop graphical applications, you may want
+to install `ocaml-nox`; otherwise install the `ocaml` package.
 
-## Debian
-OCaml is very easy to install under [Debian](http://www.debian.org). We
-recommend you install `ocaml-nox` to develop applications not needing
-the graphics library or `ocaml` if you need the
-[Graphics](http://caml.inria.fr/pub/docs/manual-ocaml/libgraph.html)
-module. We also recommend you install
+We also recommend you to install the following packages:
 
-* `ocaml-native-compilers` to be able to compile your program the
- native code (this is not available on some more obscure
+* `ocaml-native-compilers` to be able to compile native binaries
+ (this is not available on some more obscure
  architectures).
 * `ocaml-doc` to have the reference manual.
-* `tuareg-mode`, a Emacs mode for OCaml.
+* `tuareg-mode`, an Emacs mode for OCaml.
 * `ocaml-findlib` and `oasis` to install and use libraries (and their
  dependencies) easily.
 * `libpcre-ocaml-dev` which is a binding to PCRE.
@@ -72,13 +115,24 @@ module. We also recommend you install
 Check the [packages available in
 Debian](http://packages.debian.org/search?keywords=ocaml&searchon=all&suite=testing&section=all).
 
-## Ubuntu
-[Ubuntu](http://www.ubuntu.com/) being a derivative of Debian, it
-inherits its ease of install of [OCaml
-packages](http://packages.ubuntu.com/search?keywords=ocaml). The same
-recommendations as for Debian hold.
+### Ubuntu
+[Ubuntu](http://www.ubuntu.com/) is a Debian derivative and uses the same package 
+manager, so Debian instructions are applicable to it too.
 
-## Fedora
+You can view the list of OCaml packages in Ubuntu repositories
+[here](http://packages.ubuntu.com/search?keywords=ocaml).
+
+Ubuntu's official repositories often lag substantially behind the
+latest official releases of OCaml and OPAM. More recent versions are
+made available by Anil Madhavapeddy in his
+[PPAs](https://launchpad.net/~avsm). You can mimic the
+opam-repository's test
+[script](https://github.com/ocaml/opam-repository/blob/master/.travis-ci.sh)
+to add these PPAs on your own Ubuntu box. Please note PPAs are not
+reviewed at all by Ubuntu's security team and you are trusting the
+PPA's distributor by adding them to your system.
+
+### Fedora
 Since [Fedora 8](http://fedoraproject.org/), Fedora has excellent
 support for OCaml in the basic distribution. There is an active group of
 maintainers who keep up to date with the latest OCaml, and there is a
@@ -118,36 +172,7 @@ yum search ocaml
  mailing list for people interested in OCaml on Fedora or Red Hat
  Enterprise Linux.
 
-## FreeBSD
-[FreeBSD](http://www.freebsd.org/) had a great support for OCaml
-development for a long time. There are easy to use packages available
-for most popular platforms (i386, amd64, powerpc, sparc64) for both the
-core languages and supplimentary libraries, documentation, examples and
-development tools. There is a framework available to make adding new
-ocaml application and libraries easy.
-
-To install the OCaml compiler using packages do:
-
-```bash
-pkg_add -r ocaml
-```
-or
-
-```bash
-pkg_add -r ocaml-nox11
-```
-to install OCaml without X11-dependent libraries (e.g. to deploy on a
-headless server).
-
-To install the developer documentation, examples and emacs editing
-macros use the `ocaml-doc`, `ocaml-examples` and `ocaml-mode.el`
-packages.
-
-The same packages can be installed via the port system. There is a a
-large set of libraries available in the `devel` category of the ports
-system as well as in the specific topic-related categories.
-
-## Gentoo
+### Gentoo
 In order to get the basic tools under
 [Gentoo](http://www.gentoo.org/), execute:
 
@@ -161,12 +186,15 @@ available execute
 ```bash
 emerge -S ocaml 
 ```
-## SuSE
-Getting Started with OCaml on [SuSE](https://www.suse.com/) is part in
-the standard distribution. In openSuse 12.1, the package name is
-`ocaml-3.12.0-11.1.2` (outdated).
 
-## Mageia
+### SuSE
+OCaml can be installed from the repositories on both OpenSuSE and SLES:
+
+```
+zypper install ocaml
+```
+
+### Mageia
 [Mageia](http://www.mageia.org/) has some support for OCaml in the
 distribution.
 
@@ -200,7 +228,7 @@ urpmi camlp4-devel ocaml-doc ocaml-findlib-devel \
   ocaml-ounit-devel ocaml-sexplib-devel ocaml-xml-light-devel \
   ocamlmakefile
 ```
-To list OCaml packages use:
+To list OCaml packages, use:
 
 ```bash
 urpmq --list | grep ocaml
@@ -212,7 +240,14 @@ urpmq --list | grep ocaml
  a minimum standard for all OCaml packages we ship.
 
 ## Windows
-Four ports of OCaml for Microsoft Windows are currently available. For
+
+Under Windows, two solutions are available to use OCaml: the official
+OCaml distribution relies on Cygwin, while OCamlPro provides OCPWin, a
+binary distribution working without Cygwin.
+
+### OCaml on Cygwin
+
+Three ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
 issues](/learn/portability.html) or the [Windows release
 notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
@@ -221,8 +256,8 @@ notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
  (4.00.1)](http://protz.github.io/ocaml-installer/). A self
  installer. The interactive loop comes with a simple graphical user
  interface. Some features require the Cygwin environment, which the
- installer can fetch for you. However, the compilers are, and
- generate true Win32 executables, which do not require Cygwin to run.
+ installer can fetch for you. However, the compilers are true Win32 executables,
+ and binaries they generate do not require Cygwin to run too.
 * Microsoft-based native Win32 ports. No binary distributions
  available yet; download the source distribution and compile it. Build
  instructions including required tools (Cygwin required) and download
@@ -247,8 +282,20 @@ notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
 To install libraries, you may use
 [Wodi](http://wodi.forge.ocamlcore.org/) or OPAM.
 
+### OCPWIN, Self-Contained OCaml for Windows
+
+[OCPWin is a self-contained binary
+distribution](http://www.typerex.org/ocpwin.html) of OCaml for
+Windows. It supports both 32-bit and 64-bit Windows platforms, and can
+compile both bytecode and native code applications, directly from a
+Windows terminal, without installing other software. The license
+agreement allows both commercial and non-commercial use, as long as
+the compiler parts themselves are not redistributed. A binary
+installer is provided for OCaml 4.01.0. Some additional features have
+been added to OCaml for better support of Windows.
+
 ## Mac OS X
-Under Mac OS X, there are, at least for the base package, a few different
+On Mac OS X, there are, at least for the base package, a few different
 ways to go: Use OPAM; Install the binary package from Inria; Install via Fink;
 Install via MacPorts; or build it manually from
 sources. For each of these approaches, you will need to have at least
@@ -257,18 +304,14 @@ discussed below.
 
 ###  Inria's binary package
 This is the easiest way to set up a basic OCaml installation for OS X.
-For 10.4 (Tiger), simply [download](../releases/) Intel disk image, mount
+Simply [download](../releases/) Intel disk image, mount
 the disk image, double-click on the ocaml.pkg file contained within, and
 follow the instructions from there. Requirements for this package are OS
-X 10.4.x (Tiger), with X11 and the XCode tools (v2.4) installed. It
-appears that that this installation was built with the TCL/TK interface.
-Also, X11 is not needed to compile code.
+X 10.7.x (Lion) or later, with XCode tools (v4.3.3 or later) installed.
+Earlier versions may or may not work.
 
-Also available as a binary package, and usable with any of the OCaml
-installations described on this page is
-[CocOCaml](http://www.cs.unm.edu/~wneumann/cococaml/), a Cocoa
-application allowing for easy interaction with the OCaml toplevel
-environment.
+The package only includes command-line tools and does not include any
+graphical applications.
 
 ###  Fink
 [Fink](http://fink.sourceforge.net/ "Fink") is the most prevalent
@@ -363,32 +406,6 @@ etc. can be built as well. The most flexible solution for doing this is
 often using Fink to install the required dependencies, and build the
 OCaml packages from source distributions.
 
-###  Using Xcode for writing OCaml programs
-There exists an Xcode plugin integrating OCaml developement in Xcode.
-This plugin is always under development and still lacks of features,
-however it gives useful features for developing applications:
-
-* create a OCaml projet or target with Xcode
-* add files to this target like you do for a C program
-* modify the OCaml compiler or linker settings through the Xcode's
- build-in build setting GUI.
-* adding a library in library build phase of a OCaml target
-* syntax higlighting
-* use ocamllex and ocamlyacc
-* use of the native compiler (select architecture "ppc" instead of the
- default "ocaml")
-* dependance between source files
-* mixing OCaml and C code
-
-Still being in beta it does not yet support the following:
-
-* better dependance between source files (you must put them manually
- in the good order in the target build phase)
-* targeting the intel procs (only bytecode &amp; ppc support at this time)
-* ocamlp4 preprocessor
-* debugging from Xcode (but possible with direct use of ocamldebug)
-
-[Download and information](http://maxao.free.fr/xcode-ocaml-plugin/).
 
 ###  Using labltk with OS X
 There are a couple of different ways one can go if they wish to use
@@ -502,7 +519,7 @@ will send hello.app's output to the console).
 
 ###  Tips
 **Documentation.** To get quick access to the documentation of a module
-(whatever the editor you use) use
+(whatever the editor you use), use
 [Quicksilver](http://qsapp.com/) to index the libref/
 directory of ocaml's documentation. Since ocamldoc generates the
 documentation of a module M in a file M.html, you can access it by
@@ -526,15 +543,34 @@ Note that if your executable doesn't run for long enough Shark won't be
 able to take any samples and won't report any statistics. More function
 names will show up in the profiles if you compile with `-g`.
 
-## Oasis-DB
-See [here](http://oasis.ocamlcore.org/).
+## FreeBSD
+[FreeBSD](http://www.freebsd.org/) had a great support for OCaml
+development for a long time. There are easy to use packages available
+for most popular platforms (i386, amd64, powerpc, sparc64) for both the
+core languages and supplimentary libraries, documentation, examples and
+development tools. There is a framework available to make adding new
+ocaml application and libraries easy.
 
-## ODB
-See [here](https://github.com/thelema/odb).
+To install the OCaml compiler from packages, do:
 
-## ocamlbrew
-See [here](https://github.com/hcarty/ocamlbrew).
+```bash
+pkg_add -r ocaml
+```
+or
 
+```bash
+pkg_add -r ocaml-nox11
+```
+to install OCaml without X11-dependent libraries (e.g. to deploy on a
+headless server).
+
+To install the developer documentation, examples and emacs editing
+macros use the `ocaml-doc`, `ocaml-examples` and `ocaml-mode.el`
+packages.
+
+The same packages can be installed via the port system. There is a
+large set of libraries available in the `devel` category of the ports
+system as well as in the specific topic-related categories.
 
 ## From Source
 

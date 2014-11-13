@@ -1,3 +1,5 @@
+<!-- ((! set title Using threads !)) ((! set learn !)) -->
+
 # Using threads
 Any file that uses the `Thread`, `Mutex`, `Condition` or `Event` module
 must be tagged with `thread` \(note, not `threads`\). Executables must

@@ -18,21 +18,22 @@ Building the html pages requires:
 * camlp4orf (comes with the compiler in OPAM, in `camlp4-extra` in Debian)
 * ocamlfind
 * mpp >= 0.1.2
-* omd >= 0.9.7
+* omd >= 1.2.1
 * opam2web >= 1.3.1
-* ocamlnet (>= 3.7.4-1), and syndic (>= 1.1) for rss2html.ml
+* uri >= 1.3.11
+* ssl, ocamlnet (>= 3.7.4-1), and syndic (>= 1.1) for rss2html.ml
 * lablgtk2 (optional, for the Gtk tutorial)
 
 Implicit dependencies exist and may not be on this list (for instance, opam2web depends on quite a set of packages, so it's strongly adviced to use opam to compute and install automatically such packages).
 
-If you use opam (>= 1.1), the OCaml packages above can be installed by
-running:
-
-    opam install ocamlfind mpp omd ssl ocamlnet ocamlrss opam2web
-
 If your opam environment isn't using OCaml 4.01.0, you may switch to it by using this command:
 
     opam switch 4.01.0
+
+If you use opam (>= 1.1), the OCaml packages above can be installed by
+running:
+
+    opam install ocamlfind mpp omd ssl ocamlnet ocamlrss opam2web uri
 
 Note that you need `libssl-dev` to be able to compile and use `ssl`.
 `libssl-dev` is the name of a debian package, if you're using another system,

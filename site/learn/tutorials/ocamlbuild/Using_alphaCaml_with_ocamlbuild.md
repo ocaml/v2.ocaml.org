@@ -1,3 +1,5 @@
+<!-- ((! set title Using alphaCaml with ocamlbuild !)) ((! set learn !)) -->
+
 # Using alphaCaml with ocamlbuild
 Here is a plugin to use alphaCaml:
 
