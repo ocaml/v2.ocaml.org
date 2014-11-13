@@ -60,6 +60,9 @@ Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [Université Paris-Diderot](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/) - Functional Programming (PF5)
 1. [Aarhus University](https://services.brics.dk/java/courseadmin/dOvs) - The compilation course (along with Java)
 1. [University of California, Los Angeles](http://www.registrar.ucla.edu/schedule/subdet.aspx?term=14F&srs=187510200) - Programming Languages (along with Python and Java) (CS 131)
+1. [University Pierre & Marie Curie](http://www-apr.lip6.fr/~chaillou/Public/enseignement/2014-2015/tas/) - Types and static analysis (5I555)
+1. [University Pierre & Marie Curie](http://www-licence.ufr-info-p6.jussieu.fr/lmd/licence/2014/ue/LI332-2014oct/) - Models of programming and languages interoperability (LI332)
+
 
 ### Map of courses around the world
 
