@@ -40,7 +40,8 @@ Please add yours if you don't see it listed!
 
 1. [Brown University](http://cs.brown.edu/courses/cs017/) - An Integrated introducion (CS 17/18)  (along with Racket, Scala and Java)
 1. [Cornell University](http://www.cs.cornell.edu/courses/cs3110/2012sp/courseinfo.php) - Data Structures and Functional Programming (CS 3110)
-1. [Harvard University](http:/www.fas.harvard.edu/~cs51) - Introduction to Computer Science II: Abstraction & Design  (CS51)
+1. [Harvard University](http://www.fas.harvard.edu/~cs51) - Introduction to Computer Science II: Abstraction & Design (CS51)
+1. [Harvard University](http://people.fas.harvard.edu/~lib153/) - Principles of Programming Language Compilation (CS153)
 1. [Indian Institute of Technology, Delhi](http://www.cse.iitd.ernet.in/~ssen/csl101/details.html) - Introduction to Computers and Programming (CSL 101) (along with Pascal and Java)
 1. [Princeton University](http://www.cs.princeton.edu/courses/archive/fall14/cos326/) - Functional Programming (COS 326)
 1. [Rice University](http://www.cs.rice.edu/~javaplt/311/info.html) - Principles of Programming Languages (COMP 311)
