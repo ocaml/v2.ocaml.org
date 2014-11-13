@@ -1,3 +1,5 @@
+<!-- ((! set title Teaching OCaml !)) ((! set learn !)) -->
+
 # Teaching OCaml
 
 OCaml is a high-level language that supports functional, imperative
@@ -6,8 +8,8 @@ tool for teaching the fundamental concepts behind programming
 languages, type theory and systems.
 
 For the full description of the benefits of the OCaml language
-please refer to the article on "
-[Why OCaml?](https://realworldocaml.org/v1/en/html/prologue.html)".
+please refer to the article on
+“[Why OCaml?](https://realworldocaml.org/v1/en/html/prologue.html)”.
 
 This page is devoted to resources for people who are teaching OCaml in
 a University setting. It contains a list of courses in different
