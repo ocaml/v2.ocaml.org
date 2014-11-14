@@ -63,6 +63,7 @@ Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University Pierre & Marie Curie](http://www-apr.lip6.fr/~chaillou/Public/enseignement/2014-2015/tas/) - Types and static analysis (5I555)
 1. [University Pierre & Marie Curie](http://www-licence.ufr-info-p6.jussieu.fr/lmd/licence/2014/ue/LI332-2014oct/) - Models of programming and languages interoperability (LI332)
 1. [University of Virginia](http://www.cs.virginia.edu/~weimer/4610/) - Programming Languages (CS 4610)
+1. [Boston College](http://www.cs.bc.edu/~muller/teaching/cs110105/f14/) - Computer Science I (CS 1101)
 
 
 ### Map of courses around the world
