@@ -68,6 +68,7 @@ Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University of Rennes 1](https://etudes.univ-rennes1.fr/licenceInformatique/themes/OrganisationEtudes/L3info/Programme) - Programming 2 (PRG2)
 1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/COMP) - Compilation (COMP)
 1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/SEM) - Semantics (SEM)
+1. [Aix-Marseille University](http://assert-false.net/callcc/Guyslain/Teaching/ProgFonc/index) - Functional Programming
 
 
 ### Map of courses around the world
