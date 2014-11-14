@@ -31,7 +31,7 @@ OCaml a slightly easier task.
   [create an issue](https://github.com/ocaml/ocaml.org/issues/new).
 
 ### Mailing list
-We set-up a [mailing list](http://lists.ocaml.org/listinfo/teaching) for professors who are teaching OCaml in schools and universities to discuss issues relating to using OCaml in an educational context. 
+We set-up a [mailing list](http://lists.ocaml.org/listinfo/teaching) for professors who are teaching OCaml in schools and universities to discuss issues relating to using OCaml in an educational context.
 
 ## Courses taught in OCaml
 
@@ -43,6 +43,7 @@ Please add yours if you don't see it listed!
 1. [Harvard University](http://www.fas.harvard.edu/~cs51) - Introduction to Computer Science II: Abstraction & Design (CS51)
 1. [Harvard University](http://people.fas.harvard.edu/~lib153/) - Principles of Programming Language Compilation (CS153)
 1. [Indian Institute of Technology, Delhi](http://www.cse.iitd.ernet.in/~ssen/csl101/details.html) - Introduction to Computers and Programming (CSL 101) (along with Pascal and Java)
+1. [McGill University](http://www.cs.mcgill.ca/~bpientka/cs302/) - Programming Languages and Paradigms (COMP 302)
 1. [Princeton University](http://www.cs.princeton.edu/courses/archive/fall14/cos326/) - Functional Programming (COS 326)
 1. [Rice University](http://www.cs.rice.edu/~javaplt/311/info.html) - Principles of Programming Languages (COMP 311)
 1. [University of Massachusetts](http://people.cs.umass.edu/~arjun/courses/cs691f/) - Programming Languages (CS691F)
@@ -80,13 +81,13 @@ info fields and you are done!)_
 # Resources
 
 
-## Suggested Textbooks 
+## Suggested Textbooks
 
 
 This is a list of books and lecture notes that are being used for
 teaching OCaml. There is also a wider list of books to choose from, which you can find on the [books page](http://ocaml.org/learn/books.html).
 
-1. [The OCaml System: Documentation and User's Manual](http://caml.inria.fr/pub/docs/manual-ocaml/) This the official User's Manual. It serves as a complete reference guide to OCaml. Updated for each version of OCaml, it contains the description of the language, of its extensions, and the documentation of the tools and libraries included in the official distribution. 
+1. [The OCaml System: Documentation and User's Manual](http://caml.inria.fr/pub/docs/manual-ocaml/) This the official User's Manual. It serves as a complete reference guide to OCaml. Updated for each version of OCaml, it contains the description of the language, of its extensions, and the documentation of the tools and libraries included in the official distribution.
 
 1. [Lecture notes](http://www.seas.upenn.edu/~cis120/current/notes/120notes.pdf)
    for Penn's CIS120.  Like the course, this book covers both OCaml
@@ -95,7 +96,7 @@ teaching OCaml. There is also a wider list of books to choose from, which you ca
 1. [Real World OCaml](http://shop.oreilly.com/product/0636920024743.do),
    also available [online](https://realworldocaml.org/).  Used by Harvard's CS51 course.
 1. Jason Hickey's [Introduction to Objective Caml](http://files.metaprl.org/doc/ocaml-book.pdf),
-   originally developed as lecture notes for Jason's course at Cal Tech 
+   originally developed as lecture notes for Jason's course at Cal Tech
 
 
 
@@ -105,9 +106,9 @@ This section lists some of the available tools that are or can be used in a clas
 
 ### In the browser
 
-The OCaml bytecode is reletively starightforward to convert to Javascipt. This allows any OCaml code to run in the browser, which is very convenient when delivering individual tutorials to a class as there's minimal set up time involved. 
+The OCaml bytecode is reletively starightforward to convert to Javascipt. This allows any OCaml code to run in the browser, which is very convenient when delivering individual tutorials to a class as there's minimal set up time involved.
 
-For a quick example of OCaml in the browser, try visiting any of the following: 
+For a quick example of OCaml in the browser, try visiting any of the following:
 
 1. [IOCaml Notebooks](https://github.com/andrewray/iocaml/blob/master/README.md)
 1. [A compiler from OCaml bytecode to Javascript](http://ocsigen.github.io/js_of_ocaml/)
