@@ -65,9 +65,6 @@ Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University Pierre & Marie Curie](http://www-licence.ufr-info-p6.jussieu.fr/lmd/licence/2014/ue/LI332-2014oct/) - Models of programming and languages interoperability (LI332)
 1. [University of Virginia](http://www.cs.virginia.edu/~weimer/4610/) - Programming Languages (CS 4610)
 1. [Boston College](http://www.cs.bc.edu/~muller/teaching/cs110105/f14/) - Computer Science I (CS 1101)
-1. [University of Rennes 1](https://etudes.univ-rennes1.fr/licenceInformatique/themes/OrganisationEtudes/L3info/Programme) - Programming 2 (PRG2)
-1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/COMP) - Compilation (COMP)
-1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/SEM) - Semantics (SEM)
 
 
 ### Map of courses around the world
@@ -99,7 +96,7 @@ teaching OCaml. There is also a wider list of books to choose from, which you ca
 1. [Real World OCaml](http://shop.oreilly.com/product/0636920024743.do),
    also available [online](https://realworldocaml.org/).  Used by Harvard's CS51 course.
 1. Jason Hickey's [Introduction to Objective Caml](http://files.metaprl.org/doc/ocaml-book.pdf),
-   originally developed as lecture notes for Jason's course at Cal Tech
+   originally developed as lecture notes for Jason's course at Caltech
 
 
 
@@ -109,9 +106,9 @@ This section lists some of the available tools that are or can be used in a clas
 
 ### In the browser
 
-The OCaml bytecode is reletively starightforward to convert to Javascipt. This allows any OCaml code to run in the browser, which is very convenient when delivering individual tutorials to a class as there's minimal set up time involved.
+The OCaml bytecode is relatively straightforward to convert to Javascript. This allows any OCaml code to run in a Web browser, which is very convenient when delivering individual tutorials to a class as there's minimal set up time involved.
 
-For a quick example of OCaml in the browser, try visiting any of the following:
+For a quick example of OCaml in the browser, try any of the following:
 
 1. [IOCaml Notebooks](https://github.com/andrewray/iocaml/blob/master/README.md)
 1. [A compiler from OCaml bytecode to Javascript](http://ocsigen.github.io/js_of_ocaml/)
