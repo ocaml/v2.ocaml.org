@@ -65,6 +65,9 @@ Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University Pierre & Marie Curie](http://www-licence.ufr-info-p6.jussieu.fr/lmd/licence/2014/ue/LI332-2014oct/) - Models of programming and languages interoperability (LI332)
 1. [University of Virginia](http://www.cs.virginia.edu/~weimer/4610/) - Programming Languages (CS 4610)
 1. [Boston College](http://www.cs.bc.edu/~muller/teaching/cs110105/f14/) - Computer Science I (CS 1101)
+1. [University of Rennes 1](https://etudes.univ-rennes1.fr/licenceInformatique/themes/OrganisationEtudes/L3info/Programme) - Programming 2 (PRG2)
+1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/COMP) - Compilation (COMP)
+1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/SEM) - Semantics (SEM)
 
 
 ### Map of courses around the world
