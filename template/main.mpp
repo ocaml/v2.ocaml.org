@@ -75,7 +75,7 @@
             {{!c else <form
                   id="searchform" class="navbar-search pull-right"
 		  method="get" action="//www.google.com/search">
-              <input value="site:http://ocaml.org/" name="q" type="hidden" />
+              <input type="hidden" name="as_sitesearch" value="ocaml.org" />
               <input placeholder="{{! cmd script/translate ((! get filename !)) "Search" !}}" class="search-query"
 		     name="q" type="text" />
             </form>
