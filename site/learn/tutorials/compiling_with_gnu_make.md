@@ -5,7 +5,7 @@
 *Table of contents*
 
 ## Using GNU make with OCamlMakefile
-[OCamlMakefile](https://bitbucket.org/mmottl/ocaml-makefile) is
+[OCamlMakefile](http://mmottl.github.io/ocaml-makefile/) is
 a generic Makefile that greatly facilitates the process of compiling
 complex OCaml projects.
 
