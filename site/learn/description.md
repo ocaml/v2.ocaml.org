@@ -3,20 +3,19 @@
 # What is OCaml?
 *Table of contents*
 
-**OCaml** is a general purpose industrial-strength programming language
+**OCaml** is a general purpose programming language
 with an emphasis on expressiveness and safety. Developed for more than
 20 years at [Inria](http://www.inria.fr/en) by a group of leading
-researchers, it benefits from one of the most advanced type systems and
-supports functional, imperative and object-oriented styles of
-programming which ease the development of flexible and reliable
-software. Used in environments where [a single mistake can cost
-millions](companies.html) and speed matters, it is supported by an
-active community that developed a [rich set of
-libraries](libraries.html) and will help you to make the most of OCaml
-possibilities...
+researchers, it has an advanced type system that helps catch your
+mistakes without getting in your way.
+It's used in environments where [a single mistake can cost
+millions and speed matters](companies.html), is supported by an
+active community, and has a rich set of
+[libraries](libraries.html) and development tools.  
+For all its power, OCaml is also pretty simple, which is one reason it's
+often used as a [teaching language](teaching-ocaml.html).
 
-OCaml is a modern, high-level programming language with many useful
-features. See “[A History of OCaml](history.html)” for an account of the
+See “[A History of OCaml](history.html)” for an account of the
 origins of the language.
 
 ## Strengths
