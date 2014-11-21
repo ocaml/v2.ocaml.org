@@ -127,7 +127,7 @@ latest official releases of OCaml and OPAM. More recent versions are
 made available by Anil Madhavapeddy in his
 [PPAs](https://launchpad.net/~avsm). You can mimic the
 opam-repository's test
-[script](https://github.com/ocaml/opam-repository/blob/master/.travis-ci.sh)
+[script](https://github.com/ocaml/opam-repository/blob/master/.travis-ci-install.sh)
 to add these PPAs on your own Ubuntu box. Please note PPAs are not
 reviewed at all by Ubuntu's security team and you are trusting the
 PPA's distributor by adding them to your system.
