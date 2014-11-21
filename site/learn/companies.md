@@ -18,7 +18,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.facebook.com/">Facebook</a>, United States</h2>
-        <p>To handle their huge PHP codebase, Facebook developed <a href="https://github.com/facebook/pfff/wiki/Main">pfff</a> and <a href="http://cufp.org/conference/sessions/2013/julien-verlaguet-facebook-analyzing-php-statically">Hack</a>. Pfff is a set of tools and APIs to perform static analysis, dynamic analysis, code visualization, code navigation, and style-preserving source-to-source transformations such as refactorings on source code. Hack is an extension of PHP with static typing. The language and most of the tools supporting Hack were implemented in OCaml.</p>
+        <p>Facebook has built a number of major development tools using OCaml.  <a href="http://hacklang.org">Hack</a> is a compiler for a variant of PHP that aims to reconcile the fast development cycle of PHP with the discipline provided by static typing.  <a href="http://flowtype.org">Flow</a> is a similar project that provides static type checking for Javascript.  Both systems are highly responsive, parallel programs that can incorporate source code changes in real time. <a href="https://github.com/facebook/pfff/wiki/Main">Pfff</a> is a set of tools for code analysis, visualizations, and style-preserving source transformations, written in OCaml, but supporting many languages.</p>
     </dd>
 </dl>
 <dl class="row">
