@@ -24,6 +24,7 @@ More code examples are available on the following sites:
 - [code codex](http://www.codecodex.com/wiki/Category:Objective_Caml)
 
 ## Elementary functions
+
 Let us define the square function and the recursive factorial function.
 Then, let us apply these functions to sample values. Unlike the majority
 of languages, OCaml uses parentheses for grouping but not for the
@@ -38,6 +39,7 @@ fact 5;;
 square 120;;
 ```
 ## Automatic memory management
+
 All allocation and deallocation operations are fully automatic. For
 example, let us consider simply linked lists.
 
@@ -51,6 +53,7 @@ let l = 1 :: 2 :: 3 :: [];;
 5 :: l;;
 ```
 ## Polymorphism: sorting lists
+
 Insertion sort is defined using two recursive functions.
 
 ```ocamltop
@@ -71,6 +74,7 @@ sort [2; 1; 0];;
 sort ["yes"; "ok"; "sure"; "ya"; "yep"];;
 ```
 ## Imperative features
+
 Let us encode polynomials as arrays of integer coefficients. Then, to
 add two polynomials, we first allocate the result array, then fill its
 slots using two successive `for` loops.
@@ -102,6 +106,7 @@ let fact n =
 fact 5;;
 ```
 ## Higher-order functions
+
 There is no restriction on functions, which may thus be passed as
 arguments to other functions. Let us define a function `sigma` that
 returns the sum of the results of applying a given function `f` to each
@@ -127,6 +132,7 @@ let square_o_fact = compose square fact;;
 square_o_fact 5;;
 ```
 ## The power of functions
+
 The power of functions cannot be better illustrated than by the `power`
 function:
 
@@ -145,6 +151,7 @@ let sin''' = power (derivative 1e-5) 3 sin;;
 let pi = 4.0 *. atan 1.0 in sin''' pi;;
 ```
 ## Symbolic computation
+
 Let us consider simple symbolic expressions made up of integers,
 variables, `let` bindings, and binary operators. Such expressions can be
 defined as a new data type, as follows:
@@ -189,6 +196,7 @@ shapes. Indeed, note the close resemblance between the definition of the
 `eval` function and that of the `expression` type.
 
 ## Elementary debugging
+
 To conclude, here is the simplest way of spying over functions:
 
 ```ocaml
