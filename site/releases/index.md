@@ -3,6 +3,7 @@
 #Releases
 Official releases of OCaml occur about once per year.
 
+* OCaml [latest](latest/)
 * OCaml [4.02.1](4.02.html), released Oct 14, 2014.
 * OCaml [4.02.0](4.02.html), released Aug 29, 2014.
 * OCaml [4.01.0](4.01.0.html), released Sep 12, 2013.
