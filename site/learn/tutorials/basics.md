@@ -350,6 +350,7 @@ OCaml equivalent of `fputc`:
 ```ocaml
 output_char : out_channel -> char -> unit
 ```
+
 ###  Polymorphic functions
 Now for something a bit stranger. What about a function which takes
 *anything* as an argument? Here's an odd function which takes an
@@ -375,17 +376,17 @@ polymorphism is kind of like templates in C++ or generics in Java 1.5).
 
 ## Type inference
 So the theme of this tutorial is that functional languages have many
-Really Cool Features, and OCaml is a language which has all of these
-Really Cool Features stuffed into it at once, thus making it a very
+really cool features, and OCaml is a language which has all of these
+really cool features stuffed into it at once, thus making it a very
 practical language for real programmers to use. But the odd thing is
 that most of these cool features have nothing to do with "functional
-programming" at all. In fact, I've come to the first Really Cool
-Feature, and I still haven't talked about why functional programming is
-called "functional". Anyway, here's the first Really Cool Feature: type
+programming" at all. In fact, I've come to the first really cool
+feature, and I still haven't talked about why functional programming is
+called "functional". Anyway, here's the first really cool feature: type
 inference.
 
 Simply put: you don't need to declare the types of your functions and
-variables, because OCaml will just work them out for you.
+variables, because OCaml will just figure them out for you!
 
 In addition OCaml goes on to check all your types match up (even across
 different files).
@@ -402,7 +403,7 @@ toplevel:
 let average a b =
   (a +. b) /. 2.0
 ```
-Mirabile dictu! OCaml worked out all on its own that the function takes
+[Mirabile dictu!](http://en.wiktionary.org/wiki/mirabile_dictu) OCaml worked out all on its own that the function takes
 two `float` arguments and returns a `float`.
 
 How did it do this? Firstly it looks at where `a` and `b` are used,
