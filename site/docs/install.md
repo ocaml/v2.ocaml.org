@@ -527,21 +527,31 @@ invoking Quicksilver, type an abbreviation of the module's name you want
 and hit return to get its html file loaded in your preferred browser.
 
 **Profiling.** To profile native-code programs *do not* compile them
-with the option -p (this is unsupported) simply use Shark. Shark can be
+with the option -p (this is unsupported). In XCode before version 4 it was 
+possible to use Shark. Shark could be
 invoked directly from the command line as follows :
 
 ```bash
 shark -i -1 -q myprogram.opt args   
 ```
-This will write a .mshark file in the directory that you can open with
+This would write a .mshark file in the directory that you can open with
 Shark.app.
 
 ```bash
 open *.mshark  
 ```
-Note that if your executable doesn't run for long enough Shark won't be
-able to take any samples and won't report any statistics. More function
-names will show up in the profiles if you compile with `-g`.
+
+Shark has since been replaced by Instruments which is included in XCode, 
+but not in the Command Line Tools. Start it with the Time Profiler template and
+then run the native code ocaml executable. Alternatively, iprofiler is a command
+line interface to it.
+
+Note that if your executable doesn't run for long enough the profiler won't be
+able to take any samples and won't report any statistics. 
+
+In principle, more function names should show up in the profiles if you compile 
+with `-g`, but this does not seem to work. Therefore, time profiling on OS X is 
+of limited use.
 
 ## FreeBSD
 [FreeBSD](http://www.freebsd.org/) had a great support for OCaml
