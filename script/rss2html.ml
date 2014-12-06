@@ -156,7 +156,7 @@ let opml fname =
 type post = {
   title  : string;
   link   : Uri.t option;   (* url of the original post *)
-  date   : CalendarLib.Calendar.t option;
+  date   : Syndic.Date.t option;
   author : contributor;
   email  : string;    (* the author email, "" if none *)
   desc   : html;
@@ -171,7 +171,7 @@ let special_processing (p: post) =
 let post_compare p1 p2 =
   (* Most recent posts first.  Posts with no date are always last *)
   match p1.date, p2.date with
-  | Some d1, Some d2 -> CalendarLib.Calendar.compare d2 d1
+  | Some d1, Some d2 -> Syndic.Date.compare d2 d1
   | None, Some _ -> 1
   | Some _, None -> -1
   | None, None -> 1
@@ -354,7 +354,9 @@ let html_of_post p =
     | None ->
        if p.author.name = "" then [] else [sep; html_author]
     | Some d ->
-       let date = CalendarLib.Printer.Calendar.sprint "%b %d, %Y" d in
+       let date =
+         let open Syndic.Date in
+         sprintf "%s %02d, %d" (string_of_month(month d)) (day d) (year d) in
        if p.author.name = "" then [sep; Data date]
        else [sep; html_author; Data ", "; Data date] in
   let additional_info =
@@ -373,18 +375,17 @@ let html_of_post p =
 
 
 let netdate_of_calendar d =
-  let open CalendarLib in
   let month =
-    let open Calendar in
-    match Calendar.month d with
+    let open Syndic.Date in
+    match month d with
     | Jan -> 1 | Feb -> 2 | Mar -> 3 | Apr -> 4 | May -> 5 | Jun -> 6
     | Jul -> 7 | Aug -> 8 | Sep -> 9 | Oct -> 10 | Nov -> 11 | Dec -> 12 in
-  { Netdate.year = Calendar.year d;
+  { Netdate.year = Syndic.Date.year d;
     month;
-    day = Calendar.day_of_month d;
-    hour = Calendar.hour d;
-    minute = Calendar.minute d;
-    second = Calendar.second d;
+    day = Syndic.Date.day d;
+    hour = Syndic.Date.hour d;
+    minute = Syndic.Date.minute d;
+    second = truncate(Syndic.Date.second d);
     nanos = 0;  zone = 0;  week_day = -1 }
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
