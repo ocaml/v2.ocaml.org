@@ -128,27 +128,23 @@ let html_contributors () =
     Element("li", [], [Element("a", ("href", c.url) :: attr, [Data c.name])]) in
   [Element("ul", [], List.map contrib_html contributors)]
 
-(** Output the list of feeds to [fname] using OMPL syntax.
-    Bsed on http://dev.opml.org/spec2.html *)
+
+let to_opml feeds =
+  let now = Syndic.Date.now() in
+  let head = Syndic.Opml1.head ~date_modified:now
+                               ~owner_name:"ocaml.org"
+                               ~owner_email:"infrastructure@lists.ocaml.org"
+                               "OCaml Planet" in
+  let outline f =
+    Syndic.Opml1.outline ~ty:"rss"
+                         ~attrs:["title", f.title]
+                         ~xml_url:(Uri.of_string f.url)
+                         f.name in
+  { Syndic.Opml1.version = "1.1";  head;  body = List.map outline feeds }
+
 let opml fname =
   let fh = open_out fname in
-  let today =
-    let open CalendarLib in
-    Printer.Calendar.sprint "%a, %0d %b %Y %T %:z" (Calendar.now()) in
-  fprintf fh
-          "<?xml version=\"1.0\"?>\n<opml version=\"1.1\">\n\
-           <head>\n\
-           <title>OCaml Planet</title>\n\
-           <dateModified>%s</dateModified>\n\
-           <ownerName>ocaml.org</ownerName>\n\
-           <ownerEmail>infrastructure@lists.ocaml.org</ownerEmail>\n\
-           </head>\n<body>\n" today;
-  let output_feed c =
-    fprintf fh "<outline type=\"rss\" text=\"%s\" \
-                title=\"%s\" xmlUrl=\"%s\"/>\n"
-            (encode_html c.name) (encode_html c.title) (encode_html c.url) in
-  List.iter output_feed (planet_feeds());
-  fprintf fh "</body>\n</opml>\n";
+  Syndic.Opml1.output (to_opml(planet_feeds())) (`Channel fh);
   close_out fh
 
 
@@ -186,28 +182,28 @@ let digest_post p = match p.link with
 
 let string_of_option = function None -> "" | Some s -> s
 
-let post_of_atom ~author (entry: Atom.entry) =
+let post_of_atom ~author:a (e: Atom.entry) =
   let open Atom in
-  let link = try Some (List.find (fun l -> l.rel = Alternate) entry.links).href
-             with Not_found -> match entry.links with
+  let link = try Some (List.find (fun l -> l.rel = Alternate) e.links).href
+             with Not_found -> match e.links with
                               | l :: _ -> Some l.href
                               | [] -> None in
-  let date = match entry.published with
-    | Some _ -> entry.published
-    | None -> Some entry.updated in
-  let desc = match entry.content with
+  let date = match e.published with
+    | Some _ -> e.published
+    | None -> Some e.updated in
+  let desc = match e.content with
     | Some(Text s) | Some(Html s) -> html_of_text s
     | Some(Xhtml h) -> html_of_syndic h
     | Some(Mime _) | Some(Src _)
     | None ->
-       match entry.summary with
+       match e.summary with
        | Some(Text s) | Some(Html s) -> html_of_text s
        | Some(Xhtml h) -> html_of_syndic h
        | None -> [] in
-  special_processing { title = string_of_text_construct entry.title;
+  special_processing { title = string_of_text_construct e.title;
                        link;  date;
-                       author = author;
-                       email = (fst entry.authors).name;
+                       author = a;
+                       email = (fst e.authors).name;
                        desc }
 
 let post_of_rss2 ~author it =
@@ -464,11 +460,10 @@ let aggregate ?n fname =
   let feed = match n with
     | Some n ->
        (* Sort the entries by date and the the [n] most recent ones. *)
-       let open Atom in
-       let by_date (e1: entry) (e2: entry) =
-         CalendarLib.Calendar.compare e2.updated e1.updated in
-       let entries = List.sort by_date feed.entries in
-       { feed with entries = take n entries }
+       let by_date (e1: Atom.entry) (e2: Atom.entry) =
+         Syndic.Date.compare e2.Atom.updated e1.Atom.updated in
+       let entries = List.sort by_date feed.Atom.entries in
+       { feed with Atom.entries = take n entries }
     | None -> feed in
   let fh = open_out fname in
   Atom.output feed (`Channel fh);
