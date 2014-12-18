@@ -39,9 +39,8 @@ and below, in the platform specific sections, for installation
 instructions. Alternatively, you can compile from source by grabbing
 one of the recent
 [releases](https://github.com/ocaml/opam/releases). More information
-is available in the [Quick
-Install](http://opam.ocaml.org/doc/Quick_Install.html) and [Advanced
-Install](http://opam.ocaml.org/doc/Advanced_Install.html) pages.
+is available on the
+[Install pages](http://opam.ocaml.org/doc/Install.html).
 
 Once you have OPAM installed, the `switch` and `install` commands are
 the ones you're likely to need first. For example:
