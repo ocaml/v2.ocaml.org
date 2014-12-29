@@ -18,7 +18,7 @@ and libraries included in the official distribution.
 [Online](http://caml.inria.fr/pub/docs/manual-ocaml/) |
 [PDF](http://caml.inria.fr/distrib/ocaml-4.00/ocaml-4.00-refman.pdf) |
 [HTML
-Tarball](http://caml.inria.fr/distrib/ocaml-4.00/ocaml-4.00-refman.html.tar.gz)
+Tarball](http://caml.inria.fr/distrib/ocaml-4.00/ocaml-4.00-refman-html.tar.gz)
 | [Older Versions](http://caml.inria.fr/distrib/)
 
 ****
