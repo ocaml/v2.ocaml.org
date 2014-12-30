@@ -18,7 +18,7 @@ The address of the repository is `http://caml.inria.fr/svn`. To check
 out a local, working copy of the sources:
 
 ```
-svn checkout http://caml.inria.fr/svn/dir
+svn checkout http://caml.inria.fr/svn
 ```
 where *dir* is the subdirectory of interest (see table below).
 
