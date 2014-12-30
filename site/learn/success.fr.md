@@ -202,7 +202,7 @@ Transformées de Fourier Discrètes (DFT). Elle emploie un puissant
 optimiseur symbolique écrit en OCaml qui, étant donné un entier N,
 produit du code C hautement optimisé pour effectuer des DFTs de taille
 N. FFTW a reçu en 1999 le [prix
-Wilkinson](http://www.mcs.anl.gov/research/opportunities/wilkinsonprize/3rd-1999.php)
+Wilkinson](http://www.mcs.anl.gov/about-us/j-h-wilkinson-prize-numerical-software)
 pour les logiciels de calcul numérique.
 
 Des mesures effectuées sur diverses plate-formes montrent que les

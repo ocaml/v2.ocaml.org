@@ -204,7 +204,7 @@ fast](http://www.fftw.org/benchfft/) C library for computing Discrete
 Fourier Transforms (DFT). It uses a powerful symbolic optimizer written
 in OCaml which, given an integer N, generates highly optimized C code to
 compute DFTs of size N. FFTW was awarded the 1999 [Wilkinson
-prize](http://www.mcs.anl.gov/research/opportunities/wilkinsonprize/3rd-1999.php)
+prize](http://www.mcs.anl.gov/about-us/j-h-wilkinson-prize-numerical-software)
 for numerical software.
 
 Benchmarks, performed on on a variety of platforms, show that FFTW's

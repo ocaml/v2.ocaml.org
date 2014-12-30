@@ -169,7 +169,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 	       >“découvre” des algorithmes qui étaient inconnus
 	       auparavant</a>.
 	    Elle a été couronnée
-	    <a href="http://www.mcs.anl.gov/research/opportunities/wilkinsonprize/3rd-1999.php"
+	    <a href="http://www.mcs.anl.gov/about-us/j-h-wilkinson-prize-numerical-software"
 	       >par le prix J. H. Wilkinson du logiciel numérique</a>,
 	    qui prime les développements qui excèlent dans toutes les phases
 	    de la préparation d'un logiciel numérique de haute qualité.
