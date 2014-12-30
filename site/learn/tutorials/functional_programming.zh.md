@@ -126,7 +126,7 @@ f 99;;
 ```
 
 在工程上这已经足够[proof by
-example](http://www.princeton.edu/%7Esacm/humor/proof.html "http://www.princeton.edu/~sacm/humor/proof.html")让我们声明`plus 2`是一个给整数加2的函数。
+example](https://web.archive.org/web/20080223145218/http://www.princeton.edu/~sacm/humor/proof.html "http://www.princeton.edu/~sacm/humor/proof.html")让我们声明`plus 2`是一个给整数加2的函数。
 
 回到原始的定义，让我们把第一个参数(`a`)换成2:
 

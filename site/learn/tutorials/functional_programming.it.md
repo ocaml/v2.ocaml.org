@@ -174,7 +174,7 @@ f 99;;
 ```
 
 In ingegneria questa è per noi una sufficiente [prova attraverso
-esempio](http://www.princeton.edu/%7Esacm/humor/proof.html "http://www.princeton.edu/~sacm/humor/proof.html")
+esempio](https://web.archive.org/web/20080223145218/http://www.princeton.edu/~sacm/humor/proof.html "http://www.princeton.edu/~sacm/humor/proof.html")
 perché possiamo stabilire che `plus 2` è la funzione che aggiunge 2 alle
 cose.
 
