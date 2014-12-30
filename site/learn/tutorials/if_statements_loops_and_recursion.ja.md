@@ -817,7 +817,7 @@ throw するので、単純に while ループを脱出でき、 *さらに、* 
 といった、本質的に手続き型の、C
 プログラマ向けに作られたようなAPIを扱うときには。手続き型の解法のほうが簡単だということに、別に驚くことはない。
 OCaml は、[緊縛と調教
-言語](http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html "http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html")
+言語](https://web.archive.org/web/20110611043853/http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html "http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html")
 にあらず。手続き型のアプローチがわかりやすいときは、それを使えばいいのだ。
 
 これは、 Fabrice Le Fessant による、手続き型のアプローチの、概形だ:
