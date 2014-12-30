@@ -862,7 +862,7 @@ thread](http://mirror.ocamlcore.org/caml.inria.fr/pub/ml-archives/caml-list/2003
 > designed for C programmers. It's no surprise, therefore, that the
 > imperative solution is easier. OCaml, not being a [bondage and
 > discipline
-> language](http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html "http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html"),
+> language](https://web.archive.org/web/20110611043853/http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html "http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html"),
 > doesn't mind you using the imperative approach when it makes sense.
 > 
 > Here is the outline of the imperative approach by Fabrice Le Fessant:
