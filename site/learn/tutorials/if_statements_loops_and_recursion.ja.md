@@ -89,7 +89,7 @@ let f x y =
 ```
 
 ヒント: if 式のまわりにカッコを補うとよい。 `y`を
-[ダイオード](http://www.noir-medical.com/graphics/diode_graph.gif "http://www.noir-medical.com/graphics/diode_graph.gif")ではさんだようになっている。
+[ダイオード](https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic "https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic")ではさんだようになっている。
 
 `abs` (絶対値)関数は、 `Pervasives` でこう定義されている:
 

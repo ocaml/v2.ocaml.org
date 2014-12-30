@@ -95,7 +95,7 @@ let f x y =
 
 Indizio: aggiungete delle parentesi intorno all'intera espressione if.
 Unisce `y` come un [diodo
-elettronico](http://www.noir-medical.com/graphics/diode_graph.gif "http://www.noir-medical.com/graphics/diode_graph.gif").
+elettronico](https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic "https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic").
 
 La funzione `abs` (valore assoluto) è definita in `Pervasives` come:
 
