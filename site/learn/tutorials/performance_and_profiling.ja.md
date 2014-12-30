@@ -892,7 +892,7 @@ let () =
 のプロファイラにネイティブ対応している。 Linux の場合 `gprof` を使う。
 
 ネイティブコードのプロファイルの実例を示すにあたり、
-エラトステネスの篩([元コード](http://www.bagley.org/%7Edoug/ocaml/Notes/lazy.shtml "http://www.bagley.org/~doug/ocaml/Notes/lazy.shtml"))
+エラトステネスの篩([元コード](https://web.archive.org/web/20020611073618/http://www.bagley.org/~doug/ocaml/Notes/lazy.shtml "http://www.bagley.org/~doug/ocaml/Notes/lazy.shtml"))
 で最初の3000個の素数を求める。
 このプログラムはチュートリアルの範囲外のテクニックである stream と
 camlp4 を使っている。

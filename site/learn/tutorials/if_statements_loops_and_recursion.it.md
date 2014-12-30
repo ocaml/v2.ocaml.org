@@ -95,7 +95,7 @@ let f x y =
 
 Indizio: aggiungete delle parentesi intorno all'intera espressione if.
 Unisce `y` come un [diodo
-elettronico](http://www.noir-medical.com/graphics/diode_graph.gif "http://www.noir-medical.com/graphics/diode_graph.gif").
+elettronico](https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic "https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic").
 
 La funzione `abs` (valore assoluto) è definita in `Pervasives` come:
 
@@ -862,7 +862,7 @@ thread](http://mirror.ocamlcore.org/caml.inria.fr/pub/ml-archives/caml-list/2003
 > designed for C programmers. It's no surprise, therefore, that the
 > imperative solution is easier. OCaml, not being a [bondage and
 > discipline
-> language](http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html "http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html"),
+> language](https://web.archive.org/web/20110611043853/http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html "http://www.elsewhere.org/jargon/html/entry/bondage-and-discipline-language.html"),
 > doesn't mind you using the imperative approach when it makes sense.
 > 
 > Here is the outline of the imperative approach by Fabrice Le Fessant:

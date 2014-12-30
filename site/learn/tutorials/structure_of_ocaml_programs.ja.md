@@ -120,7 +120,7 @@ my_ref := 100
 Cには、入れ子関数の概念がないと言ってよい。GCCは、入れ子関数をCプログラマに提供しているが、この拡張を実際に使っているプログラムをみたことがない。それはさておき、info
 gccの、入れ子関数についてのページをのせておこう。
 
-日本語訳 http://www.sra.co.jp/wingnut/gcc/gcc-j.html\#Nested%20Functions
+日本語訳 https://web.archive.org/web/20070328133739/http://www.sra.co.jp/wingnut/gcc/gcc-j.html#Nested%20Functions
 
 ネストした関数 とは、なにか別の関数のなかで定義された関数である。(GNU
 C++ ではネストした関数はサポートしていない。)
