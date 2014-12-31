@@ -22,9 +22,9 @@ from the OCaml community. If you would like to be added, read the
 ((! cmd script/rss2html --subscribers http://planet.ocaml.org/opml.xml !))
 
 <a href="http://planet.ocaml.org/rss20.xml"
-><img src='../img/rss20.png' alt='' /></a>
+><img src='../../img/rss20.png' alt='' /></a>
 <a href="http://planet.ocaml.org/opml.xml"
-><img src='../img/opml.png' alt='' /></a>
+><img src='../../img/opml.png' alt='' /></a>
 
 </div>
 </section>

@@ -239,7 +239,7 @@ let html_of_post rss_feed p =
        [Element("a", a_args, [Data p.title]) ],
        [Element("span", ["class", "share"],
                 Element("a", a_args,
-                        [Element("img", ["src", "/img/chain-link-icon.png ";
+                        [Element("img", ["src", "/img/chain-link-icon.png";
                                          "alt", ""], []) ])
                 :: Element("a", ("class", "googleplus") :: google,
                            [Element("img", ["src", "/img/googleplus.png";
