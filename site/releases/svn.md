@@ -50,8 +50,8 @@ interface.](http://caml.inria.fr/cgi-bin/viewvc.cgi)
 <td align="left">The development version of OCaml. It will become the next major release. Not very stable; use at your own risk.</td>
 </tr>
 <tr class="even">
-<td align="left"><code>ocaml/version/</code><em>X</em><code>.</code><em>YY</em></td>
-<td align="left">The bug-fix branch for the major release number <em>X</em><code>.</code><em>YY</em> (e.g. <code>3.11</code>). Minor releases are culled from this branch. Only bug-fixes and minor extensions are performed in this branch, but not incompatible changes. Recommended for advanced users who wish to track bug fixes.</td>
+<td align="left"><code>ocaml/version/X.YY</td>
+<td align="left">The bug-fix branch for the major release number <code>X.YY</code> (e.g. <code>3.11</code>). Minor releases are culled from this branch. Only bug-fixes and minor extensions are performed in this branch, but not incompatible changes. Recommended for advanced users who wish to track bug fixes.</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>ocaml/branches/</code></td>
