@@ -8,7 +8,7 @@ GNU make でのコンパイル
 OCamlMakefile と組み合わせて GNU make を使う
 -------------------------------------------
 
-[OCamlMakefile](https://bitbucket.org/mmottl/ocaml-makefile)
+[OCamlMakefile](https://github.com/mmottl/ocaml-makefile)
 は、 複雑なOCamlプロジェクトのコンパイル作業をとても楽にする生成的な
 Makefile だ。
 

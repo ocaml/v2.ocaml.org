@@ -584,7 +584,7 @@ implement the core of the OCaml language; so the basic syntax is nearly
 the same. However, all these systems have their own extensions to the
 Caml core language.<br />
  Caml V3.1 is no longer maintained nor distributed. [Caml
-Light](caml-light/) is no longer developed, but still maintained.
+Light](../caml-light/) is no longer developed, but still maintained.
 Because of its stable status, it is actively used in education. Most
 other users have switched to OCaml, the latest variant of the language.
 This is the version we suggest using in new software developments. See

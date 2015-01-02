@@ -390,11 +390,11 @@ The following packages are the most beneficial to install:
  an OCaml library management system.
 * [Batteries](http://batteries.forge.ocamlcore.org/), a collection of
  libraries that extend and improve upon the OCaml Standard Library
-* [PCRE-OCaml](https://bitbucket.org/mmottl/pcre-ocaml), a
+* [PCRE-OCaml](https://github.com/mmottl/pcre-ocaml), a
  library for working with Perl Compatible Regular Expressions in
  OCaml (this will require you to build [the PCRE
  library](http://www.pcre.org/) as well).
-* [OCamlMakefile](http://www.ocaml.info/home/ocaml_sources.html) which
+* [OCamlMakefile](https://github.com/mmottl/ocaml-makefile) which
  makes it easy to create makefiles for OCaml projects.
 
 If additional components, such as OpenGL and Gtk+ or Gtk+2 have already

@@ -45,7 +45,7 @@
  time](Automatic_Version_Generation.html)
 
 +     [Generate JSON parser/printer from .atd
- files](A_plugin_example_for_compiling_Json_printer_parser_from__atd_file_with_atdgen..html)
+ files](A_plugin_example_for_compiling_Json_printer_parser_from__atd_file_with_atdgen.html)
 
 
 ## F.A.Q.
