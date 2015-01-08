@@ -210,9 +210,10 @@ let post_of_atom ~author:a (e: Atom.entry) =
 let post_of_rss2 ~author it =
   let open Syndic.Rss2 in
   let title, desc = match it.story with
-    | All (t, d) -> t, html_of_text d
-    | Title t -> t, []
-    | Description d -> "", html_of_text d in
+    | All (t, d) -> t, d
+    | Title t -> t, ""
+    | Description d -> "", d in
+  let desc = html_of_text(if it.content = "" then desc else it.content) in
   let link = match it.guid, it.link with
     | Some u, _ when u.permalink -> Some u.data
     | _, Some _ -> it.link
