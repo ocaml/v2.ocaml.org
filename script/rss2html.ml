@@ -326,6 +326,28 @@ let want_contributor_and_author p =
   (* FIXME: maybe we want to be more subtle by checking for word boundaries: *)
   && not(Utils.KMP.is_substring p.author p.contributor.name)
 
+let html_author_of_post p =
+  if want_contributor_and_author p then
+    let author =
+      if p.email = "" then Data p.author
+      else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
+    [Element("span", [],
+             [Data p.contributor.name; Data " ("; author; Data ")" ])]
+  else
+    if p.contributor.name = "" then []
+    else if p.email = "" then [Data p.contributor.name]
+    else [Element("a", ["href", "mailto:" ^ p.email],
+                  [Data p.contributor.name])]
+
+let html_date_of_post p =
+  match p.date with
+  | None -> []
+  | Some d ->
+     let date =
+       let open Syndic.Date in
+       sprintf "%s %02d, %d" (string_of_month(month d)) (day d) (year d) in
+     [Data date]
+
 (* Transform a post [p] (i.e. story) into HTML. *)
 let html_of_post p =
   let title_anchor = digest_post p in
@@ -371,28 +393,12 @@ let html_of_post p =
                            [Element("img", ["src", "/img/twitter.png";
                                             "alt", "Twitter"], []) ])
                 :: rss) ] in
-  let html_author =
-    if want_contributor_and_author p then
-      let author =
-        if p.email = "" then Data p.author
-        else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
-      Element("span", [],
-              [Data p.contributor.name; Data " ("; author; Data ")" ])
-    else
-        if p.email = "" then Data p.contributor.name
-      else Element("a", ["href", "mailto:" ^ p.email],
-                   [Data p.contributor.name])  in
   let sep = Data " — " in
-  let additional_info = match p.date with
-    | None ->
-       if p.author = "" && p.contributor.name = "" then []
-       else [sep; html_author]
-    | Some d ->
-       let date =
-         let open Syndic.Date in
-         sprintf "%s %02d, %d" (string_of_month(month d)) (day d) (year d) in
-       if p.author = "" && p.contributor.name = "" then [sep; Data date]
-       else [sep; html_author; Data ", "; Data date] in
+  let additional_info = match html_author_of_post p, html_date_of_post p with
+    | [], [] -> []
+    | html_author, [] -> sep :: html_author
+    | [], date -> sep :: date
+    | html_author, date -> sep :: (html_author @ (Data ", " :: date)) in
   let additional_info =
     [Element("span", ["class", "additional-info"], additional_info)] in
   let desc =
