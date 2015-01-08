@@ -456,26 +456,32 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img p =
   [Element("li", [], [Element("article", [], html_title :: html_date)]);
    Data "\n"]
 
+let rec remove n l =
+  if n <= 0 then l
+  else match l with [] -> []
+                  | _ :: tl -> remove (n - 1) tl
+
 let rec take n = function
   | [] -> []
   | e :: tl -> if n > 0 then e :: take (n-1) tl else []
 
-let get_posts ?n () =
+let get_posts ?n ?(ofs=0) () =
   let feeds = Lazy.force planet_feeds in
   let posts = List.concat (List.map posts_of_contributor feeds) in
   let posts = List.sort post_compare posts in
+  let posts = remove ofs posts in
   match n with
   | None -> posts
   | Some n -> take n posts
 
-let headlines ?n ?planet ~l9n () =
-  let posts = get_posts ?n () in
+let headlines ?n ?ofs ?planet ~l9n () =
+  let posts = get_posts ?n ?ofs () in
   let img = "/img/news" in
   [Element("ul", ["class", "news-feed"],
            List.concat(List.map (headline_of_post ?planet ~l9n ~img) posts))]
 
-let posts ?n () =
-  let posts = get_posts ?n () in
+let posts ?n ?ofs () =
+  let posts = get_posts ?n ?ofs () in
   [Element("div", [], List.concat(List.map html_of_post posts))]
 
 let nposts () = List.length (get_posts ())
@@ -563,6 +569,7 @@ let () =
   let url = ref "" in
   let action = ref `Posts in
   let n_posts = ref None in (* means unlimited *)
+  let ofs_posts = ref 0 in
   let l9n = ref Netdate.posix_l9n in
   let specs = [
     ("--headlines", Arg.Unit(fun () -> action := `Headlines),
@@ -581,6 +588,8 @@ let () =
      "fname write the aggregated feed to the given file");
     ("-n", Arg.Int(fun n -> n_posts := Some n),
      "n limit the number of posts to n (default: all of them)");
+    ("--ofs", Arg.Set_int ofs_posts,
+     "n start at the n th post (first is numbered 0)");
     ("--locale",
      Arg.String(fun l -> l9n := Netdate.(l9n_from_locale l)),
      "l Translate dates for the locale l")  ] in
@@ -590,9 +599,11 @@ let () =
   let out = new Netchannels.output_channel stdout in
   (match !action with
    | `Headlines ->
-      Nethtml.write out (headlines ~planet:true ?n:!n_posts ~l9n ())
+      Nethtml.write out (headlines ~planet:true ?n:!n_posts ~ofs:!ofs_posts
+                                   ~l9n ())
    | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~l9n !url)
-   | `Posts -> Nethtml.write out (toggle_script @ posts ?n:!n_posts ())
+   | `Posts -> Nethtml.write out (toggle_script
+                                 @ posts ?n:!n_posts ~ofs:!ofs_posts ())
    | `NPosts -> printf "%i" (nposts())
    | `Subscribers -> Nethtml.write out (html_contributors())
    | `Opml fn -> opml fn
