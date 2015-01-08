@@ -34,6 +34,7 @@ Jamie Brandon|http://scattered-thoughts.net/blog/categories/ocaml/atom.xml
 Jane Street|https://blogs.janestreet.com/category/ocaml/feed/
 Leo White|http://lpw25.net/rss.xml
 LexiFi|http://www.lexifi.com/blogs/ocaml/feed
+Mads Hartmann|http://mads379.github.io/feed.ocaml.xml
 Marc Simpson|http://newblog.0branch.com/rss.xml
 Matthias Puech|http://syntaxexclamation.wordpress.com/tag/ocaml/feed/
 Matías Giovannini|http://www.blogger.com/feeds/5888658295182480819/posts/default
