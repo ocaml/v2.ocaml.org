@@ -108,7 +108,7 @@ let feed_of_url ~name url =
      let msg = Nethttp.(string_of_http_status (http_status_of_int err)) in
      { name;  title = "";  url;  feed = Broken msg }
 
-let planet_feeds() =
+let planet_feeds =
   let add_feed acc line =
     try
       let i = String.index line '|' in
@@ -116,11 +116,12 @@ let planet_feeds() =
       let url = String.sub line (i+1) (String.length line - i - 1) in
       feed_of_url ~name url :: acc
     with Not_found -> acc in
-  List.fold_left add_feed [] (Utils.lines_of_file planet_feeds_file)
+  lazy(List.fold_left add_feed [] (Utils.lines_of_file planet_feeds_file))
 
 let html_contributors () =
+  let feeds = Lazy.force planet_feeds in
   let contributors =
-    List.sort (fun c1 c2 -> String.compare c1.name c2.name) (planet_feeds()) in
+    List.sort (fun c1 c2 -> String.compare c1.name c2.name) feeds in
   let contrib_html c =
     let attr = match c.feed with
       | Broken s -> ["class", "broken";  "title", encode_html s]
@@ -144,7 +145,7 @@ let to_opml feeds =
 
 let opml fname =
   let fh = open_out fname in
-  Syndic.Opml1.output (to_opml(planet_feeds())) (`Channel fh);
+  Syndic.Opml1.output (to_opml(Lazy.force planet_feeds)) (`Channel fh);
   close_out fh
 
 
@@ -427,7 +428,8 @@ let rec take n = function
   | e :: tl -> if n > 0 then e :: take (n-1) tl else []
 
 let get_posts ?n () =
-  let posts = List.concat (List.map posts_of_contributor (planet_feeds())) in
+  let feeds = Lazy.force planet_feeds in
+  let posts = List.concat (List.map posts_of_contributor feeds) in
   let posts = List.sort post_compare posts in
   match n with
   | None -> posts
@@ -449,7 +451,7 @@ let nposts () = List.length (get_posts ())
  ***********************************************************************)
 
 let aggregate ?n fname =
-  let feeds = planet_feeds () in
+  let feeds = Lazy.force planet_feeds in
   let to_atom (c: contributor) =
     match c.feed with
     | Atom a -> Some(Some (Uri.of_string c.url), a)
