@@ -76,10 +76,10 @@ type feed =
   | Rss2 of Rss2.channel
   | Broken of string (* the argument gives the reason *)
 
-let classify_feed (xml: string) =
-  try Atom(Atom.parse (Xmlm.make_input (`String(0, xml))))
+let classify_feed ~xmlbase (xml: string) =
+  try Atom(Atom.parse ~xmlbase (Xmlm.make_input (`String(0, xml))))
   with Atom.Error.Error _ ->
-          try Rss2(Rss2.parse (Xmlm.make_input (`String(0, xml))))
+          try Rss2(Rss2.parse ~xmlbase (Xmlm.make_input (`String(0, xml))))
           with Rss2.Error.Error _ ->
                 Broken "Neither Atom nor RSS2 feed"
 
@@ -92,7 +92,7 @@ type contributor = {
 
 let feed_of_url ~name url =
   try
-    let feed = classify_feed (Http.get url) in
+    let feed = classify_feed ~xmlbase:(Uri.of_string url) (Http.get url) in
     let title = match feed with
       | Atom atom -> string_of_text_construct atom.Atom.title
       | Rss2 ch -> ch.Rss2.title
