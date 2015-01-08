@@ -418,6 +418,21 @@ let html_of_post p =
    Data "\n"]
 
 
+let li_of_post p =
+  let sep = Data " — " in
+  let title = match p.link with
+    | None -> [Data p.title]
+    | Some u -> [Element("a", ["href", Uri.to_string u; "target", "_blank";
+                              "title", "Go to the original post"],
+                        [Data p.title]) ] in
+  let line = match html_author_of_post p, html_date_of_post p with
+    | [], [] -> title
+    | html_author, [] -> title @ (sep :: html_author)
+    | [], date -> date @ (Data "," :: title)
+    | html_author, date ->
+       date @ (Data ", " :: title @ (sep :: html_author)) in
+  Element("li", [], line)
+
 let netdate_of_calendar d =
   let month =
     let open Syndic.Date in
@@ -495,6 +510,10 @@ let posts ?n ?ofs () =
   [Element("div", [], List.concat(List.map html_of_post posts))]
 
 let nposts () = List.length (get_posts ())
+
+let list_of_posts ?n ?ofs () =
+  let posts = get_posts ?n ?ofs () in
+  [Element("ul", [], List.map li_of_post posts)]
 
 (* Aggregation of posts
  ***********************************************************************)
@@ -590,6 +609,8 @@ let () =
      " list of subscribers (rendered to HTML if alone)");
     ("--posts", Arg.Unit(fun () -> action := `Posts),
      " RSS feed to HTML (default action)");
+    ("--list", Arg.Unit(fun () -> action := `List),
+     " RSS feed to a single HTML");
     ("--nposts", Arg.Unit(fun () -> action := `NPosts),
      " number of posts in the RSS feed");
     ("--opml", Arg.String(fun fn -> action := `Opml fn),
@@ -614,6 +635,7 @@ let () =
    | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~l9n !url)
    | `Posts -> Nethtml.write out (toggle_script
                                  @ posts ?n:!n_posts ~ofs:!ofs_posts ())
+   | `List ->  Nethtml.write out (list_of_posts ?n:!n_posts ~ofs:!ofs_posts ())
    | `NPosts -> printf "%i" (nposts())
    | `Subscribers -> Nethtml.write out (html_contributors())
    | `Opml fn -> opml fn
