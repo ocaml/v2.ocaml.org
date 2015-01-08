@@ -25,13 +25,13 @@ Functional Jobs|http://functionaljobs.com/jobs/search/?q=ocaml&format=rss
 GaGallium|http://gallium.inria.fr/blog/index.rss
 Gaius Hammond|http://gaiustech.wordpress.com/category/ocaml/feed/
 Gerd Stolpmann|http://blog.camlcity.org/blog/rss
-Github OCaml jobs|https://jobs.github.com/positions.atom?description=ocaml
+GitHub Jobs|https://jobs.github.com/positions.atom?description=ocaml
 Grant Rettke|http://www.wisdomandwonder.com/tag/OCaml/feed
 Hong bo Zhang|http://hongboz.wordpress.com/feed/
 Incubaid Research|http://blog.incubaid.com/tag/ocaml/feed/
 Jake Donham|http://ambassadortothecomputers.blogspot.com/feeds/posts/default?alt=rss
 Jamie Brandon|http://scattered-thoughts.net/blog/categories/ocaml/atom.xml
-Jane Street|https://blogs.janestreet.com/category/ocaml/feed/
+Jane Street|https://blogs.janestreet.com/category/ocaml/feed/atom/
 Leo White|http://lpw25.net/rss.xml
 LexiFi|http://www.lexifi.com/blogs/ocaml/feed
 Mads Hartmann|http://mads379.github.io/feed.ocaml.xml

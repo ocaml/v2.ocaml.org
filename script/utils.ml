@@ -65,3 +65,81 @@ let rec filter_map l f =
   | a :: tl -> match f a with
               | None -> filter_map tl f
               | Some a -> a :: filter_map tl f
+
+(* Knuth-Morris-Pratt algorithm
+ ***********************************************************************)
+
+module KMP =
+struct
+  (* Preprocess the pattern *)
+  let preprocess pat len =
+    let b = Array.make (len + 1) (-1) in
+    (* [b.(i)] = width of the widest border of [pat.[0 .. i-1]]. *)
+    let j = ref(-1) in
+    for i = 0 to len - 1 do
+      while !j >= 0 && pat.[!j] <> pat.[i] do
+        j := b.(!j)
+      done;
+      incr j;
+      b.(i+1) <- !j
+    done;
+    b
+
+
+  exception Found of int
+
+  (** [search pat] define a search function [f] such that [f s i0
+      i1] search the string [pat] in [s.[i0 .. i1-1]] and return the
+      position of the first match.
+
+      @raise Not_found if [pat] is not found.
+      @raise Invalid_argument if [i0 < 0] or [i1 > String.length s].  *)
+  let search pat =
+    let m = String.length pat in
+    let b = preprocess pat m in
+    fun s i0 i1 -> (
+      if i0 < 0 || i1 > String.length s then
+        invalid_arg "Netcgi_common.KMP.search";
+      let i = ref i0
+      and j = ref 0 in
+      try
+        while !i < i1 do
+          while !j >= 0 && s.[!i] <> pat.[!j] do
+            j := b.(!j)
+          done;
+          incr i;
+          incr j;
+          if !j = m then raise(Found(!i - !j))
+        done;
+        raise Not_found
+      with Found i -> i
+    )
+
+  let is_substring ~pat s =
+    try ignore(search pat s 0 (String.length s)); true
+    with Not_found -> false
+
+  (** [search_case_fold] is the same as [search] except that the
+      search is case insensitive.  *)
+  let search_case_fold pat =
+    let m = String.length pat in
+    let pat = String.lowercase pat in
+    let b = preprocess pat m in
+    fun s i0 i1 -> (
+      if i0 < 0 || i1 > String.length s then
+        invalid_arg "Netcgi_common.KMP.search";
+      let i = ref i0
+      and j = ref 0 in
+      try
+        while !i < i1 do
+          while !j >= 0 && Char.lowercase(s.[!i]) <> pat.[!j] do
+            j := b.(!j)
+          done;
+          incr i;
+          incr j;
+          if !j = m then raise(Found(!i - !j))
+        done;
+        raise Not_found
+      with Found i -> i
+    )
+end

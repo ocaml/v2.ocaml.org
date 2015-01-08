@@ -158,14 +158,25 @@ type post = {
   title  : string;
   link   : Uri.t option;   (* url of the original post *)
   date   : Syndic.Date.t option;
-  author : contributor;
+  contributor: contributor;
+  author : string;
   email  : string;    (* the author email, "" if none *)
   desc   : html;
 }
 
+(* Email on the forge contain the name in parenthesis *)
+let forge_name_re =
+  Str.regexp ".*(\\([^()]*\\))"
+
 let special_processing (p: post) =
-  if p.author.name = "Caml Weekly News" then
+  if p.contributor.name = "Caml Weekly News" then
     { p with title = "Weekly News" }
+  else if p.contributor.name = "OCamlCore Forge News" then
+    (* Extract the author from email. *)
+    let author = if Str.string_match forge_name_re p.email 0 then
+                   Str.matched_group 1 p.email
+                 else p.author in
+    { p with author = author }
   else
     p
 
@@ -183,7 +194,7 @@ let digest_post p = match p.link with
 
 let string_of_option = function None -> "" | Some s -> s
 
-let post_of_atom ~author:a (e: Atom.entry) =
+let post_of_atom ~contributor (e: Atom.entry) =
   let open Atom in
   let link = try Some (List.find (fun l -> l.rel = Alternate) e.links).href
              with Not_found -> match e.links with
@@ -201,13 +212,15 @@ let post_of_atom ~author:a (e: Atom.entry) =
        | Some(Text s) | Some(Html s) -> html_of_text s
        | Some(Xhtml h) -> html_of_syndic h
        | None -> [] in
+  let author, _ = e.authors in
   special_processing { title = string_of_text_construct e.title;
                        link;  date;
-                       author = a;
-                       email = (fst e.authors).name;
+                       contributor;
+                       author = author.name;
+                       email = "";
                        desc }
 
-let post_of_rss2 ~author it =
+let post_of_rss2 ~(contributor: contributor) it =
   let open Syndic.Rss2 in
   let title, desc = match it.story with
     | All (t, d) -> t, d
@@ -222,15 +235,16 @@ let post_of_rss2 ~author it =
           is nonetheless the only URL we get (e.g. ocamlpro). *)
        Some u.data
     | None, None -> None in
-  special_processing { title; link; author;
+  special_processing { title; link; contributor;
+                       author = contributor.name;
                        email = string_of_option it.author;
                        desc;
                        date = it.pubDate }
 
 let posts_of_contributor c =
   match c.feed with
-  | Atom f -> List.map (post_of_atom ~author:c) f.Atom.entries
-  | Rss2 ch -> List.map (post_of_rss2 ~author:c) ch.Rss2.items
+  | Atom f -> List.map (post_of_atom ~contributor:c) f.Atom.entries
+  | Rss2 ch -> List.map (post_of_rss2 ~contributor:c) ch.Rss2.items
   | Broken _ -> []
 
 
@@ -303,6 +317,15 @@ let toggle_script =
   [Element("script", ["type", "text/javascript"], [Data script])]
 
 
+(* In addition to the feed name, print the author name (general feed
+   used by several authors). *)
+let want_contributor_and_author p =
+  p.author <> "" && p.author <> p.contributor.name
+  && not(String.contains p.author '.')
+  && not(String.contains p.author '@')
+  (* FIXME: maybe we want to be more subtle by checking for word boundaries: *)
+  && not(Utils.KMP.is_substring p.author p.contributor.name)
+
 (* Transform a post [p] (i.e. story) into HTML. *)
 let html_of_post p =
   let title_anchor = digest_post p in
@@ -323,7 +346,7 @@ let html_of_post p =
        let tw = ["href", "https://twitter.com/intent/tweet?url=" ^ post
                          ^ "&text=" ^ (Netencoding.Url.encode p.title);
                  "target", "_blank"; "title", "Share on Twitter"] in
-       let feed = p.author.url in
+       let feed = p.contributor.url in
        let rss =
          if feed <> "" then
            [Element("a", ["class", "rss";  "target", "_blank";
@@ -349,17 +372,26 @@ let html_of_post p =
                                             "alt", "Twitter"], []) ])
                 :: rss) ] in
   let html_author =
-    if p.email = "" then Data p.author.name
-    else Element("a", ["href", "mailto:" ^ p.email], [Data p.author.name]) in
+    if want_contributor_and_author p then
+      let author =
+        if p.email = "" then Data p.author
+        else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
+      Element("span", [],
+              [Data p.contributor.name; Data " ("; author; Data ")" ])
+    else
+        if p.email = "" then Data p.contributor.name
+      else Element("a", ["href", "mailto:" ^ p.email],
+                   [Data p.contributor.name])  in
   let sep = Data " — " in
   let additional_info = match p.date with
     | None ->
-       if p.author.name = "" then [] else [sep; html_author]
+       if p.author = "" && p.contributor.name = "" then []
+       else [sep; html_author]
     | Some d ->
        let date =
          let open Syndic.Date in
          sprintf "%s %02d, %d" (string_of_month(month d)) (day d) (year d) in
-       if p.author.name = "" then [sep; Data date]
+       if p.author = "" && p.contributor.name = "" then [sep; Data date]
        else [sep; html_author; Data ", "; Data date] in
   let additional_info =
     [Element("span", ["class", "additional-info"], additional_info)] in
