@@ -177,8 +177,12 @@ let special_processing (p: post) =
                    Str.matched_group 1 p.email
                  else p.author in
     { p with author = author }
-  else
-    p
+  else if String.contains p.email '@' then p
+  else (* consider p.email is actually a name (as GaGallium does) *)
+    let author =
+      if p.author = "" || p.author = p.contributor.name then p.email
+      else p.author in
+    { p with email = ""; author }
 
 let post_compare p1 p2 =
   (* Most recent posts first.  Posts with no date are always last *)
