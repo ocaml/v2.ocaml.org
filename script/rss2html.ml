@@ -130,13 +130,13 @@ let html_contributors () =
 
 
 let to_opml feeds =
-  let now = Syndic.Date.now() in
+  let now = CalendarLib.Calendar.now() in
   let head = Syndic.Opml1.head ~date_modified:now
                                ~owner_name:"ocaml.org"
                                ~owner_email:"infrastructure@lists.ocaml.org"
                                "OCaml Planet" in
   let outline f =
-    Syndic.Opml1.outline ~ty:"rss"
+    Syndic.Opml1.outline ~typ:"rss"
                          ~attrs:["title", f.title]
                          ~xml_url:(Uri.of_string f.url)
                          f.name in
