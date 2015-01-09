@@ -21,7 +21,10 @@ You can read the 30 more recent ones below.
 <section class="span4">
 <div class="subscribers" style="float:right">
 
-<h3>Syndications</h3>
+<h3>Syndications
+  <a href="/opml.xml" title="OPML"
+  ><img class="svg opml" src="/img/Opml-icon.svg" alt="OPML"
+  /><img class="png ompl" src="/img/Opml-icon.png" alt="OPML" /></a></h3>
 
 ((! cmd script/rss2html --subscribers !))
 

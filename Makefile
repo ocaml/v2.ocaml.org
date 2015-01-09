@@ -39,9 +39,16 @@ MD_FILES = $(patsubst site/%, ocaml.org/%, $(patsubst %.md, %.html, \
 HTML_FILES = $(patsubst site/%, ocaml.org/%, \
   $(shell find site -type f -name '*.html' -print))
 
-gen_md:
+feed: ocaml.org/feed.xml ocaml.org/opml.xml
+ocaml.org/feed.xml: script/rss2html
+	./$< --aggregate $@
+ocaml.org/opml.xml: script/rss2html
+	./$< --opml $@
+
+
+gen_md: feed
 	@$(MAKE) -f Makefile.from_md $(MD_FILES)
-gen_html:
+gen_html: feed
 	@$(MAKE) -f Makefile.from_html $(HTML_FILES)
 
 headache:
@@ -64,4 +71,4 @@ clean:
 include Makefile.common
 
 .PHONY: production local staging opam.ocaml.org_template \
-	syncotherfiles gen_md gen_html headache clean
+	syncotherfiles feed gen_md gen_html headache clean

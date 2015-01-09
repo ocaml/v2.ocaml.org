@@ -136,6 +136,11 @@ h1 img.rss {
   height: 1.3ex;
 }
 
+h3 img.opml {
+  height: 1.5ex;
+  margin-left: 2ex;
+}
+
 a.planet-toggle {
   float: right;
   font-size: 90%;

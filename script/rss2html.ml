@@ -138,7 +138,7 @@ let to_opml feeds =
                                "OCaml Planet" in
   let outline f =
     Syndic.Opml1.outline ~typ:"rss"
-                         ~attrs:["title", f.title]
+                         ~attrs:[("", "title"), f.title]
                          ~xml_url:(Uri.of_string f.url)
                          f.name in
   { Syndic.Opml1.version = "1.1";  head;  body = List.map outline feeds }
