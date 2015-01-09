@@ -17,7 +17,9 @@ or view <a href="older.html" >older ones</a>.
 
 ((! cmd script/rss2html --posts -n 30 !))
 
+<p style="clear:both; padding-top: 6ex">
 View <a href="older.html" >older blog posts</a>.
+</p>
 
 </section>
 <section class="span4">
