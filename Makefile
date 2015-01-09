@@ -41,8 +41,10 @@ HTML_FILES = $(patsubst site/%, ocaml.org/%, \
 
 feed: ocaml.org/feed.xml ocaml.org/opml.xml
 ocaml.org/feed.xml: script/rss2html
+	mkdir -p $(basename $@)
 	./$< --aggregate $@
 ocaml.org/opml.xml: script/rss2html
+	mkdir -p $(basename $@)
 	./$< --opml $@
 
 
