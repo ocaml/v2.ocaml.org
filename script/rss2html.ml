@@ -33,8 +33,30 @@ let syndic_to_string x =
 
 let string_of_text_construct : Atom.text_construct -> string = function
   (* FIXME: we probably would like to parse the HTML and remove the tags *)
-  | Atom.Text s | Atom.Html s -> s
-  | Atom.Xhtml x -> syndic_to_string x
+  | Atom.Text s | Atom.Html(_,s) -> s
+  | Atom.Xhtml(_, x) -> syndic_to_string x
+
+
+let rec resolve ?xmlbase html =
+  List.map (resolve_links_el ~xmlbase) html
+and resolve_links_el ~xmlbase = function
+  | Nethtml.Element("a", attrs, sub) ->
+     let attrs = match List.partition (fun (t,_) -> t = "href") attrs with
+       | [], _ -> attrs
+       | (_, h) :: _, attrs ->
+          let src = Uri.to_string(XML.resolve xmlbase (Uri.of_string h)) in
+          ("href", src) :: attrs in
+     Nethtml.Element("a", attrs, resolve ?xmlbase sub)
+  | Nethtml.Element("img", attrs, sub) ->
+     let attrs = match List.partition (fun (t,_) -> t = "src") attrs with
+       | [], _ -> attrs
+       | (_, src) :: _, attrs ->
+          let src = Uri.to_string(XML.resolve xmlbase (Uri.of_string src)) in
+          ("src", src) :: attrs in
+     Nethtml.Element("img", attrs, sub)
+  | Nethtml.Element(e, attrs, sub) ->
+     Nethtml.Element(e, attrs, resolve ?xmlbase sub)
+  | Data _ as d -> d
 
 
 (* Things that posts should not contain *)
@@ -53,10 +75,12 @@ and remove_undesired_tags_el = function
                                remove_undesired_tags sub))
   | Data _ as d -> Some d
 
-let html_of_text s =
+let html_of_text ?xmlbase s =
   try Nethtml.parse (new Netchannels.input_string s)
                     ~dtd:Utils.relaxed_html40_dtd
-      |> decode_document |> remove_undesired_tags
+      |> decode_document
+      |> resolve ?xmlbase
+      |> remove_undesired_tags
   with _ ->
     [Nethtml.Data(encode_html s)]
 
@@ -64,8 +88,9 @@ let html_of_text s =
    and parse back.  (Does not always fix bad HTML unfortunately.) *)
 let rec html_of_syndic =
   let ns_prefix _ = Some "" in
-  fun h ->
-  html_of_text(String.concat "" (List.map (XML.to_string ~ns_prefix) h))
+  fun ?xmlbase h ->
+  html_of_text ?xmlbase
+               (String.concat "" (List.map (XML.to_string ~ns_prefix) h))
 
 
 (* Feeds
@@ -92,7 +117,8 @@ type contributor = {
 
 let feed_of_url ~name url =
   try
-    let feed = classify_feed ~xmlbase:(Uri.of_string url) (Http.get url) in
+    let xmlbase = Uri.of_string url in
+    let feed = classify_feed ~xmlbase (Http.get url) in
     let title = match feed with
       | Atom atom -> string_of_text_construct atom.Atom.title
       | Rss2 ch -> ch.Rss2.title
@@ -208,13 +234,15 @@ let post_of_atom ~contributor (e: Atom.entry) =
     | Some _ -> e.published
     | None -> Some e.updated in
   let desc = match e.content with
-    | Some(Text s) | Some(Html s) -> html_of_text s
-    | Some(Xhtml h) -> html_of_syndic h
+    | Some(Text s) -> html_of_text s
+    | Some(Html(xmlbase, s)) -> html_of_text ?xmlbase s
+    | Some(Xhtml(xmlbase, h)) -> html_of_syndic ?xmlbase h
     | Some(Mime _) | Some(Src _)
     | None ->
        match e.summary with
-       | Some(Text s) | Some(Html s) -> html_of_text s
-       | Some(Xhtml h) -> html_of_syndic h
+       | Some(Text s) -> html_of_text s
+       | Some(Html(xmlbase, s)) -> html_of_text ?xmlbase s
+       | Some(Xhtml(xmlbase, h)) -> html_of_syndic ?xmlbase h
        | None -> [] in
   let author, _ = e.authors in
   special_processing { title = string_of_text_construct e.title;
@@ -227,10 +255,15 @@ let post_of_atom ~contributor (e: Atom.entry) =
 let post_of_rss2 ~(contributor: contributor) it =
   let open Syndic.Rss2 in
   let title, desc = match it.story with
-    | All (t, d) -> t, d
-    | Title t -> t, ""
-    | Description d -> "", d in
-  let desc = html_of_text(if it.content = "" then desc else it.content) in
+    | All (t, xmlbase, d) ->
+       t, (match it.content with
+           | (_, "") -> html_of_text ?xmlbase d
+           | (xmlbase, c) -> html_of_text ?xmlbase c)
+    | Title t -> t, []
+    | Description(xmlbase, d) ->
+       "", (match it.content with
+            | (_, "") -> html_of_text ?xmlbase d
+            | (xmlbase, c) -> html_of_text ?xmlbase c) in
   let link = match it.guid, it.link with
     | Some u, _ when u.permalink -> Some u.data
     | _, Some _ -> it.link
