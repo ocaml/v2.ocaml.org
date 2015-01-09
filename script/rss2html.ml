@@ -511,9 +511,52 @@ let posts ?n ?ofs () =
 
 let nposts () = List.length (get_posts ())
 
+
+let en_string_of_month =
+  let open Syndic.Date in
+  function
+  | Jan -> "January"
+  | Feb -> "February"
+  | Mar -> "March"
+  | Apr -> "April"
+  | May -> "May"
+  | Jun -> "June"
+  | Jul -> "July"
+  | Aug -> "August"
+  | Sep -> "September"
+  | Oct -> "October"
+  | Nov -> "November"
+  | Dec -> "December"
+
+module Year_Month = struct
+  type t = int * Syndic.Date.month (* year, month *)
+
+  let compare ((y1, m1): t) ((y2, m2): t) =
+    let dy = compare y1 y2 in
+    if dy = 0 then compare m1 m2 else dy
+end
+module DMap = Map.Make(Year_Month)
+
 let list_of_posts ?n ?ofs () =
   let posts = get_posts ?n ?ofs () in
-  [Element("ul", [], List.map li_of_post posts)]
+  (* Split posts per year/month *)
+  let classify m p =
+    match p.date with
+    | None -> m (* drop *)
+    | Some d ->
+       let key = (Syndic.Date.year d, Syndic.Date.month d) in
+       let posts = try p :: DMap.find key m with Not_found -> [p] in
+       DMap.add key posts m in
+  let m = List.fold_left classify DMap.empty posts in
+  let add_html (year, month) posts html =
+    let title = en_string_of_month month ^ " " ^ string_of_int year in
+    let posts = List.sort post_compare posts in
+    Element("h2", ["id", title], [Data title])
+    :: Element("ul", [], List.map li_of_post posts)
+    :: html in
+  (* Older date considered first => final HTML has more recent dates first *)
+  DMap.fold add_html m []
+
 
 (* Aggregation of posts
  ***********************************************************************)
