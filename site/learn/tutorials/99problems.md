@@ -1613,7 +1613,7 @@ SOLUTION
 >        let l' = layout (depth + 1) (x_root - spacing) l
 >        and r' = layout (depth + 1) (x_root + spacing) r in
 >        N (x, x_root,depth, l',r') in
->   layout 1 ((1 lsl (tree_height - 1)) - translate_dst) t
+>   layout 1 ((1 lsl (tree_height - 1)) - (1 lsl translate_dst) + 1) t
 > ```
 
 ```ocamltop
