@@ -1605,7 +1605,8 @@ SOLUTION
 >   let rec find_missing_left depth = function
 >     | Empty -> tree_height - depth
 >     | Node (_,l,_) -> find_missing_left (depth + 1) l in
->   let translate_dst = find_missing_left 0 t in
+>   let translate_dst = 1 lsl (find_missing_left 0 t) - 1 in
+>                       (* remember than 1 lsl a = 2ᵃ *)
 >   let rec layout depth x_root = function
 >     | Empty -> E
 >     | Node (x,l,r) ->
@@ -1618,6 +1619,11 @@ SOLUTION
 
 ```ocamltop
 layout_binary_tree_2 example_layout_tree ;;
+let example2_layout_tree =
+  let leaf x = Node (x,Empty,Empty) in
+  Node('n', Empty,
+       Node('u', Node('p', Empty, leaf 'q'), Empty));;
+layout_binary_tree_2 example2_layout_tree ;;
 ```
 
 
