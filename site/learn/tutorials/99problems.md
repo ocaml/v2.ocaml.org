@@ -2342,9 +2342,9 @@ SOLUTION
 
 > ```ocamltop
 > let possible row col usedCols usedD1 usedD2 =
->   not (List.mem (row + col) usedD1
->        || List.mem (row - col) usedD2
->        || List.mem col usedCols)
+>   not (List.mem col usedCols
+>        || List.mem (row + col) usedD1
+>        || List.mem (row - col) usedD2)
 >
 > let queens_positions n =
 >   let rec aux row col usedCols usedD1 usedD2 =
