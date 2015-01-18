@@ -2341,19 +2341,19 @@ generate-and-test paradigm.
 SOLUTION
 
 > ```ocamltop
-> let possible row col usedCols usedD1 usedD2 =
->   not (List.mem col usedCols
+> let possible row col used_rows usedD1 usedD2 =
+>   not (List.mem row used_rows
 >        || List.mem (row + col) usedD1
 >        || List.mem (row - col) usedD2)
 >
 > let queens_positions n =
->   let rec aux row col usedCols usedD1 usedD2 =
->     if row > n then [List.rev usedCols]
+>   let rec aux row col used_rows usedD1 usedD2 =
+>     if col > n then [List.rev used_rows]
 >     else
->       (if col <> n then aux row (col + 1) usedCols usedD1 usedD2
+>       (if row < n then aux (row + 1) col used_rows usedD1 usedD2
 >        else [])
->       @ (if possible row col usedCols usedD1 usedD2 then
->            aux (row + 1) 1 (col :: usedCols) (row + col :: usedD1)
+>       @ (if possible row col used_rows usedD1 usedD2 then
+>            aux 1 (col + 1) (row :: used_rows) (row + col :: usedD1)
 >                (row - col :: usedD2)
 >          else [])
 >   in aux 1 1 [] [] []
