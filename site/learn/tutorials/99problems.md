@@ -2338,26 +2338,31 @@ Example: `[4;2;7;3;6;8;5;1]` means that the queen in the first column is
 in row 4, the queen in the second column is in row 2, etc. Use the
 generate-and-test paradigm.
 
-let possible row col usedCols usedD1 usedD2 =    
-  not (List.mem (row + col) usedD1                 
-    || List.mem (row - col) usedD2
-    || List.mem col usedCols)
+SOLUTION
 
-let gen n =                                      
-  let rec aux row col usedCols usedD1 usedD2 =   
-    if row = n 
-    then [List.rev usedCols]
-    else
-      (if col <> n-1 then aux row (succ col) usedCols usedD1 usedD2 else []) @
-      (if possible row col usedCols usedD1 usedD2 then
-       aux (succ row) 0 (col :: usedCols) (row + col :: usedD1) (row - col :: usedD2)
-       else [])
-  in aux 0 0 [] [] [] 
+> ```ocamltop
+> let possible row col usedCols usedD1 usedD2 =
+>   not (List.mem (row + col) usedD1
+>        || List.mem (row - col) usedD2
+>        || List.mem col usedCols)
+>
+> let queens_positions n =
+>   let rec aux row col usedCols usedD1 usedD2 =
+>     if row = n then [List.rev usedCols]
+>     else
+>       (if col <> n-1 then aux row (succ col) usedCols usedD1 usedD2
+>        else [])
+>       @ (if possible row col usedCols usedD1 usedD2 then
+>            aux (succ row) 0 (col :: usedCols) (row + col :: usedD1)
+>                (row - col :: usedD2)
+>          else [])
+>   in aux 0 0 [] [] []
+> ```
 
-
-gen 4 = [ [2;0;3;1] ; [1;3;0;2] ]
-List.length (gen 8) = 92 
-
+```ocamltop
+queens_positions 4;;
+List.length (queens_positions 8);;
+```
 
 #### Knight's tour. (*medium*)
 
