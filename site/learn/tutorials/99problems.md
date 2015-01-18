@@ -2348,15 +2348,15 @@ SOLUTION
 >
 > let queens_positions n =
 >   let rec aux row col usedCols usedD1 usedD2 =
->     if row = n then [List.rev usedCols]
+>     if row > n then [List.rev usedCols]
 >     else
->       (if col <> n-1 then aux row (col + 1) usedCols usedD1 usedD2
+>       (if col <> n then aux row (col + 1) usedCols usedD1 usedD2
 >        else [])
 >       @ (if possible row col usedCols usedD1 usedD2 then
->            aux (row + 1) 0 (col :: usedCols) (row + col :: usedD1)
+>            aux (row + 1) 1 (col :: usedCols) (row + col :: usedD1)
 >                (row - col :: usedD2)
 >          else [])
->   in aux 0 0 [] [] []
+>   in aux 1 1 [] [] []
 > ```
 
 ```ocamltop
