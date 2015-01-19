@@ -2590,21 +2590,19 @@ let print_tbl table =
     print_string "|\n" in
   Array.iter print_row table
 
-let solve lr lc =
-  let height = List.length lr
-  and width  = List.length lc in
+let solve patts_row patts_col =
+  let height = List.length patts_row
+  and width  = List.length patts_col in
   let table = Array.make_matrix height width Empty in
   let rec gen col row l =
-    if row >= height then
+    if row >= height then (
       if List.hd l = [] then
         gen (succ col) 0 (List.tl l)
-      else
-        ()
-    else if col = width then
-      if check table 0 lr then
+    )
+    else if col = width then (
+      if check table 0 patts_row then
         print_tbl table
-      else
-        ()
+    )
     else
       match l with
       | cur_col :: rest_col ->
@@ -2623,7 +2621,7 @@ let solve lr lc =
                )
           | [] -> gen (succ col) 0 rest_col)
       | [] -> assert false
-  in gen 0 0 lc
+  in gen 0 0 patts_col
 ```
 
 
