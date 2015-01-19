@@ -2572,11 +2572,11 @@ let rec check_row row col0 patt_row =
 (* Check that each row of the table conforms [patts_row].  It is
    assumed that the length of [patts_row] is equal to the number of
    lines of [table]. *)
-let rec check table row0 patts_row =
+let rec check_rows table row0 patts_row =
   row0 >= Array.length table
   || (match patts_row with
      | patt_row :: tl -> check_row table.(row0) 0 patt_row
-                        && check table (row0 + 1) tl
+                        && check_rows table (row0 + 1) tl
      | [] -> assert false)
 
 let char_of_element = function
@@ -2594,14 +2594,16 @@ let solve patts_row patts_col =
   let height = List.length patts_row
   and width  = List.length patts_col in
   let table = Array.make_matrix height width Empty in
+  (* Generate all possibilities for columns and filter according
+     to row patterns. *)
   let rec gen col row l =
-    if row >= height then (
+    if col >= width then (
+      if check_rows table 0 patts_row then
+        print_tbl table
+    )
+    else if row >= height then (
       if List.hd l = [] then
         gen (succ col) 0 (List.tl l)
-    )
-    else if col = width then (
-      if check table 0 patts_row then
-        print_tbl table
     )
     else
       match l with
