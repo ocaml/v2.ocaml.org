@@ -31,7 +31,7 @@ let highlight_ocaml =
              ^ id ^ " +\\|(" ^ id ^ "\\( *:[^)]+\\)?) +\\|([a-zA-Z0-9_', ]+) *"
              ^ "\\|{[a-zA-Z0-9_',; ]+} *\\|\\.+ +\\)+" in
   let subst = [ (* regex, replacement *)
-    (let cmt_txt = "\\([^()]\\|([^*][^()]*[^*])\\)*" in
+    (let cmt_txt = "\\([^()]\\|([^*])\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
      "<span class=\"comment\">\\1</span>");
     (";; *\n", "<span class=\"ocaml-prompt\">;;</span><br/>");
