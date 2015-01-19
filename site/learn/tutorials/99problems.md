@@ -2595,16 +2595,12 @@ let solve patts_row patts_col =
   and width  = List.length patts_col in
   let table = Array.make_matrix height width Empty in
   (* Generate all possibilities for columns and filter according
-     to row patterns. *)
+     to row patterns.  [patts_col] are the patterns left for the
+     current column. *)
   let rec gen col row patts_col =
     if col >= width then (
       if check_rows table 0 patts_row then
         print_tbl table
-    )
-    else if row >= height then (
-      match patts_col with
-      | [] :: tl -> gen (col + 1) 0 tl
-      | _ -> () (* remaining patterns for [col] *)
     )
     else
       match patts_col with
@@ -2612,15 +2608,17 @@ let solve patts_row patts_col =
          (* No pattern left for this column, go to the next one. *)
          gen (col + 1) 0 rest_patt
       | (nX :: tl) :: rest_patt ->
-         gen col (row + 1) patts_col;
+         assert(nX > 0);
          if row + nX <= height then (
-           for r = row to pred (row + nX) do
+           for r = row to row + nX - 1 do
              table.(r).(col) <- X
            done;
            gen col (row + nX + 1) (tl :: rest_patt);
-           for r = row to pred (row + nX) do
+           for r = row to row + nX - 1 do
              table.(r).(col) <- Empty
-           done
+           done;
+           (* Try the same pattern from next row: *)
+           gen col (row + 1) patts_col;
          )
       | [] -> assert false
   in gen 0 0 patts_col
