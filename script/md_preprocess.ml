@@ -63,7 +63,8 @@ let add_toggle_button title html doc : Omd.t =
     ["onclick", Some(sprintf "toggleContent('ocamlorg%i')" !n_button);
      "class", Some "solution"] in
   let attr_div = ["id", Some(sprintf "ocamlorg%i" !n_button);
-                  "class", Some "solution"] in
+                  "class", Some "solution";
+                  "media:type", Some "text/omd" ] in
   let open Omd in
   Html("button", attr_button, [Raw(Code.html_encode title)])
   :: NL :: Html_block("div", attr_div, html)

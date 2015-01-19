@@ -2340,6 +2340,10 @@ generate-and-test paradigm.
 
 SOLUTION
 
+> This is a brute force algorithm enumerating all possible solutions.
+> For a deeper analysis, look for example to
+> [Wikipedia](https://en.wikipedia.org/wiki/Eight_queens_puzzle).
+>
 > ```ocamltop
 > let possible row col used_rows usedD1 usedD2 =
 >   not (List.mem row used_rows
