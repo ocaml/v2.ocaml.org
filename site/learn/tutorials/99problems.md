@@ -2596,32 +2596,31 @@ let solve patts_row patts_col =
   let table = Array.make_matrix height width Empty in
   (* Generate all possibilities for columns and filter according
      to row patterns. *)
-  let rec gen col row l =
+  let rec gen col row patts_col =
     if col >= width then (
       if check_rows table 0 patts_row then
         print_tbl table
     )
     else if row >= height then (
-      if List.hd l = [] then
-        gen (succ col) 0 (List.tl l)
+      if List.hd patts_col = [] then
+        gen (succ col) 0 (List.tl patts_col)
     )
     else
-      match l with
-      | cur_col :: rest_col ->
-         (match cur_col with
-          | hd::tl ->
-             gen col (succ row) l;
-             if hd + row <= height then
-               (
-                 for r = row to pred (row + hd) do
-                   table.(r).(col) <- X
-                 done;
-                 gen col (row + hd + 1) (tl :: rest_col);
-                 for r = row to pred (row + hd) do
-                   table.(r).(col) <- Empty
-                 done
-               )
-          | [] -> gen (succ col) 0 rest_col)
+      match patts_col with
+      | [] :: rest_patt ->
+         (* No pattern left for this column, go to the next one. *)
+         gen (col + 1) 0 rest_patt
+      | (nX :: tl) :: rest_patt ->
+         gen col (row + 1) patts_col;
+         if row + nX <= height then (
+           for r = row to pred (row + nX) do
+             table.(r).(col) <- X
+           done;
+           gen col (row + nX + 1) (tl :: rest_patt);
+           for r = row to pred (row + nX) do
+             table.(r).(col) <- Empty
+           done
+         )
       | [] -> assert false
   in gen 0 0 patts_col
 ```
