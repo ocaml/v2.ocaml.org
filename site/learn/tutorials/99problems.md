@@ -2602,8 +2602,9 @@ let solve patts_row patts_col =
         print_tbl table
     )
     else if row >= height then (
-      if List.hd patts_col = [] then
-        gen (succ col) 0 (List.tl patts_col)
+      match patts_col with
+      | [] :: tl -> gen (col + 1) 0 tl
+      | _ -> () (* remaining patterns for [col] *)
     )
     else
       match patts_col with
