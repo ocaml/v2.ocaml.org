@@ -2543,44 +2543,50 @@ SOLUTION
 ```ocamltop
 type element = Empty | X (* ensure we do not miss cases in patterns *)
 
-let check table lr =
-  let height = Array.length table
-  and width = Array.length table.(0) in
-  let rec walk row lr =
-    if row = height then
-      lr = []
-    else(
-      match lr with
-      | [] -> false
-      | cur_row :: rest ->
-         let rec check_row lr col =
-           if col = width then
-             lr = []
-           else(
-             match lr, table.(row).(col) with
-             | h::t, X -> if h + col > width then false
-                         else if (
-                           List.for_all (fun x -> x = X)
-                                        (Array.to_list (Array.sub table.(row) col h))
-                         ) then (((col + h < width) && (table.(row).(col+h) <> X))
-                                 || (col + h = width))
-                                && (check_row t (col + h))
-                         else false
-             | h::t, Empty -> check_row lr (succ col)
-             | [], X -> false
-             | [], Empty -> check_row [] (col + 1)
-           )
-         in (check_row cur_row 0 ) && walk (succ row) rest
-    )
-  in walk 0 lr
+(* Whether [row.(c)] for [col0 ≤ c < col1] are all set to [X]. *)
+let rec is_set_range row col0 col1 =
+  col0 >= col1 || (row.(col0) = X && is_set_range row (col0 + 1) col1)
 
-let char_of_element = function Empty -> '_'
-                             | X -> 'X'
+(* Whether all [row.(ncol)] .. [row.(ncol + width - 1)] equal [X]. *)
+let is_set_sub row col0 width =
+  col0 + width <= Array.length row
+  && is_set_range row col0 (col0 + width)
+
+(* Check that [row.(col0 ..)] conforms the pattern [patt_row]. *)
+let rec check_row row col0 patt_row =
+  if col0 >= Array.length row then
+    patt_row = [] (* row exhausted, no pattern must remain *)
+  else
+    match row.(col0) with
+    | Empty -> check_row row (col0 + 1) patt_row
+    | X ->
+       match patt_row with
+       | [] -> false
+       | nX :: tl ->
+          if is_set_sub row col0 nX then
+            let col0 = col0 + nX in
+            (col0 >= Array.length row || row.(col0) = Empty)
+            && check_row row (col0 + 1) tl
+          else false
+
+(* Check that each row of the table conforms [patts_row].  It is
+   assumed that the length of [patts_row] is equal to the number of
+   lines of [table]. *)
+let rec check table row0 patts_row =
+  row0 >= Array.length table
+  || (match patts_row with
+     | patt_row :: tl -> check_row table.(row0) 0 patt_row
+                        && check table (row0 + 1) tl
+     | [] -> assert false)
+
+let char_of_element = function
+  | Empty -> '_'
+  | X -> 'X'
 
 let print_tbl table =
   let print_row r =
     Array.iter (fun e -> print_char '|';
-                      print_char(char_of_element e)) r;
+                       print_char(char_of_element e)) r;
     print_string "|\n" in
   Array.iter print_row table
 
@@ -2595,7 +2601,7 @@ let solve lr lc =
       else
         ()
     else if col = width then
-      if check table lr then
+      if check table 0 lr then
         print_tbl table
       else
         ()
