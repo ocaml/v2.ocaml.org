@@ -2325,7 +2325,7 @@ results](https://sites.google.com/site/prologsite/prolog-problems/6/solutions-6/
 ```
 
 ## Miscellaneous Problems
-<br />
+
 #### Eight queens problem. (*medium*)
 
 This is a classical problem in computer science. The objective is to
