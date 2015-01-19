@@ -2538,6 +2538,8 @@ lengths of the rows and columns, top-to-bottom and left-to-right,
 respectively. Published puzzles are larger than this example, e.g.
 25×20, and apparently always have unique solutions.
 
+SOLUTION
+
 ```ocamltop
 let check table l =
   let height = Array.length table
@@ -2571,12 +2573,12 @@ let check table l =
   in walk 0 l
 
 let print_tbl table =
-  Array.iter (fun a ->
-              Array.iter (fun ch -> print_char '|'; print_char ch) a ;
-              print_endline "|"
-             ) table
+  let print_row r =
+    Array.iter (fun ch -> print_char '|'; print_char ch) r;
+    print_string "|\n" in
+  Array.iter print_row table
 
- let solve lr lc =
+let solve lr lc =
   let height = List.length lr
   and width  = List.length lc in
   let table = Array.make_matrix height width '_' in
@@ -2613,8 +2615,9 @@ let print_tbl table =
 
 
 
-```ocaml
-(* example pending *);;
+```ocamltop
+solve [[3];[2;1];[3;2];[2;2];[6];[1;5];[6];[1];[2]]
+      [[1;2];[3;1];[1;5];[7;1];[5];[3];[4];[3]];;
 ```
 
 
