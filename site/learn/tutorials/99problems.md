@@ -2338,12 +2338,35 @@ Example: `[4;2;7;3;6;8;5;1]` means that the queen in the first column is
 in row 4, the queen in the second column is in row 2, etc. Use the
 generate-and-test paradigm.
 
-<!-- SOLUTION -->
+SOLUTION
 
-```ocaml
-(* example pending *);;
+> This is a brute force algorithm enumerating all possible solutions.
+> For a deeper analysis, look for example to
+> [Wikipedia](https://en.wikipedia.org/wiki/Eight_queens_puzzle).
+>
+> ```ocamltop
+> let possible row col used_rows usedD1 usedD2 =
+>   not (List.mem row used_rows
+>        || List.mem (row + col) usedD1
+>        || List.mem (row - col) usedD2)
+>
+> let queens_positions n =
+>   let rec aux row col used_rows usedD1 usedD2 =
+>     if col > n then [List.rev used_rows]
+>     else
+>       (if row < n then aux (row + 1) col used_rows usedD1 usedD2
+>        else [])
+>       @ (if possible row col used_rows usedD1 usedD2 then
+>            aux 1 (col + 1) (row :: used_rows) (row + col :: usedD1)
+>                (row - col :: usedD2)
+>          else [])
+>   in aux 1 1 [] [] []
+> ```
+
+```ocamltop
+queens_positions 4;;
+List.length (queens_positions 8);;
 ```
-
 
 #### Knight's tour. (*medium*)
 
