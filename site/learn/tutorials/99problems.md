@@ -2543,21 +2543,21 @@ SOLUTION
 ```ocamltop
 type element = Empty | X (* ensure we do not miss cases in patterns *)
 
-let check table l =
+let check table lr =
   let height = Array.length table
   and width = Array.length table.(0) in
-  let rec walk row l =
+  let rec walk row lr =
     if row = height then
-      l = []
+      lr = []
     else(
-      match l with
+      match lr with
       | [] -> false
       | cur_row :: rest ->
-         let rec check_row l col =
+         let rec check_row lr col =
            if col = width then
-             l = []
+             lr = []
            else(
-             match l,table.(row).(col) with
+             match lr, table.(row).(col) with
              | h::t, X -> if h + col > width then false
                          else if (
                            List.for_all (fun x -> x = X)
@@ -2566,13 +2566,13 @@ let check table l =
                                  || (col + h = width))
                                 && (check_row t (col + h))
                          else false
-             | h::t, Empty -> check_row l (succ col)
+             | h::t, Empty -> check_row lr (succ col)
              | [], X -> false
              | [], Empty -> check_row [] (col + 1)
            )
          in (check_row cur_row 0 ) && walk (succ row) rest
     )
-  in walk 0 l
+  in walk 0 lr
 
 let char_of_element = function Empty -> '_'
                              | X -> 'X'
