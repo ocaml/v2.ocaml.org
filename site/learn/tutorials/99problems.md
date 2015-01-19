@@ -2541,6 +2541,8 @@ respectively. Published puzzles are larger than this example, e.g.
 SOLUTION
 
 ```ocamltop
+type element = Empty | X (* ensure we do not miss cases in patterns *)
+
 let check table l =
   let height = Array.length table
   and width = Array.length table.(0) in
@@ -2556,32 +2558,36 @@ let check table l =
              l = []
            else(
              match l,table.(row).(col) with
-             | h::t, 'X' -> if h + col > width then false
-                           else if (
-                             List.for_all (fun x -> x = 'X')
-                                          (Array.to_list (Array.sub table.(row) col h))
-                           ) then (((col + h < width) && (table.(row).(col+h) <> 'X'))
-                                   || (col + h = width))
-                                  && (check_row t (col + h))
-                           else false
-             | h::t, '_' -> check_row l (succ col)
-             | [], 'X' -> false
-             | [], '_' -> check_row [] (col + 1)
+             | h::t, X -> if h + col > width then false
+                         else if (
+                           List.for_all (fun x -> x = X)
+                                        (Array.to_list (Array.sub table.(row) col h))
+                         ) then (((col + h < width) && (table.(row).(col+h) <> X))
+                                 || (col + h = width))
+                                && (check_row t (col + h))
+                         else false
+             | h::t, Empty -> check_row l (succ col)
+             | [], X -> false
+             | [], Empty -> check_row [] (col + 1)
            )
          in (check_row cur_row 0 ) && walk (succ row) rest
     )
   in walk 0 l
 
+let char_of_element = function Empty -> '_'
+                             | X -> 'X'
+
 let print_tbl table =
   let print_row r =
-    Array.iter (fun ch -> print_char '|'; print_char ch) r;
+    Array.iter (fun e -> print_char '|';
+                      print_char(char_of_element e)) r;
     print_string "|\n" in
   Array.iter print_row table
 
 let solve lr lc =
   let height = List.length lr
   and width  = List.length lc in
-  let table = Array.make_matrix height width '_' in
+  let table = Array.make_matrix height width Empty in
   let rec gen col row l =
     if row >= height then
       if List.hd l = [] then
@@ -2596,20 +2602,21 @@ let solve lr lc =
     else
       match l with
       | cur_col :: rest_col ->
-         match cur_col with
-         | hd::tl ->
-            gen col (succ row) l;
-            if hd + row <= height then
-              (
-                for r = row to pred (row + hd) do
-                  table.(r).(col) <- 'X'
-                done;
-                gen col (row + hd + 1) (tl :: rest_col);
-                for r = row to pred (row + hd) do
-                  table.(r).(col) <- '_'
-                done
-              )
-         | [] -> gen (succ col) 0 rest_col
+         (match cur_col with
+          | hd::tl ->
+             gen col (succ row) l;
+             if hd + row <= height then
+               (
+                 for r = row to pred (row + hd) do
+                   table.(r).(col) <- X
+                 done;
+                 gen col (row + hd + 1) (tl :: rest_col);
+                 for r = row to pred (row + hd) do
+                   table.(r).(col) <- Empty
+                 done
+               )
+          | [] -> gen (succ col) 0 rest_col)
+      | [] -> assert false
   in gen 0 0 lc
 ```
 
