@@ -49,23 +49,13 @@ reviewed by an administrator and put online. If you want to have a
 good chance to join the feed there must be at least one post about
 OCaml in the most recent entries.
 
-## Feedburner
-
-Unfortunately, we don't know how to use feeds using the Feedburner
-proxy service. It redirects our requests and removes the specific search for
-OCaml contents. For example, we cannot query for only posts that have the
-"ocaml" tag using Feedburner.
-
-This means your day-to-day blog content will be mixed with your OCaml content.
-
 ## How to read planet from your RSS reader
 
-We provide four kinds of feed:
+We provide the following kinds of feed:
 
-- [RSS 1.0](http://planet.ocaml.org/rss10.xml)
-- [RSS 2.0](http://planet.ocaml.org/rss20.xml)
-- [FOAF](http://planet.ocaml.org/foafroll.xml)
-- [OPML](http://planet.ocaml.org/opml.xml)
+- [Atom](/feed.xml)
+<!-- - [FOAF](http://planet.ocaml.org/foafroll.xml) -->
+- [OPML](/opml.xml)
 
 Copy/paste one of these links into your favorite feed reader to enjoy
 planet news.
