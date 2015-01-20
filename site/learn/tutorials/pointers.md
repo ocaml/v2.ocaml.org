@@ -6,7 +6,7 @@
 
 ## Status of pointers in OCaml
 Pointers exist in OCaml, and in fact they spread all over the place.
-They are used either implicitely (in the most cases), or explicitely (in
+They are used either implicitly (in the most cases), or explicitly (in
 the rare occasions where implicit pointers are not more handy). The vast
 majority of pointers usages that are found in usual programming
 languages simply disappear in OCaml, or more exactly, those pointers are
@@ -229,7 +229,7 @@ contains the concatenation of the two lists `l1` and `l2`, thus the list
 `l1` no longer exists: in some sense `append` *consumes* its first
 argument. In other words, the value of a list data now depends on its
 history, that is on the sequence of function calls that use the value.
-This strange behaviour leads to a lot of difficulties when explicitely
+This strange behaviour leads to a lot of difficulties when explicitly
 manipulating pointers. Try for instance, the seemingly harmless:
 
 ```ocamltop

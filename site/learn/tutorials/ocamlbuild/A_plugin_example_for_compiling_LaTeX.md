@@ -7,7 +7,7 @@ pdfLaTeX, MakeIndex, HeVeA \(both monolithic html and html by chapter via
 HaChA\) and Pgf/TikZ picture extraction to PNG for the html versions.
 However as the plugin below it assumes that LaTeX will converge in two
 iterations for the PDF and the master tex file chapter dependencies must
-be explicitely stated.
+be explicitly stated.
 
 See the example below using beautiful syntax highlighting
 [here](http://gallium.inria.fr/~pouillar/ocamlbuild/plugin_example.html).

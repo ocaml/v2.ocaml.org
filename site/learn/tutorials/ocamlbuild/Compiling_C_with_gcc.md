@@ -7,7 +7,7 @@ don't need to specify anything particular to build simple executables.
 Another approach is to use the
 [ocamlbuild-ctools](http://dvide.com/labs/ocamlbuild-ctools) plugin
 which provides support for both `gcc` and the MSVC tool chain, but
-you'll have to explicitely list object files to link your executables.
+you'll have to explicitly list object files to link your executables.
 
 The example uses `avr-gcc` to produce `%.elf` executables for
 microcontrollers, but it's just a matter of substituting `avr-gcc` with

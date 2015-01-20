@@ -516,7 +516,7 @@ let o =
 ```
 This object has a type, which is defined by its public methods only.
 Values are not visible and neither are private methods (not shown).
-Unlike records, such a type does not need to be predefined explicitely,
+Unlike records, such a type does not need to be predefined explicitly,
 but doing so can make things clearer. We can do it like this:
 
 ```ocamltop
