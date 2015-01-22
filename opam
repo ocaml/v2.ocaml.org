@@ -5,7 +5,7 @@ maintainer: "The OCaml.org team"
 authors: "The OCaml.org team"
 homepage: "https://github.com/ocaml/ocaml.org"
 bug-reports: "https://github.com/ocaml/ocaml.org/issues"
-license: "ISC"
+license: "See LICENSE.md file."
 dev-repo: "https://github.com/ocaml/ocaml.org.git"
 build: [
   [make]
