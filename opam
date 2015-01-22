@@ -21,4 +21,5 @@ depends: [
   "mpp"
   "ocamlrss"
   "uri"
+  "camlp4"
 ]
