@@ -38,6 +38,7 @@ Mads Hartmann|http://mads379.github.io/feed.ocaml.xml
 Marc Simpson|http://newblog.0branch.com/rss.xml
 Matthias Puech|http://syntaxexclamation.wordpress.com/tag/ocaml/feed/
 Matías Giovannini|http://www.blogger.com/feeds/5888658295182480819/posts/default
+Mindy Preston|http://www.somerandomidiot.com/blog/categories/ocaml/atom.xml
 Mike Lin|http://www.blogger.com/feeds/3693082774051755513/posts/default/-/OCaml
 Mike McClurg|http://mcclurmc.wordpress.com/feed/
 OCaml Book|http://ocaml-book.com/blog?format=rss
@@ -53,6 +54,7 @@ Opa|http://www.blogger.com/feeds/2073503406800427577/posts/default
 Open Mirage|http://openmirage.org/blog/atom.xml
 Orbitz|http://functional-orbitz.blogspot.com/feeds/posts/default/-/planetocaml?alt=rss
 Paolo Donadeo|http://www.donadeo.net/facets/programming-languages/objective-caml/feed/
+Perpetually Curious|http://lambdafoo.com/blog/categories/ocaml/atom.xml
 Peter Zotov|http://whitequark.org/blog/categories/ocaml/atom.xml
 Pietro Abate|https://mancoosi.org/~abate/taxonomy/term/5/0/feed
 Psellos|http://psellos.com/atom.xml
