@@ -1,5 +1,5 @@
 opam-version: "1.2"
-name: "ocamldotorg"
+name: "ocamlorg"
 version: "2.1.0"
 maintainer: "The OCaml.org team"
 authors: "The OCaml.org team"
