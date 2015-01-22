@@ -8,8 +8,8 @@ website, which is hosted at http://ocaml.org.
 
 DEPENDENCIES
 ============
-See the `opam` file. Developers can `opam pin` this package, then run
-`opam install ocamlorg` to cause all dependencies to be installed.
+Dependencies can be installed by running `make deps`, which runs the
+necessary OPAM commands. See the `opam` file for more information.
 
 Note this is the only purpose of the `opam` file. This repository
 doesn't provide any resources intended for use in other projects, so
