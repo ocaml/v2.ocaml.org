@@ -43,7 +43,7 @@ feed: ocaml.org/feed.xml ocaml.org/opml.xml
 ocaml.org/feed.xml: script/rss2html
 	mkdir -p $(basename $@)
 	./$< --aggregate $@
-ocaml.org/opml.xml: script/rss2html
+ocaml.org/opml.xml: script/rss2html ocaml.org/feed.xml
 	mkdir -p $(basename $@)
 	./$< --opml $@
 
