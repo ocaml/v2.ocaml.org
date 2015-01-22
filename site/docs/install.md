@@ -295,22 +295,41 @@ been added to OCaml for better support of Windows.
 
 ## Mac OS X
 On Mac OS X, there are, at least for the base package, a few different
-ways to go: Use OPAM; Install the binary package from Inria; Install via Fink;
+ways to go: Install Homebrew package management system and use OPAM (recommeneded); Install via Fink;
 Install via MacPorts; or build it manually from
 sources. For each of these approaches, you will need to have at least
 the OS X developer tools installed — any other requirements will be
 discussed below.
 
 ###  Inria's binary package
-This is the easiest way to set up a basic OCaml installation for OS X.
-Simply [download](../releases/) Intel disk image, mount
-the disk image, double-click on the ocaml.pkg file contained within, and
-follow the instructions from there. Requirements for this package are OS
-X 10.7.x (Lion) or later, with XCode tools (v4.3.3 or later) installed.
-Earlier versions may or may not work.
+
+Inria stopped supporting MacOS binaries from OCaml 4.02.X
+For earlier versions of OCaml  Intel disk image images follow the [download](../releases/) link.
 
 The package only includes command-line tools and does not include any
 graphical applications.
+
+### Homebrew
+
+[Homebrew](http://brew.sh/) is a new and upcoming package management
+system for Mac OS X and has a very large community.
+Homebrew requires the command line tools for Xcode and either bash or zsh to
+[install](https://github.com/Homebrew/homebrew/wiki/Installation).
+
+After installing Homebrew, you can install OCaml by issuing the following
+command:
+
+```bash
+brew install ocaml
+```
+
+You can then install [OPAM](http://opam.ocaml.org/), the
+OCaml package manager, which will give you access to all its
+[packages](http://opam.ocaml.org/packages/) by running:
+
+```bash
+brew install opam
+```
 
 ###  Fink
 [Fink](http://fink.sourceforge.net/ "Fink") is the most prevalent
@@ -353,27 +372,6 @@ be used to download and build the following packages:
 * `ocaml-mode.el` An EMACS major mode for editing OCaml programs.
 * `tuareg-mode.el` A GNU Emacs/XEmacs major mode for editing OCaml
  programs.
-
-### Homebrew
-[Homebrew](http://brew.sh/) is a new and upcoming package management
-system for Mac OS X and has a very large community.
-Homebrew requires the command line tools for Xcode and either bash or zsh to
-[install](https://github.com/Homebrew/homebrew/wiki/Installation).
-
-After installing Homebrew, you can install OCaml by issuing the following
-command:
-
-```bash
-brew install ocaml
-```
-
-You can then install [OPAM](http://opam.ocaml.org/), the
-OCaml package manager, which will give you access to all its
-[packages](http://opam.ocaml.org/packages/) by running:
-
-```bash
-brew install opam
-```
 
 
 ### Building from sources
