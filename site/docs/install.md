@@ -303,7 +303,7 @@ discussed below.
 
 ###  Inria's binary package
 
-Inria stopped supporting MacOS binaries from OCaml 4.02.X
+[Inria stopped supporting MacOS binaries for OCaml 4.02.X](http://caml.inria.fr/download.en.html).
 For earlier versions of OCaml  Intel disk image images follow the [download](../releases/) link.
 
 The package only includes command-line tools and does not include any
