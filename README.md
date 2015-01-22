@@ -8,36 +8,13 @@ website, which is hosted at http://ocaml.org.
 
 DEPENDENCIES
 ============
-Building the html pages requires:
+See the `opam` file. Developers can `opam pin` this package, then run
+`opam install ocamlorg` to cause all dependencies to be installed.
 
-* bash
-* curl
-* rsync
-* GNU make
-* ocaml >= 4.01.0 (the presence of ocamlopt is required)
-* camlp4orf (comes with the compiler in OPAM, in `camlp4-extra` in Debian)
-* ocamlfind
-* mpp >= 0.1.2
-* omd >= 1.2.1
-* opam2web >= 1.3.1
-* uri >= 1.3.11
-* netstring, netclient, equeue-ssl, and rss (for rss2html.ml)
-* lablgtk2 (optional, for the Gtk tutorial)
+Note this is the only purpose of the `opam` file. This repository
+doesn't provide any resources intended for use in other projects, so
+it is not provided as a package in any opam repository.
 
-Implicit dependencies exist and may not be on this list (for instance, opam2web depends on quite a set of packages, so it's strongly adviced to use opam to compute and install automatically such packages).
-
-If your opam environment isn't using OCaml 4.01.0, you may switch to it by using this command:
-
-    opam switch 4.01.0
-
-If you use opam (>= 1.1), the OCaml packages above can be installed by
-running:
-
-    opam install ocamlfind mpp omd ssl ocamlnet ocamlrss opam2web uri
-
-Note that you need `libssl-dev` to be able to compile and use `ssl`.
-`libssl-dev` is the name of a debian package, if you're using another system,
-it might be available under a different name.
 
 BUILD
 =====
