@@ -301,17 +301,6 @@ sources. For each of these approaches, you will need to have at least
 the OS X developer tools installed — any other requirements will be
 discussed below.
 
-###  Inria's binary package
-This is the easiest way to set up a basic OCaml installation for OS X.
-Simply [download](../releases/) Intel disk image, mount
-the disk image, double-click on the ocaml.pkg file contained within, and
-follow the instructions from there. Requirements for this package are OS
-X 10.7.x (Lion) or later, with XCode tools (v4.3.3 or later) installed.
-Earlier versions may or may not work.
-
-The package only includes command-line tools and does not include any
-graphical applications.
-
 ###  Fink
 [Fink](http://fink.sourceforge.net/ "Fink") is the most prevalent
 package management system for OS X, and is based on Debian's package
