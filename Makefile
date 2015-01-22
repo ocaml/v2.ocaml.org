@@ -23,6 +23,10 @@ syncotherfiles:
 	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
 	  -rltHprogv ../ocaml.org-media/* ocaml.org/ ; fi
 
+deps:
+	opam pin add ocamlorg . --no-action --yes --kind=path
+	opam install ocamlorg --deps-only
+
 # This target is PHONY (see end) because we don't want to enumerate
 # all the dependents that invalidate the resulting
 # opam.ocaml.org/template.xhtml for fear of that enumeration being
@@ -64,4 +68,4 @@ clean:
 include Makefile.common
 
 .PHONY: production local staging opam.ocaml.org_template \
-	syncotherfiles gen_md gen_html headache clean
+	syncotherfiles deps gen_md gen_html headache clean
