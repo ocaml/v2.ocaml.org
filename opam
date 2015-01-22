@@ -1,0 +1,24 @@
+opam-version: "1.2"
+name: "ocamldotorg"
+version: "2.1.0"
+maintainer: "The OCaml.org team"
+authors: "The OCaml.org team"
+homepage: "https://github.com/ocaml/ocaml.org"
+bug-reports: "https://github.com/ocaml/ocaml.org/issues"
+license: "ISC"
+dev-repo: "https://github.com/ocaml/ocaml.org.git"
+build: [
+  [make]
+]
+depends: [
+  "ocamlfind" {build}
+  "opam-lib" {>= "1.2.0"}
+  "opamfu" {>= "0.1.2"}
+  "opam2web" {>= "1.4.0"}
+  "omd" {>= "1.2.1"}
+  "ocamlnet"
+  "ssl"
+  "mpp"
+  "ocamlrss"
+  "uri"
+]
