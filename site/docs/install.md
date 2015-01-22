@@ -295,7 +295,7 @@ been added to OCaml for better support of Windows.
 
 ## Mac OS X
 On Mac OS X, there are, at least for the base package, a few different
-ways to go: Use OPAM; Install the binary package from Inria; Install via Fink;
+ways to go: Use OPAM; Install via Fink;
 Install via MacPorts; or build it manually from
 sources. For each of these approaches, you will need to have at least
 the OS X developer tools installed — any other requirements will be
