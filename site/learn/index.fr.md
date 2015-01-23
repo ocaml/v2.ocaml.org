@@ -66,16 +66,20 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
     <div class="row">
         <section class="span4 condensed">
           <h1 class="ruled"><a href="/community/media.html">Présentations &amp; Videos</a></h1>
-			<p class="documentation-video">
-			<script async class="speakerdeck-embed"
-			data-id="fb192c802f520131128906fa6ec08ea7"
-			data-ratio="1.33333333333333"
-			src="//speakerdeck.com/assets/embed.js"></script></p>
-		    <p>Un exposé de Xavier Leroy présentant les dernières nouveautés d'OCaml à la 
-			<a href="/meetings/ocaml/2013/" >réunion annuelle des développeurs OCaml (OUD'2013)</a> à Boston
-			(<a href="/meetings/ocaml/2013/slides/leroy.pdf"
-			    target="_blank">en PDF</a>).
-			</p>
+		  <p class="documentation-video" style="margin-bottom:0">
+<iframe src="//www.slideshare.net/slideshow/embed_code/43836300" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+          </p>
+
+         <p>Un exposé de Xavier Leroy présentant les dernières
+         nouveautés d'OCaml à la 
+		 <a href="/meetings/ocaml/2014/"
+         >réunion annuelle des développeurs OCaml 2014</a>
+         à Gothenburg, Suède
+		 (<a href="/meetings/ocaml/2014/OCaml2014-Leroy-slides.pdf"
+		 target="_blank">en PDF</a>,
+         <a href="https://www.youtube.com/watch?v=DMzZy1bqj6Q&list=UUP9g4dLR7xt6KzCYntNqYcw"
+         target="_blank">Vidéo</a>).
+		 </p>
 	  <p class="documentation-video video16-9"
 	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
 	    <iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933"

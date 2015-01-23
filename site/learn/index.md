@@ -72,17 +72,18 @@
     <div class="row">
         <section class="span4 condensed">
           <h1 class="ruled"><a href="/community/media.html">Slides &amp; Videos</a></h1>
-			<p class="documentation-video">
-			<script async class="speakerdeck-embed"
-			data-id="fb192c802f520131128906fa6ec08ea7"
-			data-ratio="1.33333333333333"
-			src="//speakerdeck.com/assets/embed.js"></script></p>
-		    <p>An invited talk by Xavier Leroy explaining the current state
-			of OCaml at the
-			<a href="/meetings/ocaml/2013/" >OCaml Users and Developers
-			Workshop 2013</a> in Boston
-			(<a href="/meetings/ocaml/2013/slides/leroy.pdf"
-			    target="_blank">PDF slides</a>).
+		  <p class="documentation-video" style="margin-bottom:0">
+<iframe src="//www.slideshare.net/slideshow/embed_code/43836300" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+          </p>
+
+          <p>An invited talk by Xavier Leroy explaining the current state
+		  of OCaml at the
+		  <a href="/meetings/ocaml/2014/" >OCaml Users and Developers
+		  Workshop 2014</a> in Gothenburg, Sweden
+			(<a href="/meetings/ocaml/2014/OCaml2014-Leroy-slides.pdf"
+			target="_blank">PDF slides</a>,
+            <a href="https://www.youtube.com/watch?v=DMzZy1bqj6Q&list=UUP9g4dLR7xt6KzCYntNqYcw"
+            target="_blank">Video</a>).
 			</p>
 	  <p class="documentation-video video16-9"
 	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
