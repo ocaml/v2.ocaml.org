@@ -85,7 +85,7 @@
             <h1 class="ruled">
                 <a href="/community/planet/"
 				title="See planet posts">Nouvelles</a>
-                <a href="http://planet.ocaml.org/rss20.xml"
+                <a href="/feed.xml"
 				title="Planet RSS feed"
 				><img class="svg rss" src="/img/rss.svg" alt="RSS"
 				/><img class="png" src="/img/rss.png" alt="RSS" /></a>
