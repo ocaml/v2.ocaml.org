@@ -28,8 +28,8 @@
     <link href="/css/ocamlorg.css" rel="stylesheet" media="screen" />
     <script src="/js/collapsed-menu.js" type="text/javascript"></script>
     {{! ifdef advertise_rss
-    <link rel="alternate" type="application/rss+xml" title="RSS"
-	  href="http://planet.ocaml.org/rss20.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed"
+	  href="/feed.xml" />
     !}}
     {{!c ifdef custom-head {{!i input ((! get custom-head !)) i!}} c!}}
     <script>

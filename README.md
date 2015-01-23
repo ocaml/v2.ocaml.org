@@ -9,11 +9,20 @@ website, which is hosted at http://ocaml.org.
 DEPENDENCIES
 ============
 Dependencies can be installed by running `make deps`, which runs the
-necessary OPAM commands. See the `opam` file for more information.
+necessary OPAM commands. See the `opam` file for more information
+on the required packages.
 
 Note this is the only purpose of the `opam` file. This repository
 doesn't provide any resources intended for use in other projects, so
 it is not provided as a package in any opam repository.
+
+In addition to the above `opam` packages, it is expected that the
+following programs are available:
+
+* bash
+* curl
+* rsync
+* GNU make
 
 
 BUILD
