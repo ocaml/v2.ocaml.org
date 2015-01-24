@@ -320,6 +320,17 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/mount-sinai.png" alt="Mount Sinai">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.mountsinai.org">Mount Sinai</a>, United States</h2>
+        <p>The <a href="http://www.hammerlab.org">Hammer Lab</a> at Mount Sinai develops and uses <a href="https://github.com/hammerlab/ketrew">Ketrew</a>
+        for managing complex bioinformatics workflows. Ketrew includes an embedded domain-specific language to simplify the specification of workflows and
+        an engine for the execution of workflows. Ketrew can be run as a command-line application or as a service.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/mrnumber.jpg" alt="Mr. Number">
     </dt>
     <dd class="span5">
