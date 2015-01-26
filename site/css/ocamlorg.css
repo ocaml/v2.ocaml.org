@@ -136,8 +136,11 @@ h1 img.rss {
   height: 1.3ex;
 }
 
-h3 img.opml {
+.syndication img {
   height: 1.5ex;
+  margin-left: 0.3ex;
+}
+.syndication img.opml {
   margin-left: 2ex;
 }
 

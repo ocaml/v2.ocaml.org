@@ -25,17 +25,16 @@ View <a href="older.html" >older blog posts</a>.
 <section class="span4">
 <div class="subscribers" style="float:right">
 
-<h3>Syndications
+<h3 class="syndication" >Syndications
   <a href="/opml.xml" title="OPML"
   ><img class="svg opml" src="/img/Opml-icon.svg" alt="OPML"
-  /><img class="png ompl" src="/img/Opml-icon.png" alt="OPML" /></a></h3>
+  /><img class="png ompl" src="/img/Opml-icon.png" alt="OPML" /></a>
+  <a href="/feed.xml" title="Aggregated feed"
+  ><img class="svg" src="/img/rss.svg" alt="Atom"
+  /><img class="png" src="/img/rss.png" alt="Atom" /></a>
+</h3>
 
 ((! cmd script/rss2html --subscribers !))
-
-<a href="http://planet.ocaml.org/rss20.xml"
-><img src='../../img/rss20.png' alt='' /></a>
-<a href="http://planet.ocaml.org/opml.xml"
-><img src='../../img/opml.png' alt='' /></a>
 
 </div>
 </section>
