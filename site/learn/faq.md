@@ -116,7 +116,8 @@ let string_of_color =function
   | White -> "white"
   | Red -> "red"
 ```
-How to share a label between two different record types?
+
+#### How to share a label between two different record types?
 
 When you define two types sharing a label name, the last defined type
 hides the labels of the first type. For instance:
@@ -430,7 +431,7 @@ interactive system, since each reloading redefines the types. The
 solution is to quit your interactive system and reload your files in a
 new session.
 
-A function obtained through partial application is not polymorphic
+#### A function obtained through partial application is not polymorphic
 enough
 
 The more common case to get a “not polymorphic enough” definition is
@@ -482,7 +483,7 @@ as is, two cases must be envisioned:
  rewriting some part of the code (for example using
  [eta-expansion](#eta-expansion)) as in the case of `f`.
 
-How to write a function with polymorphic arguments?
+#### How to write a function with polymorphic arguments?
 
 In ML, an argument of a function cannot be polymorphic inside the body
 of the function; hence the following typing:
@@ -627,7 +628,8 @@ Indeed, internally this expands to
 module F (X: S1) (Y: sig ... type u = X.t ... end) =
   struct ... end
 ```
-Compilation units are forced to be modules. What if I want to make a
+
+#### Compilation units are forced to be modules. What if I want to make a
 unit with a functor or a signature instead?
 
 In OCaml, functors and signatures (module types) can be components of
