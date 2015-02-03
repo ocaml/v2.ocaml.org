@@ -603,7 +603,7 @@ bug reports and features request, and submit new ones.
 
 Currently not in the stable langage. However there exists an [OCaml
 extension](http://caml.inria.fr/pub/docs/manual-ocaml/extn.html#sec220)
-(which is subject to change or removal at any time) which adresses some
+(which is subject to change or removal at any time) which addresses some
 of these problems.
 
 #### How do I express sharing constraints between modules?
