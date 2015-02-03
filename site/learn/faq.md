@@ -431,8 +431,7 @@ interactive system, since each reloading redefines the types. The
 solution is to quit your interactive system and reload your files in a
 new session.
 
-#### A function obtained through partial application is not polymorphic
-enough
+#### A function obtained through partial application is not polymorphic enough
 
 The more common case to get a “not polymorphic enough” definition is
 when defining a function via partial application of a general
@@ -629,8 +628,7 @@ module F (X: S1) (Y: sig ... type u = X.t ... end) =
   struct ... end
 ```
 
-#### Compilation units are forced to be modules. What if I want to make a
-unit with a functor or a signature instead?
+#### Compilation units are forced to be modules. What if I want to make a unit with a functor or a signature instead?
 
 In OCaml, functors and signatures (module types) can be components of
 modules. So, just make the functor or signature be a component of a
