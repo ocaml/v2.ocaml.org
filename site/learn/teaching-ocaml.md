@@ -71,6 +71,7 @@ Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [Aix-Marseille University](http://assert-false.net/callcc/Guyslain/Teaching/ProgFonc/index) - Functional Programming
 1. [Columbia University](http://www1.cs.columbia.edu/~sedwards/classes/2014/w4115-fall/index.html) - Programming Languages and Translators
 1. [ISAE/Supaéro](http://supaero.isae.fr/en) - Functional programming and introduction to type systems.
+1. [Epita](http://epita.fr/) - Introduction to Algorithms (Year 1 & 2)
 
 ### Map of courses around the world
 
