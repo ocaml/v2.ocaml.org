@@ -33,7 +33,7 @@ computation, system scripting, and database-driven web applications with
 the OCaml multi-paradigm programming language. This hands-on book shows
 you how to take advantage of OCaml’s functional, imperative, and
 object-oriented programming styles with recipes for many real-world
-tasks. 
+tasks.
 
 You’ll start with OCaml basics, including how to set up a development
 environment, and move toward more advanced topics such as the module
@@ -56,7 +56,7 @@ no-prerequisites approach to teaching a modern general-purpose
 programming language. Each small, self-contained chapter introduces a
 new topic, building until the reader can write quite substantial
 programs. There are plenty of questions and, crucially, worked answers
-and hints. 
+and hints.
 
 "OCaml from the Very Beginning" will appeal both to new programmers, and experienced programmers eager to explore functional languages such as OCaml. It is suitable both for formal use within an undergraduate or graduate curriculum, and for the interested amateur.
 
@@ -468,3 +468,23 @@ last chapter a comprehensive description of the language kernel.
 *Carla Limongelli and Marta Cialdea<br />
  Societa' Editrice Esculapio, 2002, ISBN 88-7488-031-6.*
 
+****
+
+## Books in Portuguese
+
+### OCaml: Programação Funcional na Prática
+<img src="/img/opfp.png" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+
+*Andrei de Araújo Formiga<br />
+ Casa do Código, 2015*
+
+This book is an introduction to functional programming through OCaml, with a pragmatic
+focus. The goal is to enable the reader to write real programs in OCaml and understand
+most of the open source code written in the language. It includes many code examples
+illustrating the topics and a few larger projects written in OCaml that showcase the
+integration of many language features. These larger
+programs include a set of interpreter, compiler and stack machine for a simple
+language, and a decision tree learning program for data analysis.
+
+[Book site](http://andreiformiga.com/livro/ocaml/)
+[Order online from Casa do Código](http://www.casadocodigo.com.br/products/livro-ocaml)
