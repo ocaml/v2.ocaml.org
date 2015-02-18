@@ -468,6 +468,7 @@ last chapter a comprehensive description of the language kernel.
 *Carla Limongelli and Marta Cialdea<br />
  Societa' Editrice Esculapio, 2002, ISBN 88-7488-031-6.*
 
+<div style="clear: both"></div>
 ****
 
 ## Books in Portuguese
