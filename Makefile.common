@@ -56,7 +56,7 @@ script/breadcrumb: script/breadcrumb.ml $(UTILS_DEP)
 
 script/rss2html: script/rss2html.ml script/http.ml $(UTILS_DEP)
 	cd script && \
-	$(OCAMLOPT) -package netstring,equeue-ssl,netclient,syndic \
+	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient,syndic \
 	  -linkpkg utils.cmx http.ml rss2html.ml -o ../"$@"
 
 script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
@@ -95,9 +95,9 @@ script/translations: script/translations.ml $(UTILS_DEP)
 	  utils.cmx translations.ml
 
 script/%.cmx: script/%.ml script/%.cmi
-	$(OCAMLOPT) -package netstring,equeue-ssl,netclient -c $< -o $@
+	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient -c $< -o $@
 script/%.cmi script/%.cmo: script/%.ml
-	$(OCAMLC) -package netstring,equeue-ssl,netclient -c $< -o $@
+	$(OCAMLC) -package netstring,nettls-gnutls,netclient -c $< -o $@
 
 TRASH += template/front_code_snippet.html opam_update_list \
   $(addprefix script/, generate_opam_update_list lang_of_filename translate \

@@ -16,8 +16,8 @@ depends: [
   "opamfu" {>= "0.1.2"}
   "opam2web" {>= "1.4.0"}
   "omd" {>= "1.2.1"}
-  "ocamlnet" {>= "3.7.4-1"}
-  "ssl"
+  "ocamlnet" {>= "4.0.1"}
+  "conf-gnutls"
   "mpp" {>= "0.1.2"}
   "ocamlrss"
   "uri" {>= "1.3.11"}

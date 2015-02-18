@@ -3,16 +3,13 @@
    URL. *)
 
 open Printf
-open Http_client.Convenience
+open Nethttp_client.Convenience
 
 let () =
-  Ssl.init();
-  Http_client.Convenience.configure_pipeline
+  Nettls_gnutls.init();
+  Nethttp_client.Convenience.configure_pipeline
     (fun p ->
-     let ctx = Ssl.create_context Ssl.TLSv1 Ssl.Client_context in
-     let tct = Https_client.https_transport_channel_type ctx in
-     p # configure_transport Http_client.https_cb_id tct;
-     p#set_options { p#get_options with Http_client.connection_timeout = 5. }
+     p#set_options { p#get_options with Nethttp_client.connection_timeout = 5. }
     )
 
 
@@ -49,7 +46,7 @@ let get ?(cache_secs=cache_secs) url =
       close_out fh;
       eprintf "(cached).\n%!";
       data
-    with Http_client.Http_protocol _ as e ->
+    with Nethttp_client.Http_protocol _ as e ->
       if Sys.file_exists fn then get_from_cache()
       else (
         eprintf "FAILED!\n%!";
