@@ -43,6 +43,8 @@ and a button in the main area which you can press:
 open GMain
 open GdkKeysyms
 
+let locale = GtkMain.Main.init ()
+
 let main () =
   let window = GWindow.window ~width:320 ~height:240
                               ~title:"Simple lablgtk program" () in
