@@ -20,13 +20,7 @@ Topdirs.dir_directory (Sys.getenv "OCAML_TOPLEVEL_PATH");;
 writing graphical applications, and
 [lablgtk](http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html "http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html")
 is the OCaml interface for Gtk. Gtk and lablgtk are available for Unix
-and Windows platforms. In this tutorial I'm going to concentrate on the
-older but more stable Gtk version 1.2. Gtk 2.x has some
-incompatibilities with Gtk 1.2, although mostly you won't notice the
-difference. On Windows, Gtk 1.2 has a non-native look and feel, but this
-is corrected in Gtk 2.x by the use of
-[Gtk-Wimp](http://gtk-wimp.sourceforge.net/ "http://gtk-wimp.sourceforge.net/")
-(a Windows native theme for Gtk).
+and Windows platforms.
 
 Lablgtk makes ambitious use of advanced features of the OCaml type
 system. Make sure you're familiar with labelled and optional arguments
