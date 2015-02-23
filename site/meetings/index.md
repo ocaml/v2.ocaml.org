@@ -3,6 +3,8 @@
 OCaml Users and Developers Workshop
 ===================================
 
+* [OCaml 2015](ocaml/2015/):
+  Vancouver (BC, Canada), September 4, colocated with ICFP 2015.
 * [OCaml 2014](ocaml/2014/):
   Gothenburg (Sweden), September 5, colocated with ICFP 2014.
 * [OCaml 2013](ocaml/2013/):

@@ -4,7 +4,10 @@
 
 ## Conférence OCaml
 
-<!-- ### Prochains événements -->
+### Prochains événements
+
+* [OCaml 2015](ocaml/2015/):
+  Vancouver (BC, Canada), 4 septembre 2015, colocalisé avec ICFP 2015.
 
 ### Événements passés
 
