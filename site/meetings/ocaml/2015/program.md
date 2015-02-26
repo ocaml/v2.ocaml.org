@@ -2,4 +2,5 @@
 
 OCaml 2015 - Preliminary Program
 
-TBD
+The program will be announced shortly after the notification
+deadline (June 26).
