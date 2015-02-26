@@ -5,15 +5,16 @@
 OCaml 2015
 ==========
 
-**The OCaml Users and Developers Workshop**  
+**The OCaml Users and Developers Workshop**
 Vancouver, British Columbia, September 4, 2015
 Colocated with [ICFP 2015](http://icfpconference.org/icfp2015/),
-the day after the [ML Family Workshop](URL TBD).
+the day after the ML Family Workshop
+<!--[ML Family Workshop]()-->.
 
 News
 ----
 
--   February ?, 2015: [workshop announcement](cfp.html). 
+-   February 2015 (very soon): [workshop announcement and CFP](cfp.html).
 
 The OCaml Users and Developers Workshop brings together industrial users of
 OCaml with academics and hackers who are working on extending the language,
@@ -26,7 +27,8 @@ following the OCaml Meetings that ran until [2011](../2011).
 Program
 -------
 
-TBD
+The program will be announced shortly after the notification deadline
+(June 26).
 
 Scope
 -----
@@ -38,7 +40,7 @@ or development of the language and of its programming environment,
 including, for example:
 
 - compiler developments, new backends, runtime and architectures
-- practical type system improvements, such as (but not limited to) 
+- practical type system improvements, such as (but not limited to)
  GADTs, first-class modules, generic programming, or dependent types
 - new library or application releases, and their design rationales
 - tools and infrastructure services, and their enhancements
@@ -54,8 +56,8 @@ available online from the workshop homepage. The presentations will
 likely be recorded, and made available at a later time.
 
 To submit a talk, please register a description of the talk (about 2 pages
-long) at
-[EasyChair](https://www.easychair.org/conferences/?conf=ocaml2015),
+long) at EasyChair
+<!--[EasyChair](https://www.easychair.org/conferences/?conf=ocaml2015)-->,
 providing a clear statement of what will be brought by the talk: the
 problems that are addressed, the technical solutions or methods that
 are proposed. If you wish to perform a demo or require any special
@@ -71,7 +73,8 @@ Schedule
 ML family workshop and post-proceedings
 ---------------------------------------
 
-The [ML family workshop](url TBD), held on
+The ML Family Workshop
+<!--[ML family workshop]()-->, held on
 the previous day, deals with general issues
 of the ML-style programming and type systems, and is seen as more research
 oriented. Yet there is an overlap with the OCaml workshop, which we are
@@ -91,18 +94,7 @@ would be reviewed according to the standards of the publication.
 Program Committee
 -----------------
 
-- Ashish Agarwal, Solvuu LLC, USA
-- Sandrine Blazy, Universite Rennes 1, France
-- Cristiano Calcagno, Facebook, USA
-- Emmanuel Chailloux, Universite Paris 6, France
-- Pierre Chambart, OCamlPro, France
-- [Damien Doligez](http://gallium.inria.fr/~doligez/),
-     Jane Street, USA / Inria, France  (chair)
-- Martin Jambon, Esper, France
-- Satoshi Ogasawara, IT Planning, Japan
-- Julien Verlaguet, Facebook, USA
-- Markus Weissman, TU Muenchen, Germany
-- Jeremy Yallop, OCaml Labs, UK
+The program committee will be announced soon.
 
 If you have any questions, please e-mail:
 Damien Doligez <ocaml2015 AT easychair DOT org>
