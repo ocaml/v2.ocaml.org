@@ -196,7 +196,7 @@ the top part, and the scrollbar in the bottom part. This is the overall
 structure of our class:
 
 ```ocaml
-class graph ?width ?height ?packing ?show array =
+class graph font ?width ?height ?packing ?show array =
   (* The initialization code will go here. *)
 
   object (self)
@@ -211,7 +211,7 @@ class graph ?width ?height ?packing ?show array =
 To create a widget you will do:
 
 ```ocaml
-let graph = new graph in
+let graph = new graph font array in
 graph#init;
 ```
 Note the two-stage initialization process. This is actually an
@@ -225,7 +225,7 @@ but basically it causes a graph to be a subclass of widget.
 Let's have a look at the initialization code in more detail.
 
 ```ocaml
-class graph ?width ?height ?packing ?show array =
+class graph font ?width ?height ?packing ?show array =
   (* Constants. *)
   let page_size = 10 in            (* Number of bars on "page". *)
   let max_y = 10 in                (* Maximum on Y scale. *)
@@ -359,7 +359,7 @@ ocamlfind ocamlc -g -package lablgtk2 -linkpkg graph.ml test.ml -o graphtest
 ```
 Here is a screenshot:
 
-![Screenshot](/img/graphtest.gif)
+![Screenshot](/img/graphtest.png)
 
 
 ###  Structure of lablgtk
@@ -694,5 +694,3 @@ List.map (fun w -> m#find w) c#children;;
 * Lablgtk provides two ways to perform downcasting, but this doesn't
  change the fact that downcasting is unsafe and can throw exceptions
  at runtime.
-
-

@@ -1,13 +1,5 @@
 open GObj
 
-let font_name = "-*-helvetica-medium-r-normal-*-120-*"
-
-let font =
-  try
-    Gdk.Font.load font_name
-  with
-    Gpointer.Null -> failwith ("graph.ml: font " ^ font_name ^ ": not found")
-
 (* Draw text left, centre or right justified at point. (x,y) point is
  * either top left, top middle or top right of text.
  *)
@@ -33,7 +25,7 @@ let draw_rectangle (drawable : GDraw.drawable)
   drawable#rectangle ~x:ll_x ~y:ll_y ~width ~height ~filled:false ()
 
 (* This is the actual graph widget. *)
-class graph ?width ?height ?packing ?show array =
+class graph font ?width ?height ?packing ?show array =
   (* Constants. *)
   let page_size = 10 in                 (* Number of bars on "page". *)
   let max_y = 10 in                     (* Maximum on Y scale. *)

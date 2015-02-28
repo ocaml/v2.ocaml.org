@@ -1,11 +1,18 @@
-(* Graph widget test program.
- * By Richard W.M. Jones.
- * $Id: test.ml,v 1.1 2004/03/15 16:54:59 rich Exp $
- *)
+(* Graph widget test program. *)
 
 open GMain
 open GdkKeysyms
 open Graph
+
+let font_name = "-*-helvetica-medium-r-normal-*-120-*"
+
+let locale = GtkMain.Main.init ()
+
+let font =
+  try
+    Gdk.Font.load font_name
+  with
+    Gpointer.Null -> failwith ("graph.ml: font " ^ font_name ^ ": not found")
 
 let main () =
   let window = GWindow.window ~width:640 ~height:480
@@ -27,7 +34,7 @@ let main () =
   let array = Array.init 100 (fun _ -> Random.int 10) in
 
   (* Create a graph in the main area. *)
-  let graph = new graph ~packing:vbox#add array in
+  let graph = new graph font ~packing:vbox#add array in
   graph#init;
   graph#set_title "Random data";
 
