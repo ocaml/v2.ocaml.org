@@ -50,6 +50,12 @@ class graph font ?width ?height ?packing ?show array =
   object (self)
     inherit widget vbox#as_widget
 
+    initializer
+      ignore(da#event#connect#expose
+               ~callback:(fun _ -> self#repaint (); false));
+      ignore(adjustment#connect#value_changed
+               ~callback:(fun _ -> self#repaint ()))
+
     (* The title of the graph. *)
     val mutable title = "no title"
     method set_title t = title <- t
@@ -98,12 +104,4 @@ class graph font ?width ?height ?packing ?show array =
         draw_rectangle drawable "red" (ll_x, ll_y) (tr_x, tr_y)
       done;
       ()
-
-    (* You must call it after creating the widget. *)
-    method init =
-      da#event#connect#expose
-        ~callback:(fun _ -> self#repaint (); false);
-      adjustment#connect#value_changed
-        ~callback:(fun _ -> self#repaint ())
-
   end

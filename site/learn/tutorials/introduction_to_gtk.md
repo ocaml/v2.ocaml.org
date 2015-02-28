@@ -202,21 +202,17 @@ class graph font ?width ?height ?packing ?show array =
   object (self)
     inherit widget vbox#as_widget
 
-    (* Methods will go here. *)
-
-    method init =
+    initializer
       (* Further initialization will go here. *)
+
+    (* Methods will go here. *)
   end
 ```
 To create a widget you will do:
 
 ```ocaml
-let graph = new graph font array in
-graph#init;
+let graph = new graph font array
 ```
-Note the two-stage initialization process. This is actually an
-unfortunate hack. You'll see why it's necessary once we start to fill in
-the code. Perhaps a reader can suggest a way around this?
 
 The `inherit widget vbox#as_widget` is interesting. You'll have to read
 the section below entited *Structure of lablgtk* to understand it fully,
@@ -251,26 +247,25 @@ class graph font ?width ?height ?packing ?show array =
   object (self)
     inherit widget vbox#as_widget
 
+    initializer
+      ignore(da#event#connect#expose
+               ~callback:(fun _ -> self#repaint (); false));
+      ignore(adjustment#connect#value_changed
+               ~callback:(fun _ -> self#repaint ()))
+
     (* Methods will go here. *)
 
     method private repaint () =
       (* Repaint the widget. See below. *)
-
-    method init =
-      da#event#connect#expose
-        ~callback:(fun _ -> self#repaint (); false);
-      adjustment#connect#value_changed
-        ~callback:(fun _ -> self#repaint ())
-
   end
 ```
 
 The let-bindings before the start of `object` define constants such as
-`page_size`, but also create the Gtk objects like vbox, drawing area,
-scrollbar and adjustment. (An adjustment is an abstract object which
-records the position of a scrollbar. Notice how in the `init` method we
-attach a signal to the adjustment so that when the scrollbar moves (ie.
-adjustment changes) we repaint the whole widget.) The private `repaint`
+`page_size`, but also create the Gtk objects like `vbox`, drawing area,
+`scrollbar` and `adjustment`.  An adjustment is an abstract object which
+records the position of a scrollbar. Notice how in the `initializer` we
+attach a signal to the adjustment so that when the scrollbar moves (i.e.,
+adjustment changes) we repaint the whole widget.  The private `repaint`
 method is where the action is, as it were. That method will actually be
 responsible for drawing the graph, axes, title and so on.
 
@@ -280,6 +275,8 @@ methods of the object first:
 ```ocaml
 object (self)
   inherit widget vbox#as_widget
+
+  initializer (* code concealed, see above *)
 
   (* The title of the graph. *)
   val mutable title = "no title"

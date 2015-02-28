@@ -35,7 +35,6 @@ let main () =
 
   (* Create a graph in the main area. *)
   let graph = new graph font ~packing:vbox#add array in
-  graph#init;
   graph#set_title "Random data";
 
   (* Display the windows and enter Gtk+ main loop *)
