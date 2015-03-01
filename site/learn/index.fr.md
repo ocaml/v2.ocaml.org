@@ -133,7 +133,10 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 
         <section class="span4 condensed">
 	  <h1 class="ruled"><a href="success.html">Les réussites d'OCaml</a></h1>
-          <p><a href="http://caml.inria.fr/about/successes-images/unison.jpg"><img style="float: left; margin-right: 10px; margin-bottom: 10px" src="http://caml.inria.fr/about/successes-images/unison-thumb.jpg" alt="Screenshot" title="La fenêtre principale d'Unison"></a>
+      <p><a href="/img/unison.png"
+      ><img style="float: left; margin-right: 10px; margin-bottom: 10px"
+      src="/img/unison-thumb.jpg"
+      alt="Screenshot" title="La fenêtre principale d'Unison"></a>
 	    <a href="http://www.cis.upenn.edu/%7Ebcpierce/unison/"
 	       >Unison</a> est un synchroniseur de fichiers innovant, basé
 	       sur

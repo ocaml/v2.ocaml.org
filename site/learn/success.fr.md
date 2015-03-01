@@ -4,7 +4,7 @@
 *Contenu*
 
 ## Le synchroniseur de fichiers Unison
-[<img src='http://caml.inria.fr/about/successes-images/unison-thumb.jpg' alt='Screenshot'  title='Screenshot of Unison&#39;s main window' />](http://caml.inria.fr/about/successes-images/unison.jpg)
+[<img src='/img/unison-thumb.jpg' alt='Screenshot'  title='Screenshot of Unison&#39;s main window' />](/img/unison.png)
 
 [Unison](http://www.cis.upenn.edu/%7Ebcpierce/unison/) est un outil de
 synchronisation de fichiers populaire, qui fonctionne sous Windows et

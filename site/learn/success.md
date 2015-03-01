@@ -30,9 +30,9 @@ be found at <http://janestreet.github.io>.  All in, we've open-sourced
 more than 200k lines of code.
 
 ## The Unison File Synchronizer
-[<img src='http://caml.inria.fr/about/successes-images/unison-thumb.jpg'
+[<img src='/img/unison-thumb.jpg'
 style='float: left; margin-right: 10px'
-alt='Screenshot'  title='Screenshot of Unison&#39;s main window' />](http://caml.inria.fr/about/successes-images/unison.jpg)
+alt='Screenshot'  title='Screenshot of Unison&#39;s main window' />](/img/unison.png)
 
 [Unison](http://www.cis.upenn.edu/%7Ebcpierce/unison/) is a popular
 file-synchronization tool for Windows and most flavors of Unix. It
