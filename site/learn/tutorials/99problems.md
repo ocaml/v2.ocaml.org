@@ -605,6 +605,18 @@ SOLUTION
 >   aux k [] emit list;;
 > ```
 
+> ```ocamltop
+> let extract k l =
+>   let rec aux k n l p a =
+>     (if ((k < 0) || (k > n))
+>      then a
+>      else
+>        (match l with
+>        | [] -> ((List.rev p) :: a)
+>        | (hd :: tl) -> (aux (k-1) (n-1) tl (hd :: p) (aux k (n-1) tl p a))))
+>   in (aux k (List.length l) l [] []);;
+> ```
+
 ```ocamltop
 extract 2 ["a";"b";"c";"d"];;
 ```
