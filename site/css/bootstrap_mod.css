@@ -18,9 +18,11 @@ h2 a, h3 a, h4 a, h5 a, h6 a {
 /* Avoid the anchors to be underneath the banner when a one clicks on
    a link pointing to them. */
 a[name], h2[id], h3[id], h4[id], h5[id], h6[id] {
+  position: relative;
+}
+a:target, h2:target, h3:target, h4:target, h5:target, h6:target {
   padding-top: 75px;
   margin-top: -75px;
-  position: relative;
   z-index: -10; /* below the text (and hyperlinks that one can
 		   otherwise not click) */
 }
