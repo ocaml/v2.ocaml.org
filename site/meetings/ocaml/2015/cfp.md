@@ -55,7 +55,7 @@ available online from the workshop homepage. The presentations will
 likely be recorded, and made available at a later time.
 
 To submit a talk, please register a description of the talk (about 2 pages
-long) at https://www.easychair.org/conferences/?conf=ocaml2015, providing a
+long) at https://easychair.org/conferences/?conf=ocaml2015, providing a
 clear statement of what will be brought by the talk: the problems that are
 addressed, the technical solutions or methods that are proposed. If you
 wish to perform a demo or require any special setup, we will do our best to
