@@ -13,7 +13,7 @@
 
                       Co-located with ICFP 2015
                          Sponsored by SIGPLAN
-           Talk Proposal Submission Deadline: May 22, 2015
+           Talk Proposal Submission Deadline: May 18, 2015
 
 ==============================================================================
 
@@ -36,7 +36,7 @@ including, for example:
 
 - compiler developments, new backends, runtime and architectures
 
-- practical type system improvements, such as (but not limited to)
+- practical type system improvements, such as (but not limited to) 
  GADTs, first-class modules, generic programming, or dependent types
 
 - new library or application releases, and their design rationales
@@ -55,7 +55,7 @@ available online from the workshop homepage. The presentations will
 likely be recorded, and made available at a later time.
 
 To submit a talk, please register a description of the talk (about 2 pages
-long) at https://www.easychair.org/conferences/?conf=ocaml2015, providing a
+long) at https://easychair.org/conferences/?conf=ocaml2015, providing a
 clear statement of what will be brought by the talk: the problems that are
 addressed, the technical solutions or methods that are proposed. If you
 wish to perform a demo or require any special setup, we will do our best to
@@ -64,9 +64,9 @@ accommodate you.
 Schedule
 ========
 
-Abstract Submission Deadline: Friday, May 22, 2015 23:59 UTC-11
-Notification to Speakers: Friday, June 26, 2015
-Workshop: Friday, September 4, 2015
+Monday 18th May (any time zone)   Abstract submission deadline
+Monday 29th June                  Author notification
+Friday 4th September 2015         OCaml Workshop
 
 ML family workshop and post-proceedings
 =======================================
@@ -87,7 +87,7 @@ would be reviewed according to the standards of the publication.
 Program Committee
 =================
 
-The program committee will be announced soon.
+The program committee will be announced very soon.
 
 If you have any questions, please e-mail:
 Damien Doligez <ocaml2015 AT easychair DOT org>

@@ -8,8 +8,7 @@ OCaml 2015
 **The OCaml Users and Developers Workshop**
 Vancouver, British Columbia, September 4, 2015
 Colocated with [ICFP 2015](http://icfpconference.org/icfp2015/),
-the day after the ML Family Workshop
-<!--[ML Family Workshop]()-->.
+the day after the [ML Family Workshop](http://www.mlworkshop.org/ml2015/).
 
 News
 ----
@@ -28,7 +27,7 @@ Program
 -------
 
 The program will be announced shortly after the notification deadline
-(June 26).
+(June 29).
 
 Scope
 -----
@@ -56,8 +55,7 @@ available online from the workshop homepage. The presentations will
 likely be recorded, and made available at a later time.
 
 To submit a talk, please register a description of the talk (about 2 pages
-long) at EasyChair
-<!--[EasyChair](https://www.easychair.org/conferences/?conf=ocaml2015)-->,
+long) at [EasyChair](https://easychair.org/conferences/?conf=ocaml2015),
 providing a clear statement of what will be brought by the talk: the
 problems that are addressed, the technical solutions or methods that
 are proposed. If you wish to perform a demo or require any special
@@ -66,15 +64,14 @@ setup, we will do our best to accommodate you.
 Schedule
 --------
 
-- Abstract Submission Deadline: Friday, May 22, 2015
-- Notification to Speakers: Friday, June 26, 2015
-- Workshop: Friday, September 4, 2015
+- Monday 18th May (any time zone)   Abstract submission deadline
+- Monday 29th June                  Author notification
+- Friday 4th September 2015         OCaml Workshop
 
 ML family workshop and post-proceedings
 ---------------------------------------
 
-The ML Family Workshop
-<!--[ML family workshop]()-->, held on
+The [ML family workshop](http://www.mlworkshop.org/ml2015/), held on
 the previous day, deals with general issues
 of the ML-style programming and type systems, and is seen as more research
 oriented. Yet there is an overlap with the OCaml workshop, which we are
