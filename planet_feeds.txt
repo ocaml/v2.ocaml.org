@@ -58,7 +58,7 @@ Paolo Donadeo|http://www.donadeo.net/facets/programming-languages/objective-caml
 Perpetually Curious|http://lambdafoo.com/blog/categories/ocaml/atom.xml
 Peter Zotov|http://whitequark.org/blog/categories/ocaml/atom.xml
 Phil Tomson|http://philtomson.github.io/atom.xml
-Pietro Abate|https://mancoosi.org/~abate/taxonomy/term/5/0/feed
+Pietro Abate|http://mancoosi.org/~abate/taxonomy/term/5/0/feed
 Psellos|http://psellos.com/atom.xml
 Richard Jones|http://rwmj.wordpress.com/tag/ocaml/feed/
 Rudi Grinberg|http://rgrinberg.com/atom.xml
