@@ -130,6 +130,8 @@ let feed_of_url ~name url =
      { name;  title = "";  url;  feed = Broken s }
   | Nethttp_client.Http_protocol Nethttp_client.Too_many_redirections ->
      { name;  title = "";  url;  feed = Broken "Too many redirections" }
+  | Nethttp_client.Http_protocol e ->
+     { name;  title = "";  url;  feed = Broken(Printexc.to_string e) }
   | Nethttp_client.Http_error(err, _) ->
      let msg = Nethttp.(string_of_http_status (http_status_of_int err)) in
      { name;  title = "";  url;  feed = Broken msg }
