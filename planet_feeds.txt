@@ -10,6 +10,7 @@ Cameleon news|http://www.blogger.com/feeds/7617521785419311079/posts/default
 Caml INRIA|http://caml.inria.fr/news.en.rss
 Caml Spotting|http://camlspotter.blogspot.com/feeds/posts/default?alt=rss
 Caml Weekly News|http://alan.petitepomme.net/cwn/cwn.rss
+Cedeela|http://cedeela.fr/feeds/ocaml.atom.xml
 Coherent Graphics|http://coherentpdf.com/blog/?tag=ocaml&feed=rss2
 Coq|http://coq.inria.fr/news/feed
 Cranial Burnout|http://www.blogger.com/feeds/9108979482982930820/posts/default/-/OCaml
