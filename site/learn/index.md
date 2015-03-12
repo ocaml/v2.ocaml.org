@@ -152,11 +152,10 @@
 	       “organize a large and intricate codebase”.
 	  </p>
 
-          <p><a href="http://caml.inria.fr/about/successes-images/lexifi.png"
-		><img style="float: left; margin-right: 10px;
-			     margin-bottom: 3px"
-		      src="http://caml.inria.fr/about/successes-images/lexifi-thumb.png"
-		      title="Screenshot of Unison's main window"></a>
+      <p><a href="/img/lexifi.jpg"
+		><img style="float: left; margin-right: 10px; margin-bottom: 3px"
+		      src="/img/lexifi-thumb.jpg"
+		      title="Screenshot of Lexifi's application"></a>
 	    Developed by <a href="http://www.lexifi.com/"
 			    >LexiFi</a>, the Modeling Language
 	    for Finance (MLFi) is the first formal language that

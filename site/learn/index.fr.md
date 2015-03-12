@@ -149,11 +149,10 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 	       “organiser une base de code importante et complexe”.
 	  </p>
 
-          <p><a href="http://caml.inria.fr/about/successes-images/lexifi.png"
-		><img style="float: left; margin-right: 10px;
-			     margin-bottom: 3px"
-		      src="http://caml.inria.fr/about/successes-images/lexifi-thumb.png"
-		      title="La fenêtre principale d'Apropos"></a>
+      <p><a href="/img/lexifi.jpg"
+		><img style="float: left; margin-right: 10px; margin-bottom: 3px"
+		      src="/img/lexifi-thumb.jpg"
+		      title="Screenshot of Lexifi's application"></a>
 	    Développé par <a href="http://www.lexifi.com/"
 			    >LexiFi</a>, le "Modeling Language
 	    for Finance" (MLFi) est le premier langage formel qui
