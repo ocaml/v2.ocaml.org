@@ -6,7 +6,7 @@ OCaml 2015
 ==========
 
 **The OCaml Users and Developers Workshop**
-Vancouver, British Columbia, September 4, 2015
+Vancouver, British Columbia, Canada, September 4, 2015
 Colocated with [ICFP 2015](http://icfpconference.org/icfp2015/),
 the day after the [ML Family Workshop](http://www.mlworkshop.org/ml2015/).
 
