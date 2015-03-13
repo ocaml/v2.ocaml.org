@@ -13,7 +13,7 @@ the day after the [ML Family Workshop](http://www.mlworkshop.org/ml2015/).
 News
 ----
 
--   February 2015 (very soon): [workshop announcement and CFP](cfp.html).
+-   12 March 2015: [workshop announcement and CFP](cfp.html).
 
 The OCaml Users and Developers Workshop brings together industrial users of
 OCaml with academics and hackers who are working on extending the language,
@@ -91,7 +91,17 @@ would be reviewed according to the standards of the publication.
 Program Committee
 -----------------
 
-The program committee will be announced soon.
+ * Ashish AGARWAL, Solvuu LLC, USA
+ * Sandrine BLAZY, U. Rennes 1, France
+ * Cristiano CALCAGNO, Facebook, USA
+ * Emmanuel CHAILLOUX, U. Paris 6, France
+ * Pierre CHAMBART, OCamlPro, France
+ * Damien DOLIGEZ, Jane Street, USA and Inria, France (chair)
+ * Martin JAMBON, Esper, USA
+ * Keigo IMAI, Kyoto University, Japan
+ * Julien VERLAGUET, Facebook, USA
+ * Markus WEISSMAN, TU. Muenchen, Germany
+ * Jeremy YALLOP, OCaml Labs, UK
 
 If you have any questions, please e-mail:
 Damien Doligez <ocaml2015 AT easychair DOT org>
