@@ -293,6 +293,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/mashape.png" alt="Mashape">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://www.mashape.com/">Mashape</a>, USA</h2>
+        <p>Mashape makes it easy to distribute, monetize, manage and consume cloud APIs. Mashape is building a world-class marketplace for cloud APIs driven by a passionate community of developers from all over the world as well as enterprise API management and analytics products. We use OCaml in our <a href="http://apianalytics.com">APIAnalytics</a> product -- as part of a mission-critical, lightweight HTTP proxy.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/medit.jpg" alt="MEDIT">
     </dt>
     <dd class="span5">
