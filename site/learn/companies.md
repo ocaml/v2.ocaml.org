@@ -444,6 +444,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/trustinsoft.png" alt="TrustInSoft">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://trust-in-soft.com">TrustInSoft</a>, France</h2>
+        <p>TrustInSoft is a company that changes the rules in cybersecurity. TrustInSoft is the software publisher of the software analysis <a href="http://frama-c.com">Frama-C</a> platform. Our only moto is simple: make the formal methods accessible to the majority of software developers.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/vectorfabrics.png" alt="Vector Fabrics">
     </dt>
     <dd class="span5">
