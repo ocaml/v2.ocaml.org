@@ -113,7 +113,7 @@
             ((! input template/front_code_snippet.html !))
             <p>OCaml est bien plus puissant que ce petit exemple le
 			montre. Découvrez
-			<a href="/learn/taste.html">d'autres exemples</a>!</p>
+			<a href="learn/taste.fr.html">d'autres exemples</a>!</p>
         </section>
         <section class="span6 condensed">
             <h1><a href='http://opam.ocaml.org/packages/index-date.html'>Nouveautés dans OPAM</a></h1>
