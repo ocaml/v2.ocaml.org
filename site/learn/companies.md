@@ -266,7 +266,7 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/issuu.png" alt="Issuu">
+        <img src="/img/users/issuu.gif" alt="Issuu">
     </dt>
     <dd class="span5">
         <h2><a href="http://issuu.com">Issuu</a>, Denmark</h2>
@@ -306,7 +306,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="https://www.mashape.com/">Mashape</a>, USA</h2>
-        <p>Mashape makes it easy to distribute, monetize, manage and consume cloud APIs. Mashape is building a world-class marketplace for cloud APIs driven by a passionate community of developers from all over the world as well as enterprise API management and analytics products. We use OCaml in our <a href="http://apianalytics.com">APIAnalytics</a> product -- as part of a mission-critical, lightweight HTTP proxy.</p>
+        <p>Mashape makes it easy to distribute, monetize, manage and consume cloud APIs. Mashape is building a world-class marketplace for cloud APIs driven by a passionate community of developers from all over the world as well as enterprise API management and analytics products. We use OCaml in our <a href="http://apianalytics.com">APIAnalytics</a> product — as part of a mission-critical, lightweight HTTP proxy.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -439,7 +439,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://skylable.com">Skylable</a>, Denmark</h2>
-        <p>Skylable's mission is to build a fast, robust and cost-effective object-storage solution for the Open-Source community and Enterprises. Skylable used OCaml for their LibreS3 product -- an open source replacement for the Amazon S3 service, implementing (a subset of) the S3 REST API. It is written in a monadic style, currently using Lwt and Ocsigenserver as implementations.</p>
+        <p>Skylable's mission is to build a fast, robust and cost-effective object-storage solution for the Open-Source community and Enterprises. Skylable used OCaml for their LibreS3 product — an open source replacement for the Amazon S3 service, implementing (a subset of) the S3 REST API. It is written in a monadic style, currently using Lwt and Ocsigenserver as implementations.</p>
     </dd>
 </dl>
 <dl class="row">
