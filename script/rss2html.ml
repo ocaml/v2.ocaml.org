@@ -17,8 +17,6 @@ type html = Nethtml.document list
 let encode_html =
   Netencoding.Html.encode ~prefer_name:false ~in_enc:`Enc_utf8 ()
 
-let decode_document html = Nethtml.decode ~enc:`Enc_utf8 html
-
 let encode_document html = Nethtml.encode ~enc:`Enc_utf8 html
 
 (* Remove all tags *)
@@ -78,7 +76,6 @@ and remove_undesired_tags_el = function
 let html_of_text ?xmlbase s =
   try Nethtml.parse (new Netchannels.input_string s)
                     ~dtd:Utils.relaxed_html40_dtd
-      |> decode_document
       |> resolve ?xmlbase
       |> remove_undesired_tags
   with _ ->
