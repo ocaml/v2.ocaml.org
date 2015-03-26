@@ -34,6 +34,7 @@ Incubaid Research|http://blog.incubaid.com/tag/ocaml/feed/
 Jake Donham|http://ambassadortothecomputers.blogspot.com/feeds/posts/default?alt=rss
 Jamie Brandon|http://scattered-thoughts.net/blog/categories/ocaml/atom.xml
 Jane Street|https://blogs.janestreet.com/category/ocaml/feed/atom/
+KC Sivaramakrishnan|http://kcsrk.info/atom-ocaml.xml
 Leo White|http://lpw25.net/rss.xml
 LexiFi|http://www.lexifi.com/blogs/ocaml/feed
 Mads Hartmann|http://mads379.github.io/feed.ocaml.xml
