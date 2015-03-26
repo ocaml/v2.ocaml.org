@@ -38,6 +38,7 @@ KC Sivaramakrishnan|http://kcsrk.info/atom-ocaml.xml
 Leo White|http://lpw25.net/rss.xml
 LexiFi|http://www.lexifi.com/blogs/ocaml/feed
 Mads Hartmann|http://mads379.github.io/feed.ocaml.xml
+Magnus Skjegstad|http://www.skjegstad.com/feeds/ocaml.tag.atom.xml
 Marc Simpson|http://newblog.0branch.com/rss.xml
 Matthias Puech|http://syntaxexclamation.wordpress.com/tag/ocaml/feed/
 Matías Giovannini|http://www.blogger.com/feeds/5888658295182480819/posts/default
