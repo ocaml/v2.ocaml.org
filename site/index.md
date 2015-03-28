@@ -93,7 +93,7 @@
 			<ul class="news-feed" style="margin-bottom: 0px">
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
-			       href="/meetings/ocaml/2012/">OCaml 2015</a></h1>
+			       href="/meetings/ocaml/2015/">OCaml 2015</a></h1>
 			  <p>September 4, 2015</p>
 			  <a title="OCaml Users and Developers Workshop"
 			     href="/meetings/ocaml/2015/">
