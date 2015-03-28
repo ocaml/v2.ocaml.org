@@ -93,45 +93,64 @@ let rec html_of_syndic =
 (* Feeds
  ***********************************************************************)
 
-type feed =
-  | Atom of Atom.feed
-  | Rss2 of Rss2.channel
-  | Broken of string (* the argument gives the reason *)
+(* Email on the forge contains the name in parenthesis *)
+let email_name_re =
+  Str.regexp " *\\([a-zA-Z.]+@[a-zA-Z.]+\\) *(\\([^()]*\\))"
 
-let classify_feed ~xmlbase (xml: string) =
-  try Atom(Atom.parse ~xmlbase (Xmlm.make_input (`String(0, xml))))
-  with Atom.Error.Error _ ->
-          try Rss2(Rss2.parse ~xmlbase (Xmlm.make_input (`String(0, xml))))
-          with Rss2.Error.Error _ ->
-                Broken "Neither Atom nor RSS2 feed"
+let author_email_name (a: Atom.author) =
+  let open Atom in
+  if Str.string_match email_name_re a.name 0 then
+    let name = String.trim(Str.matched_group 2 a.name) in
+    let email = match a.email with
+      | None -> Some(Str.matched_group 1 a.name)
+      | Some _ -> a.email in
+    { a with name; email }
+  else a
 
-type contributor = {
-    name  : string;
-    title : string;
-    url   : string;
-    feed  : feed;
-  }
+let special_processing (e: Atom.entry) =
+  let open Atom in
+  let a0, a = e.authors in
+  if a0.name = "OCaml Weekly News" then
+    { e with title = Text "Weekly News" }
+  else
+    { e with authors = (author_email_name a0,
+                        List.map author_email_name a) }
+
+(* Atom feed (with no entries) representing a broken feed.  The title
+   is the reason for the failure.  Since these feed contain no
+   entries, the aggregation will remove them. *)
+let broken_feed name url reason =
+  let feed = Atom.feed ~id:(Digest.to_hex(Digest.string name))
+                       ~authors:[Atom.author name]
+                       ~title:(Atom.Text reason)
+                       ~updated:(CalendarLib.Calendar.now())
+                       [] in
+  (* See Syndic.Opml1.of_atom for the convention on the length. *)
+  Atom.set_self_link feed url ~length:(-1)
 
 let feed_of_url ~name url =
   try
-    let xmlbase = Uri.of_string url in
-    let feed = classify_feed ~xmlbase (Http.get url) in
-    let title = match feed with
-      | Atom atom -> string_of_text_construct atom.Atom.title
-      | Rss2 ch -> ch.Rss2.title
-      | Broken _ -> "" in
-    { name;  title;  url;  feed }
+    let xml = `String(0, Http.get(Uri.to_string url)) in
+    let feed =
+      try Atom.parse ~self:url ~xmlbase:url (Xmlm.make_input xml)
+      with Atom.Error.Error _ ->
+        Rss2.parse ~xmlbase:url (Xmlm.make_input xml)
+        |> Rss2.to_atom ~self:url in
+    let feed = Atom.set_main_author feed (Atom.author name) in
+    { feed with Atom.entries = List.map special_processing feed.Atom.entries }
   with
+  | Rss2.Error.Error _ ->
+      broken_feed name url "Neither an Atom nor a RSS2 feed"
   | Nethttp_client.Http_protocol(Nethttp_client.Timeout s)
   | Nethttp_client.Http_protocol(Nethttp_client.Name_resolution_error s) ->
-     { name;  title = "";  url;  feed = Broken s }
+     broken_feed name url s
   | Nethttp_client.Http_protocol Nethttp_client.Too_many_redirections ->
-     { name;  title = "";  url;  feed = Broken "Too many redirections" }
+     broken_feed name url "Too many redirections"
   | Nethttp_client.Http_protocol e ->
-     { name;  title = "";  url;  feed = Broken(Printexc.to_string e) }
+     broken_feed name url (Printexc.to_string e)
   | Nethttp_client.Http_error(err, _) ->
      let msg = Nethttp.(string_of_http_status (http_status_of_int err)) in
-     { name;  title = "";  url;  feed = Broken msg }
+     broken_feed name url msg
 
 let planet_feeds =
   let add_feed acc line =
@@ -139,149 +158,81 @@ let planet_feeds =
       let i = String.index line '|' in
       let name = String.sub line 0 i in
       let url = String.sub line (i+1) (String.length line - i - 1) in
-      feed_of_url ~name url :: acc
+      feed_of_url ~name (Uri.of_string url) :: acc
     with Not_found -> acc in
   lazy(List.fold_left add_feed [] (Utils.lines_of_file planet_feeds_file))
 
-let html_contributors () =
+let get_opml () =
   let feeds = Lazy.force planet_feeds in
-  let contributors =
-    List.sort (fun c1 c2 -> String.compare c1.name c2.name) feeds in
-  let contrib_html c =
-    let attr = match c.feed with
-      | Broken s -> ["class", "broken";  "title", encode_html s]
-      | _ -> [] in
-    Element("li", [], [Element("a", ("href", c.url) :: attr, [Data c.name])]) in
-  [Element("ul", [], List.map contrib_html contributors)]
-
-
-let to_opml feeds =
-  let now = CalendarLib.Calendar.now() in
-  let head = Syndic.Opml1.head ~date_modified:now
+  let date_modified =
+    List.fold_left (fun d f -> Date.max d f.Atom.updated) Date.epoch feeds in
+  let head = Syndic.Opml1.head ~date_modified
                                ~owner_name:"ocaml.org"
                                ~owner_email:"infrastructure@lists.ocaml.org"
                                "OCaml Planet" in
-  let outline f =
-    Syndic.Opml1.outline ~typ:"rss"
-                         ~attrs:[("", "title"), f.title]
-                         ~xml_url:(Uri.of_string f.url)
-                         f.name in
-  { Syndic.Opml1.version = "1.1";  head;  body = List.map outline feeds }
+  (* Broken feeds will be marked with [is_comment = true]. *)
+  let opml = Opml1.of_atom ~head feeds in
+  (* Sort by name.  (FIXME: one may want to ignore spaces.) *)
+  let by_name o1 o2 = String.compare o1.Opml1.text o2.Opml1.text in
+  { opml with Opml1.body = List.sort by_name opml.Opml1.body }
 
 let opml fname =
-  let fh = open_out fname in
-  Syndic.Opml1.output (to_opml(Lazy.force planet_feeds)) (`Channel fh);
-  close_out fh
+  Opml1.write (get_opml()) fname
+
+let html_contributors () =
+  let open Opml1 in
+  let contrib_html (o: Opml1.outline) =
+    match o.xml_url with
+    | Some xml_url ->
+       let attrs = ("href", Uri.to_string xml_url)
+                   :: List.map (fun ((_,n), v) -> (n,v)) o.attrs in
+       let attrs = if o.is_comment then ("class", "broken") :: attrs
+                   else attrs in
+       Element("li", [], [Element("a", attrs, [Data o.text])])
+    | None -> Element("li", [], [Data o.text]) in
+  [Element("ul", [], List.map contrib_html (get_opml()).body)]
 
 
 
 (* Blog feed
  ***********************************************************************)
 
-(** Our representation of a "post". *)
-type post = {
-  title  : string;
-  link   : Uri.t option;   (* url of the original post *)
-  date   : Syndic.Date.t option;
-  contributor: contributor;
-  author : string;
-  email  : string;    (* the author email, "" if none *)
-  desc   : html;
-}
+let digest_post (e: Atom.entry) =
+  Digest.to_hex (Digest.string e.Atom.id)
 
-(* Email on the forge contain the name in parenthesis *)
-let forge_name_re =
-  Str.regexp ".*(\\([^()]*\\))"
-
-let special_processing (p: post) =
-  if p.contributor.name = "Caml Weekly News" then
-    { p with title = "Weekly News" }
-  else if p.contributor.name = "OCamlCore Forge News" then
-    (* Extract the author from email. *)
-    let author = if Str.string_match forge_name_re p.email 0 then
-                   Str.matched_group 1 p.email
-                 else p.author in
-    { p with author = author }
-  else if String.contains p.email '@' then p
-  else (* consider p.email is actually a name (as GaGallium does) *)
-    let author =
-      if p.author = "" || p.author = p.contributor.name then p.email
-      else p.author in
-    { p with email = ""; author }
-
-let post_compare p1 p2 =
-  (* Most recent posts first.  Posts with no date are always last *)
-  match p1.date, p2.date with
-  | Some d1, Some d2 -> Syndic.Date.compare d2 d1
-  | None, Some _ -> 1
-  | Some _, None -> -1
-  | None, None -> 1
-
-let digest_post p = match p.link with
-  | None -> Digest.to_hex (Digest.string (p.title))
-  | Some u -> Digest.to_hex (Digest.string (p.title ^ Uri.to_string u))
-
-let string_of_option = function None -> "" | Some s -> s
-
-let post_of_atom ~contributor (e: Atom.entry) =
+let get_alternate_link (e: Atom.entry) =
   let open Atom in
-  let link = try Some (List.find (fun l -> l.rel = Alternate) e.links).href
-             with Not_found -> match e.links with
-                              | l :: _ -> Some l.href
-                              | [] -> None in
-  let date = match e.published with
-    | Some _ -> e.published
-    | None -> Some e.updated in
-  let desc = match e.content with
-    | Some(Text s) -> html_of_text s
-    | Some(Html(xmlbase, s)) -> html_of_text ?xmlbase s
-    | Some(Xhtml(xmlbase, h)) -> html_of_syndic ?xmlbase h
-    | Some(Mime _) | Some(Src _)
-    | None ->
-       match e.summary with
-       | Some(Text s) -> html_of_text s
-       | Some(Html(xmlbase, s)) -> html_of_text ?xmlbase s
-       | Some(Xhtml(xmlbase, h)) -> html_of_syndic ?xmlbase h
-       | None -> [] in
-  let author, _ = e.authors in
-  special_processing { title = string_of_text_construct e.title;
-                       link;  date;
-                       contributor;
-                       author = author.name;
-                       email = "";
-                       desc }
+  try Some (List.find (fun l -> l.rel = Alternate) e.links).href
+  with Not_found -> match e.links with
+                   | l :: _ -> Some l.href
+                   | [] -> None
 
-let post_of_rss2 ~(contributor: contributor) it =
-  let open Syndic.Rss2 in
-  let title, desc = match it.story with
-    | All (t, xmlbase, d) ->
-       t, (match it.content with
-           | (_, "") -> html_of_text ?xmlbase d
-           | (xmlbase, c) -> html_of_text ?xmlbase c)
-    | Title t -> t, []
-    | Description(xmlbase, d) ->
-       "", (match it.content with
-            | (_, "") -> html_of_text ?xmlbase d
-            | (xmlbase, c) -> html_of_text ?xmlbase c) in
-  let link = match it.guid, it.link with
-    | Some u, _ when u.permalink -> Some u.data
-    | _, Some _ -> it.link
-    | Some u, _ ->
-       (* Sometimes the guid is indicated with isPermaLink="false" but
-          is nonetheless the only URL we get (e.g. ocamlpro). *)
-       Some u.data
-    | None, None -> None in
-  special_processing { title; link; contributor;
-                       author = contributor.name;
-                       email = string_of_option it.author;
-                       desc;
-                       date = it.pubDate }
+let get_feed_url (e: Atom.entry) =
+  let open Atom in
+  match e.source with
+  | None -> None
+  | Some s ->
+     try Some(List.find (fun l -> l.rel = Self) s.links).href
+     with Not_found -> None
 
-let posts_of_contributor c =
-  match c.feed with
-  | Atom f -> List.map (post_of_atom ~contributor:c) f.Atom.entries
-  | Rss2 ch -> List.map (post_of_rss2 ~contributor:c) ch.Rss2.items
-  | Broken _ -> []
+let get_date (e: Atom.entry) =
+  match e.Atom.published with
+  | Some _ -> e.Atom.published
+  | None -> Some e.Atom.updated
+
+let get_story (e: Atom.entry) : html =
+  let open Atom in
+  match e.content with
+  | Some(Text s) -> html_of_text s
+  | Some(Html(xmlbase, s)) -> html_of_text ?xmlbase s
+  | Some(Xhtml(xmlbase, h)) -> html_of_syndic ?xmlbase h
+  | Some(Mime _) | Some(Src _)
+  | None ->
+     match e.summary with
+     | Some(Text s) -> html_of_text s
+     | Some(Html(xmlbase, s)) -> html_of_text ?xmlbase s
+     | Some(Xhtml(xmlbase, h)) -> html_of_syndic ?xmlbase h
+     | None -> []
 
 
 (* Limit the length of the description presented to the reader. *)
@@ -353,30 +304,49 @@ let toggle_script =
   [Element("script", ["type", "text/javascript"], [Data script])]
 
 
+let html_of_author (a: Atom.author) =
+  let open Atom in
+  match a.email with
+  | None | Some "" -> Data a.name
+  | Some email -> Element("a", ["href", "mailto:" ^ email], [Data a.name])
+
+let rec html_of_authors = function
+  | [] -> []
+  | [a] -> [html_of_author a]
+  | a :: tl -> html_of_author a :: Data ", " :: html_of_authors tl
+
 (* In addition to the feed name, print the author name (general feed
    used by several authors). *)
-let want_contributor_and_author p =
-  p.author <> "" && p.author <> p.contributor.name
-  && not(String.contains p.author '.')
-  && not(String.contains p.author '@')
+let keep_entry_author feed_author (a: Atom.author) =
+  let open Atom in
+  a.name <> "" && a.name <> feed_author
   (* FIXME: maybe we want to be more subtle by checking for word boundaries: *)
-  && not(Utils.KMP.is_substring p.author p.contributor.name)
+  && not(Utils.KMP.is_substring ~pat:a.name feed_author)
+  && not(Utils.KMP.is_substring ~pat:feed_author a.name)
 
-let html_author_of_post p =
-  if want_contributor_and_author p then
-    let author =
-      if p.email = "" then Data p.author
-      else Element("a", ["href", "mailto:" ^ p.email], [Data p.author]) in
-    [Element("span", [],
-             [Data p.contributor.name; Data " ("; author; Data ")" ])]
-  else
-    if p.contributor.name = "" then []
-    else if p.email = "" then [Data p.contributor.name]
-    else [Element("a", ["href", "mailto:" ^ p.email],
-                  [Data p.contributor.name])]
+let html_author_of_post (e: Atom.entry) =
+  let open Atom in
+  (* Only use the first source author (the one we set), the
+     subsequent feed authors will be basically duplicates. *)
+  let feed_author = match e.source with
+    | Some s -> (match s.authors with a0 :: _ -> Some a0
+                                   | [] -> None)
+    | None -> None in
+  let a0, a = e.authors in
+  let authors = match feed_author with
+    | Some feed_a -> List.filter (keep_entry_author feed_a.name) (a0 :: a)
+    | None -> a0 :: a in
+  match authors, feed_author with
+  | _ :: _, Some feed_author ->
+     html_of_author feed_author
+     :: Data " (" :: html_of_authors authors @ [Data ")" ]
+  | _ :: _, None -> html_of_authors authors
+  | [], Some feed_author -> [html_of_author feed_author]
+  | [], None -> []
 
-let html_date_of_post p =
-  match p.date with
+
+let html_date_of_post e =
+  match get_date e with
   | None -> []
   | Some d ->
      let date =
@@ -385,10 +355,11 @@ let html_date_of_post p =
      [Data date]
 
 (* Transform a post [p] (i.e. story) into HTML. *)
-let html_of_post p =
-  let title_anchor = digest_post p in
-  let html_title, share = match p.link with
-    | None -> [Data p.title], []
+let html_of_post e =
+  let title_anchor = digest_post e in
+  let title = string_of_text_construct e.Atom.title in
+  let html_title, share = match get_alternate_link e with
+    | None -> [Data title], []
     | Some u ->
        let url_orig = Uri.to_string u in
        let a_args = ["href", url_orig; "target", "_blank";
@@ -399,22 +370,23 @@ let html_of_post p =
                              ^ (Netencoding.Url.encode url_orig);
                      "target", "_blank"; "title", "Share on Google+"] in
        let fb = ["href", "https://www.facebook.com/share.php?u=" ^ post
-                         ^ "&amp;t=" ^ (Netencoding.Url.encode p.title);
+                         ^ "&amp;t=" ^ (Netencoding.Url.encode title);
                  "target", "_blank"; "title", "Share on Facebook"] in
        let tw = ["href", "https://twitter.com/intent/tweet?url=" ^ post
-                         ^ "&text=" ^ (Netencoding.Url.encode p.title);
+                         ^ "&text=" ^ (Netencoding.Url.encode title);
                  "target", "_blank"; "title", "Share on Twitter"] in
-       let feed = p.contributor.url in
        let rss =
-         if feed <> "" then
+         match get_feed_url e with
+         | Some feed ->
            [Element("a", ["class", "rss";  "target", "_blank";
-                          "title", "Original RSS feed"; "href", feed],
+                          "title", "Original RSS feed";
+                          "href", Uri.to_string feed],
                     [Element("img", ["src", "/img/rss.svg"; "alt", "RSS";
                                      "class", "svg"], []);
                      Element("img", ["src", "/img/rss.png"; "alt", "RSS";
                                      "class", "png"], [])] )]
-         else [] in
-       [Element("a", a_args, [Data p.title]) ],
+         | None -> [] in
+       [Element("a", a_args, [Data(string_of_text_construct e.Atom.title)]) ],
        [Element("span", ["class", "share"],
                 Element("a", a_args,
                         [Element("img", ["src", "/img/chain-link-icon.png";
@@ -430,34 +402,36 @@ let html_of_post p =
                                             "alt", "Twitter"], []) ])
                 :: rss) ] in
   let sep = Data " — " in
-  let additional_info = match html_author_of_post p, html_date_of_post p with
+  let additional_info = match html_author_of_post e, html_date_of_post e with
     | [], [] -> []
     | html_author, [] -> sep :: html_author
     | [], date -> sep :: date
     | html_author, date -> sep :: (html_author @ (Data ", " :: date)) in
   let additional_info =
     [Element("span", ["class", "additional-info"], additional_info)] in
-  let desc =
-    if length_html p.desc < 500 then p.desc
-    else toggle (prefix_of_html p.desc 500) p.desc ~anchor:title_anchor
+  let story = get_story e in
+  let story =
+    if length_html story < 500 then story
+    else toggle (prefix_of_html story 500) story ~anchor:title_anchor
   in
   [Data "\n";
    Element("a", ["name", title_anchor], []);
    Element("section", ["style", "clear: both"],
            [Element("h1", ["class", "ruled planet"],
                     share @ html_title @ additional_info);
-            Element("div", ["class", "planet-post"], desc)]);
+            Element("div", ["class", "planet-post"], story)]);
    Data "\n"]
 
 
-let li_of_post p =
+let li_of_post (e: Atom.entry) =
   let sep = Data " — " in
-  let title = match p.link with
-    | None -> [Data p.title]
+  let title = string_of_text_construct e.Atom.title in
+  let title = match get_alternate_link e with
+    | None -> [Data title]
     | Some u -> [Element("a", ["href", Uri.to_string u; "target", "_blank";
                               "title", "Go to the original post"],
-                        [Data p.title]) ] in
-  let line = match html_author_of_post p, html_date_of_post p with
+                        [Data title]) ] in
+  let line = match html_author_of_post e, html_date_of_post e with
     | [], [] -> title
     | html_author, [] -> title @ (sep :: html_author)
     | [], date -> date @ (Data "," :: title)
@@ -481,10 +455,10 @@ let netdate_of_calendar d =
 
 (* Similar to [html_of_post] but tailored to be shown in a list of
    news (only titles are shown, linked to the page with the full story). *)
-let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img p =
+let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img e =
   let link =
-    if planet then planet_url ^ "#" ^ digest_post p
-    else match p.link with
+    if planet then planet_url ^ "#" ^ digest_post e
+    else match get_alternate_link e with
          | Some l -> Uri.to_string l
          | None -> "" in
   let html_icon =
@@ -493,7 +467,7 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img p =
                               "alt", img_alt], []);
               Element("img", ["src", img ^ ".png"; "class", "png";
                               "alt", img_alt], [])])] in
-  let html_date = match p.date with
+  let html_date = match get_date e with
     | None -> html_icon
     | Some d ->
        (* Netdate internationalization functions are more developed. *)
@@ -505,11 +479,12 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img p =
          else
            Netdate.format ~fmt:"%e %B %Y" d ~l9n in
        Element("p", [], [Data d]) :: html_icon in
+  let title = string_of_text_construct e.Atom.title in
   let html_title =
     Element("h1", [],
-            if link = "" then [Data p.title]
-            else [Element("a", ["href", link; "title", p.title],
-                          [Data p.title])] )in
+            if link = "" then [Data title]
+            else [Element("a", ["href", link; "title", title],
+                          [Data title])] )in
   [Element("li", [], [Element("article", [], html_title :: html_date)]);
    Data "\n"]
 
@@ -522,26 +497,30 @@ let rec take n = function
   | [] -> []
   | e :: tl -> if n > 0 then e :: take (n-1) tl else []
 
+let aggregated_feed =
+  lazy(Atom.aggregate (Lazy.force planet_feeds)
+                      ~sort:`Newest_first
+                      ~title:(Atom.Text "OCaml Planet"))
+
 let get_posts ?n ?(ofs=0) () =
-  let feeds = Lazy.force planet_feeds in
-  let posts = List.concat (List.map posts_of_contributor feeds) in
-  let posts = List.sort post_compare posts in
-  let posts = remove ofs posts in
-  match n with
-  | None -> posts
-  | Some n -> take n posts
+  let feed = Lazy.force aggregated_feed in
+  let entries = remove ofs feed.Atom.entries in
+  let entries = match n with
+    | None -> entries
+    | Some n -> take n entries in
+  { feed with Atom.entries = entries }
 
 let headlines ?n ?ofs ?planet ~l9n () =
-  let posts = get_posts ?n ?ofs () in
+  let posts = (get_posts ?n ?ofs ()).Atom.entries in
   let img = "/img/news" in
   [Element("ul", ["class", "news-feed"],
            List.concat(List.map (headline_of_post ?planet ~l9n ~img) posts))]
 
 let posts ?n ?ofs () =
-  let posts = get_posts ?n ?ofs () in
+  let posts = (get_posts ?n ?ofs ()).Atom.entries in
   [Element("div", [], List.concat(List.map html_of_post posts))]
 
-let nposts () = List.length (get_posts ())
+let nposts () = List.length (get_posts ()).Atom.entries
 
 
 let en_string_of_month =
@@ -570,19 +549,19 @@ end
 module DMap = Map.Make(Year_Month)
 
 let list_of_posts ?n ?ofs () =
-  let posts = get_posts ?n ?ofs () in
+  let posts = (get_posts ?n ?ofs ()).Atom.entries in
   (* Split posts per year/month *)
-  let classify m p =
-    match p.date with
+  let classify m e =
+    match get_date e with
     | None -> m (* drop *)
     | Some d ->
        let key = (Syndic.Date.year d, Syndic.Date.month d) in
-       let posts = try p :: DMap.find key m with Not_found -> [p] in
+       let posts = try e :: DMap.find key m with Not_found -> [e] in
        DMap.add key posts m in
   let m = List.fold_left classify DMap.empty posts in
   let add_html (year, month) posts html =
     let title = en_string_of_month month ^ " " ^ string_of_int year in
-    let posts = List.sort post_compare posts in
+    let posts = List.rev posts in (* posts originally sorted by date *)
     Element("h2", ["id", title], [Data title])
     :: Element("ul", [], List.map li_of_post posts)
     :: html in
@@ -594,26 +573,7 @@ let list_of_posts ?n ?ofs () =
  ***********************************************************************)
 
 let aggregate ?n fname =
-  let feeds = Lazy.force planet_feeds in
-  let to_atom (c: contributor) =
-    match c.feed with
-    | Atom a -> Some(Some (Uri.of_string c.url), a)
-    | Rss2 ch -> Some(Some (Uri.of_string c.url), Rss2.to_atom ch)
-    | Broken _ -> None in
-  let atoms = Utils.filter_map feeds to_atom in
-  let feed = Atom.aggregate atoms
-                            ~title:(Atom.Text "OCaml Planet") in
-  let feed = match n with
-    | Some n ->
-       (* Sort the entries by date and the the [n] most recent ones. *)
-       let by_date (e1: Atom.entry) (e2: Atom.entry) =
-         Syndic.Date.compare e2.Atom.updated e1.Atom.updated in
-       let entries = List.sort by_date feed.Atom.entries in
-       { feed with Atom.entries = take n entries }
-    | None -> feed in
-  let fh = open_out fname in
-  Atom.output feed (`Channel fh);
-  close_out fh
+  Atom.write (get_posts ?n ()) fname
 
 
 (* Email threads
@@ -644,19 +604,21 @@ let caml_list_re =
     better. *)
 let email_threads ?n ~l9n url =
   (* Do not use [n] yet because posts are filtered. *)
-  let posts = posts_of_contributor (feed_of_url ~name:"" url) in
-  let posts = List.sort post_compare posts in
-  let normalize_title p =
-    let title = Str.replace_first caml_list_re "" p.title in
+  let posts = (feed_of_url ~name:"" url).Atom.entries in
+  let posts = List.sort Atom.descending posts in
+  let normalize_title (e: Atom.entry) =
+    let title = string_of_text_construct e.Atom.title in
+    let title = Str.replace_first caml_list_re "" title in
     let title = delete_author title in
-    { p with title } in
+    { e with Atom.title = Atom.Text title } in
   let posts = List.map normalize_title posts in
   (* Keep only the more recent post of redundant subjects. *)
   let module S = Set.Make(String) in
   let seen = ref S.empty in
-  let must_keep p =
-    if S.mem p.title !seen then false
-    else (seen := S.add p.title !seen;  true) in
+  let must_keep (e: Atom.entry) =
+    let title = string_of_text_construct e.Atom.title in
+    if S.mem title !seen then false
+    else (seen := S.add title !seen;  true) in
   let posts = List.filter must_keep posts in
   let posts = (match n with
                | Some n -> take n posts
@@ -701,13 +663,14 @@ let () =
      "l Translate dates for the locale l")  ] in
   let anon_arg s = url := s in
   Arg.parse (Arg.align specs) anon_arg "rss2html <URL>";
+  let url = Uri.of_string !url in
   let l9n = Netdate.compile_l9n !l9n in
   let out = new Netchannels.output_channel stdout in
   (match !action with
    | `Headlines ->
       Nethtml.write out (headlines ~planet:true ?n:!n_posts ~ofs:!ofs_posts
                                    ~l9n ())
-   | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~l9n !url)
+   | `Emails -> Nethtml.write out (email_threads ?n:!n_posts ~l9n url)
    | `Posts -> Nethtml.write out (toggle_script
                                  @ posts ?n:!n_posts ~ofs:!ofs_posts ())
    | `List ->  Nethtml.write out (list_of_posts ?n:!n_posts ~ofs:!ofs_posts ())
