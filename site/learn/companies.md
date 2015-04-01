@@ -123,7 +123,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.cloudfounders.com">CloudFounders</a>, Belgium</h2>
-        <p>CloudFounders offers solutions for Data Center functionality. They use the Arakoon key/value and have written an OCaml client for Seagate Kinetic devices. A proportion of their backend code is also OCaml.</p>
+        <p>CloudFounders offers solutions for Data Center functionality. They use the Arakoon key/value store and have written an <a href="https://github.com/cloudfounders/kinetic-ocaml-client">OCaml client</a> for Seagate Kinetic devices. A proportion of their backend code is also OCaml.</p>
     </dd>
 </dl>
 <dl class="row">
