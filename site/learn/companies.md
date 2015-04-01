@@ -119,6 +119,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/cloudfounders.png" alt="CloudFounders">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.cloudfounders.com">CloudFounders</a>, Belgium</h2>
+        <p>CloudFounders offers solutions for Data Center functionality. They use the Arakoon key/value and have written an OCaml client for Seagate Kinetic devices. A proportion of their backend code is also OCaml.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/coherent.png" alt="Coherent Graphics">
     </dt>
     <dd class="span5">
