@@ -198,8 +198,8 @@ tuple          int * string                   (3, "hello")
 record         type pair =                    { a = 3; b = "hello" }
                  { a: int; b: string }
 变体            type foo =
-	         | Int of int                 Int 3
-		 | Pair of int * string
+                 | Int of int                 Int 3
+                 | Pair of int * string
 变体            type sign =
                  | Positive                   Positive
     	         | Zero                       Zero
