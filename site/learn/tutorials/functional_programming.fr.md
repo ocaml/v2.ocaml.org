@@ -338,7 +338,7 @@ let lazy_expr = lazy (1/0);;
 ```
 A noter que le type de l'expression est `int lazy_t`
 
-Parce que `give_me_a_three` prend un `'a` (tout type) nous pouvons passé
+Parce que `give_me_a_three` prend un `'a` (tout type) nous pouvons passer
 cette expression à la fonction :
 
 ```ocamltop
