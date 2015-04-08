@@ -8,7 +8,7 @@
 什么是函数式编程
 ----------------
 
-到现在我们已经讲了很多了，但还没有真正涉及到**函数式编程**.
+到现在我们已经讲了很多了，但还没有真正涉及到**函数式编程**。
 目前所讲的所有特性 - 丰富的数据类型（rich data types），
 模式匹配（pattern matching）， 类型推导（type inference），
 嵌套函数（nested functions） -
@@ -33,7 +33,7 @@ List.map double [ 1; 2; 3 ]
 (HOF)。高阶函数是指一个把其他函数作为参数之一的函数。
 
 到现在为止还算简单。如果你对C/C++熟悉的，这就象传递一个函数指针作为参数。Java中有匿名类(anonymous
-class)就象一个低速的闭包（closure）。如果你知道Perl那么你可以已经知道和使用了Perl中的闭包和Perl的`map`函数，这和我们现在所说的完全相同。事实上Perl很大程度上也是一个函数式语言。
+class)就象一个低速的闭包（closure）。如果你知道Perl那么你可能已经知道和使用了Perl中的闭包和Perl的`map`函数，这和我们现在所说的完全相同。事实上Perl很大程度上也是一个函数式语言。
 
 **闭包**是那些带着它们被定义时的环境的函数。特别的，一个闭包可以引用它定义时存在的变量。让我们把上面那个函数变得更通用一些，以便我们可以对任何整数列表乘以一个任意值`n`:
 
@@ -77,12 +77,12 @@ class html_skel obj = object (self)
 end
 ```
 
-首先你要知道的是方法最好调用的`save`函数的第二个参数是一个函数(`receiver_fn`)。它带着从widge获取的文字重复调用`receiver_fn`函数。
+首先你要知道的是方法最好调用的`save`函数的第二个参数是一个函数(`receiver_fn`)。它带着从widget获取的文字重复调用`receiver_fn`函数。
 
 现在来看`receiver_fn`的定义。这个函数是一个闭包，因为它含有一个引用,
 这个因用指向它的环境中的`chan`。
 
-## 部分函数应用（Partial function applications）和 currying
+## 部分函数应用（Partial function applications）和 currying（科里化）
 
 让我们定义一个加法函数用来相加两个整数。
 
@@ -145,10 +145,11 @@ let plus 2 b =       (* 这不是真正的OCaml代码！ *)
 plus 2 3 : int
 ```
 
-这个过程叫做**currying** (或者应该叫 **uncurrying**,
+这个过程叫做**currying（科里化）** (或者应该叫 **uncurrying（去科里化）**,
 我一直搞不清这两个定义).这个名字来源与Haskell Curry的与lambda
 calculus有关的重要发现。为了避免进入OCaml背后的数学世界而使这个教程变得过于繁琐，我将不会再进一步地说明这个主题。如果感兴趣，你可以从[用
-Google](http://www.google.com/search?q=currying "http://www.google.com/search?q=currying")来获得更多关于currying的信息。
+Google](http://www.google.com/search?q=currying "http://www.google.com/search?q=currying")
+（译注：国内的小伙伴们可能要自行百度了）来获得更多关于currying的信息。
 
 还记得开始时候我们的`double`和`multiply`函数吗？ `multiply`是这样定义的:
 
@@ -204,30 +205,16 @@ let list_of_functions = List.map plus [1; 2; 3];;
 ## 函数式编程的优点
 
 函数式编程，像其他任何优秀的编程技术一样，是你的工具箱中解决某些问题的利器。它使得callback函
-数变得非常方便，可以用于从GUI编程到场景驱动循环等多种场合。 Functional
-programming, like any good programming technique, is a useful tool in
-your armoury for solving some classes of problems. It's very good for
-callbacks, which have multiple uses from GUIs through to event-driven
-loops. It's great for expressing generic algorithms. `List.map` is
-really a generic algorithm for applying functions over any type of list.
-Similarly you can define generic functions over trees. Certain types of
-numerical problems can be solved more quickly with functional
-programming (for example, numerically calculating the derivative of a
-mathematical function).
+数变得非常方便，可以用于从GUI编程到事件驱动循环等多种场合。它也很适合编写通用算法。`List.map`
+就是一个把函数应用到链表中每个元素的通用算法。类似的，你也可以定义树的通用算法。另外，某些类型的
+数值运算可以用函数式编程更加迅速地解决（比方说求导）。
 
-## Pure and impure functional programming
+## 纯函数式和非纯函数式编程
 
-A **pure function** is one without any **side-effects**. A side-effect
-really means that the function keeps some sort of hidden state inside
-it. `strlen` is a good example of a pure function in C. If you call
-`strlen` with the same string, it always returns the same length. The
-output of `strlen` (the length) only depends on the inputs (the string)
-and nothing else. Many functions in C are, unfortunately, impure. For
-example, `malloc` - if you call it with the same number, it certainly
-won't return the same pointer to you. `malloc`, of course, relies on a
-huge amount of hidden internal state (objects allocated on the heap, the
-allocation method in use, grabbing pages from the operating system,
-etc.).
+一个**纯函数**是没有**副作用**的。副作用的意思是这个函数保留了某些隐藏的状态。`strlen`就是
+一个C的纯函数的例子。如果你调用`strlen`到相同的字符串，它总会返回相同的结果。`strlen`的输出
+只依赖于输入而没有任何其他。很多C的函数是非纯的。比方说`malloc`，显然它不会对相同的输入返回相同的结果。
+`malloc`内部有一个很大的数据结构记录状态。
 
 ML-derived languages like OCaml are "mostly pure". They allow
 side-effects through things like references and arrays, but by and large
