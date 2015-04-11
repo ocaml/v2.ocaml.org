@@ -21,7 +21,7 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 * [空指针(Null Pointers),断言(Asserts)和警告(Warnings)](null_pointers_asserts_and_warnings.zh.html)
 * [函数式编程](functional_programming.zh.html)
 * If语句，循环和递归 — [en](if_statements_loops_and_recursion.html)
-* 标签 — [en](labels.html)
+* [标签](labels.zh.html)
 * 常见的错误信息 - [en](common_error_messages.html)
 * OCaml编程风格 - [en](guidelines.html)
 * 文本的格式化和包装 - [en](format.html)
