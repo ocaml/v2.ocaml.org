@@ -119,6 +119,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/cloudfounders.png" alt="CloudFounders">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.cloudfounders.com">CloudFounders</a>, Belgium</h2>
+        <p>CloudFounders offers solutions for Data Center functionality. They use the Arakoon key/value store and have written an <a href="https://github.com/cloudfounders/kinetic-ocaml-client">OCaml client</a> for Seagate Kinetic devices. The <a href="http://www.openvstorage.com">Open vStorage Backend</a> is also written in OCaml.
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/coherent.png" alt="Coherent Graphics">
     </dt>
     <dd class="span5">
