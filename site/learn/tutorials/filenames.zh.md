@@ -28,7 +28,7 @@
 <td align="left">*.ml</td>
 </tr>
 <tr class="even">
-<td align="left">头文件^1^<sup>1</sup></td>
+<td align="left">头文件<sup>1</sup></td>
 <td align="left">*.h</td>
 <td align="left">*.mli</td>
 <td align="left">*.mli</td>

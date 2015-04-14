@@ -5,12 +5,11 @@
 
 **标准库示例**
 
-- [哈希表](hashtbl.html "Hashtbl")
-- [集合](set.html "Set")
-- [映射表](map.html "Map")
+- [哈希表](hashtbl.zh.html "Hashtbl")
+- [集合](set.zh.html "Set")
+- [映射表](map.zh.html "Map")
 
-参见： [Comparison of Standard
-Containers](comparison_of_standard_containers.html)
+参见： [标准容器的比较](comparison_of_standard_containers.zh.html)
 
 以stack为例
 
