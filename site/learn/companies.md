@@ -39,15 +39,6 @@
         <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>. This work was originally presented by Anil Madhavapeddy at CUFP 2008. See his <a href="http://cufp.org/archive/2008/abstracts.html#MadhavapeddyAnil">abstract</a> and <a href="http://cufp.org/archive/2008/slides/MadhavapeddyAnil.pdf">slides</a>.</p>
     </dd>
 </dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/acunu.png" alt="Acunu">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.acunu.com">Acunu</a>, United Kingdom</h2>
-        <p>Acunu is writing, from the ground-up, a Storage and Analytics Platform for Massive Data.</p>
-    </dd>
-</dl>
 
 <dl class="row">
     <dt class="span3">
