@@ -44,7 +44,7 @@
     <h1>{{! cmd script/translate ((! get filename !)) Contact !}}</h1>
     <ul>
       <li><a href="https://github.com/ocaml/ocaml.org/issues"
-	     target="_blank" >{{! cmd script/translate ((! get filename !)) Feedback !}}</a></li>
+	     target="_blank" >{{! cmd script/translate ((! get filename !)) Website Issues !}}</a></li>
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/about.html" !}}" >{{! cmd script/translate ((! get filename !)) "About This Site" !}}</a></li>
     <li><a href="https://github.com/ocaml/ocaml.org/"
 	   target="_blank" >{{! cmd script/translate ((! get filename !)) "Find Us on GitHub" !}}</a></li>
