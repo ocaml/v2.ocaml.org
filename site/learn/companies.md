@@ -431,7 +431,7 @@
         <img src="/img/users/skylable.png" alt="Skylable">
     </dt>
     <dd class="span5">
-        <h2><a href="http://skylable.com">Skylable</a>, Denmark</h2>
+        <h2><a href="http://skylable.com">Skylable</a>, United Kingdom</h2>
         <p>Skylable's mission is to build a fast, robust and cost-effective object-storage solution for the Open-Source community and Enterprises. Skylable used OCaml for their LibreS3 product — an open source replacement for the Amazon S3 service, implementing (a subset of) the S3 REST API. It is written in a monadic style, currently using Lwt and Ocsigenserver as implementations.</p>
     </dd>
 </dl>
