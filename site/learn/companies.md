@@ -383,6 +383,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/pegged.png" alt="Pegged Software">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.peggedsoftware.com">Pegged Software</a>, United States</h2>
+        <p>Pegged Software helps organizations hire the right people. We do that by applying big data and predictive analytics to the hiring process. This results in less turnover for our clients and less discrimination for individuals. We use OCaml for all of our backend development.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/prudent.jpg" alt="PRUDENT Technologies">
     </dt>
     <dd class="span5">
