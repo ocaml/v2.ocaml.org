@@ -15,7 +15,7 @@ can safely just ignore their existence, focusing on the semantic of its
 program.<br />
  For instance lists or trees are defined without explicit pointers using
 a concrete datatype definition. The underlying implementation uses
-pointers, but this is transparent to the programmer since pointer
+pointers, but this is hidden from the programmer since pointer
 handling is done by the compiler.
 
 In the rare occasions where explicit pointers are needed (the most
