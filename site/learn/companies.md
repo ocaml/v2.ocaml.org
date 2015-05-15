@@ -39,15 +39,6 @@
         <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>. This work was originally presented by Anil Madhavapeddy at CUFP 2008. See his <a href="http://cufp.org/archive/2008/abstracts.html#MadhavapeddyAnil">abstract</a> and <a href="http://cufp.org/archive/2008/slides/MadhavapeddyAnil.pdf">slides</a>.</p>
     </dd>
 </dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/acunu.png" alt="Acunu">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.acunu.com">Acunu</a>, United Kingdom</h2>
-        <p>Acunu is writing, from the ground-up, a Storage and Analytics Platform for Massive Data.</p>
-    </dd>
-</dl>
 
 <dl class="row">
     <dt class="span3">
@@ -392,6 +383,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/pegged.png" alt="Pegged Software">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.peggedsoftware.com">Pegged Software</a>, United States</h2>
+        <p>Pegged Software helps organizations hire the right people. We do that by applying big data and predictive analytics to the hiring process. This results in less turnover for our clients and less discrimination for individuals. We use OCaml for all of our backend development.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/prudent.jpg" alt="PRUDENT Technologies">
     </dt>
     <dd class="span5">
@@ -440,7 +440,7 @@
         <img src="/img/users/skylable.png" alt="Skylable">
     </dt>
     <dd class="span5">
-        <h2><a href="http://skylable.com">Skylable</a>, Denmark</h2>
+        <h2><a href="http://skylable.com">Skylable</a>, United Kingdom</h2>
         <p>Skylable's mission is to build a fast, robust and cost-effective object-storage solution for the Open-Source community and Enterprises. Skylable used OCaml for their LibreS3 product — an open source replacement for the Amazon S3 service, implementing (a subset of) the S3 REST API. It is written in a monadic style, currently using Lwt and Ocsigenserver as implementations.</p>
     </dd>
 </dl>
