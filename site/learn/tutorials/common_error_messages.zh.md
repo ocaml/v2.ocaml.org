@@ -1,34 +1,30 @@
-<!-- ((! set title Common Error Messages !)) ((! set learn !)) -->
+<!-- ((! set title 常见的错误信息 !)) ((! set learn !)) -->
 
 *Table of contents*
 
-# Common Error Messages
-This page gives a list of quick explanations for some error or warning
-messages that are emitted by the OCaml compilers. Longer explanations
-are usually given in dedicated sections of this tutorial.
+# 常见的错误信息
+这一章给大家一个关于OCaml编译器的一些错误或者警告信息的简要解释。详尽解释在本教程的
+相应章节可以找到。
 
-## Type errors
+## 类型错误
 ###  This expression has type ... but is here used with type ...
-When the type of an object is not compatible with the context in which
-it is used, it is frequent to obtain this kind of message:
+当一个对象的类型与上下文要求的不匹配，你就会看到这个信息：
 
 ```ocamltop
 1 + 2.5;;
 ```
-"This expression has type *X* but is here used with type *Y*" means that
-if the contents of the expression is isolated (2.5), its type is
-inferred as *X* (float). But the context, i.e. everything which is
-around (1 + ...) tells that the gap expects an expression of type *Y*
-(int) which is not compatible with *X*.
 
-More disturbing is the following message:
+"This expression has type *X* but is here used with type *Y*" 的意思是
+如果一个表达式的内容是隔离的 (2.5)，那么它的类型可以推导成 *X* (float)。但是上下文
+告诉我们 (1 + ...) 应该是类型 *Y*
+(int) 的，因而与 *X* 不匹配。
 
+下面的信息更加糟糕：
 ```text
 This expression has type my_type but is here used with type my_type
 ```
-This error happens often while testing some type definitions using the
-toplevel. In OCaml, it is perfectly legal to define a type with a name
-that is already taken by another type. Consider the following session:
+这个错误往往发生在一些toplevel中的类型定义上。在OCaml，重新定义一个已经存在的类型
+是完全合法的。看看下面这个会话：
 
 ```ocamltop
 type my_type = A | B;;
@@ -37,82 +33,71 @@ type my_type = A | B;;
 let b = B;;
 a = b;;
 ```
-For the compiler, the second definition of my_type is totally
-independent from the first definition. So we have defined two types
-which have the same name. Since "a" was defined earlier, it belongs to
-the first type while "b" belongs to the second type. In this example,
-redefining "a" after the last definition of my_type solves the problem.
-This kind of problem should not happen in real programs unless you use
-the same name for the same type in the same module, which is highly
-discouraged.
+对于编译器来说第二个定义是完全独立于第一个的。所以我们是定义了两个相同名称的类型。
+由于`a`在早前就定义了，因此它是属于第一个类型。但`b`是属于第二个。在这个例子中，可以
+重新定义`a`使得它是属于第二个类型的。这个错误是不应该在实际编程中碰到的，除非你在
+同一个模块用同一个名字定义不同类型，这显然是自找麻烦。
 
-###  Warning: This optional argument cannot be erased
-Functions with optional arguments must have at least one non-labelled
-argument. For instance, this is not OK:
+###  警告: This optional argument cannot be erased
+带可选参数的函数至少有一个未标签的参数。下面这个例子是有警告的：
 
 ```ocamltop
 let f ?(x = 0) ?(y = 0) = print_int (x + y)
 ```
-The solution is simply to add one argument of type unit, like this:
+这个警告只要在最后加上`unit`就可以解决：
 
 ```ocamltop
 let f ?(x = 0) ?(y = 0) () = print_int (x + y);;
 ```
-See the [Labels](labels.html "Labels") section for more details on
-functions with labelled arguments.
+更多关于标签化参数请参见 [标签](labels.zh.html "标签") 一章。
 
 ###  The type of this expression... contains type variables that cannot be generalized
-This happens in some cases when the full type of an object is not known
-by the compiler when it reaches the end of the compilation unit (file)
-but for some reason it cannot remain polymorphic. Example:
+当某些情况下，编译器在到了编译单元（文件）结尾时，也无法得知类型的整个定义，并且也无法
+是多态时，这个警告会产生：
 
 ```ocamltop
 let x = ref None
 ```
-triggers the following message during the compilation:
+这会引起下面的编译信息：
 
 ```text
 The type of this expression, '_a option ref,
 contains type variables that cannot be generalized
 ```
-Solution: help the compiler with a type annotation, like for instance:
+解决方案：直接告诉编译器你的变量类型：
 
 ```ocamltop
 let x : string option ref = ref None
 ```
-or:
+或者：
 
 ```ocamltop
 let x = ref (None : string option)
 ```
-Data of type `'_a` may be allowed temporarily, for instance during a
-toplevel session. It means that the given object has an unknown type,
-but it cannot be any type: it is not polymorphic data. In the toplevel,
-our example gives these results:
+`'_a`的数据类型在toplevel有可能会暂时被允许。它代表这是某个类型，但它
+不是所有类型，它不是多态的（译注：也就是说它不是真的多态的，只是toplevel中的一个占位表示而已）。
+在toplevel，我们的例子有下面的结果：
 
 ```ocamltop
 let x = ref None
 ```
-The compiler tells us that the type of x is not fully known yet. But by
-using `x` later, the compiler can infer the type of `x`:
+编译器告诉我们`x`的类型还不完全知道，但是随着`x`的使用，编译器可以推导出它的类型：
 
 ```ocamltop
 x := Some 0
 ```
-Now `x` has a known type:
+现在 `x` 的类型是已知的：
 
 ```ocamltop
 x;;
 ```
-More details are given in the [OCaml
-FAQ](http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles "http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles").
+更多细节在 [OCaml
+FAQ](http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles "http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles")。
 
-## Pattern matching warnings and errors
+## 模式匹配警告和错误
 ###  This pattern is unused
-This warning should be considered as an error, since there is no reason
-to intentionally keep such code. It may happen when the programmer
-introduced a catch-all pattern unintentionally such as in the following
-situation:
+这个警告其实是一个错误，因为这种代码没理由存在。这当程序员粗心地引入一个匹配所有的模式
+是会产生，如下：
 
 ```ocamltop
 let test_member x tup =
@@ -120,19 +105,13 @@ let test_member x tup =
   | (y, _) | (_, y) when y = x -> true
   | _ -> false;;
 ```
-Obviously, the programmer had a misconception of what OCaml's pattern
-matching is about. Remember the following:
+显然，这里程序员完全曲解了OCaml的模式匹配。记住以下几点：
 
-* the tree of cases is traversed linearly, from left to right. There
- is *no backtracking* as in regexp matching.
-* a guard ("when" clause) is not part of a pattern. It is simply a
- condition which is evaluated at most once and is used as a last
- resort to jump to the next match case.
-* lowercase identifiers (bindings such as "y" above) are just names,
- so they will always match.
+* 模式匹配的遍历是线性的，由上至下，从左到右。回溯是*根本不存在*的。
+* 一个guard 不是模式的一部分。它只是一个条件语句，并且最多使用一次。它只是让你跳到下一个模式的一个手段。
+* 小写的名字只是名字，它们会匹配任何东西的。
 
-In our example, it is now clear that only the first item of the pair
-will ever be tested. This leads to the following results:
+在我们的例子中，显然只有第一个模式才被匹配，这导致下面的结果：
 
 ```ocamltop
 test_member 1 (1, 0);;
