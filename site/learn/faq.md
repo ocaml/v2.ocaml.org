@@ -6,6 +6,71 @@ which is widely used by the OCaml community.
 
 *Table of contents*
 
+## General Questions
+#### What is OCaml?
+
+OCaml is a programming language. It is a functional language, since the
+basic units of programs are functions. It is a strongly-typed language;
+it means that the objects that you use belong to a set that has a name,
+called its type. In OCaml, types are managed by the computer, the user
+has nothing to do about types (types are synthesized). The language is
+available on almost every Unix platform (including Linux and MacOS X)
+and on PCs under Windows. A brief tour on main
+[features](description.html) of OCaml.
+
+#### Under what licensing terms is the OCaml software available?
+
+The OCaml system is open source software: the compiler is distributed
+under the terms of the Q Public License, and its library is under LGPL;
+please read the [license](/docs/license.html) document for more details. A
+BSD-style license is also available for a fee through the [OCaml
+Consortium](/community/support.html#consortium).
+
+#### What is the meaning of the name “OCaml”
+
+CAML once was an acronym that stood for “Categorical Abstract Machine
+Language”, an abstract machine its early versions targeted. The evaluation model
+has changed since then, but the name stuck.
+
+The “O” stands for “objective” and was added when the language got object-oriented
+programming capabilities.
+
+#### Do you write “Caml” or “CAML”, “OCaml”, “Ocaml” or “OCAML”?
+
+We write OCaml.
+According to usual rules for acronyms, we should write CAML, as we
+write USA. On the other hand, this upper case name seems to yell all
+over the place, and writing OCaml is far more pretty and elegant — with
+“O” and “C” capitalized.
+
+#### Is OCaml a compiled or interpreted language?
+
+OCaml is compiled. However, the OCaml compiler offers a top-level
+interactive loop, that is similar to an interpreter. In fact, in the
+interactive system, the user may type in program chunks (we call these
+pieces OCaml “phrases”) that the system handles at once, compiling them,
+executing them, and writing their results.
+
+#### What are the differences between Caml V3.1, Caml Light, and OCaml?
+
+These are different Caml implementations that have been developed
+successively at Inria. These systems share many features since they all
+implement the core of the OCaml language; so the basic syntax is nearly
+the same. However, all these systems have their own extensions to the
+Caml core language.<br />
+Caml V3.1 is no longer maintained nor distributed. [Caml
+Light](../caml-light/) is no longer developed, but still maintained.
+Because of its stable status, it is actively used in education. Most
+other users have switched to OCaml, the latest variant of the language.
+This is the version we suggest using in new software developments. See
+our brief [history](history.html) of the OCaml language.
+
+#### How to report a bug in the compilers?
+
+Use the [bug tracking system](http://caml.inria.fr/mantis/) to browse
+bug reports and features request, and submit new ones.
+
+
 ## Core Language
 * * *
 
@@ -526,75 +591,6 @@ functions from the `format` module, it is considered good programming
 habit to open `format` globally in order to completely mask low level
 printing functions by the high level printing functions provided by
 `format`.
-
-## General Questions
-#### What is OCaml?
-
-OCaml is a programming language. It is a functional language, since the
-basic units of programs are functions. It is a strongly-typed language;
-it means that the objects that you use belong to a set that has a name,
-called its type. In OCaml, types are managed by the computer, the user
-has nothing to do about types (types are synthesized). The language is
-available on almost every Unix platform (including Linux and MacOS X)
-and on PCs under Windows. A brief tour on main
-[features](description.html) of OCaml.
-
-#### Under what licensing terms is the OCaml software available?
-
-The OCaml system is open source software: the compiler is distributed
-under the terms of the Q Public License, and its library is under LGPL;
-please read the [license](/docs/license.html) document for more details. A
-BSD-style license is also available for a fee through the [OCaml
-Consortium](/community/support.html#consortium).
-
-#### What is the meaning of the name “OCaml”
-
-“Caml” is an acronym: it stands for “Categorical Abstract Machine
-Language”. The “Categorical Abstract Machine” is an abstract machine to
-define and execute functions. It is issued from theoretical
-considerations on the relationship between category theory and
-lambda-calculus. The first Caml compiler produced code for this abstract
-machine (in 1984). The “O” stands for “Objective” and was added after
-object oriented features were available in the language.<br />
- In addition, OCaml is issued from the ML programming language, designed
-by Robin Milner in 1978, and used as the programming language to write
-the “proof tactics” in the LCF proof system.
-
-#### Do you write “Caml” or “CAML”, “OCaml”, “Ocaml” or “OCAML”?
-
-We write OCaml.
-According to usual rules for acronyms, we should write CAML, as we
-write USA. On the other hand, this upper case name seems to yell all
-over the place, and writing OCaml is far more pretty and elegant — with
-“O” and “C” capitalized.
-
-#### Is OCaml a compiled or interpreted language?
-
-OCaml is compiled. However each OCaml compiler offers a top-level
-interactive loop, that is similar to an interpreter. In fact, in the
-interactive system, the user may type in program chunks (we call these
-pieces OCaml “phrases”) that the system handles at once, compiling them,
-executing them, and writing their results.
-
-#### What are the differences between Caml V3.1, Caml Light, and OCaml?
-
-These are different Caml implementations that have been developed
-successively at Inria. These systems share many features since they all
-implement the core of the OCaml language; so the basic syntax is nearly
-the same. However, all these systems have their own extensions to the
-Caml core language.<br />
- Caml V3.1 is no longer maintained nor distributed. [Caml
-Light](../caml-light/) is no longer developed, but still maintained.
-Because of its stable status, it is actively used in education. Most
-other users have switched to OCaml, the latest variant of the language.
-This is the version we suggest using in new software developments. See
-our brief [history](history.html) of the OCaml language.
-
-#### How to report a bug in the compilers?
-
-Use the [bug tracking system](http://caml.inria.fr/mantis/) to browse
-bug reports and features request, and submit new ones.
-
 
 ## Module Language
 
