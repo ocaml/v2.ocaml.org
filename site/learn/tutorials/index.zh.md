@@ -30,7 +30,7 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 
 ((! get second_of_two_columns !))
 
-* 对象 — [en](objects.html)
+* [对象](objects.zh.html)
 * Gtk介绍 — [en](introduction_to_gtk.html)
 * 垃圾收集 — [en](garbage_collection.html)
 * 性能和分析（Profiling） — [en](performance_and_profiling.html)
