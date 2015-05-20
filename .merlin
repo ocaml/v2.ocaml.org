@@ -2,5 +2,6 @@ PKG netstring
 PKG netclient
 PKG syndic
 PKG uri
+PKG omd
 S script
 B script
