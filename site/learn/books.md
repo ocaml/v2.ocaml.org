@@ -66,7 +66,7 @@ and hints.
 ****
 
 ###  More OCaml: Algorithms, Methods & Diversions
-<img src="/img/OCaml_from_beginning.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/more-ocaml-300-376.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
 *John Whitington*
 
