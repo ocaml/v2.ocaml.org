@@ -383,6 +383,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/parkandeaton.png" alt="Park and Eaton">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://parkandeaton.com">Park and Eaton</a>, United States</h2>
+        <p>Park and Eaton is a marketing and software consultant firm in Philadelphia. Offering a number of solutions including QA and security testing; redesigns for scalability and maintainability; and hardware options like digital signage, Park and Eaton specializes in OCaml web and desktop services.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/pegged.png" alt="Pegged Software">
     </dt>
     <dd class="span5">
