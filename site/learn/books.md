@@ -227,7 +227,7 @@ runtime, interoperating with C, and pearls.
 ###  Apprendre à programmer avec OCaml
 <img src="img/apprendre_ocaml_cover.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*Jean-Christophe Fillâtre and Sylvain Conchon<br />
+*Jean-Christophe Filliâtre and Sylvain Conchon<br />
  Éditions Eyrolles, Paris, 2014, ISBN 2-21213-678-1.*
 
 Computer programming is hard to learn. Being a skillful programmer
