@@ -23,7 +23,7 @@ automatically.
 In this section, we will first see how to compile a simple program using
 only ocamlc or ocamlopt. Then we will see how to use libraries and how
 to take advantage of the
-[findlib](http://www.camlcity.org/archive/programming/findlib.html)
+[findlib](http://projects.camlcity.org/projects/findlib.html)
 system, which provides the `ocamlfind` command.
 
 ###  `ocamlc` and `ocamlopt`
@@ -143,3 +143,4 @@ necessary. See next section.
 
 - [GNU make](compiling_with_gnu_make.html)
 - [OMake](compiling_with_omake.html)
+- [Oasis](setting_up_with_oasis.html)
