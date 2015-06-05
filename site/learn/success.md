@@ -60,9 +60,9 @@ projects in having been *translated* from Java to OCaml midway through
 its development. Moving to OCaml was like a breath of fresh air.”
 
 ## The MLdonkey peer-to-peer client
-[<img src='http://caml.inria.fr/about/successes-images/mldonkey-thumb.jpg'
+[<img src='/img/mldonkey-thumb.jpg'
 style='float: left; margin-right: 10px'
-alt='Screenshot'  title='Screenshot of one of MLdonkey&#39;s windows' />](http://caml.inria.fr/about/successes-images/mldonkey.jpg)
+alt='Screenshot'  title='Screenshot of one of MLdonkey&#39;s windows' />](/img/mldonkey.jpg)
 
 [MLdonkey](http://mldonkey.sourceforge.net/Main_Page) is a
 multi-platform multi-networks peer-to-peer client. It was the first
@@ -85,9 +85,9 @@ remotely using a choice of three different kinds of interfaces: GTK, web
 and telnet.”
 
 ## LexiFi's Modeling Language for Finance
-[<img src='http://caml.inria.fr/about/successes-images/lexifi-thumb.png'
+[<img src='/img/lexifi-thumb.png'
 style='float: left; margin-right: 10px'
-alt='Screenshot'  title='A report produced by LexiFi software' />](http://caml.inria.fr/about/successes-images/lexifi.png)
+alt='Screenshot'  title='A report produced by LexiFi software' />](/img/lexifi.png)
 
 Developed by the company [LexiFi](http://www.lexifi.com/), the Modeling
 Language for Finance (MLFi) is the first formal language that accurately
@@ -120,9 +120,9 @@ are gaining growing acceptance throughout Europe and are contributing to
 spread the use of OCaml in the financial services industry.
 
 ## The Coq Proof Assistant
-[<img src='http://caml.inria.fr/about/successes-images/coq-thumb.jpg'
+[<img src='/img/coq-thumb.jpg'
 style='float: left; margin-right: 10px'
-alt='Screenshot'  title='Screenshot of Coq&#39;s integrated development environment' />](http://caml.inria.fr/about/successes-images/coq.jpg)
+alt='Screenshot'  title='Screenshot of Coq&#39;s integrated development environment' />](/img/coq.jpg)
 
 *[Jean-Christophe Filliâtre](https://www.lri.fr/~filliatr/) (CNRS), a
 Coq developer, says:* “The [Coq](http://coq.inria.fr/) tool is a system
@@ -143,7 +143,7 @@ execution, which is indispensable for a tool whose primary goal is
 precisely rigor.”
 
 ## The ASTRÉE Static Analyzer
-[<img src='http://caml.inria.fr/about/successes-images/astree.gif' alt='A340'
+[<img src='/img/astree.gif' alt='A340'
 style='float: left; margin-right: 10px'
 title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](http://www.airbus.com/)
 
