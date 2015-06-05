@@ -4,7 +4,7 @@
 *Table of contents*
 
 ## Jane Street
-[<img src='/img/jane-street.jpg' alt='Jane Street'
+[<img src='/img/users/jane-street.jpg' alt='Jane Street'
 style='float: left; margin-right: 10px' />](http://janestreet.com/technology/)
 
 Jane Street is a proprietary trading firm that uses OCaml as its primary
