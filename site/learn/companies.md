@@ -39,15 +39,6 @@
         <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>. This work was originally presented by Anil Madhavapeddy at CUFP 2008. See his <a href="http://cufp.org/archive/2008/abstracts.html#MadhavapeddyAnil">abstract</a> and <a href="http://cufp.org/archive/2008/slides/MadhavapeddyAnil.pdf">slides</a>.</p>
     </dd>
 </dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/acunu.png" alt="Acunu">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.acunu.com">Acunu</a>, United Kingdom</h2>
-        <p>Acunu is writing, from the ground-up, a Storage and Analytics Platform for Massive Data.</p>
-    </dd>
-</dl>
 
 <dl class="row">
     <dt class="span3">
@@ -55,18 +46,11 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://ahrefs.com">Ahrefs</a>, Singapore</h2>
-        <p>Ahrefs is a multinational team with roots from Ukraine and
-        headquarters in Singapore. Ahrefs history dates back to 2011
-        when our first version of Site Explorer was introduced to
-        public after one year of thorough preparation and data
-        mining. With the launch of Site Explorer, Ahrefs stirred the
-        stagnant field of backlink analysis and kick-started a new
-        round of competition among SEO tool providers back then and
-        quickly became one of the world 's best backlink analysis
-        tools. Today, our index is updated with freshest backlinks
-        found on the web every 15 minutes, and the crawler processes
-        up to 6 billion pages a day. Hard to believe – it is only
-        three times less than what Googlebot does!</p>
+        <p>Ahrefs develops custom distributed petabyte-scale storage and runs an internet-wide
+        crawler to collect the index of the whole Web. On top of that the company is building
+        various analytical services for end-users. OCaml is the main language of the Ahrefs backend,
+        which is currently processing up to 6 billion pages a day.
+        Ahrefs is a multinational team with roots from Ukraine and headquarters in Singapore.</p>
     </dd>
 </dl>
 
@@ -122,6 +106,15 @@
     <dd class="span5">
         <h2><a href="http://www.cea.fr">CEA</a>, France</h2>
         <p>CEA is a French state company, member of the OCaml Consortium. It uses OCaml mainly to develop a platform dedicated to source-code analysis of C software, called <a href="http://frama-c.com">Frama-C</a>.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/cloudfounders.png" alt="CloudFounders">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.cloudfounders.com">CloudFounders</a>, Belgium</h2>
+        <p>CloudFounders offers solutions for Data Center functionality. They use the Arakoon key/value store and have written an <a href="https://github.com/cloudfounders/kinetic-ocaml-client">OCaml client</a> for Seagate Kinetic devices. The <a href="http://www.openvstorage.com">Open vStorage Backend</a> is also written in OCaml.
     </dd>
 </dl>
 <dl class="row">
@@ -390,6 +383,24 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/parkandeaton.png" alt="Park and Eaton">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://parkandeaton.com">Park and Eaton</a>, United States</h2>
+        <p>Park and Eaton is a marketing and software consultant firm in Philadelphia. Offering a number of solutions including QA and security testing; redesigns for scalability and maintainability; and hardware options like digital signage, Park and Eaton specializes in OCaml web and desktop services.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/pegged.png" alt="Pegged Software">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.peggedsoftware.com">Pegged Software</a>, United States</h2>
+        <p>Pegged Software helps organizations hire the right people. We do that by applying big data and predictive analytics to the hiring process. This results in less turnover for our clients and less discrimination for individuals. We use OCaml for all of our backend development.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/prudent.jpg" alt="PRUDENT Technologies">
     </dt>
     <dd class="span5">
@@ -438,7 +449,7 @@
         <img src="/img/users/skylable.png" alt="Skylable">
     </dt>
     <dd class="span5">
-        <h2><a href="http://skylable.com">Skylable</a>, Denmark</h2>
+        <h2><a href="http://skylable.com">Skylable</a>, United Kingdom</h2>
         <p>Skylable's mission is to build a fast, robust and cost-effective object-storage solution for the Open-Source community and Enterprises. Skylable used OCaml for their LibreS3 product — an open source replacement for the Amazon S3 service, implementing (a subset of) the S3 REST API. It is written in a monadic style, currently using Lwt and Ocsigenserver as implementations.</p>
     </dd>
 </dl>

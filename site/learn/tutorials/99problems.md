@@ -1426,7 +1426,7 @@ SOLUTION
 > ```
 
 Now, we can attack the main problem: construct all the height-balanced
-binary trees with a given nuber of nodes. `hbal_tree_nodes n` returns a
+binary trees with a given number of nodes. `hbal_tree_nodes n` returns a
 list of all height-balanced binary tree with `n` nodes.
 
 Find out how many height-balanced trees exist for `n = 15`.

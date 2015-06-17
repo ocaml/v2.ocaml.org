@@ -63,14 +63,15 @@
     <div class="row">
         <section class="span4 condensed">
             <h1 class="ruled">Support</h1>
-            <p>Besides the above <a href="/community/mailing_lists.html">mailing lists</a>, you
-            can ask questions on the OCaml IRC channels
-            (<a href="irc://irc.freenode.net/ocaml">en</a
-                       >, <a href="irc://irc.freenode.net/ocaml-fr">fr</a>).</p>
-
-            <p>Or see the <a href="support.html">Professional support</a> providers.</p>
+            <p>See the <a href="/community/mailing_lists.html">mailing lists</a> page for a complete list of support channels. <a href="support.html">Commercial support</a> is also available.</p>
 
             <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html#GivingSupport">Find out more</a>.</p>
+
+            <p>Suggestions or bug reports about the OCaml language
+            itself can be posted to the <a
+            href="http://caml.inria.fr/mantis/my_view_page.php">Mantis
+            Bug Tracker</a>.</p>
+
         </section>
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/">Meetings</a></h1>
@@ -78,10 +79,10 @@
               <li class="announcement">
                 <article>
                   <h1><a title="OCaml Users and Developers Workshop"
-                         href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
-                  <p>September 5, 2014</p>
+                         href="/meetings/ocaml/2015/">OCaml 2015</a></h1>
+                  <p>September 4, 2015</p>
                   <a title="OCaml Users and Developers Workshop"
-                     href="/meetings/ocaml/2014/">
+                     href="/meetings/ocaml/2015/">
                     <img alt="" src="/img/announcement.svg" class="svg" />
                     <img alt="" src="/img/announcement.png" class="png" />
 				  </a>

@@ -9,7 +9,7 @@ CUFP|http://cufp.org/blog/all.rss.xml
 Cameleon news|http://www.blogger.com/feeds/7617521785419311079/posts/default
 Caml INRIA|http://caml.inria.fr/news.en.rss
 Caml Spotting|http://camlspotter.blogspot.com/feeds/posts/default?alt=rss
-Caml Weekly News|http://alan.petitepomme.net/cwn/cwn.rss
+OCaml Weekly News|http://alan.petitepomme.net/cwn/cwn.rss
 Cedeela|http://cedeela.fr/feeds/ocaml.atom.xml
 Coherent Graphics|http://coherentpdf.com/blog/?tag=ocaml&feed=rss2
 Coq|http://coq.inria.fr/news/feed
@@ -34,9 +34,11 @@ Incubaid Research|http://blog.incubaid.com/tag/ocaml/feed/
 Jake Donham|http://ambassadortothecomputers.blogspot.com/feeds/posts/default?alt=rss
 Jamie Brandon|http://scattered-thoughts.net/blog/categories/ocaml/atom.xml
 Jane Street|https://blogs.janestreet.com/category/ocaml/feed/atom/
+KC Sivaramakrishnan|http://kcsrk.info/atom-ocaml.xml
 Leo White|http://lpw25.net/rss.xml
 LexiFi|http://www.lexifi.com/blogs/ocaml/feed
 Mads Hartmann|http://mads379.github.io/feed.ocaml.xml
+Magnus Skjegstad|http://www.skjegstad.com/feeds/ocaml.tag.atom.xml
 Marc Simpson|http://newblog.0branch.com/rss.xml
 Matthias Puech|http://syntaxexclamation.wordpress.com/tag/ocaml/feed/
 Matías Giovannini|http://www.blogger.com/feeds/5888658295182480819/posts/default
@@ -64,7 +66,7 @@ Psellos|http://psellos.com/atom.xml
 Richard Jones|http://rwmj.wordpress.com/tag/ocaml/feed/
 Rudi Grinberg|http://rgrinberg.com/atom.xml
 Sebastien Mondet|http://seb.mondet.org/blog/feed/ocaml.rss
-Shayne Fletcher|http://www.blogger.com/feeds/5012565255225108517/posts/default/-/OCaml
+Shayne Fletcher|http://blog.shaynefletcher.org/feeds/posts/default/-/OCaml
 Stefano Zacchiroli|http://upsilon.cc/~zack/tags/ocaml/index.rss
 Sylvain Le Gall|http://le-gall.net/sylvain+violaine/blog/index.php?feed/tag/ocaml/atom
 The Caml Humps|http://caml.inria.fr/hump.rss

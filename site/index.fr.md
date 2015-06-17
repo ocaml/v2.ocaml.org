@@ -31,18 +31,18 @@
                     <p>Une <a href="/learn/description.html">description d'OCaml</a>, ses <a href="/learn/success.fr.html">utilisateurs</a>, des <a href="learn/taste.fr.html">exemples de code</a>, des <a href="/learn/tutorials/">tutoriaux à lire</a> et <a href="/learn/index.fr.html">bien plus</a>.</p>
                 </section>
                 <section class="span4 home-feature">
-                    <a href="/docs/">
+                    <a href="/docs/index.fr.html">
                         <img src="/img/documentation-large.svg"
 						 alt="Documentation" class="svg">
                         <img src="/img/documentation-large.png"
 						 alt="Documentation" class="png">
                     </a>
-                    <h1><a href="/docs/">Documentation</a></h1>
+                    <h1><a href="/docs/index.fr.html">Documentation</a></h1>
                     <p><a href="docs/install.fr.html" >Installer</a> OCaml,
 					trouver des <a href="https://opam.ocaml.org/packages/">docs de paquets</a>, accéder au
 					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
 					target="_blank"
-					>Manuel</a>, obtenir <a href="/docs/cheat_sheets.html">des mémentos</a> et <a href="/docs/">bien plus</a>.</p>
+					>Manuel</a>, obtenir <a href="/docs/cheat_sheets.html">des mémentos</a> et <a href="/docs/index.fr.html">bien plus</a>.</p>
                 </section>
             </div>
             <div class="row">
@@ -58,17 +58,17 @@
 					<a href="https://opam.ocaml.org/packages/">centaines de paquets</a>.</p>
                 </section>
                 <section class="span4 home-feature">
-                    <a href="/community/">
+                    <a href="/community/index.fr.html">
                         <img src="/img/community-large.svg"
 						 alt="Communauté" class="svg">
                         <img src="/img/community-large.png"
 						 alt="Communauté" class="png">
                     </a>
-                    <h1><a href="/community/">Communauté</a></h1>
+                    <h1><a href="/community/index.fr.html">Communauté</a></h1>
                     <p>Lire <a href="/community/planet/">les fils de news</a>,  <a href="/community/mailing_lists.fr.html">discuter et échanger</a>, obtenir <a href="/community/support.fr.html">du support</a>,
                     <a href="/meetings/index.fr.html" >rencontrer</a>
                     d'autres utilisateurs
-                    et trouver <a href="/community/#ocaml-around-web">OCaml sur le web</a>.</p>
+                    et trouver <a href="/community/index.fr.html#ocaml-around-web">OCaml sur le web</a>.</p>
                 </section>
             </div>
             <div id="home-learn">
@@ -93,10 +93,10 @@
 			<ul class="news-feed" style="margin-bottom: 0px">
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
-			       href="/meetings/ocaml/2014/">OCaml 2014</a></h1>
-			  <p>5 septembre 2014</p>
+			       href="/meetings/ocaml/2015/">OCaml 2015</a></h1>
+			  <p>4 septembre 2015</p>
 			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2014/">
+			     href="/meetings/ocaml/2015/">
 			    <img alt="" src="/img/announcement.png" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>

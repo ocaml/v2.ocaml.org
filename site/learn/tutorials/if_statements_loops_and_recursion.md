@@ -501,14 +501,16 @@ understanding the `End_of_file` exception thrown in the code above by
 accumulates the contents of the file, and when we hit the end of the
 file we return it (`Buffer.contents buf`).
 
-One curious point about this is the apparently superfluous extra set of
-quotes (`""`) just after the while loop. What are they for? Remember
+One curious point about this is the apparently superfluous statement
+(`assert false`) just after the while loop. What is it for?  Remember
 that while loops, like for loops, are just expressions, and they return
 the `unit` object (`()`). However OCaml demands that the return type
 inside a `try` matches the return type of each caught exception. In this
 case because `End_of_file` results in a `string`, the main body of the
-`try` must also "return" a string - even though because of the infinite
-while loop the string could never actually be returned.
+`try` must also "return" a string — even though because of the infinite
+while loop the string could never actually be returned.  `assert false`
+has a polymorphic type, so will unify with whatever value is returned
+by the `with` branch.
 
 Here's our recursive version. Notice that it's *shorter* than approach
 2, but not so easy to understand for imperative programmers at least:

@@ -8,9 +8,9 @@ OCaml Users and Developers Workshop
 * [OCaml 2014](ocaml/2014/):
   Gothenburg (Sweden), September 5, colocated with ICFP 2014.
 * [OCaml 2013](ocaml/2013/):
-  Boston (MA, USA), September 24, Colocated with ICFP 2013.
-* [OUD 2012](http://oud.ocaml.org/2012/): colocated with ICFP in
-  Copenhagen (Denmark).
+  Boston (MA, USA), September 24, colocated with ICFP 2013.
+* [OUD 2012](ocaml/2012/):
+  Copenhagen (Denmark), September 14th, colocated with ICFP 2012.
 
 OCaml Meetings
 ==============
