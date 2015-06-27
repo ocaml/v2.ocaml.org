@@ -37,7 +37,7 @@ unique parmi les projets de grande taille écrits en OCaml, d'avoir été
 L'adoption d'OCaml a été comme une bouffée d'air pur. »
 
 ## Le client pair-à-pair MLdonkey
-[<img src='http://caml.inria.fr/about/successes-images/mldonkey-thumb.jpg' alt='Screenshot'  title='Screenshot of one of MLdonkey&#39;s windows' />](http://caml.inria.fr/about/successes-images/mldonkey.jpg)
+[<img src='/img/mldonkey-thumb.jpg' alt='Screenshot'  title='Screenshot of one of MLdonkey&#39;s windows' />](/img/mldonkey.jpg)
 
 [MLdonkey](http://mldonkey.sourceforge.net/Main_Page) est un client
 pair-à-pair multi-plateformes et multi-réseaux. Il a été le premier
@@ -61,7 +61,7 @@ tâche de fond et sans surveillance humaine, et peut être contrôlé à
 l'aide d'une interface au choix parmi trois : GTK, web et telnet. »
 
 ## Le Langage de Modélisation Financière de LexiFi
-[<img src='http://caml.inria.fr/about/successes-images/lexifi-thumb.png' alt='Screenshot'  title='A report produced by LexiFi software' />](http://caml.inria.fr/about/successes-images/lexifi.png)
+[<img src='/img/lexifi-thumb.png' alt='Screenshot'  title='A report produced by LexiFi software' />](/img/lexifi.png)
 
 Développé par la société [LexiFi](http://www.lexifi.com/), le Langage de
 Modélisation Financière (MLFi) est le premier langage formel capable de
@@ -117,7 +117,7 @@ l'environnement d'exécution sont les principales raisons de notre
 intérêt pour OCaml. »
 
 ## L'assistant de preuve Coq
-[<img src='http://caml.inria.fr/about/successes-images/coq-thumb.jpg' alt='Screenshot'  title='Screenshot of Coq&#39;s integrated development environment' />](http://caml.inria.fr/about/successes-images/coq.jpg)
+[<img src='/img/coq-thumb.jpg' alt='Screenshot'  title='Screenshot of Coq&#39;s integrated development environment' />](/img/coq.jpg)
 
 *[Jean-Christophe Filliâtre](http://www.lri.fr/%7Efilliatr/) (CNRS), un
 des développeurs de Coq :* « L'outil [Coq](http://coq.inria.fr/) est un
@@ -138,7 +138,7 @@ fault »), ce qui est indispensable à un outil dont le but premier est
 justement la rigueur. »
 
 ## L'analyseur statique ASTRÉE
-[<img src='http://caml.inria.fr/about/successes-images/astree.gif' alt='A340'  title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](http://www.airbus.com/product/a330_a340_backgrounder.asp)
+[<img src='/img/astree.gif' alt='A340'  title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](http://www.airbus.com/product/a330_a340_backgrounder.asp)
 
 *[David Monniaux](http://www-verimag.imag.fr/~monniaux/) (CNRS), membre
 du projet ASTRÉE :* « [ASTRÉE](http://www.astree.ens.fr/) est un

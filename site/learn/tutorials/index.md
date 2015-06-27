@@ -88,11 +88,6 @@ tracker there to request or offer new tutorials. Thanks!
  computation](http://www.southampton.ac.uk/~fangohr/software/ocamltutorial/)
  (by Thomas Fiscbacher), covers a broad sample of OCaml, from the
  basics to the C api.
-* [A Concise Introduction to
- OCaml](http://www.csc.villanova.edu/~dmatusze/resources/ocaml/ocaml.html)
- (by David Matuszek) gives a concise, yet broad, overview of the
- language and the standard library. It is rather old but most of what
- it says remains valid.
 
 ###  WikiBooks on OCaml
 
@@ -110,9 +105,6 @@ tools and libraries.
 * [Camlp4
  Tutorial](http://ambassadortothecomputers.blogspot.com/p/reading-camlp4.html)
  (by Jake Donham), to build syntax extensions for OCaml with Camlp4.
-* [Camlp4
- Tutorial](http://brion.inria.fr/gallium/index.php/Syntax_extension_tutorial),
- to build syntax extensions for OCaml with Camlp4.
 * [OCamllex
  Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamllex-tutorial/)
  (by SooHyoung Oh), on how to create lexers using the `ocamllex` tool
@@ -126,6 +118,8 @@ tools and libraries.
  (by SooHyoung Oh), on how to create graphical applications with the
  LablGTK library.
 * [Camlp5](camlp5.html)
+* [A Guide to Extension Points in OCaml](http://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/)
+  (by whitequark), on using PPX, the syntax extensions API that superseded camlp4.
 
 ###  Coming From Another Language
 
@@ -134,11 +128,10 @@ with another language.
 
 * [Beyond functional programming in Haskell: an introduction to
  OCaml](http://www.cs.uu.nl/wiki/pub/Stc/BeyondFunctionalProgrammingInHaskell:AnIntroductionToOCaml/ocaml.pdf)
+* [OCaml for Haskellers](http://blog.ezyang.com/2010/10/ocaml-for-haskellers/)
 
 ###  Advanced Tutorials & Articles
 
 * [Manual](http://caml.inria.fr/pub/docs/manual-ocaml/)
-* [Using, Understanding, and Unraveling The OCaml
- Language](http://caml.inria.fr/pub/docs/u3-ocaml/index.html), *From
- Practice to Theory and vice versa*, by Didier Rémy.
-* [Functional Unparsing](http://www.brics.dk/RS/98/12/)
+* [Detecting use cases for GADTs in OCaml](http://mads-hartmann.com/ocaml/2015/01/05/gadt-ocaml.html),
+  (by Mads Hartmann), on using generalized algebraic data types in writing interpreters.

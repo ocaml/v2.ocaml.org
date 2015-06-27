@@ -198,6 +198,10 @@ h1.planet .share img.svg {
 .planet-post h1 { font-size: 20px; }
 .planet-post h2 { font-size: 18px; }
 
+.planet-post ul, .planet-post ol {
+  margin-top: 6px;  /* Undo bootstrap negative spacing */
+}
+
 div.subscribers {
   margin-left: 3em;
 }
