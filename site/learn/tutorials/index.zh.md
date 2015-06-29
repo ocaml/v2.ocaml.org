@@ -20,7 +20,7 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 * [OCaml中的指针](pointers.zh.html)
 * [空指针(Null Pointers),断言(Asserts)和警告(Warnings)](null_pointers_asserts_and_warnings.zh.html)
 * [函数式编程](functional_programming.zh.html)
-* If语句，循环和递归 — [en](if_statements_loops_and_recursion.html)
+* [If语句，循环和递归](if_statements_loops_and_recursion.zh.html)
 * [标签](labels.zh.html)
 * 常见的错误信息 - [en](common_error_messages.html)
 * OCaml编程风格 - [en](guidelines.html)
@@ -30,9 +30,9 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 
 ((! get second_of_two_columns !))
 
-* 对象 — [en](objects.html)
+* [对象](objects.zh.html)
 * Gtk介绍 — [en](introduction_to_gtk.html)
-* 垃圾收集 — [en](garbage_collection.html)
+* [垃圾收集](garbage_collection.zh.html)
 * 性能和分析（Profiling） — [en](performance_and_profiling.html)
 * 调用C库 — [en](calling_c_libraries.html)
 * 调用Fortran库 — [en](calling_fortran_libraries.html)
