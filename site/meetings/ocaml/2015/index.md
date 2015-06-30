@@ -91,7 +91,7 @@ would be reviewed according to the standards of the publication.
 Program Committee
 -----------------
 
- * Ashish AGARWAL, Solvuu LLC, USA
+ * Ashish AGARWAL, Solvuu, USA
  * Sandrine BLAZY, U. Rennes 1, France
  * Cristiano CALCAGNO, Facebook, USA
  * Emmanuel CHAILLOUX, U. Paris 6, France
