@@ -42,6 +42,16 @@
 
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/aesthetic-integration.png" alt="Aesthetic Integration">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://aestheticintegration.com">Aesthetic Integration</a>, United Kingdom</h2>
+        <p>Aesthetic Integration (AI) is a financial technology startup based in the City of London. AI's patent-pending formal verification technology is revolutionising the safety, stability and transparency of global financial markets.</p>
+    </dd>
+</dl>
+
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/ahrefs.png" alt="Ahrefs">
     </dt>
     <dd class="span5">
