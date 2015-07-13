@@ -39,7 +39,7 @@ Here's a list of courses we know about that teach in OCaml.
 Please add yours if you don't see it listed!
 
 1. [Brown University](http://cs.brown.edu/courses/cs017/) - An Integrated introducion (CS 17/18)  (along with Racket, Scala and Java)
-1. [Cornell University](http://www.cs.cornell.edu/courses/cs3110/2012sp/courseinfo.php) - Data Structures and Functional Programming (CS 3110)
+1. [Cornell University](http://www.cs.cornell.edu/Courses/cs3110/2014fa/course_info.php) - Data Structures and Functional Programming (CS 3110)
 1. [Harvard University](http://www.fas.harvard.edu/~cs51) - Introduction to Computer Science II: Abstraction & Design (CS51)
 1. [Harvard University](http://people.fas.harvard.edu/~lib153/) - Principles of Programming Language Compilation (CS153)
 1. [Indian Institute of Technology, Delhi](http://www.cse.iitd.ernet.in/~ssen/csl101/details.html) - Introduction to Computers and Programming (CSL 101) (along with Pascal and Java)
@@ -53,7 +53,7 @@ Please add yours if you don't see it listed!
 1. [University of California, San Diego](http://cseweb.ucsd.edu/classes/wi14/cse130-a/) Programming Languages:
 Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University of Cambridge](http://www.cl.cam.ac.uk/teaching/1415/L28/) - Advanced Functional Programming (L28)
-1. [University of Illinois at Urbana-Champaign](https://courses.engr.illinois.edu/cs421/) - Programming Languages and Compilers (CS 421)
+1. [University of Illinois at Urbana-Champaign](https://courses.engr.illinois.edu/cs421/fa2014/) - Programming Languages and Compilers (CS 421)
 1. [University of Innsbruck ](http://cl-informatik.uibk.ac.at/teaching/ss06/ocaml/schedule.php) -  Programming in OCAML (SS 06)
 1. [University of Maryland](http://www.cs.umd.edu/class/spring2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages (CMSC 330)
 1. [University of Massachusetts Amherst](http://people.cs.umass.edu/~arjun/teaching/631/) - Programming Languages (CMPSCI 631)
@@ -70,7 +70,7 @@ Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/SEM) - Semantics (SEM)
 1. [Aix-Marseille University](http://assert-false.net/callcc/Guyslain/Teaching/ProgFonc/index) - Functional Programming
 1. [Columbia University](http://www1.cs.columbia.edu/~sedwards/classes/2014/w4115-fall/index.html) - Programming Languages and Translators
-1. [ISAE/Supaéro](http://supaero.isae.fr/en) - Functional programming and introduction to type systems.
+1. [ISAE/Supaéro](http://supaero.isae.fr/en) - Functional programming and introduction to type systems
 1. [Epita](http://epita.fr/) - Introduction to Algorithms (Year 1 & 2)
 
 ### Map of courses around the world
