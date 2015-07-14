@@ -1728,11 +1728,20 @@ example): `"a(b(d,e),c(,f(g,)))"`.
 For simplicity, suppose the information in the nodes is a single letter
 and there are no spaces in the string.
 
-<!-- SOLUTION -->
+SOLUTION
 
-```ocaml
-  (* solution pending *)
-```
+> 
+>
+>```ocamltop
+>  let rec tree_to_string = function
+>    | Empty -> ""
+>    | Node(data, lch, rch) ->
+>        data ^
+>        begin match lch, rch with
+>          | Empty, Empty -> ""
+>          | _, _ -> "(" ^ (tree_to_string lch) ^ "," ^ (tree_to_string rch) ^ ")"
+>        end
+>```
 
 
 #### Preorder and inorder sequences of binary trees. (*medium*)
