@@ -120,7 +120,7 @@ let special_processing (e: Atom.entry) =
    is the reason for the failure.  Since these feed contain no
    entries, the aggregation will remove them. *)
 let broken_feed name url reason =
-  let feed = Atom.feed ~id:(Digest.to_hex(Digest.string name))
+  let feed = Atom.feed ~id:(Uri.of_string(Digest.to_hex(Digest.string name)))
                        ~authors:[Atom.author name]
                        ~title:(Atom.Text reason)
                        ~updated:(CalendarLib.Calendar.now())
@@ -198,7 +198,7 @@ let html_contributors () =
  ***********************************************************************)
 
 let digest_post (e: Atom.entry) =
-  Digest.to_hex (Digest.string e.Atom.id)
+  Digest.to_hex (Digest.string (Uri.to_string e.Atom.id))
 
 let get_alternate_link (e: Atom.entry) =
   let open Atom in

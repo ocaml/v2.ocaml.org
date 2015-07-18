@@ -1715,9 +1715,11 @@ Which layout do you like most?
 Somebody represents binary trees as strings of the following type (see
 example): `"a(b(d,e),c(,f(g,)))"`.
 
-* Write an OCaml function which generates this string representation,
+* Write an OCaml function `string_of_tree` which generates this
+ string representation,
  if the tree is given as usual (as `Empty` or `Node(x,l,r)` term).
- Then write a function which does this inverse; i.e. given the string
+ Then write a function `tree_of_string` which does this inverse;
+ i.e. given the string
  representation, construct the tree in the usual form. Finally,
  combine the two predicates in a single function `tree_string` which
  can be used in both directions.
@@ -1730,18 +1732,25 @@ and there are no spaces in the string.
 
 SOLUTION
 
-> 
->
->```ocamltop
->  let rec tree_to_string = function
->    | Empty -> ""
->    | Node(data, lch, rch) ->
->        data ^
->        begin match lch, rch with
->          | Empty, Empty -> ""
->          | _, _ -> "(" ^ (tree_to_string lch) ^ "," ^ (tree_to_string rch) ^ ")"
->        end
->```
+> ```ocamltop
+> let rec string_of_tree = function
+>   | Empty -> ""
+>   | Node(data, l, r) ->
+>      let data = String.make 1 data in
+>      match l, r with
+>      | Empty, Empty -> data
+>      | _, _ -> data ^ "(" ^ (string_of_tree l)
+>                ^ "," ^ (string_of_tree r) ^ ")"
+> ```
+
+```ocamltop
+let example_layout_tree =
+  let leaf x = Node (x, Empty, Empty) in
+  Node('a', Node('b', leaf 'd', leaf 'e'),
+  Node('c', Empty, Node('f', leaf 'g', Empty)));;
+string_of_tree example_layout_tree;;
+tree_of_string "a(b(d,e),c(,f(g,)))" = example_layout_tree;;
+```
 
 
 #### Preorder and inorder sequences of binary trees. (*medium*)
