@@ -1,0 +1,15 @@
+language: c
+sudo: false
+addons:
+  apt:
+    sources:
+    - avsm
+    packages:
+    - ocaml
+    - ocaml-native-compilers
+    - opam
+    - nettle-dev   # for ocamlnet
+
+script: bash -ex travis-ci.sh
+env:
+  - OPAM_SWITCH=4.01.0
