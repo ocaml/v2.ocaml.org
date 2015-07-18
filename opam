@@ -21,7 +21,7 @@ depends: [
   "mpp" {>= "0.1.2"}
   "ocamlrss"
   "uri" {>= "1.3.11"}
-  "syndic" {>= "1.1"}
+  "syndic" {>= "1.4"}
   "camlp4"
 ]
 depopts: [
