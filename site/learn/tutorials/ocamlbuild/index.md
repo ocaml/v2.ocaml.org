@@ -75,8 +75,6 @@
 
 +     [Projects using ocamlbuild](Projects_using_ocamlbuild.html)
 
-+     [Projects tried with
- ocamlbuild](Projects_tried_with_ocamlbuild.html)
 
 +     [Ocamlbuild non-backward compatible changes in
  3.10.1](Ocamlbuild_non_backward_compatible_changes_in_3_10_1.html)
