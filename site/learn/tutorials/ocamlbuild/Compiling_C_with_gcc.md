@@ -18,26 +18,26 @@ Object dependencies linked into a `%.elf` executable are automatically
 computed as follows.
 
 1. Each file `%.{c,h}` has a corresponding file `%.{c,h}.depends` that
- lists \(locally\) included files \(this file is generated via
- `avr-gcc -MM -MF -MG %.{c,h}.depends %.{c,h}`\). Note that
+ lists (locally) included files (this file is generated via
+ `avr-gcc -MM -MF -MG %.{c,h}.depends %.{c,h}`). Note that
  unfortunately the result in `%.{c,h}.depend` is different if
- included files are already in the build dir or not \(very
- helpful...\), see the `correct` function in `parse_deps` \(this
+ included files are already in the build dir or not (very
+ helpful...), see the `correct` function in `parse_deps` (this
  "feature" may make it a hard to support multiple directories, but I
- didn't research that extensively\). Another problem is that these
+ didn't research that extensively). Another problem is that these
  `make` oriented `.depends` files have `\` when lines becomes too
  long thus we need to filter out these.
 2. To build a `%.o` from `%.c`, every file mentioned in `%.c.depends`
- and recursively is built \(in the function `parse_deps` the first two
- items of `%.c.depends` are ignored : they are `%.o` and `%.c`\). To
- sum up, this step copies files included in `%.c` \(and recursively\)
+ and recursively is built (in the function `parse_deps` the first two
+ items of `%.c.depends` are ignored : they are `%.o` and `%.c`). To
+ sum up, this step copies files included in `%.c` (and recursively)
  to the `_build` directory and produces the object file `%.o`.
-3. To build \(link\) a `%.elf`, we take `%.o` and for each `$.h`
- mentioned in `%.c.depends` \(and recursively\) we try to build a
+3. To build (link) a `%.elf`, we take `%.o` and for each `$.h`
+ mentioned in `%.c.depends` (and recursively) we try to build a
  corresponding `$.c`, if it succeeds the corresponding `$.o` is built
  and added at the link phase.
 
-<!-- -->```
+```ocaml
 open Ocamlbuild_plugin
 
 let avr_gcc_rules avr_gcc avr_objcopy =
@@ -93,44 +93,43 @@ let avr_gcc_rules avr_gcc avr_objcopy =
     end;
 
     rule "avr-gcc: o & c.depends -> .elf" 
-    ~dep:"%.o"
-    ~prod: "%.elf"
-    begin fun env build -> 
-      let o = env "%.o" in
-      let rec build_transitive_objs acc = function 
-    | [] -> StringSet.fold (fun v l -> v :: l) acc []
-    | [] :: todo -> build_transitive_objs acc todo
-    | (f :: rest) :: todo  -> 
-        (* builds a .o for each .h which has a .c *)
-        let deps =
-          let is_hfile f = Pathname.check_extension f "h" in
-          List.filter is_hfile (parse_deps (f ^ ".depends")) 
-        in
-        let cfiles = 
-          let remove_f = List.filter (fun f' -> f <> f') in
-          let to_cfile f = Pathname.update_extension "c" f in
-          let keep_good acc = function
-        | Outcome.Good o -> o :: acc | Outcome.Bad _ -> acc 
+      ~dep:"%.o"
+      ~prod: "%.elf"
+      begin fun env build -> 
+        let o = env "%.o" in
+        let rec build_transitive_objs acc = function 
+      | [] -> StringSet.fold (fun v l -> v :: l) acc []
+      | [] :: todo -> build_transitive_objs acc todo
+      | (f :: rest) :: todo  -> 
+          (* builds a .o for each .h which has a .c *)
+          let deps =
+            let is_hfile f = Pathname.check_extension f "h" in
+            List.filter is_hfile (parse_deps (f ^ ".depends")) 
           in
-          List.fold_left keep_good [] 
-        (build (parallel (remove_f (List.map to_cfile deps)))) 
+          let cfiles = 
+            let remove_f = List.filter (fun f' -> f <> f') in
+            let to_cfile f = Pathname.update_extension "c" f in
+            let keep_good acc = function
+          | Outcome.Good o -> o :: acc | Outcome.Bad _ -> acc 
+            in
+            List.fold_left keep_good [] 
+          (build (parallel (remove_f (List.map to_cfile deps)))) 
+          in
+          let objs = 
+            let to_ofile f = Pathname.update_extension "o" f in
+            List.map Outcome.good 
+          (build (parallel (List.map to_ofile cfiles)))
+          in
+          let add_obj acc o = StringSet.add o acc in
+          build_transitive_objs 
+            (List.fold_left add_obj acc objs) (cfiles :: deps :: rest :: todo)
         in
-        let objs = 
-          let to_ofile f = Pathname.update_extension "o" f in
-          List.map Outcome.good 
-        (build (parallel (List.map to_ofile cfiles)))
-        in
-        let add_obj acc o = StringSet.add o acc in
-        build_transitive_objs 
-          (List.fold_left add_obj acc objs) (cfiles :: deps :: rest :: todo)
-      in
-      let objs = build_transitive_objs (StringSet.empty) [[env "%.c"]] in
-      Cmd (S [A avr_gcc;
-          T (tags_of_pathname o ++ "link" ++ "avr-gcc");
-          A "-o"; Px (env "%.elf");
-          Command.atomize_paths (o :: objs) ])
-    end;
-
+        let objs = build_transitive_objs (StringSet.empty) [[env "%.c"]] in
+        Cmd (S [A avr_gcc;
+            T (tags_of_pathname o ++ "link" ++ "avr-gcc");
+            A "-o"; Px (env "%.elf");
+            Command.atomize_paths (o :: objs) ])
+      end;
 
   rule "avr-objcopy: elf -> hex"
     ~dep:"%.elf"
@@ -145,20 +144,16 @@ let avr_gcc_rules avr_gcc avr_objcopy =
           P elf;
           Px (env "%.hex")])
     end
-;;
 
-
-
-dispatch begin function
+let () =
+  dispatch begin function
   | Before_rules ->                            (* override ocaml's C rules. *)
       avr_gcc_rules "avr-gcc" "avr-objcopy";
       flag ["compile"; "avr-gcc"; "mcu_atmega168"] (A "-mmcu=atmega168");
       flag ["link"; "avr-gcc"; "mcu_atmega168"] (A "-mmcu=atmega168");
       flag ["compile"; "avr-gcc"; "mcu_freq_16Mhz"] (A "-DF_CPU=16000000");
   | _ -> ()
-end
-;;
-
+  end
 ```
 
 

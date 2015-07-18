@@ -1,42 +1,60 @@
 <!-- ((! set title Tags !)) ((! set learn !)) -->
 
+*Table of contents*
+
 # Tags
 ## Tagging files
-To tag files, use the "_tags" file. See the [user
-manual](http://gallium.inria.fr/~pouillar/ocamlbuild/ocamlbuild-user-guide.html)
-for more details. You can also use the "tag_file" function in a
-[plugin](Making_plugins.html) or use the "-tag" option.
 
-Note that some tags, such as "link", are not applied to files but are
+To tag files, use the `_tags` file. See the [user
+manual](http://gallium.inria.fr/~pouillar/ocamlbuild/ocamlbuild-user-guide.html)
+for more details. You can also use the `tag_file` function in a
+[plugin](Making_plugins.html) or use the `-tag` option.
+
+Note that some tags, such as `link`, are not applied to files but are
 instead part of certain commands. See the [solver
 mechanism](Solver_mechanism.html) for more details.
 
 ## Tag documentation
-If you need more information about a specific tag, use the
-"-documentation" option of <Ocamlbuild\>. For example, for the "thread"
-tag: \\$ ocamlbuild -documentation | grep thread flag {. byte, link,
-ocaml, program, thread .} "threads.cma -thread" flag {. link, native,
-ocaml, program, thread .} "threads.cmxa -thread" flag {. doc, ocaml,
-thread .} "-I +threads" flag {. compile, ocaml, thread .} "-thread" For
-example, the last flag says that files with tags "compile", "ocaml" and
-"thread" should be compiled using the "-thread" option. The first flag
-says that files with tags "byte", "ocaml" and "thread", used in commands
-that have tags "link" and "program", should use the threads library and
-the "-thread" option.
 
-You can also know the tags of a file using the "-show-tag" option of
-<Ocamlbuild\>: \\$ ocamlbuild -show-tags test.byte Tags for "test.byte":
-{. byte, extension:byte, <file:test.byte\>, ocaml, program, quiet .}
-Finished, 0 targets \(0 cached\) in 00:00:00\. \\$ ocamlbuild -show-tags
-test.ml Tags for "test.ml": {. extension:ml, <file:test.ml\>, ocaml,
-quiet .} Finished, 0 targets \(0 cached\) in 00:00:00.
+If you need more information about a specific tag, use the
+`-documentation` option of `ocamlbuild`.  For example, for the `thread`
+tag:
+
+```shell
+$ ocamlbuild -documentation | grep thread
+flag {. byte, link, ocaml, thread, toplevel .} "threads.cma"
+flag {. link, native, ocaml, thread, toplevel .} "threads.cmxa"
+flag {. byte, link, ocaml, program, thread .} "threads.cma"
+flag {. link, native, ocaml, program, thread .} "threads.cmxa"
+flag {. doc, ocaml, thread .} "-I +threads"
+flag {. link, ocaml, thread .} "-thread"
+flag {. compile, ocaml, thread .} "-thread"
+```
+
+For example, the last flag says that files with tags `compile`,
+`ocaml` and `thread` should be compiled using the `-thread`
+option. The first flag says that files with tags `byte`, `ocaml` and
+`thread`, used in commands that have tags `link` and `program`, should
+use the threads library and the `-thread` option.
+
+You can also know the tags of a file using the `-show-tag` option of
+`ocamlbuild`:
+
+```shell
+$ ocamlbuild -show-tags test.byte
+Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).
+ 
+Tags for "test.byte":
+  {. byte, extension:byte, file:test.byte, ocaml, program, quiet .}
+Finished, 0 targets (0 cached) in 00:00:00.
+```
 
 Unfortunately, to get the full semantics of a tag, you need to know in
-which commands \(more precisely, which "holes"\) it appears. Some tags are
-always part of some commands: the "link" tag is always part of the
+which commands (more precisely, which "holes") it appears. Some tags are
+always part of some commands: the `link` tag is always part of the
 linking commands. Some commands use the tags of their sources and / or
 the tags of their production. The only precise documentation is the
-<Ocamlbuild\> source code.
+`ocamlbuild` source code.
 
 ## List of tags
 This list is far from exhaustive. Feel free to extend it!
@@ -54,15 +72,15 @@ To get an intuition on the use of the tag, descriptions start with:
 ### A
 #### annot
 This source file should be compiled with the -annot flag to produce a
-.annot file.
+`.annot` file.
 
 ### B
 #### byte
 This produced file is compiled and linked using the bytecode compiler.
 
 #### bin_annot
-This source file should be compiled with the -bin-annot flag to produce
-a .cmt[i] file \(since 4.01\).
+This source file should be compiled with the `-bin-annot` flag to produce
+a `.cmt[i]` file (since 4.01).
 
 ### C
 #### compile
@@ -71,20 +89,14 @@ This command is a compilation operation.
 ### D
 #### debug
 This produced file should be compiled in debug mode. For OCaml this
-means using the "-g" option.
-
-#### dtypes
-Dump detailed type information for this file. For OCaml this means
-using the "-dtypes" option.
-
-From 3.11, deprecated, use annot instead.
+means using the `-g` option.
 
 ### I
 #### include
-This directory should be included, as if the "-I" option were used.
+This directory should be included, as if the `-I` option were used.
 
 #### infer_interface
-This command infers an interface to generate a .inferred.mli from a .ml
+This command infers an interface to generate a `.inferred.mli` from a `.ml`
 file. An example of use can be found in the [Ocamlfind
 plugin](Using_ocamlfind_with_ocamlbuild.html).
 
@@ -93,7 +105,7 @@ plugin](Using_ocamlfind_with_ocamlbuild.html).
 This command is a link operation.
 
 #### library
-This file is a library. By default, \*.cma and \*.cmxa have this tag.
+This file is a library. By default, `*.cma` and `*.cmxa` have this tag.
 
 ### N
 #### native
@@ -113,17 +125,17 @@ command.
 This file is precious and won't be deleted by the sanity check.
 
 #### program
-This file is a program. By default, \*.byte and \*.native have this
+This file is a program. By default, `*.byte` and `*.native` have this
 tags.
 
 ### T
 #### thread
 This source file uses the Thread module. It is compiled and linked using
-the "-thread" option, and linked to the threads library.
+the `-thread` option, and linked to the threads library.
 
 ### U
 #### use_bigarray, use_dbm, use_dynlink, use_graphics, use_nums, use_str, use_toplevel, use_unix
 This produced file should be linked with the specified library. This can
-replace the "-lib" command line option.
+replace the `-lib` command line option.
 
 

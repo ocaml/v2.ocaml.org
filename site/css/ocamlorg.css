@@ -108,8 +108,10 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 }
 .type { color: #c746cc }
 .string, .string .keyword, .string .keywordsign, .string .constructor,
+.string .governing,
 .ocaml .st {
-  color: rgb(176, 88, 119)
+  color: rgb(176, 88, 119);
+  font-weight: normal;  
 }
 .warning { color : Red ; font-weight : bold }
 .info { margin-left : 3em; margin-right: 3em }

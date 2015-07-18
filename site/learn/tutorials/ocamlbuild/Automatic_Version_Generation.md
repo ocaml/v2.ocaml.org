@@ -1,9 +1,9 @@
 <!-- ((! set title Automatic version generation !)) ((! set learn !)) -->
 
 # Automatic Version Generation
-The following plugin produces a file "version.ml" looking like this:
+The following plugin produces a file `version.ml` looking like this:
 
-```
+```ocaml
 let version = "1.4.2+dev"
 let compile_time = "03/01/2010 12:55:22 UTC"
 ```
@@ -11,15 +11,15 @@ The "compile_time" variable is the date when the project was compiled.
 More precisely, it is the last time Ocamlbuild was run to build the
 project.
 
-The trick is: if the command which produces "version.ml" changes,
-Ocamlbuild rebuilds the file. So we write the generation of "version.ml"
+The trick is: if the command which produces `version.ml` changes,
+Ocamlbuild rebuilds the file. So we write the generation of `version.ml`
 as a shell command. The command will naturally change automatically
 every second.
 
 Warning: because we use a shell command, this plugin might not work on
 all operating systems.
 
-```
+```ocaml
 open Ocamlbuild_plugin
 open Unix
 
@@ -33,16 +33,16 @@ let time =
 
 let make_version _ _ =
   let cmd =
-    Printf.sprintf "let version = %S
-let compile_time = %S"
-      version time
+    Printf.sprintf "let version = %S\n\
+                    let compile_time = %S\n"
+                   version time
   in
   Cmd (S [ A "echo"; Quote (Sh cmd); Sh ">"; P "version.ml" ])
 
-let () = dispatch begin function
+let () =
+  dispatch begin function
   | After_rules ->
       rule "version.ml" ~prod: "version.ml" make_version
   | _ -> ()
-end
-
+  end
 ```

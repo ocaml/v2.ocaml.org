@@ -1,18 +1,20 @@
 <!-- ((! set title An atdgen plugin example !)) ((! set learn !)) -->
 
 # A plugin example for compiling Json printer/parser from .atd file with atdgen
-```
-open Ocamlbuild_plugin;;
-open Command;;
 
-let _ =
+```ocaml
+open Ocamlbuild_plugin
+open Command
+
+let () =
   Options.use_ocamlfind := true;
   Options.make_links:= false
 
 let atdgen_rules () = 
  let tag_atdgen env patterns =
-    List.iter (fun p -> tag_file (env p) (Tags.elements (Tags.of_list ["package(atdgen)"]))) patterns
- in
+   List.iter (fun p ->
+       tag_file (env p) (Tags.elements (Tags.of_list ["package(atdgen)"]))
+     ) patterns in
  rule "atdgen: .atd -> _t.ml*"
     ~prods:["%_t.ml";"%_t.mli"]
     ~dep:"%.atd"
@@ -38,14 +40,16 @@ let atdgen_rules () =
       Cmd (S [A atdgen; A "-v"; P (env "%.atd")]);
      end) ;
   ()
-let _ = dispatch begin function
+
+let () =
+  dispatch begin function
   | After_rules -> atdgen_rules ()
   | _ -> ()
-end
+  end
 ```
-and add tag "package\(atdgen\)" into the _tags file :
+
+and add tag `package(atdgen)` into the `_tags` file:
 
 ```
 <{files that use Yojson or Atd library}.{ml,mli,byte,native}>:package(atdgen)
-
 ```
