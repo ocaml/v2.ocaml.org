@@ -1732,6 +1732,7 @@ and there are no spaces in the string.
 
 SOLUTION
 
+> A simple solution is:
 > ```ocamltop
 > let rec string_of_tree = function
 >   | Empty -> ""
@@ -1742,6 +1743,28 @@ SOLUTION
 >      | _, _ -> data ^ "(" ^ (string_of_tree l)
 >                ^ "," ^ (string_of_tree r) ^ ")"
 > ```
+>
+> One can also use a buffer to allocate a lot less memory:
+>
+> ```ocamltop
+> let rec buffer_add_tree buf = function
+>   | Empty -> ()
+>   | Node(data, l, r) ->
+>      Buffer.add_char buf data;
+>      match l, r with
+>      | Empty, Empty -> ()
+>      | _, _ -> Buffer.add_char buf '(';
+>                buffer_add_tree buf l;
+>                Buffer.add_char buf ',';
+>                buffer_add_tree buf r;
+>                Buffer.add_char buf ')'
+>
+> let string_of_tree t =
+>   let buf = Buffer.create 128 in
+>   buffer_add_tree buf t;
+>   Buffer.contents buf
+> ```
+ 
 
 ```ocamltop
 let example_layout_tree =
