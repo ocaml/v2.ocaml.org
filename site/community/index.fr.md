@@ -8,7 +8,10 @@
             <img src="/img/community-large.png" alt="Community" class="png" />
         </div>
         <section id="community-leader" class="span6">
-            <p>La communauté OCaml est diverse et internationnale, avec de nombreux moyens de discussion : les <a href="mailing_lists.fr.html">listes de discussion</a> sont le moyen le plus utilisé, mais il existe aussi de nombreux autres canaux de discussion autour du web, ainsi que de nombreux <a href="/meetings/index.fr.html">groupes de rencontre</a>.</p>
+        <p>La communauté OCaml est diverse et internationnale, avec de nombreux moyens de discussion : les <a href="mailing_lists.fr.html">listes de discussion</a> sont le moyen le plus utilisé, mais il existe aussi de nombreux autres canaux de discussion autour du web, ainsi que de nombreux <a href="/meetings/index.fr.html">groupes de rencontre</a>.
+        OCaml bénéficie aussi d'un groupe
+        d'<a href="../learn/companies.html">utilisateurs industriels</a>
+        engagés qui contribuent régulièrement à la communauté.</p>
         </section>
         <div class="span4">
             <img src="/img/colour-transparent-icon.svg" alt="OCaml"
