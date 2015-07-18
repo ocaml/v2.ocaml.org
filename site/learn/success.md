@@ -85,9 +85,10 @@ remotely using a choice of three different kinds of interfaces: GTK, web
 and telnet.”
 
 ## LexiFi's Modeling Language for Finance
-[<img src='/img/lexifi-thumb.png'
+[<img src='/img/lexifi-thumb.jpg'
 style='float: left; margin-right: 10px'
-alt='Screenshot'  title='A report produced by LexiFi software' />](/img/lexifi.png)
+alt='Screenshot'  title='A report produced by LexiFi software'
+/>](/img/lexifi.jpg)
 
 Developed by the company [LexiFi](http://www.lexifi.com/), the Modeling
 Language for Finance (MLFi) is the first formal language that accurately

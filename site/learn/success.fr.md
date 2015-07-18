@@ -61,7 +61,8 @@ tâche de fond et sans surveillance humaine, et peut être contrôlé à
 l'aide d'une interface au choix parmi trois : GTK, web et telnet. »
 
 ## Le Langage de Modélisation Financière de LexiFi
-[<img src='/img/lexifi-thumb.png' alt='Screenshot'  title='A report produced by LexiFi software' />](/img/lexifi.png)
+[<img src='/img/lexifi-thumb.jpg alt='Screenshot'
+title='A report produced by LexiFi software' />](/img/lexifi.jpg)
 
 Développé par la société [LexiFi](http://www.lexifi.com/), le Langage de
 Modélisation Financière (MLFi) est le premier langage formel capable de
