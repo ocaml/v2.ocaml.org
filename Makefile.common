@@ -8,7 +8,7 @@ OMD_PP = script/md_preprocess
 
 OCAML_VERSION = $(shell ocamlc -config | grep version | sed -e "s/version: *//")
 
-OCAMLFLAGS = -annot
+OCAMLFLAGS = -annot -g
 OCAMLOPT = ocamlfind ocamlopt $(OCAMLFLAGS)
 OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
 
