@@ -1,7 +1,7 @@
 HEADACHE = headache -c _headache.conf
 
 local: script/relative_urls
-	$(MAKE) staging
+	$(MAKE) staging SET_STAGING='-set staging'
 	find ocaml.org -type f | while read f; do \
 	  script/relative_urls --path ocaml.org "$$f"; done
 
