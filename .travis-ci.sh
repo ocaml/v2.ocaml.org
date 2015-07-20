@@ -17,4 +17,4 @@ eval `opam config env`
 make deps
 
 export OCAMLRUNPARAM=b
-make
+make -j 2
