@@ -10,6 +10,9 @@ addons:
     - opam
     - nettle-dev   # for ocamlnet
 
-script: bash -ex travis-ci.sh
+script: bash -ex .travis-ci.sh
 env:
   - OPAM_SWITCH=4.01.0
+cache:
+  directories:
+  - $HOME/.opam
