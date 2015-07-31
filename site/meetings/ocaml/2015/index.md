@@ -13,7 +13,7 @@ the day after the [ML Family Workshop](http://www.mlworkshop.org/ml2015/).
 News
 ----
 
--   12 March 2015: [workshop announcement and CFP](cfp.html).
+- 31 July 2015: [programme and call for participation](call-for-participation.txt)
 
 The OCaml Users and Developers Workshop brings together industrial users of
 OCaml with academics and hackers who are working on extending the language,
@@ -23,11 +23,10 @@ Previous editions have been colocated with ICFP 2012 in
 [Boston](../2013), ICFP 2014 in [Gothenburg](../2014),
 following the OCaml Meetings that ran until [2011](../2011).
 
-Program
--------
+Programme
+---------
 
-The program will be announced shortly after the notification deadline
-(June 29).
+The [programme](program.txt) is now available.
 
 Scope
 -----
