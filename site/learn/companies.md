@@ -36,7 +36,17 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
-        <p>Citrix uses OCaml in XenServer, a world-class server virtualization system. We also offer a full open-source variant of XenServer called the Xen Cloud Platform, or XCP. Follow along with our OCaml development at <a href="https://github.com/xen-org">github.com/xen-org</a>. This work was originally presented by Anil Madhavapeddy at CUFP 2008. See his <a href="http://cufp.org/archive/2008/abstracts.html#MadhavapeddyAnil">abstract</a> and <a href="http://cufp.org/archive/2008/slides/MadhavapeddyAnil.pdf">slides</a>.</p>
+        <p>Citrix uses OCaml in XenServer, a world-class server
+        virtualization system. We also offer a full open-source variant
+        of XenServer called the Xen Cloud Platform, or XCP. Follow
+        along with our OCaml development at
+        <a href="https://github.com/xapi-project/">github.com/xen-org</a>.
+        This work was originally presented by Anil Madhavapeddy at
+        CUFP 2008. See his
+        <a href="http://cufp.org/archive/2008/abstracts.html#MadhavapeddyAnil">abstract</a>
+        and
+        <a href="http://cufp.org/archive/2008/slides/MadhavapeddyAnil.pdf">slides</a>.
+        </p>
     </dd>
 </dl>
 
@@ -433,7 +443,16 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://runorg.com">RunOrg</a>, France</h2>
-        <p>RunOrg provides non-profits and organizations with a private intranet and public website using a SaaS model. The application is written entirely in OCaml for two reasons : one is performance, as OCaml generates fast binaries and supports elegant optimization patterns. The other reason is that the flexible and powerful compile-time type inference allows massive changes in the code base without causing any bugs, effectively acting as a compiler-generated unit testing suite. The software is powered by an open source in-house web framework, <a href="https://github.com/VictorNicollet/Ohm">Ohm</a>.</p>
+        <p>RunOrg provides non-profits and organizations with a private
+        intranet and public website using a SaaS model. The application
+        is written entirely in OCaml for two reasons: one is performance,
+        as OCaml generates fast binaries and supports elegant optimization
+        patterns. The other reason is that the flexible and powerful
+        compile-time type inference allows massive changes in the code
+        base without causing any bugs, effectively acting as a
+        compiler-generated unit testing suite. The software is powered
+        by an open source in-house web framework,
+        <a href="https://github.com/VictorNicollet/Ohm">Ohm</a>.</p>
     </dd>
 </dl>
 <dl class="row">
