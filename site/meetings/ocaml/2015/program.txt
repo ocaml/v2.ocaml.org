@@ -1,0 +1,56 @@
+OCaml 2015 - Programme
+======================
+
+8:40 - 8:45 Welcome
+
+8:45 - 10:00 Session 1: debugging and profiling
+  - Towards A Debugger for Native-Code OCaml
+      Fabrice Le Fessant, Pierre Chambart
+  - Operf: Benchmarking the OCaml Compiler
+      Pierre Chambart, Fabrice Le Fessant, Vincent Bernardoff
+  - Core.Time_stamp_counter: A fast high resolution time source
+      Roshan James, Christopher Hardin
+
+10:00 - 10:30 coffee
+
+10:30 - 11:20 Session 2: Low-level concerns
+  - Specialization of Generic Array Accesses After Inlining
+      Ryohei Tokuda, Eijiro Sumii, Akinori Abe
+  - Inline Assembly in OCaml
+      Vladimir Brankov
+
+11:20 - 11:40 break
+
+11:40 : 12:30 Session 3: OCaml news
+  - The State of OCaml (invited talk)
+      Xavier Leroy
+  - The State of the OCaml Platform: September 2015
+      Anil Madhavapeddy, Amir Chaudhry, Thomas Gazagnaire, Jeremy Yallop, David Sheets
+
+12:30 - 14:00 lunch
+
+14:00 - 14:50 Session 4: Front-end
+  - Modular macros
+      Jeremy Yallop, Leo White
+  - Typeful PPX and Value Implicits
+      Jun Furuse
+
+14:50 - 15:10 break
+
+15:10 - 16:00 Session 5: semantics and language features
+  - Global Semantic Analysis on OCaml programs
+      Thomas Blanc, Pierre Chambart, Michel Mauny, Fabrice Le Fessant
+  - Effective Concurrency through Algebraic Effects
+      Stephen Dolan, Leo White, Kc Sivaramakrishnan, Jeremy Yallop, Anil Madhavapeddy
+
+16:00 - 16:30 tea
+
+16:30 - 18:10 Session 6: Community and uses of OCaml
+  - A review of the growth of the OCaml community
+      Amir Chaudhry
+  - Persistent Networking with Irmin and MirageOS
+      Mindy Preston, Magnus Skjegstad, Thomas Gazagnaire, Richard Mortier, Anil Madhavapeddy
+  - Ketrew and Biokepi
+      Sebastien Mondet
+  - Four years of OCaml in production
+      Anders Fugmann, Jonas B. Jensen, Mads Hartmann Jensen
