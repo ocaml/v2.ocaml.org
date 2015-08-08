@@ -27,9 +27,9 @@ constructeur d'ajout d'un élément à une liste est noté `::` (sous forme
 infixe).
 
 ```ocamltop
-let l = 1 :: 2 :: 3 :: [];;
+let li = 1 :: 2 :: 3 :: [];;
 [1; 2; 3];;
-5 :: l;;
+5 :: li;;
 ```
 ## Polymorphisme : le tri des listes
 Le tri par insertion est défini à l'aide de deux fonctions récursives.
