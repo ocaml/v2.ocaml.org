@@ -48,9 +48,9 @@ constructor that allows prepending an element to a list is written `::`
 (in infix form).
 
 ```ocamltop
-let l = 1 :: 2 :: 3 :: [];;
+let li = 1 :: 2 :: 3 :: [];;
 [1; 2; 3];;
-5 :: l;;
+5 :: li;;
 ```
 ## Polymorphism: sorting lists
 
