@@ -103,7 +103,7 @@
 			</article></li>
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Online Course"
-			       href="https://www.france-universite-numerique-mooc.fr/courses/parisdiderot/56002/session01/about">OCaml 2015</a></h1>
+			       href="https://www.france-universite-numerique-mooc.fr/courses/parisdiderot/56002/session01/about">OCaml Online Course</a></h1>
 			  <p>November 29, 2015</p>
 			  <a title="OCaml Online Course"
 			     href="https://www.france-universite-numerique-mooc.fr/courses/parisdiderot/56002/session01/about">
