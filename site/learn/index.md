@@ -36,6 +36,20 @@
             </footer>
         </section>
         <section class="span4 condensed">
+            <h1 class="ruled"><a href="tutorials/">Online courses</a> &amp; <a href="faq.html">FAQ</a></h1>
+	  <p class="documentation-video video16-9"
+	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
+	    <iframe src="https://www.dailymotion.com/video/x2ymo3x_fun-mooc-introduction-to-functional-programming-in-ocaml_school"
+		    frameborder="0" webkitallowfullscreen
+		    mozallowfullscreen allowfullscreen></iframe>
+	  </p>
+          The first MOOC entirely centered around OCaml is now online.
+          Learn more, and register <a href="https://www.france-universite-numerique-mooc.fr/courses/parisdiderot/56002/session01/about"> on the FUN platform </a>
+            <footer>
+                <p>more to come...</p>
+            </footer>
+        </section>
+        <section class="span4 condensed">
             <h1 class="ruled"><a href="tutorials/">Tutorials</a> &amp; <a href="faq.html">FAQ</a></h1>
             <ul>
                 <li><a href="tutorials/basics.html">Basics</a></li>
