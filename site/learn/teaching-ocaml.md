@@ -59,6 +59,7 @@ Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University of Massachusetts Amherst](http://people.cs.umass.edu/~arjun/teaching/631/) - Programming Languages (CMPSCI 631)
 1. [University of Wrocław](https://international.uni.wroc.pl/en/course/functional-programming) - Functional Programming
 1. [Université Paris-Diderot](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/) - Functional Programming (PF5)
+1. [Université Paris-Diderot](http://www.dicosmo.org/CourseNotes/pfav/) - Advanced Functional Programming (PFAV)
 1. [Aarhus University](https://services.brics.dk/java/courseadmin/dOvs) - The compilation course (along with Java)
 1. [University of California, Los Angeles](http://www.registrar.ucla.edu/schedule/subdet.aspx?term=14F&srs=187510200) - Programming Languages (along with Python and Java) (CS 131)
 1. [University Pierre & Marie Curie](http://www-apr.lip6.fr/~chaillou/Public/enseignement/2014-2015/tas/) - Types and static analysis (5I555)
