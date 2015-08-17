@@ -78,3 +78,4 @@ Yan Shvartzshnaider|http://yansnotes.blogspot.com/feeds/posts/default/-/ocaml
 OCaml-Java|http://www.ocamljava.org/feed.xml
 OCaml Platform|http://opam.ocaml.org/blog/feed.xml
 Xinuo Chen|http://typeocaml.com/rss/
+Ocsigen blog|https://ocsigen.github.io/feed.xml
