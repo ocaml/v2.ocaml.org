@@ -27,11 +27,11 @@ way to define what they are is by giving some examples:
 ## How to syndicate your feed
 
 Due to spam, the `ocaml.org` team has disabled automatic planet
-syndication. You can still ask to be added to the planet by
-[submitting an issue](https://github.com/ocaml/ocaml.org/issues) with
-the title "Add URL to planet".
-
-You need to provide three pieces of information in your issue:
+syndication. You can still ask to be added to the planet by editing
+the
+[planet feed file](https://github.com/ocaml/ocaml.org/blob/master/planet_feeds.txt)
+and submitting a *pull request*.  In the comment to the pull request,
+please provide the following three pieces of information:
 
 - A name for the feed: this can be your name if the feed is about a
   person (e.g. "Sylvain Le Gall"), or the name of the official OCaml
@@ -43,6 +43,10 @@ You need to provide three pieces of information in your issue:
 - Whether this feed is Personal or an official OCaml
   information channel (Institutional). See the above guidelines
   concerning syndication for these two different kinds of feed.
+
+If you are unable to do that, an alternative slower route is to
+[submit an issue](https://github.com/ocaml/ocaml.org/issues) with the
+title "Add URL to planet" and the above three pieces of information.
 
 Once you have provided this information, your syndication will be
 reviewed by an administrator and put online. If you want to have a
