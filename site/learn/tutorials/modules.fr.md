@@ -12,7 +12,7 @@ arborescence de dossiers imbriqués les uns dans les autres.
 
 Lorsqu'on écrit un programme, avec par exemple deux fichiers
 `amodule.ml` et `bmodule.ml`, ceux ci définissent deux
-modules, intitulés respectivement `Amdodule` et `Bmodule`,
+modules, intitulés respectivement `Amodule` et `Bmodule`,
 possédant le même contenu que nos fichiers.
 
 Prenons par exemple le fichier amodule.ml suivant:
