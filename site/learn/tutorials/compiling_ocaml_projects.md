@@ -141,6 +141,7 @@ necessary. See next section.
 
 ## Automated build systems
 
+- [OCamlbuild](ocamlbuild/)
 - [GNU make](compiling_with_gnu_make.html)
 - [OMake](compiling_with_omake.html)
 - [Oasis](setting_up_with_oasis.html)

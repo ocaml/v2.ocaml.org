@@ -4,6 +4,37 @@
 
 # The Basics
 
+## Running OCaml code
+
+The easiest way to get started is to run an interactive session in your browser, at <http://try.ocamlpro.com/>.
+
+To test things on your own computer, run the `ocaml` command and enter statements in the standard REPL (Read–Eval–Print Loop) provided.
+Use `;;` to indicate that you've finished entering each statement:
+
+```shell
+$ ocaml
+        OCaml version 4.01.0
+
+# 1+1;;
+- : int = 2
+```
+
+The `ocaml` interpreter is very basic; install and run [utop][] for an extended REPL.
+
+To compile an OCaml program named `my_prog.ml` to a native executable, use `ocamlbuild my_prog.native`:
+
+```shell
+$ mkdir my_project
+$ cd my_project
+$ echo 'let () = print_endline "Hello, World!"' > my_prog.ml
+$ ocamlbuild my_prog.native
+Finished, 4 targets (0 cached) in 00:00:00.
+$ ./my_prog.native
+Hello, World!
+```
+
+See [Compiling OCaml projects](compiling_ocaml_projects.html) for more information.
+
 ## Comments
 OCaml comments are delimited by `(*` and `*)`, like this:
 
@@ -425,3 +456,4 @@ removes a whole class of errors which cause segfaults,
 important but often ignored runtime warnings, as in Perl).
 
 
+[utop]: https://github.com/diml/utop
