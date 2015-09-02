@@ -13,7 +13,7 @@ the day after the [ML Family Workshop](http://www.mlworkshop.org/ml2015/).
 News
 ----
 
-- 31 July 2015: [programme and call for participation](call-for-participation.txt)
+- 31 July 2015: [programme and call for participation](cfp.html)
 
 The OCaml Users and Developers Workshop brings together industrial users of
 OCaml with academics and hackers who are working on extending the language,
