@@ -24,7 +24,7 @@ Once the first two groups are catered for then the site starts
 becoming useful to the wider crowd of people who are generally
 interested and find their way to the site themselves.
 
-## Governance
+## Governance of this website
 
 A small team of individuals volunteer their time to manage and develop
 the site. These volunteers maintain an overview of the site and ensure
@@ -32,7 +32,7 @@ that the above aims are being met, while providing a consistent
 experience for all visitors. Among other things, their
 responsibilities cover the content, presentation, usability,
 infrastructure and tooling for the site. At the time of writing, the
-ocaml.org team consists of:
+'www.ocaml.org' team consists of:
 
 - [Ashish Agarwal](http://ashishagarwal.org)
 - [Christophe Troestler](https://github.com/Chris00)
@@ -49,6 +49,13 @@ mailing list](http://lists.ocaml.org/listinfo/infrastructure/), with
 relevant notifications to the main
 [caml-list](https://sympa.inria.fr/sympa/arc/caml-list/).
 
+### Governance of the OCaml.org domain
+
+The public facing website is just one of the
+[Projects](https://github.com/ocaml/infrastructure/wiki) associated with the
+OCaml.org domain name. The domain name has it's own
+[governing document](/governance.html), which you should refer to for how
+sub-domains are handled.
 
 ## How to Contribute
 
@@ -65,14 +72,15 @@ live within a few minutes.
 
 * Please fork the repo and use the Pull Request system to submit
   changes.  To add or modify content, you can also click the pen in
-  the top right corner which will take you to the corresponding Github
-  page.  There you can edit it and perform a pull request (Gihub will
+  the top right corner which will take you to the corresponding GitHub
+  page.  There you can edit it and perform a pull request (GitHub will
   take care of doing the fork for you).
 * Please don't add large files, you should put them elsewhere and link
   to them. It is possible to host some files in the separate
   [ocaml.org-media](https://github.com/ocaml/ocaml.org-media) repo.
 * Please be aware that Pull Requests are prioritised over issues.
-* Please be aware that content submitted will be licenced as (TBD).
+* Please be aware that content submitted will be licensed as stated in the
+  [license](https://github.com/ocaml/ocaml.org/blob/master/LICENSE.md) file.
 * If you are submitting substantial changes please do try building
   them locally first (run `make`).
 * If you're not sure how to get involved, help us with [open
