@@ -171,6 +171,9 @@ programming, cross-language interoperability and static program
 analysis. In parallel, the core OCaml development team actively
 maintains the base system, improving the quality of the implementation
 and porting it to the latest architectures and systems.
+As lead developer of OCaml, Chair of the Caml Consortium and Owner of
+OCaml.org, Xavier is considered to be benevolent dictator for life (BDFL) of
+the OCaml language.
 
 ## Some Close Relatives
 In addition to these mainstream versions of Caml, one should mention
