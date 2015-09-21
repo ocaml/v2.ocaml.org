@@ -13,7 +13,8 @@ the day after the [ML Family Workshop](http://www.mlworkshop.org/ml2015/).
 News
 ----
 
-- 31 July 2015: [programme and call for participation](cfp.html)
+- Sep. 19, 2015: [Videos of the talks](https://www.youtube.com/playlist?list=PLnqUlCo055hU46uoONmhYGUbYAK27Y6rS) are online.
+- July 31, 2015: [programme and call for participation](cfp.html)
 
 The OCaml Users and Developers Workshop brings together industrial users of
 OCaml with academics and hackers who are working on extending the language,
@@ -26,7 +27,7 @@ following the OCaml Meetings that ran until [2011](../2011).
 Programme
 ---------
 
-The [programme](program.txt) is now available.
+The [programme](program.html) is now available.
 
 Scope
 -----
