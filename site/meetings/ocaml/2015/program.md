@@ -47,7 +47,7 @@ OCaml 2015 — Programme
 
 14:50–15:10 break
 
-15:10–16:00 Session 5: semantics and language features
+15:10–16:00 **Session 5: semantics and language features**
   - Global Semantic Analysis on OCaml programs
     — [Video](https://www.youtube.com/watch?v=wkaLd4wWZdo&index=9&list=PLnqUlCo055hU46uoONmhYGUbYAK27Y6rS)  
     Thomas Blanc, Pierre Chambart, Michel Mauny, Fabrice Le Fessant
@@ -57,7 +57,7 @@ OCaml 2015 — Programme
 
 16:00–16:30 tea
 
-16:30–18:10 Session 6: Community and uses of OCaml
+16:30–18:10 **Session 6: Community and uses of OCaml**
   - A review of the growth of the OCaml community
     — [Video](https://www.youtube.com/watch?v=L4bRNN-HEIU&index=11&list=PLnqUlCo055hU46uoONmhYGUbYAK27Y6rS)  
     Amir Chaudhry
