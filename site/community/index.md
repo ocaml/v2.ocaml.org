@@ -51,7 +51,7 @@
                      ><img class="svg rss" src="/img/rss.svg" alt="RSS"
 					 /><img class="png" src="/img/rss.png" alt="RSS" /></a>
                 </h4>
-                {{! cmd script/rss2html -n 4 --emails 'https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40' !}}
+                {{! cmd script/rss2html -n 4 --emails 'https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=4' !}}
             <footer>
                 <p><a href="https://sympa.inria.fr/sympa/arc/caml-list/">See archives</a></p>
             </footer>
