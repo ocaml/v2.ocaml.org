@@ -8,18 +8,31 @@
 
 The easiest way to get started is to run an interactive session in your browser, at <http://try.ocamlpro.com/>.
 
-To test things on your own computer, run the `ocaml` command and enter statements in the standard REPL (Read–Eval–Print Loop) provided.
+To install OCaml on your computer, see the [Install](/docs/install.html) documentation.
+
+To quickly try small OCaml expressions, you can use a toplevel, or REPL (Read–Eval–Print Loop). The `ocaml` command provides a very basic toplevel (you should install `rlwrap` through your system package manager and run `rlwrap ocaml` to get history navigation). If you can install it through [OPAM](/docs/install.html#OPAM) or your system package manger, we recommend the use of the [utop](https://github.com/diml/utop) toplevel instead, which has the same basic interface but is much more convenient to use (history navigation, auto-completion, etc.).
+
 Use `;;` to indicate that you've finished entering each statement:
 
-```shell
+```console
 $ ocaml
-        OCaml version 4.01.0
+        OCaml version 4.02.3
 
 # 1+1;;
 - : int = 2
 ```
 
-The `ocaml` interpreter is very basic; install and run [utop][] for an extended REPL.
+```console
+───────┬────────────────────────────────────────────────────────────┬─────
+       │ Welcome to utop version 1.18 (using OCaml version 4.02.3)! │     
+       └────────────────────────────────────────────────────────────┘     
+
+Type #utop_help for help about using utop.
+
+─( 10:12:16 )─< command 0 >───────────────────────────────────────────────
+utop # 1 + 1;;
+- : int = 2
+```
 
 To compile an OCaml program named `my_prog.ml` to a native executable, use `ocamlbuild my_prog.native`:
 
