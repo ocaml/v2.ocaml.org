@@ -24,7 +24,7 @@ The OCaml system is open source software: the compiler is distributed
 under the terms of the Q Public License, and its library is under LGPL;
 please read the [license](/docs/license.html) document for more details. A
 BSD-style license is also available for a fee through the [OCaml
-Consortium](/community/support.html#consortium).
+Consortium](/consortium/).
 
 #### What is the meaning of the name “OCaml”
 

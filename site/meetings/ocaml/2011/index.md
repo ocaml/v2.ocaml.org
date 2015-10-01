@@ -229,7 +229,7 @@ ParisTech entrance).
 ## Lunch
 
 The meeting is kindly sponsored by the
-[CAML consortium](http://caml.inria.fr/consortium/), so the lunch and
+[CAML consortium](/consortium/), so the lunch and
 the coffee breaks are free.
 
 The lunch will take place inside Telecom ParisTech at the cafeteria. A
