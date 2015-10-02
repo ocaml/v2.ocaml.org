@@ -8,7 +8,7 @@ A great way to get free support is by using the active [mailing
 lists](mailing_lists.html). When you need to go beyond this and get
 professional support, you have the following options:
 
-## <img src="/img/users/ocamlpro.png" alt="OCamlPro" style="height: 2.5ex; vertical-align: text-bottom" />
+## The OCamlPro Company
 
 [OCamlPro](http://www.ocamlpro.com/) is the creator of many open-source tools
 widely used throughout the community, such as
@@ -18,13 +18,13 @@ widely used throughout the community, such as
 [large contributor](http://www.ocamlpro.com/blog/2012/08/20/ocamlpro-and-4.00.0.html)
 to OCaml itself. Besides commercially supporting their tools, they offer to
 share their expertise through
-[full OCaml support packages](http://www.ocamlpro.com/services/typerex-pro.html).
+full OCaml support packages.
 They also provide trainings and specialized software developments.
 
 OCamlPro is an INRIA spin-off with a team of highly skilled experienced OCaml
 programmers, including members of the OCaml core development team, and they have
 expertise to help debug and optimize OCaml projects as well as improve specific
-work environments.
+work environments. See details [here](http://www.ocamlpro.com/)
 
 ## Gerd Stolpmann
 [Gerd Stolpmann](http://www.gerd-stolpmann.de/buero/work_ocaml_search.html.en)
