@@ -91,6 +91,18 @@
 				/><img class="png" src="/img/rss.png" alt="RSS" /></a>
             </h1>
 			<ul class="news-feed" style="margin-bottom: 0px">
+
+                        <li class="announcement"><article>
+			  <h1><a title="MOOC OCaml (Online Course)"
+			       href="https://www.france-universite-numerique-mooc.fr/courses/parisdiderot/56002/session01/about">MOOC OCaml (Online Course)</a></h1>
+			  <p>October 19, 2015</p>
+			  <a title="MOOC OCaml (Online Course)"
+			     href="https://www.france-universite-numerique-mooc.fr/courses/parisdiderot/56002/session01/about">
+			    <img alt="" src="/img/announcement.svg" class="svg" />
+			    <img alt="" src="/img/announcement.png" class="png" />
+			  </a>
+			</article></li>
+                        
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2015/">OCaml 2015</a></h1>
@@ -101,16 +113,8 @@
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
 			</article></li>
-			<li class="announcement"><article>
-			  <h1><a title="OCaml Online Course"
-			       href="https://www.france-universite-numerique-mooc.fr/courses/parisdiderot/56002/session01/about">OCaml Online Course</a></h1>
-			  <p>November 29, 2015</p>
-			  <a title="OCaml Online Course"
-			     href="https://www.france-universite-numerique-mooc.fr/courses/parisdiderot/56002/session01/about">
-			    <img alt="" src="/img/announcement.svg" class="svg" />
-			    <img alt="" src="/img/announcement.png" class="png" />
-			  </a>
-			</article></li>			
+                        
+                        
 	        </ul>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <p><a href="community/planet/">More...</a></p>
