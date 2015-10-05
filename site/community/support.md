@@ -25,7 +25,7 @@ They also provide trainings and specialized software developments.
 OCamlPro is an INRIA spin-off with a team of highly skilled experienced OCaml
 programmers, including members of the OCaml core development team, and they have
 expertise to help debug and optimize OCaml projects as well as improve specific
-work environments. See details [here](http://www.ocamlpro.com/)
+work environments. See details [here](http://www.ocamlpro.com/).
 
 ### Gerd Stolpmann
 [Gerd Stolpmann](http://www.gerd-stolpmann.de/buero/work_ocaml_search.html.en)
@@ -55,11 +55,11 @@ You can support IRILL, the Center
 for Research and Innovation on Free Software, a major actor of the
 OCaml community, with projects such as
 [js_of_ocaml](http://ocsigen.org/js_of_ocaml/) (the
-OCaml-to-JavaScript optimizing compiler),
+OCaml to JavaScript optimizing compiler),
 [Dose](https://gforge.inria.fr/projects/dose/) (a key component of the
 OPAM package manager) and online services such as the [OPAM Weather
 Service](http://ows.irill.org/latest/today/) and the [CUDF Solver
 Farm](http://cudf-solvers.irill.org/index.html). They also use OCaml
 to contribute to other major open source projects
 ([Coccinelle](http://coccinelle.lip6.fr/), for example). 
-See details [here](http://www.irill.org/)
+See details [here](http://www.irill.org/).
