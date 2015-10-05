@@ -9,7 +9,7 @@ A great way to get free support is by using the active [mailing
 lists](mailing_lists.html). When you need to go beyond this and get
 professional support, you have the following options:
 
-### The OCamlPro Company
+### [The OCamlPro Company](http://www.ocamlpro.com/)
 
 [OCamlPro](http://www.ocamlpro.com/) is the creator of many open-source tools
 widely used throughout the community, such as
@@ -43,9 +43,23 @@ on OCaml](http://camlcity.org).
 
 ### [Caml Consortium at Inria](/consortium/)
 You can join the Caml Consortium to support development of the OCaml
-compiler. See details [here](/consortium/).
+compiler itself. See details [here](/consortium/).
 
 ### [OCaml Labs](/ocamllabs/)
 You can support OCaml Labs, which runs a variety of open source
 projects to support the OCaml community. See details
 [here](/ocamllabs/).
+
+### [IRILL](http://www.irill.org/)
+You can support IRILL, the Center
+for Research and Innovation on Free Software, a major actor of the
+OCaml community, with projects such as
+[js_of_ocaml](http://ocsigen.org/js_of_ocaml/) (the
+OCaml-to-JavaScript optimizing compiler),
+[Dose](https://gforge.inria.fr/projects/dose/) (a key component of the
+OPAM package manager) and online services such as the [OPAM Weather
+Service](http://ows.irill.org/latest/today/) or the [CUDF Solver
+Farm](http://cudf-solvers.irill.org/index.html). They also use OCaml
+to contribute to other major open-source projects
+([Coccinelle](http://coccinelle.lip6.fr/), for example). 
+See detail [here](http://www.irill.org/)
