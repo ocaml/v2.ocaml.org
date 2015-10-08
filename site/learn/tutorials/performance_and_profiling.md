@@ -813,7 +813,8 @@ The comments `(* nnn *)` are added by `ocamlprof`, showing how many
 times each part of the code was called.
 
 Profiling native code is done using your operating system's native
-support for profiling. In the case of Linux, we use `gprof`.
+support for profiling. In the case of Linux, we use `gprof`. An alternative
+is [perf](https://en.wikipedia.org/wiki/Perf_(Linux)), as explained below.
 
 To demonstrate native code profiling, I'm going to calculate the first
 3000 primes using the Sieve of Eratosthenes.
@@ -882,6 +883,23 @@ In fact this program spends much of its time in the garbage collector
 (not surprisingly, since although the solution is elegant, it is far
 from optimal - a solution using arrays and loops would have been much
 faster).
+
+### Using perf on Linux
+
+Assuming perf is installed and your program is compiled into
+native code with `-g` (or ocamlbuild tag `debug`), you just need to type
+
+```sh
+perf record --call-graph=dwarf -- ./foo.native a b c d
+perf report
+```
+
+The first command launches `foo.native` with arguments `a b c d` and
+records profiling informations in `perf.data`; the second command
+starts an interactive program to explore the call graph. The option
+`--call-graph=dwarf` makes perf aware of the calling convention of
+OCaml (with old versions of `perf`, enabling frame pointers in OCaml
+might help; opam provides suitable compiler switches, such as `4.02.1+fp`).
 
 ## Summary
 In summary here are some tips for getting the best performance out of
