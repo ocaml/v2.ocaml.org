@@ -287,11 +287,11 @@ Functions may be mutually recursive:
 
 ```ocamltop
 let rec odd n =
-  if n = 0 then true
-  else if n = 1 then false else even (n - 1)
-and even n =
   if n = 0 then false
-  else if n = 1 then true else odd (n - 1);;
+  else if n = 1 then true else even (n - 1)
+and even n =
+  if n = 0 then true
+  else if n = 1 then false else odd (n - 1);;
 ```
 
 #### How to apply a function?
