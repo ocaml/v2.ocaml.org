@@ -525,7 +525,7 @@ application.
 #### The type of this expression contains type variables that cannot be generalized
 
 This message appears when the OCaml compiler tries to compile a function
-or a value which is monorphic, but for which some types have not been
+or a value which is monomorphic, but for which some types have not been
 completely inferred. Some types variables are left in the type, which
 are are called “weak” (and are displayed by an underscore: `'_a`); they
 will disappear thanks to type inference as soon as enough informations
