@@ -150,7 +150,7 @@ C/C++
 ```C
 int a = 0; int *my_ptr = &a;
 *my_ptr = 100;
-*my_ptr
+*my_ptr;
 ```
 References have their place, but you may find that you don't use
 references very often. Much more often you'll be using
