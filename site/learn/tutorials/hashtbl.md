@@ -84,7 +84,7 @@ Hashtbl.find my_hash "t"
 
 
 To find out whether there is an
-entry in the `my_hash` for a letter we would do:
+entry in `my_hash` for a letter we would do:
 
 ```ocamltop
 Hashtbl.mem my_hash "h"
