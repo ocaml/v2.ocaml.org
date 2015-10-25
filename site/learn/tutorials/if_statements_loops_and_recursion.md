@@ -4,8 +4,8 @@
 
 # If Statements, Loops and Recursion
 
-## If statements (actually these are if expressions)
-OCaml has an if statement with two variations, and the obvious meaning:
+## If statements (actually, these are if expressions)
+OCaml has an `if` statement with two variations, and the obvious meaning:
 
 ```ocaml
 if boolean-condition then expression
@@ -13,7 +13,7 @@ if boolean-condition then expression
 if boolean-condition then expression else other-expression
 ```
 
-Unlike in the conventional languages you'll be used to, if statements
+Unlike in the conventional languages you'll be used to, `if` statements
 are really expressions. In other words, they're much more like
 `boolean-condition ? expression : other-expression` than like the if
 statements you may be used to.
@@ -80,7 +80,7 @@ programming can be said to prefer recursion over loops, but I'm jumping
 ahead of myself. We'll discuss recursion more at the end of this
 chapter.
 
-Back, temporarily, to if statements. What does this function do?
+Back, temporarily, to `if` statements. What does this function do?
 
 ```ocamltop
 let f x y =
@@ -96,7 +96,7 @@ let abs x =
   if x >= 0 then x else -x
 ```
 Also in `Pervasives`, the `string_of_float` function contains a complex
-pair of nested if expressions:
+pair of nested `if` expressions:
 
 ```ocaml
 let string_of_float f =
@@ -833,10 +833,10 @@ problem. By thinking about the problem, the solution will appear "as if
 by magic" (I promise you :-)
 
 First of all, let's be clear that the maximum element of a list is just
-the biggest one. eg. The maximum element of the list `[1; 2; 3; 4; 1]`
+the biggest one, e.g. the maximum element of the list `[1; 2; 3; 4; 1]`
 is `4`.
 
-Are there any special cases? Yes there are. What's the maximum element
+Are there any special cases? Yes, there are. What's the maximum element
 of the empty list `[]`? There *isn't one*. If we are passed an empty
 list, we should throw an error.
 
@@ -976,7 +976,7 @@ let rec range2 a b accum =
   else
     (* ... *)
 ```
-If `a > b` (ie. if we've reached the end of the recursion), then stop
+If `a > b` (i.e. if we've reached the end of the recursion), then stop
 and return the result (`accum`).
 
 Now the trick is to write the `else`-clause and make sure that the call
@@ -1030,7 +1030,7 @@ type pair_of_ints = { a : int; b : int };;
 ```
 One feature which I didn't cover: OCaml records can have mutable fields.
 Normally an expression like `{a = 3; b = 5}` is an immutable, constant
-object. However if the record has \<dfn\>mutable fields\</dfn\>, then
+object. However if the record has **mutable fields**, then
 there is a way to change those fields in the record. This is an
 imperative feature of OCaml, because functional languages don't normally
 allow mutable objects (or references or mutable arrays, which we'll look
