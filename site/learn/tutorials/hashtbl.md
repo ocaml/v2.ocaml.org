@@ -45,14 +45,16 @@ Hashtbl.add my_hash "w" "world";
 Hashtbl.add my_hash "w" "wine";;
 ```
 If we want to find one element in `my_hash` that has an `"h"` in it then we
-would write. Notice how it only returns just one element? That element
-was the last one entered in with the value of `"h"`.
+would write: 
 
 ```ocamltop 
 Hashtbl.find my_hash "h"
 ```
+Notice how it returns just one element? That element
+was the last one entered in with the value of `"h"`.
+
 What we probably want is all the elements that start with `"h"`. To do
-this we want to find all of them. What better name for this then
+this we want to *find all* of them. What better name for this then
 `find_all`?
 
 ```ocamltop
