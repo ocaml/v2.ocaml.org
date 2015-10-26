@@ -25,7 +25,6 @@ the same purpose).
  (by Daniel de Rauglaudre). The title of the tutorial says Camlp4 but
  that is because it was written prior to the name change.
 * [Camlp5 Reference
- Manual](http://caml.inria.fr/pub/docs/manual-camlp4/index.html) (by
- Daniel de Rauglaudre). The title of the manual says Camlp4 but that
- is because it was written prior to the name change.
+ Manual](http://camlp5.gforge.inria.fr/doc/htmlc/) (by
+ Daniel de Rauglaudre).
 
