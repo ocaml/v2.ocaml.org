@@ -191,7 +191,7 @@ recommended.
 
 
 > **Justification**: Between one display and another, the indentation of
-> the program changes completely; it can also becomes completely wrong,
+> the program changes completely; it can also become completely wrong,
 > if the programmer used both tabulations and spaces to indent the
 > program.
 > 
@@ -437,7 +437,7 @@ expressions which make them up.
 > >   e2
 > > ```
 > > 
-> > If there are `( )` delimiters
+> > If there are `( )` delimiters:
 > > 
 > > ```ocaml
 > > if cond then (
@@ -447,7 +447,7 @@ expressions which make them up.
 > > )
 > > ```
 > > 
-> > A mixture where `e1` requires `( )` but `e2` is small
+> > A mixture where `e1` requires `( )` but `e2` is small:
 > > 
 > > ```ocaml
 > > if cond then (
@@ -470,7 +470,7 @@ All the pattern-matching clauses are introduced by a vertical bar,
 > exception to the correct indentation rule. It also insists not to use
 > the same syntax for the whole set of clauses, writing the first clause
 > as an exception with a slightly different syntax. Last, aesthetic
-> value is doubtful dubious (some people would say “awful” instead of
+> value is doubtful (some people would say “awful” instead of
 > “doubtful”).
 > 
 
@@ -573,7 +573,7 @@ map
 Pattern-matching in functions defined by `let` or `let rec` gives rise
 to several reasonable styles which obey the preceding rules for pattern
 matching (the one for anonymous functions being evidently excepted). See
-above for recommanded styles.
+above for recommended styles.
 
 ```ocaml
 let rec size_lambda accu = function
@@ -778,7 +778,7 @@ code sometimes lets you identify an unsuspected feature.
 Pasting code almost surely indicates introducing a default of code
 sharing and neglecting to identify and write a useful auxiliary
 function; hence, it means that some code sharing is lost in the program.
-Loosing code sharing implies that you will have more problems afterwards
+Losing code sharing implies that you will have more problems afterwards
 for maintenance: a bug in the pasted code has to be corrected at each
 occurrence of the bug in each copy of the code!
 
@@ -1013,8 +1013,8 @@ printing. This module redefines the usual printing functions
 `print_string`, `print_int`, `print_float`, etc. So when you use
 `Format`, open it systematically at the top of the file.<br />
 If you don't open `Format` you could miss the qualification of a
-printing function, and this could be perfectly silent, since many
-`Format`'s functions have a correspondent in the default environment
+printing function, and this could be perfectly silent, since many of
+`Format`'s functions have a counterpart in the default environment
 (`Pervasives`). Mixing printing functions from `Format` and `Pervasives`
 leads to subtle bugs in the display, that are difficult to trace. For
 instance:
@@ -1293,7 +1293,7 @@ programs from algorithms courses where they were proved.
 ###  Exceptions
 Don't be afraid to define your own exceptions in your programs, but on
 the other hand use as much as possible the exceptions predefined by the
-system. For example every search function which fails should raise the
+system. For example, every search function which fails should raise the
 predefined exception `Not_found`. Be careful to handle the exceptions
 which may be raised by a function call with the help of a
 `try ... with`.
@@ -1533,7 +1533,7 @@ versions, see the [note below](#Imperativeandfunctionalversionsoflistlength)).
   one or two references (too many useless assignments, too many
   opportunity for errors).
 
-* This category of programmer consider that the `mutable` keyword in
+* This category of programmer feels that the `mutable` keyword in
   the record type definitions should be implicit.
 
 * **The “Too much functional” danger**:
@@ -1549,8 +1549,8 @@ versions, see the [note below](#Imperativeandfunctionalversionsoflistlength)).
  functions, even if a global reference would be perfect to avoid
  these spurious parameters that are mainly invariants that must
  be passed all over the place.
-    * This programmer think that the `mutable` keyword in the record
- types definitions should be suppressed from the language.
+    * This programmer feels that the `mutable` keyword in the record
+ type definitions should be suppressed from the language.
 
 ####  OCaml code generally considered unreadable
 The OCaml language includes powerful constructs which allow simple and
@@ -1560,7 +1560,7 @@ unreadable program.
 
 Here are a number of known ways:
 
-* Use useless (hence nocive for readability) `if then else`, as in
+* Use useless (hence novice for readability) `if then else`, as in
 
 ```ocaml
 let flush_ps () =
@@ -1604,8 +1604,8 @@ x + y
  forbidden.
 
 
-* Misuse of iterators and higher-order functions (i.e. overuse or
- under-use them). For example it's better to use `List.map` or
+* Misuse of iterators and higher-order functions (i.e. over- or
+ under-use). For example it's better to use `List.map` or
  `List.iter` than to write their equivalents in-line using specific
  recursive functions of your own. Even worse, you don't use
  `List.map` or `List.iter` but write their equivalents in terms of
@@ -1685,7 +1685,7 @@ the `Makefiles` for the OCaml compilers.
 
 ###  How to develop as a team: version control
 Users of the [Git](http://git-scm.com/) software version control system
-are never run out of good things to say about the productivity gains it
+never run out of good things to say about the productivity gains it
 brings. This system supports managing development by a team of
 programmers while imposing consistency among them, and also maintains a
 log of changes made to the software.<br />
@@ -1718,7 +1718,7 @@ let list_length l =
 ```
 This way, you get a program that has the same computational properties
 as the imperative program with the additional clarity and natural
-looking of an algorithm that performs pattern matching and recursive
+look of an algorithm that performs pattern matching and recursive
 calls to handle an argument that belongs to a recursive sum data type.
 
 
