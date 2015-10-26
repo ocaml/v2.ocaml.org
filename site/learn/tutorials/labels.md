@@ -43,7 +43,7 @@ the `even` function, we already need the definition of `odd`, and to
 compile `odd` we need the definition of `even`. So swapping the two
 definitions around won't help either.
 
-There are no "forward prototypes" in OCaml but there is a special syntax
+There are no "forward prototypes" (as seen in languages descended from C) in OCaml but there is a special syntax
 for defining a set of two or more mutually recursive functions, like
 `odd` and `even`:
 
@@ -59,7 +59,7 @@ and odd n =
 ```
 It's hard to know exactly how useful this is in practice, since I've
 never had cause to write mutually recursive functions, nor have I been
-able to think of a non-trivial example. However it's there. You can also
+able to think of a non-trivial example. However, it's there. You can also
 use similar syntax for writing mutually recursive class definitions and
 modules.
 
@@ -174,8 +174,8 @@ And the type of our new `range` function with labelled arguments is:
 ```ocaml
 range : first:int -> last:int -> int list
 ```
-(Confusingly, the `~` (tilde) is *not* shown in the type definition, but
-you need to use it everywhere else).
+Confusingly, the `~` (tilde) is *not* shown in the type definition, but
+you need to use it everywhere else.
 
 With labelled arguments, it doesn't matter which order you give the
 arguments anymore:
@@ -487,7 +487,7 @@ let f ~foo:foo ... =
 The declaration `~foo:foo` creates a variable called simply `foo`, so if
 you need the value just use plain `foo`.
 
-Things, however, get complicated for two reasons: Firstly the shorthand
+Things, however, get complicated for two reasons: firstly the shorthand
 form `~foo` (equivalent to `~foo:foo`), and secondly when you call a
 function which takes a labelled or optional argument and you use the
 shorthand form.
