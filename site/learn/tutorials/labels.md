@@ -487,8 +487,8 @@ let f ~foo:foo ... =
 The declaration `~foo:foo` creates a variable called simply `foo`, so if
 you need the value just use plain `foo`.
 
-Things, however, get complicated for two reasons: firstly the shorthand
-form `~foo` (equivalent to `~foo:foo`), and secondly when you call a
+Things, however, get complicated for two reasons: first, the shorthand
+form `~foo` (equivalent to `~foo:foo`), and second, when you call a
 function which takes a labelled or optional argument and you use the
 shorthand form.
 
