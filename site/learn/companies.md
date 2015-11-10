@@ -33,7 +33,7 @@
 
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/bloomberg.jpg" alt="Bloomberg L.P.">
+        <img src="/img/users/besport.png" alt="BeSport">
     </dt>
     <dd class="span5">
         <h2><a href="http://besport.com/">BeSport</a>, France </h2>
