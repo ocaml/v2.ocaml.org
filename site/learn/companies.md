@@ -37,7 +37,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://besport.com/">BeSport</a>, France </h2>
-        <p>BeSport is the sports social network that connects athletes and fans, with everything that define their sports'life, having users experience a total sport immertion.</p> 
+        <p>BeSport is the sports social network that connects athletes and fans, with everything that define their sports'life, having users experience a total sport immertion. BeSport is a 100% OCaml and OCsigen project, leveraged as the only building blocks to develop the platform.</p> 
     </dd>
 </dl>
 
