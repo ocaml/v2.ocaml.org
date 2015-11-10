@@ -30,6 +30,17 @@
         <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in a advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p> 
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/bloomberg.jpg" alt="Bloomberg L.P.">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://besport.com/">BeSport</a>, France </h2>
+        <p>BeSport is the sports social network that connects athletes and fans, with everything that define their sports'life, having users experience a total sport immertion.</p> 
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/citrix.png" alt="Citrix">
