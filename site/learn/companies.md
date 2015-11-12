@@ -33,17 +33,6 @@
 
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/besport.png" alt="BeSport">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://besport.com/">BeSport</a>, France </h2>
-        <p>BeSport's mission is to enhance the value that sport brings to our lives with appropriate use of digital and social media innovations.
-           BeSport is a 100% <a href='http://ocaml.org/'>OCaml</a> and <a href='http://ocsigen.org'>OCsigen</a> project, leveraged as the only building blocks to develop the platform.</p> 
-    </dd>
-</dl>
-
-<dl class="row">
-    <dt class="span3">
         <img src="/img/users/citrix.png" alt="Citrix">
     </dt>
     <dd class="span5">
@@ -113,7 +102,16 @@
         <p>Ashima Group uses OCaml for geometric reasoning, GPU shader translation, and high-performance servers. OCaml's type system, compiler, tools, community, and design philosophy make it an extremely powerful and versatile tool for diverse systems development tasks.</p>
     </dd>
 </dl>
-
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/besport.png" alt="BeSport">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://besport.com/">BeSport</a>, France </h2>
+        <p>BeSport's mission is to enhance the value that sport brings to our lives with appropriate use of digital and social media innovations.
+           BeSport is a 100% <a href='http://ocaml.org/'>OCaml</a> and <a href='http://ocsigen.org'>OCsigen</a> project, leveraged as the only building blocks to develop the platform.</p> 
+    </dd>
+</dl>
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/cacaoweb.png" alt="cacaoweb">
