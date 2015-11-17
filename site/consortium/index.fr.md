@@ -48,6 +48,12 @@ dissémination, mais aussi pour sa pérennité.
   src="/img/users/ocamlpro.png" alt="OCamlPro"
   style="width: 170px" /></a></td>
 </tr>
+<tr style="height: 70px">
+<td></td>
+<td align="center"><a href="http://www.bloomberg.com"><img
+  src="/img/users/bloomberg.jpg" alt="Bloomberg" style="width: 170px" /></a></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 
