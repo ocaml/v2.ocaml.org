@@ -8,7 +8,7 @@
 <img src="/img/colour-icon-170x148.png" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
 *Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy, and Jérôme
-Vouillon. Originally published in 2014, updated for each new version.*
+Vouillon*
 
 This the official User's Manual. It serves as a complete reference guide
 to OCaml. Updated for each version of OCaml, it contains the description
