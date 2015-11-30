@@ -8,7 +8,7 @@
 <img src="/img/colour-icon-170x148.png" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
 *Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy, and Jérôme
-Vouillon. Published in 2014*
+Vouillon. Originally published in 2014, updated for each new version.*
 
 This the official User's Manual. It serves as a complete reference guide
 to OCaml. Updated for each version of OCaml, it contains the description
@@ -91,7 +91,7 @@ the front of the book.
 ###  Unix System Programming in OCaml
 <img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*Xavier Leroy and Didier Rémy. May 2010*
+*Xavier Leroy and Didier Rémy. Published May 2010*
 
 This is an excellent book on Unix system programming, with an emphasis
 on communications between processes. The main novelty of this work is
