@@ -58,11 +58,14 @@
                         <img src="/img/OCaml_from_beginning.png" alt="OCaml from the very beginning">
                     </a>
                 </div>
-                <div class="span2">                    
-                    <p>There are a number of excellent books, with two new titles published in 2013. Real World OCaml is available to <a href="https://realworldocaml.org">read online</a>.</p>
+                <div class="span2 documentation-book">
+                    <a href="http://ocaml-book.com/more-ocaml-algorithms-methods-diversions/">
+                        <img src="/img/more-ocaml-300-376.png" alt="More OCaml: Algorithms, Methods &amp; Diversions">
+                    </a>
                 </div>
             </div>
             <footer>
+            <p>There are a number of excellent books, with the most recent title published in 2014. Real World OCaml is available to <a href="https://realworldocaml.org">read online</a>.</p>
             <p><a href="/learn/books.html">See more books</a> / <a href="/docs/papers.html">See more papers</a></p>
             </footer>
         </section>
