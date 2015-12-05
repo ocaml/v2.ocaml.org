@@ -29,8 +29,9 @@ OCamlコンパイラが出すエラーや警告メッセージからいくつか
 
 もっと混乱するのが以下のメッセージだ:
 
-    This expression has type my_type but is here used with type my_type
-
+```text
+This expression has type my_type but is here used with type my_type
+```
 このエラーは普通、トップレベル環境で型定義を幾つかテストするときに起こる。
 OCaml
 では、すでに別の型名になっている名前で型を定義することは完全に合法である。
@@ -82,8 +83,10 @@ let x = ref None
 
 コンパイル中に以下のメッセージが出る:
 
-    The type of this expression, '_a option ref,
-    contains type variables that cannot be generalized
+```text
+The type of this expression, '_a option ref,
+contains type variables that cannot be generalized
+```
 
 解法:例のように型の注釈を付けてコンパイラに教える:
 
@@ -198,8 +201,9 @@ clean していないような)
 外部ソースからプログラムをコンパイルしたりすると、
 このようなエラーメッセージを食らうかもしれない。
 
-    some_module.cmi is not a compiled interface
-
+```text
+some_module.cmi is not a compiled interface
+```
 これは `some_module.cmi` が OCmal
 コンパイラの現在のバージョンにとっては有効でないという意味だ。
 たいてい、古いコンパイル済ファイル (`*.cmi`, `*.cmo`, `*.cmx`, ...)

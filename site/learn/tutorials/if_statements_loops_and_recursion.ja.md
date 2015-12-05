@@ -349,7 +349,7 @@ Perl には、 "grep"
 ```ocamltop
 let is_even i =
   i mod 2 = 0 in
-  List.filter is_even my_list
+List.filter is_even my_list
 ```
 
 リストの中身に探したい要素が見つかるかどうかには、 `List.mem` (member
@@ -442,8 +442,6 @@ fact 10;;
 ### アプローチ 3
 
 再帰のループ。再帰を脱出するには、やはり例外を使う。
-
------
 
 ここで、新しい概念を少し紹介しよう。後の2つのアプローチでは、 `Buffer`
 モジュールを使うことになる -
@@ -712,7 +710,6 @@ let rec read_directory path =
     let rec range a b =
       if a > b then []            (* Base case *)
       else a :: range (a+1) b     (* Recursive case *)
-      ;;
     ```
 	
 -   ツリーをつくるための再帰の使いかた:
@@ -847,8 +844,8 @@ let rec loop () =
 ```
 
 ここで大切なことは、match、 base case、 recursive case
-のパターンの使いかただ。これからの例 - リストのなかで最大の要素を求める
-- では、2つの base case と、ひとつの recursive case
+のパターンの使いかただ。これからの例 - リストのなかで最大の要素を求める -
+では、2つの base case と、ひとつの recursive case
 をとることになる。いきなりコードの話に入る前に、ちょっと足をとめて、じっくりこの問題を考えてみよう。この問題を考えることで、解法が"まるで魔法の
 ように"頭に浮かぶようになるだろう(約束するよ :-)
 

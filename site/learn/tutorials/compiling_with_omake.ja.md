@@ -20,48 +20,48 @@ OMake でのコンパイル
     だとする。自動生成された `OMakefile`
     からコメントを削除したりコメントアウトしたりする。こんな感じだ:
 
-<!-- -->
+```
+# プログラム名 (拡張子無し)
+PROGRAM = myprog
 
-    # プログラム名 (拡張子無し)
-    PROGRAM = myprog
+# ソースファイルを拡張し抜きで1行に一つずつ書く。
+# 後ろにスペースを付けないこと。
+FILES[] =
+   parser
+   lexer
+   main
+# 別の書き方もある:
+# FILES = parser lexer \
+#         main
 
-    # ソースファイルを拡張し抜きで1行に一つずつ書く。
-    # 後ろにスペースを付けないこと。
-    FILES[] =
-       parser
-       lexer
-       main
-    # 別の書き方もある:
-    # FILES = parser lexer \
-    #         main
+# ocamlfind を使う場合
+USE_OCAMLFIND = true
+# ocamlfind で探して使うパッケージ
+OCAMLPACKS[] =
+   unix
+   micmatch_pcre
+   labltk
+# camlp4 プリプロセッサを使うことを omake に伝える
+OCAMLFINDFLAGS = -syntax camlp4o
 
-    # ocamlfind を使う場合
-    USE_OCAMLFIND = true
-    # ocamlfind で探して使うパッケージ
-    OCAMLPACKS[] =
-       unix
-       micmatch_pcre
-       labltk
-    # camlp4 プリプロセッサを使うことを omake に伝える
-    OCAMLFINDFLAGS = -syntax camlp4o
+# ocamldep を走らせる前にファイル生成しておく必要があることを OMake に伝える
+# (OMake は ocamllex と ocamlyacc を使うことは知っている)
+OCamlGeneratedFiles(lexer.ml parser.mli parser.ml)
 
-    # ocamldep を走らせる前にファイル生成しておく必要があることを OMake に伝える
-    # (OMake は ocamllex と ocamlyacc を使うことは知っている)
-    OCamlGeneratedFiles(lexer.ml parser.mli parser.ml)
+# 実行ファイルの生成
+OCamlProgram($(PROGRAM), $(FILES))
 
-    # 実行ファイルの生成
-    OCamlProgram($(PROGRAM), $(FILES))
+# デフォルト動作: バイトコードかネイティブコードのどちらか又は両方の生成
+.DEFAULT: $(if $(BYTE_ENABLED), $(PROGRAM).run) \
+          $(if $(NATIVE_ENABLED), $(PROGRAM).opt)
 
-    # デフォルト動作: バイトコードかネイティブコードのどちらか又は両方の生成
-    .DEFAULT: $(if $(BYTE_ENABLED), $(PROGRAM).run) \
-              $(if $(NATIVE_ENABLED), $(PROGRAM).opt)
-
-    # 掃除
-    .PHONY: clean
-    clean:
-      rm -f \
-         $(filter-proper-targets $(glob $(addsuffix .*, $(FILES)))) \
-         $(PROGRAM).run $(PROGRAM).opt
+# 掃除
+.PHONY: clean
+clean:
+  rm -f \
+     $(filter-proper-targets $(glob $(addsuffix .*, $(FILES)))) \
+     $(PROGRAM).run $(PROGRAM).opt
+```
 
 ソースファイル名や実行ファイル名、ライブラリやオプションなど
 必要に応じて `OMakefile` を書き換えること。 では `omake` を走らせよう。

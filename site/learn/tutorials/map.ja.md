@@ -50,7 +50,7 @@ let m = MyUsers.add "pete" "linux" m;;
 
 ```ocamltop
 let print_users key password =
-  print_string(key ^ " " ^ password ^ "\n")
+  print_string(key ^ " " ^ password ^ "\n");;
 ```
 
 ふたつの文字列、キーとパスワードをとって
@@ -58,7 +58,7 @@ let print_users key password =
 これで必要なのは写像に適用する関数だ。 それはこんな感じになるだろう:
 
 ```ocamltop
-MyUsers.iter print_users m
+MyUsers.iter print_users m;;
 ```
 
 だが写像にデータを置く理由は、
@@ -66,7 +66,7 @@ MyUsers.iter print_users m
 見つけ出しかたを実際に示す:
 
 ```ocamltop
-MyUsers.find "fred" m
+MyUsers.find "fred" m;;
 ```
 
-これは素早く効率的に `Fred` のパスワードである "`sugarplums`" を返す。
+これは素早く効率的にFredのパスワードである "sugarplums" を返す。

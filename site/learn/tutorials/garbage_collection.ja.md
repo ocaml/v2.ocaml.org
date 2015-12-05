@@ -155,22 +155,23 @@ let () =
 
 これが出力結果:
 
-    minor_words: 115926165          # 確保されたワード数合計
-    promoted_words: 31217           # マイナーからメジャーへの昇格
-    major_words: 31902              # 直接メジャーに確保された大きなオブジェクト
-    minor_collections: 3538         # マイナーヒープの回収回数
-    major_collections: 39           # メジャーヒープの回収回数
-    heap_words: 63488               # ヒープの大きさ(ワード単位) = およそ 256K
-    heap_chunks: 1
-    top_heap_words: 63488
-    live_words: 2694
-    live_blocks: 733
-    free_words: 60794
-    free_blocks: 4
-    largest_free: 31586
-    fragments: 0
-    compactions: 0
-
+```
+minor_words: 115926165          # 確保されたワード数合計
+promoted_words: 31217           # マイナーからメジャーへの昇格
+major_words: 31902              # 直接メジャーに確保された大きなオブジェクト
+minor_collections: 3538         # マイナーヒープの回収回数
+major_collections: 39           # メジャーヒープの回収回数
+heap_words: 63488               # ヒープの大きさ(ワード単位) = およそ 256K
+heap_chunks: 1
+top_heap_words: 63488
+live_words: 2694
+live_blocks: 733
+free_words: 60794
+free_blocks: 4
+largest_free: 31586
+fragments: 0
+compactions: 0
+```
 この結果から、マイナーヒープの回収はおよそメジャーヒープの回収の100倍の頻度で
 あることが分かる (この例は必ずしも一般的ではない)。
 プログラムの実行期間全体で驚くことに440MBものメモリが確保されている。とはいえ、

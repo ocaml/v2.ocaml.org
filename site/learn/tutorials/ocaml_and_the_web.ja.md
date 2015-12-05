@@ -53,7 +53,7 @@ CGI プログラミング
 [Ocamlscript version
 2](http://mjambon.com/ocamlscript.html "http://mjambon.com/ocamlscript.html")は
 [ocamlfind
-(Findlib)](http://www.ocaml-programming.de/packages/ "http://www.ocaml-programming.de/packages/")
+(Findlib)](http://www.camlcity.org/)
 によるパッケージインストールに完全対応しているので、
 好みのライブラリをいっぱい、スクリプトから、いとも簡単にロードできる。
 
@@ -61,8 +61,8 @@ Webサーバとフレームワーク
 -----------------------
 
 [PPS Computer Science
-Laboratory](http://www.pps.jussieu.fr/ "Jussieu")
-は[Ocsigen](http://www.ocsigen.org/)
+Laboratory](http://www.pps.univ-paris-diderot.fr/ "Jussieu")
+は[Ocsigen](http://ocsigen.org/)
 を作っている。 これは Ocaml で書かれた OCaml のための web
 サーバでありフレームワークだ。 GET
 引数も許容されたパターンマッチングや他の巧みな特長により、 関数が URL

@@ -13,19 +13,19 @@ OCamlプログラムの構造
 
 では、`average`関数にローカルな変数を加えたものを、Cで見てみよう。(先にあげた、最初の定義と比べてみよ)
 
-    double
-    average (double a, double b)
-    {
-      double sum = a + b;
-      return sum / 2;
-    }
-
+```C
+double average (double a, double b)
+{
+  double sum = a + b;
+  return sum / 2;
+}
+```
 同じことを、OCamlでやってみよう。
 
-```ocaml
+```ocamltop
 let average a b =
   let sum = a +. b in
-  sum /. 2.0
+  sum /. 2.0;;
 ```
 
 標準の句の`let name = expression in`が、ローカルな式に名前をつけて定義するのに使われている。これで`name`は、後で関数のなかで、`expression`の代わりに使えるようになる。式の終わりの`;;`で、コードのブロックが閉じる。inのあとでインデントをしないのに注意。これは、`let ... in`はひとつの文である、と考えること。
@@ -35,13 +35,15 @@ let average a b =
 より分かりやすくするための、もうひとつの例。以下の２つのコードは、同じ値を返すわけだが(すなわち
 (a+b) + (a+b)^2^):
 
-```ocaml
+```ocamltop
 let f a b =
-  (a +. b) +. (a +. b)**2.
+  (a +. b) +. (a +. b) ** 2.
+  ;;
 
 let f a b =
   let x = a +. b in
   x +. x ** 2.
+  ;;
 ```
 
 ２つめのほうがたぶん速い(しかし、ほとんどのコンパイラは、この処置を"共通部分式の削除"でしてくれるはずだ)、それに、明らかに読みやすい。２つめの例の`x`は`a +. b`の略にすぎない。
@@ -56,15 +58,18 @@ let f a b =
 let html =
   let content = read_whole_file file in
   GHtml.html_from_string content
+  ;;
 
 let menu_bold () =
   match bold_button#active with
-    true -> html#set_font_style ~enable:[`BOLD] ()
+  | true -> html#set_font_style ~enable:[`BOLD] ()
   | false -> html#set_font_style ~disable:[`BOLD] ()
+  ;;
 
 let main () =
   (* code omitted *)
   factory#add_item "Cut" ~key:_X ~callback: html#cut
+  ;;
 ```
 
 この実際にあったコードで、`html`は、HTML作成ウィジェット(lablgtkライブラリのオブジェクト)であり、プログラムの冒頭で、一度だけ作られている。それが最初の`let html =`文である。それから、後の関数で2、3度参照されている。
@@ -82,8 +87,8 @@ let main () =
 
 どうやって`int`への参照を作るか、OCamlではこうだ:
 
-```ocaml
-ref 0
+```ocamltop
+ref 0;;
 ```
 
 こんな文は、くずと同じだ。参照を作ったはいいが、名前をつけていないので、ガーベジコレクタがやってきて、すぐに掃除していってしまう!(実際には、コンパイルのときに消されてしまう。)参照に名前をつけてあげよう:
@@ -107,12 +112,20 @@ my_ref := 100
 そう、`:=`演算子は、参照に代入をするのに使われ、`!`演算子は、参照の中身をとりだすのに使われる。
 大雑把な比較を、C/C++としてみよう:
 
-    OCaml                   C/C++
 
-    let my_ref = ref 0;;    int a = 0; int *my_ptr = &a;
-    my_ref := 100;;         *my_ptr = 100;
-    !my_ref                 *my_ptr
+OCaml
+```ocamltop
+let my_ref = ref 0;;
+my_ref := 100;;
+!my_ref
+```
 
+C/C++
+```C
+int a = 0; int *my_ptr = &a;
+*my_ptr = 100;
+*my_ptr;
+```
 参照にも使いどころはあるが、しかし、そう頻繁には参照は使わないと思ってよい。それよりよっぽどよく使うのは、`let name = expression in`のほうで、名前を関数内のローカルな式につけることである。
 
 ## 入れ子関数
@@ -120,34 +133,38 @@ my_ref := 100
 Cには、入れ子関数の概念がないと言ってよい。GCCは、入れ子関数をCプログラマに提供しているが、この拡張を実際に使っているプログラムをみたことがない。それはさておき、info
 gccの、入れ子関数についてのページをのせておこう。
 
-日本語訳 https://web.archive.org/web/20070328133739/http://www.sra.co.jp/wingnut/gcc/gcc-j.html#Nested%20Functions
+[日本語訳](https://web.archive.org/web/20070328133739/http://www.sra.co.jp/wingnut/gcc/gcc-j.html#Nested%20Functions)
 
 ネストした関数 とは、なにか別の関数のなかで定義された関数である。(GNU
 C++ ではネストした関数はサポートしていない。)
 ネストした関数の名前は、定義されたブロック内で有効である。以下の例では、square
 という名前のネストした関数を定義し、二回呼び出している。
 
-    foo (double a, double b)
-    {
-      double square (double z) { return z * z; }
+```C
+foo (double a, double b)
+{
+  double square (double z) { return z * z; }
 
-      return square (a) + square (b);
-    }
+  return square (a) + square (b);
+}
+```
 
 ネストした関数からは、それを含む関数の変数のうち、ネストした関数が定義されている点で見えるものは全部
 参照可能である。これは、レキシカル・スコーピング
 と呼ばれている。例えば、以下の例では、ネストした関数が offset
 という名前の変数を親関数から継承している。
 
-    bar (int *array, int offset, int size)
-    {
-      int access (int *array, int index)
-        { return array[index + offset]; }
-      int i;
-      /* ... */
-      for (i = 0; i < size; i++)
-        /* ... */ access (array, i) /* ... */
-    }
+```C
+bar (int *array, int offset, int size)
+{
+  int access (int *array, int index)
+    { return array[index + offset]; }
+  int i;
+  /* ... */
+  for (i = 0; i < size; i++)
+    /* ... */ access (array, i) /* ... */
+}
+```
 
 つかめただろうか。入れ子関数は、もう、大変に重宝で、OCamlではしきりに使われる。ここで入れ子関数の例を、実際のコードから見てみよう。
 
@@ -163,7 +180,7 @@ let read_whole_channel chan =
   try
     loop ()
   with
-    End_of_file -> Buffer.contents buf
+    End_of_file -> Buffer.contents buf;;
 ```
 
 このコードが何をしているかは、気にしなくてよい。まだこのチュートリアルで説明していないことが
@@ -177,7 +194,7 @@ let read_whole_channel chan =
 
 OCamlには、興味津々たるモジュール(ライブラリ。便利なコードをまとめたもの)がたくさんついてい
 る。例えば、標準ライブラリには、グラフィックを描くもの、GUI部品を操作するもの、大きな数やデータ構造をあつかうもの、POSIXシステムコールを
-作るもの、がある。これらのライブラリが置かれているのは、`/usr/lib/ocaml/VERSION/`である(Unixなら)。これらのなかから、特に、シンプルなモジュールをひとつ選んで、紹介しよう。`Graphics`モジュールだ。
+作るもの、がある。これらのライブラリが置かれているのは、`/usr/lib/ocaml/`である(Unixなら)。これらのなかから、特に、シンプルなモジュールをひとつ選んで、紹介しよう。`Graphics`モジュールだ。
 
 `Graphics`モジュールでインストールされるのは、5つのファイルである(手元のシステムでは)
 
