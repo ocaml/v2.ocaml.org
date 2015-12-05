@@ -7,19 +7,19 @@ Set (集合)モジュール
 文字列の集合を作るには:
 
 ```ocamltop
-module SS = Set.Make(String)
+module SS = Set.Make(String);;
 ```
 
 集合を作るには、どこかからはじめないといけない。 そのために空集合がある:
 
 ```ocamltop
-let s = SS.empty
+let s = SS.empty;;
 ```
 
 または、はじめの要素が分かっているのなら、 集合は次のように作れる:
 
 ```ocamltop
-let s = SS.singleton "hello"
+let s = SS.singleton "hello";;
 ```
 
 この集合に要素を何個か追加するにはこうすればよい:
@@ -27,7 +27,7 @@ let s = SS.singleton "hello"
 ```ocamltop
 let s =
   List.fold_right SS.add ["hello"; "world"; "community"; "manager";
-                          "stuff"; "blue"; "green"] s
+                          "stuff"; "blue"; "green"] s;;
 ```
 
 ここで、集合をいじっていると、
@@ -57,19 +57,13 @@ let s2 = SS.filter my_filter s;;
 あるいは匿名関数を使って:
 
 ```ocamltop
-let s2 = SS.filter (fun str -> String.length str <= 5) s
+let s2 = SS.filter (fun str -> String.length str <= 5) s;;
 ```
 
 集合内にある要素が存在するかどうかを調べたいときは このようになるだろう:
 
 ```ocamltop
-SS.exists (fun str -> str = "hello") s2
-```
-
-あるいは等価な:
-
-```ocamltop
-SS.exists (( = ) "hello") s2
+SS.mem "hello" s2;;
 ```
 
 `Set` モジュールはまた、
@@ -78,7 +72,7 @@ SS.exists (( = ) "hello") s2
 長い文字列集合である:
 
 ```ocamltop
-print_set (SS.diff s s2)
+print_set (SS.diff s s2);;
 ```
 
 `Set` モジュールは純粋に関数的データ構造を提供することに注意:

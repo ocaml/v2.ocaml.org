@@ -41,8 +41,9 @@ let is_prime n =
 
 Cに由来するほとんどの言語では、この関数を呼び出すときにはこのようにする。
 
-    repeated ("hello", 3)  /* Cコード*/
-
+```
+repeated ("hello", 3)  /* Cコード*/
+```
 これは、「関数`repeated`を2つの引数により呼び出す。最初の引数は文字列helloであり、二番目の引数は3である」ことを意味する。
 
 ところが、OCamlやその他の関数型言語では関数呼び出しを違ったように書く。特に括弧のつけ方が異なり、間違いの元になりやすい。上と同じ関数呼び出しをOCamlで書くと、
@@ -71,9 +72,19 @@ repeated (get_string_from_user "Please type in a string.") 3
 ```ocaml
 f 5 (g "hello") 3    (* fの引数は3つ。gは一つ *)
 f (g 3 4)            (* fの引数は一つ。gは2つ。*)
+```
 
-# repeated ("hello", 3);;     (* エラーになる。 *)
-This expression has type string * int but is here used with type string
+<div media:type="text/omd" style="display: none">
+
+```ocamltop
+let repeated (s: string) (i: int) =
+  failwith "implementation not given"
+```
+
+</div>
+
+```ocamltop
+repeated ("hello", 3)     (* エラーになる。 *)
 ```
 
 関数定義
@@ -87,14 +98,14 @@ OCaml の文法は晴れ晴れするほどすっきりしています。
 
 ```ocaml
 let average a b =
-  (a +. b)/. 2.0;;
+  (a +. b) /. 2.0;;
 ```
 
 OCaml の"トップレベル" (Unix なら `ocaml`
 コマンドをシェルプロンプトから入力してください)
 にこれを入力すると、こうなります：
 
-```ocaml
+```ocamltop
 let average a b =
   (a +. b) /. 2.0;;
 ```
@@ -109,11 +120,12 @@ let average a b =
 この関数と同じものを C で定義します (Java も C と似たようなものです)。
 するともっと疑問が浮かぶかも知れません。 C バージョンの `average`:
 
-    double average (double a, double b)
-    {
-      return (a + b) / 2;
-    }
-
+```C
+double average (double a, double b)
+{
+  return (a + b) / 2;
+}
+```
 先に示した OCaml 版のとても短い関数定義と見比べましょう。
 こんな疑問が浮かびませんか？:
 
@@ -148,14 +160,16 @@ let average a b =
 
 OCaml の基本型は以下の通りです。
 
-    OCaml の型       範囲
+```text
+OCaml の型       範囲
 
-    int            32ビットCPU では 31ビット符号付き整数 (およそ±10億)、64ビットCPU では 63ビット符号付き整数
-    float          IEEE 倍精度浮動小数点数、C の double と同じ
-    bool           true もしくは false となる真偽値
-    char           8bit 文字
-    string         文字列
-    unit           () と書くもの
+int            32ビットCPU では 31ビット符号付き整数 (およそ±10億)、64ビットCPU では 63ビット符号付き整数
+float          IEEE 倍精度浮動小数点数、C の double と同じ
+bool           true もしくは false となる真偽値
+char           8bit 文字
+string         文字列
+unit           () と書くもの
+```
 
 OCaml では整数型(`int`)の 1ビットを
 自動的なメモリ管理(ガベージコレクション)のために内部的に使っているため、
@@ -218,7 +232,7 @@ OCaml は自動的に int を float
 に昇格することはないので、次のも間違いです:
 
 ```ocamltop
-1 +. 2.5;;
+1 +. 2.5
 ```
 
 OCaml は第一引数に文句をつけています。
@@ -228,7 +242,7 @@ OCaml は第一引数に文句をつけています。
 では明示的なキャストが必要です。
 
 ```ocaml
-float_of_int i +. f
+(float_of_int i) +. f
 ```
 
 `float_of_int` は `int` をとって `float` を返す関数です。 これらの関数は
@@ -387,7 +401,7 @@ give_me_a_three : 'a -> int
 
 ```ocamltop
 let average a b =
-  (a +. b) /. 2.0;;
+  (a +. b) /. 2.0
 ```
 
 摩訶不思議！ OCaml は勝手にこの関数が二つの `float` を引数にとって
@@ -402,7 +416,7 @@ let average a b =
 関数の返値になるわけですから、 `average` 関数の返値の型もまた同じく
 `float` でないといけません。 したがって、まとめると `average` の型は
 
-```
+```ocaml
 average : float -> float -> float
 ```
 

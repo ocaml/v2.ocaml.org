@@ -400,7 +400,7 @@ Now for something a bit stranger. What about a function which takes
 *anything* as an argument? Here's an odd function which takes an
 argument, but just ignores it and always returns 3:
 
-```ocamltop
+```ocaml
 let give_me_a_three x = 3
 ```
 What is the type of this function? In OCaml we use a special placeholder

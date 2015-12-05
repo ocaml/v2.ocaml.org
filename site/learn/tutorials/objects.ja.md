@@ -200,13 +200,15 @@ let drain_stack (s : 'a stack) =
 架空の OCaml のウィジェットライブラリを Java の Swing と
 同じようなものと考えよう。 ボタンとラベルを次のクラス階層で定義する:
 
-    widget  (superclass for all widgets)
-      |
-      +----> container  (any widget that can contain other widgets)
-      |        |
-      |        +----> button
-      |
-      +-------------> label
+```
+widget  (superclass for all widgets)
+  |
+  +----> container  (any widget that can contain other widgets)
+  |        |
+  |        +----> button
+  |
+  +-------------> label
+```
 
 (`button` は `container` であることに注意。
 なぜならラベルかイメージのいずれかを含むことが出来て、
