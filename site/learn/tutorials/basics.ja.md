@@ -71,9 +71,19 @@ repeated (get_string_from_user "Please type in a string.") 3
 ```ocaml
 f 5 (g "hello") 3    (* fの引数は3つ。gは一つ *)
 f (g 3 4)            (* fの引数は一つ。gは2つ。*)
+```
 
-# repeated ("hello", 3);;     (* エラーになる。 *)
-This expression has type string * int but is here used with type string
+<div media:type="text/omd" style="display: none">
+
+```ocamltop
+let repeated (s: string) (i: int) =
+  failwith "implementation not given"
+```
+
+</div>
+
+```ocamltop
+repeated ("hello", 3)     (* エラーになる。 *)
 ```
 
 関数定義

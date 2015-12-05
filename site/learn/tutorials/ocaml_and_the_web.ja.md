@@ -30,7 +30,7 @@ Camlp4 でプリプロセッサを書いて本物のスクリプトエンジン
 これらのタグの中を除いては変更なくそのまま表示する。誰か作る人は？ :)
 
 答え:既にあって、
-[Camlmix](http://martin.jambon.free.fr/camlmix/ "http://martin.jambon.free.fr/camlmix/")
+[Camlmix](http://mjambon.com/camlmix/index.html "http://mjambon.com/camlmix/index.html")
 と呼ばれてる :-)
 最新版(1.3)ではそのまま(モジュールの評価時にテキストが表示される)
 もしくは他のモジュールから呼び出せる `render`
@@ -45,13 +45,13 @@ CGI プログラミング
 スクリプトをバイナリ形式(特にネイティブコード)にコンパイルすれば、
 スピードが特に加速されるだろう。
 
-[Ocamlscript](http://mirror.ocamlcore.org/caml.inria.fr/cgi-bin/hump.en75dc.html?contrib=463 "http://caml.inria.fr/cgi-bin/hump.en.cgi?contrib=463")
+[Ocamlscript](http://mjambon.com/ocamlscript.html "http://mjambon.com/ocamlscript.html")
 は透過的にコンパイルされる1ファイルスクリプトを書ける
 (必要に応じてネイティブコードコンパイラも使える)。
 つまりいいとこ取りが本当にできてしまうのだ。
 
 [Ocamlscript version
-2](http://ocaml.pbwiki.com/Ocamlscript "http://ocaml.pbwiki.com/Ocamlscript")は
+2](http://mjambon.com/ocamlscript.html "http://mjambon.com/ocamlscript.html")は
 [ocamlfind
 (Findlib)](http://www.ocaml-programming.de/packages/ "http://www.ocaml-programming.de/packages/")
 によるパッケージインストールに完全対応しているので、

@@ -63,13 +63,7 @@ let s2 = SS.filter (fun str -> String.length str <= 5) s
 集合内にある要素が存在するかどうかを調べたいときは このようになるだろう:
 
 ```ocamltop
-SS.exists (fun str -> str = "hello") s2
-```
-
-あるいは等価な:
-
-```ocamltop
-SS.exists (( = ) "hello") s2
+SS.mem "hello" s2;;
 ```
 
 `Set` モジュールはまた、

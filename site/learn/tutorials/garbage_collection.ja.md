@@ -379,7 +379,7 @@ let sync_records () =
 
 これでようやくテストコードが出来た。 テストコードを再度は示さないが、
 完全なプログラムとテストコード
-[objcache.ml](http://mirror.ocamlcore.org/ocaml-tutorial.org/_file/objcache.ml)
+[objcache.ml](objcache.ml)
 をダウンロードして 次のようにコンパイルできる:
 
 ```shell

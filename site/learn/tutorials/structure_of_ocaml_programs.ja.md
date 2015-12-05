@@ -246,7 +246,7 @@ then-else、そして再帰だ。これらについては後で触れる。と�
 ## Pervasives モジュール
 
 モジュールで、ひとつだけ、"`open`"する必要がないものがある。それは、`Pervasives`モジュールである。(目を通すとよい。
-`/usr/lib/ocaml/3.08/pervasives.mli`)`Pervasives`モジュールのすべてのシンボルは、自動で、OCamlプログラムにインポートされる。
+`/usr/lib/ocaml/pervasives.mli`)`Pervasives`モジュールのすべてのシンボルは、自動で、OCamlプログラムにインポートされる。
 
 ## モジュールをリネームする
 
