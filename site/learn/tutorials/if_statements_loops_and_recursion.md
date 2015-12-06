@@ -350,7 +350,7 @@ of some of these functions, namely `iter2`, `map2`, `for_all2`,
 `exists2`.
 
 The `map` and `filter` functions operate on individual list elements in
-isolation. \<dfn\>Fold\</dfn\> is a more unusual operation that is best
+isolation. **Fold** is a more unusual operation that is best
 thought about as "inserting an operator between each element of the
 list". Suppose I wanted to add all the numbers in my list together. In
 hand-waving terms what I want to do is insert a plus sign between the
