@@ -374,7 +374,7 @@ alcune di queste funzioni, vale a dire `iter2`, `map2`, `for_all2`,
 `exists2`.
 
 Le funzioni `map` e `filter` operano su singoli elementi di liste
-isolati. \<dfn\>Fold\</dfn\> è un'operazione più insolita a cui si può
+isolati. **Fold** è un'operazione più insolita a cui si può
 pensare nel modo migliore come all'"inserimento di un operatore a
 separare ciascun elemento della lista". Supponete che volessi sommare
 insieme tutti gli elementi della mia lista. In termini eloquenti ciò che

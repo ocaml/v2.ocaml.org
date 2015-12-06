@@ -48,7 +48,7 @@ register `%eax`" (not the other way round).
 
 Almost all of the assembly language that we will look at is going to be
 dominated not by machine code instructions like `movl` but by what are
-known as \<dfn\>assembler directives\</dfn\>. These directives begin
+known as **assembler directives**. These directives begin
 with a . (period) and they literally *direct* the assembler to do
 something. Here are the common ones for the Linux assembler:
 
@@ -577,7 +577,7 @@ above, then this is equivalent to `foo 3.0`.
 I mentioned earlier that one of OCaml's targets was numerical computing.
 Numerical computing does a lot of work on vectors and matrices, which
 are essentially arrays of floats. As a special hack to make this go
-faster, OCaml implements \<dfn\>arrays of unboxed floats\</dfn\>. This
+faster, OCaml implements **arrays of unboxed floats**. This
 means that in the special case where we have an object of type
 `float array` (array of floats), OCaml stores them the same way as in C:
 
