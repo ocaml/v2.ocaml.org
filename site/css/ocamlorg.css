@@ -85,6 +85,7 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
 
 /* FIXME: OCaml code should be in <pre> with a distinct class? */
 pre { line-height: 135%; }
+blockquote pre { margin-top: 10px }  /* better styling for quoted code pieces */
 code, .gutter pre {
   font-family: "Droid Sans Mono", Consolas, monospace;
 }
