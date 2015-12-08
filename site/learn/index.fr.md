@@ -98,7 +98,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
           src="/img/jane-street.jpg"></a>Jane Street est une société
 	  d'arbitrage financier qui met l'accent sur la résolution
 	  de problèmes technologiques et collaboratifs. Presque tous
-	  leurs systèmes sont écrits en OCaml : du code de recherche
+	  leurs systèmes sont écrits en OCaml : du code de recherche
 	  statistique qui opère sur des téra-octects de données aux
 	  outils de gestion système, comme l'infrastructure
 	  de transactions en temps réel. Et la plupart de ces systèmes
