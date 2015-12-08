@@ -146,7 +146,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 	       et fonctionne aussi bien sous Windows que sous la plupart
 	       des variantes d'Unix, en incluant MacOSX.
 	       OCaml a permis à ses auteurs d'
-	       « organiser une base de code importante et complexe ».
+	       « organiser une base de code importante et complexe ».
 	  </p>
 
       <p><a href="/img/lexifi.jpg"
@@ -172,7 +172,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 	    Le code est généré par <code>genfft</code>,
 	    développé en OCaml, qui
 	    <a href="http://www.fftw.org/pldi99.ps.gz"
-	       >« découvre » des algorithmes qui étaient inconnus
+	       >« découvre » des algorithmes qui étaient inconnus
 	       auparavant</a>.
 	    Elle a été couronnée
 	    <a href="http://www.mcs.anl.gov/about-us/j-h-wilkinson-prize-numerical-software"
