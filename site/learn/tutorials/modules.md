@@ -315,7 +315,7 @@ or by specifying this in the .mli file:
 module F (X : X_type) : Y_type
 ```
 Overall, the syntax of functors is hard to grasp. The best may be to
-look at the source files `set.ml` or `map.ml` of the standard library.
+look at the source files `set.ml` or `map.ml` of the standard library, present in /usr/lib/ocaml
 
 Final remark: functors are made to help programmers write correct
 programs, not to improve performance. There is even a runtime penalty,
