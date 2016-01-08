@@ -240,11 +240,7 @@ urpmq --list | grep ocaml
 
 ## Windows
 
-Under Windows, two solutions are available to use OCaml: the official
-OCaml distribution, and OCamlPro's provides OCPWin.
-
-
-Three ports of OCaml for Microsoft Windows are currently available. For
+Several ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
 issues](/learn/portability.html) or the [Windows release
 notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
