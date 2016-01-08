@@ -241,22 +241,17 @@ urpmq --list | grep ocaml
 ## Windows
 
 Under Windows, two solutions are available to use OCaml: the official
-OCaml distribution relies on Cygwin, while OCamlPro provides OCPWin, a
-binary distribution working without Cygwin.
+OCaml distribution, and OCamlPro's provides OCPWin.
 
-### OCaml on Cygwin
 
 Three ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
 issues](/learn/portability.html) or the [Windows release
 notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
 
-* [Cygwin-based native Win32 port
- (4.00.1)](http://protz.github.io/ocaml-installer/). A self
- installer. The interactive loop comes with a simple graphical user
- interface. Some features require the Cygwin environment, which the
- installer can fetch for you. However, the compilers are true Win32 executables,
- and binaries they generate do not require Cygwin to run too.
+### Native windows ports
+
+* [Official OCaml distribution](http://protz.github.io/ocaml-installer/). A self installer with a preliminary version of OPAM for Windows. The OCaml binaries are true Windows executables (don't depend on Cygwin), and generate true Windows executables too (via the `mingw64-x86_64` toolchain). However, the installer encourages you to install Cygwin, as it provides an easy way to get packages for the C compiler / assembler. Furthermore, it's a good idea to have cygwin installed, since pretty much every OCaml package depends on sed/bash/make for the build. Finally, the OPAM version bundled in the installer supports system dependencies via cygwinports (see webpage for details) so that you can do `opam install depext depext-cygwinports && opam depext sqlite3 && opam install sqlite3`.
 * Microsoft-based native Win32 ports. No binary distributions
  available yet; download the source distribution and compile it. Build
  instructions including required tools (Cygwin required) and download
@@ -271,29 +266,29 @@ notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
       configuration setup (may affect interaction with github
       projects). See [this page](http://superuser.com/questions/397288/using-cygwin-in-windows-8-chmod-600-does-not-work-as-expected)
       for a suggested workaround.
-* [Cygwin](http://cygwin.com/)-based port. Requires Cygwin. No
- graphical user interface is provided. The compilers generate
- executables that do require Cygwin. The precompiled binaries are
- part of the Cygwin distribution; you can install them using the
- Cygwin `setup` tool. Alternatively, download the source distribution
- and compile it under Cygwin.
+* OCPWin is a self-contained binary distribution of OCaml for
+ Windows. It supports both 32-bit and 64-bit Windows platforms, and can
+ compile both bytecode and native code applications, directly from a
+ Windows terminal, without installing other software. The license
+ agreement allows both commercial and non-commercial use, as long as
+ the compiler parts themselves are not redistributed. A binary
+ installer is provided for OCaml 4.01.0. Some additional features have
+ been added to OCaml for better support of Windows.
+
+*Note: The link for OCPWin has been removed due to an issue waiting to be solved.*
 
 To install libraries, you may use
 [Wodi](http://wodi.forge.ocamlcore.org/) or OPAM.
 
-### OCPWIN, Self-Contained OCaml for Windows
+### Cygwin
 
-OCPWin is a self-contained binary
-distribution of OCaml for
-Windows. It supports both 32-bit and 64-bit Windows platforms, and can
-compile both bytecode and native code applications, directly from a
-Windows terminal, without installing other software. The license
-agreement allows both commercial and non-commercial use, as long as
-the compiler parts themselves are not redistributed. A binary
-installer is provided for OCaml 4.01.0. Some additional features have
-been added to OCaml for better support of Windows.
+* [Cygwin](http://cygwin.com/)-based port. Requires Cygwin. No
+ graphical user interface is provided. The compilers generate
+ executables that do require Cygwin (`cygwin1.dll`). The precompiled binaries are
+ part of the Cygwin distribution; you can install them using the
+ Cygwin `setup` tool. Alternatively, download the source distribution
+ and compile it under Cygwin.
 
-*Note: The link for OCPWin has been removed due to an issue waiting to be solved.*
 
 ## Mac OS X
 On Mac OS X, there are, at least for the base package, a few different
