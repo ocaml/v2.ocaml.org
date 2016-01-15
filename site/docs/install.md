@@ -283,17 +283,17 @@ To install libraries, you may use
 
 ### OCPWIN, Self-Contained OCaml for Windows
 
-OCPWin is a self-contained binary
+[OCPWin](http://www.typerex.org/ocpwin.html) is a self-contained binary
 distribution of OCaml for
 Windows. It supports both 32-bit and 64-bit Windows platforms, and can
 compile both bytecode and native code applications, directly from a
 Windows terminal, without installing other software. The license
 agreement allows both commercial and non-commercial use, as long as
-the compiler parts themselves are not redistributed. A binary
-installer is provided for OCaml 4.01.0. Some additional features have
-been added to OCaml for better support of Windows.
+the compiler parts themselves are not redistributed. Graphical binary
+installers and zip archives are provided for OCaml 4.01.0 and 4.02.1. Some additional features have
+been added to OCaml for better support of Windows, such as auto-detection of MSVC and support for 
+MSVC 9.0, 10.0, 11.0, 12.0 and 14.0 (VS2015).
 
-*Note: The link for OCPWin has been removed due to an issue waiting to be solved.*
 
 ## Mac OS X
 On Mac OS X, there are, at least for the base package, a few different
