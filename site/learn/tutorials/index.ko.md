@@ -9,7 +9,7 @@ OCaml은 응용 프로그램 개발을 위한 빠르고, 간결하며 강력한 
 
 ((! get begin_two_columns !))
 
-* [기본기](basics.ko.html) — OCaml이나 함수형 언어를 처음 접하시는 분은 이 글을 먼저 읽으세요.
+* [기본사항](basics.ko.html) — OCaml이나 함수형 언어를 처음 접하시는 분은 이 글을 먼저 읽으세요.
 * [OCaml 프로그램의 구조](structure_of_ocaml_programs.ko.html)
 * 데이타 타입과 매칭 — [en](data_types_and_matching.html)
 * 널 포인터, 어설트(Assert), 경고(Warning)
