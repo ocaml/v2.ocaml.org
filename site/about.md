@@ -38,7 +38,6 @@ infrastructure and tooling for the site. At the time of writing, the
 - [Amir Chaudhry](http://amirchaudhry.com)
 - [Louis Gesbert](http://github.com/AltGr/)
 - [Fabrice Le Fessant](http://www.lefessant.net/)
-- [Anil Madhavapeddy](http://anil.recoil.org)
 - [Christophe Troestler](https://github.com/Chris00)
 - [Philippe Wang](http://philippewang.info/CL/)
 
