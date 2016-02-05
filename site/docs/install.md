@@ -115,21 +115,30 @@ Check the [packages available in
 Debian](http://packages.debian.org/search?keywords=ocaml&searchon=all&suite=testing&section=all).
 
 ### Ubuntu
-[Ubuntu](http://www.ubuntu.com/) is a Debian derivative and uses the same package 
-manager, so Debian instructions are applicable to it too.
+
+[Ubuntu](http://www.ubuntu.com/) is a Debian derivative and uses the same
+package manager, so Debian instructions are applicable to it too.
 
 You can view the list of OCaml packages in Ubuntu repositories
 [here](http://packages.ubuntu.com/search?keywords=ocaml).
 
-Ubuntu's official repositories often lag substantially behind the
-latest official releases of OCaml and OPAM. More recent versions are
-made available by Anil Madhavapeddy in his
-[PPAs](https://launchpad.net/~avsm). You can mimic the
-opam-repository's test
-[script](https://github.com/ocaml/opam-repository/blob/master/.travis-ci-install.sh)
-to add these PPAs on your own Ubuntu box. Please note PPAs are not
-reviewed at all by Ubuntu's security team and you are trusting the
-PPA's distributor by adding them to your system.
+Ubuntu's official repositories often lag substantially behind the latest
+official releases of OCaml and OPAM. More recent versions are made available by
+Anil Madhavapeddy in his [PPAs](https://launchpad.net/~avsm). To use, simply add
+Anil's repository to your `apt` configuration, update your package lists, and
+install:
+
+```
+add-apt-repository --yes ppa:avsm/ppa
+apt-get update -qq
+apt-get install -y opam
+eval $(opam config env)
+```
+
+...at which point you should be able to run `utop`.
+
+Please note PPAs are not reviewed at all by Ubuntu's security team and you are
+trusting the PPA's distributor by adding them to your system.
 
 ### Fedora
 Since [Fedora 8](http://fedoraproject.org/), Fedora has excellent
