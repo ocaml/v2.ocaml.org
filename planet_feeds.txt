@@ -64,6 +64,7 @@ Phil Tomson|http://philtomson.github.io/atom.xml
 Pietro Abate|http://mancoosi.org/~abate/taxonomy/term/5/0/feed
 Psellos|http://psellos.com/atom.xml
 Richard Jones|http://rwmj.wordpress.com/tag/ocaml/feed/
+Rudenoise's Ocaml Posts|http://rudenoise.uk/ocaml.rss
 Rudi Grinberg|http://rgrinberg.com/atom.xml
 Sebastien Mondet|http://seb.mondet.org/blog/feed/ocaml.rss
 Shayne Fletcher|http://blog.shaynefletcher.org/feeds/posts/default/-/OCaml
