@@ -50,7 +50,7 @@ OCaml Labs compiler hacking|http://ocamllabs.github.com/compiler-hacking/rss.xml
 OCamlCore Forge News|http://forge.ocamlcore.org/export/rss20_news.php
 OCamlCore Forge Projects|http://forge.ocamlcore.org/export/rss20_projects.php
 OCamlCore.com|http://www.ocamlcore.com/wp/feed/?amp;language=en&language=en
-OCamlPro|http://www.ocamlpro.com/feed/atom.xml
+OCamlPro|http://www.ocamlpro.com/feed/
 ODNS project|http://odns.tuxfamily.org/feed/
 Ocaml XMPP project|http://ox.tuxfamily.org/feed/
 Ocsigen project|http://ocsigen.org/news.atom
