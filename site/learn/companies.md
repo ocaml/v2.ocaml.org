@@ -503,6 +503,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/stackhut.png" alt="StackHut">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.stackhut.com">StackHut</a>, United Kingdom</h2>
+        <p>StackHut are working to make developers lives easier by cutting the the amount of code they write; we want developers to spend more time writing core business-logic and less time thinking about infrastructure. The core platform, toolkit, and run-time are written in OCaml, interfacing with Linux containers and also Erlang on the distributed side.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/4sigma.png" alt="Studio Associato 4Sigma">
     </dt>
     <dd class="span5">
