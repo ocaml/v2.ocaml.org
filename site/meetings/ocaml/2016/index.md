@@ -25,5 +25,5 @@ following the OCaml Meetings that ran until [2011](../2011).
 News
 ----
 
-The call for papers and the programme commitee will be announced around the
+The call for papers and the programme committee will be announced around the
 end of February 2016.
