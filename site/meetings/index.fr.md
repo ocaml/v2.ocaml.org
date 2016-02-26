@@ -6,6 +6,8 @@
 
 ### Prochains événements
 
+* [OCaml 2016](ocaml/2016/):
+  Nara (Japan), 23 septembre 2016, colocalisé avec ICFP 2016.
 * [OCaml 2015](ocaml/2015/):
   Vancouver (BC, Canada), 4 septembre 2015, colocalisé avec ICFP 2015.
 
