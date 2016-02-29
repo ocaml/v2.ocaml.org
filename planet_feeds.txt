@@ -27,6 +27,7 @@ Functional Jobs|http://functionaljobs.com/jobs/search/?q=ocaml&format=rss
 GaGallium|http://gallium.inria.fr/blog/index.rss
 Gaius Hammond|http://gaiustech.wordpress.com/category/ocaml/feed/
 Gerd Stolpmann|http://blog.camlcity.org/blog/rss
+Gina Maini|http://www.gina.codes/feed.ocaml.xml
 GitHub Jobs|https://jobs.github.com/positions.atom?description=ocaml
 Grant Rettke|http://www.wisdomandwonder.com/tag/OCaml/feed
 Hong bo Zhang|http://hongboz.wordpress.com/feed/
