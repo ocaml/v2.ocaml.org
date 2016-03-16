@@ -103,7 +103,7 @@ repl. Install it with `opam install utop`
 
 # Library situation
 
-`OCaml` does have a standard library but it sucks. It was only created
+`OCaml` does have a standard library but it is deliberately minimal. It was only created
 to serve the needs of the compiler programmers, ie its not like
 `Python`'s standard library which has everything under the sun + the
 moon. There are a few standard library replacements, one is called
