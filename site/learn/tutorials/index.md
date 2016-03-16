@@ -10,6 +10,7 @@ topics are needed. Please contribute by visiting this project's repo on
 tracker there to request or offer new tutorials. Thanks!
 
 ((! get begin_two_columns !))
+* [Mega Crash course on OCaml ecosystem + code](get_up_and_running.html)
 * [Basics](basics.html)
 * [Structure of OCaml Programs](structure_of_ocaml_programs.html)
 * [Modules](modules.html)
