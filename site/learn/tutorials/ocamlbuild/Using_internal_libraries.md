@@ -49,7 +49,8 @@ And to tag your files:
 
 ```shell
 $ cat _tags
-# tells that main use a and b libs`<br /><Main/main.{byte,native}\>`: use_a, use_b
+# tells that main uses a and b libs
+Main/main.{byte,native}: use_a, use_b
 # this will avoid the need of command line options to ocamlbuild
 "A" or "B": include
 ```
