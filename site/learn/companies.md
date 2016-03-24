@@ -23,6 +23,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/docker.png" alt="Docker, Inc.">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.docker.com">Docker, Inc.</a>, United States </h2>
+        <p>Docker provides an integrated technology suite that enables development and IT operations teams to build, ship, and run distributed applications anywhere. Their native <a href="https://blog.docker.com/2016/03/docker-for-mac-windows-beta/">applications for Mac and Windows</a>, use OCaml code taken from the <a href="https://mirage.io">MirageOS</a> library operating system project.</p> 
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/bloomberg.jpg" alt="Bloomberg L.P.">
     </dt>
     <dd class="span5">
