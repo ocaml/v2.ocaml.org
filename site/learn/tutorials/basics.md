@@ -468,5 +468,26 @@ removes a whole class of errors which cause segfaults,
 `NullPointerException`s and `ClassCastException`s in other languages (or
 important but often ignored runtime warnings, as in Perl).
 
+## Function definition syntax
+
+There are several ways to define functions, which might be confusing at first.
+
+Let's take the previous example and rewrite it:
+
+```ocamltop
+let average1 = 
+  fun a b -> (a +. b) /. 2.0
+
+let average2 = 
+  function a -> function b -> (a +. b) /. 2.0
+
+```
+The keyword `fun` defines a function that takes 1..n parameters. The keyword `function` defines
+a function that takes exactly 1 argument. 
+
+All three average functions will compile to the same code.
+
+The `function` syntax variant is what is done internally, and you can see how 
+the code is structured exactly like the inferred type.
 
 [utop]: https://github.com/diml/utop
