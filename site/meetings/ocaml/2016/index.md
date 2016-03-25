@@ -5,8 +5,8 @@
 OCaml 2016
 ==========
 
-**The OCaml Users and Developers Workshop**
-Nara, Japan, Friday 23rd September 2016
+**The OCaml Users and Developers Workshop**: Nara, Japan, Friday 23rd September 2016.
+
 Colocated with [ICFP 2016](http://icfpconference.org/icfp2016/),
 the day after the [ML family workshop](http://www.mlworkshop.org/ml2016/).
 
