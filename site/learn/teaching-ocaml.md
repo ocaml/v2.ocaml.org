@@ -38,42 +38,49 @@ We set-up a [mailing list](http://lists.ocaml.org/listinfo/teaching) for profess
 Here's a list of courses we know about that teach in OCaml.
 Please add yours if you don't see it listed!
 
+### North America
+
+1. [Boston College](http://www.cs.bc.edu/~muller/teaching/cs110105/f14/) - Computer Science I (CS 1101)
 1. [Brown University](http://cs.brown.edu/courses/cs017/) - An Integrated introducion (CS 17/18)  (along with Racket, Scala and Java)
+1. [Caltech](http://users.cms.caltech.edu/~mvanier/cs4/Winter2016/) - Fundamentals of Computer Programming
+1. [Columbia University](http://www1.cs.columbia.edu/~sedwards/classes/2014/w4115-fall/index.html) - Programming Languages and Translators
 1. [Cornell University](http://www.cs.cornell.edu/Courses/cs3110/2014fa/course_info.php) - Data Structures and Functional Programming (CS 3110)
-1. [Harvard University](http://www.fas.harvard.edu/~cs51) - Introduction to Computer Science II: Abstraction & Design (CS51)
 1. [Harvard University](http://people.fas.harvard.edu/~lib153/) - Principles of Programming Language Compilation (CS153)
-1. [Indian Institute of Technology, Delhi](http://www.cse.iitd.ernet.in/~ssen/csl101/details.html) - Introduction to Computers and Programming (CSL 101) (along with Pascal and Java)
+1. [Harvard University](http://www.fas.harvard.edu/~cs51) - Introduction to Computer Science II: Abstraction & Design (CS51)
 1. [McGill University](http://www.cs.mcgill.ca/~bpientka/cs302/) - Programming Languages and Paradigms (COMP 302)
 1. [Princeton University](http://www.cs.princeton.edu/courses/archive/fall14/cos326/) - Functional Programming (COS 326)
 1. [Rice University](http://www.cs.rice.edu/~javaplt/311/info.html) - Principles of Programming Languages (COMP 311)
-1. [University of Massachusetts](http://people.cs.umass.edu/~arjun/courses/cs691f/) - Programming Languages (CS691F)
-1. [University of Pennsylvania](http://www.seas.upenn.edu/~cis120/current/) - Programming Languages and Techniques I (CIS120)
-1. [University of Pennsylvania](http://www.cis.upenn.edu/~cis341/current/) - Compilers  (CIS341)
-1. [University of Birmingham](https://sites.google.com/site/focs1112/) - Foundations of Computer Science (FOCS1112)
-1. [University of California, San Diego](http://cseweb.ucsd.edu/classes/wi14/cse130-a/) Programming Languages:
-Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
-1. [University of Cambridge](http://www.cl.cam.ac.uk/teaching/1415/L28/) - Advanced Functional Programming (L28)
+1. [University of California, Los Angeles](http://www.registrar.ucla.edu/schedule/subdet.aspx?term=14F&srs=187510200) - Programming Languages (along with Python and Java) (CS 131)
+1. [University of California, San Diego](http://cseweb.ucsd.edu/classes/wi14/cse130-a/) - Programming Languages: Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University of Illinois at Urbana-Champaign](https://courses.engr.illinois.edu/cs421/fa2014/) - Programming Languages and Compilers (CS 421)
-1. [University of Innsbruck ](http://cl-informatik.uibk.ac.at/teaching/ss06/ocaml/schedule.php) -  Programming in OCAML (SS 06)
 1. [University of Maryland](http://www.cs.umd.edu/class/spring2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages (CMSC 330)
 1. [University of Massachusetts Amherst](http://people.cs.umass.edu/~arjun/teaching/631/) - Programming Languages (CMPSCI 631)
-1. [University of Wrocław](https://international.uni.wroc.pl/en/course/functional-programming) - Functional Programming
-1. [Université Paris-Diderot](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/) - Functional Programming (PF5)
-1. [Université Paris-Diderot](http://www.dicosmo.org/CourseNotes/pfav/) - Advanced Functional Programming (PFAV)
+1. [University of Massachusetts](http://people.cs.umass.edu/~arjun/courses/cs691f/) - Programming Languages (CS691F)
+1. [University of Pennsylvania](http://www.cis.upenn.edu/~cis341/current/) - Compilers  (CIS341)
+1. [University of Pennsylvania](http://www.seas.upenn.edu/~cis120/current/) - Programming Languages and Techniques I (CIS120)
+1. [University of Virginia](http://www.cs.virginia.edu/~weimer/4610/) - Programming Languages (CS 4610)
+
+### Europe
+
 1. [Aarhus University](https://services.brics.dk/java/courseadmin/dOvs) - The compilation course (along with Java)
-1. [University of California, Los Angeles](http://www.registrar.ucla.edu/schedule/subdet.aspx?term=14F&srs=187510200) - Programming Languages (along with Python and Java) (CS 131)
+1. [Aix-Marseille University](http://assert-false.net/callcc/Guyslain/Teaching/ProgFonc/index) - Functional Programming
+1. [Epita](http://epita.fr/) - Introduction to Algorithms (Year 1 & 2)
+1. [ISAE/Supaéro](http://supaero.isae.fr/en) - Functional programming and introduction to type systems
 1. [University Pierre & Marie Curie](http://www-apr.lip6.fr/~chaillou/Public/enseignement/2014-2015/tas/) - Types and static analysis (5I555)
 1. [University Pierre & Marie Curie](http://www-licence.ufr-info-p6.jussieu.fr/lmd/licence/2014/ue/LI332-2014oct/) - Models of programming and languages interoperability (LI332)
-1. [University of Virginia](http://www.cs.virginia.edu/~weimer/4610/) - Programming Languages (CS 4610)
-1. [Boston College](http://www.cs.bc.edu/~muller/teaching/cs110105/f14/) - Computer Science I (CS 1101)
-1. [University of Rennes 1](https://etudes.univ-rennes1.fr/licenceInformatique/themes/OrganisationEtudes/L3info/Programme) - Programming 2 (PRG2)
+1. [University of Birmingham](https://sites.google.com/site/focs1112/) - Foundations of Computer Science (FOCS1112)
+1. [University of Cambridge](http://www.cl.cam.ac.uk/teaching/1415/L28/) - Advanced Functional Programming (L28)
+1. [University of Innsbruck ](http://cl-informatik.uibk.ac.at/teaching/ss06/ocaml/schedule.php) -  Programming in OCAML (SS 06)
 1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/COMP) - Compilation (COMP)
 1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/SEM) - Semantics (SEM)
-1. [Aix-Marseille University](http://assert-false.net/callcc/Guyslain/Teaching/ProgFonc/index) - Functional Programming
-1. [Columbia University](http://www1.cs.columbia.edu/~sedwards/classes/2014/w4115-fall/index.html) - Programming Languages and Translators
-1. [ISAE/Supaéro](http://supaero.isae.fr/en) - Functional programming and introduction to type systems
-1. [Epita](http://epita.fr/) - Introduction to Algorithms (Year 1 & 2)
-1. [Caltech](http://users.cms.caltech.edu/~mvanier/cs4/Winter2016/) - Fundamentals of Computer Programming
+1. [University of Rennes 1](https://etudes.univ-rennes1.fr/licenceInformatique/themes/OrganisationEtudes/L3info/Programme) - Programming 2 (PRG2)
+1. [University of Wrocław](https://international.uni.wroc.pl/en/course/functional-programming) - Functional Programming
+1. [Université Paris-Diderot](http://www.dicosmo.org/CourseNotes/pfav/) - Advanced Functional Programming (PFAV)
+1. [Université Paris-Diderot](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/) - Functional Programming (PF5)
+
+### Asia
+
+1. [Indian Institute of Technology, Delhi](http://www.cse.iitd.ernet.in/~ssen/csl101/details.html) - Introduction to Computers and Programming (CSL 101) (along with Pascal and Java)
 
 ### Map of courses around the world
 
