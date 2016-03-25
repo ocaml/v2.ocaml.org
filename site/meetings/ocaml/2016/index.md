@@ -81,14 +81,14 @@ from the two workshops.
 Program committee
 -----------------
 
-Kenichi Asai, Ochanomizu University, Japan
-Oleg Kiselyov, Tohoku University, Japan
-Igor Pikovets, Ahrefs Research, USA
-Mindy Preston, Docker, UK
-Gabriel Scherer, Northeastern University, USA
-Mark Shinwell, Jane Street Europe, UK (chair)
-KC Sivaramakrishnan, University of Cambridge, UK
-Jerome Vouillon, PPS, France
-Jordan Walke, Facebook, USA
+- Kenichi Asai, Ochanomizu University, Japan
+- Oleg Kiselyov, Tohoku University, Japan
+- Igor Pikovets, Ahrefs Research, USA
+- Mindy Preston, Docker, UK
+- Gabriel Scherer, Northeastern University, USA
+- Mark Shinwell, Jane Street Europe, UK (chair)
+- KC Sivaramakrishnan, University of Cambridge, UK
+- Jerome Vouillon, PPS, France
+- Jordan Walke, Facebook, USA
 
 Please send any questions to the chair: mshinwell -at- janestreet.com
