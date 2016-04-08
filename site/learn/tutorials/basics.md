@@ -146,7 +146,7 @@ repeated ("hello", 3)     (* OCaml will spot the mistake *)
 ```
 
 ## Defining a function
-You all know how to define a function (or static method, for Java-heads)
+We all know how to define a function (or static method, for Java-heads)
 in our existing languages. How do we do it in OCaml?
 
 The OCaml syntax is pleasantly concise. Here's a function which takes
