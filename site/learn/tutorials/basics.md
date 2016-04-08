@@ -470,7 +470,7 @@ important but often ignored runtime warnings, as in Perl).
 
 ## Function definition syntax
 
-There are several ways to define functions, which might be confusing at first.
+There are several ways to write a function definition, which might be confusing at first.
 
 Let's take the previous example and rewrite it:
 
@@ -487,7 +487,8 @@ a function that takes exactly 1 argument.
 
 All three average functions will compile to the same code.
 
-The `function` syntax variant is what is done internally, and you can see how 
-the code is structured exactly like the inferred type.
+The `function` syntax variant is what is done internally, and you can see 
+that this code corresponds more closely to what the toplevel prints 
+when showing the function type.
 
 [utop]: https://github.com/diml/utop
