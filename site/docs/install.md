@@ -185,14 +185,14 @@ In order to get the basic tools under
 [Gentoo](http://www.gentoo.org/), execute:
 
 ```bash
-emerge ocaml  
+emerge ocaml
 ```
 while being logged in as a user that is a member of the `portage` group
 (e.g. root). If you want to see what other related packages are
 available execute
 
 ```bash
-emerge -S ocaml 
+emerge -S ocaml
 ```
 
 ### SuSE
@@ -250,22 +250,17 @@ urpmq --list | grep ocaml
 ## Windows
 
 Under Windows, two solutions are available to use OCaml: the official
-OCaml distribution relies on Cygwin, while OCamlPro provides OCPWin, a
-binary distribution working without Cygwin.
+OCaml distribution, and OCamlPro's OCPWin.
 
-### OCaml on Cygwin
-
-Three ports of OCaml for Microsoft Windows are currently available. For
+Several ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
 issues](/learn/portability.html) or the [Windows release
 notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
 
-* [Cygwin-based native Win32 port
- (4.00.1)](http://protz.github.io/ocaml-installer/). A self
- installer. The interactive loop comes with a simple graphical user
- interface. Some features require the Cygwin environment, which the
- installer can fetch for you. However, the compilers are true Win32 executables,
- and binaries they generate do not require Cygwin to run too.
+### Official OCaml distribution
+
+* [Official OCaml distribution](http://protz.github.io/ocaml-installer/). A self installer with a preliminary version of OPAM for Windows. The OCaml binaries are true Windows executables (don't depend on Cygwin), and generate true Windows executables too (via the `mingw64-x86_64` toolchain). However, the installer encourages you to install Cygwin, as it provides an easy way to get packages for the C compiler / assembler. Furthermore, it's a good idea to have cygwin installed, since pretty much every OCaml package depends on sed/bash/make for the build. Finally, the OPAM version bundled in the installer supports system dependencies via cygwinports (see webpage for details) so that you can do `opam install depext depext-cygwinports && opam depext sqlite3 && opam install sqlite3`.
+
 * Microsoft-based native Win32 ports. No binary distributions
  available yet; download the source distribution and compile it. Build
  instructions including required tools (Cygwin required) and download
@@ -280,9 +275,10 @@ notes](http://caml.inria.fr/pub/distrib/ocaml-4.00/notes/README.win32).
       configuration setup (may affect interaction with github
       projects). See [this page](http://superuser.com/questions/397288/using-cygwin-in-windows-8-chmod-600-does-not-work-as-expected)
       for a suggested workaround.
+
 * [Cygwin](http://cygwin.com/)-based port. Requires Cygwin. No
  graphical user interface is provided. The compilers generate
- executables that do require Cygwin. The precompiled binaries are
+ executables that do require Cygwin (`cygwin1.dll`). The precompiled binaries are
  part of the Cygwin distribution; you can install them using the
  Cygwin `setup` tool. Alternatively, download the source distribution
  and compile it under Cygwin.
@@ -300,7 +296,7 @@ Windows terminal, without installing other software. The license
 agreement allows both commercial and non-commercial use, as long as
 the compiler parts themselves are not redistributed. Graphical binary
 installers and zip archives are provided for OCaml 4.01.0 and 4.02.1. Some additional features have
-been added to OCaml for better support of Windows, such as auto-detection of MSVC and support for 
+been added to OCaml for better support of Windows, such as auto-detection of MSVC and support for
 MSVC 9.0, 10.0, 11.0, 12.0 and 14.0 (VS2015).
 
 
@@ -452,7 +448,7 @@ by using the following flags:
 ./configure -tkdefs \
   "-I/Library/Frameworks/Tcl.framework/Headers \
   -I/Library/Frameworks/Tk.framework/Headers" \
-  -tklibs "-framework Tcl -framework Tk" 
+  -tklibs "-framework Tcl -framework Tk"
 ```
 Now building OCaml will also build labltk using the Tcl/Tk Aqua
 libraries.
@@ -470,7 +466,7 @@ let top = openTk () in
 let hb =
 Button.create ~text:"Hello" ~command:hello top in
 pack [hb];
-mainLoop ()       
+mainLoop ()
 ```
 One would compile this program with the command
 `ocamlopt -o hello -I +labltk labltk.cmxa     hello.ml`
@@ -485,7 +481,7 @@ the OS X Developer tools. This can be done with the following command:
 ```bash
 /Developer/Tools/Rez -t APPL -o hello ~/dev/mac.r \
   -i /Library/Frameworks/Tcl.framework/Headers \
-  -i /Library/Frameworks/Tk.framework/Headers   
+  -i /Library/Frameworks/Tk.framework/Headers
 ```
 Where mac.r is a Rez source file. It is part of the
 [FLTK](http://www.fltk.org/) distribution. This will add the required
@@ -507,7 +503,7 @@ steps will build the bundle:
 mkdir hello.app
 mkdir hello.app/Contents
 mkdir hello.app/Contents/MacOS
-mv hello hello.app/Contents/MacOS  
+mv hello hello.app/Contents/MacOS
 ```
 Next, create a file `hello.app/Contents/Info.plist` with the following
 contents:
@@ -519,7 +515,7 @@ contents:
    <key>CFBundleExecutable</key>
    <string>hello</string>
  </dict>
-</plist>        
+</plist>
 ```
 The hello application can now be run from the command line by typing
 `open hello.app`, or by double-clicking on the app's icon (again, this
@@ -535,14 +531,14 @@ invoking Quicksilver, type an abbreviation of the module's name you want
 and hit return to get its html file loaded in your preferred browser.
 
 **Profiling.** To profile native-code programs *do not* compile them
-with the option -p (this is unsupported). Instruments is included with XCode, 
+with the option -p (this is unsupported). Instruments is included with XCode,
 but not in the Command Line Tools. Start it with the Time Profiler template and
 then run the native code ocaml executable. Alternatively, iprofiler is a command
 line interface to it.
 
-OCaml builtins will show up in cleartext but user-defined functions will be replaced 
-by autogenerated symbols. In principle, more function names should show up in the profiles 
-if you compile with `-g`, but this does not seem to work. Therefore, time profiling on 
+OCaml builtins will show up in cleartext but user-defined functions will be replaced
+by autogenerated symbols. In principle, more function names should show up in the profiles
+if you compile with `-g`, but this does not seem to work. Therefore, time profiling on
 OS X is currently of limited use.
 
 ## FreeBSD
