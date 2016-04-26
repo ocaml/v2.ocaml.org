@@ -1,5 +1,11 @@
 <!-- ((! set title Subversion Repo !)) -->
 
+```
+NOTE: As of Oct 2015, the OCaml compiler is hosted on
+[GitHub](https://github.com/ocaml/ocaml). The information below is no
+longer valid.
+```
+
 # Subversion Repository
 OCaml is developed using the Subversion (SVN) version control system.
 Public read-only access to our Subversion repository is available. It
