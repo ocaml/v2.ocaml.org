@@ -6,7 +6,9 @@
 
 ## Running OCaml code
 
-The easiest way to get started is to run an interactive session in your browser, at <http://try.ocamlpro.com/>.
+The easiest way to get started is to run an interactive session in
+your browser, at
+<https://ocsigen.org/js_of_ocaml/2.7/files/toplevel/index.html>.
 
 To install OCaml on your computer, see the [Install](/docs/install.html) documentation.
 

@@ -6,7 +6,8 @@
 
 ## Ocaml 코드 실행하기
 
-브라우져상에서  인터엑티브한 세션을 이용하여 코드를 실행하는 가장 손 쉬운 방법은 <http://try.ocamlpro.com/>을 이용하는 것이다.
+브라우져상에서  인터엑티브한 세션을 이용하여 코드를 실행하는 가장 손 쉬운 방법은
+<https://ocsigen.org/js_of_ocaml/2.7/files/toplevel/index.html>을 이용하는 것이다.
 
 여러분의 컴퓨터에 OCaml을 설치 하려면 [Install](/docs/install.html) 문서를 참고하기 바란다.
 
