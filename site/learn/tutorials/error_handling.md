@@ -6,8 +6,8 @@
 
 ## Exceptions
 
-The traditional way of handling errors in OCaml is exceptions. The
-stdlib relies heavily upon them.
+One way of handling errors in OCaml is exceptions. The
+standard library relies heavily upon them.
 
 Exceptions belong to the type `exn` (an extensible sum type):
 
@@ -58,7 +58,7 @@ or `List.hd` are not total functions, and that they might fail.
 
 It is considered good practice nowadays, when a function can fail in
 cases that are not bugs (i.e., not `assert false`, but network failures,
-keys not present, etc.) 
+keys not present, etc.)
 to return a more explicit type such as `'a option` or `('a, 'b) result`.
 A relatively common idiom is to have such a safe version of the function,
 say, `val foo : a -> b option`, and an exception raising
