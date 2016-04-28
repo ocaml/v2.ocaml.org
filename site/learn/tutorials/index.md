@@ -32,7 +32,7 @@ tracker there to request or offer new tutorials. Thanks!
 * [Formatting and Wrapping Text](format.html)
 * [99 Problems (solved) in OCaml](99problems.html)
 * [OCamlbuild](ocamlbuild/)
-* [Error handlibg](error_handling.html)
+* [Error handling](error_handling.html)
 
 ((! get second_of_two_columns !))
 
