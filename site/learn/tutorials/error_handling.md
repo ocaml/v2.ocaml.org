@@ -56,18 +56,56 @@ The biggest issue with exceptions is that they do not appear in types.
 One has to read the documentation to see that, indeed, `Map.S.find`
 or `List.hd` are not total functions, and that they might fail.
 
+It is considered good practice nowadays, when a function can fail in
+cases that are not bugs (i.e., not `assert false`, but network failures,
+keys not present, etc.) 
+to return a more explicit type such as `'a option` or `('a, 'b) result`.
+A relatively common idiom is to have such a safe version of the function,
+say, `val foo : a -> b option`, and an exception raising
+version `val foo_exn : a -> b`.
+
+### Documentation
+
+Functions that can raise exceptions should be documented like this:
+
+```ocaml
+val foo : a -> b
+(** foo does this and that, here is how it works, etc.
+    @raise Invalid_argument if a doesn't satisfy blabla
+    @raise Sys_error if filesystem is not happy *)
+```
+
+### Stacktraces
+
+To get a stacktrace when a unhandled exception makes your program crash, you
+need to compile the program in "debug" mode (with `-g` when calling
+`ocamlc`, or `-debug` when calling `ocamlbuild`).
+Then:
+
+    OCAMLRUNPARAM=b ./myprogram [args]
+
+And you will get a stacktrace.
+
+Alternatively, you can call, from within the program,
+
+```ocaml
+let () = Printexc.record_backtrace true
+```
+
 ### Printing
 
 To print an exception, the module `Printexc` comes in handy. For instance,
 the following function `notify_user : (unit -> 'a) -> 'a` can be used
 to call a function and, if it fails, print the exception on `stderr`.
+If stacktraces are enabled, this function will also display it.
 
 ```ocaml
 let notify_user f =
   try f()
   with e ->
-    let msg = Printexc.to_string e in
-    Printf.eprintf ("there was an error: %s\n" msg);
+    let msg = Printexc.to_string e
+    and stack = Printexc.get_backtrace () in
+    Printf.eprintf "there was an error: %s%s\n" msg stack;
     raise e
 ```
 
@@ -88,23 +126,6 @@ let () =
 Each printer should take care of the exceptions it knows about, returning
 `Some <printed exception>`, and return `None` otherwise (let the other printers
 do the job!).
-
-### Stacktraces
-
-To get a stacktrace when a unhandled exception makes your program crash, you
-need to compile the program in "debug" mode (with `-g` when calling
-`ocamlc`, or `-debug` when calling `ocamlbuild`).
-Then:
-
-    OCAMLRUNPARAM=b ./myprogram [args]
-
-And you will get a stacktrace.
-
-Alternatively, you can call, from within the program,
-
-```ocaml
-let () = Printexc.record_backtrace true
-```
 
 ## Result type
 
