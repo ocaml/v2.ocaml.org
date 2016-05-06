@@ -29,6 +29,7 @@ Gaius Hammond|http://gaiustech.wordpress.com/category/ocaml/feed/
 Gerd Stolpmann|http://blog.camlcity.org/blog/rss
 GitHub Jobs|https://jobs.github.com/positions.atom?description=ocaml
 Grant Rettke|http://www.wisdomandwonder.com/tag/OCaml/feed
+Hannes Mehnert|https://hannes.nqsb.io/atom
 Hong bo Zhang|http://hongboz.wordpress.com/feed/
 Incubaid Research|http://blog.incubaid.com/tag/ocaml/feed/
 Jake Donham|http://ambassadortothecomputers.blogspot.com/feeds/posts/default?alt=rss
