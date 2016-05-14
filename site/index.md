@@ -105,10 +105,10 @@
                         
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
-			       href="/meetings/ocaml/2015/">OCaml 2015</a></h1>
-			  <p>September 4, 2015</p>
+			       href="/meetings/ocaml/2016/">OCaml 2016</a></h1>
+			  <p>September 23, 2016</p>
 			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2015/">
+			     href="/meetings/ocaml/2016/">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
