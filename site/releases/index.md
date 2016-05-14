@@ -1,7 +1,10 @@
 <!-- ((! set title Releases !)) ((! set releases !)) -->
 
 #Releases
-Official releases of OCaml occur about once per year.
+Here's a list of all OCaml releases. See also the
+[install](/docs/install.html) page for instructions on installing
+OCaml by other means, such as the OPAM package manager and platform
+specific package managers.
 
 * OCaml [latest](latest/)
 * OCaml [4.03.0](4.03.html), released Apr 25, 2016.
