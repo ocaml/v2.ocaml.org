@@ -573,5 +573,5 @@ system as well as in the specific topic-related categories.
 ## From Source
 
 Download the [source for your preferred OCaml release](/releases/)
-(or take the [development version](/releases/svn.html) using
+(or take the [development version](https://github.com/ocaml/ocaml) using
 Subversion or Git) and follow the instructions included therein.

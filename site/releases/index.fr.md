@@ -17,4 +17,4 @@ d'une version par an :
   [ici](http://caml.inria.fr/pub/distrib/).
 
 Vous pouvez aussi consulter la
-[version en développement](svn.html) [en] d'OCaml.
+[version en développement](https://github.com/ocaml/ocaml) [en] d'OCaml.

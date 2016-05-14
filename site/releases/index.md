@@ -16,5 +16,5 @@ Official releases of OCaml occur about once per year.
 * Earlier releases are available
   [here](http://caml.inria.fr/pub/distrib/).
 
-You may also want to check the [development version](svn.html) of
+You may also want to check the [development version](https://github.com/ocaml/ocaml) of
 OCaml.
