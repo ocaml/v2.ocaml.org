@@ -13,7 +13,7 @@ ways. Broadly, the options are:
 
 The following sections explain how to use each of these methods.
 For additional information about finding and installing OCaml libraries,
-see the [libraries](/learn/libraries.html) page.
+see the [libraries](/learn/libraries.html) page. Information about the different versions of OCaml is available on the [releases](/releases/) page.
 
 ## Multi-Platform Package Managers
 
