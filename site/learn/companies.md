@@ -522,6 +522,17 @@
         <p>Specialises in functional programming software development, consultation and training.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/solvuu.jpg" alt="Solvuu">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.solvuu.com">Solvuu</a>, United States</h2>
+        <p>Solvuu's software allows users to store big and small data sets, share the data with collaborators, execute computationally intensive algorithms and workflows, and visualize results. Its initial focus is on genomics data, which has important implications for healthcare, agriculture, and fundamental research. Virtually all of Solvuu's software stack is implemented in OCaml.</p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/stackhut.png" alt="StackHut">
