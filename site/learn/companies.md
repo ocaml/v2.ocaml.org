@@ -341,6 +341,18 @@
         <p>Mashape makes it easy to distribute, monetize, manage and consume cloud APIs. Mashape is building a world-class marketplace for cloud APIs driven by a passionate community of developers from all over the world as well as enterprise API management and analytics products. We use OCaml in our <a href="http://apianalytics.com">APIAnalytics</a> product — as part of a mission-critical, lightweight HTTP proxy.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/wolfram-mathcore.gif" alt="Wolfram MathCore">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://www.mathcore.com/">Wolfram MathCore</a>, Sweden</h2>
+        <p>Wolfram MathCore uses OCaml to implement its SystemModeler kernel. The kernel's main function is to translate models defined in the Modelica language int executable simulation code. This involves parsing and transforming Modelica code, mathematical processing of equations, code generation of C/C++ simulation code, and numerical runtime computations.</p>
+    </dd>
+</dl>
+
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/medit.jpg" alt="MEDIT">
