@@ -224,6 +224,29 @@ runtime, interoperating with C, and pearls.
 
 ## Books in French
 
+### Initiation à la programmation fonctionnelle en OCaml
+<img src="/img/Initiation_a_la_programmation_fonctionnelle_en_OCaml.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+
+*Mohammed-Said Habet<br />
+édition: Edilivre, 2015. ISBN: 9782332978400*
+
+La programmation fonctionnelle est un style de programmation qui
+consiste à considérer les programmes informatiques comme des fonctions
+au sens mathématique du terme. Ce style est proposé dans de nombreux
+langages de programmation anciens et récents comme OCaml.
+
+Le but de ce livre est d’initier le lecteur au style fonctionnel de
+programmation en utilisant le langage OCaml. Cet ouvrage s’adresse
+donc principalement aux débutants en informatique. Il peut également
+être l’occasion pour les initiés de découvrir le langage de
+programmation OCaml.
+
+Le lecteur trouvera une présentation progressive des concepts de
+programmation fonctionnelle dans le langage OCaml, illustrée par des
+exemples, de nombreux exercices corrigés et d’autres laissés à
+l’initiative du lecteur.
+
+
 ###  Apprendre à programmer avec OCaml
 <img src="/img/apprendre_ocaml_cover.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
