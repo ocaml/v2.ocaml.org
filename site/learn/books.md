@@ -246,6 +246,7 @@ programmation fonctionnelle dans le langage OCaml, illustrée par des
 exemples, de nombreux exercices corrigés et d’autres laissés à
 l’initiative du lecteur.
 
+[Website](http://www.edilivre.com/initiation-a-la-programmation-fonctionnelle-en-ocaml-mohammed-said-habet.html)
 
 ###  Apprendre à programmer avec OCaml
 <img src="/img/apprendre_ocaml_cover.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
