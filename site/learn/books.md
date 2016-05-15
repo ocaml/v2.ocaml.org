@@ -221,6 +221,7 @@ want to learn OCaml.
 [Book Website](http://greenteapress.com/thinkocaml/index.html) |
 [PDF](http://greenteapress.com/thinkocaml/thinkocaml.pdf)
 
+****
 
 ## Books in French
 
@@ -247,6 +248,8 @@ exemples, de nombreux exercices corrigés et d’autres laissés à
 l’initiative du lecteur.
 
 [Website](http://www.edilivre.com/initiation-a-la-programmation-fonctionnelle-en-ocaml-mohammed-said-habet.html)
+
+****
 
 ###  Apprendre à programmer avec OCaml
 <img src="/img/apprendre_ocaml_cover.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
@@ -549,6 +552,7 @@ last chapter a comprehensive description of the language kernel.
 
 [Emacs Org source](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.org) | [HTML](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.html) | [PDF](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.pdf)
 
+****
 
 ###  Introduzione alla programmazione funzionale
 <img src="/img/limongelli-cialdea.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
