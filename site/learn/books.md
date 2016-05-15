@@ -139,22 +139,6 @@ OCaml it is addressed to a wide audience of people interested in modern programm
 
 ****
 
-###  Think OCaml: How to Think Like a (Functional) Programmer
-<img src="http://greenteapress.com/thinkocaml/thinkocaml_cover_web.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
-
-*Nicholas Monje and Allen Downey. Published 2008*
-
-This book is an introductory programming textbook based on the OCaml
-language. It is a modified version of Think Python by Allen Downey. It
-is intended for newcomers to programming and also those who know some
-programming but want to learn programming in the function-oriented
-paradigm, or those who simply want to learn OCaml.
-
-[Book Website](http://greenteapress.com/thinkocaml/index.html) |
-[PDF](http://greenteapress.com/thinkocaml/thinkocaml.pdf)
-
-****
-
 ###  Developing Applications With OCaml
 <img src="/img/logocaml-oreilly.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
@@ -221,6 +205,22 @@ runtime, interoperating with C, and pearls.
 [GitHub](https://github.com/bobzhang/ocaml-book)
 
 ****
+
+###  Think OCaml: How to Think Like a (Functional) Programmer
+<img src="http://greenteapress.com/thinkocaml/thinkocaml_cover_web.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+
+*Nicholas Monje and Allen Downey. Published 2008*
+
+This book is a work in progress. It is an introductory programming
+textbook based on the OCaml language. It is a modified version of
+Think Python by Allen Downey. It is intended for newcomers to
+programming and also those who know some programming but want to learn
+programming in the function-oriented paradigm, or those who simply
+want to learn OCaml.
+
+[Book Website](http://greenteapress.com/thinkocaml/index.html) |
+[PDF](http://greenteapress.com/thinkocaml/thinkocaml.pdf)
+
 
 ## Books in French
 
