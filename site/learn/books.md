@@ -541,6 +541,14 @@ last chapter a comprehensive description of the language kernel.
 
 ## Books in Italian
 
+### Programmazione funzionale, una semplice introduzione
+<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+
+*Massimo Maria Ghisalberti*
+
+[Emacs Org source](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.org) | [HTML](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.html) | [PDF](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.pdf)
+
+
 ###  Introduzione alla programmazione funzionale
 <img src="/img/limongelli-cialdea.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
