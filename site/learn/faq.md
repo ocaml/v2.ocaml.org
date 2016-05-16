@@ -77,10 +77,10 @@ bug reports and features request, and submit new ones.
 ###  Basic types
 #### Is it possible to do computations with arbritrary precision arithmetics?
 
-OCaml and Caml Light both provide a library that handles exact
-arithmetic computation for rational numbers. The library is called `Num`
-in OCaml and `camlnum` in Caml Light.<br />
- Operations on big numbers gets the suffix `/`: addition is thus `+/`.
+OCaml provides a library called `Num` that handles exact arithmetic computation
+for rational numbers.
+
+Operations on big numbers gets the suffix `/`: addition is thus `+/`.
 You build big numbers using conversion from (small) integers or
 character strings. For printing in the toplevel, a custom printer can be
 used. An example under OCaml is given below.
@@ -643,10 +643,5 @@ Macintosh OS type `Command-.`, under Windows use the “OCaml” menu.
 
 #### How to quit the interactive loop?
 
-With Caml Light, type `quit();;`. With OCaml, type `#quit;;`. In both,
-you can also send an end-of-file (CTRL-D for Unix, CTRL-Z for DOS,
-etc.).
-
-<!-- ###  Batch Compilers -->
-<!-- ###  Yacc -->
-<!-- ###  Lex -->
+Type `#quit;;`. You can also quit it by inputting an end-of-file character
+with Ctrl-D on Unix, and Ctrl-Z on Windows.
