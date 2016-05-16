@@ -195,10 +195,11 @@ type point_2d = {x : float; y : float};;
 
 Since OCaml 4.02, labels are automatically disambiguated when types are
 known. For example, in `let u:point_3d = ... in u.x`, `u.x` refers to
-the field of `point_3d` even though it is shadowed. However, this
-disambiguation does not work in all cases, and may produce confusing
-results when types are omitted, so one may consider avoiding the problem
-entirely.
+the field of `point_3d` even though it is shadowed. However, label
+disambiguation does not work when type information is not available
+(e.g. in `let get_x u = u.x` where the type of `get_x` is not otherwise
+constrained), and may produce confusing results when types are omitted,
+so one may consider avoiding the problem entirely.
 
 The simplest way to overcome this problem is to simply use different
 names! For instance
