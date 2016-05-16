@@ -248,7 +248,15 @@ and you can even coerce a `point_3d` to a `point_2d`.
 
 #### How to define two sum types that share constructor names?
 
-Generally speaking you cannot. As for all other names, you must use
+Since OCaml 4.02, constructors are automatically disambiguated based on
+arity. For example, in `type a = A;; type b = A of int;; A(1)`, `A`
+has the type `a` even though its constructor is shadowed. However, this
+disambiguation may produce extremely surprising results (think of
+`type x = true of bool;; true true;;`, so one may consider avoiding
+the problem entirely.
+
+Generally speaking, sharing names between two constructors is not
+possible. As for all other names, you must use
 distinct name constructors. However, you can define the two types in two
 different name spaces, i.e. into two different modules. As for labels
 discussed above, you obtain constructors that can be qualified by their
