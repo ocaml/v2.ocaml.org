@@ -594,12 +594,31 @@ printing functions by the high level printing functions provided by
 
 ## Module Language
 
-#### Can I have two mutually recursive compilation units / structures / signatures / functors?
+#### Can I have two mutually recursive structures, signatures, functors?
 
-Currently not in the stable langage. However there exists an [OCaml
-extension](http://caml.inria.fr/pub/docs/manual-ocaml/extn.html#sec220)
-(which is subject to change or removal at any time) which addresses some
-of these problems.
+Yes, but they cannot be toplevel, and structures always have to have 
+an explcit signature. Recursive structures may be defined as follows:
+
+```ocamltop
+module rec A : sig
+  type a = { x: int }
+end = struct
+  type a = { x: int }
+  let b : B.b = { y = 1.0 }
+end and B : sig
+  type b = { y: float }
+end = struct
+  type b = { y: float }
+  let a : A.a = { x = 1 }
+end
+```
+
+In a similar way, mutually recursive signatures and functors can also
+be defined.
+
+Note that recursive compilation units are not possible: the toplevel
+structures and signatures corresponding to `.ml`/`.mli` files cannot
+have loops in the dependency graph.
 
 #### How do I express sharing constraints between modules?
 
