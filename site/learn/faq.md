@@ -192,14 +192,23 @@ type point_3d = {x : float; y : float; z : float};;
 type point_2d = {x : float; y : float};;
 {x = 10.; y = 20.; z = 30.};;
 ```
-The simplest way to overcome this problem is simply ... to use different
+
+Since OCaml 4.02, labels are automatically disambiguated when types are
+known. For example, in `let u:point_3d = ... in u.x`, `u.x` refers to
+the field of `point_3d` even though it is shadowed. However, this
+disambiguation does not work in all cases, and may produce confusing
+results when types are omitted, so one may consider avoiding the problem
+entirely.
+
+The simplest way to overcome this problem is to simply use different
 names! For instance
 
 ```ocamltop
 type point3d = {x3d : float; y3d : float; z3d : float};;
 type point2d = {x2d : float; y2d : float};;
 ```
-With OCaml, one can propose two others solutions. First, it is possible
+
+One can propose two others solutions. First, it is possible
 to use modules to define the two types in different name spaces:
 
 ```ocamltop
