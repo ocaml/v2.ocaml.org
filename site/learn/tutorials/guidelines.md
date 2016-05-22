@@ -1473,7 +1473,7 @@ incremental refinement of data and their functionality.
 You should use conventional data structures (in particular, variant
 types) when you need pattern-matching.
 
-You should modules when the data structures are fixed and their
+You should use modules when the data structures are fixed and their
 functionality is equally fixed or it's enough to add new functions in
 the programs which use them.
 
