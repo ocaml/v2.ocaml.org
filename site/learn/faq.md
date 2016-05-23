@@ -565,8 +565,6 @@ let f (o : < g : 'a. 'a -> 'a >) x y = o#g x, o#g y;;
 type id = { g : 'a. 'a -> 'a };;
 let f r x y = r.g x, r.g y;;
 ```
-FIXME: A direct way now exists.
-
 
 ###  Input/output
 
