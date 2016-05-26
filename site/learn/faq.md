@@ -193,7 +193,7 @@ type point_2d = {x : float; y : float};;
 {x = 10.; y = 20.; z = 30.};;
 ```
 
-Since OCaml 4.02, field are automatically disambiguated when types are
+Since OCaml 4.02, fields are automatically disambiguated when types are
 known. For example, in `let u:point_3d = ... in u.x`, `u.x` refers to
 the field of `point_3d` even though it is shadowed. However, field
 disambiguation does not work when type information is not available
@@ -249,11 +249,13 @@ and you can even coerce a `point_3d` to a `point_2d`.
 
 #### How to define two sum types that share constructor names?
 
-Since OCaml 4.02, constructors are automatically disambiguated based on
-arity. For example, in `type a = A;; type b = A of int;; A(1)`, `A`
-has the type `a` even though its constructor is shadowed. However, this
-disambiguation may produce extremely surprising results (think of
-`type x = true of bool;; true true;;`, so one may consider avoiding
+Since OCaml 4.02, constructors are automatically disambiguated when types
+are known. For example, in `type a = A;; type b = A of int;; let x:a = A`,
+`A` is recognized as belonging to the type `a` even though its constructor
+is shadowed. However, constructor disambiguation does not work when type
+information is not available (e.g. in `let get_n x = match x with A -> 1`
+where the type of `get_n` is not otherwise constrained), and may produce
+confusing results when types are omitted, so one may consider avoiding 
 the problem entirely.
 
 Generally speaking, sharing names between two constructors is not
