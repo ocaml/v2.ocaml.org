@@ -182,10 +182,10 @@ let string_of_color =function
   | Red -> "red"
 ```
 
-#### How to share a label between two different record types?
+#### How to share a field between two different record types?
 
-When you define two types sharing a label name, the last defined type
-hides the labels of the first type. For instance:
+When you define two types sharing a field name, the last defined type
+hides the field of the first type. For instance:
 
 ```ocamltop
 type point_3d = {x : float; y : float; z : float};;
@@ -193,9 +193,9 @@ type point_2d = {x : float; y : float};;
 {x = 10.; y = 20.; z = 30.};;
 ```
 
-Since OCaml 4.02, labels are automatically disambiguated when types are
+Since OCaml 4.02, field are automatically disambiguated when types are
 known. For example, in `let u:point_3d = ... in u.x`, `u.x` refers to
-the field of `point_3d` even though it is shadowed. However, label
+the field of `point_3d` even though it is shadowed. However, field
 disambiguation does not work when type information is not available
 (e.g. in `let get_x u = u.x` where the type of `get_x` is not otherwise
 constrained), and may produce confusing results when types are omitted,
@@ -222,7 +222,7 @@ module D2 = struct
 end
 ```
 
-This way labels can be fully qualified as `D3.x` `D2.x`:
+This way fields can be fully qualified as `D3.x` `D2.x`:
 
 ```ocamltop
 {D3.x = 10.; D3.y = 20.; D3.z = 30.};;
@@ -259,7 +259,7 @@ the problem entirely.
 Generally speaking, sharing names between two constructors is not
 possible. As for all other names, you must use
 distinct name constructors. However, you can define the two types in two
-different name spaces, i.e. into two different modules. As for labels
+different name spaces, i.e. into two different modules. As for fields
 discussed above, you obtain constructors that can be qualified by their
 module names. With OCaml you can alternatively use polymorphic variants,
 i.e. constructors that are, in some sense, *predefined*, since they are
