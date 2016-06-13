@@ -10,6 +10,9 @@ OCaml 2016
 Colocated with [ICFP 2016](http://icfpconference.org/icfp2016/),
 the day after the [ML family workshop](http://www.mlworkshop.org/ml2016/).
 
+*Please note extension of the deadline for talk proposal submission.
+It is now 20th June 2016 (any time zone)*.
+
 Introduction
 ------------
 
@@ -61,7 +64,7 @@ will do our best to accommodate you.
 Schedule
 --------
 
-- Friday 10th June 2016 (any time zone): Talk proposal submission deadline
+- Friday 20th June 2016 (any time zone): Talk proposal submission deadline
 - Monday 18th July 2016: Author notification
 - Friday 23rd September 2016: OCaml workshop
 
