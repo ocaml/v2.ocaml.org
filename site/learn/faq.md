@@ -182,24 +182,34 @@ let string_of_color =function
   | Red -> "red"
 ```
 
-#### How to share a label between two different record types?
+#### How to share a field between two different record types?
 
-When you define two types sharing a label name, the last defined type
-hides the labels of the first type. For instance:
+When you define two types sharing a field name, the last defined type
+hides the field of the first type. For instance:
 
 ```ocamltop
 type point_3d = {x : float; y : float; z : float};;
 type point_2d = {x : float; y : float};;
 {x = 10.; y = 20.; z = 30.};;
 ```
-The simplest way to overcome this problem is simply ... to use different
+
+Since OCaml 4.02, fields are automatically disambiguated when types are
+known. For example, in `let u:point_3d = ... in u.x`, `u.x` refers to
+the field of `point_3d` even though it is shadowed. However, field
+disambiguation does not work when type information is not available
+(e.g. in `let get_x u = u.x` where the type of `get_x` is not otherwise
+constrained), and may produce confusing results when types are omitted,
+so one may consider avoiding the problem entirely.
+
+The simplest way to overcome this problem is to simply use different
 names! For instance
 
 ```ocamltop
 type point3d = {x3d : float; y3d : float; z3d : float};;
 type point2d = {x2d : float; y2d : float};;
 ```
-With OCaml, one can propose two others solutions. First, it is possible
+
+One can propose two others solutions. First, it is possible
 to use modules to define the two types in different name spaces:
 
 ```ocamltop
@@ -212,7 +222,7 @@ module D2 = struct
 end
 ```
 
-This way labels can be fully qualified as `D3.x` `D2.x`:
+This way fields can be fully qualified as `D3.x` `D2.x`:
 
 ```ocamltop
 {D3.x = 10.; D3.y = 20.; D3.z = 30.};;
@@ -239,9 +249,19 @@ and you can even coerce a `point_3d` to a `point_2d`.
 
 #### How to define two sum types that share constructor names?
 
-Generally speaking you cannot. As for all other names, you must use
+Since OCaml 4.02, constructors are automatically disambiguated when types
+are known. For example, in `type a = A;; type b = A of int;; let x:a = A`,
+`A` is recognized as belonging to the type `a` even though its constructor
+is shadowed. However, constructor disambiguation does not work when type
+information is not available (e.g. in `let get_n x = match x with A -> 1`
+where the type of `get_n` is not otherwise constrained), and may produce
+confusing results when types are omitted, so one may consider avoiding 
+the problem entirely.
+
+Generally speaking, sharing names between two constructors is not
+possible. As for all other names, you must use
 distinct name constructors. However, you can define the two types in two
-different name spaces, i.e. into two different modules. As for labels
+different name spaces, i.e. into two different modules. As for fields
 discussed above, you obtain constructors that can be qualified by their
 module names. With OCaml you can alternatively use polymorphic variants,
 i.e. constructors that are, in some sense, *predefined*, since they are
