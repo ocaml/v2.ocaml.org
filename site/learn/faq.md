@@ -375,6 +375,12 @@ let sum' (x, y) = x + y;;
 sum' (1, 2);;
 ```
 
+By convention, OCaml code generally uses curried functions rather
+than functions accepting a tuple as an argument. Of course, this
+does not apply to cases where the tuple is denoting a data structure
+on its own (e.g. `(float * float * float)` being used to represent
+a point).
+
 #### How to define a function that has several results?
 
 You can define a function that return a pair or a tuple:
