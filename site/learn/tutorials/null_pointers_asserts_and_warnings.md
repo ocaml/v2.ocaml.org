@@ -80,7 +80,8 @@ about the same as C, not nearly as good as Perl. (We'll talk about
 exceptions in more detail later on.)
 
 First of all, `assert` takes an expression as an argument and throws an
-exception. Assuming that you don't catch this exception (it's probably
+exception *if* the provided expression evaluates to `false`. 
+Assuming that you don't catch this exception (it's probably
 unwise to catch this exception, particularly for beginners), this
 results in the program stopping and printing out the source file and
 line number where the error occurred. An example:
