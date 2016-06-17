@@ -64,7 +64,7 @@ will do our best to accommodate you.
 Schedule
 --------
 
-- Friday 20th June 2016 (any time zone): Talk proposal submission deadline
+- Monday 20th June 2016 (any time zone): Talk proposal submission deadline
 - Monday 18th July 2016: Author notification
 - Friday 23rd September 2016: OCaml workshop
 
