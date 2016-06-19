@@ -12,7 +12,7 @@ your browser, at
 
 To install OCaml on your computer, see the [Install](/docs/install.html) documentation.
 
-To quickly try small OCaml expressions, you can use a toplevel, or REPL (Read–Eval–Print Loop). The `ocaml` command provides a very basic toplevel (you should install `rlwrap` through your system package manager and run `rlwrap ocaml` to get history navigation). If you can install it through [OPAM](/docs/install.html#OPAM) or your system package manger, we recommend the use of the [utop](https://github.com/diml/utop) toplevel instead, which has the same basic interface but is much more convenient to use (history navigation, auto-completion, etc.).
+To quickly try small OCaml expressions, you can use a toplevel, or REPL (Read–Eval–Print Loop). The `ocaml` command provides a very basic toplevel (you should install `rlwrap` through your system package manager and run `rlwrap ocaml` to get history navigation). If you can install it through [OPAM](/docs/install.html#OPAM) or your system package manager, we recommend the use of the [utop](https://github.com/diml/utop) toplevel instead, which has the same basic interface but is much more convenient to use (history navigation, auto-completion, etc.).
 
 Use `;;` to indicate that you've finished entering each statement:
 
