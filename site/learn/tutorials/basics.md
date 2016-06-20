@@ -85,7 +85,7 @@ contains original `s` repeated `n` times.
 
 In most C-derived languages a call to this function will look like this:
 
-```
+```C
 repeated ("hello", 3)  /* this is C code */
 ```
 This means "call the function `repeated` with two arguments, first
