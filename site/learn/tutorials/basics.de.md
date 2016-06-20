@@ -137,10 +137,12 @@ zunächst einmal will ich die gleiche Funktion in C definieren (die
 Definition in Java wäre recht ähnlich wie C) und hoffe, daß das noch
 weitere Fragen aufwirft. So sieht unsere Version von `average` in C aus:
 
-    double average (double a, double b)
-    {
-      return (a + b) / 2;
-    }
+```C
+double average (double a, double b)
+{
+  return (a + b) / 2;
+}
+```
 
 Schauen Sie sich nun nochmals die viel kürzere, obige Definition in
 OCaml an. Hoffentlich fragen Sie sich jetzt:
