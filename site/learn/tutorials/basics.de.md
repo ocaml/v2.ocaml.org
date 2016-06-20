@@ -47,7 +47,9 @@ Argumente nimmt und dann einen neuen String zurückgibt, der das Original
 In den meisten von C abgeleiteten Sprachen, würde ein Aufruf dieser
 Funktion so aussehen:
 
-    repeated ("hallo", 3)  /* dies ist C-Code */
+```C
+repeated ("hallo", 3)  /* dies ist C-Code */
+```
 
 Das bedeutete "rufe die Funktion `repeated` mit zwei Argumenten auf,
 wobei das erste Argument der String 'hallo' ist und das zweite Argument
