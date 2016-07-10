@@ -53,7 +53,7 @@ universities, ..., offering such jobs or internships.
 This is a low-traffic, moderated list for announcements of OCaml
 releases and new OCaml-related software, libraries, documents, etc.
 
-[(Un)subscribe](http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce)
+[(Un)subscribe](https://sympa.inria.fr/sympa/subscribe/caml-announce)
 
 
 ## Discussion Groups
