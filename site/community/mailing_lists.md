@@ -25,9 +25,14 @@ the subscribers of the list. Messages are generally in English but
 sometimes also in French. In 2010, the list has about 1500 subscribers,
 who exchange about 300 messages per month.
 
-[Subscribe](https://sympa.inria.fr/sympa/subscribe/caml-list) | [Inria
-Archives](https://sympa.inria.fr/sympa/arc/caml-list) | [Google Groups
-Archives](http://groups.google.com/groups?group=fa.caml)
+[Subscribe](https://sympa.inria.fr/sympa/subscribe/caml-list)
+|
+[Inria Archives](https://sympa.inria.fr/sympa/arc/caml-list)
+|
+[Gmane archives](http://news.gmane.org/gmane.comp.lang.caml.inria)
+
+The [OCaml Weekly News](alan.petitepomme.net/cwn/) also provides
+a curated summary of caml-list discussions.
 
 ### OCaml Beginners
 *ocaml_beginners AT yahoogroups.com*  
