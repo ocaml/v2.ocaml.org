@@ -71,6 +71,14 @@ ask, just ask, and be patient: not everyone is in the same timezone. The
 IRC Channel can be accessed through a web interface or any regular IRC
 client.
 
+Public channel logs are available at <http://irclog.whitequark.org/ocaml/>
+
+If you wish to use a web-based IRC client, you can use Freenode's
+webchat <https://webchat.freenode.net/>. For a fancier/nicer
+interface, you may try
+<https://vector.im/beta/#/room/#freenode_#ocaml:matrix.org> -- it
+requires registration but is otherwise free.
+
 ### IRC Channel - French
 *irc.freenode.net #ocaml-fr*  
 As above, but for French speakers.
