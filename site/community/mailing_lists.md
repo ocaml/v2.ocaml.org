@@ -25,9 +25,14 @@ the subscribers of the list. Messages are generally in English but
 sometimes also in French. In 2010, the list has about 1500 subscribers,
 who exchange about 300 messages per month.
 
-[Subscribe](https://sympa.inria.fr/sympa/subscribe/caml-list) | [Inria
-Archives](https://sympa.inria.fr/sympa/arc/caml-list) | [Google Groups
-Archives](http://groups.google.com/groups?group=fa.caml)
+[Subscribe](https://sympa.inria.fr/sympa/subscribe/caml-list)
+|
+[Inria Archives](https://sympa.inria.fr/sympa/arc/caml-list)
+|
+[Gmane archives](http://news.gmane.org/gmane.comp.lang.caml.inria)
+
+The [OCaml Weekly News](alan.petitepomme.net/cwn/) also provides
+a curated summary of caml-list discussions.
 
 ### OCaml Beginners
 *ocaml_beginners AT yahoogroups.com*  
@@ -65,6 +70,14 @@ There are about a hundred users hanging around; don't ask if you can
 ask, just ask, and be patient: not everyone is in the same timezone. The
 IRC Channel can be accessed through a web interface or any regular IRC
 client.
+
+Public channel logs are available at <http://irclog.whitequark.org/ocaml/>
+
+If you wish to use a web-based IRC client, you can use Freenode's
+webchat <https://webchat.freenode.net/>. For a fancier/nicer
+interface, you may try
+<https://vector.im/beta/#/room/#freenode_#ocaml:matrix.org> -- it
+requires registration but is otherwise free.
 
 ### IRC Channel - French
 *irc.freenode.net #ocaml-fr*  
