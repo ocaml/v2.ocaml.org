@@ -9,6 +9,7 @@ configure
 *.cm[ioax]
 *.cmxa
 *.annot
+.*.swp
 doclib.docdir
 ocaml.org/
 ocamltohtml
