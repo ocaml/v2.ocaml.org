@@ -12,7 +12,7 @@ let rec mkfun _loc patts e =
 
 let lident_of_patt p =
   match p with
-  | <:patt< $lid:i$ >> -> i
+  | <:patt< $i$ >> -> i
   | _ -> invalid_arg "lident_of_patt"
 
 let () =

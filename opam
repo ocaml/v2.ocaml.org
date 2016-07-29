@@ -19,9 +19,8 @@ depends: [
   "ocamlnet" {>= "4.0.1"}
   "conf-gnutls"
   "mpp" {>= "0.1.2"}
-  "ocamlrss"
   "uri" {>= "1.3.11"}
-  "syndic" {>= "1.4"}
+  "syndic" {>= "1.5.1"}
   "camlp4"
 ]
 depopts: [
@@ -29,5 +28,5 @@ depopts: [
   "lablgtk2"
 ]
 available: [
-  ocaml-version = "4.01.0"
+  ocaml-version >= "4.01.0"
 ]
