@@ -123,7 +123,7 @@ let broken_feed name url reason =
   let feed = Atom.feed ~id:(Uri.of_string(Digest.to_hex(Digest.string name)))
                        ~authors:[Atom.author name]
                        ~title:(Atom.Text reason)
-                       ~updated:(CalendarLib.Calendar.now())
+                       ~updated:(Ptime.max)
                        [] in
   (* See Syndic.Opml1.of_atom for the convention on the length. *)
   Atom.set_self_link feed url ~length:(-1)
@@ -439,7 +439,7 @@ let li_of_post (e: Atom.entry) =
        date @ (Data ", " :: title @ (sep :: html_author)) in
   Element("li", [], line)
 
-let netdate_of_calendar d =
+let netdate_of_ptime d =
   let month =
     let open Syndic.Date in
     match month d with
@@ -472,7 +472,7 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img e =
     | Some d ->
        (* Netdate internationalization functions are more developed. *)
        let d =
-         let d = netdate_of_calendar d in
+         let d = netdate_of_ptime d in
          if Netdate.format ~fmt:"%x" d = Netdate.format ~fmt:"%x" d ~l9n then
            (* English style *)
            Netdate.format ~fmt:"%B %e, %Y" d ~l9n

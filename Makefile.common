@@ -56,7 +56,7 @@ script/breadcrumb: script/breadcrumb.ml $(UTILS_DEP)
 
 script/rss2html: script/rss2html.ml script/http.ml $(UTILS_DEP)
 	cd script && \
-	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient,syndic,calendar \
+	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient,syndic \
 	  -linkpkg utils.cmx http.ml rss2html.ml -o ../"$@"
 
 script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
