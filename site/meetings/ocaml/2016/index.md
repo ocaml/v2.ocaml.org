@@ -10,12 +10,6 @@ OCaml 2016
 Colocated with [ICFP 2016](http://icfpconference.org/icfp2016/),
 the day after the [ML family workshop](http://www.mlworkshop.org/ml2016/).
 
-*Please note extension of the deadline for talk proposal submission.
-It is now 20th June 2016 (any time zone)*.
-
-Introduction
-------------
-
 The OCaml Users and Developers Workshop brings together industrial users of
 OCaml with academics and hackers who are working on extending the language,
 type system and tools.
@@ -24,6 +18,65 @@ Previous editions have been colocated with ICFP 2012 in
 [Boston](../2013), ICFP 2014 in [Gothenburg](../2014),
 ICFP 2015 in [Vancouver](../2015),
 following the OCaml Meetings that ran until [2011](../2011).
+
+Presentations
+=============
+
+OCaml 2016 will open with an invited talk by Damien Doligez.
+
+The following works will be presented as 20 minute talks.
+
+- Conex - establishing trust into data repositories  
+  Hannes Mehnert and Louis Gesbert
+
+- Generic Programming in OCaml  
+  Florent Balestrieri and Michel Mauny
+
+- Improving the OCaml Web Stack: Motivations and Progress  
+  Spiridon Eliopoulos
+
+- Learn OCaml: An Online Learning Center for OCaml  
+  Benjamin Canou, Grégoire Henry, Çagdas Bozman and Fabrice Le Fessant
+
+- Lock-free programming for the masses  
+  Kc Sivaramakrishnan and Theo Laurent
+
+- OCaml inside: a drop-in replacement for libtls  
+  Enguerrand Decorne, Jeremy Yallop and David Kaloper Meršinjak
+
+- OPAM-builder: Continuous Monitoring of OPAM Repositories  
+  Fabrice Le Fessant
+
+- Semantics of the Lambda intermediate language  
+  Pierre Chambart
+
+- Statistically profiling memory in OCaml  
+  Jacques-Henri Jourdan
+
+- Sundials/ML: interfacing with numerical solvers  
+  Timothy Bourke, Jun Inoue, Marc Pouzet
+
+- The State of the OCaml Platform: September 2016  
+  Louis Gesbert and Anil Madhavapeddy
+
+- Who's got your Mail? Mr. Mime!  
+  Romain Calascibetta
+
+The following works will be presented as posters during a dedicated
+poster session:
+
+- Inuit library: from printf to interactive user-interfaces  
+  Frédéric Bour
+
+- ocp-lint, A Plugin-based Style-Checker with Semantic Patches  
+  Çagdas Bozman, Théophane Hufschmitt, Michael Laporte and Fabrice Le Fessant
+
+- Partial evaluation and metaprogramming  
+  Pierre Chambart
+
+
+Call for papers (past)
+======================
 
 Scope
 -----
@@ -73,7 +126,7 @@ ML family workshop and post-proceedings
 
 The ML family workshop, held on the previous day, deals with general
 issues of the ML-style programming and type systems, and is seen as more
-research- oriented.  Yet there is an overlap with the OCaml workshop,
+research-oriented.  Yet there is an overlap with the OCaml workshop,
 which we are keen to explore, for instance by having a common session.
 The authors who feel their submission fits both workshops are encouraged
 to mention it at submission time and/or contact the Program Chairs.
