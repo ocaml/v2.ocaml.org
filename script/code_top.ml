@@ -31,10 +31,10 @@ let is_ready_for_read fd =
 
 let string_of_fd fd =
   let buf = Buffer.create 1024 in
-  let s = String.create 256 in
+  let b = Bytes.create 256 in
   while is_ready_for_read fd do
-    let r = Unix.read fd s 0 256 in
-    Buffer.add_substring buf s 0 r
+    let r = Unix.read fd b 0 256 in
+    Buffer.add_subbytes buf b 0 r
   done;
   Buffer.contents buf
 

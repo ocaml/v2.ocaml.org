@@ -12,6 +12,7 @@ build: [
 ]
 depends: [
   "ocamlfind" {build}
+  "base-bytes" {build}
   "opam-lib" {>= "1.2.0"}
   "opamfu" {>= "0.1.2"}
   "opam2web" {>= "1.4.0"}

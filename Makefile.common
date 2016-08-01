@@ -12,6 +12,11 @@ OCAMLFLAGS = -annot -g
 OCAMLOPT = ocamlfind ocamlopt $(OCAMLFLAGS)
 OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
 
+HAS_SAFE_STRING=$(shell ocaml --help|grep safe-string)
+ifneq ($(HAS_SAFE_STRING),)
+  OCAMLFLAGS := $(OCAMLFLAGS) -safe-string
+endif
+
 # Things to create before launching the parallel page build
 pre-build: template/main.mpp template/footer.mpp \
   template/front_code_snippet.html template/learn_code_snippet.html \
