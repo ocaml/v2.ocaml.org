@@ -38,10 +38,13 @@ The following works will be presented as 20 minute talks.
 - Learn OCaml: An Online Learning Center for OCaml  
   Benjamin Canou, Grégoire Henry, Çagdas Bozman and Fabrice Le Fessant
 
-- Lock-free programming for the masses  
+- Lock-free programming for the masses --
+  [Abstract](http://kcsrk.info/papers/reagents_ocaml16.pdf)  
   Kc Sivaramakrishnan and Theo Laurent
 
-- OCaml inside: a drop-in replacement for libtls  
+- OCaml inside: a drop-in replacement for libtls --
+  [Abstract](https://www.cl.cam.ac.uk/%7Ejdy22/papers/ocaml-inside-a-drop-in-replacement-for-libtls.pdf),
+  [Implementation](https://github.com/mirleft/libnqsb-tls/)  
   Enguerrand Decorne, Jeremy Yallop and David Kaloper Meršinjak
 
 - OPAM-builder: Continuous Monitoring of OPAM Repositories  
