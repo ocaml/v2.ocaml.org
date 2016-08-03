@@ -79,6 +79,16 @@
 					 alt="" />
                     Learn OCaml in your browser with TryOCaml
                 </a>
+               <br/>
+			   <div style="margin-top: 2ex;" >
+                 <img src="/img/chat.svg" alt="chat" class="svg"
+                  style="width: 4ex;" />
+                 <img src="/img/chat.png" alt="chat" class="png"
+                  style="width: 4ex;" />
+                 Got a question?
+                 <a href="https://kiwiirc.com/client/irc.freenode.net/?#ocaml"
+                 target="_blank" >Chat live with OCaml experts</a>!
+               </div>
             </div>
         </div>
         <section id="home-news" class="span4 condensed">
