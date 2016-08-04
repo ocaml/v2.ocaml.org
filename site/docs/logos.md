@@ -39,3 +39,22 @@ The OCaml logo is released under a
        style="border: none; width: 150px;" />
 </a>
 ```
+
+## Stickers
+<!-- Beware that community/index.md use a link with that anchor -->
+
+<img src="/img/OCaml_Sticker.svg"
+	alt="OCaml"
+	style="width: 150px; float: right" ></img>
+
+The following [SVG file](/img/OCaml_Sticker.svg) is suitable to
+[make stickers](https://twitter.com/ocamllabs/status/761191421680422912).
+Its is is released under a same
+[liberal license](https://github.com/ocaml/ocaml.org/blob/master/LICENSE.md) as
+the logo so do not hesitate to print your own stickers to promote
+OCaml!
+
+Before printing some stickers, it would be great if you
+[tweeted it](https://twitter.com/search?q=%23OCaml%20stickers&src=typd) with
+tags *#OCaml stickers* so that other interested people in you area can
+get in touch with you!

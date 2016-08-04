@@ -19,8 +19,8 @@
         <div class="span2">
             <img src="/img/OCaml_Sticker.svg" alt="OCaml Sticker"
 			 class="svg" />
-            <p><a href="https://twitter.com/search?q=%23OCaml%20stickers&src=typd"
-			>Order stickers!</a></p>
+            <p><a href="/docs/logos.html#Stickers"
+			>Make/order stickers!</a></p>
         </div>
     </div>
     <div class="row">

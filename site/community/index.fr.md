@@ -13,11 +13,17 @@
         d'<a href="../learn/companies.html">utilisateurs industriels</a>
         engagés qui contribuent régulièrement à la communauté.</p>
         </section>
-        <div class="span4">
+        <div class="span2">
             <img src="/img/colour-transparent-icon.svg" alt="OCaml"
 			 class="svg" />
             <img src="/img/colour-icon-170x148.png" alt="OCaml" class="png" />
             <p><a href="/docs/logos.html">Plus de logos</a></p>
+        </div>
+        <div class="span2">
+            <img src="/img/OCaml_Sticker.svg" alt="OCaml Sticker"
+			 class="svg" />
+            <p><a href="/docs/logos.html#Stickers"
+			>Faites vos autocollants!</a></p>
         </div>
     </div>
     <div class="row">
