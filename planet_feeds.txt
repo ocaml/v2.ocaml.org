@@ -1,6 +1,5 @@
 Alex Leighton|http://alexleighton.tumblr.com/tagged/ocaml/rss
 Amir Chaudhry|http://amirchaudhry.com/tags/ocaml-atom.xml
-Andrei Formiga|http://andreiformiga.com/blog/?cat=5&feed=rss2
 Andrej Bauer|http://math.andrej.com/feed/
 Andy Ray|http://www.ujamjar.com/ocaml.xml
 Anil Madhavapeddy|http://anil.recoil.org/feeds/atom.xml
