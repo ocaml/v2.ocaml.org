@@ -4,6 +4,11 @@
 
 # Installer OCaml
 
+La dernière version d'OCaml est la **{{! get LATEST_OCAML_VERSION !}}**.
+Pour plus d'informations à propos de celle-ci, voir la page
+[OCaml {{! get LATEST_OCAML_VERSION !}}](/releases/{{! get LATEST_OCAML_VERSION !}}.html) (en anglais).
+
+
 Il y a plusieurs moyens pour installer OCaml :
 
 * Utiliser OPAM, un gestionnaire de paquets spécialisé pour OCaml
