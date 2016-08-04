@@ -49,12 +49,12 @@ The OCaml logo is released under a
 
 The following [SVG file](/img/OCaml_Sticker.svg) is suitable to
 [make stickers](https://twitter.com/ocamllabs/status/761191421680422912).
-Its is is released under a same
+Its is is released under the same
 [liberal license](https://github.com/ocaml/ocaml.org/blob/master/LICENSE.md) as
 the logo so do not hesitate to print your own stickers to promote
 OCaml!
 
 Before printing some stickers, it would be great if you
 [tweeted it](https://twitter.com/search?q=%23OCaml%20stickers&src=typd) with
-tags *#OCaml stickers* so that other interested people in you area can
+tags `#OCaml stickers` so that other interested people in you area can
 get in touch with you!
