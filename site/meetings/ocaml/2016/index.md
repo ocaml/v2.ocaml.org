@@ -26,7 +26,8 @@ OCaml 2016 will open with an invited talk by Damien Doligez.
 
 The following works will be presented as 20 minute talks.
 
-- Conex - establishing trust into data repositories  
+- Conex - establishing trust into data repositories --
+  [Abstract](https://github.com/hannesm/conex-paper/raw/master/paper.pdf)  
   Hannes Mehnert and Louis Gesbert
 
 - Generic Programming in OCaml  
@@ -59,10 +60,13 @@ The following works will be presented as 20 minute talks.
 - Sundials/ML: interfacing with numerical solvers  
   Timothy Bourke, Jun Inoue, Marc Pouzet
 
-- The State of the OCaml Platform: September 2016  
+- The State of the OCaml Platform: September 2016 --
+  [Abstract](http://www.ocamlpro.com/wp-content/uploads/2016/08/2016_OUD_gesbert_madhavapeddy.pdf)  
   Louis Gesbert and Anil Madhavapeddy
 
-- Who's got your Mail? Mr. Mime!  
+- Who's got your Mail? Mr. Mime! --
+  [Abstract](http://din.osau.re/mrmime.pdf),
+  [Implementation](https://github.com/oklm-wsh/MrMime)  
   Romain Calascibetta
 
 The following works will be presented as posters during a dedicated
