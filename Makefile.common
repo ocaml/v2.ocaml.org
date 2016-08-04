@@ -1,6 +1,8 @@
 # -*- mode: Makefile-gmake -*-
 
-MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its $(SET_STAGING)
+LATEST_OCAML_VERSION=$(shell opam switch -s | sort -h | tail -n 1)
+
+MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its -set "LATEST_OCAML_VERSION=$(LATEST_OCAML_VERSION)" $(SET_STAGING)
 MPP = mpp ${MPP_OPTIONS}
 OMD_OPTIONS = -r ocaml=script/ocamltohtml -r tryocaml=script/ocamlapplet.bash
 OMD = omd ${OMD_OPTIONS}

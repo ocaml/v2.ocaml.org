@@ -3,6 +3,11 @@
 *Table of contents*
 
 # Install OCaml
+
+The latest version of OCaml is **{{! get LATEST_OCAML_VERSION !}}**.
+For more information about this release, see the
+[{{! get LATEST_OCAML_VERSION !}} page](/releases/{{! get LATEST_OCAML_VERSION !}}.html).
+
 The OCaml compiler and libraries can be installed in several
 ways. Broadly, the options are:
 
