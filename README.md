@@ -7,6 +7,11 @@ website. Information here is relevant only to developers and content
 contributors. End-users of the website should simply visit the
 website, which is hosted at http://ocaml.org.
 
+Note: if you just want to edit a page you do not need to follow the
+instructions below.  Simply click on the pen in the top right corner
+of the page and you will be redirected to that page on GitHub where you
+can edit it and submit your changes without leaving your browser.
+
 
 DEPENDENCIES
 ============
