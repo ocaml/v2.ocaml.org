@@ -36,7 +36,8 @@ The following works will be presented as 20 minute talks.
 - Improving the OCaml Web Stack: Motivations and Progress  
   Spiridon Eliopoulos
 
-- Learn OCaml: An Online Learning Center for OCaml  
+- Learn OCaml: An Online Learning Center for OCaml --
+  [Abstract](http://www.ocamlpro.com/wp-content/uploads/2016/08/ocaml-2016-learn-ocaml.pdf)  
   Benjamin Canou, Grégoire Henry, Çagdas Bozman and Fabrice Le Fessant
 
 - Lock-free programming for the masses --
@@ -48,7 +49,9 @@ The following works will be presented as 20 minute talks.
   [Implementation](https://github.com/mirleft/libnqsb-tls/)  
   Enguerrand Decorne, Jeremy Yallop and David Kaloper Meršinjak
 
-- OPAM-builder: Continuous Monitoring of OPAM Repositories  
+- OPAM-builder: Continuous Monitoring of OPAM Repositories --
+  [Abstract](http://www.ocamlpro.com/wp-content/uploads/2016/08/ocaml2016-opam-builder.pdf),
+  [Build results](http://opam.ocamlpro.com/builder/html/report-last.html)  
   Fabrice Le Fessant
 
 - Semantics of the Lambda intermediate language  
@@ -75,7 +78,8 @@ poster session:
 - Inuit library: from printf to interactive user-interfaces  
   Frédéric Bour
 
-- ocp-lint, A Plugin-based Style-Checker with Semantic Patches  
+- ocp-lint, A Plugin-based Style-Checker with Semantic Patches --
+  [Abstract](http://www.ocamlpro.com/wp-content/uploads/2016/08/ocaml-2016-typerex-lint.pdf)  
   Çagdas Bozman, Théophane Hufschmitt, Michael Laporte and Fabrice Le Fessant
 
 - Partial evaluation and metaprogramming  
