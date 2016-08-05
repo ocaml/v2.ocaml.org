@@ -65,7 +65,7 @@ The following works will be presented as 20 minute talks.
 
 - The State of the OCaml Platform: September 2016 --
   [Abstract](http://www.ocamlpro.com/wp-content/uploads/2016/08/2016_OUD_gesbert_madhavapeddy.pdf)  
-  Louis Gesbert and Anil Madhavapeddy
+  Louis Gesbert, on behalf of the OCaml Platform team
 
 - Who's got your Mail? Mr. Mime! --
   [Abstract](http://din.osau.re/mrmime.pdf),
