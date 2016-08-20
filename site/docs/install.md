@@ -190,7 +190,7 @@ In order to get the basic tools under
 [Gentoo](http://www.gentoo.org/), execute:
 
 ```bash
-emerge ocaml
+emerge dev-lang/ocaml
 ```
 while being logged in as a user that is a member of the `portage` group
 (e.g. root). If you want to see what other related packages are
