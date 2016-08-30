@@ -30,7 +30,8 @@ The following works will be presented as 20 minute talks.
   [Abstract](https://github.com/hannesm/conex-paper/raw/master/paper.pdf)  
   Hannes Mehnert and Louis Gesbert
 
-- Generic Programming in OCaml  
+- Generic Programming in OCaml --
+  [Abstract](Balestrieri-Mauny-generic_programming_in_OCaml.pdf)  
   Florent Balestrieri and Michel Mauny
 
 - Improving the OCaml Web Stack: Motivations and Progress  
@@ -57,7 +58,8 @@ The following works will be presented as 20 minute talks.
 - Semantics of the Lambda intermediate language  
   Pierre Chambart
 
-- Statistically profiling memory in OCaml  
+- Statistically profiling memory in OCaml --
+  [Abstract](Jourdan-statistically_profiling_memory_in_OCaml.pdf)  
   Jacques-Henri Jourdan
 
 - Sundials/ML: interfacing with numerical solvers  
