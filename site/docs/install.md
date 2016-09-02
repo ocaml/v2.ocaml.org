@@ -254,8 +254,9 @@ urpmq --list | grep ocaml
 
 ## Windows
 
-Under Windows, two solutions are available to use OCaml: the official
+Under Windows, two native solutions are available to use OCaml: the official
 OCaml distribution, and OCamlPro's OCPWin.
+Another solution is to use « Bash on Windows » and install OCaml as on Ubuntu. Main OCaml versions and OPAM work. You can use OCaml as you are on Ubuntu. The disadvantage of this method is you don't build native Windows binaries but Linux binaries.
 
 Several ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
