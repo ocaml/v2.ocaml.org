@@ -106,7 +106,7 @@
           <h1 class="ruled"><a href="companies.html">Industrial
           Users</a></h1> <p><a href="http://janestreet.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
-          src="/img/jane-street.jpg"></a>Jane Street is a quantitative
+          src="/img/users/jane-street.jpg"></a>Jane Street is a quantitative
           proprietary trading firm with a unique focus on technology
           and collaborative problem solving.  Almost all of our
           systems are written in OCaml: from statistical research code
