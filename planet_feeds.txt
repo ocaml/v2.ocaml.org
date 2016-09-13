@@ -45,6 +45,7 @@ Matías Giovannini|http://www.blogger.com/feeds/5888658295182480819/posts/defaul
 Mindy Preston|http://www.somerandomidiot.com/blog/categories/ocaml/atom.xml
 Mike Lin|http://www.blogger.com/feeds/3693082774051755513/posts/default/-/OCaml
 Mike McClurg|http://mcclurmc.wordpress.com/feed/
+MirageOS|https://mirage.io/blog/atom.xml
 OCaml Book|http://ocaml-book.com/blog?format=rss
 OCaml Labs|https://ocaml.io/index.php?title=Blog:News&feed=rss
 OCaml Labs compiler hacking|http://ocamllabs.github.com/compiler-hacking/rss.xml
@@ -56,7 +57,6 @@ ODNS project|http://odns.tuxfamily.org/feed/
 Ocaml XMPP project|http://ox.tuxfamily.org/feed/
 Ocsigen project|http://ocsigen.org/news.atom
 Opa|http://www.blogger.com/feeds/2073503406800427577/posts/default
-Open Mirage|http://openmirage.org/blog/atom.xml
 Orbitz|http://functional-orbitz.blogspot.com/feeds/posts/default/-/planetocaml?alt=rss
 Paolo Donadeo|http://www.donadeo.net/facets/programming-languages/objective-caml/feed/
 Perpetually Curious|http://lambdafoo.com/blog/categories/ocaml/atom.xml
