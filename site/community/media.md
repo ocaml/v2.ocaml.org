@@ -4,6 +4,16 @@
 
 ## Videos
 
+
+[Videos][https://vimeo.com/user20888710/videos] for OCaml beginners by
+to John Whitington, good companion material to
+[books][http://ocaml-book.com/] (the videos to not require or depend
+on them though).
+
+Dan Ghica's
+[Foundations of Computer Science lectures](http://vimeo.com/user8856528/videos)
+all use OCaml.
+
 [The continuation of functional programming by other
 means](http://events.inf.ed.ac.uk/Milner2012/X_Leroy-html5-mp4.html),
 Xavier Leroy.
