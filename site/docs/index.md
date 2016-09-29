@@ -4,9 +4,13 @@
     <h1>Documentation</h1>
     <div class="row">
         <section class="span6 condensed">
-            <h1 class="ruled">Summary</h1>
-            <p>Here you'll find links to documentation for the OCaml compiler, <a href="/releases/">release</a> information, <a href="install.html">installation instructions</a>, and other resources.</p>
-            <p>Documentation for a given package can be found by following the link on that package's information page. <a href="https://opam.ocaml.org/packages/">Search the package list</a> to find what you need.</p>
+            <h1 class="ruled">OCaml documentation</h1>
+            <p>Consult the
+               <a href="install.html">installation instructions</a>,
+               information about OCaml <a href="/releases/">releases</a>
+               and the user
+               <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">manual</a>.
+            </p>
         </section>
         <section class="span6 condensed">
             <h1 class="ruled">Reference</h1>
