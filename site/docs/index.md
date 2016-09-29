@@ -45,9 +45,19 @@
     </div>
     <div class="row">
         <section class="span6 condensed">
-            <h1 class="ruled">OPAM Docs</h1>
-            <p>The OCaml Package Manager (<a href="https://opam.ocaml.org">OPAM</a>) is a source-based package manager for OCaml. It supports multiple simultaneous compiler installations, flexible package constraints, and a Git-friendly development workflow. For documentation on installing OPAM or packaging your libraries, <a href="https://opam.ocaml.org/doc/Install.html">read here</a>. Packages are automatically tested upon submission and reports sent back to maintainers. If you submit a package, you will be rewarded with regular regression tests across many diverse operating systems and platforms.</p>
-            <p>OPAM has been created and is maintained by OCamlPro and OCaml Labs. Bug reports and feature requests for the tool should be reported on <a href="https://github.com/OCaml/opam/issues">OPAM's issue-tracker</a>. Packaging issues or requests for a new package can be reported on the <a href="https://github.com/OCaml/opam-repository/issues">main repository's issue-tracker</a>. General queries for both the tool and the packages can be addressed on the <a href="http://lists.ocaml.org/listinfo/platform">OCaml-platform mailing-list</a> and insights and evolution of OPAM internals can discussed on the <a href="http://lists.ocaml.org/listinfo/opam-devel">OPAM-devel mailing-list</a>.</p>
+            <h1 class="ruled">OPAM and package documentation</h1>
+            <p>OPAM is the source-based package manager for OCaml.
+               It allows you to install OCaml and packages.
+               See the <a href="install.html">installation
+               instructions.</a> and the
+               <a href="https://opam.ocaml.org/doc/">OPAM documentation</a>.
+            </p>
+            <p>The <a href="https://opam.ocaml.org/packages/">list of
+              OPAM packages</a> has links to their homepage
+              and documentation. The distribution and API documentation
+              of the packages you install locally with OPAM can be accessed
+              via <a href="http://erratique.ch/software/odig">odig</a>.
+            </p>
         </section>
         <section class="span6 condensed">
             <h1 class="ruled"><a href="/learn/books.html">Books</a> and <a href="/docs/papers.html">Papers</a></h1>
