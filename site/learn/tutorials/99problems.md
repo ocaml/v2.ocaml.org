@@ -491,7 +491,7 @@ insert_at "alfa" 4 ["a";"b";"c";"d"];;
 
 #### Create a list containing all integers within a given range. (*easy*)
 
-If first argument is smaller than second, produce a list in decreasing
+If first argument is greater than second, produce a list in decreasing
 order.
 
 SOLUTION
