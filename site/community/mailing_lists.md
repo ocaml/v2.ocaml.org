@@ -31,7 +31,7 @@ who exchange about 300 messages per month.
 |
 [Gmane archives](http://news.gmane.org/gmane.comp.lang.caml.inria)
 
-The [OCaml Weekly News](alan.petitepomme.net/cwn/) also provides
+The [OCaml Weekly News](http://alan.petitepomme.net/cwn/) also provides
 a curated summary of caml-list discussions.
 
 ### OCaml Beginners
