@@ -35,13 +35,9 @@ has changed since then, but the name stuck.
 The “O” stands for “objective” and was added when the language got object-oriented
 programming capabilities.
 
-#### Do you write “Caml” or “CAML”, “OCaml”, “Ocaml” or “OCAML”?
+#### Do you write “Caml”, “CAML”, “Ocaml”, “OCaML”, “OCAML” or “OCaml” ?
 
-We write OCaml.
-According to usual rules for acronyms, we should write CAML, as we
-write USA. On the other hand, this upper case name seems to yell all
-over the place, and writing OCaml is far more pretty and elegant — with
-“O” and “C” capitalized.
+The official name of the language, capitalization included, is “OCaml”.
 
 #### Is OCaml a compiled or interpreted language?
 
