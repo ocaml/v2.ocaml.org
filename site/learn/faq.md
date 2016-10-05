@@ -20,11 +20,11 @@ and on PCs under Windows. A brief tour on main
 
 #### Under what licensing terms is the OCaml software available?
 
-The OCaml system is open source software: the compiler is distributed
-under the terms of the Q Public License, and its library is under LGPL;
-please read the [license](/docs/license.html) document for more details. A
-BSD-style license is also available for a fee through the [OCaml
-Consortium](/consortium/).
+The OCaml system is open source software. Since version 4.03 the
+compiler and the standard library are distributed under LGPL 2.1 with
+static linking exception, read the [license](/docs/license.html) for
+details. The sotware is also available under a BSD-style license for a
+fee through the [OCaml Consortium](/consortium/).
 
 #### What is the meaning of the name “OCaml”
 
