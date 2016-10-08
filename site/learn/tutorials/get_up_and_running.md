@@ -19,8 +19,9 @@ $ opam install <some_package>
 ```
 
 For people on `OS X`, you can get it on `brew` and all the `Linux`
-distros should have `opam`. Attention Ubuntu people: you should do
-this instead because apt-get's version of opam on Ubuntu is madly
+distros should have `opam`. Attention Ubuntu people: if you are using 
+an outdated version of Ubuntu (e.g. Wily, Vivid or Trusty), you should
+do this instead because apt-get's version of opam on those is madly
 outdated.
 
 ```shell
