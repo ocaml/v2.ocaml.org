@@ -2646,6 +2646,8 @@ type grid = cell array array;;
 ```
 
 SOLUTION
+> The idea is to start filling with available values in each case.
+> When there is no available valeus, it means we made a mistacke so we go back to where we had to make a choice between different available values and choose the next one.
 > ```ocamltop
 > (* a 9x9 grid of int *)
 > (* the number in column line can be accessed with grid.(column).(line)*)
