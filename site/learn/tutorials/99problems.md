@@ -2548,35 +2548,31 @@ in full words. Example: 175 must be written as one-seven-five. Write a
 function `full_words` to print (non-negative) integer numbers in full
 words.
 
-SOLUTION
-> 
->
-> ```ocamltop
+SOLUTION 
 > let full_words i =
 >  let to_word x = match x with
->              | 1 -> "one"
->              | 2 -> "two"
->              | 3 -> "three"
->              | 4 -> "four"
->              | 5 -> "five"
->              | 6 -> "six"
->              | 7 -> "seven"
->              | 8 -> "eight"
->              | 9 -> "nine"
->              | 0 -> "zero"
->              | _ -> failwith "Impossible"
+>    | 1 -> "one"
+>    | 2 -> "two"
+>    | 3 -> "three"
+>    | 4 -> "four"
+>    | 5 -> "five"
+>    | 6 -> "six"
+>    | 7 -> "seven"
+>    | 8 -> "eight"
+>    | 9 -> "nine"
+>    | 0 -> "zero"
+>    | _ -> failwith "Impossible"
 >  in
->  let rec aux rest outStr firstTime = match k with
+>  let rec aux rest outStr firstTime = match rest with
 >    | 0 -> if firstTime
 >            then to_word 0
 >          else String.sub outStr 1 (String.length outStr - 1) (* We remove the - *)
 >    | _ -> aux (rest/10) ("-" ^ to_word (rest mod 10) ^ outStr) false
 >  in aux i "" true;;
-> ```
 
 ```ocamltop
 full_words 175;;
-full_words 57321;;
+full_words 57643;;
 ```
 
 
@@ -2641,6 +2637,8 @@ type grid = cell array array;;
 ```
 
 SOLUTION
+> The idea is to start filling with available values in each case.
+> When there is no available valeus, it means we made a mistacke so we go back to where we had to make a choice between different available values and choose the next one.
 > ```ocamltop
 > (* a 9x9 grid of int *)
 > (* the number in column line can be accessed with grid.(column).(line)*)
