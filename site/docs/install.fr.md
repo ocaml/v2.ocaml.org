@@ -11,8 +11,8 @@ Pour plus d'informations à propos de celle-ci, voir la page
 
 Il y a plusieurs moyens pour installer OCaml :
 
-* Utiliser OPAM, un gestionnaire de paquets spécialisé pour OCaml
-* Utiliser le gestionnaire de paquets de votre plateforme, dans lequel une
+* Utiliser OPAM, un gestionnaire de paquet spécialisé pour OCaml
+* Utiliser le gestionnaire de paquet de votre plateforme, dans lequel une
    version récente d'OCaml est le plus souvent disponible.  ([FreeBSD](#FreeBSD), [Linux](#Linux), [macOS](#macOS),
    [OpenBSD](#OpenBSD), [Windows](#Window))
 * Installer depuis [les sources](#Installation depuis les sources)
@@ -85,7 +85,7 @@ apt-get install ocaml
 Les autres paquets Unbuntu liés à OCaml sont
 [listés ici](http://packages.ubuntu.com/search?keywords=ocaml) (en anglais).
 
-Les répertoirs officiels d'Ubuntu sont souvent en retard par rapport aux
+Les dépôts officiels d'Ubuntu sont souvent en retard par rapport aux
 dernières versions stables d'OCaml et d'OPAM. Des versions plus récentes sont mises à disposition via des [PPA](https://launchpad.net/~avsm) (en anglais).
 
 Ils peuvent être installés grâce à:
@@ -140,7 +140,7 @@ La  [Politique de construction des paquets pour OCaml](https://wiki.mageia.org/e
 
 ## macOS
 
-Sur macOS OCaml et/ou OPAM peuvent êtres installés grâce aux systèmes de paquets tiers.
+Sur macOS OCaml et/ou OPAM peuvent êtres installés grâce aux systèmes de gestion de paquets tiers.
 
 ### [Homebrew](http://brew.sh/)
 
@@ -182,9 +182,9 @@ Sous Windows, les solutions suivantes sont disponibles pour installer OCaml:
   de MSVC et le support de MSVC 9.0, 10.0, 11.0, 12.0 and 14.0 (VS2015).
 
 * [OCaml pour Windows](https://fdopen.github.io/opam-repository-mingw/)
-  fournit une version expérimentale du répertoire d'OPAM et d'OPAM pour Windows.
+  fournit une version expérimentale des dépôts d'OPAM et d'OPAM pour Windows.
   
-Ici sont quelques alternatives :
+Voici quelques alternatives :
 
 * Les sources d'OCaml supportent directement Windows. Vous devrez compilez
   [les source](#Installation depuis les sources). Voir le fichier 
