@@ -23,7 +23,7 @@ and on PCs under Windows. A brief tour on main
 The OCaml system is open source software. Since version 4.03 the
 compiler and the standard library are distributed under LGPL 2.1 with
 static linking exception, read the [license](/docs/license.html) for
-details. The sotware is also available under a BSD-style license for a
+details. The software is also available under a BSD-style license for a
 fee through the [OCaml Consortium](/consortium/).
 
 #### What is the meaning of the name “OCaml”
