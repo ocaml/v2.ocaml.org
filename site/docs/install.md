@@ -117,6 +117,15 @@ urpmq --list | grep ocaml # List OCaml packages
 
 The Mageia [OCaml packaging policy](https://wiki.mageia.org/en/OCaml_policy).
 
+### [Arch Linux](http://www.archlinux.org/)
+
+```bash
+pacman -S ocaml
+```
+
+Other Arch Linux packages related to OCaml are
+[listed here](https://www.archlinux.org/packages/?q=ocaml).
+
 ## macOS
 
 On macOS OCaml and/or OPAM can be installed via the existing third-party
