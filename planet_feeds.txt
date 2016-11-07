@@ -72,7 +72,6 @@ Shayne Fletcher|http://blog.shaynefletcher.org/feeds/posts/default/-/OCaml
 Simon Grondin|http://simongrondin.name/?cat=9&feed=rss2
 Stefano Zacchiroli|http://upsilon.cc/~zack/tags/ocaml/index.rss
 Sylvain Le Gall|http://le-gall.net/sylvain+violaine/blog/index.php?feed/tag/ocaml/atom
-The Caml Humps|http://caml.inria.fr/hump.rss
 Thomas Leonard|http://roscidus.com/blog/blog/categories/ocaml/atom.xml
 Till Varoquaux|http://www.blogger.com/feeds/6115529230232389198/posts/default
 WODI|http://wodi.forge.ocamlcore.org/atom.xml
