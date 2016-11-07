@@ -1375,7 +1375,7 @@ type type_of_definition =
 > 
 > ```ocaml
 > | Let (b, v, e) ->
->    if recursivep def then code_for_recursive_case
+>    if recursivep b then code_for_recursive_case
 >    else code_for_non_recursive_case
 > ```
 > 
