@@ -7,7 +7,7 @@
 "Find Us on GitHub" -> "Dépôt GitHub"
 "News" -> "Nouvelles"
 "Code Examples" -> "Exemples de code"
-"Tutorials" -> "Tutoriaux"
+"Tutorials" -> "Tutoriels"
 "Books" -> "Livres"
 "Success Stories" -> "Cas d'usage"
 "Manual" -> "Manuel"
