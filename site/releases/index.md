@@ -9,6 +9,7 @@ See also the [install](/docs/install.html) page for instructions on
 installing OCaml by other means, such as the OPAM package manager and
 platform specific package managers.
 
+* OCaml [4.04.0](4.04.html), released Nov 4, 2016.
 * OCaml [4.03.0](4.03.html), released Apr 25, 2016.
 * OCaml [4.02.3](4.02.html), released Jul 27, 2015.
 * OCaml [4.02.2](4.02.html), released Jun 17, 2015.
