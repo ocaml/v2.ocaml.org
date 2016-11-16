@@ -5,7 +5,7 @@ open Nethtml
 open Syndic
 
 let planet_url = "/community/planet/"
-let planet_full_url = "http://ocaml.org/community/planet/"
+let planet_full_url = "http://ocaml.org" ^ planet_url
 
 let planet_feeds_file = "planet_feeds.txt"
 
@@ -623,9 +623,16 @@ let email_threads ?n ~l9n url =
   let posts = (match n with
                | Some n -> take n posts
                | None -> posts) in
-  let img = "/img/mail-icon" in
-  [Element("ul", ["class", "news-feed"],
-           List.concat(List.map (fun p -> headline_of_post ~l9n ~img p) posts))]
+  match posts with
+  | [] ->
+     [Element("span", ["style", "font-style: italic"],
+              [Data "No emails read from ";
+               Element("a", ["href", Uri.to_string url], [Data "the feed"]);
+               Data "."])]
+  | _ :: _ ->
+     let img = "/img/mail-icon" in
+     let headlines = List.map (fun p -> headline_of_post ~l9n ~img p) posts in
+     [Element("ul", ["class", "news-feed"], List.concat headlines)]
 
 
 (* Main
