@@ -93,6 +93,24 @@ let rec html_of_syndic =
 (* Feeds
  ***********************************************************************)
 
+let is_opening_brace_or_space = function
+  | '(' | '[' | '{' | ' ' | '\012' | '\n' | '\r' | '\t' -> true
+  | _ -> false
+
+let is_closing_brace_or_space = function
+  | ')' | ']' | '}' | ' ' | '\012' | '\n' | '\r' | '\t' -> true
+  | _ -> false
+
+(* Names in https://opam.ocaml.org/blog/feed.xml are surrounded by {}.
+   Remove them. *)
+let remove_braces name =
+  (* Assume name.[i], i0 <= i < i1, is a valid sub-string. *)
+  let i0 = ref 0 and i1 = ref(String.length name) in
+  while !i0 < !i1 && is_opening_brace_or_space name.[!i0] do incr i0 done;
+  while !i0 < !i1 && is_closing_brace_or_space name.[!i1 - 1] do decr i1 done;
+  if !i0 = 0 && !i1 = String.length name then name
+  else String.sub name !i0 (!i1 - !i0)
+
 (* Email on the forge contains the name in parenthesis *)
 let email_name_re =
   Str.regexp " *\\([a-zA-Z.]+@[a-zA-Z.]+\\) *(\\([^()]*\\))"
@@ -101,11 +119,14 @@ let author_email_name (a: Atom.author) =
   let open Atom in
   if Str.string_match email_name_re a.name 0 then
     let name = String.trim(Str.matched_group 2 a.name) in
+    let name = if name = "" then a.name else name in
+    let name = remove_braces name in
     let email = match a.email with
       | None -> Some(Str.matched_group 1 a.name)
       | Some _ -> a.email in
     { a with name; email }
-  else a
+  else
+    { a with name = remove_braces a.name }
 
 let special_processing (e: Atom.entry) =
   let open Atom in
@@ -113,8 +134,9 @@ let special_processing (e: Atom.entry) =
   if a0.name = "OCaml Weekly News" then
     { e with title = Text "Weekly News" }
   else
-    { e with authors = (author_email_name a0,
-                        List.map author_email_name a) }
+    let a0 = author_email_name a0 in
+    let a = List.map author_email_name a in
+    { e with authors = (a0, a) }
 
 (* Atom feed (with no entries) representing a broken feed.  The title
    is the reason for the failure.  Since these feed contain no
