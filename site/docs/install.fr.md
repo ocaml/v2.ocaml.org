@@ -51,7 +51,7 @@ $ ./configure  # (ou ./configure --prefix=$HOME si vous voulez l'installer dans 
 $ make
 $ make install
 $ opam init
-$ eval `opam config -env`
+$ eval `opam config env`
 $ opam switch 4.01.0
 ```
 ## [FreeBSD](https://www.freebsd.org/)
