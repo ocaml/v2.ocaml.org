@@ -4,17 +4,12 @@
 
 # OCaml 프로그램의 구조
 
-Now we're going to take some time out to take a high-level look at some
-real OCaml programs. I want to teach you about local and global
-definitions, when to use `;;` vs. `;`, modules, nested functions, and
-references. For this we're going to look at a lot of OCaml concepts
-which won't yet make sense because we haven't seen them before. Don't
-worry about the details for the moment. Concentrate instead on the
-overall shape of the programs and the features which I'll point out.
+이제 OCaml 프로그램을 자세히 살펴보기로 합니다. 전역 / 지역 변수, 언제 `;;` 혹은 `;` 를 사용하는지, 모듈, 중첩 함수, 참조에 대해서 가르치려 합니다.
+전에 보지 못했기 때문에 아직은 이해할 수 없는, OCaml 개념들에 대해서 살펴볼 것입니다. 순간순간의 세부 내용에 대해서는 걱정하지 않길 바랍니다. 프로그램의 전반적인 형태와 지적하는 기능에 대해서 집중하세요.
 
 ##  지역 "변수(variables)" (*really* local expressions)
-Let's take the `average` function and add a local variable in C.
-(Compare it to the first definition we had above).
+C 언어에서 `average` 함수를 정의하고, 지역 번수를 추가해 보겠습니다.
+(위의 첫 번째 정의와 비교하세요).
 
 ```C
 double average (double a, double b)
@@ -23,31 +18,21 @@ double average (double a, double b)
   return sum / 2;
 }
 ```
-Now let's do the same to our OCaml version:
+이제 동일한 OCaml 버전을 보겠습니다:
 
 ```ocamltop
 let average a b =
   let sum = a +. b in
   sum /. 2.0;;
 ```
-The standard phrase `let name = expression in` is used to define a named
-local expression, and `name` can then be used later on in the function
-instead of `expression`, till a `;;` which ends the block of code.
-Notice that we don't indent after the `in`. Just think of `let ... in`
-as if it were a statement.
+`let name = expression in` 구문은 표현식에 이름을 정의하기 위해서 사용되고, `name`은 그 함수에서 나중에 `expression` 대신 사용할 수 있습니다.
+그리고 `;;`을 사용하여 코드 블록을 종료합니다. `in` 다음에 들여쓰기 하지 않은 것을 주목하세요. `let ... in`은 원래 그런 문법이 있은 것으로 단순히 생각하세요.
 
-Now comparing C local variables and these named local expressions is a
-sleight of hand. In fact they are somewhat different. The C variable
-`sum` has a slot allocated for it on the stack. You can assign to `sum`
-later in the function if you want, or even take the address of `sum`.
-This is NOT true for the OCaml version. In the OCaml version, `sum` is
-just a shorthand name for the expression `a +. b`. There is no way to
-assign to `sum` or change its value in any way. (We'll see how you can
-do variables whose value changes in a minute).
+이제 C 지역 변수와 명명된 표현식을 비교하는 것은 일종의 속임수 입니다. 사실 이 두 가지는 다소 다릅니다.
+C 변수 `sum`은 스택에 할당된 슬롯을 가지고 있습니다. 만약 여러분이 원한다면 함수 안에서 나중에 `sum` 할당할 수 있고, 심지어 `sum`의 주소를 가져올 수도 있습니다. 그러나 OCaml 버전에서는 절대로 적용되지 않습니다. OCaml 버전에서, `sum`은 그냥 표현식 `a + b`의 축약어입니다. `sum`을 다시 할당하거느 변경할 방법은 없습니다. (잠시 후에 값을 어떻게 변경하는지 보게 될 것입니다).
 
-Here's another example to make this clearer. The following two code
-snippets should return the same value (namely (a+b) +
-(a+b)²):
+여기에 또다른 예제가 있습니다. 다음의 2개의 코드 조각은 같은 값을 리턴합니다. 
+(a+b) + (a+b)²:
 
 ```ocamltop
 let f a b =
@@ -60,10 +45,7 @@ let f a b =
   ;;
 ```
 
-The second version might be faster (but most compilers ought to be able
-to perform this step of "common subexpression elimination" for you), and
-it is certainly easier to read. `x` in the second example is just
-shorthand for `a +. b`.
+두 번째 버전은 빠를 수도 있습니다. (그러나 대부분의 컴파일러는 "common subexpression elimination" 단계를 수행하도록 되어 있습니다), 그리고 명백하게 보기 좋습니다. 두 번째 예제에서 `x`는 `a +. b`의 축약입니다.
 
 ##  전역 "변수(variables)" (*really* global expressions)
 You can also define global names for things at the top level, and as
