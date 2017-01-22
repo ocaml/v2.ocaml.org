@@ -113,12 +113,12 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/besport.png" alt="BeSport">
+        <img src="/img/users/besport.png" alt="Be Sport">
     </dt>
     <dd class="span5">
-        <h2><a href="http://besport.com/">BeSport</a>, France </h2>
-        <p>BeSport's mission is to enhance the value that sport brings to our lives with appropriate use of digital and social media innovations.
-           BeSport is a 100% <a href='http://ocaml.org/'>OCaml</a> and <a href='http://ocsigen.org'>OCsigen</a> project, leveraged as the only building blocks to develop the platform.</p> 
+        <h2><a href="http://besport.com/">Be Sport</a>, France </h2>
+        <p>Be Sport's mission is to enhance the value that sport brings to our lives with appropriate use of digital and social media innovations.
+           Be Sport is a 100% <a href='http://ocaml.org/'>OCaml</a> and <a href='http://ocsigen.org'>OCsigen</a> project, leveraged as the only building blocks to develop the platform.</p> 
     </dd>
 </dl>
 <dl class="row">
