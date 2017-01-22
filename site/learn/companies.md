@@ -185,6 +185,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/derniercri.png" alt="Dernier Cri">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://derniercri.io/">Dernier Cri</a>, France</h2>
+        <p>Dernier Cri is a French company based in Lille and Paris using functional programming to develop web and mobile applications. OCaml is principally used to develop internal tools.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/hostnet.gif" alt="Digirati dba Hostnet">
     </dt>
     <dd class="span5">
