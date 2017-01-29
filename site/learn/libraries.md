@@ -17,18 +17,9 @@ the most popular sites where you can find them.
   libraries here that people haven't pushed to OPAM for one reason or
   another.
 
-* [OCaml Forge](http://forge.ocamlcore.org/) is a code hosting site
-  dedicated to OCaml projects. Hundreds of libraries are hosted
-  here. Like GitHub, many of these libraries are in OPAM, but you'll
-  possibly find many here that aren't.
-
 * [Bitbucket](https://bitbucket.org/repo/all/relevance?name=ocaml&language=ocaml)
   is yet another code hosting site. It is far less used amongst OCaml
   programmers, but click the link to find those that are.
-
-* [OASIS-DB](http://oasis.ocamlcore.org/dev/home) is a collection of
-  released OCaml packages. It is an alternative packaging system to
-  obtain OCaml libraries.
 
 * [Caml Hump](http://caml.inria.fr/cgi-bin/hump.en.cgi) is now
  deprecated. For many years, it was the definitive source to search

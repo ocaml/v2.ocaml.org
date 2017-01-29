@@ -79,9 +79,7 @@
 
 * List of Libraries
   - something like [[http://hackage.haskell.org/packages/hackage.html][hackage]]
-  - [[http://oasis.ocamlcore.org/dev/home][oasis-db]] project provides a good starting point
-  - may require also automatically pulling information from github and
-    ocamlforge
+  - may require also automatically pulling information from github
 
 ** Desired features
   - provide download links to latest and previous versions of library
@@ -98,10 +96,7 @@
 
 * Search Email Lists
   The main OCaml List and Beginner's list are both difficult to search
-  over. An improved interface would be nice. In addition, there are
-  actually numerous other OCaml related mailing lists (e.g. virtually
-  every project on the forge). Should at least link to them and/or
-  integrate search over all lists.
+  over. An improved interface would be nice.
 
   Make it easy to subscribe to mailing lists. Simply check a box in
   your account settings page.
