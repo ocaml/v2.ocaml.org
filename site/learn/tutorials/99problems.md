@@ -2637,8 +2637,9 @@ type grid = cell array array;;
 ```
 
 SOLUTION
-> The idea is to start filling with available values in each case.
-> When there is no available valeus, it means we made a mistacke so we go back to where we had to make a choice between different available values and choose the next one.
+> The idea is to start filling with available values in each case and test if it works.
+> When there is no available values, it means we made a mistake so we go back to the last choice we made, and try a different choice ( one that we didn't already choose ).
+> It's the same way as resolving the 3-SAT problem, except we use a stack instead of a binary tree. But our stack can be considered as a 9-ary tree.
 > ```ocamltop
 > (* a 9x9 grid of int *)
 > (* the number in column line can be accessed with grid.(column).(line)*)
@@ -2725,7 +2726,7 @@ SOLUTION
 >    let li = available !current !x !y in (* We get the available choice *)
 >    (match li with
 >    | [] -> backward () (* No choice available so we made an error *)
->    | [vl] -> (!current).(!x).(!y) <- Var vl; n := 0; nextCell x y 9 (* One choice we put it and go on *)
+>    | [vl] -> (!current).(!x).(!y) <- Var vl; n := 0; nextCell x y 9 (* One choice we save it and go on *)
 >    | _ -> (* Multiple choices *)
 >              if !n >= (List.length li) (* If we have tried all the avaible choice we go back*)
 >                then backward ()
