@@ -275,7 +275,7 @@ the comparison function given as `compare`. The point of the functor is
 to ensure that the same comparison function will always be used, even if
 the programmer makes a mistake.
 
-For example, if we want to use sets of ints, we would use do this:
+For example, if we want to use sets of ints, we would do this:
 
 ```ocamltop
 module Int_set = Set.Make (struct
