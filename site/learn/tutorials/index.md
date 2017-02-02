@@ -88,8 +88,8 @@ tracker there to request or offer new tutorials. Thanks!
   examples.
 * [OCaml for scientific
  computation](http://www.southampton.ac.uk/~fangohr/software/ocamltutorial/)
- (by Thomas Fiscbacher), covers a broad sample of OCaml, from the
- basics to the C api.
+ (by Thomas Fischbacher), covers a broad sample of OCaml, from the
+ basics to the C API.
 
 ###  WikiBooks on OCaml
 
