@@ -7,7 +7,7 @@ which is widely used by the OCaml community.
 *Table of contents*
 
 ## General Questions
-#### What is OCaml?
+#### <a name="what-is-ocaml"></a> What is OCaml?
 
 OCaml is a programming language. It is a functional language, since the
 basic units of programs are functions. It is a strongly-typed language;
@@ -18,7 +18,7 @@ available on almost every Unix platform (including Linux and MacOS X)
 and on PCs under Windows. A brief tour on main
 [features](description.html) of OCaml.
 
-#### Under what licensing terms is the OCaml software available?
+#### <a name="licensing-terms"></a> Under what licensing terms is the OCaml software available?
 
 The OCaml system is open source software. Since version 4.03 the
 compiler and the standard library are distributed under LGPL 2.1 with
@@ -26,7 +26,7 @@ static linking exception, read the [license](/docs/license.html) for
 details. The software is also available under a BSD-style license for a
 fee through the [OCaml Consortium](/consortium/).
 
-#### What is the meaning of the name “OCaml”
+#### <a name="meaning-of-name-ocaml"></a> What is the meaning of the name “OCaml”
 
 CAML once was an acronym that stood for “Categorical Abstract Machine
 Language”, an abstract machine its early versions targeted. The evaluation model
@@ -35,11 +35,11 @@ has changed since then, but the name stuck.
 The “O” stands for “objective” and was added when the language got object-oriented
 programming capabilities.
 
-#### Do you write “Caml”, “CAML”, “Ocaml”, “OCaML”, “OCAML” or “OCaml” ?
+#### <a name="how-do-you-write"></a> Do you write “Caml”, “CAML”, “Ocaml”, “OCaML”, “OCAML” or “OCaml” ?
 
 The official name of the language, capitalization included, is “OCaml”.
 
-#### Is OCaml a compiled or interpreted language?
+#### <a name="compiled-or-interpreted"</a> Is OCaml a compiled or interpreted language?
 
 OCaml is compiled. However, the OCaml compiler offers a top-level
 interactive loop, that is similar to an interpreter. In fact, in the
@@ -47,7 +47,7 @@ interactive system, the user may type in program chunks (we call these
 pieces OCaml “phrases”) that the system handles at once, compiling them,
 executing them, and writing their results.
 
-#### What are the differences between Caml V3.1, Caml Light, and OCaml?
+#### <a name="different-implementations"></a> What are the differences between Caml V3.1, Caml Light, and OCaml?
 
 These are different Caml implementations that have been developed
 successively at Inria. These systems share many features since they all
@@ -61,7 +61,7 @@ other users have switched to OCaml, the latest variant of the language.
 This is the version we suggest using in new software developments. See
 our brief [history](history.html) of the OCaml language.
 
-#### How to report a bug in the compilers?
+#### <a name="report-a-bug"></a> How to report a bug in the compilers?
 
 Use the [bug tracking system](http://caml.inria.fr/mantis/) to browse
 bug reports and features request, and submit new ones.
@@ -71,7 +71,7 @@ bug reports and features request, and submit new ones.
 * * *
 
 ###  Basic types
-#### Is it possible to do computations with arbritrary precision arithmetics?
+#### <a name="arbitrary-precision"></a> Is it possible to do computations with arbritrary precision arithmetics?
 
 OCaml provides a library called `Num` that handles exact arithmetic computation
 for rational numbers.
@@ -95,7 +95,7 @@ fact 100;;
 ```
 
 ###  Data structures
-#### My array is modified, and I don't know why
+#### <a name="physical-sharing"></a> My array is modified, and I don't know why
 
 This is due to the physical sharing of two arrays that you missed. In
 OCaml there is no implicit array copying. If you give two names to the
@@ -113,7 +113,7 @@ if these elements are also vectors, the sharing of these vectors implies
 that modifying one of these elements modifies the others (see also the
 entry below).
 
-#### How to define multidimensional arrays?
+#### <a name="multimensional-arrays"></a> How to define multidimensional arrays?
 
 The only way is to define an array whose elements are arrays themselves
 (OCaml arrays are unidimensional, they modelize mathematical vectors).
@@ -159,7 +159,7 @@ let copy_matrix m =
 ```
 
 ###  Types definitions
-#### How to define an enumerated type?
+#### <a name="enumerated-types"></a> How to define an enumerated type?
 
 An enumerated type is a sum type with only constants. For instance, a
 type with 3 constants:
@@ -178,7 +178,7 @@ let string_of_color =function
   | Red -> "red"
 ```
 
-#### How to share a field between two different record types?
+#### <a name="record-field-sharing"></a> How to share a field between two different record types?
 
 When you define two types sharing a field name, the last defined type
 hides the field of the first type. For instance:
@@ -243,7 +243,7 @@ Note that objects provide you more than overloading: you can define
 truly polymorphic functions, working on both `point_3d` and `point_2d`,
 and you can even coerce a `point_3d` to a `point_2d`.
 
-#### How to define two sum types that share constructor names?
+#### <a name="share-constructor-names"></a> How to define two sum types that share constructor names?
 
 Since OCaml 4.02, constructors are automatically disambiguated when types
 are known. For example, in `type a = A;; type b = A of int;; let x:a = A`,
@@ -271,7 +271,7 @@ let is_name : ids -> bool = function `Name -> true | _ -> false;;
 ```
 
 ###  Functions and procedures
-#### How to define a function?
+#### <a name="define-a-function"></a> How to define a function?
 
 In OCaml, the syntax to define functions is close to the mathematical
 usage: the definition is introduced by the keyword `let`, followed by
@@ -288,7 +288,7 @@ write:
 let successor n = n + 1;;
 ```
 
-#### How to define a recursive function?
+#### <a name="define-a-recursive-function"></a> How to define a recursive function?
 
 You need to explicitly tell that you want to define a recursive
 function: use `let rec` instead of `let`.  For instance:
@@ -310,7 +310,7 @@ and even n =
   else if n = 1 then false else odd (n - 1);;
 ```
 
-#### How to apply a function?
+#### <a name="apply-a-function"></a> How to apply a function?
 
 Functions are applied as in mathematics: write the function's name,
 followed by its argument enclosed in parens: f (x). In practice, parens
@@ -323,7 +323,7 @@ number: to apply `f` to `-1` you must write `f (-1)` and **not** `f -1`
 that is syntactically similar to `f - 1` (hence it is a subtraction, not
 an application).
 
-#### How to define a procedure?
+#### <a name="define-a-procedure"></a> How to define a procedure?
 
 Recall that *procedures* are commands that produce an *effect* (for
 instance printing something on the terminal or writing some memory
@@ -349,7 +349,7 @@ let message s = print_string s; print_newline();;
 message "Hello world!";;
 ```
 
-#### How to define a procedure/function that takes no argument?
+#### <a name="procedure-no-arguments"></a> How to define a procedure/function that takes no argument?
 
 Note that it is impossible to define a procedure without any argument at
 all: its definition would imply to execute it, and there would be no way
@@ -369,7 +369,7 @@ double_newline;;
 double_newline ();;
 ```
 
-### How to define a function with more than one argument?
+### <a name="function-multiple-arguments"></a> How to define a function with more than one argument?
 
 Just write the list of successive arguments when defining the function.
 For instance:
@@ -397,7 +397,7 @@ does not apply to cases where the tuple is denoting a data structure
 on its own (e.g. `(float * float * float)` being used to represent
 a point).
 
-#### How to define a function that has several results?
+#### <a name="function-multiple-results"></a> How to define a function that has several results?
 
 You can define a function that return a pair or a tuple:
 
@@ -406,7 +406,7 @@ let div_mod x y = (x / y, x mod y);;
 div_mod 15 7;;
 ```
 
-#### What is an “anonymous function”?
+#### <a name="anonymous-function"></a> What is an “anonymous function”?
 
 You may use functions that have no names: we call them functional values
 or anonymous functions. A functional value is introduced by the keyword
@@ -418,7 +418,7 @@ fun x -> x + 1;;
 (fun x -> x + 1) 2;;
 ```
 
-#### What is the difference between `fun` and `function`?
+#### <a name="fun-vs-function"></a> What is the difference between `fun` and `function`?
 
 Functions are usually introduced by the keyword `fun`. Each parameter is
 introduced by its own `fun` construct. For instance, the construct:
@@ -439,7 +439,7 @@ Functions that use pattern-matching are introduced by the keyword
 function None -> false | Some _ -> true
 ```
 
-#### My function is never applied
+#### <a name="function-never-applied"></a> My function is never applied
 
 This is probably due to a missing argument: since OCaml is a functional
 programming language, there is no error when you evaluate a function
@@ -454,7 +454,7 @@ print_newline ();;
 ```
 
 ###  Pattern matching
-#### How to do nested pattern matching?
+#### <a name="nested-pattern-matching"></a> How to do nested pattern matching?
 
 You imperatively need to enclose between parens a pattern matching which
 is written inside another pattern matching. In effect, the internal
@@ -497,7 +497,7 @@ let f = function
 
 <!-- ###  Exceptions -->
 ###  Typing
-#### Error message: a type is not compatible with itself
+#### <a name="not-compatible-itself"></a> Error message: a type is not compatible with itself
 
 You may obtain the message: This expression has type “some type” but is
 used with type “the same some type”. This may occur very often when
@@ -518,7 +518,7 @@ interactive system, since each reloading redefines the types. The
 solution is to quit your interactive system and reload your files in a
 new session.
 
-#### A function obtained through partial application is not polymorphic enough
+#### <a name="not-polymorphic-enough"></a> A function obtained through partial application is not polymorphic enough
 
 The more common case to get a “not polymorphic enough” definition is
 when defining a function via partial application of a general
@@ -544,7 +544,7 @@ The two definitions are semantically equivalent, and the new one can be
 assigned a polymorphic type scheme, since it is no more a function
 application.
 
-#### The type of this expression contains type variables that cannot be generalized
+#### <a name="cannot-be-generalized"></a> The type of this expression contains type variables that cannot be generalized
 
 This message appears when the OCaml compiler tries to compile a function
 or a value which is monomorphic, but for which some types have not been
@@ -569,7 +569,7 @@ as is, two cases must be envisioned:
  rewriting some part of the code (for example using
  [eta-expansion](#eta-expansion)) as in the case of `f`.
 
-#### How to write a function with polymorphic arguments?
+#### <a name="function-polymorphic-arguments"></a> How to write a function with polymorphic arguments?
 
 In ML, an argument of a function cannot be polymorphic inside the body
 of the function; hence the following typing:
@@ -590,7 +590,7 @@ let f r x y = r.g x, r.g y;;
 
 ###  Input/output
 
-#### Why some printing material is mixed up and does not appear in the right order?
+#### <a name="mixed-up-printing"></a> Why some printing material is mixed up and does not appear in the right order?
 
 If you use printing functions of the `format` module, you might not mix
 printing commands from `format` with printing commands from the basic
@@ -614,9 +614,9 @@ printing functions by the high level printing functions provided by
 
 ## Module Language
 
-#### Can I have two mutually recursive structures, signatures, functors inside a single compilation unit?
+#### <a name="mutually-recursive-constructs"></a> Can I have two mutually recursive structures, signatures, functors inside a single compilation unit?
 
-Yes, but structures always have to have  an explcit signature. 
+Yes, but structures always have to have  an explcit signature.
 Recursive structures may be defined as follows:
 
 ```ocamltop
@@ -636,7 +636,7 @@ end
 In a similar way, mutually recursive signatures and functors can also
 be defined.
 
-#### Can I have two mutually recursive compilation units?
+#### <a name="mutually-recursive-files"></a> Can I have two mutually recursive compilation units?
 
 With any two compilation units (`.ml` or `.mli` files), there must always
 exist an order in which it is possible to compile them sequentially.
@@ -667,7 +667,7 @@ type a =
 In this way, cooperation between the `X` and `Y` modules allows 
 the recursive value `X.BOne (Y.AOne (X.BOne ...))` to be produced.
 
-#### How do I express sharing constraints between modules?
+#### <a name="module-sharing-constraints"></a> How do I express sharing constraints between modules?
 
 Use manifest type specifications in the arguments of the functor. For
 instance, assume defined the following signatures:
@@ -690,7 +690,7 @@ module F (X: S1) (Y: sig ... type u = X.t ... end) =
   struct ... end
 ```
 
-#### Compilation units are forced to be modules. What if I want to make a unit with a functor or a signature instead?
+#### <a name="non-module-file"></a> Compilation units are forced to be modules. What if I want to make a unit with a functor or a signature instead?
 
 In OCaml, functors and signatures (module types) can be components of
 modules. So, just make the functor or signature be a component of a
@@ -700,14 +700,14 @@ library.
 ## Development Tools
 ###  Interactive loop (toplevel)
 
-#### How to stop the evaluation (execution) of an expression?
+#### <a name="interrupt-evaluation"></a> How to stop the evaluation (execution) of an expression?
 
 It is often possible to interrupt a program or the OCaml system by
 typing some combination of keys that is operating system dependent:
 under Unix send an interrupt signal (generally `Control-C`), under
 Macintosh OS type `Command-.`, under Windows use the “OCaml” menu.
 
-#### How to quit the interactive loop?
+#### <a name="quit-repl"></a> How to quit the interactive loop?
 
 Type `#quit;;`. You can also quit it by inputting an end-of-file character
 with Ctrl-D on Unix, and Ctrl-Z on Windows.
