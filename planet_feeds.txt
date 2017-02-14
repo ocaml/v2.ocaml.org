@@ -19,6 +19,7 @@ Dario Teixeira|http://nleyten.com/feed/tag/ocaml/atom
 David Baelde|http://www.blogger.com/feeds/17133288/posts/default/-/ocaml
 David Mentré|http://blog.bentobako.org/index.php?feed/tag/ocaml/atom
 David Teller|http://dutherenverseauborddelatable.wordpress.com/category/ocaml/feed/
+Eray Özkural|https://examachine.net/blog/category/ocaml/feed/
 Erik de Castro Lopo|http://www.mega-nerd.com/erikd/Blog/index.rss20
 Etienne Millon|http://blog.emillon.org/feeds/ocaml.xml
 Frama-C|http://frama-c.com/rss.xml
