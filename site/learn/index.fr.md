@@ -95,7 +95,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
         <section class="span4 condensed">
           <h1 class="ruled"><a href="companies.html">Utilisateurs industriels</a></h1> <p><a href="http://janestreet.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
-          src="/img/jane-street.jpg"></a>Jane Street est une société
+          src="/img/users/jane-street.jpg"></a>Jane Street est une société
 	  d'arbitrage financier qui met l'accent sur la résolution
 	  de problèmes technologiques et collaboratifs. Presque tous
 	  leurs systèmes sont écrits en OCaml : du code de recherche
@@ -108,7 +108,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 
           <p><a href="https://www.facebook.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
-          src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png"
+          src="/img/users/facebook.png"
 						     ></a>Pour gérer
             son énorme base de code PHP, Facebook a développé
             <a href="https://github.com/facebook/pfff/wiki/Main"
