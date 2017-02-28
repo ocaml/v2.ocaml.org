@@ -117,7 +117,7 @@
 
           <p><a href="https://www.facebook.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
-          src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png"
+          src="/img/users/facebook.png"
 						     ></a>To
             handle their huge PHP codebase, Facebook developed
             <a href="https://github.com/facebook/pfff/wiki/Main"
