@@ -252,13 +252,13 @@ BuildDepends: package_one, package_two
 
 # Another comment, this builds a library called pg
 Library pg
-Path:         src
-# oasis will figure out the dependencies, 
-# Just list the modules you want public, 
-# Note that there's no .ml, just give the name
-Modules:      Pg
-CompiledObject: byte
-BuildDepends: some_package
+   Path:         src
+   # oasis will figure out the dependencies, 
+   # Just list the modules you want public, 
+   # Note that there's no .ml, just give the name
+   Modules:      Pg
+   CompiledObject: byte
+   BuildDepends: some_package
 ```
 
 4. Generate the Makefile, setup.ml, configure and other build crap.
