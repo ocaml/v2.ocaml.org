@@ -300,6 +300,8 @@ $ opam pin add <your_package_name> . -y
 
 ## Elisp for OCaml coding
 
+Code for the [Emacs init file](https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html).
+
 ```elisp
 ;; OCaml code
 (add-hook
