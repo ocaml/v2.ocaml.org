@@ -3,6 +3,8 @@
 OCaml Users and Developers Workshop
 ===================================
 
+* [OCaml 2017](ocaml/2017/):
+  Oxford (UK), September 8, colocated with ICFP 2017.
 * [OCaml 2016](ocaml/2016/):
   Nara (Japan), September 23, colocated with ICFP 2016.
 * [OCaml 2015](ocaml/2015/):
