@@ -332,7 +332,7 @@ example of a recursive function:
 ```ocamltop
 let rec range a b =
   if a > b then []
-  else a :: range (a+1) b
+  else a :: (range (a+1) b)
 ```
 Notice that `range` calls itself.
 
