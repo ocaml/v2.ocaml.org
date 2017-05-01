@@ -243,12 +243,12 @@ Some cool description
 
 # This is a comment and this below creates an binary program
 Executable <some_program_name>
-Path: src
-BuildTools:ocamlbuild
-install: true
-MainIs: main.ml
-CompiledObject: native
-BuildDepends: package_one, package_two
+   Path: src
+   BuildTools:ocamlbuild
+   install: true
+   MainIs: main.ml
+   CompiledObject: native
+   BuildDepends: package_one, package_two
 
 # Another comment, this builds a library called pg
 Library pg
