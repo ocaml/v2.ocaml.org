@@ -192,7 +192,7 @@ Voici quelques alternatives :
   dans la distribution pour plus de détails.
 
 * Utiliser « Bash on Windows » et installer OCaml comme sur Ubuntu.
-   L'inconvénient de cette méthode est que vous ne créer pas 
+   L'inconvénient de cette méthode est que vous ne créez pas 
    des fichiers binaires natifs pour Windows mais des fichiers binaires pour Linux.
 
 * [Cygwin](http://cygwin.com/) Avec Cygwin, vous pouvez l'installer avec l'outil `setup`. 
