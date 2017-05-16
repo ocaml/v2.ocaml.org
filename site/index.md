@@ -102,17 +102,6 @@
             </h1>
 			<ul class="news-feed" style="margin-bottom: 0px">
 
-                        <li class="announcement"><article>
-			  <h1><a title="MOOC OCaml (Online Course)"
-			       href="https://www.fun-mooc.fr/courses/parisdiderot/56002S02/session02/about">MOOC OCaml (Online Course)</a></h1>
-			  <p>September 26, 2016 - <a title="Registration for the OCaml MOOC" href="https://www.fun-mooc.fr/courses/parisdiderot/56002S02/session02/about">register now!</a></p>
-			  <a title="MOOC OCaml (Online Course)"
-			     href="https://www.fun-mooc.fr/courses/parisdiderot/56002S02/session02/about">
-			    <img alt="" src="/img/announcement.svg" class="svg" />
-			    <img alt="" src="/img/announcement.png" class="png" />
-			  </a>
-			</article></li>
-                        
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2017/">OCaml 2017</a></h1>
