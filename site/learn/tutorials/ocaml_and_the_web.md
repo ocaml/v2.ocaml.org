@@ -3,6 +3,9 @@
 *Table of contents*
 
 # OCaml and the Web
+
+**Deprecation Warning:** this tutorial is outdated and largely irrelevant unless you have an odd fascination with CGI Programming.
+
 ## Advantages and Disadvantages
 Like any other language, OCaml can be used to write CGI programs. The
 advantages of using OCaml for CGI scripting are the same as using OCaml
