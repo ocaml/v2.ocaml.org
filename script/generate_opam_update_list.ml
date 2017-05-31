@@ -23,25 +23,27 @@ let () =
     let pkg_version = Version.to_string version in
     let pkg_href =
       OpamfUniverse.Pkg.href ~href_base:Uri.(of_string packages_base)
-                             name version in
+        name version in
     let pkg_date = O2wMisc.string_of_timestamp update_tm in
-    [H.a ~href:pkg_href (H.string pkg_name);
-     H.a ~href:pkg_href (H.string pkg_version);
-     H.string pkg_date]
+    H.tag "tr"
+      (H.list [H.tag "td" (H.a ~href:pkg_href (H.string pkg_name));
+               H.tag "td" (H.a ~href:pkg_href (H.string pkg_version));
+               H.tag "td" (H.string pkg_date)])
   in
 
   let opam_update_list = open_out "opam_update_list" in
   try
     let rows = List.map to_row (top_packages ()) in
-    let rows = H.Create.table rows ~row:(fun r -> r) in
     let ch = `Channel opam_update_list in
     let xml_out = Cow.Xml.make_output ~decl:false ch in
-    List.iter (Cow.Xml.output xml_out) (`Dtd None :: Template.serialize rows);
+    List.iter (fun row ->
+        List.iter (Cow.Xml.output xml_out)
+          (`Dtd None :: Template.serialize row)) rows;
     close_out opam_update_list
   with e ->
     if staging then (
       Printf.fprintf opam_update_list "<tr><td colspan=\"3\">%s %b</td></tr>"
-                     (Printexc.to_string e) staging;
+        (Printexc.to_string e) staging;
       close_out opam_update_list
     )
     else (
@@ -49,6 +51,8 @@ let () =
       raise e
     )
 
+
+;;
 (* Local Variables: *)
 (* compile-command: "make --no-print-directory -k -C .. script/generate_opam_update_list" *)
 (* End: *)
