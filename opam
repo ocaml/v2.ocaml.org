@@ -22,6 +22,7 @@ depends: [
   "mpp" {>= "0.1.2"}
   "uri" {>= "1.3.11"}
   "syndic" {>= "1.5.2"}
+  "cow" {>= "2.2.0"}
   "camlp4"
 ]
 depopts: [
