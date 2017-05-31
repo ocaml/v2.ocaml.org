@@ -11,7 +11,7 @@ développement. Ils bénéficient de plus d'une [license
 spécifique](/docs/consortium-license.fr.html).
 
 La cotisation annuelle des membres peut être ou bien très modeste
-(3000€) ou plus conséquente (10000€ ou plus) selon le niveau de soutien
+(3500€) ou plus conséquente (10000€ ou plus) selon le niveau de soutien
 que le membre désire apporter. L'adhésion au Consortium OCaml est un
 acte important, non seulement pour le développement du langage et sa
 dissémination, mais aussi pour sa pérennité.
