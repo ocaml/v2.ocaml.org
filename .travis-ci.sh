@@ -19,6 +19,7 @@ if [ -n "${OPAM_SWITCH}" ]; then
 fi
 eval `opam config env`
 
+opam pin add opam2web https://github.com/Chris00/opam2web.git#opl
 make deps
 
 export OCAMLRUNPARAM=b
