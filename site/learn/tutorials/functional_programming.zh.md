@@ -80,7 +80,7 @@ end
 首先你要知道的是方法最后调用的`save`函数的第二个参数是一个函数(`receiver_fn`)。它带着从widget获取的文字重复调用`receiver_fn`函数。
 
 现在来看`receiver_fn`的定义。这个函数是一个闭包，因为它含有一个引用,
-这个因用指向它的环境中的`chan`。
+这个引用指向它的环境中的`chan`。
 
 ## 部分函数应用（Partial function applications）和 currying（科里化）
 
