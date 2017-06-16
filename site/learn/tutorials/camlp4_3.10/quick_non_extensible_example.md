@@ -3,6 +3,8 @@
 
 # Quick Non Extensible Example
 
+**Deprecation Warning:** this tutorial describes technology that is considered obsolete. It's been replaced by [extensions points and ppx rewriters](http://caml.inria.fr/pub/docs/manual-ocaml-4.02/extn.html#sec243)
+
 quick_non_extensible_example.ml
 
 ```ocaml
