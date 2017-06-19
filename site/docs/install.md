@@ -181,7 +181,7 @@ Here are a few other alternatives:
   [README.win32](https://github.com/ocaml/ocaml/blob/trunk/README.win32.adoc)
   file included in the distribution for details.
 
-* Use « Bash on Windows » (WSL)[https://msdn.microsoft.com/en-us/commandline/wsl/faq#what-is-windows-subsystem-for-linux-wsl] and install OCaml as on Ubuntu. Main OCaml versions and OPAM work. The disadvantage of this method is that you
+* Use « Bash on Windows » and install OCaml as on Ubuntu. Main OCaml versions and OPAM work. The disadvantage of this method is that you
   don't build native Windows binaries but Linux binaries. (See tutorial.)[http://themargin.io/2017/02/02/OCaml_on_win/]
 
 * [Cygwin](http://cygwin.com/)-based port. Requires Cygwin, you can
