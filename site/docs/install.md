@@ -183,7 +183,7 @@ Here are a few other alternatives:
 
 * Use « Bash on Windows » and install OCaml as on Ubuntu. Main OCaml versions
   and OPAM work. The disadvantage of this method is that you don't build native
-  Windows binaries but Linux binaries. (See tutorial.)[http://themargin.io/2017/02/02/OCaml_on_win/]
+  Windows binaries but Linux binaries. [See tutorial.](http://themargin.io/2017/02/02/OCaml_on_win/)
 
 * [Cygwin](http://cygwin.com/)-based port. Requires Cygwin, you can
   install them using the `setup` tool. The compilers generate executables
