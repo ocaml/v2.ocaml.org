@@ -5,6 +5,7 @@
 Les versions stables d'OCaml sont habituellement publiées au rythme
 d'une version par an :
 
+* OCaml [4.04.2](4.04.html), publiée le 23 juin 2017.
 * OCaml [4.04.1](4.04.html), publiée le 14 avril 2017.
 * OCaml [4.04.0](4.04.html), publiée le 4 novembre 2016.
 * OCaml [4.03.0](4.03.html), publiée le 25 avril 2016.
