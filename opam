@@ -15,7 +15,7 @@ depends: [
   "base-bytes" {build}
   "opam-lib" {>= "1.2.0"}
   "opamfu" {>= "0.1.2"}
-  "opam2web" {>= "1.4.0"}
+  "opam2web" {>= "1.5.0"}
   "omd" {>= "1.2.1"}
   "ocamlnet" {>= "4.0.1"}
   "conf-gnutls"
