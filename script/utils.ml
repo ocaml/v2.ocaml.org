@@ -38,11 +38,11 @@ let relaxed_html40_dtd =
 let string_of_file fname =
   let buf = Buffer.create 4096 in
   let fh = open_in fname in
-  let s = String.create 1024 in
+  let b = Bytes.create 1024 in
   let n = ref 1 in (* enter the loop *)
   while !n > 0 do
-    n := input fh s 0 1024;
-    if !n > 0 then Buffer.add_substring buf s 0 !n;
+    n := input fh b 0 1024;
+    if !n > 0 then Buffer.add_subbytes buf b 0 !n;
   done;
   close_in fh;
   Buffer.contents buf

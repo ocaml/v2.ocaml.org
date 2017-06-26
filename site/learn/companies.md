@@ -23,6 +23,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/docker.png" alt="Docker, Inc.">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.docker.com">Docker</a>, United States </h2>
+        <p>Docker provides an integrated technology suite that enables development and IT operations teams to build, ship, and run distributed applications anywhere. Their native <a href="https://blog.docker.com/2016/03/docker-for-mac-windows-beta/">applications for Mac and Windows</a>, use OCaml code taken from the <a href="https://mirage.io">MirageOS</a> library operating system project.</p> 
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/bloomberg.jpg" alt="Bloomberg L.P.">
     </dt>
     <dd class="span5">
@@ -104,12 +113,12 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/besport.png" alt="BeSport">
+        <img src="/img/users/besport.png" alt="Be Sport">
     </dt>
     <dd class="span5">
-        <h2><a href="http://besport.com/">BeSport</a>, France </h2>
-        <p>BeSport's mission is to enhance the value that sport brings to our lives with appropriate use of digital and social media innovations.
-           BeSport is a 100% <a href='http://ocaml.org/'>OCaml</a> and <a href='http://ocsigen.org'>OCsigen</a> project, leveraged as the only building blocks to develop the platform.</p> 
+        <h2><a href="http://besport.com/">Be Sport</a>, France </h2>
+        <p>Be Sport's mission is to enhance the value that sport brings to our lives with appropriate use of digital and social media innovations.
+           Be Sport is a 100% <a href='http://ocaml.org/'>OCaml</a> and <a href='http://ocsigen.org'>OCsigen</a> project, leveraged as the only building blocks to develop the platform.</p> 
     </dd>
 </dl>
 <dl class="row">
@@ -172,6 +181,15 @@
     <dd class="span5">
         <h2><a href="http://www.3ds.com/fr/">Dassault Systèmes</a>, France</h2>
         <p>Dassault Systèmes, the 3DEXPERIENCE Company, provides businesses and people with virtual universes to imagine sustainable innovations.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/derniercri.png" alt="Dernier Cri">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://derniercri.io/">Dernier Cri</a>, France</h2>
+        <p>Dernier Cri is a French company based in Lille and Paris using functional programming to develop web and mobile applications. OCaml is principally used to develop internal tools.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -332,6 +350,18 @@
         <p>Mashape makes it easy to distribute, monetize, manage and consume cloud APIs. Mashape is building a world-class marketplace for cloud APIs driven by a passionate community of developers from all over the world as well as enterprise API management and analytics products. We use OCaml in our <a href="http://apianalytics.com">APIAnalytics</a> product — as part of a mission-critical, lightweight HTTP proxy.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/wolfram-mathcore.gif" alt="Wolfram MathCore">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://www.mathcore.com/">Wolfram MathCore</a>, Sweden</h2>
+        <p>Wolfram MathCore uses OCaml to implement its SystemModeler kernel. The kernel's main function is to translate models defined in the Modelica language into executable simulation code. This involves parsing and transforming Modelica code, mathematical processing of equations, code generation of C/C++ simulation code, and numerical runtime computations.</p>
+    </dd>
+</dl>
+
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/medit.jpg" alt="MEDIT">
@@ -422,11 +452,11 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/pegged.png" alt="Pegged Software">
+        <img src="/img/users/arena.jpg" alt="Arena">
     </dt>
     <dd class="span5">
-        <h2><a href="http://www.peggedsoftware.com">Pegged Software</a>, United States</h2>
-        <p>Pegged Software helps organizations hire the right people. We do that by applying big data and predictive analytics to the hiring process. This results in less turnover for our clients and less discrimination for individuals. We use OCaml for all of our backend development.</p>
+        <h2><a href="http://www.arena.io">Arena</a>, United States</h2>
+        <p>Arena helps organizations hire the right people. We do that by applying big data and predictive analytics to the hiring process. This results in less turnover for our clients and less discrimination for individuals. We use OCaml for all of our backend development.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -499,6 +529,26 @@
     <dd class="span5">
         <h2><a href="http://www.sleekersoft.com">Sleekersoft P/L</a>, Australia</h2>
         <p>Specialises in functional programming software development, consultation and training.</p>
+    </dd>
+</dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/solvuu.jpg" alt="Solvuu">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.solvuu.com">Solvuu</a>, United States</h2>
+        <p>Solvuu's software allows users to store big and small data sets, share the data with collaborators, execute computationally intensive algorithms and workflows, and visualize results. Its initial focus is on genomics data, which has important implications for healthcare, agriculture, and fundamental research. Virtually all of Solvuu's software stack is implemented in OCaml.</p>
+    </dd>
+</dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/stackhut.png" alt="StackHut">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.stackhut.com">StackHut</a>, United Kingdom</h2>
+        <p>StackHut are working to make developers lives easier by cutting the the amount of code they write; we want developers to spend more time writing core business-logic and less time thinking about infrastructure. The core platform, toolkit, and run-time are written in OCaml, interfacing with Linux containers and also Erlang on the distributed side.</p>
     </dd>
 </dl>
 <dl class="row">

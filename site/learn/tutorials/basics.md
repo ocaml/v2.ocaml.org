@@ -6,14 +6,15 @@
 
 ## Running OCaml code
 
-The easiest way to get started is to run an interactive session in your browser, at <http://try.ocamlpro.com/>.
+The easiest way to get started is to run an interactive session in
+your browser, at
+<https://ocsigen.org/js_of_ocaml/2.7/files/toplevel/index.html>.
 
 To install OCaml on your computer, see the [Install](/docs/install.html) documentation.
 
-To quickly try small OCaml expressions, you can use a toplevel, or REPL (Read–Eval–Print Loop). The `ocaml` command provides a very basic toplevel (you should install `rlwrap` through your system package manager and run `rlwrap ocaml` to get history navigation). If you can install it through [OPAM](/docs/install.html#OPAM) or your system package manger, we recommend the use of the [utop](https://github.com/diml/utop) toplevel instead, which has the same basic interface but is much more convenient to use (history navigation, auto-completion, etc.).
+To quickly try small OCaml expressions, you can use a toplevel, or REPL (Read–Eval–Print Loop). The `ocaml` command provides a very basic toplevel (you should install `rlwrap` through your system package manager and run `rlwrap ocaml` to get history navigation). If you can install it through [OPAM](/docs/install.html#OPAM) or your system package manager, we recommend the use of the [utop](https://github.com/diml/utop) toplevel instead, which has the same basic interface but is much more convenient to use (history navigation, auto-completion, etc.).
 
-Use `;;` to indicate that you've finished entering each statement:
-
+Use `;;` to indicate that you've finished entering each statement. Here is what is looks like running `ocaml`:
 ```console
 $ ocaml
         OCaml version 4.02.3
@@ -21,6 +22,8 @@ $ ocaml
 # 1+1;;
 - : int = 2
 ```
+
+This is how running the same code looks like when using `utop`:
 
 ```console
 ───────┬────────────────────────────────────────────────────────────┬─────
@@ -83,7 +86,7 @@ contains original `s` repeated `n` times.
 
 In most C-derived languages a call to this function will look like this:
 
-```
+```C
 repeated ("hello", 3)  /* this is C code */
 ```
 This means "call the function `repeated` with two arguments, first
@@ -146,7 +149,7 @@ repeated ("hello", 3)     (* OCaml will spot the mistake *)
 ```
 
 ## Defining a function
-You all know how to define a function (or static method, for Java-heads)
+We all know how to define a function (or static method, for Java-heads)
 in our existing languages. How do we do it in OCaml?
 
 The OCaml syntax is pleasantly concise. Here's a function which takes
@@ -400,7 +403,7 @@ Now for something a bit stranger. What about a function which takes
 *anything* as an argument? Here's an odd function which takes an
 argument, but just ignores it and always returns 3:
 
-```ocamltop
+```ocaml
 let give_me_a_three x = 3
 ```
 What is the type of this function? In OCaml we use a special placeholder

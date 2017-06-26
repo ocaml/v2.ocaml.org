@@ -5,12 +5,15 @@
 ## Conférence OCaml
 
 ### Prochains événements
-
-* [OCaml 2015](ocaml/2015/):
-  Vancouver (BC, Canada), 4 septembre 2015, colocalisé avec ICFP 2015.
+* [OCaml 2017](ocaml/2017/):
+  Oxford (GB), 8 septembre 2017, colocalisé avec ICFP 2017.
 
 ### Événements passés
 
+* [OCaml 2016](ocaml/2016/):
+  Nara (Japon), 23 septembre 2016, colocalisé avec ICFP 2016.
+* [OCaml 2015](ocaml/2015/):
+  Vancouver (CB, Canada), 4 septembre 2015, colocalisé avec ICFP 2015.
 * [OCaml 2014](ocaml/2014/):
   Gothenburg (Suède), 5 Septembre 2014, colocalisé avec ICFP 2014.
 * [OCaml 2013](ocaml/2013/):

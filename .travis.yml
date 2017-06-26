@@ -13,7 +13,7 @@ addons:
 
 script: bash -ex .travis-ci.sh
 env:
-  - OPAM_SWITCH=4.01.0
+  - OPAM_SWITCH=4.03.0
 cache:
   directories:
   - $HOME/.opam

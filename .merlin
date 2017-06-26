@@ -3,5 +3,7 @@ PKG netclient
 PKG syndic
 PKG uri
 PKG omd
+PKG opam2web
+PKG cow
 S script
 B script

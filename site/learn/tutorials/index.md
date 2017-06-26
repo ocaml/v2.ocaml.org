@@ -10,6 +10,7 @@ topics are needed. Please contribute by visiting this project's repo on
 tracker there to request or offer new tutorials. Thanks!
 
 ((! get begin_two_columns !))
+* [Mega Crash course on OCaml ecosystem + code](get_up_and_running.html)
 * [Basics](basics.html)
 * [Structure of OCaml Programs](structure_of_ocaml_programs.html)
 * [Modules](modules.html)
@@ -31,6 +32,7 @@ tracker there to request or offer new tutorials. Thanks!
 * [Formatting and Wrapping Text](format.html)
 * [99 Problems (solved) in OCaml](99problems.html)
 * [OCamlbuild](ocamlbuild/)
+* [Error handling](error_handling.html)
 
 ((! get second_of_two_columns !))
 
@@ -40,13 +42,11 @@ tracker there to request or offer new tutorials. Thanks!
 * [Performance and Profiling](performance_and_profiling.html)
 * [Calling C libraries](calling_c_libraries.html)
 * [Calling Fortran libraries](calling_fortran_libraries.html)
-* [OCaml and the Web](ocaml_and_the_web.html)
 * [Standard Library Examples](standard_library_examples.html)
 * [Setting up OCaml projects with OASIS](setting_up_with_oasis.html)
 * [Compiling OCaml projects](compiling_ocaml_projects.html)
 * [Command-Line Arguments](command-line_arguments.html)
 * [File manipulation](file_manipulation.html)
-* [Camlp4 3.10](camlp4_3.10/)
 * [Filenames and Extensions](filenames.html)
 * [Streams](streams.html)
 * [Stream Expressions](stream_expressions.html)
@@ -86,8 +86,8 @@ tracker there to request or offer new tutorials. Thanks!
   examples.
 * [OCaml for scientific
  computation](http://www.southampton.ac.uk/~fangohr/software/ocamltutorial/)
- (by Thomas Fiscbacher), covers a broad sample of OCaml, from the
- basics to the C api.
+ (by Thomas Fischbacher), covers a broad sample of OCaml, from the
+ basics to the C API.
 
 ###  WikiBooks on OCaml
 
@@ -135,3 +135,9 @@ with another language.
 * [Manual](http://caml.inria.fr/pub/docs/manual-ocaml/)
 * [Detecting use cases for GADTs in OCaml](http://mads-hartmann.com/ocaml/2015/01/05/gadt-ocaml.html),
   (by Mads Hartmann), on using generalized algebraic data types in writing interpreters.
+
+###  Archived Tutorials
+These tutorials are either obsolete, or describe obsolete technologies. They're preserved here just in case they're still useful to someone.
+
+* [OCaml and the Web](ocaml_and_the_web.html)
+* [Camlp4 3.10](camlp4_3.10/)

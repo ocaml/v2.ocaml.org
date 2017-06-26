@@ -47,7 +47,7 @@ fournit un certain nombre de modules. Par exemple, `List.iter`
 désigne la fonction `iter` définie au sein du module `List`.
 Si jamais on souhaite utiliser de façon intensive un module, on peut
 désirer se passer de l'appel de son nom; il suffit pour cela d'utiliser
-l'instrution `open`.  En poursuivant notre exemple,
+l'instruction `open`.  En poursuivant notre exemple,
 `bmodule.ml` pourrait contenir :
 
 ```ocaml
@@ -269,7 +269,7 @@ complexes d'OCaml, même s'il n'est pas nécessaire de les utiliser de
 façon intensive pour être un bon programmeur. En réalité, il est
 possible que nous n'ayons jamais à définir nous même de foncteurs, mais
 nous serons surement appelés à les rencontrer dans la librairie
-standard. Ils sont la seule façcon d'utiliser les modules `Set` et
+standard. Ils sont la seule façon d'utiliser les modules `Set` et
 `Map`, mais leur utilisation reste à notre portée.
 
 Un foncteur est un module qui est paramétré par un autre module, tout

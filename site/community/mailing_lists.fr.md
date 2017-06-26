@@ -48,7 +48,7 @@ Il s'agit d'une liste à faible trafic et modérée pour les annonces de
 nouvelles versions d'OCaml et des nouveaux logiciels, librairies,
 documents, etc. concernant OCaml.
 
-[(Dés)abonnement](http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce)
+[(Dés)abonnement](https://sympa.inria.fr/sympa/subscribe/caml-announce)
 
 ##  Canaux IRC 
 

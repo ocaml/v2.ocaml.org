@@ -1,13 +1,55 @@
-<!-- ((! set title 기본기 !)) ((! set learn !)) -->
+<!-- ((! set title 기본사항 !)) ((! set learn !)) -->
 
 *Table of contents*
 
-기본기
-======
+# 기본사항
 
-주석
-----
+## Ocaml 코드 실행하기
 
+브라우져상에서  인터엑티브한 세션을 이용하여 코드를 실행하는 가장 손 쉬운 방법은
+<https://ocsigen.org/js_of_ocaml/2.7/files/toplevel/index.html>을 이용하는 것이다.
+
+여러분의 컴퓨터에 OCaml을 설치 하려면 [Install](/docs/install.html) 문서를 참고하기 바란다.
+
+간단한 OCaml 코드를 실행해보려면 toplevel 이나 REPL(Read-Eval-Print Loop)를 이용하면 된다. `ocaml` 명령어를 통해 기본적인 기능의 toplevel을 이용할수 있다 (여러분의 시스템의 페키지 메니저를 이용하여 `rlwrap`을 설치하고 `rlwrap ocaml`을 실행함으로서 커맨드 히스토리를 이용할수 있다). 만약 여러분 시스템의 패키지 메니저나 [OPAM](/docs/install.html#OPAM)를 이용하여 [utop](https://github.com/diml/utop)를 설치 할수 있다면, `ocaml` 명령어보단 [utop](https://github.com/diml/utop) toplevel을 이용하기를 추천하는 바이다. [utop](https://github.com/diml/utop)은 `ocaml`의 기본적인 인터페이스에 추가적으로 여러 편리한 툴들(history navigation, auto-completion, etc.)을 제공한다.
+
+각 스테이트먼트가 끝났을때에는 이를 알리는 `;;`를 이용하도록 한다.
+
+```console
+$ ocaml
+        OCaml version 4.02.3
+
+# 1+1;;
+- : int = 2
+```
+
+```console
+───────┬────────────────────────────────────────────────────────────┬─────
+       │ Welcome to utop version 1.18 (using OCaml version 4.02.3)! │     
+       └────────────────────────────────────────────────────────────┘     
+
+Type #utop_help for help about using utop.
+
+─( 10:12:16 )─< command 0 >───────────────────────────────────────────────
+utop # 1 + 1;;
+- : int = 2
+```
+
+`my_prog.ml`이라는 OCaml 프로그램을 네이티브 실행이 가능한 형태로 컴파일 하려면 `ocamlbuild my_prog.native`를 이용한다:
+
+```shell
+$ mkdir my_project
+$ cd my_project
+$ echo 'let () = print_endline "Hello, World!"' > my_prog.ml
+$ ocamlbuild my_prog.native
+Finished, 4 targets (0 cached) in 00:00:00.
+$ ./my_prog.native
+Hello, World!
+```
+
+더 자세한 사항은 [Compiling OCaml projects](compiling_ocaml_projects.html)을 읽어보기 바란다.
+
+## 주석
 OCaml 주석은 다음과 같이 `(*`와 `*)` 사이에 들어간다.
 
 ```ocaml

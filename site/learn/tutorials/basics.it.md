@@ -50,7 +50,7 @@ cui il primo è la stringa hello ed il secondo il numero 3".
 
 OCaml, in comune con altri linguaggi funzionali, scrive e mette tra
 parentesi le chiamate di funzioni in modo differente, e questo è causa
-di molti errori. Ecco la modesima chiamata di funzione in OCaml:
+di molti errori. Ecco la medesima chiamata di funzione in OCaml:
 
 ```ocaml
 repeated "hello" 3  (* questo è codice OCaml *)

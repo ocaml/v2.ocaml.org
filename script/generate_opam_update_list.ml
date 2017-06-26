@@ -1,3 +1,5 @@
+module H = Cow.Html
+
 let packages_base = "https://opam.ocaml.org/packages/"
 
 let staging = try ignore(Sys.getenv "SET_STAGING"); true
@@ -21,29 +23,27 @@ let () =
     let pkg_version = Version.to_string version in
     let pkg_href =
       OpamfUniverse.Pkg.href ~href_base:Uri.(of_string packages_base)
-                             name version in
+        name version in
     let pkg_date = O2wMisc.string_of_timestamp update_tm in
-    <:html<<tr>
-     <td><a href=$uri: pkg_href$>$str: pkg_name$</a></td>
-     <td><a href=$uri: pkg_href$>$str: pkg_version$</a></td>
-     <td>$str: pkg_date$</td>
-     </tr>&>>
+    H.tag "tr"
+      (H.list [H.tag "td" (H.a ~href:pkg_href (H.string pkg_name));
+               H.tag "td" (H.a ~href:pkg_href (H.string pkg_version));
+               H.tag "td" (H.string pkg_date)])
   in
 
   let opam_update_list = open_out "opam_update_list" in
   try
     let rows = List.map to_row (top_packages ()) in
     let ch = `Channel opam_update_list in
-    List.iter (fun xml ->
-               let xml_out = Cow.Xml.make_output ~decl:false ch in
-               List.iter (Cow.Xml.output xml_out)
-                         (`Dtd None :: Template.serialize xml)
-              ) rows;
+    let xml_out = Cow.Xml.make_output ~decl:false ch in
+    List.iter (fun row ->
+        List.iter (Cow.Xml.output xml_out)
+          (`Dtd None :: Template.serialize row)) rows;
     close_out opam_update_list
   with e ->
     if staging then (
       Printf.fprintf opam_update_list "<tr><td colspan=\"3\">%s %b</td></tr>"
-                     (Printexc.to_string e) staging;
+        (Printexc.to_string e) staging;
       close_out opam_update_list
     )
     else (
@@ -51,6 +51,8 @@ let () =
       raise e
     )
 
+
+;;
 (* Local Variables: *)
 (* compile-command: "make --no-print-directory -k -C .. script/generate_opam_update_list" *)
 (* End: *)

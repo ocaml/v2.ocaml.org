@@ -6,6 +6,7 @@ open Utils
 let language_of_ISO639 = function
   | "en" -> "English"
   | "de" -> "German"
+  | "el" -> "Greek"
   | "fr" -> "French"
   | "it" -> "Italian"
   | "ja" -> "Japanese"

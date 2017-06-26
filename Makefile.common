@@ -1,6 +1,8 @@
 # -*- mode: Makefile-gmake -*-
 
-MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its $(SET_STAGING)
+LATEST_OCAML_VERSION=$(shell opam switch -s | sort -n | tail -n 1)
+
+MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its -set "LATEST_OCAML_VERSION=$(LATEST_OCAML_VERSION)" $(SET_STAGING)
 MPP = mpp ${MPP_OPTIONS}
 OMD_OPTIONS = -r ocaml=script/ocamltohtml -r tryocaml=script/ocamlapplet.bash
 OMD = omd ${OMD_OPTIONS}
@@ -11,6 +13,11 @@ OCAML_VERSION = $(shell ocamlc -config | grep version | sed -e "s/version: *//")
 OCAMLFLAGS = -annot -g
 OCAMLOPT = ocamlfind ocamlopt $(OCAMLFLAGS)
 OCAMLC = ocamlfind ocamlc $(OCAMLFLAGS)
+
+HAS_SAFE_STRING=$(shell ocaml --help|grep safe-string)
+ifneq ($(HAS_SAFE_STRING),)
+  OCAMLFLAGS := $(OCAMLFLAGS) -safe-string
+endif
 
 # Things to create before launching the parallel page build
 pre-build: template/main.mpp template/footer.mpp \
@@ -31,8 +38,8 @@ opam_update_list: script/generate_opam_update_list
 
 script/generate_opam_update_list: script/generate_opam_update_list.ml
 	cd script && \
-	$(OCAMLOPT) -o ../"$@" -package opamfu,opam2web,cow.syntax \
-	  -linkpkg -syntax camlp4o generate_opam_update_list.ml
+	$(OCAMLOPT) -o ../"$@" -package opamfu,opam2web,cow \
+	  -linkpkg generate_opam_update_list.ml
 
 script/lang_of_filename: script/lang_of_filename.ml $(UTILS_DEP)
 	cd script && \

@@ -26,7 +26,7 @@ Tarball](http://caml.inria.fr/distrib/ocaml-4.00/ocaml-4.00-refman-html.tar.gz)
 ###  Real World OCaml
 <img src="/img/real-world-ocaml.jpg" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*Jason Hickey, Anil Madhavapeddy, and Yaron Minsky*
+*Jason Hickey, Anil Madhavapeddy, and Yaron Minsky. Published 25th November 2013*
 
 Learn how to solve day-to-day problems in data processing, numerical
 computation, system scripting, and database-driven web applications with
@@ -49,7 +49,7 @@ readable code.
 ###  OCaml from the Very Beginning
 <img src="/img/OCaml_from_beginning.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*John Whitington*
+*John Whitington. Published June 7th, 2013*
 
 In "OCaml from the Very Beginning" John Whitington takes a
 no-prerequisites approach to teaching a modern general-purpose
@@ -68,7 +68,7 @@ and hints.
 ###  More OCaml: Algorithms, Methods & Diversions
 <img src="/img/more-ocaml-300-376.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*John Whitington*
+*John Whitington. Published 26th August 2014*
 
 In "More OCaml" John Whitington takes a meandering tour of functional
 programming with OCaml, introducing various language features and describing
@@ -91,7 +91,7 @@ the front of the book.
 ###  Unix System Programming in OCaml
 <img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*Xavier Leroy and Didier Rémy*
+*Xavier Leroy and Didier Rémy. Published May 2010*
 
 This is an excellent book on Unix system programming, with an emphasis
 on communications between processes. The main novelty of this work is
@@ -128,7 +128,7 @@ Information](http://www.ffconsultancy.com/products/ocaml_for_scientists/index.ht
 ###  Using, Understanding, and Unraveling OCaml
 <img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*Didier Rémy*
+*Didier Rémy. Published 20th September 2002*
 
 This book describes both the OCaml language and the theoretical grounds
 behind its powerful type system. A good complement to other books on
@@ -139,26 +139,10 @@ OCaml it is addressed to a wide audience of people interested in modern programm
 
 ****
 
-###  Think OCaml: How to Think Like a (Functional) Programmer
-<img src="http://greenteapress.com/thinkocaml/thinkocaml_cover_web.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
-
-*Nicholas Monje and Allen Downey*
-
-This book is an introductory programming textbook based on the OCaml
-language. It is a modified version of Think Python by Allen Downey. It
-is intended for newcomers to programming and also those who know some
-programming but want to learn programming in the function-oriented
-paradigm, or those who simply want to learn OCaml.
-
-[Book Website](http://greenteapress.com/thinkocaml/index.html) |
-[PDF](http://greenteapress.com/thinkocaml/thinkocaml.pdf)
-
-****
-
 ###  Developing Applications With OCaml
 <img src="/img/logocaml-oreilly.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*Emmanuel Chailloux, Pascal Manoury, Bruno Pagano*
+*Emmanuel Chailloux, Pascal Manoury, Bruno Pagano. Published 2002*
 
 A comprehensive (742 pages) book on OCaml, covering not only the core
 language, but also modules, objects and classes, threads and systems
@@ -174,7 +158,7 @@ translation of a French book published by OReilly.
 ###  Introduction to OCaml
 <img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*Jason Hickey*
+*Jason Hickey. Published 2002*
 
 This book is notoriously much more than just an introduction to OCaml,
 it describes most of the language, and is accessible.
@@ -212,7 +196,7 @@ Amazon.com](http://www.amazon.com/exec/obidos/ASIN/0521571839/qid%3D911812711/sr
 ###  OCaml Book
 <img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*Hongbo Zhang*
+*Hongbo Zhang. Published 2011*
 
 This book is a work in progress. It currently includes sections on the
 core OCaml language, Camlp4, parsing, various libraries, the OCaml
@@ -222,7 +206,50 @@ runtime, interoperating with C, and pearls.
 
 ****
 
+###  Think OCaml: How to Think Like a (Functional) Programmer
+<img src="http://greenteapress.com/thinkocaml/thinkocaml_cover_web.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+
+*Nicholas Monje and Allen Downey. Published 2008*
+
+This book is a work in progress. It is an introductory programming
+textbook based on the OCaml language. It is a modified version of
+Think Python by Allen Downey. It is intended for newcomers to
+programming and also those who know some programming but want to learn
+programming in the function-oriented paradigm, or those who simply
+want to learn OCaml.
+
+[Book Website](http://greenteapress.com/thinkocaml/index.html) |
+[PDF](http://greenteapress.com/thinkocaml/thinkocaml.pdf)
+
+****
+
 ## Books in French
+
+### Initiation à la programmation fonctionnelle en OCaml
+<img src="/img/Initiation_a_la_programmation_fonctionnelle_en_OCaml.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+
+*Mohammed-Said Habet<br />
+édition: Edilivre, 2015. ISBN: 9782332978400*
+
+La programmation fonctionnelle est un style de programmation qui
+consiste à considérer les programmes informatiques comme des fonctions
+au sens mathématique du terme. Ce style est proposé dans de nombreux
+langages de programmation anciens et récents comme OCaml.
+
+Le but de ce livre est d’initier le lecteur au style fonctionnel de
+programmation en utilisant le langage OCaml. Cet ouvrage s’adresse
+donc principalement aux débutants en informatique. Il peut également
+être l’occasion pour les initiés de découvrir le langage de
+programmation OCaml.
+
+Le lecteur trouvera une présentation progressive des concepts de
+programmation fonctionnelle dans le langage OCaml, illustrée par des
+exemples, de nombreux exercices corrigés et d’autres laissés à
+l’initiative du lecteur.
+
+[Website](http://www.edilivre.com/initiation-a-la-programmation-fonctionnelle-en-ocaml-mohammed-said-habet.html)
+
+****
 
 ###  Apprendre à programmer avec OCaml
 <img src="/img/apprendre_ocaml_cover.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
@@ -517,6 +544,15 @@ last chapter a comprehensive description of the language kernel.
 ****
 
 ## Books in Italian
+
+### Programmazione funzionale, una semplice introduzione
+<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+
+*Massimo Maria Ghisalberti*
+
+[Emacs Org source](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.org) | [HTML](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.html) | [PDF](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.pdf)
+
+****
 
 ###  Introduzione alla programmazione funzionale
 <img src="/img/limongelli-cialdea.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>

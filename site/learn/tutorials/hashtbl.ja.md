@@ -64,12 +64,7 @@ Hashtbl.find my_hash "h"
 ```ocamltop
 Hashtbl.find_all my_hash "h"
 ```
-
-とすると
-
-    ["hard"; "hug"; "hi"; "hello"]
-
-が返る。
+とすると`["hard"; "hug"; "hi"; "hello"]`が返る。
 
 `my_hash` のなかにある文字で始まるエントリがあるかどうかを見つけるには
 次のようにする:

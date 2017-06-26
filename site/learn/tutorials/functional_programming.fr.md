@@ -5,12 +5,12 @@
 *Table of contents*
 
 ## Qu'est-ce que la programmation fonctionnelle ?
-Nous sommes arrivé relativement loin dans ce tutorial et nous n'avons
+Nous sommes arrivés relativement loin dans ce tutoriel et nous n'avons
 pas encore abordé la **programmation fonctionnelle**. Il serait
 imaginable de voir toutes les fonctionnalités données jusqu'à présent -
 rich data types, pattern matching, inférence de types, fonctions
-imbriquées - dans une espèce de «Super langage C». Ce sont certainement
-des fonctionnalités «cools» qui rendent le code concis, facile à lire et
+imbriquées - dans une espèce de « Super langage C ». Ce sont certainement
+des fonctionnalités « cools » qui rendent le code concis, facile à lire et
 qui permettent d'avoir moins de bugs, mais elles n'ont que très peu à
 voir avec la programmation fonctionnelle.
 
@@ -20,7 +20,7 @@ sommes restés avec des langages de type C pendant des années et pendant
 ce temps la pointe de la programmation a avancé considérablement.
 
 Ainsi pendant que nous écrivions `struct { int type; union { ... } }`
-pour la n-ième fois, les programmeurs ML et haskell avaient déjà les
+pour la n-ième fois, les programmeurs ML et Haskell avaient déjà les
 safe variants et le pattern matching sur les types de données. Pendant
 qu'on faisait attention à bien faire des `free()` pour chaque
 `malloc()`, les langages à garbage collectors avaient implémenté une
@@ -29,8 +29,8 @@ façon de gérer automatiquement la mémoire depuis les années 80.
 Maintenant, arrêtons de tourner autour du pot, et abordons ce qu'est la
 programmation fonctionnelle.
 
-La définition de base, bien que pas forcément claire est : «Dans un
-langage fonctionnel, les fonctions sont des citoyens de première classe»
+La définition de base, bien que pas forcément claire est : « Dans un
+langage fonctionnel, les fonctions sont des citoyens de première classe ».
 
 Que de mots qui n'ont pas vraiment de sens. Voyons plutôt un exemple :
 
@@ -38,14 +38,14 @@ Que de mots qui n'ont pas vraiment de sens. Voyons plutôt un exemple :
 let double x = x *2 in
 List.map double [ 1; 2; 3 ];;
 ```
-Dans cet exemple, j'ai d'abord définit une fonction imbriquée appelée
+Dans cet exemple, j'ai d'abord défini une fonction imbriquée appelée
 `double` qui prend un argument `x` et qui retourne `x * 2`. Puis `map`
 appelle `double` sur chaque élément de la liste donnée `([1; 2; 3])`
 pour produire le résultat : une liste avec chaque nombre doublé.
 
-`map` est appelé une **higher-order function** (HOF). Les HOF sont juste
-une jolie manière de dire que la fonction prend une fonction parmi ses
-arguments.
+`map` est appelé une **fonction d'ordre supérieur** (**higher-order function**, HOF).
+Les HOF sont juste une jolie manière de dire que la fonction prend une 
+fonction parmi ses arguments.
 
 Si vous êtes familiers avec le C/C++, alors cela ressemble au passage
 d'un pointeur de fonction. Java a une espèce d'abomination qu'on appelle
@@ -55,9 +55,9 @@ de Perl et sa fonction `map`, qui est exactement ce dont nous parlons.
 En fait, perl est un plutôt bon langage fonctionnel.
 
 Les **clôtures** sont des fonctions qui portent une partie de
-l'«environnement» dans lequel elles ont été définies. En particulier,
+l'« environnement » dans lequel elles ont été définies. En particulier,
 une clôture peut référencer des variables qui sont disponibles au moment
-de la définition. Généralisons la fonction précédente de façons à
+de la définition. Généralisons la fonction précédente de façon à
 prendre n'importe quelle liste d'entiers et multiplier chaque élément
 par une valeur `n` arbitraire :
 
@@ -79,15 +79,16 @@ la valeur de `n` qui n'est pas passé en tant qu'argument explicite à
 `f`. A la place, `f` est pris de l'environnement - c'est un argument de
 la fonction `multiply`, ainsi disponible au sein de cette fonction.
 
-Ceci peut paraître un peu trop raccourci, mais regardons de plus près à
+Ceci peut paraître un peu trop raccourci, mais regardons de plus près
 cet appel à `map` : `List.map f list`
 
-`map` est défini dans le module `List`, très loin du code courrant. En
-d'autres mots, nous passons `f` dans un module défini «a long time ago,
-in a galaxy far far away». Tout ce que nous pouvons savoir c'est que ce
+`map` est défini dans le module `List`, très loin du code courant. En
+d'autres mots, nous passons `f` dans un module défini « Il y a bien
+longtemps, dans une galaxie lointaine, très lointaine ».
+Tout ce que nous pouvons savoir c'est que ce
 code peut passer f à d'autres modules ou en garder une référence quelque
 part et l'appeler ultérieurement. Que ce soit le cas ou non, cette
-clôture va assurer que `f` aie toujours accès à l'environnement hérité,
+clôture va assurer que `f` ait toujours accès à l'environnement hérité,
 donc à `n`.
 
 Voici un exemple concret de lablgtk. Ceci est une méthode d'une classe
@@ -108,8 +109,8 @@ end
 ```
 Tout d'abord, il faut savoir que la fonction `save` appelée à la fin de
 la méthode prend en second argument une fonction, en l'occurence
-`receiver_fn`. Il l'appelle à répétition avec des morceaux de textes que
-du widget qu'il essaye d'enregistrer.
+`receiver_fn`. Elle l'appelle à répétition avec des morceaux de textes que
+du widget qu'elle essaye d'enregistrer.
 
 Maintenant, jettons un oeil à `receiver_fn`. Cette fonction est une
 clôture correcte parce qu'elle garde une référence à `chan` venant de
@@ -127,7 +128,7 @@ Quelques questions pour les endormis du fond de la classe :
 1. Qu'est-ce que `plus 2 3` ?
 1. Qu'est-ce que `plus 2` ?
 
-La première réponse est facile. `plus` est uen fonction qui prend deux
+La première réponse est facile. `plus` est une fonction qui prend deux
 arguments qui sont entiers et qui retourne un entier. Son type s'écrit
 ainsi :
 
@@ -159,10 +160,10 @@ f 15;;
 f 99;;
 ```
 Ceci est une [preuve par l'exemple](humor_proof.html)
-suffisante pour nous dire que `plus 2` est la fonction qu'ajoute 2 à des
+suffisante pour nous dire que `plus 2` est la fonction qui ajoute 2 à des
 choses.
 
-Revenons à la définition originelle, et remplaçons le premier argument,
+Revenons à la définition originelle et remplaçons le premier argument,
 soit `a`, par la valeur `2` pour obtenir :
 
 ```ocaml
@@ -191,7 +192,7 @@ google](http://www.google.com/search?q=currying "http://www.google.com/search?q=
 suffit.
 
 Vous rappelez-vous des fonctions `double` et `multiply` vues
-précédemment ? `multiply` était définit ainsi :
+précédemment ? `multiply` était défini ainsi :
 
 ```ocamltop
 let multiply n list =
@@ -241,15 +242,15 @@ List.map (plus 2) [1; 2; 3];;
 let list_of_functions = List.map plus [1; 2; 3];;
 ```
 
-## En quoi la programmation fonctionnelle est utile ?
+## En quoi la programmation fonctionnelle est-elle utile ?
 La programmation fonctionnelle, comme n'importe quelle technique de
 programmation, est un outil utile dans votre boite à outils pour
 résoudre certaines classes de problèmes. Très utile pour les callbacks,
 qui sont utilisés dans les IHMs pour les boucles d'évènements. C'est
 excellent pour exprimer des algorithmes génériques. `List.map` est une
-fonction générique pour appliquer des fonction sur n'importe quel type
+fonction générique pour appliquer des fonctions sur n'importe quel type
 de liste. De la même manière, on peut définir des fonctions génériques
-sur les arbres. Certains types de problèmes d'arithmétique peuvent être
+sur les arbres. Certains types de problèmes d'arithmétiques peuvent être
 résolus plus rapidement avec la programmation fonctionnelle (par exemple
 calculer la dérivé d'une fonction mathématique).
 
@@ -259,12 +260,12 @@ effet de bord signifie que la fonction garde une sorte d'état caché en
 son sein. `strlen()` est un exemple de fonction pure en C. Si on appelle
 `strlen()` avec la même chaîne, elle retournera toujours la même taille.
 La sortie de `strlen()` (la taille) ne dépend que des entrées (la
-chaîne) et rien d'autre. Plein de fonctions en C sont, malheureusement,
+chaîne) et de rien d'autre. Plein de fonctions en C sont, malheureusement,
 impures. Par exemple, `malloc()`, évidemment, repose sur beaucoup
 d'éléments d'états internes (les objets alloués sur le tas, le type
 d'allocation utilisé, la façon de prendre des pages de l'OS, etc..).
 
-Les langages dérivés de ML tel que OCaml sont «presque purs». Ils
+Les langages dérivés de ML tel que OCaml sont « presque purs ». Ils
 autorisent des effets de bord au travers des références et des tableaux,
 mais la plupart des codes que vous écrirez seront fonctionnels purs
 parce qu'ils encouragent cette pensée. Haskell, un autre langage
@@ -299,12 +300,12 @@ top-bottom, mais dans l'opinion de l'auteur, cela résulte souvent à des
 
 ## Evaluation stricte / paresseuse (strictness vs laziness)
 Les langages dérivés de C et de ML sont stricts. Haskell et Miranda ne
-sont pas stricts, ie ce sont des langages à évaluation paresseuse. OCaml
-est stricte par défaut mais autorise l'évaluation paresseuse lorsque
-nécessaire.
+sont pas stricts, c'est-à-dire que ce sont des langages à évaluation
+paresseuse. OCaml est strict par défaut mais autorise l'évaluation
+paresseuse lorsque nécessaire.
 
 Dans un langage à évaluation stricte, les arguments des fonctions sont
-toujours évalués en premier, et le résultat est alors passé à la
+toujours évalués en premier, puis le résultat est alors passé à la
 fonction. Par exemple dans un langage à évaluation stricte, cet appel va
 toujours sortir par une erreur de division par zéro :
 
@@ -313,24 +314,24 @@ let give_me_a_three x = 3;;
 give_me_a_three (1/0);;
 ```
 Si vous avez programmé dans n'importe quel langage conventionnel, c'est
-le comportement auquel vous vous attendrez, et vous serez surpris qu'il
+le comportement auquel vous vous attendrez et vous serez surpris qu'il
 en soit autrement.
 
 Dans un langage à évaluation paresseuse, des choses bizarres se passent.
-Les arguments de fonctions ne sont évalués que si la fonction les
+Les arguments de fonction ne sont évalués que si la fonction les
 utilise. Vous rappelez-vous que la fonction `give_me_a_three` n'utilise
-pas ses arguments, et retourne toujours 3 ? Dans un langage à évaluation
+pas ses arguments et retourne toujours 3 ? Dans un langage à évaluation
 paresseuse, cet appel précédent ne fera *pas* d'erreur, simplement parce
-que `give_me_a_three` ne regarde jamais à ses arguments, donc si
+que `give_me_a_three` ne regarde jamais ses arguments, donc si
 l'argument n'est jamais évalué, la division par zéro n'arrive pas.
 
 Les langages à analyse paresseuse permettent de faire d'autres choses
-bizarres, comme la définition d'une liste infinie. Tant qu'on essaye pas
+bizarres, comme la définition d'une liste infinie. Tant qu'on n'essaye pas
 d'itérer sur la totalité de la liste, cela fonctionne.
 
 OCaml est un langage à évaluation stricte, mais a un module d'évaluation
 paresseuse (`Lazy`) qui permettent d'écrire des expressions paresseuses.
-Voici un exemple. D'abord nous créons une expression paresseuse pour
+Voici un exemple. D'abord, nous créons une expression paresseuse pour
 `1/0` :
 
 ```ocamltop
@@ -356,13 +357,13 @@ Lazy.force lazy_expr
 
 Un terme qu'on entend beaucoup lorsqu'on parle de langages fonctionnels
 est « boxed ». J'étais très confus lorsque j'ai entendu ce terme pour la
-première fois, mais en fait la distinction entre types «boxed» et
-«unboxed» est très simple si vous avez déjà fait du C, du C++ ou du java
-avant (en Perl tout est «boxed»).
+première fois, mais en fait la distinction entre types « boxed » et
+« unboxed » est très simple si vous avez déjà fait du C, du C++ ou du java
+avant (en Perl tout est « boxed »).
 
-La façon de voir un objet «boxed» est de penser à un objet qui a été
+La façon de voir un objet « boxed » est de penser à un objet qui a été
 alloué dans le tas en utilisant `malloc()` en C (ou `new` en C++), et/ou
-qui est y est réferré via un pointeur. Prenons ce programme C :
+qui est référé via un pointeur. Prenons ce programme C :
 
 ```C
 #include <stdio.h>
@@ -380,24 +381,24 @@ int main () {
     return 0;
 }
 ```
-La variable `a` est allouée dans la pile, et est clairement «unboxed».
+La variable `a` est allouée dans la pile, et est clairement « unboxed ».
 
-La fonction `printit()` prends un entier «boxed» et l'affiche.
+La fonction `printit()` prends un entier « boxed » et l'affiche.
 
 Le diagramme ci-dessous (NDT: non-existant à l'écriture de la
-traduction) montre un tableau de «unboxed» (en haut) face à des entiers
+traduction) montre un tableau de « unboxed » (en haut) face à des entiers
 « unboxed » (en bas) :
 
 ![Boxed Array](/img/boxedarray.png "")
 
-Pas de prix pour avoir deviné que le tableau d'entiers «unboxed» est
-plus rapide que le tableau d'entiers «boxed». De plus, parce qu'il y a
-moins d'allocations séparés, le garbage collector est plus rapide à
-nettoyer et plus simple sur le tableau d'objets « unboxed ».
+Il n'est pas difficile de deviner que le tableau d'entiers « unboxed » est
+plus rapide que le tableau d'entiers « boxed ». De plus, parce qu'il y a
+moins d'allocations séparées, la récupération de la mémoire est plus
+rapide et plus simple sur le tableau d'objets « unboxed ».
 
 En C ou C++ vous n'aurez aucun problème pour construire chacun des
-tableaux ci-dessus. En java, on a deux types, `int` qui est «unboxed» et
-`Integer` qui est «boxed», et donc considérablement moins efficace. En
+tableaux ci-dessus. En java, on a deux types, `int` qui est « unboxed » et
+`Integer` qui est « boxed », donc considérablement moins efficace. En
 OCaml, tous les types primitifs sont « unboxed ».
 
 

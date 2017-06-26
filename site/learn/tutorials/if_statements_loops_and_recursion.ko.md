@@ -373,7 +373,7 @@ List.mem 12 my_list
 `for_all2`, `exists2` 등과 같은 접두사 "2"로 끝나는 함수들이 있다.
 
 `map`과 `filter` 함수는 개별적인 리스트 요소들에 대해 독립적으로
-동작한다. \<dfn\>Fold\</dfn\>는 좀 더 일반적이지 않은 동작으로 "리스트의
+동작한다. **Fold**는 좀 더 일반적이지 않은 동작으로 "리스트의
 각 요소들 사이에 연산자를 삽입한다"라고 생각할 수 있다. 리스트 내의 모든
 숫자들을 더하고 싶다고 가정해 보자. 대충 이야기 하자면, 내가 원하는 것은
 리스트 내의 요소들 사이에 덧셈 기호를 삽입하는 것이다:
@@ -1051,7 +1051,7 @@ type pair_of_ints = { a : int; b : int };;
 ```
 One feature which I didn't cover: OCaml records can have mutable fields.
 Normally an expression like `{a = 3; b = 5}` is an immutable, constant
-object. However if the record has \<dfn\>mutable fields\</dfn\>, then
+object. However if the record has **mutable fields**, then
 there is a way to change those fields in the record. This is an
 imperative feature of OCaml, because functional languages don't normally
 allow mutable objects (or references or mutable arrays, which we'll look

@@ -19,7 +19,7 @@ OCaml のコアディストリビューションには `ocamlc` と `ocamlopt`
 このセクションでは、 まず `ocamlc` や `ocamlopt` だけを使って
 簡単なプログラムをコンパイルする方法を見ていく。 そして、
 ライブラリの使いかたと、 `ocamlfind` コマンドを提供している
-[findlib](http://www.camlcity.org/archive/programming/findlib.html)
+[findlib](http://projects.camlcity.org/projects/findlib.html)
 システムの利用方法を見ていく。
 
 ### ocamlc と ocamlopt
@@ -150,18 +150,7 @@ ocamlfind ocamlopt -o progprog -linkpkg \
 ビルドの自動化システム
 ---------------------
 
-複雑な OCaml プログラム群のコンパイル(ビルド)は、
-献身的なツールがあるのでとても簡単になっている。 有名どころである GNU
-make が使える。 OMake は GNU make の類似品だが、 OCaml と C
-の両方のコンパイルに対応している。
-ほかにも、単純なものかもしれないがコンパイルツールが [Caml
-Hump](http://mirror.ocamlcore.org/caml.inria.fr/cgi-bin/hump.html)の
-[build
-tools](http://mirror.ocamlcore.org/caml.inria.fr/cgi-bin/hump.en02dc.html?sort=1&browse=55)
-に挙げられている。
-<!-- FIXME: the links to the hump must be replaced with OPAM -->
-
--   [GNU make
-    でのコンパイル](compiling_with_gnu_make.ja.html "GNU make でのコンパイル")
--   [OMake
-    でのコンパイル](compiling_with_omake.ja.html "OMake でのコンパイル")
+- OCamlbuild — [en](ocamlbuild/)
+- [GNU make でのコンパイル](compiling_with_gnu_make.ja.html "GNU make でのコンパイル")
+- [OMakeでのコンパイル](compiling_with_omake.ja.html "OMake でのコンパイル")
+- Oasis — [en](setting_up_with_oasis.html)

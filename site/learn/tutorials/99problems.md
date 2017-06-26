@@ -491,7 +491,7 @@ insert_at "alfa" 4 ["a";"b";"c";"d"];;
 
 #### Create a list containing all integers within a given range. (*easy*)
 
-If first argument is smaller than second, produce a list in decreasing
+If first argument is greater than second, produce a list in decreasing
 order.
 
 SOLUTION
@@ -501,6 +501,17 @@ SOLUTION
 >   let rec aux a b =
 >     if a > b then [] else a :: aux (a+1) b  in
 >   if a > b then List.rev (aux b a) else aux a b;;
+> ```
+>
+> A tail recursive implementation:
+>
+> ```ocamltop
+> let range a b =
+>   let rec aux acc high low =
+>     if high >= low then
+>       aux (high::acc) (high - 1) low
+>     else acc
+>   in if a < b then aux [] b a else List.rev (aux [] a b)
 > ```
 
 ```ocamltop

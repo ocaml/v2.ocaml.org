@@ -7,9 +7,7 @@
 Mailing lists and other forums used to discuss OCaml in general are
 listed below. There are thousands of other forums related to
 individual projects. Several mailing lists are hosted on the
-[lists.ocaml.org](http://lists.ocaml.org) domain. Projects on the
-[OCaml Forge](http://forge.ocamlcore.org/) often have mailing lists
-associated with them, and projects on
+[lists.ocaml.org](http://lists.ocaml.org) domain. Projects on
 [GitHub](https://github.com/trending?l=ocaml&since=monthly) actively
 use GitHub's Issue system for discussions.
 
@@ -25,9 +23,14 @@ the subscribers of the list. Messages are generally in English but
 sometimes also in French. In 2010, the list has about 1500 subscribers,
 who exchange about 300 messages per month.
 
-[Subscribe](https://sympa.inria.fr/sympa/subscribe/caml-list) | [Inria
-Archives](https://sympa.inria.fr/sympa/arc/caml-list) | [Google Groups
-Archives](http://groups.google.com/groups?group=fa.caml)
+[Subscribe](https://sympa.inria.fr/sympa/subscribe/caml-list)
+|
+[Inria Archives](https://sympa.inria.fr/sympa/arc/caml-list)
+|
+[Gmane archives](http://news.gmane.org/gmane.comp.lang.caml.inria)
+
+The [OCaml Weekly News](http://alan.petitepomme.net/cwn/) also provides
+a curated summary of caml-list discussions.
 
 ### OCaml Beginners
 *ocaml_beginners AT yahoogroups.com*  
@@ -53,7 +56,7 @@ universities, ..., offering such jobs or internships.
 This is a low-traffic, moderated list for announcements of OCaml
 releases and new OCaml-related software, libraries, documents, etc.
 
-[(Un)subscribe](http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce)
+[(Un)subscribe](https://sympa.inria.fr/sympa/subscribe/caml-announce)
 
 
 ## Discussion Groups
@@ -65,6 +68,14 @@ There are about a hundred users hanging around; don't ask if you can
 ask, just ask, and be patient: not everyone is in the same timezone. The
 IRC Channel can be accessed through a web interface or any regular IRC
 client.
+
+Public channel logs are available at <http://irclog.whitequark.org/ocaml/>
+
+If you wish to use a web-based IRC client, you can use Freenode's
+webchat <https://webchat.freenode.net/>. For a fancier/nicer
+interface, you may try
+<https://vector.im/beta/#/room/#freenode_#ocaml:matrix.org> -- it
+requires registration but is otherwise free.
 
 ### IRC Channel - French
 *irc.freenode.net #ocaml-fr*  

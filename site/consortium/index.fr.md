@@ -11,7 +11,7 @@ développement. Ils bénéficient de plus d'une [license
 spécifique](/docs/consortium-license.fr.html).
 
 La cotisation annuelle des membres peut être ou bien très modeste
-(3000€) ou plus conséquente (10000€ ou plus) selon le niveau de soutien
+(3500€) ou plus conséquente (10000€ ou plus) selon le niveau de soutien
 que le membre désire apporter. L'adhésion au Consortium OCaml est un
 acte important, non seulement pour le développement du langage et sa
 dissémination, mais aussi pour sa pérennité.
@@ -21,38 +21,38 @@ dissémination, mais aussi pour sa pérennité.
 <table style="width: 100%">
 <tbody>
 <tr style="height: 70px">
+<td align="center"><a href="http://www.besport.com"><img
+  src="/img/users/besport.png" alt="BeSport" style="width: 170px" /></a></td>
+<td align="center"><a href="http://www.bloomberg.com"><img
+  src="/img/users/bloomberg.jpg" alt="Bloomberg" style="width: 170px" /></a></td>
 <td align="center"><a href="http://www.cea.fr"><img src="/img/users/cea.png" alt="CEA" style="height: 65px" /></a></td>
+</tr>
+<tr style="height: 70px">
 <td align="center"><a href="http://www.citrix.com"><img src="/img/users/citrix.png" alt="Citrix" /></a></td>
 <td align="center"><a href="http://www.dassault-aviation.com"><img src="/img/users/dassault-aviation.png" alt="Dassault Aviation" /></a></td>
+<td align="center"><a href="http://www.3ds.com"><img src="/img/users/dassault.png" alt="Dassault System" style="height: 60px" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.3ds.com"><img src="/img/users/dassault.png" alt="Dassault System" style="height: 60px" /></a></td>
 <td align="center"><a href="http://www.esterel-technologies.com"><img src="/img/users/esterel.jpg" alt="Esterel Technologies" style="height: 60px" /></a></td>
 <td align="center"><a href="http://janestreet.com/"><img src="/img/users/jane-street.jpg" alt="Jane Street" style="height: 50px" /></a></td>
+<td align="center"><a href="http://www.lexifi.com"><img src="/img/users/lexifi.png" alt="Lexifi" style="height: 50px" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.lexifi.com"><img src="/img/users/lexifi.png" alt="Lexifi" style="height: 50px" /></a></td>
 <td align="center"><a href="http://www.microsoft.com"><img
   src="/img/users/microsoft.png" alt="Microsoft"
   style="width: 170px" /></a></td>
 <td align="center"><a href="http://www.mlstate.com"><img
   src="/img/users/mlstate.jpg" alt="MLState" style="height: 50px" /></a></td>
-</tr>
-<tr style="height: 70px">
 <td align="center"><a href="http://www.mylife.com"><img
   src="/img/users/mylife.jpg" alt="Mylife.com" style="height: 70px" /></a></td>
+</tr>
+<tr style="height: 70px">
 <td align="center"><a href="http://www.simcorp.com"><img
   src="/img/users/simcorp.png" alt="SimCorp"
   style="width: 170px" /></a></td>
 <td align="center"><a href="http://www.ocamlpro.com"><img
   src="/img/users/ocamlpro.png" alt="OCamlPro"
   style="width: 170px" /></a></td>
-</tr>
-<tr style="height: 70px">
-<td></td>
-<td align="center"><a href="http://www.bloomberg.com"><img
-  src="/img/users/bloomberg.jpg" alt="Bloomberg" style="width: 170px" /></a></td>
-<td></td>
 </tr>
 </tbody>
 </table>

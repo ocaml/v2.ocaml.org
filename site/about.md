@@ -35,10 +35,13 @@ infrastructure and tooling for the site. At the time of writing, the
 'www.ocaml.org' team consists of:
 
 - [Ashish Agarwal](http://ashishagarwal.org)
-- [Christophe Troestler](https://github.com/Chris00)
 - [Amir Chaudhry](http://amirchaudhry.com)
-- [Philippe Wang](http://philippewang.info/CL/)
+- [Louis Gesbert](http://github.com/AltGr/)
+- [Fabrice Le Fessant](http://www.lefessant.net/)
 - [Anil Madhavapeddy](http://anil.recoil.org)
+- [David Sheets](https://github.com/dsheets)
+- [Christophe Troestler](https://github.com/Chris00)
+- [Philippe Wang](http://philippewang.info/CL/)
 
 People may be added or removed from this group by consensus decision
 and membership is primarily based on contributions to the site or the

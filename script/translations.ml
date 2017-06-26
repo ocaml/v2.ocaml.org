@@ -7,6 +7,7 @@ let lang_to_html l =
   if l = "" then "en" (* default language *)
   else if l = "zh" then "中文"
   else if l = "ja" then "日本語"
+  else if l = "ko" then "한국어"
   else l
 
 let translations path =

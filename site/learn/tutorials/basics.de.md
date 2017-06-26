@@ -47,7 +47,9 @@ Argumente nimmt und dann einen neuen String zurückgibt, der das Original
 In den meisten von C abgeleiteten Sprachen, würde ein Aufruf dieser
 Funktion so aussehen:
 
-    repeated ("hallo", 3)  /* dies ist C-Code */
+```C
+repeated ("hallo", 3)  /* dies ist C-Code */
+```
 
 Das bedeutete "rufe die Funktion `repeated` mit zwei Argumenten auf,
 wobei das erste Argument der String 'hallo' ist und das zweite Argument
@@ -137,10 +139,12 @@ zunächst einmal will ich die gleiche Funktion in C definieren (die
 Definition in Java wäre recht ähnlich wie C) und hoffe, daß das noch
 weitere Fragen aufwirft. So sieht unsere Version von `average` in C aus:
 
-    double average (double a, double b)
-    {
-      return (a + b) / 2;
-    }
+```C
+double average (double a, double b)
+{
+  return (a + b) / 2;
+}
+```
 
 Schauen Sie sich nun nochmals die viel kürzere, obige Definition in
 OCaml an. Hoffentlich fragen Sie sich jetzt:

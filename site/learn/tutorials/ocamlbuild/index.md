@@ -5,8 +5,8 @@
 # Ocamlbuild
 ## Documentation
 
-+ [User manual](http://gallium.inria.fr/~pouillar/ocamlbuild/ocamlbuild-user-guide.html)
-+ [More Recent Manual (by gasche)](https://github.com/gasche/manual-ocamlbuild)
++ [User manual](https://github.com/ocaml/ocamlbuild/blob/master/manual/manual.adoc)
++ [Old user manual](http://gallium.inria.fr/~pouillar/ocamlbuild/ocamlbuild-user-guide.html)
 + List and usage of [special files](Special_files.html).
 + List and usage of [built-in `tags`](Tags.html).
 + The [solver mechanism](Solver_mechanism.html): what are rules

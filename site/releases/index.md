@@ -1,9 +1,18 @@
 <!-- ((! set title Releases !)) ((! set releases !)) -->
 
 #Releases
-Official releases of OCaml occur about once per year.
 
-* OCaml [latest](latest/)
+The [latest](latest/) page points to the most recent release of the
+OCaml compiler distribution. Below is a list of the recent releases.
+
+See also the [install](/docs/install.html) page for instructions on
+installing OCaml by other means, such as the OPAM package manager and
+platform specific package managers.
+
+* OCaml [4.04.2](4.04.html), released Jun 23, 2017.
+* OCaml [4.04.1](4.04.html), released Apr 14, 2017.
+* OCaml [4.04.0](4.04.html), released Nov 4, 2016.
+* OCaml [4.03.0](4.03.html), released Apr 25, 2016.
 * OCaml [4.02.3](4.02.html), released Jul 27, 2015.
 * OCaml [4.02.2](4.02.html), released Jun 17, 2015.
 * OCaml [4.02.1](4.02.html), released Oct 14, 2014.
@@ -15,5 +24,5 @@ Official releases of OCaml occur about once per year.
 * Earlier releases are available
   [here](http://caml.inria.fr/pub/distrib/).
 
-You may also want to check the [development version](svn.html) of
+You may also want to check the [development version](https://github.com/ocaml/ocaml) of
 OCaml.

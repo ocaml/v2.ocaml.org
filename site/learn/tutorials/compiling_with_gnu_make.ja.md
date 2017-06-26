@@ -8,7 +8,7 @@ GNU make でのコンパイル
 OCamlMakefile と組み合わせて GNU make を使う
 -------------------------------------------
 
-[OCamlMakefile](https://github.com/mmottl/ocaml-makefile)
+[OCamlMakefile](http://mmottl.github.io/ocaml-makefile/)
 は、 複雑なOCamlプロジェクトのコンパイル作業をとても楽にする生成的な
 Makefile だ。
 
@@ -16,7 +16,7 @@ Makefile だ。
 単にカレントディレクトリにOCamlMakefileをコピーし、 以下の Makefile
 を作成する：
 
- ```makefile
+```makefile
 RESULT = myprogram
 SOURCES = \
   mymodule1.mli mymodule1.ml \
@@ -36,20 +36,22 @@ include $(OCAMLMAKEFILE)
 はいろんなターゲットを提供する。 詳細は OCamlMakefile
 のドキュメントを参照してもらうとして、ここでは主なものを 紹介する：
 
-    nc           ネィティブコードの実行ファイル作成
-    bc           バイトコードの実行ファイル作成
-    ncl          ネィティブコードのライブラリ作成
-    bcl          バイトコードのライブラリ作成
-    libinstall   ocamlfindを用いたライブラリのインストール
-    libuninstall ocamlfindを用いたライブラリのアンインストール
-    top          あなたのモジュールでカスタマイズされたトップレベルの生成
-    clean        OCamlMakefile で自動生成されたファイルの削除
+```text
+nc           ネィティブコードの実行ファイル作成
+bc           バイトコードの実行ファイル作成
+ncl          ネィティブコードのライブラリ作成
+bcl          バイトコードのライブラリ作成
+libinstall   ocamlfindを用いたライブラリのインストール
+libuninstall ocamlfindを用いたライブラリのアンインストール
+top          あなたのモジュールでカスタマイズされたトップレベルの生成
+clean        OCamlMakefile で自動生成されたファイルの削除
+```
 
 OCamlMakefile + ライブラリ + Camlp4 の構文解析
 ---------------------------------------------
 
 OCaml ライブラリのインストールの推奨ツールが
-[Findlib](http://www.ocaml-programming.de/programming/findlib.html)
+[Findlib](http://www.camlcity.org/archive/programming/findlib.html "Findlib")
 (コマンド名は ocamlfind) だ。
 パッケージのインストール先を把握し、依存性に応じてロードし、
 あたえられた状況下でどのファイルを使うべきかを知っている。

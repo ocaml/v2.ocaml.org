@@ -1,16 +1,21 @@
 <!-- ((! set title OCaml튜토리얼 !)) ((! set learn !)) -->
 <!-- {{! input template/macros.mpp !}} -->
 
-# OCaml튜토리얼
+# OCaml 튜토리얼
 
-이 웹사이트는 Objective CAML(흔히 "OCaml"로 알려져 있음)을 배우고자 하는 사람들에게 실용적이면서 자세한 튜토리얼을 제공한다.
+#### 여러분의 도움을 필요로 합니다.
 
-OCaml은 응용 프로그램 개발을 위한 빠르고, 간결하며 강력한 언어다. 이 튜토리얼은 여러분이 이미 이 사실을 알고 있고, OCaml을 설치했다고 가정하고 있다.
+
 
 ((! get begin_two_columns !))
 
-* [기본기](basics.ko.html) — OCaml이나 함수형 언어를 처음 접하시는 분은 이 글을 먼저 읽으세요.
+* [기본사항](basics.ko.html) 
 * [OCaml 프로그램의 구조](structure_of_ocaml_programs.ko.html)
+* 모듈(Modules) - [en](modules.html)
+* 맵(Maps) (Dictionaries) - [en](map.html)
+* 셋(Sets) - [en](set.html)
+* 해쉬 테이블 - [en](hashtbl.html)
+* Comparison of Standard Containers - [en](comparison_of_standard_containers.html)
 * 데이타 타입과 매칭 — [en](data_types_and_matching.html)
 * 널 포인터, 어설트(Assert), 경고(Warning)
   — [en](null_pointers_asserts_and_warnings.html)

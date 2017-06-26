@@ -38,7 +38,9 @@ that you want to use. It may be a value, a type constructor, or anything
 else that a given module can provide.
 
 Libraries, starting with the standard library, provide collections of
-modules. for example, `List.iter` designates the `iter` function from
+modules. for example,
+[`List.iter`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/list.mli#L75)
+designates the `iter` function from
 the `List` module.
 
 OK, if you are using a given module heavily, you may want to make its
@@ -60,7 +62,9 @@ let () =
 Anyway, using `open` or not is a matter of personal taste. Some modules
 provide names that are used in many other modules. This is the case of
 the `List` module for instance. Usually we don't do `open List`. Other
-modules like `Printf` provide names that are normally not subject to
+modules like
+[`Printf`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/printf.mli#L14)
+provide names that are normally not subject to
 conflicts, such as `printf`. In order to avoid writing `Printf.printf`
 all over the place, it often makes sense to place one `open Printf` at
 the beginning of the file.
@@ -271,7 +275,7 @@ the comparison function given as `compare`. The point of the functor is
 to ensure that the same comparison function will always be used, even if
 the programmer makes a mistake.
 
-For example, if we want to use sets of ints, we would use do this:
+For example, if we want to use sets of ints, we would do this:
 
 ```ocamltop
 module Int_set = Set.Make (struct
@@ -315,7 +319,10 @@ or by specifying this in the .mli file:
 module F (X : X_type) : Y_type
 ```
 Overall, the syntax of functors is hard to grasp. The best may be to
-look at the source files `set.ml` or `map.ml` of the standard library.
+look at the source files
+[`set.ml`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/set.ml) or
+[`map.ml`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/map.ml)
+of the standard library.
 
 Final remark: functors are made to help programmers write correct
 programs, not to improve performance. There is even a runtime penalty,

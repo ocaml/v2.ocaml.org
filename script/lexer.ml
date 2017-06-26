@@ -329,7 +329,7 @@ let read_infix (stream:stream) =
 let read_prefix (stream:stream) =
   let loc = { sl = stream#line; sc = stream#column;
               el = stream#line; ec = stream#column; } in
-  let string_of_char c = let s = " " in s.[0] <- c; s  in
+  let string_of_char c = String.make 1 c in
   let rec f res =
     match stream#get_c with
     | Some('!' | '?' | '~' as c) ->

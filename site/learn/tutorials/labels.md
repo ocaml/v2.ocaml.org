@@ -43,7 +43,8 @@ the `even` function, we already need the definition of `odd`, and to
 compile `odd` we need the definition of `even`. So swapping the two
 definitions around won't help either.
 
-There are no "forward prototypes" in OCaml but there is a special syntax
+There are no "forward prototypes" (as seen in languages descended
+from C) in OCaml but there is a special syntax
 for defining a set of two or more mutually recursive functions, like
 `odd` and `even`:
 
@@ -57,19 +58,20 @@ and odd n =
   | 0 -> false
   | x -> even (x-1)
 ```
-It's hard to know exactly how useful this is in practice, since I've
-never had cause to write mutually recursive functions, nor have I been
-able to think of a non-trivial example. However it's there. You can also
+You can also
 use similar syntax for writing mutually recursive class definitions and
 modules.
 
 ## Aliases for function names and arguments
-Recall in Chapter 5 we talked about partial function application. It's
+Recall that we talked about [partial function
+application](functional_programming.html#Partialfunctionapplicationsandcurrying).
+It's
 possible to use this as a neat trick to save typing: aliasing function
 names, and function arguments.
 
 Although we haven't looked at object-oriented programming (that's the
-subject for the next chapter), here's an example from OCamlNet of an
+subject for the ["Objects" section](objects.html)),
+here's an example from OCamlNet of an
 aliased function call. All you need to know is that
 `cgi # output # output_string "string"` is a method call, similar to
 `cgi.output().output_string ("string")` in Java.
@@ -174,8 +176,8 @@ And the type of our new `range` function with labelled arguments is:
 ```ocaml
 range : first:int -> last:int -> int list
 ```
-(Confusingly, the `~` (tilde) is *not* shown in the type definition, but
-you need to use it everywhere else).
+Confusingly, the `~` (tilde) is *not* shown in the type definition, but
+you need to use it everywhere else.
 
 With labelled arguments, it doesn't matter which order you give the
 arguments anymore:
@@ -487,8 +489,8 @@ let f ~foo:foo ... =
 The declaration `~foo:foo` creates a variable called simply `foo`, so if
 you need the value just use plain `foo`.
 
-Things, however, get complicated for two reasons: Firstly the shorthand
-form `~foo` (equivalent to `~foo:foo`), and secondly when you call a
+Things, however, get complicated for two reasons: first, the shorthand
+form `~foo` (equivalent to `~foo:foo`), and second, when you call a
 function which takes a labelled or optional argument and you use the
 shorthand form.
 

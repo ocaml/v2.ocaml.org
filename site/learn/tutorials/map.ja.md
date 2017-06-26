@@ -16,14 +16,14 @@ Map (写像)モジュール
 module MyUsers = Map.Make(String);;
 ```
 
-よし、これでモジュールが作られたのでこのなかに何か入れはじめよう。
-どこから始めようか? うーん、空のモジュールからはじめてみよう。
+よし、これで`MyUsers`モジュールが作られたのでこのなかに何か入れはじめよう。
+どこから始めようか? うーん、空の写像からはじめてみよう。
 
 ```ocamltop
 let m = MyUsers.empty;;
 ```
 
-ふぅむ。空のモジュールはちょっとつまらないので、何かデータを加えよう。
+ふぅむ。空の写像はちょっとつまらないので、何かデータを加えよう。
 
 ```ocamltop
 let m = MyUsers.add "fred" "sugarplums" m;;
@@ -44,13 +44,13 @@ let m = MyUsers.add "mark" "ocamlrules" m;;
 let m = MyUsers.add "pete" "linux" m;;
 ```
 
-`Map` モジュールのなかにいくつかデータがあるので、
+写像のなかにいくつかデータがあるので、
 どこかでデータが見られると親切じゃないかな?
 簡単な表示関数を作ってみよう。
 
 ```ocamltop
 let print_users key password =
-  print_string(key ^ " " ^ password ^ "\n")
+  print_string(key ^ " " ^ password ^ "\n");;
 ```
 
 ふたつの文字列、キーとパスワードをとって
@@ -58,7 +58,7 @@ let print_users key password =
 これで必要なのは写像に適用する関数だ。 それはこんな感じになるだろう:
 
 ```ocamltop
-MyUsers.iter print_users m
+MyUsers.iter print_users m;;
 ```
 
 だが写像にデータを置く理由は、
@@ -66,7 +66,7 @@ MyUsers.iter print_users m
 見つけ出しかたを実際に示す:
 
 ```ocamltop
-MyUsers.find "fred" m
+MyUsers.find "fred" m;;
 ```
 
-これは素早く効率的に `Fred` のパスワードである "`sugarplums`" を返す。
+これは素早く効率的にFredのパスワードである "sugarplums" を返す。

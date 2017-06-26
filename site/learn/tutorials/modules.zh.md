@@ -72,7 +72,7 @@ val message : string
 val hello : unit -> unit
 ```
 
-假设直接访问`message`和其他模块没有关系，我们要定义一个严格的接口来隐藏它。这是我们的`amodule.mli`文件。
+假设不想让其他模块直接访问`message`，我们需要定义一个严格的接口来隐藏它。这是我们的`amodule.mli`文件。
 
 ```ocaml
 val hello : unit -> unit
@@ -254,7 +254,7 @@ module F (X : X_type) : Y_type
 module M = List;;
 ```
 
-，另外对于大多数的库有在线的文档，或者你可以使用 labltk（Ocaml的Tk图形用户界面） 做的`ocamlbrowser`。
+另外对于大多数的库有在线的文档，或者你可以使用 labltk（Ocaml的Tk图形用户界面） 做的`ocamlbrowser`。
 
 ###  模块包含
 如果我们觉得在标准的`List`模块中缺少一个函数，但是如果里面有我们确实需要它。在文件`extensions.ml`中，我们可以用`include`指令来实现这个效果。

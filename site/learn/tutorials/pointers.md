@@ -198,7 +198,7 @@ let tl (l : ilist) = !^l.tl;;
 We can now write all kind of classical algorithms, based on pointers
 manipulation, with their associated loops, their unwanted sharing
 problems and their null pointer errors. For instance, list
-concatenation, as often described in litterature, physically modifies
+concatenation, as often described in literature, physically modifies
 its first list argument, hooking the second list to the end of the
 first:
 

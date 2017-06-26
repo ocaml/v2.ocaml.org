@@ -4,6 +4,8 @@
 
 # Camlp4 3.10
 
+**Deprecation Warning:** this tutorial describes technology that is considered obsolete. It's been replaced by [extensions points and ppx rewriters](http://caml.inria.fr/pub/docs/manual-ocaml-4.02/extn.html#sec243)
+
 **Camlp4**, the OCaml "pre-processor pretty printer" is an advanced
 macro system which allows complex abstract syntax tree transformations
 on ocaml programs, and on other recursive decent grammars.

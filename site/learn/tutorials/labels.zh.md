@@ -127,9 +127,9 @@ sub ask_ok
   
 ask_ok (prompt => "Are you sure?", retries => 2);
 ```
-OCaml也可以有标签化和可选参数。基本语法是：
+OCaml也可以有标签化和可选参数。
 
-The basic syntax is:
+基本语法是：
 
 ```ocamltop
 let rec range ~first:a ~last:b =

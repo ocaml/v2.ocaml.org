@@ -71,7 +71,12 @@
     </div>
     <div class="row">
         <section class="span4 condensed">
-          <h1 class="ruled"><a href="/community/media.html">Slides &amp; Videos</a></h1>
+          <h1 class="ruled"><a href="/community/media.html">Online Courses, Slides &amp; Videos</a></h1>
+
+<iframe frameborder="0" width="380" height="220" src="//www.dailymotion.com/embed/video/x2ymo3x" allowfullscreen></iframe><br /><a href="//www.dailymotion.com/video/x2ymo3x_fun-mooc-introduction-to-functional-programming-in-ocaml_school" target="_blank"> A massive open online course (MOOC) entirely centered around OCaml</a> <i>is now available, and runs once a year!</i>
+	  <p>
+          Learn more, and <a href="https://www.fun-mooc.fr/courses/parisdiderot/56002S02/session02/about">register now on the FUN platform!</a>
+	  </p>
 		  <p class="documentation-video" style="margin-bottom:0">
 <iframe src="//www.slideshare.net/slideshow/embed_code/43836300" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
           </p>
@@ -101,7 +106,7 @@
           <h1 class="ruled"><a href="companies.html">Industrial
           Users</a></h1> <p><a href="http://janestreet.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
-          src="/img/jane-street.jpg"></a>Jane Street is a quantitative
+          src="/img/users/jane-street.jpg"></a>Jane Street is a quantitative
           proprietary trading firm with a unique focus on technology
           and collaborative problem solving.  Almost all of our
           systems are written in OCaml: from statistical research code
@@ -112,7 +117,7 @@
 
           <p><a href="https://www.facebook.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
-          src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png"
+          src="/img/users/facebook.png"
 						     ></a>To
             handle their huge PHP codebase, Facebook developed
             <a href="https://github.com/facebook/pfff/wiki/Main"

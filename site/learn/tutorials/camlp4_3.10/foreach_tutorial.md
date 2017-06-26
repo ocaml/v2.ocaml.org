@@ -4,6 +4,8 @@
 
 # Foreach Tutorial (Camlp4 3.10)
 
+**Deprecation Warning:** this tutorial describes technology that is considered obsolete. It's been replaced by [extensions points and ppx rewriters](http://caml.inria.fr/pub/docs/manual-ocaml-4.02/extn.html#sec243)
+
 This is a tutorial that guides you, step by step, how to write syntax
 extension using Camlp4 in Objective CAML. The example we present in this
 tutorial should give you a practical idea how syntax extension works,

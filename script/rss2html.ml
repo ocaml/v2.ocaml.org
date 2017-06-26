@@ -5,7 +5,7 @@ open Nethtml
 open Syndic
 
 let planet_url = "/community/planet/"
-let planet_full_url = "http://ocaml.org/community/planet/"
+let planet_full_url = "http://ocaml.org" ^ planet_url
 
 let planet_feeds_file = "planet_feeds.txt"
 
@@ -93,6 +93,24 @@ let rec html_of_syndic =
 (* Feeds
  ***********************************************************************)
 
+let is_opening_brace_or_space = function
+  | '(' | '[' | '{' | ' ' | '\012' | '\n' | '\r' | '\t' -> true
+  | _ -> false
+
+let is_closing_brace_or_space = function
+  | ')' | ']' | '}' | ' ' | '\012' | '\n' | '\r' | '\t' -> true
+  | _ -> false
+
+(* Names in https://opam.ocaml.org/blog/feed.xml are surrounded by {}.
+   Remove them. *)
+let remove_braces name =
+  (* Assume name.[i], i0 <= i < i1, is a valid sub-string. *)
+  let i0 = ref 0 and i1 = ref(String.length name) in
+  while !i0 < !i1 && is_opening_brace_or_space name.[!i0] do incr i0 done;
+  while !i0 < !i1 && is_closing_brace_or_space name.[!i1 - 1] do decr i1 done;
+  if !i0 = 0 && !i1 = String.length name then name
+  else String.sub name !i0 (!i1 - !i0)
+
 (* Email on the forge contains the name in parenthesis *)
 let email_name_re =
   Str.regexp " *\\([a-zA-Z.]+@[a-zA-Z.]+\\) *(\\([^()]*\\))"
@@ -101,11 +119,14 @@ let author_email_name (a: Atom.author) =
   let open Atom in
   if Str.string_match email_name_re a.name 0 then
     let name = String.trim(Str.matched_group 2 a.name) in
+    let name = if name = "" then a.name else name in
+    let name = remove_braces name in
     let email = match a.email with
       | None -> Some(Str.matched_group 1 a.name)
       | Some _ -> a.email in
     { a with name; email }
-  else a
+  else
+    { a with name = remove_braces a.name }
 
 let special_processing (e: Atom.entry) =
   let open Atom in
@@ -113,8 +134,9 @@ let special_processing (e: Atom.entry) =
   if a0.name = "OCaml Weekly News" then
     { e with title = Text "Weekly News" }
   else
-    { e with authors = (author_email_name a0,
-                        List.map author_email_name a) }
+    let a0 = author_email_name a0 in
+    let a = List.map author_email_name a in
+    { e with authors = (a0, a) }
 
 (* Atom feed (with no entries) representing a broken feed.  The title
    is the reason for the failure.  Since these feed contain no
@@ -123,7 +145,7 @@ let broken_feed name url reason =
   let feed = Atom.feed ~id:(Uri.of_string(Digest.to_hex(Digest.string name)))
                        ~authors:[Atom.author name]
                        ~title:(Atom.Text reason)
-                       ~updated:(CalendarLib.Calendar.now())
+                       ~updated:(Ptime.max)
                        [] in
   (* See Syndic.Opml1.of_atom for the convention on the length. *)
   Atom.set_self_link feed url ~length:(-1)
@@ -439,7 +461,7 @@ let li_of_post (e: Atom.entry) =
        date @ (Data ", " :: title @ (sep :: html_author)) in
   Element("li", [], line)
 
-let netdate_of_calendar d =
+let netdate_of_ptime d =
   let month =
     let open Syndic.Date in
     match month d with
@@ -472,7 +494,7 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img e =
     | Some d ->
        (* Netdate internationalization functions are more developed. *)
        let d =
-         let d = netdate_of_calendar d in
+         let d = netdate_of_ptime d in
          if Netdate.format ~fmt:"%x" d = Netdate.format ~fmt:"%x" d ~l9n then
            (* English style *)
            Netdate.format ~fmt:"%B %e, %Y" d ~l9n
@@ -623,9 +645,16 @@ let email_threads ?n ~l9n url =
   let posts = (match n with
                | Some n -> take n posts
                | None -> posts) in
-  let img = "/img/mail-icon" in
-  [Element("ul", ["class", "news-feed"],
-           List.concat(List.map (fun p -> headline_of_post ~l9n ~img p) posts))]
+  match posts with
+  | [] ->
+     [Element("span", ["style", "font-style: italic"],
+              [Data "No emails read from ";
+               Element("a", ["href", Uri.to_string url], [Data "the feed"]);
+               Data "."])]
+  | _ :: _ ->
+     let img = "/img/mail-icon" in
+     let headlines = List.map (fun p -> headline_of_post ~l9n ~img p) posts in
+     [Element("ul", ["class", "news-feed"], List.concat headlines)]
 
 
 (* Main

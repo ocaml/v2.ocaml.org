@@ -4,9 +4,13 @@
     <h1>Documentation</h1>
     <div class="row">
         <section class="span6 condensed">
-            <h1 class="ruled">Summary</h1>
-            <p>Here you'll find links to documentation for the OCaml compiler, <a href="/releases/">release</a> information, <a href="install.html">installation instructions</a>, and other resources.</p>
-            <p>Documentation for a given package can be found by following the link on that package's information page. <a href="https://opam.ocaml.org/packages/">Search the package list</a> to find what you need.</p>
+            <h1 class="ruled">OCaml documentation</h1>
+            <p>Consult the
+               <a href="install.html">installation instructions</a>,
+               information about OCaml <a href="/releases/">releases</a>
+               and the user
+               <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">manual</a>.
+            </p>
         </section>
         <section class="span6 condensed">
             <h1 class="ruled">Reference</h1>
@@ -41,9 +45,19 @@
     </div>
     <div class="row">
         <section class="span6 condensed">
-            <h1 class="ruled">OPAM Docs</h1>
-            <p>The OCaml Package Manager (<a href="https://opam.ocaml.org">OPAM</a>) is a source-based package manager for OCaml. It supports multiple simultaneous compiler installations, flexible package constraints, and a Git-friendly development workflow. For documentation on installing OPAM or packaging your libraries, <a href="https://opam.ocaml.org/doc/Install.html">read here</a>. Packages are automatically tested upon submission and reports sent back to maintainers. If you submit a package, you will be rewarded with regular regression tests across many diverse operating systems and platforms.</p>
-            <p>OPAM has been created and is maintained by OCamlPro and OCaml Labs. Bug reports and feature requests for the tool should be reported on <a href="https://github.com/OCaml/opam/issues">OPAM's issue-tracker</a>. Packaging issues or requests for a new package can be reported on the <a href="https://github.com/OCaml/opam-repository/issues">main repository's issue-tracker</a>. General queries for both the tool and the packages can be addressed on the <a href="http://lists.ocaml.org/listinfo/platform">OCaml-platform mailing-list</a> and insights and evolution of OPAM internals can discussed on the <a href="http://lists.ocaml.org/listinfo/opam-devel">OPAM-devel mailing-list</a>.</p>
+            <h1 class="ruled">OPAM and package documentation</h1>
+            <p>OPAM is the source-based package manager for OCaml.
+               It allows you to install OCaml and packages.
+               See the <a href="install.html">installation
+               instructions.</a> and the
+               <a href="https://opam.ocaml.org/doc/">OPAM documentation</a>.
+            </p>
+            <p>The <a href="https://opam.ocaml.org/packages/">list of
+              OPAM packages</a> has links to their homepage
+              and documentation. The distribution and API documentation
+              of the packages you install locally with OPAM can be accessed
+              via <a href="http://erratique.ch/software/odig">odig</a>.
+            </p>
         </section>
         <section class="span6 condensed">
             <h1 class="ruled"><a href="/learn/books.html">Books</a> and <a href="/docs/papers.html">Papers</a></h1>
@@ -58,12 +72,15 @@
                         <img src="/img/OCaml_from_beginning.png" alt="OCaml from the very beginning">
                     </a>
                 </div>
-                <div class="span2">                    
-                    <p>There are a number of excellent books, with two new titles published in 2013. Real World OCaml is available to <a href="https://realworldocaml.org">read online</a>.</p>
+                <div class="span2 documentation-book">
+                    <a href="http://ocaml-book.com/more-ocaml-algorithms-methods-diversions/">
+                        <img src="/img/more-ocaml-300-376.png" alt="More OCaml: Algorithms, Methods &amp; Diversions">
+                    </a>
                 </div>
             </div>
             <footer>
-            <p><a href="/learn/books.html">See more books</a> / <a href="/docs/papers.html">See more papers</a></p>
+            <p>There are a number of excellent books available, with the most recent title published in 2014.</p>
+            <p><a href="/learn/books.html">See more books</a> / <a href="/docs/papers.html">See more papers</a> / <a href="https://realworldocaml.org">Read Real World OCaml online</a></p>
             </footer>
         </section>
     </div>

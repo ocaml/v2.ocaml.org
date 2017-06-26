@@ -20,11 +20,11 @@ and on PCs under Windows. A brief tour on main
 
 #### Under what licensing terms is the OCaml software available?
 
-The OCaml system is open source software: the compiler is distributed
-under the terms of the Q Public License, and its library is under LGPL;
-please read the [license](/docs/license.html) document for more details. A
-BSD-style license is also available for a fee through the [OCaml
-Consortium](/consortium/).
+The OCaml system is open source software. Since version 4.03 the
+compiler and the standard library are distributed under LGPL 2.1 with
+static linking exception, read the [license](/docs/license.html) for
+details. The software is also available under a BSD-style license for a
+fee through the [OCaml Consortium](/consortium/).
 
 #### What is the meaning of the name “OCaml”
 
@@ -35,13 +35,9 @@ has changed since then, but the name stuck.
 The “O” stands for “objective” and was added when the language got object-oriented
 programming capabilities.
 
-#### Do you write “Caml” or “CAML”, “OCaml”, “Ocaml” or “OCAML”?
+#### Do you write “Caml”, “CAML”, “Ocaml”, “OCaML”, “OCAML” or “OCaml” ?
 
-We write OCaml.
-According to usual rules for acronyms, we should write CAML, as we
-write USA. On the other hand, this upper case name seems to yell all
-over the place, and writing OCaml is far more pretty and elegant — with
-“O” and “C” capitalized.
+The official name of the language, capitalization included, is “OCaml”.
 
 #### Is OCaml a compiled or interpreted language?
 
@@ -77,10 +73,10 @@ bug reports and features request, and submit new ones.
 ###  Basic types
 #### Is it possible to do computations with arbritrary precision arithmetics?
 
-OCaml and Caml Light both provide a library that handles exact
-arithmetic computation for rational numbers. The library is called `Num`
-in OCaml and `camlnum` in Caml Light.<br />
- Operations on big numbers gets the suffix `/`: addition is thus `+/`.
+OCaml provides a library called `Num` that handles exact arithmetic computation
+for rational numbers.
+
+Operations on big numbers gets the suffix `/`: addition is thus `+/`.
 You build big numbers using conversion from (small) integers or
 character strings. For printing in the toplevel, a custom printer can be
 used. An example under OCaml is given below.
@@ -182,24 +178,34 @@ let string_of_color =function
   | Red -> "red"
 ```
 
-#### How to share a label between two different record types?
+#### How to share a field between two different record types?
 
-When you define two types sharing a label name, the last defined type
-hides the labels of the first type. For instance:
+When you define two types sharing a field name, the last defined type
+hides the field of the first type. For instance:
 
 ```ocamltop
 type point_3d = {x : float; y : float; z : float};;
 type point_2d = {x : float; y : float};;
 {x = 10.; y = 20.; z = 30.};;
 ```
-The simplest way to overcome this problem is simply ... to use different
+
+Since OCaml 4.02, fields are automatically disambiguated when types are
+known. For example, in `let u:point_3d = ... in u.x`, `u.x` refers to
+the field of `point_3d` even though it is shadowed. However, field
+disambiguation does not work when type information is not available
+(e.g. in `let get_x u = u.x` where the type of `get_x` is not otherwise
+constrained), and may produce confusing results when types are omitted,
+so one may consider avoiding the problem entirely.
+
+The simplest way to overcome this problem is to simply use different
 names! For instance
 
 ```ocamltop
 type point3d = {x3d : float; y3d : float; z3d : float};;
 type point2d = {x2d : float; y2d : float};;
 ```
-With OCaml, one can propose two others solutions. First, it is possible
+
+One can propose two others solutions. First, it is possible
 to use modules to define the two types in different name spaces:
 
 ```ocamltop
@@ -212,7 +218,7 @@ module D2 = struct
 end
 ```
 
-This way labels can be fully qualified as `D3.x` `D2.x`:
+This way fields can be fully qualified as `D3.x` `D2.x`:
 
 ```ocamltop
 {D3.x = 10.; D3.y = 20.; D3.z = 30.};;
@@ -239,9 +245,19 @@ and you can even coerce a `point_3d` to a `point_2d`.
 
 #### How to define two sum types that share constructor names?
 
-Generally speaking you cannot. As for all other names, you must use
+Since OCaml 4.02, constructors are automatically disambiguated when types
+are known. For example, in `type a = A;; type b = A of int;; let x:a = A`,
+`A` is recognized as belonging to the type `a` even though its constructor
+is shadowed. However, constructor disambiguation does not work when type
+information is not available (e.g. in `let get_n x = match x with A -> 1`
+where the type of `get_n` is not otherwise constrained), and may produce
+confusing results when types are omitted, so one may consider avoiding 
+the problem entirely.
+
+Generally speaking, sharing names between two constructors is not
+possible. As for all other names, you must use
 distinct name constructors. However, you can define the two types in two
-different name spaces, i.e. into two different modules. As for labels
+different name spaces, i.e. into two different modules. As for fields
 discussed above, you obtain constructors that can be qualified by their
 module names. With OCaml you can alternatively use polymorphic variants,
 i.e. constructors that are, in some sense, *predefined*, since they are
@@ -374,6 +390,12 @@ with tuples as argument:
 let sum' (x, y) = x + y;;
 sum' (1, 2);;
 ```
+
+By convention, OCaml code generally uses curried functions rather
+than functions accepting a tuple as an argument. Of course, this
+does not apply to cases where the tuple is denoting a data structure
+on its own (e.g. `(float * float * float)` being used to represent
+a point).
 
 #### How to define a function that has several results?
 
@@ -565,8 +587,6 @@ let f (o : < g : 'a. 'a -> 'a >) x y = o#g x, o#g y;;
 type id = { g : 'a. 'a -> 'a };;
 let f r x y = r.g x, r.g y;;
 ```
-FIXME: A direct way now exists.
-
 
 ###  Input/output
 
@@ -594,12 +614,58 @@ printing functions by the high level printing functions provided by
 
 ## Module Language
 
-#### Can I have two mutually recursive compilation units / structures / signatures / functors?
+#### Can I have two mutually recursive structures, signatures, functors inside a single compilation unit?
 
-Currently not in the stable langage. However there exists an [OCaml
-extension](http://caml.inria.fr/pub/docs/manual-ocaml/extn.html#sec220)
-(which is subject to change or removal at any time) which addresses some
-of these problems.
+Yes, but structures always have to have  an explcit signature. 
+Recursive structures may be defined as follows:
+
+```ocamltop
+module rec A : sig
+  type a = { x: int }
+end = struct
+  type a = { x: int }
+  let b : B.b = { y = 1.0 }
+end and B : sig
+  type b = { y: float }
+end = struct
+  type b = { y: float }
+  let a : A.a = { x = 1 }
+end
+```
+
+In a similar way, mutually recursive signatures and functors can also
+be defined.
+
+#### Can I have two mutually recursive compilation units?
+
+With any two compilation units (`.ml` or `.mli` files), there must always
+exist an order in which it is possible to compile them sequentially.
+This precludes most kinds of recursion between compilation units.
+
+However, two implementations can be recursive on types by exporting abstract
+versions of the types in the interfaces, with the manifest versions in 
+the implementations referring to the actual types.
+
+For example, consider these `x.ml`/`x.mli` files:
+
+```ocamltop
+type a (* only in x.ml: *) = Y.a
+type b =
+| BNone
+| BOne of a
+```
+
+and `y.ml`/`y.mli` files:
+
+```ocamltop
+type b (* only in y.ml: *) = X.b
+type a =
+| ANone
+| AOne of b
+```
+
+In this way, cooperation between the `X` and `Y` modules allows 
+the recursive value `X.BOne (Y.AOne (X.BOne ...))` to be produced.
 
 #### How do I express sharing constraints between modules?
 
@@ -643,10 +709,5 @@ Macintosh OS type `Command-.`, under Windows use the “OCaml” menu.
 
 #### How to quit the interactive loop?
 
-With Caml Light, type `quit();;`. With OCaml, type `#quit;;`. In both,
-you can also send an end-of-file (CTRL-D for Unix, CTRL-Z for DOS,
-etc.).
-
-<!-- ###  Batch Compilers -->
-<!-- ###  Yacc -->
-<!-- ###  Lex -->
+Type `#quit;;`. You can also quit it by inputting an end-of-file character
+with Ctrl-D on Unix, and Ctrl-Z on Windows.
