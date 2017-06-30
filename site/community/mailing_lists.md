@@ -13,6 +13,16 @@ use GitHub's Issue system for discussions.
 
 ## Mailing Lists
 
+### Discuss at OCaml.org
+[discuss.ocaml.org](https://discuss.ocaml.org/)  
+This is the most active forum about OCaml. Topics are grouped into
+a variety of categories, which can be followed independently.
+A mailing-list mode is also available for those who wish to receive
+all messages.
+
+Most categories are in English but categories in other languages are
+welcome.
+
 ### Official OCaml List
 *caml-list AT inria.fr*  
 The OCaml mailing list is intended for all users of the OCaml

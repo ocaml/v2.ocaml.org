@@ -6,6 +6,18 @@
 
 ## Les listes de discussion par mail
 
+### discuss.ocaml.org
+[discuss.ocaml.org](https://discuss.ocaml.org/)  
+C'est le forum le plus actif au sein de la communauté OCaml.
+Il touche à tous les aspects du langage et toutes les audiences sont
+bienvenues. Les conversations y sont groupées en catégories,
+auxquelles il est possible de s'abonner separément.
+Il offre également un mode liste de diffusion, pour ceux qui désireraient
+recevoir tous les messages.
+
+La plupart des catégories sont en anglais mais certaines catégories
+peuvent etre créées en français ou dans d'autres langues.
+
 ### caml-list AT inria.fr
 
 La liste de diffusion OCaml s'adresse à tous les utilisateurs des
