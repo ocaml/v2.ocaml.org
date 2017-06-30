@@ -10,7 +10,7 @@ members to demonstrate their interest in the OCaml language and express
 their support to its development. Moreover, they benefit of a [specific
 license](/docs/consortium-license.html).
 
-Membership is cheap (3000€, VAT excluded), but important, not only for
+Membership is cheap (3500€, VAT excluded), but important, not only for
 the development of OCaml, its promotion and its dissemination, but
 also for its continuity.
 
@@ -19,10 +19,8 @@ also for its continuity.
 <table style="width: 100%">
 <tbody>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.besport.com"><img
-  src="/img/users/besport.png" alt="BeSport" style="width: 170px" /></a></td>
-<td align="center"><a href="http://www.bloomberg.com"><img
-  src="/img/users/bloomberg.jpg" alt="Bloomberg" style="width: 170px" /></a></td>
+<td align="center"><a href="http://www.besport.com"><img src="/img/users/besport.png" alt="BeSport" style="width: 170px" /></a></td>
+<td align="center"><a href="http://www.bloomberg.com"><img src="/img/users/bloomberg.jpg" alt="Bloomberg" style="width: 170px" /></a></td>
 <td align="center"><a href="http://www.cea.fr"><img src="/img/users/cea.png" alt="CEA" style="height: 65px" /></a></td>
 </tr>
 <tr style="height: 70px">
@@ -36,21 +34,13 @@ also for its continuity.
 <td align="center"><a href="http://www.lexifi.com"><img src="/img/users/lexifi.png" alt="Lexifi" style="height: 50px" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.microsoft.com"><img
-  src="/img/users/microsoft.png" alt="Microsoft"
-  style="width: 170px" /></a></td>
-<td align="center"><a href="http://www.mlstate.com"><img
-  src="/img/users/mlstate.jpg" alt="MLState" style="height: 50px" /></a></td>
-<td align="center"><a href="http://www.mylife.com"><img
-  src="/img/users/mylife.jpg" alt="Mylife.com" style="height: 70px" /></a></td>
+<td align="center"><a href="http://www.microsoft.com"><img src="/img/users/microsoft.png" alt="Microsoft" style="width: 170px" /></a></td>
+<td align="center"><a href="http://www.mlstate.com"><img src="/img/users/mlstate.jpg" alt="MLState" style="height: 50px" /></a></td>
+<td align="center"><a href="http://www.mylife.com"><img src="/img/users/mylife.jpg" alt="Mylife.com" style="height: 70px" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.simcorp.com"><img
-  src="/img/users/simcorp.png" alt="SimCorp"
-  style="width: 170px" /></a></td>
-<td align="center"><a href="http://www.ocamlpro.com"><img
-  src="/img/users/ocamlpro.png" alt="OCamlPro"
-  style="width: 170px" /></a></td>
+<td align="center"><a href="http://www.simcorp.com"><img src="/img/users/simcorp.png" alt="SimCorp" style="width: 170px" /></a></td>
+<td align="center"><a href="http://www.ocamlpro.com"><img src="/img/users/ocamlpro.png" alt="OCamlPro" style="width: 170px" /></a></td>
 <td></td>
 </tr>
 </tbody>
