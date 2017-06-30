@@ -10,8 +10,8 @@
 [discuss.ocaml.org](https://discuss.ocaml.org/)  
 C'est le forum le plus actif au sein de la communauté OCaml.
 Il touche à tous les aspects du langage et toutes les audiences sont
-bienvenues. Les conversations y sont groupées en catégories,
-auxquelles il est possible de s'abonner separément.
+bienvenues. Les conversations y sont regroupées en catégories,
+auxquelles il est possible de s'abonner séparément.
 Il offre également un mode liste de diffusion, pour ceux qui désireraient
 recevoir tous les messages.
 
