@@ -2548,11 +2548,41 @@ in full words. Example: 175 must be written as one-seven-five. Write a
 function `full_words` to print (non-negative) integer numbers in full
 words.
 
-<!-- SOLUTION -->
+SOLUTION
 
-```ocaml
-(* example pending *);;
-```
+> A recursive solution that should work in `O(log(n))` space and time (or `O(n)` if you take `n` to be the number of digits base 10 of the input).
+> ```ocamltop
+> let full_words n =
+>   let rec aux n =
+>     let d = n mod 10 in
+>     let d' = match d with
+>       | 0 -> "zero"
+>       | 1 -> "one"
+>       | 2 -> "two"
+>       | 3 -> "three"
+>       | 4 -> "four"
+>       | 5 -> "five"
+>       | 6 -> "six"
+>       | 7 -> "seven"
+>       | 8 -> "eight"
+>       (* d < 10, so the catchall case is just here for the compiler *)
+>       | 9 | _ -> "nine"
+>    in
+>    let n' = n / 10 in
+>    if n' = 0
+>      then begin
+>        let buf = Buffer.create 64 in
+>        Buffer.add_string buf d';
+>        buf
+>     end
+>     else begin
+>       let buf = aux n' in
+>       Buffer.add_string buf ("-" ^ d');
+>       buf
+>     end
+>   in
+>   Buffer.contents (aux n);;
+> ```
 
 
 #### Syntax checker. (*medium*)
