@@ -79,6 +79,17 @@
 					 alt="">
                     Apprendre OCaml dans son navigateur avec TryOCaml
                 </a>
+               <br/>
+			   <div style="margin-top: 2ex;" >
+			     <a href="https://discuss.ocaml.org/"
+                   target="_blank"
+			      ><img src="/img/chat.svg" alt="chat" class="svg"
+                    style="width: 4ex;" />
+                   <img src="/img/chat.png" alt="chat" class="png"
+                    style="width: 4ex;" />
+                   Une question ?
+                   Discutez avec des experts OCaml !</a>
+               </div>
             </div>
         </div>
         <section id="home-news" class="span4 condensed">
