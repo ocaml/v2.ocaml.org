@@ -19,6 +19,7 @@ if [ -n "${OPAM_SWITCH}" ]; then
 fi
 eval `opam config env`
 
+opam pin remove opam2web
 make deps
 
 export OCAMLRUNPARAM=b
