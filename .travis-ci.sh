@@ -19,8 +19,13 @@ if [ -n "${OPAM_SWITCH}" ]; then
 fi
 eval `opam config env`
 
-opam pin remove opam2web
 make deps
+RC=$?
+if [ $RC -ne 0 ]; then
+    # Try again after updating the environment (bin path)
+    eval `opam config env`
+    make deps
+fi
 
 export OCAMLRUNPARAM=b
 make -j 2
