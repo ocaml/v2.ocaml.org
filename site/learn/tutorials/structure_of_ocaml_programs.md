@@ -363,7 +363,7 @@ Note especially the last one - I'm using `;` as an operator to "join"
 two statements. All functions in OCaml can be expressed as:
 
 ```ocaml
- let name [parameters] = expression
+ let name [parameters] = expression ;;
 ```
 OCaml's definition of what is an expression is just a little wider
 than C's. In fact, C has the concept of "statements"- but all of C's
@@ -375,104 +375,79 @@ The one place that `;` is different from `+` is that I can refer to
 function, to sum a list of ints, like:
 
 ```ocamltop
-let sum_list = List.fold_left ( + ) 0
+let sum_list = List.fold_left ( + ) 0 ;;
 ```
 
-## Using and omitting `;;` and `;`
-Now we're going to look at a very important issue. When should you use
-`;;`, when should you use `;`, and when should you use none of these at
-all? This is a tricky issue until you "get it", and it taxed the author
-for a long time while he was learning OCaml too.
+## The disappearance of `;;`
 
-Rule #1 is that you should use `;;` to separate statements at the
-top-level of your code, and *never* within function definitions or any
-other kind of statement.
+Now we're going to look at a very important issue. All examples above
+ended with a double semi-colon `;;`. However, if you look at OCaml code
+outside of tutorials, you will find whole code base that does not
+use `;;`, not even once.
 
-Have a look at a section from the second graphics example above:
+The truth is that `;;` is mostly used in the toplevel and tutorials to
+mark the end of an Ocaml phrase and send this phrase to the toplevel
+in order to evaluate it.
+
+Outside of the toplevel, uses of `;;` are, at best, infrequent.
+Briefly, double semi-common `;;` can used for three reasons:
+
+* For compatibility with the toplevel
+* To split the code to ease debugging
+* To introduce a toplevel expression
+
+Inserting `;;` can be sometimes useful for beginners when debugging,
+since it stops any running definition. For instance, in the following
+example, the definition of `f` does not stop at line 1 due to the
+comma `,` operator. Consequently, the compiler raises an error at the
+end of the second line:
 
 ```ocaml
-Random.self_init ();;
-Graphics.open_graph " 640x480";;
-
-let rec iterate r x_init i =
-  if i = 1 then x_init
-  else
-    let x = iterate r x_init (i-1) in
-    r *. x *. (1.0 -. x);;
+let f x = x,
+let g = x * x
 ```
 
-We have two top-level statements and a function definition (of a
-function called `iterate`). Each one is followed by `;;`.
-
-Rule #2 is that *sometimes* you can elide the `;;`. As a
-beginner you shouldn't worry about this — you should always put in the
-`;;` as directed by Rule #1. But since you'll also be reading a lot of
-other peoples' code you'll need to know that sometimes we can elide
-`;;`. The particular places where this is allowed are:
-
-* Before the keyword `let`.
-* Before the keyword `open`.
-* Before the keyword `type`.
-* At the very end of the file.
-* A few other (very rare) places where OCaml can "guess" that the next
- thing is the start of a new statement and not the continuation of
- the current statement.
-
-Here is some working code with `;;` elided wherever possible:
+Inserting a double semi-colon between `f` and `g` detangles
+the definition of f and g:
 
 ```ocaml
-open Random                   (* ;; *)
-open Graphics;;
-
-self_init ();;
-open_graph " 640x480"         (* ;; *)
-
-let rec iterate r x_init i =
-  if i = 1 then x_init
-  else
-    let x = iterate r x_init (i-1) in
-    r *. x *. (1.0 -. x);;
-
-for x = 0 to 639 do
-  let r = 4.0 *. (float_of_int x) /. 640.0 in
-  for i = 0 to 39 do
-    let x_init = Random.float 1.0 in
-    let x_final = iterate r x_init 500 in
-    let y = int_of_float (x_final *. 480.) in
-    Graphics.plot x y
-  done
-done;;
-
-read_line ()                  (* ;; *)
+let f x = x,
+;;
+let g = x * x
 ```
 
-Rules #3 and #4 refer to the single `;`. This is completely different
-from `;;`. The single semicolon `;` is what is known as a **sequence
-point**, which is to say it has exactly the same purpose as the single
-semicolon in C, C++, Java and Perl. It means "do the stuff before this
-point first, then do the stuff after this point when the first stuff has
-completed". Bet you didn't know that.
-
-Rule #3 is: Consider `let ... in` as a statement, and never put a
-single `;` after it.
-
-Rule #4 is: For all other statements within a block of code, follow
-them with a single `;`, *except* for the very last one.
-
-The inner for-loop in our example above is a good demonstration. Notice
-that we never use any single `;` in this code:
+Another use of `;;` is to introduce a new toplevel expression after
+some definitions:
 
 ```ocaml
-for i = 0 to 39 do
-  let x_init = Random.float 1.0 in
-  let x_final = iterate r x_init 500 in
-  let y = int_of_float (x_final *. 480.) in
-  Graphics.plot x y
-done
+let b = "This started with"
+let s = "a very nonsensical message."
+;; print_endline b; print_endline s
+open String
+let s = concat "" ["Fortunately"; ", "; "the"; "end"; "is"; "near"; "."]
+;; print_endline s
+;; let s = "let end here" in print_endline s
 ```
-The only place in the above code where might think about putting in a
-`;` is after the `Graphics.plot x y`, but because this is the last
-statement in the block, Rule #4 tells us not to put one there.
+
+In particular, in the above examples, all lines starting with `;;` are
+purely effectful and deleting them will only affect the effect of the code,
+not the following definitions.
+
+However, this use of `;;` can always be replaced by either
+
+```ocaml
+let _ = expression ()
+```
+or if the result of the expression is `unit`
+
+```ocaml
+let () = expression ()
+```
+
+With this convention, there are no toplevel expressions anymore: any
+module can be written as a sequence of definitions. Consequently, some
+style guidelines consider that `;;` should never be used outside of the
+toplevel.
 
 ## Putting it all together: some real code
 In this section we're going to show some real code fragments from the
