@@ -336,12 +336,13 @@ Actually this is really useful when you want to import a nested module
 out the full path to the nested module name each time.
 
 ## The sequence operator ";"
-The `;` is an operator, just like `+` is. Well, not quite just like
- `+` is, but conceptually the same. `+` has type `int -> int -> int` -
- it takes two ints and returns an int (the sum). `;` has type
- `unit -> 'b -> 'b` - it takes two values and simply returns the second
- one. Rather like C's `,` (comma) operator. You can write
- `a ; b ; c ; d` just as easily as you can write `a + b + c + d`.
+
+The semi-colon `;` is an operator, just like `+` is. Well, not quite just like
+`+` is, but conceptually the same. The operator `+` has type `int -> int -> int` -
+it takes two ints and returns an int (the sum). The semi-colon `;` has type
+`unit -> 'b -> 'b` - it takes two values and simply returns the second
+one. Rather like C's `,` (comma) operator. You can write
+`a ; b ; c ; d` just as easily as you can write `a + b + c + d`.
 
 This is one of those "mental leaps" which is never spelled out very
 well - in OCaml, nearly everything is an expression. `if/then/else` is
@@ -355,7 +356,8 @@ thing):
  let f x b y = x + (match b with true -> y | false -> 0)
  let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
  let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
- ```
+ let f = fun x -> fun b -> fun y -> if b then x+y else x+0
+```
 
 Note especially the last one - I'm using `;` as an operator to "join"
 two statements. All functions in OCaml can be expressed as:
@@ -363,14 +365,14 @@ two statements. All functions in OCaml can be expressed as:
 ```ocaml
  let name [parameters] = expression
 ```
- OCaml's definition of what is an expression is just a little wider
- than C's. In fact, C has the concept of "statements"- but all of C's
- statements are just expressions in OCaml (combined with the `;`
- operator).
+OCaml's definition of what is an expression is just a little wider
+than C's. In fact, C has the concept of "statements"- but all of C's
+statements are just expressions in OCaml (combined with the `;`
+operator).
 
- The one place that `;` is different from `+` is that I can refer to
- `+` just like a function. For instance, I can define a `sum_list`
- function, to sum a list of ints, like:
+The one place that `;` is different from `+` is that I can refer to
+`+` just like a function. For instance, I can define a `sum_list`
+function, to sum a list of ints, like:
 
 ```ocamltop
 let sum_list = List.fold_left ( + ) 0
