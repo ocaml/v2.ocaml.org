@@ -335,6 +335,47 @@ Actually this is really useful when you want to import a nested module
 (modules can be nested inside one another), but you don't want to type
 out the full path to the nested module name each time.
 
+## The sequence operator ";"
+The `;` is an operator, just like `+` is. Well, not quite just like
+ `+` is, but conceptually the same. `+` has type `int -> int -> int` -
+ it takes two ints and returns an int (the sum). `;` has type
+ `unit -> 'b -> 'b` - it takes two values and simply returns the second
+ one. Rather like C's `,` (comma) operator. You can write
+ `a ; b ; c ; d` just as easily as you can write `a + b + c + d`.
+
+This is one of those "mental leaps" which is never spelled out very
+well - in OCaml, nearly everything is an expression. `if/then/else` is
+an expression. `a ; b` is an expression. `match foo with ...` is an
+expression. The following code is perfectly legal (and all do the same
+thing):
+
+ ```ocamltop
+ let f x b y = if b then x+y else x+0
+ let f x b y = x + (if b then y else 0)
+ let f x b y = x + (match b with true -> y | false -> 0)
+ let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
+ let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
+ ```
+
+Note especially the last one - I'm using `;` as an operator to "join"
+two statements. All functions in OCaml can be expressed as:
+
+```ocaml
+ let name [parameters] = expression
+```
+ OCaml's definition of what is an expression is just a little wider
+ than C's. In fact, C has the concept of "statements"- but all of C's
+ statements are just expressions in OCaml (combined with the `;`
+ operator).
+
+ The one place that `;` is different from `+` is that I can refer to
+ `+` just like a function. For instance, I can define a `sum_list`
+ function, to sum a list of ints, like:
+
+```ocamltop
+let sum_list = List.fold_left ( + ) 0
+```
+
 ## Using and omitting `;;` and `;`
 Now we're going to look at a very important issue. When should you use
 `;;`, when should you use `;`, and when should you use none of these at
@@ -430,50 +471,6 @@ done
 The only place in the above code where might think about putting in a
 `;` is after the `Graphics.plot x y`, but because this is the last
 statement in the block, Rule #4 tells us not to put one there.
-
-## Note about ";"
-Brian Hurt writes to correct me on ";"
-
-> The `;` is an operator, just like `+` is. Well, not quite just like
-> `+` is, but conceptually the same. `+` has type `int -> int -> int` -
-> it takes two ints and returns an int (the sum). `;` has type
-> `unit -> 'b -> 'b` - it takes two values and simply returns the second
-> one. Rather like C's `,` (comma) operator. You can write
-> `a ; b ; c ; d` just as easily as you can write `a + b + c + d`.
-> 
-> This is one of those "mental leaps" which is never spelled out very
-> well - in OCaml, nearly everything is an expression. `if/then/else` is
-> an expression. `a ; b` is an expression. `match foo with ...` is an
-> expression. The following code is perfectly legal (and all do the same
-> thing):
-> 
-> ```ocamltop
-> let f x b y = if b then x+y else x+0
-> let f x b y = x + (if b then y else 0)
-> let f x b y = x + (match b with true -> y | false -> 0)
-> let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
-> let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
-> ```
-> 
-> Note especially the last one - I'm using `;` as an operator to "join"
-> two statements. All functions in OCaml can be expressed as:
-> 
-> ```ocaml
-> let name [parameters] = expression
-> ```
-> 
-> OCaml's definition of what is an expression is just a little wider
-> than C's. In fact, C has the concept of "statements"- but all of C's
-> statements are just expressions in OCaml (combined with the `;`
-> operator).
-> 
-> The one place that `;` is different from `+` is that I can refer to
-> `+` just like a function. For instance, I can define a `sum_list`
-> function, to sum a list of ints, like:
-> 
-> ```ocamltop
-> let sum_list = List.fold_left ( + ) 0
-> ```
 
 ## Putting it all together: some real code
 In this section we're going to show some real code fragments from the
