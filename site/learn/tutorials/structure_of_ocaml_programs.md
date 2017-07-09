@@ -436,12 +436,22 @@ not the following definitions.
 However, this use of `;;` can always be replaced by either
 
 ```ocaml
-let _ = expression ()
+let () = expression ()
 ```
-or if the result of the expression is `unit`
+
+if the result of the expression is `unit`, or
 
 ```ocaml
-let () = expression ()
+let _ = expression ()
+```
+otherwise. Not that the first form is safer, since it requires that
+the type of the returned expression is unit; preventing us, for instance,
+from forgetting an argument in
+
+```ocaml
+let () =
+  print_newline
+  (* here, we probably forget () and the compiler will complain *)
 ```
 
 With this convention, there are no toplevel expressions anymore: any
