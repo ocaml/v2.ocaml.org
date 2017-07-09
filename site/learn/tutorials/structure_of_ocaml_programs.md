@@ -382,11 +382,11 @@ let sum_list = List.fold_left ( + ) 0 ;;
 
 Now we're going to look at a very important issue. All examples above
 ended with a double semi-colon `;;`. However, if you look at OCaml code
-outside of tutorials, you will find whole code base that does not
+outside of tutorials, you will find whole code bases that does not
 use `;;`, not even once.
 
 The truth is that `;;` is mostly used in the toplevel and tutorials to
-mark the end of an Ocaml phrase and send this phrase to the toplevel
+mark the end of an OCaml phrase and send this phrase to the toplevel
 in order to evaluate it.
 
 Outside of the toplevel, uses of `;;` are, at best, infrequent.
