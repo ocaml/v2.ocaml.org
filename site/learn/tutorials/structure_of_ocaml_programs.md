@@ -457,7 +457,7 @@ let () =
 With this convention, there are no toplevel expressions anymore: any
 module can be written as a sequence of definitions. Consequently, some
 style guidelines consider that `;;` should never be used outside of the
-toplevel.
+toplevel (see for instance these [style guidelines](guidelines.html)).
 
 ## Putting it all together: some real code
 In this section we're going to show some real code fragments from the
