@@ -21,8 +21,73 @@ and [FSCD 2017](http://www.cs.ox.ac.uk/conferences/fscd2017/). It
 happens the day after the [ML
 workshop](http://www.mlworkshop.org/ml2017).
 
-Call for presentations
-======================
+
+Presentations
+=============
+
+OCaml 2017 will open with an invited talk by three frequent
+contributors that recently became maintainers of the OCaml
+implementation: David Allsopp, Florian Angeletti, and Sébastien
+Hinderer.
+
+Due to the high number of high-quality submissions, we had to have
+more posters than in previous editions to fit a one-day
+schedule. Presentations were selected as talks or posters based on
+what presentation medium could work well, rather than on any
+preference on the content.
+
+The following works will be presented as talks
+
+- A B-tree library for OCaml  
+  Tom Ridge  
+
+- A memory model for multicore OCaml  
+  Stephen Dolan, KC Sivaramakrishnan  
+
+- Component-based Program Synthesis in OCaml  
+  Zhanpeng Liang, Kanae Tsushima  
+
+- Extending OCaml's open  
+  Runhang Li, Jeremy Yallop  
+
+- Genspio: Generating Shell Phrases In OCaml  
+  Sebastien Mondet  
+
+- Owl: A General-Purpose Numerical Library in OCaml  
+  Liang Wang  
+
+- ROTOR: First Steps Towards a Refactoring Tool for OCaml  
+  Reuben N. S. Rowe, Simon Thompson  
+
+- Testing with Crowbar  
+  Stephen Dolan, Mindy Preston  
+
+- Tezos: the OCaml Crypto-Ledger  
+  Benjamin Canou, Grégoire Henry, Pierre Chambart, Fabrice Le Fessant, Arthur Breitman
+
+- The State of the OCaml Platform: September 2017  
+  Anil Madhavapeddy  
+
+- Wodan: a pure OCaml, flash-aware filesystem library  
+  Gabriel de Perthuis  
+
+The following works will be presented as posters.
+
+- ocamli: Interpreted OCaml  
+  John Whitington  
+
+- mSAT: An OCaml SAT Solver  
+  Bury Guillaume  
+
+- Tyre – Typed Regular Expressions  
+  Gabriel Radanne  
+
+- Jbuilder: a modern approach to OCaml development  
+  Jeremie Dimino, Mark Shinwell  
+
+
+Call for presentations (past)
+=============================
 
 Scope
 -----
