@@ -39,7 +39,7 @@ OPAM](http://opam.ocaml.org/) et suivez les instructions.
 Pour les plus impatients, il existe un installeur binaire :
 
 ```bash
-$ wget http://www.ocamlpro.com/pub/opam_installer.sh
+$ wget https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh
 $ sh ./opam_installer.sh /usr/local/bin  # Vous pouvez changer le chemin pour l'installer ailleurs
 ```
 Ou depuis les sources:
