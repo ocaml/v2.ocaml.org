@@ -1,3 +1,5 @@
+PKG unix
+PKG compiler-libs
 PKG netstring
 PKG netclient
 PKG syndic

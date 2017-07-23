@@ -14,6 +14,7 @@ module St__ = StdLabels
 
 let () =
   eprintf "***** STARTING OCAML TOPLEVEL ******\n%!";
+  Unix.putenv "TERM" "dumb";
   Toploop.set_paths ();
   Toploop.initialize_toplevel_env();
   (* (match Hashtbl.find Toploop.directive_table "rectypes" with *)

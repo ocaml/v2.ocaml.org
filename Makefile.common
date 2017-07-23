@@ -78,7 +78,7 @@ script/md_preprocess: $(CODE_TYPE_DEP) script/code.ml \
 
 script/code_top: $(CODE_TYPE_DEP) script/code_top.ml $(UTILS_DEP)
 	cd script && \
-	$(OCAMLC) -o ../"$@" -package netstring,dynlink,compiler-libs.toplevel \
+	$(OCAMLC) -o ../"$@" -package unix,netstring,dynlink,compiler-libs.toplevel \
 	  -linkpkg utils.cmo code_types.cmo code_top.ml
 
 RELATIVE_URLS_DEP=script/urlfun.ml script/urlfun.mli $(UTILS_DEP)
