@@ -11,6 +11,9 @@ module Q___ = Queue
 module C___ = CamlinternalOO
 module D___ = Dynlink
 module St__ = StdLabels
+module Ll__ = ListLabels
+module Al__ = ArrayLabels
+module Sl__ = StringLabels
 
 let () =
   eprintf "***** STARTING OCAML TOPLEVEL ******\n%!";
