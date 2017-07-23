@@ -460,21 +460,17 @@ function defined as:
 
 ```ocaml
 module ToggleButton = struct
-  external toggle_button_create : unit -> toggle_button obj
-      = "ml_gtk_toggle_button_new"
-  external toggle_button_create_with_label : string -> toggle_button obj
-      = "ml_gtk_toggle_button_new_with_label"
-  let create_toggle ?label () =
-    match label with
-    | None -> toggle_button_create ()
-    | Some label -> toggle_button_create_with_label label
+  include GtkButtonProps.ToggleButton
+  let create_check pl : toggle_button obj = Object.make "GtkCheckButton" pl
+  external toggled : [>`toggle] obj -> unit
+      = "ml_gtk_toggle_button_toggled"
 end
 ```
 You can call these functions directly to see what they return:
 
 ```ocamltop
-GtkButton.ToggleButton.toggle_button_create ();;
-GtkButton.ToggleButton.create_toggle ~label:"Push me!" ();;
+GtkButton.ToggleButton.create;;
+GtkButton.ToggleButton.make_params;;
 ```
 Notice the return type: `toggle_button obj` (ie. a definite instance of
 the polymorphic type `'a obj`). What is `toggle_button`? It's a type
@@ -506,36 +502,12 @@ Instead a function is provided which generates instances for you. Here
 it is, simplified somewhat:
 
 ```ocaml
-let toggle_button ?label ?border_width ?width ?height () =
-  let w = ToggleButton.create_toggle ?label () in
-  Container.set w ?border_width ?width ?height;
-  new toggle_button w
+let toggle_button ?label ?show () =
+  Button.make_params [] ?label ~cont:(
+  ToggleButton.make_params ~cont:(
+  pack_return (fun p -> new toggle_button (ToggleButton.create p))))
 ```
-Recall that `w` has the abstract type
-`` [`base|`widget|`container|`button|`toggle] obj ``, and it wraps up
-the actual `GtkObject` allocated by the C library.
-
-A toggle button is-a container, and the next thing we do is call
-`Container.set` to set some properties in the base class. Here is where
-the polymorphic variants become interesting. What is the type of
-`Container.set`?
-
-```ocamltop
-GtkBase.Container.set;;
-```
-`Container.set` is expecting an argument of type
-`` [>`container|`widget] obj ``. Recall from our discussion of
-polymorphic variants that `` [>`container|`widget] `` means "a variant
-which contains *at least* `` `container`` and `` `widget``, and
-possibly other things too". Now go back and compare with the definition
-of `toggle_button` type above.
-
-So `w` of type `` [`base|`widget|`container|`button|`toggle] obj `` is
-compatible with the call to `Container.set`, expecting
-`` [>`container|`widget] obj ``.
-
-Finally our function actually creates the class, passing the widget `w`
-as the parameter to the class. The class is defined like this
+The class created by `new toggle_button` is like this
 (simplified):
 
 ```ocaml
