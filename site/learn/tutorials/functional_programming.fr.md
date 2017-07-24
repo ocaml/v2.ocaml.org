@@ -385,9 +385,9 @@ La variable `a` est allouée dans la pile, et est clairement « unboxed ».
 
 La fonction `printit()` prends un entier « boxed » et l'affiche.
 
-Le diagramme ci-dessous (NDT: non-existant à l'écriture de la
-traduction) montre un tableau de « unboxed » (en haut) face à des entiers
-« unboxed » (en bas) :
+Le diagramme ci-dessous
+montre un tableau de « unboxed » (en haut) face à des entiers
+« boxed » (en bas) :
 
 ![Boxed Array](/img/boxedarray.png "")
 
