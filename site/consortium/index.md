@@ -19,28 +19,28 @@ also for its continuity.
 <table style="width: 100%">
 <tbody>
 <tr style="height: 70px">
+<td align="center"><a href="https://www.imandra.ai/"><img src="/img/users/aesthetic-integration.png" alt="AI" style="height: 60px" /></a></td>
 <td align="center"><a href="https://ahrefs.com"><img src="/img/users/ahrefs.png" alt="Ahrefs" style="width: 170px" /></a></td>
 <td align="center"><a href="http://www.besport.com"><img src="/img/users/besport.png" alt="BeSport" style="width: 170px" /></a></td>
-<td align="center"><a href="http://www.bloomberg.com"><img src="/img/users/bloomberg.jpg" alt="Bloomberg" style="width: 170px" /></a></td>
 </tr>
 <tr style="height: 70px">
+<td align="center"><a href="http://www.bloomberg.com"><img src="/img/users/bloomberg.jpg" alt="Bloomberg" style="width: 170px" /></a></td>
 <td align="center"><a href="http://www.cea.fr"><img src="/img/users/cea.png" alt="CEA" style="height: 65px" /></a></td>
 <td align="center"><a href="http://www.citrix.com"><img src="/img/users/citrix.png" alt="Citrix" /></a></td>
+</tr>
+<tr style="height: 70px">
 <td align="center"><a href="http://www.dassault-aviation.com"><img src="/img/users/dassault-aviation.png" alt="Dassault Aviation" /></a></td>
-</tr>
-<tr style="height: 70px">
-<td align="center"><a href="http://www.3ds.com"><img src="/img/users/dassault.png" alt="Dassault System" style="height: 60px" /></a></td>
+<td align="center"><a href="https://www.docker.com/"><img src="/img/users/docker.png" alt="Docker" style="height: 60px" /></a></td>
 <td align="center"><a href="http://www.esterel-technologies.com"><img src="/img/users/esterel.jpg" alt="Esterel Technologies" style="height: 60px" /></a></td>
-<td align="center"><a href="http://www.facebook.com"><img src="/img/users/facebook.png" alt="Facebook" style="height: 60px" /></a></td>
 </tr>
 <tr style="height: 70px">
+<td align="center"><a href="http://www.facebook.com"><img src="/img/users/facebook.png" alt="Facebook" style="height: 60px" /></a></td>
 <td align="center"><a href="http://janestreet.com/"><img src="/img/users/jane-street.jpg" alt="Jane Street" style="height: 50px" /></a></td>
+<td align="center" style="font-size:160%">Kernelyze LLC</td>
+</tr>
+<tr style="height: 70px">
 <td align="center"><a href="http://www.lexifi.com"><img src="/img/users/lexifi.png" alt="Lexifi" style="height: 50px" /></a></td>
 <td align="center"><a href="http://www.microsoft.com"><img src="/img/users/microsoft.png" alt="Microsoft" style="width: 170px" /></a></td>
-</tr>
-<tr style="height: 70px">
-<td align="center"><a href="http://www.mlstate.com"><img src="/img/users/mlstate.jpg" alt="MLState" style="height: 50px" /></a></td>
-<td align="center"><a href="http://www.mylife.com"><img src="/img/users/mylife.jpg" alt="Mylife.com" style="height: 70px" /></a></td>
 <td align="center"><a href="http://www.ocamlpro.com"><img src="/img/users/ocamlpro.png" alt="OCamlPro" style="width: 170px" /></a></td>
 </tr>
 <tr style="height: 70px">
