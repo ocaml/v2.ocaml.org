@@ -349,6 +349,9 @@ moduli possono essere annidati l'uno dentro l'altro), ma non volete
 digitare ogni volta il percorso completo per il modulo annidato.
 
 ##  Uso ed omissione di `;;` e `;`
+
+**This section is not up to date with the English one**
+
 Veniamo ora ad esaminare una questione assai importante. Quando dovreste
 usare `;;`, quando dovreste usare `;`, e quando non dovreste usare
 affatto alcuno di essi? È una questione ingannevole finché non "la
