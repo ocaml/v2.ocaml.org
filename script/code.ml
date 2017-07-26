@@ -29,9 +29,9 @@ let highlight_ocaml =
      "..." in argument (sometimes used for explanations). *)
   let args = "\\(\\?(" ^ id ^ " *=[^=()]+) +\\|[~?]" ^ id ^ "[ :]+\\|() *\\|"
              ^ id ^ " +\\|(" ^ id ^ "\\( *:[^)]+\\)?) +\\|([a-zA-Z0-9_', ]+) *"
-             ^ "\\|{[a-zA-Z0-9_',; ]+} *\\|\\.+ +\\)+" in
+             ^ "\\|{[a-zA-Z0-9_',; ]+} *\\|\\[" ^ id ^ "\\] *\\|\\.+ +\\)+" in
   let subst = [ (* regex, replacement *)
-    (let cmt_txt = "\\([^()]\\|([^*])\\|([^*][^()]*[^*])\\)*" in
+    (let cmt_txt = "\\([^()]\\|([^*]*)\\|([^*][^()]*[^*])\\)*" in
      "\\((\\*\\((\\*" ^ cmt_txt ^ "\\*)\\|" ^ cmt_txt ^ "\\)+\\*)\\)",
      "<span class=\"comment\">\\1</span>");
     (";; *\n", "<span class=\"ocaml-prompt\">;;</span><br/>");
@@ -39,19 +39,20 @@ let highlight_ocaml =
     ("\\band +\\('[_a-z]+ +\\(" ^ let_id ^ "\\)\\) *= *",
      "<span class=\"governing\">and</span> \
       <span class=\"type\">\\1</span> = ");
-    ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) *= *function",
+    (("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id
+      ^ "\\) *= *\\(fun\\(\\b\\|ction\\b\\)\\)"),
      "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
-      \\2</span> = <span class=\"keyword\">function</span>");
+      \\2</span> = <span class=\"keyword\">\\3</span>");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) +\\("
-     ^ args ^ "\\)= *function",
+     ^ args ^ "\\)= *\\(fun\\(\\b\\|ction\\b\\)\\)",
      "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
       \\2</span> <span class=\"ocaml-variable\">\\3</span>= \
-      <span class=\"keyword\">function</span>");
+      <span class=\"keyword\">\\4</span>");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) +: *\\([^=]+\\)"
-     ^ "= *function",
+     ^ "= *\\(fun\\(\\b\\|ction\\b\\)\\)",
      "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
       \\2</span> : <span class=\"type\">\\3</span>= \
-      <span class=\"keyword\">function</span>");
+      <span class=\"keyword\">\\4</span>");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) +\\(" ^ args ^ "\\)=",
      "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
       \\2</span> <span class=\"ocaml-variable\">\\3</span>=");

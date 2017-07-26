@@ -335,145 +335,132 @@ Actually this is really useful when you want to import a nested module
 (modules can be nested inside one another), but you don't want to type
 out the full path to the nested module name each time.
 
-## Using and omitting `;;` and `;`
-Now we're going to look at a very important issue. When should you use
-`;;`, when should you use `;`, and when should you use none of these at
-all? This is a tricky issue until you "get it", and it taxed the author
-for a long time while he was learning OCaml too.
+## The sequence operator `;`
 
-Rule #1 is that you should use `;;` to separate statements at the
-top-level of your code, and *never* within function definitions or any
-other kind of statement.
+The semi-colon `;` is an operator, just like `+` is. Well, not quite just like
+`+` is, but conceptually the same. The operator `+` has type `int -> int -> int` —
+it takes two ints and returns an int (the sum). The semi-colon `;` may
+be seen as having type
+`unit -> 'b -> 'b` — it takes two values and simply returns the second
+one, the first expression is guaranteed to be evaluated before the
+second.  Rather like C's `,` (comma) operator. You can write
+`a; b; c; d` just as easily as you can write `a + b + c + d`.
 
-Have a look at a section from the second graphics example above:
+This is one of those "mental leaps" which is never spelled out very
+well — in OCaml, nearly everything is an expression. `if/then/else` is
+an expression. `a; b` is an expression. `match foo with ...` is an
+expression. The following code is perfectly legal (and all do the same
+thing):
 
-```ocaml
-Random.self_init ();;
-Graphics.open_graph " 640x480";;
-
-let rec iterate r x_init i =
-  if i = 1 then x_init
-  else
-    let x = iterate r x_init (i-1) in
-    r *. x *. (1.0 -. x);;
+ ```ocamltop
+ let f x b y = if b then x+y else x+0
+ let f x b y = x + (if b then y else 0)
+ let f x b y = x + (match b with true -> y | false -> 0)
+ let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
+ let f = fun x -> fun b -> fun y -> if b then x+y else x+0
+ let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
 ```
 
-We have two top-level statements and a function definition (of a
-function called `iterate`). Each one is followed by `;;`.
-
-Rule #2 is that *sometimes* you can elide the `;;`. As a
-beginner you shouldn't worry about this — you should always put in the
-`;;` as directed by Rule #1. But since you'll also be reading a lot of
-other peoples' code you'll need to know that sometimes we can elide
-`;;`. The particular places where this is allowed are:
-
-* Before the keyword `let`.
-* Before the keyword `open`.
-* Before the keyword `type`.
-* At the very end of the file.
-* A few other (very rare) places where OCaml can "guess" that the next
- thing is the start of a new statement and not the continuation of
- the current statement.
-
-Here is some working code with `;;` elided wherever possible:
+Note especially the last one — I'm using `;` as an operator to "join"
+two statements. All functions in OCaml can be expressed as:
 
 ```ocaml
-open Random                   (* ;; *)
-open Graphics;;
+ let name [parameters] = expression ;;
+```
+OCaml's definition of what is an expression is just a little wider
+than C's. In fact, C has the concept of "statements" — but all of C's
+statements are just expressions in OCaml of type `unit` (combined with the `;`
+operator).
 
-self_init ();;
-open_graph " 640x480"         (* ;; *)
+The one place that `;` is different from `+` is that I can refer to
+`+` just like a function. For instance, I can define a `sum_list`
+function, to sum a list of ints, like:
 
-let rec iterate r x_init i =
-  if i = 1 then x_init
-  else
-    let x = iterate r x_init (i-1) in
-    r *. x *. (1.0 -. x);;
-
-for x = 0 to 639 do
-  let r = 4.0 *. (float_of_int x) /. 640.0 in
-  for i = 0 to 39 do
-    let x_init = Random.float 1.0 in
-    let x_final = iterate r x_init 500 in
-    let y = int_of_float (x_final *. 480.) in
-    Graphics.plot x y
-  done
-done;;
-
-read_line ()                  (* ;; *)
+```ocamltop
+let sum_list = List.fold_left ( + ) 0 ;;
 ```
 
-Rules #3 and #4 refer to the single `;`. This is completely different
-from `;;`. The single semicolon `;` is what is known as a **sequence
-point**, which is to say it has exactly the same purpose as the single
-semicolon in C, C++, Java and Perl. It means "do the stuff before this
-point first, then do the stuff after this point when the first stuff has
-completed". Bet you didn't know that.
+## The disappearance of `;;`
 
-Rule #3 is: Consider `let ... in` as a statement, and never put a
-single `;` after it.
+Now we're going to look at a very important issue. All examples above
+ended with a double semi-colon `;;`. However, if you look at OCaml code
+outside of tutorials, you will find whole code bases that does not
+use `;;`, not even once.
 
-Rule #4 is: For all other statements within a block of code, follow
-them with a single `;`, *except* for the very last one.
+The truth is that `;;` is mostly used in the toplevel and tutorials to
+mark the end of an OCaml phrase and send this phrase to the toplevel
+in order to evaluate it.
 
-The inner for-loop in our example above is a good demonstration. Notice
-that we never use any single `;` in this code:
+Outside of the toplevel, uses of `;;` are, at best, infrequent
+and are _never required_ for well written code.
+Briefly, double semi-colon `;;` can used for three reasons:
+
+* For compatibility with the toplevel;
+* To split the code to ease debugging;
+* To introduce a toplevel expression.
+
+Inserting `;;` can be sometimes useful for beginners when debugging,
+since it stops any running definition. For instance, in the following
+example, the definition of `f` does not stop at line 1 due to the
+comma `,` operator. Consequently, the compiler raises an error at the
+end of the second line:
 
 ```ocaml
-for i = 0 to 39 do
-  let x_init = Random.float 1.0 in
-  let x_final = iterate r x_init 500 in
-  let y = int_of_float (x_final *. 480.) in
-  Graphics.plot x y
-done
+let f x = x,
+let g = x * x
 ```
-The only place in the above code where might think about putting in a
-`;` is after the `Graphics.plot x y`, but because this is the last
-statement in the block, Rule #4 tells us not to put one there.
 
-## Note about ";"
-Brian Hurt writes to correct me on ";"
+Inserting a double semi-colon between `f` and `g` detangles
+the definition of `f` and `g`:
 
-> The `;` is an operator, just like `+` is. Well, not quite just like
-> `+` is, but conceptually the same. `+` has type `int -> int -> int` -
-> it takes two ints and returns an int (the sum). `;` has type
-> `unit -> 'b -> 'b` - it takes two values and simply returns the second
-> one. Rather like C's `,` (comma) operator. You can write
-> `a ; b ; c ; d` just as easily as you can write `a + b + c + d`.
-> 
-> This is one of those "mental leaps" which is never spelled out very
-> well - in OCaml, nearly everything is an expression. `if/then/else` is
-> an expression. `a ; b` is an expression. `match foo with ...` is an
-> expression. The following code is perfectly legal (and all do the same
-> thing):
-> 
-> ```ocamltop
-> let f x b y = if b then x+y else x+0
-> let f x b y = x + (if b then y else 0)
-> let f x b y = x + (match b with true -> y | false -> 0)
-> let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
-> let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
-> ```
-> 
-> Note especially the last one - I'm using `;` as an operator to "join"
-> two statements. All functions in OCaml can be expressed as:
-> 
-> ```ocaml
-> let name [parameters] = expression
-> ```
-> 
-> OCaml's definition of what is an expression is just a little wider
-> than C's. In fact, C has the concept of "statements"- but all of C's
-> statements are just expressions in OCaml (combined with the `;`
-> operator).
-> 
-> The one place that `;` is different from `+` is that I can refer to
-> `+` just like a function. For instance, I can define a `sum_list`
-> function, to sum a list of ints, like:
-> 
-> ```ocamltop
-> let sum_list = List.fold_left ( + ) 0
-> ```
+```ocaml
+let f x = x,
+;;
+let g = x * x
+```
+
+Another use of `;;` is to introduce a new toplevel expression after
+some definitions:
+
+```ocaml
+let b = "This started with"
+let s = "a very nonsensical message.";;
+print_endline b; print_endline s
+open String
+let s = concat "" ["Fortunately"; ", "; "the"; "end"; "is"; "near"; "."];;
+print_endline s;;
+let s = "let end here" in print_endline s
+```
+
+In particular, in the above examples, all lines starting after `;;` are
+purely effectful and deleting them will only affect the effect of the code,
+not the following definitions.
+
+However, this use of `;;` can (should) always be replaced by either
+
+```ocaml
+let () = expression ()
+```
+
+if the result of the expression is `unit`, or
+
+```ocaml
+let _ = expression ()
+```
+otherwise. Note that the first form is safer, since it requires that
+the type of the returned expression is `unit`; preventing us, for instance,
+from forgetting an argument in
+
+```ocaml
+let () =
+  print_newline
+  (* here, we forgot () and the compiler will complain. *)
+```
+
+With this convention, there are no toplevel expressions anymore: any
+module can be written as a sequence of definitions. Consequently, some
+style guidelines consider that `;;` should never be used outside of the
+toplevel (see for instance these [style guidelines](guidelines.html)).
 
 ## Putting it all together: some real code
 In this section we're going to show some real code fragments from the

@@ -341,152 +341,141 @@ module imbriqué (les modules peuvent être imbriqués les uns dans les
 autres, eux-aussi), mais ne voulez pas avoir à taper à chaque fois le
 chemin d'accès au module imbriqué.
 
-## Utiliser et omettre `;;` et `;`
-Maintenant nous allons aborder un problème important. Quand utiliser
-`;;`, quand utiliser `;`, et quand n'utiliser aucun des deux ? C'est une
-question tordue, qui m'a également embêté pendant longtemps alors que
-j'apprenais le langage OCaml.
+## L'opérateur de séquence `;`
 
-La règle n°1 est que vous devriez utiliser `;;` pour séparer les
-instructions de niveau général dans votre code, et *jamais* au milieu
-d'une définition de fonction ou d'aucune autre instruction.
+Le point-virgule `;` est un opérateur, comme `+`.  Bon, pas tout à
+fait comme `+` mais conceptuellement le même.  L'opérateur `+` a pour
+type `int -> int -> int` — il prend deux entiers et retourne un entier
+(la somme des deux entrées).  Le point-virgule `;` peut être vu comme
+ayant le type `unit -> 'b -> 'b` — il prend deux valeurs et simplement
+retourne la seconde, la première expression étant garantie d'être
+évaluée avant la seconde.  C'est donc comme l'opérateur `,` (virgule)
+en C.  Vous pouvez écrire `a; b; c; d` de la même manière que vous
+pouvez écrire `a + b + c + d`.
 
-Reprenons un bout du second exemple graphique précédent:
+C'est un de ces « sauts conceptuels » qui n'est pas toujours explicité
+très bien : en OCaml, presque tout est une expression.  `if/then/else`
+est une expression.  `a; b` est une expression.  `match foo with ...`
+est une expression.  Le code qui suit est parfaitement légal (et
+toutes les lignes font la même chose);
+
+ ```ocamltop
+ let f x b y = if b then x+y else x+0
+ let f x b y = x + (if b then y else 0)
+ let f x b y = x + (match b with true -> y | false -> 0)
+ let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
+ let f = fun x -> fun b -> fun y -> if b then x+y else x+0
+ let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
+```
+
+Notez particulièrement la dernière ligne où j'utilise l'opérateur `;`
+pour « joindre » deux instructions.  Toutes les fonctions en OCaml
+peuvent être déclarées sous la forme :
+
+```ocaml
+ let name [parameters] = expression ;;
+```
+En OCaml, la définition de ce qu'est une expression est simplement un
+peu plus large qu'en C.  En fait, C a le concept d'« instructions » —
+mais toutes les instructions en C sont simplement des expressions en
+OCaml de type `unit` (combinées avec l'opérateur `;`).
+
+La différence entre `;` et `+` est qu'on peut utiliser `+` comme une
+fonction.  Par exemple, on peut définir une fonction `sum_list`, qui
+somme une liste d'entier, par
 
 ```ocamltop
-Random.self_init ();;
-Graphics.open_graph " 640x480";;
-
-let rec iterate r x_init i =
-  if i = 1 then x_init
-  else
-    let x = iterate r x_init (i-1) in
-    r *. x *. (1.0 -. x);;
+let sum_list = List.fold_left ( + ) 0 ;;
 ```
 
-Nous avons deux instructions au niveau global et une définition de
-fonction (la fonction nommée `iterate`). Chacune est suivie par `;;`.
+## La disparition de `;;`
 
-La règle n°2 est que *parfois* vous pouvez omettre `;;`. En tant que
-débutant vous pouvez vous dispenser de cette règle - et toujours
-utiliser `;;` comme prescrit par la règle n°1. Mais puisque vous aurez
-sûrement à lire du code écrit par d'autres, vous devez savoir que `;;`
-peut parfois être omis. Les endroits où cela est possible sont :
+Maintenant, nous allons nous pencher sur un point très important.
+Tous les exemples ci-dessus finissaient par un double point-virgule
+`;;`.  Cependant, si vous regardez à du code OCaml en dehors de ces
+tutoriaux, vous trouverez de codes complets qui n'utilisent pas `;;`,
+pas même une seule fois.
 
-* Avant le mot clé `let`.
-* Avant le mot clé `open`.
-* Avant le mot clé `type`.
-* À la toute fin du fichier
-* À quelques (très rares) endroits où OCaml peut deviner que ce qui
- vient ensuite est une nouvelle instruction et non la suite de
- l'instruction courante.
+La vérité est que `;;` est principalement utilisé dans la boucle
+interactive (*toplevel*) et les tutoriaux pour marquer la fin d'une
+phrase OCaml et l'envoyer au toplevel pour évaluation.
 
-Voici un exemple de code correct, où `;;` a été omis quand c'était
-possible :
+En dehors du toplevel, l'usage de `;;` est, au mieux, infréquent et
+n'est _jamais requis_ pour du code bien écrit.
+En bref, le double point-virgule `;;` peut être utilisé pour trois
+raisons :
+
+* compatibilité avec le toplevel ;
+* couper le code pour faciliter de débogage;
+* introduire une expression « au plus haut niveau ».
+
+Insérer `;;` peut parfois se révéler utile pour les débutants lors du
+débogage vu qu'il conclut la définition en cours.  Dans l'exemple
+suivant, la définition de `f` ne s'arrête pas à la ligne 1 à cause de
+la virgule `,`.  Par conséquent, le compilateur va générer une erreur
+à la fin de la seconde ligne :
 
 ```ocaml
-open Random                   (* ;; *)
-open Graphics;;
-
-self_init ();;
-open_graph " 640x480"         (* ;; *)
-
-let rec iterate r x_init i =
-  if i = 1 then x_init
-  else
-    let x = iterate r x_init (i-1) in
-    r *. x *. (1.0 -. x);;
-
-for x = 0 to 639 do
-  let r = 4.0 *. (float_of_int x) /. 640.0 in
-  for i = 0 to 39 do
-    let x_init = Random.float 1.0 in
-    let x_final = iterate r x_init 500 in
-    let y = int_of_float (x_final *. 480.) in
-    Graphics.plot x y
-  done
-done;;
-
-read_line ()                  (* ;; *)
+let f x = x,
+let g = x * x
 ```
 
-Les règles n°3 et n°4 concernent le simple `;`. Il n'a rien à voir avec
-`;;`. Le point-virgule simple `;` est le **séparateur de séquence**,
-c'est à dire qu'il a le même rôle que le point-virgule en C, C++, Java
-ou Perl. Il signifie "fait ce qu'il y a avant en premier, et quand c'est
-terminé, fait ce qu'il y a après". Je suis sûr que vous l'ignoriez.
-
-La règle n°3 est : Considérez `let ... in` comme une instruction, et ne
-mettez jamais un simple `;` après lui.
-
-La règle n°4 est : Pour tous les autres instructions dans un bloc de
-code, faites-les suivre par un simple `;`, *à l'exception* de la
-dernière.
-
-La boucle for interne de notre exemple ci-dessus est une bonne
-démonstration. Remarquez que nous n'utilisons jamais de simple `;` dans
-ce code :
+Insérer un double point-virgule entre `f` et `g` sépare les
+définitions de `f` de `g` :
 
 ```ocaml
-for i = 0 to 39 do
-  let x_init = Random.float 1.0 in
-  let x_final = iterate r x_init 500 in
-  let y = int_of_float (x_final *. 480.) in
-  Graphics.plot x y
-done
+let f x = x,
+;;
+let g = x * x
 ```
-Le seul endroit dans ce code où on pourrait imaginer mettre un `;` est
-après `Graphics.plot x y`, mais comme c'est la dernière instruction de
-son bloc, la règle n°4 nous dit qu'il ne faut pas le faire.
 
-**Remarque à propos de ";"** Brian Hurt m'a écrit pour me corriger au
-sujet de ";"
-
-`;` est un opérateur, au même titre que `+` est un opérateur. Enfin,
-peut-être pas tout à fait, mais conceptuellement ils sont de même
-nature. `+` est de type `int -> int -> int` - il prend deux entiers et
-retourne un entier (leur somme). `;` est de type `unit -> 'b -> 'b` - il
-prend deux valeurs et retourne uniquement la seconde. Un peu comme
-l'opérateur `,` (virgule) en C. Ecrire `a ; b ; c ; d` est aussi naturel
-que d'écrire ` a + b + c + d`.
-
-C'est un de ces "sauts conceptuels" qui ne sont jamais explicités
-clairement - en OCaml, quasiment tout est une expression. `if/then/else`
-est une expression. `a ; b` est une expression. `match foo with ...` est
-une expression. Les codes suivants sont parfaitement légaux (et tous
-font la même chose) :
+Un autre usage de `;;` est d'introduire une expression après des
+définitions :
 
 ```ocaml
-let f x b y = if b then x+y else x+0
-
-let f x b y = x + (if b then y else 0)
-
-let f x b y = x + (match b with true -> y | false -> 0)
-
-let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
-
-let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
+let b = "This started with"
+let s = "a very nonsensical message.";;
+print_endline b; print_endline s
+open String
+let s = concat "" ["Fortunately"; ", "; "the"; "end"; "is"; "near"; "."];;
+print_endline s;;
+let s = "let end here" in print_endline s
 ```
 
-Notez tout particulièrement la dernière fonction — j'utilise `;` comme
-opérateur pour "joindre" deux instructions. En OCaml, toutes les
-fonctions peuvent être exprimées par :
+En particulier, dans les exemples ci-dessus, toutes les lignes
+démarrant après un `;;` produisent des effets de bord et les effacer
+changerait uniquement l'effet du code, pas des définitions.
+
+Cependant, cette utilisation de `;;` peut (devrait) toujours être
+remplacée par soit
 
 ```ocaml
-let nom [paramètres] = expression
+let () = expression ()
 ```
-La définition de ce qu'est une expression en OCaml est juste un peu plus
-large qu'en C. En fait, C a un concept d'"instruction" - mais toutes les
-instructions du C sont des expressions en OCaml (combinées avec
-l'opérateur `;`).
 
-Une différence entre `;` et `+` est que je peux utiliser `+` comme une
-fonction. Par exemple, je peux définir une fonction `sum_list` pour
-calculer la somme d'une liste d'entier comme ceci :
+si le résultat est de type `unit`, soit
 
-```ocamltop
-let sum_list = List.fold_left ( + ) 0
+```ocaml
+let _ = expression ()
 ```
+
+sinon.  Notez que la première forme est plus sure puisqu'elle requiert
+que le type retourné par l'expression est `unit`, nous prémunissant,
+par exemple, de l'oubli d'un argument comme dans
+
+```ocaml
+let () =
+  print_newline
+  (* Ici, nous avons oublié () et le compilateur va se plaindre. *)
+```
+
+Avec cette convention, il n'y a plus d'expressions « au plus haut
+niveau » : tout module peut être écrit comme une suite de
+définitions.  Par conséquent, des directives de style considèrent que
+`;;` ne devrait jamais être utilisé en dehors de la boucle interactive
+(voir par exemple « [style guidelines](guidelines.html) »).
+
+
 ## Toutes ces notions ensemble : un exemple de code réel
 Dans cette section nous allons regarder quelques fragments de vrai code
 pris dans la bibliothèque lablgtk 1.2. (Lablgtk est la bibliothèque
