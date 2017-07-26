@@ -2708,13 +2708,7 @@ SOLUTION
 >   !out
 >
 > let copy2D arr = (* Deep copy of a 2D array *)
->  let long = Array.length arr in
->  let out =
->    Array.make long (Array.make (Array.length (arr.(0))) (arr.(0).(0))) in
->  for k = 0 to long - 1 do
->    out.(k) <- Array.copy (arr.(k))
->    done;
->  out
+>   Array.map Array.copy arr
 >
 > let nextCell x y maxY =
 >  y := !y + 1;
