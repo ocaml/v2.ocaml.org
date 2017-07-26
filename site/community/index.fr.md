@@ -84,15 +84,18 @@
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/index.fr.html">Rencontres et réunions</a></h1>
             <ul class="news-feed">
-			<li class="announcement"><article>
-			  <h1><a title="OCaml Users and Developers Workshop"
-			       href="/meetings/ocaml/2015/">OCaml 2015</a></h1>
-			  <p>4 septembre, 2015</p>
-			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2015/">
-                <img alt="" src="/img/announcement.svg" class="svg" />
-                <img alt="" src="/img/announcement.png" class="png" />
-			</article></li>
+			  <li class="announcement">
+			    <article>
+			      <h1><a title="OCaml Users and Developers Workshop"
+			             href="/meetings/ocaml/2017/">OCaml 2017</a></h1>
+	              <p>September 8, 2017</p>
+    			  <a title="OCaml Users and Developers Workshop"
+    			     href="/meetings/ocaml/2017/">
+    			    <img alt="" src="/img/announcement.svg" class="svg" />
+    			    <img alt="" src="/img/announcement.png" class="png" />
+    			  </a>
+			    </article>
+			  </li>
 			    <li>
                     <article>
                         <h1><a href="http://www.meetup.com/NYC-OCaml/events/152153412/">NYC Functional Holiday Party</a></h1>
