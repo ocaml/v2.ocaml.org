@@ -2548,10 +2548,31 @@ in full words. Example: 175 must be written as one-seven-five. Write a
 function `full_words` to print (non-negative) integer numbers in full
 words.
 
-<!-- SOLUTION -->
+SOLUTION 
+> let full_words i =
+>  let to_word x = match x with
+>    | 1 -> "one"
+>    | 2 -> "two"
+>    | 3 -> "three"
+>    | 4 -> "four"
+>    | 5 -> "five"
+>    | 6 -> "six"
+>    | 7 -> "seven"
+>    | 8 -> "eight"
+>    | 9 -> "nine"
+>    | 0 -> "zero"
+>    | _ -> failwith "Impossible"
+>  in
+>  let rec aux rest outStr firstTime = match rest with
+>    | 0 -> if firstTime
+>            then to_word 0
+>          else String.sub outStr 1 (String.length outStr - 1) (* We remove the - *)
+>    | _ -> aux (rest/10) ("-" ^ to_word (rest mod 10) ^ outStr) false
+>  in aux i "" true;;
 
-```ocaml
-(* example pending *);;
+```ocamltop
+full_words 175;;
+full_words 57643;;
 ```
 
 
@@ -2604,10 +2625,140 @@ between 1 and 9. The problem is to fill the missing spots with digits in
 such a way that every number between 1 and 9 appears exactly once in
 each row, in each column, and in each square.
 
-<!-- SOLUTION -->
+A simple way of resolving this is to use brute force, that will be the approach used for the solution, we use this type :
+```ocamltop
+(* a 9x9 grid of int *)
+ (* the number in column line can be accessed with grid.(column).(line)*)
+type cell =
+ | Empty
+ | Num of int (* Values given *)
+ | Var of int;; (* Values we try *)
+type grid = cell array array;;
+```
 
-```ocaml
-(* example pending *);;
+SOLUTION
+> The idea is to start filling with available values in each case and test if it works.
+> When there is no available values, it means we made a mistake so we go back to the last choice we made, and try a different choice ( one that we didn't already choose ).
+> It's the same way as resolving the 3-SAT problem, except we use a stack instead of a binary tree. But our stack can be considered as a 9-ary tree.
+> ```ocamltop
+> (* a 9x9 grid of int *)
+> (* the number in column line can be accessed with grid.(column).(line)*)
+> type cell =
+>  | Empty
+>  | Num of int (* Values given *)
+>  | Var of int;; (* Values we try *)
+> type grid = cell array array;;
+>
+> let toIntArray grid =
+> let arr = Array.make_matrix 9 9 (-1) in
+>  for x = 0 to 8 do
+>    for y = 0 to 8 do
+>      (match grid.(x).(y) with
+>        | Empty -> ()
+>        | Num i -> arr.(x).(y) <- i
+>        | Var i -> arr.(x).(y) <- i
+>        )
+>    done;
+>  done;
+>  arr;;
+>  
+>let available grid x y = (* Give the available numbers we can put in the grid in x y*)
+>  let toCheck = Array.make 9 1 in
+>  for k = 0 to 8 do
+>    (match grid.(x).(k) with
+>      | Empty -> ()
+>      | Num i -> toCheck.(i-1) <- toCheck.(i-1) - 1
+>      | Var i -> toCheck.(i-1) <- toCheck.(i-1) - 1);
+>    (match grid.(k).(y) with
+>      | Empty -> ()
+>      | Num i -> toCheck.(i-1) <- toCheck.(i-1) - 1
+>     | Var i -> toCheck.(i-1) <- toCheck.(i-1) - 1)
+>  done;
+>  let sq_x = (x / 3) * 3 in
+>  let sq_y = (y / 3) * 3 in
+>  for i = 0 to 2 do
+>    for j = 0 to 2 do
+>      (match grid.(sq_x + i).(sq_y + j) with
+>        | Empty -> ()
+>        | Num i -> toCheck.(i-1) <- toCheck.(i-1) - 1
+>        | Var i -> toCheck.(i-1) <- toCheck.(i-1) - 1)
+>    done;
+>  done;
+>  let out = ref [] in
+>  for k = 0 to 8 do
+>    if toCheck.(k) > 0
+>      then (out := (k+1)::(!out))
+>  done;
+>  !out;;
+>
+> let copy2D arr = (* Deep copy of a 2D array *)
+>  let long = Array.length arr in
+>  let out = Array.make long (Array.make (Array.length (arr.(0))) (arr.(0).(0))) in
+>  for k = 0 to long - 1 do
+>    out.(k) <- Array.copy (arr.(k))
+>    done;
+>  out;;
+>
+> let nextCell x y maxY =
+>  y := !y + 1;
+>  if !y >= maxY
+>    then (y := 0; x := !x + 1);;
+>
+> let solve_sudoku toComplete =
+>  (* Store every choice we make so we can backward to our last choice *)
+>  let choices = Stack.create () in
+>  let x = ref 0 in (* Current column *)
+>  let y = ref 0 in (* Current line *)
+>  let n = ref 0 in (* Current index of choice in the available choices *)
+>  let current = ref (copy2D toComplete) in (* current grid *)
+>  let backward () = (* Go backward to last choice made *)
+>    if Stack.is_empty choices
+>      then failwith "Seems to be impossible"
+>    else (
+>      let (lGrid, lx, ly, lsn) = Stack.pop choices in
+>      current := lGrid;
+>      x := lx;
+>      y := ly;
+>      n := lsn;
+>      )
+>  in
+>  let putValue () = (* put a value at the current position *)
+>    let li = available !current !x !y in (* We get the available choice *)
+>    (match li with
+>    | [] -> backward () (* No choice available so we made an error *)
+>    | [vl] -> (!current).(!x).(!y) <- Var vl; n := 0; nextCell x y 9 (* One choice we save it and go on *)
+>    | _ -> (* Multiple choices *)
+>              if !n >= (List.length li) (* If we have tried all the avaible choice we go back*)
+>                then backward ()
+>              else ( (* Otherwise we try the next choice *)
+>                Stack.push (copy2D (!current), !x, !y, (!n + 1)) choices; (* We save our current state on the stack *)
+>                (!current).(!x).(!y) <- Var (List.nth li !n);
+>                n := 0;
+>                nextCell x y 9;
+>                )
+>    )
+>  in
+>  while !x < 9 do   (* The way we iterate over the grid when x reaches 9, we have fully completed the grid *)
+>    match (!current).(!x).(!y) with
+>      | Num i -> nextCell x y 9 (* A Num is a correct value so we just skip *)
+>      | _ -> putValue();
+>  done;
+>  toIntArray !current;;
+> ```
+
+```ocamltop
+let toSolve = [|
+            [|Empty; Num 6; Num 5; Num 3; Empty; Empty; Num 1; Empty; Num 2|];
+            [|Empty; Num 7; Empty; Empty; Num 6; Empty; Empty; Empty; Num 4|];
+            [|Num 4; Empty; Num 8; Empty; Num 9; Num 1; Empty; Empty; Empty|];
+            [|Num 8; Num 9; Empty; Num 7; Empty; Empty; Empty; Empty; Empty|];
+            [|Empty; Empty; Num 3; Num 4; Empty; Num 6; Num 8; Empty; Empty|];
+            [|Empty; Empty; Empty; Empty; Empty; Num 9; Empty; Num 6; Num 1|];
+            [|Empty; Empty; Empty; Num 1; Num 7; Empty; Num 3; Empty; Num 5|];
+            [|Num 1; Empty; Empty; Empty; Num 8; Empty; Empty; Num 9; Empty|];
+            [|Num 7; Empty; Num 4; Empty; Empty; Num 5; Num 6; Num 1; Empty|]
+                |];;
+solve_sudoku toSolve;;
 ```
 
 
