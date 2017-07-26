@@ -2548,10 +2548,35 @@ in full words. Example: 175 must be written as one-seven-five. Write a
 function `full_words` to print (non-negative) integer numbers in full
 words.
 
-<!-- SOLUTION -->
+SOLUTION
 
-```ocaml
-(* example pending *);;
+> ```ocamltop
+> let full_words =
+>   let word_of_digit = function
+>     | 0 -> "zero"
+>     | 1 -> "one"
+>     | 2 -> "two"
+>     | 3 -> "three"
+>     | 4 -> "four"
+>     | 5 -> "five"
+>     | 6 -> "six"
+>     | 7 -> "seven"
+>     | 8 -> "height"
+>     | 9 -> "nine"
+>     | _ -> invalid_arg "word_of_digit" in
+>   let rec words w n =
+>     if n = 0 then (match w with [] -> [word_of_digit 0]
+>                               | _ -> w)
+>     else words (word_of_digit (n mod 10) :: w) (n / 10) in
+>   fun n ->
+>   assert(n >= 0);
+>   String.concat "-" (words [] n)
+> ```
+
+```ocamltop
+full_words 175;;
+full_words 23485;;
+full_words 0;;
 ```
 
 
