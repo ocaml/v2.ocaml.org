@@ -68,6 +68,15 @@ at 3 [ "a" ; "b"; "c"; "d"; "e" ];;
 at 3 [ "a" ];;
 ```
 
+REMARK: OCaml has `List.nth` which numbers elements from `0` and
+raises an exception if the index is out of bounds.
+
+```ocamltop
+List.nth [ "a" ; "b"; "c"; "d"; "e" ] 2;;
+List.nth [ "a" ] 2;;
+```
+
+
 #### 4. Find the number of elements of a list. (*easy*)
 
 OCaml standard library has `List.length` but we ask that you reimplement
