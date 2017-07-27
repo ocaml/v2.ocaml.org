@@ -21,7 +21,7 @@ problems is available on
 
 ## Working with lists
 
-#### Write a function `last : 'a list -> 'a option` that returns the last element of a list. (*easy*)
+#### 1. Write a function `last : 'a list -> 'a option` that returns the last element of a list. (*easy*)
 
 SOLUTION
 
@@ -37,7 +37,7 @@ last [ "a" ; "b" ; "c" ; "d" ];;
 last [];;
 ```
 
-#### Find the last but one (last and penultimate) elements of a list. (*easy*)
+#### 2. Find the last but one (last and penultimate) elements of a list. (*easy*)
 
 SOLUTION
 
@@ -53,7 +53,7 @@ last_two [ "a" ; "b" ; "c" ; "d" ];;
 last_two [ "a" ];;
 ```
 
-#### Find the `k`'th element of a list. (*easy*)
+#### 3. Find the `k`'th element of a list. (*easy*)
 
 SOLUTION
 
@@ -68,7 +68,7 @@ at 3 [ "a" ; "b"; "c"; "d"; "e" ];;
 at 3 [ "a" ];;
 ```
 
-#### Find the number of elements of a list. (*easy*)
+#### 4. Find the number of elements of a list. (*easy*)
 
 OCaml standard library has `List.length` but we ask that you reimplement
 it. Bonus for a [tail recursive](http://en.wikipedia.org/wiki/Tail_call)
@@ -91,7 +91,7 @@ length [ "a" ; "b" ; "c"];;
 length [];;
 ```
 
-#### Reverse a list. (*easy*)
+#### 5. Reverse a list. (*easy*)
 
 OCaml standard library has `List.rev` but we ask that you reimplement
 it.
@@ -110,7 +110,7 @@ SOLUTION
 rev ["a" ; "b" ; "c"];;
 ```
 
-#### Find out whether a list is a palindrome. (*easy*)
+#### 6. Find out whether a list is a palindrome. (*easy*)
 
 HINT: a palindrome is its own reverse.
 
@@ -128,7 +128,7 @@ is_palindrome [ "x" ; "a" ; "m" ; "a" ; "x" ];;
 not (is_palindrome [ "a" ; "b" ]);;
 ```
 
-#### Flatten a nested list structure. (*medium*)
+#### 7. Flatten a nested list structure. (*medium*)
 
 ```ocamltop
 (* There is no nested list type in OCaml, so we need to define one
@@ -158,7 +158,7 @@ SOLUTION
 flatten [ One "a" ; Many [ One "b" ; Many [ One "c" ; One "d" ] ; One "e" ] ];;
 ```
 
-#### Eliminate consecutive duplicates of list elements. (*medium*)
+#### 8. Eliminate consecutive duplicates of list elements. (*medium*)
 
 SOLUTION
 
@@ -172,7 +172,7 @@ SOLUTION
 compress ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"];;
 ```
 
-#### Pack consecutive duplicates of list elements into sublists. (*medium*)
+#### 9. Pack consecutive duplicates of list elements into sublists. (*medium*)
 
 SOLUTION
 
@@ -192,7 +192,7 @@ pack ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"d";"e";"e";"e";"e"];;
 ```
 
 
-#### Run-length encoding of a list. (*easy*)
+#### 10. Run-length encoding of a list. (*easy*)
 
 If you need so, refresh your memory about
 [run-length encoding](http://en.wikipedia.org/wiki/Run-length_encoding).
@@ -222,7 +222,7 @@ Here is an example:
 encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"];;
 ```
 
-#### Modified run-length encoding. (*easy*)
+#### 11. Modified run-length encoding. (*easy*)
 
 Modify the result of the previous problem in such a way that if an
 element has no duplicates it is simply copied into the result list. Only
@@ -257,7 +257,7 @@ SOLUTION
 encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"];;
 ```
 
-#### Decode a run-length encoded list. (*medium*)
+#### 12. Decode a run-length encoded list. (*medium*)
 
 Given a run-length code list generated as specified in the previous
 problem, construct its uncompressed version.
@@ -279,7 +279,7 @@ SOLUTION
  decode [Many (4,"a"); One "b"; Many (2,"c"); Many (2,"a"); One "d"; Many (4,"e")];;
 ```
 
-#### Run-length encoding of a list (direct solution). (*medium*)
+#### 13. Run-length encoding of a list (direct solution). (*medium*)
 
 Implement the so-called run-length encoding data compression method
 directly. I.e. don't explicitly create the sublists containing the
@@ -303,7 +303,7 @@ SOLUTION
 encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"];;
 ```
 
-#### Duplicate the elements of a list. (*easy*)
+#### 14. Duplicate the elements of a list. (*easy*)
 
 SOLUTION
 
@@ -320,7 +320,7 @@ duplicate ["a";"b";"c";"c";"d"];;
 ```
 
 
-#### Replicate the elements of a list a given number of times. (*medium*)
+#### 15. Replicate the elements of a list a given number of times. (*medium*)
 
 SOLUTION
 
@@ -342,7 +342,7 @@ SOLUTION
 replicate ["a";"b";"c"] 3;;
 ```
 
-#### Drop every N'th element from a list. (*medium*)
+#### 16. Drop every N'th element from a list. (*medium*)
 
 SOLUTION
 
@@ -358,7 +358,7 @@ SOLUTION
 drop ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 3;;
 ```
 
-#### Split a list into two parts; the length of the first part is given. (*easy*)
+#### 17. Split a list into two parts; the length of the first part is given. (*easy*)
 
 If the length of the first part is longer than the entire list, then the
 first part is the list and the second part is empty.
@@ -380,7 +380,7 @@ split ["a";"b";"c";"d"] 5;;
 ```
 
 
-#### Extract a slice from a list. (*medium*)
+#### 18. Extract a slice from a list. (*medium*)
 
 Given two indices, `i` and `k`, the slice is the list containing the
 elements between the `i`'th and `k`'th element of the original list
@@ -425,7 +425,7 @@ slice ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 2 6;;
 ```
 
 
-#### Rotate a list N places to the left. (*medium*)
+#### 19. Rotate a list N places to the left. (*medium*)
 
 SOLUTION
 
@@ -451,7 +451,7 @@ rotate ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"] (-2);;
 ```
 
 
-#### Remove the K'th element from a list. (*easy*)
+#### 20. Remove the K'th element from a list. (*easy*)
 
 The first element of the list is numbered 0, the second 1,...
 
@@ -468,7 +468,7 @@ remove_at 1 ["a";"b";"c";"d"];;
 ```
 
 
-#### Insert an element at a given position into a list. (*easy*)
+#### 21. Insert an element at a given position into a list. (*easy*)
 
 Start counting list elements with 0.  If the position is larger or
 equal to the length of the list, insert the element at the end.  (The
@@ -489,7 +489,7 @@ insert_at "alfa" 4 ["a";"b";"c";"d"];;
 ```
 
 
-#### Create a list containing all integers within a given range. (*easy*)
+#### 22. Create a list containing all integers within a given range. (*easy*)
 
 If first argument is greater than second, produce a list in decreasing
 order.
@@ -520,7 +520,7 @@ range 9 4;;
 ```
 
 
-#### Extract a given number of randomly selected elements from a list. (*medium*)
+#### 23. Extract a given number of randomly selected elements from a list. (*medium*)
 
 The selected items shall be returned in a list. We use the `Random`
 module but do not initialize it with `Random.self_init` for
@@ -551,7 +551,7 @@ rand_select ["a";"b";"c";"d";"e";"f";"g";"h"] 3;;
 ```
 
 
-#### Lotto: Draw N different random numbers from the set 1..M. (*easy*)
+#### 24. Lotto: Draw N different random numbers from the set 1..M. (*easy*)
 
 The selected numbers shall be returned in a list.
 
@@ -567,7 +567,7 @@ lotto_select 6 49;;
 ```
 
 
-#### Generate a random permutation of the elements of a list. (*easy*)
+#### 25. Generate a random permutation of the elements of a list. (*easy*)
 
 SOLUTION
 
@@ -593,7 +593,7 @@ permutation ["a"; "b"; "c"; "d"; "e"; "f"];;
 ```
 
 
-#### Generate the combinations of K distinct objects chosen from the N elements of a list. (*medium*)
+#### 26. Generate the combinations of K distinct objects chosen from the N elements of a list. (*medium*)
 
 In how many ways can a committee of 3 be chosen from a group of 12
 people? We all know that there are C(12,3) = 220 possibilities (C(N,K)
@@ -618,7 +618,7 @@ SOLUTION
 extract 2 ["a";"b";"c";"d"];;
 ```
 
-#### Group the elements of a set into disjoint subsets. (*medium*)
+#### 27. Group the elements of a set into disjoint subsets. (*medium*)
 
 1. In how many ways can a group of 9 people work in 3 disjoint subgroups
 of 2, 3 and 4 persons? Write a function that generates all the
@@ -671,7 +671,7 @@ SOLUTION
 group ["a";"b";"c";"d"] [2;1]
 ```
 
-#### Sorting a list of lists according to length of sublists. (*medium*)
+#### 28. Sorting a list of lists according to length of sublists. (*medium*)
 
 1. We suppose that a list contains elements that are lists themselves.
 The objective is to sort the elements of this list according to their
@@ -734,9 +734,11 @@ frequency_sort [ ["a";"b";"c"]; ["d";"e"]; ["f";"g";"h"]; ["d";"e"];
 ```
 
 
+<!-- No problem 29 and 30 -->
+
 ## Arithmetic
 
-#### Determine whether a given integer number is prime. (*medium*)
+#### 31. Determine whether a given integer number is prime. (*medium*)
 
 SOLUTION
 
@@ -759,7 +761,7 @@ is_prime 7;;
 not (is_prime 12)
 ```
 
-#### Determine the greatest common divisor of two positive integer numbers. (*medium*)
+#### 32. Determine the greatest common divisor of two positive integer numbers. (*medium*)
 
 Use Euclid's algorithm.
 
@@ -775,7 +777,7 @@ gcd 13 27;;
 gcd 20536 7826
 ```
 
-#### Determine whether two positive integer numbers are coprime. (*easy*)
+#### 33. Determine whether two positive integer numbers are coprime. (*easy*)
 
 Two numbers are coprime if their greatest common divisor equals 1.
 
@@ -792,7 +794,7 @@ not (coprime 20536 7826)
 ```
 
 
-#### Calculate Euler's totient function φ(m). (*medium*)
+#### 34. Calculate Euler's totient function φ(m). (*medium*)
 
 Euler's so-called totient function φ(m) is defined as the number of
 positive integers r (1 ≤ r < m) that are coprime to m. We let φ(1) = 1.
@@ -822,7 +824,7 @@ phi 13;;
 ```
 
 
-#### Determine the prime factors of a given positive integer. (*medium*)
+#### 35. Determine the prime factors of a given positive integer. (*medium*)
 
 Construct a flat list containing the prime factors in ascending order.
 
@@ -843,7 +845,7 @@ factors 315;;
 ```
 
 
-#### Determine the prime factors of a given positive integer (2). (*medium*)
+#### 36. Determine the prime factors of a given positive integer (2). (*medium*)
 
 Construct a list containing the prime factors and their multiplicity.
 *Hint:* The problem is similar to problem 
@@ -869,7 +871,7 @@ factors 315;;
 ```
 
 
-#### Calculate Euler's totient function φ(m) (improved). (*medium*)
+#### 37. Calculate Euler's totient function φ(m) (improved). (*medium*)
 
 See problem "[Calculate Euler&#39;s totient function φ(m)][totient]" for
 the definition of Euler's totient function. If the list of the prime
@@ -903,7 +905,7 @@ phi_improved 13;;
 ```
 
 
-#### Compare the two methods of calculating Euler's totient function. (*easy*)
+#### 38. Compare the two methods of calculating Euler's totient function. (*easy*)
 
 Use the solutions of problems 
 "[Calculate Euler&#39;s totient function φ(m)][totient]" and 
@@ -929,7 +931,7 @@ timeit phi_improved 10090
 ```
 
 
-#### A list of prime numbers. (*easy*)
+#### 39. A list of prime numbers. (*easy*)
 
 Given a range of integers by its lower and upper limit, construct a list
 of all prime numbers in that range.
@@ -954,7 +956,7 @@ List.length (all_primes 2 7920);;
 ```
 
 
-#### Goldbach's conjecture. (*medium*)
+#### 40. Goldbach's conjecture. (*medium*)
 
 Goldbach's conjecture says that every positive even number greater than
 2 is the sum of two prime numbers. Example: 28 = 5 + 23. It is one of
@@ -979,7 +981,7 @@ goldbach 28;;
 ```
 
 
-#### A list of Goldbach compositions. (*medium*)
+#### 41. A list of Goldbach compositions. (*medium*)
 
 Given a range of integers by its lower and upper limit, print a list of
 all even numbers and their Goldbach composition.
@@ -1007,6 +1009,8 @@ goldbach_list 9 20;;
 goldbach_limit 1 2000 50;;
 ```
 
+<!-- No problem 42–45 -->
+
 ## Logic and Codes
 
 Let us define a small "language" for boolean expressions containing
@@ -1027,7 +1031,7 @@ notation.  For example, `(a ∨ b) ∧ (a ∧ b)` is written:
 And(Or(Var "a", Var "b"), And(Var "a", Var "b"))
 ```
 
-#### Truth tables for logical expressions (2 variables). (*medium*)
+#### 46 & 47. Truth tables for logical expressions (2 variables). (*medium*)
 
 Define a function, `table2` which returns the truth table of a given
 logical expression in two variables (specified as arguments). The return
@@ -1056,11 +1060,11 @@ table2 "a" "b" (And(Var "a", Or(Var "a", Var "b")));;
 ```
 
 
-#### Truth tables for logical expressions. (*medium*)
+#### 48. Truth tables for logical expressions. (*medium*)
 
 Generalize the previous problem in such a way that the logical
 expression may contain any number of logical variables. Define `table`
-in a way that `table variables     expr` returns the truth table for the
+in a way that `table variables expr` returns the truth table for the
 expression `expr`, which contains the logical variables enumerated in
 `variables`.
 
@@ -1096,7 +1100,7 @@ table ["a"; "b"; "c"] (Or(And(a, Or(b,c)), Or(And(a,b), And(a,c))));;
 ```
 
 
-#### Gray code. (*medium*)
+#### 49. Gray code. (*medium*)
 
 An n-bit Gray code is a sequence of n-bit strings constructed according
 to certain rules. For example,
@@ -1132,7 +1136,7 @@ gray 3;;
 ```
 
 
-#### Huffman code (*hard*)
+#### 50. Huffman code (*hard*)
 
 First of all, consult a good book on discrete mathematics or algorithms
 for a detailed description of Huffman codes (you can start with the
@@ -1214,6 +1218,9 @@ huffman ["a", 10;  "b", 15;  "c", 30;  "d", 16;  "e", 29];;
 ```
 
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/binary-tree.gif" title="Binary Tree"></img>
+
+<!-- No problems 51–54 -->
+
 ## Binary Trees
 
 *A binary tree is either empty or it is composed of a root element and
@@ -1243,7 +1250,7 @@ In OCaml, the strict type discipline *guarantees* that, if you get a
 value of type `binary_tree`, then it must have been created with the two
 constructors `Empty` and `Node`.
 
-#### Construct completely balanced binary trees. (*medium*)
+#### 55. Construct completely balanced binary trees. (*medium*)
 
 In a completely balanced binary tree, the following property holds for
 every node: The number of nodes in its left subtree and the number of
@@ -1281,7 +1288,7 @@ List.length(cbal_tree 40)
 ```
 
 
-#### Symmetric binary trees. (*medium*)
+#### 56. Symmetric binary trees. (*medium*)
 
 Let us call a binary tree symmetric if you can draw a vertical line
 through the root node and then the right subtree is the mirror image of
@@ -1308,7 +1315,7 @@ SOLUTION
 > ```
 
 
-#### Binary search trees (dictionaries). (*medium*)
+#### 57. Binary search trees (dictionaries). (*medium*)
 
 Construct a 
 [binary search tree](http://en.wikipedia.org/wiki/Binary_search_tree) 
@@ -1338,7 +1345,7 @@ not(is_symmetric(construct [3;2;5;7;4]))
 ```
 
 
-#### Generate-and-test paradigm. (*medium*)
+#### 58. Generate-and-test paradigm. (*medium*)
 
 Apply the generate-and-test paradigm to construct all symmetric,
 completely balanced binary trees with a given number of nodes.
@@ -1364,7 +1371,7 @@ List.map (fun n -> n, List.length(sym_cbal_trees n)) (range 10 20)
 ```
 
 
-#### Construct height-balanced binary trees. (*medium*)
+#### 59. Construct height-balanced binary trees. (*medium*)
 
 In a height-balanced binary tree, the following property holds for every
 node: The height of its left subtree and the height of its right subtree
@@ -1403,8 +1410,7 @@ List.length t;;
 ```
 
 
-#### Construct height-balanced binary trees with a given number of nodes. (*medium*)
-<!-- FIXME -->
+#### 60. Construct height-balanced binary trees with a given number of nodes. (*medium*)
 
 Consider a height-balanced binary tree of height `h`. What is the
 maximum number of nodes it can contain? Clearly,
@@ -1448,7 +1454,7 @@ List.length (hbal_tree_nodes 15)
 ```
 
 
-#### Count the leaves of a binary tree. (*easy*)
+#### 61. Count the leaves of a binary tree. (*easy*)
 
 A leaf is a node with no successors. Write a function `count_leaves` to
 count them.
@@ -1468,7 +1474,7 @@ count_leaves example_tree;;
 ```
 
 
-#### Collect the leaves of a binary tree in a list. (*easy*)
+#### 61A. Collect the leaves of a binary tree in a list. (*easy*)
 
 A leaf is a node with no successors. Write a function `leaves` to
 collect them in a list.
@@ -1488,7 +1494,7 @@ SOLUTION
 ```
 
 
-#### Collect the internal nodes of a binary tree in a list. (*easy*)
+#### 62. Collect the internal nodes of a binary tree in a list. (*easy*)
 
 An internal node of a binary tree has either one or two non-empty
 successors. Write a function `internals` to collect them in a list.
@@ -1507,7 +1513,7 @@ internals example_tree;;
 ```
 
 
-#### Collect the nodes at a given level in a list. (*easy*)
+#### 62B. Collect the nodes at a given level in a list. (*easy*)
 
 A node of a binary tree is at level N if the path from the root to the
 node has length N-1. The root node is at level 1. Write a function
@@ -1533,7 +1539,7 @@ Using `at_level` it is easy to construct a function `levelorder` which
 creates the level-order sequence of the nodes. However, there are more
 efficient ways to do that.
 
-#### Construct a complete binary tree. (*medium*)
+#### 63. Construct a complete binary tree. (*medium*)
 
 A *complete* binary tree with height H is defined as follows: The levels
 1,2,3,...,H-1 contain the maximum number of nodes (i.e 2<sup>i-1</sup>
@@ -1587,7 +1593,7 @@ complete_binary_tree [1;2;3;4;5;6];;
 ```
 
 
-#### Layout a binary tree (1). (*medium*)
+#### 64. Layout a binary tree (1). (*medium*)
 
 As a preparation for drawing the tree, a layout algorithm is required to
 determine the position of each node in a rectangular grid. Several
@@ -1644,7 +1650,7 @@ SOLUTION
 layout_binary_tree_1 example_layout_tree ;;
 ```
 
-#### Layout a binary tree (2). (*medium*)
+#### 65. Layout a binary tree (2). (*medium*)
 
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/tree-layout2.gif" title="Binary Tree Grid"></img>
 
@@ -1697,7 +1703,7 @@ layout_binary_tree_2 example2_layout_tree ;;
 ```
 
 
-#### Layout a binary tree (3). (*hard*)
+#### 66. Layout a binary tree (3). (*hard*)
 
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/tree-layout3.gif" title="Binary Tree Grid"></img>
 
@@ -1720,7 +1726,7 @@ early!
 Which layout do you like most?
 
 
-#### A string representation of binary trees. (*medium*)
+#### 67. A string representation of binary trees. (*medium*)
 
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/binary-tree.gif" title="Binary Tree"></img>
 
@@ -1788,7 +1794,7 @@ tree_of_string "a(b(d,e),c(,f(g,)))" = example_layout_tree;;
 ```
 
 
-#### Preorder and inorder sequences of binary trees. (*medium*)
+#### 68. Preorder and inorder sequences of binary trees. (*medium*)
 
 We consider binary trees with nodes that are identified by single
 lower-case letters, as in the example of the previous problem.
@@ -1864,7 +1870,7 @@ Solution using
 ```
 
 
-#### Dotstring representation of binary trees. (*medium*)
+#### 69. Dotstring representation of binary trees. (*medium*)
 
 We consider again binary trees with nodes that are identified by single
 lower-case letters, as in the example of problem “[A string
@@ -1908,7 +1914,7 @@ T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])])
 ```
 
 
-#### Count the nodes of a multiway tree. (*easy*)
+#### 70C. Count the nodes of a multiway tree. (*easy*)
 
 SOLUTION
 
@@ -1922,7 +1928,7 @@ count_nodes (T('a', [T('f',[]) ]))
 ```
 
 
-#### Tree construction from a node string. (*medium*)
+#### 70. Tree construction from a node string. (*medium*)
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/multiway-tree.gif" title="Multiway Tree"></img>
 
 We suppose that the nodes of a multiway tree contain single characters.
@@ -1971,7 +1977,7 @@ tree_of_string "afg^^c^bd^e^^^";;
 ```
 
 
-#### Determine the internal path length of a tree. (*easy*)
+#### 71. Determine the internal path length of a tree. (*easy*)
 
 We define the internal path length of a multiway tree as the total sum
 of the path lengths from the root to all nodes of the tree. By this
@@ -1994,7 +2000,7 @@ ipl t
 ```
 
 
-#### Construct the bottom-up order sequence of the tree nodes. (*easy*)
+#### 72. Construct the bottom-up order sequence of the tree nodes. (*easy*)
 
 Write a function `bottom_up t` which constructs the bottom-up sequence
 of the nodes of the multiway tree `t`.
@@ -2013,7 +2019,7 @@ bottom_up t;;
 ```
 
 
-#### Lisp-like tree representation. (*medium*)
+#### 73. Lisp-like tree representation. (*medium*)
 
 There is a particular notation for multiway trees in Lisp. The
 picture shows how multiway tree structures are represented in Lisp.
@@ -2120,7 +2126,7 @@ may want to define a similar type using sets instead of lists.
  multiple times. Notice the isolated node `d`.
 
 
-#### Conversions. (*easy*)
+#### 80. Conversions. (*easy*)
 
 Write functions to convert between the different graph representations.
 With these functions, all representations are equivalent; i.e. for the
@@ -2135,7 +2141,7 @@ deal with all the special cases.
 ```
 
 
-#### Path from one node to another one. (*medium*)
+#### 81. Path from one node to another one. (*medium*)
 
 Write a function `paths g a b` that returns all acyclic path `p` from
 node `a` to node `b ≠ a` in the graph `g`. The function should return
@@ -2170,7 +2176,7 @@ paths example_graph 'f' 'b'
 ```
 
 
-#### Cycle from a given node. (*easy*)
+#### 82. Cycle from a given node. (*easy*)
 
 Write a functions `cycle g a` that returns a closed path (cycle) `p`
 starting at a given node `a` in the graph `g`. The predicate should
@@ -2190,7 +2196,7 @@ cycles example_graph 'f'
 ```
 
 
-#### Construct all spanning trees. (*medium*)
+#### 83. Construct all spanning trees. (*medium*)
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/spanning-tree-graph1.gif" title="Spanning tree graph"></img>
 
 Write a function `s_tree g` to construct (by backtracking) all [spanning
@@ -2215,7 +2221,7 @@ let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
 ```
 
 
-#### Construct the minimal spanning tree. (*medium*)
+#### 84. Construct the minimal spanning tree. (*medium*)
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/spanning-tree-graph2.gif" title="Spanning tree graph"></img>
 
 Write a function `ms_tree graph` to construct the minimal spanning tree
@@ -2249,7 +2255,7 @@ let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
 ```
 
 
-#### Graph isomorphism. (*medium*)
+#### 85. Graph isomorphism. (*medium*)
 
 Two graphs G1(N1,E1) and G2(N2,E2) are isomorphic if there is a
 bijection f: N1 → N2 such that for any nodes X,Y of N1, X and Y are
@@ -2265,7 +2271,7 @@ Hint: Use an open-ended list to represent the function f.
 ```
 
 
-#### Node degree and graph coloration. (*medium*)
+#### 86. Node degree and graph coloration. (*medium*)
 
 * Write a function `degree graph node` that determines the degree of a
  given node.
@@ -2283,7 +2289,7 @@ Hint: Use an open-ended list to represent the function f.
 ```
 
 
-#### Depth-first order graph traversal. (*medium*)
+#### 87. Depth-first order graph traversal. (*medium*)
 
 Write a function that generates a
 [depth-first order graph traversal](https://en.wikipedia.org/wiki/Depth-first_search)
@@ -2395,7 +2401,7 @@ let g = M.of_adjacency
 List.rev (M.dfs_fold g 'w' (fun acc c -> c :: acc) [])
 ```
 
-#### Connected components. (*medium*)
+#### 88. Connected components. (*medium*)
 
 Write a predicate that splits a graph into its [connected
 components](http://en.wikipedia.org/wiki/Connected_component_%28graph_theory%29).
@@ -2407,7 +2413,7 @@ components](http://en.wikipedia.org/wiki/Connected_component_%28graph_theory%29)
 ```
 
 
-#### Bipartite graphs. (*medium*)
+#### 89. Bipartite graphs. (*medium*)
 
 Write a predicate that finds out whether a given graph is
 [bipartite](http://en.wikipedia.org/wiki/Bipartite_graph).
@@ -2419,7 +2425,7 @@ Write a predicate that finds out whether a given graph is
 ```
 
 
-#### Generate K-regular simple graphs with N nodes. (*hard*)
+#### 90. Generate K-regular simple graphs with N nodes. (*hard*)
 
 In a [K-regular graph](http://en.wikipedia.org/wiki/K-regular_graph) all
 nodes have a degree of K; i.e. the number of edges incident in each node
@@ -2437,7 +2443,7 @@ results](https://sites.google.com/site/prologsite/prolog-problems/6/solutions-6/
 
 ## Miscellaneous Problems
 
-#### Eight queens problem. (*medium*)
+#### 91. Eight queens problem. (*medium*)
 
 This is a classical problem in computer science. The objective is to
 place eight queens on a chessboard so that no two queens are attacking
@@ -2479,7 +2485,7 @@ queens_positions 4;;
 List.length (queens_positions 8);;
 ```
 
-#### Knight's tour. (*medium*)
+#### 92. Knight's tour. (*medium*)
 
 Another famous problem is this one: How can a knight jump on an N×N
 chessboard in such a way that it visits every square exactly once?
@@ -2498,7 +2504,7 @@ knight's tour).
 ```
 
 
-#### Von Koch's conjecture. (*hard*)
+#### 93. Von Koch's conjecture. (*hard*)
 
 Several years ago I met a mathematician who was intrigued by a problem
 for which he didn't know a solution. His name was Von Koch, and I don't
@@ -2529,7 +2535,7 @@ What is the solution for the larger tree pictured here?
 ```
 
 
-#### An arithmetic puzzle. (*hard*)
+#### 94. An arithmetic puzzle. (*hard*)
 
 Given a list of integer numbers, find a correct way of inserting
 arithmetic signs (operators) such that the result is a correct equation.
@@ -2542,7 +2548,7 @@ equations 2-3+5+7 = 11 or 2 = (3*5+7)/11 (and ten others!).
 (* example pending *);;
 ```
 
-#### English number words. (*medium*)
+#### 95. English number words. (*medium*)
 
 On financial documents, like cheques, numbers must sometimes be written
 in full words. Example: 175 must be written as one-seven-five. Write a
@@ -2569,7 +2575,7 @@ full_words 0;;
 ```
 
 
-#### Syntax checker. (*medium*)
+#### 96. Syntax checker. (*medium*)
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/syntax-graph.gif" title="Syntax graph"></img>
 
 In a certain programming language (Ada) identifiers are defined by the
@@ -2602,7 +2608,7 @@ identifier "two--hyphens";;
 identifier "-dash-first";;
 ```
 
-#### Sudoku. (*medium*)
+#### 97. Sudoku. (*medium*)
 
 Sudoku puzzles go like this:
 
@@ -2738,7 +2744,7 @@ Board.print (sudoku initial_board);;
 ```
 
 
-#### Nonograms. (*hard*)
+#### 98. Nonograms. (*hard*)
 
 Around 1994, a certain kind of puzzles was very popular in England. The
 "Sunday Telegraph" newspaper wrote: "Nonograms are puzzles from Japan
@@ -2884,7 +2890,7 @@ solve [[3];[2;1];[3;2];[2;2];[6];[1;5];[6];[1];[2]]
 ```
 
 
-#### Crossword puzzle. (*hard*)
+#### 99. Crossword puzzle. (*hard*)
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/crossword.gif" title="Crossword"></img>
 
 Given an empty (or almost empty) framework of a crossword puzzle and a
