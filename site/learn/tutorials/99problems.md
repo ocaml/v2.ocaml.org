@@ -2634,7 +2634,10 @@ between 1 and 9. The problem is to fill the missing spots with digits in
 such a way that every number between 1 and 9 appears exactly once in
 each row, in each column, and in each square.
 
+<!-- A better solution is desirable -->
+
 SOLUTION
+
 > A simple way of resolving this is to use brute force, that will be the
 > approach used for the solution, we use this type:
 > ```ocamltop
@@ -2643,8 +2646,8 @@ SOLUTION
 > type cell =
 >  | Empty
 >  | Num of int (* Values given *)
->  | Var of int;; (* Values we try *)
-> type grid = cell array array;;
+>  | Var of int (* Values we try *)
+> type grid = cell array array
 > ```
 >
 > The idea is to start filling with available values in each case and
@@ -2656,39 +2659,21 @@ SOLUTION
 > tree.
 >
 > ```ocamltop
-> (* a 9x9 grid of int *)
-> (* the number in column line can be accessed with grid.(column).(line)*)
-> type cell =
->  | Empty
->  | Num of int (* Values given *)
->  | Var of int;; (* Values we try *)
-> type grid = cell array array;;
->
-> let toIntArray grid =
-> let arr = Array.make_matrix 9 9 (-1) in
->  for x = 0 to 8 do
->    for y = 0 to 8 do
->      (match grid.(x).(y) with
->        | Empty -> ()
->        | Num i -> arr.(x).(y) <- i
->        | Var i -> arr.(x).(y) <- i
->        )
->    done;
->  done;
->  arr;;
+> let to_int_array =
+>   let to_int = function Num i | Var i -> i
+>                       | Empty -> assert false in
+>   Array.map (Array.map to_int)
 >
 > let available grid x y =
 >   (* Give the available numbers we can put in the grid in x y*)
->   let toCheck = Array.make 9 1 in
+>   let available = Array.make 9 true in
 >   for k = 0 to 8 do
 >     (match grid.(x).(k) with
 >       | Empty -> ()
->       | Num i -> toCheck.(i-1) <- toCheck.(i-1) - 1
->       | Var i -> toCheck.(i-1) <- toCheck.(i-1) - 1);
+>       | Num i | Var i -> available.(i-1) <- false);
 >     (match grid.(k).(y) with
 >       | Empty -> ()
->       | Num i -> toCheck.(i-1) <- toCheck.(i-1) - 1
->      | Var i -> toCheck.(i-1) <- toCheck.(i-1) - 1)
+>       | Num i | Var i -> available.(i-1) <- false)
 >   done;
 >   let sq_x = (x / 3) * 3 in
 >   let sq_y = (y / 3) * 3 in
@@ -2696,14 +2681,12 @@ SOLUTION
 >     for j = 0 to 2 do
 >       (match grid.(sq_x + i).(sq_y + j) with
 >         | Empty -> ()
->         | Num i -> toCheck.(i-1) <- toCheck.(i-1) - 1
->         | Var i -> toCheck.(i-1) <- toCheck.(i-1) - 1)
+>         | Num i | Var i -> available.(i-1) <- false)
 >     done;
 >   done;
 >   let out = ref [] in
 >   for k = 0 to 8 do
->     if toCheck.(k) > 0
->       then (out := (k+1)::(!out))
+>     if available.(k) then out := (k+1) :: !out
 >   done;
 >   !out
 >
@@ -2722,8 +2705,7 @@ SOLUTION
 >  let n = ref 0 in (* Current index of choice in the available choices *)
 >  let current = ref (copy2D toComplete) in (* current grid *)
 >  let backward () = (* Go backward to last choice made *)
->    if Stack.is_empty choices
->      then failwith "Seems to be impossible"
+>    if Stack.is_empty choices then failwith "Seems to be impossible"
 >    else (
 >      let (lGrid, lx, ly, lsn) = Stack.pop choices in
 >      current := lGrid;
@@ -2732,32 +2714,32 @@ SOLUTION
 >      n := lsn;
 >      )
 >  in
->  let putValue () = (* put a value at the current position *)
->    let li = available !current !x !y in (* We get the available choice *)
->    (match li with
->    | [] -> backward () (* No choice available so we made an error *)
->    | [vl] -> (!current).(!x).(!y) <- Var vl;
->              n := 0;
->              nextCell x y 9 (* One choice we save it and go on *)
->    | _ -> (* Multiple choices *)
->           if !n >= List.length li
->           then backward () (* all avaible choice tried, go back*)
->           else ( (* Otherwise we try the next choice *)
->             Stack.push (copy2D (!current), !x, !y, (!n + 1)) choices;
->             (* We save our current state on the stack *)
->             (!current).(!x).(!y) <- Var (List.nth li !n);
->             n := 0;
->             nextCell x y 9;
->           )
->    ) in
 >  while !x < 9 do
 >    (* The way we iterate over the grid when x reaches 9, we have fully
 >       completed the grid *)
 >    match (!current).(!x).(!y) with
 >      | Num i -> nextCell x y 9 (* A Num is a correct value so we just skip *)
->      | _ -> putValue();
+>      | _ ->
+>         (* put a value at the current position *)
+>         let li = available !current !x !y in (* We get the available choice *)
+>         (match li with
+>         | [] -> backward () (* No choice available so we made an error *)
+>         | [vl] -> (!current).(!x).(!y) <- Var vl;
+>                   n := 0;
+>                   nextCell x y 9 (* One choice we save it and go on *)
+>         | _ -> (* Multiple choices *)
+>                if !n >= List.length li
+>                then backward () (* all avaible choice tried, go back*)
+>                else ( (* Otherwise we try the next choice *)
+>                  Stack.push (copy2D (!current), !x, !y, (!n + 1)) choices;
+>                  (* We save our current state on the stack *)
+>                  (!current).(!x).(!y) <- Var (List.nth li !n);
+>                  n := 0;
+>                  nextCell x y 9;
+>                )
+>         )
 >  done;
->  toIntArray !current;;
+>  to_int_array !current;;
 > ```
 
 ```ocamltop
