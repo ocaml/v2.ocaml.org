@@ -57,7 +57,7 @@ let toggle_js =
 
 let n_button = ref 0
 
-let add_toggle_button title html doc : Omd.t =
+let toggle_button title html : Omd.t =
   incr n_button;
   let attr_button =
     ["onclick", Some(sprintf "toggleContent('ocamlorg%i')" !n_button);
@@ -66,25 +66,24 @@ let add_toggle_button title html doc : Omd.t =
                   "class", Some "solution";
                   "media:type", Some "text/omd" ] in
   let open Omd in
-  Html("button", attr_button, [Raw(Code.html_encode title)])
-  :: NL :: Html_block("div", attr_div, html)
-  :: doc
+  [Html("button", attr_button, [Raw(Code.html_encode title)]);
+   NL; Html_block("div", attr_div, html)]
 
 (** Finds "SOLUTION" directly followed by a Blockquote and transform
     those to HTML. *)
-let rec toggle_solutions any_change md =
+let rec toggle_solutions any_change md rev_md =
   let open Omd in
   match md with
   | Text "SOLUTION" :: NL :: Blockquote sol :: md
-  | Text "SOLUTION" :: NL :: NL :: Blockquote sol :: md
-  | Paragraph [Omd.Text "SOLUTION"] :: Blockquote sol :: md
-  | Paragraph [Omd.Text "SOLUTION"] :: NL :: Blockquote sol :: md ->
+    | Text "SOLUTION" :: NL :: NL :: Blockquote sol :: md
+    | Paragraph [Omd.Text "SOLUTION"] :: Blockquote sol :: md
+    | Paragraph [Omd.Text "SOLUTION"] :: NL :: Blockquote sol :: md ->
      any_change := true;
-     add_toggle_button "Solution" sol (toggle_solutions any_change md)
+     let button = toggle_button "Solution" sol in
+     toggle_solutions any_change md (List.rev_append button rev_md)
   | e :: md ->
-
-     e :: toggle_solutions any_change md
-  | [] -> []
+     toggle_solutions any_change md (e :: rev_md)
+  | [] -> List.rev rev_md
 
 
 let () =
@@ -94,7 +93,7 @@ let () =
   (* Enable custom transformations. *)
   let md = eval_code_blocks md in
   let any_change = ref false in
-  let md = toggle_solutions any_change md in
+  let md = toggle_solutions any_change md [] in
   let md = if !any_change then toggle_js :: md else md in
   print_string(Omd.to_markdown md)
 
