@@ -604,16 +604,14 @@ possibilities in a list.
 SOLUTION
 
 > ```ocamltop
-> let extract k list =
->   let rec aux k acc emit = function
->     | [] -> acc
->     | h :: t ->
->       if k = 1 then aux k (emit [h] acc) emit t else
->         let new_emit x = emit (h :: x) in
->         aux k (aux (k-1) acc new_emit t) emit t
->   in
->   let emit x acc = x :: acc in
->   aux k [] emit list;;
+> let rec extract k list =
+>   if k <= 0 then [ [] ]
+>   else match list with
+>        | [] -> []
+>        | h :: tl ->
+>           let with_h = List.map (fun l -> h :: l) (extract (k-1) tl) in
+>           let without_h = extract k tl in
+>           with_h @ without_h
 > ```
 
 ```ocamltop
