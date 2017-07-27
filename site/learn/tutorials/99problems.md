@@ -2638,123 +2638,102 @@ each row, in each column, and in each square.
 
 SOLUTION
 
-> A simple way of resolving this is to use brute force, that will be the
-> approach used for the solution, we use this type:
-> ```ocamltop
-> (* a 9x9 grid of int *)
->  (* the number in column line can be accessed with grid.(column).(line)*)
-> type cell =
->  | Empty
->  | Num of int (* Values given *)
->  | Var of int (* Values we try *)
-> type grid = cell array array
-> ```
->
+> A simple way of resolving this is to use brute force.
 > The idea is to start filling with available values in each case and
 > test if it works.  When there is no available values, it means we
 > made a mistake so we go back to the last choice we made, and try a
-> different choice ( one that we didn't already choose ).  It's the
-> same way as resolving the 3-SAT problem, except we use a stack
-> instead of a binary tree. But our stack can be considered as a 9-ary
-> tree.
+> different choice.
 >
 > ```ocamltop
-> let to_int_array =
->   let to_int = function Num i | Var i -> i
->                       | Empty -> assert false in
->   Array.map (Array.map to_int)
->
-> let available grid x y =
->   (* Give the available numbers we can put in the grid in x y*)
->   let available = Array.make 9 true in
->   for k = 0 to 8 do
->     (match grid.(x).(k) with
->       | Empty -> ()
->       | Num i | Var i -> available.(i-1) <- false);
->     (match grid.(k).(y) with
->       | Empty -> ()
->       | Num i | Var i -> available.(i-1) <- false)
->   done;
->   let sq_x = (x / 3) * 3 in
->   let sq_y = (y / 3) * 3 in
->   for i = 0 to 2 do
->     for j = 0 to 2 do
->       (match grid.(sq_x + i).(sq_y + j) with
->         | Empty -> ()
->         | Num i | Var i -> available.(i-1) <- false)
+> open Printf
+> 
+> module Board = struct
+>   type t = int array (* 9×9, row-major representation.  A value of 0
+>                         means undecided. *)
+> 
+>   let is_valid c = c >= 1
+> 
+>   let get (b: t) (x, y) = b.(x + y * 9)
+> 
+>   let get_as_string (b: t) pos =
+>     let i = get b pos in
+>     if is_valid i then string_of_int i else "."
+> 
+>   let with_val (b: t) (x, y) v =
+>     let b = Array.copy b in
+>     b.(x + y * 9) <- v;
+>     b
+> 
+>   let of_list l : t =
+>     let b = Array.make 81 0 in
+>     List.iteri (fun y r -> List.iteri (fun x e ->
+>       b.(x + y * 9) <- if e >= 0 && e <= 9 then e else 0) r) l;
+>     b
+> 
+>   let print b =
+>     for y = 0 to 8 do
+>       for x = 0 to 8 do
+>         printf (if x = 0 then "%s" else if x mod 3 = 0 then " | %s"
+>                 else "  %s")  (get_as_string b (x, y))
+>       done;
+>       if y < 8 then
+>         if y mod 3 = 2 then printf "\n--------+---------+--------\n"
+>         else printf "\n        |         |        \n"
+>       else printf "\n"
+>     done
+> 
+>   let available b (x, y) =
+>     let avail = Array.make 10 true in
+>     for i = 0 to 8 do
+>       avail.(get b (x, i)) <- false;
+>       avail.(get b (i, y)) <- false;
 >     done;
->   done;
->   let out = ref [] in
->   for k = 0 to 8 do
->     if available.(k) then out := (k+1) :: !out
->   done;
->   !out
->
-> let copy2D arr = (* Deep copy of a 2D array *)
->   Array.map Array.copy arr
->
-> let nextCell x y maxY =
->  y := !y + 1;
->  if !y >= maxY then (y := 0; x := !x + 1)
->
-> let solve_sudoku toComplete =
->  (* Store every choice we make so we can backward to our last choice *)
->  let choices = Stack.create () in
->  let x = ref 0 in (* Current column *)
->  let y = ref 0 in (* Current line *)
->  let n = ref 0 in (* Current index of choice in the available choices *)
->  let current = ref (copy2D toComplete) in (* current grid *)
->  let backward () = (* Go backward to last choice made *)
->    if Stack.is_empty choices then failwith "Seems to be impossible"
->    else (
->      let (lGrid, lx, ly, lsn) = Stack.pop choices in
->      current := lGrid;
->      x := lx;
->      y := ly;
->      n := lsn;
->      )
->  in
->  while !x < 9 do
->    (* The way we iterate over the grid when x reaches 9, we have fully
->       completed the grid *)
->    match (!current).(!x).(!y) with
->      | Num i -> nextCell x y 9 (* A Num is a correct value so we just skip *)
->      | _ ->
->         (* put a value at the current position *)
->         let li = available !current !x !y in (* We get the available choice *)
->         (match li with
->         | [] -> backward () (* No choice available so we made an error *)
->         | [vl] -> (!current).(!x).(!y) <- Var vl;
->                   n := 0;
->                   nextCell x y 9 (* One choice we save it and go on *)
->         | _ -> (* Multiple choices *)
->                if !n >= List.length li
->                then backward () (* all avaible choice tried, go back*)
->                else ( (* Otherwise we try the next choice *)
->                  Stack.push (copy2D (!current), !x, !y, (!n + 1)) choices;
->                  (* We save our current state on the stack *)
->                  (!current).(!x).(!y) <- Var (List.nth li !n);
->                  n := 0;
->                  nextCell x y 9;
->                )
->         )
->  done;
->  to_int_array !current;;
+>     let sq_x = x - x mod 3 and sq_y = y - y mod 3 in
+>     for x = sq_x to sq_x + 2 do
+>       for y = sq_y to sq_y + 2 do
+>         avail.(get b (x, y)) <- false;
+>       done;
+>     done;
+>     let av = ref [] in
+>     for i = 1 (* not 0 *) to 9 do if avail.(i) then av := i :: !av done;
+>     !av
+> 
+>   let next (x,y) = if x < 8 then (x+1, y) else (0, y+1)
+> 
+>   (** Try to fill the undecided entries. *)
+>   let rec fill b ((x,y) as pos) =
+>     if y > 8 then Some b (* filled all entries *)
+>     else if is_valid(get b pos) then fill b (next pos)
+>     else match available b pos with
+>          | [] -> None (* no solution *)
+>          | l -> try_values b pos l
+>   and try_values b pos = function
+>     | v :: l ->
+>        (match fill (with_val b pos v) (next pos) with
+>         | Some _ as res -> res
+>         | None -> try_values b pos l)
+>     | [] -> None
+> end
+> 
+> let sudoku b = match Board.fill b (0,0) with
+>   | Some b -> b
+>   | None -> failwith "sudoku: no solution"
 > ```
 
 ```ocamltop
-let toSolve = [|
-            [|Empty; Num 6; Num 5; Num 3; Empty; Empty; Num 1; Empty; Num 2|];
-            [|Empty; Num 7; Empty; Empty; Num 6; Empty; Empty; Empty; Num 4|];
-            [|Num 4; Empty; Num 8; Empty; Num 9; Num 1; Empty; Empty; Empty|];
-            [|Num 8; Num 9; Empty; Num 7; Empty; Empty; Empty; Empty; Empty|];
-            [|Empty; Empty; Num 3; Num 4; Empty; Num 6; Num 8; Empty; Empty|];
-            [|Empty; Empty; Empty; Empty; Empty; Num 9; Empty; Num 6; Num 1|];
-            [|Empty; Empty; Empty; Num 1; Num 7; Empty; Num 3; Empty; Num 5|];
-            [|Num 1; Empty; Empty; Empty; Num 8; Empty; Empty; Num 9; Empty|];
-            [|Num 7; Empty; Num 4; Empty; Empty; Num 5; Num 6; Num 1; Empty|]
-                |];;
-solve_sudoku toSolve;;
+(* The board representation is not imposed.  Here "0" stands for "." *)
+let initial_board =
+  Board.of_list [[0; 0; 4;  8; 0; 0;  0; 1; 7];
+                 [6; 7; 0;  9; 0; 0;  0; 0; 0];
+                 [5; 0; 8;  0; 3; 0;  0; 0; 4];
+                 [3; 0; 0;  7; 4; 0;  1; 0; 0];
+                 [0; 6; 9;  0; 0; 0;  7; 8; 0];
+                 [0; 0; 1;  0; 6; 9;  0; 0; 5];
+                 [1; 0; 0;  0; 8; 0;  3; 0; 6];
+                 [0; 0; 0;  0; 0; 6;  0; 9; 1];
+                 [2; 4; 0;  0; 0; 1;  5; 0; 0]];;
+
+Board.print (sudoku initial_board);;
 ```
 
 
