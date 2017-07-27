@@ -1220,7 +1220,7 @@ huffman ["a", 10;  "b", 15;  "c", 30;  "d", 16;  "e", 29];;
 two successors, which are binary trees themselves.*
 
 In OCaml, one can define a new type `binary_tree` that carries an
-arbitrary value of type `'a` at each node.
+arbitrary value of type `'a` (thus is polymorphic) at each node.
 
 ```ocamltop
 type 'a binary_tree =
@@ -1233,7 +1233,10 @@ An example of tree carrying `char` data is:
 ```ocamltop
 let example_tree =
   Node('a', Node('b', Node('d', Empty, Empty), Node('e', Empty, Empty)),
-       Node('c', Empty, Node('f', Node('g', Empty, Empty), Empty)))
+       Node('c', Empty, Node('f', Node('g', Empty, Empty), Empty)));;
+let example_int_tree =
+  Node(1, Node(2, Node(4, Empty, Empty), Node(5, Empty, Empty)),
+       Node(3, Empty, Node(6, Node(7, Empty, Empty), Empty)))
 ```
 
 In OCaml, the strict type discipline *guarantees* that, if you get a
