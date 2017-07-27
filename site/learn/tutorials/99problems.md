@@ -2239,7 +2239,7 @@ follows:
 
 ```ocamltop
 type ('a, 'b) labeled_graph = { nodes : 'a list;
-                                edges : ('a * 'a * 'b) list }
+                                labeled_edges : ('a * 'a * 'b) list }
 ```
 
 (Beware that from now on `nodes` and `edges` mask the previous fields of
@@ -2257,10 +2257,10 @@ example graph to the right can be found below.
 
 ```ocamltop
 let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
-          edges = [('a', 'b', 5); ('a', 'd', 3); ('b', 'c', 2);
-		           ('b', 'e', 4); ('c', 'e', 6); ('d', 'e', 7);
-				   ('d', 'f', 4); ('d', 'g', 3); ('e', 'h', 5);
-				   ('f', 'g', 4); ('g', 'h', 1)] }
+          labeled_edges = [('a', 'b', 5); ('a', 'd', 3); ('b', 'c', 2);
+		                   ('b', 'e', 4); ('c', 'e', 6); ('d', 'e', 7);
+				           ('d', 'f', 4); ('d', 'g', 3); ('e', 'h', 5);
+				           ('f', 'g', 4); ('g', 'h', 1)] }
 ```
 
 
@@ -2276,7 +2276,17 @@ Hint: Use an open-ended list to represent the function f.
 <!-- SOLUTION -->
 
 ```ocaml
-(* example pending *);;
+(* solution pending *);;
+```
+
+```ocamltop
+let g = { nodes = [1; 2; 3; 4; 5; 6; 7; 8];
+          edges = [(1,5); (1,6); (1,7); (2,5); (2,6); (2,8); (3,5);
+                   (3,7); (3,8); (4,6); (4,7); (4,8)] };;
+let h = { nodes = [1; 2; 3; 4; 5; 6; 7; 8];
+          edges = [(1,2); (1,4); (1,5); (6,2); (6,5); (6,7); (8,4);
+                   (8,5); (8,7); (3,2); (3,4); (3,7)] };;
+iso g h
 ```
 
 
