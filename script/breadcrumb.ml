@@ -14,7 +14,7 @@ let get_title lang path =
     String.capitalize(Filename.basename path)
 
 let rec breadcrumb_of_path bc lang path =
-  if path = "site" || path = "." then ("/", "Home") :: bc
+  if path = "site" || path = "." || path = "/" then ("/", "Home") :: bc
   else (
     let index = ["", "index.md"; "", "index.html"] in
     let index = if lang = "" then index
