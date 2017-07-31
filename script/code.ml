@@ -26,7 +26,8 @@ let highlight_ocaml =
   let let_id = id ^ "\\|( +[!=+-*/^:]+ +)" in
   let uid = "\\b[A-Z][A-Za-z0-9_']*" in
   (* Arguments to functions may pattern match.  Final "\\." to allow
-     "..." in argument (sometimes used for explanations). *)
+     "..." in argument (sometimes used for explanations).
+     BEWARE: defines 2 groups. *)
   let args = "\\(\\?(" ^ id ^ " *=[^=()]+) +\\|[~?]" ^ id ^ "[ :]+\\|() *\\|"
              ^ id ^ " +\\|(" ^ id ^ "\\( *:[^)]+\\)?) +\\|([a-zA-Z0-9_', ]+) *"
              ^ "\\|{[a-zA-Z0-9_',; ]+} *\\|\\[" ^ id ^ "\\] *\\|\\.+ +\\)+" in
@@ -47,7 +48,7 @@ let highlight_ocaml =
      ^ args ^ "\\)= *\\(fun\\(\\b\\|ction\\b\\)\\)",
      "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
       \\2</span> <span class=\"ocaml-variable\">\\3</span>= \
-      <span class=\"keyword\">\\4</span>");
+      <span class=\"keyword\">\\6</span>");
     ("\\b\\(let +rec\\|let\\|and\\) +\\(" ^ let_id ^ "\\) +: *\\([^=]+\\)"
      ^ "= *\\(fun\\(\\b\\|ction\\b\\)\\)",
      "<span class=\"governing\">\\1</span> <span class=\"ocaml-function\">\
