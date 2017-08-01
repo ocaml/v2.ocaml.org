@@ -28,17 +28,19 @@
             <h1 class="ruled"><a href="mailing_lists.html">Mailing Lists</a></h1>
             <div class="row">
             <section class="span4 condensed">
+                <p><strong><a href="https://discuss.ocaml.org/">discuss.ocaml.org</a></strong><br />
+                <strong><em>Main forum</em></strong><br />
+                Very active forum for all users, including
+				beginners, to discuss any topic about OCaml.
+				It can be subscribed to like a mailing list.</p>
                 <p><strong><a href="https://sympa.inria.fr/sympa/arc/caml-list">caml-list@inria.fr</a></strong><br />
                 <strong><em>Main OCaml List</em></strong><br />
                 Intended for all users of OCaml. The purpose of this list is to share experience, exchange ideas and code, and discuss applications of the language.</p>
+            </section>
+            <section class="span4 condensed">
                 <p><strong><a href="http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce">caml-announce@inria.fr</a></strong><br />
                 <strong><em>Low volume announcements</em></strong><br />
                 This is a low-traffic, moderated list for announcements of OCaml releases and new OCaml-related software, libraries, documents, etc.</p>
-            </section>
-            <section class="span4 condensed">
-                <p><strong><a href="http://groups.yahoo.com/neo/groups/ocaml_beginners/info">ocaml_beginners@yahoogroups.com</a></strong><br />
-                <strong><em>Beginners' List</em></strong><br />
-                Everything you wanted to ask about OCaml, but were afraid to submit in the main list can be asked, answered and discussed here.</p>
                 <p><strong><a href="http://lists.ocaml.org">lists.ocaml.org</a></strong><br />
                 <strong><em>Community lists and working groups</em></strong><br />
                 User-interest lists and working groups convened with specific goals.</p>

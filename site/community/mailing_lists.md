@@ -17,6 +17,8 @@ use GitHub's Issue system for discussions.
 [discuss.ocaml.org](https://discuss.ocaml.org/)  
 This is the most active forum about OCaml. Topics are grouped into
 a variety of categories, which can be followed independently.
+This forum welcomes people at all levels of proficiency, including
+beginners.
 A mailing-list mode is also available for those who wish to receive
 all messages.
 
@@ -42,16 +44,6 @@ who exchange about 300 messages per month.
 The [OCaml Weekly News](http://alan.petitepomme.net/cwn/) also provides
 a curated summary of caml-list discussions.
 
-### OCaml Beginners
-*ocaml_beginners AT yahoogroups.com*  
-This list is a place for the mutual aid of those who recognize that
-they're not OCaml gurus yet... everything you wanted to ask about OCaml,
-but were afraid to submit in the more official caml-list AT inria.fr,
-can be asked, answered and discussed here. In early 2004, the list has
-about 300 subscribers, who exchange about 100 messages per month.
-
-[List&#39;s page at
-Yahoo!](http://groups.yahoo.com/neo/groups/ocaml_beginners/info)
 
 ### OCaml Jobs and Internships
 *ocaml-jobs AT inria.fr*  

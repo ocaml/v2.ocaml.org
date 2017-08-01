@@ -31,17 +31,21 @@
             <h1 class="ruled"><a href="mailing_lists.fr.html">Listes de discussion</a></h1>
             <div class="row">
             <section class="span4 condensed">
+                <p><strong><a href="https://discuss.ocaml.org/">discuss.ocaml.org</a></strong><br />
+                <strong><em>Forum principal</em></strong><br />
+                Ce forum, très actif, est destiné à tous les
+				utilisateurs, y compris les débutants, pour y discuter
+				de tout sujet concernant OCaml.
+				On peut aussi le consulter par email, comme une
+				liste de diffusion classique.</p>
                 <p><strong><a href="https://sympa.inria.fr/sympa/arc/caml-list">caml-list@inria.fr</a></strong><br />
                 <strong><em>La liste OCaml principale</em></strong><br />
                 Visant tous les utilisateurs, cette liste a pour but de permettre le partage d'expérience, d'échanger les idées et le code, et de discuter des applications du langage.</p>
+            </section>
+            <section class="span4 condensed">
                 <p><strong><a href="http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce">caml-announce@inria.fr</a></strong><br />
                 <strong><em>Liste d'annonces</em></strong><br />
                 Cette liste permet de recevoir les annonces des nouvelles version d'OCaml et des autres logiciels en OCaml. C'est une liste modérée avec un faible traffic.</p>
-            </section>
-            <section class="span4 condensed">
-                <p><strong><a href="http://groups.yahoo.com/neo/groups/ocaml_beginners/info">ocaml_beginners@yahoogroups.com</a></strong><br />
-                <strong><em>Liste des débutants sur Yahoo</em></strong><br />
-                Cette liste permet aux débutants de discuter en évitant les discussions les plus théoriques qui peuvent parfois apparaître sur la liste officielle.</p>
                 <p><strong><a href="http://lists.ocaml.org">lists.ocaml.org</a></strong><br />
                 <strong><em>Autres listes et groupes de travail</em></strong><br />
                 Un ensemble de listes spécialisées et de groupes de travail sur des sujets dédiés.</p>

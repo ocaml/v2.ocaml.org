@@ -9,7 +9,8 @@
 ### discuss.ocaml.org
 [discuss.ocaml.org](https://discuss.ocaml.org/)  
 C'est le forum le plus actif au sein de la communauté OCaml.
-Il touche à tous les aspects du langage et toutes les audiences sont
+Il touche à tous les aspects du langage et toutes les audiences
+(donc y compris les débutants) sont
 bienvenues. Les conversations y sont regroupées en catégories,
 auxquelles il est possible de s'abonner séparément.
 Il offre également un mode liste de diffusion, pour ceux qui désireraient
@@ -33,17 +34,6 @@ messages par mois.
 [Archives locales](https://sympa.inria.fr/sympa/arc/caml-list) |
 [Archives sur Google
 Groups](http://groups.google.com/groups?group=fa.caml)
-
-### ocaml_beginners AT yahoogroups.com
-
-Cette liste est une alternative à la liste principale, pour ceux qui
-se sentent trop timides pour poster sur la liste principale (où les
-discussions peuvent parfois devenir très théoriques). Début 2004, la
-liste compte environ 300 abonnés, qui échangent de l'ordre de 100
-messages par mois.
-
-[Page de la liste sur
-Yahoo!](http://groups.yahoo.com/neo/groups/ocaml_beginners/info)
 
 ### ocaml-jobs AT inria.fr
 
