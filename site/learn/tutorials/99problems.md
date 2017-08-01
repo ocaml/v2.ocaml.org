@@ -1746,19 +1746,8 @@ following two rules:
  sequence;
 * *y(v)* is equal to the depth of the node *v* in the tree.
 
-In order to store the position of the nodes, we redefine the OCaml type
-representing a node (and its successors) as follows:
-
-```ocamltop
-type 'a pos_binary_tree =
-  | E (* represents the empty tree *)
-  | N of 'a * int * int * 'a pos_binary_tree * 'a pos_binary_tree
-```
-`N(w,x,y,l,r)` represents a (non-empty) binary tree with root `w`
-"positioned" at `(x,y)`, and subtrees `l` and `r`. Write a function
-`layout_binary_tree_1` with the following specification:
-`layout_binary_tree_1 t` returns the "positioned" binary tree obtained
-from the binary tree `t`.
+In order to store the position of the nodes, we will enrich the value
+at each node with the position `(x,y)`.
 
 The tree pictured above is
 ```ocamltop
@@ -1776,11 +1765,11 @@ SOLUTION
 >   let rec layout depth x_left = function
 >     (* This function returns a pair: the laid out tree and the first
 >      * free x location *)
->     | Empty -> (E,x_left)
->     | Node (x,l,r) ->
+>     | Empty -> (Empty, x_left)
+>     | Node (v,l,r) ->
 >        let (l',l_x_max) = layout (depth + 1) x_left l in
 >        let (r',r_x_max) = layout (depth + 1) (l_x_max + 1) r in
->        (N (x,l_x_max,depth,l',r'),r_x_max)
+>        (Node ((v, l_x_max, depth), l',r'), r_x_max)
 >   in fst (layout 1 1 t)
 > ```
 
@@ -1822,12 +1811,12 @@ SOLUTION
 >   let translate_dst = 1 lsl (find_missing_left 0 t) - 1 in
 >                       (* remember than 1 lsl a = 2ᵃ *)
 >   let rec layout depth x_root = function
->     | Empty -> E
+>     | Empty -> Empty
 >     | Node (x,l,r) ->
 >        let spacing = 1 lsl (tree_height - depth - 1) in
 >        let l' = layout (depth + 1) (x_root - spacing) l
 >        and r' = layout (depth + 1) (x_root + spacing) r in
->        N (x, x_root,depth, l',r') in
+>        Node((x, x_root, depth), l',r') in
 >   layout 1 ((1 lsl (tree_height - 1)) - translate_dst) t
 > ```
 
@@ -1865,9 +1854,9 @@ SOLUTION
 > ```ocamltop
 > let layout_binary_tree_3 =
 >   let rec translate_x d = function
->     | E -> E
->     | N(v, x, y, l, r) ->
->        N(v, x + d, y, translate_x d l, translate_x d r) in
+>     | Empty -> Empty
+>     | Node((v, x, y), l, r) ->
+>        Node((v, x + d, y), translate_x d l, translate_x d r) in
 >   (* Distance between a left subtree given by its right profile [lr]
 >      and a right subtree given by its left profile [rl]. *)
 >   let rec dist lr rl = match lr, rl with
@@ -1878,7 +1867,7 @@ SOLUTION
 >     | [], _ -> p2
 >     | _, [] -> p1 in
 >   let rec layout depth = function
->     | Empty -> ([], E, [])
+>     | Empty -> ([], Empty, [])
 >     | Node(v, l, r) ->
 >        let (ll, l', lr) = layout (depth + 1) l in
 >        let (rl, r', rr) = layout (depth + 1) r in
@@ -1888,7 +1877,7 @@ SOLUTION
 >        and rl = List.map ((+) d) rl
 >        and rr = List.map ((+) d) rr in
 >        (0 :: merge_profiles ll rl,
->         N(v, 0, depth, translate_x (-d) l', translate_x d r'),
+>         Node((v, 0, depth), translate_x (-d) l', translate_x d r'),
 >         0 :: merge_profiles rr lr) in
 >   fun t -> let (l, t', _) = layout 1 t in
 >            let x_min = List.fold_left min 0 l in
