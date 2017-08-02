@@ -224,9 +224,9 @@ let add_prompt =
   (* Due to the prompt, one must add 2 spaces at the beginnig of each line *)
   let phrase = omd_map_string indent_string phrase in
   let open Omd in
-  [Html("span", ["class", Some "ocaml-prompt"], [Raw "# "]);
-   Html("span", ["class", Some "ocaml-input"],  phrase);
-   Html("span", ["class", Some "ocaml-prompt"], [Raw ";;"])]
+  [Html_block("span", ["class", Some "ocaml-prompt"], [Raw "# "]);
+   Html_block("span", ["class", Some "ocaml-input"],  phrase);
+   Html_block("span", ["class", Some "ocaml-prompt"], [Raw ";;"])]
 
 let format_eval_input phrase : Omd.t =
   add_prompt (highlight_ocaml phrase)
@@ -270,7 +270,7 @@ and omd_transform_text_el f acc md =
   | e -> e :: acc
 
 let html_error txt =
-  Omd.Html("span", ["class", Some "ocaml-error-loc"],
+  Omd.Html_block("span", ["class", Some "ocaml-error-loc"],
            [Omd.Raw(html_encode txt)])
 
 (* Insert the HTML code to highligh the error located in [phrase] at
@@ -341,17 +341,17 @@ let html_of_eval t phrase =
     | Normal(s, out, err) ->
        let phrase, err = highlight_error phrase err in
        phrase, "ocaml-output",
-       [Omd.Html("span", ["class", Some "ocaml-stdout"],
-                 [Omd.Raw(html_encode out)]);
-        Omd.Html("span", ["class", Some "ocaml-stderr"],
-                 [Omd.Raw(html_encode err)]);
+       [Omd.Html_block("span", ["class", Some "ocaml-stdout"],
+                       [Omd.Raw(html_encode out)]);
+        Omd.Html_block("span", ["class", Some "ocaml-stderr"],
+                       [Omd.Raw(html_encode err)]);
         Omd.Raw(html_encode s)]
     | Error s ->
        let phrase, s = highlight_error phrase s in
        phrase, "ocaml-error", [Omd.Raw(html_encode s)] in
   add_prompt phrase
-  @ [ Omd.Html("br", [], []);
-      Omd.Html("span", ["class", Some cls], out) ]
+  @ [ Omd.Html_block("br", [], []);
+      Omd.Html_block("span", ["class", Some cls], out) ]
 
 
 (* FIXME: naive, ";;" can occur inside strings and one does not want
