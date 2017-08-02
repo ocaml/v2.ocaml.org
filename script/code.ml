@@ -181,7 +181,7 @@ let close_toplevel (top: toplevel) =
 let toploop_eval (top: toplevel) (phrase: string) : outcome =
   let (from_top, to_top) = get_toplevel top in
   output_string to_top phrase;
-  output_string to_top "\n;;\n"; (* code_top excepts ";;" on its own line *)
+  output_string to_top "\n;;\n"; (* code_top expects ";;" on its own line *)
   flush to_top;
   let o = get_outcome from_top in
   o
