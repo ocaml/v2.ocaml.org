@@ -35,6 +35,7 @@ let highlight_ocaml =
     ("\\((\\*\\**\\([^*]\\|[^(]\\*[^)]\\|(\\*[^*]*\\*)\\)*\\*)\\)",
      "<span class=\"comment\">\\1</span>");
     (";; *\n", "<span class=\"ocaml-prompt\">;;</span><br/>");
+    ("\\('.'\\)", "<span class=\"string\">\\1</span>");
     ("\\blet +() *=", "<span class=\"governing\">let</span> () =");
     ("\\band +\\('[_a-z]+ +\\(" ^ let_id ^ "\\)\\) *= *",
      "<span class=\"governing\">and</span> \
