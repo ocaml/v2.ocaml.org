@@ -1951,7 +1951,25 @@ SOLUTION
 >   buffer_add_tree buf t;
 >   Buffer.contents buf
 > ```
- 
+>
+> For the reverse conversion, we assume that the string is well formed
+> and do not deal with error reporting.
+>
+> ```ocamltop
+> let tree_of_string =
+>   let rec make ofs s =
+>     if ofs >= String.length s || s.[ofs] = ',' || s.[ofs] = ')' then
+>       Empty, ofs
+>     else
+>       let v = s.[ofs] in
+>       if ofs + 1 < String.length s && s.[ofs + 1] = '(' then
+>         let l, ofs = make (ofs + 2) s in (* skip "v(" *)
+>         let r, ofs = make (ofs + 1) s in (* skip "," *)
+>         Node(v, l, r), ofs + 1 (* skip ")" *)
+>       else Node(v, Empty, Empty), ofs + 1 in
+>   fun s -> fst(make 0 s)
+> ```
+
 
 ```ocamltop
 let example_layout_tree =
@@ -1960,6 +1978,7 @@ let example_layout_tree =
   Node('c', Empty, Node('f', leaf 'g', Empty)));;
 string_of_tree example_layout_tree;;
 tree_of_string "a(b(d,e),c(,f(g,)))" = example_layout_tree;;
+tree_of_string "";;
 ```
 
 
