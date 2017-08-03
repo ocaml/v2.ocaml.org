@@ -82,12 +82,12 @@ From N. Poulliard
 
 There is a list of libraries provided with camlp4:
 
-camlp4{o,of,orf,r,rf}.cma are toplevel libs there are only made to be
-loaded in the ocaml toplevel
+- `camlp4{o,of,orf,r,rf}.cma` are toplevel libs there are only made to be
+  loaded in the OCaml [interactive toplevel](../basics.html).
 
-camlp4lib.cma contains the Camlp4 module which holds the camlp4 kernel.
+- `camlp4lib.cma` contains the Camlp4 module which holds the camlp4 kernel.
 
-camlp4fullilb.cma contains modules of camlp4lib.cma plus all parsers and
-filters.
+- `camlp4fullilb.cma` contains modules of camlp4lib.cma plus all parsers and
+   filters.
 
 

@@ -27,7 +27,8 @@ More disturbing is the following message:
 This expression has type my_type but is here used with type my_type
 ```
 This error happens often while testing some type definitions using the
-toplevel. In OCaml, it is perfectly legal to define a type with a name
+[interactive toplevel](basics.html).  In OCaml, it is perfectly legal
+to define a type with a name
 that is already taken by another type. Consider the following session:
 
 ```ocamltop

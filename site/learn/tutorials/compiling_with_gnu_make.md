@@ -39,7 +39,7 @@ ncl    make a native code library
 bcl    make a bytecode library
 libinstall    install library with ocamlfind
 libuninstall  uninstall library with ocamlfind
-top    make a custom toplevel from all your modules
+top    make a custom interactive toplevel from all your modules
 clean  remove everything that matches one of the files that could have been
        automatically created by OCamlMakefile
 ```

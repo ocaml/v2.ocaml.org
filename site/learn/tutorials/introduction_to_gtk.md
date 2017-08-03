@@ -4,7 +4,8 @@
 
 # Introduction to Gtk
 
-If you intend to try the code in this tutorial in the toplevel, you
+If you intend to try the code in this tutorial in the
+[interactive toplevel](basics.html), you
 must first issue (assuming you have installed `lablgtk` using
 [opam](../../docs/install.html)):
 

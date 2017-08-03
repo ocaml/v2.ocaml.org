@@ -219,7 +219,7 @@ The `may` function as a whole returns `unit`. Notice in each case of the
 `match` the result is `()`.
 
 Thus the type of the `may` function is (and you can verify this in the
-OCaml toplevel if you want):
+OCaml [interactive toplevel](basics.html) if you want):
 
 ```ocaml
 may : f:('a -> 'b) -> 'a option -> unit

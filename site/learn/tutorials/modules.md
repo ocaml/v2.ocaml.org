@@ -69,7 +69,8 @@ conflicts, such as `printf`. In order to avoid writing `Printf.printf`
 all over the place, it often makes sense to place one `open Printf` at
 the beginning of the file.
 
-There is a short example illustrating (in the toplevel) what we just
+There is a short example illustrating (in
+the [interactive toplevel](basics.html)) what we just
 mentioned:
 
 ```ocamltop

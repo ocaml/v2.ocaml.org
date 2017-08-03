@@ -78,7 +78,9 @@ for rational numbers.
 
 Operations on big numbers gets the suffix `/`: addition is thus `+/`.
 You build big numbers using conversion from (small) integers or
-character strings. For printing in the toplevel, a custom printer can be
+character strings. For printing in the interactive toplevel (aka
+[REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)),
+a custom printer can be
 used. An example under OCaml is given below.
 
 ```ocamltop
@@ -698,7 +700,7 @@ compilation unit. A good example is the module `Set` from the standard
 library.
 
 ## Development Tools
-###  Interactive loop (toplevel)
+###  Interactive toplevel (aka REPL)
 
 #### How to stop the evaluation (execution) of an expression?
 

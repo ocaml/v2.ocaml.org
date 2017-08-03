@@ -14,7 +14,8 @@ expressions, raising the level of abstraction a bit higher and
 simplifying many common stream-oriented tasks.
 
 ## Interactive Use
-To enable stream expression support in the toplevel, you can type the
+To enable stream expression support in the
+[interactive toplevel](basics.html), you can type the
 following:
 
 ```ocamltop

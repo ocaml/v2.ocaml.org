@@ -257,7 +257,8 @@ declaration. Or we prefix all calls to the functions like this:
 `Graphics.open_graph`. `open` is a little bit like Java's `import`
 statement, and much more like Perl's `use` statement.
 
-To use `Graphics` in the interactive toplevel, you must first load the
+To use `Graphics` in the [interactive toplevel](basics.html), you must
+first load the
 library with
 
 ```ocaml

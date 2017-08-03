@@ -13,7 +13,7 @@ Ocaml-specific files:
 - `.mllib`: Ocaml library (cma and cmxa)
 - [`.mlpack`](Ocamlbuild_and_module_packs.html): Ocaml package
   (cmo built with `-pack`)
-- `.mltop`: Ocaml toplevel
+- `.mltop`: Ocaml [interactive toplevel](../basics.html)
 - `.odocl`: Ocaml documentation
 - `.mldylib`: Ocaml plugin (cma and cmxs)
 

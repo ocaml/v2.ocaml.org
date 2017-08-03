@@ -12,7 +12,15 @@ your browser, at
 
 To install OCaml on your computer, see the [Install](/docs/install.html) documentation.
 
-To quickly try small OCaml expressions, you can use a toplevel, or REPL (Read–Eval–Print Loop). The `ocaml` command provides a very basic toplevel (you should install `rlwrap` through your system package manager and run `rlwrap ocaml` to get history navigation). If you can install it through [OPAM](/docs/install.html#OPAM) or your system package manager, we recommend the use of the [utop](https://github.com/diml/utop) toplevel instead, which has the same basic interface but is much more convenient to use (history navigation, auto-completion, etc.).
+To quickly try small OCaml expressions, you can use an interactive
+toplevel, or REPL (Read–Eval–Print Loop). The `ocaml` command provides
+a very basic toplevel (you should install `rlwrap` through your system
+package manager and run `rlwrap ocaml` to get history navigation). If
+you can install it through [OPAM](/docs/install.html#OPAM) or your
+system package manager, we recommend the use of
+the [utop](https://github.com/diml/utop) toplevel instead, which has
+the same basic interface but is much more convenient to use (history
+navigation, auto-completion, etc.).
 
 Use `;;` to indicate that you've finished entering each statement. Here is what is looks like running `ocaml`:
 ```console
@@ -159,7 +167,7 @@ two floating point numbers and calculates the average:
 let average a b =
   (a +. b) /. 2.0;;
 ```
-Type this into the OCaml "toplevel" (on Unix, type the command `ocaml`
+Type this into the OCaml interactive toplevel (on Unix, type the command `ocaml`
 from the shell) and you'll see this:
 
 ```ocamltop
@@ -200,7 +208,8 @@ OK, let's get some answers.
  there's nothing dynamic going on between int, float and string, as
  in Perl).
 * OCaml uses *type inference* to work out the types, so you don't have
- to. If you use the OCaml toplevel as above, then OCaml will tell you
+ to.  If you use the OCaml interactive toplevel as above, then OCaml
+ will tell you
  its inferred type for your function.
 * OCaml doesn't do any implicit casting. If you want a float, you have
  to write `2.0` because `2` is an integer. OCaml does **no automatic
@@ -444,7 +453,7 @@ the rare occasions that it is sensible to do this. Only gurus will
 probably need to bypass the type checking.
 
 Let's go back to the `average` function which we typed into the OCaml
-toplevel:
+interactive toplevel:
 
 ```ocamltop
 let average a b =
