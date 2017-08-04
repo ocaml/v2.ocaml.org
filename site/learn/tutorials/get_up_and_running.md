@@ -12,43 +12,43 @@ Crash course on the OCaml ecosystem
 These are some key notes that you should know.
 
 1. `opam` is the package manager for OCaml. It is very advanced and
-supports many features. The most basic of which is
-
-```shell
-$ opam install <some_package>
-```
-
-For people on `OS X`, you can get it on `brew` and all the `Linux`
-distros should have `opam`. Attention Ubuntu people: if you are using 
-an outdated version of Ubuntu (e.g. Wily, Vivid or Trusty), you should
-do this instead because apt-get's version of opam on those is madly
-outdated.
-
-```shell
-$ add-apt-repository ppa:avsm/ppa
-$ apt-get update
-$ apt-get install ocaml opam
-```
-
-For Windows people, [this](https://www.typerex.org/ocpwin.html) seems
-to be a decent option or you could get a VM. Do *note* that opam
-doesn't work on this platform and for a beginner you might ending up
-wasting a lot of time with environment issues or libraries that assume
-Unix.
+    supports many features. The most basic of which is
+    
+    ```shell
+    $ opam install <some_package>
+    ```
+    
+    For people on `OS X`, you can get it on `brew` and all the `Linux`
+    distros should have `opam`. Attention Ubuntu people: if you are using 
+    an outdated version of Ubuntu (e.g. Wily, Vivid or Trusty), you should
+    do this instead because apt-get's version of opam on those is madly
+    outdated.
+    
+    ```shell
+    $ add-apt-repository ppa:avsm/ppa
+    $ apt-get update
+    $ apt-get install ocaml opam
+    ```
+    
+    For Windows people, [this](https://www.typerex.org/ocpwin.html) seems
+    to be a decent option or you could get a VM. Do *note* that opam
+    doesn't work on this platform and for a beginner you might ending up
+    wasting a lot of time with environment issues or libraries that assume
+    Unix.
 
 2. Once you have `opam` installed, you probably want to do:
-
-```shell
-$ opam switch 4.02.3
-```
-
-This will install the latest version of the compiler. When you did
-`opam switch` you can see all the other available compilers as
-well. You can even switch to a beta compiler like so:
-
-```shell
-opam switch 4.03.0+beta1
-```
+   
+    ```shell
+    $ opam switch 4.02.3
+    ```
+ 
+    This will install the latest version of the compiler. When you did
+    `opam switch` you can see all the other available compilers as
+    well. You can even switch to a beta compiler like so:
+ 
+    ```shell
+    opam switch 4.03.0+beta1
+    ```
 
 3. `ocamlfind` is a program that predates `opam` and wraps the
 standard `OCaml` compilers: `ocamlc` and `ocamlopt`. The former is a
@@ -65,34 +65,34 @@ oasis. The oasis flow basically goes like this: (Be aware that oasis
 is really finicky and its error messages are useless), see the oasis
 minitutorial at the end of this post. 
 
-6. `merlin` is a OCaml program that is simply amazing it drives code
-completion for plugins available in `emacs` and `vim`. Once you have
-merlin installed with
-
-```shell
-$ opam install merlin
-```
-then you can add a `.merlin` file to your project so that `merlin`
-knows what packages to code complete for, a sample `.merlin` file
-looks like this:
-
-```text
-B _build/src
-S src
-PKG cmdliner lwt
-FLG -w +a-4-40..42-44-45-48
-```
-Notice how I put the `B _build/src` That sort of assumes you're using
-`_oasis` and you made the a `src` directory. I also provided you with
-some nice compiler flags for extra warnings.
-
-You'll need to add some code to vim or emacs to truly get the most out
-of `merlin`, you can even get `jedi` style docstring popups like so:
-
-![popup](http://hyegar.com/images/caml_docstring.png)
-
-The elisp that I use for my `init.el` is listed after the `oasis`
-tutorial at the end of this post.
+6. `merlin` is an OCaml program that is simply amazing it drives code
+    completion for plugins available in `emacs` and `vim`. Once you have
+    merlin installed with
+    
+    ```shell
+    $ opam install merlin
+    ```
+    then you can add a `.merlin` file to your project so that `merlin`
+    knows what packages to code complete for, a sample `.merlin` file
+    looks like this:
+    
+    ```text
+    B _build/src
+    S src
+    PKG cmdliner lwt
+    FLG -w +a-4-40..42-44-45-48
+    ```
+    Notice how I put the `B _build/src` That sort of assumes you're using
+    `_oasis` and you made the a `src` directory. I also provided you with
+    some nice compiler flags for extra warnings.
+    
+    You'll need to add some code to vim or emacs to truly get the most out
+    of `merlin`, you can even get `jedi` style docstring popups like so:
+    
+    ![popup](http://hyegar.com/images/caml_docstring.png)
+    
+    The elisp that I use for my `init.el` is listed after the `oasis`
+    tutorial at the end of this post.
 
 7.  There are no full blown IDEs for OCaml, learn `emacs`, `vim`.
 Also `Sublime Text` has a merlin plugin, if you're already familiar
@@ -178,7 +178,7 @@ like: (The README has code examples)
 
 Loads, warning shameless plugs ahead.
 
-0.  I wrote a opam package that makes it easy to get an `iOS` OCaml
+0.  I wrote an opam package that makes it easy to get an `iOS` OCaml
     cross-compiler, see
     [here](https://github.com/fxfactorial/opam-ios).
 1.  Compilers!, lots of compilers/compiler tools are written in OCaml:
