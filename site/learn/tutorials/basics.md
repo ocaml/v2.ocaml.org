@@ -25,7 +25,7 @@ navigation, auto-completion, etc.).
 Use `;;` to indicate that you've finished entering each statement. Here is what is looks like running `ocaml`:
 ```console
 $ ocaml
-        OCaml version 4.02.3
+        OCaml version {{! get LATEST_OCAML_VERSION !}}
 
 # 1+1;;
 - : int = 2

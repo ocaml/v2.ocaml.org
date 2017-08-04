@@ -1,8 +1,11 @@
 # -*- mode: Makefile-gmake -*-
 
 LATEST_OCAML_VERSION=$(shell opam switch -s | sort -n | tail -n 1)
+LATEST_OCAML_MAJOR=$(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 1)
+LATEST_OCAML_MINOR=$(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 2)
+LATEST_OCAML_VERSION_MAIN=$(LATEST_OCAML_MAJOR).$(LATEST_OCAML_MINOR)
 
-MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its -set "LATEST_OCAML_VERSION=$(LATEST_OCAML_VERSION)" $(SET_STAGING)
+MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its -set "LATEST_OCAML_VERSION=$(LATEST_OCAML_VERSION)" -set "LATEST_OCAML_VERSION_MAIN=$(LATEST_OCAML_VERSION_MAIN)" $(SET_STAGING)
 MPP = mpp ${MPP_OPTIONS}
 OMD_OPTIONS = -r ocaml=script/ocamltohtml -r tryocaml=script/ocamlapplet.bash
 OMD = omd ${OMD_OPTIONS}

@@ -18,7 +18,7 @@
 
 ```console
 $ ocaml
-        OCaml version 4.02.3
+        OCaml version {{! get LATEST_OCAML_VERSION !}}
 
 # 1+1;;
 - : int = 2

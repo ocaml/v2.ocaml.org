@@ -39,7 +39,7 @@ These are some key notes that you should know.
 2. Once you have `opam` installed, you probably want to do:
    
     ```shell
-    $ opam switch 4.02.3
+    $ opam switch {{! get LATEST_OCAML_VERSION !}}
     ```
  
     This will install the latest version of the compiler. When you did
