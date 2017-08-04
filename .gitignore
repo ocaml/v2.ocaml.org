@@ -22,6 +22,7 @@ script/breadcrumb
 script/lang_of_filename
 script/translations
 script/translate
+script/weekly_news
 template/front_code_snippet.html
 template/learn_code_snippet.html
 opam.ocaml.org/template.xhtml

@@ -98,9 +98,9 @@
               </li>
               <li>
                 <article>
-                  <h1><a href="http://www.meetup.com/NYC-OCaml/events/152153412/">NYC Functional Holiday Party</a></h1>
-                  <p>9 December 2013</p>
-                  <a href="http://www.meetup.com/NYC-OCaml/events/152153412/">
+                  <h1><a href="http://www.meetup.com/NYC-OCaml/"
+				    target="_blank">NYC OCaml Meetup</a></h1>
+                  <a href="http://www.meetup.com/NYC-OCaml/">
                     <img src="/img/news.svg" alt="News" class="svg" />
                     <img src="/img/news.png" alt="News" class="png" />
                   </a>
@@ -108,9 +108,9 @@
               </li>
               <li>
                 <article>
-                  <h1><a href="http://www.meetup.com/ocaml-paris/events/128514752/">OCaml Users in Paris</a></h1>
-                  <p>9 October 2013</p>
-                  <a href="http://www.meetup.com/ocaml-paris/events/128514752/">
+                  <h1><a href="http://www.meetup.com/ocaml-paris/"
+				    target="_blank">OCaml Users in Paris</a></h1>
+                  <a href="http://www.meetup.com/ocaml-paris/">
                     <img src="/img/news.svg" alt="News" class="svg" />
                     <img src="/img/news.png" alt="News" class="png" />
                   </a>
@@ -118,9 +118,10 @@
               </li>
               <li>
                 <article>
-                  <h1><a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">Cambridge NonDysFunctional Programmers</a></h1>
-                  <p>18 September 2013</p>
-                  <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/events/138406202/">
+                  <h1><a
+                  href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/"
+				    target="_blank">Cambridge NonDysFunctional Programmers</a></h1>
+                  <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/">
                     <img src="/img/news.svg" alt="News" class="svg" />
                     <img src="/img/news.png" alt="News" class="png" />
                   </a>
@@ -140,7 +141,18 @@
                             ><img class="svg rss" src="/img/rss.svg" alt="RSS"
 						    /><img class="png" src="/img/rss.png" alt="RSS" /></a>
            </h1>
-           {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
+		   <ul class="news-feed" style="margin-bottom: 0px">
+   		    <li class="announcement"><article>
+			  <h1><a title="OCaml Weekly News"
+			       href="/community/cwn/" >OCaml Weekly News</a></h1>
+			   <p>{{! cmd script/weekly_news --date !}}</p>
+			   <a title="OCaml Weekly News" href="/community/cwn/">
+			    <img alt="" src="/img/announcement.svg" class="svg" />
+			    <img alt="" src="/img/announcement.png" class="png" />
+			  </a>
+			</article></li>
+		   </ul>
+           {{! cmd script/rss2html -n 3 --headlines http://planet.ocaml.org/rss20.xml !}}
             <footer>
                 <p><a href="planet/">See full list</a></p>
             </footer>

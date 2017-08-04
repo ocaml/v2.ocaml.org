@@ -113,7 +113,15 @@
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
 			</article></li>
-                        
+			<li class="announcement"><article>
+			  <h1><a title="OCaml Weekly News"
+			       href="/community/cwn/" >OCaml Weekly News</a></h1>
+			   <p>{{! cmd script/weekly_news --date !}}</p>
+			   <a title="OCaml Weekly News" href="/community/cwn/">
+			    <img alt="" src="/img/announcement.svg" class="svg" />
+			    <img alt="" src="/img/announcement.png" class="png" />
+			  </a>
+			</article></li>
                         
 	        </ul>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}

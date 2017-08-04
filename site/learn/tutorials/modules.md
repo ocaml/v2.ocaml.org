@@ -335,6 +335,7 @@ to the source code of the functor.
 ###  Displaying the interface of a module
 In the `ocaml` toplevel, the following trick allows to visualize the
 contents of an existing module, such as `List`:
+<!-- FIXME : no longer true -->
 
 ```ocamltop
 module M = List;;

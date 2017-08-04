@@ -26,7 +26,7 @@ endif
 pre-build: template/main.mpp template/footer.mpp \
   template/front_code_snippet.html template/learn_code_snippet.html \
   script/breadcrumb script/translations \
-  script/code_top script/ocamltohtml script/rss2html \
+  script/code_top script/ocamltohtml script/rss2html script/weekly_news \
   script/lang_of_filename script/translate script/link_of_lang \
   opam_update_list $(OMD_PP)
 
@@ -68,6 +68,11 @@ script/rss2html: script/rss2html.ml script/http.ml $(UTILS_DEP)
 	cd script && \
 	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient,syndic \
 	  -linkpkg utils.cmx http.ml rss2html.ml -o ../"$@"
+
+script/weekly_news: script/weekly_news.ml script/http.ml $(UTILS_DEP)
+	cd script && \
+	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient,syndic \
+	  -linkpkg utils.cmx http.ml weekly_news.ml -o ../"$@"
 
 script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
 	cd script && \
