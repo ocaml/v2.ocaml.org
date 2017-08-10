@@ -50,6 +50,14 @@ let rec drop_until n tag = function
                      else drop_until (n - 1) tag tl
      else drop_until n tag tl
 
+(* Remove all tags [tag]. *)
+let rec rm_tags tag = function
+  | [] -> []
+  | (Nethtml.Data _ as e) :: tl -> e :: rm_tags tag tl
+  | Nethtml.Element(t, args, sub) :: tl ->
+     if t = tag then rm_tags tag tl
+     else Nethtml.Element(t, args, rm_tags tag sub) :: rm_tags tag tl
+
 let cwn_html_page () =
   let d = Lazy.force cwn_date in
   let url = cwn_base_url ^ sprintf "%d.%02d.%02d.html" (Date.year d)
@@ -58,7 +66,8 @@ let cwn_html_page () =
   let html = Nethtml.parse (new Netchannels.input_string content)
                ~dtd:Utils.relaxed_html40_dtd in
   let html = get_elements "body" html in
-  drop_until 2 "p" html
+  let html = drop_until 2 "p" html in
+  rm_tags "script" html
 
 
 let cwn_html_summary() =
