@@ -41,9 +41,14 @@ let rec get_elements tag = function
      let e = if t = tag then c else get_elements tag c in
      e @ get_elements tag tl
 
-let rec list_rm n = function
+(* Drop all tags until the [n]th [tag] is found (and keep that one). *)
+let rec drop_until n tag = function
   | [] -> []
-  | (_ :: tl) as l -> if n <= 0 then l else list_rm (n - 1) tl
+  | Nethtml.Data _ :: tl -> drop_until n tag tl
+  | (Nethtml.Element(t, _, _) :: tl) as l ->
+     if t = tag then if n <= 1 then l
+                     else drop_until (n - 1) tag tl
+     else drop_until n tag tl
 
 let cwn_html_page () =
   let d = Lazy.force cwn_date in
@@ -53,7 +58,7 @@ let cwn_html_page () =
   let html = Nethtml.parse (new Netchannels.input_string content)
                ~dtd:Utils.relaxed_html40_dtd in
   let html = get_elements "body" html in
-  list_rm 7 html
+  drop_until 2 "p" html
 
 
 let cwn_html_summary() =

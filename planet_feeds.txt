@@ -8,7 +8,6 @@ CUFP|http://cufp.org/blog/all.rss.xml
 Cameleon news|http://www.blogger.com/feeds/7617521785419311079/posts/default
 Caml INRIA|http://caml.inria.fr/news.en.rss
 Caml Spotting|http://camlspotter.blogspot.com/feeds/posts/default?alt=rss
-OCaml Weekly News|http://alan.petitepomme.net/cwn/cwn.rss
 Cedeela|http://cedeela.fr/feeds/ocaml.atom.xml
 Coherent Graphics|http://coherentpdf.com/blog/?tag=ocaml&feed=rss2
 Coq|http://coq.inria.fr/news/feed
