@@ -462,13 +462,8 @@ let li_of_post (e: Atom.entry) =
   Element("li", [], line)
 
 let netdate_of_ptime d =
-  let month =
-    let open Syndic.Date in
-    match month d with
-    | Jan -> 1 | Feb -> 2 | Mar -> 3 | Apr -> 4 | May -> 5 | Jun -> 6
-    | Jul -> 7 | Aug -> 8 | Sep -> 9 | Oct -> 10 | Nov -> 11 | Dec -> 12 in
   { Netdate.year = Syndic.Date.year d;
-    month;
+    month = Utils.int_of_month (Syndic.Date.month d);
     day = Syndic.Date.day d;
     hour = Syndic.Date.hour d;
     minute = Syndic.Date.minute d;
@@ -545,22 +540,6 @@ let posts ?n ?ofs () =
 let nposts () = List.length (get_posts ()).Atom.entries
 
 
-let en_string_of_month =
-  let open Syndic.Date in
-  function
-  | Jan -> "January"
-  | Feb -> "February"
-  | Mar -> "March"
-  | Apr -> "April"
-  | May -> "May"
-  | Jun -> "June"
-  | Jul -> "July"
-  | Aug -> "August"
-  | Sep -> "September"
-  | Oct -> "October"
-  | Nov -> "November"
-  | Dec -> "December"
-
 module Year_Month = struct
   type t = int * Syndic.Date.month (* year, month *)
 
@@ -582,7 +561,7 @@ let list_of_posts ?n ?ofs () =
        DMap.add key posts m in
   let m = List.fold_left classify DMap.empty posts in
   let add_html (year, month) posts html =
-    let title = en_string_of_month month ^ " " ^ string_of_int year in
+    let title = Utils.en_string_of_month month ^ " " ^ string_of_int year in
     let posts = List.rev posts in (* posts originally sorted by date *)
     Element("h2", ["id", title], [Data title])
     :: Element("ul", [], List.map li_of_post posts)

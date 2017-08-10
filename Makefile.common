@@ -110,9 +110,10 @@ script/translations: script/translations.ml $(UTILS_DEP)
 	  utils.cmx translations.ml
 
 script/%.cmx: script/%.ml script/%.cmi
-	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient -c $< -o $@
+	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient,syndic \
+	  -c $< -o $@
 script/%.cmi script/%.cmo: script/%.ml
-	$(OCAMLC) -package netstring,nettls-gnutls,netclient -c $< -o $@
+	$(OCAMLC) -package netstring,nettls-gnutls,netclient,syndic -c $< -o $@
 
 TRASH += template/front_code_snippet.html opam_update_list \
   $(addprefix script/, generate_opam_update_list lang_of_filename translate \

@@ -28,34 +28,10 @@ let cwn_date =
         | Some d -> d
         | None -> failwith "cwn_date")
 
-(* FIXME: shared with rss2html *)
-let en_string_of_month =
-  let open Syndic.Date in
-  function
-  | Jan -> "January"
-  | Feb -> "February"
-  | Mar -> "March"
-  | Apr -> "April"
-  | May -> "May"
-  | Jun -> "June"
-  | Jul -> "July"
-  | Aug -> "August"
-  | Sep -> "September"
-  | Oct -> "October"
-  | Nov -> "November"
-  | Dec -> "December"
-
 let cwn_html_date () =
   let d = Lazy.force cwn_date in
-  [Nethtml.Data(sprintf "%s %d, %d" (en_string_of_month(Date.month d))
+  [Nethtml.Data(sprintf "%s %d, %d" (Utils.en_string_of_month(Date.month d))
                   (Date.day d) (Date.year d))]
-
-(* FIXME: shared with rss2html *)
-let int_of_month =
-  let open Date in
-  function
-  | Jan -> 1 | Feb -> 2 | Mar -> 3 | Apr -> 4 | May -> 5 | Jun -> 6
-  | Jul -> 7 | Aug -> 8 | Sep -> 9 | Oct -> 10 | Nov -> 11 | Dec -> 12
 
 
 let rec get_elements tag = function
@@ -72,7 +48,7 @@ let rec list_rm n = function
 let cwn_html_page () =
   let d = Lazy.force cwn_date in
   let url = cwn_base_url ^ sprintf "%d.%02d.%02d.html" (Date.year d)
-                             (int_of_month (Date.month d)) (Date.day d) in
+                             (Utils.int_of_month (Date.month d)) (Date.day d) in
   let content = Http.get url in
   let html = Nethtml.parse (new Netchannels.input_string content)
                ~dtd:Utils.relaxed_html40_dtd in
