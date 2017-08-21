@@ -44,7 +44,7 @@ Please add yours if you don't see it listed!
 1. [Brown University](http://cs.brown.edu/courses/cs017/) - An Integrated introducion (CS 17/18)  (along with Racket, Scala and Java)
 1. [Caltech](http://users.cms.caltech.edu/~mvanier/cs4/Winter2016/) - Fundamentals of Computer Programming
 1. [Columbia University](http://www1.cs.columbia.edu/~sedwards/classes/2014/w4115-fall/index.html) - Programming Languages and Translators
-1. [Cornell University](http://www.cs.cornell.edu/Courses/cs3110/2014fa/course_info.php) - Data Structures and Functional Programming (CS 3110)
+1. [Cornell University](http://www.cs.cornell.edu/courses/cs3110/2016fa/) - Data Structures and Functional Programming (CS 3110)
 1. [Harvard University](http://people.fas.harvard.edu/~lib153/) - Principles of Programming Language Compilation (CS153)
 1. [Harvard University](http://www.fas.harvard.edu/~cs51) - Introduction to Computer Science II: Abstraction & Design (CS51)
 1. [McGill University](http://www.cs.mcgill.ca/~bpientka/cs302/) - Programming Languages and Paradigms (COMP 302)
