@@ -38,8 +38,8 @@
                     <h1><a href="/docs/">Documentation</a></h1>
                     <p><a href="docs/install.html" >Install</a> OCaml,
 					look up <a href="https://opam.ocaml.org/packages/">package docs</a>, access the
-					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
-					target="_blank"
+					<a
+    href="http://caml.inria.fr/pub/docs/manual-ocaml-{{! get LATEST_OCAML_VERSION_MAIN !}}"
 					>Manual</a>, get the <a href="/docs/cheat_sheets.html">cheat sheets</a> and <a href="/docs/">more</a>.</p>
                 </section>
             </div>
