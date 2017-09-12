@@ -58,8 +58,7 @@ OCaml community, with projects such as
 OCaml to JavaScript optimizing compiler),
 [Dose](https://gforge.inria.fr/projects/dose/) (a key component of the
 OPAM package manager) and online services such as the [OPAM Weather
-Service](http://ows.irill.org/latest/today/) and the [CUDF Solver
-Farm](http://cudf-solvers.irill.org/index.html). They also use OCaml
+Service](http://ows.irill.org/latest/today/). They also use OCaml
 to contribute to other major open source projects
 ([Coccinelle](http://coccinelle.lip6.fr/), for example). 
 See details [here](http://www.irill.org/).
