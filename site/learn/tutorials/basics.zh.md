@@ -2,13 +2,57 @@
 
 *Table of contents*
 
-基础
-====
+# 基础
 
-注释
-----
+## 运行 OCaml 代码
 
-OCaml的注释是用`(*`和`*)`括起,如：
+运行OCaml代码的最简单的方式是在你的浏览器中使用<https://ocsigen.org/js_of_ocaml/2.7/files/toplevel/index.html>运行一个交互式会话。
+
+关于在你的电脑上安装OCaml，请参考[安装](/docs/install.html)文档。
+
+如果你想要尝试一些简单的OCaml表达式，你可以使用一个交互式顶层环境（interactive
+toplevel）或者REPL（Read–Eval–Print Loop）。`ocaml`命令提供了一个十分基础的顶层环境（你应该使用包管理器安装`rlwrap` ，通过运行`rlwrap ocaml`来获取历史导航 ）。我们推荐使用[utop](https://github.com/diml/utop)顶层环境，如果你可以通过系统的包管理器或者[OPAM](/docs/install.html#OPAM)来安装它。utop具有与OCaml标准顶层环境相同的基础接口，同时更易于使用（具有历史导航、自动完成等特性）。
+
+使用`;;` 来表示你完成了一个表达式的输入，在顶层环境中如下所示：
+
+```console
+$ ocaml
+        OCaml version {{! get LATEST_OCAML_VERSION !}}
+
+# 1+1;;
+- : int = 2
+```
+
+使用`utop`运行程序的效果如下：
+
+```console
+───────┬────────────────────────────────────────────────────────────┬─────
+       │ Welcome to utop version 1.18 (using OCaml version 4.02.3)! │     
+       └────────────────────────────────────────────────────────────┘     
+
+Type #utop_help for help about using utop.
+
+─( 10:12:16 )─< command 0 >───────────────────────────────────────────────
+utop # 1 + 1;;
+- : int = 2
+```
+
+编译名为`my_prog.ml`的OCaml源码文件为一个原生代码可执行程序，可以使用`ocamlbuild my_prog.native`命令：
+
+```shell
+$ mkdir my_project
+$ cd my_project
+$ echo 'let () = print_endline "Hello, World!"' > my_prog.ml
+$ ocamlbuild my_prog.native
+Finished, 4 targets (0 cached) in 00:00:00.
+$ ./my_prog.native
+Hello, World!
+```
+
+详细内容请参考[Compiling OCaml projects](compiling_ocaml_projects.html)。
+
+## 注释
+OCaml的注释是用`(*`和`*)`括起的，如：
 
 ```ocaml
 (* 这是一个单行的注释. *)
@@ -19,11 +63,11 @@ OCaml的注释是用`(*`和`*)`括起,如：
  *)
 ```
 
-这和C的注释(`/* ... */`)很相似.
-目前还没有象Perl中`# ...`或C99/C++/Java中`// ...`那样的单行注释方式。
+这和C的注释（`/* ... */`）很相似。
+目前还没有像Perl中`# ...`或C99/C++/Java中`// ...`那样的单行注释方式。
 
 
-OCaml中可以使用嵌套`(* ... *)`块, 因此我们可以很容易地注释掉某一块程序：
+OCaml中可以使用嵌套`(* ... *)`块， 因此我们可以很容易地注释掉某一块程序：
 
 ```ocaml
 (* This code is broken ...
@@ -35,9 +79,7 @@ let is_prime n =
 *)
 ```
 
-调用函数
---------
-
+## 调用函数
 假设你已经写好了一个函数`repeated`，它的参数是一个字符串`s`和一个数`n`，返回值是把`s`重复`n`遍形成的新字符串。
 
 在大多数源于C的语言中，调用这一函数会象下面这样:
@@ -47,7 +89,7 @@ repeated ("hello", 3)  /* this is C code */
 ```
 
 这意味着“调用函数`repeated`，
-输入两个参数，第一是字符串”hello“，第二是数字”3“。
+输入两个参数，第一是字符串`hello`，第二是数字`3`”。
 
 OCaml和其他函数式语言一样以另外的方式来调用函数,
 初学者的很多错误是因为忽视了这一点。下面是OCaml中的函数调用：
@@ -59,8 +101,8 @@ repeated "hello" 3  (* this is OCaml code *)
 注意：这里**没有**括号, 参数中间**没有**逗号。
 
 容易使人困惑的是`repeated ("hello", 3)`
-在OCaml中是**合法的**的。它意味着“调用函数`repeated`，输入一个参数，这一个参数是一个含两个元素的对（‘pair'）”。这当然不符合原意，因为`repeated`函数需要的参数是两个而不是一个，而且第一个参数要求是字符串而不是对（pair）。
-这里我们暂时无需知道什么是对（pair），我们只需记住用括号括起参数和用逗号分隔参数是错误的。
+在OCaml中是**合法的**的。它意味着“调用函数`repeated`，输入一个参数，这一个参数是一个含两个元素的对（pair）”。这当然不符合原意，因为`repeated`函数需要的参数是两个而不是一个，而且第一个参数要求是字符串而不是对。
+这里我们暂时无需知道什么是对，我们只需记住用括号括起参数和用逗号分隔参数是错误的。
 
 我们来看另一个函数`prompt_string`，它输出字符串提示，并返回一个用户输入的字符串。我们想把这个返回的字符串输入`repeated`.下面是C和OCaml的两种版本:
 
@@ -82,20 +124,18 @@ f (g 3 4)            (* f has one argument, g has two arguments *)
 
 <div media:type="text/omd" style="display: none">
 
-```ocaml
+```ocamltop
 let repeated (s: string) (i: int) =
   failwith "implementation not given"
 ```
 
 </div>
 
-```ocaml
+```ocamltop
 repeated ("hello", 3)     (* OCaml will spot the mistake *)
 ```
 
-函数定义
---------
-
+## 函数定义
 大家应该都知道在我们已经学会的语言中怎么定义一个函数（或java中的静态方法），那么OCaml中怎么做呢？
 
 OCaml的语法很简洁。下面是一个函数输入两个浮点数后计算它们的平均值：
@@ -105,9 +145,9 @@ let average a b =
   (a +. b) /. 2.0;;
 ```
 
-把它输入OCaml的“toplevel”（在Unix中，在shell中输入命令`ocaml`）中后你会看到：
+把它输入OCaml的toplevel（在Unix中，在shell中输入命令`ocaml`）中后你会看到：
 
-```ocaml
+```ocamltop
 let average a b =
   (a +. b) /. 2.0;;
 ```
@@ -138,25 +178,25 @@ double average (double a, double b)
 -   OCaml用*类型推导（type
     inference）*来找出类型，所以大家无需注明类型。如果你用上述OCaml的toplevel，那么OCaml会显示出它认为的函数类型。
 -   OCaml不做任何的隐式转换。如果你需要浮点数，你必须写`2.0`,因为`2`是一个整数。OCaml*从不*执行任何自动类型转换。
--   由于type inference的副作用，OCaml不允许任何形式的重载（包括操作符重载）。它用不同的运算符来表示“两个整数相加”（用`+`）和“两个浮点数相加”（用`+.`）。注意后者有一个点号。其他算术运算符也是这样。
+-   由于type inference的副作用，OCaml不允许任何形式的重载（包括操作符重载）。它用不同的运算符来表示“两个整数相加”（用`+`）和“两个浮点数相加”（用`+.`）。注意后者有一个点号。其他算术运算符（ `-.`， `*.`，`/.` ）也是这样。
 -   OCaml返回函数的最后的表达式值，因此我们没有必要如C中一样写`return`。
 
 更多的细节将稍后详述。
 
-基本类型
---------
-
+## 基本类型
 OCaml中的基本类型是:
 
-    OCaml 类型      范围
+```text
+OCaml type  Range
 
-    int            在32位处理器上是31位有符号整数(约+/- 10亿），
-                   在64位处理器上是63位有符号整数。
-    float          IEEE双精度浮点数，相当于C中的double。
-    bool           布尔变量，值为true或false
-    char           8位字符
-    string         字符串
-    unit           写作()
+int         31-bit signed int (roughly +/- 1 billion) on 32-bit
+            processors, or 63-bit signed int on 64-bit processors
+float       IEEE double-precision floating point, equivalent to C's double
+bool        A boolean, written either true or false
+char        An 8-bit character
+string      A string
+unit        Written as ()
+```
 
 OCaml内部使用`int`中的一位来自动管理内存（垃圾收集）。因此基本
 `int`类型是31位而非32位（如果你用64位平台，那就是63位）。在实际应用中，大多数情况下这不是问题。例如在循环计数中，OCaml中只能数到10亿而不是20亿。这并不成为问题，因为如果你要很大的计数你应该使用大数模块(`Nat`和`Big_int`模块）。但如果你的应用一定需要处理32位类型（比如你要写一些加密程序或者网络协议栈），OCaml提供`nativeint`类型。
@@ -171,9 +211,7 @@ libraries](http://camomile.sourceforge.net/ "http://camomile.sourceforge.net/")�
 
 `unit`类型有点象C中的`void`类型，我们会稍后详述。
 
-隐式转换和显式转换的比较
-------------------------
-
+## 隐式转换和显式转换的比较
 在源于C的语言中，int类型在某些情况下会自动提升成浮点类型。例如你写`1 + 2.5`那么第一个参数（整数类型）会提升成浮点数，计算结果也是一个浮点数。这等价于你写了`((double) 1) + 2.5`，在这里自动执行了隐式转换。
 
 OCaml从不执行隐式转换。在OCaml中，`1 + 2.5`犯了类型错误。操作符`+`要求两个整数作为参数，而我们这里给出了一个整数一个浮点数，因此它会报错如下：
@@ -210,7 +248,7 @@ float_of_int i +. f;;
 ```ocaml
 float i +. f;;
 ```
-（注意和C不一样的是，类型和函数同名在OCaml中是完全合法的。）
+（注意和C不一样的是，类型和函数同名在OCaml中是完全合法的）
 
 ### 隐式转换和显式转换哪个更好？
 
@@ -219,12 +257,10 @@ float i +. f;;
 式转换会造成难以发现的错误，（2）找出哪里发生了隐式转换经常占用了很大一部分调试时间。第三,有些转换（特别是整型和浮点型的互换）其实是很占资源的
 操作。把它们隐藏起来并没有好处。
 
-普通函数和递归函数
-------------------
-
+## 普通函数和递归函数
 和源于C的语言不同的是，OCaml中的函数一般不是递归的，除非你用`let rec`代替`let`来定义递归函数。下面是一个递归函数的例子：
 
-```ocaml
+```ocamltop
 let rec range a b =
   if a > b then []
   else a :: range (a+1) b
@@ -237,7 +273,7 @@ let rec range a b =
 `range`的函数,而不是现在正在被定义的函数。
 `let`允许你使用变量本身进行重新定义。例如：
 
-```ocaml
+```ocamltop
 let positive_sum a b = 
   let a = max a 0
   and b = max b 0 in
@@ -249,9 +285,7 @@ let positive_sum a b =
 
 用`let`或`let rec`定义的函数并没有性能上的差别，所以如果你愿意你可以一直用`let rec`来定义如C中那样的函数。
 
-函数的类型
-----------
-
+## 函数的类型
 类型推导的存在使得我们几乎不需要显式的写出函数的类型。但OCaml经常显示出它认为的函数类型，因此了解有关语法还是需要的。对于一个函数`f`，其参数类型为`arg1`，`arg2`，...
 `argn`，其返回值类型为 `rettype`，编译器会显示
 
@@ -285,7 +319,7 @@ output_char : out_channel -> char -> unit
 
 现在我们来看一个比较奇怪的问题。如果一个函数的参数可以是任何类型怎么办？下面就是一个奇怪的函数，它接受任何参数但总是返回3。
 
-```ocamltop
+```ocaml
 let give_me_a_three x = 3;;
 ```
 那么这样的函数的类型是什么呢？OCaml使用一个特殊的占位符来表示“任意类型”，这就是一个单引号后加一个字母。
@@ -298,9 +332,7 @@ give_me_a_three : 'a -> int
 
 这里我们还看不出多态函数的用处，而其实它们很有用也很普遍，我们将稍后详述。（提示：多态性有些象C＋＋中的templates或者Java1.5中的generics）
 
-类型推导
---------
-
+## 类型推导
 本教程的主题是函数语言有很多非常酷的特性，OCaml作为函数式语言具有其所有的特性，因此它是程序员的很实用的语言。但是奇怪的是，大多数特性却与函数式编程无关。事实上在还没有介绍函数式编程为什么叫函数式之前，我已经涉及了第一个酷特性，那就是类型推导。
 
 简单地说：你不需要声明函数和变量的类型，因为OCaml自己会知道。
@@ -311,9 +343,9 @@ give_me_a_three : 'a -> int
 
 我们再次来看`average`函数，我们在OCaml的toplevel中输入它，
 
-```ocaml
+```ocamltop
 let average a b =
-  (a +. b) /. 2.0;;
+  (a +. b) /. 2.0
 ```
 
 神奇吧？OCaml自己判断出了这个函数需要两个浮点数参数和返回一个浮点数。
@@ -327,3 +359,6 @@ let average a b =
 average : float -> float -> float
 ```
 类型推导不仅适用于短程序，也适用于大规模的程序。它是一个主要的节省时间的特性，因为它消除了一系列在其他语言中常见的造成segfault，`NullPointerException`和`ClassCastException`的错误（或者是如Perl中，一些很重要但是经常被忽略的运行时警告）。
+
+
+[utop]: https://github.com/diml/utop
