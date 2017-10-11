@@ -63,20 +63,6 @@ apt-get install ocaml
 Other Ubuntu packages related to OCaml are
 [listed here](http://packages.ubuntu.com/search?keywords=ocaml).
 
-Ubuntu's official repositories often lag substantially behind the
-latest official releases of OCaml and OPAM. More recent versions are
-made available in these [PPAs](https://launchpad.net/~avsm).
-
-They can be installed with:
-```bash
-add-apt-repository --yes ppa:avsm/ppa
-apt-get update -qq
-apt-get install -y opam
-eval $(opam config env)
-```
-Please note PPAs are not reviewed by Ubuntu's security team and you are
-trusting the PPA's distributor by adding them to your system.
-
 ### [Fedora](https://getfedora.org/)
 
 ```bash
