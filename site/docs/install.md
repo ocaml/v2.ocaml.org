@@ -66,8 +66,8 @@ Other Ubuntu packages related to OCaml are
 ### [Fedora](https://getfedora.org/)
 
 ```bash
-yum install ocaml
-yum search ocaml   # List packages related to OCaml
+dnf install ocaml
+dnf search ocaml   # List packages related to OCaml
 ```
 
 OCaml packages are packaged according to this
