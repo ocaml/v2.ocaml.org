@@ -78,6 +78,14 @@ and a
 [mailing list](https://lists.fedoraproject.org/mailman/listinfo/Ocaml-devel)
 for people interested in OCaml on Fedora or Red Hat Enterprise Linux.
 
+
+### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)
+
+```bash
+yum install ocaml
+yum search ocaml   # List packages related to OCaml
+```
+
 ### [Gentoo](https://www.gentoo.org/)
 
 With a user that is a member of the `portage` group do:
