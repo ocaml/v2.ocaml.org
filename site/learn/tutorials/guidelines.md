@@ -550,7 +550,7 @@ let rec fib = function
 > (or simple clauses in complex matchings), the rule does not add any
 > good to readability.
 > 
-> **Justitification**: I don't see any good reason for this rule, unless
+> **Justification**: I don't see any good reason for this rule, unless
 > you are paid proportionally to the number of lines of code: in this
 > case use this rule to get more money without adding more bugs in your
 > OCaml programs!
