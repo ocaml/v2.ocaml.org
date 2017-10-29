@@ -19,7 +19,7 @@ Basile Starynkevitch, Toby Moth, Pierre Lescanne.
 
 ## General guidelines to write programs
 ###  Be simple and readable
-The time you spend typing the programs is neglectable compared to the
+The time you spend typing the programs is negligible compared to the
 time spent reading them. That's the reason why you save a lot of time if
 you work hard to optimize readability.
 
