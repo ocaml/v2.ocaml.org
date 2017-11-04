@@ -2,9 +2,15 @@
 
 # Dernières versions d'OCaml
 
-Les versions stables d'OCaml sont habituellement publiées au rythme
-d'une version par an :
+La page « [latest](latest/) » pointe vers la version la plus récente
+d'OCaml.  Ci-dessous, vous trouverez la liste des dernières versions.
 
+La page d'[installation](/docs/install.fr.html) contient les
+instructions pour installer OCaml par d'autres moyens que la
+compilation des sources, comme par exemple le gestionnaire de paquets
+OPAM et les gestionnaire de paquets spécifiques à une plateforme.
+
+* OCaml [4.06.0](4.06.html), publiée le 3 novembre 2017.
 * OCaml [4.05.0](4.05.html), publiée le 13 juillet 2017.
 * OCaml [4.04.2](4.04.html), publiée le 23 juin 2017.
 * OCaml [4.04.1](4.04.html), publiée le 14 avril 2017.
