@@ -180,6 +180,15 @@ let string_of_color =function
   | Red -> "red"
 ```
 
+#### Is it possible to make a record value without declaring its type first?
+No, Before making a record, you must give it's type a name, using the type keyword.
+Otherwise it results in error "Unbound record field"
+
+```ocamltop
+type person = { name: string; age: int };;
+let p1 = { name="John"; age=30 };;
+```
+
 #### How to share a field between two different record types?
 
 When you define two types sharing a field name, the last defined type
