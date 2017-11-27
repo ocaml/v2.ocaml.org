@@ -181,12 +181,14 @@ let string_of_color =function
 ```
 
 #### Is it possible to make a record value without declaring its type first?
-No, Before making a record, you must give it's type a name, using the type keyword.
-Otherwise it results in error "Unbound record field"
+No, Before making a record, you must give record's type a name, using the `type` keyword, 
+or the type name for the record should at least be in scope. Ocaml needs to know
+the record type's name and associated field names before making a record value.
+Otherwise it results in error "Unbound record field".
 
 ```ocamltop
-type person = { name: string; age: int };;
-let p1 = { name="John"; age=30 };;
+type person = { name: string; age: int }
+let p1 = { name="John"; age=30 }
 ```
 
 #### How to share a field between two different record types?
