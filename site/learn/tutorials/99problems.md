@@ -1125,17 +1125,12 @@ specification: `gray n` returns the `n`-bit Gray code.
 SOLUTION
 
 > ```ocamltop
-> let prepend c s =
->   (* Prepend the char [c] to the string [s]. *)
->   let s' = String.create (String.length s + 1) in
->   s'.[0] <- c;
->   String.blit s 0 s' 1 (String.length s);
->   s'
-> 
-> let rec gray n =
->   if n <= 1 then ["0"; "1"]
->   else let g = gray (n - 1) in
->        List.map (prepend '0') g @ List.rev_map (prepend '1') g
+>   let gray n = 
+>     let rec aux k l = 
+>       if k<n then aux (k+1) (List.rev_append (List.rev_map (fun x -> "0"^x) l)(List.rev (List.rev_map (fun x -> "1"^x) (List.rev l))))
+>       else l
+>     in
+>     aux 1 ["0"; "1"];;
 > ```
 
 ```ocamltop
