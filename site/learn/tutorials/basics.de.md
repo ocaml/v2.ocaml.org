@@ -66,14 +66,14 @@ repeated "hallo" 3  (* dies ist OCaml-Code *)
 Beachten Sie: **keine** Klammern, und **kein** Komma zwischen den
 Argumenten.
 
-Now, um die Verwirrung perfekt zu machen, `repeated ("hallo", 3)`
+Um nun die Verwirrung perfekt zu machen: `repeated ("hallo", 3)`
 **hat** eine Bedeutung in OCaml. Es bedeutet "rufe die Funktion
 `repeated` mit EINEM Argument auf, wobei das Argument ein Paar von
 Elementen ist". Natürlich wäre das ein Fehler, weil die Funktion
 `repeated` zwei Argumente erwartet und nicht eins. In jedem Fall ist das
 erste Argument ein String, kein Paar. Aber wir wollen uns jetzt mal noch
 keine Gedanken über Paare ("Tupel") machen. Stattdessen merken Sie sich
-einfach, daß es falsch ist, in einem Funktionsaufruf Klammern und Kommas
+einfach, daß es falsch ist, in einem Funktionsaufruf Klammern und Kommata
 mit den Argumenten zu verwenden.
 
 Nehmen wir eine andere Funktion - `get_string_from_user` - die eine
