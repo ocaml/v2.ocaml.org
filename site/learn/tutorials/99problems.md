@@ -1627,6 +1627,10 @@ collect them in a list.
 SOLUTION
 
 > ```ocamltop
+> (* Having an accumulator acc prevents using inefficient List.append.
+>  * Every Leaf will be pushed directly into accumulator.
+>  * Not tail-recursive, but that is no problem since we have a binary tree and
+>  * and stack depth is logarithmic. *)
 > let leaves t = 
 >   let rec leaves_aux t acc = match t with
 >     | Empty -> acc
@@ -1650,6 +1654,10 @@ successors. Write a function `internals` to collect them in a list.
 SOLUTION
 
 > ```ocamltop
+> (* Having an accumulator acc prevents using inefficient List.append.
+>  * Every internal node will be pushed directly into accumulator.
+>  * Not tail-recursive, but that is no problem since we have a binary tree and
+>  * and stack depth is logarithmic. *)
 > let internals t = 
 >   let rec internals_aux t acc = match t with
 >     | Empty -> acc
@@ -1675,6 +1683,10 @@ list.
 SOLUTION
 
 > ```ocamltop
+> (* Having an accumulator acc prevents using inefficient List.append.
+>  * Every node at level N will be pushed directly into accumulator.
+>  * Not tail-recursive, but that is no problem since we have a binary tree and
+>  * and stack depth is logarithmic. *)
 > let at_level t level =
 >   let rec at_level_aux t acc counter = match t with
 >     | Empty -> acc
