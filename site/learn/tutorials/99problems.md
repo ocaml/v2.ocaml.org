@@ -1627,10 +1627,13 @@ collect them in a list.
 SOLUTION
 
 > ```ocamltop
-> let rec leaves = function
->   | Empty -> []
->   | Node(c, Empty, Empty) -> [c]
->   | Node(_, l, r) -> leaves l @ leaves r
+> let leaves t = 
+>   let rec leaves_aux t acc = match t with
+>     | Empty -> acc
+>     | Node(x, Empty, Empty) -> x::acc
+>     | Node(x, l, r) -> leaves_aux l (leaves_aux r acc)
+>   in
+>   leaves_aux t [];;
 > ```
 
 ```ocamltop
@@ -1647,9 +1650,13 @@ successors. Write a function `internals` to collect them in a list.
 SOLUTION
 
 > ```ocamltop
-> let rec internals = function
->   | Empty | Node(_, Empty, Empty) -> []
->   | Node(c, l, r) -> internals l @ (c :: internals r)
+> let internals t = 
+>   let rec internals_aux t acc = match t with
+>     | Empty -> acc
+>     | Node(x, Empty, Empty ) -> acc
+>     | Node(x, l, r) -> internals_aux l (x::(internals_aux r acc))
+>   in
+>   internals_aux t [];;
 > ```
 
 ```ocamltop
@@ -1668,11 +1675,16 @@ list.
 SOLUTION
 
 > ```ocamltop
-> let rec at_level t l = match t with
->   | Empty -> []
->   | Node(c, left, right) ->
->      if l = 1 then [c]
->      else at_level left (l - 1) @ at_level right (l - 1)
+> let at_level t level =
+>   let rec at_level_aux t acc counter = match t with
+>     | Empty -> acc
+>     | Node(x, l, r) ->
+>       if counter=level then
+>         x::acc
+>       else
+>         at_level_aux l (at_level_aux r acc (counter+1)) (counter+1)
+>   in
+>   at_level_aux t [] 1;;
 > ```
 
 ```ocamltop
