@@ -40,50 +40,92 @@ The following works will be presented as talks
 
 - A B-tree library for OCaml  
   Tom Ridge  
+  (
+   [extended abstract](http://www.tom-ridge.com/resources/doc/ocaml_2017.pdf)
+   ([local copy](extended-abstract__2017__tom-ridge__a-b-tree-library-for-ocaml.pdf)),
+   [slides](http://www.tom-ridge.com/resources/ocaml_2017_slides.pdf)
+   ([local copy](slides__2017__tom-ridge__a-b-tree-library-for-ocaml.pdf))
+  )
 
 - A memory model for multicore OCaml  
   Stephen Dolan, KC Sivaramakrishnan  
+  ([local copy](extended-abstract__2017__stephen-dolan_kc-sivaramakrishnan__a-memory-model-for-multicore-ocaml.pdf))
 
 - Component-based Program Synthesis in OCaml  
   Zhanpeng Liang, Kanae Tsushima  
+  (
+   [extended abstract](http://www-scf.usc.edu/~zhanpenl/prog_syn.pdf)
+   ([local copy](extended-abstract__2017__zhanpeng-liang_kanae-tsushima__component-based-program-synthesis-in-ocaml.pdf))
+  )
 
 - Extending OCaml's open  
   Runhang Li, Jeremy Yallop  
+  (
+   [extended abstract](https://www.cl.cam.ac.uk/~jdy22/papers/extending-ocamls-open.pdf)
+   ([local copy](extended-abstract__2017__runhang-li_jeremy-yallop__extending-ocaml-s-open.pdf)),
+   [iOCamlJS playground!](http://ocamllabs.io/iocamljs/open-struct.html),
+   [additional material](https://github.com/objmagic/ocaml-workshop-17-open-ext-talk)
+  )
 
 - Genspio: Generating Shell Phrases In OCaml  
   Sebastien Mondet  
+([extended abstract](http://wr.mondet.org/paper/smondet-genspio-ocaml17.pdf)
+ ([local copy](extended-abstract__2017__sebastien-mondet__genspio-generating-shell-phrases-in-ocaml.pdf)),
+ [slides](http://wr.mondet.org/slides/OCaml2017-Genspio/),
+ [code](https://github.com/hammerlab/genspio))
 
 - Owl: A General-Purpose Numerical Library in OCaml  
   Liang Wang  
+  ([extended abstract](https://arxiv.org/pdf/1707.09616) from [arXiv](https://arxiv.org/abs/1707.09616),
+  [presentation](https://docs.google.com/presentation/d/1A-7KiQLot3X2lLyZntrFGxsxaNir0g_2TlruBP4W2Uc/)
+  ([local copy](slides__2017__liang_wang__owl-a-general-purpose-numerical-library-in-ocaml.pdf)))
 
 - ROTOR: First Steps Towards a Refactoring Tool for OCaml  
   Reuben N. S. Rowe, Simon Thompson  
+  ([extended abstract](https://www.cs.kent.ac.uk/people/staff/rnsr/docs/rotor_ocaml-17_abstract.pdf)
+   ([local copy](extended-abstract__2017__reuben-rowe_simon-thompson__rotor-first-steps-towards-a-refactoring-tool-for-ocaml.pdf)),
+   [slides](https://www.cs.kent.ac.uk/people/staff/rnsr/docs/ocaml_2017_slides.pdf)
+   ([local copy](slides__2017__reuben-rowe_simon-thompson__rotor-first-steps-towards-a-refactoring-tool-for-ocaml.pdf)),
+   [code](https://gitlab.com/trustworthy-refactoring/), [Docker image](https://hub.docker.com/r/reubenrowe/ocaml-rotor))
 
 - Testing with Crowbar  
   Stephen Dolan, Mindy Preston  
+  ([local copy](extended-abstract__2017__stephen-dolan_mindy-preston__testing-with-crowbar.pdf))
 
 - Tezos: the OCaml Crypto-Ledger  
   Benjamin Canou, Grégoire Henry, Pierre Chambart, Fabrice Le Fessant, Arthur Breitman
+  ([local copy](extended-abstract__2017__benjamin-canou_gregoire-henry_pierre-chambart_fabrice-le-fessant_arthur-breitman__tezos-the-ocaml-crypto-ledger.pdf))
 
 - The State of the OCaml Platform: September 2017  
   Anil Madhavapeddy  
+  ([slides](https://speakerdeck.com/avsm/ocaml-platform-2017)
+   ([local copy](slides__2017__anil-madhavapeddy__the-state-of-the-ocaml-platform-september-2017.pdf)))
 
 - Wodan: a pure OCaml, flash-aware filesystem library  
   Gabriel de Perthuis  
+  ([extended abstract](https://g2p.github.io/research/wodan.pdf)
+   ([local copy](extended-abstract__2017__gabriel-de-perthuis__wodan-a-pure-ocaml-flash-aware-filesystem-library.pdf)))
 
 The following works will be presented as posters.
 
 - ocamli: Interpreted OCaml  
   John Whitington  
+  ([extended abstract](http://www.cs.le.ac.uk/people/jw642/ocamlworkshop.pdf)
+   ([local copy](extended-abstract__2017__john_whitington__ocamli-interpreted-ocaml.pdf)))
 
 - mSAT: An OCaml SAT Solver  
   Bury Guillaume  
+  ([extended abstract](https://gbury.eu/public/papers/icfp2017_msat.pdf)
+   ([local copy](extended-abstract__2017__guillaume-bury__msat-an-ocaml-sat-solver.pdf)))
 
 - Tyre – Typed Regular Expressions  
   Gabriel Radanne  
+  ([extended abstract](https://www.irif.fr/~gradanne/papers/tyre/abstract.pdf)
+   ([local copy](extended-abstract__2017__gabriel-radanne__tyre-typed-regular-expressions.pdf)))
 
 - Jbuilder: a modern approach to OCaml development  
   Jeremie Dimino, Mark Shinwell  
+  ([local copy](extended-abstract__2017__jeremie-dimino_mark-shinwell__jbuilder-a-modern-approach-to-ocaml-development.pdf))
 
 
 Call for presentations (past)
