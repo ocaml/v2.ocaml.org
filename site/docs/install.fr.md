@@ -14,7 +14,7 @@ Il y a plusieurs moyens pour installer OCaml :
 * Utiliser OPAM, un gestionnaire de paquet spécialisé pour OCaml
 * Utiliser le gestionnaire de paquet de votre plateforme, dans lequel une
    version récente d'OCaml est le plus souvent disponible.  ([FreeBSD](#FreeBSD), [Linux](#Linux), [macOS](#macOS),
-   [OpenBSD](#OpenBSD), [Windows](#Window))
+   [OpenBSD](#OpenBSD), [Windows](#Windows))
 * Installer depuis [les sources](#Installation depuis les sources)
 
 ## Installation via OPAM

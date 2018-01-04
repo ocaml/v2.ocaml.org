@@ -13,7 +13,7 @@ The OCaml compiler and libraries can be installed in several ways:
 * With [OPAM](#OPAM), the OCaml package manager (recommended).
 * With a system package manager supported by your platform
   ([FreeBSD](#FreeBSD), [Linux](#Linux), [macOS](#macOS),
-   [OpenBSD](#OpenBSD), [Windows](#Window))
+   [OpenBSD](#OpenBSD), [Windows](#Windows))
 * In your [browser](#Browser).
 * By compiling [the source](#FromSource).
 
