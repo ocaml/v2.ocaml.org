@@ -2,11 +2,12 @@
 
 ## Overview
 
-Caml Light is a lightweight, portable implementation of the Caml
-language.  that runs on most Unix machines, as well as PC under
-Microsoft Windows.  Because of its stable status, it is actively used
-in education. For most other uses, we recommend switching to its
-successor OCaml.
+Caml Light is a lightweight, portable implementation of the core Caml
+language that was developed in the early 1990's, as a precursor to
+OCaml. It used to run on most Unix machines, as well as PC under
+Microsoft Windows. The implementation is obsolete, no longer actively
+maintained, and will be removed eventually. We recommend switching
+immediately to its successor, OCaml.
 
 Caml Light is implemented as a bytecode compiler, and fully
 bootstrapped.  The runtime system and bytecode interpreter is written
