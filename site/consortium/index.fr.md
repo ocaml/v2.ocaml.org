@@ -31,28 +31,22 @@ dissémination, mais aussi pour sa pérennité.
 <td align="center"><a href="http://www.citrix.com"><img src="/img/users/citrix.png" alt="Citrix" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.dassault-aviation.com"><img src="/img/users/dassault-aviation.png" alt="Dassault Aviation" /></a></td>
 <td align="center"><a href="https://www.docker.com/"><img src="/img/users/docker.png" alt="Docker" style="height: 60px" /></a></td>
 <td align="center"><a href="http://www.esterel-technologies.com"><img src="/img/users/esterel.jpg" alt="Esterel Technologies" style="height: 60px" /></a></td>
+<td align="center"><a href="http://www.facebook.com"><img src="/img/users/facebook.png" alt="Facebook" style="height: 60px" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.facebook.com"><img src="/img/users/facebook.png" alt="Facebook" style="height: 60px" /></a></td>
 <td align="center"><a href="http://janestreet.com/"><img src="/img/users/jane-street.jpg" alt="Jane Street" style="height: 50px" /></a></td>
 <td align="center" style="font-size:160%">Kernelyze LLC</td>
+<td align="center"><a href="http://www.lexifi.com"><img src="/img/users/lexifi.png" alt="Lexifi" style="height: 50px" /></a></td>
 </tr>
 <tr style="height: 70px">
-<td align="center"><a href="http://www.lexifi.com"><img src="/img/users/lexifi.png" alt="Lexifi" style="height: 50px" /></a></td>
 <td align="center"><a href="http://www.microsoft.com"><img src="/img/users/microsoft.png" alt="Microsoft" style="width: 170px" /></a></td>
 <td align="center"><a href="http://www.ocamlpro.com"><img src="/img/users/ocamlpro.png" alt="OCamlPro" style="width: 170px" /></a></td>
-</tr>
-<tr style="height: 70px">
 <td align="center"><a href="http://www.simcorp.com"><img src="/img/users/simcorp.png" alt="SimCorp" style="width: 170px" /></a></td>
-<td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
-
 
 ##  Comment adhérer ?
 Pour vous permettre d'adhérer en toute connaissance de cause au
