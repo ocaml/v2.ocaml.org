@@ -80,7 +80,7 @@ let f x y =
 let abs x =
   if x >= 0 then x else -x
 ```
-在 `Pervasives` 中的 `string_of_float` 函数也有一些复杂潜逃的if表达式：
+在 `Pervasives` 中的 `string_of_float` 函数也有一些复杂嵌套的if表达式：
 
 ```ocaml
 let string_of_float f =
