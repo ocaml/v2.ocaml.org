@@ -76,7 +76,7 @@ The following works will be presented as talks
 
 - _Owl: A General-Purpose Numerical Library in OCaml_ —
   Liang Wang  
-  [video](https://www.youtube.com/watch?v=Jyv3tJD1N3o&index=7&list=TLGGpj_CrU7rr7MxMjAxMjAxOA)
+  [video](https://www.youtube.com/watch?v=Jyv3tJD1N3o&index=7&list=TLGGpj_CrU7rr7MxMjAxMjAxOA),
   [extended abstract](https://arxiv.org/pdf/1707.09616) from [arXiv](https://arxiv.org/abs/1707.09616),
   [presentation](https://docs.google.com/presentation/d/1A-7KiQLot3X2lLyZntrFGxsxaNir0g_2TlruBP4W2Uc/)
   ([local copy](slides__2017__liang_wang__owl-a-general-purpose-numerical-library-in-ocaml.pdf))
@@ -99,9 +99,9 @@ The following works will be presented as talks
 
 - _The State of the OCaml Platform: September 2017_ —
   Anil Madhavapeddy  
-  [video](https://www.youtube.com/watch?v=y-1Zrzdd9KM&index=6&list=TLGGpj_CrU7rr7MxMjAxMjAxOA)
-  ([slides](https://speakerdeck.com/avsm/ocaml-platform-2017)
-   ([local copy](slides__2017__anil-madhavapeddy__the-state-of-the-ocaml-platform-september-2017.pdf)))
+  [video](https://www.youtube.com/watch?v=y-1Zrzdd9KM&index=6&list=TLGGpj_CrU7rr7MxMjAxMjAxOA),
+  [slides](https://speakerdeck.com/avsm/ocaml-platform-2017)
+  ([local copy](slides__2017__anil-madhavapeddy__the-state-of-the-ocaml-platform-september-2017.pdf))
 
 - _Wodan: a pure OCaml, flash-aware filesystem library_ —
   Gabriel de Perthuis  
