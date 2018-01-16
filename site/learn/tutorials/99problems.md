@@ -296,6 +296,14 @@ problem, construct its uncompressed version.
 SOLUTION
 
 > ```ocamltop
+> (* Straightforward but not tail-recursive version *)
+> let rec decode_naive = function
+>     | [] -> []
+>     | One c::tl -> c::decode_naive tl
+>     | Many (2,c)::tl -> c::decode_naive (One c::tl)
+>     | Many (n,c)::tl -> if n < 2 then raise ( Failure "number" ) else c::decode_naive (Many (n-1,c)::tl)
+>
+> (* Tail-recursive version *)
 > let decode list =
 >   let rec many acc n x =
 >     if n = 0 then acc else many (x :: acc) (n-1) x in
