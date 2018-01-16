@@ -162,7 +162,18 @@ type 'a node =
 SOLUTION
 
 > ```ocamltop
-> (* This function traverses the list, prepending any encountered elements
+> (* This naive implementation traverses the list, storing the tail of the 
+> result list in an accumulator*)
+> 
+> let flatten_naive list =
+>   let rec aux acc = function
+>     | [] -> acc
+>     | One x::tl -> x::(aux acc tl)
+>     | Many l::tl -> aux (aux acc tl) l
+>     in aux [] list
+>
+> (* This version however is more efficient by being tail recursive.
+>   It traverses the list, prepending any encountered elements
 >   to an accumulator, which flattens the list in inverse order. It can
 >   then be reversed to obtain the actual flattened list. *)
 > 
