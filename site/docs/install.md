@@ -156,17 +156,14 @@ pkg_add opam
 
 Under Windows, the following direct solutions are available to use OCaml:
 
-* [Official OCaml distribution](http://protz.github.io/ocaml-installer/).
-  A self-installer with a preliminary version of OPAM for Windows.
+* [OCaml for Windows](https://fdopen.github.io/opam-repository-mingw/)
+  provides an experimental OPAM repository and opam build for Windows.
 
 * [OCPWin](http://www.typerex.org/ocpwin.html) is a self-contained binary
   distribution of OCaml for Windows. Some additional features have
   been added to OCaml for better support of Windows, such as auto-detection
   of MSVC and support for MSVC 9.0, 10.0, 11.0, 12.0 and 14.0 (VS2015).
-
-* [OCaml for Windows](https://fdopen.github.io/opam-repository-mingw/)
-  provides an experimental OPAM repository and opam build for Windows.
-  
+ 
 Here are a few other alternatives:
 
 * The OCaml source distribution directly supports many different Windows
