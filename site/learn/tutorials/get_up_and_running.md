@@ -94,8 +94,11 @@ minitutorial at the end of this post.
     The elisp that I use for my `init.el` is listed after the `oasis`
     tutorial at the end of this post.
 
-7.  There are no full blown IDEs for OCaml, learn `emacs`, `vim`.
-Also `Sublime Text` has a merlin plugin, if you're already familiar
+7.  There are no full blown IDEs for OCaml. You have some options though:
+
+* Learn `emacs`, `vim`.
+* Use `vscode` and the [reasonml extension](https://github.com/reasonml-editor/vscode-reasonml). It supports both OCaml and Reason (an OCaml-to-Javascript superset and compiler created and maintained by Facebook). Provides syntax highlighting, autocompletion, navigation, static analysis features and more. Uses merlin and other useful tools in the background.
+* `Sublime Text` has a merlin plugin, if you're already familiar
 with Sublime Text then just stick with it, merlin is really what
 matters here.
 
