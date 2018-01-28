@@ -94,13 +94,12 @@ minitutorial at the end of this post.
     The elisp that I use for my `init.el` is listed after the `oasis`
     tutorial at the end of this post.
 
-7.  There are no full blown IDEs for OCaml. You have some options though:
+7. Although there are no full blown IDEs for OCaml, there are some options to expand your editor with robust tools for things like [syntax highlighting, autocompletion](https://github.com/ocaml/merlin) and [indentation](https://github.com/OCamlPro/ocp-indent):
 
-* Learn `emacs`, `vim`.
-* Use `vscode` and the [reasonml extension](https://github.com/reasonml-editor/vscode-reasonml). It supports both OCaml and Reason (an OCaml-to-Javascript superset and compiler created and maintained by Facebook). Provides syntax highlighting, autocompletion, navigation, static analysis features and more. Uses merlin and other useful tools in the background.
-* `Sublime Text` has a merlin plugin, if you're already familiar
-with Sublime Text then just stick with it, merlin is really what
-matters here.
+* If you use `emacs` or `vim`, you may want to consider installing [user-setup](https://github.com/OCamlPro/opam-user-setup). It will configure everything you need for you.
+* `vscode` has the [reasonml extension](https://github.com/reasonml-editor/vscode-reasonml). It supports both OCaml and [Reason](https://reasonml.github.io/) (an OCaml-to-Javascript superset and compiler created and maintained by Facebook). Provides syntax highlighting, autocompletion, indentation, navigation, static analysis and more. Uses most (if not all) of the modules already integrated into the emacs/vim ecosystem.
+* There are [two recommended ways](https://github.com/ocaml/merlin/wiki/atom-from-scratch) to configure OCaml support in `Atom` using merlin.
+* `Sublime Text` has a similar [plugin](https://github.com/Cynddl/sublime-text-merlin).
 
 8. `utop` is an enhanced repl, its better than the plain `ocaml`
 repl. Install it with `opam install utop`
