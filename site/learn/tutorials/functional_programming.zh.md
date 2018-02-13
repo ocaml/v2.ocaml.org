@@ -82,7 +82,7 @@ end
 现在来看`receiver_fn`的定义。这个函数是一个闭包，因为它含有一个引用,
 这个因用指向它的环境中的`chan`。
 
-## 部分函数应用（Partial function applications）和 currying（科里化）
+## 偏函数应用（Partial function applications）和 currying（科里化）
 
 让我们定义一个加法函数用来相加两个整数。
 
