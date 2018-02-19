@@ -2530,10 +2530,6 @@ SOLUTION
 >
 > ```
 
-```ocaml
-(* solution pending *);;
-```
-
 ```ocamltop
 let g = { nodes = [1; 2; 3; 4; 5; 6; 7; 8];
           edges = [(1,5); (1,6); (1,7); (2,5); (2,6); (2,8); (3,5);
