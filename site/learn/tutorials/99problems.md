@@ -2528,6 +2528,9 @@ SOLUTION
 > (* now we can use find_iso_opt to find a bijection f with is_graphiso f g h, just as wanted *)
 > let find_graphiso_opt g h = find_iso_opt (fun f -> is_graphiso f g h) g.nodes h.nodes
 >
+> (* iso g h should now evaluate to true iff find_graphiso_opt evaluates to Some _ *)
+> let iso g h = match find_graphiso_opt g h with None -> false | Some _ -> true
+>
 > ```
 
 ```ocamltop
