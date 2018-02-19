@@ -2483,7 +2483,52 @@ adjacent if and only if f(X) and f(Y) are adjacent.
 Write a function that determines whether two graphs are isomorphic.
 Hint: Use an open-ended list to represent the function f.
 
-<!-- SOLUTION -->
+SOLUTION
+
+> ```ocamltop
+> (* calculates the cross-product l1 x l2 of two lists *)
+> let cross_product l1 l2 =
+> let rec aux acc = function
+>   | [] -> acc
+>   | x::xs -> aux (List.rev_append
+>     (List.combine (List.init (List.length l2) (fun _ -> x)) l2)
+>     acc) xs
+> in aux [] l1
+>
+> (* check whether the function f (given by an association list) is an isomorphism between g and h *)
+> let is_graphiso f g h =
+>   if (List.length f <> List.length g.nodes) || (List.length f <> List.length h.nodes) then
+>     false
+>   else
+>     let check (v,w) =
+>       List.mem (v,w) g.edges = List.mem (List.assoc v f, List.assoc w f) h.edges
+>     in List.for_all (check) (cross_product g.nodes g.nodes)
+>
+> (* searches a bijection f: setA -> setB such that is_iso f evaluates to true.
+>    If found returns Some f (f as association list), else None.
+>    This algorithm checks every possible bijection, thus is very slow. *)
+> let find_iso_opt is_iso setA setB =
+>   let rec aux acc remainingA remainingB =
+>     match remainingA with
+>     | [] -> if is_iso acc then Some acc else None
+>     | x::xs ->
+>       let rec aux2 i =
+>         if i < List.length remainingB then
+>           let y = List.nth remainingB i in
+>           let ys = List.filter (fun v -> v <> y) remainingB in
+>           match aux ((x,y)::acc) xs ys with
+>             | Some f -> Some f
+>             | None -> aux2 (i+1)
+>         else None
+>       in aux2 0
+>   in
+>   if List.length setA <> List.length setB then None
+>   else aux [] setA setB
+>
+> (* now we can use find_iso_opt to find a bijection f with is_graphiso f g h, just as wanted *)
+> let find_graphiso_opt g h = find_iso_opt (fun f -> is_graphiso f g h) g.nodes h.nodes
+>
+> ```
 
 ```ocaml
 (* solution pending *);;
