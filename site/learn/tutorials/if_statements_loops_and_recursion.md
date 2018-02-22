@@ -784,7 +784,15 @@ and read_directory path =
   list
 ```
 Notice `End_of_file -> entries` which means "when we get the exception,
-give up and return the result so far".
+give up and return the result so far".  Also, note that the function
+`read_directory` is now nested inside another function named `read_filesystem`;
+so you need to update the last lines in your file to call this new function.
+
+```ocaml
+let path = Sys.argv.(1) in
+let fs = read_filesystem path in
+print_endline (string_of_filesystem fs)
+```
 
 Next up - it was pointed out that the easiest way to do this is actually
 not to use recursion at all, but instead to do the loop imperatively (a
