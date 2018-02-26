@@ -485,9 +485,9 @@ code, how they used local and global named expressions.
 
 First snippet: The programmer opens a couple of standard libraries
 (eliding the `;;` because the next keyword is `open` and `let`
-respectively). He then creates a function called `file_dialog`. Inside
-this function he defines a named expression called `sel` using a
-two-line `let sel = ... in` statement. Then he calls several methods on
+respectively). They then create a function called `file_dialog`. Inside
+this function they define a named expression called `sel` using a
+two-line `let sel = ... in` statement. Then they call several methods on
 `sel`.
 
 ```ocaml
