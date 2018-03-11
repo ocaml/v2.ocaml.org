@@ -2,7 +2,7 @@
 
 *Table of contents*
 
-# Comparison of Standard Containers
+# 표준 컨테이너의 비교
 This is a rough comparison of the different container types that are
 provided by the OCaml language or by the OCaml standard library. In each
 case, n is the number of valid elements in the container.
@@ -16,18 +16,17 @@ is also instructive to read the corresponding implementation.
 See also: [Standard Library
 Examples](standard_library_examples.html "Standard Library Examples")
 
-## Lists: immutable singly-linked lists
-Adding an element always creates a new list l from an element x and list
-tl. tl remains unchanged, but it is not copied either.
+## List : 불변 단일 연결 리스트 (Singly Linked List)
+원소를 추가하는 것은 항상 원소 x와 리스트 tl로부터 새로운 리스트 l을 만든다. tl은 변경되지 않고, 복사되지도 않는다.
 
-* "adding" an element: O(1), cons operator `::`
-* length: O(n), function `List.length`
-* accessing cell i: O(i)
-* finding an element: O(n)
+* 원소 "추가" : O(1), cons 연산자 `::` 를 사용
+* 길이 계산 : O(n), 함수 `List.length`
+* i번째 항목 접근 : O(i)
+* 원소 찾기 : O(n)
 
-Well-suited for: IO, pattern-matching
+적합한 용도 : I/O, 패턴 매칭
 
-Not very efficient for: random access, indexed elements
+그리 효율적이지는 않은 용도 : 무작위 접근(random access), 색인 달린 원소(indexed element)
 
 ## Arrays and strings: mutable vectors
 Arrays and strings are very similar. Strings are specialized in storing
