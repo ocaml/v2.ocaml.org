@@ -48,30 +48,22 @@ List 처럼, 이들은 불변이며 subtree를 공유할 수도 있다. 이들�
 
 Set과 Map은 컴파일과 메타-프로그래밍에서 아주 유용하지만, 이외의 상황에서는 해시 테이블이 더욱 적합하다. (아래 참조)
 
-## Hashtbl: automatically growing hash tables
-Ocaml hash tables are mutable data structures, which are a good solution
-for storing (key, data) pairs in one single place.
+## Hashtbl : 자동으로 성장하는 해시 테이블
+OCaml의 Hashtbl (해시 테이블)은 (key, data) 쌍을 한 곳에 저장하기 좋은 자료구조이다.
 
-* adding an element: O(1) if the initial size of the table is larger
- than the number of elements it contains; O(log n) on average if n
- elements have been added in a table which is initially much smaller
- than n.
-* returning the number of elements: O(1)
-* finding an element: O(1)
+* 원소 추가 : 초기 테이블의 크기가 삽입된 원소 수 보다 크다면 O(1); 초기 테이블의 크기보다 훨씬 많은 n개의 원소가 삽입되어 있다면 평균 O(log n)
+* 원소 수 계산 : O(1)
+* 원소 찾기 : O(1)
 
-## Buffer: extensible strings
-Buffers provide an efficient way to accumulate a sequence of bytes in a
-single place. They are mutable.
+## Buffer: 확장 가능한 string
+Buffer는 byte의 sequence를 한데 모으는데 효율적이다. 가변적이다.
 
-* adding a char: O(1) if the buffer is big enough, or O(log n) on
- average if the initial size of the buffer was much smaller than the
- number of bytes n.
-* adding a string of k chars: O(k * "adding a char")
-* length: O(1)
-* accessing cell i: O(1)
+* char 추가 : 초기 Buffer가 충분히 크다면 O(1); 초기 Buffer의 크기보다 훨씬 많은 n개의 byte가 삽입되어 있다면 평균 O(log n)
+* 길이 계산 : O(1)
+* i번째 항목 접근 : O(1)
 
 ## Queue
-OCaml의 Qtack은 가변 first-in-first-out (FIFO) 자료구조이다.
+OCaml의 Queue은 가변 first-in-first-out (FIFO) 자료구조이다.
 
 * 원소 추가 : O(1)
 * 최상부 원소 접근 : O(1)
