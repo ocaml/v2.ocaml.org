@@ -28,29 +28,25 @@ Examples](standard_library_examples.html "Standard Library Examples")
 
 그리 효율적이지는 않은 용도 : 무작위 접근(random access), 색인 달린 원소(indexed element)
 
-## Arrays and strings: mutable vectors
-Arrays and strings are very similar. Strings are specialized in storing
-chars (bytes), have some convenient syntax and store them compactly.
+## Array와 string : 가변 벡터
+Array와 string은 매우 유사하다. string은 char(혹은 byte)를 저장하는데 특화되어, 몇 가지 편리한 문법를 제공하고 원소들을 조밀하게 저장한다. 
+원소를 추가하는 것은 항상 원소 x와 리스트 tl로부터 새로운 리스트 l을 만든다. tl은 변경되지 않고, 복사되지도 않는다.
 
-* "adding" an element: O(n)
-* length: O(1), function `Array.length`
-* accessing cell i: O(1)
-* finding an element: O(n)
+* 원소 "추가" : O(n)
+* 길이 계산 : O(1), 함수 `Array.length`, `String.length`
+* i번째 항목 접근 : O(1)
+* 원소 찾기 : O(n)
 
-Well-suited for sets of elements of known size, access by numeric index,
-in-place modification. Basic arrays and strings have a fixed length. For
-extensible strings, the standard Buffer type can be used (see below).
+적합한 용도 : 크기가 알려진 집합, 정수 색인 접근, in-place 수정. 기본 array와 string은 고정 길이를 가진다. 확장 가능한 string를 위해서는 표준 Buffer 타입이 사용 가능하다. (아래 참조)
 
-## Set and Map: immutable trees
-Like lists, these are immutable and they may share some subtrees. They
-are a good solution for keeping older versions of sets of items.
+## Set과 Map : 불변 트리
+List 처럼, 이들은 불변이며 subtree를 공유할 수도 있다. 이들은 이전 버전의 집합을 보존하는데 좋은 해결책이다. 
 
-* "adding" an element: O(log n)
-* returning the number of elements: O(n)
-* finding an element: O(log n)
+* 원소 "추가" : O(log n)
+* 원소 수 계산 : O(n)
+* 원소 찾기 : O(log n)
 
-Sets and maps are very useful in compilation and meta-programming, but
-in other situations hash tables are often more appropriate (see below).
+Set과 Map은 컴파일과 메타-프로그래밍에서 아주 유용하지만, 이외의 상황에서는 해시 테이블이 더욱 적합하다. (아래 참조)
 
 ## Hashtbl: automatically growing hash tables
 Ocaml hash tables are mutable data structures, which are a good solution
@@ -75,18 +71,16 @@ single place. They are mutable.
 * accessing cell i: O(1)
 
 ## Queue
-OCaml queues are mutable first-in-first-out (FIFO) data structures.
+OCaml의 Qtack은 가변 first-in-first-out (FIFO) 자료구조이다.
 
-* adding an element: O(1)
-* taking an element: O(1)
-* length: O(1)
+* 원소 추가 : O(1)
+* 최상부 원소 접근 : O(1)
+* 길이 계산 : O(1)
 
 ## Stack
-OCaml stacks are mutable last-in-first-out (LIFO) data structures. They
-are just like lists, except that they are mutable, i.e. adding an
-element doesn't create a new stack but simply adds it to the stack.
+OCaml의 Stack은 가변 last-in-first-out (LIFO) 자료구조이다. 가변이라는 점만 제외하면 (예를 들어 원소를 추가하는 것이 새로운 Stack을 만들지 않는다.) List와 거의 같다.
 
-* adding an element: O(1)
-* taking an element: O(1)
-* length: O(n)
+* 원소 추가 : O(1)
+* 최상부 원소 접근 : O(1)
+* 길이 계산 : O(1)
 
