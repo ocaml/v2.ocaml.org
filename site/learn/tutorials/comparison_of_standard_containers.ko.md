@@ -3,17 +3,11 @@
 *Table of contents*
 
 # 표준 컨테이너의 비교
-This is a rough comparison of the different container types that are
-provided by the OCaml language or by the OCaml standard library. In each
-case, n is the number of valid elements in the container.
+이 글은 OCaml 언어나 OCaml 표준 라이브러리에서 제공하는 서로 다른 컨테이너 타입들에 대한 대략적인 비교이다. 매 경우, n은 컨테이너 내의 유효한 원소의 수를 지칭한다.
 
-Note that the big-O cost given for some operations reflects the current
-implementation but is not guaranteed by the official documentation.
-Hopefully it will not become worse. Anyway, if you want more details,
-you should read the documentation about each of the modules. Often, it
-is also instructive to read the corresponding implementation.
+몇몇 연산에 big-O로 제시된 비용이 현재의 구현에 의거할 뿐 공식 documentation에 의해 보장되는 것이 아님에 주의하라. 현재의 비용보다 더 나빠지진 않을 것이다. 더 자세한 정보를 원한다면, 각 모듈에 대한 documentation을 읽어야 한다. 구현된 코드를 읽어보는 것도 유익하다.
 
-See also: [Standard Library
+더 보기 : [Standard Library
 Examples](standard_library_examples.html "Standard Library Examples")
 
 ## List : 불변 단일 연결 리스트 (Singly Linked List)
