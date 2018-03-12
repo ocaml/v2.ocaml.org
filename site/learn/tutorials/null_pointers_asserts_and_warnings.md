@@ -125,7 +125,7 @@ let () =
     set_color (if i mod 2 = 0 then red else yellow);
     fill_circle 320 240 radius
   done;
-  read_line ()
+  ignore(read_line ())
 ```
 
 If you prefer C-style `printf`'s then try using OCaml's `Printf` module
@@ -143,5 +143,5 @@ let () =
     set_color (if i mod 2 = 0 then red else yellow);
     fill_circle 320 240 radius
   done;
-  read_line ()
+  ignore(read_line ())
 ```
