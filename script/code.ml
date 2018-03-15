@@ -273,7 +273,7 @@ let html_error txt =
   Omd.Html_block("span", ["class", Some "ocaml-error-loc"],
            [Omd.Raw(html_encode txt)])
 
-(* Insert the HTML code to highligh the error located in [phrase] at
+(* Insert the HTML code to highlight the error located in [phrase] at
    chars [c1 .. c2[.  [phrase] is a syntax highlighted HTML
    representation of the code. *)
 let highlight_error_range phrase err_msg c1 c2 =
