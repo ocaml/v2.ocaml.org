@@ -370,7 +370,7 @@ Brian Hurt更正了一些我对于";"的观点。
 自然，你还需要一些提示：
 
 * `?foo` 和 `~foo` 在OCaml中分别表示函数的可选和命名参数。这个特性在C衍生的语言
-  中未必有对于的概念，但是Perl，Python和Smalltalk都允许函数忽略某些参数，或者
+  中未必有对应的概念，但是Perl，Python和Smalltalk都允许函数忽略某些参数，或者
   以其他顺序传入参数。
 * `foo#bar` 是调用对象`foo`的`bar`方法。这和C++的`foo->bar`，Java的`foo.bar`，
   Perl的`$foo->bar`类似。
