@@ -15,7 +15,7 @@ The OCaml compiler and libraries can be installed in several ways:
   ([FreeBSD](#FreeBSD), [Linux](#Linux), [macOS](#macOS),
    [OpenBSD](#OpenBSD), [Windows](#Windows))
 * In your [browser](#Browser).
-* By compiling [the source](#FromSource).
+* By compiling [the source](#From-Source).
 
 For finding and installing OCaml libraries, see the
 [libraries page](/learn/libraries.html). Information about the
