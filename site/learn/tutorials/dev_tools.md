@@ -14,7 +14,7 @@ minimalistic text editor from plan9. While there are no
 language-specific features to the editor, there are a few tricks one can
 use to make it friendlier:
 
-####  Plumbimg
+####  Plumbing
 To allow plumbing of OCaml error messages, add the following to your
 plumbing rules:
 
