@@ -42,7 +42,7 @@ max "a" "b";;
 This is because `>` is in fact polymorphic. It works on any type, even
 objects (it does a binary comparison).
 
-[Note that the `Pervasives` module defines `min` and `max` for you.]
+\[Note that the `Pervasives` module defines `min` and `max` for you.\]
 
 Let's look a bit more closely at the `if` expression. Here's the `range`
 function which I showed you earlier without much explanation. You should
