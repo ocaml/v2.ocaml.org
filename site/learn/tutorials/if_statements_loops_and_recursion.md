@@ -321,9 +321,7 @@ time your cerebellum suggests you use a for loop.
 
 If you want to *transform* each element separately in the list - for
 example, doubling each element in the list - then use `List.map`. This
-function will be familiar to people who've
-
-programmed in Perl before.
+function will be familiar to people who've programmed in Perl before.
 
 ```ocamltop
 List.map (( * ) 2) my_list
