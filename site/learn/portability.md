@@ -57,7 +57,9 @@ processor/operating system combinations:
 <td align="left">NetBSD</td>
 </tr>
 <tr class="even">
-<td align="left">SPARC</td>
+<td align="left">SPARC
+  (<a href="https://github.com/ocaml/ocaml/pull/659">discontinued
+  since 2017</a>)</td>
 <td align="left">Solaris 9, Linux, NetBSD</td>
 </tr>
 </tbody>
