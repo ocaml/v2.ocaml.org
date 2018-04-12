@@ -9,7 +9,10 @@
                <a href="install.html">installation instructions</a>,
                information about OCaml <a href="/releases/">releases</a>
                and the user
-               <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">manual</a>.
+               <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">manual</a>
+		       (including the
+			   <a href="http://caml.inria.fr/pub/docs/manual-ocaml/#sec544"
+			   >OCaml library</a>).
             </p>
         </section>
         <section class="span6 condensed">
