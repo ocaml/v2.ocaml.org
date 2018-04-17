@@ -43,6 +43,9 @@
   <div class="entry">
     <h1>{{! cmd script/translate ((! get filename !)) Contact !}}</h1>
     <ul>
+      <li><a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))"
+	     target="_blank"
+	     >{{! cmd script/translate ((! get filename !)) "Edit this page" !}}</a></li>
       <li><a href="https://github.com/ocaml/ocaml.org/issues"
 	     target="_blank" >{{! cmd script/translate ((! get filename !)) "Website Issues" !}}</a></li>
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/about.html" !}}" >{{! cmd script/translate ((! get filename !)) "About This Site" !}}</a></li>
