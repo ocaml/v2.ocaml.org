@@ -2,7 +2,7 @@
 
 *Table of contents*
 
-# Mailing Lists and Forums
+# Mailing Lists and Web Forums
 
 Mailing lists and other forums used to discuss OCaml in general are
 listed below. There are thousands of other forums related to
@@ -11,10 +11,10 @@ individual projects. Several mailing lists are hosted on the
 [GitHub](https://github.com/trending?l=ocaml&since=monthly) actively
 use GitHub's Issue system for discussions.
 
-## Mailing Lists
+## Web Forums
 
 ### Discuss at OCaml.org
-[discuss.ocaml.org](https://discuss.ocaml.org/)  
+[discuss.ocaml.org](https://discuss.ocaml.org/)
 This is the most active forum about OCaml. Topics are grouped into
 a variety of categories, which can be followed independently.
 This forum welcomes people at all levels of proficiency, including
@@ -25,8 +25,10 @@ all messages.
 Most categories are in English but categories in other languages are
 welcome.
 
+## Mailing Lists
+
 ### Official OCaml List
-*caml-list AT inria.fr*  
+*caml-list AT inria.fr*
 The OCaml mailing list is intended for all users of the OCaml
 implementations developed at Inria. The purpose of this list is to share
 experience, exchange ideas and code, and report on applications of the
@@ -46,7 +48,7 @@ a curated summary of caml-list discussions.
 
 
 ### OCaml Jobs and Internships
-*ocaml-jobs AT inria.fr*  
+*ocaml-jobs AT inria.fr*
 This list is for exchanges between people looking for a job or an
 internship requiring skills in OCaml and people, corporations,
 universities, ..., offering such jobs or internships.
@@ -54,7 +56,7 @@ universities, ..., offering such jobs or internships.
 [(Un)subscribe](https://sympa.inria.fr/sympa/info/ocaml-jobs)
 
 ### OCaml Announcements
-*caml-announce AT inria.fr*  
+*caml-announce AT inria.fr*
 This is a low-traffic, moderated list for announcements of OCaml
 releases and new OCaml-related software, libraries, documents, etc.
 
@@ -64,7 +66,7 @@ releases and new OCaml-related software, libraries, documents, etc.
 ## Discussion Groups
 
 ### IRC Channel - English
-*irc.freenode.net #ocaml*  
+*irc.freenode.net #ocaml*
 This is a real-time communication channel, where you can ask for help.
 There are about a hundred users hanging around; don't ask if you can
 ask, just ask, and be patient: not everyone is in the same timezone. The
@@ -80,11 +82,11 @@ interface, you may try
 requires registration but is otherwise free.
 
 ### IRC Channel - French
-*irc.freenode.net #ocaml-fr*  
+*irc.freenode.net #ocaml-fr*
 As above, but for French speakers.
 
 ### About ML
-*comp.lang.ml*  
+*comp.lang.ml*
 This is a moderated Usenet newsgroup about all variants of ML.
 Discussions generally concern Standard ML implementations (such as
 SML-NJ), but some threads concern the OCaml branch.
@@ -94,7 +96,7 @@ Groups](http://groups.google.com/groups?group=comp.lang.ml) |
 [FAQ](http://www.faqs.org/faqs/meta-lang-faq/)
 
 ### About Functional Languages
-*comp.lang.functional*  
+*comp.lang.functional*
 This is an unmoderated usenet newsgroup for the discussion of all
 aspects of functional programming languages, including their design,
 application, theoretical foundation, and implementation. Discussions

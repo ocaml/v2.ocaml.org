@@ -8,7 +8,7 @@
             <img src="/img/community-large.png" alt="Community" class="png" />
         </div>
         <section id="community-leader" class="span6">
-            <p>OCaml has a diverse, worldwide community and one of the main benefits is the ability to easily reach each other.  <a href="mailing_lists.html">Mailing lists</a> are the most common way people interact although you will always find users on IRC, around the web and at any of the <a href="/meetings/">meetings</a>.  OCaml also has a committed group of <a href="../learn/companies.html">industrial users</a> who regularly contribute to the community.</p>
+            <p>OCaml has a diverse, worldwide community and one of the main benefits is the ability to easily reach each other.  <a href="mailing_lists.html">Mailing lists and web forums</a> are the most common way people interact although you will always find users on IRC, around the web and at any of the <a href="/meetings/">meetings</a>.  OCaml also has a committed group of <a href="../learn/companies.html">industrial users</a> who regularly contribute to the community.</p>
         </section>
         <div class="span2">
             <img src="/img/colour-transparent-icon.svg" alt="OCaml"
@@ -25,7 +25,7 @@
     </div>
     <div class="row">
         <section class="span12 condensed">
-            <h1 class="ruled"><a href="mailing_lists.html">Mailing Lists</a></h1>
+            <h1 class="ruled"><a href="mailing_lists.html">Mailing Lists and Web Forums</a></h1>
             <div class="row">
             <section class="span4 condensed">
                 <p><strong><a href="https://discuss.ocaml.org/">discuss.ocaml.org</a></strong><br />
@@ -71,7 +71,7 @@
     <div class="row">
         <section class="span4 condensed">
             <h1 class="ruled">Support</h1>
-            <p>See the <a href="/community/mailing_lists.html">mailing lists</a> page for a complete list of support channels. <a href="support.html">Commercial support</a> is also available.</p>
+            <p>See the <a href="/community/mailing_lists.html">mailing lists and web forums</a> page for a complete list of support channels. <a href="support.html">Commercial support</a> is also available.</p>
 
             <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html#GivingSupport">Find out more</a>.</p>
 
@@ -164,7 +164,7 @@
                 <ul class="inline">
                     <li><a href="/community/mailing_lists.html"><img src="/img/mail.png" title="OCaml Mailing Lists"></a></li>
                     <li><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png" title="OCaml repos on Github"></a></li>
-                    <li><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png" title="OCaml repos on BitBucket"></a></li>                
+                    <li><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png" title="OCaml repos on BitBucket"></a></li>
                     <li><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg" title="OCaml tag on StackOverflow"></a></li>
                     <li><a href="https://plus.google.com/u/0/communities/100872177392545601885"><img src="/img/googleplus.jpg" title="OCaml on Google+"></a></li>
                     <li><a href="http://www.reddit.com/r/ocaml/"><img src="/img/reddit-alien.png" title="OCaml subreddit on Reddit"></a></li>
