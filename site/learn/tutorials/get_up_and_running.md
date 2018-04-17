@@ -96,13 +96,25 @@ minitutorial at the end of this post.
 
 7. Although there are no full blown IDEs for OCaml, there are some options to expand your editor with robust tools for things like [syntax highlighting, autocompletion](https://github.com/ocaml/merlin) and [indentation](https://github.com/OCamlPro/ocp-indent):
 
-* If you use `emacs` or `vim`, you may want to consider installing [user-setup](https://github.com/OCamlPro/opam-user-setup). It will configure everything you need for you.
-* `vscode` has the [reasonml extension](https://github.com/reasonml-editor/vscode-reasonml). It supports both OCaml and [Reason](https://reasonml.github.io/) (an OCaml-to-Javascript superset and compiler created and maintained by Facebook). Provides syntax highlighting, autocompletion, indentation, navigation, static analysis and more. Uses most (if not all) of the modules already integrated into the emacs/vim ecosystem.
-* There are [two recommended ways](https://github.com/ocaml/merlin/wiki/atom-from-scratch) to configure OCaml support in `Atom` using merlin.
-* `Sublime Text` has a similar [plugin](https://github.com/Cynddl/sublime-text-merlin).
+* If you use Emacs or Vim, you may want to consider installing
+  [user-setup](https://github.com/OCamlPro/opam-user-setup). It will
+  configure everything you need for you.
+* VSCode has the [reasonml
+  extension](https://github.com/reasonml-editor/vscode-reasonml). It
+  supports both OCaml and [Reason](https://reasonml.github.io/) (an
+  alternative syntax inspired by Javascript created and maintained by
+  Facebook).  Provides syntax highlighting, autocompletion,
+  indentation, navigation, static analysis and more.  Uses most (if
+  not all) of the modules already integrated into the Emacs/Vim
+  ecosystem.
+* There are [two recommended
+  ways](https://github.com/ocaml/merlin/wiki/atom-from-scratch) to
+  configure OCaml support in Atom using Merlin.
+* Sublime Text has a similar
+  [plugin](https://github.com/Cynddl/sublime-text-merlin).
 
-8. `utop` is an enhanced repl, it is better than the plain `ocaml`
-repl. Install it with `opam install utop`
+8. `utop` is an enhanced REPL, it is better than the plain `ocaml`
+REPL. Install it with `opam install utop`
 
 # Library situation
 
