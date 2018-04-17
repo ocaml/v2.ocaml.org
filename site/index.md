@@ -104,16 +104,6 @@
 			<ul class="news-feed" style="margin-bottom: 0px">
 
 			<li class="announcement"><article>
-			  <h1><a title="OCaml Users and Developers Workshop"
-			       href="/meetings/ocaml/2017/">OCaml 2017</a></h1>
-			  <p>September 8, 2017</p>
-			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2017/">
-			    <img alt="" src="/img/announcement.svg" class="svg" />
-			    <img alt="" src="/img/announcement.png" class="png" />
-			  </a>
-			</article></li>
-			<li class="announcement"><article>
 			  <h1><a title="OCaml Weekly News"
 			       href="/community/cwn/" >OCaml Weekly News</a></h1>
 			   <p>{{! cmd script/weekly_news --date !}}</p>
