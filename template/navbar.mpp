@@ -3,4 +3,5 @@
               <li ((! ifdef documentation class="active" !))><a href="{{! cmd script/link_of_lang ((! get filename !)) "/docs/" !}}">{{! cmd script/translate ((! get filename !)) Documentation !}}</a></li>
               <li ((! ifdef packages class="active" !))><a href="https://opam.ocaml.org/">{{! cmd script/translate ((! get filename !)) Packages !}}</a></li>
               <li ((! ifdef community class="active" !))><a href="{{! cmd script/link_of_lang ((! get filename !)) "/community/" !}}">{{! cmd script/translate ((! get filename !)) Community !}}</a></li>
+              <li ((! ifdef news class="active" !))><a href="{{! cmd script/link_of_lang ((! get filename !)) "/community/planet/" !}}">{{! cmd script/translate ((! get filename !)) News !}}</a></li>
             </ul>
