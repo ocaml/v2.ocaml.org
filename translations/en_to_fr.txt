@@ -26,3 +26,5 @@
 "Credits" -> "Crédits"
 "Contents" -> "Contenu"
 "Install" -> "Installer OCaml"
+"Website" -> "Site Web"
+"Website Issues" -> "Problèmes du site Web"

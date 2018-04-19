@@ -41,7 +41,7 @@
 {{!c else <div
      class="column">
   <div class="entry">
-    <h1>{{! cmd script/translate ((! get filename !)) Contact !}}</h1>
+    <h1>{{! cmd script/translate ((! get filename !)) Website !}}</h1>
     <ul>
       <li><a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))"
 	     target="_blank"
