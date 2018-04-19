@@ -1,4 +1,4 @@
-<!-- ((! set title OCaml Planet Syndication !)) ((! set community !)) -->
+<!-- ((! set title OCaml Planet Syndication !)) ((! set news !)) -->
 
 *Table of contents*
 

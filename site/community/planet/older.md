@@ -1,4 +1,4 @@
-<!-- ((! set title Older posts !)) ((! set community !)) -->
+<!-- ((! set title Older posts !)) ((! set news !)) -->
 <!-- ((! set advertise_rss true !)) -->
 
 # OCaml Planet (older posts)
