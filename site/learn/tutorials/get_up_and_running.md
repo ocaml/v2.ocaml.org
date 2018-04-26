@@ -19,16 +19,7 @@ These are some key notes that you should know.
     ```
     
     For people on `OS X`, you can get it on `brew` and all the `Linux`
-    distros should have `opam`. Attention Ubuntu people: if you are using 
-    an outdated version of Ubuntu (e.g. Wily, Vivid or Trusty), you should
-    do this instead because apt-get's version of opam on those is madly
-    outdated.
-    
-    ```shell
-    $ add-apt-repository ppa:avsm/ppa
-    $ apt-get update
-    $ apt-get install ocaml opam
-    ```
+    distros should have `opam`.
     
     For Windows people, [this](https://www.typerex.org/ocpwin.html) seems
     to be a decent option or you could get a VM. Do *note* that opam
