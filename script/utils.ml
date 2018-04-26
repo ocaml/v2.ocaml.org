@@ -149,7 +149,7 @@ struct
       search is case insensitive.  *)
   let search_case_fold pat =
     let m = String.length pat in
-    let pat = String.lowercase pat in
+    let pat = String.lowercase_ascii pat in
     let b = preprocess pat m in
     fun s i0 i1 -> (
       if i0 < 0 || i1 > String.length s then
@@ -158,7 +158,7 @@ struct
       and j = ref 0 in
       try
         while !i < i1 do
-          while !j >= 0 && Char.lowercase(s.[!i]) <> pat.[!j] do
+          while !j >= 0 && Char.lowercase_ascii(s.[!i]) <> pat.[!j] do
             j := b.(!j)
           done;
           incr i;

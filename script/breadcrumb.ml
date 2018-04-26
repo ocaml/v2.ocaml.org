@@ -11,7 +11,7 @@ let get_title lang path =
     ignore(Str.search_forward title_re s 0); (* or Not_found *)
     String.trim (Str.matched_group 1 s)
   with Not_found ->
-    String.capitalize(Filename.basename path)
+    String.capitalize_ascii(Filename.basename path)
 
 let rec breadcrumb_of_path bc lang path =
   if path = "site" || path = "." || path = "/" then ("/", "Home") :: bc
@@ -32,7 +32,7 @@ let rec breadcrumb_of_path bc lang path =
         (link, title)
       with Not_found ->
         (* No index file found. *)
-        (link ^ "/", String.capitalize(Filename.basename path)) in
+        (link ^ "/", String.capitalize_ascii(Filename.basename path)) in
     breadcrumb_of_path (entry :: bc) lang (Filename.dirname path)
   )
 
