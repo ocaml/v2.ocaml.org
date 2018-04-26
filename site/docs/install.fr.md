@@ -62,7 +62,7 @@ pkg_add -r ocaml
 ```
 ## Linux
 
-La plupart des distributions Linux permttent d'installer OCaml et/ou OPAM avec le gestionnaire de paquet système.
+La plupart des distributions Linux permettent d'installer OCaml et/ou OPAM avec le gestionnaire de paquet système.
 
 ### [Debian](https://www.debian.org/index.fr.html)
 
