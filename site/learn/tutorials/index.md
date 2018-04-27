@@ -3,6 +3,9 @@
 
 # OCaml tutorials
 
++If you are just looking for a place to start you should try
++[Real World OCaml](https://dev.realworldocaml.org)
+
 ####  Your Help is Needed
 Many of the tutorials below need updating and tutorials on many new
 topics are needed. Please contribute by visiting this project's repo on
