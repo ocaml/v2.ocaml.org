@@ -30,5 +30,5 @@ depopts: [
   "lablgtk2"
 ]
 available: [
-  ocaml-version >= "4.02.3"
+  ocaml-version >= "4.04.0"
 ]
