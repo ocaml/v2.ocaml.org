@@ -31,6 +31,7 @@ liste compte environ 1500 abonnées, qui échangent de l'ordre de 300
 messages par mois.
 
 [Abonnement](https://sympa.inria.fr/sympa/subscribe/caml-list) |
+[Archives OCaml](https://inbox.ocaml.org/caml-list) |
 [Archives locales](https://sympa.inria.fr/sympa/arc/caml-list) |
 [Archives sur Google
 Groups](http://groups.google.com/groups?group=fa.caml)

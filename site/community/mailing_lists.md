@@ -39,9 +39,9 @@ who exchange about 300 messages per month.
 
 [Subscribe](https://sympa.inria.fr/sympa/subscribe/caml-list)
 |
-[Inria Archives](https://sympa.inria.fr/sympa/arc/caml-list)
+[OCaml Archives](https://inbox.ocaml.org/caml-list)
 |
-[Gmane archives](http://news.gmane.org/gmane.comp.lang.caml.inria)
+[Inria Archives](https://sympa.inria.fr/sympa/arc/caml-list)
 
 The [OCaml Weekly News](http://alan.petitepomme.net/cwn/) also provides
 a curated summary of caml-list discussions.
