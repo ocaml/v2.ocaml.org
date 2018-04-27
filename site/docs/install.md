@@ -41,11 +41,11 @@ pkg_add -r ocaml
 Most Linux distributions allow OCaml and/or OPAM to be installed
 directly through the system package manager.
 
-### [Debian](http://www.debian.org/)
+### [Debian](https://www.debian.org/)
 
 ```bash
-apt-get install ocaml-nox # If you don't want X11 support
-apt-get install ocaml
+apt install ocaml-nox # If you don't want X11 support
+apt install ocaml
 ```
 
 Other Debian packages related to OCaml are
@@ -53,11 +53,11 @@ Other Debian packages related to OCaml are
 They are made available through
 [The Debian OCaml Packaging Policy](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html).
 
-### [Ubuntu](http://www.ubuntu.com/)
+### [Ubuntu](https://www.ubuntu.com/)
 
 ```bash
-apt-get install ocaml-nox # If you don't want X11 support.
-apt-get install ocaml
+apt install ocaml-nox # If you don't want X11 support.
+apt install ocaml
 ```
 
 Other Ubuntu packages related to OCaml are
@@ -135,7 +135,7 @@ brew install opam
 ###  [Fink](http://fink.sourceforge.net/)
 
 ```bash
-apt-get install ocaml
+apt install ocaml
 ```
 
 ### [MacPorts](http://www.macports.org/)

@@ -45,14 +45,14 @@ $ sh ./opam_installer.sh /usr/local/bin  # Vous pouvez changer le chemin pour l'
 Ou depuis les sources:
 
 ```bash
-$ git clone https://github.com/ocaml/opam
-$ cd opam
-$ ./configure  # (ou ./configure --prefix=$HOME si vous voulez l'installer dans votre $HOME)
-$ make
-$ make install
-$ opam init
-$ eval `opam config env`
-$ opam switch 4.01.0
+git clone https://github.com/ocaml/opam
+cd opam
+./configure  # (ou ./configure --prefix=$HOME si vous voulez l'installer dans votre $HOME)
+make
+make install
+opam init
+eval "$(opam config env)"
+opam switch 4.06.1
 ```
 ## [FreeBSD](https://www.freebsd.org/)
 
@@ -67,36 +67,23 @@ La plupart des distributions Linux permttent d'installer OCaml et/ou OPAM avec l
 ### [Debian](https://www.debian.org/index.fr.html)
 
 ```bash
-apt-get install ocaml-nox # Si vous ne voulez pas le support de X11 
-apt-get install ocaml
+apt install ocaml-nox # Si vous ne voulez pas le support de X11 
+apt install ocaml
 ```
 Les autres paquets Debian liés à OCaml sont
 [listés ici](http://packages.debian.org/search?keywords=ocaml&searchon=all&suite=testing&section=all) (en Anglais).
 Ils sont disponibles selon
 [la politique de construction des paquets pour OCaml](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html) (en anglais) de Debian.
 
-### [Ubuntu](http://www.ubuntu.com/)
+### [Ubuntu](https://www.ubuntu.com/)
 
 ```bash
-apt-get install ocaml-nox # Si vous ne voulez pas le support de X11 
-apt-get install ocaml
+apt install ocaml-nox # Si vous ne voulez pas le support de X11 
+apt install ocaml
 ```
 
 Les autres paquets Unbuntu liés à OCaml sont
 [listés ici](http://packages.ubuntu.com/search?keywords=ocaml) (en anglais).
-
-Les dépôts officiels d'Ubuntu sont souvent en retard par rapport aux
-dernières versions stables d'OCaml et d'OPAM. Des versions plus récentes sont mises à disposition via des [PPA](https://launchpad.net/~avsm) (en anglais).
-
-Ils peuvent être installés grâce à:
-```bash
-add-apt-repository --yes ppa:avsm/ppa
-apt-get update -qq
-apt-get install -y opam
-eval $(opam config env)
-```
-Veuillez noter que les PPA ne sont pas vérifiés par l'équipe de sécurité d'Ubuntu et que vous faites
-confiance au distribiteur du PPA en les installant sur votre système.
 
 ### [Fedora](https://getfedora.org/)
 
@@ -152,7 +139,7 @@ brew install opam
 ###  [Fink](http://fink.sourceforge.net/)
 
 ```bash
-apt-get install ocaml
+apt install ocaml
 ```
 
 ### [MacPorts](http://www.macports.org/)
