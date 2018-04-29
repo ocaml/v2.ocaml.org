@@ -19,6 +19,17 @@ your browser](http://try.ocamlpro.com/). The source of the following
 problems is available on
 [GitHub](https://github.com/VictorNicollet/99-Problems-OCaml).
 
+## A note on tail call optimization
+
+Some solutions may have a simpler implementation than the ones provided here. It may be that 
+the solution provided has [*tail call optimization*](https://en.wikipedia.org/wiki/Tail_call),
+meaning that the function finishes its computation by calling another function (possibly itself
+in the case of recursive functions).
+
+When doing so, the compiler can forget everything about the caller, leading to optimized execution.
+This pattern is very desirable and should be pursued when possible.
+
+
 ## Working with lists
 
 #### 1. Write a function `last : 'a list -> 'a option` that returns the last element of a list. (*easy*)
