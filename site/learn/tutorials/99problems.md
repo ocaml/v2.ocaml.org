@@ -19,6 +19,17 @@ your browser](http://try.ocamlpro.com/). The source of the following
 problems is available on
 [GitHub](https://github.com/VictorNicollet/99-Problems-OCaml).
 
+## A note on tail call optimization
+
+Some solutions may have a simpler implementation than the ones provided here. It may be that 
+the solution provided has [*tail call optimization*](https://en.wikipedia.org/wiki/Tail_call),
+meaning that the function finishes its computation by calling another function (possibly itself
+in the case of recursive functions).
+
+When doing so, the compiler can forget everything about the caller, leading to optimized execution.
+This pattern is very desirable and should be pursued when possible.
+
+
 ## Working with lists
 
 #### 1. Write a function `last : 'a list -> 'a option` that returns the last element of a list. (*easy*)
@@ -151,7 +162,18 @@ type 'a node =
 SOLUTION
 
 > ```ocamltop
-> (* This function traverses the list, prepending any encountered elements
+> (* This naive implementation traverses the list, storing the tail of the 
+> result list in an accumulator*)
+> 
+> let flatten_naive list =
+>   let rec aux acc = function
+>     | [] -> acc
+>     | One x::tl -> x::(aux acc tl)
+>     | Many l::tl -> aux (aux acc tl) l
+>     in aux [] list
+>
+> (* This version however is more efficient by being tail recursive.
+>   It traverses the list, prepending any encountered elements
 >   to an accumulator, which flattens the list in inverse order. It can
 >   then be reversed to obtain the actual flattened list. *)
 > 
@@ -274,6 +296,14 @@ problem, construct its uncompressed version.
 SOLUTION
 
 > ```ocamltop
+> (* Straightforward but not tail-recursive version *)
+> let rec decode_naive = function
+>     | [] -> []
+>     | One c::tl -> c::decode_naive tl
+>     | Many (2,c)::tl -> c::decode_naive (One c::tl)
+>     | Many (n,c)::tl -> if n < 2 then raise ( Failure "number" ) else c::decode_naive (Many (n-1,c)::tl)
+>
+> (* Tail-recursive version *)
 > let decode list =
 >   let rec many acc n x =
 >     if n = 0 then acc else many (x :: acc) (n-1) x in
