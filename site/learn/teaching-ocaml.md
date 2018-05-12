@@ -110,7 +110,7 @@ teaching OCaml. There is also a wider list of books to choose from, which you ca
    background.
 1. [Real World OCaml](http://shop.oreilly.com/product/0636920024743.do),
    also available [online](https://realworldocaml.org/).  Used by Harvard's CS51 course.
-1. Jason Hickey's [Introduction to Objective Caml](http://files.metaprl.org/doc/ocaml-book.pdf),
+1. Jason Hickey's [Introduction to Objective Caml](http://courses.cms.caltech.edu/cs134/cs134b/book.pdf),
    originally developed as lecture notes for Jason's course at Caltech
 
 
