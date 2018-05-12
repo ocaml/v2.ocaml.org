@@ -72,15 +72,6 @@
                 </section>
             </div>
             <div id="home-learn">
-                <a href="http://try.ocamlpro.com">
-                    <img class="svg hidden-phone" src="/img/try-ocaml.svg"
-					 alt="">
-                    <img class="png hidden-phone" src="/img/try-ocaml.png"
-					 alt="">
-                    Apprendre OCaml dans son navigateur avec TryOCaml
-                </a>
-               <br/>
-			   <div style="margin-top: 2ex;" >
 			     <a href="https://discuss.ocaml.org/"
                    target="_blank"
 			      ><img src="/img/chat.svg" alt="chat" class="svg"
@@ -89,6 +80,15 @@
                     style="width: 4ex;" />
                    Une question ?
                    Discutez avec des experts OCaml !</a>
+               <br/>
+			   <div style="margin-top: 2ex;" >
+                <a href="http://try.ocamlpro.com">
+                    <img class="svg hidden-phone" src="/img/try-ocaml.svg"
+					 alt="">
+                    <img class="png hidden-phone" src="/img/try-ocaml.png"
+					 alt="">
+                    Apprendre OCaml dans son navigateur avec TryOCaml
+                </a>
                </div>
             </div>
         </div>
