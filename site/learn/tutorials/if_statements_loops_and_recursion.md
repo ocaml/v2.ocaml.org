@@ -314,7 +314,7 @@ If you want to call a function once on every element of the list, use
 ```ocamltop
 let f elem =
   Printf.printf "I'm looking at element %d now\n" elem in
-  List.iter f my_list
+List.iter f my_list
 ```
 `List.iter` is in fact what you should think about using first every
 time your cerebellum suggests you use a for loop.
