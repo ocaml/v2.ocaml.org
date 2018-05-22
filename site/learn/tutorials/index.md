@@ -69,7 +69,6 @@ tracker there to request or offer new tutorials. Thanks!
 * [Introduction to Gtk](introduction_to_gtk.html)
 * [Command-Line Arguments](command-line_arguments.html)
 * [File manipulation](file_manipulation.html)
-* [Streams](streams.html)
 
 ### Acknowledgements
 
@@ -162,7 +161,8 @@ with another language.
 ###  Archived Tutorials
 These tutorials are either obsolete, or describe obsolete technologies. They're preserved here just in case they're still useful to someone.
 
-* [OCaml and the Web](ocaml_and_the_web.html)
-* [Camlp4 3.10](camlp4_3.10/)
-* [Mega Crash course on OCaml ecosystem + code](get_up_and_running.html)
-* [Stream Expressions (Using camlp4)](stream_expressions.html)
+* [OCaml and the Web](ocaml_and_the_web.html) (Outdated, still uses CGI programming.)
+* [Camlp4 3.10](camlp4_3.10/) (Replaced by PPX, see [the PPX blog post](https://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/).)
+* [Mega Crash course on OCaml ecosystem + code](get_up_and_running.html) (Too opinionated for a community document.)
+* [Streams](streams.html) (Use stdlib's [Seq](https://github.com/ocaml/ocaml/blob/trunk/stdlib/seq.mli) introduced in 4.07 or the [compatibility opam package](https://github.com/c-cube/seq/).)
+* [Stream Expressions](stream_expressions.html) (Using deprecated camlp4 syntax. See Seq.)
