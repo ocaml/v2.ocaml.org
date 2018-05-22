@@ -13,9 +13,6 @@ Hopefully it will not become worse. Anyway, if you want more details,
 you should read the documentation about each of the modules. Often, it
 is also instructive to read the corresponding implementation.
 
-See also: [Standard Library
-Examples](standard_library_examples.html "Standard Library Examples")
-
 ## Lists: immutable singly-linked lists
 Adding an element always creates a new list l from an element x and list
 tl. tl remains unchanged, but it is not copied either.

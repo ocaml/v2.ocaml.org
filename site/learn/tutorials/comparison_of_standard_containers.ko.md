@@ -7,9 +7,6 @@
 
 몇몇 연산에 big-O로 제시된 비용이 현재의 구현에 의거할 뿐 공식 documentation에 의해 보장되는 것이 아님에 주의하라. 현재의 비용보다 더 나빠지진 않을 것이다. 더 자세한 정보를 원한다면, 각 모듈에 대한 documentation을 읽어야 한다. 구현된 코드를 읽어보는 것도 유익하다.
 
-더 보기 : [Standard Library
-Examples](standard_library_examples.html "Standard Library Examples")
-
 ## List : 불변 단일 연결 리스트 (Singly Linked List)
 원소를 추가하는 것은 항상 원소 x와 리스트 tl로부터 새로운 리스트 l을 만든다. tl은 변경되지 않고, 복사되지도 않는다.
 
