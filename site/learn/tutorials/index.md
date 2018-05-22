@@ -13,7 +13,6 @@ tracker there to request or offer new tutorials. Thanks!
 
 ### Getting Started
 
-* [Mega Crash course on OCaml ecosystem + code](get_up_and_running.html)
 * [Basics](basics.html)
 * [Structure of OCaml Programs](structure_of_ocaml_programs.html)
 * [Modules](modules.html)
@@ -165,4 +164,5 @@ These tutorials are either obsolete, or describe obsolete technologies. They're 
 
 * [OCaml and the Web](ocaml_and_the_web.html)
 * [Camlp4 3.10](camlp4_3.10/)
+* [Mega Crash course on OCaml ecosystem + code](get_up_and_running.html)
 * [Stream Expressions (Using camlp4)](stream_expressions.html)
