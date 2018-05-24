@@ -24,7 +24,11 @@
 * Messaggi di errore comuni — [en](common_error_messages.html)
 * OCaml e il Web — [en](ocaml_and_the_web.html)
 * Stile di programmazione — [en](guidelines.html)
-* Esempi di librerie standard — [en](standard_library_examples.html)
+* Esempi di librerie standard (en) :
+  * [Hashtbl](hashtbl.html "Hashtbl")
+  * [Set](set.html "Set")
+  * [Map](map.html "Map")
+  * [Comparison of Standard Containers](comparison_of_standard_containers.html "Comparison of Standard Containers")
 * Compilare progetti OCaml — [en](compiling_ocaml_projects.html)
 
 ((! get end_two_columns !))

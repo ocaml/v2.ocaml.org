@@ -35,7 +35,11 @@
 * 일반 오류 메시지 — [en](common_error_messages.html)
 * OCaml과 웹 — [en](ocaml_and_the_web.html)
 * 프로그래밍 스타일 — [en](guidelines.html)
-* 표준 라이브러리 예제 — [en](standard_library_examples.html)
+* 표준 라이브러리 예제 (en):
+  * [Hashtbl](hashtbl.html "Hashtbl")
+  * [Set](set.html "Set")
+  * [Map](map.html "Map")
+  * [Comparison of Standard Containers](comparison_of_standard_containers.html "Comparison of Standard Containers")
 * OCaml 프로젝트 컴파일하기 — [en](compiling_ocaml_projects.html)
 * 명령행 인자 — [en](command-line_arguments.html)
 * 파일 조작 — [en](file_manipulation.html)

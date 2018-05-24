@@ -28,7 +28,11 @@ zuerst.
 * Aufrufen von Fortran-Bibliotheken — [en](calling_fortran_libraries.html)
 * Häufig auftauchende Fehlermeldungen — [en](common_error_messages.html)
 * OCaml und das Internet — [en](ocaml_and_the_web.html)
-* Beispiele zur Standardbibliothek — [en](standard_library_examples.html)
+* Beispiele zur Standardbibliothek (en) :
+  * [Hashtbl](hashtbl.html "Hashtbl")
+  * [Set](set.html "Set")
+  * [Map](map.html "Map")
+  * [Comparison of Standard Containers](comparison_of_standard_containers.html "Comparison of Standard Containers")
 * OCaml-Projekte kompilieren — [en](compiling_ocaml_projects.html)
 
 ((! get end_two_columns !))

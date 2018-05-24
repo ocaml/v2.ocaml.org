@@ -27,8 +27,11 @@
 * [Messages d'erreur courants](common_error_messages.fr.html)
 * Style de programmation
   ([OCaml Programming Guidelines](guidelines.html))
-* Exemples d'utilisation de la bibliothèque standard
-  ([Standard Library Examples](standard_library_examples.html))
+* Exemples d'utilisation de la bibliothèque standard:
+  * [Hashtbl](hashtbl.html "Hashtbl");
+  * [Set](set.html "Set"),
+  * [Map](map.html "Map").
+  Voir aussi la [comparaison des conteneurs standards](comparison_of_standard_containers.html "Comparaison des conteneurs standards")
 * Compiler des projets OCaml
   ([Compiling OCaml projects](compiling_ocaml_projects.html))
 

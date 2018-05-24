@@ -37,7 +37,13 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 * 调用C库 — [en](calling_c_libraries.html)
 * 调用Fortran库 — [en](calling_fortran_libraries.html)
 * OCaml和Web — [en](ocaml_and_the_web.html)
-* [标准库示例](standard_library_examples.zh.html)
+* 标准库示例:
+  - [哈希表](hashtbl.zh.html "Hashtbl")
+  - [集合](set.zh.html "Set")
+  - [映射表](map.zh.html "Map")
+  - [以stack为例](stack.zh.html "Stack")
+  参见： [标准容器的比较](comparison_of_standard_containers.zh.html)
+
 * 通过OASIS建立OCaml工程 - [en](setting_up_with_oasis.html)
 * 编译OCaml项目 — [en](compiling_ocaml_projects.html)
 * [命令行参数](command-line_arguments.zh.html)

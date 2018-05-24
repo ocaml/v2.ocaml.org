@@ -35,7 +35,11 @@
 * [性能とプロファイル](performance_and_profiling.ja.html)
 * Cライブラリを呼ぶ — [en](calling_c_libraries.html)
 * [OCamlでWebプログラミング](ocaml_and_the_web.ja.html)
-* [標準ライブラリの例](standard_library_examples.ja.html)
+* 標準ライブラリの例:
+  * [Hashtbl](hashtbl.ja.html "ハッシュ表")
+  * [Set](set.ja.html "Set")
+  * [Map](map.ja.html "Map")
+  * [標準コンテナの比較](comparison_of_standard_containers.ja.html)も見よ。
 * Setting up OCaml projects with OASIS — [en](setting_up_with_oasis.html)
 * [OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)
 * [コマンドライン引数](command-line_arguments.ja.html)
