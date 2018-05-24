@@ -10,46 +10,68 @@ topics are needed. Please contribute by visiting this project's repo on
 tracker there to request or offer new tutorials. Thanks!
 
 ((! get begin_two_columns !))
-* [Mega Crash course on OCaml ecosystem + code](get_up_and_running.html)
+
+### Getting Started
+
 * [Basics](basics.html)
 * [Structure of OCaml Programs](structure_of_ocaml_programs.html)
 * [Modules](modules.html)
+* [Filenames and Extensions](filenames.html)
+* [OCaml Programming Guidelines](guidelines.html)
+
+### Data Structures
+
 * [Maps (Dictionaries)](map.html)
 * [Sets](set.html)
 * [Hash Tables](hashtbl.html)
 * [Comparison of Standard
  Containers](comparison_of_standard_containers.html)
+
+### Language Features
+
 * [Data Types and Matching](data_types_and_matching.html)
-* [Pointers in OCaml](pointers.html)
-* [Null Pointers, Asserts, and
- Warnings](null_pointers_asserts_and_warnings.html)
 * [Functional Programming](functional_programming.html)
 * [If Statements, Loops, and
  Recursion](if_statements_loops_and_recursion.html)
 * [Labels](labels.html)
-* [Common Error Messages](common_error_messages.html)
-* [OCaml Programming Guidelines](guidelines.html)
-* [Formatting and Wrapping Text](format.html)
-* [99 Problems (solved) in OCaml](99problems.html)
-* [OCamlbuild](ocamlbuild/)
+* [Pointers in OCaml](pointers.html)
+* [Null Pointers, Asserts, and
+ Warnings](null_pointers_asserts_and_warnings.html)
+* [Objects](objects.html)
+
+### Errors
+
 * [Error handling](error_handling.html)
+* [Common Error Messages](common_error_messages.html)
 
 ((! get second_of_two_columns !))
 
-* [Objects](objects.html)
-* [Introduction to Gtk](introduction_to_gtk.html)
-* [Garbage Collection](garbage_collection.html)
-* [Performance and Profiling](performance_and_profiling.html)
+### Interoperability
+
 * [Calling C libraries](calling_c_libraries.html)
 * [Calling Fortran libraries](calling_fortran_libraries.html)
-* [Standard Library Examples](standard_library_examples.html)
-* [Setting up OCaml projects with OASIS](setting_up_with_oasis.html)
+
+### Build Systems
+
 * [Compiling OCaml projects](compiling_ocaml_projects.html)
+* [OCamlbuild](ocamlbuild/)
+* [Setting up OCaml projects with OASIS](setting_up_with_oasis.html)
+
+### Advanced Topics
+
+* [Garbage Collection](garbage_collection.html)
+* [Performance and Profiling](performance_and_profiling.html)
+
+### Common Tasks
+
+* [Formatting and Wrapping Text](format.html)
+* [99 Problems (solved) in OCaml](99problems.html)
+* [Introduction to Gtk](introduction_to_gtk.html)
 * [Command-Line Arguments](command-line_arguments.html)
 * [File manipulation](file_manipulation.html)
-* [Filenames and Extensions](filenames.html)
-* [Streams](streams.html)
-* [Stream Expressions](stream_expressions.html)
+
+### Acknowledgements
+
 * [_Acknowledgements_](../../contributors.html#Oldercontributorstothetutorials)
 
 ((! get end_two_columns !))
@@ -139,5 +161,8 @@ with another language.
 ###  Archived Tutorials
 These tutorials are either obsolete, or describe obsolete technologies. They're preserved here just in case they're still useful to someone.
 
-* [OCaml and the Web](ocaml_and_the_web.html)
-* [Camlp4 3.10](camlp4_3.10/)
+* [OCaml and the Web](ocaml_and_the_web.html) (Outdated, still uses CGI programming.)
+* [Camlp4 3.10](camlp4_3.10/) (Replaced by PPX, see [the PPX blog post](https://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/).)
+* [Mega Crash course on OCaml ecosystem + code](get_up_and_running.html) (Too opinionated for a community document.)
+* [Streams](streams.html) (Use stdlib's [Seq](https://github.com/ocaml/ocaml/blob/trunk/stdlib/seq.mli) introduced in 4.07 or the [compatibility opam package](https://github.com/c-cube/seq/).)
+* [Stream Expressions](stream_expressions.html) (Using deprecated camlp4 syntax. See Seq.)
