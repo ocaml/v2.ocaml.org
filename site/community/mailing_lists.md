@@ -81,6 +81,14 @@ interface, you may try
 <https://vector.im/beta/#/room/#freenode_#ocaml:matrix.org> -- it
 requires registration but is otherwise free.
 
+### Discord Server
+
+[discord link](https://discord.gg/cCYQbqN):
+As a more recent addition to the OCaml community, the OCaml discord server benefits from the
+proximity of the ReasonML community's discord server, as well as discord's
+ability to have multiple channels. One of the channels is called #IRC,
+and automatically connects to the main IRC channel.
+
 ### IRC Channel - French
 *irc.freenode.net #ocaml-fr*
 As above, but for French speakers.
