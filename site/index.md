@@ -79,7 +79,7 @@
                    <img src="/img/chat.png" alt="chat" class="png"
                     style="width: 4ex;" />
                    Got a question?
-                   Chat live with OCaml experts!</a>
+                   Ask OCaml experts!</a>
 			   <br/>
 			   <div style="margin-top: 2ex;" >
                 <a href="http://try.ocamlpro.com">
