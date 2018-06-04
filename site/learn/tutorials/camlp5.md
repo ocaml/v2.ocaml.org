@@ -18,7 +18,7 @@ is unrelated to the former Camlp4 (in terms of implementation, both have
 the same purpose).
 
 * [Camlp5
- Tutorial](http://martin.jambon.free.fr/extend-ocaml-syntax.html) (by
+ Tutorial](https://mjambon.github.io/mjambon2016/extend-ocaml-syntax.html) (by
  Martin Jambon), on how to use the Camlp5 processor.
 * [Camlp5
  Tutorial](http://caml.inria.fr/pub/docs/tutorial-camlp4/index.html)
