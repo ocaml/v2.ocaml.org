@@ -3,6 +3,15 @@
 # What is OCaml?
 *Table of contents*
 
+<div style="float:right; width: 35%; padding-left: 2ex; text-decoration: none">
+  <a
+  href="https://www.infoq.com/presentations/ocaml-browser-iot?utm_source=twitter&utm_medium=link&utm_campaign=qcon"
+  target="_blank" ><img src="/img/QCon1805.png" />
+  <br/>Fast, Flexible and Functional Programming with OCaml,
+  Gemma Gordon and Anil Madhavapeddy
+  </a>
+</div>
+
 **OCaml** is a general purpose programming language
 with an emphasis on expressiveness and safety. Developed for more than
 20 years at [Inria](http://www.inria.fr/en) by a group of leading
