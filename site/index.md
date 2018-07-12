@@ -115,6 +115,17 @@
 			  </a>
 			</article></li> -->
 			<li class="announcement"><article>
+			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
+			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
+				   >Release of OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
+			   <p>July 10, 2018</p>
+			   <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
+			      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
+			    <img alt="" src="/img/announcement.svg" class="svg" />
+			    <img alt="" src="/img/announcement.png" class="png" />
+			  </a>
+			</article></li>
+			<li class="announcement"><article>
 			  <h1><a title="OCaml Weekly News"
 			       href="/community/cwn/" >OCaml Weekly News</a></h1>
 			   <p>{{! cmd script/weekly_news --date !}}</p>
