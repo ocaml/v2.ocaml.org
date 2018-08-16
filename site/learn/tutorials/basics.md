@@ -252,8 +252,8 @@ network stack), OCaml provides a `nativeint` type which matches the
 native integer type for your platform.
 
 OCaml doesn't have a basic unsigned integer type, but you can get the
-same effect using `nativeint`. As far as I can tell OCaml doesn't have
-single-precision floating point numbers at all.
+same effect using `nativeint`. OCaml doesn't have builtin single-precision 
+floating point numbers.
 
 OCaml provides a `char` type which is used for characters, written `'x'`
 for example. Unfortunately the `char` type does not support Unicode or
