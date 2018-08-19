@@ -158,14 +158,14 @@ translation of a French book published by OReilly.
 ###  Introduction to OCaml
 <img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
-*Jason Hickey. Published 2002*
+*Jason Hickey. Published in 2008*
 
 This book is notoriously much more than just an introduction to OCaml,
 it describes most of the language, and is accessible.
 
 Abstract: *This book is an introduction to ML programming, specifically for the OCaml programming language from INRIA. OCaml is a dialect of the ML family of languages, which derive from the Classic ML language designed by Robin Milner in 1975 for the LCF (Logic of Computable Functions) theorem prover.*
 
-[PDF](http://files.metaprl.org/doc/ocaml-book.pdf)
+[PDF](http://courses.cms.caltech.edu/cs134/cs134b/book.pdf)
 
 ****
 
