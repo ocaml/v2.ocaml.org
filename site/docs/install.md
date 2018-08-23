@@ -12,8 +12,8 @@ The OCaml compiler and libraries can be installed in several ways:
 
 * With [OPAM](#OPAM), the OCaml package manager (recommended).
 * With a system package manager supported by your platform
-  ([FreeBSD](#FreeBSD), [Linux](#Linux), [macOS](#macOS),
-   [OpenBSD](#OpenBSD), [Windows](#Windows))
+  ([Linux](#Linux), [macOS](#macOS), [FreeBSD](#FreeBSD),
+   [OpenBSD](#OpenBSD), [NetBSD](#NetBSD), [Windows](#Windows))
 * In your [browser](#Browser).
 * By compiling [the source](#From-Source).
 
@@ -28,13 +28,6 @@ page.
 the recommended way to install the OCaml compiler and OCaml
 packages. Simply follow the
 [OPAM install instructions](https://opam.ocaml.org/doc/Install.html).
-
-## [FreeBSD](https://www.freebsd.org/) [![FreeBSD port](https://repology.org/badge/version-only-for-repo/freebsd/ocaml.svg)](https://repology.org/metapackage/ocaml)
-
-```bash
-pkg_add -r ocaml-nox11 # If you don't want X11 support
-pkg_add -r ocaml
-```
 
 ## Linux
 
@@ -128,7 +121,7 @@ pacman -S ocaml
 Other Arch Linux packages related to OCaml are
 [listed here](https://www.archlinux.org/packages/?q=ocaml).
 
-## macOS 
+## macOS
 
 On macOS OCaml and/or OPAM can be installed via the existing third-party
 package systems.
@@ -141,7 +134,7 @@ brew install ocaml
 brew install opam
 ```
 
-###  [Fink](http://fink.sourceforge.net/)
+###  [Fink](http://www.finkproject.org/)
 
 ```bash
 apt install ocaml
@@ -155,7 +148,22 @@ port install ocaml
 port install opam
 ```
 
+## [FreeBSD](https://www.freebsd.org/) [![FreeBSD port](https://repology.org/badge/version-only-for-repo/freebsd/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
+```bash
+pkg_add -r ocaml-nox11 # If you don't want X11 support
+pkg_add -r ocaml
+```
+
 ## [OpenBSD](https://www.openbsd.org/) [![OpenBSD port](https://repology.org/badge/version-only-for-repo/openbsd/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
+
+```
+pkg_add ocaml
+pkg_add opam
+```
+
+## [NetBSD](https://www.netbsd.org/) [![NetBSD port](https://repology.org/badge/version-only-for-repo/pkgsrc_current/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 ```
@@ -214,8 +222,7 @@ instructions included therein.
 
 Here is the list of available versions across different Linux and UNIX distributions:
 
-[![Packaging
-status](https://repology.org/badge/vertical-allrepos/ocaml.svg)](https://repology.org/metapackage/ocaml)
+[![Packaging status](https://repology.org/badge/vertical-allrepos/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 
