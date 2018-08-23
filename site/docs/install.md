@@ -29,10 +29,10 @@ the recommended way to install the OCaml compiler and OCaml
 packages. Simply follow the
 [OPAM install instructions](https://opam.ocaml.org/doc/Install.html).
 
-## [FreeBSD](https://www.freebsd.org/)
+## [FreeBSD](https://www.freebsd.org/) [![FreeBSD port](https://repology.org/badge/version-only-for-repo/freebsd/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
-pkg_add -r ocaml-nox11 # If you don't want X11 support 
+pkg_add -r ocaml-nox11 # If you don't want X11 support
 pkg_add -r ocaml
 ```
 
@@ -41,7 +41,8 @@ pkg_add -r ocaml
 Most Linux distributions allow OCaml and/or OPAM to be installed
 directly through the system package manager.
 
-### [Debian](https://www.debian.org/)
+### [Debian](https://www.debian.org/) [![Debian Unstable](https://repology.org/badge/version-only-for-repo/debian_unstable/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```bash
 apt install ocaml-nox # If you don't want X11 support
@@ -53,7 +54,8 @@ Other Debian packages related to OCaml are
 They are made available through
 [The Debian OCaml Packaging Policy](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html).
 
-### [Ubuntu](https://www.ubuntu.com/)
+### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 18.10](https://repology.org/badge/version-only-for-repo/ubuntu_18_10/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```bash
 apt install ocaml-nox # If you don't want X11 support.
@@ -63,7 +65,8 @@ apt install ocaml
 Other Ubuntu packages related to OCaml are
 [listed here](http://packages.ubuntu.com/search?keywords=ocaml).
 
-### [Fedora](https://getfedora.org/)
+### [Fedora](https://getfedora.org/) [![Fedora 28](https://repology.org/badge/version-only-for-repo/fedora_28/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```bash
 dnf install ocaml
@@ -79,14 +82,16 @@ and a
 for people interested in OCaml on Fedora or Red Hat Enterprise Linux.
 
 
-### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)
+### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) [![CentOS 7](https://repology.org/badge/version-only-for-repo/centos_7/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```bash
 yum install ocaml
 yum search ocaml   # List packages related to OCaml
 ```
 
-### [Gentoo](https://www.gentoo.org/)
+### [Gentoo](https://www.gentoo.org/) [![Gentoo](https://repology.org/badge/version-only-for-repo/gentoo/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 With a user that is a member of the `portage` group do:
 
@@ -95,13 +100,15 @@ emerge dev-lang/ocaml
 emerge -S ocaml # List packages related to OCaml
 ```
 
-### [SuSE](https://www.suse.com/)
+### [SuSE](https://www.suse.com/) [![OpenSUSE](https://repology.org/badge/version-only-for-repo/opensuse_tumbleweed/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```bash
 zypper install ocaml
 ```
 
-### [Mageia](https://www.mageia.org/)
+### [Mageia](https://www.mageia.org/) [![Mageia Cauldron](https://repology.org/badge/version-only-for-repo/mageia_cauldron/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```bash
 urpmi ocaml-compiler
@@ -111,7 +118,8 @@ urpmq --list | grep ocaml # List OCaml packages
 
 The Mageia [OCaml packaging policy](https://wiki.mageia.org/en/OCaml_policy).
 
-### [Arch Linux](http://www.archlinux.org/)
+### [Arch Linux](http://www.archlinux.org/) [![Arch Linux](https://repology.org/badge/version-only-for-repo/arch/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```bash
 pacman -S ocaml
@@ -120,16 +128,17 @@ pacman -S ocaml
 Other Arch Linux packages related to OCaml are
 [listed here](https://www.archlinux.org/packages/?q=ocaml).
 
-## macOS
+## macOS 
 
 On macOS OCaml and/or OPAM can be installed via the existing third-party
 package systems.
 
-### [Homebrew](http://brew.sh/)
+### [Homebrew](http://brew.sh/) [![Homebrew](https://repology.org/badge/version-only-for-repo/homebrew/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```bash
 brew install ocaml
-brew install opam 
+brew install opam
 ```
 
 ###  [Fink](http://fink.sourceforge.net/)
@@ -138,14 +147,16 @@ brew install opam
 apt install ocaml
 ```
 
-### [MacPorts](http://www.macports.org/)
+### [MacPorts](http://www.macports.org/) [![MacPorts](https://repology.org/badge/version-only-for-repo/macports/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```
 port install ocaml
 port install opam
 ```
 
-## [OpenBSD](https://www.openbsd.org/)
+## [OpenBSD](https://www.openbsd.org/) [![OpenBSD port](https://repology.org/badge/version-only-for-repo/openbsd/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
 
 ```
 pkg_add ocaml
@@ -163,7 +174,7 @@ Under Windows, the following direct solutions are available to use OCaml:
   distribution of OCaml for Windows. Some additional features have
   been added to OCaml for better support of Windows, such as auto-detection
   of MSVC and support for MSVC 9.0, 10.0, 11.0, 12.0 and 14.0 (VS2015).
- 
+
 Here are a few other alternatives:
 
 * The OCaml source distribution directly supports many different Windows
@@ -199,6 +210,12 @@ Download [an OCaml release](/releases/) or the
 [development version](https://github.com/ocaml/ocaml) and follow the
 instructions included therein.
 
+## Available versions
+
+Here is the list of available versions across different Linux and UNIX distributions:
+
+[![Packaging
+status](https://repology.org/badge/vertical-allrepos/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 
