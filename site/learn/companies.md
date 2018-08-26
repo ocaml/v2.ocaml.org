@@ -46,19 +46,17 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
-        <p>Citrix uses OCaml in XenServer, a world-class server
-        virtualization system. We also offer a full open-source variant
-        of XenServer called the Xen Cloud Platform, or XCP. Follow
-        along with our OCaml development at
-        <a href="https://github.com/xapi-project/">github.com/xen-org</a>.
-        This work was originally presented by Anil Madhavapeddy at
-        CUFP 2008. See his
-        <a href="http://cufp.org/archive/2008/abstracts.html#MadhavapeddyAnil">abstract</a>
-        and
-        <a href="http://cufp.org/archive/2008/slides/MadhavapeddyAnil.pdf">slides</a>.
-        </p>
-    </dd>
-</dl>
+        <p>Citrix uses OCaml in XenServer, a world-class
+        server virtualization system. Most components of XenServer are
+        realeased as open source. The open-source XenServer toolstack
+        components implemented in OCaml are bundled in the <a
+        href="https://github.com/xapi-project/xs-opam">XS-Opam</a>
+        repository on GitHub.</p>
+
+        <p>As of summer 2018, Citrix in Cambridge UK is hiring
+        software engineers passionate about functional programming and
+        OCaml in particular.</p>
+    </p> </dd> </dl>
 
 <dl class="row">
     <dt class="span3">
