@@ -1,4 +1,5 @@
 HEADACHE = headache -c _headache.conf
+LATEST = 4.07
 
 local: script/relative_urls
 	$(MAKE) staging SET_STAGING='-set staging'
@@ -8,11 +9,13 @@ local: script/relative_urls
 production: pre-build
 	$(MAKE) gen_md gen_html
 	$(MAKE) syncotherfiles
+	$(MAKE) copymanual
 	$(RM) ocaml.org/robots.txt
 
 staging: pre-build
 	$(MAKE) gen_md gen_html SET_STAGING='-set staging'
 	$(MAKE) syncotherfiles
+	$(MAKE) copymanual
 
 syncotherfiles:
 	rsync --exclude '*~' --exclude '*.md' --exclude '*.html' \
@@ -22,6 +25,13 @@ syncotherfiles:
 	 rsync --exclude '*~' --exclude '*.md' \
 	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
 	  -rltHprogv ../ocaml.org-media/* ocaml.org/ ; fi
+
+copymanual:
+	rsync -rltHprogv site/manual/* ocaml.org/manual/
+	if [ -e ocaml.org/manual/latest ]; then \
+	rm -f ocaml.org/manual/latest ; \
+	fi
+	(cd ocaml.org/manual/ && ln -s $(LATEST) latest)
 
 deps:
 	opam pin add ocamlorg . --no-action --yes --kind=path
