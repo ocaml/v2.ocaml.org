@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>7.3&#XA0;&#XA0;Names</title>
+</head>
+<body>
+<a href="values.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="types.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec100">7.3&#XA0;&#XA0;Names</h2>
+<p> <a id="s:names"></a>
+
+</p><p>Identifiers are used to give names to several classes of language
+objects and refer to these objects by name later:
+</p><ul class="itemize"><li class="li-itemize">
+value names (syntactic class <a class="syntax" href="#value-name"><span class="c010">value-name</span></a>),
+</li><li class="li-itemize">value constructors and exception constructors (class <a class="syntax" href="#constr-name"><span class="c010">constr-name</span></a>),
+</li><li class="li-itemize">labels (<a class="syntax" href="lex.html#label-name"><span class="c010">label-name</span></a>, defined in section&#XA0;<a href="lex.html#s%3Alabelname">7.1</a>),
+</li><li class="li-itemize">polymorphic variant tags (<a class="syntax" href="#tag-name"><span class="c010">tag-name</span></a>),
+</li><li class="li-itemize">type constructors (<a class="syntax" href="#typeconstr-name"><span class="c010">typeconstr-name</span></a>),
+</li><li class="li-itemize">record fields (<a class="syntax" href="#field-name"><span class="c010">field-name</span></a>),
+</li><li class="li-itemize">class names (<a class="syntax" href="#class-name"><span class="c010">class-name</span></a>),
+</li><li class="li-itemize">method names (<a class="syntax" href="#method-name"><span class="c010">method-name</span></a>),
+</li><li class="li-itemize">instance variable names (<a class="syntax" href="#inst-var-name"><span class="c010">inst-var-name</span></a>),
+</li><li class="li-itemize">module names (<a class="syntax" href="#module-name"><span class="c010">module-name</span></a>),
+</li><li class="li-itemize">module type names (<a class="syntax" href="#modtype-name"><span class="c010">modtype-name</span></a>).
+</li></ul><p>
+These eleven name spaces are distinguished both by the context and by the
+capitalization of the identifier: whether the first letter of the
+identifier is in lowercase (written <a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a> below) or in
+uppercase (written <a class="syntax" href="lex.html#capitalized-ident"><span class="c010">capitalized-ident</span></a>). Underscore is considered a
+lowercase letter for this purpose.</p><h4 class="subsubsection" id="sec101">Naming objects</h4>
+<p>
+<a id="hevea_manual.kwd0"></a>
+<a id="hevea_manual.kwd1"></a>
+<a id="hevea_manual.kwd2"></a>
+<a id="hevea_manual.kwd3"></a>
+<a id="hevea_manual.kwd4"></a>
+<a id="hevea_manual.kwd5"></a>
+<a id="hevea_manual.kwd6"></a></p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="value-name"><span class="c010">value-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="#operator-name"><span class="c010">operator-name</span></a>&#XA0;<span class="c004">)</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="operator-name"><span class="c010">operator-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#prefix-symbol"><span class="c010">prefix-symbol</span></a>&#XA0;&#X2223;&#XA0;&#XA0;<a class="syntax" href="#infix-op"><span class="c010">infix-op</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="infix-op"><span class="c010">infix-op</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#infix-symbol"><span class="c010">infix-symbol</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">*</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">+</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">-</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">-.</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">=</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">!=</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">&lt;</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">&gt;</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">or</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">||</span>
+&#X2223;&#XA0;&#XA0;<span class="c004">&amp;</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">&amp;&amp;</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">:=</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">mod</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">land</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">lor</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">lxor</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">lsl</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">lsr</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">asr</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="constr-name"><span class="c010">constr-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#capitalized-ident"><span class="c010">capitalized-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="tag-name"><span class="c010">tag-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#capitalized-ident"><span class="c010">capitalized-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="typeconstr-name"><span class="c010">typeconstr-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="field-name"><span class="c010">field-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="module-name"><span class="c010">module-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#capitalized-ident"><span class="c010">capitalized-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="modtype-name"><span class="c010">modtype-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="class-name"><span class="c010">class-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="inst-var-name"><span class="c010">inst-var-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="method-name"><span class="c010">method-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>
+See also the following language extension:
+<a href="extn.html#s%3Aindex-operators">extended indexing operators</a>.</p><p>As shown above, prefix and infix symbols as well as some keywords can
+be used as value names, provided they are written between parentheses.
+The capitalization rules are summarized in the table below.</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">Name space</span></td><td class="c014"><span class="c013">Case of first letter</span> </td></tr>
+<tr><td class="c016">
+Values</td><td class="c016">lowercase </td></tr>
+<tr><td class="c016">Constructors</td><td class="c016">uppercase </td></tr>
+<tr><td class="c016">Labels</td><td class="c016">lowercase </td></tr>
+<tr><td class="c016">Polymorphic variant tags</td><td class="c016">uppercase </td></tr>
+<tr><td class="c016">Exceptions</td><td class="c016">uppercase </td></tr>
+<tr><td class="c016">Type constructors</td><td class="c016">lowercase </td></tr>
+<tr><td class="c016">Record fields</td><td class="c016">lowercase </td></tr>
+<tr><td class="c016">Classes</td><td class="c016">lowercase </td></tr>
+<tr><td class="c016">Instance variables</td><td class="c016">lowercase </td></tr>
+<tr><td class="c016">Methods</td><td class="c016">lowercase </td></tr>
+<tr><td class="c016">Modules</td><td class="c016">uppercase </td></tr>
+<tr><td class="c016">Module types</td><td class="c016">any </td></tr>
+</table></div></div><p><span class="c009">Note on polymorphic variant tags:</span> the current implementation accepts
+lowercase variant tags in addition to capitalized variant tags, but we
+suggest you avoid lowercase variant tags for portability and
+compatibility with future OCaml versions.</p><h4 class="subsubsection" id="sec102">Referring to named objects</h4>
+<div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="value-path"><span class="c010">value-path</span></a></td><td class="c015">::=</td><td class="c017">
+[&#XA0;<a class="syntax" href="#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">.</span>&#XA0;]&#XA0;&#XA0;<a class="syntax" href="#value-name"><span class="c010">value-name</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="constr"><span class="c010">constr</span></a></td><td class="c015">::=</td><td class="c017">
+[&#XA0;<a class="syntax" href="#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">.</span>&#XA0;]&#XA0;&#XA0;<a class="syntax" href="#constr-name"><span class="c010">constr-name</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="typeconstr"><span class="c010">typeconstr</span></a></td><td class="c015">::=</td><td class="c017">
+[&#XA0;<a class="syntax" href="#extended-module-path"><span class="c010">extended-module-path</span></a>&#XA0;<span class="c004">.</span>&#XA0;]&#XA0;&#XA0;<a class="syntax" href="#typeconstr-name"><span class="c010">typeconstr-name</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="field"><span class="c010">field</span></a></td><td class="c015">::=</td><td class="c017">
+[&#XA0;<a class="syntax" href="#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">.</span>&#XA0;]&#XA0;&#XA0;<a class="syntax" href="#field-name"><span class="c010">field-name</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="modtype-path"><span class="c010">modtype-path</span></a></td><td class="c015">::=</td><td class="c017">
+[&#XA0;<a class="syntax" href="#extended-module-path"><span class="c010">extended-module-path</span></a>&#XA0;<span class="c004">.</span>&#XA0;]&#XA0;&#XA0;<a class="syntax" href="#modtype-name"><span class="c010">modtype-name</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="class-path"><span class="c010">class-path</span></a></td><td class="c015">::=</td><td class="c017">
+[&#XA0;<a class="syntax" href="#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">.</span>&#XA0;]&#XA0;&#XA0;<a class="syntax" href="#class-name"><span class="c010">class-name</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="classtype-path"><span class="c010">classtype-path</span></a></td><td class="c015">::=</td><td class="c017">
+[&#XA0;<a class="syntax" href="#extended-module-path"><span class="c010">extended-module-path</span></a>&#XA0;<span class="c004">.</span>&#XA0;]&#XA0;&#XA0;<a class="syntax" href="#class-name"><span class="c010">class-name</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="module-path"><span class="c010">module-path</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="#module-name"><span class="c010">module-name</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">.</span>&#XA0;<a class="syntax" href="#module-name"><span class="c010">module-name</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="extended-module-path"><span class="c010">extended-module-path</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="#extended-module-name"><span class="c010">extended-module-name</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">.</span>&#XA0;<a class="syntax" href="#extended-module-name"><span class="c010">extended-module-name</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="extended-module-name"><span class="c010">extended-module-name</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="#module-name"><span class="c010">module-name</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="#extended-module-path"><span class="c010">extended-module-path</span></a>&#XA0;<span class="c004">)</span>&#XA0;}
+</td></tr>
+</table></td></tr>
+</table></div><p>A named object can be referred to either by its name (following the
+usual static scoping rules for names) or by an access path <span class="c010">prefix</span> <span class="c004">.</span> &#XA0;<span class="c010">name</span>,
+where <span class="c010">prefix</span> designates a module and <span class="c010">name</span> is the name of an object
+defined in that module. The first component of the path, <span class="c010">prefix</span>, is
+either a simple module name or an access path <span class="c010">name</span><sub>1</sub> <span class="c004">.</span> &#XA0;<span class="c010">name</span><sub>2</sub> &#X2026;,
+in case the defining module is itself nested inside other modules.
+For referring to type constructors, module types, or class types,
+the <span class="c010">prefix</span> can
+also contain simple functor applications (as in the syntactic class
+<a class="syntax" href="#extended-module-path"><span class="c010">extended-module-path</span></a> above) in case the defining module is the
+result of a functor application.</p><p>Label names, tag names, method names and instance variable names need
+not be qualified: the former three are global labels, while the latter
+are local to a class.
+
+</p>
+<hr>
+<a href="values.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="types.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

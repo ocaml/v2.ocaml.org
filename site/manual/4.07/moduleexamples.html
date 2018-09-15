@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;2&#XA0;&#XA0;The module system</title>
+</head>
+<body>
+<a href="coreexamples.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="objectexamples.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec18">Chapter&#XA0;2&#XA0;&#XA0;The module system</h1>
+<ul>
+<li><a href="moduleexamples.html#sec19">2.1&#XA0;&#XA0;Structures</a>
+</li><li><a href="moduleexamples.html#sec20">2.2&#XA0;&#XA0;Signatures</a>
+</li><li><a href="moduleexamples.html#sec21">2.3&#XA0;&#XA0;Functors</a>
+</li><li><a href="moduleexamples.html#sec22">2.4&#XA0;&#XA0;Functors and type abstraction</a>
+</li><li><a href="moduleexamples.html#sec23">2.5&#XA0;&#XA0;Modules and separate compilation</a>
+</li></ul>
+<p> <a id="c:moduleexamples"></a>
+
+</p><p>This chapter introduces the module system of OCaml.</p>
+<h2 class="section" id="sec19">2.1&#XA0;&#XA0;Structures</h2>
+<p>A primary motivation for modules is to package together related
+definitions (such as the definitions of a data type and associated
+operations over that type) and enforce a consistent naming scheme for
+these definitions. This avoids running out of names or accidentally
+confusing names. Such a package is called a <em>structure</em> and
+is introduced by the <span class="c003">struct</span>&#X2026;<span class="c003">end</span> construct, which contains an
+arbitrary sequence of definitions. The structure is usually given a
+name with the <span class="c003">module</span> binding. Here is for instance a structure
+packaging together a type of priority queues and their operations:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module PrioQueue =
+    struct
+      type priority = int
+      type 'a queue = Empty | Node of priority * 'a * 'a queue * 'a queue
+      let empty = Empty
+      let rec insert queue prio elt =
+        match queue with
+          Empty -&gt; Node(prio, elt, Empty, Empty)
+        | Node(p, e, left, right) -&gt;
+            if prio &lt;= p
+            then Node(prio, elt, insert right p e, left)
+            else Node(p, e, insert right prio elt, left)
+      exception Queue_is_empty
+      let rec remove_top = function
+          Empty -&gt; raise Queue_is_empty
+        | Node(prio, elt, left, Empty) -&gt; left
+        | Node(prio, elt, Empty, right) -&gt; right
+        | Node(prio, elt, (Node(lprio, lelt, _, _) as left),
+                          (Node(rprio, relt, _, _) as right)) -&gt;
+            if lprio &lt;= rprio
+            then Node(lprio, lelt, remove_top left, right)
+            else Node(rprio, relt, left, remove_top right)
+      let extract = function
+          Empty -&gt; raise Queue_is_empty
+        | Node(prio, elt, _, _) as queue -&gt; (prio, elt, remove_top queue)
+    end;;
+</div><div class="caml-output ok">module PrioQueue :
+  sig
+    type priority = int
+    type 'a queue = Empty | Node of priority * 'a * 'a queue * 'a queue
+    val empty : 'a queue
+    val insert : 'a queue -&gt; priority -&gt; 'a -&gt; 'a queue
+    exception Queue_is_empty
+    val remove_top : 'a queue -&gt; 'a queue
+    val extract : 'a queue -&gt; priority * 'a * 'a queue
+  end
+</div></pre>
+
+
+</div><p>
+
+Outside the structure, its components can be referred to using the
+&#X201C;dot notation&#X201D;, that is, identifiers qualified by a structure name.
+For instance, <span class="c003">PrioQueue.insert</span> is the function <span class="c003">insert</span> defined
+inside the structure <span class="c003">PrioQueue</span> and <span class="c003">PrioQueue.queue</span> is the type
+<span class="c003">queue</span> defined in <span class="c003">PrioQueue</span>.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> PrioQueue.insert PrioQueue.empty 1 "hello";;
+</div><div class="caml-output ok">- : string PrioQueue.queue =
+PrioQueue.Node (1, "hello", PrioQueue.Empty, PrioQueue.Empty)
+</div></pre>
+
+
+</div><p>Another possibility is to open the module, which brings all
+identifiers defined inside the module in the scope of the current
+structure.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   open PrioQueue;;
+</div><div class="caml-output ok">
+</div></pre>
+
+<pre><div class="caml-input">   insert empty 1 "hello";;
+</div><div class="caml-output ok">- : string PrioQueue.queue = Node (1, "hello", Empty, Empty)
+</div></pre>
+
+
+</div><p>Opening a module enables lighter access to its components, at the
+cost of making it harder to identify in which module a identifier
+has been defined. In particular, opened modules can shadow
+identifiers present in the current scope, potentially leading
+to confusing errors:</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let empty = []
+    open PrioQueue;;
+</div><div class="caml-output ok">val empty : 'a list = []
+</div></pre>
+
+<pre><div class="caml-input">   let x = 1 :: <U>empty</U> ;;
+</div><div class="caml-output error">Error: This expression has type 'a PrioQueue.queue
+       but an expression was expected of type int list
+</div></pre>
+
+
+</div><p>A partial solution to this conundrum is to open modules locally,
+making the components of the module available only in the
+concerned expression. This can also make the code easier to read
+&#X2013; the open statement is closer to where it is used&#X2013; and to refactor
+&#X2013; the code fragment is more self-contained.
+Two constructions are available for this purpose:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let open PrioQueue in
+    insert empty 1 "hello";;
+</div><div class="caml-output ok">- : string PrioQueue.queue = Node (1, "hello", Empty, Empty)
+</div></pre>
+
+
+</div><p>
+
+and
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   PrioQueue.(insert empty 1 "hello");;
+</div><div class="caml-output ok">- : string PrioQueue.queue = Node (1, "hello", Empty, Empty)
+</div></pre>
+
+
+</div><p>
+
+In the second form, when the body of a local open is itself delimited
+by parentheses, braces or bracket, the parentheses of the local open
+can be omitted. For instance,
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   PrioQueue.[empty] = PrioQueue.([empty]);;
+</div><div class="caml-output ok">- : bool = true
+</div></pre>
+
+<pre><div class="caml-input">   PrioQueue.[|empty|] = PrioQueue.([|empty|]);;
+</div><div class="caml-output ok">- : bool = true
+</div></pre>
+
+<pre><div class="caml-input">    PrioQueue.{ contents = empty } = PrioQueue.({ contents = empty });;
+</div><div class="caml-output ok">- : bool = true
+</div></pre>
+
+
+</div><p>
+
+becomes
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   PrioQueue.[insert empty 1 "hello"];;
+</div><div class="caml-output ok">- : string PrioQueue.queue list = [Node (1, "hello", Empty, Empty)]
+</div></pre>
+
+
+</div><p>It is also possible to copy the components of a module inside
+another module by using an <span class="c003">include</span> statement. This can be
+particularly useful to extend existing modules. As an illustration,
+we could add functions that returns an optional value rather than
+an exception when the priority queue is empty.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   module PrioQueueOpt =
+    struct
+      include PrioQueue
+
+      let remove_top_opt x =
+        try Some(remove_top x) with Queue_is_empty -&gt; None
+
+      let extract_opt x =
+        try Some(extract x) with Queue_is_empty -&gt; None
+    end;;
+</div><div class="caml-output ok">module PrioQueueOpt :
+  sig
+    type priority = int
+    type 'a queue =
+      'a PrioQueue.queue =
+        Empty
+      | Node of priority * 'a * 'a queue * 'a queue
+    val empty : 'a queue
+    val insert : 'a queue -&gt; priority -&gt; 'a -&gt; 'a queue
+    exception Queue_is_empty
+    val remove_top : 'a queue -&gt; 'a queue
+    val extract : 'a queue -&gt; priority * 'a * 'a queue
+    val remove_top_opt : 'a queue -&gt; 'a queue option
+    val extract_opt : 'a queue -&gt; (priority * 'a * 'a queue) option
+  end
+</div></pre>
+
+
+</div>
+<h2 class="section" id="sec20">2.2&#XA0;&#XA0;Signatures</h2>
+<p>Signatures are interfaces for structures. A signature specifies
+which components of a structure are accessible from the outside, and
+with which type. It can be used to hide some components of a structure
+(e.g. local function definitions) or export some components with a
+restricted type. For instance, the signature below specifies the three
+priority queue operations <span class="c003">empty</span>, <span class="c003">insert</span> and <span class="c003">extract</span>, but not the
+auxiliary function <span class="c003">remove_top</span>. Similarly, it makes the <span class="c003">queue</span> type
+abstract (by not providing its actual representation as a concrete type).
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module type PRIOQUEUE =
+    sig
+      type priority = int         (* still concrete *)
+      type 'a queue               (* now abstract *)
+      val empty : 'a queue
+      val insert : 'a queue -&gt; int -&gt; 'a -&gt; 'a queue
+      val extract : 'a queue -&gt; int * 'a * 'a queue
+      exception Queue_is_empty
+    end;;
+</div><div class="caml-output ok">module type PRIOQUEUE =
+  sig
+    type priority = int
+    type 'a queue
+    val empty : 'a queue
+    val insert : 'a queue -&gt; int -&gt; 'a -&gt; 'a queue
+    val extract : 'a queue -&gt; int * 'a * 'a queue
+    exception Queue_is_empty
+  end
+</div></pre>
+
+
+</div><p>
+
+Restricting the <span class="c003">PrioQueue</span> structure by this signature results in
+another view of the <span class="c003">PrioQueue</span> structure where the <span class="c003">remove_top</span>
+function is not accessible and the actual representation of priority
+queues is hidden:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module AbstractPrioQueue = (PrioQueue : PRIOQUEUE);;
+</div><div class="caml-output ok">module AbstractPrioQueue : PRIOQUEUE
+</div></pre>
+
+<pre><div class="caml-input"> <U>AbstractPrioQueue.remove_top</U> ;;
+</div><div class="caml-output error">Error: Unbound value AbstractPrioQueue.remove_top
+</div></pre>
+
+<pre><div class="caml-input"> AbstractPrioQueue.insert AbstractPrioQueue.empty 1 "hello";;
+</div><div class="caml-output ok">- : string AbstractPrioQueue.queue = &lt;abstr&gt;
+</div></pre>
+
+
+</div><p>
+
+The restriction can also be performed during the definition of the
+structure, as in
+</p><pre>module PrioQueue = (struct ... end : PRIOQUEUE);;
+</pre><p>An alternate syntax is provided for the above:
+</p><pre>module PrioQueue : PRIOQUEUE = struct ... end;;
+</pre><p>
+Like for modules, it is possible to include a signature to copy
+its components inside the current signature. For instance, we
+can extend the PRIOQUEUE signature with the <span class="c003">extract_opt</span>
+function:</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module type PRIOQUEUE_WITH_OPT =
+    sig
+      include PRIOQUEUE
+      val extract_opt : 'a queue -&gt; (int * 'a * 'a queue) option
+    end;;
+</div><div class="caml-output ok">module type PRIOQUEUE_WITH_OPT =
+  sig
+    type priority = int
+    type 'a queue
+    val empty : 'a queue
+    val insert : 'a queue -&gt; int -&gt; 'a -&gt; 'a queue
+    val extract : 'a queue -&gt; int * 'a * 'a queue
+    exception Queue_is_empty
+    val extract_opt : 'a queue -&gt; (int * 'a * 'a queue) option
+  end
+</div></pre>
+
+
+</div>
+<h2 class="section" id="sec21">2.3&#XA0;&#XA0;Functors</h2>
+<p>Functors are &#X201C;functions&#X201D; from modules to modules. Functors let you create
+parameterized modules and then provide other modules as parameter(s) to get
+a specific implementation. For instance, a <span class="c003">Set</span> module implementing sets
+as sorted lists could be parameterized to work with any module that provides
+an element type and a comparison function <span class="c003">compare</span> (such as <span class="c003">OrderedString</span>):</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> type comparison = Less | Equal | Greater;;
+</div><div class="caml-output ok">type comparison = Less | Equal | Greater
+</div></pre>
+
+<pre><div class="caml-input"> module type ORDERED_TYPE =
+    sig
+      type t
+      val compare: t -&gt; t -&gt; comparison
+    end;;
+</div><div class="caml-output ok">module type ORDERED_TYPE = sig type t val compare : t -&gt; t -&gt; comparison end
+</div></pre>
+
+<pre><div class="caml-input"> module Set =
+    functor (Elt: ORDERED_TYPE) -&gt;
+      struct
+        type element = Elt.t
+        type set = element list
+        let empty = []
+        let rec add x s =
+          match s with
+            [] -&gt; [x]
+          | hd::tl -&gt;
+             match Elt.compare x hd with
+               Equal   -&gt; s         (* x is already in s *)
+             | Less    -&gt; x :: s    (* x is smaller than all elements of s *)
+             | Greater -&gt; hd :: add x tl
+        let rec member x s =
+          match s with
+            [] -&gt; false
+          | hd::tl -&gt;
+              match Elt.compare x hd with
+                Equal   -&gt; true     (* x belongs to s *)
+              | Less    -&gt; false    (* x is smaller than all elements of s *)
+              | Greater -&gt; member x tl
+      end;;
+</div><div class="caml-output ok">module Set :
+  functor (Elt : ORDERED_TYPE) -&gt;
+    sig
+      type element = Elt.t
+      type set = element list
+      val empty : 'a list
+      val add : Elt.t -&gt; Elt.t list -&gt; Elt.t list
+      val member : Elt.t -&gt; Elt.t list -&gt; bool
+    end
+</div></pre>
+
+
+</div><p>
+
+By applying the <span class="c003">Set</span> functor to a structure implementing an ordered
+type, we obtain set operations for this type:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module OrderedString =
+    struct
+      type t = string
+      let compare x y = if x = y then Equal else if x &lt; y then Less else Greater
+    end;;
+</div><div class="caml-output ok">module OrderedString :
+  sig type t = string val compare : 'a -&gt; 'a -&gt; comparison end
+</div></pre>
+
+<pre><div class="caml-input"> module StringSet = Set(OrderedString);;
+</div><div class="caml-output ok">module StringSet :
+  sig
+    type element = OrderedString.t
+    type set = element list
+    val empty : 'a list
+    val add : OrderedString.t -&gt; OrderedString.t list -&gt; OrderedString.t list
+    val member : OrderedString.t -&gt; OrderedString.t list -&gt; bool
+  end
+</div></pre>
+
+<pre><div class="caml-input"> StringSet.member "bar" (StringSet.add "foo" StringSet.empty);;
+</div><div class="caml-output ok">- : bool = false
+</div></pre>
+
+
+</div>
+<h2 class="section" id="sec22">2.4&#XA0;&#XA0;Functors and type abstraction</h2>
+<p>As in the <span class="c003">PrioQueue</span> example, it would be good style to hide the
+actual implementation of the type <span class="c003">set</span>, so that users of the
+structure will not rely on sets being lists, and we can switch later
+to another, more efficient representation of sets without breaking
+their code. This can be achieved by restricting <span class="c003">Set</span> by a suitable
+functor signature:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module type SETFUNCTOR =
+    functor (Elt: ORDERED_TYPE) -&gt;
+      sig
+        type element = Elt.t      (* concrete *)
+        type set                  (* abstract *)
+        val empty : set
+        val add : element -&gt; set -&gt; set
+        val member : element -&gt; set -&gt; bool
+      end;;
+</div><div class="caml-output ok">module type SETFUNCTOR =
+  functor (Elt : ORDERED_TYPE) -&gt;
+    sig
+      type element = Elt.t
+      type set
+      val empty : set
+      val add : element -&gt; set -&gt; set
+      val member : element -&gt; set -&gt; bool
+    end
+</div></pre>
+
+<pre><div class="caml-input"> module AbstractSet = (Set : SETFUNCTOR);;
+</div><div class="caml-output ok">module AbstractSet : SETFUNCTOR
+</div></pre>
+
+<pre><div class="caml-input"> module AbstractStringSet = AbstractSet(OrderedString);;
+</div><div class="caml-output ok">module AbstractStringSet :
+  sig
+    type element = OrderedString.t
+    type set = AbstractSet(OrderedString).set
+    val empty : set
+    val add : element -&gt; set -&gt; set
+    val member : element -&gt; set -&gt; bool
+  end
+</div></pre>
+
+<pre><div class="caml-input"> AbstractStringSet.add "gee" AbstractStringSet.empty;;
+</div><div class="caml-output ok">- : AbstractStringSet.set = &lt;abstr&gt;
+</div></pre>
+
+
+</div><p>In an attempt to write the type constraint above more elegantly,
+one may wish to name the signature of the structure
+returned by the functor, then use that signature in the constraint:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module type SET =
+    sig
+      type element
+      type set
+      val empty : set
+      val add : element -&gt; set -&gt; set
+      val member : element -&gt; set -&gt; bool
+    end;;
+</div><div class="caml-output ok">module type SET =
+  sig
+    type element
+    type set
+    val empty : set
+    val add : element -&gt; set -&gt; set
+    val member : element -&gt; set -&gt; bool
+  end
+</div></pre>
+
+<pre><div class="caml-input"> module WrongSet = (Set : functor(Elt: ORDERED_TYPE) -&gt; SET);;
+</div><div class="caml-output ok">module WrongSet : functor (Elt : ORDERED_TYPE) -&gt; SET
+</div></pre>
+
+<pre><div class="caml-input"> module WrongStringSet = WrongSet(OrderedString);;
+</div><div class="caml-output ok">module WrongStringSet :
+  sig
+    type element = WrongSet(OrderedString).element
+    type set = WrongSet(OrderedString).set
+    val empty : set
+    val add : element -&gt; set -&gt; set
+    val member : element -&gt; set -&gt; bool
+  end
+</div></pre>
+
+<pre><div class="caml-input"> WrongStringSet.add <U>"gee"</U> WrongStringSet.empty ;;
+</div><div class="caml-output error">Error: This expression has type string but an expression was expected of type
+         WrongStringSet.element = WrongSet(OrderedString).element
+</div></pre>
+
+
+</div><p>
+
+The problem here is that <span class="c003">SET</span> specifies the type <span class="c003">element</span>
+abstractly, so that the type equality between <span class="c003">element</span> in the result
+of the functor and <span class="c003">t</span> in its argument is forgotten. Consequently,
+<span class="c003">WrongStringSet.element</span> is not the same type as <span class="c003">string</span>, and the
+operations of <span class="c003">WrongStringSet</span> cannot be applied to strings.
+As demonstrated above, it is important that the type <span class="c003">element</span> in the
+signature <span class="c003">SET</span> be declared equal to <span class="c003">Elt.t</span>; unfortunately, this is
+impossible above since <span class="c003">SET</span> is defined in a context where <span class="c003">Elt</span> does
+not exist. To overcome this difficulty, OCaml provides a
+<span class="c003">with type</span> construct over signatures that allows enriching a signature
+with extra type equalities:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module AbstractSet2 =
+    (Set : functor(Elt: ORDERED_TYPE) -&gt; (SET with type element = Elt.t));;
+</div><div class="caml-output ok">module AbstractSet2 :
+  functor (Elt : ORDERED_TYPE) -&gt;
+    sig
+      type element = Elt.t
+      type set
+      val empty : set
+      val add : element -&gt; set -&gt; set
+      val member : element -&gt; set -&gt; bool
+    end
+</div></pre>
+
+
+</div><p>As in the case of simple structures, an alternate syntax is provided
+for defining functors and restricting their result:
+</p><pre>module AbstractSet2(Elt: ORDERED_TYPE) : (SET with type element = Elt.t) =
+  struct ... end;;
+</pre><p>
+Abstracting a type component in a functor result is a powerful
+technique that provides a high degree of type safety, as we now
+illustrate. Consider an ordering over character strings that is
+different from the standard ordering implemented in the
+<span class="c003">OrderedString</span> structure. For instance, we compare strings without
+distinguishing upper and lower case.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module NoCaseString =
+    struct
+      type t = string
+      let compare s1 s2 =
+        OrderedString.compare (String.lowercase_ascii s1) (String.lowercase_ascii s2)
+    end;;
+</div><div class="caml-output ok">module NoCaseString :
+  sig type t = string val compare : string -&gt; string -&gt; comparison end
+</div></pre>
+
+<pre><div class="caml-input"> module NoCaseStringSet = AbstractSet(NoCaseString);;
+</div><div class="caml-output ok">module NoCaseStringSet :
+  sig
+    type element = NoCaseString.t
+    type set = AbstractSet(NoCaseString).set
+    val empty : set
+    val add : element -&gt; set -&gt; set
+    val member : element -&gt; set -&gt; bool
+  end
+</div></pre>
+
+<pre><div class="caml-input"> NoCaseStringSet.add "FOO" <U>AbstractStringSet.empty</U> ;;
+</div><div class="caml-output error">Error: This expression has type
+         AbstractStringSet.set = AbstractSet(OrderedString).set
+       but an expression was expected of type
+         NoCaseStringSet.set = AbstractSet(NoCaseString).set
+</div></pre>
+
+
+</div><p>
+
+Note that the two types <span class="c003">AbstractStringSet.set</span> and
+<span class="c003">NoCaseStringSet.set</span> are not compatible, and values of these
+two types do not match. This is the correct behavior: even though both
+set types contain elements of the same type (strings), they are built
+upon different orderings of that type, and different invariants need
+to be maintained by the operations (being strictly increasing for the
+standard ordering and for the case-insensitive ordering). Applying
+operations from <span class="c003">AbstractStringSet</span> to values of type
+<span class="c003">NoCaseStringSet.set</span> could give incorrect results, or build
+lists that violate the invariants of <span class="c003">NoCaseStringSet</span>.</p>
+<h2 class="section" id="sec23">2.5&#XA0;&#XA0;Modules and separate compilation</h2>
+<p>All examples of modules so far have been given in the context of the
+interactive system. However, modules are most useful for large,
+batch-compiled programs. For these programs, it is a practical
+necessity to split the source into several files, called compilation
+units, that can be compiled separately, thus minimizing recompilation
+after changes.</p><p>In OCaml, compilation units are special cases of structures
+and signatures, and the relationship between the units can be
+explained easily in terms of the module system. A compilation unit <span class="c009">A</span>
+comprises two files:
+</p><ul class="itemize"><li class="li-itemize">
+the implementation file <span class="c009">A</span><span class="c003">.ml</span>, which contains a sequence
+of definitions, analogous to the inside of a <span class="c003">struct</span>&#X2026;<span class="c003">end</span>
+construct;
+</li><li class="li-itemize">the interface file <span class="c009">A</span><span class="c003">.mli</span>, which contains a sequence of
+specifications, analogous to the inside of a <span class="c003">sig</span>&#X2026;<span class="c003">end</span>
+construct.
+</li></ul><p>
+These two files together define a structure named <span class="c009">A</span> as if
+the following definition was entered at top-level:
+</p><pre>
+module <span class="c009">A</span>: sig (* contents of file <span class="c009">A</span>.mli *) end
+        = struct (* contents of file <span class="c009">A</span>.ml *) end;;
+</pre><p>
+The files that define the compilation units can be compiled separately
+using the <span class="c003">ocamlc -c</span> command (the <span class="c003">-c</span> option means &#X201C;compile only, do
+not try to link&#X201D;); this produces compiled interface files (with
+extension <span class="c003">.cmi</span>) and compiled object code files (with extension
+<span class="c003">.cmo</span>). When all units have been compiled, their <span class="c003">.cmo</span> files are
+linked together using the <span class="c003">ocamlc</span> command. For instance, the following
+commands compile and link a program composed of two compilation units
+<span class="c003">Aux</span> and <span class="c003">Main</span>:
+</p><pre>$ ocamlc -c Aux.mli                     # produces aux.cmi
+$ ocamlc -c Aux.ml                      # produces aux.cmo
+$ ocamlc -c Main.mli                    # produces main.cmi
+$ ocamlc -c Main.ml                     # produces main.cmo
+$ ocamlc -o theprogram Aux.cmo Main.cmo
+</pre><p>The program behaves exactly as if the following phrases were entered
+at top-level:
+</p><pre>
+module Aux: sig (* contents of Aux.mli *) end
+          = struct (* contents of Aux.ml *) end;;
+module Main: sig (* contents of Main.mli *) end
+           = struct (* contents of Main.ml *) end;;
+</pre><p>
+In particular, <span class="c003">Main</span> can refer to <span class="c003">Aux</span>: the definitions and
+declarations contained in <span class="c003">Main.ml</span> and <span class="c003">Main.mli</span> can refer to
+definition in <span class="c003">Aux.ml</span>, using the <span class="c003">Aux.</span><span class="c009">ident</span> notation, provided
+these definitions are exported in <span class="c003">Aux.mli</span>.</p><p>The order in which the <span class="c003">.cmo</span> files are given to <span class="c003">ocamlc</span> during the
+linking phase determines the order in which the module definitions
+occur. Hence, in the example above, <span class="c003">Aux</span> appears first and <span class="c003">Main</span> can
+refer to it, but <span class="c003">Aux</span> cannot refer to <span class="c003">Main</span>.</p><p>Note that only top-level structures can be mapped to
+separately-compiled files, but neither functors nor module types.
+However, all module-class objects can appear as components of a
+structure, so the solution is to put the functor or module type
+inside a structure, which can then be mapped to a file.
+
+</p>
+<hr>
+<a href="coreexamples.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="objectexamples.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

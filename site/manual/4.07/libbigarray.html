@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;34&#XA0;&#XA0;The bigarray library</title>
+</head>
+<body>
+<a href="libdynlink.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual049.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec566">Chapter&#XA0;34&#XA0;&#XA0;The bigarray library</h1>
+<p>The <span class="c003">bigarray</span> library has now been integrated into OCaml&#X2019;s standard
+library.</p><p>The <span class="c003">bigarray</span> functionality may now be found in the standard library
+<a href="libref/Bigarray.html"><span class="c003">Bigarray</span> module</a>,
+except for the <span class="c003">map_file</span> function which is now
+part of the <a href="libunix.html#c%3Aunix">Unix library</a>. The documentation has
+been integrated into the documentation for the standard library.</p><p>The legacy <span class="c003">bigarray</span> library bundled with the compiler is a
+compatibility library with exactly the same interface as before,
+i.e. with <span class="c003">map_file</span> included.</p><p>We strongly recommend that you port your code to use the standard
+library version instead, as the changes required are minimal.</p><p>If you choose to use the compatibility library, you must link your
+programs as follows:
+</p><pre>
+        ocamlc <span class="c009">other options</span> bigarray.cma <span class="c009">other files</span>
+        ocamlopt <span class="c009">other options</span> bigarray.cmxa <span class="c009">other files</span>
+</pre><p>
+For interactive use of the <span class="c003">bigarray</span> compatibility library, do:
+</p><pre>
+        ocamlmktop -o mytop bigarray.cma
+        ./mytop
+</pre><p>
+or (if dynamic linking of C libraries is supported on your platform),
+start <span class="c003">ocaml</span> and type <span class="c003">#load "bigarray.cma";;</span>.
+</p>
+<hr>
+<a href="libdynlink.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual049.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

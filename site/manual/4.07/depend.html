@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;14&#XA0;&#XA0;Dependency generator (ocamldep)</title>
+</head>
+<body>
+<a href="lexyacc.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="browser.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec334">Chapter&#XA0;14&#XA0;&#XA0;Dependency generator (ocamldep)</h1>
+<ul>
+<li><a href="depend.html#sec335">14.1&#XA0;&#XA0;Options</a>
+</li><li><a href="depend.html#sec336">14.2&#XA0;&#XA0;A typical Makefile</a>
+</li></ul>
+<p> <a id="c:camldep"></a>
+
+</p><p>The <span class="c003">ocamldep</span> command scans a set of OCaml source files
+(<span class="c003">.ml</span> and <span class="c003">.mli</span> files) for references to external compilation units,
+and outputs dependency lines in a format suitable for the <span class="c003">make</span>
+utility. This ensures that <span class="c003">make</span> will compile the source files in the
+correct order, and recompile those files that need to when a source
+file is modified.</p><p>The typical usage is:
+</p><pre>
+        ocamldep <span class="c009">options</span> *.mli *.ml &gt; .depend
+</pre><p>
+where <span class="c003">*.mli *.ml</span> expands to all source files in the current
+directory and <span class="c003">.depend</span> is the file that should contain the
+dependencies. (See below for a typical <span class="c003">Makefile</span>.)</p><p>Dependencies are generated both for compiling with the bytecode
+compiler <span class="c003">ocamlc</span> and with the native-code compiler <span class="c003">ocamlopt</span>.</p>
+<h2 class="section" id="sec335">14.1&#XA0;&#XA0;Options</h2>
+<p>The following command-line options are recognized by <span class="c003">ocamldep</span>.</p><dl class="description"><dt class="dt-description"><span class="c006">-absname</span></dt><dd class="dd-description">
+Show absolute filenames in error messages.</dd><dt class="dt-description"><span class="c006">-all</span></dt><dd class="dd-description">
+Generate dependencies on all required files, rather than assuming
+implicit dependencies.</dd><dt class="dt-description"><span class="c006">-allow-approx</span></dt><dd class="dd-description">
+Allow falling back on a lexer-based approximation when parsing fails.</dd><dt class="dt-description"><span class="c013"><span class="c003">-args</span> <span class="c009">filename</span></span></dt><dd class="dd-description">
+Read additional newline-terminated command line arguments from <span class="c009">filename</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">-args0</span> <span class="c009">filename</span></span></dt><dd class="dd-description">
+Read additional null character terminated command line arguments from <span class="c009">filename</span>.</dd><dt class="dt-description"><span class="c006">-as-map</span></dt><dd class="dd-description">
+For the following files, do not include delayed dependencies for
+module aliases.
+This option assumes that they are compiled using options
+<span class="c003">-no-alias-deps -w -49</span>, and that those files or their interface are
+passed with the <span class="c003">-map</span> option when computing dependencies for other
+files. Note also that for dependencies to be correct in the
+implementation of a map file, its interface should not coerce any of
+the aliases it contains.</dd><dt class="dt-description"><span class="c006">-debug-map</span></dt><dd class="dd-description">
+Dump the delayed dependency map for each map file.</dd><dt class="dt-description"><span class="c013"><span class="c003">-I</span> <span class="c009">directory</span></span></dt><dd class="dd-description">
+Add the given directory to the list of directories searched for
+source files. If a source file <span class="c003">foo.ml</span> mentions an external
+compilation unit <span class="c003">Bar</span>, a dependency on that unit&#X2019;s interface
+<span class="c003">bar.cmi</span> is generated only if the source for <span class="c003">bar</span> is found in the
+current directory or in one of the directories specified with <span class="c003">-I</span>.
+Otherwise, <span class="c003">Bar</span> is assumed to be a module from the standard library,
+and no dependencies are generated. For programs that span multiple
+directories, it is recommended to pass <span class="c003">ocamldep</span> the same <span class="c003">-I</span> options
+that are passed to the compiler.</dd><dt class="dt-description"><span class="c013"><span class="c003">-impl</span> <span class="c009">file</span></span></dt><dd class="dd-description">
+Process <span class="c009">file</span> as a <span class="c003">.ml</span> file.</dd><dt class="dt-description"><span class="c013"><span class="c003">-intf</span> <span class="c009">file</span></span></dt><dd class="dd-description">
+Process <span class="c009">file</span> as a <span class="c003">.mli</span> file.</dd><dt class="dt-description"><span class="c013"><span class="c003">-map</span> <span class="c009">file</span></span></dt><dd class="dd-description">
+Read an propagate the delayed dependencies for module aliases in
+<span class="c009">file</span>, so that the following files will depend on the
+exported aliased modules if they use them. See the example below.</dd><dt class="dt-description"><span class="c013"><span class="c003">-ml-synonym</span> <span class="c009">.ext</span></span></dt><dd class="dd-description">
+Consider the given extension (with leading dot) to be a synonym for .ml.</dd><dt class="dt-description"><span class="c013"><span class="c003">-mli-synonym</span> <span class="c009">.ext</span></span></dt><dd class="dd-description">
+Consider the given extension (with leading dot) to be a synonym for .mli.</dd><dt class="dt-description"><span class="c006">-modules</span></dt><dd class="dd-description">
+Output raw dependencies of the form
+<pre>      filename: Module1 Module2 ... ModuleN
+</pre>where <span class="c003">Module1</span>, &#X2026;, <span class="c003">ModuleN</span> are the names of the compilation
+units referenced within the file <span class="c003">filename</span>, but these names are not
+resolved to source file names. Such raw dependencies cannot be used
+by <span class="c003">make</span>, but can be post-processed by other tools such as <span class="c003">Omake</span>.</dd><dt class="dt-description"><span class="c006">-native</span></dt><dd class="dd-description">
+Generate dependencies for a pure native-code program (no bytecode
+version). When an implementation file (<span class="c003">.ml</span> file) has no explicit
+interface file (<span class="c003">.mli</span> file), <span class="c003">ocamldep</span> generates dependencies on the
+bytecode compiled file (<span class="c003">.cmo</span> file) to reflect interface changes.
+This can cause unnecessary bytecode recompilations for programs that
+are compiled to native-code only. The flag <span class="c003">-native</span> causes
+dependencies on native compiled files (<span class="c003">.cmx</span>) to be generated instead
+of on <span class="c003">.cmo</span> files. (This flag makes no difference if all source files
+have explicit <span class="c003">.mli</span> interface files.)</dd><dt class="dt-description"><span class="c006">-one-line</span></dt><dd class="dd-description">
+Output one line per file, regardless of the length.</dd><dt class="dt-description"><span class="c013"><span class="c003">-open</span> <span class="c009">module</span></span></dt><dd class="dd-description">
+Assume that module <span class="c009">module</span> is opened before parsing each of the
+following files.</dd><dt class="dt-description"><span class="c013"><span class="c003">-plugin</span> <span class="c009">plugin</span></span></dt><dd class="dd-description">
+Dynamically load the code of the given <span class="c009">plugin</span>
+(a <span class="c003">.cmo</span>, <span class="c003">.cma</span> or <span class="c003">.cmxs</span> file) in <span class="c003">ocamldep</span>. <span class="c009">plugin</span> must exist in
+the same kind of code as <span class="c003">ocamldep</span> (<span class="c003">ocamldep.byte</span> must load bytecode
+plugins, while <span class="c003">ocamldep.opt</span> must load native code plugins), and
+extension adaptation is done automatically for <span class="c003">.cma</span> files (to <span class="c003">.cmxs</span> files
+if <span class="c003">ocamldep</span> is compiled in native code).</dd><dt class="dt-description"><span class="c013"><span class="c003">-pp</span> <span class="c009">command</span></span></dt><dd class="dd-description">
+Cause <span class="c003">ocamldep</span> to call the given <span class="c009">command</span> as a preprocessor
+for each source file.</dd><dt class="dt-description"><span class="c013"><span class="c003">-ppx</span> <span class="c009">command</span></span></dt><dd class="dd-description">
+Pipe abstract syntax trees through preprocessor <span class="c009">command</span>.</dd><dt class="dt-description"><span class="c006">-shared</span></dt><dd class="dd-description">
+Generate dependencies for native plugin files (.cmxs) in addition to
+native compiled files (.cmx).</dd><dt class="dt-description"><span class="c006">-slash</span></dt><dd class="dd-description">
+Under Windows, use a forward slash (/) as the path separator instead
+of the usual backward slash (\). Under Unix, this option does
+nothing.</dd><dt class="dt-description"><span class="c006">-sort</span></dt><dd class="dd-description">
+Sort files according to their dependencies.</dd><dt class="dt-description"><span class="c006">-version</span></dt><dd class="dd-description">
+Print version string and exit.</dd><dt class="dt-description"><span class="c006">-vnum</span></dt><dd class="dd-description">
+Print short version number and exit.</dd><dt class="dt-description"><span class="c013"><span class="c003">-help</span> or <span class="c003">--help</span></span></dt><dd class="dd-description">
+Display a short usage summary and exit.
+</dd></dl>
+<h2 class="section" id="sec336">14.2&#XA0;&#XA0;A typical Makefile</h2>
+<p>Here is a template <span class="c003">Makefile</span> for a OCaml program.</p><pre>OCAMLC=ocamlc
+OCAMLOPT=ocamlopt
+OCAMLDEP=ocamldep
+INCLUDES=                 # all relevant -I options here
+OCAMLFLAGS=$(INCLUDES)    # add other options for ocamlc here
+OCAMLOPTFLAGS=$(INCLUDES) # add other options for ocamlopt here
+
+# prog1 should be compiled to bytecode, and is composed of three
+# units: mod1, mod2 and mod3.
+
+# The list of object files for prog1
+PROG1_OBJS=mod1.cmo mod2.cmo mod3.cmo
+
+prog1: $(PROG1_OBJS)
+        $(OCAMLC) -o prog1 $(OCAMLFLAGS) $(PROG1_OBJS)
+
+# prog2 should be compiled to native-code, and is composed of two
+# units: mod4 and mod5.
+
+# The list of object files for prog2
+PROG2_OBJS=mod4.cmx mod5.cmx
+
+prog2: $(PROG2_OBJS)
+        $(OCAMLOPT) -o prog2 $(OCAMLFLAGS) $(PROG2_OBJS)
+
+# Common rules
+.SUFFIXES: .ml .mli .cmo .cmi .cmx
+
+.ml.cmo:
+        $(OCAMLC) $(OCAMLFLAGS) -c $&lt;
+
+.mli.cmi:
+        $(OCAMLC) $(OCAMLFLAGS) -c $&lt;
+
+.ml.cmx:
+        $(OCAMLOPT) $(OCAMLOPTFLAGS) -c $&lt;
+
+# Clean up
+clean:
+        rm -f prog1 prog2
+        rm -f *.cm[iox]
+
+# Dependencies
+depend:
+        $(OCAMLDEP) $(INCLUDES) *.mli *.ml &gt; .depend
+
+include .depend
+</pre><p>
+If you use module aliases to give shorter names to modules, you need
+to change the above definitions. Assuming that your map file is called
+<span class="c003">mylib.mli</span>, here are minimal modifications.
+</p><pre>OCAMLFLAGS=$(INCLUDES) -open Mylib
+
+mylib.cmi: mylib.mli
+        $(OCAMLC) $(INCLUDES) -no-alias-deps -w -49 -c $&lt;
+
+depend:
+        $(OCAMLDEP) $(INCLUDES) -map mylib.mli $(PROG1_OBJS:.cmo=.ml) &gt; .depend
+</pre><p>Note that in this case you should not compute dependencies for
+<span class="c003">mylib.mli</span> together with the other files, hence the need to pass
+explicitly the list of files to process.
+If <span class="c003">mylib.mli</span> itself has dependencies, you should compute them using
+<span class="c003">-as-map</span>.
+
+</p>
+<hr>
+<a href="lexyacc.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="browser.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

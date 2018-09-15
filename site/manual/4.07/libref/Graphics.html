@@ -1,0 +1,791 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Genlex.html">
+<link rel="next" href="GraphicsX11.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="Bytes" rel="Chapter" href="Bytes.html">
+<link title="BytesLabels" rel="Chapter" href="BytesLabels.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="CamlinternalFormat" rel="Chapter" href="CamlinternalFormat.html">
+<link title="CamlinternalFormatBasics" rel="Chapter" href="CamlinternalFormatBasics.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Ephemeron" rel="Chapter" href="Ephemeron.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Float" rel="Chapter" href="Float.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Genlex" rel="Chapter" href="Genlex.html">
+<link title="Graphics" rel="Chapter" href="Graphics.html">
+<link title="GraphicsX11" rel="Chapter" href="GraphicsX11.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Pervasives" rel="Chapter" href="Pervasives.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Seq" rel="Chapter" href="Seq.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Sort" rel="Chapter" href="Sort.html">
+<link title="Spacetime" rel="Chapter" href="Spacetime.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="Stream" rel="Chapter" href="Stream.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Tbl" rel="Chapter" href="Tbl.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="ThreadUnix" rel="Chapter" href="ThreadUnix.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Uchar" rel="Chapter" href="Uchar.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Weak" rel="Chapter" href="Weak.html"><link title="Initializations" rel="Section" href="#1_Initializations">
+<link title="Colors" rel="Section" href="#1_Colors">
+<link title="Point and line drawing" rel="Section" href="#1_Pointandlinedrawing">
+<link title="Text drawing" rel="Section" href="#1_Textdrawing">
+<link title="Filling" rel="Section" href="#1_Filling">
+<link title="Images" rel="Section" href="#1_Images">
+<link title="Mouse and keyboard events" rel="Section" href="#1_Mouseandkeyboardevents">
+<link title="Mouse and keyboard polling" rel="Section" href="#1_Mouseandkeyboardpolling">
+<link title="Sound" rel="Section" href="#1_Sound">
+<link title="Double buffering" rel="Section" href="#1_Doublebuffering">
+<link title="Some predefined colors" rel="Subsection" href="#7_Somepredefinedcolors">
+<title>Graphics</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Genlex.html" title="Genlex">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="GraphicsX11.html" title="GraphicsX11">Next</a>
+</div>
+<h1>Module <a href="type_Graphics.html">Graphics</a></h1>
+
+<pre><span id="MODULEGraphics"><span class="keyword">module</span> Graphics</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Graphics.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Machine-independent graphics primitives.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="EXCEPTIONGraphic_failure"><span class="keyword">exception</span> Graphic_failure</span> <span class="keyword">of</span> <code class="type">string</code></pre>
+<div class="info ">
+<div class="info-desc">
+<p>Raised by the functions below when they encounter an error.</p>
+</div>
+</div>
+<h2 id="1_Initializations">Initializations</h2>
+<pre><span id="VALopen_graph"><span class="keyword">val</span> open_graph</span> : <code class="type">string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Show the graphics window or switch the screen to graphic mode.
+   The graphics window is cleared and the current point is set
+   to (0, 0). The string argument is used to pass optional
+   information on the desired graphics mode, the graphics window
+   size, and so on. Its interpretation is implementation-dependent.
+   If the empty string is given, a sensible default is selected.</p>
+</div>
+</div>
+
+<pre><span id="VALclose_graph"><span class="keyword">val</span> close_graph</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Delete the graphics window or switch the screen back to text mode.</p>
+</div>
+</div>
+
+<pre><span id="VALset_window_title"><span class="keyword">val</span> set_window_title</span> : <code class="type">string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Set the title of the graphics window.</p>
+</div>
+</div>
+
+<pre><span id="VALresize_window"><span class="keyword">val</span> resize_window</span> : <code class="type">int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Resize and erase the graphics window.</p>
+</div>
+</div>
+
+<pre><span id="VALclear_graph"><span class="keyword">val</span> clear_graph</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Erase the graphics window.</p>
+</div>
+</div>
+
+<pre><span id="VALsize_x"><span class="keyword">val</span> size_x</span> : <code class="type">unit -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Graphics.html#VALsize_y"><code class="code"><span class="constructor">Graphics</span>.size_y</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALsize_y"><span class="keyword">val</span> size_y</span> : <code class="type">unit -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the size of the graphics window. Coordinates of the screen
+   pixels range over <code class="code">0&nbsp;..&nbsp;size_x()-1</code> and <code class="code">0&nbsp;..&nbsp;size_y()-1</code>.
+   Drawings outside of this rectangle are clipped, without causing
+   an error. The origin (0,0) is at the lower left corner. 
+   Some implementation (e.g. X Windows) represent coordinates by
+   16-bit integers, hence wrong clipping may occur with coordinates
+   below <code class="code">-32768</code> or above <code class="code">32676</code>.</p>
+</div>
+</div>
+<h2 id="1_Colors">Colors</h2>
+<pre><span id="TYPEcolor"><span class="keyword">type</span> <code class="type"></code>color</span> = <code class="type">int</code> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>A color is specified by its R, G, B components. Each component
+   is in the range <code class="code">0..255</code>. The three components are packed in
+   an <code class="code">int</code>: <code class="code">0xRRGGBB</code>, where <code class="code"><span class="constructor">RR</span></code> are the two hexadecimal digits for
+   the red component, <code class="code"><span class="constructor">GG</span></code> for the green component, <code class="code"><span class="constructor">BB</span></code> for the
+   blue component.</p>
+</div>
+</div>
+
+
+<pre><span id="VALrgb"><span class="keyword">val</span> rgb</span> : <code class="type">int -> int -> int -> <a href="Graphics.html#TYPEcolor">color</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">rgb&nbsp;r&nbsp;g&nbsp;b</code> returns the integer encoding the color with red
+   component <code class="code">r</code>, green component <code class="code">g</code>, and blue component <code class="code">b</code>.
+   <code class="code">r</code>, <code class="code">g</code> and <code class="code">b</code> are in the range <code class="code">0..255</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALset_color"><span class="keyword">val</span> set_color</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Set the current drawing color.</p>
+</div>
+</div>
+
+<pre><span id="VALbackground"><span class="keyword">val</span> background</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Graphics.html#VALforeground"><code class="code"><span class="constructor">Graphics</span>.foreground</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALforeground"><span class="keyword">val</span> foreground</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Default background and foreground colors (usually, either black
+   foreground on a white background or white foreground on a
+   black background).
+   <a href="Graphics.html#VALclear_graph"><code class="code"><span class="constructor">Graphics</span>.clear_graph</code></a> fills the screen with the <code class="code">background</code> color.
+   The initial drawing color is <code class="code">foreground</code>.</p>
+</div>
+</div>
+<div class="h8" id="7_Somepredefinedcolors">Some predefined colors</div>
+<pre><span id="VALblack"><span class="keyword">val</span> black</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre>
+<pre><span id="VALwhite"><span class="keyword">val</span> white</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre>
+<pre><span id="VALred"><span class="keyword">val</span> red</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre>
+<pre><span id="VALgreen"><span class="keyword">val</span> green</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre>
+<pre><span id="VALblue"><span class="keyword">val</span> blue</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre>
+<pre><span id="VALyellow"><span class="keyword">val</span> yellow</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre>
+<pre><span id="VALcyan"><span class="keyword">val</span> cyan</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre>
+<pre><span id="VALmagenta"><span class="keyword">val</span> magenta</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre><h2 id="1_Pointandlinedrawing">Point and line drawing</h2>
+<pre><span id="VALplot"><span class="keyword">val</span> plot</span> : <code class="type">int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Plot the given point with the current drawing color.</p>
+</div>
+</div>
+
+<pre><span id="VALplots"><span class="keyword">val</span> plots</span> : <code class="type">(int * int) array -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Plot the given points with the current drawing color.</p>
+</div>
+</div>
+
+<pre><span id="VALpoint_color"><span class="keyword">val</span> point_color</span> : <code class="type">int -> int -> <a href="Graphics.html#TYPEcolor">color</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the color of the given point in the backing store
+   (see "Double buffering" below).</p>
+</div>
+</div>
+
+<pre><span id="VALmoveto"><span class="keyword">val</span> moveto</span> : <code class="type">int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Position the current point.</p>
+</div>
+</div>
+
+<pre><span id="VALrmoveto"><span class="keyword">val</span> rmoveto</span> : <code class="type">int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">rmoveto&nbsp;dx&nbsp;dy</code> translates the current point by the given vector.</p>
+</div>
+</div>
+
+<pre><span id="VALcurrent_x"><span class="keyword">val</span> current_x</span> : <code class="type">unit -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the abscissa of the current point.</p>
+</div>
+</div>
+
+<pre><span id="VALcurrent_y"><span class="keyword">val</span> current_y</span> : <code class="type">unit -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the ordinate of the current point.</p>
+</div>
+</div>
+
+<pre><span id="VALcurrent_point"><span class="keyword">val</span> current_point</span> : <code class="type">unit -> int * int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the position of the current point.</p>
+</div>
+</div>
+
+<pre><span id="VALlineto"><span class="keyword">val</span> lineto</span> : <code class="type">int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Draw a line with endpoints the current point and the given point,
+   and move the current point to the given point.</p>
+</div>
+</div>
+
+<pre><span id="VALrlineto"><span class="keyword">val</span> rlineto</span> : <code class="type">int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Draw a line with endpoints the current point and the
+   current point translated of the given vector,
+   and move the current point to this point.</p>
+</div>
+</div>
+
+<pre><span id="VALcurveto"><span class="keyword">val</span> curveto</span> : <code class="type">int * int -> int * int -> int * int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">curveto&nbsp;b&nbsp;c&nbsp;d</code> draws a cubic Bezier curve starting from
+   the current point to point <code class="code">d</code>, with control points <code class="code">b</code> and
+   <code class="code">c</code>, and moves the current point to <code class="code">d</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALdraw_rect"><span class="keyword">val</span> draw_rect</span> : <code class="type">int -> int -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">draw_rect&nbsp;x&nbsp;y&nbsp;w&nbsp;h</code> draws the rectangle with lower left corner
+   at <code class="code">x,y</code>, width <code class="code">w</code> and height <code class="code">h</code>.
+   The current point is unchanged.
+   Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if <code class="code">w</code> or <code class="code">h</code> is negative.</p>
+</div>
+</div>
+
+<pre><span id="VALdraw_poly_line"><span class="keyword">val</span> draw_poly_line</span> : <code class="type">(int * int) array -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">draw_poly_line&nbsp;points</code> draws the line that joins the
+   points given by the array argument.
+   The array contains the coordinates of the vertices of the
+   polygonal line, which need not be closed.
+   The current point is unchanged.</p>
+</div>
+</div>
+
+<pre><span id="VALdraw_poly"><span class="keyword">val</span> draw_poly</span> : <code class="type">(int * int) array -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">draw_poly&nbsp;polygon</code> draws the given polygon.
+   The array contains the coordinates of the vertices of the
+   polygon.
+   The current point is unchanged.</p>
+</div>
+</div>
+
+<pre><span id="VALdraw_segments"><span class="keyword">val</span> draw_segments</span> : <code class="type">(int * int * int * int) array -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">draw_segments&nbsp;segments</code> draws the segments given in the array
+   argument. Each segment is specified as a quadruple
+   <code class="code">(x0,&nbsp;y0,&nbsp;x1,&nbsp;y1)</code> where <code class="code">(x0,&nbsp;y0)</code> and <code class="code">(x1,&nbsp;y1)</code> are
+   the coordinates of the end points of the segment.
+   The current point is unchanged.</p>
+</div>
+</div>
+
+<pre><span id="VALdraw_arc"><span class="keyword">val</span> draw_arc</span> : <code class="type">int -> int -> int -> int -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">draw_arc&nbsp;x&nbsp;y&nbsp;rx&nbsp;ry&nbsp;a1&nbsp;a2</code> draws an elliptical arc with center
+   <code class="code">x,y</code>, horizontal radius <code class="code">rx</code>, vertical radius <code class="code">ry</code>, from angle
+   <code class="code">a1</code> to angle <code class="code">a2</code> (in degrees). The current point is unchanged.
+   Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if <code class="code">rx</code> or <code class="code">ry</code> is negative.</p>
+</div>
+</div>
+
+<pre><span id="VALdraw_ellipse"><span class="keyword">val</span> draw_ellipse</span> : <code class="type">int -> int -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">draw_ellipse&nbsp;x&nbsp;y&nbsp;rx&nbsp;ry</code> draws an ellipse with center
+   <code class="code">x,y</code>, horizontal radius <code class="code">rx</code> and vertical radius <code class="code">ry</code>.
+   The current point is unchanged.
+   Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if <code class="code">rx</code> or <code class="code">ry</code> is negative.</p>
+</div>
+</div>
+
+<pre><span id="VALdraw_circle"><span class="keyword">val</span> draw_circle</span> : <code class="type">int -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">draw_circle&nbsp;x&nbsp;y&nbsp;r</code> draws a circle with center <code class="code">x,y</code> and
+   radius <code class="code">r</code>. The current point is unchanged.
+   Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if <code class="code">r</code> is negative.</p>
+</div>
+</div>
+
+<pre><span id="VALset_line_width"><span class="keyword">val</span> set_line_width</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Set the width of points and lines drawn with the functions above.
+   Under X Windows, <code class="code">set_line_width&nbsp;0</code> selects a width of 1 pixel
+   and a faster, but less precise drawing algorithm than the one
+   used when <code class="code">set_line_width&nbsp;1</code> is specified.
+   Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if the argument is negative.</p>
+</div>
+</div>
+<h2 id="1_Textdrawing">Text drawing</h2>
+<pre><span id="VALdraw_char"><span class="keyword">val</span> draw_char</span> : <code class="type">char -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Graphics.html#VALdraw_string"><code class="code"><span class="constructor">Graphics</span>.draw_string</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALdraw_string"><span class="keyword">val</span> draw_string</span> : <code class="type">string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Draw a character or a character string with lower left corner
+   at current position. After drawing, the current position is set
+   to the lower right corner of the text drawn.</p>
+</div>
+</div>
+
+<pre><span id="VALset_font"><span class="keyword">val</span> set_font</span> : <code class="type">string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Set the font used for drawing text.
+   The interpretation of the argument to <code class="code">set_font</code>
+   is implementation-dependent.</p>
+</div>
+</div>
+
+<pre><span id="VALset_text_size"><span class="keyword">val</span> set_text_size</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Set the character size used for drawing text.
+   The interpretation of the argument to <code class="code">set_text_size</code>
+   is implementation-dependent.</p>
+</div>
+</div>
+
+<pre><span id="VALtext_size"><span class="keyword">val</span> text_size</span> : <code class="type">string -> int * int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the dimensions of the given text, if it were drawn with
+   the current font and size.</p>
+</div>
+</div>
+<h2 id="1_Filling">Filling</h2>
+<pre><span id="VALfill_rect"><span class="keyword">val</span> fill_rect</span> : <code class="type">int -> int -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">fill_rect&nbsp;x&nbsp;y&nbsp;w&nbsp;h</code> fills the rectangle with lower left corner
+   at <code class="code">x,y</code>, width <code class="code">w</code> and height <code class="code">h</code>, with the current color.
+   Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if <code class="code">w</code> or <code class="code">h</code> is negative.</p>
+</div>
+</div>
+
+<pre><span id="VALfill_poly"><span class="keyword">val</span> fill_poly</span> : <code class="type">(int * int) array -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Fill the given polygon with the current color. The array
+   contains the coordinates of the vertices of the polygon.</p>
+</div>
+</div>
+
+<pre><span id="VALfill_arc"><span class="keyword">val</span> fill_arc</span> : <code class="type">int -> int -> int -> int -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Fill an elliptical pie slice with the current color. The
+   parameters are the same as for <a href="Graphics.html#VALdraw_arc"><code class="code"><span class="constructor">Graphics</span>.draw_arc</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALfill_ellipse"><span class="keyword">val</span> fill_ellipse</span> : <code class="type">int -> int -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Fill an ellipse with the current color. The
+   parameters are the same as for <a href="Graphics.html#VALdraw_ellipse"><code class="code"><span class="constructor">Graphics</span>.draw_ellipse</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALfill_circle"><span class="keyword">val</span> fill_circle</span> : <code class="type">int -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Fill a circle with the current color. The
+   parameters are the same as for <a href="Graphics.html#VALdraw_circle"><code class="code"><span class="constructor">Graphics</span>.draw_circle</code></a>.</p>
+</div>
+</div>
+<h2 id="1_Images">Images</h2>
+<pre><span id="TYPEimage"><span class="keyword">type</span> <code class="type"></code>image</span> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>The abstract type for images, in internal representation.
+   Externally, images are represented as matrices of colors.</p>
+</div>
+</div>
+
+
+<pre><span id="VALtransp"><span class="keyword">val</span> transp</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>In matrices of colors, this color represent a 'transparent'
+   point: when drawing the corresponding image, all pixels on the
+   screen corresponding to a transparent pixel in the image will
+   not be modified, while other points will be set to the color
+   of the corresponding point in the image. This allows superimposing
+   an image over an existing background.</p>
+</div>
+</div>
+
+<pre><span id="VALmake_image"><span class="keyword">val</span> make_image</span> : <code class="type"><a href="Graphics.html#TYPEcolor">color</a> array array -> <a href="Graphics.html#TYPEimage">image</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given color matrix to an image.
+   Each sub-array represents one horizontal line. All sub-arrays
+   must have the same length; otherwise, exception <code class="code"><span class="constructor">Graphic_failure</span></code>
+   is raised.</p>
+</div>
+</div>
+
+<pre><span id="VALdump_image"><span class="keyword">val</span> dump_image</span> : <code class="type"><a href="Graphics.html#TYPEimage">image</a> -> <a href="Graphics.html#TYPEcolor">color</a> array array</code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert an image to a color matrix.</p>
+</div>
+</div>
+
+<pre><span id="VALdraw_image"><span class="keyword">val</span> draw_image</span> : <code class="type"><a href="Graphics.html#TYPEimage">image</a> -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Draw the given image with lower left corner at the given point.</p>
+</div>
+</div>
+
+<pre><span id="VALget_image"><span class="keyword">val</span> get_image</span> : <code class="type">int -> int -> int -> int -> <a href="Graphics.html#TYPEimage">image</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Capture the contents of a rectangle on the screen as an image.
+   The parameters are the same as for <a href="Graphics.html#VALfill_rect"><code class="code"><span class="constructor">Graphics</span>.fill_rect</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALcreate_image"><span class="keyword">val</span> create_image</span> : <code class="type">int -> int -> <a href="Graphics.html#TYPEimage">image</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">create_image&nbsp;w&nbsp;h</code> returns a new image <code class="code">w</code> pixels wide and <code class="code">h</code>
+   pixels tall, to be used in conjunction with <code class="code">blit_image</code>.
+   The initial image contents are random, except that no point
+   is transparent.</p>
+</div>
+</div>
+
+<pre><span id="VALblit_image"><span class="keyword">val</span> blit_image</span> : <code class="type"><a href="Graphics.html#TYPEimage">image</a> -> int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">blit_image&nbsp;img&nbsp;x&nbsp;y</code> copies screen pixels into the image <code class="code">img</code>,
+   modifying <code class="code">img</code> in-place. The pixels copied are those inside the
+   rectangle with lower left corner at <code class="code">x,y</code>, and width and height
+   equal to those of the image. Pixels that were transparent in
+   <code class="code">img</code> are left unchanged.</p>
+</div>
+</div>
+<h2 id="1_Mouseandkeyboardevents">Mouse and keyboard events</h2>
+<pre><code><span id="TYPEstatus"><span class="keyword">type</span> <code class="type"></code>status</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatus.mouse_x">mouse_x</span>&nbsp;: <code class="type">int</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>X coordinate of the mouse</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatus.mouse_y">mouse_y</span>&nbsp;: <code class="type">int</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>Y coordinate of the mouse</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatus.button">button</span>&nbsp;: <code class="type">bool</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>true if a mouse button is pressed</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatus.keypressed">keypressed</span>&nbsp;: <code class="type">bool</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>true if a key has been pressed</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatus.key">key</span>&nbsp;: <code class="type">char</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>the character for the key pressed</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+}
+
+<div class="info ">
+<div class="info-desc">
+<p>To report events.</p>
+</div>
+</div>
+
+
+<pre><code><span id="TYPEevent"><span class="keyword">type</span> <code class="type"></code>event</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTevent.Button_down"><span class="constructor">Button_down</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>A mouse button is pressed</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTevent.Button_up"><span class="constructor">Button_up</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>A mouse button is released</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTevent.Key_pressed"><span class="constructor">Key_pressed</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>A key is pressed</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTevent.Mouse_motion"><span class="constructor">Mouse_motion</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The mouse is moved</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTevent.Poll"><span class="constructor">Poll</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>Don't wait; return immediately</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>To specify events to wait for.</p>
+</div>
+</div>
+
+
+<pre><span id="VALwait_next_event"><span class="keyword">val</span> wait_next_event</span> : <code class="type"><a href="Graphics.html#TYPEevent">event</a> list -> <a href="Graphics.html#TYPEstatus">status</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Wait until one of the events specified in the given event list
+   occurs, and return the status of the mouse and keyboard at
+   that time. If <code class="code"><span class="constructor">Poll</span></code> is given in the event list, return immediately
+   with the current status. If the mouse cursor is outside of the
+   graphics window, the <code class="code">mouse_x</code> and <code class="code">mouse_y</code> fields of the event are
+   outside the range <code class="code">0..size_x()-1,&nbsp;0..size_y()-1</code>. Keypresses
+   are queued, and dequeued one by one when the <code class="code"><span class="constructor">Key_pressed</span></code>
+   event is specified and the <code class="code"><span class="constructor">Poll</span></code> event is not specified.</p>
+</div>
+</div>
+
+<pre><span id="VALloop_at_exit"><span class="keyword">val</span> loop_at_exit</span> : <code class="type"><a href="Graphics.html#TYPEevent">event</a> list -> (<a href="Graphics.html#TYPEstatus">status</a> -> unit) -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Loop before exiting the program, the list given as argument is the
+    list of handlers and the events on which these handlers are called.
+    To exit cleanly the loop, the handler should raise Exit. Any other
+    exception will be propagated outside of the loop.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.01</li>
+</ul>
+</div>
+<h2 id="1_Mouseandkeyboardpolling">Mouse and keyboard polling</h2>
+<pre><span id="VALmouse_pos"><span class="keyword">val</span> mouse_pos</span> : <code class="type">unit -> int * int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the position of the mouse cursor, relative to the
+   graphics window. If the mouse cursor is outside of the graphics
+   window, <code class="code">mouse_pos()</code> returns a point outside of the range
+   <code class="code">0..size_x()-1,&nbsp;0..size_y()-1</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALbutton_down"><span class="keyword">val</span> button_down</span> : <code class="type">unit -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return <code class="code"><span class="keyword">true</span></code> if the mouse button is pressed, <code class="code"><span class="keyword">false</span></code> otherwise.</p>
+</div>
+</div>
+
+<pre><span id="VALread_key"><span class="keyword">val</span> read_key</span> : <code class="type">unit -> char</code></pre><div class="info ">
+<div class="info-desc">
+<p>Wait for a key to be pressed, and return the corresponding
+   character. Keypresses are queued.</p>
+</div>
+</div>
+
+<pre><span id="VALkey_pressed"><span class="keyword">val</span> key_pressed</span> : <code class="type">unit -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return <code class="code"><span class="keyword">true</span></code> if a keypress is available; that is, if <code class="code">read_key</code>
+   would not block.</p>
+</div>
+</div>
+<h2 id="1_Sound">Sound</h2>
+<pre><span id="VALsound"><span class="keyword">val</span> sound</span> : <code class="type">int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">sound&nbsp;freq&nbsp;dur</code> plays a sound at frequency <code class="code">freq</code> (in hertz)
+   for a duration <code class="code">dur</code> (in milliseconds).</p>
+</div>
+</div>
+<h2 id="1_Doublebuffering">Double buffering</h2>
+<pre><span id="VALauto_synchronize"><span class="keyword">val</span> auto_synchronize</span> : <code class="type">bool -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>By default, drawing takes place both on the window displayed
+   on screen, and in a memory area (the 'backing store').
+   The backing store image is used to re-paint the on-screen
+   window when necessary.</p>
+
+<p>To avoid flicker during animations, it is possible to turn
+   off on-screen drawing, perform a number of drawing operations
+   in the backing store only, then refresh the on-screen window
+   explicitly.</p>
+
+<p><code class="code">auto_synchronize&nbsp;<span class="keyword">false</span></code> turns on-screen drawing off.  All
+   subsequent drawing commands are performed on the backing store
+   only.</p>
+
+<p><code class="code">auto_synchronize&nbsp;<span class="keyword">true</span></code> refreshes the on-screen window from
+   the backing store (as per <code class="code">synchronize</code>), then turns on-screen
+   drawing back on.  All subsequent drawing commands are performed
+   both on screen and in the backing store.</p>
+
+<p>The default drawing mode corresponds to <code class="code">auto_synchronize&nbsp;<span class="keyword">true</span></code>.</p>
+</div>
+</div>
+
+<pre><span id="VALsynchronize"><span class="keyword">val</span> synchronize</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Synchronize the backing store and the on-screen window, by
+   copying the contents of the backing store onto the graphics
+   window.</p>
+</div>
+</div>
+
+<pre><span id="VALdisplay_mode"><span class="keyword">val</span> display_mode</span> : <code class="type">bool -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Set display mode on or off. When turned on, drawings are done
+   in the graphics window; when turned off, drawings do not affect
+   the graphics window.  This occurs independently of
+   drawing into the backing store (see the function <a href="Graphics.html#VALremember_mode"><code class="code"><span class="constructor">Graphics</span>.remember_mode</code></a>
+   below). Default display mode is on.</p>
+</div>
+</div>
+
+<pre><span id="VALremember_mode"><span class="keyword">val</span> remember_mode</span> : <code class="type">bool -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Set remember mode on or off. When turned on, drawings are done
+   in the backing store; when turned off, the backing store is
+   unaffected by drawings.  This occurs independently of drawing
+   onto the graphics window (see the function <a href="Graphics.html#VALdisplay_mode"><code class="code"><span class="constructor">Graphics</span>.display_mode</code></a> above).
+   Default remember mode is on.</p>
+</div>
+</div>
+</body></html>
