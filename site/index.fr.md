@@ -40,7 +40,7 @@
                     <h1><a href="/docs/index.fr.html">Documentation</a></h1>
                     <p><a href="docs/install.fr.html" >Installer</a> OCaml,
 					trouver des <a href="https://opam.ocaml.org/packages/">docs de paquets</a>, accéder au
-					<a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
+					<a href="/manual/latest/"
 					target="_blank"
 					>Manuel</a>, obtenir <a href="/docs/cheat_sheets.html">des mémentos</a> et <a href="/docs/index.fr.html">bien plus</a>.</p>
                 </section>
