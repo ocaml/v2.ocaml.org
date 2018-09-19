@@ -70,7 +70,6 @@ Rudenoise|http://rudenoise.uk/ocaml.rss
 Rudi Grinberg|http://rgrinberg.com/atom.xml
 Sebastien Mondet|http://seb.mondet.org/blog/feed/ocaml.rss
 Shayne Fletcher|http://blog.shaynefletcher.org/feeds/posts/default/-/OCaml
-Simon Grondin|http://simongrondin.name/?cat=9&feed=rss2
 Stefano Zacchiroli|http://upsilon.cc/~zack/tags/ocaml/index.rss
 Sylvain Le Gall|http://le-gall.net/sylvain+violaine/blog/index.php?feed/tag/ocaml/atom
 Thomas Leonard|http://roscidus.com/blog/blog/categories/ocaml/atom.xml
