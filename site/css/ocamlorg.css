@@ -478,8 +478,9 @@ ul.translations:after { content: "]"; }
 }
 @media (max-width: 480px) {
   #footer .column {
-    width: 98%;
+    width: 80%;
     padding-left: 20%;
+    margin-right: 0;
   }
 }
 #footer .entry {
