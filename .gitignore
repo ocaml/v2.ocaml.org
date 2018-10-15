@@ -32,3 +32,4 @@ script/generate_opam_update_list
 opam_update_list
 *.bz2
 *.ai
+_opam
