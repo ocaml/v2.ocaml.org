@@ -560,6 +560,26 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/tarides.png" alt="Tarides">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://tarides.com">Tarides</a>, France</h2>
+        <p>We are building and maintaining open-source infrastructure tools in OCaml:
+        (1) <a href="https://mirage.io">MirageOS</a>, the most advanced unikernel project,
+            where we build sandboxes, network and storage protocol implementations as libraries,
+            so we can link them to our applications to run them without the need of an underlying
+            operating system;
+       (2) <a href="https://irmin.io">Irmin</a>, a Git-like datastore, which allows us
+           to create fully auditable distributed systems which can work offline and
+           be synced when needed; and
+       (3) OCaml development tools (build system, code linters, documentation generators, etc),
+           to make us more efficient.
+       Tarides was founded in early 2018 and is mainly based at <a href="https://stationf.co/">Station F</a>, in Paris.
+        </p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/trustinsoft.png" alt="TrustInSoft">
     </dt>
     <dd class="span5">
