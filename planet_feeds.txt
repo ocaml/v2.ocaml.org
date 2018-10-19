@@ -83,3 +83,4 @@ Xinuo Chen|http://typeocaml.com/rss/
 Cryptosense|https://cryptosense.com/tag/ocaml/feed/
 Gabriel Radanne|http://drup.github.io/feed-ocaml.xml
 The BAP Blog|https://binaryanalysisplatform.github.io/feed.xml
+Tarides|https://tarides.com/feed.xml
