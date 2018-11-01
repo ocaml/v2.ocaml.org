@@ -128,15 +128,15 @@ tools and libraries.
  Tutorial](http://ambassadortothecomputers.blogspot.com/p/reading-camlp4.html)
  (by Jake Donham), to build syntax extensions for OCaml with Camlp4.
 * [OCamllex
- Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamllex-tutorial/)
+ Tutorial](https://web.archive.org/web/20160625063521/http://plus.kaist.ac.kr:80/~shoh/ocaml/ocamllex-ocamlyacc/ocamllex-tutorial/)
  (by SooHyoung Oh), on how to create lexers using the `ocamllex` tool
  of the standard distribution.
 * [OCamlyacc
- Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamlyacc-tutorial/)
+ Tutorial](https://web.archive.org/web/20161003234837/http://plus.kaist.ac.kr:80/~shoh/ocaml/ocamllex-ocamlyacc/ocamlyacc-tutorial/)
  (by SooHyoung Oh), on how to create parsers using the `ocamlyacc`
  tool of the standard distribution.
 * [LablGTK 2.0
- Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/lablgtk2/lablgtk2-tutorial/)
+ Tutorial](https://web.archive.org/web/20160808035304/http://plus.kaist.ac.kr:80/~shoh/ocaml/lablgtk2/lablgtk2-tutorial/)
  (by SooHyoung Oh), on how to create graphical applications with the
  LablGTK library.
 * [Camlp5](camlp5.html)
