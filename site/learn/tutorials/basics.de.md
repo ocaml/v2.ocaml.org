@@ -132,7 +132,7 @@ Wenn Sie sich die Funktionsdefinition genauer anschauen, und auch die
 Ausgabe von OCaml, stellen sich Ihnen eine Reihe von Fragen:
 
 -   Was haben die zusätzlichen Punkte im Code zu suchen?
--   Was soll das ganze `float -> float -> float` zu bedeuten?
+-   Was soll das ganze `float -> float -> float` bedeuten?
 
 Ich werde diese Fragen in den nächsten Abschnitten beantworten, aber
 zunächst einmal will ich die gleiche Funktion in C definieren (die
@@ -161,7 +161,7 @@ Ok, machen wir uns mal an die Antworten.
 
 -   OCaml ist eine stark statisch typisierte Sprache (in anderen Worten,
     es gibt nichts derartiges wie dynamische Typen wie z.B. in Perl).
--   OCaml *deduktive Typisierung* um die Typen festzulegen, so daß Sie
+-   OCaml nutz *deduktive Typisierung* um die Typen festzulegen, so daß Sie
     sich nicht darum kümmern müssen. Wenn Sie, wie oben, den OCaml
     toplevel benutzen, teilt OCaml Ihnen den [seiner Meinung nach ...]
     korrekten Typ für Ihre Funktion mit.
