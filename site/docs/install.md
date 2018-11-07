@@ -58,7 +58,7 @@ apt install ocaml
 Other Ubuntu packages related to OCaml are
 [listed here](http://packages.ubuntu.com/search?keywords=ocaml).
 
-### [Fedora](https://getfedora.org/) [![Fedora 28](https://repology.org/badge/version-only-for-repo/fedora_28/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Fedora](https://getfedora.org/) [![Fedora 29](https://repology.org/badge/version-only-for-repo/fedora_29/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 ```bash
