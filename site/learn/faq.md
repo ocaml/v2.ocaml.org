@@ -571,7 +571,7 @@ let r = ref [];;
 let f = List.map (fun x -> x);;
 ```
 
-Since the expression mentionned in the error message cannot be compiled
+Since the expression mentioned in the error message cannot be compiled
 as is, two cases must be envisioned:
 
 * The expression can really not be turned into a polymorphic
