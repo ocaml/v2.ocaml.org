@@ -29,6 +29,20 @@ the recommended way to install the OCaml compiler and OCaml
 packages. Simply follow the
 [OPAM install instructions](https://opam.ocaml.org/doc/Install.html).
 
+Then, use opam to install an ocaml compiler.
+Here are the commands for a Linux user using the Bash shell and opam-2.0.0:
+```
+# environment setup
+opam init
+eval `opam env`
+# install given version of the compiler
+opam switch create 4.06.1
+eval `opam env`
+# check you got what you want
+which ocaml
+ocaml --version
+```
+
 ## Linux
 
 Most Linux distributions allow OCaml and/or OPAM to be installed
