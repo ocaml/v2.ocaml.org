@@ -30,7 +30,7 @@ packages. Simply follow the
 [OPAM install instructions](https://opam.ocaml.org/doc/Install.html).
 
 Then, use opam to install an ocaml compiler.
-Here are the commands for a Linux user using the Bash shell and opam-2.0.0:
+Example using the Bash shell and opam-2.0:
 ```
 # environment setup
 opam init
