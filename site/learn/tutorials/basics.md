@@ -252,7 +252,7 @@ network stack), OCaml provides a `nativeint` type which matches the
 native integer type for your platform.
 
 OCaml doesn't have a basic unsigned integer type, but you can get the
-same effect using `nativeint`. OCaml doesn't have builtin single-precision 
+same effect using `nativeint`. OCaml doesn't have builtin single-precision
 floating point numbers.
 
 OCaml provides a `char` type which is used for characters, written `'x'`
@@ -352,7 +352,7 @@ currently-being-defined function. Using `let` (without `rec`) allows you
 to re-define a value in terms of the previous definition. For example:
 
 ```ocamltop
-let positive_sum a b = 
+let positive_sum a b =
   let a = max a 0
   and b = max b 0 in
   a + b
@@ -479,5 +479,37 @@ removes a whole class of errors which cause segfaults,
 `NullPointerException`s and `ClassCastException`s in other languages (or
 important but often ignored runtime warnings, as in Perl).
 
+## More on Types
+
+### Unit type
+
+The `unit` type is used to return nothing or to pass no argument to a function. Let's see these two types of signature :
+ ```ocaml
+print_int : int -> unit
+get_x : unit -> int
+ ```
+ Most of the time, a function that returns a `unit` type has side effects (in functional programming, it is called an impure function). Here `print_int` prints the specified `int` on the standard output and as such changes the content of the standard output.
+ On the other side, `get_x` allows us to call `get_x()` to obtain an `int` through a function.
+
+  Right now, you may not see the importance of such properties but that will come to light when you learn about functional programming.
+
+### Option type
+
+Let's say we have the `sqrt` function which given a `float` return it's square root as a `float`. Now the issue is what happens when we call `sqrt` with a negative `float` (for those who don't know the square root is undefined on negative reals) ? Let's suppose when we call the `sqrt` function with a negative number it exits the program. That's bad, we don't want our program to terminate just because of bad input.
+
+ Let's delegate the issue to the called of `sqrt` and use the `option` type :
+```ocaml
+type 'a option =
+  | None
+  | Some of 'a;;
+```
+So `'a` indicates that is a polymorphic type like a function. So we can use the `option` type with `int`, `float` or whatever but at the same tyme a `int option` is not the same type as a `float option`. Now let's write a `safe_sqrt` that checks that the input parameter is positive, if it is we will return `Some (sqrt x)` otherwise we will return `None`.
+```ocaml
+let safe_sqrt x =
+  if x > 0. then Some (sqrt x)
+  else None;;
+# safe_sqrt : float -> float option
+```
+Now we've encapsulated the issue and we delegate the handling of the issue to the caller of `safe_sqrt`, which can then choose to exit the program or handle the issue differently. It is really useful to use the `option` type whenever you have undefined behavior on some inputs.
 
 [utop]: https://github.com/diml/utop
