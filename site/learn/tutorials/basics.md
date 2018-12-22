@@ -503,7 +503,7 @@ type 'a option =
   | None
   | Some of 'a;;
 ```
-So `'a` indicates that is a polymorphic type like a function. So we can use the `option` type with `int`, `float` or whatever but at the same tyme a `int option` is not the same type as a `float option`. Now let's write a `safe_sqrt` that checks that the input parameter is positive, if it is we will return `Some (sqrt x)` otherwise we will return `None`.
+`'a` indicates that it is a polymorphic type. So we can use the `option` type with `int`, `float` or anything else, but at the same time `int option` is not the same type as `float option`. Now let's write a `safe_sqrt` that checks that the input parameter is positive, if it is we will return `Some (sqrt x)` otherwise we will return `None`.
 ```ocaml
 let safe_sqrt x =
   if x > 0. then Some (sqrt x)
