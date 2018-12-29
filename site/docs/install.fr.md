@@ -78,8 +78,9 @@ Ils sont disponibles selon
 ### [Ubuntu](https://www.ubuntu.com/)
 
 ```bash
-apt install ocaml-nox # Si vous ne voulez pas le support de X11 
-apt install ocaml
+apt install ocaml # Avec le support de X11 (donc le module Graphics)
+
+apt install ocaml-nox # Plus léger, si vous ne voulez pas le support de X11 
 ```
 
 Les autres paquets Unbuntu liés à OCaml sont
