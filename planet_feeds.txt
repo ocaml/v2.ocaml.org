@@ -67,7 +67,7 @@ Pietro Abate|http://mancoosi.org/~abate/taxonomy/term/5/0/feed
 Psellos|http://psellos.com/atom.xml
 Richard Jones|http://rwmj.wordpress.com/tag/ocaml/feed/
 Rudenoise|http://rudenoise.uk/ocaml.rss
-Rudi Grinberg|http://rgrinberg.com/atom.xml
+Rudi Grinberg|http://rgrinberg.com/blog/atom.xml
 Sebastien Mondet|http://seb.mondet.org/blog/feed/ocaml.rss
 Shayne Fletcher|http://blog.shaynefletcher.org/feeds/posts/default/-/OCaml
 Simon Grondin|http://simongrondin.name/?cat=9&feed=rss2
