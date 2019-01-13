@@ -18,7 +18,7 @@ else
 fi
 
 if [ -n "${OPAM_SWITCH}" ]; then
-    opam switch "$OPAM_SWITCH"
+    opam switch create "$OPAM_SWITCH"
 fi
 eval "$(opam config env)"
 
