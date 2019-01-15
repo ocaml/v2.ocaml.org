@@ -26,18 +26,27 @@ Well-suited for: IO, pattern-matching
 
 Not very efficient for: random access, indexed elements
 
-## Arrays and strings: mutable vectors
-Arrays and strings are very similar. Strings are specialized in storing
-chars (bytes), have some convenient syntax and store them compactly.
+## Arrays: mutable vectors
+Arrays are mutable data structures with a fixed length and random access.
 
-* "adding" an element: O(n)
+* "adding" an element (by creating a new array): O(n)
 * length: O(1), function `Array.length`
 * accessing cell i: O(1)
 * finding an element: O(n)
 
 Well-suited for sets of elements of known size, access by numeric index,
-in-place modification. Basic arrays and strings have a fixed length. For
-extensible strings, the standard Buffer type can be used (see below).
+in-place modification. Basic arrays have a fixed length.
+
+## Strings: immutable vectors
+Strings are very similar to arrays but are immutable. Strings are
+specialized for storing chars (bytes) and have some convenient syntax.
+Strings have a fixed length. For extensible strings, the standard Buffer
+type can be used (see below).
+
+* "adding" an element (by creating a new string): O(n)
+* length: O(1)
+* accessing character i: O(1)
+* finding an element: O(n)
 
 ## Set and Map: immutable trees
 Like lists, these are immutable and they may share some subtrees. They
@@ -87,4 +96,3 @@ element doesn't create a new stack but simply adds it to the stack.
 * adding an element: O(1)
 * taking an element: O(1)
 * length: O(n)
-
