@@ -15,7 +15,7 @@ Lorsqu'on écrit un programme, avec par exemple deux fichiers
 modules, intitulés respectivement `Amodule` et `Bmodule`,
 possédant le même contenu que nos fichiers.
 
-Prenons par exemple le fichier amodule.ml suivant:
+Prenons par exemple le fichier amodule.ml suivant :
 
 ```ocaml
 let hello () = print_endline "Hello"
@@ -27,7 +27,7 @@ ainsi que le fichier bmodule.ml :
 Amodule.hello ()
 ```
 
-En général, les fichiers sont compilés un par un, comme ceci:
+En général, les fichiers sont compilés un par un, comme ceci :
 
 ```shell
 ocamlopt -c amodule.ml
@@ -39,7 +39,7 @@ Nous avons à présent un petit éxécutable pouvant afficher
 « Hello ».  Comme on l'a constaté, on accède à n'importe quoi dans un
 module donné en appellant le nom du module (qui commence toujours par
 une majuscule) suivit d'un point et du nom de l'objet utilisé. Cet
-object peut être une variable, un type ou tout autre chose définie au
+objet peut être une variable, un type ou tout autre chose définie au
 sein du module.
 
 Les librairies (bibliothèques), notament la bibliothèque standard,
@@ -83,7 +83,7 @@ let _ = List.iter (fun s -> printf "%s\n" s) my_data
 Un module peut fournir un grand nombre d'éléments (fonctions, types,
 sous modules, variables...) au programme qui l'utilise. Par défaut, tous
 les objets définis au sein du module seront accessibles depuis
-« l'exterieur ». Ceci peut être utile dans de petits programmes, mais il
+« l'extérieur ». Ceci peut être utile dans de petits programmes, mais il
 est préférable qu'un module ne propose que ce qu'il est conçu pour
 proposer, sans le fouillis des fonctions auxilliaires ou variables
 temporaires. Pour cela, nous pouvons définir une interface modulaire,
@@ -98,7 +98,7 @@ let message = "Hello"
 let hello () = print_endline message
 ```
 
-Tel quel, l'interface de `Amodule` est la suivante:
+Tel quel, l'interface de `Amodule` est la suivante :
 
 ```ocaml
 val message : string
@@ -108,7 +108,7 @@ val hello : unit -> unit
 Supposons que nous souhaitions que personne de l'exterieur ne puisse
 accéder à la variable `message`. Nous choisissons alors de la
 cacher en crééant une interface restreinte, le `amodule.mli` est
-alors:
+alors :
 
 ```ocaml
 val hello : unit -> unit
@@ -121,7 +121,7 @@ d'`ocamldoc` est une très bonne habitude à prendre).
 Les fichiers `.mli` doivent être compilés juste avant les
 `.ml` correspondants. On peut les compiler à l'aide
 d'`ocamlc`, même si les `.ml `sont écrit en code natif avec
-`ocamlopt`
+`ocamlopt`.
 
 ```shell
 ocamlc -c amodule.mli
@@ -133,13 +133,13 @@ ocamlopt -c amodule.ml
 
 Passons à présent aux définitions de types. Nous avons vu que les
 valeurs telles que les fonctions, peuvent être exportées en donnant leur
-noms et signatures dans un fichiers `.mli`, par exemple:
+noms et signatures dans un fichiers `.mli`, par exemple :
 
 ```ocaml
 val hello : unit -> unit
 ```
 Cependant on définit souvent au sein d'un module de nouveaux types.
-Prenons par exemple un enregistrement d'une date:
+Prenons par exemple un enregistrement d'une date :
 
 ```ocaml
 type date = { day : int;  month : int;  year : int }
@@ -164,7 +164,7 @@ type `date` mais ne peuvent accéder aux champs de
 l'enregistrement, seules les fonctions du modules sont autorisées à le
 faire. Supposons que notre module contienne trois fonctions, une pour
 créer une date, une pour calculer la différence entre deux dates et une
-pour convertir une date en années:
+pour convertir une date en années :
 
 ```ocaml
 type date
@@ -173,9 +173,9 @@ val sub : date -> date -> date
 val years : date -> float
 ```
 On remarque alors que seule `create` et `sub` peuvent être
-utilisées pour céer des enregistrements de dates. Ainsi il n'est pas
+utilisées pour créer des enregistrements de dates. Ainsi il n'est pas
 possible pour l'utilisateur de créer des enregistrements difformes.
-Ainsi, bien que notre implémentation utilise un enregistrement nous
+Ainsi, bien que notre implémentation utilise un enregistrement, nous
 pouvons le modifier sans qu'aucun fichier utilisant ce module n'en soit
 perturbé. Ceci est particulièrement utile dans le cas des librairies,
 qui peuvent ainsi être modifiées tout en gardant une utilisation
@@ -188,9 +188,9 @@ identique.
 Nous avons vu qu'un fichier unique `exemple.ml` se compilait un un
 module unique `Exemple`. Sa signature est automatiquement générée
 et est la plus exhaustive possible, sauf si elle est restreinte par
-l'écriture d'un fichier `.mli` . Ceci dit, un module donné peut
-etre définit explicitement au sein même d'un fichier, il est ainsi un
-sous module du module principal. Prenons l'exemple suivant:
+l'écriture d'un fichier `.mli`. Ceci dit, un module donné peut
+être défini explicitement au sein même d'un fichier, il est ainsi un
+sous module du module principal. Prenons l'exemple suivant :
 
 ```ocaml
 module Hello = 
@@ -206,7 +206,7 @@ let hello_goodbye () =
 ```
 
 Depuis un autre fichier, nous avons désormais deux niveaux de modules.
-Nous pouvons écrire alors:
+Nous pouvons écrire alors :
 
 ```ocaml
 let () =
@@ -219,7 +219,7 @@ let () =
 
 Nous pouvons de même restreindre l'interface d'un sous module. On
 appelle cela un type modulaire. Dans notre `exemple.ml` cela
-donne:
+donne :
 
 ```ocaml
 module Hello : 
@@ -239,7 +239,7 @@ let hello_goodbye () =
 ```
 
 La définition du module `Hello` est équivalente au couple de
-fichiers `hello.mli/hello.ml` . Cependant, écrire tout cela dans
+fichiers `hello.mli/hello.ml`. Cependant, écrire tout cela dans
 un même bloc de code n'est pas très élégant, nous préférons donc définir
 la signature séparement.
 
@@ -255,7 +255,7 @@ struct
 end
 ```
 
-`Hello_type` est un type modulaire et peut donc être réutilisée
+`Hello_type` est un type modulaire et peut donc être réutilisé
 pour définir d'autres interfaces de modules.
 
 Bien que l'utilisation des sous modules peut se révéler pratique dans
@@ -267,35 +267,35 @@ foncteurs, développés dans la section suivante.
 Les foncteurs sont probablement une des fonctionnalités les plus
 complexes d'OCaml, même s'il n'est pas nécessaire de les utiliser de
 façon intensive pour être un bon programmeur. En réalité, il est
-possible que nous n'ayons jamais à définir nous même de foncteurs, mais
-nous serons surement appelés à les rencontrer dans la librairie
+possible que nous n'ayons jamais à définir nous-mêmes de foncteurs, mais
+nous serons sûrement appelés à les rencontrer dans la librairie
 standard. Ils sont la seule façon d'utiliser les modules `Set` et
 `Map`, mais leur utilisation reste à notre portée.
 
 Un foncteur est un module qui est paramétré par un autre module, tout
-comme une fonction n'est qu'une valeur paramétrée par d'autre valeurs
+comme une fonction n'est qu'une valeur paramétrée par d'autres valeurs
 (les arguments). En gros, cela permet de paramétrer un type par une
-valeur, ce qui est impossible à faire directment en OCaml. Par exemple,
+valeur, ce qui est impossible à faire directement en OCaml. Par exemple,
 nous pourrions définir un foncteur prenant un entier `n` et
 retournant un ensemble d'opérations sur des tableaux de longeurs
 `n` uniquement. Si par erreur, un programmeur donne un tableau
 normal à une de ces fonctions, le compilateur soulevera une erreur. Si
 nous n'utilisions pas un foncteur mais le type standard des tableaux, le
 compilateur ne sera pas capable de détecter l'erreur, et nous
-obtiendrions une erreur à l'execution bien après la compilation ce qui
+obtiendrions une erreur à l'exécution bien après la compilation, ce qui
 est bien pire !
 
 ### Comment utiliser un foncteur ?
 
 La librairie standard définit le module `Set`, qui fournit un
 foncteur `Make`. Ce foncteur requiert un argument, qui est un
-module contenant (au moins) deux choses: le type des éléments donné par
-`t` et la fonction de comparaison donnée par `compare` .
+module contenant (au moins) deux choses : le type des éléments donné par
+`t` et la fonction de comparaison donnée par `compare`.
 L'important est de s'assurer que la même fonction de comparaison sera
 toujours utilisée, même si le programmeur commet une erreur.
 
 Par exemple, si nous voulons un ensemble d'entiers, il faut utiliser
-ceci:
+ceci :
 
 ```ocaml
 module Int_set = Set.Make (struct
@@ -307,7 +307,7 @@ Pour les ensembles de chaînes, cela est même plus simple car la
 librairie standard fournit un module `String` avec un type
 `t` et une fonction `compare`. On peut donc créer, à peu de
 frais, un module pour la manipulation des ensembles de chaînes de
-caractères:
+caractères :
 
 ```ocaml
 module String_set = Set.Make (String)
@@ -316,7 +316,7 @@ module String_set = Set.Make (String)
 
 ### Comment définir un foncteur ?
 
-Un foncteur avec un argument peut être définit comme ceci:
+Un foncteur avec un argument peut être définit comme ceci :
 
 ```ocaml
 module F (X : X_type) =
@@ -328,7 +328,7 @@ où `X` est le module passé en argument, et `X\_type` est sa
 signature, qui est obligatoire.
 
 La signature du module obtenu peut elle même être restreinte à l'aide la
-syntaxe habituelle:
+syntaxe habituelle :
 
 ```ocaml
 module F (X : X_type) : Y_type =
@@ -336,7 +336,7 @@ struct
   ...
 end
 ```
-ou bien en le spécifiant dans le fichier `.mli`:
+ou bien en le spécifiant dans le fichier `.mli` :
 
 ```ocaml
 module F (X : X_type) : Y_type
@@ -344,8 +344,8 @@ module F (X : X_type) : Y_type
 La syntaxe des foncteurs reste cependant difficile à assimiler. Il est
 donc préférable de jeter un coup d'oeil aux fichier sources
 `set.ml` ou `map.ml` dans la librairie standard. Une
-dernière remarque: les foncteurs ont été conçus pour aider les
-programmeurs et non pas pour améliorer les performances. L'execution est
+dernière remarque : les foncteurs ont été conçus pour aider les
+programmeurs et non pas pour améliorer les performances. L'exécution est
 même plus lente, à moins d'utiliser un défoncteur comme
 `ocamldefun`, qui requiert un accès au code source du foncteur.
 
@@ -354,13 +354,13 @@ même plus lente, à moins d'utiliser un défoncteur comme
 ### Afficher l'interface d'un module
 
 En `toplevel`, il est possible de visualiser le contenu d'un
-module en tapant:
+module en tapant :
 
 ```ocaml
 module M = List
 ```
 
-On obtient alors:
+On obtient alors :
 
 ```ocamltop
 module M = List
@@ -374,7 +374,7 @@ De toute façon, il existe une documentation pour la plupart des modules
 Supposons que nous sentions qu'une fonction manque au module standard
 `List` et que nous désirions qu'elle en fasse partie intégrante.
 Il est possible d'utiliser l'instruction `include` au sein d'un
-fichier `extensions.ml` afin d'insérer notre fonction:
+fichier `extensions.ml` afin d'insérer notre fonction :
 
 ```ocaml
 module List =
