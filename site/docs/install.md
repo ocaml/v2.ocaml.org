@@ -167,6 +167,7 @@ port install opam
 ```bash
 pkg install ocaml-nox11 # If you don't want X11 support
 pkg install ocaml
+pkg install ocaml-opam
 ```
 
 ## [OpenBSD](https://www.openbsd.org/) [![OpenBSD port](https://repology.org/badge/version-only-for-repo/openbsd/ocaml.svg)](https://repology.org/metapackage/ocaml)
