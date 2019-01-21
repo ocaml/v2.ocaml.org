@@ -19,7 +19,7 @@ tl. tl remains unchanged, but it is not copied either.
 
 * "adding" an element: O(1), cons operator `::`
 * length: O(n), function `List.length`
-* accessing cell i: O(i)
+* accessing cell `i`: O(i)
 * finding an element: O(n)
 
 Well-suited for: IO, pattern-matching
@@ -31,7 +31,7 @@ Arrays are mutable data structures with a fixed length and random access.
 
 * "adding" an element (by creating a new array): O(n)
 * length: O(1), function `Array.length`
-* accessing cell i: O(1)
+* accessing cell `i`: O(1)
 * finding an element: O(n)
 
 Well-suited for sets of elements of known size, access by numeric index,
@@ -41,11 +41,11 @@ in-place modification. Basic arrays have a fixed length.
 Strings are very similar to arrays but are immutable. Strings are
 specialized for storing chars (bytes) and have some convenient syntax.
 Strings have a fixed length. For extensible strings, the standard Buffer
-type can be used (see below).
+module can be used (see below).
 
 * "adding" an element (by creating a new string): O(n)
 * length: O(1)
-* accessing character i: O(1)
+* accessing character `i`: O(1)
 * finding an element: O(n)
 
 ## Set and Map: immutable trees
@@ -79,7 +79,7 @@ single place. They are mutable.
  number of bytes n.
 * adding a string of k chars: O(k * "adding a char")
 * length: O(1)
-* accessing cell i: O(1)
+* accessing cell `i`: O(1)
 
 ## Queue
 OCaml queues are mutable first-in-first-out (FIFO) data structures.
