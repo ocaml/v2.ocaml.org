@@ -30,7 +30,7 @@ Or, if you are using findlib:
 ```
 
 ## Stream Literals
-Stream expressions are enclosed by `[<` and `\>]` brackets, and using
+Stream expressions are enclosed by `[<` and `>]` brackets, and using
 them is a lot like using lists. The simplest stream possible is the
 empty stream:
 
