@@ -333,12 +333,11 @@ to the source code of the functor.
 ## Practical manipulation of modules
 
 ###  Displaying the interface of a module
-In the `ocaml` toplevel, the following trick allows to visualize the
-contents of an existing module, such as `List`:
-<!-- FIXME : no longer true -->
+You can use the `ocaml` toplevel to visualize the contents of an existing
+module, such as `List`:
 
 ```ocamltop
-module M = List;;
+#show List;;
 ```
 Otherwise, there is online documentation for most libraries or you can
 use `ocamlbrowser` which comes with labltk (Tk graphical user interface
