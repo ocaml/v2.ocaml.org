@@ -1,16 +1,12 @@
-opam-version: "1.2"
-name: "ocamlorg"
-version: "dev"
+opam-version: "2.0"
+name: "ocaml-org"
 maintainer: "The OCaml.org team"
 authors: "The OCaml.org team"
+license: "See LICENSE.md file."
 homepage: "https://github.com/ocaml/ocaml.org"
 bug-reports: "https://github.com/ocaml/ocaml.org/issues"
-license: "See LICENSE.md file."
-dev-repo: "https://github.com/ocaml/ocaml.org.git"
-build: [
-  [make]
-]
 depends: [
+  "ocaml" {>= "4.04.0"}
   "ocamlfind" {build}
   "base-bytes" {build}
   "opam-lib" {>= "1.3.0"}
@@ -25,10 +21,11 @@ depends: [
   "cow" {>= "2.2.0"}
   "camlp4"
 ]
-depopts: [
-# for the Gtk tutorial:
-  "lablgtk2"
-]
-available: [
-  ocaml-version >= "4.04.0"
-]
+depopts: ["lablgtk2"]
+build: make
+dev-repo: "git+https://github.com/ocaml/ocaml.org.git"
+synopsis: "OCaml.org website generation"
+description: """
+This repository contains the scripts and code to generate
+the ocaml.org website.
+"""
