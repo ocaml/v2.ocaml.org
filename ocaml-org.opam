@@ -21,7 +21,9 @@ depends: [
   "cow" {>= "2.2.0"}
   "camlp4"
 ]
-depopts: ["lablgtk2"]
+depopts: [
+  "lablgtk2" # for the Gtk tutorial
+]
 build: make
 dev-repo: "git+https://github.com/ocaml/ocaml.org.git"
 synopsis: "OCaml.org website generation"
