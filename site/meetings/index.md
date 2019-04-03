@@ -3,6 +3,8 @@
 OCaml Users and Developers Workshop
 ===================================
 
+* [OCaml 2018](ocaml/2018/):
+  St Louis (Missouri, USA), September 27, colocated with ICFP 2018.
 * [OCaml 2017](ocaml/2017/):
   Oxford (UK), September 8, colocated with ICFP 2017.
 * [OCaml 2016](ocaml/2016/):
