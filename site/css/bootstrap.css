@@ -11,7 +11,7 @@
   /*
       This is a blank LESS mixin that can be added to LESS files that
       should not be included in the final build. This mixin
-      will break their standalone build. exluding them from
+      will break their standalone build. excluding them from
       output while not bloating the compiled file size, since blank
       declarations are stripped out by most compressors.
   */
@@ -95,7 +95,7 @@ img {
   /* Responsive images (ensure images don't scale beyond their parents) */
 
   max-width: 100%;
-  /* Part 1: Set a maxium relative to the parent */
+  /* Part 1: Set a maximum relative to the parent */
 
   width: auto\9;
   /* IE7-8 need help adjusting responsive images */
@@ -4849,7 +4849,7 @@ a.thumbnail:focus {
   /*
       This is a blank LESS mixin that can be added to LESS files that
       should not be included in the final build. This mixin
-      will break their standalone build. exluding them from
+      will break their standalone build. excluding them from
       output while not bloating the compiled file size, since blank
       declarations are stripped out by most compressors.
   */
@@ -5325,7 +5325,7 @@ a.badge:focus {
   /*
       This is a blank LESS mixin that can be added to LESS files that
       should not be included in the final build. This mixin
-      will break their standalone build. exluding them from
+      will break their standalone build. excluding them from
       output while not bloating the compiled file size, since blank
       declarations are stripped out by most compressors.
   */
@@ -5375,7 +5375,7 @@ body {
   /*
       This is a blank LESS mixin that can be added to LESS files that
       should not be included in the final build. This mixin
-      will break their standalone build. exluding them from
+      will break their standalone build. excluding them from
       output while not bloating the compiled file size, since blank
       declarations are stripped out by most compressors.
   */
@@ -5928,7 +5928,7 @@ body {
   /*
       This is a blank LESS mixin that can be added to LESS files that
       should not be included in the final build. This mixin
-      will break their standalone build. exluding them from
+      will break their standalone build. excluding them from
       output while not bloating the compiled file size, since blank
       declarations are stripped out by most compressors.
   */
@@ -6005,7 +6005,7 @@ body {
   /*
       This is a blank LESS mixin that can be added to LESS files that
       should not be included in the final build. This mixin
-      will break their standalone build. exluding them from
+      will break their standalone build. excluding them from
       output while not bloating the compiled file size, since blank
       declarations are stripped out by most compressors.
   */
@@ -7009,7 +7009,7 @@ body {
   /*
       This is a blank LESS mixin that can be added to LESS files that
       should not be included in the final build. This mixin
-      will break their standalone build. exluding them from
+      will break their standalone build. excluding them from
       output while not bloating the compiled file size, since blank
       declarations are stripped out by most compressors.
   */

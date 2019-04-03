@@ -166,7 +166,7 @@ method show_all = gtk_widget_show_all obj
 Notice that we pass the underlying `GtkObject` to both C library calls.
 This makes sense because these functions are prototyped as
 `void gtk_widget_show (GtkWidget *);` in C (`GtkWidget` and `GtkObject`
-are safely used interchangably in this context).
+are safely used interchangeably in this context).
 
 I want to describe the `label` class (the real one this time!), but in
 between `widget` and `label` is `misc`, a generic class which describes

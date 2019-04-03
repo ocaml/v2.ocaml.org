@@ -85,7 +85,7 @@ submodules, ...) to the rest of the program that is using it. If nothing
 special is done, everything which is defined in a module will be
 accessible from outside. That's often fine in small personal programs,
 but there are many situations where it is better that a module only
-provides what it is meant to provide, not any of the auxilliary
+provides what it is meant to provide, not any of the auxiliary
 functions and types that are used internally.
 
 For this we have to define a module interface, which will act as a mask

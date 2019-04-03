@@ -159,7 +159,7 @@ Linux cross-compiler, based on a C cross-toolchain obtained from
 crosstool.
 
 In order to improve the patch, as well as this page, I would like to
-hear about both sucessful and unsucessful uses of them. Please send a
+hear about both successful and unsuccessful uses of them. Please send a
 mail to [xavier.clerc@inria.fr](mailto:xavier.clerc@inria.fr) to report.
 
 ## Related resources

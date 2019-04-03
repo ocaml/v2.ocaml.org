@@ -350,7 +350,7 @@ else if cond3 ...
 ```
 > 
 > **Justification**: `elsif` is a keyword in many languages, so use
-> indentation and `else if` to bring it to mind. Morever, you do not
+> indentation and `else if` to bring it to mind. Moreover, you do not
 > have to look to the end of line to know whether the condition is
 > continued or another test is performed.
 > 

@@ -87,7 +87,7 @@ plugins are plugged into OCamlbuild.
 ### Change options
 You can use a plugin to set the value of an OCamlbuild option such as
 `-no-hygiene` or `-ocamlc`. This way you won't have to write the option
-everytime on the command line.
+every time on the command line.
 
 To set an option, simply set the option reference. All these references
 are defined in the
@@ -95,7 +95,7 @@ are defined in the
 module of the API.
 
 Remember that if you change the reference `Before_options`, the value set
-in your plugin can still be overriden by the command line. If you want
+in your plugin can still be overridden by the command line. If you want
 to force the value of an option you have to do it `After_options`. See
 the example in the previous section.
 

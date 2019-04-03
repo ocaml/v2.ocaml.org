@@ -48,7 +48,7 @@
         <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
         <p>Citrix uses OCaml in XenServer, a world-class
         server virtualization system. Most components of XenServer are
-        realeased as open source. The open-source XenServer toolstack
+        released as open source. The open-source XenServer toolstack
         components implemented in OCaml are bundled in the <a
         href="https://github.com/xapi-project/xs-opam">XS-Opam</a>
         repository on GitHub.</p>
