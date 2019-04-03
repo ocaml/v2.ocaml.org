@@ -715,7 +715,7 @@ SOLUTION
 > 
 > (* Sorting according to length frequency : prepend frequency, sort,
 >    remove frequency. Frequencies are extracted by sorting lengths
->    and applying RLE to count occurences of each length (see problem
+>    and applying RLE to count occurrences of each length (see problem
 >    "Run-length encoding of a list.") *)
 > let rle list =
 >   let rec aux count acc = function
@@ -3101,7 +3101,7 @@ SOLUTION
 > ```
 > You may want to look at
 > [more efficient algorithms](http://link.springer.com/article/10.1007%2Fs10489-009-0200-0)
-> and implement them so you can solve the following within resonable time:
+> and implement them so you can solve the following within reasonable time:
 >
 > ```ocaml
 > solve [[14]; [1;1]; [7;1]; [3;3]; [2;3;2];

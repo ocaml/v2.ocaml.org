@@ -84,7 +84,7 @@ OCaml. It is based on the building of STSort, a fast sorting GNU sort
 like utilities. It will try to show how to go from specification of a
 full project to achieving a high level of performance for it.
 
-It will show how mixing functionnal and imperative style in an
+It will show how mixing functional and imperative style in an
 application is one of the important feature of OCaml.
 
 [Slides](http://forge.ocamlcore.org/docman/view.php/77/37/OCaml%20as%20fast%20as%20C.pdf)
@@ -134,7 +134,7 @@ subscription will be closed on 25th January 2009.
 
 As of 27th January 2009, the subscription is closed.
 
-People, who whish to join at the restaurant, should add (R) just after
+People, who wish to join at the restaurant, should add (R) just after
 their name in the list. Organization team will use this list to book
 the restaurant on Ferburay 3rd. You can update your entry until
 February 2nd.

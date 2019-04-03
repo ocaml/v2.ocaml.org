@@ -54,7 +54,7 @@ simple print function.
 let print_users key password =
   print_string(key ^ " " ^ password ^ "\n");;
 ```
-We have here a function that will take two strings, a key and a pasword,
+We have here a function that will take two strings, a key and a password,
 and print them out nicely, including a new line character at the end.
 All we need to do is to have this function applied to our mapping. Here
 is what that would look like.

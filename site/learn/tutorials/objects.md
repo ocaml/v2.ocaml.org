@@ -496,7 +496,7 @@ necessarily using classes.
 
 ###  Immediate objects and object types
 Objects can be used instead of records, and have some nice properties
-that can make them preferrable to records in some cases. We saw that the
+that can make them preferable to records in some cases. We saw that the
 canonical way of creating objects is to first define a class, and use
 this class to create individual objects. This can be cumbersome in some
 situations since class definitions are more than a type definition and
@@ -549,7 +549,7 @@ but each solution has its own advantages:
  data structure where only their common methods are visible (see next
  section)
 * **type definitions**: there is no need to define an object type in
- advance, so it lightens the dependency contraints between modules
+ advance, so it lightens the dependency constraints between modules
 
 ###  Class types vs. just types
 Beware of the confusion between *class types* and object *types*. A

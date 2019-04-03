@@ -71,7 +71,7 @@ bug reports and features request, and submit new ones.
 * * *
 
 ###  Basic types
-#### Is it possible to do computations with arbritrary precision arithmetics?
+#### Is it possible to do computations with arbitrary precision arithmetic?
 
 OCaml provides a library called `Num` that handles exact arithmetic computation
 for rational numbers.
@@ -563,7 +563,7 @@ This message appears when the OCaml compiler tries to compile a function
 or a value which is monomorphic, but for which some types have not been
 completely inferred. Some types variables are left in the type, which
 are are called “weak” (and are displayed by an underscore: `'_a`); they
-will disappear thanks to type inference as soon as enough informations
+will disappear thanks to type inference as soon as enough information
 will be given.
 
 ```ocamltop

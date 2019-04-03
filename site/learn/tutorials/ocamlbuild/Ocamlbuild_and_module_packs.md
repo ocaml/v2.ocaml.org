@@ -41,7 +41,7 @@ namespace with modules `Bli`, `Blo` and `Blu` (which will be reached using
 
 The previous approach doesn't work if the files `bli.ml`, `blo.ml` and
 `blu.ml` depend on each other and are in different directories. Let's
-assume that `blo.ml` depends on `bli.ml`. If they are in the same direcory,
+assume that `blo.ml` depends on `bli.ml`. If they are in the same directory,
 there is no problem because `Blo` sees the whole content of its directory.
 But if `otherdir1` and `otherdir2` are different, then you get an error
 because `Bli` is unbound in `Blo`.

@@ -1,4 +1,4 @@
-<!-- ((! set title Using an ocamlfind installtion of sexplib !)) ((! set learn !)) -->
+<!-- ((! set title Using an ocamlfind installation of sexplib !)) ((! set learn !)) -->
 
 # Using an ocamlfind installation of sexplib
 Install type-conv and sexplib according to the instructions given at

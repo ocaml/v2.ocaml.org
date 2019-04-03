@@ -1,4 +1,4 @@
-(* Syntax hightlight code and eval ocaml toplevel phrases *)
+(* Syntax highlight code and eval ocaml toplevel phrases *)
 
 open Printf
 open Scanf
@@ -221,7 +221,7 @@ let add_prompt =
   let nl_re = Str.regexp "[\n\r]" in
   let indent_string s = Str.global_replace nl_re "\n  " s in
   fun phrase ->
-  (* Due to the prompt, one must add 2 spaces at the beginnig of each line *)
+  (* Due to the prompt, one must add 2 spaces at the beginning of each line *)
   let phrase = omd_map_string indent_string phrase in
   let open Omd in
   [Html_block("span", ["class", Some "ocaml-prompt"], [Raw "# "]);

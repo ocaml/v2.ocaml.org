@@ -156,7 +156,7 @@ are:
   if printing is required.
 - some polymorphic variant, with one case per
   possible error. This is very accurate (each error can be dealt with
-  explicitely and occurs in the type) but the use of polymorphic variants
+  explicitly and occurs in the type) but the use of polymorphic variants
   sometimes make error messages hard to read.
 
 

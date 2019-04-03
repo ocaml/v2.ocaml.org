@@ -70,7 +70,7 @@ foo:
 ```
 This declares a global symbol called `foo`. It means the address of the
 next thing to come can be named `foo`. Writing just `foo:` without the
-preceeding `.globl` directive declares a local symbol (local to just the
+preceding `.globl` directive declares a local symbol (local to just the
 current file).
 
 ```assembly
@@ -895,7 +895,7 @@ perf report
 ```
 
 The first command launches `foo.native` with arguments `a b c d` and
-records profiling informations in `perf.data`; the second command
+records profiling information in `perf.data`; the second command
 starts an interactive program to explore the call graph. The option
 `--call-graph=dwarf` makes perf aware of the calling convention of
 OCaml (with old versions of `perf`, enabling frame pointers in OCaml

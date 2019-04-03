@@ -407,7 +407,7 @@ except over the characters of the string.
 Now we come to a hard topic - recursion. Functional programmers are
 defined by their love of recursive functions, and in many ways recursive
 functions in f.p. are the equivalent of loops in imperative programming.
-In functional languages loops are second-class citizens, whilest
+In functional languages loops are second-class citizens, whilst
 recursive functions get all the best support.
 
 Writing recursive functions requires a change in mindset from writing

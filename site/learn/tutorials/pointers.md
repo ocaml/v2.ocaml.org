@@ -96,8 +96,8 @@ We thus see that fields of list cells in the C program have to be
 mutable, otherwise initialization is impossible. By contrast in OCaml,
 allocation and initialization are merged into a single basic operation:
 constructor application. This way, immutable data structures are
-definable (those data types are often refered to as “pure” or
-“functionnal” data structures). If physical modifications are necessary
+definable (those data types are often referred to as “pure” or
+“functional” data structures). If physical modifications are necessary
 for other reasons than mere initialization, OCaml provides records with
 mutable fields. For instance, a list type defining lists whose elements
 can be in place modified could be written:
@@ -116,7 +116,7 @@ and cell = {mutable hd : int; mutable tl : list};;
 ```
 Physical assignments are still useless to allocate mutable data: you
 write `Cons {hd = 1; tl = l}` to add `1` to the list `l`. Physical
-assigments that remain in OCaml programs should be just those
+assignments that remain in OCaml programs should be just those
 assignments that are mandatory to implement the algorithm at hand.
 
 ###  Pointers and mutable fields or vectors
@@ -126,7 +126,7 @@ in records. For this kind of use of pointers, the Pascal's instruction:
 `x^.label := val` (where `x` is a value of a record having a `label`
 field) corresponds to the OCaml construct `x.label <- val` (where `x` is
 a value of a record having a `label` mutable field). The Pascal's `^`
-symbol simply disapears, since dereferencing is automatically handled by
+symbol simply disappears, since dereferencing is automatically handled by
 the OCaml compiler.
 
 **In conclusion:** You can use explicit pointers in OCaml, exactly as in
@@ -145,7 +145,7 @@ type 'a pointer = Null | Pointer of 'a ref
 Explicit dereferencing (or reading the pointer's designated value) and
 pointer assignment (or writing to the pointer's designated memory
 location) are easily defined. We define dereferencing as a prefix
-operator named `!^`, and assigment as the infix `^:=`.
+operator named `!^`, and assignment as the infix `^:=`.
 
 ```ocamltop
 let ( !^ ) = function

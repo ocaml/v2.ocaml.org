@@ -93,7 +93,7 @@ define and understand. Let me say that we use the notion of *runtime
 events* that happen for instance when a parameter is passed to a
 function or when entering a pattern matching, or selecting a clause in a
 pttern matching. Computation progress is taken into account by these
-events, independantly of the instructions executed on the hardware.
+events, independently of the instructions executed on the hardware.
 
 Although this is difficult to implement, there exists such a debugger
 for OCaml under Unix: `ocamldebug` (there also exists one for Caml
@@ -163,7 +163,7 @@ Program end.
 Uncaught exception: Not_found
 (ocd)
 ```
-Self explanatory, is'nt it? So, you want to step backward to set the
+Self explanatory, isn't it? So, you want to step backward to set the
 program counter before the time the exception is raised; hence type in
 `b` as *backstep*, and you get
 

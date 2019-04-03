@@ -496,7 +496,7 @@ let hash_of_stream stream =
     stream;
   result
 ```
-What if you want to convert arbitary data types to streams? Well, if the
+What if you want to convert arbitrary data types to streams? Well, if the
 data type defines an `iter` function, and you don't mind using threads,
 you can use a producer-consumer arrangement to invert control:
 

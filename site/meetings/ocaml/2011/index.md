@@ -92,7 +92,7 @@ a Web browser. Its key features are the following:
 - The whole language, and most of the standard library are supported.
 - The generated code runs very fast
 - The compiler is easy to install: it only depends on Findlib and Lwt.
-- The generated code is independant of Eliom and the Ocsigen server. You can use it with any Web server.
+- The generated code is independent of Eliom and the Ocsigen server. You can use it with any Web server.
 - You can use a standard installation of OCaml to compile your programs. In particular, you do not have to recompile a library to use it with Js_of_ocaml. You just have to link your program with a specific library to interface with the browser APIs.
 - Binding Javascript libraries is very easy
 

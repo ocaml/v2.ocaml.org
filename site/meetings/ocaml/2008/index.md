@@ -99,8 +99,8 @@ packages, and what's generally happening behind the user interface.
 
 ### ocamlbuild, by Nicolas Pouillard
 
-Nicolas Pouillard is an OCaml developper, working for Gallium since
-two years, he has made a renovation of Camlp4 and also developped
+Nicolas Pouillard is an OCaml developer, working for Gallium since
+two years, he has made a renovation of Camlp4 and also developed
 ocamlbuild with Berke Durak.
 
 This talk presents ocamlbuild, a compilation manager that was added to
@@ -118,7 +118,7 @@ be extended through plug-ins written in OCaml itself.
 
 ### OCaml in Debian, by Sylvain Le Gall
 
-Sylvain Le Gall is a Debian Developper working on OCaml packages since
+Sylvain Le Gall is a Debian Developer working on OCaml packages since
 2003 and OCaml programmer since 2000.
 
 This talk is about how OCaml is integrated into the Debian GNU/Linux
