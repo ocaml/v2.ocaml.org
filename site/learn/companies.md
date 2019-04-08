@@ -587,15 +587,6 @@
         <p>TrustInSoft is a company that changes the rules in cybersecurity. TrustInSoft is the software publisher of the software analysis <a href="http://frama-c.com">Frama-C</a> platform. Our only moto is simple: make the formal methods accessible to the majority of software developers.</p>
     </dd>
 </dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/vectorfabrics.png" alt="Vector Fabrics">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.vectorfabrics.com/">Vector Fabrics</a>, The Netherlands</h2>
-        <p>Vector Fabrics is a high-tech software company, developing tools for embedded multicore programming. Its technology and expertise is getting widespread recognition in the industry as being innovative and unique in their ability to address heterogeneous multicore application-specific silicon platforms. Due to the advanced nature of its tools, Vector Fabrics operates at the forefront of the next generation of embedded platforms for diverse markets ranging from supercomputers to automotive to cell phones.</p>
-    </dd>
-</dl>
 
 <h4>Disclaimer</h4>
 Appearance of a company's name here does not necessarily imply
