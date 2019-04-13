@@ -11,55 +11,37 @@ Pour plus d'informations à propos de celle-ci, voir la page
 
 Il y a plusieurs moyens pour installer OCaml :
 
-* Utiliser OPAM, un gestionnaire de paquet spécialisé pour OCaml
-* Utiliser le gestionnaire de paquet de votre plateforme, dans lequel une
-   version récente d'OCaml est le plus souvent disponible.  ([FreeBSD](#FreeBSD), [Linux](#Linux), [macOS](#macOS),
-   [OpenBSD](#OpenBSD), [Windows](#Windows))
+* Utiliser [OPAM](#Installation via OPAM), un gestionnaire de paquet spécialisé pour OCaml
+* Utiliser le gestionnaire de paquet de votre plateforme ([FreeBSD](#FreeBSD),
+  [Linux](#Linux), [macOS](#macOS), [OpenBSD](#OpenBSD), [Windows](#Windows))
 * Installer depuis [les sources](#Installation depuis les sources)
+
+Pour trouver ou installer des bibliothèques OCaml, voir [la page
+dédiée aux bibliothèques](/learn/libraries.html). Vous trouverez plus
+d'information sur les différentes versions d'OCaml sur [cette
+page](/releases/).
+
 
 ## Installation via OPAM
 
-[OPAM](http://opam.ocaml.org/) est un gestionnaire de paquet développé
-pour OCaml, basé sur la bibliothèque CUDF de l'équipe Mancoosi
-(IRILL/Univ Paris 7), bibliothèque aussi utilisée par Debian pour
-gérer les dépendances de ses paquets. OPAM fonctionne très bien sous
-Unix, Linux, et Mac OS X. Le support pour Windows est en cours de
-développement.
+[OPAM](http://opam.ocaml.org/) est le gestionnaire de paquet officiel
+pour OCaml, il est recommandé de l'utiliser pour l'installation du
+compilateur comme des bibliothèques. L'installation d'OPAM est décrite
+sur [cette page](https://opam.ocaml.org/doc/Install.html).
 
-OPAM a été développé et est toujours maintenu par
-[OCamlPro](http://www.ocamlpro.com/), tandis que le dépôt de paquets
-est maintenu par [OCaml
-Labs](http://www.cl.cam.ac.uk/projects/ocamllabs/). OPAM est un
-logiciel libre, sur lequel du [support
-commercial](http://www.ocamlpro.com/) est disponible.
-
-Pour commencer, visitez la page [Télécharger et installer
-OPAM](http://opam.ocaml.org/) et suivez les instructions.
-
-Pour les plus impatients, il existe un installeur binaire :
-
-```bash
-$ wget https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh
-$ sh ./opam_installer.sh /usr/local/bin  # Vous pouvez changer le chemin pour l'installer ailleurs
+Exemple d'utilisation d'OPAM sous bash:
 ```
-Ou depuis les sources:
-
-```bash
-git clone https://github.com/ocaml/opam
-cd opam
-./configure  # (ou ./configure --prefix=$HOME si vous voulez l'installer dans votre $HOME)
-make
-make install
+# environment setup
 opam init
-eval "$(opam config env)"
-opam switch 4.06.1
+eval `opam env`
+# install given version of the compiler
+opam switch create 4.06.1
+eval `opam env`
+# check you got what you want
+which ocaml
+ocaml --version
 ```
-## [FreeBSD](https://www.freebsd.org/)
 
-```bash
-pkg_add -r ocaml-nox11 # Si vous ne voulez pas le support de X11 
-pkg_add -r ocaml
-```
 ## Linux
 
 La plupart des distributions Linux permettent d'installer OCaml et/ou OPAM avec le gestionnaire de paquet système.
@@ -150,6 +132,13 @@ port install ocaml
 port install opam
 ```
 
+## [FreeBSD](https://www.freebsd.org/)
+
+```bash
+pkg_add -r ocaml-nox11 # Si vous ne voulez pas le support de X11 
+pkg_add -r ocaml
+```
+
 ## [OpenBSD](https://www.openbsd.org/)
 
 ```
@@ -180,7 +169,7 @@ Voici quelques alternatives :
   dans la distribution pour plus de détails.
 
 * Utiliser « Bash on Windows » et installer OCaml comme sur Ubuntu.
-   L'inconvénient de cette méthode est que vous ne créez pas 
+  L'inconvénient de cette méthode est que vous ne créez pas 
    des fichiers binaires natifs pour Windows mais des fichiers binaires pour Linux.
 
 * [Cygwin](http://cygwin.com/) Avec Cygwin, vous pouvez l'installer avec l'outil `setup`. 
