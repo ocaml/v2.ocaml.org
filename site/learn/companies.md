@@ -587,6 +587,16 @@
         <p>TrustInSoft is a company that changes the rules in cybersecurity. TrustInSoft is the software publisher of the software analysis <a href="http://frama-c.com">Frama-C</a> platform. Our only moto is simple: make the formal methods accessible to the majority of software developers.</p>
     </dd>
 </dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Zeo_Agency_Logo.svg/1280px-Zeo_Agency_Logo.svg.png" alt="Zeo Agency">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://zeo.org/">Zeo Agency</a>, London</h2>
+        <p>Zeo is a digital marketing company focus on helping companies to do better in SEO. Due to the nature of our business, we manage billions of lines in our database & create insights by using this data. To utilize our needs effectively, we use OCaml in our data crawling & processing part.</p>
+    </dd>
+</dl>
+
 
 <h4>Disclaimer</h4>
 Appearance of a company's name here does not necessarily imply
