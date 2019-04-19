@@ -1,5 +1,7 @@
 module H = Cow.Html
 
+(* Does not work with opam 2.  See https://github.com/ocaml/opam2web/pull/171 *)
+
 let packages_base = "https://opam.ocaml.org/packages/"
 
 let staging = try ignore(Sys.getenv "SET_STAGING"); true
@@ -14,7 +16,7 @@ let top_packages () =
   O2wStatistics.top_packages
     ~reverse:true ~ntop:6 dates_fn u.OpamfUniverse.max_packages
 
-let () =
+let todo () =
   let to_row (pkg, update_tm) =
     let open OpamPackage in
     let name = name pkg in
@@ -51,6 +53,11 @@ let () =
       raise e
     )
 
+let () =
+  let opam_update_list = open_out "opam_update_list" in
+  Printf.fprintf opam_update_list
+    "<tr><td colspan=\"3\">The script is being updated</td></tr>";
+  close_out opam_update_list;
 
 ;;
 (* Local Variables: *)
