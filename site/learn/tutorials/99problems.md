@@ -1045,7 +1045,7 @@ And(Or(Var "a", Var "b"), And(Var "a", Var "b"))
 Define a function, `table2` which returns the truth table of a given
 logical expression in two variables (specified as arguments). The return
 value must be a list of triples containing
-`(value_of_a, balue_of_b,     value_of_expr)`.
+`(value_of_a, value_of_b,     value_of_expr)`.
 
 SOLUTION
 
