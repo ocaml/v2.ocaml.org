@@ -4,6 +4,8 @@
 
 *Table of contents*
 
+**NOTE**: the stream expressions are based on camlp4, whose usage is discouraged in modern OCaml as it's incompatible with ppx (syntactic preprocessors).
+
 ## Stream Expressions
 Streams are very powerful and concise once the necessary tools (stream
 builders, combinators, and other utilities) are in place. However, the
