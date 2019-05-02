@@ -4,7 +4,7 @@
 
 # Notions de base
 ## Commentaires
-Les commentaires OCaml sont délimités par `(*` et `*)`, comme ceci:
+Les commentaires OCaml sont délimités par `(*` et `*)`, comme ceci :
 
 ```ocaml
 (* Ceci est une ligne de commentaire. *)
@@ -20,7 +20,7 @@ Il n'y a pas actuellement de syntaxe pour les commentaires de fin de
 ligne comme `# ...` en Perl ou `// ...` en C99/C++/Java.
 
 OCaml prend en compte les commentaires imbriqués, ce qui permet
-facilement de mettre des portions de code en commentaire:
+facilement de mettre des portions de code en commentaire :
 
 ```ocaml
 (* Ce code n'est pas au point...
@@ -169,7 +169,7 @@ Les détails sur tout ça vont être expliqués dans les sections et
 chapitres qui suivent.
 
 ## Types de base
-En OCaml les types de base sont:
+En OCaml les types de base sont :
 
 ```
 Type OCaml     Intervalle de définition
@@ -366,7 +366,7 @@ give_me_a_three : 'a -> int
 ```
 où `'a` est mis pour n'importe quel type. Vous pouvez par exemple
 utiliser cette fonction comme ceci: `give_me_a_three "foo"`, ou comme
-cela: `give_me_a_three 2.0`, et les deux sont tout-à-fait valides en
+cela : `give_me_a_three 2.0`, et les deux sont tout-à-fait valides en
 OCaml.
 
 Pour le moment l'utilité des fonctions polymorphes n'est pas évidente,
