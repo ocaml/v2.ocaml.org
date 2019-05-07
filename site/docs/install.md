@@ -40,7 +40,7 @@ opam switch create 4.06.1
 eval `opam env`
 # check you got what you want
 which ocaml
-ocaml --version
+ocaml -version
 ```
 
 ## Linux
