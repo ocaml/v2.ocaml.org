@@ -4,6 +4,64 @@
 
 # はじめの一歩
 
+OCamlコードの実行
+-----------------
+
+[TryOCaml](http://try.ocamlpro.com)のおかげで、ブラウザで対話型セッションを
+実行するのが最も簡単な始め方です。
+
+OCamlをコンピューターにインストールするには、[Install](/docs/install.html)
+ドキュメントを参照して下さい。
+
+素早く小さいOCamlの式を試すには、対話型のトップレベルまたは、REPL(Read-Eval-Print Loop)
+を使うことができます。
+
+`ocaml`コマンドは、基本的なトップレベルを提供します。
+(システムのパッケージマネージャーを通して`rlwrap` をインストールし、
+ヒストリーナビゲーションを得るために`rlwrap ocaml`と実行したほうが良いです。)
+
+`ocaml`コマンドを[OPAM](/docs/install.html#OPAM)または、システムのパッケージマネージャーを通して
+インストールした場合は、代わりに[utop](https://github.com/diml/utop)トップレベルを使う事をおすすめします。
+基本的なインタフェースは同じですが、より便利に使うことができます。(ヒストリーナビゲーション、オートコンプリート等)
+
+各ステートメントが終わったことを示すには、`;;`を使います。 これは、`ocaml`実行中の様子です。:
+
+```console
+$ ocaml
+        OCaml version {{! get LATEST_OCAML_VERSION !}}
+
+# 1+1;;
+- : int = 2
+```
+
+これは、`utop`を使って同じコードを実行中の様子です。:
+
+```console
+───────┬────────────────────────────────────────────────────────────┬─────
+       │ Welcome to utop version 1.18 (using OCaml version 4.02.3)! │     
+       └────────────────────────────────────────────────────────────┘     
+
+Type #utop_help for help about using utop.
+
+─( 10:12:16 )─< command 0 >───────────────────────────────────────────────
+utop # 1 + 1;;
+- : int = 2
+```
+
+`my_prog.ml` という名前のOCamlプログラムをネイティブの実行形式へコンパイルするには、`ocamlbuild my_prog.native`を使います:
+
+```shell
+$ mkdir my_project
+$ cd my_project
+$ echo 'let () = print_endline "Hello, World!"' > my_prog.ml
+$ ocamlbuild my_prog.native
+Finished, 4 targets (0 cached) in 00:00:00.
+$ ./my_prog.native
+Hello, World!
+```
+
+詳細に付いては、[Compiling OCaml projects](compiling_ocaml_projects.html)を参照して下さい。
+
 コメント
 --------
 
