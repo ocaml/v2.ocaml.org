@@ -36,7 +36,7 @@ Example using the Bash shell and opam-2.0:
 opam init
 eval `opam env`
 # install given version of the compiler
-opam switch create 4.06.1
+opam switch create 4.07.1
 eval `opam env`
 # check you got what you want
 which ocaml
@@ -61,7 +61,7 @@ Other Debian packages related to OCaml are
 They are made available through
 [The Debian OCaml Packaging Policy](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html).
 
-### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 18.10](https://repology.org/badge/version-only-for-repo/ubuntu_18_10/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 19.04](https://repology.org/badge/version-only-for-repo/ubuntu_19_04/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 ```bash
@@ -72,7 +72,7 @@ apt install ocaml
 Other Ubuntu packages related to OCaml are
 [listed here](http://packages.ubuntu.com/search?keywords=ocaml).
 
-### [Fedora](https://getfedora.org/) [![Fedora 29](https://repology.org/badge/version-only-for-repo/fedora_29/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Fedora](https://getfedora.org/) [![Fedora 30](https://repology.org/badge/version-only-for-repo/fedora_30/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 ```bash
