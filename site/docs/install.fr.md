@@ -35,7 +35,7 @@ Exemple d'utilisation d'OPAM sous bash:
 opam init
 eval `opam env`
 # install given version of the compiler
-opam switch create 4.06.1
+opam switch create {{! get LATEST_OCAML_VERSION !}}
 eval `opam env`
 # check you got what you want
 which ocaml
@@ -46,7 +46,7 @@ ocaml --version
 
 La plupart des distributions Linux permettent d'installer OCaml et/ou OPAM avec le gestionnaire de paquet système.
 
-### [Debian](https://www.debian.org/index.fr.html)
+### [Debian](https://www.debian.org/index.fr.html) [![Debian Unstable](https://repology.org/badge/version-only-for-repo/debian_unstable/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 apt install ocaml-nox # Si vous ne voulez pas le support de X11 
@@ -57,7 +57,7 @@ Les autres paquets Debian liés à OCaml sont
 Ils sont disponibles selon
 [la politique de construction des paquets pour OCaml](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html) (en anglais) de Debian.
 
-### [Ubuntu](https://www.ubuntu.com/)
+### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 19.04](https://repology.org/badge/version-only-for-repo/ubuntu_19_04/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 apt install ocaml # Avec le support de X11 (donc le module Graphics)
@@ -68,7 +68,7 @@ apt install ocaml-nox # Plus léger, si vous ne voulez pas le support de X11
 Les autres paquets Unbuntu liés à OCaml sont
 [listés ici](http://packages.ubuntu.com/search?keywords=ocaml) (en anglais).
 
-### [Fedora](https://getfedora.org/)
+### [Fedora](https://getfedora.org/) [![Fedora 30](https://repology.org/badge/version-only-for-repo/fedora_30/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 yum install ocaml
@@ -83,7 +83,14 @@ et une
 [mailing liste](https://lists.fedoraproject.org/mailman/listinfo/Ocaml-devel) (en anglais)
 pour les individus intéressés par OCaml sur Fedora ou Red Hat Enterprise Linux.
 
-### [Gentoo](https://www.gentoo.org/)
+### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) [![CentOS 7](https://repology.org/badge/version-only-for-repo/centos_7/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
+```bash
+yum install ocaml
+yum search ocaml   # List packages related to OCaml
+```
+
+### [Gentoo](https://www.gentoo.org/) [![Gentoo](https://repology.org/badge/version-only-for-repo/gentoo/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 Avec un utilisateur membre du `portage` groupe exécuter:
 
@@ -92,13 +99,13 @@ emerge dev-lang/ocaml
 emerge -S ocaml # Liste les paquets liés à OCaml
 ```
 
-### [SuSE](https://www.suse.com/)
+### [SuSE](https://www.suse.com/) [![OpenSUSE](https://repology.org/badge/version-only-for-repo/opensuse_tumbleweed/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 zypper install ocaml
 ```
 
-### [Mageia](https://www.mageia.org/)
+### [Mageia](https://www.mageia.org/) [![Mageia Cauldron](https://repology.org/badge/version-only-for-repo/mageia_cauldron/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 urpmi ocaml-compiler
@@ -108,11 +115,20 @@ urpmq --list | grep ocaml # Liste les paquets liés à OCaml
 
 La  [Politique de construction des paquets pour OCaml](https://wiki.mageia.org/en/OCaml_policy) (en anglais) de Mageia.
 
+### [Arch Linux](http://www.archlinux.org/) [![Arch Linux](https://repology.org/badge/version-only-for-repo/arch/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
+```bash
+pacman -S ocaml
+```
+
+Les paquets d'Arch Linux pour OCaml sont
+[énumérés ici](https://www.archlinux.org/packages/?q=ocaml).
+
 ## macOS
 
 Sur macOS OCaml et/ou OPAM peuvent êtres installés grâce aux systèmes de gestion de paquets tiers.
 
-### [Homebrew](http://brew.sh/)
+### [Homebrew](http://brew.sh/) [![Homebrew](https://repology.org/badge/version-only-for-repo/homebrew/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 brew install ocaml
@@ -125,7 +141,7 @@ brew install opam
 apt install ocaml
 ```
 
-### [MacPorts](http://www.macports.org/)
+### [MacPorts](http://www.macports.org/) [![MacPorts](https://repology.org/badge/version-only-for-repo/macports/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```
 port install ocaml

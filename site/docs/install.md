@@ -36,7 +36,7 @@ Example using the Bash shell and opam-2.0:
 opam init
 eval `opam env`
 # install given version of the compiler
-opam switch create 4.07.1
+opam switch create {{! get LATEST_OCAML_VERSION !}}
 eval `opam env`
 # check you got what you want
 which ocaml
