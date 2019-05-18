@@ -51,7 +51,7 @@ OCamlCore.com|http://www.ocamlcore.com/wp/feed/?amp;language=en&language=en
 OCamlPro|http://www.ocamlpro.com/feed/
 ODNS project|http://odns.tuxfamily.org/feed/
 Ocaml XMPP project|http://ox.tuxfamily.org/feed/
-Ocsigen project|http://ocsigen.org/news.atom
+Ocsigen project|http://ocsigen.org/feed.xml
 Ocsigen blog|https://ocsigen.github.io/feed.xml
 Opa|http://www.blogger.com/feeds/2073503406800427577/posts/default
 Orbitz|http://functional-orbitz.blogspot.com/feeds/posts/default/-/planetocaml?alt=rss
