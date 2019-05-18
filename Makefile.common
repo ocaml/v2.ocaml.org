@@ -37,11 +37,12 @@ template/%_code_snippet.html:template/%_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@
 
 opam_update_list: script/generate_opam_update_list
+	curl -O http://opam.ocaml.org/json/last10_updates.json
 	script/generate_opam_update_list
 
 script/generate_opam_update_list: script/generate_opam_update_list.ml
 	cd script && \
-	$(OCAMLOPT) -o ../"$@" -package opamfu,opam2web,cow \
+	$(OCAMLOPT) -o ../"$@" -package cow \
 	  -linkpkg generate_opam_update_list.ml
 
 script/lang_of_filename: script/lang_of_filename.ml $(UTILS_DEP)

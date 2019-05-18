@@ -1,7 +1,5 @@
 *~
 _build/
-setup.data
-setup.log
 configure
 *.native
 *.byte
@@ -10,7 +8,6 @@ configure
 *.cmxa
 *.annot
 .*.swp
-doclib.docdir
 ocaml.org/
 ocamltohtml
 rss2html
@@ -32,4 +29,4 @@ script/generate_opam_update_list
 opam_update_list
 *.bz2
 *.ai
-_opam
+*.json
