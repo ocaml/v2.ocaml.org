@@ -326,7 +326,7 @@
         <img src="/img/users/jane-street.jpg" alt="Jane Street">
     </dt>
     <dd class="span5">
-        <h2><a href="http://janestreet.com/">Jane Street</a>, United States</h2>
+        <h2><a href="http://janestreet.com/">Jane Street</a>, United States, United Kingdom, Hong Kong</h2>
         <p>Jane Street is a quantitative trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. They're the largest commercial user of OCaml, using it for everything from research tools to trading systems to systems infrastructure to accounting systems. Jane Street has over 400 OCaml programmers and over 15 million lines of OCaml, powering a technology platform that trades billions of dollars every day. Half a million lines of their code is released <a href="http://opensource.janestreet.com">open source</a>, and they've created key parts of the open-source OCaml ecosystem, like <a href="http://dune.build">Dune</a>. You can learn more by checking out their <a href="http://blog.janestreet.com">tech blog</a>.</p>
     </dd>
 </dl>
