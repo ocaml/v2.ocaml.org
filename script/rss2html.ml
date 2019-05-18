@@ -173,6 +173,8 @@ let feed_of_url ~name url =
   | Nethttp_client.Http_error(err, _) ->
      let msg = Nethttp.(string_of_http_status (http_status_of_int err)) in
      broken_feed name url msg
+  | Invalid_argument msg ->     (* e.g. Syndic.Date.of_string *)
+     broken_feed name url ("Invalid_argument: " ^ msg)
 
 let planet_feeds =
   let add_feed acc line =
