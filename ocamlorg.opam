@@ -6,7 +6,7 @@ license: "See LICENSE.md file."
 homepage: "https://github.com/ocaml/ocaml.org"
 bug-reports: "https://github.com/ocaml/ocaml.org/issues"
 depends: [
-  "ocaml" {>= "4.04.0"}
+  "ocaml" {>= "4.05.0"}
   "ocamlfind" {build}
   "base-bytes" {build}
   "omd" {>= "1.2.1"}
