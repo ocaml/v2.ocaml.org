@@ -102,15 +102,6 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/ashima.png" alt="Ashima Group">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://ashimagroup.net">Ashima Group</a>, United States</h2>
-        <p>Ashima Group uses OCaml for geometric reasoning, GPU shader translation, and high-performance servers. OCaml's type system, compiler, tools, community, and design philosophy make it an extremely powerful and versatile tool for diverse systems development tasks.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
         <img src="/img/users/besport.png" alt="Be Sport">
     </dt>
     <dd class="span5">
@@ -143,15 +134,6 @@
     <dd class="span5">
         <h2><a href="http://www.cea.fr">CEA</a>, France</h2>
         <p>CEA is a French state company, member of the OCaml Consortium. It uses OCaml mainly to develop a platform dedicated to source-code analysis of C software, called <a href="http://frama-c.com">Frama-C</a>.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/cloudfounders.png" alt="CloudFounders">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.cloudfounders.com">CloudFounders</a>, Belgium</h2>
-        <p>CloudFounders offers solutions for Data Center functionality. They use the Arakoon key/value store and have written an <a href="https://github.com/cloudfounders/kinetic-ocaml-client">OCaml client</a> for Seagate Kinetic devices. The <a href="http://www.openvstorage.com">Open vStorage Backend</a> is also written in OCaml.
     </dd>
 </dl>
 <dl class="row">
@@ -198,37 +180,6 @@
         <h2><a href="http://www.hostnet.com.br/">Digirati dba Hostnet</a>,
 		Brazil</h2>
         <p>Digirati dba Hostnet is a web hosting company. We use OCaml mostly for internal systems programming and infrastructure services. We also have contributed with the community by releasing a few open source <a href="https://github.com/andrenth">OCaml libraries</a>.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/digital.gif" alt="Digital Solutions">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://dsmagic.com">Digital Solutions</a>, Uganda</h2>
-        <p>General programming, with wide base and experience in Mobile Telephony programming and web application development.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/esper.png" alt="Esper">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://esper.com/">Esper</a>, United States</h2>
-        <p>Esper's software assists
-        assistants. In doing so, we save
-        the time of executives. We want to lead the way to a more
-        productive world with an assistant for every professional and
-        Esper for every assistant. We envision a future without
-        endless e-mail scheduling, without cognitive overload, and
-        where technology serves us, not distracts us. To accomplish
-        these goals, we're building a mobile/web suite that
-        streamlines communication between assistants and executives,
-        automates rote tasks, and shares information.</p>
-        <p>Our <a href="http://stackoverflow.com/a/19355173/597517">Web
-        backend is written in OCaml</a> and provides an API used
-        by our own Web, Android, and iOS clients.
-        </p>
     </dd>
 </dl>
 <dl class="row">
@@ -314,15 +265,6 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/it-planning.png" alt="IT Planning">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.itpl.co.jp/">IT Planning</a>, Japan</h2>
-        <p>We use OCaml for some kind of enterprise systems (i.e. production control, portfolio risk management and web services).</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
         <img src="/img/users/jane-street.jpg" alt="Jane Street">
     </dt>
     <dd class="span5">
@@ -367,24 +309,6 @@
     <dd class="span5">
         <h2><a href="http://www.medit-pharma.com/">MEDIT</a>, France</h2>
         <p>MEDIT develops <a href="http://mjambon.com/phd.html">SuMo, an advanced bioinformatic system</a> for the analysis of protein 3D structures and the identification of drug-design targets. SuMo is written entirely in OCaml and provides interfaces to several commercial molecular-modelling packages.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/mlstate.jpg" alt="MLstate">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.mlstate.com">MLstate</a>, France</h2>
-        <p>MLstate is the creator of <a href="http://opalang.org">Opa</a>: an open-source web development platform. It consists of a new programming language, a new web server, a new database and a new distributed execution engine, all of them tightly integrated to provide a great experience for web developers. Opa is concise, simple, concurrent, dynamically secure and secure out of the box. It is written mainly in OCaml and uses OCaml as an intermediate language for compilation.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/monoidics.png" alt="Monoidics">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.monoidics.com">Monoidics</a>, United Kingdom</h2>
-        <p>Monoidics develops Infer, a static analyzer for software verification. The analysis engine is entirely written in OCaml.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -441,15 +365,6 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/parkandeaton.png" alt="Park and Eaton">
-    </dt>
-    <dd class="span5">
-        <h2><a href="https://parkandeaton.com">Park and Eaton</a>, United States</h2>
-        <p>Park and Eaton is a marketing and software consultant firm in Philadelphia. Offering a number of solutions including QA and security testing; redesigns for scalability and maintainability; and hardware options like digital signage, Park and Eaton specializes in OCaml web and desktop services.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
         <img src="/img/users/arena.jpg" alt="Arena">
     </dt>
     <dd class="span5">
@@ -477,24 +392,6 @@
 </dl>
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/runorg.png" alt="RunOrg">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://runorg.com">RunOrg</a>, France</h2>
-        <p>RunOrg provides non-profits and organizations with a private
-        intranet and public website using a SaaS model. The application
-        is written entirely in OCaml for two reasons: one is performance,
-        as OCaml generates fast binaries and supports elegant optimization
-        patterns. The other reason is that the flexible and powerful
-        compile-time type inference allows massive changes in the code
-        base without causing any bugs, effectively acting as a
-        compiler-generated unit testing suite. The software is powered
-        by an open source in-house web framework,
-        <a href="https://github.com/VictorNicollet/Ohm">Ohm</a>.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
         <img src="/img/default.png" alt="Sakhalin">
     </dt>
     <dd class="span5">
@@ -509,15 +406,6 @@
     <dd class="span5">
         <h2><a href="http://shirogames.com">Shiro Games</a>, France</h2>
         <p>Shiro Games is developing games using <a href="http://haxe.org/">Haxe</a>, a language built with a compiler written in OCaml.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/skylable.png" alt="Skylable">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://skylable.com">Skylable</a>, United Kingdom</h2>
-        <p>Skylable's mission is to build a fast, robust and cost-effective object-storage solution for the Open-Source community and Enterprises. Skylable used OCaml for their LibreS3 product — an open source replacement for the Amazon S3 service, implementing (a subset of) the S3 REST API. It is written in a monadic style, currently using Lwt and Ocsigenserver as implementations.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -537,16 +425,6 @@
     <dd class="span5">
         <h2><a href="http://www.solvuu.com">Solvuu</a>, United States</h2>
         <p>Solvuu's software allows users to store big and small data sets, share the data with collaborators, execute computationally intensive algorithms and workflows, and visualize results. Its initial focus is on genomics data, which has important implications for healthcare, agriculture, and fundamental research. Virtually all of Solvuu's software stack is implemented in OCaml.</p>
-    </dd>
-</dl>
-
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/stackhut.png" alt="StackHut">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.stackhut.com">StackHut</a>, United Kingdom</h2>
-        <p>StackHut are working to make developers lives easier by cutting the the amount of code they write; we want developers to spend more time writing core business-logic and less time thinking about infrastructure. The core platform, toolkit, and run-time are written in OCaml, interfacing with Linux containers and also Erlang on the distributed side.</p>
     </dd>
 </dl>
 <dl class="row">
