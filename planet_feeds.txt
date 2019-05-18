@@ -1,4 +1,3 @@
-Alex Leighton|http://alexleighton.tumblr.com/tagged/ocaml/rss
 Amir Chaudhry|http://amirchaudhry.com/tags/ocaml-atom.xml
 Andrej Bauer|http://math.andrej.com/feed/
 Andy Ray|http://www.ujamjar.com/ocaml.xml
@@ -8,7 +7,6 @@ CUFP|http://cufp.org/blog/all.rss.xml
 Cameleon news|http://www.blogger.com/feeds/7617521785419311079/posts/default
 Caml INRIA|http://caml.inria.fr/news.en.rss
 Caml Spotting|http://camlspotter.blogspot.com/feeds/posts/default?alt=rss
-Cedeela|http://cedeela.fr/feeds/ocaml.atom.xml
 Coherent Graphics|http://coherentpdf.com/blog/?tag=ocaml&feed=rss2
 Coq|http://coq.inria.fr/news/feed
 Cranial Burnout|http://www.blogger.com/feeds/9108979482982930820/posts/default/-/OCaml
@@ -31,13 +29,11 @@ GitHub Jobs|https://jobs.github.com/positions.atom?description=ocaml
 Grant Rettke|http://www.wisdomandwonder.com/tag/OCaml/feed
 Hannes Mehnert|https://hannes.nqsb.io/atom
 Hong bo Zhang|http://hongboz.wordpress.com/feed/
-Incubaid Research|http://blog.incubaid.com/tag/ocaml/feed/
 Jake Donham|http://ambassadortothecomputers.blogspot.com/feeds/posts/default?alt=rss
 Jane Street|https://blog.janestreet.com/feed.xml
 KC Sivaramakrishnan|http://kcsrk.info/atom-ocaml.xml
 Leo White|http://lpw25.net/rss.xml
 LexiFi|http://www.lexifi.com/blogs/ocaml/feed
-Mads Hartmann|http://mads379.github.io/feed.ocaml.xml
 Magnus Skjegstad|http://www.skjegstad.com/feeds/ocaml.tag.atom.xml
 Marc Simpson|http://newblog.0branch.com/rss.xml
 Matthias Puech|http://syntaxexclamation.wordpress.com/tag/ocaml/feed/
@@ -62,20 +58,16 @@ Orbitz|http://functional-orbitz.blogspot.com/feeds/posts/default/-/planetocaml?a
 Paolo Donadeo|http://www.donadeo.net/facets/programming-languages/objective-caml/feed/
 Perpetually Curious|http://lambdafoo.com/blog/categories/ocaml/atom.xml
 Peter Zotov|http://whitequark.org/blog/categories/ocaml/atom.xml
-Phil Tomson|http://philtomson.github.io/atom.xml
-Pietro Abate|http://mancoosi.org/~abate/taxonomy/term/5/0/feed
 Psellos|http://psellos.com/atom.xml
 Richard Jones|http://rwmj.wordpress.com/tag/ocaml/feed/
 Rudenoise|http://rudenoise.uk/ocaml.rss
 Rudi Grinberg|http://rgrinberg.com/blog/atom.xml
 Sebastien Mondet|http://seb.mondet.org/blog/feed/ocaml.rss
 Shayne Fletcher|http://blog.shaynefletcher.org/feeds/posts/default/-/OCaml
-Simon Grondin|http://simongrondin.name/?cat=9&feed=rss2
 Stefano Zacchiroli|http://upsilon.cc/~zack/tags/ocaml/index.rss
 Sylvain Le Gall|http://le-gall.net/sylvain+violaine/blog/index.php?feed/tag/ocaml/atom
 Thomas Leonard|http://roscidus.com/blog/blog/categories/ocaml/atom.xml
 Till Varoquaux|http://www.blogger.com/feeds/6115529230232389198/posts/default
-WODI|http://wodi.forge.ocamlcore.org/atom.xml
 Yan Shvartzshnaider|http://yansnotes.blogspot.com/feeds/posts/default/-/ocaml
 OCaml-Java|http://www.ocamljava.org/feed.xml
 OCaml Platform|http://opam.ocaml.org/blog/feed.xml
