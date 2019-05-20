@@ -212,7 +212,7 @@
 
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/forallsecure.png" alt="ForAllSecure">
+        <img src="/img/users/forallsecure.svg" alt="ForAllSecure">
     </dt>
     <dd class="span5">
         <h2><a href="http://forallsecure.com">ForAllSecure</a>, United States</h2>
