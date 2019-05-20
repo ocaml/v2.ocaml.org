@@ -33,7 +33,6 @@ Jake Donham|http://ambassadortothecomputers.blogspot.com/feeds/posts/default?alt
 Jane Street|https://blog.janestreet.com/feed.xml
 KC Sivaramakrishnan|http://kcsrk.info/atom-ocaml.xml
 Leo White|http://lpw25.net/rss.xml
-LexiFi|http://www.lexifi.com/blogs/ocaml/feed
 Magnus Skjegstad|http://www.skjegstad.com/feeds/ocaml.tag.atom.xml
 Marc Simpson|http://newblog.0branch.com/rss.xml
 Matthias Puech|http://syntaxexclamation.wordpress.com/tag/ocaml/feed/
