@@ -79,7 +79,7 @@ val foo : a -> b
 
 To get a stacktrace when a unhandled exception makes your program crash, you
 need to compile the program in "debug" mode (with `-g` when calling
-`ocamlc`, or `-debug` when calling `ocamlbuild`).
+`ocamlc`, or `-tag 'debug'` when calling `ocamlbuild`).
 Then:
 
     OCAMLRUNPARAM=b ./myprogram [args]
