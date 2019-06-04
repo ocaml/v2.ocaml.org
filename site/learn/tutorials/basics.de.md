@@ -151,7 +151,7 @@ OCaml an. Hoffentlich fragen Sie sich jetzt:
 
 -   Warum müssen wir die Typen von `a` und `b` in der OCaml-Version
     nicht festlegen? Woher weiß OCaml was die korrekten Typen sind (bzw.
-    *weiß* OCaml was die Typen sind, oder ist OCaml völlig dznamisch
+    *weiß* OCaml was die Typen sind, oder ist OCaml völlig dynamisch
     typisiert?).
 -   In C wird `2` implizit in einen `double` konvertiert, aber warum
     macht OCaml das nicht auch so?
