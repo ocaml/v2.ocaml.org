@@ -121,6 +121,10 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .typetable { border-style : hidden }
 .paramstable { border-style : hidden ; padding: 5pt 5pt}
 
+li p {
+  margin-bottom: 8px;
+}
+
 .ocaml-prompt { color: #8d8d8d }
 .ocaml-function { color: #0606ee }
 .ocaml-variable, .planet .Identifier { color: #b8860b }
