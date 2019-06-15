@@ -102,12 +102,32 @@
 				/><img class="png" src="/img/rss.png" alt="RSS" /></a>
             </h1>
 			<ul class="news-feed" style="margin-bottom: 0px">
-			<li class="announcement"><article>
+			<!-- <li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2017/">OCaml 2017</a></h1>
 			  <p>September 8, 2017</p>
 			  <a title="OCaml Users and Developers Workshop"
 			     href="/meetings/ocaml/2017/">
+			    <img alt="" src="/img/announcement.svg" class="svg" />
+			    <img alt="" src="/img/announcement.png" class="png" />
+			  </a>
+			</article></li> -->
+			<li class="announcement"><article>
+			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
+			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
+				   >Parution d'OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
+			   <p>14 juin 2019</p>
+			   <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
+			      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
+			    <img alt="" src="/img/announcement.svg" class="svg" />
+			    <img alt="" src="/img/announcement.png" class="png" />
+			  </a>
+			</article></li>
+			<li class="announcement"><article>
+			  <h1><a title="OCaml Weekly News"
+			       href="/community/cwn/" >OCaml Weekly News</a></h1>
+			   <p>{{! cmd script/weekly_news --date !}}</p>
+			   <a title="OCaml Weekly News" href="/community/cwn/">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>

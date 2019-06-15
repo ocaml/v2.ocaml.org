@@ -118,7 +118,7 @@
 			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
 				   >Release of OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
-			   <p>Oct 4, 2018</p>
+			   <p>June 14, 2019</p>
 			   <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
