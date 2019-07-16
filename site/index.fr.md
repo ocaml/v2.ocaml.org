@@ -102,16 +102,16 @@
 				/><img class="png" src="/img/rss.png" alt="RSS" /></a>
             </h1>
 			<ul class="news-feed" style="margin-bottom: 0px">
-			<!-- <li class="announcement"><article>
+			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
-			       href="/meetings/ocaml/2017/">OCaml 2017</a></h1>
-			  <p>September 8, 2017</p>
+			       href="/meetings/ocaml/2019/">OCaml 2019</a></h1>
+			  <p>23 août, 2019</p>
 			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2017/">
+			     href="/meetings/ocaml/2019/">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
-			</article></li> -->
+			</article></li>
 			<li class="announcement"><article>
 			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
