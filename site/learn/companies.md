@@ -303,7 +303,7 @@
 
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/matrixlead.jpg" alt="Matrix Lead">
+        <img src="/img/users/matrixlead.png" alt="Matrix Lead">
     </dt>
     <dd class="span5">
         <h2><a href="http://www.matrixlead.com/">Matrix Lead</a>, France and China</h2>
