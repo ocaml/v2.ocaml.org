@@ -61,7 +61,7 @@ Program Committee
 - David Allsopp, University of Cambridge, UK
 - Raja Boujbel, OCamlPro, France
 - Timothy Bourke, INRIA, France
-- Simon Cruanes, Aesthetic Integration, USA
+- Simon Cruanes, Imandra, USA
 - Emilio Jésus Gallego Arias, MINES ParisTech, France
 - Thomas Gazagnaire, Tarides, France
 - Ivan Gotovchits, CMU, USA
