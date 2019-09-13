@@ -9,15 +9,15 @@ standard library provides.
 Official documentation for the modules of interest:
 the [core library](http://caml.inria.fr/pub/docs/manual-ocaml/core.html)
 including the initially opened module
-[Pervasives](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html),
+[Pervasives](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Stdlib.html),
 [Printf](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Printf.html).
 
 The standard library doesn't provide functions that directly read a file
 into a string or save a string into a file. Such functions can be found
 in third-party libraries such as
-[Extlib](http://code.google.com/p/ocaml-extlib/).
+[Extlib](https://github.com/ygrek/ocaml-extlib).
 See [Std.input_file and
-Std.output_file](http://ocaml-extlib.googlecode.com/svn/doc/apiref/Std.html).
+Std.output_file](http://ygrek.org.ua/p/extlib/doc/Std.html).
 
 ## Buffered channels
 The normal way of opening a file in OCaml returns a **channel**. There
