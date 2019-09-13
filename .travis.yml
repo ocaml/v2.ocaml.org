@@ -9,6 +9,7 @@ addons:
     - ocaml-native-compilers
     - opam
     - aspcud
+    - libgnutls28-dev
     - nettle-dev   # for ocamlnet
 
 script: ./.travis-ci.sh
