@@ -56,6 +56,8 @@ Please add yours if you don't see it listed!
 1. [University of Maryland](http://www.cs.umd.edu/class/spring2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages (CMSC 330)
 1. [University of Massachusetts Amherst](http://people.cs.umass.edu/~arjun/teaching/631/) - Programming Languages (CMPSCI 631)
 1. [University of Massachusetts](http://people.cs.umass.edu/~arjun/courses/cs691f/) - Programming Languages (CS691F)
+1. [University of Minnesota Twin Cities](https://www-users.cs.umn.edu/~kauffman/2041/syllabus.html)
+   — Advanced Programming Principles (CSCI 2041)
 1. [University of Pennsylvania](http://www.cis.upenn.edu/~cis341/current/) - Compilers  (CIS341)
 1. [University of Pennsylvania](http://www.seas.upenn.edu/~cis120/current/) - Programming Languages and Techniques I (CIS120)
 1. [University of Virginia](http://www.cs.virginia.edu/~weimer/4610/) - Programming Languages (CS 4610)
