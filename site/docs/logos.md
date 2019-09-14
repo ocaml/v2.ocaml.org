@@ -5,7 +5,7 @@
 Web sites related to the OCaml language or that use it are encouraged to
 incorporate the OCaml logo somewhere in their page to indicate their
 support for OCaml development. The logo should be linked to the OCaml
-website, [http://ocaml.org/](http://ocaml.org/).
+website, [ocaml.org](//ocaml.org/).
 The logo is available in
 [several formats](https://github.com/ocaml/ocaml-logo/tree/master/Colour) and
 [colors](https://github.com/ocaml/ocaml-logo).  Two versions are
@@ -16,7 +16,7 @@ want in the [repository](https://github.com/ocaml/ocaml-logo)).
 The OCaml logo is released under a
 [liberal license](https://github.com/ocaml/ocaml.org/blob/master/LICENSE.md).
 
-<img src="http://ocaml.org/logo/Colour/PNG/colour-logo.png"
+<img src="//ocaml.org/logo/Colour/PNG/colour-logo.png"
 	alt="OCaml"
 	style="width: 150px" ></img>
 
@@ -28,7 +28,7 @@ The OCaml logo is released under a
 </a>
 ```
 
-<img src="http://ocaml.org/logo/Colour/SVG/colour-logo.svg"
+<img src="//ocaml.org/logo/Colour/SVG/colour-logo.svg"
 	alt="OCaml"
 	style="width: 150px" ></img>
 

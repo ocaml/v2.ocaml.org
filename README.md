@@ -5,7 +5,7 @@ OCAML.ORG PROJECT
 This is the source code implementing the ocaml.org
 website. Information here is relevant only to developers and content
 contributors. End-users of the website should simply visit the
-website, which is hosted at http://ocaml.org.
+website, which is hosted at [ocaml.org](//ocaml.org).
 
 Note: if you just want to edit a page you do not need to follow the
 instructions below.  Simply click on the pen in the top right corner

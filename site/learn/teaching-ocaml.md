@@ -102,7 +102,7 @@ info fields and you are done!)_
 
 
 This is a list of books and lecture notes that are being used for
-teaching OCaml. There is also a wider list of books to choose from, which you can find on the [books page](http://ocaml.org/learn/books.html).
+teaching OCaml. There is also a wider list of books to choose from, which you can find on the [books page](//ocaml.org/learn/books.html).
 
 1. [The OCaml System: Documentation and User's Manual](http://caml.inria.fr/pub/docs/manual-ocaml/) This the official User's Manual. It serves as a complete reference guide to OCaml. Updated for each version of OCaml, it contains the description of the language, of its extensions, and the documentation of the tools and libraries included in the official distribution.
 
@@ -137,7 +137,7 @@ For a quick example of OCaml in the browser, try any of the following:
 
 ### OCaml installation
 
-Check out our [Install OCaml section](http://ocaml.org/docs/install.html)
+Check out our [Install OCaml section](//ocaml.org/docs/install.html)
 
 Alternative guides
 

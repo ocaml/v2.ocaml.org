@@ -107,7 +107,7 @@
     <dd class="span5">
         <h2><a href="http://besport.com/">Be Sport</a>, France </h2>
         <p>Be Sport's mission is to enhance the value that sport brings to our lives with appropriate use of digital and social media innovations.
-           Be Sport is a 100% <a href='http://ocaml.org/'>OCaml</a> and <a href='http://ocsigen.org'>OCsigen</a> project, leveraged as the only building blocks to develop the platform.</p> 
+           Be Sport is a 100% <a href='//ocaml.org/'>OCaml</a> and <a href='http://ocsigen.org'>OCsigen</a> project, leveraged as the only building blocks to develop the platform.</p> 
     </dd>
 </dl>
 <dl class="row">

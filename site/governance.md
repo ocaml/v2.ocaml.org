@@ -34,7 +34,7 @@ the meaning of the term *for this document* is explained.
 clarity and edification, the top-level domain here is '.org').
 
 *Community website* - This is the community facing website, which can be found
-at <http://ocaml.org> and is often referred to as simply 'OCaml.org'. 
+at [ocaml.org](//ocaml.org) and is often referred to as simply 'OCaml.org'.
 
 *Infrastructure* - This may refer to the virtual machines (VMs), services or
 other things that are somehow routed via the second-level domain name itself.
@@ -54,7 +54,7 @@ To avoid confusion between the domain name itself and the community website
 Project, the term 'OCaml.org' in this document refers *only* to
 the second-level domain name itself. Any references to the domain of the
 community website project will include the sub-domain 'www.ocaml.org',
-even though this is set to redirect to http://ocaml.org.
+even though this is set to redirect to [ocaml.org](//ocaml.org).
 
 ### Guiding principles of OCaml.org
 
