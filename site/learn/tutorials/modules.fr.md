@@ -37,8 +37,8 @@ ocamlopt -o hello amodule.cmx bmodule.cmx
 
 Nous avons à présent un petit éxécutable pouvant afficher
 « Hello ».  Comme on l'a constaté, on accède à n'importe quoi dans un
-module donné en appellant le nom du module (qui commence toujours par
-une majuscule) suivit d'un point et du nom de l'objet utilisé. Cet
+module donné en appelant le nom du module (qui commence toujours par
+une majuscule) suivi d'un point et du nom de l'objet utilisé. Cet
 objet peut être une variable, un type ou tout autre chose définie au
 sein du module.
 
@@ -85,7 +85,7 @@ sous modules, variables...) au programme qui l'utilise. Par défaut, tous
 les objets définis au sein du module seront accessibles depuis
 « l'extérieur ». Ceci peut être utile dans de petits programmes, mais il
 est préférable qu'un module ne propose que ce qu'il est conçu pour
-proposer, sans le fouillis des fonctions auxilliaires ou variables
+proposer, sans le fouillis des fonctions auxiliaires ou variables
 temporaires. Pour cela, nous pouvons définir une interface modulaire,
 qui se comporte comme un filtre entourant le module. De la même façon
 qu'un module vient d'un fichier `.ml`, l'interface corespondante
@@ -106,8 +106,8 @@ val hello : unit -> unit
 ```
 
 Supposons que nous souhaitions que personne de l'exterieur ne puisse
-accéder à la variable `message`. Nous choisissons alors de la
-cacher en crééant une interface restreinte, le `amodule.mli` est
+accéder à la variable `message`. Alors, nous choisissons de la
+« cacher » en créant une interface restreinte; le `amodule.mli` est
 alors :
 
 ```ocaml
@@ -133,12 +133,12 @@ ocamlopt -c amodule.ml
 
 Passons à présent aux définitions de types. Nous avons vu que les
 valeurs telles que les fonctions, peuvent être exportées en donnant leur
-noms et signatures dans un fichiers `.mli`, par exemple :
+noms et signatures dans un fichier `.mli`, par exemple :
 
 ```ocaml
 val hello : unit -> unit
 ```
-Cependant on définit souvent au sein d'un module de nouveaux types.
+Cependant, on définit souvent au sein d'un module de nouveaux types.
 Prenons par exemple un enregistrement d'une date :
 
 ```ocaml
@@ -172,11 +172,11 @@ val create : ?days:int -> ?months:int -> ?years:int -> unit -> date
 val sub : date -> date -> date
 val years : date -> float
 ```
-On remarque alors que seule `create` et `sub` peuvent être
-utilisées pour créer des enregistrements de dates. Ainsi il n'est pas
+On remarque alors que seuls `create` et `sub` peuvent être
+utilisées pour créer des enregistrements de dates. Il n'est ainsi pas
 possible pour l'utilisateur de créer des enregistrements difformes.
-Ainsi, bien que notre implémentation utilise un enregistrement, nous
-pouvons le modifier sans qu'aucun fichier utilisant ce module n'en soit
+Il s'ensuit que, bien que notre implémentation utilise un enregistrement, 
+nous pouvons le modifier sans qu'aucun fichier utilisant ce module n'en soit
 perturbé. Ceci est particulièrement utile dans le cas des librairies,
 qui peuvent ainsi être modifiées tout en gardant une utilisation
 identique.
@@ -279,7 +279,7 @@ valeur, ce qui est impossible à faire directement en OCaml. Par exemple,
 nous pourrions définir un foncteur prenant un entier `n` et
 retournant un ensemble d'opérations sur des tableaux de longeurs
 `n` uniquement. Si par erreur, un programmeur donne un tableau
-normal à une de ces fonctions, le compilateur soulevera une erreur. Si
+normal à une de ces fonctions, le compilateur soulèvera une erreur. Si
 nous n'utilisions pas un foncteur mais le type standard des tableaux, le
 compilateur ne sera pas capable de détecter l'erreur, et nous
 obtiendrions une erreur à l'exécution bien après la compilation, ce qui
@@ -316,7 +316,7 @@ module String_set = Set.Make (String)
 
 ### Comment définir un foncteur ?
 
-Un foncteur avec un argument peut être définit comme ceci :
+Un foncteur avec un argument peut être défini comme ceci :
 
 ```ocaml
 module F (X : X_type) =
