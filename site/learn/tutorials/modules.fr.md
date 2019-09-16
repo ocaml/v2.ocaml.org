@@ -35,7 +35,7 @@ ocamlopt -c bmodule.ml
 ocamlopt -o hello amodule.cmx bmodule.cmx
 ```
 
-Nous avons à présent un petit éxécutable pouvant afficher
+Nous avons à présent un petit exécutable pouvant afficher
 « Hello ».  Comme on l'a constaté, on accède à n'importe quoi dans un
 module donné en appelant le nom du module (qui commence toujours par
 une majuscule) suivi d'un point et du nom de l'objet utilisé. Cet
@@ -173,7 +173,7 @@ val sub : date -> date -> date
 val years : date -> float
 ```
 On remarque alors que seuls `create` et `sub` peuvent être
-utilisées pour créer des enregistrements de dates. Il n'est ainsi pas
+utilisés pour créer des enregistrements de dates. Il n'est ainsi pas
 possible pour l'utilisateur de créer des enregistrements difformes.
 Il s'ensuit que, bien que notre implémentation utilise un enregistrement, 
 nous pouvons le modifier sans qu'aucun fichier utilisant ce module n'en soit
