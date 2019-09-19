@@ -10,6 +10,11 @@ instructions pour installer OCaml par d'autres moyens que la
 compilation des sources, comme par exemple le gestionnaire de paquets
 OPAM et les gestionnaire de paquets spécifiques à une plateforme.
 
+* OCaml [4.09.0](4.09.0.html), publiée le 18 septembre 2019.
+* OCaml [4.08.1](4.08.1.html), publiée le 5 août 2019.
+* OCaml [4.08.0](4.08.0.html), publiée le 14 juin 2019.
+* OCaml [4.07.1](4.07.1.html), publiée le 4 octobre 2018.
+* OCaml [4.07.0](4.07.0.html), publiée le 10 juillet 2018.
 * OCaml [4.06.1](4.06.1.html), publiée le 16 février 2018.
 * OCaml [4.06.0](4.06.html), publiée le 3 novembre 2017.
 * OCaml [4.05.0](4.05.html), publiée le 13 juillet 2017.
