@@ -161,7 +161,7 @@ Ok, machen wir uns mal an die Antworten.
 
 -   OCaml ist eine stark statisch typisierte Sprache (in anderen Worten,
     es gibt nichts derartiges wie dynamische Typen wie z.B. in Perl).
--   OCaml nutzt *deduktive Typisierung* um die Typen festzulegen, so daß Sie
+-   OCaml nutzt *Typinferenz* um die Typen festzulegen, so daß Sie
     sich nicht darum kümmern müssen. Wenn Sie, wie oben, den OCaml
     toplevel benutzen, teilt OCaml Ihnen den [seiner Meinung nach ...]
     korrekten Typ für Ihre Funktion mit.
