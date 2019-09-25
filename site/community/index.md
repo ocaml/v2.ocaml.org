@@ -64,22 +64,17 @@
                 <p><a href="https://sympa.inria.fr/sympa/arc/caml-list/">See archives</a></p>
             </footer>
             </section>
-
-            </div>
+      </div>
         </section>
     </div>
     <div class="row">
         <section class="span4 condensed">
             <h1 class="ruled">Support</h1>
             <p>See the <a href="/community/mailing_lists.html">mailing lists and web forums</a> page for a complete list of support channels. <a href="support.html">Commercial support</a> is also available.</p>
-
             <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html#GivingSupport">Find out more</a>.</p>
-
             <p>Suggestions or bug reports about the OCaml language
-            itself can be posted to the <a
-            href="http://caml.inria.fr/mantis/my_view_page.php">Mantis
-            Bug Tracker</a>.</p>
-
+            itself can be posted to <a
+            href="https://github.com/ocaml/ocaml/issues">Gihub issues</a>.</p>
         </section>
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/">Meetings</a></h1>

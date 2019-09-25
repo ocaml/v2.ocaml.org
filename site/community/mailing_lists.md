@@ -119,8 +119,7 @@ Groups](http://groups.google.com/groups?group=comp.lang.functional) |
 
 ## Other
 
-### Mantis Bug Tracker
+### Bug Tracker
 
-Inria manages the official distribution of OCaml and uses
-[Mantis](http://caml.inria.fr/mantis/my_view_page.php) to track bugs
-and feature requests.
+Use [Github issues](https://github.com/ocaml/ocaml/issues) to request
+features or report bugs.
