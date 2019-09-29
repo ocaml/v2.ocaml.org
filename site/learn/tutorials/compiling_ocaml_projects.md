@@ -141,6 +141,7 @@ necessary. See next section.
 
 ## Automated build systems
 
+- [dune](https://dune.readthedocs.io/en/latest/quick-start.html)
 - [OCamlbuild](ocamlbuild/)
 - [GNU make](compiling_with_gnu_make.html)
 - [OMake](compiling_with_omake.html)
