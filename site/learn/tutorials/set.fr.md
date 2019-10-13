@@ -4,7 +4,7 @@
 # Set
 
 ## Le Module Set
-Pour faire une structure de donnée ensemble ("set" en anglais) :
+Pour faire une structure de donnée de type ensemble ("set" en anglais) :
 
 ```ocamltop
 module SS = Set.Make(String) ;;
