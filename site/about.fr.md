@@ -54,7 +54,7 @@ plus formelle, et tout changement ou discussion par rapport à çà
 pourront prendre place sur la [liste de discussion
 infrastructure](http://lists.ocaml.org/listinfo/infrastructure/), avec
 des notifications appropriées sur la [liste de discussion principale
-d'ocaml](https://sympa.inria.fr/sympa/arc/caml-list/).
+d'OCaml](https://sympa.inria.fr/sympa/arc/caml-list/).
 
 
 ### Gestion du domaine OCaml.org
