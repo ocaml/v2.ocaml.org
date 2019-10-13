@@ -41,7 +41,7 @@ let print_set s =
 ```
 
 Si nous souhaitons enlever un élément en particulier d'un ensemble il y a la 
-fonction "remove". Cependant si nous souhaitons enlever plusieurs éléments
+fonction `remove`. Cependant si nous souhaitons enlever plusieurs éléments
 spécifiques en une passe nous pouvons utiliser un filtre ("filter" en anglais).
 Voici comment filtrer tous les mots constitués de plus de 5 caractères :
 
