@@ -57,11 +57,11 @@ des notifications appropriées sur la [liste de discussion principale
 d'OCaml](https://sympa.inria.fr/sympa/arc/caml-list/).
 
 
-### Gestion du domaine OCaml.org
+### Gestion du domaine ocaml.org
 
 La façade publique du site web n'est qu'un des
 [projets](https://github.com/ocaml/infrastructure/wiki) associé au nom de
-domaine OCaml.org. Le nom de domaine a son propre
+domaine ocaml.org. Le nom de domaine a son propre
 [document de gouvernance](/governance.html), auquel vous devez vous référer
 pour savoir comment sont gérés les sous-domaines.
 
