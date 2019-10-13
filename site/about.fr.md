@@ -21,7 +21,7 @@ Les buts de ce site sont :
 Les raisons de ce qui précède sont les suivantes. Les utilisateurs
 doivent trouver une utilité à ce site web ou il y aura peu de chance
 qu'ils le visitent et y contribuent. Quand ces utilisateurs trouvent
-quelquechose d'intéressant sur le site web, ils seront plus enclin
+quelque chose d'intéressant sur le site web, ils seront plus enclin
 à transmettre ce lien à d'autres personnes.
 
 
