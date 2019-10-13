@@ -5,7 +5,7 @@
 
 ## Le Module Map
 
-Ce module permet de créer des "associations". Par exemple, disons que
+Ce module permet de créer des « associations ». Par exemple, disons que
 nous ayons des données constituées de noms d'utilisateurs avec leur
 mots de passe respectifs. Nous pouvons avec le module Map créer une
 structure de donnée associant le nom d'utilisateur à son mot de passe.
