@@ -80,7 +80,7 @@ généralement de quelques minutes.
 
 ### Directives d'Édition
 
-* Veuillez créer une scission du dépôt (fork) et utilisez le système
+* Veuillez créer une duplication du dépôt (fork) et utilisez le système
   de "requête de fusion" (pull request) pour envoyer des changements.
   Pour ajouter ou modifier du contenu vous pouvez aussi cliquer sur le
   petit crayon dans le coin en haut à droite, ce qui va créer la page
