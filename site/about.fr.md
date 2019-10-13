@@ -68,7 +68,7 @@ pour savoir comment sont gérés les sous-domaines.
 
 ## Comment Contribuer
 
-Le site OCaml.org est actuellement géré à l'aide de
+Le site ocaml.org est actuellement géré à l'aide de
 [GitHub](https://github.com/ocaml/ocaml.org/) ainsi que de la [liste de
 discussion infrastructure](http://lists.ocaml.org/listinfo/infrastructure/).
 Pour proposer du contenu ou des améliorations, veuillez forker le projet
