@@ -9,7 +9,7 @@ Pour faire une structure de donnée de type ensemble ("set" en anglais) :
 ```ocamltop
 module SS = Set.Make(String) ;;
 ```
-Ici il s'agit d'un ensemble de chaîne de caractère (String en anglais).
+Ici il s'agit d'un ensemble de chaîne de caractère (string en anglais).
 
 Pour créer un ensemble vous pouvez commencer par un ensemble vide
 auquel vous pourrez ajouter des éléments par la suite :
