@@ -49,7 +49,7 @@ let m = MyUsers.add "pete" "linux" m;;
 簡単な表示関数を作ってみよう。
 
 ```ocamltop
-let print_users key password =
+let print_user key password =
   print_string(key ^ " " ^ password ^ "\n");;
 ```
 
@@ -58,7 +58,7 @@ let print_users key password =
 これで必要なのは写像に適用する関数だ。 それはこんな感じになるだろう:
 
 ```ocamltop
-MyUsers.iter print_users m;;
+MyUsers.iter print_user m;;
 ```
 
 だが写像にデータを置く理由は、

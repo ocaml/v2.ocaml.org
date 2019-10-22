@@ -51,7 +51,7 @@ to be able to view that data at some point? Lets begin by creating a
 simple print function.
 
 ```ocamltop
-let print_users key password =
+let print_user key password =
   print_string(key ^ " " ^ password ^ "\n");;
 ```
 We have here a function that will take two strings, a key and a password,
@@ -60,7 +60,7 @@ All we need to do is to have this function applied to our mapping. Here
 is what that would look like.
 
 ```ocamltop
-MyUsers.iter print_users m;;
+MyUsers.iter print_user m;;
 ```
 The reason we put our data into a mapping however is probably so we can
 quickly find the data. Lets actually show how to do a find.

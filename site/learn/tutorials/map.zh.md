@@ -40,7 +40,7 @@ let m = MyUsers.add "pete" "linux" m;;
 但是我们也得看得到里面的数据啊？一个函数足以完成这个任务：
 
 ```ocamltop
-let print_users key password =
+let print_user key password =
   print_string(key ^ " " ^ password ^ "\n");;
 ```
 
@@ -48,7 +48,7 @@ let print_users key password =
 应用到映射的每对键值对上：
 
 ```ocamltop
-MyUsers.iter print_users m;;
+MyUsers.iter print_user m;;
 ```
 当然，有时候我们只想找到(find)某个用户的密码：
 
