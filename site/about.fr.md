@@ -1,6 +1,6 @@
-<!-- ((! set title À-propos de ce Site !)) -->
+<!-- ((! set title À-propos de ce site !)) -->
 
-# À-propos de ce Site
+# À-propos de ce site
 *Table of contents*
 
 ## Buts
@@ -10,18 +10,18 @@ pour les développeurs OCaml, ainsi que ceux qui s'intéressent à ce langage
 de programmation.
 Les buts de ce site sont :
 
-* Être la vitrine publique du langage OCaml,
-* Servir de ressource aux utilisateurs d'OCaml,
-* Devenir l'endroit privilégié pour que ces utilisateurs puissent indiquer
-  aux autres où s'informer et découvrir les nouveautés,
-* Donner aux visiteurs occasionnels, aux nouveaux utilisateurs,
-  ainsi qu'à la communauté des programmeurs tous ce qui peut leur être utile
+* être la vitrine publique du langage OCaml ;
+* servir de ressource aux utilisateurs d'OCaml ;
+* devenir l'endroit privilégié pour que ces utilisateurs puissent indiquer
+  aux autres où s'informer et découvrir les nouveautés ;
+* donner aux visiteurs occasionnels, aux nouveaux utilisateurs,
+  ainsi qu'à la communauté des programmeurs tout ce qui peut leur être utile
   au sujet d'OCaml.
 
 Les raisons de ce qui précède sont les suivantes. Les utilisateurs
-doivent trouver une utilité à ce site web ou il y aura peu de chance
+doivent trouver une utilité à ce site web ou bien il y aura peu de chances
 qu'ils le visitent et y contribuent. Quand ces utilisateurs trouvent
-quelque chose d'intéressant sur le site web, ils seront plus enclin
+quelque chose d'intéressant sur le site web, ils seront plus enclins
 à transmettre ce lien à d'autres personnes.
 
 
@@ -50,7 +50,7 @@ La décision d'ajouter ou d'enlever des personnes de cette liste se fait
 par concensus, et l'appartenance est basée essentiellement sur les
 contributions au site ou à son infrastructure. Comme le site et sa
 communauté grandiront il est possible qu'elle requière une gouvernance
-plus formelle, et tout changement ou discussion par rapport à çà
+plus formelle, et tout changement ou discussion par rapport à ça
 pourront prendre place sur la [liste de discussion
 infrastructure](http://lists.ocaml.org/listinfo/infrastructure/), avec
 des notifications appropriées sur la [liste de discussion principale

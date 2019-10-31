@@ -21,31 +21,31 @@ Pour créer une structure de type Map:
 module MyUsers = Map.Make(String);;
 ```
 
-Bon, nous avons créé le module `MyUsers` and fixant le type des clefs
+Bon, nous avons créé le module `MyUsers` en fixant le type des clefs
 au type `string` car c'est le module `String` qui est passé en paramètre.
 Maintenant entrons des données dans celui-ci.
 Vous vous demandez peut-être par où commencer ?
-Hé bien c'est très simple, nous démarrons avec une structure vide
+Eh bien c'est très simple, nous démarrons avec une structure vide
 comme ceci :
 
 ```ocamltop
 let m = MyUsers.empty;;
 ```
 Hummm. Une structure d'association vide, c'est pas très intéressant,
-alors ajoutons y quelques éléments:
+alors ajoutons-y quelques éléments :
 
 ```ocamltop
 let m = MyUsers.add "fred" "pruneausucre" m;;
 ```
 Nous avons créé une nouvelle association appelée `m`, ce faisant comme elle
 porte le même nom elle masquera la précédente. Cette nouvelle association
-a ajouté "fred" et son mot de passe "pruneausucre" à la précédante
+a ajouté « fred » et son mot de passe « pruneausucre » à la précédente
 association vide. Il y a un point important ici, lorsque l'on ajoute
-la première donnée "pruneausucre" dans la structure d'association
+la première donnée « pruneausucre » dans la structure d'association
 on fixe alors le type de donnée que cette structure peut recevoir.
-Ce qui signifie que notre association de notre module `MyUsers` est
+Ce qui signifie que l'association de notre module `MyUsers` est
 du type string _to strings_. Si nous désirons une association du type
-string vers entier ou une association du type entier vers quoique ce soit
+string vers entier ou une association du type entier vers quoi que ce soit
 d'autre nous devrons créer une autre structure d'association.
 
 Maintenant ajoutons quelques données pour peupler notre association.
@@ -59,7 +59,7 @@ Maintenant que nous avons des données dans notre association, ne serait-ce
 pas intéressant de voir son contenu ? Alors commençons par écrire une
 fonction d'affichage simple :
 ```ocamltop
-let print_users key password =
+let print_user key password =
   print_string (key ^ " " ^ password ^ "\n");;
 ```
 Nous avons ici une fonction qui prend deux chaines de caractères en
@@ -68,7 +68,7 @@ nous devons appliquer cette fonction à notre association. Voici comment
 le faire :
 
 ```ocamltop
-MyUsers.iter print_users m;;
+MyUsers.iter print_user m;;
 ```
 La raison qui nous a poussé à mettre nos données dans une structure
 d'association est probablement que nous pouvons rapidement retrouver nos
