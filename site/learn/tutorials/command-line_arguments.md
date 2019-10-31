@@ -18,7 +18,7 @@ array. It is obtained using the `Array.length` function.
 The following program displays the arguments with their position in
 `Sys.argv`:
 
-```ocamltop
+```ocaml
 open Printf
   
 let () =

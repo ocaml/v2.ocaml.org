@@ -20,7 +20,7 @@ like
 ```ocamltop
 let s = SS.singleton "hello";;
 ```
-To add some elements to the the set we can do.
+To add some elements to the set we can do.
 
 ```ocamltop
 let s =
