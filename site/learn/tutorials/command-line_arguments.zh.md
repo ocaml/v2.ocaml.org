@@ -19,7 +19,7 @@ argv
 
 下面的程序显示Sys.argv里的参数以及它们各自在数组中的位置:
 
-```ocamltop
+```ocaml
 open Printf
   
 let () =

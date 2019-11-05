@@ -7,7 +7,7 @@ This note quickly presents two techniques to debug OCaml programs:
 
 * [Tracing functions calls](#Tracingfunctionscallsinthetoplevel)
   that works in the [interactive toplevel](basics.html),
-* [OCaml debugger](#TheOCamldebugger), which allows analysing programs
+* [OCaml debugger](#The-OCaml-debugger), which allows analysing programs
   compiled with `ocamlc`.
 
 ## Tracing functions calls in the toplevel
