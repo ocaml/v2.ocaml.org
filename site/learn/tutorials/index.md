@@ -148,8 +148,6 @@ tools and libraries.
 These tutorials help learn OCaml from the perspective of being familiar
 with another language.
 
-* [Beyond functional programming in Haskell: an introduction to
- OCaml](http://www.cs.uu.nl/wiki/pub/Stc/BeyondFunctionalProgrammingInHaskell:AnIntroductionToOCaml/ocaml.pdf)
 * [OCaml for Haskellers](http://blog.ezyang.com/2010/10/ocaml-for-haskellers/)
 
 ###  Advanced Tutorials & Articles
