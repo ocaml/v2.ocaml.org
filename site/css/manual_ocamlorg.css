@@ -1,0 +1,610 @@
+@charset "UTF-8";
+/* If the above line does not say "SOURCE FILE", then do not edit. It
+   means this file is generated from [sass manual.scss] */
+/* 
+CSS file for the Ocaml manual, part I,
+https://sanette.github.io/ocaml-tutorial/core_tutorial.html 
+
+This file is built upon the "odoc.css" file,
+Copyright (c) 2016 The odoc contributors. All rights reserved.
+Distributed under the ISC license, see terms at the end of the file.
+odoc 1.4.2
+
+This new version also distributed under the ISC licence.
+San Vu Ngoc, 2019 */
+/* Fonts */
+@import url("https://fonts.googleapis.com/css?family=Fira+Mono:400,500");
+@import url("https://fonts.googleapis.com/css?family=Noticia+Text:400,400i,700");
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,500,500i,600,600i,700,700i");
+/* Reset a few things. */
+.container {
+  margin-left: 0;
+  margin-right: 0; }
+
+ul.translations {
+  display: none; }
+
+.manual div, .manual span, .manual applet, .manual object, .manual iframe, .manual h1, .manual h2, .manual h3, .manual h4, .manual h5, .manual h6, .manual p, .manual blockquote, .manual pre, .manual a, .manual abbr, .manual acronym, .manual address, .manual big, .manual cite, .manual code, .manual del, .manual dfn, .manual em, .manual img, .manual ins, .manual kbd, .manual q, .manual s, .manual samp, .manual small, .manual strike, .manual strong, .manual sub, .manual sup, .manual tt, .manual var, .manual b, .manual u, .manual i, .manual center, .manual dl, .manual dt, .manual dd, .manual ol, .manual ul, .manual li, .manual fieldset, .manual form, .manual label, .manual legend, .manual table, .manual caption, .manual tbody, .manual tfoot, .manual thead, .manual tr, .manual th, .manual td, .manual article, .manual aside, .manual canvas, .manual details, .manual embed, .manual figure, .manual figcaption, .manual footer, .manual header, .manual hgroup, .manual menu, .manual nav, .manual output, .manual ruby, .manual section, .manual summary, .manual time, .manual mark, .manual audio, .manual video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
+  text-align: inherit;
+  color: inherit;
+  background: transparent; }
+
+.manual table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+.manual *, .manual *:before, .manual *:after {
+  box-sizing: border-box; }
+
+.manual {
+  font-size: 15px;
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  text-align: left;
+  color: #333;
+  background: #FFFFFF; }
+
+.manual.content {
+  max-width: 90ex;
+  margin-left: calc(10vw + 20ex);
+  margin-right: 4ex;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-family: "Noticia Text", Georgia, serif;
+  line-height: 1.5; }
+  .manual.content > header {
+    margin-bottom: 30px; }
+  .manual.content > header nav {
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif; }
+
+/* Basic markup elements */
+.manual b, .manual strong {
+  font-weight: 500; }
+.manual i, .manual em {
+  font-style: italic; }
+.manual sup {
+  vertical-align: super; }
+.manual sub {
+  vertical-align: sub; }
+.manual sup, .manual sub {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 0.2ex; }
+.manual pre {
+  margin-top: 0.8em;
+  margin-bottom: 1.2em; }
+.manual p, .manual ul, .manual ol {
+  margin-top: 0.5em;
+  margin-bottom: 1em; }
+.manual ul, .manual ol {
+  list-style-position: outside; }
+.manual ul > li {
+  margin-left: 22px; }
+.manual ol > li {
+  margin-left: 27.2px; }
+.manual li > *:first-child {
+  margin-top: 0; }
+
+/* Text alignements, this should be forbidden. */
+.manual .left {
+  text-align: left; }
+.manual .right {
+  text-align: right; }
+.manual .center {
+  text-align: center; }
+
+/* Links and anchors */
+.manual a {
+  text-decoration: none;
+  color: #92370A; }
+.manual a:hover {
+  box-shadow: 0 1px 0 0 #92370A; }
+
+/* Linked highlight */
+.manual *:target {
+  background-color: rgba(255, 215, 181, 0.3) !important;
+  box-shadow: 0 0px 0 1px rgba(255, 215, 181, 0.8) !important;
+  border-radius: 1px; }
+.manual *:hover > a.anchor {
+  visibility: visible; }
+.manual a.anchor:before {
+  content: "#"; }
+.manual a.anchor:hover {
+  box-shadow: none;
+  text-decoration: none;
+  color: #555; }
+.manual a.anchor {
+  visibility: hidden;
+  position: absolute;
+  /* top: 0px; */
+  /* margin-left: -3ex; */
+  margin-left: -1.3em;
+  font-weight: normal;
+  font-style: normal;
+  padding-right: 0.4em;
+  padding-left: 0.4em;
+  /* To remain selectable */
+  color: #d5d5d5; }
+.manual .spec > a.anchor {
+  margin-left: -2.3em;
+  padding-right: 0.9em; }
+.manual .xref-unresolved {
+  color: #92370A; }
+.manual .xref-unresolved:hover {
+  box-shadow: 0 1px 0 0 #CC6666; }
+
+/* Section and document divisions.
+   Until at least 4.03 many of the modules of the stdlib start at .h7,
+   we restart the sequence there like h2  */
+.manual h1, .manual h2, .manual h3, .manual h4, .manual h5, .manual h6, .manual .h7, .manual .h8, .manual .h9, .manual .h10 {
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  margin: 0.5em 0 0.5em 0;
+  padding-top: 0.1em;
+  line-height: 1.2;
+  overflow-wrap: break-word; }
+.manual h1 {
+  font-weight: 500;
+  font-size: 2.441em;
+  margin-top: 1.214em; }
+.manual h1 {
+  font-weight: 500;
+  font-size: 1.953em;
+  box-shadow: 0 1px 0 0 #ddd; }
+.manual h2 {
+  font-size: 1.563em; }
+.manual h3 {
+  font-size: 1.25em; }
+.manual small, .manual .font_small {
+  font-size: 0.8em; }
+.manual h1 code, .manual h1 tt {
+  font-size: inherit;
+  font-weight: inherit; }
+.manual h2 code, .manual h2 tt {
+  font-size: inherit;
+  font-weight: inherit; }
+.manual h3 code, .manual h3 tt {
+  font-size: inherit;
+  font-weight: inherit; }
+.manual h3 code, .manual h3 tt {
+  font-size: inherit;
+  font-weight: inherit; }
+.manual h4 {
+  font-size: 1.12em; }
+
+/* Preformatted and code */
+.manual tt, .manual code, .manual pre {
+  font-family: "Fira Mono", courier;
+  font-weight: 400; }
+.manual pre {
+  border-left: 4px solid #e69c7f;
+  overflow-x: auto;
+  padding-left: 1ex; }
+.manual p code, .manual li code {
+  background-color: #f6f8fa;
+  color: #0d2b3e;
+  border-radius: 3px;
+  padding: 0 0.3ex; }
+.manual pre code {
+  background-color: inherit; }
+.manual p a > code {
+  color: #92370A; }
+
+/* Code blocks (e.g. Examples) */
+.manual pre code.ocaml {
+  font-size: 0.893rem; }
+
+/* Code lexemes */
+.manual .keyword {
+  font-weight: 500; }
+
+/* Module member specification */
+.manual .spec:not(.include), .manual .spec.include details summary {
+  background: linear-gradient(to left, #fdfcfc 0%, #eaf6fa 100%);
+  border-radius: 3px;
+  border-left: 4px solid #5c9cf5;
+  border-right: 5px solid transparent;
+  padding: 0.35em 0.5em; }
+.manual .spec.include details summary:hover {
+  background-color: #ebeff2; }
+.manual dl, .manual div.spec, .manual .doc, .manual aside {
+  margin-bottom: 20px; }
+.manual dl > dd {
+  padding: 0.5em; }
+.manual dd > :first-child {
+  margin-top: 0; }
+.manual dd > p:first-child > code:first-child {
+  color: teal; }
+.manual dl:last-child, .manual dd > :last-child, .manual aside:last-child, .manual article:last-child {
+  margin-bottom: 0; }
+.manual dt + dt {
+  margin-top: 15px; }
+.manual section + section, .manual section > header + dl {
+  margin-top: 25px; }
+.manual .spec.type .variant {
+  margin-left: 2ch; }
+.manual .spec.type .variant p {
+  margin: 0;
+  font-style: italic; }
+.manual .spec.type .record {
+  margin-left: 2ch; }
+.manual .spec.type .record p {
+  margin: 0;
+  font-style: italic; }
+.manual div.def {
+  margin-top: 0;
+  text-indent: -2ex;
+  padding-left: 2ex; }
+.manual div.def + div.doc {
+  margin-left: 1ex;
+  margin-top: 2.5px; }
+.manual div.doc > *:first-child {
+  margin-top: 0; }
+
+/* The elements other than heading should be wrapped in <aside> elements. */
+/* heading, body>p, body>ul, body>ol, h3, h4, body>pre { */
+/*   margin-bottom: 30px; */
+/* } */
+/* Collapsible inlined include and module */
+.manual {
+  /* FIXME: Does not work in Firefox. */ }
+  .manual .spec.include details {
+    position: relative; }
+  .manual .spec.include details:after {
+    z-index: -100;
+    display: block;
+    content: " ";
+    position: absolute;
+    border-radius: 0 1ex 1ex 0;
+    right: -20px;
+    top: 1px;
+    bottom: 1px;
+    width: 15px;
+    background: rgba(0, 4, 15, 0.05);
+    box-shadow: 0 0px 0 1px rgba(204, 204, 204, 0.53); }
+  .manual .spec.include details summary {
+    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
+    outline: none; }
+  .manual details summary::-webkit-details-marker {
+    color: #888;
+    transform: scaleX(-1);
+    position: absolute;
+    top: calc(50% - 5px);
+    height: 11px;
+    right: -29px; }
+
+/* Records and variants FIXME */
+.manual {
+  /* @ tags */
+  /* FIXME remove */
+  /* FIXME random other things to review. */ }
+  .manual div.def table {
+    text-indent: 0em;
+    padding: 0;
+    margin-left: -2ex; }
+  .manual td.def {
+    padding-right: 2ex; }
+  .manual .record td.def {
+    padding-left: 2ex; }
+  .manual td.doc *:first-child {
+    margin-top: 0em; }
+  .manual ul.at-tag {
+    list-style-type: none;
+    margin-left: 0;
+    padding: 0; }
+  .manual ul.at-tag li {
+    margin-left: 0;
+    padding: 0; }
+  .manual ul.at-tag li p:first-child {
+    margin-top: 0; }
+  .manual span.at-tag {
+    font-weight: bold; }
+  .manual .at-tag.deprecated {
+    font-weight: normal;
+    color: crimson; }
+  .manual .at-tag.raise {
+    font-weight: bold; }
+  .manual .heading {
+    margin-top: 10px;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #DDD;
+    text-align: right;
+    font-weight: normal;
+    font-style: italic; }
+  .manual .heading + .sig {
+    margin-top: -20px; }
+  .manual .heading + .parameters {
+    margin-top: -20px; }
+
+/* Odig package index */
+.manual {
+  /* Odig package page */
+  /* lists in the main text */ }
+  .manual .by-name ol, .manual .by-tag ol, .manual .errors ol {
+    list-style-type: none;
+    margin-left: 0; }
+  .manual .by-name ol ol, .manual .by-tag ol ol {
+    margin-top: 0;
+    margin-bottom: 0; }
+  .manual .by-name li, .manual .by-tag li, .manual .errors li {
+    margin-left: 0; }
+  .manual .by-name .version {
+    font-size: 10px;
+    color: #AAA; }
+  .manual .by-name nav {
+    margin-bottom: 10px; }
+  .manual .by-name nav a {
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-right: 1ex;
+    color: #222;
+    display: inline-block; }
+  .manual .by-tag nav a {
+    margin-right: 1ex;
+    color: #222;
+    display: inline-block; }
+  .manual .by-tag > ol > li {
+    margin-top: 10px; }
+  .manual .by-tag > ol > li > span, .manual .by-tag > ol > li > ol, .manual .by-tag > ol > li > ol > li {
+    display: inline-block;
+    margin-right: 1ex; }
+  .manual .package nav {
+    display: inline;
+    font-size: 14px;
+    font-weight: normal; }
+  .manual .package .version {
+    font-size: 14px; }
+  .manual h1 + .modules, .manual h1 + .sel {
+    margin-top: 10px; }
+  .manual .sel {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 20px; }
+  .manual .sel + .modules {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 1ex; }
+  .manual .modules {
+    margin: 0; }
+  .manual .modules .module {
+    min-width: 8ex;
+    padding-right: 2ex; }
+  .manual .package.info {
+    margin: 0; }
+  .manual .package.info td:first-child {
+    font-style: italic;
+    padding-right: 2ex; }
+  .manual .package.info ul {
+    list-style-type: none;
+    display: inline;
+    margin: 0; }
+  .manual .package.info li {
+    display: inline-block;
+    margin: 0;
+    margin-right: 1ex; }
+  .manual #info-authors li, .manual #info-maintainers li {
+    display: block; }
+  .manual ul.itemize {
+    list-style: none; }
+  .manual ul.itemize li::before {
+    content: "▶";
+    color: #ec6a0d;
+    margin-right: 4px;
+    margin-left: -1em; }
+
+/* Sidebar and TOC */
+.manual {
+  /* First level titles */ }
+  .manual .toc_title {
+    display: block;
+    margin: 0.5em 0 1.414em; }
+    .manual .toc_title a {
+      font-size: 1em;
+      font-weight: 500;
+      color: #777;
+      line-height: 1.2; }
+  .manual .toc {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    max-width: 30ex;
+    min-width: 26ex;
+    width: 20%;
+    background: linear-gradient(to left, #ccc, white);
+    overflow: auto;
+    color: #1F2D3D;
+    padding-left: 2ex;
+    padding-right: 2ex; }
+  .manual .toc ul li a {
+    font-family: "Fira Sans", sans-serif;
+    font-size: 0.95em;
+    color: #333;
+    font-weight: 400;
+    line-height: 1.6em;
+    display: block; }
+  .manual .toc ul li a:hover {
+    box-shadow: none;
+    text-decoration: underline; }
+  .manual .toc > ul > li > a {
+    font-weight: 500; }
+  .manual .toc li ul {
+    margin: 0px; }
+  .manual .toc ul {
+    list-style-type: none; }
+  .manual .toc ul li {
+    margin: 0; }
+  .manual .toc > ul > li {
+    margin-bottom: 0.3em; }
+  .manual .toc ul li li {
+    border-left: 1px solid #ccc;
+    margin-left: 5px;
+    padding-left: 12px; }
+
+/* Mobile adjustements. */
+@media only screen and (max-width: 979px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto; }
+
+  .manual.content {
+    margin: auto;
+    padding: 2.0em; } }
+@media only screen and (max-width: 979px) {
+  .manual .toc {
+    position: static;
+    width: auto;
+    min-width: unset;
+    max-width: unset;
+    border: none;
+    padding: 0.2em 1em;
+    border-radius: 5px; } }
+
+/* Print adjustements. */
+@media print {
+  .manual body {
+    color: black;
+    background: white; }
+  .manual body nav:first-child {
+    visibility: hidden; } }
+
+/* Syntax highlighting (based on github-gist) */
+.manual .hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto; }
+.manual .ocaml {
+  background: linear-gradient(to left, white 0%, #f3f7f6 100%); }
+.manual span.arrow {
+  font-size: 20px;
+  line-height: 8pt;
+  font-family: "Fira Mono"; }
+.manual .hljs-comment,
+.manual .hljs-meta {
+  color: #969896; }
+.manual .hljs-string,
+.manual .hljs-variable,
+.manual .hljs-template-variable,
+.manual .hljs-strong,
+.manual .hljs-emphasis,
+.manual .hljs-quote {
+  color: #df5000; }
+.manual .hljs-keyword,
+.manual .hljs-selector-tag {
+  color: #a71d5d; }
+.manual .hljs-type,
+.manual .hljs-class .hljs-title {
+  color: #458;
+  font-weight: 500; }
+.manual .hljs-literal,
+.manual .hljs-symbol,
+.manual .hljs-bullet,
+.manual .hljs-attribute {
+  color: #0086b3; }
+.manual .hljs-section,
+.manual .hljs-name {
+  color: #63a35c; }
+.manual .hljs-tag {
+  color: #333333; }
+.manual .hljs-attr,
+.manual .hljs-selector-id,
+.manual .hljs-selector-class,
+.manual .hljs-selector-attr,
+.manual .hljs-selector-pseudo {
+  color: #795da3; }
+.manual .hljs-addition {
+  color: #55a532;
+  background-color: #eaffea; }
+.manual .hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec; }
+.manual .hljs-link {
+  text-decoration: underline; }
+
+.manual header nav {
+  display: none; }
+.manual header nav.toc {
+  display: block; }
+.manual header dl dd, .manual header dl dt {
+  display: inline-block; }
+.manual pre {
+  background: linear-gradient(to left, white 0%, #ede8e5 100%); }
+.manual div.caml-example, .manual div.toplevel {
+  /* background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%); */ }
+.manual div.caml-output.ok,
+.manual code.caml-output.ok,
+.manual span.c006 {
+  color: #045804; }
+.manual code.caml-output.error,
+.manual div.caml-output.error {
+  color: orangered; }
+.manual .tutorial span {
+  /* ocaml logo color */
+  color: #ec6a0d; }
+.manual ul.tutos_menu {
+  font-family: "Fira Sans";
+  text-align: right;
+  list-style: none; }
+.manual ul.tutos_menu li.active a {
+  color: black; }
+.manual .brand img {
+  margin-top: 16px;
+  height: 36px; }
+.manual .toc.brand {
+  display: none; }
+.manual nav.toc {
+  top: 75px; }
+  @media (max-height: 600px) and (min-width: 980px) {
+    .manual nav.toc {
+      top: 45px; } }
+.manual nav.brand {
+  top: 0px;
+  height: 66px; }
+.manual span.c003 {
+  font-family: "Fira Mono", courier;
+  background-color: #f3ece6;
+  border-radius: 6px; }
+.manual div.caml-example code.caml-input::before,
+.manual div.caml-example.toplevel code.caml-input::before,
+.manual div.caml-example.toplevel div.caml-input::before {
+  content: "#";
+  color: #888; }
+.manual span.c004 {
+  color: #888; }
+.manual span.c009 {
+  font-style: italic; }
+.manual .caml-input span.kw {
+  font-weight: 500;
+  color: #444; }
+.manual .caml-input span.kw1 {
+  font-weight: 500;
+  color: #777; }
+.manual .caml-input span.kw2 {
+  font-weight: 500;
+  color: #a28867; }
+.manual .caml-input span.numeric {
+  color: #0086b3; }
+.manual .caml-input span.id {
+  color: #523b74; }
+.manual .caml-input span.string {
+  color: #df5000; }
+.manual .caml-input span.comment {
+  color: #969896; }
+.manual .copyright {
+  font-size: smaller; }
+.manual .dt-thefootnotes {
+  float: left; }
+
+#footer {
+  margin-left: 26ex; }

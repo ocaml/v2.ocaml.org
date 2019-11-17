@@ -26,6 +26,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />
     <link href="/css/ocamlorg.css" rel="stylesheet" media="screen" />
+    ((! ifdef manual <link href="/css/manual_ocamlorg.css" rel="stylesheet" media="screen" /> !))
     <script src="/js/collapsed-menu.js" type="text/javascript"></script>
     {{! ifdef advertise_rss
     <link rel="alternate" type="application/atom+xml" title="Atom feed"
