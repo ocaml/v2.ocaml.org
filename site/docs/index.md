@@ -5,10 +5,12 @@
   <div class="row">
     <section class="span6 condensed">
       <h1 class="ruled">The OCaml Tutorials</h1>
-      <p>The official OCaml tutorials, written by the creators of the
-	language, are the best place to start. They form a complete
-	introduction to programming in OCaml, including the module
-	system, objects, polymorphism, etc.
+      <p>The official <a id="tutref"
+	href="../manual/4.09/coreexamples.html">OCaml tutorials</a> ,
+	written by the creators of the language, are the best place to
+	start. They form a complete introduction to programming in
+	OCaml, including the module system, objects, polymorphism,
+	etc.
 	<div class="form-group">
 	  <form name="Versions">
 	    <label for="version-selector"
@@ -38,12 +40,30 @@
 		  let link = document.getElementById("refref");
 		  let ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/language.html'
 		  link.setAttribute("href", ref);
+
 		  link = document.getElementById("extref");
 		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/extn.html'
 		  link.setAttribute("href", ref);
-		  link = document.getElementById("typref");
+
+		  link = document.getElementById("corref");
 		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/core.html'
 		  link.setAttribute("href", ref);
+
+		  link = document.getElementById("toolref");
+		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/comp.html'
+		  link.setAttribute("href", ref);
+
+		  link = document.getElementById("tutref");
+		  ref = '../manual/' + version + '/coreexamples.html'
+		  link.setAttribute("href", ref);
+
+		  link = document.getElementById("stdref");
+		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html'
+		  link.setAttribute("href", ref);
+
+		  let stdlib = "Stdlib";
+		  if (parseFloat(version) < 4.08) { stdlib = "Pervasives"; }
+		  document.getElementById("stdlib").textContent=stdlib;
 		  }
 
 		  function goTUT(){
@@ -62,66 +82,17 @@
     </section>
 
     <section class="span6 condensed">
-      <h1 class="ruled">The Core Library</h1>
-      <p>
-	The Core Library is immediately available to all ocaml
-	  programs. It contains basic functions to work
-	  with <a id="typref" href="http://caml.inria.fr/pub/docs/manual-ocaml/core.html#sec554">built-in
-	  types</a> : <code> int</code>, <code> char</code>, <code>
-	  bytes</code>, <code> string</code>, <code>
-	  float</code>, <code> bool</code>, <code> unit</code>, <code>
-	  exn</code>, <code> 'a array</code>, <code> 'a
-	  list</code>, <code> 'a option</code>, <code>
-	  int32</code>, <code> int64</code>, <code> nativeint </code>,
-	  plus string <code>format</code> and <code>lazy</code>
-	  variables.
-
-
-	<div class="form-group">
-	  <form name="VersionsCORE">
-	    <label for="core-version-selector"
-		   style="display:inline;">Select your version:</label>
-	    <select class="form-control" id="core-version-selector"
-		    name="selectorcore"
-		    style="width: 10ex;vertical-align: baseline;"
-		    onChange="goCORE()">
-	      <option>4.09</option>
-	      <option>4.08</option>
-	      <option>4.07</option>
-	      <option>4.06</option>
-	      <option>4.05</option>
-	      <option>4.04</option>
-	      <option>4.03</option>
-	      <option>4.02</option>
-	      <option>4.01</option>
-	    </select>
-	    <script type="text/javascript">
-	      <!-- 
-		   function goCORE(){
-		   let version = document.VersionsCORE.selectorcore.options[document.VersionsCORE.selectorcore.selectedIndex].value;
-		   setVersion(version);
-		   setREF(version);
-		   let file = "Stdlib.html";
-		   if (parseFloat (version) < 4.08)
-		   { file = "Pervasives.html"; }
-		   location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/libref/' + file
-		   } 
-		   //-->
-	    </script>
-	    <input type="button" class="btn btn-default" style="float:right;"
-		   name="button-api" onClick="goCORE()" value="OCaml Core">
-	  </form>
-	</div>
-      </p>
-
-    </section>
-
-<section class="span6 condensed">
       <h1 class="ruled">The OCaml API</h1>
-      <p>The is the place you'll end up most often!  You'll find the
+      <p>This is the place you'll end up most often!  You'll find the
 	documentation for all modules that ship with any ocaml
-	distribution. These modules form what is called the Standard
-	Library.
+	distribution. These modules form what is called
+	the <a id="stdref"
+	href="http://caml.inria.fr/pub/docs/manual-ocaml/stdlib.html">Standard
+	Library</a>. In addition, a special
+	module <code id="stdlib">Stdlib</code> contains
+	the <a id="corref"
+	href="http://caml.inria.fr/pub/docs/manual-ocaml/core.html">Core
+	Library</a> , and is always open.
 
 	<div class="form-group">
 	  <form name="VersionsAPI">
@@ -156,7 +127,53 @@ location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html
 	</div>
 	
       </p>
-</section>
+    </section>
+
+    
+    <section class="span6 condensed">
+      <h1 class="ruled">The Tools</h1>
+      <p>
+	Many <a id="toolref" href="http://caml.inria.fr/pub/docs/manual-ocaml/comp.html">tools</a>
+	are bundled with the OCaml language. Among them, the REPL (or
+	`toplevel'), the documentation generator, lexers, the
+	debugger, profiling tools, etc.
+
+	<div class="form-group">
+	  <form name="VersionsTOOL">
+	    <label for="tool-version-selector"
+		   style="display:inline;">Select your version:</label>
+	    <select class="form-control" id="tool-version-selector"
+		    name="selectortool"
+		    style="width: 10ex;vertical-align: baseline;"
+		    onChange="goTOOL()">
+	      <option>4.09</option>
+	      <option>4.08</option>
+	      <option>4.07</option>
+	      <option>4.06</option>
+	      <option>4.05</option>
+	      <option>4.04</option>
+	      <option>4.03</option>
+	      <option>4.02</option>
+	      <option>4.01</option>
+	    </select>
+	    <script type="text/javascript">
+	      <!-- 
+		   function goTOOL(){
+		   let version = document.VersionsTOOL.selectortool.options[document.VersionsTOOL.selectortool.selectedIndex].value;
+		   setVersion(version);
+		   setREF(version);
+		   location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/libref/comp.html'
+		   } 
+		   //-->
+	    </script>
+	    <input type="button" class="btn btn-default" style="float:right;"
+		   name="button-api" onClick="goTOOL()" value="OCaml Tools">
+	  </form>
+	</div>
+      </p>
+
+    </section>
+
 
     
     <section class="span6 condensed">
