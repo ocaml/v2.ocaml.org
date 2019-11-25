@@ -61,7 +61,7 @@ Other Debian packages related to OCaml are
 They are made available through
 [The Debian OCaml Packaging Policy](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html).
 
-### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 19.04](https://repology.org/badge/version-only-for-repo/ubuntu_19_04/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 19.10](https://repology.org/badge/version-only-for-repo/ubuntu_19_10/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 ```bash
@@ -72,7 +72,7 @@ apt install ocaml
 Other Ubuntu packages related to OCaml are
 [listed here](http://packages.ubuntu.com/search?keywords=ocaml).
 
-### [Fedora](https://getfedora.org/) [![Fedora 30](https://repology.org/badge/version-only-for-repo/fedora_30/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Fedora](https://getfedora.org/) [![Fedora 31](https://repology.org/badge/version-only-for-repo/fedora_31/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 ```bash
@@ -89,7 +89,7 @@ and a
 for people interested in OCaml on Fedora or Red Hat Enterprise Linux.
 
 
-### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) [![CentOS 7](https://repology.org/badge/version-only-for-repo/centos_7/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) [![CentOS 8](https://repology.org/badge/version-only-for-repo/centos_8/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 ```bash
@@ -172,14 +172,12 @@ pkg install ocaml-opam
 
 ## [OpenBSD](https://www.openbsd.org/) [![OpenBSD port](https://repology.org/badge/version-only-for-repo/openbsd/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
-
 ```
 pkg_add ocaml
 pkg_add opam
 ```
 
 ## [NetBSD](https://www.netbsd.org/) [![NetBSD port](https://repology.org/badge/version-only-for-repo/pkgsrc_current/ocaml.svg)](https://repology.org/metapackage/ocaml)
-
 
 ```
 pkg_add ocaml
