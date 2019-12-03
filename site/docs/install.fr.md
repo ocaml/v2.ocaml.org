@@ -49,7 +49,7 @@ La plupart des distributions Linux permettent d'installer OCaml et/ou OPAM avec 
 ### [Debian](https://www.debian.org/index.fr.html) [![Debian Unstable](https://repology.org/badge/version-only-for-repo/debian_unstable/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
-apt install ocaml-nox # Si vous ne voulez pas le support de X11 
+apt install ocaml-nox # Si vous ne voulez pas le support de X11
 apt install ocaml
 ```
 Les autres paquets Debian liés à OCaml sont
@@ -57,18 +57,18 @@ Les autres paquets Debian liés à OCaml sont
 Ils sont disponibles selon
 [la politique de construction des paquets pour OCaml](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html) (en anglais) de Debian.
 
-### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 19.04](https://repology.org/badge/version-only-for-repo/ubuntu_19_04/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 19.10](https://repology.org/badge/version-only-for-repo/ubuntu_19_10/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 apt install ocaml # Avec le support de X11 (donc le module Graphics)
 
-apt install ocaml-nox # Plus léger, si vous ne voulez pas le support de X11 
+apt install ocaml-nox # Plus léger, si vous ne voulez pas le support de X11
 ```
 
 Les autres paquets Unbuntu liés à OCaml sont
 [listés ici](http://packages.ubuntu.com/search?keywords=ocaml) (en anglais).
 
-### [Fedora](https://getfedora.org/) [![Fedora 30](https://repology.org/badge/version-only-for-repo/fedora_30/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Fedora](https://getfedora.org/) [![Fedora 31](https://repology.org/badge/version-only-for-repo/fedora_31/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 yum install ocaml
@@ -83,7 +83,7 @@ et une
 [mailing liste](https://lists.fedoraproject.org/mailman/listinfo/Ocaml-devel) (en anglais)
 pour les individus intéressés par OCaml sur Fedora ou Red Hat Enterprise Linux.
 
-### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) [![CentOS 7](https://repology.org/badge/version-only-for-repo/centos_7/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) [![CentOS 8](https://repology.org/badge/version-only-for-repo/centos_8/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 yum install ocaml
@@ -132,7 +132,7 @@ Sur macOS OCaml et/ou OPAM peuvent êtres installés grâce aux systèmes de ges
 
 ```bash
 brew install ocaml
-brew install opam 
+brew install opam
 ```
 
 ###  [Fink](http://fink.sourceforge.net/)
@@ -148,14 +148,21 @@ port install ocaml
 port install opam
 ```
 
-## [FreeBSD](https://www.freebsd.org/)
+## [FreeBSD](https://www.freebsd.org/) [![FreeBSD port](https://repology.org/badge/version-only-for-repo/freebsd/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
-pkg_add -r ocaml-nox11 # Si vous ne voulez pas le support de X11 
+pkg_add -r ocaml-nox11 # Si vous ne voulez pas le support de X11
 pkg_add -r ocaml
 ```
 
-## [OpenBSD](https://www.openbsd.org/)
+## [OpenBSD](https://www.openbsd.org/) [![OpenBSD port](https://repology.org/badge/version-only-for-repo/openbsd/ocaml.svg)](https://repology.org/metapackage/ocaml)
+
+```
+pkg_add ocaml
+pkg_add opam
+```
+
+## [NetBSD](https://www.netbsd.org/) [![NetBSD port](https://repology.org/badge/version-only-for-repo/pkgsrc_current/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```
 pkg_add ocaml
@@ -176,19 +183,19 @@ Sous Windows, les solutions suivantes sont disponibles pour installer OCaml:
 
 * [OCaml pour Windows](https://fdopen.github.io/opam-repository-mingw/)
   fournit une version expérimentale des dépôts d'OPAM et d'OPAM pour Windows.
-  
+
 Voici quelques alternatives :
 
 * Les sources d'OCaml supportent directement Windows. Vous devrez compilez
-  [les source](#Installation depuis les sources). Voir le fichier 
+  [les source](#Installation depuis les sources). Voir le fichier
   [README.win32](https://github.com/ocaml/ocaml/blob/trunk/README.win32.adoc) (en anglais)
   dans la distribution pour plus de détails.
 
 * Utiliser « Bash on Windows » et installer OCaml comme sur Ubuntu.
-  L'inconvénient de cette méthode est que vous ne créez pas 
+  L'inconvénient de cette méthode est que vous ne créez pas
    des fichiers binaires natifs pour Windows mais des fichiers binaires pour Linux.
 
-* [Cygwin](http://cygwin.com/) Avec Cygwin, vous pouvez l'installer avec l'outil `setup`. 
+* [Cygwin](http://cygwin.com/) Avec Cygwin, vous pouvez l'installer avec l'outil `setup`.
    Les compileurs génèrent des exécutables qui requièrent Cygwin (`cygwin1.dll`).
 
 
