@@ -219,7 +219,7 @@ OCaml in your browser:
 
 * [Try OCaml](https://try.ocamlpro.com/) by OCamlPRO.
 * An
-  [OCaml toplevel](http://ocsigen.org/js_of_ocaml/dev/files/toplevel/index.html)
+  [OCaml toplevel](http://ocsigen.org/js_of_ocaml/dev/manual/files/toplevel/index.html)
   compiled by the [`js_of_ocaml`](http://ocsigen.org/js_of_ocaml/)
   project.
 * [IOCamlJS](https://andrewray.github.io/iocamljs/) has OCaml toplevels
