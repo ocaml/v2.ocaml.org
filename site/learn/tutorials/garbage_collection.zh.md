@@ -159,7 +159,7 @@ val sync_records : unit -> unit
 程序就可以修改`record.name`和`record.address`域。然后就可以把这个记录束之高阁！
 在最后，GC会调用终结化会把记录重新写到硬盘里。
 
-`sync_records` 函数也可以在用户程序里调用。这个函数同步银盘和内存里的所有记录拷贝。
+`sync_records` 函数也可以在用户程序里调用。这个函数同步硬盘和内存里的所有记录拷贝。
 
 OCaml在现在退出时不会运行终结化。但是你可以强制把下面的指令加到代码里。下面的指令
 会让OCaml退出的时候调用一个GC周期：
@@ -168,13 +168,13 @@ OCaml在现在退出时不会运行终结化。但是你可以强制把下面的
 at_exit Gc.full_major
 ```
 我们的代码也会通过`Weak`模块来实现一个最近访问记录的缓存。使用`Weak`模块而不手动处理
-所有事的有点有两个：其一，GC对内存需求有全局观点，这让它在一个优势地来决断什么时候
+所有事的优点有两个：其一，GC对内存需求有全局视图，这让它在一个优势地来决断什么时候
 来缩小缓存。其二，我们的代码会相当简单。
 
 对于我们的例子，我们将要用一个简单的文件格式来表示用户纪录。这个文件不过是一个用户记录
 列表，每个用户纪录有256字节的固定大小。每个用户记录只有两个域（多余部分用空格填充），
 name域和address域。在一个记录被录入内存之前，程序必须首先获取记录的互斥锁，在这个
-在内存记录被写回文件之后，程序才会放开它。斜面是一些定义文件格式和读写，锁相关的底层
+在内存记录被写回文件之后，程序才会释放它。下面是一些定义文件格式和读写，锁相关的底层
 代码：
 ```ocaml
 type record = { mutable name : string; mutable address : string }
@@ -215,7 +215,7 @@ let new_record () =
   { name = String.make name_size ' ';
     address = String.make addr_size ' ' }
 ```
-因为这是一个很简单的程序，所以我们将先固定记录的数目。
+因为这是一个很简单的程序，所以我们将先确定记录的数目。
 
 ```ocaml
 (* Total number of records. *)
@@ -225,7 +225,7 @@ let nr_records = 10000
 let diskfile =
   Unix.openfile "users.bin" [ Unix.O_RDWR; Unix.O_CREAT ] 0o666
 ```
-先下载 [users.bin.gz](/img/users.bin.gz) 然后解压缩它才运行这个程序。
+先下载 [users.bin.gz](/img/users.bin.gz) ，然后解压缩并运行该个程序。
 
 我们的缓存相当简单：
 
@@ -271,7 +271,7 @@ let sync_records () =
   Weak.fill cache 0 nr_records None;
   Gc.full_major ()
 ```
-最后，我们有一些测试代码。我不会把这些代码贴上，但是你可以在下载完全代码[objcache.ml](objcache.ml)，
+最后，我们有一些测试代码。我不会把这些代码贴上，但是你可以在下载完整的代码[objcache.ml](objcache.ml)，
 并且编译它：
 
 ```shell
