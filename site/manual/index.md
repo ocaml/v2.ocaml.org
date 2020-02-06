@@ -14,12 +14,10 @@
 	</nav>
       </header>
       <p></p>
-      <p>This page is just a demo of Part 1 of the Ocaml manuals. Please
+      <p> Please
 	select your version on the sidebar.</p>
       <p></p>
-      <p>Comments, bug or issue reports, etc. are welcome on
-      the <a href="https://github.com/sanette/ocaml-tutorial">github</a>
-      page.</p>
+     
 
       <p></p>
       <br>

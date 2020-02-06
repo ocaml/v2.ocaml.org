@@ -1,0 +1,736 @@
+@charset "UTF-8";
+/* CSS file for the Ocaml API
+   San Vu Ngoc 2019
+*/
+/* Fonts */
+@import url("https://fonts.googleapis.com/css?family=Fira+Mono:400,500");
+@import url("https://fonts.googleapis.com/css?family=Noticia+Text:400,400i,700");
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,500,500i,600,600i,700,700i");
+/* Reset a few things. */
+.container {
+  margin-left: 0;
+  margin-right: 0; }
+
+ul.translations {
+  display: none; }
+
+.api div, .api span, .api applet, .api object, .api iframe, .api h1, .api h2, .api h3, .api h4, .api h5, .api h6, .api p, .api blockquote, .api pre, .api a, .api abbr, .api acronym, .api address, .api big, .api cite, .api code, .api del, .api dfn, .api em, .api img, .api ins, .api kbd, .api q, .api s, .api samp, .api small, .api strike, .api strong, .api sub, .api sup, .api tt, .api var, .api b, .api u, .api i, .api center, .api dl, .api dt, .api dd, .api ol, .api ul, .api li, .api fieldset, .api form, .api label, .api legend, .api table, .api caption, .api tbody, .api tfoot, .api thead, .api tr, .api th, .api td, .api article, .api aside, .api canvas, .api details, .api embed, .api figure, .api figcaption, .api footer, .api header, .api hgroup, .api menu, .api nav, .api output, .api ruby, .api section, .api summary, .api time, .api mark, .api audio, .api video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
+  text-align: inherit;
+  color: inherit;
+  background: transparent; }
+
+html.smooth-scroll {
+  scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; } }
+.api {
+  font-size: 15px;
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  text-align: left;
+  color: #333;
+  background: #FFFFFF; }
+  .api table {
+    border-collapse: collapse;
+    border-spacing: 0; }
+  .api *, .api *:before, .api *:after {
+    box-sizing: border-box; }
+
+.api.content {
+  /*top: 45px;*/
+  max-width: 90ex;
+  margin-left: calc(10vw + 20ex);
+  margin-right: 4ex;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-family: "Noticia Text", Georgia, serif;
+  line-height: 1.5; }
+  .api.content > header {
+    margin-bottom: 30px; }
+  .api.content > header nav {
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif; }
+
+/* Basic markup elements */
+.api {
+  /* Text alignements, this should be forbidden. */
+  /* Links and anchors */
+  /* Linked highlight */
+  /* Section and document divisions.
+  Until at least 4.03 many of the modules of the stdlib start at .h7,
+  we restart the sequence there like h2  */
+  /* Preformatted and code */
+  /* Code blocks (e.g. Examples) */
+  /* Code lexemes */
+  /* Module member specification */
+  /* The elements other than heading should be wrapped in <aside> elements. */
+  /* heading, body>p, body>ul, body>ol, h3, h4, body>pre { */
+  /*   margin-bottom: 30px; */
+  /* } */
+  /* Collapsible inlined include and module */
+  /* FIXME: Does not work in Firefox. */
+  /* Records and variants FIXME */
+  /* @ tags */
+  /* FIXME remove */
+  /* FIXME random other things to review. */
+  /* Odig package index */
+  /* Odig package page */
+  /* lists in the main text */
+  /* Sidebar and TOC */
+  /*.toc ul:before */
+  /* First level titles */
+  /* Mobile adjustements. */
+  /* Syntax highlighting (based on github-gist) */
+  /* pour l'API */
+  /* add some room at the end of the table */ }
+  .api b, .api strong {
+    font-weight: 600; }
+  .api i, .api em {
+    font-style: italic; }
+  .api sup {
+    vertical-align: super; }
+  .api sub {
+    vertical-align: sub; }
+  .api sup, .api sub {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 0.2ex; }
+  .api pre {
+    margin-top: 0.8em;
+    margin-bottom: 0; }
+  .api p, .api ul, .api ol {
+    margin-top: 0.5em;
+    margin-bottom: 1em; }
+  .api ul, .api ol {
+    list-style-position: outside; }
+  .api ul > li {
+    margin-left: 22px; }
+  .api ol > li {
+    margin-left: 27.2px; }
+  .api li > *:first-child {
+    margin-top: 0; }
+  .api .left {
+    text-align: left; }
+  .api .right {
+    text-align: right; }
+  .api .center {
+    text-align: center; }
+  .api a {
+    text-decoration: none;
+    color: #92370A;
+    /* box-shadow: 0 1px 0 0 #d8b68b; */ }
+  .api a:hover {
+    box-shadow: 0 1px 0 0 #92370A; }
+  .api td a:hover {
+    background: white; }
+  .api *:target {
+    background-color: rgba(255, 215, 181, 0.3) !important;
+    box-shadow: 0 0px 0 1px rgba(255, 215, 181, 0.8) !important;
+    border-radius: 1px;
+    z-index: 0; }
+  .api *:hover > a.anchor {
+    visibility: visible; }
+  .api a.anchor:before {
+    content: "#"; }
+  .api a.anchor:hover {
+    box-shadow: none;
+    text-decoration: none;
+    color: #555; }
+  .api a.anchor {
+    visibility: hidden;
+    position: absolute;
+    /* top: 0px; */
+    /* margin-left: -3ex; */
+    margin-left: -1.3em;
+    font-weight: normal;
+    font-style: normal;
+    padding-right: 0.4em;
+    padding-left: 0.4em;
+    /* To remain selectable */
+    color: #d5d5d5; }
+  .api .spec > a.anchor {
+    margin-left: -2.3em;
+    padding-right: 0.9em; }
+  .api .xref-unresolved {
+    color: #92370A; }
+  .api .xref-unresolved:hover {
+    box-shadow: 0 1px 0 0 #CC6666; }
+  .api h1, .api h2, .api h3, .api h4, .api h5, .api h6, .api .h7, .api .h8, .api .h9, .api .h10 {
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin: 0.5em 0 0.5em 0;
+    padding-top: 0.1em;
+    line-height: 1.2;
+    overflow-wrap: break-word; }
+  .api h1 {
+    margin-top: 1.214em;
+    margin-bottom: 19px;
+    font-weight: 500;
+    font-size: 1.953em;
+    box-shadow: 0 1px 0 0 #ddd; }
+  .api h2 {
+    font-size: 1.563em;
+    margin: 1em 0 1em 0; }
+  .api h3 {
+    font-size: 1.25em; }
+  .api small, .api .font_small {
+    font-size: 0.8em; }
+  .api h1 code, .api h1 tt {
+    font-size: inherit;
+    font-weight: inherit; }
+  .api h2 code, .api h2 tt {
+    font-size: inherit;
+    font-weight: inherit; }
+  .api h3 code, .api h3 tt {
+    font-size: inherit;
+    font-weight: inherit; }
+  .api h3 code, .api h3 tt {
+    font-size: inherit;
+    font-weight: inherit; }
+  .api h4 {
+    font-size: 1.12em; }
+  .api tt, .api code, .api pre {
+    font-family: "Fira Mono", courier;
+    font-weight: 400; }
+  .api pre {
+    border-left: 4px solid #e69c7f;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding-left: 1ex; }
+  .api p code, .api li code {
+    /* useful ? */
+    background-color: #ebf2f9;
+    /*#f6f8fa;*/
+    color: #0d2b3e;
+    border-radius: 3px;
+    padding: 0 0.3ex; }
+  .api pre code {
+    background-color: inherit; }
+  .api p a > code {
+    color: #92370A; }
+  .api pre code.ocaml {
+    font-size: 0.893rem; }
+  .api .keyword {
+    font-weight: 500;
+    color: inherit; }
+  .api .spec:not(.include), .api .spec.include details summary {
+    background: linear-gradient(to left, #fdfcfc 0%, #eaf6fa 100%);
+    border-radius: 3px;
+    border-left: 4px solid #5c9cf5;
+    border-right: 5px solid transparent;
+    padding: 0.35em 0.5em; }
+  .api .spec.include details summary:hover {
+    background-color: #ebeff2; }
+  .api dl, .api div.spec, .api .doc, .api aside {
+    margin-bottom: 20px; }
+  .api dl > dd {
+    padding: 0.5em; }
+  .api dd > :first-child {
+    margin-top: 0; }
+  .api dd > p:first-child > code:first-child {
+    color: teal; }
+  .api dl:last-child, .api dd > :last-child, .api aside:last-child, .api article:last-child {
+    margin-bottom: 0; }
+  .api dt + dt {
+    margin-top: 15px; }
+  .api section + section, .api section > header + dl {
+    margin-top: 25px; }
+  .api .spec.type .variant {
+    margin-left: 2ch; }
+  .api .spec.type .variant p {
+    margin: 0;
+    font-style: italic; }
+  .api .spec.type .record {
+    margin-left: 2ch; }
+  .api .spec.type .record p {
+    margin: 0;
+    font-style: italic; }
+  .api div.def {
+    margin-top: 0;
+    text-indent: -2ex;
+    padding-left: 2ex; }
+  .api div.def + div.doc {
+    margin-left: 1ex;
+    margin-top: 2.5px; }
+  .api div.doc > *:first-child {
+    margin-top: 0; }
+  .api .spec.include details {
+    position: relative; }
+  .api .spec.include details:after {
+    z-index: -100;
+    display: block;
+    content: " ";
+    position: absolute;
+    border-radius: 0 1ex 1ex 0;
+    right: -20px;
+    top: 1px;
+    bottom: 1px;
+    width: 15px;
+    background: rgba(0, 4, 15, 0.05);
+    box-shadow: 0 0px 0 1px rgba(204, 204, 204, 0.53); }
+  .api .spec.include details summary {
+    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
+    outline: none; }
+  .api details summary::-webkit-details-marker {
+    color: #888;
+    transform: scaleX(-1);
+    position: absolute;
+    top: calc(50% - 5px);
+    height: 11px;
+    right: -29px; }
+  .api div.def table {
+    text-indent: 0em;
+    padding: 0;
+    margin-left: -2ex; }
+  .api td.def {
+    padding-right: 2ex; }
+  .api .record td.def {
+    padding-left: 2ex; }
+  .api td.doc *:first-child {
+    margin-top: 0em; }
+  .api ul.at-tag {
+    list-style-type: none;
+    margin-left: 0;
+    padding: 0; }
+  .api ul.at-tag li {
+    margin-left: 0;
+    padding: 0; }
+  .api ul.at-tag li p:first-child {
+    margin-top: 0; }
+  .api span.at-tag {
+    font-weight: bold; }
+  .api span.warning,
+  .api .at-tag.deprecated {
+    font-weight: normal;
+    color: #8eaf20; }
+  .api span.warning {
+    margin-right: 1ex; }
+  .api .at-tag.raise {
+    font-weight: bold; }
+  .api .heading {
+    margin-top: 10px;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #DDD;
+    text-align: right;
+    font-weight: normal;
+    font-style: italic; }
+  .api .heading + .sig {
+    margin-top: -20px; }
+  .api .heading + .parameters {
+    margin-top: -20px; }
+  .api .by-name ol, .api .by-tag ol, .api .errors ol {
+    list-style-type: none;
+    margin-left: 0; }
+  .api .by-name ol ol, .api .by-tag ol ol {
+    margin-top: 0;
+    margin-bottom: 0; }
+  .api .by-name li, .api .by-tag li, .api .errors li {
+    margin-left: 0; }
+  .api .by-name .version {
+    font-size: 10px;
+    color: #AAA; }
+  .api .by-name nav {
+    margin-bottom: 10px; }
+  .api .by-name nav a {
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-right: 1ex;
+    color: #222;
+    display: inline-block; }
+  .api .by-tag nav a {
+    margin-right: 1ex;
+    color: #222;
+    display: inline-block; }
+  .api .by-tag > ol > li {
+    margin-top: 10px; }
+  .api .by-tag > ol > li > span, .api .by-tag > ol > li > ol, .api .by-tag > ol > li > ol > li {
+    display: inline-block;
+    margin-right: 1ex; }
+  .api .package nav {
+    display: inline;
+    font-size: 14px;
+    font-weight: normal; }
+  .api .package .version {
+    font-size: 14px; }
+  .api h1 + .modules, .api h1 + .sel {
+    margin-top: 10px; }
+  .api .sel {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 20px; }
+  .api .sel + .modules {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 1ex; }
+  .api .modules {
+    margin: 0; }
+  .api .modules .module {
+    min-width: 8ex;
+    padding-right: 2ex; }
+  .api .package.info {
+    margin: 0; }
+  .api .package.info td:first-child {
+    font-style: italic;
+    padding-right: 2ex; }
+  .api .package.info ul {
+    list-style-type: none;
+    display: inline;
+    margin: 0; }
+  .api .package.info li {
+    display: inline-block;
+    margin: 0;
+    margin-right: 1ex; }
+  .api #info-authors li, .api #info-maintainers li {
+    display: block; }
+  .api ul.itemize {
+    list-style: none; }
+  .api ul.itemize li::before {
+    content: "▶";
+    color: #ec6a0d;
+    margin-right: 4px;
+    margin-left: -1em; }
+  .api .toc_title {
+    display: block;
+    /*content: "Contents";*/
+    /* text-transform: uppercase; */
+    margin: 1.414em 0 0.5em; }
+  .api .toc_title a {
+    color: #777;
+    font-size: 1em;
+    line-height: 1.2;
+    font-weight: 500; }
+  .api .toc {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    max-width: 30ex;
+    min-width: 26ex;
+    width: 20%;
+    background: linear-gradient(to left, #ccc, white);
+    overflow: auto;
+    color: #1F2D3D;
+    padding-left: 2ex;
+    padding-right: 2ex; }
+  .api .toc ul li a {
+    font-family: "Fira Sans", sans-serif;
+    font-size: 0.95em;
+    color: #333;
+    font-weight: 400;
+    line-height: 1.6em;
+    display: block;
+    padding-left: 4px; }
+  .api .toc input#api_search {
+    width: 88%;
+    font-family: inherit; }
+  .api .toc #search_results {
+    font-size: smaller; }
+  .api .toc #search_results ul a {
+    display: inline-block;
+    padding-left: 0; }
+  .api .toc ul li a:hover {
+    box-shadow: none;
+    background-color: #edbf84;
+    /* transition: .5s; */
+    /*text-decoration: underline;*/ }
+  .api .toc > ul > li > a {
+    font-weight: 500; }
+  .api .toc li ul {
+    margin: 0px; }
+  .api .toc ul {
+    list-style-type: none; }
+  .api .toc ul li {
+    margin: 0; }
+  .api .toc > ul > li {
+    margin-bottom: 0.3em; }
+  .api .toc ul li li {
+    border-left: 1px solid #ccc;
+    margin-left: 5px;
+    padding-left: 12px; }
+  .api .hljs {
+    display: block;
+    background: white;
+    padding: 0.5em;
+    color: #333333;
+    overflow-x: auto; }
+  .api .ocaml {
+    background: linear-gradient(to left, white 0%, #f3f7f6 100%); }
+  .api span.arrow {
+    font-size: 20px;
+    line-height: 8pt;
+    font-family: "Fira Mono"; }
+  .api header nav {
+    display: none; }
+  .api header nav.toc {
+    display: block;
+    padding-top: 10px; }
+  .api header dl dd, .api header dl dt {
+    display: inline-block; }
+  .api pre {
+    background: linear-gradient(to left, white 0%, #ede8e5 100%); }
+  .api code.caml-example,
+  .api div.caml-example, .api div.toplevel {
+    /*    background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%); */ }
+  .api div.caml-output.ok,
+  .api code.caml-output.ok,
+  .api span.c006 {
+    color: #045804; }
+  .api code.caml-output.error,
+  .api div.caml-output.error {
+    color: orangered; }
+  .api .tutorial span {
+    /* ocaml logo color */
+    color: #ec6a0d; }
+  .api ul.tutos_menu {
+    font-family: "Fira Sans";
+    text-align: right;
+    list-style: none; }
+  .api ul.tutos_menu li.active a {
+    color: black; }
+  .api .brand img {
+    margin-top: 16px;
+    height: 36px; }
+  .api .toc.brand {
+    display: none; }
+  .api nav.toc {
+    top: 76px; }
+  .api nav.brand {
+    top: 0px;
+    height: 66px; }
+  .api span.c003 {
+    font-family: "Fira Mono", courier;
+    background-color: #f3ece6;
+    border-radius: 6px; }
+  .api div.caml-example.toplevel div.caml-input::before,
+  .api div.caml-example.toplevel code.caml-input::before {
+    content: "#";
+    color: #888; }
+  .api span.c004 {
+    color: #888; }
+  .api span.c009 {
+    font-style: italic; }
+  .api code span.keyword,
+  .api .caml-input span.kw {
+    font-weight: 500;
+    color: #444; }
+  .api .caml-input span.kw1 {
+    font-weight: 500;
+    color: #777; }
+  .api code span.constructor,
+  .api .caml-input span.kw2 {
+    font-weight: 500;
+    color: #a28867; }
+  .api .caml-input span.numeric {
+    color: #0086b3; }
+  .api .caml-input span.id {
+    color: #523b74; }
+  .api code span.string,
+  .api .caml-input span.string {
+    color: #df5000; }
+  .api .caml-input span.comment {
+    color: #969896; }
+  .api .copyright {
+    margin-top: 1em;
+    font-size: smaller; }
+  .api .dt-thefootnotes {
+    float: left; }
+  .api ul.info-attributes {
+    margin-top: 0ex;
+    margin-bottom: 1.5em;
+    list-style: none; }
+  .api hr {
+    margin-bottom: 2em;
+    visibility: hidden; }
+  .api table {
+    /* must be same as <pre> */
+    background: linear-gradient(to left, white 0%, #ede8e5 100%);
+    width: 100%; }
+  .api table td {
+    padding-left: 1ex;
+    padding-right: 1ex;
+    float: left; }
+  .api table tr:last-child td {
+    padding-bottom: 7px; }
+
+.api.content > table {
+  word-break: break-word; }
+
+.api.content > table td.module {
+  width: 33%; }
+
+.api.content > table td:nth-child(2) {
+  width: 65%; }
+
+.api code.type {
+  color: #8d543c; }
+.api td div.info p {
+  margin: 0;
+  box-shadow: 0 1px 0 0 #ddd; }
+.api td div.info {
+  /* index page */
+  padding-left: 0; }
+
+.api.content > #search_results {
+  margin-top: 2em; }
+
+.api {
+  /* essai pour les types union */ }
+  .api input#api_search {
+    font-family: inherit; }
+  .api #search_results ul {
+    list-style: none; }
+  .api #search_results li div.info {
+    /* index page */
+    display: block;
+    max-width: 70%;
+    padding-left: 4em;
+    margin-bottom: 1ex; }
+  .api #search_results li div.info p {
+    /* index page */
+    margin: 0; }
+  .api td div.info div.info-desc {
+    margin-bottom: 0; }
+  .api div.info div.info-desc {
+    margin-bottom: 2ex;
+    padding-left: 2em; }
+  .api div.info.top div.info-desc {
+    padding-left: 0;
+    padding-bottom: 1em;
+    box-shadow: 0 1px 0 0 #ddd; }
+  .api td div.info {
+    margin: 0; }
+  .api div.info-deprecated {
+    padding-top: 0.5em; }
+  .api .info-desc p {
+    margin-bottom: 0; }
+  .api table.typetable {
+    width: 100%;
+    word-break: normal;
+    box-shadow: none; }
+  .api td.typefieldcomment > code {
+    display: none;
+    /* this only applies to "(*" and "*)" */ }
+  .api td.typefieldcomment {
+    padding: 0; }
+  .api td.typefieldcomment p {
+    color: #776558; }
+  .api td.typefieldcomment:nth-child(3),
+  .api td.typefieldcomment:last-child {
+    display: none; }
+  .api table.typetable td:nth-child(2) {
+    width: 35%; }
+  .api table.typetable td:last-child {
+    width: auto; }
+  .api table.typetable tr td:first-child {
+    width: 1em; }
+  .api table.typetable tr td:nth-child(4).typefieldcomment {
+    /* this should be the column with the type */
+    width: 60%;
+    /* not optimal, see: file:///home/san/prog/ocaml/ocaml-api/dune-version/docs/Format.html#symbolic
+    but leaving it automatic is not always good either: see: file:///home/san/prog/ocaml/ocaml-api/dune-version/docs/Arg.html */ }
+  .api .api_search img {
+    height: 1em;
+    vertical-align: middle;
+    margin-right: 1em; }
+  .api nav .api_search img {
+    margin-right: 0; }
+
+/* When the navigation bar is collapsed */
+@media only screen and (max-width: 979px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto; }
+
+  .api.content {
+    margin: auto;
+    padding: 2.0em; }
+
+  .api.content > header {
+    box-shadow: 0px 3px 9px 3px #ddd; }
+
+  .api .toc {
+    position: static;
+    width: auto;
+    min-width: unset;
+    max-width: unset;
+    border: none;
+    padding: 0.2em 1em;
+    /*border-radius: 0 0 5px 5px;*/
+    /* change this for ocamlorg */ }
+  .api .toc.brand {
+    /*border-radius: 5px 5px 0 0;*/
+    /* border-radius doesn't play well with a global box-shadow */ }
+  .api table td {
+    padding-left: 2%; }
+  .api table td:first-child {
+    padding-right: 0; }
+
+  .api.content > table {
+    box-shadow: 0px 3px 9px 3px #ddd;
+    margin-bottom: 1em;
+    padding-bottom: 2px; }
+
+  .api.content > table td:nth-child(2) {
+    width: 59%; }
+
+  .api table.typetable {
+    box-shadow: none; }
+  .api table.typetable td:nth-child(2) {
+    white-space: normal;
+    width: 41%; }
+  .api table.typetable tr td:nth-child(4).typefieldcomment {
+    width: 50%;
+    word-break: break-word; }
+  .api table.typetable td:last-child {
+    width: auto; }
+  .api table.typetable tr td:first-child {
+    padding-right: 0;
+    width: auto; }
+  .api td div.info div.info-desc {
+    padding-left: 0; }
+  .api span.search_comment {
+    display: block; }
+
+  .api.content > table td:first-child {
+    width: 40%; }
+
+  .api code {
+    word-break: break-word; } }
+/* When the navigation bar has reduced size */
+@media (max-height: 600px) and (min-width: 980px) {
+  .api nav.toc {
+    top: 46px; } }
+/* Print adjustements. */
+/* This page can be nicely printed or saved to PDF (local version) */
+@media print {
+  body {
+    color: black;
+    background: white; }
+
+  body nav:first-child {
+    position: absolute;
+    background: transparent; }
+
+  .api nav.toc {
+    margin-right: 1em;
+    float: left; }
+  .api .toc {
+    position: initial;
+    background: #eee; }
+
+  .api.content {
+    margin-left: 3em;
+    margin-right: 3em; } }
+#footer {
+  margin-left: 26ex; }

@@ -6,7 +6,7 @@
     <section class="span6 condensed">
       <h1 class="ruled">The OCaml Tutorials</h1>
       <p>The official <a id="tutref"
-	href="../manual/4.09/coreexamples.html">OCaml tutorials</a> ,
+			 href="../manual/4.09/coreexamples.html">OCaml tutorials</a> ,
 	written by the creators of the language, are the best place to
 	start. They form a complete introduction to programming in
 	OCaml, including the module system, objects, polymorphism,
@@ -14,7 +14,7 @@
 	<div class="form-group">
 	  <form name="Versions">
 	    <label for="version-selector"
-	    style="display:inline;">Select your version:</label>
+		   style="display:inline;">Select your version:</label>
 	    <select class="form-control" id="version-selector" name="selector"
 		    style="width: 10ex;vertical-align: baseline;"
 		    onChange="goTUT()">
@@ -58,7 +58,10 @@
 		  link.setAttribute("href", ref);
 
 		  link = document.getElementById("stdref");
-		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html'
+		  if (parseFloat(version) < 4.08) { 
+		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html' } 
+		  else {
+		  ref = '../api/' + version + '/index.html' }
 		  link.setAttribute("href", ref);
 
 		  let stdlib = "Stdlib";
@@ -87,17 +90,17 @@
 	documentation for all modules that ship with any ocaml
 	distribution. These modules form what is called
 	the <a id="stdref"
-	href="http://caml.inria.fr/pub/docs/manual-ocaml/stdlib.html">Standard
-	Library</a>. In addition, a special
+	       href="http://caml.inria.fr/pub/docs/manual-ocaml/stdlib.html">Standard
+	  Library</a>. In addition, a special
 	module <code id="stdlib">Stdlib</code> contains
 	the <a id="corref"
-	href="http://caml.inria.fr/pub/docs/manual-ocaml/core.html">Core
-	Library</a> , and is always open.
+	       href="http://caml.inria.fr/pub/docs/manual-ocaml/core.html">Core
+	  Library</a> , and is always open.
 
 	<div class="form-group">
 	  <form name="VersionsAPI">
 	    <label for="api-version-selector"
-	    style="display:inline;">Select your version:</label>
+		   style="display:inline;">Select your version:</label>
 	    <select class="form-control" id="api-version-selector" name="selectorapi"
 		    style="width: 10ex;vertical-align: baseline;"
 		    onChange="goAPI()">
@@ -112,14 +115,17 @@
 	      <option>4.01</option>
 	    </select>
 	    <script type="text/javascript">
- <!-- 
-function goAPI(){
-let version = document.VersionsAPI.selectorapi.options[document.VersionsAPI.selectorapi.selectedIndex].value;
-setVersion(version);
-setREF(version);
-location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html'
- } 
-//-->
+	      <!-- 
+		   function goAPI(){
+		   let version = document.VersionsAPI.selectorapi.options[document.VersionsAPI.selectorapi.selectedIndex].value;
+		   setVersion(version);
+		   setREF(version);
+		   if (parseFloat(version) < 4.08) { 
+		   location = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html' } 
+		   else {
+		  location = '../api/' + version + '/index.html' }
+		   } 
+		   //-->
 	    </script>
 	    <input type="button" class="btn btn-default" style="float:right;"
 		   name="button-api" onClick="goAPI()" value="OCaml API">
@@ -128,7 +134,6 @@ location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html
 	
       </p>
     </section>
-
     
     <section class="span6 condensed">
       <h1 class="ruled">The Tools</h1>
@@ -162,7 +167,7 @@ location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html
 		   let version = document.VersionsTOOL.selectortool.options[document.VersionsTOOL.selectortool.selectedIndex].value;
 		   setVersion(version);
 		   setREF(version);
-		   location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/libref/comp.html'
+		   location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/comp.html'
 		   } 
 		   //-->
 	    </script>
@@ -173,17 +178,15 @@ location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html
       </p>
 
     </section>
-
-
     
     <section class="span6 condensed">
       <h1 class="ruled">The Language Reference and Extensions</h1>
       <p>
 
-<div class="form-group">
+	<div class="form-group">
 	  <form name="VersionsREF">
 	    <label for="version-selector"
-	    style="display:inline;">Select your version:</label>
+		   style="display:inline;">Select your version:</label>
 	    <select class="form-control" id="version-selector" name="selectorref"
 		    style="width: 10ex;vertical-align: baseline;"
 		    onChange="goREF()">
@@ -198,40 +201,33 @@ location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html
 	      <option>4.01</option>
 	    </select>
 	    <script type="text/javascript">
- <!-- 
-      function goREF(){
-      let version = document.VersionsREF.selectorref.options[document.VersionsREF.selectorref.selectedIndex].value;
-      setVersion(version);
-      setREF(version);
-      } 
+	      <!-- 
+		   function goREF(){
+		   let version = document.VersionsREF.selectorref.options[document.VersionsREF.selectorref.selectedIndex].value;
+		   setVersion(version);
+		   setREF(version);
+		   } 
 
-      // finally:
-document.addEventListener("DOMContentLoaded", function(event) { 
-goREF();
-});
-//-->
+		   // finally:
+		   document.addEventListener("DOMContentLoaded", function(event) { 
+		   goREF();
+		   });
+		   //-->
 	    </script>
 	  </form>
 	</div>
 	
 	Once you have a good working knowledge of OCaml,
-	  the <a id="refref" href="http://caml.inria.fr/pub/docs/manual-ocaml/language.html">Language
+	the <a id="refref" href="http://caml.inria.fr/pub/docs/manual-ocaml/language.html">Language
 	  Reference</a> can help you understand a particular syntax or
-	  behaviour.</p>
+	behaviour.</p>
 
       <p>Also, don't forget to regulary check
 	the <a id="extref" href="http://caml.inria.fr/pub/docs/manual-ocaml/extn.html">Language
-	Extensions</a>, they will keep you up-to-date with useful new
+	  Extensions</a>, they will keep you up-to-date with useful new
 	OCaml idioms and constructions.	
       </p>
     </section>
-
-
-
-
-
-
-
     
     <section class="span6 condensed">
       <h1 class="ruled">Reference</h1>

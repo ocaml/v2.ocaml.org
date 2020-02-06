@@ -50,6 +50,7 @@ ul.translations {
   background: #FFFFFF; }
 
 .manual.content {
+  top: 45px;
   max-width: 90ex;
   margin-left: calc(10vw + 20ex);
   margin-right: 4ex;
@@ -109,7 +110,8 @@ ul.translations {
 .manual *:target {
   background-color: rgba(255, 215, 181, 0.3) !important;
   box-shadow: 0 0px 0 1px rgba(255, 215, 181, 0.8) !important;
-  border-radius: 1px; }
+  border-radius: 1px;
+  z-index: 0; }
 .manual *:hover > a.anchor {
   visibility: visible; }
 .manual a.anchor:before {
@@ -201,7 +203,8 @@ ul.translations {
 
 /* Code lexemes */
 .manual .keyword {
-  font-weight: 500; }
+  font-weight: 500;
+  color: inherit; }
 
 /* Module member specification */
 .manual .spec:not(.include), .manual .spec.include details summary {
@@ -475,7 +478,17 @@ ul.translations {
     color: black;
     background: white; }
   .manual body nav:first-child {
-    visibility: hidden; } }
+    position: absolute;
+    background: transparent; }
+  .manual nav.toc {
+    margin-right: 1em;
+    float: left; }
+  .manual .toc {
+    position: initial;
+    background: #eee; }
+  .manual .content {
+    margin-left: 3em;
+    margin-right: 3em; } }
 
 /* Syntax highlighting (based on github-gist) */
 .manual .hljs {
