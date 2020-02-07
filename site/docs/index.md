@@ -1,20 +1,63 @@
 <!-- ((! set title Docs !)) ((! set documentation !)) ((! set nobreadcrumb !)) -->
 
+<script type="text/javascript">
+  <!--
+      function setVersion(version) {
+      var list = document.getElementsByClassName("form-control");
+      for (let item of list) {
+      item.value = version;}
+      
+      let ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/language.html'
+      let link = document.getElementById("refref");
+      link.setAttribute("href", ref);
+      
+      ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/extn.html'
+      link = document.getElementById("extref");
+      link.setAttribute("href", ref);
+      
+      ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/core.html'
+      link = document.getElementById("corref");
+      link.setAttribute("href", ref);
+      
+      ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/comp.html'
+      link = document.getElementById("toolref");
+      link.setAttribute("href", ref);
+      link = document.getElementById("toolref_b");
+      link.setAttribute("href", ref);
+          
+      ref = '../manual/' + version + '/coreexamples.html'
+      link = document.getElementById("tutref");
+      link.setAttribute("href", ref);
+      link = document.getElementById("tutref_b");
+      link.setAttribute("href", ref);
+      
+      if (parseFloat(version) < 4.08) { 
+      ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html' } 
+      else {
+      ref = '../api/' + version + '/index.html' }
+      link = document.getElementById("stdref");
+      link.setAttribute("href", ref);
+      link = document.getElementById("stdref_b");
+      link.setAttribute("href", ref);
+          
+      let stdlib = "Stdlib";
+      if (parseFloat(version) < 4.08) { stdlib = "Pervasives"; }
+      document.getElementById("stdlib").textContent=stdlib;
+      }    
+      
+      function goTUT(){
+      let version = document.Versions.selector.options[document.Versions.selector.selectedIndex].value;
+      setVersion(version);
+      }
+      window.onload = goTUT;
+      //-->
+</script>
 <div class="container">
   <h1>Documentation</h1>
-  <div class="row">
-    <section class="span6 condensed">
-      <h1 class="ruled">The OCaml Tutorials</h1>
-      <p>The official <a id="tutref"
-			 href="../manual/4.09/coreexamples.html">OCaml tutorials</a> ,
-	written by the creators of the language, are the best place to
-	start. They form a complete introduction to programming in
-	OCaml, including the module system, objects, polymorphism,
-	etc.
-	<div class="form-group">
+  <div class="form-group">
 	  <form name="Versions">
 	    <label for="version-selector"
-		   style="display:inline;">Select your version:</label>
+		   style="display:inline;">Ocaml version:</label>
 	    <select class="form-control" id="version-selector" name="selector"
 		    style="width: 10ex;vertical-align: baseline;"
 		    onChange="goTUT()">
@@ -28,59 +71,22 @@
 	      <option>4.02</option>
 	      <option>4.01</option>
 	    </select>
-	    <script type="text/javascript">
-	      <!--
-		  function setVersion(version){
-		  var list = document.getElementsByClassName("form-control");
-		  for (let item of list) {
-		  item.value = version;}
-		  }
-
-		  function setREF (version) {
-		  let link = document.getElementById("refref");
-		  let ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/language.html'
-		  link.setAttribute("href", ref);
-
-		  link = document.getElementById("extref");
-		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/extn.html'
-		  link.setAttribute("href", ref);
-
-		  link = document.getElementById("corref");
-		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/core.html'
-		  link.setAttribute("href", ref);
-
-		  link = document.getElementById("toolref");
-		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/comp.html'
-		  link.setAttribute("href", ref);
-
-		  link = document.getElementById("tutref");
-		  ref = '../manual/' + version + '/coreexamples.html'
-		  link.setAttribute("href", ref);
-
-		  link = document.getElementById("stdref");
-		  if (parseFloat(version) < 4.08) { 
-		  ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html' } 
-		  else {
-		  ref = '../api/' + version + '/index.html' }
-		  link.setAttribute("href", ref);
-
-		  let stdlib = "Stdlib";
-		  if (parseFloat(version) < 4.08) { stdlib = "Pervasives"; }
-		  document.getElementById("stdlib").textContent=stdlib;
-		  }
-
-		  function goTUT(){
-		  let version = document.Versions.selector.options[document.Versions.selector.selectedIndex].value;
-		  setVersion(version);
-		  location='../manual/' + version + '/coreexamples.html'
-		  }
-		  //-->
-	    </script>
-	    <input type="button" class="btn btn-default"
-		   style="float:right;"
-		   name="button-tut" onClick="goTUT()" value="Read the tutorials">
 	  </form>
 	</div>
+  <div class="row">
+    <section class="span6 condensed">
+      <h1 class="ruled">The OCaml Tutorials</h1>
+      <p>The official <a id="tutref"
+			 href="../manual/4.09/coreexamples.html">OCaml tutorials</a> ,
+	written by the creators of the language, are the best place to
+	start. They form a complete introduction to programming in
+	OCaml, including the module system, objects, polymorphism,
+	etc.
+
+	<a id="tutref_b" href="../manual/4.09/coreexamples.html">
+	  <input type="button" class="btn btn-default"
+		 style="float:right;" name="button-tut"
+		 value="Read the tutorials"></a>
       </p>
     </section>
 
@@ -94,138 +100,45 @@
 	  Library</a>. In addition, a special
 	module <code id="stdlib">Stdlib</code> contains
 	the <a id="corref"
-	       href="http://caml.inria.fr/pub/docs/manual-ocaml/core.html">Core
-	  Library</a> , and is always open.
+	       href="http://caml.inria.fr/pub/docs/manual-ocaml/core.html">core
+	  library</a>, and is always open.
 
-	<div class="form-group">
-	  <form name="VersionsAPI">
-	    <label for="api-version-selector"
-		   style="display:inline;">Select your version:</label>
-	    <select class="form-control" id="api-version-selector" name="selectorapi"
-		    style="width: 10ex;vertical-align: baseline;"
-		    onChange="goAPI()">
-	      <option>4.09</option>
-	      <option>4.08</option>
-	      <option>4.07</option>
-	      <option>4.06</option>
-	      <option>4.05</option>
-	      <option>4.04</option>
-	      <option>4.03</option>
-	      <option>4.02</option>
-	      <option>4.01</option>
-	    </select>
-	    <script type="text/javascript">
-	      <!-- 
-		   function goAPI(){
-		   let version = document.VersionsAPI.selectorapi.options[document.VersionsAPI.selectorapi.selectedIndex].value;
-		   setVersion(version);
-		   setREF(version);
-		   if (parseFloat(version) < 4.08) { 
-		   location = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html' } 
-		   else {
-		  location = '../api/' + version + '/index.html' }
-		   } 
-		   //-->
-	    </script>
-	    <input type="button" class="btn btn-default" style="float:right;"
-		   name="button-api" onClick="goAPI()" value="OCaml API">
-	  </form>
-	</div>
-	
+	<a id="stdref_b"
+	   href="http://caml.inria.fr/pub/docs/manual-ocaml/stdlib.html">
+	  <input type="button" class="btn btn-default" style="float:right;"
+		 name="button-api" value="OCaml API"></a>
       </p>
     </section>
     
     <section class="span6 condensed">
       <h1 class="ruled">The Tools</h1>
       <p>
-	Many <a id="toolref" href="http://caml.inria.fr/pub/docs/manual-ocaml/comp.html">tools</a>
+	Many <a id="toolref"
+		href="http://caml.inria.fr/pub/docs/manual-ocaml/comp.html">tools</a>
 	are bundled with the OCaml language. Among them, the REPL (or
 	`toplevel'), the documentation generator, lexers, the
 	debugger, profiling tools, etc.
 
-	<div class="form-group">
-	  <form name="VersionsTOOL">
-	    <label for="tool-version-selector"
-		   style="display:inline;">Select your version:</label>
-	    <select class="form-control" id="tool-version-selector"
-		    name="selectortool"
-		    style="width: 10ex;vertical-align: baseline;"
-		    onChange="goTOOL()">
-	      <option>4.09</option>
-	      <option>4.08</option>
-	      <option>4.07</option>
-	      <option>4.06</option>
-	      <option>4.05</option>
-	      <option>4.04</option>
-	      <option>4.03</option>
-	      <option>4.02</option>
-	      <option>4.01</option>
-	    </select>
-	    <script type="text/javascript">
-	      <!-- 
-		   function goTOOL(){
-		   let version = document.VersionsTOOL.selectortool.options[document.VersionsTOOL.selectortool.selectedIndex].value;
-		   setVersion(version);
-		   setREF(version);
-		   location='http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/comp.html'
-		   } 
-		   //-->
-	    </script>
-	    <input type="button" class="btn btn-default" style="float:right;"
-		   name="button-api" onClick="goTOOL()" value="OCaml Tools">
-	  </form>
-	</div>
+	<a id="toolref_b"
+	   href="http://caml.inria.fr/pub/docs/manual-ocaml/comp.html">
+	  <input type="button" class="btn btn-default" style="float:right;"
+		 name="button-api" onClick="goTOOL()" value="OCaml Tools"></a>
       </p>
-
     </section>
     
     <section class="span6 condensed">
       <h1 class="ruled">The Language Reference and Extensions</h1>
       <p>
-
-	<div class="form-group">
-	  <form name="VersionsREF">
-	    <label for="version-selector"
-		   style="display:inline;">Select your version:</label>
-	    <select class="form-control" id="version-selector" name="selectorref"
-		    style="width: 10ex;vertical-align: baseline;"
-		    onChange="goREF()">
-	      <option>4.09</option>
-	      <option>4.08</option>
-	      <option>4.07</option>
-	      <option>4.06</option>
-	      <option>4.05</option>
-	      <option>4.04</option>
-	      <option>4.03</option>
-	      <option>4.02</option>
-	      <option>4.01</option>
-	    </select>
-	    <script type="text/javascript">
-	      <!-- 
-		   function goREF(){
-		   let version = document.VersionsREF.selectorref.options[document.VersionsREF.selectorref.selectedIndex].value;
-		   setVersion(version);
-		   setREF(version);
-		   } 
-
-		   // finally:
-		   document.addEventListener("DOMContentLoaded", function(event) { 
-		   goREF();
-		   });
-		   //-->
-	    </script>
-	  </form>
-	</div>
-	
 	Once you have a good working knowledge of OCaml,
-	the <a id="refref" href="http://caml.inria.fr/pub/docs/manual-ocaml/language.html">Language
-	  Reference</a> can help you understand a particular syntax or
+	the <a id="refref"
+	href="http://caml.inria.fr/pub/docs/manual-ocaml/language.html">Language
+	Reference</a> can help you understand a particular syntax or
 	behaviour.</p>
 
-      <p>Also, don't forget to regulary check
-	the <a id="extref" href="http://caml.inria.fr/pub/docs/manual-ocaml/extn.html">Language
-	  Extensions</a>, they will keep you up-to-date with useful new
-	OCaml idioms and constructions.	
+      <p>Also, don't forget to regulary check the <a id="extref"
+	href="http://caml.inria.fr/pub/docs/manual-ocaml/extn.html">Language
+	Extensions</a>, they will keep you up-to-date with useful new
+	OCaml idioms and constructions.
       </p>
     </section>
     
@@ -336,4 +249,3 @@
     </section>
   </div>
 </div>
-
