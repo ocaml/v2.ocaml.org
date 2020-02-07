@@ -131,10 +131,16 @@ html.smooth-scroll {
   .api td a:hover {
     background: white; }
   .api *:target {
-    background-color: rgba(255, 215, 181, 0.3) !important;
-    box-shadow: 0 0px 0 1px rgba(255, 215, 181, 0.8) !important;
+    /*box-shadow: 0 0px 0 1px rgba(255, 215, 181, 0.8) !important;*/
     border-radius: 1px;
-    z-index: 0; }
+    border-bottom: 4px solid #ffd7b5;
+    z-index: 0;
+    /* Because of fixed banner in the ocaml.org site, we have to offset the targets. See https://stackoverflow.com/questions/10732690/offsetting-an-html-anchor-to-adjust-for-fixed-header */
+    padding-top: 85px;
+    margin-top: -85px; }
+  .api h2:target {
+    /* background: linear-gradient(to bottom, rgb(253, 252, 252) 0%, rgba(255, 215, 181, 0.3) 100%) !important; */
+    /*	transition: 300ms; this prevents margin-top:-80 to work... */ }
   .api *:hover > a.anchor {
     visibility: visible; }
   .api a.anchor:before {
@@ -648,6 +654,10 @@ html.smooth-scroll {
 
 /* When the navigation bar is collapsed */
 @media only screen and (max-width: 979px) {
+  .api *:target {
+    padding-top: 0px;
+    margin-top: 0px; }
+
   .container {
     margin-left: auto;
     margin-right: auto; }
@@ -709,6 +719,10 @@ html.smooth-scroll {
     word-break: break-word; } }
 /* When the navigation bar has reduced size */
 @media (max-height: 600px) and (min-width: 980px) {
+  .api *:target {
+    padding-top: 60px;
+    margin-top: -60px; }
+
   .api nav.toc {
     top: 46px; } }
 /* Print adjustements. */
