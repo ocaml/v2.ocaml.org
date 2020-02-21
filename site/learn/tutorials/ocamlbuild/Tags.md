@@ -6,7 +6,7 @@
 ## Tagging files
 
 To tag files, use the `_tags` file. See the [user
-manual](http://gallium.inria.fr/~pouillar/ocamlbuild/ocamlbuild-user-guide.html)
+manual](https://github.com/ocaml/ocamlbuild/blob/master/manual/manual.adoc#tags-and-the-_tags-file)
 for more details. You can also use the `tag_file` function in a
 [plugin](Making_plugins.html) or use the `-tag` option.
 
