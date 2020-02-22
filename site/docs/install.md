@@ -38,8 +38,7 @@ eval `opam env`
 # install given version of the compiler
 opam switch create {{! get LATEST_OCAML_VERSION !}}
 eval `opam env`
-# check you got what you want
-which ocaml
+# check your ocaml version
 ocaml -version
 ```
 
