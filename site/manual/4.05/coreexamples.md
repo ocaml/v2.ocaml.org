@@ -1,11 +1,11 @@
 <!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
-<div class="manual content"><ul class="tutos_menu"><li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
+<div class="manual content"><ul class="part_menu"><li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="tutorial" id="sec7"><span>Tutorial 1</span>&nbsp;&nbsp;The core language</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="/docs" id="version-select">Version 4.05</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter" id="sec7"><span>Chapter 1</span>&nbsp;&nbsp;The core language</h1>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.05</a></div><div class="toc_title"><a href="#">The core language</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec8">1&nbsp;&nbsp;Basics</a>
 </li><li><a href="#sec9">2&nbsp;&nbsp;Data types</a>
 </li><li><a href="#sec10">3&nbsp;&nbsp;Functions as values</a>
@@ -21,12 +21,12 @@
 </p><p>This part of the manual is a tutorial introduction to the
 OCaml language. A good familiarity with programming in a conventional
 languages (say, Pascal or C) is assumed, but no prior exposure to
-functional languages is required. The present tutorial introduces the
-core language. Tutorial&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a> deals with the
-module system, tutorial&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a> with the
-object-oriented features, tutorial&nbsp;<a href="lablexamples.html#c%3Alabl-examples">4</a> with
+functional languages is required. The present chapter introduces the
+core language. Chapter&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a> deals with the
+module system, chapter&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a> with the
+object-oriented features, chapter&nbsp;<a href="lablexamples.html#c%3Alabl-examples">4</a> with
 extensions to the core language (labeled arguments and polymorphic
-variants), and tutorial&nbsp;<a href="advexamples.html#c%3Aadvexamples">5</a> gives some advanced examples.</p>
+variants), and chapter&nbsp;<a href="advexamples.html#c%3Aadvexamples">5</a> gives some advanced examples.</p>
 <h2 class="section" id="sec8">1&nbsp;&nbsp;Basics</h2>
 <p>For this overview of OCaml, we use the interactive system, which
 is started by running <span class="c003">ocaml</span> from the Unix shell, or by launching the
@@ -678,7 +678,7 @@ $ ./fib 20
 </pre><p>
 More complex standalone OCaml programs are typically composed of
 multiple source files, and can link with precompiled libraries.
-Tutorials&nbsp;<a href="comp.html#c%3Acamlc">8</a> and&nbsp;<a href="native.html#c%3Anativecomp">11</a> explain how to use the
+Chapters&nbsp;<a href="comp.html#c%3Acamlc">8</a> and&nbsp;<a href="native.html#c%3Anativecomp">11</a> explain how to use the
 batch compilers <span class="c003">ocamlc</span> and <span class="c003">ocamlopt</span>. Recompilation of
 multi-file OCaml projects can be automated using third-party
 build systems, such as the

@@ -1,11 +1,11 @@
 <!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
-<div class="manual content"><ul class="tutos_menu"><li><a href="coreexamples.html">The core language</a></li><li class="active"><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
+<div class="manual content"><ul class="part_menu"><li><a href="coreexamples.html">The core language</a></li><li class="active"><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="tutorial" id="sec17"><span>Tutorial 2</span>&nbsp;&nbsp;The module system</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="/docs" id="version-select">Version 4.02</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter" id="sec17"><span>Chapter 2</span>&nbsp;&nbsp;The module system</h1>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.02</a></div><div class="toc_title"><a href="#">The module system</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec18">Structures</a>
 </li><li><a href="#sec19">Signatures</a>
 </li><li><a href="#sec20">Functors</a>
@@ -14,7 +14,7 @@
 </li></ul></nav></header>
 <p> <a id="c:moduleexamples"></a>
 
-</p><p>This tutorial introduces the module system of OCaml.</p>
+</p><p>This chapter introduces the module system of OCaml.</p>
 <h2 class="section" id="sec18">1&nbsp;&nbsp;Structures</h2>
 <p>A primary motivation for modules is to package together related
 definitions (such as the definitions of a data type and associated

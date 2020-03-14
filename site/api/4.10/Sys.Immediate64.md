@@ -1,0 +1,17 @@
+<!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
+<div class="api"><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="#top">Sys.Immediate64</a></div><ul></ul></nav></header>
+
+<h1>Module <a href="type_Sys.Immediate64.html">Sys.Immediate64</a></h1>
+
+<pre><span id="MODULEImmediate64"><span class="keyword">module</span> Immediate64</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Sys.Immediate64.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><hr width="100%">
+<p>This module allows to define a type <code class="code">t</code> with the <code class="code">immediate64</code>
+      attribute. This attribute means that the type is immediate on 64
+      bit architectures. On other architectures, it might or might not
+      be immediate.</p>
+
+<pre><span id="MODULETYPENon_immediate"><span class="keyword">module type</span> <a href="Sys.Immediate64.Non_immediate.html">Non_immediate</a></span> = <code class="code"><span class="keyword">sig</span></code> <a href="Sys.Immediate64.Non_immediate.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><span id="MODULETYPEImmediate"><span class="keyword">module type</span> <a href="Sys.Immediate64.Immediate.html">Immediate</a></span> = <code class="code"><span class="keyword">sig</span></code> <a href="Sys.Immediate64.Immediate.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><span id="MODULEMake"><span class="keyword">module</span> <a href="Sys.Immediate64.Make.html">Make</a></span>: <div class="sig_block"><code class="code"><span class="keyword">functor</span>&nbsp;(</code><code class="code"><span class="constructor">Immediate</span></code><code class="code">&nbsp;:&nbsp;</code><code class="type"><a href="Sys.Immediate64.Immediate.html">Immediate</a></code><code class="code">)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;</code><div class="sig_block"><code class="code"><span class="keyword">functor</span>&nbsp;(</code><code class="code"><span class="constructor">Non_immediate</span></code><code class="code">&nbsp;:&nbsp;</code><code class="type"><a href="Sys.Immediate64.Non_immediate.html">Non_immediate</a></code><code class="code">)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;</code><code class="code"><span class="keyword">sig</span></code> <a href="Sys.Immediate64.Make.html">..</a> <code class="code"><span class="keyword">end</span></code></div></div></pre>
+<div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

@@ -1,11 +1,11 @@
 <!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
-<div class="manual content"><ul class="tutos_menu"><li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
+<div class="manual content"><ul class="part_menu"><li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="tutorial" id="sec7"><span>Tutorial 1</span>&nbsp;&nbsp;The core language</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="/docs" id="version-select">Version 4.01</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter" id="sec7"><span>Chapter 1</span>&nbsp;&nbsp;The core language</h1>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.01</a></div><div class="toc_title"><a href="#">The core language</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec8">Basics</a>
 </li><li><a href="#sec9">Data types</a>
 </li><li><a href="#sec10">Functions as values</a>
@@ -21,12 +21,12 @@
 </p><p>This part of the manual is a tutorial introduction to the
 OCaml language. A good familiarity with programming in a conventional
 languages (say, Pascal or C) is assumed, but no prior exposure to
-functional languages is required. The present tutorial introduces the
-core language. Tutorial&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a> deals with the
-module system, tutorial&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a> with the
-object-oriented features, tutorial&nbsp;<a href="lablexamples.html#c%3Alabl-examples">4</a> with
+functional languages is required. The present chapter introduces the
+core language. Chapter&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a> deals with the
+module system, chapter&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a> with the
+object-oriented features, chapter&nbsp;<a href="lablexamples.html#c%3Alabl-examples">4</a> with
 extensions to the core language (labeled arguments and polymorphic
-variants), and tutorial&nbsp;<a href="advexamples.html#c%3Aadvexamples">5</a> gives some advanced examples.</p>
+variants), and chapter&nbsp;<a href="advexamples.html#c%3Aadvexamples">5</a> gives some advanced examples.</p>
 <h2 class="section" id="sec8">1&nbsp;&nbsp;Basics</h2>
 <p>For this overview of OCaml, we use the interactive system, which
 is started by running <span class="c007">ocaml</span> from the Unix shell, or by launching the
@@ -521,13 +521,13 @@ less than the current precedence.
 </span></pre><p>Parsing (transforming concrete syntax into abstract syntax) is usually
 more delicate. OCaml offers several tools to help write parsers:
 on the one hand, OCaml versions of the lexer generator Lex and the
-parser generator Yacc (see tutorial&nbsp;<a href="lexyacc.html#c%3Aocamlyacc">12</a>), which handle
+parser generator Yacc (see chapter&nbsp;<a href="lexyacc.html#c%3Aocamlyacc">12</a>), which handle
 LALR(1) languages using push-down automata; on the other hand, a
 predefined type of streams (of characters or tokens) and
 pattern-matching over streams, which facilitate the writing of
 recursive-descent parsers for LL(1) languages. An example using
 <span class="c007">ocamllex</span> and <span class="c007">ocamlyacc</span> is given in
-tutorial&nbsp;<a href="lexyacc.html#c%3Aocamlyacc">12</a>. Here, we will use stream parsers.
+chapter&nbsp;<a href="lexyacc.html#c%3Aocamlyacc">12</a>. Here, we will use stream parsers.
 The syntactic support for stream parsers is provided by the Camlp4
 preprocessor, which can be loaded into the interactive toplevel via
 the <span class="c007">#load</span> directives below.</p><pre><span class="c004">#</span><span class="c003"> #load "dynlink.cma";;
@@ -645,10 +645,10 @@ $ ./fib 20
 </pre><p>
 More complex standalone OCaml programs are typically composed of
 multiple source files, and can link with precompiled libraries.
-Tutorials&nbsp;<a href="comp.html#c%3Acamlc">8</a> and&nbsp;<a href="native.html#c%3Anativecomp">11</a> explain how to use the
+Chapters&nbsp;<a href="comp.html#c%3Acamlc">8</a> and&nbsp;<a href="native.html#c%3Anativecomp">11</a> explain how to use the
 batch compilers <span class="c007">ocamlc</span> and <span class="c007">ocamlopt</span>. Recompilation of
 multi-file OCaml projects can be automated using the <span class="c007">ocamlbuild</span>
-compilation manager, documented in tutorial&nbsp;<a href="ocamlbuild.html#c%3Aocamlbuild">18</a>.
+compilation manager, documented in chapter&nbsp;<a href="ocamlbuild.html#c%3Aocamlbuild">18</a>.
 
 </p>
 <hr>

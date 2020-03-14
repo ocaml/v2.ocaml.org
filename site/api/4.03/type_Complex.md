@@ -1,0 +1,25 @@
+<!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
+<div class="api"><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.03</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="Complex.html">Complex</a></div><ul></ul></nav></header>
+<code class="code"><span class="keyword">sig</span>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t&nbsp;=&nbsp;{&nbsp;re&nbsp;:&nbsp;float;&nbsp;im&nbsp;:&nbsp;float;&nbsp;}
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;zero&nbsp;:&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;one&nbsp;:&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;i&nbsp;:&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;neg&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;conj&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;add&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;sub&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;mul&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;inv&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;div&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;sqrt&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;norm2&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;norm&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;arg&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;polar&nbsp;:&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;exp&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;log&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;pow&nbsp;:&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Complex</span>.t
+<span class="keyword">end</span></code><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

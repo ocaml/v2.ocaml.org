@@ -1,0 +1,17 @@
+<!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
+<div class="api"><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.07</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="Float.Array.html">Float.Array</a></div><ul></ul></nav></header>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t&nbsp;=&nbsp;floatarray<br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;create&nbsp;:&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Float</span>.<span class="constructor">Array</span>.t&nbsp;=&nbsp;<span class="string">"caml_floatarray_create"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;length&nbsp;:&nbsp;<span class="constructor">Float</span>.<span class="constructor">Array</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;=&nbsp;<span class="string">"%floatarray_length"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;get&nbsp;:&nbsp;<span class="constructor">Float</span>.<span class="constructor">Array</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;=&nbsp;<span class="string">"%floatarray_safe_get"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;set&nbsp;:&nbsp;<span class="constructor">Float</span>.<span class="constructor">Array</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"%floatarray_safe_set"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;unsafe_get&nbsp;:&nbsp;<span class="constructor">Float</span>.<span class="constructor">Array</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"%floatarray_unsafe_get"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;unsafe_set&nbsp;:&nbsp;<span class="constructor">Float</span>.<span class="constructor">Array</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"%floatarray_unsafe_set"</span><br>
+<span class="keyword">end</span></code>
+<div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

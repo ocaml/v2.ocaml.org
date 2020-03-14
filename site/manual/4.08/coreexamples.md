@@ -1,11 +1,11 @@
 <!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
-<div class="manual content"><ul class="tutos_menu"><li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
+<div class="manual content"><ul class="part_menu"><li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="tutorial" id="sec7"><span>Tutorial 1</span>&nbsp;&nbsp;The core language</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="/docs" id="version-select">Version 4.08</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter" id="sec7"><span>Chapter 1</span>&nbsp;&nbsp;The core language</h1>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.08</a></div><div class="toc_title"><a href="#">The core language</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec8">1&nbsp;&nbsp;Basics</a>
 </li><li><a href="#sec9">2&nbsp;&nbsp;Data types</a>
 </li><li><a href="#sec10">3&nbsp;&nbsp;Functions as values</a>
@@ -22,12 +22,12 @@
 </p><p>This part of the manual is a tutorial introduction to the
 OCaml language. A good familiarity with programming in a conventional
 languages (say, C or Java) is assumed, but no prior exposure to
-functional languages is required. The present tutorial introduces the
-core language. Tutorial&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a> deals with the
-module system, tutorial&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a> with the
-object-oriented features, tutorial&nbsp;<a href="lablexamples.html#c%3Alabl-examples">4</a> with
+functional languages is required. The present chapter introduces the
+core language. Chapter&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a> deals with the
+module system, chapter&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a> with the
+object-oriented features, chapter&nbsp;<a href="lablexamples.html#c%3Alabl-examples">4</a> with
 extensions to the core language (labeled arguments and polymorphic
-variants), and tutorial&nbsp;<a href="advexamples.html#c%3Aadvexamples">6</a> gives some advanced examples.</p>
+variants), and chapter&nbsp;<a href="advexamples.html#c%3Aadvexamples">6</a> gives some advanced examples.</p>
 <h2 class="section" id="sec8">1&nbsp;&nbsp;Basics</h2>
 <p>For this overview of OCaml, we use the interactive system, which
 is started by running <span class="c003">ocaml</span> from the Unix shell, or by launching the
@@ -611,7 +611,7 @@ by itself that the type of <span class="c003">r</span> can only be <span class="
 no needs for explicit type annotations.</p><p>Those explicit type annotations can in fact be used anywhere.
 Most of the time they are unnecessary, but they are useful to guide
 disambiguation, to debug unexpected type errors, or combined with some
-of the more advanced features of OCaml described in later tutorials.</p><p>Secondly, for records, OCaml can also deduce the right record type by
+of the more advanced features of OCaml described in later chapters.</p><p>Secondly, for records, OCaml can also deduce the right record type by
 looking at the whole set of fields used in a expression or pattern:
 
 
@@ -659,7 +659,7 @@ an ulterior type error:</p><div class="caml-example toplevel">
 
 </div><p>Moreover, being the last defined type is a quite unstable position that
 may change surreptitiously after adding or moving around a type
-definition, or after opening a module (see tutorial <a href="moduleexamples.html#c%3Amoduleexamples">2</a>).
+definition, or after opening a module (see chapter <a href="moduleexamples.html#c%3Amoduleexamples">2</a>).
 Consequently, adding explicit type annotations to guide disambiguation is
 more robust than relying on the last defined type disambiguation.</p>
 <h2 class="section" id="sec13">5&nbsp;&nbsp;Imperative features</h2>
@@ -1003,7 +1003,7 @@ expression is being evaluated.</p><p>The value of <span class="c003">lazy_two</s
 has not been evaluated yet, and its final value is unknown.</p><p>Note that <span class="c003">lazy_two</span> has type <span class="c003">int lazy_t</span>. However, the type <span class="c003">'a lazy_t</span> is an 
 internal type name, so the type <span class="c003">'a Lazy.t</span> should be preferred when possible.</p><p>When we finally need the result of a lazy expression, we can call <span class="c003">Lazy.force</span> 
 on that expression to force its evaluation. The function <span class="c003">force</span> comes from 
-standard-library module <a href="libref/Lazy.html"><span class="c003">Lazy</span></a>.</p><div class="caml-example toplevel">
+standard-library module <a href="../../api/4.08/Lazy.html"><span class="c003">Lazy</span></a>.</p><div class="caml-example toplevel">
 
 <pre><code class="caml-input"><span class="text">   </span><span class="kw2">Lazy</span><span class="text">.</span><span class="id">force</span><span class="text"> </span><span class="id">lazy_two</span><span class="text">;;
 </span></code><code class="caml-output ok">lazy_two evaluation
@@ -1199,8 +1199,8 @@ less than the current precedence.
 
 </div>
 <h2 class="section" id="sec18">10&nbsp;&nbsp;Printf formats</h2>
-<p>There is a <span class="c003">printf</span> function in the <a href="libref/Printf.html"><span class="c003">Printf</span></a> module
-(see tutorial&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a>) that allows you to make formatted
+<p>There is a <span class="c003">printf</span> function in the <a href="../../api/4.08/Printf.html"><span class="c003">Printf</span></a> module
+(see chapter&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a>) that allows you to make formatted
 output more concisely.
 It follows the behavior of the <span class="c003">printf</span> function from the C standard library.
 The <span class="c003">printf</span> function takes a format string that describes the desired output
@@ -1385,7 +1385,7 @@ $ ./fib 20
 </pre><p>
 More complex standalone OCaml programs are typically composed of
 multiple source files, and can link with precompiled libraries.
-Tutorials&nbsp;<a href="comp.html#c%3Acamlc">9</a> and&nbsp;<a href="native.html#c%3Anativecomp">12</a> explain how to use the
+Chapters&nbsp;<a href="comp.html#c%3Acamlc">9</a> and&nbsp;<a href="native.html#c%3Anativecomp">12</a> explain how to use the
 batch compilers <span class="c003">ocamlc</span> and <span class="c003">ocamlopt</span>. Recompilation of
 multi-file OCaml projects can be automated using third-party
 build systems, such as the

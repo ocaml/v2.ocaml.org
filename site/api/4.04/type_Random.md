@@ -1,0 +1,32 @@
+<!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
+<div class="api"><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.04</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="Random.html">Random</a></div><ul></ul></nav></header>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;init&nbsp;:&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;full_init&nbsp;:&nbsp;int&nbsp;array&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;self_init&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;bits&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;int&nbsp;:&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;int32&nbsp;:&nbsp;<span class="constructor">Int32</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Int32</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;nativeint&nbsp;:&nbsp;<span class="constructor">Nativeint</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Nativeint</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;int64&nbsp;:&nbsp;<span class="constructor">Int64</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Int64</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;float&nbsp;:&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;bool&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">State</span>&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;make&nbsp;:&nbsp;int&nbsp;array&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;make_self_init&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;copy&nbsp;:&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;bits&nbsp;:&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;int&nbsp;:&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;int32&nbsp;:&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Int32</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Int32</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;nativeint&nbsp;:&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Nativeint</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Nativeint</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;int64&nbsp;:&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Int64</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Int64</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;float&nbsp;:&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;bool&nbsp;:&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;get_state&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;set_state&nbsp;:&nbsp;<span class="constructor">Random</span>.<span class="constructor">State</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+<span class="keyword">end</span></code><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

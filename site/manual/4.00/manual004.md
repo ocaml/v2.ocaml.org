@@ -1,10 +1,10 @@
 <!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
-<div class="manual content"><ul class="tutos_menu"><li><a href="manual003.html">The core language</a></li><li class="active"><a href="manual004.html">The module system</a></li><li><a href="manual005.html">Objects in OCaml</a></li><li><a href="manual006.html">Labels and variants</a></li><li><a href="manual007.html">Advanced examples with classes and modules</a></li></ul>
+<div class="manual content"><ul class="part_menu"><li><a href="manual003.html">The core language</a></li><li class="active"><a href="manual004.html">The module system</a></li><li><a href="manual005.html">Objects in OCaml</a></li><li><a href="manual006.html">Labels and variants</a></li><li><a href="manual007.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="tutorial"><a name="htoc12"><span>Tutorial 2</span></a>&nbsp;&nbsp;The module system</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="/docs" id="version-select">Version 4.00</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc12"><span>Chapter 2</span></a>&nbsp;&nbsp;The module system</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The module system</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#toc13">Structures</a>
 </li><li><a href="#toc14">Signatures</a>
 </li><li><a href="#toc15">Functors</a>
@@ -12,7 +12,7 @@
 </li><li><a href="#toc17">Modules and separate compilation</a>
 </li></ul></nav></header>
 <p> <a name="c:moduleexamples"></a>
-</p><p>This tutorial introduces the module system of OCaml.</p><h2 class="section"><a name="toc13"></a><a name="htoc13">1</a>&nbsp;&nbsp;Structures</h2><p>A primary motivation for modules is to package together related
+</p><p>This chapter introduces the module system of OCaml.</p><h2 class="section"><a name="toc13"></a><a name="htoc13">1</a>&nbsp;&nbsp;Structures</h2><p>A primary motivation for modules is to package together related
 definitions (such as the definitions of a data type and associated
 operations over that type) and enforce a consistent naming scheme for
 these definitions. This avoids running out of names or accidentally

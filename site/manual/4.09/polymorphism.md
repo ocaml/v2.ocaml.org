@@ -1,11 +1,11 @@
 <!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
-<div class="manual content"><ul class="tutos_menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li class="active"><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
+<div class="manual content"><ul class="part_menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li class="active"><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="tutorial" id="sec53"><span>Tutorial 5</span>&nbsp;&nbsp;Polymorphism and its limitations</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="/docs" id="version-select">Version 4.09</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter" id="sec53"><span>Chapter 5</span>&nbsp;&nbsp;Polymorphism and its limitations</h1>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.09</a></div><div class="toc_title"><a href="#">Polymorphism and its limitations</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec54">1&nbsp;&nbsp;Weak polymorphism and mutation</a>
 </li><li><a href="#sec60">2&nbsp;&nbsp;Polymorphic recursion</a>
 </li><li><a href="#sec63">3&nbsp;&nbsp;Higher-rank polymorphic functions</a>
@@ -13,12 +13,12 @@
 <p><a id="c:polymorphism"></a>
 </p><p><br>
 <br>
-</p><p>This tutorial covers more advanced questions related to the
+</p><p>This chapter covers more advanced questions related to the
 limitations of polymorphic functions and types. There are some situations
 in OCaml where the type inferred by the type checker may be less generic
 than expected. Such non-genericity can stem either from interactions
 between side-effect and typing or the difficulties of implicit polymorphic
-recursion and higher-rank polymorphism.</p><p>This tutorial details each of these situations and, if it is possible,
+recursion and higher-rank polymorphism.</p><p>This chapter details each of these situations and, if it is possible,
 how to recover genericity.</p>
 <h2 class="section" id="sec54">1&nbsp;&nbsp;Weak polymorphism and mutation</h2>
 <h3 class="subsection" id="sec55">1.1&nbsp;&nbsp;Weakly polymorphic types</h3>

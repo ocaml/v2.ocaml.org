@@ -1,0 +1,120 @@
+<!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
+<div class="manual content"><ul class="part_menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li class="active"><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="browser.html">The browser/editor (ocamlbrowser)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="ocamlbuild.html">The ocamlbuild compilation manager</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec296"><span>Chapter 13</span>&nbsp;&nbsp;Dependency generator (ocamldep)</h1>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.02</a></div><div class="toc_title"><a href="#">Dependency generator (ocamldep)</a></div><ul><li class="top"><a href="#">Top</a></li>
+<li><a href="#sec297">Options</a>
+</li><li><a href="#sec298">A typical Makefile</a>
+</li></ul></nav></header>
+<p> <a id="c:camldep"></a>
+
+</p><p>The <span class="c007">ocamldep</span> command scans a set of OCaml source files
+(<span class="c007">.ml</span> and <span class="c007">.mli</span> files) for references to external compilation units,
+and outputs dependency lines in a format suitable for the <span class="c007">make</span>
+utility. This ensures that <span class="c007">make</span> will compile the source files in the
+correct order, and recompile those files that need to when a source
+file is modified.</p><p>The typical usage is:
+</p><pre>        ocamldep <span class="c013">options</span> *.mli *.ml &gt; .depend
+</pre><p>
+where <span class="c007">*.mli *.ml</span> expands to all source files in the current
+directory and <span class="c007">.depend</span> is the file that should contain the
+dependencies. (See below for a typical <span class="c007">Makefile</span>.)</p><p>Dependencies are generated both for compiling with the bytecode
+compiler <span class="c007">ocamlc</span> and with the native-code compiler <span class="c007">ocamlopt</span>.</p><p>The <span class="c007">ocamlbuild</span> compilation manager (see chapter&nbsp;<a href="ocamlbuild.html#c%3Aocamlbuild">18</a>)
+provide a higher-level, more automated alternative to the combination
+of <span class="c007">make</span> and <span class="c007">ocamldep</span>. </p>
+<h2 class="section" id="sec297">1&nbsp;&nbsp;Options</h2>
+<p>The following command-line options are recognized by <span class="c007">ocamldep</span>.</p><dl class="description"><dt class="dt-description"><span class="c019"><span class="c007">-I</span> <span class="c013">directory</span></span></dt><dd class="dd-description">
+Add the given directory to the list of directories searched for
+source files. If a source file <span class="c007">foo.ml</span> mentions an external
+compilation unit <span class="c007">Bar</span>, a dependency on that unit’s interface
+<span class="c007">bar.cmi</span> is generated only if the source for <span class="c007">bar</span> is found in the
+current directory or in one of the directories specified with <span class="c007">-I</span>.
+Otherwise, <span class="c007">Bar</span> is assumed to be a module from the standard library,
+and no dependencies are generated. For programs that span multiple
+directories, it is recommended to pass <span class="c007">ocamldep</span> the same <span class="c007">-I</span> options
+that are passed to the compiler.</dd><dt class="dt-description"><span class="c019"><span class="c007">-ml-synonym</span> <span class="c013">.ext</span></span></dt><dd class="dd-description">
+Consider the given extension (with leading dot) to be a synonym for .ml.</dd><dt class="dt-description"><span class="c019"><span class="c007">-mli-synonym</span> <span class="c013">.ext</span></span></dt><dd class="dd-description">
+Consider the given extension (with leading dot) to be a synonym for .mli.</dd><dt class="dt-description"><span class="c010">-modules</span></dt><dd class="dd-description">
+Output raw dependencies of the form
+<pre>      filename: Module1 Module2 ... ModuleN
+</pre>where <span class="c007">Module1</span>, …, <span class="c007">ModuleN</span> are the names of the compilation
+units referenced within the file <span class="c007">filename</span>, but these names are not
+resolved to source file names. Such raw dependencies cannot be used
+by <span class="c007">make</span>, but can be post-processed by other tools such as <span class="c007">Omake</span>.</dd><dt class="dt-description"><span class="c010">-native</span></dt><dd class="dd-description">
+Generate dependencies for a pure native-code program (no bytecode
+version). When an implementation file (<span class="c007">.ml</span> file) has no explicit
+interface file (<span class="c007">.mli</span> file), <span class="c007">ocamldep</span> generates dependencies on the
+bytecode compiled file (<span class="c007">.cmo</span> file) to reflect interface changes.
+This can cause unnecessary bytecode recompilations for programs that
+are compiled to native-code only. The flag <span class="c007">-native</span> causes
+dependencies on native compiled files (<span class="c007">.cmx</span>) to be generated instead
+of on <span class="c007">.cmo</span> files. (This flag makes no difference if all source files
+have explicit <span class="c007">.mli</span> interface files.)</dd><dt class="dt-description"><span class="c019"><span class="c007">-pp</span> <span class="c013">command</span></span></dt><dd class="dd-description">
+Cause <span class="c007">ocamldep</span> to call the given <span class="c013">command</span> as a preprocessor
+for each source file.</dd><dt class="dt-description"><span class="c010">-slash</span></dt><dd class="dd-description">
+Under Windows, use a forward slash (/) as the path separator instead
+of the usual backward slash (\). Under Unix, this option does
+nothing.</dd><dt class="dt-description"><span class="c010">-version</span></dt><dd class="dd-description">
+Print version string and exit.</dd><dt class="dt-description"><span class="c010">-vnum</span></dt><dd class="dd-description">
+Print short version number and exit.</dd><dt class="dt-description"><span class="c019"><span class="c007">-help</span> or <span class="c007">--help</span></span></dt><dd class="dd-description">
+Display a short usage summary and exit.
+</dd></dl>
+<h2 class="section" id="sec298">2&nbsp;&nbsp;A typical Makefile</h2>
+<p>Here is a template <span class="c007">Makefile</span> for a OCaml program.</p><pre>OCAMLC=ocamlc
+OCAMLOPT=ocamlopt
+OCAMLDEP=ocamldep
+INCLUDES=                 # all relevant -I options here
+OCAMLFLAGS=$(INCLUDES)    # add other options for ocamlc here
+OCAMLOPTFLAGS=$(INCLUDES) # add other options for ocamlopt here
+
+# prog1 should be compiled to bytecode, and is composed of three
+# units: mod1, mod2 and mod3.
+
+# The list of object files for prog1
+PROG1_OBJS=mod1.cmo mod2.cmo mod3.cmo
+
+prog1: $(PROG1_OBJS)
+        $(OCAMLC) -o prog1 $(OCAMLFLAGS) $(PROG1_OBJS)
+
+# prog2 should be compiled to native-code, and is composed of two
+# units: mod4 and mod5.
+
+# The list of object files for prog2
+PROG2_OBJS=mod4.cmx mod5.cmx
+
+prog2: $(PROG2_OBJS)
+        $(OCAMLOPT) -o prog2 $(OCAMLFLAGS) $(PROG2_OBJS)
+
+# Common rules
+.SUFFIXES: .ml .mli .cmo .cmi .cmx
+
+.ml.cmo:
+        $(OCAMLC) $(OCAMLFLAGS) -c $&lt;
+
+.mli.cmi:
+        $(OCAMLC) $(OCAMLFLAGS) -c $&lt;
+
+.ml.cmx:
+        $(OCAMLOPT) $(OCAMLOPTFLAGS) -c $&lt;
+
+# Clean up
+clean:
+        rm -f prog1 prog2
+        rm -f *.cm[iox]
+
+# Dependencies
+depend:
+        $(OCAMLDEP) $(INCLUDES) *.mli *.ml &gt; .depend
+
+include .depend
+</pre>
+<hr>
+
+
+
+
+
+<div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

@@ -1,11 +1,11 @@
 <!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
-<div class="manual content"><ul class="tutos_menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li class="active"><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
+<div class="manual content"><ul class="part_menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li class="active"><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="tutorial" id="sec64"><span>Tutorial 6</span>&nbsp;&nbsp;Advanced examples with classes and modules</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="/docs" id="version-select">Version 4.09</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter" id="sec64"><span>Chapter 6</span>&nbsp;&nbsp;Advanced examples with classes and modules</h1>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.09</a></div><div class="toc_title"><a href="#">Advanced examples with classes and modules</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec65">1&nbsp;&nbsp;Extended example: bank accounts</a>
 </li><li><a href="#sec66">2&nbsp;&nbsp;Simple modules as classes</a>
 </li><li><a href="#sec71">3&nbsp;&nbsp;The subject/observer pattern</a>
@@ -13,7 +13,7 @@
 <p>
 <a id="c:advexamples"></a></p><p></p><p><br>
 <br>
-</p><p>In this tutorial, we show some larger examples using objects, classes
+</p><p>In this chapter, we show some larger examples using objects, classes
 and modules. We review many of the object features simultaneously on
 the example of a bank account. We show how modules taken from the
 standard library can be expressed as classes. Lastly, we describe a
@@ -24,7 +24,7 @@ of window managers.</p>
 <a id="ss:bank-accounts"></a></p><p>In this section, we illustrate most aspects of Object and inheritance
 by refining, debugging, and specializing the following
 initial naive definition of a simple bank account. (We reuse the
-module <span class="c003">Euro</span> defined at the end of tutorial&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a>.)
+module <span class="c003">Euro</span> defined at the end of chapter&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a>.)
 
 
 </p><div class="caml-example toplevel">
@@ -1047,4 +1047,4 @@ and attach several observers to the same object:
 
 
 
-<span class="authors c009">(Tutorial written by Didier Rémy)</span><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>
+<span class="authors c009">(Chapter written by Didier Rémy)</span><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

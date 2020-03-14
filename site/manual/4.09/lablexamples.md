@@ -1,11 +1,11 @@
 <!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
-<div class="manual content"><ul class="tutos_menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li class="active"><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
+<div class="manual content"><ul class="part_menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li class="active"><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="tutorial" id="sec44"><span>Tutorial 4</span>&nbsp;&nbsp;Labels and variants</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="/docs" id="version-select">Version 4.09</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter" id="sec44"><span>Chapter 4</span>&nbsp;&nbsp;Labels and variants</h1>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.09</a></div><div class="toc_title"><a href="#">Labels and variants</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec45">1&nbsp;&nbsp;Labels</a>
 </li><li><a href="#sec49">2&nbsp;&nbsp;Polymorphic variants</a>
 </li></ul></nav></header>
@@ -13,7 +13,7 @@
 </p><p>
 </p><p><br>
 <br>
-</p><p>This tutorial gives an overview of the new features in
+</p><p>This chapter gives an overview of the new features in
 OCaml 3: labels, and polymorphic variants.</p>
 <h2 class="section" id="sec45">1&nbsp;&nbsp;Labels</h2>
 <p>If you have a look at modules ending in <span class="c003">Labels</span> in the standard
@@ -676,4 +676,4 @@ options) is now deprecated for normal use.</div></dd></dl>
 
 
 
-<span class="authors c009">(Tutorial written by Jacques Garrigue)</span><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>
+<span class="authors c009">(Chapter written by Jacques Garrigue)</span><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

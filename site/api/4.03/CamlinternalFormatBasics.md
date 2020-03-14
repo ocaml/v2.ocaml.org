@@ -1,0 +1,967 @@
+<!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
+<div class="api"><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.03</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="#top">CamlinternalFormatBasics</a></div><ul></ul></nav></header>
+
+<h1>Module <a href="type_CamlinternalFormatBasics.html">CamlinternalFormatBasics</a></h1>
+
+<pre><span class="keyword">module</span> CamlinternalFormatBasics: <code class="code"><span class="keyword">sig</span></code> <a href="CamlinternalFormatBasics.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEpadty"><span class="keyword">type</span> <code class="type"></code>padty</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTpadty.Left"><span class="constructor">Left</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTpadty.Right"><span class="constructor">Right</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTpadty.Zeros"><span class="constructor">Zeros</span></span></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><code><span id="TYPEint_conv"><span class="keyword">type</span> <code class="type"></code>int_conv</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_d"><span class="constructor">Int_d</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_pd"><span class="constructor">Int_pd</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_sd"><span class="constructor">Int_sd</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_i"><span class="constructor">Int_i</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_pi"><span class="constructor">Int_pi</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_si"><span class="constructor">Int_si</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_x"><span class="constructor">Int_x</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_Cx"><span class="constructor">Int_Cx</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_X"><span class="constructor">Int_X</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_CX"><span class="constructor">Int_CX</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_o"><span class="constructor">Int_o</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_Co"><span class="constructor">Int_Co</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTint_conv.Int_u"><span class="constructor">Int_u</span></span></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><code><span id="TYPEfloat_conv"><span class="keyword">type</span> <code class="type"></code>float_conv</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_f"><span class="constructor">Float_f</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_pf"><span class="constructor">Float_pf</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_sf"><span class="constructor">Float_sf</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_e"><span class="constructor">Float_e</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_pe"><span class="constructor">Float_pe</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_se"><span class="constructor">Float_se</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_E"><span class="constructor">Float_E</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_pE"><span class="constructor">Float_pE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_sE"><span class="constructor">Float_sE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_g"><span class="constructor">Float_g</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_pg"><span class="constructor">Float_pg</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_sg"><span class="constructor">Float_sg</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_G"><span class="constructor">Float_G</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_pG"><span class="constructor">Float_pG</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_sG"><span class="constructor">Float_sG</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_F"><span class="constructor">Float_F</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_h"><span class="constructor">Float_h</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_ph"><span class="constructor">Float_ph</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_sh"><span class="constructor">Float_sh</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_H"><span class="constructor">Float_H</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_pH"><span class="constructor">Float_pH</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfloat_conv.Float_sH"><span class="constructor">Float_sH</span></span></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><span id="TYPEchar_set"><span class="keyword">type</span> <code class="type"></code>char_set</span> = <code class="type">string</code> </pre>
+
+
+<pre><code><span id="TYPEcounter"><span class="keyword">type</span> <code class="type"></code>counter</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTcounter.Line_counter"><span class="constructor">Line_counter</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTcounter.Char_counter"><span class="constructor">Char_counter</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTcounter.Token_counter"><span class="constructor">Token_counter</span></span></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><code><span id="TYPEpadding"><span class="keyword">type</span> <code class="type">('a, 'b)</code> padding</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTpadding.No_padding"><span class="constructor">No_padding</span></span> <span class="keyword">:</span> <code class="type">('a0, 'a0) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTpadding.Lit_padding"><span class="constructor">Lit_padding</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpadty">padty</a> * int</code> <span class="keyword">-&gt;</span> <code class="type">('a1, 'a1) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTpadding.Arg_padding"><span class="constructor">Arg_padding</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpadty">padty</a></code> <span class="keyword">-&gt;</span> <code class="type">(int -&gt; 'a2, 'a2) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a></code></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><span id="TYPEpad_option"><span class="keyword">type</span> <code class="type"></code>pad_option</span> = <code class="type">int option</code> </pre>
+
+
+<pre><code><span id="TYPEprecision"><span class="keyword">type</span> <code class="type">('a, 'b)</code> precision</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTprecision.No_precision"><span class="constructor">No_precision</span></span> <span class="keyword">:</span> <code class="type">('a0, 'a0) <a href="CamlinternalFormatBasics.html#TYPEprecision">precision</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTprecision.Lit_precision"><span class="constructor">Lit_precision</span></span> <span class="keyword">:</span> <code class="type">int</code> <span class="keyword">-&gt;</span> <code class="type">('a1, 'a1) <a href="CamlinternalFormatBasics.html#TYPEprecision">precision</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTprecision.Arg_precision"><span class="constructor">Arg_precision</span></span> <span class="keyword">:</span> <code class="type">(int -&gt; 'a2, 'a2) <a href="CamlinternalFormatBasics.html#TYPEprecision">precision</a></code></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><span id="TYPEprec_option"><span class="keyword">type</span> <code class="type"></code>prec_option</span> = <code class="type">int option</code> </pre>
+
+
+<pre><code><span id="TYPEcustom_arity"><span class="keyword">type</span> <code class="type">('a, 'b, 'c)</code> custom_arity</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTcustom_arity.Custom_zero"><span class="constructor">Custom_zero</span></span> <span class="keyword">:</span> <code class="type">('a0, string, 'a0) <a href="CamlinternalFormatBasics.html#TYPEcustom_arity">custom_arity</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTcustom_arity.Custom_succ"><span class="constructor">Custom_succ</span></span> <span class="keyword">:</span> <code class="type">('a1, 'b0, 'c0) <a href="CamlinternalFormatBasics.html#TYPEcustom_arity">custom_arity</a></code> <span class="keyword">-&gt;</span> <code class="type">('a1, 'x -&gt; 'b0, 'x -&gt; 'c0) <a href="CamlinternalFormatBasics.html#TYPEcustom_arity">custom_arity</a></code></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><code><span id="TYPEblock_type"><span class="keyword">type</span> <code class="type"></code>block_type</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTblock_type.Pp_hbox"><span class="constructor">Pp_hbox</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTblock_type.Pp_vbox"><span class="constructor">Pp_vbox</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTblock_type.Pp_hvbox"><span class="constructor">Pp_hvbox</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTblock_type.Pp_hovbox"><span class="constructor">Pp_hovbox</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTblock_type.Pp_box"><span class="constructor">Pp_box</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTblock_type.Pp_fits"><span class="constructor">Pp_fits</span></span></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><code><span id="TYPEformatting_lit"><span class="keyword">type</span> <code class="type"></code>formatting_lit</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.Close_box"><span class="constructor">Close_box</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.Close_tag"><span class="constructor">Close_tag</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.Break"><span class="constructor">Break</span></span> <span class="keyword">of</span> <code class="type">string * int * int</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.FFlush"><span class="constructor">FFlush</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.Force_newline"><span class="constructor">Force_newline</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.Flush_newline"><span class="constructor">Flush_newline</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.Magic_size"><span class="constructor">Magic_size</span></span> <span class="keyword">of</span> <code class="type">string * int</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.Escaped_at"><span class="constructor">Escaped_at</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.Escaped_percent"><span class="constructor">Escaped_percent</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_lit.Scan_indic"><span class="constructor">Scan_indic</span></span> <span class="keyword">of</span> <code class="type">char</code></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><code><span id="TYPEformatting_gen"><span class="keyword">type</span> <code class="type">('a, 'b, 'c, 'd, 'e, 'f)</code> formatting_gen</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_gen.Open_tag"><span class="constructor">Open_tag</span></span> <span class="keyword">:</span> <code class="type">('a0, 'b0, 'c0, 'd0, 'e0, 'f0) <a href="CamlinternalFormatBasics.html#TYPEformat6">format6</a></code> <span class="keyword">-&gt;</span> <code class="type">('a0, 'b0, 'c0, 'd0, 'e0, 'f0) <a href="CamlinternalFormatBasics.html#TYPEformatting_gen">formatting_gen</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformatting_gen.Open_box"><span class="constructor">Open_box</span></span> <span class="keyword">:</span> <code class="type">('a1, 'b1, 'c1, 'd1, 'e1, 'f1) <a href="CamlinternalFormatBasics.html#TYPEformat6">format6</a></code> <span class="keyword">-&gt;</span> <code class="type">('a1, 'b1, 'c1, 'd1, 'e1, 'f1) <a href="CamlinternalFormatBasics.html#TYPEformatting_gen">formatting_gen</a></code></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><span id="TYPEfmtty"><span class="keyword">type</span> <code class="type">('a, 'b, 'c, 'd, 'e, 'f)</code> fmtty</span> = <code class="type">('a, 'b, 'c, 'd, 'e, 'f, 'a, 'b, 'c, 'd, 'e, 'f)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> </pre>
+
+
+<pre><code><span id="TYPEfmtty_rel"><span class="keyword">type</span> <code class="type">('a1, 'b1, 'c1, 'd1, 'e1, 'f1, 'a2, 'b2, 'c2, 'd2, 'e2, 'f2)</code> fmtty_rel</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Char_ty"><span class="constructor">Char_ty</span></span> <span class="keyword">:</span> <code class="type">('a10, 'b10, 'c10, 'd10, 'e10, 'f10, 'a20, 'b20, 'c20, 'd20, 'e20, 'f20)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(char -&gt; 'a10, 'b10, 'c10, 'd10, 'e10, 'f10, char -&gt; 'a20, 'b20, 'c20, 'd20,<br>        'e20, 'f20)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.String_ty"><span class="constructor">String_ty</span></span> <span class="keyword">:</span> <code class="type">('a11, 'b11, 'c11, 'd11, 'e11, 'f11, 'a21, 'b21, 'c21, 'd21, 'e21, 'f21)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(string -&gt; 'a11, 'b11, 'c11, 'd11, 'e11, 'f11, string -&gt; 'a21, 'b21, 'c21,<br>        'd21, 'e21, 'f21)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Int_ty"><span class="constructor">Int_ty</span></span> <span class="keyword">:</span> <code class="type">('a12, 'b12, 'c12, 'd12, 'e12, 'f12, 'a22, 'b22, 'c22, 'd22, 'e22, 'f22)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(int -&gt; 'a12, 'b12, 'c12, 'd12, 'e12, 'f12, int -&gt; 'a22, 'b22, 'c22, 'd22,<br>        'e22, 'f22)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Int32_ty"><span class="constructor">Int32_ty</span></span> <span class="keyword">:</span> <code class="type">('a13, 'b13, 'c13, 'd13, 'e13, 'f13, 'a23, 'b23, 'c23, 'd23, 'e23, 'f23)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(int32 -&gt; 'a13, 'b13, 'c13, 'd13, 'e13, 'f13, int32 -&gt; 'a23, 'b23, 'c23,<br>        'd23, 'e23, 'f23)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Nativeint_ty"><span class="constructor">Nativeint_ty</span></span> <span class="keyword">:</span> <code class="type">('a14, 'b14, 'c14, 'd14, 'e14, 'f14, 'a24, 'b24, 'c24, 'd24, 'e24, 'f24)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(nativeint -&gt; 'a14, 'b14, 'c14, 'd14, 'e14, 'f14, nativeint -&gt; 'a24, 'b24,<br>        'c24, 'd24, 'e24, 'f24)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Int64_ty"><span class="constructor">Int64_ty</span></span> <span class="keyword">:</span> <code class="type">('a15, 'b15, 'c15, 'd15, 'e15, 'f15, 'a25, 'b25, 'c25, 'd25, 'e25, 'f25)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(int64 -&gt; 'a15, 'b15, 'c15, 'd15, 'e15, 'f15, int64 -&gt; 'a25, 'b25, 'c25,<br>        'd25, 'e25, 'f25)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Float_ty"><span class="constructor">Float_ty</span></span> <span class="keyword">:</span> <code class="type">('a16, 'b16, 'c16, 'd16, 'e16, 'f16, 'a26, 'b26, 'c26, 'd26, 'e26, 'f26)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(float -&gt; 'a16, 'b16, 'c16, 'd16, 'e16, 'f16, float -&gt; 'a26, 'b26, 'c26,<br>        'd26, 'e26, 'f26)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Bool_ty"><span class="constructor">Bool_ty</span></span> <span class="keyword">:</span> <code class="type">('a17, 'b17, 'c17, 'd17, 'e17, 'f17, 'a27, 'b27, 'c27, 'd27, 'e27, 'f27)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(bool -&gt; 'a17, 'b17, 'c17, 'd17, 'e17, 'f17, bool -&gt; 'a27, 'b27, 'c27, 'd27,<br>        'e27, 'f27)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Format_arg_ty"><span class="constructor">Format_arg_ty</span></span> <span class="keyword">:</span> <code class="type">('g, 'h, 'i, 'j, 'k, 'l) <a href="CamlinternalFormatBasics.html#TYPEfmtty">fmtty</a><br>        * ('a18, 'b18, 'c18, 'd18, 'e18, 'f18, 'a28, 'b28, 'c28, 'd28, 'e28, 'f28)<br>          <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(('g, 'h, 'i, 'j, 'k, 'l) <a href="CamlinternalFormatBasics.html#TYPEformat6">format6</a> -&gt; 'a18, 'b18,<br>        'c18, 'd18, 'e18, 'f18,<br>        ('g, 'h, 'i, 'j, 'k, 'l) <a href="CamlinternalFormatBasics.html#TYPEformat6">format6</a> -&gt; 'a28, 'b28,<br>        'c28, 'd28, 'e28, 'f28)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Format_subst_ty"><span class="constructor">Format_subst_ty</span></span> <span class="keyword">:</span> <code class="type">('g0, 'h0, 'i0, 'j0, 'k0, 'l0, 'g1, 'b19, 'c19, 'j1, 'd19, 'a19)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a><br>        * ('g0, 'h0, 'i0, 'j0, 'k0, 'l0, 'g2, 'b29, 'c29, 'j2, 'd29, 'a29)<br>          <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a><br>        * ('a19, 'b19, 'c19, 'd19, 'e19, 'f19, 'a29, 'b29, 'c29, 'd29, 'e29, 'f29)<br>          <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(('g0, 'h0, 'i0, 'j0, 'k0, 'l0) <a href="CamlinternalFormatBasics.html#TYPEformat6">format6</a> -&gt; 'g1,<br>        'b19, 'c19, 'j1, 'e19, 'f19,<br>        ('g0, 'h0, 'i0, 'j0, 'k0, 'l0) <a href="CamlinternalFormatBasics.html#TYPEformat6">format6</a> -&gt; 'g2,<br>        'b29, 'c29, 'j2, 'e29, 'f29)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Alpha_ty"><span class="constructor">Alpha_ty</span></span> <span class="keyword">:</span> <code class="type">('a110, 'b110, 'c110, 'd110, 'e110, 'f110, 'a210, 'b210, 'c210, 'd210, 'e210,<br>      'f210)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(('b110 -&gt; 'x -&gt; 'c110) -&gt; 'x -&gt; 'a110, 'b110, 'c110, 'd110, 'e110, 'f110,<br>        ('b210 -&gt; 'x -&gt; 'c210) -&gt; 'x -&gt; 'a210, 'b210, 'c210, 'd210, 'e210, 'f210)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Theta_ty"><span class="constructor">Theta_ty</span></span> <span class="keyword">:</span> <code class="type">('a111, 'b111, 'c111, 'd111, 'e111, 'f111, 'a211, 'b211, 'c211, 'd211, 'e211,<br>      'f211)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">(('b111 -&gt; 'c111) -&gt; 'a111, 'b111, 'c111, 'd111, 'e111, 'f111,<br>        ('b211 -&gt; 'c211) -&gt; 'a211, 'b211, 'c211, 'd211, 'e211, 'f211)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Any_ty"><span class="constructor">Any_ty</span></span> <span class="keyword">:</span> <code class="type">('a112, 'b112, 'c112, 'd112, 'e112, 'f112, 'a212, 'b212, 'c212, 'd212, 'e212,<br>      'f212)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">('x0 -&gt; 'a112, 'b112, 'c112, 'd112, 'e112, 'f112, 'x0 -&gt; 'a212, 'b212, 'c212,<br>        'd212, 'e212, 'f212)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Reader_ty"><span class="constructor">Reader_ty</span></span> <span class="keyword">:</span> <code class="type">('a113, 'b113, 'c113, 'd113, 'e113, 'f113, 'a213, 'b213, 'c213, 'd213, 'e213,<br>      'f213)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">('x1 -&gt; 'a113, 'b113, 'c113, ('b113 -&gt; 'x1) -&gt; 'd113, 'e113, 'f113,<br>        'x1 -&gt; 'a213, 'b213, 'c213, ('b213 -&gt; 'x1) -&gt; 'd213, 'e213, 'f213)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.Ignored_reader_ty"><span class="constructor">Ignored_reader_ty</span></span> <span class="keyword">:</span> <code class="type">('a114, 'b114, 'c114, 'd114, 'e114, 'f114, 'a214, 'b214, 'c214, 'd214, 'e214,<br>      'f214)<br>     <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code> <span class="keyword">-&gt;</span> <code class="type">('a114, 'b114, 'c114, ('b114 -&gt; 'x2) -&gt; 'd114, 'e114, 'f114, 'a214, 'b214,<br>        'c214, ('b214 -&gt; 'x2) -&gt; 'd214, 'e214, 'f214)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmtty_rel.End_of_fmtty"><span class="constructor">End_of_fmtty</span></span> <span class="keyword">:</span> <code class="type">('f115, 'b115, 'c115, 'd115, 'd115, 'f115, 'f215, 'b215, 'c215, 'd215, 'd215,<br>        'f215)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><code><span id="TYPEfmt"><span class="keyword">type</span> <code class="type">('a, 'b, 'c, 'd, 'e, 'f)</code> fmt</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Char"><span class="constructor">Char</span></span> <span class="keyword">:</span> <code class="type">('a0, 'b0, 'c0, 'd0, 'e0, 'f0) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(char -&gt; 'a0, 'b0, 'c0, 'd0, 'e0, 'f0) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Caml_char"><span class="constructor">Caml_char</span></span> <span class="keyword">:</span> <code class="type">('a1, 'b1, 'c1, 'd1, 'e1, 'f1) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(char -&gt; 'a1, 'b1, 'c1, 'd1, 'e1, 'f1) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.String"><span class="constructor">String</span></span> <span class="keyword">:</span> <code class="type">('x, string -&gt; 'a2) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a><br>        * ('a2, 'b2, 'c2, 'd2, 'e2, 'f2) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('x, 'b2, 'c2, 'd2, 'e2, 'f2) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Caml_string"><span class="constructor">Caml_string</span></span> <span class="keyword">:</span> <code class="type">('x0, string -&gt; 'a3) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a><br>        * ('a3, 'b3, 'c3, 'd3, 'e3, 'f3) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('x0, 'b3, 'c3, 'd3, 'e3, 'f3) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Int"><span class="constructor">Int</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEint_conv">int_conv</a><br>        * ('x1, 'y) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a><br>        * ('y, int -&gt; 'a4) <a href="CamlinternalFormatBasics.html#TYPEprecision">precision</a><br>        * ('a4, 'b4, 'c4, 'd4, 'e4, 'f4) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('x1, 'b4, 'c4, 'd4, 'e4, 'f4) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Int32"><span class="constructor">Int32</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEint_conv">int_conv</a><br>        * ('x2, 'y0) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a><br>        * ('y0, int32 -&gt; 'a5) <a href="CamlinternalFormatBasics.html#TYPEprecision">precision</a><br>        * ('a5, 'b5, 'c5, 'd5, 'e5, 'f5) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('x2, 'b5, 'c5, 'd5, 'e5, 'f5) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Nativeint"><span class="constructor">Nativeint</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEint_conv">int_conv</a><br>        * ('x3, 'y1) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a><br>        * ('y1, nativeint -&gt; 'a6) <a href="CamlinternalFormatBasics.html#TYPEprecision">precision</a><br>        * ('a6, 'b6, 'c6, 'd6, 'e6, 'f6) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('x3, 'b6, 'c6, 'd6, 'e6, 'f6) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Int64"><span class="constructor">Int64</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEint_conv">int_conv</a><br>        * ('x4, 'y2) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a><br>        * ('y2, int64 -&gt; 'a7) <a href="CamlinternalFormatBasics.html#TYPEprecision">precision</a><br>        * ('a7, 'b7, 'c7, 'd7, 'e7, 'f7) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('x4, 'b7, 'c7, 'd7, 'e7, 'f7) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Float"><span class="constructor">Float</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEfloat_conv">float_conv</a><br>        * ('x5, 'y3) <a href="CamlinternalFormatBasics.html#TYPEpadding">padding</a><br>        * ('y3, float -&gt; 'a8) <a href="CamlinternalFormatBasics.html#TYPEprecision">precision</a><br>        * ('a8, 'b8, 'c8, 'd8, 'e8, 'f8) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('x5, 'b8, 'c8, 'd8, 'e8, 'f8) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Bool"><span class="constructor">Bool</span></span> <span class="keyword">:</span> <code class="type">('a9, 'b9, 'c9, 'd9, 'e9, 'f9) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(bool -&gt; 'a9, 'b9, 'c9, 'd9, 'e9, 'f9) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Flush"><span class="constructor">Flush</span></span> <span class="keyword">:</span> <code class="type">('a10, 'b10, 'c10, 'd10, 'e10, 'f10) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('a10, 'b10, 'c10, 'd10, 'e10, 'f10) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.String_literal"><span class="constructor">String_literal</span></span> <span class="keyword">:</span> <code class="type">string * ('a11, 'b11, 'c11, 'd11, 'e11, 'f11) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('a11, 'b11, 'c11, 'd11, 'e11, 'f11) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Char_literal"><span class="constructor">Char_literal</span></span> <span class="keyword">:</span> <code class="type">char * ('a12, 'b12, 'c12, 'd12, 'e12, 'f12) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('a12, 'b12, 'c12, 'd12, 'e12, 'f12) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Format_arg"><span class="constructor">Format_arg</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a><br>        * ('g, 'h, 'i, 'j, 'k, 'l) <a href="CamlinternalFormatBasics.html#TYPEfmtty">fmtty</a><br>        * ('a13, 'b13, 'c13, 'd13, 'e13, 'f13) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(('g, 'h, 'i, 'j, 'k, 'l) <a href="CamlinternalFormatBasics.html#TYPEformat6">format6</a> -&gt; 'a13, 'b13,<br>        'c13, 'd13, 'e13, 'f13)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Format_subst"><span class="constructor">Format_subst</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a><br>        * ('g0, 'h0, 'i0, 'j0, 'k0, 'l0, 'g2, 'b14, 'c14, 'j2, 'd14, 'a14)<br>          <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a><br>        * ('a14, 'b14, 'c14, 'd14, 'e14, 'f14) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(('g0, 'h0, 'i0, 'j0, 'k0, 'l0) <a href="CamlinternalFormatBasics.html#TYPEformat6">format6</a> -&gt; 'g2,<br>        'b14, 'c14, 'j2, 'e14, 'f14)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Alpha"><span class="constructor">Alpha</span></span> <span class="keyword">:</span> <code class="type">('a15, 'b15, 'c15, 'd15, 'e15, 'f15) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(('b15 -&gt; 'x6 -&gt; 'c15) -&gt; 'x6 -&gt; 'a15, 'b15, 'c15, 'd15, 'e15, 'f15)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Theta"><span class="constructor">Theta</span></span> <span class="keyword">:</span> <code class="type">('a16, 'b16, 'c16, 'd16, 'e16, 'f16) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(('b16 -&gt; 'c16) -&gt; 'a16, 'b16, 'c16, 'd16, 'e16, 'f16)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Formatting_lit"><span class="constructor">Formatting_lit</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEformatting_lit">formatting_lit</a><br>        * ('a17, 'b17, 'c17, 'd17, 'e17, 'f17) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('a17, 'b17, 'c17, 'd17, 'e17, 'f17) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Formatting_gen"><span class="constructor">Formatting_gen</span></span> <span class="keyword">:</span> <code class="type">('a18, 'b18, 'c18, 'd18, 'e18, 'f18) <a href="CamlinternalFormatBasics.html#TYPEformatting_gen">formatting_gen</a><br>        * ('f18, 'b18, 'c18, 'e18, 'e20, 'f20) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('a18, 'b18, 'c18, 'd18, 'e20, 'f20) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Reader"><span class="constructor">Reader</span></span> <span class="keyword">:</span> <code class="type">('a19, 'b19, 'c19, 'd19, 'e19, 'f19) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('x7 -&gt; 'a19, 'b19, 'c19, ('b19 -&gt; 'x7) -&gt; 'd19, 'e19, 'f19)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Scan_char_set"><span class="constructor">Scan_char_set</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a> * <a href="CamlinternalFormatBasics.html#TYPEchar_set">char_set</a><br>        * ('a20, 'b20, 'c20, 'd20, 'e21, 'f21) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(string -&gt; 'a20, 'b20, 'c20, 'd20, 'e21, 'f21) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Scan_get_counter"><span class="constructor">Scan_get_counter</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEcounter">counter</a><br>        * ('a21, 'b21, 'c21, 'd21, 'e22, 'f22) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(int -&gt; 'a21, 'b21, 'c21, 'd21, 'e22, 'f22) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Scan_next_char"><span class="constructor">Scan_next_char</span></span> <span class="keyword">:</span> <code class="type">('a22, 'b22, 'c22, 'd22, 'e23, 'f23) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">(char -&gt; 'a22, 'b22, 'c22, 'd22, 'e23, 'f23) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Ignored_param"><span class="constructor">Ignored_param</span></span> <span class="keyword">:</span> <code class="type">('a23, 'b23, 'c23, 'd23, 'y4, 'x8) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a><br>        * ('x8, 'b23, 'c23, 'y4, 'e24, 'f24) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('a23, 'b23, 'c23, 'd23, 'e24, 'f24) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.Custom"><span class="constructor">Custom</span></span> <span class="keyword">:</span> <code class="type">('a24, 'x9, 'y5) <a href="CamlinternalFormatBasics.html#TYPEcustom_arity">custom_arity</a> * (unit -&gt; 'x9)<br>        * ('a24, 'b24, 'c24, 'd24, 'e25, 'f25) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code> <span class="keyword">-&gt;</span> <code class="type">('y5, 'b24, 'c24, 'd24, 'e25, 'f25) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTfmt.End_of_format"><span class="constructor">End_of_format</span></span> <span class="keyword">:</span> <code class="type">('f26, 'b25, 'c25, 'e26, 'e26, 'f26) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></code></td>
+
+</tr></tbody></table>
+
+<div class="info ">
+List of format elements.<br>
+</div>
+
+
+<pre><code><span id="TYPEignored"><span class="keyword">type</span> <code class="type">('a, 'b, 'c, 'd, 'e, 'f)</code> ignored</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_char"><span class="constructor">Ignored_char</span></span> <span class="keyword">:</span> <code class="type">('a0, 'b0, 'c0, 'd0, 'd0, 'a0) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_caml_char"><span class="constructor">Ignored_caml_char</span></span> <span class="keyword">:</span> <code class="type">('a1, 'b1, 'c1, 'd1, 'd1, 'a1) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_string"><span class="constructor">Ignored_string</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a></code> <span class="keyword">-&gt;</span> <code class="type">('a2, 'b2, 'c2, 'd2, 'd2, 'a2) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_caml_string"><span class="constructor">Ignored_caml_string</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a></code> <span class="keyword">-&gt;</span> <code class="type">('a3, 'b3, 'c3, 'd3, 'd3, 'a3) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_int"><span class="constructor">Ignored_int</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEint_conv">int_conv</a> * <a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a></code> <span class="keyword">-&gt;</span> <code class="type">('a4, 'b4, 'c4, 'd4, 'd4, 'a4) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_int32"><span class="constructor">Ignored_int32</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEint_conv">int_conv</a> * <a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a></code> <span class="keyword">-&gt;</span> <code class="type">('a5, 'b5, 'c5, 'd5, 'd5, 'a5) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_nativeint"><span class="constructor">Ignored_nativeint</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEint_conv">int_conv</a> * <a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a></code> <span class="keyword">-&gt;</span> <code class="type">('a6, 'b6, 'c6, 'd6, 'd6, 'a6) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_int64"><span class="constructor">Ignored_int64</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEint_conv">int_conv</a> * <a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a></code> <span class="keyword">-&gt;</span> <code class="type">('a7, 'b7, 'c7, 'd7, 'd7, 'a7) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_float"><span class="constructor">Ignored_float</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a> * <a href="CamlinternalFormatBasics.html#TYPEprec_option">prec_option</a></code> <span class="keyword">-&gt;</span> <code class="type">('a8, 'b8, 'c8, 'd8, 'd8, 'a8) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_bool"><span class="constructor">Ignored_bool</span></span> <span class="keyword">:</span> <code class="type">('a9, 'b9, 'c9, 'd9, 'd9, 'a9) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_format_arg"><span class="constructor">Ignored_format_arg</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a><br>        * ('g, 'h, 'i, 'j, 'k, 'l) <a href="CamlinternalFormatBasics.html#TYPEfmtty">fmtty</a></code> <span class="keyword">-&gt;</span> <code class="type">('a10, 'b10, 'c10, 'd10, 'd10, 'a10) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_format_subst"><span class="constructor">Ignored_format_subst</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a><br>        * ('a11, 'b11, 'c11, 'd11, 'e0, 'f0) <a href="CamlinternalFormatBasics.html#TYPEfmtty">fmtty</a></code> <span class="keyword">-&gt;</span> <code class="type">('a11, 'b11, 'c11, 'd11, 'e0, 'f0) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_reader"><span class="constructor">Ignored_reader</span></span> <span class="keyword">:</span> <code class="type">('a12, 'b12, 'c12, ('b12 -&gt; 'x) -&gt; 'd12, 'd12, 'a12)<br>       <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_scan_char_set"><span class="constructor">Ignored_scan_char_set</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEpad_option">pad_option</a> * <a href="CamlinternalFormatBasics.html#TYPEchar_set">char_set</a></code> <span class="keyword">-&gt;</span> <code class="type">('a13, 'b13, 'c13, 'd13, 'd13, 'a13) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_scan_get_counter"><span class="constructor">Ignored_scan_get_counter</span></span> <span class="keyword">:</span> <code class="type"><a href="CamlinternalFormatBasics.html#TYPEcounter">counter</a></code> <span class="keyword">-&gt;</span> <code class="type">('a14, 'b14, 'c14, 'd14, 'd14, 'a14) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTignored.Ignored_scan_next_char"><span class="constructor">Ignored_scan_next_char</span></span> <span class="keyword">:</span> <code class="type">('a15, 'b15, 'c15, 'd15, 'd15, 'a15) <a href="CamlinternalFormatBasics.html#TYPEignored">ignored</a></code></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><code><span id="TYPEformat6"><span class="keyword">type</span> <code class="type">('a, 'b, 'c, 'd, 'e, 'f)</code> format6</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTformat6.Format"><span class="constructor">Format</span></span> <span class="keyword">of</span> <code class="type">('a, 'b, 'c, 'd, 'e, 'f) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a> * string</code></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><span id="VALconcat_fmtty"><span class="keyword">val</span> concat_fmtty</span> : <code class="type">('g1, 'b1, 'c1, 'j1, 'd1, 'a1, 'g2, 'b2, 'c2, 'j2, 'd2, 'a2)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a> -&gt;<br>       ('a1, 'b1, 'c1, 'd1, 'e1, 'f1, 'a2, 'b2, 'c2, 'd2, 'e2, 'f2)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a> -&gt;<br>       ('g1, 'b1, 'c1, 'j1, 'e1, 'f1, 'g2, 'b2, 'c2, 'j2, 'e2, 'f2)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a></code></pre>
+<pre><span id="VALerase_rel"><span class="keyword">val</span> erase_rel</span> : <code class="type">('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'l)<br>       <a href="CamlinternalFormatBasics.html#TYPEfmtty_rel">fmtty_rel</a> -&gt;<br>       ('a, 'b, 'c, 'd, 'e, 'f) <a href="CamlinternalFormatBasics.html#TYPEfmtty">fmtty</a></code></pre>
+<pre><span id="VALconcat_fmt"><span class="keyword">val</span> concat_fmt</span> : <code class="type">('a, 'b, 'c, 'd, 'e, 'f) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a> -&gt;<br>       ('f, 'b, 'c, 'e, 'g, 'h) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a> -&gt;<br>       ('a, 'b, 'c, 'd, 'g, 'h) <a href="CamlinternalFormatBasics.html#TYPEfmt">fmt</a></code></pre><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

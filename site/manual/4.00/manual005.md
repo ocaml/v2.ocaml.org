@@ -1,10 +1,10 @@
 <!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
-<div class="manual content"><ul class="tutos_menu"><li><a href="manual003.html">The core language</a></li><li><a href="manual004.html">The module system</a></li><li class="active"><a href="manual005.html">Objects in OCaml</a></li><li><a href="manual006.html">Labels and variants</a></li><li><a href="manual007.html">Advanced examples with classes and modules</a></li></ul>
+<div class="manual content"><ul class="part_menu"><li><a href="manual003.html">The core language</a></li><li><a href="manual004.html">The module system</a></li><li class="active"><a href="manual005.html">Objects in OCaml</a></li><li><a href="manual006.html">Labels and variants</a></li><li><a href="manual007.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="tutorial"><a name="htoc18"><span>Tutorial 3</span></a>&nbsp;&nbsp;Objects in OCaml</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="/docs" id="version-select">Version 4.00</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc18"><span>Chapter 3</span></a>&nbsp;&nbsp;Objects in OCaml</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Objects in OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#toc18">Classes and objects</a>
 </li><li><a href="#toc19">Immediate objects</a>
 </li><li><a href="#toc20">Reference to self</a>
@@ -27,7 +27,7 @@
 <a name="c:objectexamples"></a>
 </p><p></p><p><br>
 <br>
-</p><p>This tutorial gives an overview of the object-oriented features of
+</p><p>This chapter gives an overview of the object-oriented features of
 OCaml. Note that the relation between object, class and type
 in OCaml is very different from that in mainstream
 object-oriented languages like Java or C++, so that you should not
@@ -1456,4 +1456,4 @@ representation abstract outside the module.</p><hr>
 
 
 
-<i class="authors">(Tutorial written by Jérôme Vouillon, Didier Rémy and Jacques Garrigue)</i><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>
+<i class="authors">(Chapter written by Jérôme Vouillon, Didier Rémy and Jacques Garrigue)</i><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

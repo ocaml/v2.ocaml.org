@@ -1,0 +1,280 @@
+<!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
+<div class="api"><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.07</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="#top">Buffer</a></div><ul></ul></nav></header>
+
+<h1>Module <a href="type_Buffer.html">Buffer</a></h1>
+
+<pre><span id="MODULEBuffer"><span class="keyword">module</span> Buffer</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Buffer.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Extensible buffers.</p>
+
+<p>This module implements buffers that automatically expand
+   as necessary.  It provides accumulative concatenation of strings
+   in quasi-linear time (instead of quadratic time when strings are
+   concatenated pairwise).</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>The abstract type of buffers.</p>
+</div>
+</div>
+
+
+<pre><span id="VALcreate"><span class="keyword">val</span> create</span> : <code class="type">int -&gt; <a href="Buffer.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">create&nbsp;n</code> returns a fresh buffer, initially empty.
+   The <code class="code">n</code> parameter is the initial size of the internal byte sequence
+   that holds the buffer contents. That byte sequence is automatically
+   reallocated when more than <code class="code">n</code> characters are stored in the buffer,
+   but shrinks back to <code class="code">n</code> characters when <code class="code">reset</code> is called.
+   For best performance, <code class="code">n</code> should be of the same order of magnitude
+   as the number of characters that are expected to be stored in
+   the buffer (for instance, 80 for a buffer that holds one output
+   line).  Nothing bad will happen if the buffer grows beyond that
+   limit, however. In doubt, take <code class="code">n&nbsp;=&nbsp;16</code> for instance.
+   If <code class="code">n</code> is not between 1 and <a href="Sys.html#VALmax_string_length"><code class="code"><span class="constructor">Sys</span>.max_string_length</code></a>, it will
+   be clipped to that interval.</p>
+</div>
+</div>
+
+<pre><span id="VALcontents"><span class="keyword">val</span> contents</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return a copy of the current contents of the buffer.
+    The buffer itself is unchanged.</p>
+</div>
+</div>
+
+<pre><span id="VALto_bytes"><span class="keyword">val</span> to_bytes</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; bytes</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return a copy of the current contents of the buffer.
+    The buffer itself is unchanged.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.02</li>
+</ul>
+</div>
+
+<pre><span id="VALsub"><span class="keyword">val</span> sub</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; int -&gt; int -&gt; string</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code"><span class="constructor">Buffer</span>.sub&nbsp;b&nbsp;off&nbsp;len</code> returns a copy of <code class="code">len</code> bytes from the
+    current contents of the buffer <code class="code">b</code>, starting at offset <code class="code">off</code>.</p>
+
+<p>Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if <code class="code">srcoff</code> and <code class="code">len</code> do not designate a valid
+    range of <code class="code">b</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALblit"><span class="keyword">val</span> blit</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; int -&gt; bytes -&gt; int -&gt; int -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code"><span class="constructor">Buffer</span>.blit&nbsp;src&nbsp;srcoff&nbsp;dst&nbsp;dstoff&nbsp;len</code> copies <code class="code">len</code> characters from
+   the current contents of the buffer <code class="code">src</code>, starting at offset <code class="code">srcoff</code>
+   to <code class="code">dst</code>, starting at character <code class="code">dstoff</code>.</p>
+
+<p>Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if <code class="code">srcoff</code> and <code class="code">len</code> do not designate a valid
+   range of <code class="code">src</code>, or if <code class="code">dstoff</code> and <code class="code">len</code> do not designate a valid
+   range of <code class="code">dst</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 3.11.2</li>
+</ul>
+</div>
+
+<pre><span id="VALnth"><span class="keyword">val</span> nth</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; int -&gt; char</code></pre><div class="info ">
+<div class="info-desc">
+<p>Get the n-th character of the buffer. Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if
+    index out of bounds</p>
+</div>
+</div>
+
+<pre><span id="VALlength"><span class="keyword">val</span> length</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the number of characters currently contained in the buffer.</p>
+</div>
+</div>
+
+<pre><span id="VALclear"><span class="keyword">val</span> clear</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Empty the buffer.</p>
+</div>
+</div>
+
+<pre><span id="VALreset"><span class="keyword">val</span> reset</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Empty the buffer and deallocate the internal byte sequence holding the
+   buffer contents, replacing it with the initial internal byte sequence
+   of length <code class="code">n</code> that was allocated by <a href="Buffer.html#VALcreate"><code class="code"><span class="constructor">Buffer</span>.create</code></a> <code class="code">n</code>.
+   For long-lived buffers that may have grown a lot, <code class="code">reset</code> allows
+   faster reclamation of the space used by the buffer.</p>
+</div>
+</div>
+
+<pre><span id="VALadd_char"><span class="keyword">val</span> add_char</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; char -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_char&nbsp;b&nbsp;c</code> appends the character <code class="code">c</code> at the end of buffer <code class="code">b</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALadd_utf_8_uchar"><span class="keyword">val</span> add_utf_8_uchar</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; <a href="Uchar.html#TYPEt">Uchar.t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_utf_8_uchar&nbsp;b&nbsp;u</code> appends the <a href="https://tools.ietf.org/html/rfc3629">
+    UTF-8</a> encoding of <code class="code">u</code> at the end of buffer <code class="code">b</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+<pre><span id="VALadd_utf_16le_uchar"><span class="keyword">val</span> add_utf_16le_uchar</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; <a href="Uchar.html#TYPEt">Uchar.t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_utf_16le_uchar&nbsp;b&nbsp;u</code> appends the
+    <a href="https://tools.ietf.org/html/rfc2781">UTF-16LE</a> encoding of <code class="code">u</code>
+    at the end of buffer <code class="code">b</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+<pre><span id="VALadd_utf_16be_uchar"><span class="keyword">val</span> add_utf_16be_uchar</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; <a href="Uchar.html#TYPEt">Uchar.t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_utf_16be_uchar&nbsp;b&nbsp;u</code> appends the
+    <a href="https://tools.ietf.org/html/rfc2781">UTF-16BE</a> encoding of <code class="code">u</code>
+    at the end of buffer <code class="code">b</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+<pre><span id="VALadd_string"><span class="keyword">val</span> add_string</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; string -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_string&nbsp;b&nbsp;s</code> appends the string <code class="code">s</code> at the end of buffer <code class="code">b</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALadd_bytes"><span class="keyword">val</span> add_bytes</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; bytes -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_bytes&nbsp;b&nbsp;s</code> appends the byte sequence <code class="code">s</code> at the end of buffer <code class="code">b</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.02</li>
+</ul>
+</div>
+
+<pre><span id="VALadd_substring"><span class="keyword">val</span> add_substring</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; string -&gt; int -&gt; int -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_substring&nbsp;b&nbsp;s&nbsp;ofs&nbsp;len</code> takes <code class="code">len</code> characters from offset
+   <code class="code">ofs</code> in string <code class="code">s</code> and appends them at the end of buffer <code class="code">b</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALadd_subbytes"><span class="keyword">val</span> add_subbytes</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; bytes -&gt; int -&gt; int -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_subbytes&nbsp;b&nbsp;s&nbsp;ofs&nbsp;len</code> takes <code class="code">len</code> characters from offset
+    <code class="code">ofs</code> in byte sequence <code class="code">s</code> and appends them at the end of buffer <code class="code">b</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.02</li>
+</ul>
+</div>
+
+<pre><span id="VALadd_substitute"><span class="keyword">val</span> add_substitute</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; (string -&gt; string) -&gt; string -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_substitute&nbsp;b&nbsp;f&nbsp;s</code> appends the string pattern <code class="code">s</code> at the end
+   of buffer <code class="code">b</code> with substitution.
+   The substitution process looks for variables into
+   the pattern and substitutes each variable name by its value, as
+   obtained by applying the mapping <code class="code">f</code> to the variable name. Inside the
+   string pattern, a variable name immediately follows a non-escaped
+   <code class="code">$</code> character and is one of the following:</p>
+<ul>
+<li>a non empty sequence of alphanumeric or <code class="code">_</code> characters,</li>
+<li>an arbitrary sequence of characters enclosed by a pair of
+   matching parentheses or curly brackets.
+   An escaped <code class="code">$</code> character is a <code class="code">$</code> that immediately follows a backslash
+   character; it then stands for a plain <code class="code">$</code>.
+   Raise <code class="code"><span class="constructor">Not_found</span></code> if the closing character of a parenthesized variable
+   cannot be found.</li>
+</ul>
+</div>
+</div>
+
+<pre><span id="VALadd_buffer"><span class="keyword">val</span> add_buffer</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; <a href="Buffer.html#TYPEt">t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_buffer&nbsp;b1&nbsp;b2</code> appends the current contents of buffer <code class="code">b2</code>
+   at the end of buffer <code class="code">b1</code>.  <code class="code">b2</code> is not modified.</p>
+</div>
+</div>
+
+<pre><span id="VALadd_channel"><span class="keyword">val</span> add_channel</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; <a href="Pervasives.html#TYPEin_channel">in_channel</a> -&gt; int -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_channel&nbsp;b&nbsp;ic&nbsp;n</code> reads at most <code class="code">n</code> characters from the
+   input channel <code class="code">ic</code> and stores them at the end of buffer <code class="code">b</code>.
+   Raise <code class="code"><span class="constructor">End_of_file</span></code> if the channel contains fewer than <code class="code">n</code>
+   characters. In this case, the characters are still added to
+   the buffer, so as to avoid loss of data.</p>
+</div>
+</div>
+
+<pre><span id="VALoutput_buffer"><span class="keyword">val</span> output_buffer</span> : <code class="type"><a href="Pervasives.html#TYPEout_channel">out_channel</a> -&gt; <a href="Buffer.html#TYPEt">t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">output_buffer&nbsp;oc&nbsp;b</code> writes the current contents of buffer <code class="code">b</code>
+   on the output channel <code class="code">oc</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALtruncate"><span class="keyword">val</span> truncate</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; int -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">truncate&nbsp;b&nbsp;len</code> truncates the length of <code class="code">b</code> to <code class="code">len</code>
+  Note: the internal byte sequence is not shortened.
+  Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if <code class="code">len&nbsp;&lt;&nbsp;0</code> or <code class="code">len&nbsp;&gt;&nbsp;length&nbsp;b</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.05.0</li>
+</ul>
+</div>
+<h7 id="6_Iterators">Iterators</h7>
+<pre><span id="VALto_seq"><span class="keyword">val</span> to_seq</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; char <a href="Seq.html#TYPEt">Seq.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Iterate on the buffer, in increasing order.
+    Modification of the buffer during iteration is undefined behavior.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.07</li>
+</ul>
+</div>
+
+<pre><span id="VALto_seqi"><span class="keyword">val</span> to_seqi</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; (int * char) <a href="Seq.html#TYPEt">Seq.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Iterate on the buffer, in increasing order, yielding indices along chars.
+    Modification of the buffer during iteration is undefined behavior.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.07</li>
+</ul>
+</div>
+
+<pre><span id="VALadd_seq"><span class="keyword">val</span> add_seq</span> : <code class="type"><a href="Buffer.html#TYPEt">t</a> -&gt; char <a href="Seq.html#TYPEt">Seq.t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Add chars to the buffer</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.07</li>
+</ul>
+</div>
+
+<pre><span id="VALof_seq"><span class="keyword">val</span> of_seq</span> : <code class="type">char <a href="Seq.html#TYPEt">Seq.t</a> -&gt; <a href="Buffer.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Create a buffer from the generator</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.07</li>
+</ul>
+</div>
+
+<div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>
