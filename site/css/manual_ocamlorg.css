@@ -24,7 +24,7 @@ San Vu Ngoc, 2019 */
 ul.translations {
   display: none; }
 
-.manual div, .manual span, .manual applet, .manual object, .manual iframe, .manual h1, .manual h2, .manual h3, .manual h4, .manual h5, .manual h6, .manual p, .manual blockquote, .manual pre, .manual a, .manual abbr, .manual acronym, .manual address, .manual big, .manual cite, .manual code, .manual del, .manual dfn, .manual em, .manual img, .manual ins, .manual kbd, .manual q, .manual s, .manual samp, .manual small, .manual strike, .manual strong, .manual sub, .manual sup, .manual tt, .manual var, .manual b, .manual u, .manual i, .manual center, .manual dl, .manual dt, .manual dd, .manual ol, .manual ul, .manual li, .manual fieldset, .manual form, .manual label, .manual legend, .manual table, .manual caption, .manual tbody, .manual tfoot, .manual thead, .manual tr, .manual th, .manual td, .manual article, .manual aside, .manual canvas, .manual details, .manual embed, .manual figure, .manual figcaption, .manual footer, .manual header, .manual hgroup, .manual menu, .manual nav, .manual output, .manual ruby, .manual section, .manual summary, .manual time, .manual mark, .manual audio, .manual video {
+.manual div, .manual span, .manual applet, .manual object, .manual iframe, .manual h1, .manual h2, .manual h3, .manual h4, .manual h5, .manual h6, .manual p, .manual blockquote, .manual pre, .manual .pre, .manual a, .manual abbr, .manual acronym, .manual address, .manual big, .manual cite, .manual code, .manual del, .manual dfn, .manual em, .manual img, .manual ins, .manual kbd, .manual q, .manual s, .manual samp, .manual small, .manual strike, .manual strong, .manual sub, .manual sup, .manual tt, .manual var, .manual b, .manual u, .manual i, .manual center, .manual dl, .manual dt, .manual dd, .manual ol, .manual ul, .manual li, .manual fieldset, .manual form, .manual label, .manual legend, .manual table, .manual caption, .manual tbody, .manual tfoot, .manual thead, .manual tr, .manual th, .manual td, .manual article, .manual aside, .manual canvas, .manual details, .manual embed, .manual figure, .manual figcaption, .manual footer, .manual header, .manual hgroup, .manual menu, .manual nav, .manual output, .manual ruby, .manual section, .manual summary, .manual time, .manual mark, .manual audio, .manual video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -50,7 +50,6 @@ ul.translations {
   background: #FFFFFF; }
 
 .manual.content {
-  top: 45px;
   max-width: 90ex;
   margin-left: calc(10vw + 20ex);
   margin-right: 4ex;
@@ -76,7 +75,7 @@ ul.translations {
   font-size: 12px;
   line-height: 0;
   margin-left: 0.2ex; }
-.manual pre {
+.manual pre, .manual .pre {
   margin-top: 0.8em;
   margin-bottom: 1.2em; }
 .manual p, .manual ul, .manual ol {
@@ -108,10 +107,22 @@ ul.translations {
 
 /* Linked highlight */
 .manual *:target {
-  background-color: rgba(255, 215, 181, 0.3) !important;
-  box-shadow: 0 0px 0 1px rgba(255, 215, 181, 0.8) !important;
   border-radius: 1px;
-  z-index: 0; }
+  box-shadow: 0 4px 0 0px #ffd7b5;
+  z-index: 0;
+  /* Because of fixed banner in the ocaml.org site, we have to offset the targets. See https://stackoverflow.com/questions/10732690/offsetting-an-html-anchor-to-adjust-for-fixed-header */
+  padding-top: 85px;
+  margin-top: -85px;
+  /* When the navigation bar has reduced size */ }
+  @media (max-height: 600px) and (min-width: 980px) {
+    .manual *:target {
+      padding-top: 54px;
+      margin-top: -54px; } }
+.manual p a:target {
+  display: block;
+  /* this is used when a link target the start of a chapter using a "c-???" id, which is unfortunately below the title. If we use the default display:inline, the padding trick below does not work. */
+  padding-top: 150px;
+  margin-top: -150px; }
 .manual *:hover > a.anchor {
   visibility: visible; }
 .manual a.anchor:before {
@@ -180,10 +191,10 @@ ul.translations {
   font-size: 1.12em; }
 
 /* Preformatted and code */
-.manual tt, .manual code, .manual pre {
+.manual tt, .manual code, .manual pre, .manual .pre {
   font-family: "Fira Mono", courier;
   font-weight: 400; }
-.manual pre {
+.manual pre, .manual .pre {
   border-left: 4px solid #e69c7f;
   overflow-x: auto;
   padding-left: 1ex; }
@@ -192,14 +203,16 @@ ul.translations {
   color: #0d2b3e;
   border-radius: 3px;
   padding: 0 0.3ex; }
-.manual pre code {
+.manual pre code, .manual .pre code {
   background-color: inherit; }
 .manual p a > code {
   color: #92370A; }
 
 /* Code blocks (e.g. Examples) */
-.manual pre code.ocaml {
+.manual pre code.ocaml, .manual .pre code.ocaml {
   font-size: 0.893rem; }
+.manual .ocaml .pre {
+  white-space: pre; }
 
 /* Code lexemes */
 .manual .keyword {
@@ -407,6 +420,11 @@ ul.translations {
 /* Sidebar and TOC */
 .manual {
   /* First level titles */ }
+  .manual .toc_version {
+    font-size: smaller;
+    text-align: right; }
+    .manual .toc_version a {
+      color: #888; }
   .manual .toc_title {
     display: block;
     margin: 0.5em 0 1.414em; }
@@ -453,6 +471,9 @@ ul.translations {
     margin-left: 5px;
     padding-left: 12px; }
 
+#footer {
+  margin-left: 26ex; }
+
 /* Mobile adjustements. */
 @media only screen and (max-width: 979px) {
   .container {
@@ -461,8 +482,17 @@ ul.translations {
 
   .manual.content {
     margin: auto;
-    padding: 2.0em; } }
+    padding: 2.0em; }
+
+  .manual > header {
+    box-shadow: 0px 3px 9px 3px #ddd; }
+
+  #footer {
+    margin-left: auto; } }
 @media only screen and (max-width: 979px) {
+  .manual *:target {
+    padding-top: 0px;
+    margin-top: 0px; }
   .manual .toc {
     position: static;
     width: auto;
@@ -470,7 +500,9 @@ ul.translations {
     max-width: unset;
     border: none;
     padding: 0.2em 1em;
-    border-radius: 5px; } }
+    border-radius: 5px; }
+  .manual .ocaml .pre {
+    white-space: pre-wrap; } }
 
 /* Print adjustements. */
 @media print {
@@ -548,28 +580,30 @@ ul.translations {
 .manual header nav {
   display: none; }
 .manual header nav.toc {
-  display: block; }
+  display: block;
+  padding-top: 10px; }
 .manual header dl dd, .manual header dl dt {
   display: inline-block; }
-.manual pre {
+.manual pre, .manual .pre {
   background: linear-gradient(to left, white 0%, #ede8e5 100%); }
 .manual div.caml-example, .manual div.toplevel {
   /* background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%); */ }
 .manual div.caml-output.ok,
 .manual code.caml-output.ok,
 .manual span.c006 {
-  color: #045804; }
+  font-family: "Fira Mono", courier;
+  font-weight: bold; }
 .manual code.caml-output.error,
 .manual div.caml-output.error {
   color: orangered; }
 .manual .tutorial span {
   /* ocaml logo color */
   color: #ec6a0d; }
-.manual ul.tutos_menu {
+.manual ul.part_menu {
   font-family: "Fira Sans";
   text-align: right;
   list-style: none; }
-.manual ul.tutos_menu li.active a {
+.manual ul.part_menu li.active a {
   color: black; }
 .manual .brand img {
   margin-top: 16px;
@@ -577,7 +611,8 @@ ul.translations {
 .manual .toc.brand {
   display: none; }
 .manual nav.toc {
-  top: 75px; }
+  top: 75px;
+  /* When the navigation bar has reduced size */ }
   @media (max-height: 600px) and (min-width: 980px) {
     .manual nav.toc {
       top: 45px; } }
@@ -597,6 +632,8 @@ ul.translations {
   color: #888; }
 .manual span.c009 {
   font-style: italic; }
+.manual span.c013 {
+  font-weight: bold; }
 .manual .caml-input span.kw {
   font-weight: 500;
   color: #444; }
@@ -606,11 +643,16 @@ ul.translations {
 .manual .caml-input span.kw2 {
   font-weight: 500;
   color: #a28867; }
+.manual .caml-input span.ocamlhighlight {
+  font-weight: 500;
+  text-decoration: underline; }
 .manual .caml-input span.numeric {
   color: #0086b3; }
 .manual .caml-input span.id {
   color: #523b74; }
-.manual .caml-input span.string {
+.manual .ocaml span.ocamlerror {
+  font-weight: 500; }
+.manual .caml-input span.string, .manual .caml-input span.ocamlstring {
   color: #df5000; }
 .manual .caml-input span.comment {
   color: #969896; }
@@ -618,6 +660,3 @@ ul.translations {
   font-size: smaller; }
 .manual .dt-thefootnotes {
   float: left; }
-
-#footer {
-  margin-left: 26ex; }

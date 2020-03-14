@@ -32,7 +32,6 @@
     <link href="style.css" rel="stylesheet" />
     <script src="/js/index.js" type="text/javascript"></script>
     <script src="/js/search.js" type="text/javascript"></script>
-    <script src="/js/scroll.js" type="text/javascript"></script>
     !}}
     <script src="/js/collapsed-menu.js" type="text/javascript"></script>
     {{! ifdef advertise_rss

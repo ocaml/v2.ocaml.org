@@ -7,19 +7,19 @@
       for (let item of list) {
       item.value = version;}
       
-      let ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/language.html'
-      let link = document.getElementById("refref");
-      link.setAttribute("href", ref);
+      // let ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/language.html'
+      // let link = document.getElementById("refref");
+      // link.setAttribute("href", ref);
       
-      ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/extn.html'
+      ref = '../manual/' + version + '/extn.html'
       link = document.getElementById("extref");
       link.setAttribute("href", ref);
       
-      ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/core.html'
+      ref = '../manual/' + version + '/core.html'
       link = document.getElementById("corref");
       link.setAttribute("href", ref);
       
-      ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/comp.html'
+      ref = '../manual/' + version + '/comp.html'
       link = document.getElementById("toolref");
       link.setAttribute("href", ref);
       link = document.getElementById("toolref_b");
@@ -31,18 +31,17 @@
       link = document.getElementById("tutref_b");
       link.setAttribute("href", ref);
       
-      if (parseFloat(version) < 4.08) { 
-      ref = 'http://caml.inria.fr/pub/docs/manual-ocaml-' + version + '/stdlib.html' } 
-      else {
-      ref = '../api/' + version + '/index.html' }
-      link = document.getElementById("stdref");
+      ref = '../manual/' + version + '/stdlib.html';
+      link = document.getElementById("stdlib");
       link.setAttribute("href", ref);
-      link = document.getElementById("stdref_b");
+
+      ref = '../api/' + version + '/index.html';
+      link = document.getElementById("api_b");
       link.setAttribute("href", ref);
           
       let stdlib = "Stdlib";
       if (parseFloat(version) < 4.08) { stdlib = "Pervasives"; }
-      document.getElementById("stdlib").textContent=stdlib;
+      document.getElementById("stdlib_name").textContent=stdlib;
       }    
       
       function goTUT(){
@@ -61,6 +60,7 @@
 	    <select class="form-control" id="version-selector" name="selector"
 		    style="width: 10ex;vertical-align: baseline;"
 		    onChange="goTUT()">
+	      <option>4.10</option>
 	      <option>4.09</option>
 	      <option>4.08</option>
 	      <option>4.07</option>
@@ -76,14 +76,15 @@
   <div class="row">
     <section class="span6 condensed">
       <h1 class="ruled">The OCaml Tutorials</h1>
-      <p>The official <a id="tutref"
-			 href="../manual/4.09/coreexamples.html">OCaml tutorials</a> ,
+      <p>The official
+	<a id="tutref"
+	   href="../manual/4.10/coreexamples.html">OCaml tutorials</a> ,
 	written by the creators of the language, are the best place to
 	start. They form a complete introduction to programming in
 	OCaml, including the module system, objects, polymorphism,
 	etc.
 
-	<a id="tutref_b" href="../manual/4.09/coreexamples.html">
+	<a id="tutref_b" href="../manual/4.10/coreexamples.html">
 	  <input type="button" class="btn btn-default"
 		 style="float:right;" name="button-tut"
 		 value="Read the tutorials"></a>
@@ -95,62 +96,74 @@
       <p>This is the place you'll end up most often!  You'll find the
 	documentation for all modules that ship with any ocaml
 	distribution. These modules form what is called
-	the <a id="stdref"
-	       href="http://caml.inria.fr/pub/docs/manual-ocaml/stdlib.html">Standard
+	the <a id="stdlib" href="../manual/4.10/stdlib.html">Standard
 	  Library</a>. In addition, a special
-	module <code id="stdlib">Stdlib</code> contains
-	the <a id="corref"
-	       href="http://caml.inria.fr/pub/docs/manual-ocaml/core.html">core
+	module <code id="stdlib_name">Stdlib</code> contains
+	the <a id="corref" href="../manual/4.10/core.html">core
 	  library</a>, and is always open.
-
-	<a id="stdref_b"
-	   href="http://caml.inria.fr/pub/docs/manual-ocaml/stdlib.html">
-	  <input type="button" class="btn btn-default" style="float:right;"
-		 name="button-api" value="OCaml API"></a>
+	
+	<a id="api_b"
+	   href="../api/4.10/index.html">
+	  <input type="button" class="btn btn-default"
+		 style="float:right;" name="button-api"
+		 value="OCaml API"></a>
       </p>
     </section>
     
     <section class="span6 condensed">
       <h1 class="ruled">The Tools</h1>
       <p>
-	Many <a id="toolref"
-		href="http://caml.inria.fr/pub/docs/manual-ocaml/comp.html">tools</a>
+	Many <a id="toolref" href="../manual/4.10/comp.html">tools</a>
 	are bundled with the OCaml language. Among them, the REPL (or
 	`toplevel'), the documentation generator, lexers, the
 	debugger, profiling tools, etc.
 
 	<a id="toolref_b"
-	   href="http://caml.inria.fr/pub/docs/manual-ocaml/comp.html">
-	  <input type="button" class="btn btn-default" style="float:right;"
-		 name="button-api" onClick="goTOOL()" value="OCaml Tools"></a>
+	   href="../manual/4.10/comp.html">
+	  <input type="button" class="btn btn-default"
+		 style="float:right;" name="button-api"
+		 onClick="goTOOL()" value="OCaml Tools"></a>
       </p>
     </section>
     
     <section class="span6 condensed">
-      <h1 class="ruled">The Language Reference and Extensions</h1>
-      <p>
-	Once you have a good working knowledge of OCaml,
-	the <a id="refref"
-	href="http://caml.inria.fr/pub/docs/manual-ocaml/language.html">Language
-	Reference</a> can help you understand a particular syntax or
-	behaviour.</p>
+      <h1 class="ruled">The Language Extensions</h1>
+      <!-- <p> -->
+      <!-- 	Once you have a good working knowledge of OCaml, -->
+      <!-- 	the <a id="refref" -->
+      <!-- 	href="../manual/4.10/language.html">Language -->
+      <!-- 	Reference</a> can help you understand a particular syntax or -->
+      <!-- 	behaviour.</p> -->
 
-      <p>Also, don't forget to regulary check the <a id="extref"
-	href="http://caml.inria.fr/pub/docs/manual-ocaml/extn.html">Language
-	Extensions</a>, they will keep you up-to-date with useful new
-	OCaml idioms and constructions.
+      <p>Don't forget to regulary check the <a id="extref"
+	href="../manual/4.10/extn.html">Language Extensions</a>, they
+	will keep you up-to-date with useful new OCaml idioms and
+	constructions.
       </p>
     </section>
-    
+
+     <section class="span6 condensed">
+       <h1 class="ruled">The Ocaml Manual</h1>
+       <p>The complete documentation is bundled as a
+	 large <a id="extref" href="../manual/4.10/">
+          <!-- <img src="/img/manual.svg" alt="" class="svg"> -->
+          <!-- <img src="/img/manual.png" alt="" class="png"> -->
+	   Ocaml Manual</a>.  This manual is also available in
+	 <a href="http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman.pdf">PDF</a>.
+	 <a href="http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman.txt">plain
+	 text</a>, as a
+	 <a href="http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman-html.tar.gz">bundle
+	 of HTML files</a>, and as a
+	 <a href="http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman.info.tar.gz">bundle
+	 of Emacs Info files</a>.
+	 <hr style="height:2">
+      </p>
+     </section>
+
+     
     <section class="span6 condensed">
       <h1 class="ruled">Reference</h1>
       <div class="row">
-        <a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
-	   target="_blank" class="span3 documentation-highlight">
-          <img src="/img/manual.svg" alt="" class="svg">
-          <img src="/img/manual.png" alt="" class="png">
-          OCaml Manual
-        </a>
         <a href="license.html" class="span3 documentation-highlight">
           <img src="/img/license.svg" alt="" class="svg">
           <img src="/img/license.png" alt="" class="png">
