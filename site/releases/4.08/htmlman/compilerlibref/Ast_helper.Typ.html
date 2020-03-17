@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Ast_helper.Attr.html">
+<link rel="next" href="Ast_helper.Pat.html">
+<link rel="Up" href="Ast_helper.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="CamlinternalMenhirLib" rel="Chapter" href="CamlinternalMenhirLib.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Compiler_libs" rel="Chapter" href="Compiler_libs.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Load_path" rel="Chapter" href="Load_path.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html"><title>Ast_helper.Typ</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Ast_helper.Attr.html" title="Ast_helper.Attr">Previous</a>
+&nbsp;<a class="up" href="Ast_helper.html" title="Ast_helper">Up</a>
+&nbsp;<a class="post" href="Ast_helper.Pat.html" title="Ast_helper.Pat">Next</a>
+</div>
+<h1>Module <a href="type_Ast_helper.Typ.html">Ast_helper.Typ</a></h1>
+
+<pre><span id="MODULETyp"><span class="keyword">module</span> Typ</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Ast_helper.Typ.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Type expressions</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="VALmk"><span class="keyword">val</span> mk</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -> <a href="Parsetree.html#TYPEcore_type_desc">Parsetree.core_type_desc</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALattr"><span class="keyword">val</span> attr</span> : <code class="type"><a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> -> <a href="Parsetree.html#TYPEattribute">Parsetree.attribute</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALany"><span class="keyword">val</span> any</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -> ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -> unit -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALvar"><span class="keyword">val</span> var</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -> string -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALarrow"><span class="keyword">val</span> arrow</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -><br>       <a href="Asttypes.html#TYPEarg_label">Asttypes.arg_label</a> -><br>       <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALtuple"><span class="keyword">val</span> tuple</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> list -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALconstr"><span class="keyword">val</span> constr</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -><br>       <a href="Ast_helper.html#TYPElid">Ast_helper.lid</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> list -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALobject_"><span class="keyword">val</span> object_</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -><br>       <a href="Parsetree.html#TYPEobject_field">Parsetree.object_field</a> list -> <a href="Asttypes.html#TYPEclosed_flag">Asttypes.closed_flag</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALclass_"><span class="keyword">val</span> class_</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -><br>       <a href="Ast_helper.html#TYPElid">Ast_helper.lid</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> list -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALalias"><span class="keyword">val</span> alias</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -><br>       <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> -> string -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALvariant"><span class="keyword">val</span> variant</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -><br>       <a href="Parsetree.html#TYPErow_field">Parsetree.row_field</a> list -><br>       <a href="Asttypes.html#TYPEclosed_flag">Asttypes.closed_flag</a> -> <a href="Asttypes.html#TYPElabel">Asttypes.label</a> list option -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALpoly"><span class="keyword">val</span> poly</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -><br>       <a href="Ast_helper.html#TYPEstr">Ast_helper.str</a> list -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALpackage"><span class="keyword">val</span> package</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -><br>       <a href="Ast_helper.html#TYPElid">Ast_helper.lid</a> -><br>       (<a href="Ast_helper.html#TYPElid">Ast_helper.lid</a> * <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a>) list -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALextension"><span class="keyword">val</span> extension</span> : <code class="type">?loc:<a href="Ast_helper.html#TYPEloc">Ast_helper.loc</a> -><br>       ?attrs:<a href="Ast_helper.html#TYPEattrs">Ast_helper.attrs</a> -> <a href="Parsetree.html#TYPEextension">Parsetree.extension</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALforce_poly"><span class="keyword">val</span> force_poly</span> : <code class="type"><a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre>
+<pre><span id="VALvarify_constructors"><span class="keyword">val</span> varify_constructors</span> : <code class="type"><a href="Ast_helper.html#TYPEstr">Ast_helper.str</a> list -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a> -> <a href="Parsetree.html#TYPEcore_type">Parsetree.core_type</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">varify_constructors&nbsp;newtypes&nbsp;te</code> is type expression <code class="code">te</code>, of which
+        any of nullary type constructor <code class="code">tc</code> is replaced by type variable of
+        the same name, if <code class="code">tc</code>'s name appears in <code class="code">newtypes</code>.
+        Raise <code class="code"><span class="constructor">Syntaxerr</span>.<span class="constructor">Variable_in_scope</span></code> if any type variable inside <code class="code">te</code>
+        appears in <code class="code">newtypes</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.05</li>
+</ul>
+</div>
+</body></html>

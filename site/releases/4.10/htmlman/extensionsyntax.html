@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.16  Extension-only syntax</title>
+</head>
+<body>
+<a href="generativefunctors.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="inlinerecords.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:extension-syntax"><a class="section-anchor" href="#s:extension-syntax" aria-hidden="true">﻿</a>8.16  Extension-only syntax</h2>
+<ul>
+<li><a href="extensionsyntax.html#ss%3Aextension-operators">8.16.1  Extension operators</a>
+</li><li><a href="extensionsyntax.html#ss%3Aextension-literals">8.16.2  Extension literals</a>
+</li></ul>
+<p>
+(Introduced in OCaml 4.02.2, extended in 4.03)</p><p>Some syntactic constructions are accepted during parsing and rejected
+during type checking. These syntactic constructions can therefore not
+be used directly in vanilla OCaml. However, <span class="c003">-ppx</span> rewriters and other
+external tools can exploit this parser leniency to extend the language
+with these new syntactic constructions by rewriting them to
+vanilla constructions.
+</p>
+<h3 class="subsection" id="ss:extension-operators"><a class="section-anchor" href="#ss:extension-operators" aria-hidden="true">﻿</a>8.16.1  Extension operators</h3>
+<p> <a id="s:ext-ops"></a>
+(Introduced in OCaml 4.02.2)
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<span class="c010">infix-symbol</span></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">#</span> {<span class="c010">operator-chars</span>} <span class="c004">#</span>   {<a class="syntax" href="lex.html#operator-char"><span class="c010">operator-char</span></a> <span class="c004">|</span> <span class="c004">#</span>}
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Operator names starting with a <span class="c003">#</span> character and containing more than
+one <span class="c003">#</span> character are reserved for extensions.</p>
+<h3 class="subsection" id="ss:extension-literals"><a class="section-anchor" href="#ss:extension-literals" aria-hidden="true">﻿</a>8.16.2  Extension literals</h3>
+<p>
+(Introduced in OCaml 4.03)
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<span class="c010">float-literal</span></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> [<span class="c004">-</span>] (<span class="c004">0</span>…<span class="c004">9</span>) { <span class="c004">0</span>…<span class="c004">9</span>∣ <span class="c004">_</span> } [<span class="c004">.</span> { <span class="c004">0</span>…<span class="c004">9</span>∣ <span class="c004">_</span> }]
+[(<span class="c004">e</span>∣ <span class="c004">E</span>) [<span class="c004">+</span>∣ <span class="c004">-</span>] (<span class="c004">0</span>…<span class="c004">9</span>) { <span class="c004">0</span>…<span class="c004">9</span>∣ <span class="c004">_</span> }]
+[<span class="c004">g</span>…<span class="c004">z</span>∣ <span class="c004">G</span>…<span class="c004">Z</span>]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> [<span class="c004">-</span>] (<span class="c004">0x</span>∣ <span class="c004">0X</span>)
+(<span class="c004">0</span>…<span class="c004">9</span>∣ <span class="c004">A</span>…<span class="c004">F</span>∣ <span class="c004">a</span>…<span class="c004">f</span>)
+{ <span class="c004">0</span>…<span class="c004">9</span>∣ <span class="c004">A</span>…<span class="c004">F</span>∣ <span class="c004">a</span>…<span class="c004">f</span>∣ <span class="c004">_</span> }
+[<span class="c004">.</span> { <span class="c004">0</span>…<span class="c004">9</span>∣ <span class="c004">A</span>…<span class="c004">F</span>∣ <span class="c004">a</span>…<span class="c004">f</span>∣ <span class="c004">_</span> }]
+[(<span class="c004">p</span>∣ <span class="c004">P</span>) [<span class="c004">+</span>∣ <span class="c004">-</span>] (<span class="c004">0</span>…<span class="c004">9</span>) { <span class="c004">0</span>…<span class="c004">9</span>∣ <span class="c004">_</span> }]
+[<span class="c004">g</span>…<span class="c004">z</span>∣ <span class="c004">G</span>…<span class="c004">Z</span>]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="int-literal"><span class="c010">int-literal</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> [<span class="c004">-</span>] (<span class="c004">0</span>…<span class="c004">9</span>) { <span class="c004">0</span>…<span class="c004">9</span> ∣  <span class="c004">_</span> }[<span class="c004">g</span>…<span class="c004">z</span>∣ <span class="c004">G</span>…<span class="c004">Z</span>]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> [<span class="c004">-</span>] (<span class="c004">0x</span>∣ <span class="c004">0X</span>) (<span class="c004">0</span>…<span class="c004">9</span>∣ <span class="c004">A</span>…<span class="c004">F</span>∣ <span class="c004">a</span>…<span class="c004">f</span>)
+{ <span class="c004">0</span>…<span class="c004">9</span>∣ <span class="c004">A</span>…<span class="c004">F</span>∣ <span class="c004">a</span>…<span class="c004">f</span>∣ <span class="c004">_</span> }
+[<span class="c004">g</span>…<span class="c004">z</span>∣ <span class="c004">G</span>…<span class="c004">Z</span>]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> [<span class="c004">-</span>] (<span class="c004">0o</span>∣ <span class="c004">0O</span>) (<span class="c004">0</span>…<span class="c004">7</span>) { <span class="c004">0</span>…<span class="c004">7</span>∣ <span class="c004">_</span> }
+[<span class="c004">g</span>…<span class="c004">z</span>∣ <span class="c004">G</span>…<span class="c004">Z</span>]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> [<span class="c004">-</span>] (<span class="c004">0b</span>∣ <span class="c004">0B</span>) (<span class="c004">0</span>…<span class="c004">1</span>) { <span class="c004">0</span>…<span class="c004">1</span>∣ <span class="c004">_</span> }
+[<span class="c004">g</span>…<span class="c004">z</span>∣ <span class="c004">G</span>…<span class="c004">Z</span>]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>
+Int and float literals followed by an one-letter identifier in the
+range [<span class="c004">g</span>..<span class="c004">z</span>∣ <span class="c004">G</span>..<span class="c004">Z</span>] are extension-only literals.</p>
+<hr>
+<a href="generativefunctors.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="inlinerecords.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

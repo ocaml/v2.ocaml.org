@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Condition.html">
+<link rel="next" href="Digest.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Arith_status" rel="Chapter" href="Arith_status.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Big_int" rel="Chapter" href="Big_int.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Dbm" rel="Chapter" href="Dbm.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Genlex" rel="Chapter" href="Genlex.html">
+<link title="Graphics" rel="Chapter" href="Graphics.html">
+<link title="GraphicsX11" rel="Chapter" href="GraphicsX11.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Num" rel="Chapter" href="Num.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Pervasives" rel="Chapter" href="Pervasives.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Sort" rel="Chapter" href="Sort.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="Stream" rel="Chapter" href="Stream.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="ThreadUnix" rel="Chapter" href="ThreadUnix.html">
+<link title="Tk" rel="Chapter" href="Tk.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Weak" rel="Chapter" href="Weak.html"><title>Dbm</title>
+</head>
+<body>
+<div class="navbar"><a href="Condition.html">Previous</a>
+&nbsp;<a href="index.html">Up</a>
+&nbsp;<a href="Digest.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Dbm.html">Dbm</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Dbm: <code class="code"><span class="keyword">sig</span></code> <a href="Dbm.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>Interface to the NDBM database.<br>
+<hr width="100%">
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+<div class="info">
+The type of file descriptors opened on NDBM databases.<br>
+</div>
+
+<br><code><span id="TYPEopen_flag"><span class="keyword">type</span> <code class="type"></code>open_flag</span> = </code><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Dbm_rdonly</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Dbm_wronly</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Dbm_rdwr</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Dbm_create</span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" >Flags for opening a database (see <a href="Dbm.html#VALopendbm"><code class="code"><span class="constructor">Dbm</span>.opendbm</code></a>).</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+
+<pre><span id="EXCEPTIONDbm_error"><span class="keyword">exception</span> Dbm_error</span> <span class="keyword">of</span> <code class="type">string</code></pre>
+<div class="info">
+Raised by the following functions when an error is encountered.<br>
+</div>
+<pre><span id="VALopendbm"><span class="keyword">val</span> opendbm</span> : <code class="type">string -> <a href="Dbm.html#TYPEopen_flag">open_flag</a> list -> int -> <a href="Dbm.html#TYPEt">t</a></code></pre><div class="info">
+Open a descriptor on an NDBM database. The first argument is
+   the name of the database (without the <code class="code">.dir</code> and <code class="code">.pag</code> suffixes).
+   The second argument is a list of flags: <code class="code"><span class="constructor">Dbm_rdonly</span></code> opens
+   the database for reading only, <code class="code"><span class="constructor">Dbm_wronly</span></code> for writing only,
+   <code class="code"><span class="constructor">Dbm_rdwr</span></code> for reading and writing; <code class="code"><span class="constructor">Dbm_create</span></code> causes the
+   database to be created if it does not already exist.
+   The third argument is the permissions to give to the database
+   files, if the database is created.<br>
+</div>
+<pre><span id="VALclose"><span class="keyword">val</span> close</span> : <code class="type"><a href="Dbm.html#TYPEt">t</a> -> unit</code></pre><div class="info">
+Close the given descriptor.<br>
+</div>
+<pre><span id="VALfind"><span class="keyword">val</span> find</span> : <code class="type"><a href="Dbm.html#TYPEt">t</a> -> string -> string</code></pre><div class="info">
+<code class="code">find db key</code> returns the data associated with the given
+   <code class="code">key</code> in the database opened for the descriptor <code class="code">db</code>.
+   Raise <code class="code"><span class="constructor">Not_found</span></code> if the <code class="code">key</code> has no associated data.<br>
+</div>
+<pre><span id="VALadd"><span class="keyword">val</span> add</span> : <code class="type"><a href="Dbm.html#TYPEt">t</a> -> string -> string -> unit</code></pre><div class="info">
+<code class="code">add db key data</code> inserts the pair (<code class="code">key</code>, <code class="code">data</code>) in
+   the database <code class="code">db</code>. If the database already contains data
+   associated with <code class="code">key</code>, raise <code class="code"><span class="constructor">Dbm_error</span> <span class="string">"Entry already exists"</span></code>.<br>
+</div>
+<pre><span id="VALreplace"><span class="keyword">val</span> replace</span> : <code class="type"><a href="Dbm.html#TYPEt">t</a> -> string -> string -> unit</code></pre><div class="info">
+<code class="code">replace db key data</code> inserts the pair (<code class="code">key</code>, <code class="code">data</code>) in
+   the database <code class="code">db</code>. If the database already contains data
+   associated with <code class="code">key</code>, that data is discarded and silently
+   replaced by the new <code class="code">data</code>.<br>
+</div>
+<pre><span id="VALremove"><span class="keyword">val</span> remove</span> : <code class="type"><a href="Dbm.html#TYPEt">t</a> -> string -> unit</code></pre><div class="info">
+<code class="code">remove db key data</code> removes the data associated with <code class="code">key</code>
+   in <code class="code">db</code>. If <code class="code">key</code> has no associated data, raise
+   <code class="code"><span class="constructor">Dbm_error</span> <span class="string">"dbm_delete"</span></code>.<br>
+</div>
+<pre><span id="VALfirstkey"><span class="keyword">val</span> firstkey</span> : <code class="type"><a href="Dbm.html#TYPEt">t</a> -> string</code></pre><div class="info">
+See <a href="Dbm.html#VALnextkey"><code class="code"><span class="constructor">Dbm</span>.nextkey</code></a>.<br>
+</div>
+<pre><span id="VALnextkey"><span class="keyword">val</span> nextkey</span> : <code class="type"><a href="Dbm.html#TYPEt">t</a> -> string</code></pre><div class="info">
+Enumerate all keys in the given database, in an unspecified order.
+   <code class="code">firstkey db</code> returns the first key, and repeated calls
+   to <code class="code">nextkey db</code> return the remaining keys. <code class="code"><span class="constructor">Not_found</span></code> is raised
+   when all keys have been enumerated.<br>
+</div>
+<pre><span id="VALiter"><span class="keyword">val</span> iter</span> : <code class="type">(string -> string -> 'a) -> <a href="Dbm.html#TYPEt">t</a> -> unit</code></pre><div class="info">
+<code class="code">iter f db</code> applies <code class="code">f</code> to each (<code class="code">key</code>, <code class="code">data</code>) pair in
+   the database <code class="code">db</code>. <code class="code">f</code> receives <code class="code">key</code> as first argument
+   and <code class="code">data</code> as second argument.<br>
+</div>
+</body></html>

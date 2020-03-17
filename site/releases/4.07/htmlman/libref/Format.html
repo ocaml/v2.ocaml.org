@@ -1,0 +1,1522 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Float.html">
+<link rel="next" href="Gc.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="Bytes" rel="Chapter" href="Bytes.html">
+<link title="BytesLabels" rel="Chapter" href="BytesLabels.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="CamlinternalFormat" rel="Chapter" href="CamlinternalFormat.html">
+<link title="CamlinternalFormatBasics" rel="Chapter" href="CamlinternalFormatBasics.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Ephemeron" rel="Chapter" href="Ephemeron.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Float" rel="Chapter" href="Float.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Genlex" rel="Chapter" href="Genlex.html">
+<link title="Graphics" rel="Chapter" href="Graphics.html">
+<link title="GraphicsX11" rel="Chapter" href="GraphicsX11.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Pervasives" rel="Chapter" href="Pervasives.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Seq" rel="Chapter" href="Seq.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Sort" rel="Chapter" href="Sort.html">
+<link title="Spacetime" rel="Chapter" href="Spacetime.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="Stream" rel="Chapter" href="Stream.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Tbl" rel="Chapter" href="Tbl.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="ThreadUnix" rel="Chapter" href="ThreadUnix.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Uchar" rel="Chapter" href="Uchar.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Weak" rel="Chapter" href="Weak.html"><link title="Introduction" rel="Section" href="#1_Introduction">
+<link title="Pretty-printing boxes" rel="Section" href="#boxes">
+<link title="Formatting functions" rel="Section" href="#1_Formattingfunctions">
+<link title="Break hints" rel="Section" href="#breaks">
+<link title="Pretty-printing termination" rel="Section" href="#1_Prettyprintingtermination">
+<link title="Margin" rel="Section" href="#1_Margin">
+<link title="Maximum indentation limit" rel="Section" href="#1_Maximumindentationlimit">
+<link title="Maximum formatting depth" rel="Section" href="#1_Maximumformattingdepth">
+<link title="Tabulation boxes" rel="Section" href="#1_Tabulationboxes">
+<link title="Ellipsis" rel="Section" href="#1_Ellipsis">
+<link title="Semantic tags" rel="Section" href="#tags">
+<link title="Redefining formatter output" rel="Section" href="#meaning">
+<link title="Redefining semantic tag operations" rel="Section" href="#tagsmeaning">
+<link title="Defining formatters" rel="Section" href="#formatter">
+<link title="Convenience formatting functions." rel="Section" href="#1_Convenienceformattingfunctions">
+<link title="Formatted pretty-printing" rel="Section" href="#fpp">
+<link title="Deprecated" rel="Section" href="#1_Deprecated">
+<link title="Redefining output functions" rel="Subsection" href="#2_Redefiningoutputfunctions">
+<link title="Symbolic pretty-printing" rel="Subsection" href="#symbolic">
+<title>Format</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Float.html" title="Float">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Gc.html" title="Gc">Next</a>
+</div>
+<h1>Module <a href="type_Format.html">Format</a></h1>
+
+<pre><span id="MODULEFormat"><span class="keyword">module</span> Format</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Format.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Pretty-printing.</p>
+
+<p>This module implements a pretty-printing facility to format values
+   within <a href="Format.html#boxes">'pretty-printing boxes'</a> and <a href="Format.html#tags">'semantic tags'</a>
+   combined with a set of <a href="Format.html#fpp">printf-like functions</a>.
+   The pretty-printer splits lines at specified <a href="Format.html#breaks">break hints</a>,
+   and indents lines according to the box structure.
+   Similarly, <a href="Format.html#tags">semantic tags</a> can be used to decouple text
+   presentation from its contents.</p>
+
+<p>This pretty-printing facility is implemented as an overlay on top of
+   abstract <a href="Format.html#formatter">formatters</a> which provide basic output
+   functions.
+   Some formatters are predefined, notably:</p>
+<ul>
+<li><a href="Format.html#VALstd_formatter"><code class="code"><span class="constructor">Format</span>.std_formatter</code></a> outputs to <a href="Pervasives.html#VALstdout">stdout</a></li>
+<li><a href="Format.html#VALerr_formatter"><code class="code"><span class="constructor">Format</span>.err_formatter</code></a> outputs to <a href="Pervasives.html#VALstderr">stderr</a></li>
+</ul>
+<p>Most functions in the <a href="Format.html"><code class="code"><span class="constructor">Format</span></code></a> module come in two variants:
+   a short version that operates on <a href="Format.html#VALstd_formatter"><code class="code"><span class="constructor">Format</span>.std_formatter</code></a> and the
+   generic version prefixed by <code class="code">pp_</code> that takes a formatter
+   as its first argument.</p>
+
+<p>More formatters can be created with <a href="Format.html#VALformatter_of_out_channel"><code class="code"><span class="constructor">Format</span>.formatter_of_out_channel</code></a>,
+   <a href="Format.html#VALformatter_of_buffer"><code class="code"><span class="constructor">Format</span>.formatter_of_buffer</code></a>, <a href="Format.html#VALformatter_of_symbolic_output_buffer"><code class="code"><span class="constructor">Format</span>.formatter_of_symbolic_output_buffer</code></a>
+   or using <a href="Format.html#formatter">custom formatters</a>.</p>
+</div>
+</div>
+<hr width="100%">
+<h2 id="1_Introduction">Introduction</h2><p>For a gentle introduction to the basics of pretty-printing using
+   <code class="code"><span class="constructor">Format</span></code>, read
+   <a href="http://caml.inria.fr/resources/doc/guides/format.en.html">
+    http://caml.inria.fr/resources/doc/guides/format.en.html</a>.</p>
+
+<p>You may consider this module as providing an extension to the
+   <code class="code">printf</code> facility to provide automatic line splitting. The addition of
+   pretty-printing annotations to your regular <code class="code">printf</code> format strings gives
+   you fancy indentation and line breaks.
+   Pretty-printing annotations are described below in the documentation of
+   the function <a href="Format.html#VALfprintf"><code class="code"><span class="constructor">Format</span>.fprintf</code></a>.</p>
+
+<p>You may also use the explicit pretty-printing box management and printing
+   functions provided by this module. This style is more basic but more
+   verbose than the concise <code class="code">fprintf</code> format strings.</p>
+
+<p>For instance, the sequence
+   <code class="code">open_box&nbsp;0;&nbsp;print_string&nbsp;<span class="string">"x&nbsp;="</span>;&nbsp;print_space&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print_int&nbsp;1;&nbsp;close_box&nbsp;();&nbsp;print_newline&nbsp;()</code>
+   that prints <code class="code">x&nbsp;=&nbsp;1</code> within a pretty-printing box, can be
+   abbreviated as <code class="code">printf&nbsp;<span class="string">"@[%s@&nbsp;%i@]@."</span>&nbsp;<span class="string">"x&nbsp;="</span>&nbsp;1</code>, or even shorter
+   <code class="code">printf&nbsp;<span class="string">"@[x&nbsp;=@&nbsp;%i@]@."</span>&nbsp;1</code>.</p>
+
+<p>Rule of thumb for casual users of this library:</p>
+<ul>
+<li>use simple pretty-printing boxes (as obtained by <code class="code">open_box&nbsp;0</code>);</li>
+<li>use simple break hints as obtained by <code class="code">print_cut&nbsp;()</code> that outputs a
+   simple break hint, or by <code class="code">print_space&nbsp;()</code> that outputs a space
+   indicating a break hint;</li>
+<li>once a pretty-printing box is open, display its material with basic
+   printing functions (e. g. <code class="code">print_int</code> and <code class="code">print_string</code>);</li>
+<li>when the material for a pretty-printing box has been printed, call
+   <code class="code">close_box&nbsp;()</code> to close the box;</li>
+<li>at the end of pretty-printing, flush the pretty-printer to display all
+   the remaining material, e.g. evaluate <code class="code">print_newline&nbsp;()</code>.</li>
+</ul>
+<p>The behavior of pretty-printing commands is unspecified
+   if there is no open pretty-printing box. Each box opened by
+   one of the <code class="code">open_</code> functions below must be closed using <code class="code">close_box</code>
+   for proper formatting. Otherwise, some of the material printed in the
+   boxes may not be output, or may be formatted incorrectly.</p>
+
+<p>In case of interactive use, each phrase is executed in the initial state
+   of the standard pretty-printer: after each phrase execution, the
+   interactive system closes all open pretty-printing boxes, flushes all
+   pending text, and resets the standard pretty-printer.</p>
+
+<p>Warning: mixing calls to pretty-printing functions of this module with
+   calls to <a href="Pervasives.html"><code class="code"><span class="constructor">Pervasives</span></code></a> low level output functions is error prone.</p>
+
+<p>The pretty-printing functions output material that is delayed in the
+   pretty-printer queue and stacks in order to compute proper line
+   splitting. In contrast, basic I/O output functions write directly in
+   their output device. As a consequence, the output of a basic I/O function
+   may appear before the output of a pretty-printing function that has been
+   called before. For instance,
+   <code class="code"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pervasives</span>.print_string&nbsp;<span class="string">"&lt;"</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Format</span>.print_string&nbsp;<span class="string">"PRETTY"</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pervasives</span>.print_string&nbsp;<span class="string">"&gt;"</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Format</span>.print_string&nbsp;<span class="string">"TEXT"</span>;<br>
+&nbsp;&nbsp;&nbsp;</code>
+   leads to output <code class="code">&lt;&gt;<span class="constructor">PRETTYTEXT</span></code>.</p>
+
+<pre><span id="TYPEformatter"><span class="keyword">type</span> <code class="type"></code>formatter</span> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>Abstract data corresponding to a pretty-printer (also called a
+    formatter) and all its machinery. See also <a href="Format.html#formatter"><i>Defining formatters</i></a>.</p>
+</div>
+</div>
+
+<h2 id="boxes">Pretty-printing boxes</h2><p>The pretty-printing engine uses the concepts of pretty-printing box and
+  break hint to drive indentation and line splitting behavior of the
+  pretty-printer.</p>
+
+<p>Each different pretty-printing box kind introduces a specific line splitting
+  policy:</p>
+
+<ul>
+<li>within an <em>horizontal</em> box, break hints never split the line (but the
+    line may be split in a box nested deeper),</li>
+<li>within a <em>vertical</em> box, break hints always split the line,</li>
+<li>within an <em>horizontal/vertical</em> box, if the box fits on the current line
+    then break hints never split the line, otherwise break hint always split
+    the line,</li>
+<li>within a <em>compacting</em> box, a break hint never splits the line,
+    unless there is no more room on the current line.</li>
+</ul>
+<p>Note that line splitting policy is box specific: the policy of a box does
+  not rule the policy of inner boxes. For instance, if a vertical box is
+  nested in an horizontal box, all break hints within the vertical box will
+  split the line.</p>
+
+<pre><span id="VALpp_open_box"><span class="keyword">val</span> pp_open_box</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> unit</code></pre>
+<pre><span id="VALopen_box"><span class="keyword">val</span> open_box</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_open_box&nbsp;ppf&nbsp;d</code> opens a new compacting pretty-printing box with
+    offset <code class="code">d</code> in the formatter <code class="code">ppf</code>.</p>
+
+<p>Within this box, the pretty-printer prints as much as possible material on
+   every line.</p>
+
+<p>A break hint splits the line if there is no more room on the line to
+   print the remainder of the box.</p>
+
+<p>Within this box, the pretty-printer emphasizes the box structure: a break
+   hint also splits the line if the splitting ``moves to the left''
+   (i.e. the new line gets an indentation smaller than the one of the current
+   line).</p>
+
+<p>This box is the general purpose pretty-printing box.</p>
+
+<p>If the pretty-printer splits the line in the box, offset <code class="code">d</code> is added to
+   the current indentation.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_close_box"><span class="keyword">val</span> pp_close_box</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALclose_box"><span class="keyword">val</span> close_box</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Closes the most recently open pretty-printing box.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_open_hbox"><span class="keyword">val</span> pp_open_hbox</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALopen_hbox"><span class="keyword">val</span> open_hbox</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_open_hbox&nbsp;ppf&nbsp;()</code> opens a new 'horizontal' pretty-printing box.</p>
+
+<p>This box prints material on a single line.</p>
+
+<p>Break hints in a horizontal box never split the line.
+  (Line splitting may still occur inside boxes nested deeper).</p>
+</div>
+</div>
+
+<pre><span id="VALpp_open_vbox"><span class="keyword">val</span> pp_open_vbox</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> unit</code></pre>
+<pre><span id="VALopen_vbox"><span class="keyword">val</span> open_vbox</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_open_vbox&nbsp;ppf&nbsp;d</code> opens a new 'vertical' pretty-printing box
+  with offset <code class="code">d</code>.</p>
+
+<p>This box prints material on as many lines as break hints in the box.</p>
+
+<p>Every break hint in a vertical box splits the line.</p>
+
+<p>If the pretty-printer splits the line in the box, <code class="code">d</code> is added to the
+  current indentation.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_open_hvbox"><span class="keyword">val</span> pp_open_hvbox</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> unit</code></pre>
+<pre><span id="VALopen_hvbox"><span class="keyword">val</span> open_hvbox</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_open_hvbox&nbsp;ppf&nbsp;d</code> opens a new 'horizontal/vertical' pretty-printing box
+  with offset <code class="code">d</code>.</p>
+
+<p>This box behaves as an horizontal box if it fits on a single line,
+  otherwise it behaves as a vertical box.</p>
+
+<p>If the pretty-printer splits the line in the box, <code class="code">d</code> is added to the
+  current indentation.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_open_hovbox"><span class="keyword">val</span> pp_open_hovbox</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> unit</code></pre>
+<pre><span id="VALopen_hovbox"><span class="keyword">val</span> open_hovbox</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_open_hovbox&nbsp;ppf&nbsp;d</code> opens a new 'horizontal-or-vertical'
+  pretty-printing box with offset <code class="code">d</code>.</p>
+
+<p>This box prints material as much as possible on every line.</p>
+
+<p>A break hint splits the line if there is no more room on the line to
+  print the remainder of the box.</p>
+
+<p>If the pretty-printer splits the line in the box, <code class="code">d</code> is added to the
+  current indentation.</p>
+</div>
+</div>
+<h2 id="1_Formattingfunctions">Formatting functions</h2>
+<pre><span id="VALpp_print_string"><span class="keyword">val</span> pp_print_string</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> string -> unit</code></pre>
+<pre><span id="VALprint_string"><span class="keyword">val</span> print_string</span> : <code class="type">string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_print_string&nbsp;ppf&nbsp;s</code> prints <code class="code">s</code> in the current pretty-printing box.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_as"><span class="keyword">val</span> pp_print_as</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> string -> unit</code></pre>
+<pre><span id="VALprint_as"><span class="keyword">val</span> print_as</span> : <code class="type">int -> string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_print_as&nbsp;ppf&nbsp;len&nbsp;s</code> prints <code class="code">s</code> in the current pretty-printing box.
+  The pretty-printer formats <code class="code">s</code> as if it were of length <code class="code">len</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_int"><span class="keyword">val</span> pp_print_int</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> unit</code></pre>
+<pre><span id="VALprint_int"><span class="keyword">val</span> print_int</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Print an integer in the current pretty-printing box.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_float"><span class="keyword">val</span> pp_print_float</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> float -> unit</code></pre>
+<pre><span id="VALprint_float"><span class="keyword">val</span> print_float</span> : <code class="type">float -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Print a floating point number in the current pretty-printing box.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_char"><span class="keyword">val</span> pp_print_char</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> char -> unit</code></pre>
+<pre><span id="VALprint_char"><span class="keyword">val</span> print_char</span> : <code class="type">char -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Print a character in the current pretty-printing box.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_bool"><span class="keyword">val</span> pp_print_bool</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> bool -> unit</code></pre>
+<pre><span id="VALprint_bool"><span class="keyword">val</span> print_bool</span> : <code class="type">bool -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Print a boolean in the current pretty-printing box.</p>
+</div>
+</div>
+<h2 id="breaks">Break hints</h2><p>A 'break hint' tells the pretty-printer to output some space or split the
+  line whichever way is more appropriate to the current pretty-printing box
+  splitting rules.</p>
+
+<p>Break hints are used to separate printing items and are mandatory to let
+  the pretty-printer correctly split lines and indent items.</p>
+
+<p>Simple break hints are:</p>
+<ul>
+<li>the 'space': output a space or split the line if appropriate,</li>
+<li>the 'cut': split the line if appropriate.</li>
+</ul>
+<p>Note: the notions of space and line splitting are abstract for the
+  pretty-printing engine, since those notions can be completely redefined
+  by the programmer.
+  However, in the pretty-printer default setting, ``output a space'' simply
+  means printing a space character (ASCII code 32) and ``split the line''
+  means printing a newline character (ASCII code 10).</p>
+
+<pre><span id="VALpp_print_space"><span class="keyword">val</span> pp_print_space</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALprint_space"><span class="keyword">val</span> print_space</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_print_space&nbsp;ppf&nbsp;()</code> emits a 'space' break hint:
+  the pretty-printer may split the line at this point,
+  otherwise it prints one space.</p>
+
+<p><code class="code">pp_print_space&nbsp;ppf&nbsp;()</code> is equivalent to <code class="code">pp_print_break&nbsp;ppf&nbsp;1&nbsp;0</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_cut"><span class="keyword">val</span> pp_print_cut</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALprint_cut"><span class="keyword">val</span> print_cut</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_print_cut&nbsp;ppf&nbsp;()</code> emits a 'cut' break hint:
+  the pretty-printer may split the line at this point,
+  otherwise it prints nothing.</p>
+
+<p><code class="code">pp_print_cut&nbsp;ppf&nbsp;()</code> is equivalent to <code class="code">pp_print_break&nbsp;ppf&nbsp;0&nbsp;0</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_break"><span class="keyword">val</span> pp_print_break</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> int -> unit</code></pre>
+<pre><span id="VALprint_break"><span class="keyword">val</span> print_break</span> : <code class="type">int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_print_break&nbsp;ppf&nbsp;nspaces&nbsp;offset</code> emits a 'full' break hint:
+  the pretty-printer may split the line at this point,
+  otherwise it prints <code class="code">nspaces</code> spaces.</p>
+
+<p>If the pretty-printer splits the line, <code class="code">offset</code> is added to
+  the current indentation.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_force_newline"><span class="keyword">val</span> pp_force_newline</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALforce_newline"><span class="keyword">val</span> force_newline</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Force a new line in the current pretty-printing box.</p>
+
+<p>The pretty-printer must split the line at this point,</p>
+
+<p>Not the normal way of pretty-printing, since imperative line splitting may
+  interfere with current line counters and box size calculation.
+  Using break hints within an enclosing vertical box is a better
+  alternative.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_if_newline"><span class="keyword">val</span> pp_print_if_newline</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALprint_if_newline"><span class="keyword">val</span> print_if_newline</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Execute the next formatting command if the preceding line
+  has just been split. Otherwise, ignore the next formatting
+  command.</p>
+</div>
+</div>
+<h2 id="1_Prettyprintingtermination">Pretty-printing termination</h2>
+<pre><span id="VALpp_print_flush"><span class="keyword">val</span> pp_print_flush</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALprint_flush"><span class="keyword">val</span> print_flush</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>End of pretty-printing: resets the pretty-printer to initial state.</p>
+
+<p>All open pretty-printing boxes are closed, all pending text is printed.
+  In addition, the pretty-printer low level output device is flushed to
+  ensure that all pending text is really displayed.</p>
+
+<p>Note: never use <code class="code">print_flush</code> in the normal course of a pretty-printing
+  routine, since the pretty-printer uses a complex buffering machinery to
+  properly indent the output; manually flushing those buffers at random
+  would conflict with the pretty-printer strategy and result to poor
+  rendering.</p>
+
+<p>Only consider using <code class="code">print_flush</code> when displaying all pending material is
+  mandatory (for instance in case of interactive use when you want the user
+  to read some text) and when resetting the pretty-printer state will not
+  disturb further pretty-printing.</p>
+
+<p>Warning: If the output device of the pretty-printer is an output channel,
+  repeated calls to <code class="code">print_flush</code> means repeated calls to <a href="Pervasives.html#VALflush"><code class="code">flush</code></a>
+  to flush the out channel; these explicit flush calls could foil the
+  buffering strategy of output channels and could dramatically impact
+  efficiency.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_newline"><span class="keyword">val</span> pp_print_newline</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALprint_newline"><span class="keyword">val</span> print_newline</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>End of pretty-printing: resets the pretty-printer to initial state.</p>
+
+<p>All open pretty-printing boxes are closed, all pending text is printed.</p>
+
+<p>Equivalent to <a href="Format.html#VALprint_flush"><code class="code"><span class="constructor">Format</span>.print_flush</code></a> followed by a new line.
+  See corresponding words of caution for <a href="Format.html#VALprint_flush"><code class="code"><span class="constructor">Format</span>.print_flush</code></a>.</p>
+
+<p>Note: this is not the normal way to output a new line;
+  the preferred method is using break hints within a vertical pretty-printing
+  box.</p>
+</div>
+</div>
+<h2 id="1_Margin">Margin</h2>
+<pre><span id="VALpp_set_margin"><span class="keyword">val</span> pp_set_margin</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> unit</code></pre>
+<pre><span id="VALset_margin"><span class="keyword">val</span> set_margin</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_set_margin&nbsp;ppf&nbsp;d</code> sets the right margin to <code class="code">d</code> (in characters):
+  the pretty-printer splits lines that overflow the right margin according to
+  the break hints given.
+  Nothing happens if <code class="code">d</code> is smaller than 2.
+  If <code class="code">d</code> is too large, the right margin is set to the maximum
+  admissible value (which is greater than <code class="code">10&nbsp;^&nbsp;9</code>).
+  If <code class="code">d</code> is less than the current maximum indentation limit, the
+  maximum indentation limit is decreased while trying to preserve
+  a minimal ratio <code class="code">max_indent/margin&gt;=50%</code> and if possible
+  the current difference <code class="code">margin&nbsp;-&nbsp;max_indent</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_get_margin"><span class="keyword">val</span> pp_get_margin</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> int</code></pre>
+<pre><span id="VALget_margin"><span class="keyword">val</span> get_margin</span> : <code class="type">unit -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Returns the position of the right margin.</p>
+</div>
+</div>
+<h2 id="1_Maximumindentationlimit">Maximum indentation limit</h2>
+<pre><span id="VALpp_set_max_indent"><span class="keyword">val</span> pp_set_max_indent</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> unit</code></pre>
+<pre><span id="VALset_max_indent"><span class="keyword">val</span> set_max_indent</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_set_max_indent&nbsp;ppf&nbsp;d</code> sets the maximum indentation limit of lines
+  to <code class="code">d</code> (in characters):
+  once this limit is reached, new pretty-printing boxes are rejected to the
+  left, if they do not fit on the current line.</p>
+
+<p>Nothing happens if <code class="code">d</code> is smaller than 2.
+  If <code class="code">d</code> is too large, the limit is set to the maximum
+  admissible value (which is greater than <code class="code">10&nbsp;^&nbsp;9</code>).</p>
+
+<p>If <code class="code">d</code> is greater or equal than the current margin, it is ignored,
+  and the current maximum indentation limit is kept.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_get_max_indent"><span class="keyword">val</span> pp_get_max_indent</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> int</code></pre>
+<pre><span id="VALget_max_indent"><span class="keyword">val</span> get_max_indent</span> : <code class="type">unit -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the maximum indentation limit (in characters).</p>
+</div>
+</div>
+<h2 id="1_Maximumformattingdepth">Maximum formatting depth</h2><p>The maximum formatting depth is the maximum number of pretty-printing
+  boxes simultaneously open.</p>
+
+<p>Material inside boxes nested deeper is printed as an ellipsis (more
+  precisely as the text returned by <a href="Format.html#VALget_ellipsis_text"><code class="code"><span class="constructor">Format</span>.get_ellipsis_text</code></a> <code class="code">()</code>).</p>
+
+<pre><span id="VALpp_set_max_boxes"><span class="keyword">val</span> pp_set_max_boxes</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> unit</code></pre>
+<pre><span id="VALset_max_boxes"><span class="keyword">val</span> set_max_boxes</span> : <code class="type">int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_set_max_boxes&nbsp;ppf&nbsp;max</code> sets the maximum number of pretty-printing
+    boxes simultaneously open.</p>
+
+<p>Material inside boxes nested deeper is printed as an ellipsis (more
+  precisely as the text returned by <a href="Format.html#VALget_ellipsis_text"><code class="code"><span class="constructor">Format</span>.get_ellipsis_text</code></a> <code class="code">()</code>).</p>
+
+<p>Nothing happens if <code class="code">max</code> is smaller than 2.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_get_max_boxes"><span class="keyword">val</span> pp_get_max_boxes</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> int</code></pre>
+<pre><span id="VALget_max_boxes"><span class="keyword">val</span> get_max_boxes</span> : <code class="type">unit -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Returns the maximum number of pretty-printing boxes allowed before
+  ellipsis.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_over_max_boxes"><span class="keyword">val</span> pp_over_max_boxes</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> bool</code></pre>
+<pre><span id="VALover_max_boxes"><span class="keyword">val</span> over_max_boxes</span> : <code class="type">unit -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Tests if the maximum number of pretty-printing boxes allowed have already
+  been opened.</p>
+</div>
+</div>
+<h2 id="1_Tabulationboxes">Tabulation boxes</h2><p>A <em>tabulation box</em> prints material on lines divided into cells of fixed
+  length. A tabulation box provides a simple way to display vertical columns
+  of left adjusted text.</p>
+
+<p>This box features command <code class="code">set_tab</code> to define cell boundaries, and command
+  <code class="code">print_tab</code> to move from cell to cell and split the line when there is no
+  more cells to print on the line.</p>
+
+<p>Note: printing within tabulation box is line directed, so arbitrary line
+  splitting inside a tabulation box leads to poor rendering. Yet, controlled
+  use of tabulation boxes allows simple printing of columns within
+  module <a href="Format.html"><code class="code"><span class="constructor">Format</span></code></a>.</p>
+
+<pre><span id="VALpp_open_tbox"><span class="keyword">val</span> pp_open_tbox</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALopen_tbox"><span class="keyword">val</span> open_tbox</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">open_tbox&nbsp;()</code> opens a new tabulation box.</p>
+
+<p>This box prints lines separated into cells of fixed width.</p>
+
+<p>Inside a tabulation box, special <em>tabulation markers</em> defines points of
+  interest on the line (for instance to delimit cell boundaries).
+  Function <a href="Format.html#VALset_tab"><code class="code"><span class="constructor">Format</span>.set_tab</code></a> sets a tabulation marker at insertion point.</p>
+
+<p>A tabulation box features specific <em>tabulation breaks</em> to move to next
+  tabulation marker or split the line. Function <a href="Format.html#VALprint_tbreak"><code class="code"><span class="constructor">Format</span>.print_tbreak</code></a> prints
+  a tabulation break.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_close_tbox"><span class="keyword">val</span> pp_close_tbox</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALclose_tbox"><span class="keyword">val</span> close_tbox</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Closes the most recently opened tabulation box.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_set_tab"><span class="keyword">val</span> pp_set_tab</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALset_tab"><span class="keyword">val</span> set_tab</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Sets a tabulation marker at current insertion point.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_tab"><span class="keyword">val</span> pp_print_tab</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALprint_tab"><span class="keyword">val</span> print_tab</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">print_tab&nbsp;()</code> emits a 'next' tabulation break hint: if not already set on
+  a tabulation marker, the insertion point moves to the first tabulation
+  marker on the right, or the pretty-printer splits the line and insertion
+  point moves to the leftmost tabulation marker.</p>
+
+<p>It is equivalent to <code class="code">print_tbreak&nbsp;0&nbsp;0</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_print_tbreak"><span class="keyword">val</span> pp_print_tbreak</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> int -> int -> unit</code></pre>
+<pre><span id="VALprint_tbreak"><span class="keyword">val</span> print_tbreak</span> : <code class="type">int -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">print_tbreak&nbsp;nspaces&nbsp;offset</code> emits a 'full' tabulation break hint.</p>
+
+<p>If not already set on a tabulation marker, the insertion point moves to the
+  first tabulation marker on the right and the pretty-printer prints
+  <code class="code">nspaces</code> spaces.</p>
+
+<p>If there is no next tabulation marker on the right, the pretty-printer
+  splits the line at this point, then insertion point moves to the leftmost
+  tabulation marker of the box.</p>
+
+<p>If the pretty-printer splits the line, <code class="code">offset</code> is added to
+  the current indentation.</p>
+</div>
+</div>
+<h2 id="1_Ellipsis">Ellipsis</h2>
+<pre><span id="VALpp_set_ellipsis_text"><span class="keyword">val</span> pp_set_ellipsis_text</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> string -> unit</code></pre>
+<pre><span id="VALset_ellipsis_text"><span class="keyword">val</span> set_ellipsis_text</span> : <code class="type">string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Set the text of the ellipsis printed when too many pretty-printing boxes
+  are open (a single dot, <code class="code">.</code>, by default).</p>
+</div>
+</div>
+
+<pre><span id="VALpp_get_ellipsis_text"><span class="keyword">val</span> pp_get_ellipsis_text</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> string</code></pre>
+<pre><span id="VALget_ellipsis_text"><span class="keyword">val</span> get_ellipsis_text</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the text of the ellipsis.</p>
+</div>
+</div>
+<h2 id="tags">Semantic tags</h2>
+<pre><span id="TYPEtag"><span class="keyword">type</span> <code class="type"></code>tag</span> = <code class="type">string</code> </pre>
+
+<p><i>Semantic tags</i> (or simply <em>tags</em>) are user's defined delimiters
+  to associate user's specific operations to printed entities.</p>
+
+<p>Common usage of semantic tags is text decoration to get specific font or
+  text size rendering for a display device, or marking delimitation of
+  entities (e.g. HTML or TeX elements or terminal escape sequences).
+  More sophisticated usage of semantic tags could handle dynamic
+  modification of the pretty-printer behavior to properly print the material
+  within some specific tags.</p>
+
+<p>In order to properly delimit printed entities, a semantic tag must be
+  opened before and closed after the entity. Semantic tags must be properly
+  nested like parentheses.</p>
+
+<p>Tag specific operations occur any time a tag is opened or closed, At each
+  occurrence, two kinds of operations are performed <em>tag-marking</em> and
+  <em>tag-printing</em>:</p>
+<ul>
+<li>The tag-marking operation is the simpler tag specific operation: it simply
+  writes a tag specific string into the output device of the
+  formatter. Tag-marking does not interfere with line-splitting computation.</li>
+<li>The tag-printing operation is the more involved tag specific operation: it
+  can print arbitrary material to the formatter. Tag-printing is tightly
+  linked to the current pretty-printer operations.</li>
+</ul>
+<p>Roughly speaking, tag-marking is commonly used to get a better rendering of
+  texts in the rendering device, while tag-printing allows fine tuning of
+  printing routines to print the same entity differently according to the
+  semantic tags (i.e. print additional material or even omit parts of the
+  output).</p>
+
+<p>More precisely: when a semantic tag is opened or closed then both and
+  successive 'tag-printing' and 'tag-marking' operations occur:</p>
+<ul>
+<li>Tag-printing a semantic tag means calling the formatter specific function
+  <code class="code">print_open_tag</code> (resp. <code class="code">print_close_tag</code>) with the name of the tag as
+  argument: that tag-printing function can then print any regular material
+  to the formatter (so that this material is enqueued as usual in the
+  formatter queue for further line splitting computation).</li>
+<li>Tag-marking a semantic tag means calling the formatter specific function
+  <code class="code">mark_open_tag</code> (resp. <code class="code">mark_close_tag</code>) with the name of the tag as
+  argument: that tag-marking function can then return the 'tag-opening
+  marker' (resp. `tag-closing marker') for direct output into the output
+  device of the formatter.</li>
+</ul>
+<p>Being written directly into the output device of the formatter, semantic
+  tag marker strings are not considered as part of the printing material that
+  drives line splitting (in other words, the length of the strings
+  corresponding to tag markers is considered as zero for line splitting).</p>
+
+<p>Thus, semantic tag handling is in some sense transparent to pretty-printing
+  and does not interfere with usual indentation. Hence, a single
+  pretty-printing routine can output both simple 'verbatim' material or
+  richer decorated output depending on the treatment of tags. By default,
+  tags are not active, hence the output is not decorated with tag
+  information. Once <code class="code">set_tags</code> is set to <code class="code"><span class="keyword">true</span></code>, the pretty-printer engine
+  honors tags and decorates the output accordingly.</p>
+
+<p>Default tag-marking functions behave the HTML way: tags are enclosed in "&lt;"
+  and "&gt;"; hence, opening marker for tag <code class="code">t</code> is <code class="code"><span class="string">"&lt;t&gt;"</span></code> and closing marker is
+  <code class="code"><span class="string">"&lt;/t&gt;"</span></code>.</p>
+
+<p>Default tag-printing functions just do nothing.</p>
+
+<p>Tag-marking and tag-printing functions are user definable and can
+  be set by calling <a href="Format.html#VALset_formatter_tag_functions"><code class="code"><span class="constructor">Format</span>.set_formatter_tag_functions</code></a>.</p>
+
+<p>Semantic tag operations may be set on or off with <a href="Format.html#VALset_tags"><code class="code"><span class="constructor">Format</span>.set_tags</code></a>.
+  Tag-marking operations may be set on or off with <a href="Format.html#VALset_mark_tags"><code class="code"><span class="constructor">Format</span>.set_mark_tags</code></a>.
+  Tag-printing operations may be set on or off with <a href="Format.html#VALset_print_tags"><code class="code"><span class="constructor">Format</span>.set_print_tags</code></a>.</p>
+
+<pre><span id="VALpp_open_tag"><span class="keyword">val</span> pp_open_tag</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> string -> unit</code></pre>
+<pre><span id="VALopen_tag"><span class="keyword">val</span> open_tag</span> : <code class="type"><a href="Format.html#TYPEtag">tag</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_open_tag&nbsp;ppf&nbsp;t</code> opens the semantic tag named <code class="code">t</code>.</p>
+
+<p>The <code class="code">print_open_tag</code> tag-printing function of the formatter is called with
+  <code class="code">t</code> as argument; then the opening tag marker for <code class="code">t</code>, as given by
+  <code class="code">mark_open_tag&nbsp;t</code>, is written into the output device of the formatter.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_close_tag"><span class="keyword">val</span> pp_close_tag</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit</code></pre>
+<pre><span id="VALclose_tag"><span class="keyword">val</span> close_tag</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_close_tag&nbsp;ppf&nbsp;()</code> closes the most recently opened semantic tag <code class="code">t</code>.</p>
+
+<p>The closing tag marker, as given by <code class="code">mark_close_tag&nbsp;t</code>, is written into the
+  output device of the formatter; then the <code class="code">print_close_tag</code> tag-printing
+  function of the formatter is called with <code class="code">t</code> as argument.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_set_tags"><span class="keyword">val</span> pp_set_tags</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> bool -> unit</code></pre>
+<pre><span id="VALset_tags"><span class="keyword">val</span> set_tags</span> : <code class="type">bool -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_set_tags&nbsp;ppf&nbsp;b</code> turns on or off the treatment of semantic tags
+  (default is off).</p>
+</div>
+</div>
+
+<pre><span id="VALpp_set_print_tags"><span class="keyword">val</span> pp_set_print_tags</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> bool -> unit</code></pre>
+<pre><span id="VALset_print_tags"><span class="keyword">val</span> set_print_tags</span> : <code class="type">bool -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_set_print_tags&nbsp;ppf&nbsp;b</code> turns on or off the tag-printing operations.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_set_mark_tags"><span class="keyword">val</span> pp_set_mark_tags</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> bool -> unit</code></pre>
+<pre><span id="VALset_mark_tags"><span class="keyword">val</span> set_mark_tags</span> : <code class="type">bool -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_set_mark_tags&nbsp;ppf&nbsp;b</code> turns on or off the tag-marking operations.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_get_print_tags"><span class="keyword">val</span> pp_get_print_tags</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> bool</code></pre>
+<pre><span id="VALget_print_tags"><span class="keyword">val</span> get_print_tags</span> : <code class="type">unit -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the current status of tag-printing operations.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_get_mark_tags"><span class="keyword">val</span> pp_get_mark_tags</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> bool</code></pre>
+<pre><span id="VALget_mark_tags"><span class="keyword">val</span> get_mark_tags</span> : <code class="type">unit -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the current status of tag-marking operations.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_set_formatter_out_channel"><span class="keyword">val</span> pp_set_formatter_out_channel</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> <a href="Pervasives.html#TYPEout_channel">out_channel</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<h2 id="1_Redirectingthestandardformatteroutput">Redirecting the standard formatter output</h2></div>
+</div>
+
+<pre><span id="VALset_formatter_out_channel"><span class="keyword">val</span> set_formatter_out_channel</span> : <code class="type"><a href="Pervasives.html#TYPEout_channel">out_channel</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Redirect the standard pretty-printer output to the given channel.
+  (All the output functions of the standard formatter are set to the
+   default output functions printing to the given channel.)</p>
+
+<p><code class="code">set_formatter_out_channel</code> is equivalent to
+  <a href="Format.html#VALpp_set_formatter_out_channel"><code class="code"><span class="constructor">Format</span>.pp_set_formatter_out_channel</code></a> <code class="code">std_formatter</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_set_formatter_output_functions"><span class="keyword">val</span> pp_set_formatter_output_functions</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> (string -> int -> int -> unit) -> (unit -> unit) -> unit</code></pre>
+<pre><span id="VALset_formatter_output_functions"><span class="keyword">val</span> set_formatter_output_functions</span> : <code class="type">(string -> int -> int -> unit) -> (unit -> unit) -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_set_formatter_output_functions&nbsp;ppf&nbsp;out&nbsp;flush</code> redirects the
+  standard pretty-printer output functions to the functions <code class="code">out</code> and
+  <code class="code">flush</code>.</p>
+
+<p>The <code class="code">out</code> function performs all the pretty-printer string output.
+  It is called with a string <code class="code">s</code>, a start position <code class="code">p</code>, and a number of
+  characters <code class="code">n</code>; it is supposed to output characters <code class="code">p</code> to <code class="code">p&nbsp;+&nbsp;n&nbsp;-&nbsp;1</code> of
+  <code class="code">s</code>.</p>
+
+<p>The <code class="code">flush</code> function is called whenever the pretty-printer is flushed
+  (via conversion <code class="code">%!</code>, or pretty-printing indications <code class="code">@?</code> or <code class="code">@.</code>, or
+  using low level functions <code class="code">print_flush</code> or <code class="code">print_newline</code>).</p>
+</div>
+</div>
+
+<pre><span id="VALpp_get_formatter_output_functions"><span class="keyword">val</span> pp_get_formatter_output_functions</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> (string -> int -> int -> unit) * (unit -> unit)</code></pre>
+<pre><span id="VALget_formatter_output_functions"><span class="keyword">val</span> get_formatter_output_functions</span> : <code class="type">unit -> (string -> int -> int -> unit) * (unit -> unit)</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the current output functions of the standard pretty-printer.</p>
+</div>
+</div>
+<h2 id="meaning">Redefining formatter output</h2><p>The <code class="code"><span class="constructor">Format</span></code> module is versatile enough to let you completely redefine
+  the meaning of pretty-printing output: you may provide your own functions
+  to define how to handle indentation, line splitting, and even printing of
+  all the characters that have to be printed!</p>
+<h3 id="2_Redefiningoutputfunctions">Redefining output functions</h3>
+<pre><code><span id="TYPEformatter_out_functions"><span class="keyword">type</span> <code class="type"></code>formatter_out_functions</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTformatter_out_functions.out_string">out_string</span>&nbsp;: <code class="type">string -> int -> int -> unit</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTformatter_out_functions.out_flush">out_flush</span>&nbsp;: <code class="type">unit -> unit</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTformatter_out_functions.out_newline">out_newline</span>&nbsp;: <code class="type">unit -> unit</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTformatter_out_functions.out_spaces">out_spaces</span>&nbsp;: <code class="type">int -> unit</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTformatter_out_functions.out_indent">out_indent</span>&nbsp;: <code class="type">int -> unit</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+<div class="info-desc">
+<p>The set of output functions specific to a formatter:</p>
+<ul>
+<li>the <code class="code">out_string</code> function performs all the pretty-printer string output.
+  It is called with a string <code class="code">s</code>, a start position <code class="code">p</code>, and a number of
+  characters <code class="code">n</code>; it is supposed to output characters <code class="code">p</code> to <code class="code">p&nbsp;+&nbsp;n&nbsp;-&nbsp;1</code> of
+  <code class="code">s</code>.</li>
+<li>the <code class="code">out_flush</code> function flushes the pretty-printer output device.</li>
+<li><code class="code">out_newline</code> is called to open a new line when the pretty-printer splits
+  the line.</li>
+<li>the <code class="code">out_spaces</code> function outputs spaces when a break hint leads to spaces
+  instead of a line split. It is called with the number of spaces to output.</li>
+<li>the <code class="code">out_indent</code> function performs new line indentation when the
+  pretty-printer splits the line. It is called with the indentation value of
+  the new line.</li>
+</ul>
+<p>By default:</p>
+<ul>
+<li>fields <code class="code">out_string</code> and <code class="code">out_flush</code> are output device specific;
+  (e.g. <a href="Pervasives.html#VALoutput_string"><code class="code">output_string</code></a> and <a href="Pervasives.html#VALflush"><code class="code">flush</code></a> for a
+   <a href="Pervasives.html#TYPEout_channel"><code class="code">out_channel</code></a> device, or <code class="code"><span class="constructor">Buffer</span>.add_substring</code> and
+   <a href="Pervasives.html#VALignore"><code class="code">ignore</code></a> for a <code class="code"><span class="constructor">Buffer</span>.t</code> output device),</li>
+<li>field <code class="code">out_newline</code> is equivalent to <code class="code">out_string&nbsp;<span class="string">"\n"</span>&nbsp;0&nbsp;1</code>;</li>
+<li>fields <code class="code">out_spaces</code> and <code class="code">out_indent</code> are equivalent to
+  <code class="code">out_string&nbsp;(<span class="constructor">String</span>.make&nbsp;n&nbsp;<span class="string">'&nbsp;'</span>)&nbsp;0&nbsp;n</code>.</li>
+</ul>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.01.0</li>
+</ul>
+</div>
+
+
+<pre><span id="VALpp_set_formatter_out_functions"><span class="keyword">val</span> pp_set_formatter_out_functions</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> <a href="Format.html#TYPEformatter_out_functions">formatter_out_functions</a> -> unit</code></pre>
+<pre><span id="VALset_formatter_out_functions"><span class="keyword">val</span> set_formatter_out_functions</span> : <code class="type"><a href="Format.html#TYPEformatter_out_functions">formatter_out_functions</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_set_formatter_out_functions&nbsp;ppf&nbsp;out_funs</code>
+  Set all the pretty-printer output functions of <code class="code">ppf</code> to those of
+  argument <code class="code">out_funs</code>,</p>
+
+<p>This way, you can change the meaning of indentation (which can be
+  something else than just printing space characters) and the meaning of new
+  lines opening (which can be connected to any other action needed by the
+  application at hand).</p>
+
+<p>Reasonable defaults for functions <code class="code">out_spaces</code> and <code class="code">out_newline</code> are
+  respectively <code class="code">out_funs.out_string&nbsp;(<span class="constructor">String</span>.make&nbsp;n&nbsp;<span class="string">'&nbsp;'</span>)&nbsp;0&nbsp;n</code> and
+  <code class="code">out_funs.out_string&nbsp;<span class="string">"\n"</span>&nbsp;0&nbsp;1</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.01.0</li>
+</ul>
+</div>
+
+<pre><span id="VALpp_get_formatter_out_functions"><span class="keyword">val</span> pp_get_formatter_out_functions</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> <a href="Format.html#TYPEformatter_out_functions">formatter_out_functions</a></code></pre>
+<pre><span id="VALget_formatter_out_functions"><span class="keyword">val</span> get_formatter_out_functions</span> : <code class="type">unit -> <a href="Format.html#TYPEformatter_out_functions">formatter_out_functions</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the current output functions of the pretty-printer,
+  including line splitting and indentation functions. Useful to record the
+  current setting and restore it afterwards.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.01.0</li>
+</ul>
+</div>
+<h2 id="tagsmeaning">Redefining semantic tag operations</h2>
+<pre><code><span id="TYPEformatter_tag_functions"><span class="keyword">type</span> <code class="type"></code>formatter_tag_functions</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTformatter_tag_functions.mark_open_tag">mark_open_tag</span>&nbsp;: <code class="type"><a href="Format.html#TYPEtag">tag</a> -> string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTformatter_tag_functions.mark_close_tag">mark_close_tag</span>&nbsp;: <code class="type"><a href="Format.html#TYPEtag">tag</a> -> string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTformatter_tag_functions.print_open_tag">print_open_tag</span>&nbsp;: <code class="type"><a href="Format.html#TYPEtag">tag</a> -> unit</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTformatter_tag_functions.print_close_tag">print_close_tag</span>&nbsp;: <code class="type"><a href="Format.html#TYPEtag">tag</a> -> unit</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+<div class="info-desc">
+<p>The semantic tag handling functions specific to a formatter:
+  <code class="code">mark</code> versions are the 'tag-marking' functions that associate a string
+  marker to a tag in order for the pretty-printing engine to write
+  those markers as 0 length tokens in the output device of the formatter.
+  <code class="code">print</code> versions are the 'tag-printing' functions that can perform
+  regular printing when a tag is closed or opened.</p>
+</div>
+</div>
+
+
+<pre><span id="VALpp_set_formatter_tag_functions"><span class="keyword">val</span> pp_set_formatter_tag_functions</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> <a href="Format.html#TYPEformatter_tag_functions">formatter_tag_functions</a> -> unit</code></pre>
+<pre><span id="VALset_formatter_tag_functions"><span class="keyword">val</span> set_formatter_tag_functions</span> : <code class="type"><a href="Format.html#TYPEformatter_tag_functions">formatter_tag_functions</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_set_formatter_tag_functions&nbsp;ppf&nbsp;tag_funs</code> changes the meaning of
+  opening and closing semantic tag operations to use the functions in
+  <code class="code">tag_funs</code> when printing on <code class="code">ppf</code>.</p>
+
+<p>When opening a semantic tag with name <code class="code">t</code>, the string <code class="code">t</code> is passed to the
+  opening tag-marking function (the <code class="code">mark_open_tag</code> field of the
+  record <code class="code">tag_funs</code>), that must return the opening tag marker for
+  that name. When the next call to <code class="code">close_tag&nbsp;()</code> happens, the semantic tag
+  name <code class="code">t</code> is sent back to the closing tag-marking function (the
+  <code class="code">mark_close_tag</code> field of record <code class="code">tag_funs</code>), that must return a
+  closing tag marker for that name.</p>
+
+<p>The <code class="code">print_</code> field of the record contains the tag-printing functions that
+  are called at tag opening and tag closing time, to output regular material
+  in the pretty-printer queue.</p>
+</div>
+</div>
+
+<pre><span id="VALpp_get_formatter_tag_functions"><span class="keyword">val</span> pp_get_formatter_tag_functions</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> unit -> <a href="Format.html#TYPEformatter_tag_functions">formatter_tag_functions</a></code></pre>
+<pre><span id="VALget_formatter_tag_functions"><span class="keyword">val</span> get_formatter_tag_functions</span> : <code class="type">unit -> <a href="Format.html#TYPEformatter_tag_functions">formatter_tag_functions</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the current semantic tag operation functions of the standard
+  pretty-printer.</p>
+</div>
+</div>
+<h2 id="formatter">Defining formatters</h2>
+<p>Defining new formatters permits unrelated output of material in
+  parallel on several output devices.
+  All the parameters of a formatter are local to the formatter:
+  right margin, maximum indentation limit, maximum number of pretty-printing
+  boxes simultaneously open, ellipsis, and so on, are specific to
+  each formatter and may be fixed independently.</p>
+
+<p>For instance, given a <a href="Buffer.html#TYPEt"><code class="code"><span class="constructor">Buffer</span>.t</code></a> buffer <code class="code">b</code>, <a href="Format.html#VALformatter_of_buffer"><code class="code"><span class="constructor">Format</span>.formatter_of_buffer</code></a> <code class="code">b</code>
+  returns a new formatter using buffer <code class="code">b</code> as its output device.
+  Similarly, given a <a href="Pervasives.html#TYPEout_channel"><code class="code">out_channel</code></a> output channel <code class="code">oc</code>,
+  <a href="Format.html#VALformatter_of_out_channel"><code class="code"><span class="constructor">Format</span>.formatter_of_out_channel</code></a> <code class="code">oc</code> returns a new formatter using
+  channel <code class="code">oc</code> as its output device.</p>
+
+<p>Alternatively, given <code class="code">out_funs</code>, a complete set of output functions for a
+  formatter, then <a href="Format.html#VALformatter_of_out_functions"><code class="code"><span class="constructor">Format</span>.formatter_of_out_functions</code></a> <code class="code">out_funs</code> computes a new
+  formatter using those functions for output.</p>
+
+<pre><span id="VALformatter_of_out_channel"><span class="keyword">val</span> formatter_of_out_channel</span> : <code class="type"><a href="Pervasives.html#TYPEout_channel">out_channel</a> -> <a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">formatter_of_out_channel&nbsp;oc</code> returns a new formatter writing
+  to the corresponding output channel <code class="code">oc</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALstd_formatter"><span class="keyword">val</span> std_formatter</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>The standard formatter to write to standard output.</p>
+
+<p>It is defined as <a href="Format.html#VALformatter_of_out_channel"><code class="code"><span class="constructor">Format</span>.formatter_of_out_channel</code></a> <a href="Pervasives.html#VALstdout"><code class="code">stdout</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALerr_formatter"><span class="keyword">val</span> err_formatter</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>A formatter to write to standard error.</p>
+
+<p>It is defined as <a href="Format.html#VALformatter_of_out_channel"><code class="code"><span class="constructor">Format</span>.formatter_of_out_channel</code></a> <a href="Pervasives.html#VALstderr"><code class="code">stderr</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALformatter_of_buffer"><span class="keyword">val</span> formatter_of_buffer</span> : <code class="type"><a href="Buffer.html#TYPEt">Buffer.t</a> -> <a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">formatter_of_buffer&nbsp;b</code> returns a new formatter writing to
+  buffer <code class="code">b</code>. At the end of pretty-printing, the formatter must be flushed
+  using <a href="Format.html#VALpp_print_flush"><code class="code"><span class="constructor">Format</span>.pp_print_flush</code></a> or <a href="Format.html#VALpp_print_newline"><code class="code"><span class="constructor">Format</span>.pp_print_newline</code></a>, to print all the
+  pending material into the buffer.</p>
+</div>
+</div>
+
+<pre><span id="VALstdbuf"><span class="keyword">val</span> stdbuf</span> : <code class="type"><a href="Buffer.html#TYPEt">Buffer.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>The string buffer in which <code class="code">str_formatter</code> writes.</p>
+</div>
+</div>
+
+<pre><span id="VALstr_formatter"><span class="keyword">val</span> str_formatter</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>A formatter to output to the <a href="Format.html#VALstdbuf"><code class="code"><span class="constructor">Format</span>.stdbuf</code></a> string buffer.</p>
+
+<p><code class="code">str_formatter</code> is defined as <a href="Format.html#VALformatter_of_buffer"><code class="code"><span class="constructor">Format</span>.formatter_of_buffer</code></a> <a href="Format.html#VALstdbuf"><code class="code"><span class="constructor">Format</span>.stdbuf</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALflush_str_formatter"><span class="keyword">val</span> flush_str_formatter</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Returns the material printed with <code class="code">str_formatter</code>, flushes
+  the formatter and resets the corresponding buffer.</p>
+</div>
+</div>
+
+<pre><span id="VALmake_formatter"><span class="keyword">val</span> make_formatter</span> : <code class="type">(string -> int -> int -> unit) -> (unit -> unit) -> <a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">make_formatter&nbsp;out&nbsp;flush</code> returns a new formatter that outputs with
+  function <code class="code">out</code>, and flushes with function <code class="code">flush</code>.</p>
+
+<p>For instance,</p>
+<pre class="codepre"><code class="code">    make_formatter
+      (<span class="constructor">Pervasives</span>.output oc)
+      (<span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span> <span class="constructor">Pervasives</span>.flush oc) </code></pre><p>returns a formatter to the <a href="Pervasives.html#TYPEout_channel"><code class="code">out_channel</code></a> <code class="code">oc</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALformatter_of_out_functions"><span class="keyword">val</span> formatter_of_out_functions</span> : <code class="type"><a href="Format.html#TYPEformatter_out_functions">formatter_out_functions</a> -> <a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">formatter_of_out_functions&nbsp;out_funs</code> returns a new formatter that writes
+  with the set of output functions <code class="code">out_funs</code>.</p>
+
+<p>See definition of type <a href="Format.html#TYPEformatter_out_functions"><code class="code"><span class="constructor">Format</span>.formatter_out_functions</code></a> for the meaning of argument
+  <code class="code">out_funs</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+<h3 id="symbolic">Symbolic pretty-printing</h3><p>Symbolic pretty-printing is pretty-printing using a symbolic formatter,
+  i.e. a formatter that outputs symbolic pretty-printing items.</p>
+
+<p>When using a symbolic formatter, all regular pretty-printing activities
+  occur but output material is symbolic and stored in a buffer of output items.
+  At the end of pretty-printing, flushing the output buffer allows
+  post-processing of symbolic output before performing low level output
+  operations.</p>
+
+<p>In practice, first define a symbolic output buffer <code class="code">b</code> using:</p>
+<ul>
+<li><code class="code"><span class="keyword">let</span>&nbsp;sob&nbsp;=&nbsp;make_symbolic_output_buffer&nbsp;()</code>.
+  Then define a symbolic formatter with:</li>
+<li><code class="code"><span class="keyword">let</span>&nbsp;ppf&nbsp;=&nbsp;formatter_of_symbolic_output_buffer&nbsp;sob</code></li>
+</ul>
+<p>Use symbolic formatter <code class="code">ppf</code> as usual, and retrieve symbolic items at end
+  of pretty-printing by flushing symbolic output buffer <code class="code">sob</code> with:</p>
+<ul>
+<li><code class="code">flush_symbolic_output_buffer&nbsp;sob</code>.</li>
+</ul>
+
+<pre><code><span id="TYPEsymbolic_output_item"><span class="keyword">type</span> <code class="type"></code>symbolic_output_item</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsymbolic_output_item.Output_flush"><span class="constructor">Output_flush</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>symbolic flush command</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsymbolic_output_item.Output_newline"><span class="constructor">Output_newline</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>symbolic newline command</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsymbolic_output_item.Output_string"><span class="constructor">Output_string</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p><code class="code"><span class="constructor">Output_string</span>&nbsp;s</code>: symbolic output for string <code class="code">s</code></p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsymbolic_output_item.Output_spaces"><span class="constructor">Output_spaces</span></span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p><code class="code"><span class="constructor">Output_spaces</span>&nbsp;n</code>: symbolic command to output <code class="code">n</code> spaces</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsymbolic_output_item.Output_indent"><span class="constructor">Output_indent</span></span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p><code class="code"><span class="constructor">Output_indent</span>&nbsp;i</code>: symbolic indentation of size <code class="code">i</code></p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>Items produced by symbolic pretty-printers</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+
+<pre><span id="TYPEsymbolic_output_buffer"><span class="keyword">type</span> <code class="type"></code>symbolic_output_buffer</span> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>The output buffer of a symbolic pretty-printer.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+
+<pre><span id="VALmake_symbolic_output_buffer"><span class="keyword">val</span> make_symbolic_output_buffer</span> : <code class="type">unit -> <a href="Format.html#TYPEsymbolic_output_buffer">symbolic_output_buffer</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">make_symbolic_output_buffer&nbsp;()</code> returns a fresh buffer for
+  symbolic output.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+<pre><span id="VALclear_symbolic_output_buffer"><span class="keyword">val</span> clear_symbolic_output_buffer</span> : <code class="type"><a href="Format.html#TYPEsymbolic_output_buffer">symbolic_output_buffer</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">clear_symbolic_output_buffer&nbsp;sob</code> resets buffer <code class="code">sob</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+<pre><span id="VALget_symbolic_output_buffer"><span class="keyword">val</span> get_symbolic_output_buffer</span> : <code class="type"><a href="Format.html#TYPEsymbolic_output_buffer">symbolic_output_buffer</a> -> <a href="Format.html#TYPEsymbolic_output_item">symbolic_output_item</a> list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">get_symbolic_output_buffer&nbsp;sob</code> returns the contents of buffer <code class="code">sob</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+<pre><span id="VALflush_symbolic_output_buffer"><span class="keyword">val</span> flush_symbolic_output_buffer</span> : <code class="type"><a href="Format.html#TYPEsymbolic_output_buffer">symbolic_output_buffer</a> -> <a href="Format.html#TYPEsymbolic_output_item">symbolic_output_item</a> list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">flush_symbolic_output_buffer&nbsp;sob</code> returns the contents of buffer
+  <code class="code">sob</code> and resets buffer <code class="code">sob</code>.
+  <code class="code">flush_symbolic_output_buffer&nbsp;sob</code> is equivalent to
+  <code class="code"><span class="keyword">let</span>&nbsp;items&nbsp;=&nbsp;get_symbolic_output_buffer&nbsp;sob&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;clear_symbolic_output_buffer&nbsp;sob;&nbsp;items</code></p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+<pre><span id="VALadd_symbolic_output_item"><span class="keyword">val</span> add_symbolic_output_item</span> : <code class="type"><a href="Format.html#TYPEsymbolic_output_buffer">symbolic_output_buffer</a> -> <a href="Format.html#TYPEsymbolic_output_item">symbolic_output_item</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">add_symbolic_output_item&nbsp;sob&nbsp;itm</code> adds item <code class="code">itm</code> to buffer <code class="code">sob</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+<pre><span id="VALformatter_of_symbolic_output_buffer"><span class="keyword">val</span> formatter_of_symbolic_output_buffer</span> : <code class="type"><a href="Format.html#TYPEsymbolic_output_buffer">symbolic_output_buffer</a> -> <a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">formatter_of_symbolic_output_buffer&nbsp;sob</code> returns a symbolic formatter
+  that outputs to <code class="code">symbolic_output_buffer</code> <code class="code">sob</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+<h2 id="1_Convenienceformattingfunctions">Convenience formatting functions.</h2>
+<pre><span id="VALpp_print_list"><span class="keyword">val</span> pp_print_list</span> : <code class="type">?pp_sep:(<a href="Format.html#TYPEformatter">formatter</a> -> unit -> unit) -><br>       (<a href="Format.html#TYPEformatter">formatter</a> -> 'a -> unit) -> <a href="Format.html#TYPEformatter">formatter</a> -> 'a list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_print_list&nbsp;?pp_sep&nbsp;pp_v&nbsp;ppf&nbsp;l</code> prints items of list <code class="code">l</code>,
+  using <code class="code">pp_v</code> to print each item, and calling <code class="code">pp_sep</code>
+  between items (<code class="code">pp_sep</code> defaults to <a href="Format.html#VALpp_print_cut"><code class="code"><span class="constructor">Format</span>.pp_print_cut</code></a>.
+  Does nothing on empty lists.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.02.0</li>
+</ul>
+</div>
+
+<pre><span id="VALpp_print_text"><span class="keyword">val</span> pp_print_text</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pp_print_text&nbsp;ppf&nbsp;s</code> prints <code class="code">s</code> with spaces and newlines respectively
+  printed using <a href="Format.html#VALpp_print_space"><code class="code"><span class="constructor">Format</span>.pp_print_space</code></a> and <a href="Format.html#VALpp_force_newline"><code class="code"><span class="constructor">Format</span>.pp_force_newline</code></a>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.02.0</li>
+</ul>
+</div>
+<h2 id="fpp">Formatted pretty-printing</h2><p>Module <code class="code"><span class="constructor">Format</span></code> provides a complete set of <code class="code">printf</code> like functions for
+  pretty-printing using format string specifications.</p>
+
+<p>Specific annotations may be added in the format strings to give
+  pretty-printing commands to the pretty-printing engine.</p>
+
+<p>Those annotations are introduced in the format strings using the <code class="code">@</code>
+  character. For instance, <code class="code">@&nbsp;</code> means a space break, <code class="code">@,</code> means a cut,
+  <code class="code">@[</code> opens a new box, and <code class="code">@]</code> closes the last open box.</p>
+
+<pre><span id="VALfprintf"><span class="keyword">val</span> fprintf</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> ('a, <a href="Format.html#TYPEformatter">formatter</a>, unit) <a href="Pervasives.html#TYPEformat">format</a> -> 'a</code></pre><p><code class="code">fprintf&nbsp;ff&nbsp;fmt&nbsp;arg1&nbsp;...&nbsp;argN</code> formats the arguments <code class="code">arg1</code> to <code class="code">argN</code>
+  according to the format string <code class="code">fmt</code>, and outputs the resulting string on
+  the formatter <code class="code">ff</code>.</p>
+
+<p>The format string <code class="code">fmt</code> is a character string which contains three types of
+  objects: plain characters and conversion specifications as specified in
+  the <a href="Printf.html"><code class="code"><span class="constructor">Printf</span></code></a> module, and pretty-printing indications specific to the
+  <code class="code"><span class="constructor">Format</span></code> module.</p>
+
+<p>The pretty-printing indication characters are introduced by
+  a <code class="code">@</code> character, and their meanings are:</p>
+<ul>
+<li><code class="code">@[</code>: open a pretty-printing box. The type and offset of the
+    box may be optionally specified with the following syntax:
+    the <code class="code">&lt;</code> character, followed by an optional box type indication,
+    then an optional integer offset, and the closing <code class="code">&gt;</code> character.
+    Pretty-printing box type is one of <code class="code">h</code>, <code class="code">v</code>, <code class="code">hv</code>, <code class="code">b</code>, or <code class="code">hov</code>.
+    '<code class="code">h</code>' stands for an 'horizontal' pretty-printing box,
+    '<code class="code">v</code>' stands for a 'vertical' pretty-printing box,
+    '<code class="code">hv</code>' stands for an 'horizontal/vertical' pretty-printing box,
+    '<code class="code">b</code>' stands for an 'horizontal-or-vertical' pretty-printing box
+    demonstrating indentation,
+    '<code class="code">hov</code>' stands a simple 'horizontal-or-vertical' pretty-printing box.
+    For instance, <code class="code">@[&lt;hov&nbsp;2&gt;</code> opens an 'horizontal-or-vertical'
+    pretty-printing box with indentation 2 as obtained with <code class="code">open_hovbox&nbsp;2</code>.
+    For more details about pretty-printing boxes, see the various box opening
+    functions <code class="code">open_*box</code>.</li>
+<li><code class="code">@]</code>: close the most recently opened pretty-printing box.</li>
+<li><code class="code">@,</code>: output a 'cut' break hint, as with <code class="code">print_cut&nbsp;()</code>.</li>
+<li><code class="code">@&nbsp;</code>: output a 'space' break hint, as with <code class="code">print_space&nbsp;()</code>.</li>
+<li><code class="code">@;</code>: output a 'full' break hint as with <code class="code">print_break</code>. The
+    <code class="code">nspaces</code> and <code class="code">offset</code> parameters of the break hint may be
+    optionally specified with the following syntax:
+    the <code class="code">&lt;</code> character, followed by an integer <code class="code">nspaces</code> value,
+    then an integer <code class="code">offset</code>, and a closing <code class="code">&gt;</code> character.
+    If no parameters are provided, the good break defaults to a
+    'space' break hint.</li>
+<li><code class="code">@.</code>: flush the pretty-printer and split the line, as with
+    <code class="code">print_newline&nbsp;()</code>.</li>
+<li><code class="code">@&lt;n&gt;</code>: print the following item as if it were of length <code class="code">n</code>.
+    Hence, <code class="code">printf&nbsp;<span class="string">"@&lt;0&gt;%s"</span>&nbsp;arg</code> prints <code class="code">arg</code> as a zero length string.
+    If <code class="code">@&lt;n&gt;</code> is not followed by a conversion specification,
+    then the following character of the format is printed as if
+    it were of length <code class="code">n</code>.</li>
+<li><code class="code">@{</code>: open a semantic tag. The name of the tag may be optionally
+    specified with the following syntax:
+    the <code class="code">&lt;</code> character, followed by an optional string
+    specification, and the closing <code class="code">&gt;</code> character. The string
+    specification is any character string that does not contain the
+    closing character <code class="code"><span class="string">'&gt;'</span></code>. If omitted, the tag name defaults to the
+    empty string.
+    For more details about semantic tags, see the functions <a href="Format.html#VALopen_tag"><code class="code"><span class="constructor">Format</span>.open_tag</code></a> and
+    <a href="Format.html#VALclose_tag"><code class="code"><span class="constructor">Format</span>.close_tag</code></a>.</li>
+<li><code class="code">@}</code>: close the most recently opened semantic tag.</li>
+<li><code class="code">@?</code>: flush the pretty-printer as with <code class="code">print_flush&nbsp;()</code>.
+    This is equivalent to the conversion <code class="code">%!</code>.</li>
+<li><code class="code">@\n</code>: force a newline, as with <code class="code">force_newline&nbsp;()</code>, not the normal way
+    of pretty-printing, you should prefer using break hints inside a vertical
+    pretty-printing box.</li>
+</ul>
+<p>Note: To prevent the interpretation of a <code class="code">@</code> character as a
+  pretty-printing indication, escape it with a <code class="code">%</code> character.
+  Old quotation mode <code class="code">@@</code> is deprecated since it is not compatible with
+  formatted input interpretation of character <code class="code"><span class="string">'@'</span></code>.</p>
+
+<p>Example: <code class="code">printf&nbsp;<span class="string">"@[%s@&nbsp;%d@]@."</span>&nbsp;<span class="string">"x&nbsp;="</span>&nbsp;1</code> is equivalent to
+  <code class="code">open_box&nbsp;();&nbsp;print_string&nbsp;<span class="string">"x&nbsp;="</span>;&nbsp;print_space&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;print_int&nbsp;1;&nbsp;close_box&nbsp;();&nbsp;print_newline&nbsp;()</code>.
+  It prints <code class="code">x&nbsp;=&nbsp;1</code> within a pretty-printing 'horizontal-or-vertical' box.</p>
+
+<pre><span id="VALprintf"><span class="keyword">val</span> printf</span> : <code class="type">('a, <a href="Format.html#TYPEformatter">formatter</a>, unit) <a href="Pervasives.html#TYPEformat">format</a> -> 'a</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <code class="code">fprintf</code> above, but output on <code class="code">std_formatter</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALeprintf"><span class="keyword">val</span> eprintf</span> : <code class="type">('a, <a href="Format.html#TYPEformatter">formatter</a>, unit) <a href="Pervasives.html#TYPEformat">format</a> -> 'a</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <code class="code">fprintf</code> above, but output on <code class="code">err_formatter</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALsprintf"><span class="keyword">val</span> sprintf</span> : <code class="type">('a, unit, string) <a href="Pervasives.html#TYPEformat">format</a> -> 'a</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <code class="code">printf</code> above, but instead of printing on a formatter,
+  returns a string containing the result of formatting the arguments.
+  Note that the pretty-printer queue is flushed at the end of <em>each
+  call</em> to <code class="code">sprintf</code>.</p>
+
+<p>In case of multiple and related calls to <code class="code">sprintf</code> to output
+  material on a single string, you should consider using <code class="code">fprintf</code>
+  with the predefined formatter <code class="code">str_formatter</code> and call
+  <code class="code">flush_str_formatter&nbsp;()</code> to get the final result.</p>
+
+<p>Alternatively, you can use <code class="code"><span class="constructor">Format</span>.fprintf</code> with a formatter writing to a
+  buffer of your own: flushing the formatter and the buffer at the end of
+  pretty-printing returns the desired string.</p>
+</div>
+</div>
+
+<pre><span id="VALasprintf"><span class="keyword">val</span> asprintf</span> : <code class="type">('a, <a href="Format.html#TYPEformatter">formatter</a>, unit, string) <a href="Pervasives.html#TYPEformat4">format4</a> -> 'a</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <code class="code">printf</code> above, but instead of printing on a formatter,
+  returns a string containing the result of formatting the arguments.
+  The type of <code class="code">asprintf</code> is general enough to interact nicely with <code class="code">%a</code>
+  conversions.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.01.0</li>
+</ul>
+</div>
+
+<pre><span id="VALifprintf"><span class="keyword">val</span> ifprintf</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -> ('a, <a href="Format.html#TYPEformatter">formatter</a>, unit) <a href="Pervasives.html#TYPEformat">format</a> -> 'a</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <code class="code">fprintf</code> above, but does not print anything.
+  Useful to ignore some material when conditionally printing.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 3.10.0</li>
+</ul>
+</div>
+<p>Formatted Pretty-Printing with continuations.</p>
+
+<pre><span id="VALkfprintf"><span class="keyword">val</span> kfprintf</span> : <code class="type">(<a href="Format.html#TYPEformatter">formatter</a> -> 'a) -><br>       <a href="Format.html#TYPEformatter">formatter</a> -> ('b, <a href="Format.html#TYPEformatter">formatter</a>, unit, 'a) <a href="Pervasives.html#TYPEformat4">format4</a> -> 'b</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <code class="code">fprintf</code> above, but instead of returning immediately,
+  passes the formatter to its first argument at the end of printing.</p>
+</div>
+</div>
+
+<pre><span id="VALikfprintf"><span class="keyword">val</span> ikfprintf</span> : <code class="type">(<a href="Format.html#TYPEformatter">formatter</a> -> 'a) -><br>       <a href="Format.html#TYPEformatter">formatter</a> -> ('b, <a href="Format.html#TYPEformatter">formatter</a>, unit, 'a) <a href="Pervasives.html#TYPEformat4">format4</a> -> 'b</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <code class="code">kfprintf</code> above, but does not print anything.
+  Useful to ignore some material when conditionally printing.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 3.12.0</li>
+</ul>
+</div>
+
+<pre><span id="VALksprintf"><span class="keyword">val</span> ksprintf</span> : <code class="type">(string -> 'a) -> ('b, unit, string, 'a) <a href="Pervasives.html#TYPEformat4">format4</a> -> 'b</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <code class="code">sprintf</code> above, but instead of returning the string,
+  passes it to the first argument.</p>
+</div>
+</div>
+
+<pre><span id="VALkasprintf"><span class="keyword">val</span> kasprintf</span> : <code class="type">(string -> 'a) -> ('b, <a href="Format.html#TYPEformatter">formatter</a>, unit, 'a) <a href="Pervasives.html#TYPEformat4">format4</a> -> 'b</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <code class="code">asprintf</code> above, but instead of returning the string,
+  passes it to the first argument.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03</li>
+</ul>
+</div>
+<h2 id="1_Deprecated">Deprecated</h2>
+<pre><span id="VALbprintf"><span class="keyword">val</span> bprintf</span> : <code class="type"><a href="Buffer.html#TYPEt">Buffer.t</a> -> ('a, <a href="Format.html#TYPEformatter">formatter</a>, unit) <a href="Pervasives.html#TYPEformat">format</a> -> 'a</code></pre><div class="info ">
+<div class="info-deprecated">
+<span class="warning">Deprecated.</span>This function is error prone. Do not use it.
+  This function is neither compositional nor incremental, since it flushes
+  the pretty-printer queue at each call.
+
+  If you need to print to some buffer <code class="code">b</code>, you must first define a
+  formatter writing to <code class="code">b</code>, using <code class="code"><span class="keyword">let</span>&nbsp;to_b&nbsp;=&nbsp;formatter_of_buffer&nbsp;b</code>; then
+  use regular calls to <code class="code"><span class="constructor">Format</span>.fprintf</code> with formatter <code class="code">to_b</code>.</div>
+</div>
+
+<pre><span id="VALkprintf"><span class="keyword">val</span> kprintf</span> : <code class="type">(string -> 'a) -> ('b, unit, string, 'a) <a href="Pervasives.html#TYPEformat4">format4</a> -> 'b</code></pre><div class="info ">
+<div class="info-deprecated">
+<span class="warning">Deprecated.</span>An alias for <code class="code">ksprintf</code>.</div>
+</div>
+
+<pre><span id="VALset_all_formatter_output_functions"><span class="keyword">val</span> set_all_formatter_output_functions</span> : <code class="type">out:(string -> int -> int -> unit) -><br>       flush:(unit -> unit) -><br>       newline:(unit -> unit) -> spaces:(int -> unit) -> unit</code></pre><div class="info ">
+<div class="info-deprecated">
+<span class="warning">Deprecated.</span>Subsumed by <code class="code">set_formatter_out_functions</code>.</div>
+</div>
+
+<pre><span id="VALget_all_formatter_output_functions"><span class="keyword">val</span> get_all_formatter_output_functions</span> : <code class="type">unit -><br>       (string -> int -> int -> unit) * (unit -> unit) * (unit -> unit) *<br>       (int -> unit)</code></pre><div class="info ">
+<div class="info-deprecated">
+<span class="warning">Deprecated.</span>Subsumed by <code class="code">get_formatter_out_functions</code>.</div>
+</div>
+
+<pre><span id="VALpp_set_all_formatter_output_functions"><span class="keyword">val</span> pp_set_all_formatter_output_functions</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -><br>       out:(string -> int -> int -> unit) -><br>       flush:(unit -> unit) -><br>       newline:(unit -> unit) -> spaces:(int -> unit) -> unit</code></pre><div class="info ">
+<div class="info-deprecated">
+<span class="warning">Deprecated.</span>Subsumed by <code class="code">pp_set_formatter_out_functions</code>.</div>
+</div>
+
+<pre><span id="VALpp_get_all_formatter_output_functions"><span class="keyword">val</span> pp_get_all_formatter_output_functions</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -><br>       unit -><br>       (string -> int -> int -> unit) * (unit -> unit) * (unit -> unit) *<br>       (int -> unit)</code></pre><div class="info ">
+<div class="info-deprecated">
+<span class="warning">Deprecated.</span>Subsumed by <code class="code">pp_get_formatter_out_functions</code>.</div>
+</div>
+</body></html>

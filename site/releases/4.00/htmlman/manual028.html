@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The browser/editor (ocamlbrowser)</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual027.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual029.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc161">Chapter&#XA0;14</A>&#XA0;&#XA0;The browser/editor (ocamlbrowser)</H1><UL>
+<LI><A HREF="manual028.html#toc114">Invocation</A>
+</LI><LI><A HREF="manual028.html#toc115">Viewer</A>
+</LI><LI><A HREF="manual028.html#toc116">Module browsing</A>
+</LI><LI><A HREF="manual028.html#toc117">File editor</A>
+</LI><LI><A HREF="manual028.html#toc118">Shell</A>
+</LI></UL>
+<P> <A NAME="c:browser"></A>
+</P><P>This chapter describes OCamlBrowser, a source and compiled interface
+browser, written using LablTk. This is a useful companion to the
+programmer.</P><P>Its functions are:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+navigation through OCaml&#X2019;s modules (using compiled interfaces).
+</LI><LI CLASS="li-itemize">source editing, type-checking, and browsing.
+</LI><LI CLASS="li-itemize">integrated OCaml shell, running as a subprocess.
+</LI></UL><H2 CLASS="section"><A NAME="toc114"></A><A NAME="htoc162">14.1</A>&#XA0;&#XA0;Invocation</H2><P> <A NAME="s:browser-options"></A></P><P>The browser is started by the command <TT>ocamlbrowser</TT>, as follows:
+</P><PRE>
+        ocamlbrowser <I>options</I>
+</PRE><P>The following command-line options are recognized by <TT>ocamlbrowser</TT>.</P><DL CLASS="description"><DT CLASS="dt-description"><B><TT>-I</TT> <I>directory</I></B></DT><DD CLASS="dd-description">
+Add the given directory to the list of directories searched for
+source and compiled files. By default, only the standard library
+directory is searched. The standard library can also be changed by
+setting the <TT>OCAMLLIB</TT> environment variable.</DD><DT CLASS="dt-description"><TT><B>-nolabels</B></TT></DT><DD CLASS="dd-description">
+Ignore non-optional labels in types. Labels cannot be used in
+applications, and parameter order becomes strict.</DD><DT CLASS="dt-description"><TT><B>-oldui</B></TT></DT><DD CLASS="dd-description">
+Old multi-window interface. The default is now more like Smalltalk&#X2019;s
+class browser.</DD><DT CLASS="dt-description"><TT><B>-rectypes</B></TT></DT><DD CLASS="dd-description">
+Allow arbitrary recursive types during type-checking. By default,
+only recursive types where the recursion goes through an object type
+are supported.</DD><DT CLASS="dt-description"><TT><B>-version</B></TT></DT><DD CLASS="dd-description">
+Print version string and exit.</DD><DT CLASS="dt-description"><TT><B>-vnum</B></TT></DT><DD CLASS="dd-description">
+Print short version number and exit.</DD><DT CLASS="dt-description"><B><TT>-w</TT> <I>warning-list</I></B></DT><DD CLASS="dd-description">
+Enable or disable warnings according to the argument <I>warning-list</I>.</DD></DL><P>Most options can also be modified inside the application by the <B>Modules - Path editor</B> and <B>Compiler - Preferences</B> commands.
+They are inherited when you start a toplevel shell.</P><H2 CLASS="section"><A NAME="toc115"></A><A NAME="htoc163">14.2</A>&#XA0;&#XA0;Viewer</H2><P>
+This is the first window you get when you start OCamlBrowser.
+It displays a search window, and the list of modules in the load path.
+At the top a row of menus.</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<B>File - Open</B> and <B>File - Editor</B> give access to the
+editor.</LI><LI CLASS="li-itemize"><B>File - Shell</B> creates an OCaml subprocess in a shell.</LI><LI CLASS="li-itemize"><B>View - Show all defs</B> displays the signature of the currently
+selected module.</LI><LI CLASS="li-itemize"><B>View - Search entry</B> shows/hides the search entry just
+below the menu bar.</LI><LI CLASS="li-itemize"><B>Modules - Path editor</B> changes the load path. <B>Modules
+- Reset cache</B> rescans the load path and resets the module cache.
+Do it if you recompile some interface, or get confused about what is
+in the cache.</LI><LI CLASS="li-itemize"><B>Modules - Search symbol</B> allows searching a symbol either
+by its name, like the bottom line of the viewer, or more
+interestingly, by its type. <B>Exact type</B> searches for a type
+with exactly the same information as the pattern (variables match
+only variables). <B>Included type</B> allows giving only partial
+information: the actual type may take more arguments and return more
+results, and variables in the pattern match anything. In both cases,
+argument and tuple order is irrelevant<SUP><A NAME="text2" HREF="#note2">1</A></SUP>,
+and unlabeled arguments in the pattern match any label.</LI><LI CLASS="li-itemize">The <B>Search entry</B> just below the menu bar allows one to
+search for an identifier in all modules (wildcards &#X201C;?&#X201D; and &#X201C;*&#X201D;
+allowed). If you choose the <TT>type</TT> option, the search is done by type
+inclusion (<EM>cf.</EM> Search Symbol - Included type).</LI><LI CLASS="li-itemize">The <B>Close all</B> button is there to dismiss the windows
+created by the Detach button.
+By double-clicking on it you will quit the browser.</LI></UL><H2 CLASS="section"><A NAME="toc116"></A><A NAME="htoc164">14.3</A>&#XA0;&#XA0;Module browsing</H2><P>You select a module in the leftmost box by either cliking on it or
+pressing return when it is selected. Fast access is available in all
+boxes pressing the first few letter of the desired name.
+Double-clicking / double-return displays the whole signature for the
+module.</P><P>Defined identifiers inside the module are displayed in a box to the
+right of the previous one. If you click on one, this will either
+display its contents in another box (if this is a sub-module) or
+display the signature for this identifier below.</P><P>Signatures are clickable. Double clicking with the left mouse
+button on an identifier in a signature brings you to its signature.
+A single click on the right button pops up a menu displaying the
+type declaration for the selected identifier. Its title, when
+selectable, also brings you to its signature.</P><P>At the bottom, a series of buttons, depending on the context.
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<B>Detach</B> copies the currently displayed signature in a new window,
+to keep it.
+</LI><LI CLASS="li-itemize"><B>Impl</B> and <B>Intf</B> bring you to the implementation or
+interface of the currently displayed signature, if it is available.
+</LI></UL><P>Control-S lets you search a string in the signature.</P><H2 CLASS="section"><A NAME="toc117"></A><A NAME="htoc165">14.4</A>&#XA0;&#XA0;File editor</H2><P>
+You can edit files with it, if you&#X2019;re not yet used to emacs. Otherwise
+you can use it as a browser, making occasional corrections.</P><P>The <B>Edit</B> menu contains commands for jump (C-g), search (C-s),
+and sending the current phrase (or selection if some text is selected)
+to a sub-shell (M-x). For this last option, you may choose the shell
+via a dialog.</P><P>Essential functions are in the <B>Compiler</B> menu.</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<B>Preferences</B> opens a dialog to set internals of the editor
+and type-checker.</LI><LI CLASS="li-itemize"><B>Lex</B> adds colors according to lexical categories.</LI><LI CLASS="li-itemize"><B>Typecheck</B> verifies typing, and memorizes to let one see an
+expression&#X2019;s type by double-clicking on it. This is also valid for
+interfaces. If an error occurs, the part of the interface preceding
+the error is computed.<P>After typechecking, pressing the right button pops up a menu that gives
+the type of the pointed expression and, where applicable, provides
+some links that can be followed.</P></LI><LI CLASS="li-itemize"><B>Clear errors</B> dismisses type-checker error messages and warnings.</LI><LI CLASS="li-itemize"><B>Signature</B> shows the signature of the current file
+(after type checking).
+</LI></UL><H2 CLASS="section"><A NAME="toc118"></A><A NAME="htoc166">14.5</A>&#XA0;&#XA0;Shell</H2><P>
+When you create a shell, a dialog is presented to you, letting you
+choose which command you want to run, and the title of the shell (to
+choose it in the Editor).</P><P>The executed subshell is given the current load path.</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<B>File</B> use a source file or load a bytecode file. You may
+also import the browser&#X2019;s path into the subprocess.
+</LI><LI CLASS="li-itemize"><B>History</B> M-p and M-n browse up and down.
+</LI><LI CLASS="li-itemize"><B>Signal</B> C-c interrupts, and you can also kill the subprocess.
+</LI></UL><HR CLASS="ffootnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes">
+<A NAME="note2" HREF="#text2">1</A></DT><DD CLASS="dd-thefootnotes">To avoid
+combinatorial explosion of the search space, optional arguments in
+the actual type are ignored in the actual if (1) there are too many
+of them, and (2) they do not appear explicitly in the pattern.
+</DD></DL>
+<HR>
+<A HREF="manual027.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual029.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

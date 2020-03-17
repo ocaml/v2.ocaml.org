@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Type and exception definitions</TITLE>
+</HEAD>
+<BODY >
+<A HREF="expr.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual017.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H2 CLASS="section"><A NAME="htoc73">6.8</A>  Type and exception definitions</H2><UL>
+<LI><A HREF="manual016.html#toc54">Type definitions</A>
+</LI><LI><A HREF="manual016.html#toc55">Exception definitions</A>
+</LI></UL>
+<H3 CLASS="subsection"><A NAME="toc54"></A><A NAME="htoc74">6.8.1</A>  Type definitions</H3><P>
+<A NAME="s:type-defs"></A></P><P>Type definitions bind type constructors to data types: either
+variant types, record types, type abbreviations, or abstract data
+types. They also bind the value constructors and record fields
+associated with the definition.</P><P><A NAME="@manual.kwd53"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="type-definition"><FONT COLOR=maroon>type-definition</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>type</TT></FONT> <I><A HREF="#typedef"><FONT COLOR=maroon>typedef</FONT></A></I>  { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="#typedef"><FONT COLOR=maroon>typedef</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="typedef"><FONT COLOR=maroon>typedef</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+[<I><A HREF="#type-params"><FONT COLOR=maroon>type-params</FONT></A></I>]  <I><A HREF="manual011.html#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I>  [<I><A HREF="#type-information"><FONT COLOR=maroon>type-information</FONT></A></I>]
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="type-information"><FONT COLOR=maroon>type-information</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+[<I><A HREF="#type-equation"><FONT COLOR=maroon>type-equation</FONT></A></I>]  [<I><A HREF="#type-representation"><FONT COLOR=maroon>type-representation</FONT></A></I>]  { <I><A HREF="#type-constraint"><FONT COLOR=maroon>type-constraint</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="type-equation"><FONT COLOR=maroon>type-equation</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="type-representation"><FONT COLOR=maroon>type-representation</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I>  { <FONT COLOR=blue><TT>|</TT></FONT> <I><A HREF="#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>=</TT></FONT> <FONT COLOR=blue><TT>{</TT></FONT> <I><A HREF="#field-decl"><FONT COLOR=maroon>field-decl</FONT></A></I>  { <FONT COLOR=blue><TT>;</TT></FONT> <I><A HREF="#field-decl"><FONT COLOR=maroon>field-decl</FONT></A></I> } <FONT COLOR=blue><TT>}</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="type-params"><FONT COLOR=maroon>type-params</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="#type-param"><FONT COLOR=maroon>type-param</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="#type-param"><FONT COLOR=maroon>type-param</FONT></A></I>  { <FONT COLOR=blue><TT>,</TT></FONT> <I><A HREF="#type-param"><FONT COLOR=maroon>type-param</FONT></A></I> } <FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="type-param"><FONT COLOR=maroon>type-param</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>'</TT></FONT> <I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>+</TT></FONT> <FONT COLOR=blue><TT>'</TT></FONT> <I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>-</TT></FONT> <FONT COLOR=blue><TT>'</TT></FONT> <I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I> <FONT COLOR=blue><TT>of</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>  { <FONT COLOR=blue><TT>*</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="field-decl"><FONT COLOR=maroon>field-decl</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="manual011.html#field-name"><FONT COLOR=maroon>field-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#poly-typexpr"><FONT COLOR=maroon>poly-typexpr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>mutable</TT></FONT> <I><A HREF="manual011.html#field-name"><FONT COLOR=maroon>field-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#poly-typexpr"><FONT COLOR=maroon>poly-typexpr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="type-constraint"><FONT COLOR=maroon>type-constraint</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>constraint</TT></FONT> <FONT COLOR=blue><TT>'</TT></FONT> <I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+<A NAME="@manual.kwd54"></A>
+<A NAME="@manual.kwd55"></A></P><P>Type definitions are introduced by the <TT>type</TT> keyword, and
+consist in one or several simple definitions, possibly mutually
+recursive, separated by the <TT>and</TT> keyword. Each simple definition
+defines one type constructor.</P><P>A simple definition consists in a lowercase identifier, possibly
+preceded by one or several type parameters, and followed by an
+optional type equation, then an optional type representation, and then
+a constraint clause. The identifier is the name of the type
+constructor being defined.</P><P>The optional type parameters are either one type variable <FONT COLOR=blue><TT>'</TT></FONT> <I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I>,
+for type constructors with one parameter, or a list of type variables
+(<FONT COLOR=blue><TT>'</TT></FONT><I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I><SUB>1</SUB>,&#X2026;,<FONT COLOR=blue><TT>'</TT></FONT> <I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A><SUB>n</SUB></I>), for type constructors with several
+parameters. Each type parameter may be prefixed by a variance
+constraint <FONT COLOR=blue><TT>+</TT></FONT> (resp. <FONT COLOR=blue><TT>-</TT></FONT>) indicating that the parameter is
+covariant (resp. contravariant). These type parameters can appear in
+the type expressions of the right-hand side of the definition,
+restricted eventually by a variance constraint ; <EM>i.e.</EM> a
+covariant parameter may only appear on the right side of a functional
+arrow (more precisely, follow the left branch of an even number of
+arrows), and a contravariant parameter only the left side (left branch of
+an odd number of arrows). If the type has either a representation or
+an equation, and the parameter is free (<EM>i.e.</EM> not bound via a
+type constraint to a constructed type), its variance constraint is
+checked but subtyping <EM>etc.</EM> will use the inferred variance of the
+parameter, which may be better; otherwise (<EM>i.e.</EM> for abstract
+types or non-free parameters), the variance must be given explicitly,
+and the parameter is invariant if no variance was given.</P><P>The optional type equation <FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> makes the defined type
+equivalent to the type expression <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> on the right of the <FONT COLOR=blue><TT>=</TT></FONT>
+sign: one can be substituted for the other during typing.
+If no type equation is given, a new type is generated: the defined type
+is incompatible with any other type.</P><P>The optional type representation describes the data structure
+representing the defined type, by giving the list of associated
+constructors (if it is a variant type) or associated fields (if it is
+a record type). If no type representation is given, nothing is
+assumed on the structure of the type besides what is stated in the
+optional type equation.</P><P>The type representation <FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I>  { <FONT COLOR=blue><TT>|</TT></FONT> <I><A HREF="#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I> }
+describes a variant type. The constructor declarations
+<I><A HREF="#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I><SUB>1</SUB>, &#X2026;,  <I><A HREF="#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A><SUB>n</SUB></I> describe the constructors
+associated to this variant type. The constructor
+declaration <I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I> <FONT COLOR=blue><TT>of</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB>, &#X2026;,  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A><SUB>n</SUB></I> declares the name
+<I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I> as a non-constant constructor, whose
+arguments have types <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> &#X2026;<I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A><SUB>n</SUB></I>.
+The constructor declaration <I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I>
+declares the name <I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I> as a constant
+constructor. Constructor names must be capitalized.</P><P>The type representation <FONT COLOR=blue><TT>=</TT> <TT>{</TT></FONT> <I><A HREF="#field-decl"><FONT COLOR=maroon>field-decl</FONT></A></I>  { <FONT COLOR=blue><TT>;</TT></FONT> <I><A HREF="#field-decl"><FONT COLOR=maroon>field-decl</FONT></A></I> } <FONT COLOR=blue><TT>}</TT></FONT>
+describes a record type. The field declarations <I><A HREF="#field-decl"><FONT COLOR=maroon>field-decl</FONT></A></I><SUB>1</SUB>, &#X2026;,
+ <I><A HREF="#field-decl"><FONT COLOR=maroon>field-decl</FONT></A><SUB>n</SUB></I> describe the fields associated to this record type.
+The field declaration <I><A HREF="manual011.html#field-name"><FONT COLOR=maroon>field-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#poly-typexpr"><FONT COLOR=maroon>poly-typexpr</FONT></A></I> declares
+<I><A HREF="manual011.html#field-name"><FONT COLOR=maroon>field-name</FONT></A></I> as a field whose argument has type <I><A HREF="types.html#poly-typexpr"><FONT COLOR=maroon>poly-typexpr</FONT></A></I>.
+The field declaration <FONT COLOR=blue><TT>mutable</TT></FONT> <I><A HREF="manual011.html#field-name"><FONT COLOR=maroon>field-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#poly-typexpr"><FONT COLOR=maroon>poly-typexpr</FONT></A></I>
+<A NAME="@manual.kwd56"></A>
+behaves similarly; in addition, it allows physical modification over
+the argument to this field.
+Immutable fields are covariant, but mutable fields are neither
+covariant nor contravariant.
+Both mutable and immutable field may have an explicitly polymorphic
+type. The polymorphism of the contents is statically checked whenever
+a record value is created or modified. Extracted values may have their
+types instanciated.</P><P>The two components of a type definition, the optional equation and the
+optional representation, can be combined independently, giving
+rise to four typical situations:</P><DL CLASS="description"><DT CLASS="dt-description">
+<B>Abstract type: no equation, no representation.</B></DT><DD CLASS="dd-description">  <BR>
+When appearing in a module signature, this definition specifies
+nothing on the type constructor, besides its number of parameters: 
+its representation is hidden and it is assumed incompatible with any
+other type.</DD><DT CLASS="dt-description"><B>Type abbreviation: an equation, no representation.</B></DT><DD CLASS="dd-description">  <BR>
+This defines the type constructor as an abbreviation for the type
+expression on the right of the <FONT COLOR=blue><TT>=</TT></FONT> sign. </DD><DT CLASS="dt-description"><B>New variant type or record type: no equation, a representation.</B></DT><DD CLASS="dd-description">  <BR>
+This generates a new type constructor and defines associated
+constructors or fields, through which values of that type can be
+directly built or inspected.</DD><DT CLASS="dt-description"><B>Re-exported variant type or record type: an equation,
+a representation.</B></DT><DD CLASS="dd-description">  <BR>
+In this case, the type constructor is defined as an abbreviation for
+the type expression given in the equation, but in addition the
+constructors or fields given in the representation remain attached to
+the defined type constructor. The type expression in the equation part
+must agree with the representation: it must be of the same kind
+(record or variant) and have exactly the same constructors or fields,
+in the same order, with the same arguments. 
+</DD></DL><P>The type variables appearing as type parameters can optionally be
+prefixed by <TT>+</TT> or <TT>-</TT> to indicate that the type constructor is
+covariant or contravariant with respect to this parameter. This
+variance information is used to decide subtyping relations when
+checking the validity of <FONT COLOR=blue><TT>:&gt;</TT></FONT> coercions (see section <A HREF="expr.html#s:coercions">6.7.6</A>).</P><P>For instance, <TT>type +&#X2019;a t</TT> declares <TT>t</TT> as an abstract type that is
+covariant in its parameter; this means that if the type &#X3C4; is a
+subtype of the type &#X3C3;, then &#X3C4; <I><TT>  t</TT></I> is a subtype of &#X3C3;
+<I><TT>  t</TT></I>. Similarly, <TT>type -&#X2019;a t</TT> declares that the abstract type <TT>t</TT> is
+contravariant in its parameter: if &#X3C4; is subtype of &#X3C3;, then
+&#X3C3; <I><TT>  t</TT></I> is subtype of &#X3C4; <I><TT>  t</TT></I>. If no <TT>+</TT> or <TT>-</TT> variance
+annotation is given, the type constructor is assumed invariant in the
+corresponding parameter. For instance, the abstract type declaration
+<TT>type &#X2019;a t</TT> means that &#X3C4; <I><TT>  t</TT></I> is neither a subtype nor a
+supertype of &#X3C3; <I><TT>  t</TT></I> if &#X3C4; is subtype of &#X3C3;.</P><P>The variance indicated by the <TT>+</TT> and <TT>-</TT> annotations on parameters
+are required only for abstract types. For abbreviations, variant
+types or record types, the variance properties of the type constructor
+are inferred from its definition, and the variance annotations are
+only checked for conformance with the definition.</P><P><A NAME="@manual.kwd57"></A>
+The construct  <FONT COLOR=blue><TT>constraint</TT> <TT>'</TT></FONT> <I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>  allows to specify
+type parameters. Any actual type argument corresponding to the type
+parameter <I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I> has to be an instance of <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> (more precisely,
+<I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I> and <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> are unified). Type variables of <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> can
+appear in the type equation and the type declaration.</P><H3 CLASS="subsection"><A NAME="toc55"></A><A NAME="htoc75">6.8.2</A>  Exception definitions</H3><P> <A NAME="s:excdef"></A>
+<A NAME="@manual.kwd58"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="exception-definition"><FONT COLOR=maroon>exception-definition</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>exception</TT></FONT> <I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I>  [<FONT COLOR=blue><TT>of</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>  { <FONT COLOR=blue><TT>*</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> }]
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>exception</TT></FONT> <I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual011.html#constr"><FONT COLOR=maroon>constr</FONT></A></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Exception definitions add new constructors to the built-in variant
+type <CODE>exn</CODE> of exception values. The constructors are declared as
+for a definition of a variant type.</P><P>The form <FONT COLOR=blue><TT>exception</TT></FONT> <I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I>  [<FONT COLOR=blue><TT>of</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>  { <FONT COLOR=blue><TT>*</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> }]
+generates a new exception, distinct from all other exceptions in the system.
+The form <FONT COLOR=blue><TT>exception</TT></FONT> <I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual011.html#constr"><FONT COLOR=maroon>constr</FONT></A></I>
+gives an alternate name to an existing exception.
+
+</P><HR>
+<A HREF="expr.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual017.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

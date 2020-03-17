@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Module expressions (module implementations)</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual018.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual020.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H2 CLASS="section"><A NAME="htoc87">6.11</A>  Module<A NAME="s:module-expr"></A> expressions (module implementations)</H2><UL>
+<LI><A HREF="manual019.html#toc65">Simple module expressions</A>
+</LI><LI><A HREF="manual019.html#toc66">Structures</A>
+</LI><LI><A HREF="manual019.html#toc67">Functors</A>
+</LI></UL>
+<P>Module expressions are the module-level equivalent of value
+expressions: they evaluate to modules, thus providing implementations
+for the specifications expressed in module types.</P><P><A NAME="@manual.kwd147"></A>
+<A NAME="@manual.kwd148"></A>
+<A NAME="@manual.kwd149"></A>
+<A NAME="@manual.kwd150"></A>
+<A NAME="@manual.kwd151"></A>
+<A NAME="@manual.kwd152"></A>
+<A NAME="@manual.kwd153"></A>
+<A NAME="@manual.kwd154"></A>
+<A NAME="@manual.kwd155"></A>
+<A NAME="@manual.kwd156"></A>
+<A NAME="@manual.kwd157"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>struct</TT></FONT> { <I><A HREF="#definition"><FONT COLOR=maroon>definition</FONT></A></I>  [<FONT COLOR=blue><TT>;;</TT></FONT>] &#X2223;  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>;;</TT></FONT> } <FONT COLOR=blue><TT>end</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>functor</TT></FONT> <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> <FONT COLOR=blue><TT>-&gt;</TT></FONT>  <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>(</TT></FONT>  <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="definition"><FONT COLOR=maroon>definition</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>let</TT></FONT> [<FONT COLOR=blue><TT>rec</TT></FONT>] <I><A HREF="expr.html#let-binding"><FONT COLOR=maroon>let-binding</FONT></A></I>   { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="expr.html#let-binding"><FONT COLOR=maroon>let-binding</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>external</TT></FONT> <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <FONT COLOR=maroon><I>external-declaration</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual016.html#type-definition"><FONT COLOR=maroon>type-definition</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual016.html#exception-definition"><FONT COLOR=maroon>exception-definition</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual017.html#class-definition"><FONT COLOR=maroon>class-definition</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual017.html#classtype-definition"><FONT COLOR=maroon>classtype-definition</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I>  { <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> }
+ [ <FONT COLOR=blue><TT>:</TT></FONT> <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> ]  <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <FONT COLOR=blue><TT>type</TT></FONT> <I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>open</TT></FONT> <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>include</TT></FONT> <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><H3 CLASS="subsection"><A NAME="toc65"></A><A NAME="htoc88">6.11.1</A>  Simple module expressions</H3><P>The expression <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> evaluates to the module bound to the name
+<I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I>.</P><P>The expression <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> evaluates to the same module as
+<I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>.</P><P>The expression <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> checks that the
+type of <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> is a subtype of <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>, that is, that all
+components specified in <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> are implemented in
+<I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>, and their implementation meets the requirements given
+in <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>. In other terms, it checks that the implementation
+<I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> meets the type specification <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>. The whole
+expression evaluates to the same module as <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>, except that
+all components not specified in <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> are hidden and can no
+longer be accessed.</P><H3 CLASS="subsection"><A NAME="toc66"></A><A NAME="htoc89">6.11.2</A>  Structures</H3><P><A NAME="@manual.kwd158"></A>
+<A NAME="@manual.kwd159"></A></P><P>Structures <FONT COLOR=blue><TT>struct</TT></FONT> &#X2026; <FONT COLOR=blue><TT>end</TT></FONT> are collections of definitions for
+value names, type names, exceptions, module names and module type
+names. The definitions are evaluated in the order in which they appear
+in the structure. The scope of the bindings performed by the
+definitions extend to the end of the structure. As a consequence, a
+definition may refer to names bound by earlier definitions in the same
+structure.</P><P>For compatibility with toplevel phrases (chapter <A HREF="manual023.html#c:camllight">9</A>)
+and with Caml Light, an optional <TT>;;</TT> is allowed after each
+definition in a structure. The <TT>;;</TT> has no semantic meaning. Also for
+compatibility, <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>;;</TT></FONT> is allowed as a component of a structure,
+meaning <FONT COLOR=blue><TT>let</TT> <TT>_</TT> <TT>=</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>, i.e. evaluate <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> for its side-effects.
+In this case, the <TT>;;</TT> of the previous component is not optional.</P><H4 CLASS="subsubsection">Value definitions</H4><P><A NAME="@manual.kwd160"></A></P><P>A value definition <FONT COLOR=blue><TT>let</TT></FONT> [<FONT COLOR=blue><TT>rec</TT></FONT>] <I><A HREF="expr.html#let-binding"><FONT COLOR=maroon>let-binding</FONT></A></I>  { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="expr.html#let-binding"><FONT COLOR=maroon>let-binding</FONT></A></I> }
+bind value names in the same way as a <FONT COLOR=blue><TT>let</TT></FONT> &#X2026; <FONT COLOR=blue><TT>in</TT></FONT> &#X2026; expression
+(see section <A HREF="expr.html#s:localdef">6.7.1</A>). The value names appearing in the
+left-hand sides of the bindings are bound to the corresponding values
+in the right-hand sides.</P><P><A NAME="@manual.kwd161"></A></P><P>A value definition <FONT COLOR=blue><TT>external</TT></FONT> <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <FONT COLOR=maroon><I>external-declaration</I></FONT>
+implements <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> as the external function specified in
+<FONT COLOR=maroon><I>external-declaration</I></FONT> (see chapter <A HREF="manual032.html#c:intf-c">18</A>).</P><H4 CLASS="subsubsection">Type definitions</H4><P><A NAME="@manual.kwd162"></A></P><P>A definition of one or several type components is written
+<FONT COLOR=blue><TT>type</TT></FONT> <I><A HREF="manual016.html#typedef"><FONT COLOR=maroon>typedef</FONT></A></I>  { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="manual016.html#typedef"><FONT COLOR=maroon>typedef</FONT></A></I> } and consists of a sequence
+of mutually recursive definitions of type names.</P><H4 CLASS="subsubsection">Exception definitions</H4><P><A NAME="@manual.kwd163"></A></P><P>Exceptions are defined with the syntax <FONT COLOR=blue><TT>exception</TT></FONT> <I><A HREF="manual016.html#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I>
+or <FONT COLOR=blue><TT>exception</TT></FONT> <I><A HREF="manual011.html#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual011.html#constr"><FONT COLOR=maroon>constr</FONT></A></I>.</P><H4 CLASS="subsubsection">Class definitions</H4><P><A NAME="@manual.kwd164"></A></P><P>A definition of one or several classes is written <FONT COLOR=blue><TT>class</TT></FONT>
+<I><A HREF="manual017.html#class-binding"><FONT COLOR=maroon>class-binding</FONT></A></I>  { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="manual017.html#class-binding"><FONT COLOR=maroon>class-binding</FONT></A></I> } and consists of a sequence of
+mutually recursive definitions of class names. Class definitions are
+described more precisely in section <A HREF="manual017.html#s:classdef">6.9.3</A>.</P><H4 CLASS="subsubsection">Class type definitions</H4><P><A NAME="@manual.kwd165"></A>
+<A NAME="@manual.kwd166"></A></P><P>A definition of one or several classes is written
+<FONT COLOR=blue><TT>class</TT> <TT>type</TT></FONT> <I><A HREF="manual017.html#classtype-def"><FONT COLOR=maroon>classtype-def</FONT></A></I>  { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="manual017.html#classtype-def"><FONT COLOR=maroon>classtype-def</FONT></A></I> } and consists of
+a sequence of mutually recursive definitions of class type names.
+Class type definitions are described more precisely in
+section <A HREF="manual017.html#s:classtype">6.9.5</A>.</P><H4 CLASS="subsubsection">Module definitions</H4><P><A NAME="@manual.kwd167"></A></P><P>The basic form for defining a module component is
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>, which evaluates <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> and binds
+the result to the name <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I>.</P><P>One can write
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>
+</DIV><P>
+instead of
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT> <TT>(</TT></FONT>  <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>.
+</DIV><P>
+Another derived form is
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>(</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>)</TT></FONT> &#X2026;
+<FONT COLOR=blue><TT>(</TT></FONT>  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>)</TT> <TT>=</TT></FONT>  <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>
+</DIV><P>
+which is equivalent to
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT>
+<TT>functor</TT> <TT>(</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>)</TT> <TT>-&gt;</TT></FONT> &#X2026;
+<FONT COLOR=blue><TT>-&gt;</TT></FONT>  <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>
+</DIV><H4 CLASS="subsubsection">Module type definitions</H4><P><A NAME="@manual.kwd168"></A>
+<A NAME="@manual.kwd169"></A></P><P>A definition for a module type is written
+<FONT COLOR=blue><TT>module</TT> <TT>type</TT></FONT> <I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>.
+It binds the name <I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I> to the module type denoted by the
+expression <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>.</P><H4 CLASS="subsubsection">Opening a module path</H4><P><A NAME="@manual.kwd170"></A></P><P>The expression <FONT COLOR=blue><TT>open</TT></FONT> <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> in a structure does not define any
+components nor perform any bindings. It simply affects the parsing of
+the following items of the structure, allowing components of the
+module denoted by <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> to be referred to by their simple names
+<FONT COLOR=maroon><I>name</I></FONT> instead of path accesses <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT>. The scope of
+the <TT>open</TT> stops at the end of the structure expression.</P><H4 CLASS="subsubsection">Including the components of another structure</H4><P><A NAME="@manual.kwd171"></A></P><P>The expression <FONT COLOR=blue><TT>include </TT></FONT> <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> in a structure re-exports in
+the current structure all definitions of the structure denoted by
+<I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>. For instance, if the identifier <TT>S</TT> is bound to the
+module
+</P><PRE CLASS="verbatim">        struct type t = int  let x = 2 end
+</PRE><P>the module expression
+</P><PRE CLASS="verbatim">        struct include S  let y = (x + 1 : t) end
+</PRE><P>is equivalent to the module expression
+</P><PRE CLASS="verbatim">        struct type t = int  let x = 2  let y = (x + 1 : t) end
+</PRE><P>The difference between <FONT COLOR=blue><TT>open</TT></FONT> and <FONT COLOR=blue><TT>include</TT></FONT> is that <FONT COLOR=blue><TT>open</TT></FONT>
+simply provides short names for the components of the opened
+structure, without defining any components of the current structure,
+while <FONT COLOR=blue><TT>include</TT></FONT> also adds definitions for the components of the
+included structure.</P><H3 CLASS="subsection"><A NAME="toc67"></A><A NAME="htoc90">6.11.3</A>  Functors</H3><H4 CLASS="subsubsection">Functor definition</H4><P><A NAME="@manual.kwd172"></A></P><P>The expression <FONT COLOR=blue><TT>functor</TT> <TT>(</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT> <TT>-&gt;</TT></FONT>
+ <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> evaluates to a functor that takes as argument modules of
+the type <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>1</SUB>, binds <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> to these modules,
+evaluates <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> in the extended environment, and returns the
+resulting modules as results. No restrictions are placed on the type of the
+functor argument; in particular, a functor may take another functor as
+argument (&#X201C;higher-order&#X201D; functor).</P><H4 CLASS="subsubsection">Functor application</H4><P>The expression <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>(</TT></FONT>  <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>)</TT></FONT> evaluates
+<I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I><SUB>1</SUB> to a functor and <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I><SUB>2</SUB> to a module, and
+applies the former to the latter. The type of <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I><SUB>2</SUB> must
+match the type expected for the arguments of the functor <I><A HREF="#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I><SUB>1</SUB>.</P><HR>
+<A HREF="manual018.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual020.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

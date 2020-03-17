@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.18">
+<title>The OCaml system, release 4.02
+</title>
+<link rel="stylesheet" type="text/css" href="manual.css">
+</head>
+<body>
+<!--HEVEA command line is: hevea -fix -exec xxdate.exe -O -I .. -I ../refman -I ../library -I ../cmds -I ../tutorials -I ../../styles -I ../texstuff manual.hva -e macros.tex ../manual.tex -->
+<!--HACHA command line is: hacha -tocter manual.html -->
+<div class="center">
+&#XA0;<span style="font-size:xx-large"><span style="font-size:150%">The OCaml system <br>
+ release 4.02<br>
+<span style="font-size:x-large">Documentation and user&#X2019;s manual <br>
+<span style="font-size:large">Xavier Leroy, <br>
+ Damien Doligez, Alain Frisch, Jacques Garrigue, Didier R&#XE9;my and J&#XE9;r&#XF4;me Vouillon <br>
+ September&#XA0;24, 2014<br>
+ &#XA0;
+<span style="font-size:medium">Copyright &#XA9; 2013 Institut National de
+Recherche en Informatique et en Automatique
+</span></span></span></span></span></div><blockquote class="quote">
+<hr style="height:2">
+This manual is also available in
+<a href="http://caml.inria.fr/distrib/ocaml-4.02/ocaml-4.02-refman.pdf">PDF</a>.
+<a href="http://caml.inria.fr/distrib/ocaml-4.02/ocaml-4.02-refman.ps.gz">Postscript</a>,
+<a href="http://caml.inria.fr/distrib/ocaml-4.02/ocaml-4.02-refman.dvi.gz">DVI</a>,
+<a href="http://caml.inria.fr/distrib/ocaml-4.02/ocaml-4.02-refman.txt">plain text</a>,
+as a
+<a href="http://caml.inria.fr/distrib/ocaml-4.02/ocaml-4.02-refman-html.tar.gz">bundle of HTML files</a>,
+and as a
+<a href="http://caml.inria.fr/distrib/ocaml-4.02/ocaml-4.02-refman.info.tar.gz">bundle of Emacs Info files</a>.
+<hr style="height:2">
+</blockquote><ul>
+<li><a href="manual001.html">Contents</a>
+</li><li><a href="foreword.html">Foreword</a>
+</li></ul>
+<table class="center"><tr><td><h1 class="part" id="sec6">Part&#XA0;I<br>
+An introduction to OCaml</h1></td></tr>
+</table>
+<p>
+<a id="p:tutorials"></a>
+</p>
+<ul>
+<li><a href="coreexamples.html">The core language</a>
+</li><li><a href="moduleexamples.html">The module system</a>
+</li><li><a href="objectexamples.html">Objects in OCaml</a>
+</li><li><a href="lablexamples.html">Labels and variants</a>
+</li><li><a href="advexamples.html">Advanced examples with classes and modules</a>
+</li></ul>
+<table class="center"><tr><td><h1 class="part" id="sec58">Part&#XA0;II<br>
+The OCaml language</h1></td></tr>
+</table>
+<p>
+<a id="p:refman"></a>
+</p>
+<ul>
+<li><a href="language.html">The OCaml language</a>
+</li><li><a href="extn.html">Language extensions</a>
+</li></ul>
+<table class="center"><tr><td><h1 class="part" id="sec248">Part&#XA0;III<br>
+The OCaml tools</h1></td></tr>
+</table>
+<p>
+<a id="p:commands"></a></p>
+<ul>
+<li><a href="comp.html">Batch compilation (ocamlc)</a>
+</li><li><a href="toplevel.html">The toplevel system (ocaml)</a>
+</li><li><a href="runtime.html">The runtime system (ocamlrun)</a>
+</li><li><a href="native.html">Native-code compilation (ocamlopt)</a>
+</li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a>
+</li><li><a href="depend.html">Dependency generator (ocamldep)</a>
+</li><li><a href="browser.html">The browser/editor (ocamlbrowser)</a>
+</li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a>
+</li><li><a href="debugger.html">The debugger (ocamldebug)</a>
+</li><li><a href="profil.html">Profiling (ocamlprof)</a>
+</li><li><a href="ocamlbuild.html">The ocamlbuild compilation manager</a>
+</li><li><a href="intfc.html">Interfacing C with OCaml</a>
+</li></ul>
+<table class="center"><tr><td><h1 class="part" id="sec470">Part&#XA0;IV<br>
+The OCaml library</h1></td></tr>
+</table>
+<p>
+<a id="p:library"></a>
+</p>
+<ul>
+<li><a href="core.html">The core library</a>
+</li><li><a href="stdlib.html">The standard library</a>
+</li><li><a href="libunix.html">The unix library: Unix system calls</a>
+</li><li><a href="libnum.html">The num library: arbitrary-precision rational arithmetic</a>
+</li><li><a href="libstr.html">The str library: regular expressions and string processing</a>
+</li><li><a href="libthreads.html">The threads library</a>
+</li><li><a href="libgraph.html">The graphics library</a>
+</li><li><a href="libdynlink.html">The dynlink library: dynamic loading and linking of object files</a>
+</li><li><a href="libbigarray.html">The bigarray library</a>
+</li></ul>
+<table class="center"><tr><td><h1 class="part" id="sec491">Part&#XA0;V<br>
+Appendix</h1></td></tr>
+</table>
+<p>
+<a id="p:appendix"></a></p><ul class="ftoc2"><li class="li-links">
+<a href="libref/index_modules.html">Index of modules</a>
+</li><li class="li-links"><a href="libref/index_module_types.html">Index of module types</a>
+</li><li class="li-links"><a href="libref/index_types.html">Index of types</a>
+</li><li class="li-links"><a href="libref/index_exceptions.html">Index of exceptions</a>
+</li><li class="li-links"><a href="libref/index_values.html">Index of values</a>
+</li></ul><ul>
+<li><a href="manual043.html">Index of keywords</a>
+</li></ul>
+<!--FOOTER-->
+<hr style="height:2"><blockquote class="quote"><em>This document was translated from L<sup>A</sup>T<sub>E</sub>X by
+</em><a href="http://hevea.inria.fr/index.html"><em>H<span class="c012"><sup>E</sup></span>V<span class="c012"><sup>E</sup></span>A</em></a><em>.</em></blockquote></body>
+</html>

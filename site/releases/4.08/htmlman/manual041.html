@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.19  Documentation comments</title>
+</head>
+<body>
+<a href="manual040.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual042.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec275">8.19  Documentation comments</h2>
+<ul>
+<li><a href="manual041.html#sec276">8.19.1  Floating comments</a>
+</li><li><a href="manual041.html#sec277">8.19.2  Item comments</a>
+</li><li><a href="manual041.html#sec278">8.19.3  Label comments</a>
+</li></ul>
+<p>
+(Introduced in OCaml 4.03)</p><p>Comments which start with <span class="c003">**</span> are treated specially by the
+compiler. They are automatically converted during parsing into
+attributes (see <a href="manual035.html#s%3Aattributes">8.13</a>) to allow tools to process them as
+documentation.</p><p>Such comments can take three forms: <em>floating comments</em>, <em>item
+comments</em> and <em>label comments</em>. Any comment starting with <span class="c003">**</span> which
+does not match one of these forms will cause the compiler to emit
+warning 50.</p><p>Comments which start with <span class="c003">**</span> are also used by the ocamldoc
+documentation generator (see <a href="ocamldoc.html#c%3Aocamldoc">16</a>). The three comment forms
+recognised by the compiler are a subset of the forms accepted by
+ocamldoc (see <a href="ocamldoc.html#s%3Aocamldoc-comments">16.2</a>).</p>
+<h3 class="subsection" id="sec276">8.19.1  Floating comments</h3>
+<p>Comments surrounded by blank lines that appear within structures,
+signatures, classes or class types are converted into
+<a class="syntax" href="manual035.html#floating-attribute"><span class="c010">floating-attribute</span></a>s. For example:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = T
+
+ (** Now some definitions for [t] *)
+
+ let mkT = T
+</div>
+</pre>
+
+
+</div><p>will be converted to:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = T
+
+ [@@@ocaml.text " Now some definitions for [t] "]
+
+ let mkT = T
+</div>
+</pre>
+
+
+</div>
+<h3 class="subsection" id="sec277">8.19.2  Item comments</h3>
+<p>Comments which appear <em>immediately before</em> or <em>immediately
+after</em> a structure item, signature item, class item or class type item
+are converted into <a class="syntax" href="manual035.html#item-attribute"><span class="c010">item-attribute</span></a>s. Immediately before or immediately
+after means that there must be no blank lines, <span class="c003">;;</span>, or other
+documentation comments between them. For example:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = T
+ (** A description of [t] *)
+
+</div>
+</pre>
+
+
+</div><p>or</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> (** A description of [t] *)
+ type t = T
+</div>
+</pre>
+
+
+</div><p>will be converted to:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = T
+ [@@ocaml.doc " A description of [t] "]
+</div>
+</pre>
+
+
+</div><p>Note that, if a comment appears immediately next to multiple items,
+as in:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = T
+ (** An ambiguous comment *)
+ type s = S
+</div>
+</pre>
+
+
+</div><p>then it will be attached to both items:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = T
+ [@@ocaml.doc " An ambiguous comment "]
+ type s = S
+ [@@ocaml.doc " An ambiguous comment "]
+</div>
+</pre>
+
+
+</div><p>and the compiler will emit warning 50.</p>
+<h3 class="subsection" id="sec278">8.19.3  Label comments</h3>
+<p>Comments which appear <em>immediately after</em> a labelled argument,
+record field, variant constructor, object method or polymorphic variant
+constructor are are converted into <a class="syntax" href="manual035.html#attribute"><span class="c010">attribute</span></a>s. Immediately
+after means that there must be no blank lines or other documentation
+comments between them. For example:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t1 = lbl:int (** Labelled argument *) -&gt; unit
+
+ type t2 = {
+   fld: int; (** Record field *)
+   fld2: float;
+ }
+
+ type t3 =
+   | Cstr of string (** Variant constructor *)
+   | Cstr2 of string
+
+ type t4 = &lt; meth: int * int; (** Object method *) &gt;
+
+ type t5 = [
+   `PCstr (** Polymorphic variant constructor *)
+ ]
+</div>
+</pre>
+
+
+</div><p>will be converted to:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t1 = lbl:(int [@ocaml.doc " Labelled argument "]) -&gt; unit
+
+ type t2 = {
+   fld: int [@ocaml.doc " Record field "];
+   fld2: float;
+ }
+
+ type t3 =
+   | Cstr of string [@ocaml.doc " Variant constructor "]
+   | Cstr2 of string
+
+ type t4 = &lt; meth : int * int [@ocaml.doc " Object method "] &gt;
+
+ type t5 = [
+   `PCstr [@ocaml.doc " Polymorphic variant constructor "]
+ ]
+</div>
+</pre>
+
+
+</div><p>Note that label comments take precedence over item comments, so:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = T of string
+ (** Attaches to T not t *)
+</div>
+</pre>
+
+
+</div><p>will be converted to:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t =  T of string [@ocaml.doc " Attaches to T not t "]
+</div>
+</pre>
+
+
+</div><p>whilst:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = T of string
+ (** Attaches to T not t *)
+ (** Attaches to t *)
+</div>
+</pre>
+
+
+</div><p>will be converted to:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t =  T of string [@ocaml.doc " Attaches to T not t "]
+ [@@ocaml.doc " Attaches to t "]
+</div>
+</pre>
+
+
+</div><p>In the absence of meaningful comment on the last constructor of
+a type, an empty comment <span class="c003">(**)</span> can be used instead:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = T of string
+ (**)
+ (** Attaches to t *)
+</div>
+</pre>
+
+
+</div><p>will be converted directly to</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t =  T of string
+ [@@ocaml.doc " Attaches to t "]
+</div>
+</pre>
+
+
+</div>
+<hr>
+<a href="manual040.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual042.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

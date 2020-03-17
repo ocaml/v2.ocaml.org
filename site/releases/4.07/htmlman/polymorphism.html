@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;5&#XA0;&#XA0;Polymorphism and its limitations</title>
+</head>
+<body>
+<a href="lablexamples.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="advexamples.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec51">Chapter&#XA0;5&#XA0;&#XA0;Polymorphism and its limitations</h1>
+<ul>
+<li><a href="polymorphism.html#sec52">5.1&#XA0;&#XA0;Weak polymorphism and mutation</a>
+</li><li><a href="polymorphism.html#sec58">5.2&#XA0;&#XA0;Polymorphic recursion</a>
+</li><li><a href="polymorphism.html#sec61">5.3&#XA0;&#XA0;Higher-rank polymorphic functions</a>
+</li></ul>
+<p><a id="c:polymorphism"></a>
+
+</p><p><br>
+<br>
+</p><p>This chapter covers more advanced questions related to the
+limitations of polymorphic functions and types. There are some situations
+in OCaml where the type inferred by the type checker may be less generic
+than expected. Such non-genericity can stem either from interactions
+between side-effect and typing or the difficulties of implicit polymorphic
+recursion and higher-rank polymorphism.</p><p>This chapter details each of these situations and, if it is possible,
+how to recover genericity.</p>
+<h2 class="section" id="sec52">5.1&#XA0;&#XA0;Weak polymorphism and mutation</h2>
+<h3 class="subsection" id="sec53">5.1.1&#XA0;&#XA0;Weakly polymorphic types</h3>
+<p>
+<a id="ss:weaktypes"></a>
+Maybe the most frequent examples of non-genericity derive from the
+interactions between polymorphic types and mutation. A simple example
+appears when typing the following expression
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let store = ref None ;;
+</div><div class="caml-output ok">val store : '_weak1 option ref = {contents = None}
+</div></pre>
+
+
+</div><p>
+
+Since the type of <span class="c003">None</span> is <span class="c003">'a option</span> and the function <span class="c003">ref</span> has type
+<span class="c003">'b -&gt; 'b ref</span>, a natural deduction for the type of <span class="c003">store</span> would be
+<span class="c003">'a option ref</span>. However, the inferred type, <span class="c003">'_weak1 option ref</span>, is
+different. Type variables whose name starts with a <span class="c003">_weak</span> prefix like
+<span class="c003">'_weak1</span> are weakly polymorphic type variables, sometimes shortened as
+weak type variables.
+A weak type variable is a placeholder for a single type that is currently
+unknown. Once the specific type <span class="c003">t</span> behind the placeholder type <span class="c003">'_weak1</span>
+is known, all occurrences of <span class="c003">'_weak1</span> will be replaced by <span class="c003">t</span>. For instance,
+we can define another option reference and store an <span class="c003">int</span> inside:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let another_store = ref None ;;
+</div><div class="caml-output ok">val another_store : '_weak2 option ref = {contents = None}
+</div></pre>
+
+<pre><div class="caml-input"> another_store := Some 0;
+  another_store ;;
+</div><div class="caml-output ok">- : int option ref = {contents = Some 0}
+</div></pre>
+
+
+</div><p>
+
+After storing an <span class="c003">int</span> inside <span class="c003">another_store</span>, the type of <span class="c003">another_store</span> has
+been updated from <span class="c003">'_weak2 option ref</span> to <span class="c003">int option ref</span>.
+This distinction between weakly and generic polymorphic type variable protects
+OCaml programs from unsoundness and runtime errors. To understand from where
+unsoundness might come, consider this simple function which swaps a value <span class="c003">x</span>
+with the value stored inside a <span class="c003">store</span> reference, if there is such value:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let swap store x = match !store with
+    | None -&gt; store := Some x; x
+    | Some y -&gt; store := Some x; y;;
+</div><div class="caml-output ok">val swap : 'a option ref -&gt; 'a -&gt; 'a = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+We can apply this function to our store
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let one = swap store 1
+  let one_again = swap store 2
+  let two = swap store 3;;
+</div><div class="caml-output ok">val one : int = 1
+val one_again : int = 1
+val two : int = 2
+</div></pre>
+
+
+</div><p>
+
+After these three swaps the stored value is <span class="c003">3</span>. Everything is fine up to
+now. We can then try to swap <span class="c003">3</span> with a more interesting value, for
+instance a function:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let error = swap store <U>(fun x -&gt; x)</U>;;
+</div><div class="caml-output error">Error: This expression should not be a function, the expected type is
+int
+</div></pre>
+
+
+</div><p>
+
+At this point, the type checker rightfully complains that it is not
+possible to swap an integer and a function, and that an <span class="c003">int</span> should always
+be traded for another <span class="c003">int</span>. Furthermore, the type checker prevents us to
+change manually the type of the value stored by <span class="c003">store</span>:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> store := Some <U>(fun x -&gt; x)</U>;;
+</div><div class="caml-output error">Error: This expression should not be a function, the expected type is
+int
+</div></pre>
+
+
+</div><p>
+
+Indeed, looking at the type of store, we see that the weak type <span class="c003">'_weak1</span> has
+been replaced by the type <span class="c003">int</span>
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> store;;
+</div><div class="caml-output ok">- : int option ref = {contents = Some 3}
+</div></pre>
+
+
+</div><p>
+
+Therefore, after placing an <span class="c003">int</span> in <span class="c003">store</span>, we cannot use it to store any
+value other than an <span class="c003">int</span>. More generally, weak types protect the program from
+undue mutation of values with a polymorphic type.</p><p>Moreover, weak types cannot appear in the signature of toplevel modules:
+types must be known at compilation time. Otherwise, different compilation
+units could replace the weak type with different and incompatible types.
+For this reason, compiling the following small piece of code
+</p><pre>let option_ref = ref None
+</pre><p>yields a compilation error
+</p><pre>Error: The type of this expression, '_weak1 option ref,
+       contains type variables that cannot be generalized
+</pre><p>To solve this error, it is enough to add an explicit type annotation to
+specify the type at declaration time:
+</p><pre>let option_ref: int option ref = ref None
+</pre><p>This is in any case a good practice for such global mutable variables.
+Otherwise, they will pick out the type of first use. If there is a mistake
+at this point, this can result in confusing type errors when later, correct
+uses are flagged as errors.</p>
+<h3 class="subsection" id="sec54">5.1.2&#XA0;&#XA0;The value restriction</h3>
+<p><a id="ss:valuerestriction"></a></p><p>Identifying the exact context in which polymorphic types should be
+replaced by weak types in a modular way is a difficult question. Indeed
+the type system must handle the possibility that functions may hide persistent
+mutable states. For instance, the following function uses an internal reference
+to implement a delayed identity function
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let make_fake_id () =
+    let store = ref None in
+    fun x -&gt; swap store x ;;
+</div><div class="caml-output ok">val make_fake_id : unit -&gt; 'a -&gt; 'a = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> let fake_id = make_fake_id();;
+</div><div class="caml-output ok">val fake_id : '_weak3 -&gt; '_weak3 = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+It would be unsound to apply this <span class="c003">fake_id</span> function to values with different
+types. The function <span class="c003">fake_id</span> is therefore rightfully assigned the type
+<span class="c003">'_weak3 -&gt; '_weak3</span> rather than <span class="c003">'a -&gt; 'a</span>. At the same time, it ought to
+be possible to use a local mutable state without impacting the type of a
+function.
+</p><p>To circumvent these dual difficulties, the type checker considers that any value
+returned by a function might rely on persistent mutable states behind the scene
+and should be given a weak type. This restriction on the type of mutable
+values and the results of function application is called the value restriction.
+Note that this value restriction is conservative: there are situations where the
+value restriction is too cautious and gives a weak type to a value that could be
+safely generalized to a polymorphic type:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let not_id = (fun x -&gt; x) (fun x -&gt; x);;
+</div><div class="caml-output ok">val not_id : '_weak4 -&gt; '_weak4 = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+Quite often, this happens when defining function using higher order function.
+To avoid this problem, a solution is to add an explicit argument to the
+function:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let id_again = fun x -&gt; (fun x -&gt; x) (fun x -&gt; x) x;;
+</div><div class="caml-output ok">val id_again : 'a -&gt; 'a = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+With this argument, <span class="c003">id_again</span> is seen as a function definition by the type
+checker and can therefore be generalized. This kind of manipulation is called
+eta-expansion in lambda calculus and is sometimes referred under this name.</p>
+<h3 class="subsection" id="sec55">5.1.3&#XA0;&#XA0;The relaxed value restriction</h3>
+<p>There is another partial solution to the problem of unnecessary weak type,
+which is implemented directly within the type checker. Briefly, it is possible
+to prove that weak types that only appear as type parameters in covariant
+positions &#X2013;also called positive positions&#X2013; can be safely generalized to
+polymorphic types. For instance, the type <span class="c003">'a list</span> is covariant in <span class="c003">'a</span>:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let f () = [];;
+</div><div class="caml-output ok">val f : unit -&gt; 'a list = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input">   let empty = f ();;
+</div><div class="caml-output ok">val empty : 'a list = []
+</div></pre>
+
+
+</div><p>
+
+Remark that the type inferred for <span class="c003">empty</span> is <span class="c003">'a list</span> and not <span class="c003">'_weak5 list</span>
+that should have occurred with the value restriction since <span class="c003">f ()</span> is a
+function application.</p><p>The value restriction combined with this generalization for covariant type
+parameters is called the relaxed value restriction.</p>
+<h3 class="subsection" id="sec56">5.1.4&#XA0;&#XA0;Variance and value restriction</h3>
+<p>
+Variance describes how type constructors behave with respect to subtyping.
+Consider for instance a pair of type <span class="c003">x</span> and <span class="c003">xy</span> with <span class="c003">x</span> a subtype of <span class="c003">xy</span>,
+denoted <span class="c003">x :&gt; xy</span>:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   type x = [ `X ];;
+</div><div class="caml-output ok">type x = [ `X ]
+</div></pre>
+
+<pre><div class="caml-input">   type xy = [ `X | `Y ];;
+</div><div class="caml-output ok">type xy = [ `X | `Y ]
+</div></pre>
+
+
+</div><p>
+
+As <span class="c003">x</span> is a subtype of <span class="c003">xy</span>, we can convert a value of type <span class="c003">x</span>
+to a value of type <span class="c003">xy</span>:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let x:x = `X;;
+</div><div class="caml-output ok">val x : x = `X
+</div></pre>
+
+<pre><div class="caml-input">   let x' = ( x :&gt; xy);;
+</div><div class="caml-output ok">val x' : xy = `X
+</div></pre>
+
+
+</div><p>
+
+Similarly, if we have a value of type <span class="c003">x list</span>, we can convert it to a value
+of type <span class="c003">xy list</span>, since we could convert each element one by one:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let l:x list = [`X; `X];;
+</div><div class="caml-output ok">val l : x list = [`X; `X]
+</div></pre>
+
+<pre><div class="caml-input">   let l' = ( l :&gt; xy list);;
+</div><div class="caml-output ok">val l' : xy list = [`X; `X]
+</div></pre>
+
+
+</div><p>
+
+In other words, <span class="c003">x :&gt; xy</span> implies that <span class="c003">x list :&gt; xy list</span>, therefore
+the type constructor <span class="c003">'a list</span> is covariant (it preserves subtyping)
+in its parameter <span class="c003">'a</span>.</p><p>Contrarily, if we have a function that can handle values of type <span class="c003">xy</span>
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let f: xy -&gt; unit = function
+    | `X -&gt; ()
+    | `Y -&gt; ();;
+</div><div class="caml-output ok">val f : xy -&gt; unit = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+it can also handle values of type <span class="c003">x</span>:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let f' = (f :&gt; x -&gt; unit);;
+</div><div class="caml-output ok">val f' : x -&gt; unit = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+Note that we can rewrite the type of <span class="c003">f</span> and <span class="c003">f'</span> as
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   type 'a proc = 'a -&gt; unit
+    let f' = (f: xy proc :&gt; x proc);;
+</div><div class="caml-output ok">type 'a proc = 'a -&gt; unit
+val f' : x proc = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+In this case, we have <span class="c003">x :&gt; xy</span> implies <span class="c003">xy proc :&gt; x proc</span>. Notice
+that the second subtyping relation reverse the order of <span class="c003">x</span> and <span class="c003">xy</span>:
+the type constructor <span class="c003">'a proc</span> is contravariant in its parameter <span class="c003">'a</span>.
+More generally, the function type constructor <span class="c003">'a -&gt; 'b</span> is covariant in
+its return type <span class="c003">'b</span> and contravariant in its argument type <span class="c003">'a</span>.</p><p>A type constructor can also be invariant in some of its type parameters,
+neither covariant nor contravariant. A typical example is a reference:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let x: x ref = ref `X;;
+</div><div class="caml-output ok">val x : x ref = {contents = `X}
+</div></pre>
+
+
+</div><p>
+
+If we were able to coerce <span class="c003">x</span> to the type <span class="c003">xy ref</span> as a variable <span class="c003">xy</span>,
+we could use <span class="c003">xy</span> to store the value <span class="c003">`Y</span> inside the reference and then use
+the <span class="c003">x</span> value to read this content as a value of type <span class="c003">x</span>,
+which would break the type system.</p><p>More generally, as soon as a type variable appears in a position describing
+mutable state it becomes invariant. As a corollary, covariant variables will
+never denote mutable locations and can be safely generalized.
+For a better description, interested readers can consult the original
+article by Jacques Garrigue on
+<a href="http://www.math.nagoya-u.ac.jp/~garrigue/papers/morepoly-long.pdf"><span class="c003">http://www.math.nagoya-u.ac.jp/~garrigue/papers/morepoly-long.pdf</span></a></p><p>Together, the relaxed value restriction and type parameter covariance
+help to avoid eta-expansion in many situations.</p>
+<h3 class="subsection" id="sec57">5.1.5&#XA0;&#XA0;Abstract data types</h3>
+<p>
+Moreover, when the type definitions are exposed, the type checker
+is able to infer variance information on its own and one can benefit from
+the relaxed value restriction even unknowingly. However, this is not the case
+anymore when defining new abstract types. As an illustration, we can define a
+module type collection as:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module type COLLECTION = sig
+    type 'a t
+    val empty: unit -&gt; 'a t
+  end
+
+  module Implementation = struct
+    type 'a t = 'a list
+    let empty ()= []
+  end;;
+</div><div class="caml-output ok">module type COLLECTION = sig type 'a t val empty : unit -&gt; 'a t end
+module Implementation :
+  sig type 'a t = 'a list val empty : unit -&gt; 'a list end
+</div></pre>
+
+<pre><div class="caml-input"> module List2: COLLECTION = Implementation;;
+</div><div class="caml-output ok">module List2 : COLLECTION
+</div></pre>
+
+
+</div><p>In this situation, when coercing the module <span class="c003">List2</span> to the module type
+<span class="c003">COLLECTION</span>, the type checker forgets that <span class="c003">'a List2.t</span> was covariant
+in <span class="c003">'a</span>. Consequently, the relaxed value restriction does not apply anymore:</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   List2.empty ();;
+</div><div class="caml-output ok">- : '_weak5 List2.t = &lt;abstr&gt;
+</div></pre>
+
+
+</div><p>To keep the relaxed value restriction, we need to declare the abstract type
+<span class="c003">'a COLLECTION.t</span> as covariant in <span class="c003">'a</span>:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module type COLLECTION = sig
+    type +'a t
+    val empty: unit -&gt; 'a t
+  end
+
+  module List2: COLLECTION = Implementation;;
+</div><div class="caml-output ok">module type COLLECTION = sig type +'a t val empty : unit -&gt; 'a t end
+module List2 : COLLECTION
+</div></pre>
+
+
+</div><p>We then recover polymorphism:</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   List2.empty ();;
+</div><div class="caml-output ok">- : 'a List2.t = &lt;abstr&gt;
+</div></pre>
+
+
+</div>
+<h2 class="section" id="sec58">5.2&#XA0;&#XA0;Polymorphic recursion</h2>
+<p><a id="s:polymorphic-recursion"></a></p><p>The second major class of non-genericity is directly related to the problem
+of type inference for polymorphic functions. In some circumstances, the type
+inferred by OCaml might be not general enough to allow the definition of
+some recursive functions, in particular for recursive function acting on
+non-regular algebraic data type.</p><p>With a regular polymorphic algebraic data type, the type parameters of
+the type constructor are constant within the definition of the type. For
+instance, we can look at arbitrarily nested list defined as:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   type 'a regular_nested = List of 'a list | Nested of 'a regular_nested list
+    let l = Nested[ List [1]; Nested [List[2;3]]; Nested[Nested[]] ];;
+</div><div class="caml-output ok">type 'a regular_nested = List of 'a list | Nested of 'a regular_nested list
+val l : int regular_nested =
+  Nested [List [1]; Nested [List [2; 3]]; Nested [Nested []]]
+</div></pre>
+
+
+</div><p>
+
+Note that the type constructor <span class="c003">regular_nested</span> always appears as
+<span class="c003">'a regular_nested</span> in the definition above, with the same parameter
+<span class="c003">'a</span>. Equipped with this type, one can compute a maximal depth with
+a classic recursive function
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let rec maximal_depth = function
+    | List _ -&gt; 1
+    | Nested [] -&gt; 0
+    | Nested (a::q) -&gt; 1 + max (maximal_depth a) (maximal_depth (Nested q));;
+</div><div class="caml-output ok">val maximal_depth : 'a regular_nested -&gt; int = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>Non-regular recursive algebraic data types correspond to polymorphic algebraic
+data types whose parameter types vary between the left and right side of
+the type definition. For instance, it might be interesting to define a datatype
+that ensures that all lists are nested at the same depth:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   type 'a nested = List of 'a list | Nested of 'a list nested;;
+</div><div class="caml-output ok">type 'a nested = List of 'a list | Nested of 'a list nested
+</div></pre>
+
+
+</div><p>
+
+Intuitively, a value of type <span class="c003">'a nested</span> is a list of list &#X2026;of list of
+elements <span class="c003">a</span> with <span class="c003">k</span> nested list. We can then adapt the <span class="c003">maximal_depth</span>
+function defined on <span class="c003">regular_depth</span> into a <span class="c003">depth</span> function that computes this
+<span class="c003">k</span>. As a first try, we may define
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let rec depth = function
+    | List _ -&gt; 1
+    | Nested n -&gt; 1 + depth <U>n</U>;;
+</div><div class="caml-output error">Error: This expression has type 'a list nested
+       but an expression was expected of type 'a nested
+       The type variable 'a occurs inside 'a list
+</div></pre>
+
+
+</div><p>
+
+The type error here comes from the fact that during the definition of <span class="c003">depth</span>,
+the type checker first assigns to <span class="c003">depth</span> the type <span class="c003">'a -&gt; 'b </span>.
+When typing the pattern matching, <span class="c003">'a -&gt; 'b</span> becomes <span class="c003">'a nested -&gt; 'b</span>, then
+<span class="c003">'a nested -&gt; int</span> once the <span class="c003">List</span> branch is typed.
+However, when typing the application <span class="c003">depth n</span> in the <span class="c003">Nested</span> branch,
+the type checker encounters a problem: <span class="c003">depth n</span> is applied to
+<span class="c003">'a list nested</span>, it must therefore have the type
+<span class="c003">'a list nested -&gt; 'b</span>. Unifying this constraint with the previous one
+leads to the impossible constraint <span class="c003">'a list nested = 'a nested</span>.
+In other words, within its definition, the recursive function <span class="c003">depth</span> is
+applied to values of type <span class="c003">'a t</span> with different types <span class="c003">'a</span> due to the
+non-regularity of the type constructor <span class="c003">nested</span>. This creates a problem because
+the type checker had introduced a new type variable <span class="c003">'a</span> only at the
+<em>definition</em> of the function <span class="c003">depth</span> whereas, here, we need a
+different type variable for every <em>application</em> of the function <span class="c003">depth</span>.</p>
+<h3 class="subsection" id="sec59">5.2.1&#XA0;&#XA0;Explicitly polymorphic annotations</h3>
+<p>
+The solution of this conundrum is to use an explicitly polymorphic type
+annotation for the type <span class="c003">'a</span>:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let rec depth: 'a. 'a nested -&gt; int = function
+    | List _ -&gt; 1
+    | Nested n -&gt; 1 + depth n;;
+</div><div class="caml-output ok">val depth : 'a nested -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> depth ( Nested(List [ [7]; [8] ]) );;
+</div><div class="caml-output ok">- : int = 2
+</div></pre>
+
+
+</div><p>
+
+In the type of <span class="c003">depth</span>, <span class="c003">'a.'a nested -&gt; int</span>, the type variable <span class="c003">'a</span>
+is universally quantified. In other words, <span class="c003">'a.'a nested -&gt; int</span> reads as
+&#X201C;for all type <span class="c003">'a</span>, <span class="c003">depth</span> maps <span class="c003">'a nested</span> values to integers&#X201D;.
+Whereas the standard type <span class="c003">'a nested -&gt; int</span> can be interpreted
+as &#X201C;let be a type variable <span class="c003">'a</span>, then <span class="c003">depth</span> maps <span class="c003">'a nested</span> values
+to integers&#X201D;. There are two major differences with these two type
+expressions. First, the explicit polymorphic annotation indicates to the
+type checker that it needs to introduce a new type variable every times
+the function <span class="c003">depth</span> is applied. This solves our problem with the definition
+of the function <span class="c003">depth</span>.</p><p>Second, it also notifies the type checker that the type of the function should
+be polymorphic. Indeed, without explicit polymorphic type annotation, the
+following type annotation is perfectly valid
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let sum: 'a -&gt; 'b -&gt; 'c = fun x y -&gt; x + y;;
+</div><div class="caml-output ok">val sum : int -&gt; int -&gt; int = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+since <span class="c003">'a</span>,<span class="c003">'b</span> and <span class="c003">'c</span> denote type variables that may or may not be
+polymorphic. Whereas, it is an error to unify an explicitly polymorphic type
+with a non-polymorphic type:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let sum: 'a 'b 'c. 'a -&gt; 'b -&gt; 'c = <U>fun x y -&gt; x + y</U>;;
+</div><div class="caml-output error">Error: This definition has type int -&gt; int -&gt; int which is less general than
+         'a 'b 'c. 'a -&gt; 'b -&gt; 'c
+</div></pre>
+
+
+</div><p>An important remark here is that it is not needed to explicit fully
+the type of <span class="c003">depth</span>: it is sufficient to add annotations only for the
+universally quantified type variables:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let rec depth: 'a. 'a nested -&gt; _ = function
+    | List _ -&gt; 1
+    | Nested n -&gt; 1 + depth n;;
+</div><div class="caml-output ok">val depth : 'a nested -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> depth ( Nested(List [ [7]; [8] ]) );;
+</div><div class="caml-output ok">- : int = 2
+</div></pre>
+
+
+</div>
+<h3 class="subsection" id="sec60">5.2.2&#XA0;&#XA0;More examples</h3>
+<p>
+With explicit polymorphic annotations, it becomes possible to implement
+any recursive function that depends only on the structure of the nested
+lists and not on the type of the elements. For instance, a more complex
+example would be to compute the total number of elements of the nested
+lists:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let len nested =
+      let map_and_sum f = List.fold_left (fun acc x -&gt; acc + f x) 0 in
+      let rec len: 'a. ('a list -&gt; int ) -&gt; 'a nested -&gt; int =
+      fun nested_len n -&gt;
+        match n with
+        | List l -&gt; nested_len l
+        | Nested n -&gt; len (map_and_sum nested_len) n
+      in
+    len List.length nested;;
+</div><div class="caml-output ok">val len : 'a nested -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> len (Nested(Nested(List [ [ [1;2]; [3] ]; [ []; [4]; [5;6;7]]; [[]] ])));;
+</div><div class="caml-output ok">- : int = 7
+</div></pre>
+
+
+</div><p>Similarly, it may be necessary to use more than one explicitly
+polymorphic type variables, like for computing the nested list of
+list lengths of the nested list:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let shape n =
+    let rec shape: 'a 'b. ('a nested -&gt; int nested) -&gt;
+      ('b list list -&gt; 'a list) -&gt; 'b nested -&gt; int nested
+      = fun nest nested_shape -&gt;
+        function
+        | List l -&gt; raise
+         (Invalid_argument "shape requires nested_list of depth greater than 1")
+        | Nested (List l) -&gt; nest @@ List (nested_shape l)
+        | Nested n -&gt;
+          let nested_shape = List.map nested_shape in
+          let nest x = nest (Nested x) in
+          shape nest nested_shape n in
+    shape (fun n -&gt; n ) (fun l -&gt; List.map List.length l ) n;;
+</div><div class="caml-output ok">val shape : 'a nested -&gt; int nested = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> shape (Nested(Nested(List [ [ [1;2]; [3] ]; [ []; [4]; [5;6;7]]; [[]] ])));;
+</div><div class="caml-output ok">- : int nested = Nested (List [[2; 1]; [0; 1; 3]; [0]])
+</div></pre>
+
+
+</div>
+<h2 class="section" id="sec61">5.3&#XA0;&#XA0;Higher-rank polymorphic functions</h2>
+<p>Explicit polymorphic annotations are however not sufficient to cover all
+the cases where the inferred type of a function is less general than
+expected. A similar problem arises when using polymorphic functions as arguments
+of higher-order functions. For instance, we may want to compute the average
+depth or length of two nested lists:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let average_depth x y = (depth x + depth y) / 2;;
+</div><div class="caml-output ok">val average_depth : 'a nested -&gt; 'b nested -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input">   let average_len x y = (len x + len y) / 2;;
+</div><div class="caml-output ok">val average_len : 'a nested -&gt; 'b nested -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input">   let one = average_len (List [2]) (List [[]]);;
+</div><div class="caml-output ok">val one : int = 1
+</div></pre>
+
+
+</div><p>
+
+It would be natural to factorize these two definitions as:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">     let average f x y = (f x + f y) / 2;;
+</div><div class="caml-output ok">val average : ('a -&gt; int) -&gt; 'a -&gt; 'a -&gt; int = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+However, the type of <span class="c003">average len</span> is less generic than the type of
+<span class="c003">average_len</span>, since it requires the type of the first and second argument to
+be the same:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   average_len (List [2]) (List [[]]);;
+</div><div class="caml-output ok">- : int = 1
+</div></pre>
+
+<pre><div class="caml-input">   average len (List [2]) (List [<U>[]</U>]);;
+</div><div class="caml-output error">Error: This expression has type 'a list
+       but an expression was expected of type int
+</div></pre>
+
+
+</div><p>As previously with polymorphic recursion, the problem stems from the fact that
+type variables are introduced only at the start of the <span class="c003">let</span> definitions. When
+we compute both <span class="c003">f x</span> and <span class="c003">f y</span>, the type of <span class="c003">x</span> and <span class="c003">y</span> are unified together.
+To avoid this unification, we need to indicate to the type checker
+that f is polymorphic in its first argument. In some sense, we would want
+<span class="c003">average</span> to have type
+</p><pre>val average: ('a. 'a nested -&gt; int) -&gt; 'a nested -&gt; 'b nested -&gt; int
+</pre><p>Note that this syntax is not valid within OCaml: <span class="c003">average</span> has an universally
+quantified type <span class="c003">'a</span> inside the type of one of its argument whereas for
+polymorphic recursion the universally quantified type was introduced before
+the rest of the type. This position of the universally quantified type means
+that <span class="c003">average</span> is a second-rank polymorphic function. This kind of higher-rank
+functions is not directly supported by OCaml: type inference for second-rank
+polymorphic function and beyond is undecidable; therefore using this kind of
+higher-rank functions requires to handle manually these universally quantified
+types.</p><p>In OCaml, there are two ways to introduce this kind of explicit universally
+quantified types: universally quantified record fields,
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   type 'a nested_reduction = { f:'elt. 'elt nested -&gt; 'a };;
+</div><div class="caml-output ok">type 'a nested_reduction = { f : 'elt. 'elt nested -&gt; 'a; }
+</div></pre>
+
+<pre><div class="caml-input">   let boxed_len = { f = len };;
+</div><div class="caml-output ok">val boxed_len : int nested_reduction = {f = &lt;fun&gt;}
+</div></pre>
+
+
+</div><p>
+
+and universally quantified object methods:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let obj_len = object method f:'a. 'a nested -&gt; 'b = len end;;
+</div><div class="caml-output ok">val obj_len : &lt; f : 'a. 'a nested -&gt; int &gt; = &lt;obj&gt;
+</div></pre>
+
+
+</div><p>
+
+To solve our problem, we can therefore use either the record solution:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let average nsm x y = (nsm.f x + nsm.f y) / 2 ;;
+</div><div class="caml-output ok">val average : int nested_reduction -&gt; 'a nested -&gt; 'b nested -&gt; int = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+or the object one:
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input">   let average (obj:&lt;f:'a. 'a nested -&gt; _ &gt; ) x y = (obj#f x + obj#f y) / 2 ;;
+</div><div class="caml-output ok">val average : &lt; f : 'a. 'a nested -&gt; int &gt; -&gt; 'b nested -&gt; 'c nested -&gt; int =
+  &lt;fun&gt;
+</div></pre>
+
+
+</div>
+<hr>
+<a href="lablexamples.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="advexamples.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

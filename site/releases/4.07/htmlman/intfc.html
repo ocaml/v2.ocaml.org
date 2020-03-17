@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;20&#XA0;&#XA0;Interfacing C with OCaml</title>
+</head>
+<body>
+<a href="manual033.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="flambda.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="c:intf-c">Chapter&#XA0;20&#XA0;&#XA0;Interfacing C with OCaml</h1>
+<ul>
+<li><a href="intfc.html#sec415">20.1&#XA0;&#XA0;Overview and compilation information</a>
+</li><li><a href="intfc.html#sec422">20.2&#XA0;&#XA0;The <span class="c003">value</span> type</a>
+</li><li><a href="intfc.html#sec426">20.3&#XA0;&#XA0;Representation of OCaml data types</a>
+</li><li><a href="intfc.html#sec433">20.4&#XA0;&#XA0;Operations on values</a>
+</li><li><a href="intfc.html#sec441">20.5&#XA0;&#XA0;Living in harmony with the garbage collector</a>
+</li><li><a href="intfc.html#sec449">20.6&#XA0;&#XA0;A complete example</a>
+</li><li><a href="intfc.html#sec450">20.7&#XA0;&#XA0;Advanced topic: callbacks from C to OCaml</a>
+</li><li><a href="intfc.html#sec460">20.8&#XA0;&#XA0;Advanced example with callbacks</a>
+</li><li><a href="intfc.html#sec461">20.9&#XA0;&#XA0;Advanced topic: custom blocks</a>
+</li><li><a href="intfc.html#sec468">20.10&#XA0;&#XA0;Advanced topic: Big arrays and the OCaml-C interface</a>
+</li><li><a href="intfc.html#sec472">20.11&#XA0;&#XA0;Advanced topic: cheaper C call</a>
+</li><li><a href="intfc.html#sec476">20.12&#XA0;&#XA0;Advanced topic: multithreading</a>
+</li><li><a href="intfc.html#sec479">20.13&#XA0;&#XA0;Advanced topic: interfacing with Windows Unicode APIs</a>
+</li><li><a href="intfc.html#sec481">20.14&#XA0;&#XA0;Building mixed C/OCaml libraries: <span class="c003">ocamlmklib</span></a>
+</li></ul>
+<p>This chapter describes how user-defined primitives, written in C, can
+be linked with OCaml code and called from OCaml functions, and how
+these C functions can call back to OCaml code.</p>
+<h2 class="section" id="sec415">20.1&#XA0;&#XA0;Overview and compilation information</h2>
+<h3 class="subsection" id="sec416">20.1.1&#XA0;&#XA0;Declaring primitives</h3>
+<div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">external</span>&#XA0;<a class="syntax" href="names.html#value-name"><span class="c010">value-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="#external-declaration"><span class="c010">external-declaration</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="external-declaration"><span class="c010">external-declaration</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;<a class="syntax" href="lex.html#string-literal"><span class="c010">string-literal</span></a>&#XA0;&#XA0;[&#XA0;<a class="syntax" href="lex.html#string-literal"><span class="c010">string-literal</span></a>&#XA0;&#XA0;[&#XA0;<a class="syntax" href="lex.html#string-literal"><span class="c010">string-literal</span></a>&#XA0;]&#XA0;]
+</td></tr>
+</table></td></tr>
+</table></div><p>User primitives are declared in an implementation file or
+<span class="c004">struct</span>&#X2026;<span class="c004">end</span> module expression using the <span class="c004">external</span> keyword:
+</p><pre>
+        external <span class="c009">name</span> : <span class="c009">type</span> = <span class="c009">C-function-name</span>
+</pre><p>
+This defines the value name <span class="c009">name</span> as a function with type
+<span class="c009">type</span> that executes by calling the given C function.
+For instance, here is how the <span class="c003">input</span> primitive is declared in the
+standard library module <span class="c003">Pervasives</span>:
+</p><pre>        external input : in_channel -&gt; bytes -&gt; int -&gt; int -&gt; int
+                       = "input"
+</pre><p>Primitives with several arguments are always curried. The C function
+does not necessarily have the same name as the ML function.</p><p>External functions thus defined can be specified in interface files or
+<span class="c004">sig</span>&#X2026;<span class="c004">end</span> signatures either as regular values
+</p><pre>
+        val <span class="c009">name</span> : <span class="c009">type</span>
+</pre><p>
+thus hiding their implementation as C functions, or explicitly as
+&#X201C;manifest&#X201D; external functions
+</p><pre>
+        external <span class="c009">name</span> : <span class="c009">type</span> = <span class="c009">C-function-name</span>
+</pre><p>
+The latter is slightly more efficient, as it allows clients of the
+module to call directly the C function instead of going through the
+corresponding OCaml function. On the other hand, it should not be used
+in library modules if they have side-effects at toplevel, as this
+direct call interferes with the linker&#X2019;s algorithm for removing unused
+modules from libraries at link-time.</p><p>The arity (number of arguments) of a primitive is automatically
+determined from its OCaml type in the <span class="c003">external</span> declaration, by
+counting the number of function arrows in the type. For instance,
+<span class="c003">input</span> above has arity 4, and the <span class="c003">input</span> C function is called with
+four arguments. Similarly,
+</p><pre>    external input2 : in_channel * bytes * int * int -&gt; int = "input2"
+</pre><p>has arity 1, and the <span class="c003">input2</span> C function receives one argument (which
+is a quadruple of OCaml values).</p><p>Type abbreviations are not expanded when determining the arity of a
+primitive. For instance,
+</p><pre>        type int_endo = int -&gt; int
+        external f : int_endo -&gt; int_endo = "f"
+        external g : (int -&gt; int) -&gt; (int -&gt; int) = "f"
+</pre><p><span class="c003">f</span> has arity 1, but <span class="c003">g</span> has arity 2. This allows a primitive to
+return a functional value (as in the <span class="c003">f</span> example above): just remember
+to name the functional return type in a type abbreviation.</p><p>The language accepts external declarations with one or two
+flag strings in addition to the C function&#X2019;s name. These flags are
+reserved for the implementation of the standard library.</p>
+<h3 class="subsection" id="sec417">20.1.2&#XA0;&#XA0;Implementing primitives</h3>
+<p>User primitives with arity <span class="c009">n</span> &#X2264; 5 are implemented by C functions
+that take <span class="c009">n</span> arguments of type <span class="c003">value</span>, and return a result of type
+<span class="c003">value</span>. The type <span class="c003">value</span> is the type of the representations for OCaml
+values. It encodes objects of several base types (integers,
+floating-point numbers, strings,&#XA0;&#X2026;) as well as OCaml data
+structures. The type <span class="c003">value</span> and the associated conversion
+functions and macros are described in detail below. For instance,
+here is the declaration for the C function implementing the <span class="c003">input</span>
+primitive:
+</p><pre>CAMLprim value input(value channel, value buffer, value offset, value length)
+{
+  ...
+}
+</pre><p>When the primitive function is applied in an OCaml program, the C
+function is called with the values of the expressions to which the
+primitive is applied as arguments. The value returned by the function is
+passed back to the OCaml program as the result of the function
+application.</p><p>User primitives with arity greater than 5 should be implemented by two
+C functions. The first function, to be used in conjunction with the
+bytecode compiler <span class="c003">ocamlc</span>, receives two arguments: a pointer to an
+array of OCaml values (the values for the arguments), and an
+integer which is the number of arguments provided. The other function,
+to be used in conjunction with the native-code compiler <span class="c003">ocamlopt</span>,
+takes its arguments directly. For instance, here are the two C
+functions for the 7-argument primitive <span class="c003">Nat.add_nat</span>:
+</p><pre>CAMLprim value add_nat_native(value nat1, value ofs1, value len1,
+                              value nat2, value ofs2, value len2,
+                              value carry_in)
+{
+  ...
+}
+CAMLprim value add_nat_bytecode(value * argv, int argn)
+{
+  return add_nat_native(argv[0], argv[1], argv[2], argv[3],
+                        argv[4], argv[5], argv[6]);
+}
+</pre><p>The names of the two C functions must be given in the primitive
+declaration, as follows:
+</p><pre>
+        external <span class="c009">name</span> : <span class="c009">type</span> =
+                 <span class="c009">bytecode-C-function-name native-code-C-function-name</span>
+</pre><p>
+For instance, in the case of <span class="c003">add_nat</span>, the declaration is:
+</p><pre>        external add_nat: nat -&gt; int -&gt; int -&gt; nat -&gt; int -&gt; int -&gt; int -&gt; int
+                        = "add_nat_bytecode" "add_nat_native"
+</pre><p>
+Implementing a user primitive is actually two separate tasks: on the
+one hand, decoding the arguments to extract C values from the given
+OCaml values, and encoding the return value as an OCaml
+value; on the other hand, actually computing the result from the arguments.
+Except for very simple primitives, it is often preferable to have two
+distinct C functions to implement these two tasks. The first function
+actually implements the primitive, taking native C values as
+arguments and returning a native C value. The second function,
+often called the &#X201C;stub code&#X201D;, is a simple wrapper around the first
+function that converts its arguments from OCaml values to C values,
+call the first function, and convert the returned C value to OCaml
+value. For instance, here is the stub code for the <span class="c003">input</span>
+primitive:
+</p><pre>CAMLprim value input(value channel, value buffer, value offset, value length)
+{
+  return Val_long(getblock((struct channel *) channel,
+                           &amp;Byte(buffer, Long_val(offset)),
+                           Long_val(length)));
+}
+</pre><p>(Here, <span class="c003">Val_long</span>, <span class="c003">Long_val</span> and so on are conversion macros for the
+type <span class="c003">value</span>, that will be described later. The <span class="c003">CAMLprim</span> macro
+expands to the required compiler directives to ensure that the
+function is exported and accessible from OCaml.)
+The hard work is performed by the function <span class="c003">getblock</span>, which is
+declared as:
+</p><pre>long getblock(struct channel * channel, char * p, long n)
+{
+  ...
+}
+</pre><p>
+To write C code that operates on OCaml values, the following
+include files are provided:
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">Include file</span></td><td class="c014"><span class="c013">Provides</span> </td></tr>
+<tr><td class="c022">
+<span class="c003">caml/mlvalues.h</span></td><td class="c021">definition of the <span class="c003">value</span> type, and conversion
+macros </td></tr>
+<tr><td class="c022"><span class="c003">caml/alloc.h</span></td><td class="c021">allocation functions (to create structured OCaml
+objects) </td></tr>
+<tr><td class="c022"><span class="c003">caml/memory.h</span></td><td class="c021">miscellaneous memory-related functions
+and macros (for GC interface, in-place modification of structures, etc). </td></tr>
+<tr><td class="c022"><span class="c003">caml/fail.h</span></td><td class="c021">functions for raising exceptions
+(see section&#XA0;<a href="#s%3Ac-exceptions">20.4.5</a>) </td></tr>
+<tr><td class="c022"><span class="c003">caml/callback.h</span></td><td class="c021">callback from C to OCaml (see
+section&#XA0;<a href="#s%3Acallback">20.7</a>). </td></tr>
+<tr><td class="c022"><span class="c003">caml/custom.h</span></td><td class="c021">operations on custom blocks (see
+section&#XA0;<a href="#s%3Acustom">20.9</a>). </td></tr>
+<tr><td class="c022"><span class="c003">caml/intext.h</span></td><td class="c021">operations for writing user-defined
+serialization and deserialization functions for custom blocks
+(see section&#XA0;<a href="#s%3Acustom">20.9</a>). </td></tr>
+<tr><td class="c022"><span class="c003">caml/threads.h</span></td><td class="c021">operations for interfacing in the presence
+of multiple threads (see section&#XA0;<a href="#s%3AC-multithreading">20.12</a>). </td></tr>
+</table></div></div><p>
+These files reside in the <span class="c003">caml/</span> subdirectory of the OCaml
+standard library directory, which is returned by the command
+<span class="c003">ocamlc -where</span> (usually <span class="c003">/usr/local/lib/ocaml</span> or <span class="c003">/usr/lib/ocaml</span>).</p><p>By default, header files in the <span class="c003">caml/</span> subdirectory give only access
+to the public interface of the OCaml runtime. It is possible to define
+the macro <span class="c003">CAML_INTERNALS</span> to get access to a lower-level interface,
+but this lower-level interface is more likely to change and break
+programs that use it.</p><p><span class="c013">Note:</span> It is recommended to define the macro <span class="c003">CAML_NAME_SPACE</span>
+before including these header files. If you do not define it, the
+header files will also define short names (without the <span class="c003">caml_</span> prefix)
+for most functions, which usually produce clashes with names defined
+by other C libraries that you might use. Including the header files
+without <span class="c003">CAML_NAME_SPACE</span> is only supported for backward
+compatibility.</p>
+<h3 class="subsection" id="sec418">20.1.3&#XA0;&#XA0;Statically linking C code with OCaml code</h3>
+<p>
+<a id="staticlink-c-code"></a></p><p>The OCaml runtime system comprises three main parts: the bytecode
+interpreter, the memory manager, and a set of C functions that
+implement the primitive operations. Some bytecode instructions are
+provided to call these C functions, designated by their offset in a
+table of functions (the table of primitives).</p><p>In the default mode, the OCaml linker produces bytecode for the
+standard runtime system, with a standard set of primitives. References
+to primitives that are not in this standard set result in the
+&#X201C;unavailable C primitive&#X201D; error. (Unless dynamic loading of C
+libraries is supported &#X2013; see section&#XA0;<a href="#dynlink-c-code">20.1.4</a> below.)</p><p>In the &#X201C;custom runtime&#X201D; mode, the OCaml linker scans the
+object files and determines the set of required primitives. Then, it
+builds a suitable runtime system, by calling the native code linker with:
+</p><ul class="itemize"><li class="li-itemize">
+the table of the required primitives;
+</li><li class="li-itemize">a library that provides the bytecode interpreter, the
+memory manager, and the standard primitives;
+</li><li class="li-itemize">libraries and object code files (<span class="c003">.o</span> files) mentioned on the
+command line for the OCaml linker, that provide implementations
+for the user&#X2019;s primitives.
+</li></ul><p>
+This builds a runtime system with the required primitives. The OCaml
+linker generates bytecode for this custom runtime system. The
+bytecode is appended to the end of the custom runtime system, so that
+it will be automatically executed when the output file (custom
+runtime + bytecode) is launched.</p><p>To link in &#X201C;custom runtime&#X201D; mode, execute the <span class="c003">ocamlc</span> command with:
+</p><ul class="itemize"><li class="li-itemize">
+the <span class="c003">-custom</span> option;
+</li><li class="li-itemize">the names of the desired OCaml object files (<span class="c003">.cmo</span> and <span class="c003">.cma</span> files) ;
+</li><li class="li-itemize">the names of the C object files and libraries (<span class="c003">.o</span> and <span class="c003">.a</span>
+files) that implement the required primitives. Under Unix and Windows,
+a library named <span class="c003">lib</span><span class="c009">name</span><span class="c003">.a</span> (respectively, <span class="c003">.lib</span>) residing in one of
+the standard library directories can also be specified as <span class="c003">-cclib -l</span><span class="c009">name</span>.
+</li></ul><p>If you are using the native-code compiler <span class="c003">ocamlopt</span>, the <span class="c003">-custom</span>
+flag is not needed, as the final linking phase of <span class="c003">ocamlopt</span> always
+builds a standalone executable. To build a mixed OCaml/C executable,
+execute the <span class="c003">ocamlopt</span> command with:
+</p><ul class="itemize"><li class="li-itemize">
+the names of the desired OCaml native object files (<span class="c003">.cmx</span> and
+<span class="c003">.cmxa</span> files);
+</li><li class="li-itemize">the names of the C object files and libraries (<span class="c003">.o</span>, <span class="c003">.a</span>,
+<span class="c003">.so</span> or <span class="c003">.dll</span> files) that implement the required primitives.
+</li></ul><p>Starting with Objective Caml 3.00, it is possible to record the
+<span class="c003">-custom</span> option as well as the names of C libraries in an OCaml
+library file <span class="c003">.cma</span> or <span class="c003">.cmxa</span>. For instance, consider an OCaml library
+<span class="c003">mylib.cma</span>, built from the OCaml object files <span class="c003">a.cmo</span> and <span class="c003">b.cmo</span>,
+which reference C code in <span class="c003">libmylib.a</span>. If the library is
+built as follows:
+</p><pre>
+        ocamlc -a -o mylib.cma -custom a.cmo b.cmo -cclib -lmylib
+</pre><p>
+users of the library can simply link with <span class="c003">mylib.cma</span>:
+</p><pre>
+        ocamlc -o myprog mylib.cma ...
+</pre><p>
+and the system will automatically add the <span class="c003">-custom</span> and <span class="c003">-cclib -lmylib</span> options, achieving the same effect as
+</p><pre>
+        ocamlc -o myprog -custom a.cmo b.cmo ... -cclib -lmylib
+</pre><p>
+The alternative is of course to build the library without extra
+options:
+</p><pre>
+        ocamlc -a -o mylib.cma a.cmo b.cmo
+</pre><p>
+and then ask users to provide the <span class="c003">-custom</span> and <span class="c003">-cclib -lmylib</span>
+options themselves at link-time:
+</p><pre>
+        ocamlc -o myprog -custom mylib.cma ... -cclib -lmylib
+</pre><p>
+The former alternative is more convenient for the final users of the
+library, however.</p>
+<h3 class="subsection" id="sec419">20.1.4&#XA0;&#XA0;Dynamically linking C code with OCaml code</h3>
+<p>
+<a id="dynlink-c-code"></a></p><p>Starting with Objective Caml 3.03, an alternative to static linking of C code
+using the <span class="c003">-custom</span> code is provided. In this mode, the OCaml linker
+generates a pure bytecode executable (no embedded custom runtime
+system) that simply records the names of dynamically-loaded libraries
+containing the C code. The standard OCaml runtime system <span class="c003">ocamlrun</span>
+then loads dynamically these libraries, and resolves references to the
+required primitives, before executing the bytecode.</p><p>This facility is currently supported and known to work well under
+Linux, MacOS&#XA0;X, and Windows. It is supported, but not
+fully tested yet, under FreeBSD, Tru64, Solaris and Irix. It is not
+supported yet under other Unixes.</p><p>To dynamically link C code with OCaml code, the C code must first be
+compiled into a shared library (under Unix) or DLL (under Windows).
+This involves 1- compiling the C files with appropriate C compiler
+flags for producing position-independent code (when required by the
+operating system), and 2- building a
+shared library from the resulting object files. The resulting shared
+library or DLL file must be installed in a place where <span class="c003">ocamlrun</span> can
+find it later at program start-up time (see
+section&#XA0;<a href="runtime.html#s-ocamlrun-dllpath">11.3</a>).
+Finally (step 3), execute the <span class="c003">ocamlc</span> command with
+</p><ul class="itemize"><li class="li-itemize">
+the names of the desired OCaml object files (<span class="c003">.cmo</span> and <span class="c003">.cma</span> files) ;
+</li><li class="li-itemize">the names of the C shared libraries (<span class="c003">.so</span> or <span class="c003">.dll</span> files) that
+implement the required primitives. Under Unix and Windows,
+a library named <span class="c003">dll</span><span class="c009">name</span><span class="c003">.so</span> (respectively, <span class="c003">.dll</span>) residing
+in one of the standard library directories can also be specified as
+<span class="c003">-dllib -l</span><span class="c009">name</span>.
+</li></ul><p>
+Do <em>not</em> set the <span class="c003">-custom</span> flag, otherwise you&#X2019;re back to static linking
+as described in section&#XA0;<a href="#staticlink-c-code">20.1.3</a>.
+The <span class="c003">ocamlmklib</span> tool (see section&#XA0;<a href="#s-ocamlmklib">20.14</a>)
+automates steps 2 and 3.</p><p>As in the case of static linking, it is possible (and recommended) to
+record the names of C libraries in an OCaml <span class="c003">.cma</span> library archive.
+Consider again an OCaml library
+<span class="c003">mylib.cma</span>, built from the OCaml object files <span class="c003">a.cmo</span> and <span class="c003">b.cmo</span>,
+which reference C code in <span class="c003">dllmylib.so</span>. If the library is
+built as follows:
+</p><pre>
+        ocamlc -a -o mylib.cma a.cmo b.cmo -dllib -lmylib
+</pre><p>
+users of the library can simply link with <span class="c003">mylib.cma</span>:
+</p><pre>
+        ocamlc -o myprog mylib.cma ...
+</pre><p>
+and the system will automatically add the <span class="c003">-dllib -lmylib</span> option,
+achieving the same effect as
+</p><pre>
+        ocamlc -o myprog a.cmo b.cmo ... -dllib -lmylib
+</pre><p>
+Using this mechanism, users of the library <span class="c003">mylib.cma</span> do not need to
+known that it references C code, nor whether this C code must be
+statically linked (using <span class="c003">-custom</span>) or dynamically linked.</p>
+<h3 class="subsection" id="sec420">20.1.5&#XA0;&#XA0;Choosing between static linking and dynamic linking</h3>
+<p>After having described two different ways of linking C code with OCaml
+code, we now review the pros and cons of each, to help developers of
+mixed OCaml/C libraries decide.</p><p>The main advantage of dynamic linking is that it preserves the
+platform-independence of bytecode executables. That is, the bytecode
+executable contains no machine code, and can therefore be compiled on
+platform <span class="c009">A</span> and executed on other platforms <span class="c009">B</span>, <span class="c009">C</span>, &#X2026;, as long
+as the required shared libraries are available on all these
+platforms. In contrast, executables generated by <span class="c003">ocamlc -custom</span> run
+only on the platform on which they were created, because they embark a
+custom-tailored runtime system specific to that platform. In
+addition, dynamic linking results in smaller executables.</p><p>Another advantage of dynamic linking is that the final users of the
+library do not need to have a C compiler, C linker, and C runtime
+libraries installed on their machines. This is no big deal under
+Unix and Cygwin, but many Windows users are reluctant to install
+Microsoft Visual C just to be able to do <span class="c003">ocamlc -custom</span>.</p><p>There are two drawbacks to dynamic linking. The first is that the
+resulting executable is not stand-alone: it requires the shared
+libraries, as well as <span class="c003">ocamlrun</span>, to be installed on the machine
+executing the code. If you wish to distribute a stand-alone
+executable, it is better to link it statically, using <span class="c003">ocamlc -custom -ccopt -static</span> or <span class="c003">ocamlopt -ccopt -static</span>. Dynamic linking also
+raises the &#X201C;DLL hell&#X201D; problem: some care must be taken to ensure
+that the right versions of the shared libraries are found at start-up
+time.</p><p>The second drawback of dynamic linking is that it complicates the
+construction of the library. The C compiler and linker flags to
+compile to position-independent code and build a shared library vary
+wildly between different Unix systems. Also, dynamic linking is not
+supported on all Unix systems, requiring a fall-back case to static
+linking in the Makefile for the library. The <span class="c003">ocamlmklib</span> command
+(see section&#XA0;<a href="#s-ocamlmklib">20.14</a>) tries to hide some of these system
+dependencies.</p><p>In conclusion: dynamic linking is highly recommended under the native
+Windows port, because there are no portability problems and it is much
+more convenient for the end users. Under Unix, dynamic linking should
+be considered for mature, frequently used libraries because it
+enhances platform-independence of bytecode executables. For new or
+rarely-used libraries, static linking is much simpler to set up in a
+portable way.</p>
+<h3 class="subsection" id="sec421">20.1.6&#XA0;&#XA0;Building standalone custom runtime systems</h3>
+<p>
+<a id="s:custom-runtime"></a></p><p>It is sometimes inconvenient to build a custom runtime system each
+time OCaml code is linked with C libraries, like <span class="c003">ocamlc -custom</span> does.
+For one thing, the building of the runtime system is slow on some
+systems (that have bad linkers or slow remote file systems); for
+another thing, the platform-independence of bytecode files is lost,
+forcing to perform one <span class="c003">ocamlc -custom</span> link per platform of interest.</p><p>An alternative to <span class="c003">ocamlc -custom</span> is to build separately a custom
+runtime system integrating the desired C libraries, then generate
+&#X201C;pure&#X201D; bytecode executables (not containing their own runtime
+system) that can run on this custom runtime. This is achieved by the
+<span class="c003">-make-runtime</span> and <span class="c003">-use-runtime</span> flags to <span class="c003">ocamlc</span>. For example,
+to build a custom runtime system integrating the C parts of the
+&#X201C;Unix&#X201D; and &#X201C;Threads&#X201D; libraries, do:
+</p><pre>        ocamlc -make-runtime -o /home/me/ocamlunixrun unix.cma threads.cma
+</pre><p>To generate a bytecode executable that runs on this runtime system,
+do:
+</p><pre>
+        ocamlc -use-runtime /home/me/ocamlunixrun -o myprog \
+                unix.cma threads.cma <span class="c009">your .cmo and .cma files</span>
+</pre><p>
+The bytecode executable <span class="c003">myprog</span> can then be launched as usual:
+<span class="c003">myprog</span> <span class="c009">args</span> or <span class="c003">/home/me/ocamlunixrun myprog</span> <span class="c009">args</span>.</p><p>Notice that the bytecode libraries <span class="c003">unix.cma</span> and <span class="c003">threads.cma</span> must
+be given twice: when building the runtime system (so that <span class="c003">ocamlc</span>
+knows which C primitives are required) and also when building the
+bytecode executable (so that the bytecode from <span class="c003">unix.cma</span> and
+<span class="c003">threads.cma</span> is actually linked in).</p>
+<h2 class="section" id="sec422">20.2&#XA0;&#XA0;The <span class="c003">value</span> type</h2>
+<p>All OCaml objects are represented by the C type <span class="c003">value</span>,
+defined in the include file <span class="c003">caml/mlvalues.h</span>, along with macros to
+manipulate values of that type. An object of type <span class="c003">value</span> is either:
+</p><ul class="itemize"><li class="li-itemize">
+an unboxed integer;
+</li><li class="li-itemize">a pointer to a block inside the heap (such as the blocks
+allocated through one of the <code>caml_alloc_*</code> functions below);
+</li><li class="li-itemize">a pointer to an object outside the heap (e.g., a pointer to a block
+allocated by <span class="c003">malloc</span>, or to a C variable).
+</li></ul>
+<h3 class="subsection" id="sec423">20.2.1&#XA0;&#XA0;Integer values</h3>
+<p>Integer values encode 63-bit signed integers (31-bit on 32-bit
+architectures). They are unboxed (unallocated).</p>
+<h3 class="subsection" id="sec424">20.2.2&#XA0;&#XA0;Blocks</h3>
+<p>Blocks in the heap are garbage-collected, and therefore have strict
+structure constraints. Each block includes a header containing the
+size of the block (in words), and the tag of the block.
+The tag governs how the contents of the blocks are structured. A tag
+lower than <span class="c003">No_scan_tag</span> indicates a structured block, containing
+well-formed values, which is recursively traversed by the garbage
+collector. A tag greater than or equal to <span class="c003">No_scan_tag</span> indicates a
+raw block, whose contents are not scanned by the garbage collector.
+For the benefit of ad-hoc polymorphic primitives such as equality and
+structured input-output, structured and raw blocks are further
+classified according to their tags as follows:
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">Tag</span></td><td class="c014"><span class="c013">Contents of the block</span> </td></tr>
+<tr><td class="c022">
+0 to <span class="c003">No_scan_tag</span>&#X2212;1</td><td class="c021">A structured block (an array of
+OCaml objects). Each field is a <span class="c003">value</span>. </td></tr>
+<tr><td class="c022"><span class="c003">Closure_tag</span></td><td class="c021">A closure representing a functional value. The first
+word is a pointer to a piece of code, the remaining words are
+<span class="c003">value</span> containing the environment. </td></tr>
+<tr><td class="c022"><span class="c003">String_tag</span></td><td class="c021">A character string or a byte sequence. </td></tr>
+<tr><td class="c022"><span class="c003">Double_tag</span></td><td class="c021">A double-precision floating-point number. </td></tr>
+<tr><td class="c022"><span class="c003">Double_array_tag</span></td><td class="c021">An array or record of double-precision
+floating-point numbers. </td></tr>
+<tr><td class="c022"><span class="c003">Abstract_tag</span></td><td class="c021">A block representing an abstract datatype. </td></tr>
+<tr><td class="c022"><span class="c003">Custom_tag</span></td><td class="c021">A block representing an abstract datatype
+with user-defined finalization, comparison, hashing,
+serialization and deserialization functions atttached. </td></tr>
+</table></div></div>
+<h3 class="subsection" id="sec425">20.2.3&#XA0;&#XA0;Pointers outside the heap</h3>
+<p>Any word-aligned pointer to an address outside the heap can be safely
+cast to and from the type <span class="c003">value</span>. This includes pointers returned by
+<span class="c003">malloc</span>, and pointers to C variables (of size at least one word)
+obtained with the <code>&amp;</code> operator.
+</p><p>Caution: if a pointer returned by <span class="c003">malloc</span> is cast to the type <span class="c003">value</span>
+and returned to OCaml, explicit deallocation of the pointer using
+<span class="c003">free</span> is potentially dangerous, because the pointer may still be
+accessible from the OCaml world. Worse, the memory space deallocated
+by <span class="c003">free</span> can later be reallocated as part of the OCaml heap; the
+pointer, formerly pointing outside the OCaml heap, now points inside
+the OCaml heap, and this can crash the garbage collector. To avoid
+these problems, it is preferable to wrap the pointer in a OCaml block
+with tag <span class="c003">Abstract_tag</span> or <span class="c003">Custom_tag</span>.</p>
+<h2 class="section" id="sec426">20.3&#XA0;&#XA0;Representation of OCaml data types</h2>
+<p>This section describes how OCaml data types are encoded in the
+<span class="c003">value</span> type.</p>
+<h3 class="subsection" id="sec427">20.3.1&#XA0;&#XA0;Atomic types</h3>
+<div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">OCaml type</span></td><td class="c014"><span class="c013">Encoding</span> </td></tr>
+<tr><td class="c016">
+<span class="c003">int</span></td><td class="c016">Unboxed integer values. </td></tr>
+<tr><td class="c016"><span class="c003">char</span></td><td class="c016">Unboxed integer values (ASCII code). </td></tr>
+<tr><td class="c016"><span class="c003">float</span></td><td class="c016">Blocks with tag <span class="c003">Double_tag</span>. </td></tr>
+<tr><td class="c016"><span class="c003">bytes</span></td><td class="c016">Blocks with tag <span class="c003">String_tag</span>. </td></tr>
+<tr><td class="c016"><span class="c003">string</span></td><td class="c016">Blocks with tag <span class="c003">String_tag</span>. </td></tr>
+<tr><td class="c016"><span class="c003">int32</span></td><td class="c016">Blocks with tag <span class="c003">Custom_tag</span>. </td></tr>
+<tr><td class="c016"><span class="c003">int64</span></td><td class="c016">Blocks with tag <span class="c003">Custom_tag</span>. </td></tr>
+<tr><td class="c016"><span class="c003">nativeint</span></td><td class="c016">Blocks with tag <span class="c003">Custom_tag</span>. </td></tr>
+</table></div></div>
+<h3 class="subsection" id="sec428">20.3.2&#XA0;&#XA0;Tuples and records</h3>
+<p>
+<a id="ss:tuples-and-records"></a></p><p>Tuples are represented by pointers to blocks, with tag&#XA0;0.</p><p>Records are also represented by zero-tagged blocks. The ordering of
+labels in the record type declaration determines the layout of
+the record fields: the value associated to the label
+declared first is stored in field&#XA0;0 of the block, the value associated
+to the second label goes in field&#XA0;1, and so on.</p><p>As an optimization, records whose fields all have static type <span class="c003">float</span>
+are represented as arrays of floating-point numbers, with tag
+<span class="c003">Double_array_tag</span>. (See the section below on arrays.)</p><p>As another optimization, unboxable record types are represented
+specially; unboxable record types are the immutable record types that
+have only one field. An unboxable type will be represented in one of
+two ways: boxed or unboxed. Boxed record types are represented as
+described above (by a block with tag 0 or <span class="c003">Double_array_tag</span>). An
+unboxed record type is represented directly by the value of its field
+(i.e. there is no block to represent the record itself).</p><p>The representation is chosen according to the following, in decreasing
+order of priority:
+</p><ul class="itemize"><li class="li-itemize">
+An attribute (<span class="c003">[@@boxed]</span> or <span class="c003">[@@unboxed]</span>) on the type declaration.
+</li><li class="li-itemize">A compiler option (<span class="c003">-unboxed-types</span> or <span class="c003">-no-unboxed-types</span>).
+</li><li class="li-itemize">The default representation. In the present version of OCaml, the
+default is the boxed representation.
+</li></ul>
+<h3 class="subsection" id="sec429">20.3.3&#XA0;&#XA0;Arrays</h3>
+<p>Arrays of integers and pointers are represented like tuples,
+that is, as pointers to blocks tagged&#XA0;0. They are accessed with the
+<span class="c003">Field</span> macro for reading and the <span class="c003">caml_modify</span> function for writing.</p><p>Arrays of floating-point numbers (type <span class="c003">float array</span>)
+have a special, unboxed, more efficient representation.
+These arrays are represented by pointers to blocks with tag
+<span class="c003">Double_array_tag</span>. They should be accessed with the <span class="c003">Double_field</span>
+and <span class="c003">Store_double_field</span> macros.</p>
+<h3 class="subsection" id="sec430">20.3.4&#XA0;&#XA0;Concrete data types</h3>
+<p>Constructed terms are represented either by unboxed integers (for
+constant constructors) or by blocks whose tag encode the constructor
+(for non-constant constructors). The constant constructors and the
+non-constant constructors for a given concrete type are numbered
+separately, starting from 0, in the order in which they appear in the
+concrete type declaration. A constant constructor is represented by
+the unboxed integer equal to its constructor number. A non-constant
+constructor declared with <span class="c009">n</span> arguments is represented by
+a block of size <span class="c009">n</span>, tagged with the constructor number; the <span class="c009">n</span>
+fields contain its arguments. Example:</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">Constructed term</span></td><td class="c014"><span class="c013">Representation</span> </td></tr>
+<tr><td class="c022">
+<span class="c003">()</span></td><td class="c021"><span class="c003">Val_int(0)</span> </td></tr>
+<tr><td class="c022"><span class="c003">false</span></td><td class="c021"><span class="c003">Val_int(0)</span> </td></tr>
+<tr><td class="c022"><span class="c003">true</span></td><td class="c021"><span class="c003">Val_int(1)</span> </td></tr>
+<tr><td class="c022"><span class="c003">[]</span></td><td class="c021"><span class="c003">Val_int(0)</span> </td></tr>
+<tr><td class="c022"><span class="c003">h::t</span></td><td class="c021">Block with size = 2 and tag = 0; first field
+contains <span class="c003">h</span>, second field <span class="c003">t</span>. </td></tr>
+</table></div></div><p>As a convenience, <span class="c003">caml/mlvalues.h</span> defines the macros <span class="c003">Val_unit</span>,
+<span class="c003">Val_false</span> and <span class="c003">Val_true</span> to refer to <span class="c003">()</span>, <span class="c003">false</span> and <span class="c003">true</span>.</p><p>The following example illustrates the assignment of
+integers and block tags to constructors:
+</p><pre>type t =
+  | A             (* First constant constructor -&gt; integer "Val_int(0)" *)
+  | B of string   (* First non-constant constructor -&gt; block with tag 0 *)
+  | C             (* Second constant constructor -&gt; integer "Val_int(1)" *)
+  | D of bool     (* Second non-constant constructor -&gt; block with tag 1 *)
+  | E of t * t    (* Third non-constant constructor -&gt; block with tag 2 *)
+</pre><p>As an optimization, unboxable concrete data types are represented
+specially; a concrete data type is unboxable if it has exactly one
+constructor and this constructor has exactly one argument. Unboxable
+concrete data types are represented in the same ways as unboxable
+record types: see the description in
+section&#XA0;<a href="#ss%3Atuples-and-records">20.3.2</a>.</p>
+<h3 class="subsection" id="sec431">20.3.5&#XA0;&#XA0;Objects</h3>
+<p>Objects are represented as blocks with tag <span class="c003">Object_tag</span>. The first
+field of the block refers to the object&#X2019;s class and associated method
+suite, in a format that cannot easily be exploited from C. The second
+field contains a unique object ID, used for comparisons. The remaining
+fields of the object contain the values of the instance variables of
+the object. It is unsafe to access directly instance variables, as the
+type system provides no guarantee about the instance variables
+contained by an object.
+</p><p>One may extract a public method from an object using the C function
+<span class="c003">caml_get_public_method</span> (declared in <span class="c003">&lt;caml/mlvalues.h&gt;</span>.)
+Since public method tags are hashed in the same way as variant tags,
+and methods are functions taking self as first argument, if you want
+to do the method call <span class="c003">foo#bar</span> from the C side, you should call:
+</p><pre>  callback(caml_get_public_method(foo, hash_variant("bar")), foo);
+</pre>
+<h3 class="subsection" id="sec432">20.3.6&#XA0;&#XA0;Polymorphic variants</h3>
+<p>Like constructed terms, polymorphic variant values are represented either
+as integers (for polymorphic variants without argument), or as blocks
+(for polymorphic variants with an argument). Unlike constructed
+terms, variant constructors are not numbered starting from 0, but
+identified by a hash value (an OCaml integer), as computed by the C function
+<span class="c003">hash_variant</span> (declared in <span class="c003">&lt;caml/mlvalues.h&gt;</span>):
+the hash value for a variant constructor named, say, <span class="c003">VConstr</span>
+is <span class="c003">hash_variant("VConstr")</span>.</p><p>The variant value <span class="c003">`VConstr</span> is represented by
+<span class="c003">hash_variant("VConstr")</span>. The variant value <span class="c003">`VConstr(</span><span class="c009">v</span><span class="c003">)</span> is
+represented by a block of size 2 and tag 0, with field number 0
+containing <span class="c003">hash_variant("VConstr")</span> and field number 1 containing
+<span class="c009">v</span>.</p><p>Unlike constructed values, polymorphic variant values taking several
+arguments are not flattened.
+That is, <span class="c003">`VConstr(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">w</span><span class="c003">)</span> is represented by a block
+of size 2, whose field number 1 contains the representation of the
+pair <span class="c003">(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">w</span><span class="c003">)</span>, rather than a block of size 3
+containing <span class="c009">v</span> and <span class="c009">w</span> in fields 1 and 2.</p>
+<h2 class="section" id="sec433">20.4&#XA0;&#XA0;Operations on values</h2>
+<h3 class="subsection" id="sec434">20.4.1&#XA0;&#XA0;Kind tests</h3>
+<ul class="itemize"><li class="li-itemize">
+<span class="c003">Is_long(</span><span class="c009">v</span><span class="c003">)</span> is true if value <span class="c009">v</span> is an immediate integer,
+false otherwise
+</li><li class="li-itemize"><span class="c003">Is_block(</span><span class="c009">v</span><span class="c003">)</span> is true if value <span class="c009">v</span> is a pointer to a block,
+and false if it is an immediate integer.
+</li></ul>
+<h3 class="subsection" id="sec435">20.4.2&#XA0;&#XA0;Operations on integers</h3>
+<ul class="itemize"><li class="li-itemize">
+<span class="c003">Val_long(</span><span class="c009">l</span><span class="c003">)</span> returns the value encoding the <span class="c003">long int</span> <span class="c009">l</span>.
+</li><li class="li-itemize"><span class="c003">Long_val(</span><span class="c009">v</span><span class="c003">)</span> returns the <span class="c003">long int</span> encoded in value <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">Val_int(</span><span class="c009">i</span><span class="c003">)</span> returns the value encoding the <span class="c003">int</span> <span class="c009">i</span>.
+</li><li class="li-itemize"><span class="c003">Int_val(</span><span class="c009">v</span><span class="c003">)</span> returns the <span class="c003">int</span> encoded in value <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">Val_bool(</span><span class="c009">x</span><span class="c003">)</span> returns the OCaml boolean representing the
+truth value of the C integer <span class="c009">x</span>.
+</li><li class="li-itemize"><span class="c003">Bool_val(</span><span class="c009">v</span><span class="c003">)</span> returns 0 if <span class="c009">v</span> is the OCaml boolean
+<span class="c003">false</span>, 1 if <span class="c009">v</span> is <span class="c003">true</span>.
+</li><li class="li-itemize"><span class="c003">Val_true</span>, <span class="c003">Val_false</span> represent the OCaml booleans <span class="c003">true</span> and <span class="c003">false</span>.
+</li></ul>
+<h3 class="subsection" id="sec436">20.4.3&#XA0;&#XA0;Accessing blocks</h3>
+<ul class="itemize"><li class="li-itemize">
+<span class="c003">Wosize_val(</span><span class="c009">v</span><span class="c003">)</span> returns the size of the block <span class="c009">v</span>, in words,
+excluding the header.
+</li><li class="li-itemize"><span class="c003">Tag_val(</span><span class="c009">v</span><span class="c003">)</span> returns the tag of the block <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">Field(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">n</span><span class="c003">)</span> returns the value contained in the
+<span class="c009">n</span><sup><span class="c008">th</span></sup> field of the structured block <span class="c009">v</span>. Fields are numbered from 0 to
+<span class="c003">Wosize_val</span>(<span class="c009">v</span>)&#X2212;1.
+</li><li class="li-itemize"><span class="c003">Store_field(</span><span class="c009">b</span><span class="c003">, </span><span class="c009">n</span><span class="c003">, </span><span class="c009">v</span><span class="c003">)</span> stores the value
+<span class="c009">v</span> in the field number <span class="c009">n</span> of value <span class="c009">b</span>, which must be a
+structured block.
+</li><li class="li-itemize"><span class="c003">Code_val(</span><span class="c009">v</span><span class="c003">)</span> returns the code part of the closure <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">caml_string_length(</span><span class="c009">v</span><span class="c003">)</span> returns the length (number of bytes)
+of the string or byte sequence <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">Byte(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">n</span><span class="c003">)</span> returns the <span class="c009">n</span><sup><span class="c008">th</span></sup> byte of the string
+or byte sequence <span class="c009">v</span>, with type <span class="c003">char</span>. Bytes are numbered from 0 to
+<span class="c003">string_length</span>(<span class="c009">v</span>)&#X2212;1.
+</li><li class="li-itemize"><span class="c003">Byte_u(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">n</span><span class="c003">)</span> returns the <span class="c009">n</span><sup><span class="c008">th</span></sup> byte of the string
+or byte sequence <span class="c009">v</span>, with type <span class="c003">unsigned char</span>. Bytes are
+numbered from 0 to <span class="c003">string_length</span>(<span class="c009">v</span>)&#X2212;1.
+</li><li class="li-itemize"><span class="c003">String_val(</span><span class="c009">v</span><span class="c003">)</span> returns a pointer to the first byte of the string
+<span class="c009">v</span>, with type <span class="c003">char *</span> or, when OCaml is configured with
+<span class="c003">-force-safe-string</span>, with type <span class="c003">const char *</span>.
+This pointer is a valid C string: there is a null byte after the last
+byte in the string. However, OCaml strings can contain embedded null bytes,
+which will confuse the usual C functions over strings.
+</li><li class="li-itemize"><span class="c003">Bytes_val(</span><span class="c009">v</span><span class="c003">)</span> returns a pointer to the first byte of the
+byte sequence <span class="c009">v</span>, with type <span class="c003">unsigned char *</span>.
+</li><li class="li-itemize"><span class="c003">Double_val(</span><span class="c009">v</span><span class="c003">)</span> returns the floating-point number contained in
+value <span class="c009">v</span>, with type <span class="c003">double</span>.
+</li><li class="li-itemize"><span class="c003">Double_field(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">n</span><span class="c003">)</span> returns
+the <span class="c009">n</span><sup><span class="c008">th</span></sup> element of the array of floating-point numbers <span class="c009">v</span> (a
+block tagged <span class="c003">Double_array_tag</span>).
+</li><li class="li-itemize"><span class="c003">Store_double_field(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">n</span><span class="c003">, </span><span class="c009">d</span><span class="c003">)</span> stores the double precision floating-point number <span class="c009">d</span>
+in the <span class="c009">n</span><sup><span class="c008">th</span></sup> element of the array of floating-point numbers <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">Data_custom_val(</span><span class="c009">v</span><span class="c003">)</span> returns a pointer to the data part
+of the custom block <span class="c009">v</span>. This pointer has type <span class="c003">void *</span> and must
+be cast to the type of the data contained in the custom block.
+</li><li class="li-itemize"><span class="c003">Int32_val(</span><span class="c009">v</span><span class="c003">)</span> returns the 32-bit integer contained
+in the <span class="c003">int32</span> <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">Int64_val(</span><span class="c009">v</span><span class="c003">)</span> returns the 64-bit integer contained
+in the <span class="c003">int64</span> <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">Nativeint_val(</span><span class="c009">v</span><span class="c003">)</span> returns the long integer contained
+in the <span class="c003">nativeint</span> <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">caml_field_unboxed(</span><span class="c009">v</span><span class="c003">)</span> returns the value of the field
+of a value <span class="c009">v</span> of any unboxed type (record or concrete data type).
+</li><li class="li-itemize"><span class="c003">caml_field_boxed(</span><span class="c009">v</span><span class="c003">)</span> returns the value of the field
+of a value <span class="c009">v</span> of any boxed type (record or concrete data type).
+</li><li class="li-itemize"><span class="c003">caml_field_unboxable(</span><span class="c009">v</span><span class="c003">)</span> calls either
+<span class="c003">caml_field_unboxed</span> or <span class="c003">caml_field_boxed</span> according to the default
+representation of unboxable types in the current version of OCaml.
+</li></ul><p>
+The expressions <span class="c003">Field(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">n</span><span class="c003">)</span>,
+<span class="c003">Byte(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">n</span><span class="c003">)</span> and
+<span class="c003">Byte_u(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">n</span><span class="c003">)</span>
+are valid l-values. Hence, they can be assigned to, resulting in an
+in-place modification of value <span class="c009">v</span>.
+Assigning directly to <span class="c003">Field(</span><span class="c009">v</span><span class="c003">, </span><span class="c009">n</span><span class="c003">)</span> must
+be done with care to avoid confusing the garbage collector (see
+below).</p>
+<h3 class="subsection" id="sec437">20.4.4&#XA0;&#XA0;Allocating blocks</h3>
+<h4 class="subsubsection" id="sec438">Simple interface</h4>
+<ul class="itemize"><li class="li-itemize">
+<span class="c003">Atom(</span><span class="c009">t</span><span class="c003">)</span> returns an &#X201C;atom&#X201D; (zero-sized block) with tag <span class="c009">t</span>.
+Zero-sized blocks are preallocated outside of the heap. It is
+incorrect to try and allocate a zero-sized block using the functions below.
+For instance, <span class="c003">Atom(0)</span> represents the empty array.
+</li><li class="li-itemize"><span class="c003">caml_alloc(</span><span class="c009">n</span><span class="c003">, </span><span class="c009">t</span><span class="c003">)</span> returns a fresh block of size <span class="c009">n</span>
+with tag <span class="c009">t</span>. If <span class="c009">t</span> is less than <span class="c003">No_scan_tag</span>, then the
+fields of the block are initialized with a valid value in order to
+satisfy the GC constraints.
+</li><li class="li-itemize"><span class="c003">caml_alloc_tuple(</span><span class="c009">n</span><span class="c003">)</span> returns a fresh block of size
+<span class="c009">n</span> words, with tag 0.
+</li><li class="li-itemize"><span class="c003">caml_alloc_string(</span><span class="c009">n</span><span class="c003">)</span> returns a byte sequence (or string) value of
+length <span class="c009">n</span> bytes. The sequence initially contains uninitialized bytes.
+</li><li class="li-itemize"><span class="c003">caml_alloc_initialized_string(</span><span class="c009">n</span><span class="c003">, </span><span class="c009">p</span><span class="c003">)</span> returns a byte sequence
+(or string) value of length <span class="c009">n</span> bytes. The value is initialized from the
+<span class="c009">n</span> bytes starting at address <span class="c009">p</span>.
+</li><li class="li-itemize"><span class="c003">caml_copy_string(</span><span class="c009">s</span><span class="c003">)</span> returns a string or byte sequence value
+containing a copy of the null-terminated C string <span class="c009">s</span> (a <span class="c003">char *</span>).
+</li><li class="li-itemize"><span class="c003">caml_copy_double(</span><span class="c009">d</span><span class="c003">)</span> returns a floating-point value initialized
+with the <span class="c003">double</span> <span class="c009">d</span>.
+</li><li class="li-itemize"><span class="c003">caml_copy_int32(</span><span class="c009">i</span><span class="c003">)</span>, <span class="c003">caml_copy_int64(</span><span class="c009">i</span><span class="c003">)</span> and
+<span class="c003">caml_copy_nativeint(</span><span class="c009">i</span><span class="c003">)</span> return a value of OCaml type <span class="c003">int32</span>,
+<span class="c003">int64</span> and <span class="c003">nativeint</span>, respectively, initialized with the integer
+<span class="c009">i</span>.
+</li><li class="li-itemize"><span class="c003">caml_alloc_array(</span><span class="c009">f</span><span class="c003">, </span><span class="c009">a</span><span class="c003">)</span> allocates an array of values, calling
+function <span class="c009">f</span> over each element of the input array <span class="c009">a</span> to transform it
+into a value. The array <span class="c009">a</span> is an array of pointers terminated by the
+null pointer. The function <span class="c009">f</span> receives each pointer as argument, and
+returns a value. The zero-tagged block returned by
+<span class="c003">alloc_array(</span><span class="c009">f</span><span class="c003">, </span><span class="c009">a</span><span class="c003">)</span> is filled with the values returned by the
+successive calls to <span class="c009">f</span>. (This function must not be used to build
+an array of floating-point numbers.)
+</li><li class="li-itemize"><span class="c003">caml_copy_string_array(</span><span class="c009">p</span><span class="c003">)</span> allocates an array of strings or byte
+sequences, copied from the pointer to a string array <span class="c009">p</span>
+(a <span class="c003">char **</span>). <span class="c009">p</span> must be NULL-terminated.
+</li><li class="li-itemize"><span class="c003">caml_alloc_float_array(</span><span class="c009">n</span><span class="c003">)</span> allocates an array of floating point
+numbers of size <span class="c009">n</span>. The array initially contains uninitialized values.
+</li><li class="li-itemize"><span class="c003">caml_alloc_unboxed(</span><span class="c009">v</span><span class="c003">)</span> returns the value (of any unboxed
+type) whose field is the value <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">caml_alloc_boxed(</span><span class="c009">v</span><span class="c003">)</span> allocates and returns a value (of
+any boxed type) whose field is the value <span class="c009">v</span>.
+</li><li class="li-itemize"><span class="c003">caml_alloc_unboxable(</span><span class="c009">v</span><span class="c003">)</span> calls either
+<span class="c003">caml_alloc_unboxed</span> or <span class="c003">caml_alloc_boxed</span> according to the default
+representation of unboxable types in the current version of OCaml.
+</li></ul>
+<h4 class="subsubsection" id="sec439">Low-level interface</h4>
+<p>The following functions are slightly more efficient than <span class="c003">caml_alloc</span>, but
+also much more difficult to use.</p><p>From the standpoint of the allocation functions, blocks are divided
+according to their size as zero-sized blocks, small blocks (with size
+less than or equal to <code>Max_young_wosize</code>), and large blocks (with
+size greater than <code>Max_young_wosize</code>). The constant
+<code>Max_young_wosize</code> is declared in the include file <span class="c003">mlvalues.h</span>. It
+is guaranteed to be at least 64 (words), so that any block with
+constant size less than or equal to 64 can be assumed to be small. For
+blocks whose size is computed at run-time, the size must be compared
+against <code>Max_young_wosize</code> to determine the correct allocation procedure.</p><ul class="itemize"><li class="li-itemize">
+<span class="c003">caml_alloc_small(</span><span class="c009">n</span><span class="c003">, </span><span class="c009">t</span><span class="c003">)</span> returns a fresh small block of size
+<span class="c009">n</span> &#X2264; <span class="c003">Max_young_wosize</span> words, with tag <span class="c009">t</span>.
+If this block is a structured block (i.e. if <span class="c009">t</span> &lt; <span class="c003">No_scan_tag</span>), then
+the fields of the block (initially containing garbage) must be initialized
+with legal values (using direct assignment to the fields of the block)
+before the next allocation.
+</li><li class="li-itemize"><span class="c003">caml_alloc_shr(</span><span class="c009">n</span><span class="c003">, </span><span class="c009">t</span><span class="c003">)</span> returns a fresh block of size
+<span class="c009">n</span>, with tag <span class="c009">t</span>.
+The size of the block can be greater than <code>Max_young_wosize</code>. (It
+can also be smaller, but in this case it is more efficient to call
+<span class="c003">caml_alloc_small</span> instead of <span class="c003">caml_alloc_shr</span>.)
+If this block is a structured block (i.e. if <span class="c009">t</span> &lt; <span class="c003">No_scan_tag</span>), then
+the fields of the block (initially containing garbage) must be initialized
+with legal values (using the <span class="c003">caml_initialize</span> function described below)
+before the next allocation.
+</li></ul>
+<h3 class="subsection" id="sec440">20.4.5&#XA0;&#XA0;Raising exceptions</h3>
+<p> <a id="s:c-exceptions"></a></p><p>Two functions are provided to raise two standard exceptions:
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c003">caml_failwith(</span><span class="c009">s</span><span class="c003">)</span>, where <span class="c009">s</span> is a null-terminated C string (with
+type <code>char *</code>), raises exception <span class="c003">Failure</span> with argument <span class="c009">s</span>.
+</li><li class="li-itemize"><span class="c003">caml_invalid_argument(</span><span class="c009">s</span><span class="c003">)</span>, where <span class="c009">s</span> is a null-terminated C
+string (with type <code>char *</code>), raises exception <span class="c003">Invalid_argument</span>
+with argument <span class="c009">s</span>.
+</li></ul><p>Raising arbitrary exceptions from C is more delicate: the
+exception identifier is dynamically allocated by the OCaml program, and
+therefore must be communicated to the C function using the
+registration facility described below in section&#XA0;<a href="#s%3Aregister-exn">20.7.3</a>.
+Once the exception identifier is recovered in C, the following
+functions actually raise the exception:
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c003">caml_raise_constant(</span><span class="c009">id</span><span class="c003">)</span> raises the exception <span class="c009">id</span> with
+no argument;
+</li><li class="li-itemize"><span class="c003">caml_raise_with_arg(</span><span class="c009">id</span><span class="c003">, </span><span class="c009">v</span><span class="c003">)</span> raises the exception
+<span class="c009">id</span> with the OCaml value <span class="c009">v</span> as argument;
+</li><li class="li-itemize"><span class="c003">caml_raise_with_args(</span><span class="c009">id</span><span class="c003">, </span><span class="c009">n</span><span class="c003">, </span><span class="c009">v</span><span class="c003">)</span>
+raises the exception <span class="c009">id</span> with the OCaml values
+<span class="c009">v</span><span class="c003">[0]</span>, &#X2026;, <span class="c009">v</span><span class="c003">[</span><span class="c009">n</span><span class="c003">-1]</span> as arguments;
+</li><li class="li-itemize"><span class="c003">caml_raise_with_string(</span><span class="c009">id</span><span class="c003">, </span><span class="c009">s</span><span class="c003">)</span>, where <span class="c009">s</span> is a
+null-terminated C string, raises the exception <span class="c009">id</span> with a copy of
+the C string <span class="c009">s</span> as argument.
+</li></ul>
+<h2 class="section" id="sec441">20.5&#XA0;&#XA0;Living in harmony with the garbage collector</h2>
+<p>Unused blocks in the heap are automatically reclaimed by the garbage
+collector. This requires some cooperation from C code that
+manipulates heap-allocated blocks.</p>
+<h3 class="subsection" id="sec442">20.5.1&#XA0;&#XA0;Simple interface</h3>
+<p>All the macros described in this section are declared in the
+<span class="c003">memory.h</span> header file.</p><div class="theorem"><span class="c013">Rule&#XA0;1</span>&#XA0;&#XA0;<em>
+A function that has parameters or local variables of type <span class="c003">value</span> must
+begin with a call to one of the <span class="c003">CAMLparam</span> macros and return with
+<span class="c003">CAMLreturn</span>, <span class="c003">CAMLreturn0</span>, or <span class="c003">CAMLreturnT</span>. In particular, <span class="c003">CAMLlocal</span>
+and <span class="c003">CAMLxparam</span> can only be called </em>after <em><span class="c003">CAMLparam</span>.
+</em></div><p>There are six <span class="c003">CAMLparam</span> macros: <span class="c003">CAMLparam0</span> to <span class="c003">CAMLparam5</span>, which
+take zero to five arguments respectively. If your function has no more
+than 5 parameters of type <span class="c003">value</span>, use the corresponding macros
+with these parameters as arguments. If your function has more than 5
+parameters of type <span class="c003">value</span>, use <span class="c003">CAMLparam5</span> with five of these
+parameters, and use one or more calls to the <span class="c003">CAMLxparam</span> macros for
+the remaining parameters (<span class="c003">CAMLxparam1</span> to <span class="c003">CAMLxparam5</span>).</p><p>The macros <span class="c003">CAMLreturn</span>, <span class="c003">CAMLreturn0</span>, and <span class="c003">CAMLreturnT</span> are used to
+replace the C
+keyword <span class="c003">return</span>. Every occurrence of <span class="c003">return x</span> must be replaced by
+<span class="c003">CAMLreturn (x)</span> if <span class="c003">x</span> has type <span class="c003">value</span>, or <span class="c003">CAMLreturnT (t, x)</span>
+(where <span class="c003">t</span> is the type of <span class="c003">x</span>); every occurrence of <span class="c003">return</span> without
+argument must be
+replaced by <span class="c003">CAMLreturn0</span>. If your C function is a procedure (i.e. if
+it returns void), you must insert <span class="c003">CAMLreturn0</span> at the end (to replace
+C&#X2019;s implicit <span class="c003">return</span>).</p>
+<h5 class="paragraph" id="sec443">Note:</h5>
+<p> some C compilers give bogus warnings about unused
+variables <span class="c003">caml__dummy_xxx</span> at each use of <span class="c003">CAMLparam</span> and
+<span class="c003">CAMLlocal</span>. You should ignore them.</p><p> <br>
+</p><p>Example:
+</p><pre>void foo (value v1, value v2, value v3)
+{
+  CAMLparam3 (v1, v2, v3);
+  ...
+  CAMLreturn0;
+}
+</pre>
+<h5 class="paragraph" id="sec444">Note:</h5>
+<p> if your function is a primitive with more than 5 arguments
+for use with the byte-code runtime, its arguments are not <span class="c003">value</span>s and
+must not be declared (they have types <span class="c003">value *</span> and <span class="c003">int</span>).</p><div class="theorem"><span class="c013">Rule&#XA0;2</span>&#XA0;&#XA0;<em>
+Local variables of type <span class="c003">value</span> must be declared with one of the
+<span class="c003">CAMLlocal</span> macros. Arrays of <span class="c003">value</span>s are declared with
+<span class="c003">CAMLlocalN</span>. These macros must be used at the beginning of the
+function, not in a nested block.
+</em></div><p>The macros <span class="c003">CAMLlocal1</span> to <span class="c003">CAMLlocal5</span> declare and initialize one to
+five local variables of type <span class="c003">value</span>. The variable names are given as
+arguments to the macros. <span class="c003">CAMLlocalN(</span><span class="c009">x</span><span class="c003">, </span><span class="c009">n</span><span class="c003">)</span> declares
+and initializes a local variable of type <span class="c003">value [</span><span class="c009">n</span><span class="c003">]</span>. You can
+use several calls to these macros if you have more than 5 local
+variables.</p><p>Example:
+</p><pre>value bar (value v1, value v2, value v3)
+{
+  CAMLparam3 (v1, v2, v3);
+  CAMLlocal1 (result);
+  result = caml_alloc (3, 0);
+  ...
+  CAMLreturn (result);
+}
+</pre><div class="theorem"><span class="c013">Rule&#XA0;3</span>&#XA0;&#XA0;<em>
+Assignments to the fields of structured blocks must be done with the
+<span class="c003">Store_field</span> macro (for normal blocks) or <span class="c003">Store_double_field</span> macro
+(for arrays and records of floating-point numbers). Other assignments
+must not use <span class="c003">Store_field</span> nor <span class="c003">Store_double_field</span>.
+</em></div><p><span class="c003">Store_field (</span><span class="c009">b</span><span class="c003">, </span><span class="c009">n</span><span class="c003">, </span><span class="c009">v</span><span class="c003">)</span> stores the value
+<span class="c009">v</span> in the field number <span class="c009">n</span> of value <span class="c009">b</span>, which must be a
+block (i.e. <span class="c003">Is_block(</span><span class="c009">b</span><span class="c003">)</span> must be true).</p><p>Example:
+</p><pre>value bar (value v1, value v2, value v3)
+{
+  CAMLparam3 (v1, v2, v3);
+  CAMLlocal1 (result);
+  result = caml_alloc (3, 0);
+  Store_field (result, 0, v1);
+  Store_field (result, 1, v2);
+  Store_field (result, 2, v3);
+  CAMLreturn (result);
+}
+</pre>
+<h5 class="paragraph" id="sec445">Warning:</h5>
+<p> The first argument of <span class="c003">Store_field</span> and
+<span class="c003">Store_double_field</span> must be a variable declared by <span class="c003">CAMLparam*</span> or
+a parameter declared by <span class="c003">CAMLlocal*</span> to ensure that a garbage
+collection triggered by the evaluation of the other arguments will not
+invalidate the first argument after it is computed.</p>
+<h5 class="paragraph" id="sec446">Use with CAMLlocalN:</h5>
+<p> Arrays of values declared using
+<span class="c003">CAMLlocalN</span> must not be written to using <span class="c003">Store_field</span>.
+Use the normal C array syntax instead.</p><div class="theorem"><span class="c013">Rule&#XA0;4</span>&#XA0;&#XA0;<em> Global variables containing values must be registered
+with the garbage collector using the <span class="c003">caml_register_global_root</span> function.
+</em></div><p>Registration of a global variable <span class="c003">v</span> is achieved by calling
+<span class="c003">caml_register_global_root(&amp;v)</span> just before or just after a valid
+value is stored in <span class="c003">v</span> for the first time. You must not call any
+of the OCaml runtime functions or macros between registering and
+storing the value.</p><p>A registered global variable <span class="c003">v</span> can be un-registered by calling
+<span class="c003">caml_remove_global_root(&amp;v)</span>.</p><p>If the contents of the global variable <span class="c003">v</span> are seldom modified after
+registration, better performance can be achieved by calling
+<span class="c003">caml_register_generational_global_root(&amp;v)</span> to register <span class="c003">v</span> (after
+its initialization with a valid <span class="c003">value</span>, but before any allocation or
+call to the GC functions),
+and <span class="c003">caml_remove_generational_global_root(&amp;v)</span> to un-register it. In
+this case, you must not modify the value of <span class="c003">v</span> directly, but you must
+use <span class="c003">caml_modify_generational_global_root(&amp;v,x)</span> to set it to <span class="c003">x</span>.
+The garbage collector takes advantage of the guarantee that <span class="c003">v</span> is not
+modified between calls to <span class="c003">caml_modify_generational_global_root</span> to scan it
+less often. This improves performance if the
+modifications of <span class="c003">v</span> happen less often than minor collections.</p>
+<h5 class="paragraph" id="sec447">Note:</h5>
+<p> The <span class="c003">CAML</span> macros use identifiers (local variables, type
+identifiers, structure tags) that start with <span class="c003">caml__</span>. Do not use any
+identifier starting with <span class="c003">caml__</span> in your programs.</p>
+<h3 class="subsection" id="sec448">20.5.2&#XA0;&#XA0;Low-level interface</h3>
+<p>We now give the GC rules corresponding to the low-level allocation
+functions <span class="c003">caml_alloc_small</span> and <span class="c003">caml_alloc_shr</span>. You can ignore those rules
+if you stick to the simplified allocation function <span class="c003">caml_alloc</span>.</p><div class="theorem"><span class="c013">Rule&#XA0;5</span>&#XA0;&#XA0;<em> After a structured block (a block with tag less than
+<span class="c003">No_scan_tag</span>) is allocated with the low-level functions, all fields
+of this block must be filled with well-formed values before the next
+allocation operation. If the block has been allocated with
+<span class="c003">caml_alloc_small</span>, filling is performed by direct assignment to the fields
+of the block:
+</em><pre><em>
+        Field(<span class="c009">v</span>, <span class="c009">n</span>) = </em><span class="c009">v</span><sub><span class="c009">n</span></sub><em>;
+</em></pre><em>
+If the block has been allocated with <span class="c003">caml_alloc_shr</span>, filling is performed
+through the <span class="c003">caml_initialize</span> function:
+</em><pre><em>
+        caml_initialize(&amp;Field(<span class="c009">v</span>, <span class="c009">n</span>), </em><span class="c009">v</span><sub><span class="c009">n</span></sub><em>);
+</em></pre>
+</div><p>The next allocation can trigger a garbage collection. The garbage
+collector assumes that all structured blocks contain well-formed
+values. Newly created blocks contain random data, which generally do
+not represent well-formed values.</p><p>If you really need to allocate before the fields can receive their
+final value, first initialize with a constant value (e.g.
+<span class="c003">Val_unit</span>), then allocate, then modify the fields with the correct
+value (see rule&#XA0;6).</p><div class="theorem"><span class="c013">Rule&#XA0;6</span>&#XA0;&#XA0;<em> Direct assignment to a field of a block, as in
+</em><pre><em>
+        Field(<span class="c009">v</span>, <span class="c009">n</span>) = <span class="c009">w</span>;
+</em></pre><em>
+is safe only if <span class="c009">v</span> is a block newly allocated by <span class="c003">caml_alloc_small</span>;
+that is, if no allocation took place between the
+allocation of <span class="c009">v</span> and the assignment to the field. In all other cases,
+never assign directly. If the block has just been allocated by <span class="c003">caml_alloc_shr</span>,
+use <span class="c003">caml_initialize</span> to assign a value to a field for the first time:
+</em><pre><em>
+        caml_initialize(&amp;Field(<span class="c009">v</span>, <span class="c009">n</span>), <span class="c009">w</span>);
+</em></pre><em>
+Otherwise, you are updating a field that previously contained a
+well-formed value; then, call the <span class="c003">caml_modify</span> function:
+</em><pre><em>
+        caml_modify(&amp;Field(<span class="c009">v</span>, <span class="c009">n</span>), <span class="c009">w</span>);
+</em></pre>
+</div><p>To illustrate the rules above, here is a C function that builds and
+returns a list containing the two integers given as parameters.
+First, we write it using the simplified allocation functions:
+</p><pre>value alloc_list_int(int i1, int i2)
+{
+  CAMLparam0 ();
+  CAMLlocal2 (result, r);
+
+  r = caml_alloc(2, 0);                   /* Allocate a cons cell */
+  Store_field(r, 0, Val_int(i2));         /* car = the integer i2 */
+  Store_field(r, 1, Val_int(0));          /* cdr = the empty list [] */
+  result = caml_alloc(2, 0);              /* Allocate the other cons cell */
+  Store_field(result, 0, Val_int(i1));    /* car = the integer i1 */
+  Store_field(result, 1, r);              /* cdr = the first cons cell */
+  CAMLreturn (result);
+}
+</pre><p>Here, the registering of <span class="c003">result</span> is not strictly needed, because no
+allocation takes place after it gets its value, but it&#X2019;s easier and
+safer to simply register all the local variables that have type <span class="c003">value</span>.</p><p>Here is the same function written using the low-level allocation
+functions. We notice that the cons cells are small blocks and can be
+allocated with <span class="c003">caml_alloc_small</span>, and filled by direct assignments on
+their fields.
+</p><pre>value alloc_list_int(int i1, int i2)
+{
+  CAMLparam0 ();
+  CAMLlocal2 (result, r);
+
+  r = caml_alloc_small(2, 0);             /* Allocate a cons cell */
+  Field(r, 0) = Val_int(i2);              /* car = the integer i2 */
+  Field(r, 1) = Val_int(0);               /* cdr = the empty list [] */
+  result = caml_alloc_small(2, 0);        /* Allocate the other cons cell */
+  Field(result, 0) = Val_int(i1);         /* car = the integer i1 */
+  Field(result, 1) = r;                   /* cdr = the first cons cell */
+  CAMLreturn (result);
+}
+</pre><p>In the two examples above, the list is built bottom-up. Here is an
+alternate way, that proceeds top-down. It is less efficient, but
+illustrates the use of <span class="c003">caml_modify</span>.
+</p><pre>value alloc_list_int(int i1, int i2)
+{
+  CAMLparam0 ();
+  CAMLlocal2 (tail, r);
+
+  r = caml_alloc_small(2, 0);             /* Allocate a cons cell */
+  Field(r, 0) = Val_int(i1);              /* car = the integer i1 */
+  Field(r, 1) = Val_int(0);               /* A dummy value
+  tail = caml_alloc_small(2, 0);          /* Allocate the other cons cell */
+  Field(tail, 0) = Val_int(i2);           /* car = the integer i2 */
+  Field(tail, 1) = Val_int(0);            /* cdr = the empty list [] */
+  caml_modify(&amp;Field(r, 1), tail);        /* cdr of the result = tail */
+  CAMLreturn (r);
+}
+</pre><p>It would be incorrect to perform
+<span class="c003">Field(r, 1) = tail</span> directly, because the allocation of <span class="c003">tail</span>
+has taken place since <span class="c003">r</span> was allocated.</p>
+<h2 class="section" id="sec449">20.6&#XA0;&#XA0;A complete example</h2>
+<p>This section outlines how the functions from the Unix <span class="c003">curses</span> library
+can be made available to OCaml programs. First of all, here is
+the interface <span class="c003">curses.ml</span> that declares the <span class="c003">curses</span> primitives and
+data types:
+</p><pre>(* File curses.ml -- declaration of primitives and data types *)
+type window                   (* The type "window" remains abstract *)
+external initscr: unit -&gt; window = "caml_curses_initscr"
+external endwin: unit -&gt; unit = "caml_curses_endwin"
+external refresh: unit -&gt; unit = "caml_curses_refresh"
+external wrefresh : window -&gt; unit = "caml_curses_wrefresh"
+external newwin: int -&gt; int -&gt; int -&gt; int -&gt; window = "caml_curses_newwin"
+external addch: char -&gt; unit = "caml_curses_addch"
+external mvwaddch: window -&gt; int -&gt; int -&gt; char -&gt; unit = "caml_curses_mvwaddch"
+external addstr: string -&gt; unit = "caml_curses_addstr"
+external mvwaddstr: window -&gt; int -&gt; int -&gt; string -&gt; unit
+         = "caml_curses_mvwaddstr"
+(* lots more omitted *)
+</pre><p>To compile this interface:
+</p><pre>        ocamlc -c curses.ml
+</pre><p>
+To implement these functions, we just have to provide the stub code;
+the core functions are already implemented in the <span class="c003">curses</span> library.
+The stub code file, <span class="c003">curses_stubs.c</span>, looks like this:
+</p><pre>/* File curses_stubs.c -- stub code for curses */
+#include &lt;curses.h&gt;
+#include &lt;caml/mlvalues.h&gt;
+#include &lt;caml/memory.h&gt;
+#include &lt;caml/alloc.h&gt;
+#include &lt;caml/custom.h&gt;
+
+/* Encapsulation of opaque window handles (of type WINDOW *)
+   as OCaml custom blocks. */
+
+static struct custom_operations curses_window_ops = {
+  "fr.inria.caml.curses_windows",
+  custom_finalize_default,
+  custom_compare_default,
+  custom_hash_default,
+  custom_serialize_default,
+  custom_deserialize_default,
+  custom_compare_ext_default
+};
+
+/* Accessing the WINDOW * part of an OCaml custom block */
+#define Window_val(v) (*((WINDOW **) Data_custom_val(v)))
+
+/* Allocating an OCaml custom block to hold the given WINDOW * */
+static value alloc_window(WINDOW * w)
+{
+  value v = alloc_custom(&amp;curses_window_ops, sizeof(WINDOW *), 0, 1);
+  Window_val(v) = w;
+  return v;
+}
+
+value caml_curses_initscr(value unit)
+{
+  CAMLparam1 (unit);
+  CAMLreturn (alloc_window(initscr()));
+}
+
+value caml_curses_endwin(value unit)
+{
+  CAMLparam1 (unit);
+  endwin();
+  CAMLreturn (Val_unit);
+}
+
+value caml_curses_refresh(value unit)
+{
+  CAMLparam1 (unit);
+  refresh();
+  CAMLreturn (Val_unit);
+}
+
+value caml_curses_wrefresh(value win)
+{
+  CAMLparam1 (win);
+  wrefresh(Window_val(win));
+  CAMLreturn (Val_unit);
+}
+
+value caml_curses_newwin(value nlines, value ncols, value x0, value y0)
+{
+  CAMLparam4 (nlines, ncols, x0, y0);
+  CAMLreturn (alloc_window(newwin(Int_val(nlines), Int_val(ncols),
+                                  Int_val(x0), Int_val(y0))));
+}
+
+value caml_curses_addch(value c)
+{
+  CAMLparam1 (c);
+  addch(Int_val(c));            /* Characters are encoded like integers */
+  CAMLreturn (Val_unit);
+}
+
+value caml_curses_mvwaddch(value win, value x, value y, value c)
+{
+  CAMLparam4 (win, x, y, c);
+  mvwaddch(Window_val(win), Int_val(x), Int_val(y), Int_val(c));
+  CAMLreturn (Val_unit);
+}
+
+value caml_curses_addstr(value s)
+{
+  CAMLparam1 (s);
+  addstr(String_val(s));
+  CAMLreturn (Val_unit);
+}
+
+value caml_curses_mvwaddstr(value win, value x, value y, value s)
+{
+  CAMLparam4 (win, x, y, s);
+  mvwaddstr(Window_val(win), Int_val(x), Int_val(y), String_val(s));
+  CAMLreturn (Val_unit);
+}
+
+/* This goes on for pages. */
+</pre><p>
+The file <span class="c003">curses_stubs.c</span> can be compiled with:
+</p><pre>        cc -c -I`ocamlc -where` curses_stubs.c
+</pre><p>or, even simpler,
+</p><pre>        ocamlc -c curses_stubs.c
+</pre><p>(When passed a <span class="c003">.c</span> file, the <span class="c003">ocamlc</span> command simply calls the C
+compiler on that file, with the right <span class="c003">-I</span> option.)</p><p>Now, here is a sample OCaml program <span class="c003">prog.ml</span> that uses the <span class="c003">curses</span>
+module:
+</p><pre>(* File prog.ml -- main program using curses *)
+open Curses;;
+let main_window = initscr () in
+let small_window = newwin 10 5 20 10 in
+  mvwaddstr main_window 10 2 "Hello";
+  mvwaddstr small_window 4 3 "world";
+  refresh();
+  Unix.sleep 5;
+  endwin()
+</pre><p>To compile and link this program, run:
+</p><pre>       ocamlc -custom -o prog unix.cma curses.cmo prog.ml curses_stubs.o -cclib -lcurses
+</pre><p>(On some machines, you may need to put
+<span class="c003">-cclib -lcurses -cclib -ltermcap</span> or <span class="c003">-cclib -ltermcap</span>
+instead of <span class="c003">-cclib -lcurses</span>.)</p>
+<h2 class="section" id="sec450">20.7&#XA0;&#XA0;Advanced topic: callbacks from C to OCaml</h2>
+<p> <a id="s:callback"></a>
+</p><p>So far, we have described how to call C functions from OCaml. In this
+section, we show how C functions can call OCaml functions, either as
+callbacks (OCaml calls C which calls OCaml), or with the main program
+written in C.</p>
+<h3 class="subsection" id="sec451">20.7.1&#XA0;&#XA0;Applying OCaml closures from C</h3>
+<p> <a id="s:callbacks"></a></p><p>C functions can apply OCaml function values (closures) to OCaml values.
+The following functions are provided to perform the applications:
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c003">caml_callback(</span><span class="c009">f, a</span><span class="c003">)</span> applies the functional value <span class="c009">f</span> to
+the value <span class="c009">a</span> and returns the value returned by&#XA0;<span class="c009">f</span>.
+</li><li class="li-itemize"><span class="c003">caml_callback2(</span><span class="c009">f, a, b</span><span class="c003">)</span> applies the functional value <span class="c009">f</span>
+(which is assumed to be a curried OCaml function with two arguments) to
+<span class="c009">a</span> and <span class="c009">b</span>.
+</li><li class="li-itemize"><span class="c003">caml_callback3(</span><span class="c009">f, a, b, c</span><span class="c003">)</span> applies the functional value <span class="c009">f</span>
+(a curried OCaml function with three arguments) to <span class="c009">a</span>, <span class="c009">b</span> and <span class="c009">c</span>.
+</li><li class="li-itemize"><span class="c003">caml_callbackN(</span><span class="c009">f, n, args</span><span class="c003">)</span> applies the functional value <span class="c009">f</span>
+to the <span class="c009">n</span> arguments contained in the array of values <span class="c009">args</span>.
+</li></ul><p>
+If the function <span class="c009">f</span> does not return, but raises an exception that
+escapes the scope of the application, then this exception is
+propagated to the next enclosing OCaml code, skipping over the C
+code. That is, if an OCaml function <span class="c009">f</span> calls a C function <span class="c009">g</span> that
+calls back an OCaml function <span class="c009">h</span> that raises a stray exception, then the
+execution of <span class="c009">g</span> is interrupted and the exception is propagated back
+into <span class="c009">f</span>.</p><p>If the C code wishes to catch exceptions escaping the OCaml function,
+it can use the functions <span class="c003">caml_callback_exn</span>, <span class="c003">caml_callback2_exn</span>,
+<span class="c003">caml_callback3_exn</span>, <span class="c003">caml_callbackN_exn</span>. These functions take the same
+arguments as their non-<span class="c003">_exn</span> counterparts, but catch escaping
+exceptions and return them to the C code. The return value <span class="c009">v</span> of the
+<span class="c003">caml_callback*_exn</span> functions must be tested with the macro
+<span class="c003">Is_exception_result(</span><span class="c009">v</span><span class="c003">)</span>. If the macro returns &#X201C;false&#X201D;, no
+exception occured, and <span class="c009">v</span> is the value returned by the OCaml
+function. If <span class="c003">Is_exception_result(</span><span class="c009">v</span><span class="c003">)</span> returns &#X201C;true&#X201D;,
+an exception escaped, and its value (the exception descriptor) can be
+recovered using <span class="c003">Extract_exception(</span><span class="c009">v</span><span class="c003">)</span>.</p>
+<h5 class="paragraph" id="sec452">Warning:</h5>
+<p> If the OCaml function returned with an exception,
+<span class="c003">Extract_exception</span> should be applied to the exception result prior
+to calling a function that may trigger garbage collection.
+Otherwise, if <span class="c009">v</span> is reachable during garbage collection, the runtime
+can crash since <span class="c009">v</span> does not contain a valid value.</p><p>Example:
+</p><pre>    value call_caml_f_ex(value closure, value arg)
+    {
+      CAMLparam2(closure, arg);
+      CAMLlocal2(res, tmp);
+      res = caml_callback_exn(closure, arg);
+      if(Is_exception_result(res)) {
+        res = Extract_exception(res);
+        tmp = caml_alloc(3, 0); /* Safe to allocate: res contains valid value. */
+        ...
+      }
+      CAMLreturn (res);
+    }
+</pre>
+<h3 class="subsection" id="sec453">20.7.2&#XA0;&#XA0;Obtaining or registering OCaml closures for use in C functions</h3>
+<p>There are two ways to obtain OCaml function values (closures) to
+be passed to the <span class="c003">callback</span> functions described above. One way is to
+pass the OCaml function as an argument to a primitive function. For
+example, if the OCaml code contains the declaration
+</p><pre>    external apply : ('a -&gt; 'b) -&gt; 'a -&gt; 'b = "caml_apply"
+</pre><p>the corresponding C stub can be written as follows:
+</p><pre>    CAMLprim value caml_apply(value vf, value vx)
+    {
+      CAMLparam2(vf, vx);
+      CAMLlocal1(vy);
+      vy = caml_callback(vf, vx);
+      CAMLreturn(vy);
+    }
+</pre><p>
+Another possibility is to use the registration mechanism provided by
+OCaml. This registration mechanism enables OCaml code to register
+OCaml functions under some global name, and C code to retrieve the
+corresponding closure by this global name.</p><p>On the OCaml side, registration is performed by evaluating
+<span class="c003">Callback.register</span> <span class="c009">n v</span>. Here, <span class="c009">n</span> is the global name
+(an arbitrary string) and <span class="c009">v</span> the OCaml value. For instance:
+</p><pre>    let f x = print_string "f is applied to "; print_int x; print_newline()
+    let _ = Callback.register "test function" f
+</pre><p>
+On the C side, a pointer to the value registered under name <span class="c009">n</span> is
+obtained by calling <span class="c003">caml_named_value(</span><span class="c009">n</span><span class="c003">)</span>. The returned
+pointer must then be dereferenced to recover the actual OCaml value.
+If no value is registered under the name <span class="c009">n</span>, the null pointer is
+returned. For example, here is a C wrapper that calls the OCaml function <span class="c003">f</span>
+above:
+</p><pre>    void call_caml_f(int arg)
+    {
+        caml_callback(*caml_named_value("test function"), Val_int(arg));
+    }
+</pre><p>
+The pointer returned by <span class="c003">caml_named_value</span> is constant and can safely
+be cached in a C variable to avoid repeated name lookups. On the other
+hand, the value pointed to can change during garbage collection and
+must always be recomputed at the point of use. Here is a more
+efficient variant of <span class="c003">call_caml_f</span> above that calls <span class="c003">caml_named_value</span>
+only once:
+</p><pre>    void call_caml_f(int arg)
+    {
+        static value * closure_f = NULL;
+        if (closure_f == NULL) {
+            /* First time around, look up by name */
+            closure_f = caml_named_value("test function");
+        }
+        caml_callback(*closure_f, Val_int(arg));
+    }
+</pre>
+<h3 class="subsection" id="sec454">20.7.3&#XA0;&#XA0;Registering OCaml exceptions for use in C functions</h3>
+<p> <a id="s:register-exn"></a></p><p>The registration mechanism described above can also be used to
+communicate exception identifiers from OCaml to C. The OCaml code
+registers the exception by evaluating
+<span class="c003">Callback.register_exception</span> <span class="c009">n exn</span>, where <span class="c009">n</span> is an
+arbitrary name and <span class="c009">exn</span> is an exception value of the
+exception to register. For example:
+</p><pre>    exception Error of string
+    let _ = Callback.register_exception "test exception" (Error "any string")
+</pre><p>The C code can then recover the exception identifier using
+<span class="c003">caml_named_value</span> and pass it as first argument to the functions
+<span class="c003">raise_constant</span>, <span class="c003">raise_with_arg</span>, and <span class="c003">raise_with_string</span> (described
+in section&#XA0;<a href="#s%3Ac-exceptions">20.4.5</a>) to actually raise the exception. For
+example, here is a C function that raises the <span class="c003">Error</span> exception with
+the given argument:
+</p><pre>    void raise_error(char * msg)
+    {
+        caml_raise_with_string(*caml_named_value("test exception"), msg);
+    }
+</pre>
+<h3 class="subsection" id="sec455">20.7.4&#XA0;&#XA0;Main program in C</h3>
+<p> <a id="s:main-c"></a></p><p>In normal operation, a mixed OCaml/C program starts by executing the
+OCaml initialization code, which then may proceed to call C
+functions. We say that the main program is the OCaml code. In some
+applications, it is desirable that the C code plays the role of the
+main program, calling OCaml functions when needed. This can be achieved as
+follows:
+</p><ul class="itemize"><li class="li-itemize">
+The C part of the program must provide a <span class="c003">main</span> function,
+which will override the default <span class="c003">main</span> function provided by the OCaml
+runtime system. Execution will start in the user-defined <span class="c003">main</span> function
+just like for a regular C program.</li><li class="li-itemize">At some point, the C code must call <span class="c003">caml_main(argv)</span> to
+initialize the OCaml code. The <span class="c003">argv</span> argument is a C array of strings
+(type <span class="c003">char **</span>), terminated with a <span class="c003">NULL</span> pointer,
+which represents the command-line arguments, as
+passed as second argument to <span class="c003">main</span>. The OCaml array <span class="c003">Sys.argv</span> will
+be initialized from this parameter. For the bytecode compiler,
+<span class="c003">argv[0]</span> and <span class="c003">argv[1]</span> are also consulted to find the file containing
+the bytecode.</li><li class="li-itemize">The call to <span class="c003">caml_main</span> initializes the OCaml runtime system,
+loads the bytecode (in the case of the bytecode compiler), and
+executes the initialization code of the OCaml program. Typically, this
+initialization code registers callback functions using <span class="c003">Callback.register</span>.
+Once the OCaml initialization code is complete, control returns to the
+C code that called <span class="c003">caml_main</span>.</li><li class="li-itemize">The C code can then invoke OCaml functions using the callback
+mechanism (see section&#XA0;<a href="#s%3Acallbacks">20.7.1</a>).
+</li></ul>
+<h3 class="subsection" id="sec456">20.7.5&#XA0;&#XA0;Embedding the OCaml code in the C code</h3>
+<p> <a id="s:embedded-code"></a></p><p>The bytecode compiler in custom runtime mode (<span class="c003">ocamlc -custom</span>)
+normally appends the bytecode to the executable file containing the
+custom runtime. This has two consequences. First, the final linking
+step must be performed by <span class="c003">ocamlc</span>. Second, the OCaml runtime library
+must be able to find the name of the executable file from the
+command-line arguments. When using <span class="c003">caml_main(argv)</span> as in
+section&#XA0;<a href="#s%3Amain-c">20.7.4</a>, this means that <span class="c003">argv[0]</span> or <span class="c003">argv[1]</span> must
+contain the executable file name.</p><p>An alternative is to embed the bytecode in the C code. The
+<span class="c003">-output-obj</span> option to <span class="c003">ocamlc</span> is provided for this purpose. It
+causes the <span class="c003">ocamlc</span> compiler to output a C object file (<span class="c003">.o</span> file,
+<span class="c003">.obj</span> under Windows) containing the bytecode for the OCaml part of the
+program, as well as a <span class="c003">caml_startup</span> function. The C object file
+produced by <span class="c003">ocamlc -output-obj</span> can then be linked with C code using
+the standard C compiler, or stored in a C library.</p><p>The <span class="c003">caml_startup</span> function must be called from the main C program in
+order to initialize the OCaml runtime and execute the OCaml
+initialization code. Just like <span class="c003">caml_main</span>, it takes one <span class="c003">argv</span>
+parameter containing the command-line parameters. Unlike <span class="c003">caml_main</span>,
+this <span class="c003">argv</span> parameter is used only to initialize <span class="c003">Sys.argv</span>, but not
+for finding the name of the executable file.</p><p>The <span class="c003">caml_startup</span> function calls the uncaught exception handler (or
+enters the debugger, if running under ocamldebug) if an exception escapes
+from a top-level module initialiser. Such exceptions may be caught in the
+C code by instead using the <span class="c003">caml_startup_exn</span> function and testing the result
+using <span class="c003">Is_exception_result</span> (followed by <span class="c003">Extract_exception</span> if
+appropriate).</p><p>The <span class="c003">-output-obj</span> option can also be used to obtain the C source file.
+More interestingly, the same option can also produce directly a shared
+library (<span class="c003">.so</span> file, <span class="c003">.dll</span> under Windows) that contains the OCaml
+code, the OCaml runtime system and any other static C code given to
+<span class="c003">ocamlc</span> (<span class="c003">.o</span>, <span class="c003">.a</span>, respectively, <span class="c003">.obj</span>, <span class="c003">.lib</span>). This use of
+<span class="c003">-output-obj</span> is very similar to a normal linking step, but instead of
+producing a main program that automatically runs the OCaml code, it
+produces a shared library that can run the OCaml code on demand. The
+three possible behaviors of <span class="c003">-output-obj</span> are selected according
+to the extension of the resulting file (given with <span class="c003">-o</span>).</p><p>The native-code compiler <span class="c003">ocamlopt</span> also supports the <span class="c003">-output-obj</span>
+option, causing it to output a C object file or a shared library
+containing the native code for all OCaml modules on the command-line,
+as well as the OCaml startup code. Initialization is performed by
+calling <span class="c003">caml_startup</span> (or <span class="c003">caml_startup_exn</span>) as in the case of the
+bytecode compiler.</p><p>For the final linking phase, in addition to the object file produced
+by <span class="c003">-output-obj</span>, you will have to provide the OCaml runtime
+library (<span class="c003">libcamlrun.a</span> for bytecode, <span class="c003">libasmrun.a</span> for native-code),
+as well as all C libraries that are required by the OCaml libraries
+used. For instance, assume the OCaml part of your program uses the
+Unix library. With <span class="c003">ocamlc</span>, you should do:
+</p><pre>
+        ocamlc -output-obj -o camlcode.o unix.cma <span class="c009">other</span> .cmo <span class="c009">and</span> .cma <span class="c009">files</span>
+        cc -o myprog <span class="c009">C objects and libraries</span> \
+           camlcode.o -L&#X2018;ocamlc -where&#X2018; -lunix -lcamlrun
+</pre><p>
+With <span class="c003">ocamlopt</span>, you should do:
+</p><pre>
+        ocamlopt -output-obj -o camlcode.o unix.cmxa <span class="c009">other</span> .cmx <span class="c009">and</span> .cmxa <span class="c009">files</span>
+        cc -o myprog <span class="c009">C objects and libraries</span> \
+           camlcode.o -L&#X2018;ocamlc -where&#X2018; -lunix -lasmrun
+</pre>
+<h5 class="paragraph" id="sec457">Warning:</h5>
+<p> On some ports, special options are required on the final
+linking phase that links together the object file produced by the
+<span class="c003">-output-obj</span> option and the remainder of the program. Those options
+are shown in the configuration file <span class="c003">config/Makefile</span> generated during
+compilation of OCaml, as the variable <span class="c003">LDFLAGS</span>.
+</p><ul class="itemize"><li class="li-itemize">
+Windows with the MSVC compiler: the object file produced by
+OCaml have been compiled with the <span class="c003">/MD</span> flag, and therefore
+all other object files linked with it should also be compiled with
+<span class="c003">/MD</span>.
+</li><li class="li-itemize">other systems: you may have to add one or more of <span class="c003">-lcurses</span>,
+<span class="c003">-lm</span>, <span class="c003">-ldl</span>, depending on your OS and C compiler.
+</li></ul>
+<h5 class="paragraph" id="sec458">Stack backtraces.</h5>
+<p> When OCaml bytecode produced by
+<span class="c003">ocamlc -g</span> is embedded in a C program, no debugging information is
+included, and therefore it is impossible to print stack backtraces on
+uncaught exceptions. This is not the case when native code produced
+by <span class="c003">ocamlopt -g</span> is embedded in a C program: stack backtrace
+information is available, but the backtrace mechanism needs to be
+turned on programmatically. This can be achieved from the OCaml side
+by calling <span class="c003">Printexc.record_backtrace true</span> in the initialization of
+one of the OCaml modules. This can also be achieved from the C side
+by calling <span class="c003">caml_record_backtrace(Val_int(1));</span> in the OCaml-C glue code.</p>
+<h5 class="paragraph" id="sec459">Unloading the runtime.</h5>
+<p>In case the shared library produced with <span class="c003">-output-obj</span> is to be loaded and
+unloaded repeatedly by a single process, care must be taken to unload the
+OCaml runtime explicitly, in order to avoid various system resource leaks.</p><p>Since 4.05, <span class="c003">caml_shutdown</span> function can be used to shut the runtime down
+gracefully, which equals the following:
+</p><ul class="itemize"><li class="li-itemize">
+Running the functions that were registered with <span class="c003">Pervasives.at_exit</span>.
+</li><li class="li-itemize">Triggering finalization of allocated custom blocks (see
+section&#XA0;<a href="#s%3Acustom">20.9</a>). For example, <span class="c003">Pervasives.in_channel</span> and
+<span class="c003">Pervasives.out_channel</span> are represented by custom blocks that enclose file
+descriptors, which are to be released.
+</li><li class="li-itemize">Unloading the dependent shared libraries that were loaded by the runtime,
+including <span class="c003">dynlink</span> plugins.
+</li><li class="li-itemize">Freeing the memory blocks that were allocated by the runtime with
+<span class="c003">malloc</span>. Inside C primitives, it is advised to use <span class="c003">caml_stat_*</span> functions
+from <span class="c003">memory.h</span> for managing static (that is, non-moving) blocks of heap
+memory, as all the blocks allocated with these functions are automatically
+freed by <span class="c003">caml_shutdown</span>. For ensuring compatibility with legacy C stubs that
+have used <span class="c003">caml_stat_*</span> incorrectly, this behaviour is only enabled if the
+runtime is started with a specialized <span class="c003">caml_startup_pooled</span> function.
+</li></ul><p>As a shared library may have several clients simultaneously, it is made for
+convenience that <span class="c003">caml_startup</span> (and <span class="c003">caml_startup_pooled</span>) may be called
+multiple times, given that each such call is paired with a corresponding call
+to <span class="c003">caml_shutdown</span> (in a nested fashion). The runtime will be unloaded once
+there are no outstanding calls to <span class="c003">caml_startup</span>.</p><p>Once a runtime is unloaded, it cannot be started up again without reloading the
+shared library and reinitializing its static data. Therefore, at the moment, the
+facility is only useful for building reloadable shared libraries.</p>
+<h2 class="section" id="sec460">20.8&#XA0;&#XA0;Advanced example with callbacks</h2>
+<p>This section illustrates the callback facilities described in
+section&#XA0;<a href="#s%3Acallback">20.7</a>. We are going to package some OCaml functions
+in such a way that they can be linked with C code and called from C
+just like any C functions. The OCaml functions are defined in the
+following <span class="c003">mod.ml</span> OCaml source:</p><pre>(* File mod.ml -- some "useful" OCaml functions *)
+
+let rec fib n = if n &lt; 2 then 1 else fib(n-1) + fib(n-2)
+
+let format_result n = Printf.sprintf "Result is: %d\n" n
+
+(* Export those two functions to C *)
+
+let _ = Callback.register "fib" fib
+let _ = Callback.register "format_result" format_result
+</pre><p>
+Here is the C stub code for calling these functions from C:</p><pre>/* File modwrap.c -- wrappers around the OCaml functions */
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;caml/mlvalues.h&gt;
+#include &lt;caml/callback.h&gt;
+
+int fib(int n)
+{
+  static value * fib_closure = NULL;
+  if (fib_closure == NULL) fib_closure = caml_named_value("fib");
+  return Int_val(caml_callback(*fib_closure, Val_int(n)));
+}
+
+char * format_result(int n)
+{
+  static value * format_result_closure = NULL;
+  if (format_result_closure == NULL)
+    format_result_closure = caml_named_value("format_result");
+  return strdup(String_val(caml_callback(*format_result_closure, Val_int(n))));
+  /* We copy the C string returned by String_val to the C heap
+     so that it remains valid after garbage collection. */
+}
+</pre><p>
+We now compile the OCaml code to a C object file and put it in a C
+library along with the stub code in <span class="c003">modwrap.c</span> and the OCaml runtime system:
+</p><pre>        ocamlc -custom -output-obj -o modcaml.o mod.ml
+        ocamlc -c modwrap.c
+        cp `ocamlc -where`/libcamlrun.a mod.a &amp;&amp; chmod +w mod.a
+        ar r mod.a modcaml.o modwrap.o
+</pre><p>(One can also use <span class="c003">ocamlopt -output-obj</span> instead of <span class="c003">ocamlc -custom -output-obj</span>. In this case, replace <span class="c003">libcamlrun.a</span> (the bytecode
+runtime library) by <span class="c003">libasmrun.a</span> (the native-code runtime library).)</p><p>Now, we can use the two functions <span class="c003">fib</span> and <span class="c003">format_result</span> in any C
+program, just like regular C functions. Just remember to call
+<span class="c003">caml_startup</span> (or <span class="c003">caml_startup_exn</span>) once before.</p><pre>/* File main.c -- a sample client for the OCaml functions */
+
+#include &lt;stdio.h&gt;
+#include &lt;caml/callback.h&gt;
+
+extern int fib(int n);
+extern char * format_result(int n);
+
+int main(int argc, char ** argv)
+{
+  int result;
+
+  /* Initialize OCaml code */
+  caml_startup(argv);
+  /* Do some computation */
+  result = fib(10);
+  printf("fib(10) = %s\n", format_result(result));
+  return 0;
+}
+</pre><p>
+To build the whole program, just invoke the C compiler as follows:
+</p><pre>        cc -o prog -I `ocamlc -where` main.c mod.a -lcurses
+</pre><p>(On some machines, you may need to put <span class="c003">-ltermcap</span> or
+<span class="c003">-lcurses -ltermcap</span> instead of <span class="c003">-lcurses</span>.)</p>
+<h2 class="section" id="sec461">20.9&#XA0;&#XA0;Advanced topic: custom blocks</h2>
+<p> <a id="s:custom"></a>
+</p><p>Blocks with tag <span class="c003">Custom_tag</span> contain both arbitrary user data and a
+pointer to a C struct, with type <span class="c003">struct custom_operations</span>, that
+associates user-provided finalization, comparison, hashing,
+serialization and deserialization functions to this block.</p>
+<h3 class="subsection" id="sec462">20.9.1&#XA0;&#XA0;The <span class="c003">struct custom_operations</span></h3>
+<p>The <span class="c003">struct custom_operations</span> is defined in <span class="c003">&lt;caml/custom.h&gt;</span> and
+contains the following fields:
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c003">char *identifier</span> <br>
+A zero-terminated character string serving as an identifier for
+serialization and deserialization operations.</li><li class="li-itemize"><span class="c003">void  (*finalize)(value v)</span> <br>
+The <span class="c003">finalize</span> field contains a pointer to a C function that is called
+when the block becomes unreachable and is about to be reclaimed.
+The block is passed as first argument to the function.
+The <span class="c003">finalize</span> field can also be <span class="c003">custom_finalize_default</span> to indicate that no
+finalization function is associated with the block.</li><li class="li-itemize"><span class="c003">int (*compare)(value v1, value v2)</span> <br>
+The <span class="c003">compare</span> field contains a pointer to a C function that is
+called whenever two custom blocks are compared using OCaml&#X2019;s generic
+comparison operators (<span class="c003">=</span>, <span class="c003">&lt;&gt;</span>, <span class="c003">&lt;=</span>, <span class="c003">&gt;=</span>, <span class="c003">&lt;</span>, <span class="c003">&gt;</span> and
+<span class="c003">compare</span>). The C function should return 0 if the data contained in
+the two blocks are structurally equal, a negative integer if the data
+from the first block is less than the data from the second block, and
+a positive integer if the data from the first block is greater than
+the data from the second block.<p>The <span class="c003">compare</span> field can be set to <span class="c003">custom_compare_default</span>; this
+default comparison function simply raises <span class="c003">Failure</span>.</p></li><li class="li-itemize"><span class="c003">int (*compare_ext)(value v1, value v2)</span> <br>
+(Since 3.12.1)
+The <span class="c003">compare_ext</span> field contains a pointer to a C function that is
+called whenever one custom block and one unboxed integer are compared using OCaml&#X2019;s generic
+comparison operators (<span class="c003">=</span>, <span class="c003">&lt;&gt;</span>, <span class="c003">&lt;=</span>, <span class="c003">&gt;=</span>, <span class="c003">&lt;</span>, <span class="c003">&gt;</span> and
+<span class="c003">compare</span>). As in the case of the <span class="c003">compare</span> field, the C function
+should return 0 if the two arguments are structurally equal, a
+negative integer if the first argument compares less than the second
+argument, and a positive integer if the first argument compares
+greater than the second argument.<p>The <span class="c003">compare_ext</span> field can be set to <span class="c003">custom_compare_ext_default</span>; this
+default comparison function simply raises <span class="c003">Failure</span>.</p></li><li class="li-itemize"><span class="c003">intnat (*hash)(value v)</span> <br>
+The <span class="c003">hash</span> field contains a pointer to a C function that is called
+whenever OCaml&#X2019;s generic hash operator (see module <span class="c003">Hashtbl</span>) is
+applied to a custom block. The C function can return an arbitrary
+integer representing the hash value of the data contained in the
+given custom block. The hash value must be compatible with the
+<span class="c003">compare</span> function, in the sense that two structurally equal data
+(that is, two custom blocks for which <span class="c003">compare</span> returns 0) must have
+the same hash value.<p>The <span class="c003">hash</span> field can be set to <span class="c003">custom_hash_default</span>, in which case
+the custom block is ignored during hash computation.</p></li><li class="li-itemize"><span class="c003">void (*serialize)(value v, uintnat * wsize_32, uintnat * wsize_64)</span> <br>
+The <span class="c003">serialize</span> field contains a pointer to a C function that is
+called whenever the custom block needs to be serialized (marshaled)
+using the OCaml functions <span class="c003">output_value</span> or <span class="c003">Marshal.to_...</span>.
+For a custom block, those functions first write the identifier of the
+block (as given by the <span class="c003">identifier</span> field) to the output stream,
+then call the user-provided <span class="c003">serialize</span> function. That function is
+responsible for writing the data contained in the custom block, using
+the <span class="c003">serialize_...</span> functions defined in <span class="c003">&lt;caml/intext.h&gt;</span> and listed
+below. The user-provided <span class="c003">serialize</span> function must then store in its
+<span class="c003">wsize_32</span> and <span class="c003">wsize_64</span> parameters the sizes in bytes of the data
+part of the custom block on a 32-bit architecture and on a 64-bit
+architecture, respectively.<p>The <span class="c003">serialize</span> field can be set to <span class="c003">custom_serialize_default</span>,
+in which case the <span class="c003">Failure</span> exception is raised when attempting to
+serialize the custom block.</p></li><li class="li-itemize"><span class="c003">uintnat (*deserialize)(void * dst)</span> <br>
+The <span class="c003">deserialize</span> field contains a pointer to a C function that is
+called whenever a custom block with identifier <span class="c003">identifier</span> needs to
+be deserialized (un-marshaled) using the OCaml functions <span class="c003">input_value</span>
+or <span class="c003">Marshal.from_...</span>. This user-provided function is responsible for
+reading back the data written by the <span class="c003">serialize</span> operation, using the
+<span class="c003">deserialize_...</span> functions defined in <span class="c003">&lt;caml/intext.h&gt;</span> and listed
+below. It must then rebuild the data part of the custom block
+and store it at the pointer given as the <span class="c003">dst</span> argument. Finally, it
+returns the size in bytes of the data part of the custom block.
+This size must be identical to the <span class="c003">wsize_32</span> result of
+the <span class="c003">serialize</span> operation if the architecture is 32 bits, or
+<span class="c003">wsize_64</span> if the architecture is 64 bits.<p>The <span class="c003">deserialize</span> field can be set to <span class="c003">custom_deserialize_default</span>
+to indicate that deserialization is not supported. In this case,
+do not register the <span class="c003">struct custom_operations</span> with the deserializer
+using <span class="c003">register_custom_operations</span> (see below).
+</p></li></ul><p>Note: the <span class="c003">finalize</span>, <span class="c003">compare</span>, <span class="c003">hash</span>, <span class="c003">serialize</span> and <span class="c003">deserialize</span>
+functions attached to custom block descriptors must never trigger a
+garbage collection. Within these functions, do not call any of the
+OCaml allocation functions, and do not perform a callback into OCaml
+code. Do not use <span class="c003">CAMLparam</span> to register the parameters to these
+functions, and do not use <span class="c003">CAMLreturn</span> to return the result.</p>
+<h3 class="subsection" id="sec463">20.9.2&#XA0;&#XA0;Allocating custom blocks</h3>
+<p>Custom blocks must be allocated via the <span class="c003">caml_alloc_custom</span> function:
+</p><div class="center">
+<span class="c003">caml_alloc_custom(</span><span class="c009">ops</span><span class="c003">, </span><span class="c009">size</span><span class="c003">, </span><span class="c009">used</span><span class="c003">, </span><span class="c009">max</span><span class="c003">)</span>
+</div><p>
+returns a fresh custom block, with room for <span class="c009">size</span> bytes of user
+data, and whose associated operations are given by <span class="c009">ops</span> (a
+pointer to a <span class="c003">struct custom_operations</span>, usually statically allocated
+as a C global variable).</p><p>The two parameters <span class="c009">used</span> and <span class="c009">max</span> are used to control the
+speed of garbage collection when the finalized object contains
+pointers to out-of-heap resources. Generally speaking, the
+OCaml incremental major collector adjusts its speed relative to the
+allocation rate of the program. The faster the program allocates, the
+harder the GC works in order to reclaim quickly unreachable blocks
+and avoid having large amount of &#X201C;floating garbage&#X201D; (unreferenced
+objects that the GC has not yet collected).</p><p>Normally, the allocation rate is measured by counting the in-heap size
+of allocated blocks. However, it often happens that finalized
+objects contain pointers to out-of-heap memory blocks and other resources
+(such as file descriptors, X Windows bitmaps, etc.). For those
+blocks, the in-heap size of blocks is not a good measure of the
+quantity of resources allocated by the program.</p><p>The two arguments <span class="c009">used</span> and <span class="c009">max</span> give the GC an idea of how
+much out-of-heap resources are consumed by the finalized block
+being allocated: you give the amount of resources allocated to this
+object as parameter <span class="c009">used</span>, and the maximum amount that you want
+to see in floating garbage as parameter <span class="c009">max</span>. The units are
+arbitrary: the GC cares only about the ratio <span class="c009">used</span> / <span class="c009">max</span>.</p><p>For instance, if you are allocating a finalized block holding an X
+Windows bitmap of <span class="c009">w</span> by <span class="c009">h</span> pixels, and you&#X2019;d rather not
+have more than 1 mega-pixels of unreclaimed bitmaps, specify
+<span class="c009">used</span> = <span class="c009">w</span> * <span class="c009">h</span> and <span class="c009">max</span> = 1000000.</p><p>Another way to describe the effect of the <span class="c009">used</span> and <span class="c009">max</span>
+parameters is in terms of full GC cycles. If you allocate many custom
+blocks with <span class="c009">used</span> / <span class="c009">max</span> = 1 / <span class="c009">N</span>, the GC will then do one
+full cycle (examining every object in the heap and calling
+finalization functions on those that are unreachable) every <span class="c009">N</span>
+allocations. For instance, if <span class="c009">used</span> = 1 and <span class="c009">max</span> = 1000,
+the GC will do one full cycle at least every 1000 allocations of
+custom blocks.</p><p>If your finalized blocks contain no pointers to out-of-heap resources,
+or if the previous discussion made little sense to you, just take
+<span class="c009">used</span> = 0 and <span class="c009">max</span> = 1. But if you later find that the
+finalization functions are not called &#X201C;often enough&#X201D;, consider
+increasing the <span class="c009">used</span> / <span class="c009">max</span> ratio.</p>
+<h3 class="subsection" id="sec464">20.9.3&#XA0;&#XA0;Accessing custom blocks</h3>
+<p>The data part of a custom block <span class="c009">v</span> can be
+accessed via the pointer <span class="c003">Data_custom_val(</span><span class="c009">v</span><span class="c003">)</span>. This pointer
+has type <span class="c003">void *</span> and should be cast to the actual type of the data
+stored in the custom block.</p><p>The contents of custom blocks are not scanned by the garbage
+collector, and must therefore not contain any pointer inside the OCaml
+heap. In other terms, never store an OCaml <span class="c003">value</span> in a custom block,
+and do not use <span class="c003">Field</span>, <span class="c003">Store_field</span> nor <span class="c003">caml_modify</span> to access the data
+part of a custom block. Conversely, any C data structure (not
+containing heap pointers) can be stored in a custom block.</p>
+<h3 class="subsection" id="sec465">20.9.4&#XA0;&#XA0;Writing custom serialization and deserialization functions</h3>
+<p>The following functions, defined in <span class="c003">&lt;caml/intext.h&gt;</span>, are provided to
+write and read back the contents of custom blocks in a portable way.
+Those functions handle endianness conversions when e.g. data is
+written on a little-endian machine and read back on a big-endian machine.</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">Function</span></td><td class="c014"><span class="c013">Action</span> </td></tr>
+<tr><td class="c022">
+<span class="c003">caml_serialize_int_1</span></td><td class="c021">Write a 1-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_serialize_int_2</span></td><td class="c021">Write a 2-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_serialize_int_4</span></td><td class="c021">Write a 4-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_serialize_int_8</span></td><td class="c021">Write a 8-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_serialize_float_4</span></td><td class="c021">Write a 4-byte float </td></tr>
+<tr><td class="c022"><span class="c003">caml_serialize_float_8</span></td><td class="c021">Write a 8-byte float </td></tr>
+<tr><td class="c022"><span class="c003">caml_serialize_block_1</span></td><td class="c021">Write an array of 1-byte quantities </td></tr>
+<tr><td class="c022"><span class="c003">caml_serialize_block_2</span></td><td class="c021">Write an array of 2-byte quantities </td></tr>
+<tr><td class="c022"><span class="c003">caml_serialize_block_4</span></td><td class="c021">Write an array of 4-byte quantities </td></tr>
+<tr><td class="c022"><span class="c003">caml_serialize_block_8</span></td><td class="c021">Write an array of 8-byte quantities </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_uint_1</span></td><td class="c021">Read an unsigned 1-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_sint_1</span></td><td class="c021">Read a signed 1-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_uint_2</span></td><td class="c021">Read an unsigned 2-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_sint_2</span></td><td class="c021">Read a signed 2-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_uint_4</span></td><td class="c021">Read an unsigned 4-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_sint_4</span></td><td class="c021">Read a signed 4-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_uint_8</span></td><td class="c021">Read an unsigned 8-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_sint_8</span></td><td class="c021">Read a signed 8-byte integer </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_float_4</span></td><td class="c021">Read a 4-byte float </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_float_8</span></td><td class="c021">Read an 8-byte float </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_block_1</span></td><td class="c021">Read an array of 1-byte quantities </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_block_2</span></td><td class="c021">Read an array of 2-byte quantities </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_block_4</span></td><td class="c021">Read an array of 4-byte quantities </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_block_8</span></td><td class="c021">Read an array of 8-byte quantities </td></tr>
+<tr><td class="c022"><span class="c003">caml_deserialize_error</span></td><td class="c021">Signal an error during deserialization;
+<span class="c003">input_value</span> or <span class="c003">Marshal.from_...</span> raise a <span class="c003">Failure</span> exception after
+cleaning up their internal data structures </td></tr>
+</table></div></div><p>Serialization functions are attached to the custom blocks to which
+they apply. Obviously, deserialization functions cannot be attached
+this way, since the custom block does not exist yet when
+deserialization begins! Thus, the <span class="c003">struct custom_operations</span> that
+contain deserialization functions must be registered with the
+deserializer in advance, using the <span class="c003">register_custom_operations</span>
+function declared in <span class="c003">&lt;caml/custom.h&gt;</span>. Deserialization proceeds by
+reading the identifier off the input stream, allocating a custom block
+of the size specified in the input stream, searching the registered
+<span class="c003">struct custom_operation</span> blocks for one with the same identifier, and
+calling its <span class="c003">deserialize</span> function to fill the data part of the custom block.</p>
+<h3 class="subsection" id="sec466">20.9.5&#XA0;&#XA0;Choosing identifiers</h3>
+<p>Identifiers in <span class="c003">struct custom_operations</span> must be chosen carefully,
+since they must identify uniquely the data structure for serialization
+and deserialization operations. In particular, consider including a
+version number in the identifier; this way, the format of the data can
+be changed later, yet backward-compatible deserialisation functions
+can be provided.</p><p>Identifiers starting with <span class="c003">_</span> (an underscore character) are reserved
+for the OCaml runtime system; do not use them for your custom
+data. We recommend to use a URL
+(<span class="c003">http://mymachine.mydomain.com/mylibrary/version-number</span>)
+or a Java-style package name
+(<span class="c003">com.mydomain.mymachine.mylibrary.version-number</span>)
+as identifiers, to minimize the risk of identifier collision.</p>
+<h3 class="subsection" id="sec467">20.9.6&#XA0;&#XA0;Finalized blocks</h3>
+<p>Custom blocks generalize the finalized blocks that were present in
+OCaml prior to version 3.00. For backward compatibility, the
+format of custom blocks is compatible with that of finalized blocks,
+and the <span class="c003">alloc_final</span> function is still available to allocate a custom
+block with a given finalization function, but default comparison,
+hashing and serialization functions. <span class="c003">caml_alloc_final(</span><span class="c009">n</span><span class="c003">, </span><span class="c009">f</span><span class="c003">, </span><span class="c009">used</span><span class="c003">, </span><span class="c009">max</span><span class="c003">)</span> returns a fresh custom block of
+size <span class="c009">n</span>+1 words, with finalization function <span class="c009">f</span>. The first
+word is reserved for storing the custom operations; the other
+<span class="c009">n</span> words are available for your data. The two parameters
+<span class="c009">used</span> and <span class="c009">max</span> are used to control the speed of garbage
+collection, as described for <span class="c003">caml_alloc_custom</span>.</p>
+<h2 class="section" id="sec468">20.10&#XA0;&#XA0;Advanced topic: Big arrays and the OCaml-C interface</h2>
+<p>
+<a id="s:C-Bigarrays"></a></p><p>This section explains how C stub code that interfaces C or Fortran
+code with OCaml code can use big arrays.</p>
+<h3 class="subsection" id="sec469">20.10.1&#XA0;&#XA0;Include file</h3>
+<p>The include file <span class="c003">&lt;caml/bigarray.h&gt;</span> must be included in the C stub
+file. It declares the functions, constants and macros discussed
+below.</p>
+<h3 class="subsection" id="sec470">20.10.2&#XA0;&#XA0;Accessing an OCaml bigarray from C or Fortran</h3>
+<p>If <span class="c009">v</span> is a OCaml <span class="c003">value</span> representing a big array, the expression
+<span class="c003">Caml_ba_data_val(</span><span class="c009">v</span><span class="c003">)</span> returns a pointer to the data part of the array.
+This pointer is of type <span class="c003">void *</span> and can be cast to the appropriate C
+type for the array (e.g. <span class="c003">double []</span>, <span class="c003">char [][10]</span>, etc).</p><p>Various characteristics of the OCaml big array can be consulted from C
+as follows:
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">C expression</span></td><td class="c014"><span class="c013">Returns</span> </td></tr>
+<tr><td class="c016">
+<span class="c003">Caml_ba_array_val(</span><span class="c009">v</span><span class="c003">)-&gt;num_dims</span></td><td class="c016">number of dimensions </td></tr>
+<tr><td class="c016"><span class="c003">Caml_ba_array_val(</span><span class="c009">v</span><span class="c003">)-&gt;dim[</span><span class="c009">i</span><span class="c003">]</span></td><td class="c016"><span class="c009">i</span>-th dimension </td></tr>
+<tr><td class="c016"><span class="c003">Caml_ba_array_val(</span><span class="c009">v</span><span class="c003">)-&gt;flags &amp; BIGARRAY_KIND_MASK</span></td><td class="c016">kind of array elements </td></tr>
+</table></div></div><p>
+The kind of array elements is one of the following constants:
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">Constant</span></td><td class="c014"><span class="c013">Element kind</span> </td></tr>
+<tr><td class="c016">
+<span class="c003">CAML_BA_FLOAT32</span></td><td class="c016">32-bit single-precision floats </td></tr>
+<tr><td class="c016"><span class="c003">CAML_BA_FLOAT64</span></td><td class="c016">64-bit double-precision floats </td></tr>
+<tr><td class="c016"><span class="c003">CAML_BA_SINT8</span></td><td class="c016">8-bit signed integers </td></tr>
+<tr><td class="c016"><span class="c003">CAML_BA_UINT8</span></td><td class="c016">8-bit unsigned integers </td></tr>
+<tr><td class="c016"><span class="c003">CAML_BA_SINT16</span></td><td class="c016">16-bit signed integers </td></tr>
+<tr><td class="c016"><span class="c003">CAML_BA_UINT16</span></td><td class="c016">16-bit unsigned integers </td></tr>
+<tr><td class="c016"><span class="c003">CAML_BA_INT32</span></td><td class="c016">32-bit signed integers </td></tr>
+<tr><td class="c016"><span class="c003">CAML_BA_INT64</span></td><td class="c016">64-bit signed integers </td></tr>
+<tr><td class="c016"><span class="c003">CAML_BA_CAML_INT</span></td><td class="c016">31- or 63-bit signed integers </td></tr>
+<tr><td class="c016"><span class="c003">CAML_BA_NATIVE_INT</span></td><td class="c016">32- or 64-bit (platform-native) integers </td></tr>
+</table></div></div><p>
+The following example shows the passing of a two-dimensional big array
+to a C function and a Fortran function.
+</p><pre>    extern void my_c_function(double * data, int dimx, int dimy);
+    extern void my_fortran_function_(double * data, int * dimx, int * dimy);
+
+    value caml_stub(value bigarray)
+    {
+      int dimx = Caml_ba_array_val(bigarray)-&gt;dim[0];
+      int dimy = Caml_ba_array_val(bigarray)-&gt;dim[1];
+      /* C passes scalar parameters by value */
+      my_c_function(Caml_ba_data_val(bigarray), dimx, dimy);
+      /* Fortran passes all parameters by reference */
+      my_fortran_function_(Caml_ba_data_val(bigarray), &amp;dimx, &amp;dimy);
+      return Val_unit;
+    }
+</pre>
+<h3 class="subsection" id="sec471">20.10.3&#XA0;&#XA0;Wrapping a C or Fortran array as an OCaml big array</h3>
+<p>A pointer <span class="c009">p</span> to an already-allocated C or Fortran array can be
+wrapped and returned to OCaml as a big array using the <span class="c003">caml_ba_alloc</span>
+or <span class="c003">caml_ba_alloc_dims</span> functions.
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c003">caml_ba_alloc(</span><span class="c009">kind</span> <span class="c003">|</span> <span class="c009">layout</span>, <span class="c009">numdims</span>, <span class="c009">p</span>, <span class="c009">dims</span><span class="c003">)</span><p>Return an OCaml big array wrapping the data pointed to by <span class="c009">p</span>.
+<span class="c009">kind</span> is the kind of array elements (one of the <span class="c003">CAML_BA_</span>
+kind constants above). <span class="c009">layout</span> is <span class="c003">CAML_BA_C_LAYOUT</span> for an
+array with C layout and <span class="c003">CAML_BA_FORTRAN_LAYOUT</span> for an array with
+Fortran layout. <span class="c009">numdims</span> is the number of dimensions in the
+array. <span class="c009">dims</span> is an array of <span class="c009">numdims</span> long integers, giving
+the sizes of the array in each dimension.</p></li><li class="li-itemize"><span class="c003">caml_ba_alloc_dims(</span><span class="c009">kind</span> <span class="c003">|</span> <span class="c009">layout</span>, <span class="c009">numdims</span>,
+<span class="c009">p</span>, <span class="c003">(long) </span><span class="c009">dim</span><sub>1</sub>, <span class="c003">(long) </span><span class="c009">dim</span><sub>2</sub>, &#X2026;, <span class="c003">(long) </span><span class="c009">dim</span><sub><span class="c009">numdims</span></sub><span class="c003">)</span><p>Same as <span class="c003">caml_ba_alloc</span>, but the sizes of the array in each dimension
+are listed as extra arguments in the function call, rather than being
+passed as an array.
+</p></li></ul><p>
+The following example illustrates how statically-allocated C and
+Fortran arrays can be made available to OCaml.
+</p><pre>    extern long my_c_array[100][200];
+    extern float my_fortran_array_[300][400];
+
+    value caml_get_c_array(value unit)
+    {
+      long dims[2];
+      dims[0] = 100; dims[1] = 200;
+      return caml_ba_alloc(CAML_BA_NATIVE_INT | CAML_BA_C_LAYOUT,
+                           2, my_c_array, dims);
+    }
+
+    value caml_get_fortran_array(value unit)
+    {
+      return caml_ba_alloc_dims(CAML_BA_FLOAT32 | CAML_BA_FORTRAN_LAYOUT,
+                                2, my_fortran_array_, 300L, 400L);
+    }
+</pre>
+<h2 class="section" id="sec472">20.11&#XA0;&#XA0;Advanced topic: cheaper C call</h2>
+<p>
+<a id="s:C-cheaper-call"></a></p><p>This section describe how to make calling C functions cheaper.</p><p><span class="c013">Note:</span> this only applies to the native compiler. So whenever you
+use any of these methods, you have to provide an alternative byte-code
+stub that ignores all the special annotations.</p>
+<h3 class="subsection" id="sec473">20.11.1&#XA0;&#XA0;Passing unboxed values</h3>
+<p>We said earlier that all OCaml objects are represented by the C type
+<span class="c003">value</span>, and one has to use macros such as <span class="c003">Int_val</span> to decode data from
+the <span class="c003">value</span> type. It is however possible to tell the OCaml native-code
+compiler to do this for us and pass arguments unboxed to the C function.
+Similarly it is possible to tell OCaml to expect the result unboxed and box
+it for us.</p><p>The motivation is that, by letting &#X2018;ocamlopt&#X2018; deal with boxing, it can
+often decide to suppress it entirely.</p><p>For instance let&#X2019;s consider this example:</p><pre>external foo : float -&gt; float -&gt; float = "foo"
+
+let f a b =
+  let len = Array.length a in
+  assert (Array.length b = len);
+  let res = Array.make len 0. in
+  for i = 0 to len - 1 do
+    res.(i) &lt;- foo a.(i) b.(i)
+  done
+</pre><p>
+Float arrays are unboxed in OCaml, however the C function <span class="c003">foo</span> expect
+its arguments as boxed floats and returns a boxed float. Hence the
+OCaml compiler has no choice but to box <span class="c003">a.(i)</span> and <span class="c003">b.(i)</span> and unbox
+the result of <span class="c003">foo</span>. This results in the allocation of <span class="c003">3 * len</span>
+temporary float values.</p><p>Now if we annotate the arguments and result with <span class="c003">[@unboxed]</span>, the
+native-code compiler will be able to avoid all these allocations:</p><pre>external foo
+  :  (float [@unboxed])
+  -&gt; (float [@unboxed])
+  -&gt; (float [@unboxed])
+  = "foo_byte" "foo"
+</pre><p>
+In this case the C functions must look like:</p><pre>CAMLprim double foo(double a, double b)
+{
+  ...
+}
+
+CAMLprim value foo_byte(value a, value b)
+{
+  return caml_copy_double(foo(Double_val(a), Double_val(b)))
+}
+</pre><p>
+For convenicence, when all arguments and the result are annotated with
+<span class="c003">[@unboxed]</span>, it is possible to put the attribute only once on the
+declaration itself. So we can also write instead:</p><pre>external foo : float -&gt; float -&gt; float = "foo_byte" "foo" [@@unboxed]
+</pre><p>
+The following table summarize what OCaml types can be unboxed, and
+what C types should be used in correspondence:</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">OCaml type</span></td><td class="c014"><span class="c013">C type</span> </td></tr>
+<tr><td class="c016">
+<span class="c003">float</span></td><td class="c016"><span class="c003">double</span> </td></tr>
+<tr><td class="c016"><span class="c003">int32</span></td><td class="c016"><span class="c003">int32_t</span> </td></tr>
+<tr><td class="c016"><span class="c003">int64</span></td><td class="c016"><span class="c003">int64_t</span> </td></tr>
+<tr><td class="c016"><span class="c003">nativeint</span></td><td class="c016"><span class="c003">intnat</span> </td></tr>
+</table></div></div><p>Similarly, it is possible to pass untagged OCaml integers between
+OCaml and C. This is done by annotating the arguments and/or result
+with <span class="c003">[@untagged]</span>:</p><pre>external f : string -&gt; (int [@untagged]) = "f_byte" "f"
+</pre><p>
+The corresponding C type must be <span class="c003">intnat</span>.</p><p><span class="c013">Note:</span> do not use the C <span class="c003">int</span> type in correspondence with <span class="c003">(int [@untagged])</span>. This is because they often differ in size.</p>
+<h3 class="subsection" id="sec474">20.11.2&#XA0;&#XA0;Direct C call</h3>
+<p>In order to be able to run the garbage collector in the middle of
+a C function, the OCaml native-code compiler generates some bookkeeping
+code around C calls. Technically it wraps every C call with the C function
+<span class="c003">caml_c_call</span> which is part of the OCaml runtime.</p><p>For small functions that are called repeatedly, this indirection can have
+a big impact on performances. However this is not needed if we know that
+the C function doesn&#X2019;t allocate and doesn&#X2019;t raise exceptions. We can
+instruct the OCaml native-code compiler of this fact by annotating the
+external declaration with the attribute <span class="c003">[@@noalloc]</span>:</p><pre>external bar : int -&gt; int -&gt; int = "foo" [@@noalloc]
+</pre><p>
+In this case calling <span class="c003">bar</span> from OCaml is as cheap as calling any other
+OCaml function, except for the fact that the OCaml compiler can&#X2019;t
+inline C functions...</p>
+<h3 class="subsection" id="sec475">20.11.3&#XA0;&#XA0;Example: calling C library functions without indirection</h3>
+<p>Using these attributes, it is possible to call C library functions
+with no indirection. For instance many math functions are defined this
+way in the OCaml standard library:</p><pre>external sqrt : float -&gt; float = "caml_sqrt_float" "sqrt"
+  [@@unboxed] [@@noalloc]
+(** Square root. *)
+
+external exp : float -&gt; float = "caml_exp_float" "exp" [@@unboxed] [@@noalloc]
+(** Exponential. *)
+
+external log : float -&gt; float = "caml_log_float" "log" [@@unboxed] [@@noalloc]
+(** Natural logarithm. *)
+</pre>
+<h2 class="section" id="sec476">20.12&#XA0;&#XA0;Advanced topic: multithreading</h2>
+<p>
+<a id="s:C-multithreading"></a></p><p>Using multiple threads (shared-memory concurrency) in a mixed OCaml/C
+application requires special precautions, which are described in this
+section.</p>
+<h3 class="subsection" id="sec477">20.12.1&#XA0;&#XA0;Registering threads created from C</h3>
+<p>Callbacks from C to OCaml are possible only if the calling thread is
+known to the OCaml run-time system. Threads created from OCaml (through
+the <span class="c003">Thread.create</span> function of the system threads library) are
+automatically known to the run-time system. If the application
+creates additional threads from C and wishes to callback into OCaml
+code from these threads, it must first register them with the run-time
+system. The following functions are declared in the include file
+<span class="c003">&lt;caml/threads.h&gt;</span>.</p><ul class="itemize"><li class="li-itemize">
+<span class="c003">caml_c_thread_register()</span> registers the calling thread with the OCaml
+run-time system. Returns 1 on success, 0 on error. Registering an
+already-register thread does nothing and returns 0.
+</li><li class="li-itemize"><span class="c003">caml_c_thread_unregister()</span> must be called before the thread
+terminates, to unregister it from the OCaml run-time system.
+Returns 1 on success, 0 on error. If the calling thread was not
+previously registered, does nothing and returns 0.
+</li></ul>
+<h3 class="subsection" id="sec478">20.12.2&#XA0;&#XA0;Parallel execution of long-running C code</h3>
+<p>The OCaml run-time system is not reentrant: at any time, at most one
+thread can be executing OCaml code or C code that uses the OCaml
+run-time system. Technically, this is enforced by a &#X201C;master lock&#X201D;
+that any thread must hold while executing such code.</p><p>When OCaml calls the C code implementing a primitive, the master lock
+is held, therefore the C code has full access to the facilities of the
+run-time system. However, no other thread can execute OCaml code
+concurrently with the C code of the primitive.</p><p>If a C primitive runs for a long time or performs potentially blocking
+input-output operations, it can explicitly release the master lock,
+enabling other OCaml threads to run concurrently with its operations.
+The C code must re-acquire the master lock before returning to OCaml.
+This is achieved with the following functions, declared in
+the include file <span class="c003">&lt;caml/threads.h&gt;</span>.</p><ul class="itemize"><li class="li-itemize">
+<span class="c003">caml_release_runtime_system()</span>
+The calling thread releases the master lock and other OCaml resources,
+enabling other threads to run OCaml code in parallel with the execution
+of the calling thread.
+</li><li class="li-itemize"><span class="c003">caml_acquire_runtime_system()</span>
+The calling thread re-acquires the master lock and other OCaml
+resources. It may block until no other thread uses the OCaml run-time
+system.
+</li></ul><p>After <span class="c003">caml_release_runtime_system()</span> was called and until
+<span class="c003">caml_acquire_runtime_system()</span> is called, the C code must not access
+any OCaml data, nor call any function of the run-time system, nor call
+back into OCaml code. Consequently, arguments provided by OCaml to the
+C primitive must be copied into C data structures before calling
+<span class="c003">caml_release_runtime_system()</span>, and results to be returned to OCaml
+must be encoded as OCaml values after <span class="c003">caml_acquire_runtime_system()</span>
+returns.</p><p>Example: the following C primitive invokes <span class="c003">gethostbyname</span> to find the
+IP address of a host name. The <span class="c003">gethostbyname</span> function can block for
+a long time, so we choose to release the OCaml run-time system while it
+is running.
+</p><pre>CAMLprim stub_gethostbyname(value vname)
+{
+  CAMLparam1 (vname);
+  CAMLlocal1 (vres);
+  struct hostent * h;
+  char * name;
+
+  /* Copy the string argument to a C string, allocated outside the
+     OCaml heap. */
+  name = caml_stat_strdup(String_val(vname));
+  /* Release the OCaml run-time system */
+  caml_release_runtime_system();
+  /* Resolve the name */
+  h = gethostbyname(name);
+  /* Free the copy of the string, which we might as well do before
+     acquiring the runtime system to benefit from parallelism. */
+  caml_stat_free(name);
+  /* Re-acquire the OCaml run-time system */
+  caml_acquire_runtime_system();
+  /* Encode the relevant fields of h as the OCaml value vres */
+  ... /* Omitted */
+  /* Return to OCaml */
+  CAMLreturn (vres);
+}
+</pre><p>
+Callbacks from C to OCaml must be performed while holding the master
+lock to the OCaml run-time system. This is naturally the case if the
+callback is performed by a C primitive that did not release the
+run-time system. If the C primitive released the run-time system
+previously, or the callback is performed from other C code that was
+not invoked from OCaml (e.g. an event loop in a GUI application), the
+run-time system must be acquired before the callback and released
+after:
+</p><pre>  caml_acquire_runtime_system();
+  /* Resolve OCaml function vfun to be invoked */
+  /* Build OCaml argument varg to the callback */
+  vres = callback(vfun, varg);
+  /* Copy relevant parts of result vres to C data structures */
+  caml_release_runtime_system();
+</pre><p>
+Note: the <span class="c003">acquire</span> and <span class="c003">release</span> functions described above were
+introduced in OCaml 3.12. Older code uses the following historical
+names, declared in <span class="c003">&lt;caml/signals.h&gt;</span>:
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c003">caml_enter_blocking_section</span> as an alias for
+<span class="c003">caml_release_runtime_system</span>
+</li><li class="li-itemize"><span class="c003">caml_leave_blocking_section</span> as an alias for
+<span class="c003">caml_acquire_runtime_system</span>
+</li></ul><p>
+Intuition: a &#X201C;blocking section&#X201D; is a piece of C code that does not
+use the OCaml run-time system, typically a blocking input/output operation.</p>
+<h2 class="section" id="sec479">20.13&#XA0;&#XA0;Advanced topic: interfacing with Windows Unicode APIs</h2>
+<p>
+<a id="s:interfacing-windows-unicode-apis"></a></p><p>This section contains some general guidelines for writing C stubs that use
+Windows Unicode APIs.</p><p><span class="c013">Note:</span> This is an experimental feature of OCaml: the set of APIs below, as
+well as their exact semantics are not final and subject to change in future
+releases.</p><p>The OCaml system under Windows can be configured at build time in one of two
+modes:</p><ul class="itemize"><li class="li-itemize"><span class="c013">legacy mode:</span> All path names, environment variables, command line
+arguments, etc. on the OCaml side are assumed to be encoded using the current
+8-bit code page of the system.</li><li class="li-itemize"><span class="c013">Unicode mode:</span> All path names, environment variables, command line
+arguments, etc. on the OCaml side are assumed to be encoded using UTF-8.</li></ul><p>In what follows, we say that a string has the <em>OCaml encoding</em> if it is
+encoded in UTF-8 when in Unicode mode, in the current code page in legacy mode,
+or is an arbitrary string under Unix. A string has the <em>platform encoding</em>
+if it is encoded in UTF-16 under Windows or is an arbitrary string under Unix.</p><p>From the point of view of the writer of C stubs, the challenges of interacting
+with Windows Unicode APIs are twofold:</p><ul class="itemize"><li class="li-itemize">The Windows API uses the UTF-16 encoding to support Unicode. The runtime
+system performs the necessary conversions so that the OCaml programmer only
+needs to deal with the OCaml encoding. C stubs that call Windows Unicode APIs
+need to use specific runtime functions to perform the necessary conversions in a
+compatible way.</li><li class="li-itemize">When writing stubs that need to be compiled under both Windows and Unix,
+the stubs need to be written in a way that allow the necessary conversions under
+Windows but that also work under Unix, where typically nothing particular needs
+to be done to support Unicode.</li></ul><p>The native C character type under Windows is <span class="c003">WCHAR</span>, two bytes wide, while
+under Unix it is <span class="c003">char</span>, one byte wide. A type <span class="c003">char_os</span> is defined in
+<span class="c003">&lt;caml/misc.h&gt;</span> that stands for the concrete C character type of each
+platform. Strings in the platform encoding are of type <span class="c003">char_os *</span>.</p><p>The following functions are exposed to help write compatible C stubs. To use
+them, you need to include both <span class="c003">&lt;caml/misc.h&gt;</span> and <span class="c003">&lt;caml/osdeps.h&gt;</span>.</p><ul class="itemize"><li class="li-itemize"><span class="c003">char_os* caml_stat_strdup_to_os(const char *)</span> copies the argument while
+translating from OCaml encoding to the platform encoding. This function is
+typically used to convert the <span class="c003">char *</span> underlying an OCaml string before passing
+it to an operating system API that takes a Unicode argument. Under Unix, it is
+equivalent to <span class="c003">caml_stat_strdup</span>.<p><span class="c013">Note:</span> For maximum backwards compatibility in Unicode mode, if the argument
+is not a valid UTF-8 string, this function will fall back to assuming that it is
+encoded in the current code page.</p></li><li class="li-itemize"><span class="c003">char* caml_stat_strdup_of_os(const char_os *)</span> copies the argument while
+translating from the platform encoding to the OCaml encoding. It is the inverse
+of <span class="c003">caml_stat_strdup_to_os</span>. This function is typically used to convert a string
+obtained from the operating system before passing it on to OCaml code. Under
+Unix, it is equivalent to <span class="c003">caml_stat_strdup</span>.</li><li class="li-itemize"><span class="c003">value caml_copy_string_of_os(char_os *)</span> allocates an OCaml string with
+contents equal to the argument string converted to the OCaml encoding. This
+function is essentially equivalent to <span class="c003">caml_stat_strdup_of_os</span> followed by
+<span class="c003">caml_copy_string</span>, except that it avoids the allocation of the intermediate
+string returned by <span class="c003">caml_stat_strdup_of_os</span>. Under Unix, it is equivalent to
+<span class="c003">caml_copy_string</span>.</li></ul><p><span class="c013">Note:</span> The strings returned by <span class="c003">caml_stat_strdup_to_os</span> and
+<span class="c003">caml_stat_strdup_of_os</span> are allocated using <span class="c003">caml_stat_alloc</span>, so they need to
+be deallocated using <span class="c003">caml_stat_free</span> when they are no longer needed.</p>
+<h5 class="paragraph" id="sec480">Example</h5>
+<p> We want to bind the function <span class="c003">getenv</span> in a way that works
+both under Unix and Windows. Under Unix this function has the prototype:</p><pre>    char *getenv(const char *);
+</pre><p>While the Unicode version under Windows has the prototype:
+</p><pre>    WCHAR *_wgetenv(const WCHAR *);
+</pre><p>
+In terms of <span class="c003">char_os</span>, both functions take an argument of type <span class="c003">char_os *</span> and
+return a result of the same type. We begin by choosing the right implementation
+of the function to bind:</p><pre>#ifdef _WIN32
+#define getenv_os _wgetenv
+#else
+#define getenv_os getenv
+#endif
+</pre><p>
+The rest of the binding is the same for both platforms:</p><pre>/* The following define is necessary because the API is experimental */
+#define CAML_INTERNALS
+
+#include &lt;caml/mlvalues.h&gt;
+#include &lt;caml/misc.h&gt;
+#include &lt;caml/alloc.h&gt;
+#include &lt;caml/fail.h&gt;
+#include &lt;caml/osdeps.h&gt;
+#include &lt;stdlib.h&gt;
+
+CAMLprim value stub_getenv(value var_name)
+{
+  CAMLparam1(var_name);
+  CAMLlocal1(var_value);
+  char_os *var_name_os, *var_value_os;
+
+  var_name_os = caml_stat_strdup_to_os(String_val(var_name));
+  var_value_os = getenv_os(var_name_os);
+  caml_stat_free(var_name_os);
+
+  if (var_value_os == NULL)
+    caml_raise_not_found();
+
+  var_value = caml_copy_string_of_os(var_value_os);
+
+  CAMLreturn(var_value);
+}
+</pre>
+<h2 class="section" id="sec481">20.14&#XA0;&#XA0;Building mixed C/OCaml libraries: <span class="c003">ocamlmklib</span></h2>
+<p>
+<a id="s-ocamlmklib"></a></p><p>The <span class="c003">ocamlmklib</span> command facilitates the construction of libraries
+containing both OCaml code and C code, and usable both in static
+linking and dynamic linking modes. This command is available under
+Windows since Objective Caml 3.11 and under other operating systems since
+Objective Caml 3.03.</p><p>The <span class="c003">ocamlmklib</span> command takes three kinds of arguments:
+</p><ul class="itemize"><li class="li-itemize">
+OCaml source files and object files (<span class="c003">.cmo</span>, <span class="c003">.cmx</span>, <span class="c003">.ml</span>)
+comprising the OCaml part of the library;
+</li><li class="li-itemize">C object files (<span class="c003">.o</span>, <span class="c003">.a</span>, respectively, <span class="c003">.obj</span>, <span class="c003">.lib</span>)
+comprising the C part of the library;
+</li><li class="li-itemize">Support libraries for the C part (<span class="c003">-l</span><span class="c009">lib</span>).
+</li></ul><p>
+It generates the following outputs:
+</p><ul class="itemize"><li class="li-itemize">
+An OCaml bytecode library <span class="c003">.cma</span> incorporating the <span class="c003">.cmo</span> and
+<span class="c003">.ml</span> OCaml files given as arguments, and automatically referencing the
+C library generated with the C object files.
+</li><li class="li-itemize">An OCaml native-code library <span class="c003">.cmxa</span> incorporating the <span class="c003">.cmx</span> and
+<span class="c003">.ml</span> OCaml files given as arguments, and automatically referencing the
+C library generated with the C object files.
+</li><li class="li-itemize">If dynamic linking is supported on the target platform, a
+<span class="c003">.so</span> (respectively, <span class="c003">.dll</span>) shared library built from the C object files given as arguments,
+and automatically referencing the support libraries.
+</li><li class="li-itemize">A C static library <span class="c003">.a</span>(respectively, <span class="c003">.lib</span>) built from the C object files.
+</li></ul><p>
+In addition, the following options are recognized:
+</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">-cclib</span>, <span class="c003">-ccopt</span>, <span class="c003">-I</span>, <span class="c003">-linkall</span></span></dt><dd class="dd-description">
+These options are passed as is to <span class="c003">ocamlc</span> or <span class="c003">ocamlopt</span>.
+See the documentation of these commands.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-rpath</span>, <span class="c003">-R</span>, <span class="c003">-Wl,-rpath</span>, <span class="c003">-Wl,-R</span></span></dt><dd class="dd-description">
+These options are passed as is to the C compiler. Refer to the
+documentation of the C compiler.
+</dd><dt class="dt-description"><span class="c006">-custom</span></dt><dd class="dd-description"> Force the construction of a statically linked library
+only, even if dynamic linking is supported.
+</dd><dt class="dt-description"><span class="c006">-failsafe</span></dt><dd class="dd-description"> Fall back to building a statically linked library
+if a problem occurs while building the shared library (e.g. some of
+the support libraries are not available as shared libraries).
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-L</span><span class="c009">dir</span></span></dt><dd class="dd-description"> Add <span class="c009">dir</span> to the search path for support
+libraries (<span class="c003">-l</span><span class="c009">lib</span>).
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-ocamlc</span> <span class="c009">cmd</span></span></dt><dd class="dd-description"> Use <span class="c009">cmd</span> instead of <span class="c003">ocamlc</span> to call
+the bytecode compiler.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-ocamlopt</span> <span class="c009">cmd</span></span></dt><dd class="dd-description"> Use <span class="c009">cmd</span> instead of <span class="c003">ocamlopt</span> to call
+the native-code compiler.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-o</span> <span class="c009">output</span></span></dt><dd class="dd-description"> Set the name of the generated OCaml library.
+<span class="c003">ocamlmklib</span> will generate <span class="c009">output</span><span class="c003">.cma</span> and/or <span class="c009">output</span><span class="c003">.cmxa</span>.
+If not specified, defaults to <span class="c003">a</span>.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-oc</span> <span class="c009">outputc</span></span></dt><dd class="dd-description"> Set the name of the generated C library.
+<span class="c003">ocamlmklib</span> will generate <span class="c003">lib</span><span class="c009">outputc</span><span class="c003">.so</span> (if shared
+libraries are supported) and <span class="c003">lib</span><span class="c009">outputc</span><span class="c003">.a</span>.
+If not specified, defaults to the output name given with <span class="c003">-o</span>.
+</dd></dl><p>On native Windows, the following environment variable is also consulted:</p><dl class="description"><dt class="dt-description">
+<span class="c006">OCAML_FLEXLINK</span></dt><dd class="dd-description"> Alternative executable to use instead of the
+configured value. Primarily used for bootstrapping.
+</dd></dl>
+<h5 class="paragraph" id="sec482">Example</h5>
+<p> Consider an OCaml interface to the standard <span class="c003">libz</span>
+C library for reading and writing compressed files. Assume this
+library resides in <span class="c003">/usr/local/zlib</span>. This interface is
+composed of an OCaml part <span class="c003">zip.cmo</span>/<span class="c003">zip.cmx</span> and a C part <span class="c003">zipstubs.o</span>
+containing the stub code around the <span class="c003">libz</span> entry points. The
+following command builds the OCaml libraries <span class="c003">zip.cma</span> and <span class="c003">zip.cmxa</span>,
+as well as the companion C libraries <span class="c003">dllzip.so</span> and <span class="c003">libzip.a</span>:
+</p><pre>ocamlmklib -o zip zip.cmo zip.cmx zipstubs.o -lz -L/usr/local/zlib
+</pre><p>If shared libraries are supported, this performs the following
+commands:
+</p><pre>ocamlc -a -o zip.cma zip.cmo -dllib -lzip \
+        -cclib -lzip -cclib -lz -ccopt -L/usr/local/zlib
+ocamlopt -a -o zip.cmxa zip.cmx -cclib -lzip \
+        -cclib -lzip -cclib -lz -ccopt -L/usr/local/zlib
+gcc -shared -o dllzip.so zipstubs.o -lz -L/usr/local/zlib
+ar rc libzip.a zipstubs.o
+</pre><p>Note: This example is on a Unix system. The exact command lines
+may be different on other systems.</p><p>If shared libraries are not supported, the following commands are
+performed instead:
+</p><pre>ocamlc -a -custom -o zip.cma zip.cmo -cclib -lzip \
+        -cclib -lz -ccopt -L/usr/local/zlib
+ocamlopt -a -o zip.cmxa zip.cmx -lzip \
+        -cclib -lz -ccopt -L/usr/local/zlib
+ar rc libzip.a zipstubs.o
+</pre><p>Instead of building simultaneously the bytecode library, the
+native-code library and the C libraries, <span class="c003">ocamlmklib</span> can be called
+three times to build each separately. Thus,
+</p><pre>ocamlmklib -o zip zip.cmo -lz -L/usr/local/zlib
+</pre><p>builds the bytecode library <span class="c003">zip.cma</span>, and
+</p><pre>ocamlmklib -o zip zip.cmx -lz -L/usr/local/zlib
+</pre><p>builds the native-code library <span class="c003">zip.cmxa</span>, and
+</p><pre>ocamlmklib -o zip zipstubs.o -lz -L/usr/local/zlib
+</pre><p>builds the C libraries <span class="c003">dllzip.so</span> and <span class="c003">libzip.a</span>. Notice that the
+support libraries (<span class="c003">-lz</span>) and the corresponding options
+(<span class="c003">-L/usr/local/zlib</span>) must be given on all three invocations of <span class="c003">ocamlmklib</span>,
+because they are needed at different times depending on whether shared
+libraries are supported.
+
+</p>
+<hr>
+<a href="manual033.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="flambda.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

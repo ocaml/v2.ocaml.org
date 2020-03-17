@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="next" href="CamlinternalMenhirLib.IncrementalEngine.SYMBOLS.html">
+<link rel="Up" href="CamlinternalMenhirLib.IncrementalEngine.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="CamlinternalMenhirLib" rel="Chapter" href="CamlinternalMenhirLib.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Compiler_libs" rel="Chapter" href="Compiler_libs.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Load_path" rel="Chapter" href="Load_path.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html"><title>CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="CamlinternalMenhirLib.IncrementalEngine.html" title="CamlinternalMenhirLib.IncrementalEngine">Up</a>
+&nbsp;<a class="post" href="CamlinternalMenhirLib.IncrementalEngine.SYMBOLS.html" title="CamlinternalMenhirLib.IncrementalEngine.SYMBOLS">Next</a>
+</div>
+<h1>Module type <a href="type_CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html">CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE</a></h1>
+
+<pre><span id="MODULETYPEINCREMENTAL_ENGINE"><span class="keyword">module type</span> INCREMENTAL_ENGINE</span> = <code class="code"><span class="keyword">sig</span></code> <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><hr width="100%">
+
+<pre><span id="TYPEtoken"><span class="keyword">type</span> <code class="type"></code>token</span> </pre>
+
+
+<pre><span id="TYPEproduction"><span class="keyword">type</span> <code class="type"></code>production</span> </pre>
+
+
+<pre><span id="TYPEenv"><span class="keyword">type</span> <code class="type">'a</code> env</span> </pre>
+
+
+<pre><code><span id="TYPEcheckpoint"><span class="keyword">type</span> <code class="type">'a</code> checkpoint</span> = private </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcheckpoint.InputNeeded"><span class="constructor">InputNeeded</span></span> <span class="keyword">of</span> <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcheckpoint.Shifting"><span class="constructor">Shifting</span></span> <span class="keyword">of</span> <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a><br>        * 'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> * <br>       bool</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcheckpoint.AboutToReduce"><span class="constructor">AboutToReduce</span></span> <span class="keyword">of</span> <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a><br>        * <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEproduction">production</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcheckpoint.HandlingError"><span class="constructor">HandlingError</span></span> <span class="keyword">of</span> <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcheckpoint.Accepted"><span class="constructor">Accepted</span></span> <span class="keyword">of</span> <code class="type">'a</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcheckpoint.Rejected"><span class="constructor">Rejected</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="VALoffer"><span class="keyword">val</span> offer</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEtoken">token</a> *<br>       <a href="CamlinternalMenhirLib.IncrementalEngine.html#TYPEposition">CamlinternalMenhirLib.IncrementalEngine.position</a> *<br>       <a href="CamlinternalMenhirLib.IncrementalEngine.html#TYPEposition">CamlinternalMenhirLib.IncrementalEngine.position</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a></code></pre>
+<pre><span id="VALresume"><span class="keyword">val</span> resume</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a></code></pre>
+<pre><span id="TYPEsupplier"><span class="keyword">type</span> <code class="type"></code>supplier</span> = <code class="type">unit -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEtoken">token</a> *<br>       <a href="CamlinternalMenhirLib.IncrementalEngine.html#TYPEposition">CamlinternalMenhirLib.IncrementalEngine.position</a> *<br>       <a href="CamlinternalMenhirLib.IncrementalEngine.html#TYPEposition">CamlinternalMenhirLib.IncrementalEngine.position</a></code> </pre>
+
+
+<pre><span id="VALlexer_lexbuf_to_supplier"><span class="keyword">val</span> lexer_lexbuf_to_supplier</span> : <code class="type">(Lexing.lexbuf -><br>        <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEtoken">token</a>) -><br>       Lexing.lexbuf -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEsupplier">supplier</a></code></pre>
+<pre><span id="VALloop"><span class="keyword">val</span> loop</span> : <code class="type"><a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEsupplier">supplier</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>       'a</code></pre>
+<pre><span id="VALloop_handle"><span class="keyword">val</span> loop_handle</span> : <code class="type">('a -> 'answer) -><br>       ('a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>        'answer) -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEsupplier">supplier</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>       'answer</code></pre>
+<pre><span id="VALloop_handle_undo"><span class="keyword">val</span> loop_handle_undo</span> : <code class="type">('a -> 'answer) -><br>       ('a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>        'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>        'answer) -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEsupplier">supplier</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>       'answer</code></pre>
+<pre><span id="VALshifts"><span class="keyword">val</span> shifts</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> option</code></pre>
+<pre><span id="VALacceptable"><span class="keyword">val</span> acceptable</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a> -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEtoken">token</a> -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.html#TYPEposition">CamlinternalMenhirLib.IncrementalEngine.position</a> -> bool</code></pre>
+<pre><span id="TYPElr1state"><span class="keyword">type</span> <code class="type">'a</code> lr1state</span> </pre>
+
+
+<pre><span id="VALnumber"><span class="keyword">val</span> number</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPElr1state">lr1state</a> -> int</code></pre>
+<pre><span id="VALproduction_index"><span class="keyword">val</span> production_index</span> : <code class="type"><a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEproduction">production</a> -> int</code></pre>
+<pre><span id="VALfind_production"><span class="keyword">val</span> find_production</span> : <code class="type">int -> <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEproduction">production</a></code></pre>
+<pre><code><span id="TYPEelement"><span class="keyword">type</span> <code class="type"></code>element</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTelement.Element"><span class="constructor">Element</span></span> <span class="keyword">:</span> <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPElr1state">lr1state</a> * 'a<br>        * <a href="CamlinternalMenhirLib.IncrementalEngine.html#TYPEposition">CamlinternalMenhirLib.IncrementalEngine.position</a><br>        * <a href="CamlinternalMenhirLib.IncrementalEngine.html#TYPEposition">CamlinternalMenhirLib.IncrementalEngine.position</a></code> <span class="keyword">-></span> <code class="type"><a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEelement">element</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPEstack"><span class="keyword">type</span> <code class="type"></code>stack</span> = <code class="type"><a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEelement">element</a><br>       <a href="CamlinternalMenhirLib.General.html#TYPEstream">CamlinternalMenhirLib.General.stream</a></code> </pre>
+
+
+<pre><span id="VALstack"><span class="keyword">val</span> stack</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEstack">stack</a></code></pre>
+<pre><span id="VALtop"><span class="keyword">val</span> top</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEelement">element</a> option</code></pre>
+<pre><span id="VALpop_many"><span class="keyword">val</span> pop_many</span> : <code class="type">int -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> option</code></pre>
+<pre><span id="VALget"><span class="keyword">val</span> get</span> : <code class="type">int -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEelement">element</a> option</code></pre>
+<pre><span id="VALcurrent_state_number"><span class="keyword">val</span> current_state_number</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -> int</code></pre>
+<pre><span id="VALequal"><span class="keyword">val</span> equal</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -> bool</code></pre>
+<pre><span id="VALpositions"><span class="keyword">val</span> positions</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -><br>       <a href="CamlinternalMenhirLib.IncrementalEngine.html#TYPEposition">CamlinternalMenhirLib.IncrementalEngine.position</a> *<br>       <a href="CamlinternalMenhirLib.IncrementalEngine.html#TYPEposition">CamlinternalMenhirLib.IncrementalEngine.position</a></code></pre>
+<pre><span id="VALenv_has_default_reduction"><span class="keyword">val</span> env_has_default_reduction</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -> bool</code></pre>
+<pre><span id="VALstate_has_default_reduction"><span class="keyword">val</span> state_has_default_reduction</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPElr1state">lr1state</a> -><br>       bool</code></pre>
+<pre><span id="VALpop"><span class="keyword">val</span> pop</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> option</code></pre>
+<pre><span id="VALforce_reduction"><span class="keyword">val</span> force_reduction</span> : <code class="type"><a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEproduction">production</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a></code></pre>
+<pre><span id="VALinput_needed"><span class="keyword">val</span> input_needed</span> : <code class="type">'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEenv">env</a> -><br>       'a <a href="CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE.html#TYPEcheckpoint">checkpoint</a></code></pre></body></html>

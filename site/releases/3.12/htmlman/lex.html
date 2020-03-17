@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Lexical conventions</TITLE>
+</HEAD>
+<BODY >
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual010.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H2 CLASS="section"><A NAME="htoc52">6.1</A>  Lexical conventions</H2><H4 CLASS="subsubsection">Blanks</H4><P>The following characters are considered as blanks: space, newline,
+horizontal tabulation, carriage return, line feed and form feed. Blanks are
+ignored, but they separate adjacent identifiers, literals and
+keywords that would otherwise be confused as one single identifier,
+literal or keyword.</P><H4 CLASS="subsubsection">Comments</H4><P>Comments are introduced by the two characters <TT>(*</TT>, with no
+intervening blanks, and terminated by the characters <TT>*)</TT>, with
+no intervening blanks. Comments are treated as blank characters.
+Comments do not occur inside string or character literals. Nested
+comments are handled correctly.</P><H4 CLASS="subsubsection">Identifiers</H4><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="ident"><FONT COLOR=maroon>ident</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP> (<I><A HREF="#letter"><FONT COLOR=maroon>letter</FONT></A></I>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT>) { <I><A HREF="#letter"><FONT COLOR=maroon>letter</FONT></A></I>&#X2223; <FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT>&#X2223; <FONT COLOR=blue><TT>'</TT></FONT> }  </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="letter"><FONT COLOR=maroon>letter</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>A</TT></FONT> &#X2026; <FONT COLOR=blue><TT>Z</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>a</TT></FONT> &#X2026; <FONT COLOR=blue><TT>z</TT></FONT></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Identifiers are sequences of letters, digits, <TT>_</TT> (the underscore
+character), and <TT>&#X2019;</TT> (the single quote), starting with a
+letter or an underscore.
+Letters contain at least the 52 lowercase and uppercase
+letters from the ASCII set. The current implementation
+also recognizes as letters all accented characters from the ISO
+8859-1 (&#X201C;ISO Latin 1&#X201D;) set. All characters in an identifier are
+meaningful. The current implementation accepts identifiers up to
+16000000 characters in length.</P><H4 CLASS="subsubsection">Integer literals</H4><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="integer-literal"><FONT COLOR=maroon>integer-literal</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+[<FONT COLOR=blue><TT>-</TT></FONT>] (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>) { <FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> [<FONT COLOR=blue><TT>-</TT></FONT>] (<FONT COLOR=blue><TT>0x</TT></FONT>&#X2223; <FONT COLOR=blue><TT>0X</TT></FONT>) (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>A</TT></FONT>&#X2026;<FONT COLOR=blue><TT>F</TT></FONT>&#X2223; <FONT COLOR=blue><TT>a</TT></FONT>&#X2026;<FONT COLOR=blue><TT>f</TT></FONT>)
+{ <FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>A</TT></FONT>&#X2026;<FONT COLOR=blue><TT>F</TT></FONT>&#X2223; <FONT COLOR=blue><TT>a</TT></FONT>&#X2026;<FONT COLOR=blue><TT>f</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> [<FONT COLOR=blue><TT>-</TT></FONT>] (<FONT COLOR=blue><TT>0o</TT></FONT>&#X2223; <FONT COLOR=blue><TT>0O</TT></FONT>) (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>7</TT></FONT>) { <FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>7</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> [<FONT COLOR=blue><TT>-</TT></FONT>] (<FONT COLOR=blue><TT>0b</TT></FONT>&#X2223; <FONT COLOR=blue><TT>0B</TT></FONT>) (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>1</TT></FONT>) { <FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>1</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT> }</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>An integer literal is a sequence of one or more digits, optionally
+preceded by a minus sign. By default, integer literals are in decimal
+(radix 10). The following prefixes select a different radix:
+</P><DIV CLASS="center"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1 WIDTH="80%"><TR><TD ALIGN=center NOWRAP><B>Prefix</B></TD><TD ALIGN=center NOWRAP><B>Radix</B></TD></TR>
+<TR><TD ALIGN=left NOWRAP>
+<TT>0x</TT>, <TT>0X</TT></TD><TD ALIGN=left NOWRAP>hexadecimal (radix 16)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>0o</TT>, <TT>0O</TT></TD><TD ALIGN=left NOWRAP>octal (radix 8)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>0b</TT>, <TT>0B</TT></TD><TD ALIGN=left NOWRAP>binary (radix 2)</TD></TR>
+</TABLE></DIV><P>
+(The initial <TT>0</TT> is the digit zero; the <TT>O</TT> for octal is the letter O.)
+The interpretation of integer literals that fall outside the range of
+representable integer values is undefined.</P><P>For convenience and readability, underscore characters (<TT>_</TT>) are accepted
+(and ignored) within integer literals.</P><H4 CLASS="subsubsection">Floating-point literals</H4><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="float-literal"><FONT COLOR=maroon>float-literal</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+[<FONT COLOR=blue><TT>-</TT></FONT>] (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>) { <FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT> } [<FONT COLOR=blue><TT>.</TT></FONT> { <FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT> }]
+[(<FONT COLOR=blue><TT>e</TT></FONT>&#X2223; <FONT COLOR=blue><TT>E</TT></FONT>) [<FONT COLOR=blue><TT>+</TT></FONT>&#X2223; <FONT COLOR=blue><TT>-</TT></FONT>] (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>) { <FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT> }]</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Floating-point decimals consist in an integer part, a decimal part and
+an exponent part. The integer part is a sequence of one or more
+digits, optionally preceded by a minus sign. The decimal part is a
+decimal point followed by zero, one or more digits.
+The exponent part is the character <TT>e</TT> or <TT>E</TT> followed by an
+optional <TT>+</TT> or <TT>-</TT> sign, followed by one or more digits.
+The decimal part or the exponent part can be omitted, but not both to
+avoid ambiguity with integer literals.
+The interpretation of floating-point literals that fall outside the
+range of representable floating-point values is undefined.</P><P>For convenience and readability, underscore characters (<TT>_</TT>) are accepted
+(and ignored) within floating-point literals.</P><H4 CLASS="subsubsection">Character literals</H4><P>
+<A NAME="s:characterliteral"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="char-literal"><FONT COLOR=maroon>char-literal</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>'</TT></FONT> <FONT COLOR=maroon><I>regular-char</I></FONT> <FONT COLOR=blue><TT>'</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>'</TT></FONT> <I><A HREF="#escape-sequence"><FONT COLOR=maroon>escape-sequence</FONT></A></I> <FONT COLOR=blue><TT>'</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="escape-sequence"><FONT COLOR=maroon>escape-sequence</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>\</TT></FONT> (<FONT COLOR=blue><TT>\</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>"</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>'</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>n</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>t</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>b</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>r</TT></FONT>)
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>\</TT></FONT> (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>) (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>) (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>)
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>\x</TT></FONT> (<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>A</TT></FONT>&#X2026;<FONT COLOR=blue><TT>F</TT></FONT>&#X2223; <FONT COLOR=blue><TT>a</TT></FONT>&#X2026;<FONT COLOR=blue><TT>f</TT></FONT>)
+(<FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>A</TT></FONT>&#X2026;<FONT COLOR=blue><TT>F</TT></FONT>&#X2223; <FONT COLOR=blue><TT>a</TT></FONT>&#X2026;<FONT COLOR=blue><TT>f</TT></FONT>)</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Character literals are delimited by <TT>&#X2019;</TT> (single quote) characters.
+The two single quotes enclose either one character different from
+<TT>&#X2019;</TT> and <TT>\</TT>, or one of the escape sequences below:
+</P><DIV CLASS="center"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1 WIDTH="80%"><TR><TD ALIGN=center NOWRAP><B>Sequence</B></TD><TD ALIGN=center NOWRAP><B>Character denoted</B></TD></TR>
+<TR><TD ALIGN=left NOWRAP>
+<TT>\\</TT></TD><TD ALIGN=left NOWRAP>backslash (<TT>\</TT>)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>\"</TT></TD><TD ALIGN=left NOWRAP>double quote (<TT>"</TT>)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>\&#X2019;</TT></TD><TD ALIGN=left NOWRAP>single quote (<TT>&#X2019;</TT>)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>\n</TT></TD><TD ALIGN=left NOWRAP>linefeed (LF)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>\r</TT></TD><TD ALIGN=left NOWRAP>carriage return (CR)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>\t</TT></TD><TD ALIGN=left NOWRAP>horizontal tabulation (TAB)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>\b</TT></TD><TD ALIGN=left NOWRAP>backspace (BS)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>\</TT><I>space</I></TD><TD ALIGN=left NOWRAP>space (SPC)</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>\</TT><I>ddd</I></TD><TD ALIGN=left NOWRAP>the character with ASCII code <I>ddd</I> in decimal</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>\x</TT><I>hh</I></TD><TD ALIGN=left NOWRAP>the character with ASCII code <I>hh</I> in hexadecimal</TD></TR>
+</TABLE></DIV><H4 CLASS="subsubsection">String literals</H4><P>
+<A NAME="s:stringliteral"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="string-literal"><FONT COLOR=maroon>string-literal</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>"</TT></FONT> { <I><A HREF="#string-character"><FONT COLOR=maroon>string-character</FONT></A></I> } <FONT COLOR=blue><TT>"</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="string-character"><FONT COLOR=maroon>string-character</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>regular-char-str</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#escape-sequence"><FONT COLOR=maroon>escape-sequence</FONT></A></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>String literals are delimited by <TT>"</TT> (double quote) characters.
+The two double quotes enclose a sequence of either characters
+different from <TT>"</TT> and <TT>\</TT>, or escape sequences from the
+table given above for character literals.</P><P>To allow splitting long string literals across lines, the sequence
+<TT>\</TT><I>newline</I> <I>blanks</I> (a <TT>\</TT> at end-of-line followed by any
+number of blanks at the beginning of the next line) is ignored inside
+string literals.</P><P>The current implementation places practically no restrictions on the
+length of string literals.</P><H4 CLASS="subsubsection">Naming labels</H4><P>To avoid ambiguities, naming labels in expressions cannot just be defined
+syntactically as the sequence of the three tokens <TT>~</TT>, <I><A HREF="#ident"><FONT COLOR=maroon>ident</FONT></A></I> and
+<TT>:</TT>, and have to be defined at the lexical level.</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="label-name"><FONT COLOR=maroon>label-name</FONT></A></I> </TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP> (<FONT COLOR=blue><TT>a</TT></FONT> &#X2026; <FONT COLOR=blue><TT>z</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT>) { <I><A HREF="#letter"><FONT COLOR=maroon>letter</FONT></A></I>&#X2223; <FONT COLOR=blue><TT>0</TT></FONT>&#X2026;<FONT COLOR=blue><TT>9</TT></FONT>&#X2223; <FONT COLOR=blue><TT>_</TT></FONT>&#X2223; <FONT COLOR=blue><TT>'</TT></FONT> } </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="label"><FONT COLOR=maroon>label</FONT></A></I> </TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>~</TT></FONT> <I><A HREF="#label-name"><FONT COLOR=maroon>label-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="optlabel"><FONT COLOR=maroon>optlabel</FONT></A></I> </TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>?</TT></FONT> <I><A HREF="#label-name"><FONT COLOR=maroon>label-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Naming labels come in two flavours: <I><A HREF="#label"><FONT COLOR=maroon>label</FONT></A></I> for normal arguments and
+<I><A HREF="#optlabel"><FONT COLOR=maroon>optlabel</FONT></A></I> for optional ones. They are simply distinguished by their
+first character, either <TT>~</TT> or <TT>?</TT>.</P><P>Despite <I><A HREF="#label"><FONT COLOR=maroon>label</FONT></A></I> and <I><A HREF="#optlabel"><FONT COLOR=maroon>optlabel</FONT></A></I> being lexical entities in expressions,
+their expansions <FONT COLOR=blue><TT>~</TT></FONT> <I><A HREF="#label-name"><FONT COLOR=maroon>label-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT> and <FONT COLOR=blue><TT>?</TT></FONT> <I><A HREF="#label-name"><FONT COLOR=maroon>label-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT> will be
+used in grammars, for the sake of readability. Note also that inside
+type expressions, this expansion can be taken literally, <EM>i.e.</EM>
+there are really 3 tokens, with optional spaces beween them.</P><H4 CLASS="subsubsection">Prefix and infix symbols</H4><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="infix-symbol"><FONT COLOR=maroon>infix-symbol</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+(<FONT COLOR=blue><TT>=</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>&lt;</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>&gt;</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>@</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>^</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>|</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>&amp;</TT></FONT> &#X2223; 
+<FONT COLOR=blue><TT>+</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>-</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>*</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>/</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>$</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>%</TT></FONT>) { <I><A HREF="#operator-char"><FONT COLOR=maroon>operator-char</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="prefix-symbol"><FONT COLOR=maroon>prefix-symbol</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+(<FONT COLOR=blue><TT>!</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>?</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>~</TT></FONT>) { <I><A HREF="#operator-char"><FONT COLOR=maroon>operator-char</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="operator-char"><FONT COLOR=maroon>operator-char</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>!</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>$</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>%</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>&amp;</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>*</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>+</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>-</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>.</TT></FONT> &#X2223; 
+<FONT COLOR=blue><TT>/</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>:</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>&lt;</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>=</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>&gt;</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>?</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>@</TT></FONT> &#X2223; 
+<FONT COLOR=blue><TT>^</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>|</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>~</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Sequences of &#X201C;operator characters&#X201D;, such as <TT>&lt;=&gt;</TT> or <TT>!!</TT>,
+are read as a single token from the <I><A HREF="#infix-symbol"><FONT COLOR=maroon>infix-symbol</FONT></A></I> or <I><A HREF="#prefix-symbol"><FONT COLOR=maroon>prefix-symbol</FONT></A></I>
+class. These symbols are parsed as prefix and infix operators inside
+expressions, but otherwise behave much as identifiers.
+</P><H4 CLASS="subsubsection">Keywords</H4><P>The identifiers below are reserved as keywords, and cannot be employed
+otherwise:
+</P><PRE CLASS="verbatim">      and         as          assert      asr         begin       class
+      constraint  do          done        downto      else        end
+      exception   external    false       for         fun         function
+      functor     if          in          include     inherit     initializer
+      land        lazy        let         lor         lsl         lsr
+      lxor        match       method      mod         module      mutable
+      new         object      of          open        or          private
+      rec         sig         struct      then        to          true
+      try         type        val         virtual     when        while
+      with        
+</PRE><P>The following character sequences are also keywords:
+</P><PRE CLASS="verbatim">    !=    #     &amp;     &amp;&amp;    '     (     )     *     +     ,     -
+    -.    -&gt;    .     ..    :     ::    :=    :&gt;    ;     ;;    &lt;
+    &lt;-    =     &gt;     &gt;]    &gt;}    ?     ??    [     [&lt;    [&gt;    [|
+    ]     _     `     {     {&lt;    |     |]    }     ~
+</PRE><P>Note that the following identifiers are keywords of the Camlp4
+extensions and should be avoided for compatibility reasons.
+</P><PRE CLASS="verbatim">    parser    &lt;&lt;    &lt;:    &gt;&gt;    $     $$    $:
+</PRE><H4 CLASS="subsubsection">Ambiguities</H4><P>Lexical ambiguities are resolved according to the &#X201C;longest match&#X201D;
+rule: when a character sequence can be decomposed into two tokens in
+several different ways, the decomposition retained is the one with the
+longest first token.</P><H4 CLASS="subsubsection">Line number directives</H4><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="linenum-directive"><FONT COLOR=maroon>linenum-directive</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>#</TT></FONT> {<FONT COLOR=blue><TT>0</TT></FONT> &#X2026; <FONT COLOR=blue><TT>9</TT></FONT>}<SUP>+</SUP>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>#</TT></FONT> {<FONT COLOR=blue><TT>0</TT></FONT> &#X2026; <FONT COLOR=blue><TT>9</TT></FONT>}<SUP>+</SUP> <FONT COLOR=blue><TT>"</TT></FONT> { <I><A HREF="#string-character"><FONT COLOR=maroon>string-character</FONT></A></I> } <FONT COLOR=blue><TT>"</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Preprocessors that generate Caml source code can insert line number
+directives in their output so that error messages produced by the
+compiler contain line numbers and file names referring to the source
+file before preprocessing, instead of after preprocessing.
+A line number directive is composed of a <TT>#</TT> (sharp sign), followed by
+a positive integer (the source line number), optionally followed by a
+character string (the source file name).
+Line number directives are treated as blank characters during lexical
+analysis.</P><HR>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual010.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

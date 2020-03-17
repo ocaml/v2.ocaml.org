@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Ast_mapper.html">
+<link rel="next" href="Attr_helper.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="CamlinternalMenhirLib" rel="Chapter" href="CamlinternalMenhirLib.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Compiler_libs" rel="Chapter" href="Compiler_libs.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Load_path" rel="Chapter" href="Load_path.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html"><title>Asttypes</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Ast_mapper.html" title="Ast_mapper">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Attr_helper.html" title="Attr_helper">Next</a>
+</div>
+<h1>Module <a href="type_Asttypes.html">Asttypes</a></h1>
+
+<pre><span id="MODULEAsttypes"><span class="keyword">module</span> Asttypes</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Asttypes.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Auxiliary AST types used by parsetree and typedtree.</p>
+
+<p><b>Warning:</b> this module is unstable and part of
+  <a href="Compiler_libs.html">compiler-libs</a>.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEconstant"><span class="keyword">type</span> <code class="type"></code>constant</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Const_int"><span class="constructor">Const_int</span></span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Const_char"><span class="constructor">Const_char</span></span> <span class="keyword">of</span> <code class="type">char</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Const_string"><span class="constructor">Const_string</span></span> <span class="keyword">of</span> <code class="type">string * string option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Const_float"><span class="constructor">Const_float</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Const_int32"><span class="constructor">Const_int32</span></span> <span class="keyword">of</span> <code class="type">int32</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Const_int64"><span class="constructor">Const_int64</span></span> <span class="keyword">of</span> <code class="type">int64</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Const_nativeint"><span class="constructor">Const_nativeint</span></span> <span class="keyword">of</span> <code class="type">nativeint</code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPErec_flag"><span class="keyword">type</span> <code class="type"></code>rec_flag</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrec_flag.Nonrecursive"><span class="constructor">Nonrecursive</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrec_flag.Recursive"><span class="constructor">Recursive</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEdirection_flag"><span class="keyword">type</span> <code class="type"></code>direction_flag</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdirection_flag.Upto"><span class="constructor">Upto</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdirection_flag.Downto"><span class="constructor">Downto</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEprivate_flag"><span class="keyword">type</span> <code class="type"></code>private_flag</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTprivate_flag.Private"><span class="constructor">Private</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTprivate_flag.Public"><span class="constructor">Public</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEmutable_flag"><span class="keyword">type</span> <code class="type"></code>mutable_flag</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmutable_flag.Immutable"><span class="constructor">Immutable</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmutable_flag.Mutable"><span class="constructor">Mutable</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEvirtual_flag"><span class="keyword">type</span> <code class="type"></code>virtual_flag</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvirtual_flag.Virtual"><span class="constructor">Virtual</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvirtual_flag.Concrete"><span class="constructor">Concrete</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEoverride_flag"><span class="keyword">type</span> <code class="type"></code>override_flag</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELToverride_flag.Override"><span class="constructor">Override</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELToverride_flag.Fresh"><span class="constructor">Fresh</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEclosed_flag"><span class="keyword">type</span> <code class="type"></code>closed_flag</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclosed_flag.Closed"><span class="constructor">Closed</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclosed_flag.Open"><span class="constructor">Open</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPElabel"><span class="keyword">type</span> <code class="type"></code>label</span> = <code class="type">string</code> </pre>
+
+
+<pre><code><span id="TYPEarg_label"><span class="keyword">type</span> <code class="type"></code>arg_label</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarg_label.Nolabel"><span class="constructor">Nolabel</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarg_label.Labelled"><span class="constructor">Labelled</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarg_label.Optional"><span class="constructor">Optional</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPEloc"><span class="keyword">type</span> <code class="type">'a</code> loc</span> = <code class="type">'a <a href="Location.html#TYPEloc">Location.loc</a></code> = {</pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTloc.txt">txt</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTloc.loc">loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEvariance"><span class="keyword">type</span> <code class="type"></code>variance</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvariance.Covariant"><span class="constructor">Covariant</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvariance.Contravariant"><span class="constructor">Contravariant</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvariance.Invariant"><span class="constructor">Invariant</span></span></code></td>
+
+</tr></table>
+
+
+</body></html>

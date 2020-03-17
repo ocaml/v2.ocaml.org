@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The module system</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual003.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual005.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc12">Chapter&#XA0;2</A>&#XA0;&#XA0;The module system</H1><UL>
+<LI><A HREF="manual004.html#toc13">Structures</A>
+</LI><LI><A HREF="manual004.html#toc14">Signatures</A>
+</LI><LI><A HREF="manual004.html#toc15">Functors</A>
+</LI><LI><A HREF="manual004.html#toc16">Functors and type abstraction</A>
+</LI><LI><A HREF="manual004.html#toc17">Modules and separate compilation</A>
+</LI></UL>
+<P> <A NAME="c:moduleexamples"></A>
+</P><P>This chapter introduces the module system of OCaml.</P><H2 CLASS="section"><A NAME="toc13"></A><A NAME="htoc13">2.1</A>&#XA0;&#XA0;Structures</H2><P>A primary motivation for modules is to package together related
+definitions (such as the definitions of a data type and associated
+operations over that type) and enforce a consistent naming scheme for
+these definitions. This avoids running out of names or accidentally
+confusing names. Such a package is called a <EM>structure</EM> and
+is introduced by the <TT>struct</TT>&#X2026;<TT>end</TT> construct, which contains an
+arbitrary sequence of definitions. The structure is usually given a
+name with the <TT>module</TT> binding. Here is for instance a structure
+packaging together a type of priority queues and their operations:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> module PrioQueue =
+    struct
+      type priority = int
+      type 'a queue = Empty | Node of priority * 'a * 'a queue * 'a queue
+      let empty = Empty
+      let rec insert queue prio elt =
+        match queue with
+          Empty -&gt; Node(prio, elt, Empty, Empty)
+        | Node(p, e, left, right) -&gt;
+            if prio &lt;= p
+            then Node(prio, elt, insert right p e, left)
+            else Node(p, e, insert right prio elt, left)
+      exception Queue_is_empty
+      let rec remove_top = function
+          Empty -&gt; raise Queue_is_empty
+        | Node(prio, elt, left, Empty) -&gt; left
+        | Node(prio, elt, Empty, right) -&gt; right
+        | Node(prio, elt, (Node(lprio, lelt, _, _) as left),
+                          (Node(rprio, relt, _, _) as right)) -&gt;
+            if lprio &lt;= rprio
+            then Node(lprio, lelt, remove_top left, right)
+            else Node(rprio, relt, left, remove_top right)
+      let extract = function
+          Empty -&gt; raise Queue_is_empty
+        | Node(prio, elt, _, _) as queue -&gt; (prio, elt, remove_top queue)
+    end;;
+</FONT><FONT COLOR=maroon>module PrioQueue :
+  sig
+    type priority = int
+    type 'a queue = Empty | Node of priority * 'a * 'a queue * 'a queue
+    val empty : 'a queue
+    val insert : 'a queue -&gt; priority -&gt; 'a -&gt; 'a queue
+    exception Queue_is_empty
+    val remove_top : 'a queue -&gt; 'a queue
+    val extract : 'a queue -&gt; priority * 'a * 'a queue
+  end
+</FONT></PRE><P>
+Outside the structure, its components can be referred to using the
+&#X201C;dot notation&#X201D;, that is, identifiers qualified by a structure name.
+For instance, <TT>PrioQueue.insert</TT> is the function <TT>insert</TT> defined
+inside the structure <TT>PrioQueue</TT> and <TT>PrioQueue.queue</TT> is the type
+<TT>queue</TT> defined in <TT>PrioQueue</TT>.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> PrioQueue.insert PrioQueue.empty 1 "hello";;
+</FONT><FONT COLOR=maroon>- : string PrioQueue.queue =
+PrioQueue.Node (1, "hello", PrioQueue.Empty, PrioQueue.Empty)
+</FONT></PRE><H2 CLASS="section"><A NAME="toc14"></A><A NAME="htoc14">2.2</A>&#XA0;&#XA0;Signatures</H2><P>Signatures are interfaces for structures. A signature specifies
+which components of a structure are accessible from the outside, and
+with which type. It can be used to hide some components of a structure
+(e.g. local function definitions) or export some components with a
+restricted type. For instance, the signature below specifies the three
+priority queue operations <TT>empty</TT>, <TT>insert</TT> and <TT>extract</TT>, but not the
+auxiliary function <TT>remove_top</TT>. Similarly, it makes the <TT>queue</TT> type
+abstract (by not providing its actual representation as a concrete type).
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> module type PRIOQUEUE =
+    sig
+      type priority = int         (* still concrete *)
+      type 'a queue               (* now abstract *)
+      val empty : 'a queue
+      val insert : 'a queue -&gt; int -&gt; 'a -&gt; 'a queue
+      val extract : 'a queue -&gt; int * 'a * 'a queue
+      exception Queue_is_empty
+    end;;
+</FONT><FONT COLOR=maroon>module type PRIOQUEUE =
+  sig
+    type priority = int
+    type 'a queue
+    val empty : 'a queue
+    val insert : 'a queue -&gt; int -&gt; 'a -&gt; 'a queue
+    val extract : 'a queue -&gt; int * 'a * 'a queue
+    exception Queue_is_empty
+  end
+</FONT></PRE><P>
+Restricting the <TT>PrioQueue</TT> structure by this signature results in
+another view of the <TT>PrioQueue</TT> structure where the <TT>remove_top</TT>
+function is not accessible and the actual representation of priority
+queues is hidden:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> module AbstractPrioQueue = (PrioQueue : PRIOQUEUE);;
+<FONT COLOR=maroon>module AbstractPrioQueue : PRIOQUEUE
+
+</FONT><FONT COLOR=black>#</FONT> <U>AbstractPrioQueue.remove_top</U>;;
+<FONT COLOR=maroon>Error: Unbound value AbstractPrioQueue.remove_top
+
+</FONT><FONT COLOR=black>#</FONT> AbstractPrioQueue.insert AbstractPrioQueue.empty 1 "hello";;
+</FONT><FONT COLOR=maroon>- : string AbstractPrioQueue.queue = &lt;abstr&gt;
+</FONT></PRE><P>
+The restriction can also be performed during the definition of the
+structure, as in
+</P><PRE>module PrioQueue = (struct ... end : PRIOQUEUE);;
+</PRE><P>An alternate syntax is provided for the above:
+</P><PRE>module PrioQueue : PRIOQUEUE = struct ... end;;
+</PRE><H2 CLASS="section"><A NAME="toc15"></A><A NAME="htoc15">2.3</A>&#XA0;&#XA0;Functors</H2><P>Functors are &#X201C;functions&#X201D; from structures to structures. They are used to
+express parameterized structures: a structure <I>A</I> parameterized by a
+structure <I>B</I> is simply a functor <I>F</I> with a formal parameter
+<I>B</I> (along with the expected signature for <I>B</I>) which returns
+the actual structure <I>A</I> itself. The functor <I>F</I> can then be
+applied to one or several implementations <I>B</I><SUB>1</SUB> &#X2026;<I>B<SUB>n</SUB></I>
+of <I>B</I>, yielding the corresponding structures
+<I>A</I><SUB>1</SUB> &#X2026;<I>A<SUB>n</SUB></I>.</P><P>For instance, here is a structure implementing sets as sorted lists,
+parameterized by a structure providing the type of the set elements
+and an ordering function over this type (used to keep the sets
+sorted):
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> type comparison = Less | Equal | Greater;;
+<FONT COLOR=maroon>type comparison = Less | Equal | Greater
+
+</FONT><FONT COLOR=black>#</FONT> module type ORDERED_TYPE =
+    sig
+      type t
+      val compare: t -&gt; t -&gt; comparison
+    end;;
+<FONT COLOR=maroon>module type ORDERED_TYPE = sig type t val compare : t -&gt; t -&gt; comparison end
+
+</FONT><FONT COLOR=black>#</FONT> module Set =
+    functor (Elt: ORDERED_TYPE) -&gt;
+      struct
+        type element = Elt.t
+        type set = element list
+        let empty = []
+        let rec add x s =
+          match s with
+            [] -&gt; [x]
+          | hd::tl -&gt;
+             match Elt.compare x hd with
+               Equal   -&gt; s         (* x is already in s *)
+             | Less    -&gt; x :: s    (* x is smaller than all elements of s *)
+             | Greater -&gt; hd :: add x tl
+        let rec member x s =
+          match s with
+            [] -&gt; false
+          | hd::tl -&gt;
+              match Elt.compare x hd with
+                Equal   -&gt; true     (* x belongs to s *)
+              | Less    -&gt; false    (* x is smaller than all elements of s *)
+              | Greater -&gt; member x tl
+      end;;
+</FONT><FONT COLOR=maroon>module Set :
+  functor (Elt : ORDERED_TYPE) -&gt;
+    sig
+      type element = Elt.t
+      type set = element list
+      val empty : 'a list
+      val add : Elt.t -&gt; Elt.t list -&gt; Elt.t list
+      val member : Elt.t -&gt; Elt.t list -&gt; bool
+    end
+</FONT></PRE><P>
+By applying the <TT>Set</TT> functor to a structure implementing an ordered
+type, we obtain set operations for this type:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> module OrderedString =
+    struct
+      type t = string
+      let compare x y = if x = y then Equal else if x &lt; y then Less else Greater
+    end;;
+<FONT COLOR=maroon>module OrderedString :
+  sig type t = string val compare : 'a -&gt; 'a -&gt; comparison end
+
+</FONT><FONT COLOR=black>#</FONT> module StringSet = Set(OrderedString);;
+<FONT COLOR=maroon>module StringSet :
+  sig
+    type element = OrderedString.t
+    type set = element list
+    val empty : 'a list
+    val add : OrderedString.t -&gt; OrderedString.t list -&gt; OrderedString.t list
+    val member : OrderedString.t -&gt; OrderedString.t list -&gt; bool
+  end
+
+</FONT><FONT COLOR=black>#</FONT> StringSet.member "bar" (StringSet.add "foo" StringSet.empty);;
+</FONT><FONT COLOR=maroon>- : bool = false
+</FONT></PRE><H2 CLASS="section"><A NAME="toc16"></A><A NAME="htoc16">2.4</A>&#XA0;&#XA0;Functors and type abstraction</H2><P>As in the <TT>PrioQueue</TT> example, it would be good style to hide the
+actual implementation of the type <TT>set</TT>, so that users of the
+structure will not rely on sets being lists, and we can switch later
+to another, more efficient representation of sets without breaking
+their code. This can be achieved by restricting <TT>Set</TT> by a suitable
+functor signature:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> module type SETFUNCTOR =
+    functor (Elt: ORDERED_TYPE) -&gt;
+      sig
+        type element = Elt.t      (* concrete *)
+        type set                  (* abstract *)
+        val empty : set
+        val add : element -&gt; set -&gt; set
+        val member : element -&gt; set -&gt; bool
+      end;;
+<FONT COLOR=maroon>module type SETFUNCTOR =
+  functor (Elt : ORDERED_TYPE) -&gt;
+    sig
+      type element = Elt.t
+      type set
+      val empty : set
+      val add : element -&gt; set -&gt; set
+      val member : element -&gt; set -&gt; bool
+    end
+
+</FONT><FONT COLOR=black>#</FONT> module AbstractSet = (Set : SETFUNCTOR);;
+<FONT COLOR=maroon>module AbstractSet : SETFUNCTOR
+
+</FONT><FONT COLOR=black>#</FONT> module AbstractStringSet = AbstractSet(OrderedString);;
+<FONT COLOR=maroon>module AbstractStringSet :
+  sig
+    type element = OrderedString.t
+    type set = AbstractSet(OrderedString).set
+    val empty : set
+    val add : element -&gt; set -&gt; set
+    val member : element -&gt; set -&gt; bool
+  end
+
+</FONT><FONT COLOR=black>#</FONT> AbstractStringSet.add "gee" AbstractStringSet.empty;;
+</FONT><FONT COLOR=maroon>- : AbstractStringSet.set = &lt;abstr&gt;
+</FONT></PRE><P>In an attempt to write the type constraint above more elegantly,
+one may wish to name the signature of the structure
+returned by the functor, then use that signature in the constraint:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> module type SET =
+    sig
+      type element
+      type set
+      val empty : set
+      val add : element -&gt; set -&gt; set
+      val member : element -&gt; set -&gt; bool
+    end;;
+<FONT COLOR=maroon>module type SET =
+  sig
+    type element
+    type set
+    val empty : set
+    val add : element -&gt; set -&gt; set
+    val member : element -&gt; set -&gt; bool
+  end
+
+</FONT><FONT COLOR=black>#</FONT> module WrongSet = (Set : functor(Elt: ORDERED_TYPE) -&gt; SET);;
+<FONT COLOR=maroon>module WrongSet : functor (Elt : ORDERED_TYPE) -&gt; SET
+
+</FONT><FONT COLOR=black>#</FONT> module WrongStringSet = WrongSet(OrderedString);;
+<FONT COLOR=maroon>module WrongStringSet :
+  sig
+    type element = WrongSet(OrderedString).element
+    type set = WrongSet(OrderedString).set
+    val empty : set
+    val add : element -&gt; set -&gt; set
+    val member : element -&gt; set -&gt; bool
+  end
+
+</FONT><FONT COLOR=black>#</FONT> WrongStringSet.add <U>"gee"</U> WrongStringSet.empty;;
+</FONT><FONT COLOR=maroon>Error: This expression has type string but an expression was expected of type
+         WrongStringSet.element = WrongSet(OrderedString).element
+</FONT></PRE><P>
+The problem here is that <TT>SET</TT> specifies the type <TT>element</TT>
+abstractly, so that the type equality between <TT>element</TT> in the result
+of the functor and <TT>t</TT> in its argument is forgotten. Consequently,
+<TT>WrongStringSet.element</TT> is not the same type as <TT>string</TT>, and the
+operations of <TT>WrongStringSet</TT> cannot be applied to strings.
+As demonstrated above, it is important that the type <TT>element</TT> in the
+signature <TT>SET</TT> be declared equal to <TT>Elt.t</TT>; unfortunately, this is
+impossible above since <TT>SET</TT> is defined in a context where <TT>Elt</TT> does
+not exist. To overcome this difficulty, OCaml provides a
+<TT>with type</TT> construct over signatures that allows enriching a signature
+with extra type equalities:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> module AbstractSet2 =
+    (Set : functor(Elt: ORDERED_TYPE) -&gt; (SET with type element = Elt.t));;
+</FONT><FONT COLOR=maroon>module AbstractSet2 :
+  functor (Elt : ORDERED_TYPE) -&gt;
+    sig
+      type element = Elt.t
+      type set
+      val empty : set
+      val add : element -&gt; set -&gt; set
+      val member : element -&gt; set -&gt; bool
+    end
+</FONT></PRE><P>As in the case of simple structures, an alternate syntax is provided
+for defining functors and restricting their result:
+</P><PRE>module AbstractSet2(Elt: ORDERED_TYPE) : (SET with type element = Elt.t) =
+  struct ... end;;
+</PRE><P>
+Abstracting a type component in a functor result is a powerful
+technique that provides a high degree of type safety, as we now
+illustrate. Consider an ordering over character strings that is
+different from the standard ordering implemented in the
+<TT>OrderedString</TT> structure. For instance, we compare strings without
+distinguishing upper and lower case.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> module NoCaseString =
+    struct
+      type t = string
+      let compare s1 s2 =
+        OrderedString.compare (String.lowercase s1) (String.lowercase s2)
+    end;;
+<FONT COLOR=maroon>module NoCaseString :
+  sig type t = string val compare : string -&gt; string -&gt; comparison end
+
+</FONT><FONT COLOR=black>#</FONT> module NoCaseStringSet = AbstractSet(NoCaseString);;
+<FONT COLOR=maroon>module NoCaseStringSet :
+  sig
+    type element = NoCaseString.t
+    type set = AbstractSet(NoCaseString).set
+    val empty : set
+    val add : element -&gt; set -&gt; set
+    val member : element -&gt; set -&gt; bool
+  end
+
+</FONT><FONT COLOR=black>#</FONT> NoCaseStringSet.add "FOO" <U>AbstractStringSet.empty</U>;;
+</FONT><FONT COLOR=maroon>Error: This expression has type
+         AbstractStringSet.set = AbstractSet(OrderedString).set
+       but an expression was expected of type
+         NoCaseStringSet.set = AbstractSet(NoCaseString).set
+</FONT></PRE><P>
+Note that the two types <TT>AbstractStringSet.set</TT> and
+<TT>NoCaseStringSet.set</TT> are not compatible, and values of these
+two types do not match. This is the correct behavior: even though both
+set types contain elements of the same type (strings), they are built
+upon different orderings of that type, and different invariants need
+to be maintained by the operations (being strictly increasing for the
+standard ordering and for the case-insensitive ordering). Applying
+operations from <TT>AbstractStringSet</TT> to values of type
+<TT>NoCaseStringSet.set</TT> could give incorrect results, or build
+lists that violate the invariants of <TT>NoCaseStringSet</TT>.</P><H2 CLASS="section"><A NAME="toc17"></A><A NAME="htoc17">2.5</A>&#XA0;&#XA0;Modules and separate compilation</H2><P>All examples of modules so far have been given in the context of the
+interactive system. However, modules are most useful for large,
+batch-compiled programs. For these programs, it is a practical
+necessity to split the source into several files, called compilation
+units, that can be compiled separately, thus minimizing recompilation
+after changes.</P><P>In OCaml, compilation units are special cases of structures
+and signatures, and the relationship between the units can be
+explained easily in terms of the module system. A compilation unit <I>A</I>
+comprises two files:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+the implementation file <I>A</I><TT>.ml</TT>, which contains a sequence
+of definitions, analogous to the inside of a <TT>struct</TT>&#X2026;<TT>end</TT>
+construct;
+</LI><LI CLASS="li-itemize">the interface file <I>A</I><TT>.mli</TT>, which contains a sequence of
+specifications, analogous to the inside of a <TT>sig</TT>&#X2026;<TT>end</TT>
+construct.
+</LI></UL><P>
+These two files together define a structure named <I>A</I> as if
+the following definition was entered at top-level:
+</P><PRE>
+module <I>A</I>: sig (* contents of file <I>A</I>.mli *) end
+        = struct (* contents of file <I>A</I>.ml *) end;;
+</PRE><P>
+The files that define the compilation units can be compiled separately
+using the <TT>ocamlc -c</TT> command (the <TT>-c</TT> option means &#X201C;compile only, do
+not try to link&#X201D;); this produces compiled interface files (with
+extension <TT>.cmi</TT>) and compiled object code files (with extension
+<TT>.cmo</TT>). When all units have been compiled, their <TT>.cmo</TT> files are
+linked together using the <TT>ocamlc</TT> command. For instance, the following
+commands compile and link a program composed of two compilation units
+<TT>Aux</TT> and <TT>Main</TT>:
+</P><PRE>$ ocamlc -c Aux.mli                     # produces aux.cmi
+$ ocamlc -c Aux.ml                      # produces aux.cmo
+$ ocamlc -c Main.mli                    # produces main.cmi
+$ ocamlc -c Main.ml                     # produces main.cmo
+$ ocamlc -o theprogram Aux.cmo Main.cmo
+</PRE><P>The program behaves exactly as if the following phrases were entered
+at top-level:
+</P><PRE>
+module Aux: sig (* contents of Aux.mli *) end
+          = struct (* contents of Aux.ml *) end;;
+module Main: sig (* contents of Main.mli *) end
+           = struct (* contents of Main.ml *) end;;
+</PRE><P>
+In particular, <TT>Main</TT> can refer to <TT>Aux</TT>: the definitions and
+declarations contained in <TT>Main.ml</TT> and <TT>Main.mli</TT> can refer to
+definition in <TT>Aux.ml</TT>, using the <TT>Aux.</TT><I>ident</I> notation, provided
+these definitions are exported in <TT>Aux.mli</TT>.</P><P>The order in which the <TT>.cmo</TT> files are given to <TT>ocamlc</TT> during the
+linking phase determines the order in which the module definitions
+occur. Hence, in the example above, <TT>Aux</TT> appears first and <TT>Main</TT> can
+refer to it, but <TT>Aux</TT> cannot refer to <TT>Main</TT>.</P><P>Note that only top-level structures can be mapped to
+separately-compiled files, but neither functors nor module types.
+However, all module-class objects can appear as components of a
+structure, so the solution is to put the functor or module type
+inside a structure, which can then be mapped to a file.
+
+</P><HR>
+<A HREF="manual003.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual005.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

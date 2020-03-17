@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The dynlink library: dynamic loading and linking of object files</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual040.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual042.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc273">Chapter 27</A>  The dynlink library: dynamic loading and linking of object files</H1><P>The <TT>dynlink</TT> library supports type-safe dynamic loading and linking
+of bytecode object files (<TT>.cmo</TT> and <TT>.cma</TT> files) in a running
+bytecode program, or of native plugins (usually <TT>.cmxs</TT> files) in a
+running native program. Type safety is ensured by limiting the set of
+modules from the running program that the loaded object file can
+access, and checking that the running program and the loaded object
+file have been compiled against the same interfaces for these modules.
+In native code, there are also some compatibility checks on the
+implementations (to avoid errors with cross-module optimizations); it
+might be useful to hide <TT>.cmx</TT> files when building native plugins so
+that they remain independent of the implementation of modules in the
+main program.</P><P>Programs that use the <TT>dynlink</TT> library simply need to link
+<TT>dynlink.cma</TT> or <TT>dynlink.cmxa</TT> with their object files and other libraries. </P><UL CLASS="ftoc2"><LI CLASS="li-links">
+<A HREF="libref/Dynlink.html">Module <TT>Dynlink</TT>: dynamic loading of bytecode object files</A>
+</LI></UL><HR>
+<A HREF="manual040.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual042.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.13  Extension nodes</title>
+</head>
+<body>
+<a href="attributes.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="extensiblevariants.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:extension-nodes"><a class="section-anchor" href="#s:extension-nodes" aria-hidden="true">﻿</a>8.13  Extension nodes</h2>
+<ul>
+<li><a href="extensionnodes.html#ss%3Abuiltin-extension-nodes">8.13.1  Built-in extension nodes</a>
+</li></ul>
+<p>(Introduced in OCaml 4.02,
+infix notations for constructs other than expressions added in 4.03,
+infix notation (e1 ;%ext e2) added in 4.04.
+)</p><p>Extension nodes are generic placeholders in the syntax tree. They are
+rejected by the type-checker and are intended to be “expanded” by external
+tools such as <span class="c003">-ppx</span> rewriters.</p><p>Extension nodes share the same notion of identifier and payload as
+attributes <a href="attributes.html#s%3Aattributes">8.12</a>.</p><p>The first form of extension node is used for “algebraic” categories:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="extension"><span class="c010">extension</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">[%</span> <a class="syntax" href="attributes.html#attr-id"><span class="c010">attr-id</span></a>  <a class="syntax" href="attributes.html#attr-payload"><span class="c010">attr-payload</span></a> <span class="c004">]</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#extension"><span class="c010">extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#extension"><span class="c010">extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#extension"><span class="c010">extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#extension"><span class="c010">extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#extension"><span class="c010">extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-expr</span></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#extension"><span class="c010">extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-type</span></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#extension"><span class="c010">extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>A second form of extension node can be used in structures and
+signatures, both in the module and object languages:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="item-extension"><span class="c010">item-extension</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">[%%</span> <a class="syntax" href="attributes.html#attr-id"><span class="c010">attr-id</span></a>  <a class="syntax" href="attributes.html#attr-payload"><span class="c010">attr-payload</span></a> <span class="c004">]</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#item-extension"><span class="c010">item-extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#item-extension"><span class="c010">item-extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-field-spec</span></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#item-extension"><span class="c010">item-extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="classes.html#class-field"><span class="c010">class-field</span></a></td><td class="c015">::=</td><td class="c017"> ...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#item-extension"><span class="c010">item-extension</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>An infix form is available for extension nodes when
+the payload is of the same kind
+(expression with expression, pattern with pattern ...).</p><p>Examples:</p><pre>let%foo x = 2 in x + 1     === [%foo let x = 2 in x + 1]
+begin%foo ... end          === [%foo begin ... end]
+x ;%foo 2                  === [%foo x; 2]
+module%foo M = ..          === [%%foo module M = ... ]
+val%foo x : t              === [%%foo: val x : t]
+</pre><p>
+When this form is used together with the infix syntax for attributes,
+the attributes are considered to apply to the payload:</p><pre>fun%foo[@bar] x -&gt; x + 1 === [%foo (fun x -&gt; x + 1)[@bar ] ];
+</pre><p>
+Quoted strings <span class="c003">{|...|}</span> are particularly interesting for payloads
+that embed foreign syntax fragments. Those fragments can be interpreted
+by a preprocessor and turned into OCaml code without requiring escaping
+quotes. For instance, you can use <span class="c003">[%sql {|...|}]</span> to
+represent arbitrary SQL statements – assuming you have a ppx-rewriter
+that recognizes the <span class="c003">%sql</span> extension.</p><p>Note that the word-delimited form, for example <span class="c003">{sql|...|sql}</span>, should
+not be used for signaling that an extension is in use.
+Indeed, the user cannot see from the code whether this string literal has
+different semantics than they expect. Moreover, giving semantics to a
+specific delimiter limits the freedom to change the delimiter to avoid
+escaping issues.</p>
+<h3 class="subsection" id="ss:builtin-extension-nodes"><a class="section-anchor" href="#ss:builtin-extension-nodes" aria-hidden="true">﻿</a>8.13.1  Built-in extension nodes</h3>
+<p>(Introduced in OCaml 4.03)</p><p>Some extension nodes are understood by the compiler itself:
+</p><ul class="itemize"><li class="li-itemize">
+“ocaml.extension_constructor” or “extension_constructor”
+take as payload a constructor from an extensible variant type
+(see <a href="extensiblevariants.html#s%3Aextensible-variants">8.14</a>) and return its extension
+constructor slot.
+</li></ul><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> t = ..
+ <span class="ocamlkeyword">type</span> t += X <span class="ocamlkeyword">of</span> int | Y <span class="ocamlkeyword">of</span> string
+ <span class="ocamlkeyword">let</span> x = [%extension_constructor X]
+ <span class="ocamlkeyword">let</span> y = [%extension_constructor Y]</div></div>
+
+</div><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">  x &lt;&gt; y;;</div>
+
+
+
+<div class="pre caml-output ok">- : bool = <span class="ocamlkeyword">true</span></div></div>
+
+</div>
+<hr>
+<a href="attributes.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="extensiblevariants.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The unix library: Unix system calls</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual035.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual037.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc300">Chapter&#XA0;22</A>&#XA0;&#XA0;The unix library: Unix system calls</H1><P>The <TT>unix</TT> library makes many Unix
+system calls and system-related library functions available to
+OCaml programs. This chapter describes briefly the functions
+provided. Refer to sections 2&#XA0;and&#XA0;3 of the Unix manual for more
+details on the behavior of these functions.</P><P>Not all functions are provided by all Unix variants. If some functions
+are not available, they will raise <TT>Invalid_arg</TT> when called.</P><P>Programs that use the <TT>unix</TT> library must be linked as follows:
+</P><PRE>
+        ocamlc <I>other options</I> unix.cma <I>other files</I>
+        ocamlopt <I>other options</I> unix.cmxa <I>other files</I>
+</PRE><P>
+For interactive use of the <TT>unix</TT> library, do:
+</P><PRE>
+        ocamlmktop -o mytop unix.cma
+        ./mytop
+</PRE><P>
+or (if dynamic linking of C libraries is supported on your platform),
+start <TT>ocaml</TT> and type <TT>#load "unix.cma";;</TT>.</P><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Windows:</FONT>&#XA0;&#XA0;
+A fairly complete emulation of the Unix system calls is provided in
+the Windows version of OCaml. The end of this chapter gives
+more information on the functions that are not supported under Windows.
+</BLOCKQUOTE><UL CLASS="ftoc2"><LI CLASS="li-links">
+<A HREF="libref/Unix.html">Module <TT>Unix</TT>: Unix system calls</A>
+</LI><LI CLASS="li-links"><A HREF="libref/UnixLabels.html">Module <TT>UnixLabels</TT>: Labeled
+Unix system calls</A>
+</LI></UL><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Windows:</FONT>&#XA0;&#XA0;
+The Cygwin port of OCaml fully implements all functions from
+the Unix module. The native Win32 ports implement a subset of them.
+Below is a list of the functions that are not implemented, or only
+partially implemented, by the Win32 ports. Functions not mentioned are
+fully implemented and behave as described previously in this chapter.<DIV CLASS="center"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1 WIDTH="80%"><TR><TD ALIGN=center NOWRAP><B>Functions</B></TD><TD ALIGN=center NOWRAP><B>Comment</B></TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>
+<TT>fork</TT></TD><TD VALIGN=top ALIGN=left>not implemented, use <TT>create_process</TT> or threads</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>wait</TT></TD><TD VALIGN=top ALIGN=left>not implemented, use <TT>waitpid</TT></TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>waitpid</TT></TD><TD VALIGN=top ALIGN=left>can only wait for a given PID, not any child process</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>getppid</TT></TD><TD VALIGN=top ALIGN=left>not implemented (meaningless under Windows)</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>nice</TT></TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>truncate</TT>, <TT>ftruncate</TT></TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>link</TT>, <TT>symlink</TT>, <TT>readlink</TT></TD><TD VALIGN=top ALIGN=left>not implemented (no links under
+Windows)</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>access</TT></TD><TD VALIGN=top ALIGN=left>execute permission <TT>X_OK</TT> cannot be tested,
+it just tests for read permission instead</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>fchmod</TT></TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>chown</TT>, <TT>fchown</TT></TD><TD VALIGN=top ALIGN=left>not implemented (make no sense on a DOS
+file system)</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>umask</TT></TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>mkfifo</TT></TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>kill</TT>, <TT>pause</TT></TD><TD VALIGN=top ALIGN=left>not implemented (no inter-process signals in Windows)</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>alarm</TT></TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>times</TT></TD><TD VALIGN=top ALIGN=left>partially implemented, will not report timings for child
+processes</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>getitimer</TT>, <TT>setitimer</TT></TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>getuid</TT>, <TT>getgid</TT></TD><TD VALIGN=top ALIGN=left>always return 1</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>getgid</TT>, <TT>getegid</TT>, <TT>getgroups</TT></TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>setuid</TT>, <TT>setgid</TT></TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>getpwnam</TT>, <TT>getpwuid</TT></TD><TD VALIGN=top ALIGN=left>always raise <TT>Not_found</TT></TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>getgrnam</TT>, <TT>getgrgid</TT></TD><TD VALIGN=top ALIGN=left>always raise <TT>Not_found</TT></TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>type <TT>socket_domain</TT></TD><TD VALIGN=top ALIGN=left>the domains <TT>PF_UNIX</TT> and <TT>PF_INET6</TT>
+are not supported; <TT>PF_INET</TT> is fully supported</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>establish_server</TT></TD><TD VALIGN=top ALIGN=left>not implemented; use threads</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>terminal functions (<TT>tc*</TT>)</TD><TD VALIGN=top ALIGN=left>not implemented</TD></TR>
+</TABLE></DIV></BLOCKQUOTE><HR>
+<A HREF="manual035.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual037.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

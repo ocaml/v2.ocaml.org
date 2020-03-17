@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The graphics library</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual038.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual040.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc271">Chapter 25</A>  The graphics library</H1><P>The <TT>graphics</TT> library provides a set of portable drawing primitives.
+Drawing takes place
+in a separate window that is created when <TT>Graphics.open_graph</TT> is called.</P><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Unix:</FONT>  
+This library is implemented under the X11 windows system. 
+Programs that use the <TT>graphics</TT> library must be linked as follows:
+<PRE>
+        ocamlc <I>other options</I> graphics.cma <I>other files</I>
+</PRE>
+For interactive use of the <TT>graphics</TT> library, do:
+<PRE>
+        ocamlmktop -o mytop graphics.cma
+        ./mytop
+</PRE>
+or (if dynamic linking of C libraries is supported on your platform),
+start <TT>ocaml</TT> and type <TT>#load "graphics.cma";;</TT>.<P>Here are the graphics mode specifications supported by
+<TT>Graphics.open_graph</TT> on
+the X11 implementation of this library:
+the argument to <TT>Graphics.open_graph</TT> has the format
+<TT>"</TT><I>display-name geometry</I><TT>"</TT>,
+where <I>display-name</I> is the name of the X-windows display to
+connect to, and <I>geometry</I> is a standard X-windows geometry
+specification. The two components are separated by a space. Either can
+be omitted, or both. Examples:
+</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>Graphics.open_graph "foo:0"</TT></B></DT><DD CLASS="dd-description">
+connects to the display <TT>foo:0</TT> and creates a window with the default geometry
+</DD><DT CLASS="dt-description"><B><TT>Graphics.open_graph "foo:0 300x100+50-0"</TT></B></DT><DD CLASS="dd-description">
+connects to the display <TT>foo:0</TT> and creates a window 300 pixels wide
+by 100 pixels tall, at location (50,0)
+</DD><DT CLASS="dt-description"><B><TT>Graphics.open_graph " 300x100+50-0"</TT></B></DT><DD CLASS="dd-description">
+connects to the default display and creates a window 300 pixels wide
+by 100 pixels tall, at location (50,0)
+</DD><DT CLASS="dt-description"><B><TT>Graphics.open_graph ""</TT></B></DT><DD CLASS="dd-description">
+connects to the default display and creates a window with the default
+geometry.
+</DD></DL></BLOCKQUOTE><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Windows:</FONT>  
+This library is available both for standalone compiled programs and
+under the toplevel application <TT>ocamlwin.exe</TT>. For the latter, this
+library must be loaded in-core by typing
+<PRE CLASS="verbatim">        #load "graphics.cma";;
+</PRE></BLOCKQUOTE><P>The screen coordinates are interpreted as shown in the figure below.
+Notice that the coordinate system used is the same as in mathematics:
+<I>y</I> increases from the bottom of the screen to the top of the screen,
+and angles are measured counterclockwise (in degrees).
+Drawing is clipped to the screen.
+</P><DIV CLASS="center">
+<IMG SRC="libgraph.gif">
+</DIV><UL CLASS="ftoc2"><LI CLASS="li-links">
+<A HREF="libref/Graphics.html">Module <TT>Graphics</TT>: machine-independent graphics primitives</A>
+</LI></UL><HR>
+<A HREF="manual038.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual040.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

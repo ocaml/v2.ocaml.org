@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The toplevel system (ocaml)</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual022.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual024.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc119">Chapter 9</A>  The toplevel system (ocaml)</H1><UL>
+<LI><A HREF="manual023.html#toc89">Options</A>
+</LI><LI><A HREF="manual023.html#toc90">Toplevel directives</A>
+</LI><LI><A HREF="manual023.html#toc91">The toplevel and the module system</A>
+</LI><LI><A HREF="manual023.html#toc92">Common errors</A>
+</LI><LI><A HREF="manual023.html#toc93">Building custom toplevel systems: <TT>ocamlmktop</TT></A>
+</LI><LI><A HREF="manual023.html#toc94">Options</A>
+</LI></UL>
+<P> <A NAME="c:camllight"></A>
+</P><P>This chapter describes the toplevel system for OCaml, that permits interactive use of the OCaml system
+through a read-eval-print loop. In this mode, the system repeatedly
+reads Caml phrases from the input, then typechecks, compile and
+evaluate them, then prints the inferred type and result value, if
+any. The system prints a <TT>#</TT> (sharp) prompt before reading each
+phrase.</P><P>Input to the toplevel can span several lines. It is terminated by <TT>;;</TT> (a
+double-semicolon). The toplevel input consists in one or several
+toplevel phrases, with the following syntax:</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="toplevel-input"><FONT COLOR=maroon>toplevel-input</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+{ <I><A HREF="#toplevel-phrase"><FONT COLOR=maroon>toplevel-phrase</FONT></A></I> } <FONT COLOR=blue><TT>;;</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="toplevel-phrase"><FONT COLOR=maroon>toplevel-phrase</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="manual019.html#definition"><FONT COLOR=maroon>definition</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>#</TT></FONT> <I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I>  <I><A HREF="#directive-argument"><FONT COLOR=maroon>directive-argument</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="directive-argument"><FONT COLOR=maroon>directive-argument</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+&#X454;
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="lex.html#string-literal"><FONT COLOR=maroon>string-literal</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="lex.html#integer-literal"><FONT COLOR=maroon>integer-literal</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual011.html#value-path"><FONT COLOR=maroon>value-path</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>A phrase can consist of a definition, similar to those found in
+implementations of compilation units or in <FONT COLOR=blue><TT>struct</TT></FONT> &#X2026; <FONT COLOR=blue><TT>end</TT></FONT>
+module expressions. The definition can bind value names, type names,
+an exception, a module name, or a module type name. The toplevel
+system performs the bindings, then prints the types and values (if
+any) for the names thus defined.</P><P>A phrase may also consist in a <TT>open</TT> directive (see
+section <A HREF="manual019.html#s:module-expr">6.11</A>), or a value expression
+(section <A HREF="expr.html#s:value-expr">6.7</A>). Expressions are simply evaluated,
+without performing any bindings, and the value of the expression is
+printed.</P><P>Finally, a phrase can also consist in a toplevel directive,
+starting with <TT>#</TT> (the sharp sign). These directives control the
+behavior of the toplevel; they are listed below in
+section <A HREF="#s:toplevel-directives">9.2</A>.</P><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Unix:</FONT>  
+The toplevel system is started by the command <TT>ocaml</TT>, as follows:
+<PRE>
+        ocaml <I>options objects</I>                # interactive mode
+        ocaml <I>options objects scriptfile</I>        # script mode
+</PRE>
+<I>options</I> are described below.
+<I>objects</I> are filenames ending in <TT>.cmo</TT> or <TT>.cma</TT>; they are
+loaded into the interpreter immediately after <I>options</I> are set.
+<I>scriptfile</I> is any file name not ending in <TT>.cmo</TT> or <TT>.cma</TT>.<P>If no <I>scriptfile</I> is given on the command line, the toplevel system
+enters interactive mode: phrases are read on standard input, results
+are printed on standard output, errors on standard error. End-of-file
+on standard input terminates <TT>ocaml</TT> (see also the <TT>#quit</TT> directive
+in section <A HREF="#s:toplevel-directives">9.2</A>).</P><P>On start-up (before the first phrase is read), if the file
+<TT>.ocamlinit</TT> exists in the current directory,
+its contents are read as a sequence of OCaml phrases
+and executed as per the <TT>#use</TT> directive
+described in section <A HREF="#s:toplevel-directives">9.2</A>.
+The evaluation outcode for each phrase are not displayed.
+If the current directory does not contain an <TT>.ocamlinit</TT> file, but
+the user&#X2019;s home directory (environment variable <TT>HOME</TT>) does, the
+latter is read and executed as described below.</P><P>The toplevel system does not perform line editing, but it can
+easily be used in conjunction with an external line editor such as
+<TT>ledit</TT>, <TT>ocaml2</TT> or <TT>rlwrap</TT>
+
+
+(see the
+<A HREF="http://caml.inria.fr/humps/index_framed_caml.html">Caml Hump</A>).
+
+Another option is to use <TT>ocaml</TT> under Gnu Emacs, which gives the
+full editing power of Emacs (command <TT>run-caml</TT> from library <TT>inf-caml</TT>).</P><P>At any point, the parsing, compilation or evaluation of the current
+phrase can be interrupted by pressing <TT>ctrl-C</TT> (or, more precisely,
+by sending the <TT>INTR</TT> signal to the <TT>ocaml</TT> process). The toplevel
+then immediately returns to the <TT>#</TT> prompt.</P><P>If <I>scriptfile</I> is given on the command-line to <TT>ocaml</TT>, the toplevel
+system enters script mode: the contents of the file are read as a
+sequence of OCaml phrases and executed, as per the <TT>#use</TT>
+directive (section <A HREF="#s:toplevel-directives">9.2</A>). The outcome of the
+evaluation is not printed. On reaching the end of file, the <TT>ocaml</TT>
+command exits immediately. No commands are read from standard input.
+<TT>Sys.argv</TT> is transformed, ignoring all OCaml parameters, and
+starting with the script file name in <TT>Sys.argv.(0)</TT>.</P><P>In script mode, the first line of the script is ignored if it starts
+with <TT>#!</TT>. Thus, it should be possible to make the script
+itself executable and put as first line <TT>#!/usr/local/bin/ocaml</TT>,
+thus calling the toplevel system automatically when the script is
+run. However, <TT>ocaml</TT> itself is a <TT>#!</TT> script on most installations
+of OCaml, and Unix kernels usually do not handle nested <TT>#!</TT>
+scripts. A better solution is to put the following as the first line
+of the script:
+</P><PRE CLASS="verbatim">        #!/usr/local/bin/ocamlrun /usr/local/bin/ocaml
+</PRE></BLOCKQUOTE><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Windows:</FONT>  
+In addition to the text-only command <TT>ocaml.exe</TT>, which works exactly
+as under Unix (see above), a graphical user interface for the
+toplevel is available under the name <TT>ocamlwin.exe</TT>. It should be
+launched from the Windows file manager or program manager.
+This interface provides a text window in which commands can be entered
+and edited, and the toplevel responses are printed.
+</BLOCKQUOTE><H2 CLASS="section"><A NAME="toc89"></A><A NAME="htoc120">9.1</A>  Options</H2><P> <A NAME="s:toplevel-options"></A></P><P>The following command-line options are recognized by the <TT>ocaml</TT> command.</P><DL CLASS="description"><DT CLASS="dt-description"><B><TT>-I</TT> <I>directory</I></B></DT><DD CLASS="dd-description">
+Add the given directory to the list of directories searched for
+source and compiled files. By default, the current directory is
+searched first, then the standard library directory. Directories added
+with <TT>-I</TT> are searched after the current directory, in the order in
+which they were given on the command line, but before the standard
+library directory.<P>If the given directory starts with <TT>+</TT>, it is taken relative to the
+standard library directory. For instance, <TT>-I +labltk</TT> adds the
+subdirectory <TT>labltk</TT> of the standard library to the search path.</P><P>Directories can also be added to the list once
+the toplevel is running with the <TT>#directory</TT> directive
+(section <A HREF="#s:toplevel-directives">9.2</A>).</P></DD><DT CLASS="dt-description"><B><TT>-init</TT> <I>file</I></B></DT><DD CLASS="dd-description">
+Load the given file instead of the default initialization file.
+The default file is <TT>.ocamlinit</TT> in the current directory if it
+exists, otherwise <TT>.ocamlinit</TT> in the user&#X2019;s home directory.</DD><DT CLASS="dt-description"><TT><B>-labels</B></TT></DT><DD CLASS="dd-description">
+Labels are not ignored in types, labels may be used in applications,
+and labelled parameters can be given in any order. This is the default.</DD><DT CLASS="dt-description"><TT><B>-noassert</B></TT></DT><DD CLASS="dd-description">
+Do not compile assertion checks. Note that the special form
+<TT>assert false</TT> is always compiled because it is typed specially.</DD><DT CLASS="dt-description"><TT><B>-nolabels</B></TT></DT><DD CLASS="dd-description">
+Ignore non-optional labels in types. Labels cannot be used in
+applications, and parameter order becomes strict.</DD><DT CLASS="dt-description"><TT><B>-noprompt</B></TT></DT><DD CLASS="dd-description">
+Do not display any prompt when waiting for input.</DD><DT CLASS="dt-description"><TT><B>-nostdlib</B></TT></DT><DD CLASS="dd-description">
+Do not include the standard library directory in the list of
+directories searched for source and compiled files.</DD><DT CLASS="dt-description"><TT><B>-principal</B></TT></DT><DD CLASS="dd-description">
+Check information path during type-checking, to make sure that all
+types are derived in a principal way. When using labelled arguments
+and/or polymorphic methods, this flag is required to ensure future
+versions of the compiler will be able to infer types correctly, even
+if internal algorithms change.
+All programs accepted in <TT>-principal</TT> mode are also accepted in the
+default mode with equivalent types, but different binary signatures,
+and this may slow down type checking; yet it is a good idea to
+use it once before publishing source code.</DD><DT CLASS="dt-description"><TT><B>-rectypes</B></TT></DT><DD CLASS="dd-description">
+Allow arbitrary recursive types during type-checking. By default,
+only recursive types where the recursion goes through an object type
+are supported.</DD><DT CLASS="dt-description"><TT><B>-unsafe</B></TT></DT><DD CLASS="dd-description">
+See the corresponding option for <TT>ocamlc</TT>, chapter <A HREF="manual022.html#c:camlc">8</A>.
+Turn bound checking off on array and string accesses (the <TT>v.(i)</TT> and
+<TT>s.[i]</TT> constructs). Programs compiled with <TT>-unsafe</TT> are therefore
+slightly faster, but unsafe: anything can happen if the program
+accesses an array or string outside of its bounds.</DD><DT CLASS="dt-description"><TT><B>-version</B></TT></DT><DD CLASS="dd-description">
+Print version string and exit.</DD><DT CLASS="dt-description"><TT><B>-vnum</B></TT></DT><DD CLASS="dd-description">
+Print short version number and exit.</DD><DT CLASS="dt-description"><B><TT>-w</TT> <I>warning-list</I></B></DT><DD CLASS="dd-description">
+Enable or disable warnings according to the argument <I>warning-list</I>.
+See section <A HREF="manual022.html#s:comp-options">8.2</A> for the syntax of the argument.</DD><DT CLASS="dt-description"><B><TT>-warn-error</TT> <I>warning-list</I></B></DT><DD CLASS="dd-description">
+Treat as errors the warnings enabled by the argument <I>warning-list</I>.
+See section <A HREF="manual022.html#s:comp-options">8.2</A> for the syntax of the argument.</DD><DT CLASS="dt-description"><B><TT>-help</TT> or <TT>--help</TT></B></DT><DD CLASS="dd-description">
+Display a short usage summary and exit.
+</DD></DL><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Unix:</FONT>  
+The following environment variables are also consulted:
+<DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>LC_CTYPE</TT></B></DT><DD CLASS="dd-description"> If set to <TT>iso_8859_1</TT>, accented characters (from the
+ISO Latin-1 character set) in string and character literals are
+printed as is; otherwise, they are printed as decimal escape sequences
+(<TT>\</TT><I>ddd</I>).</DD><DT CLASS="dt-description"><TT><B>TERM</B></TT></DT><DD CLASS="dd-description"> When printing error messages, the toplevel system
+attempts to underline visually the location of the error. It
+consults the <TT>TERM</TT> variable to determines the type of output terminal
+and look up its capabilities in the terminal database.</DD><DT CLASS="dt-description"><TT><B>HOME</B></TT></DT><DD CLASS="dd-description"> Directory where the <TT>.ocamlinit</TT> file is searched.
+</DD></DL>
+</BLOCKQUOTE><H2 CLASS="section"><A NAME="toc90"></A><A NAME="htoc121">9.2</A>  Toplevel directives</H2><P>
+<A NAME="s:toplevel-directives"></A></P><P>The following directives control the toplevel behavior, load files in
+memory, and trace program execution.</P><P><B>Note:</B> all directives start with a <TT>#</TT> (sharp) symbol. This <TT>#</TT>
+must be typed before the directive, and must not be confused with the
+<TT>#</TT> prompt displayed by the interactive loop. For instance,
+typing <TT>#quit;;</TT> will exit the toplevel loop, but typing <TT>quit;;</TT>
+will result in an &#X201C;unbound value <TT>quit</TT>&#X201D; error.</P><DL CLASS="description"><DT CLASS="dt-description"><TT><B>#quit;;</B></TT></DT><DD CLASS="dd-description">
+Exit the toplevel loop and terminate the <TT>ocaml</TT> command.</DD><DT CLASS="dt-description"><B><TT>#labels </TT><I>bool</I><TT>;;</TT></B></DT><DD CLASS="dd-description">
+Ignore labels in function types if argument is <TT>false</TT>, or switch back
+to default behaviour (commuting style) if argument is <TT>true</TT>.</DD><DT CLASS="dt-description"><B><TT>#warnings "</TT><I>warning-list</I><TT>";;</TT></B></DT><DD CLASS="dd-description">
+Enable or disable warnings according to the argument.</DD><DT CLASS="dt-description"><B><TT>#directory "</TT><I>dir-name</I><TT>";;</TT></B></DT><DD CLASS="dd-description">
+Add the given directory to the list of directories searched for
+source and compiled files.</DD><DT CLASS="dt-description"><B><TT>#cd "</TT><I>dir-name</I><TT>";;</TT></B></DT><DD CLASS="dd-description">
+Change the current working directory.</DD><DT CLASS="dt-description"><B><TT>#load "</TT><I>file-name</I><TT>";;</TT></B></DT><DD CLASS="dd-description">
+Load in memory a bytecode object file (<TT>.cmo</TT> file) produced by
+the batch compiler <TT>ocamlc</TT>.</DD><DT CLASS="dt-description"><B><TT>#use "</TT><I>file-name</I><TT>";;</TT></B></DT><DD CLASS="dd-description">
+Read, compile and execute source phrases from the given file.
+This is textual inclusion: phrases are processed just as if
+they were typed on standard input. The reading of the file stops at
+the first error encountered.</DD><DT CLASS="dt-description"><B><TT>#install_printer </TT><I>printer-name</I><TT>;;</TT></B></DT><DD CLASS="dd-description">
+This directive registers the function named <I>printer-name</I> (a
+value path) as a printer for values whose types match the argument
+type of the function. That is, the toplevel loop will call
+<I>printer-name</I> when it has such a value to print.<P>The printing function <I>printer-name</I> should have type
+<FONT COLOR=blue><TT>Format.formatter</TT> <TT>-&gt;</TT> <FONT COLOR=maroon><I>t</I></FONT> <TT>-&gt;</TT> <TT>unit</TT></FONT>, where <FONT COLOR=maroon><I>t</I></FONT> is the
+type for the values to be printed, and should output its textual
+representation for the value of type <FONT COLOR=maroon><I>t</I></FONT> on the given formatter,
+using the functions provided by the <TT>Format</TT> library. For backward
+compatibility, <I>printer-name</I> can also have type
+<FONT COLOR=maroon><I>t</I></FONT> <FONT COLOR=blue><TT>-&gt;</TT> <TT>unit</TT></FONT> and should then output on the standard
+formatter, but this usage is deprecated.</P></DD><DT CLASS="dt-description"><B><TT>#remove_printer </TT><I>printer-name</I><TT>;;</TT></B></DT><DD CLASS="dd-description">
+Remove the named function from the table of toplevel printers.</DD><DT CLASS="dt-description"><B><TT>#trace </TT><I>function-name</I><TT>;;</TT></B></DT><DD CLASS="dd-description">
+After executing this directive, all calls to the function named
+<I>function-name</I> will be &#X201C;traced&#X201D;. That is, the argument and the
+result are displayed for each call, as well as the exceptions escaping
+out of the function, raised either by the function itself or by
+another function it calls. If the function is curried, each argument
+is printed as it is passed to the function.</DD><DT CLASS="dt-description"><B><TT>#untrace </TT><I>function-name</I><TT>;;</TT></B></DT><DD CLASS="dd-description">
+Stop tracing the given function.</DD><DT CLASS="dt-description"><B><TT>#untrace_all;;</TT></B></DT><DD CLASS="dd-description">
+Stop tracing all functions traced so far.</DD><DT CLASS="dt-description"><B><TT>#print_depth </TT><I>n</I><TT>;;</TT></B></DT><DD CLASS="dd-description">
+Limit the printing of values to a maximal depth of <I>n</I>.
+The parts of values whose depth exceeds <I>n</I> are printed as <TT>...</TT>
+(ellipsis).</DD><DT CLASS="dt-description"><B><TT>#print_length </TT><I>n</I><TT>;;</TT></B></DT><DD CLASS="dd-description">
+Limit the number of value nodes printed to at most <I>n</I>.
+Remaining parts of values are printed as <TT>...</TT> (ellipsis).</DD></DL><H2 CLASS="section"><A NAME="toc91"></A><A NAME="htoc122">9.3</A>  The toplevel and the module system</H2><P> <A NAME="s:toplevel-modules"></A></P><P>Toplevel phrases can refer to identifiers defined in compilation units
+with the same mechanisms as for separately compiled units: either by
+using qualified names (<TT>Modulename.localname</TT>), or by using
+the <TT>open</TT> construct and unqualified names (see section <A HREF="manual011.html#s:names">6.3</A>).</P><P>However, before referencing another compilation unit, an
+implementation of that unit must be present in memory.
+At start-up, the toplevel system contains implementations for all the
+modules in the the standard library. Implementations for user modules
+can be entered with the <TT>#load</TT> directive described above. Referencing
+a unit for which no implementation has been provided
+results in the error &#X201C;Reference to undefined global &#X2018;&#X2026;&#X2019; &#X201D;.</P><P>Note that entering <TT>open </TT><I>Mod</I> merely accesses the compiled
+interface (<TT>.cmi</TT> file) for <I>Mod</I>, but does not load the
+implementation of <I>Mod</I>, and does not cause any error if no
+implementation of <I>Mod</I> has been loaded. The error 
+&#X201C;reference to undefined global <I>Mod</I>&#X201D; will occur only when
+executing a value or module definition that refers to <I>Mod</I>.</P><H2 CLASS="section"><A NAME="toc92"></A><A NAME="htoc123">9.4</A>  Common errors</H2><P>This section describes and explains the most frequently encountered
+error messages.</P><DL CLASS="description"><DT CLASS="dt-description"><B>Cannot find file <I>filename</I></B></DT><DD CLASS="dd-description">
+The named file could not be found in the current directory, nor in the
+directories of the search path. <P>If <I>filename</I> has the format <I>mod</I><TT>.cmi</TT>, this
+means you have referenced the compilation unit <I>mod</I>, but its
+compiled interface could not be found. Fix: compile <I>mod</I><TT>.mli</TT> or
+<I>mod</I><TT>.ml</TT> first, to create the compiled interface <I>mod</I><TT>.cmi</TT>.</P><P>If <I>filename</I> has the format <I>mod</I><TT>.cmo</TT>, this
+means you are trying to load with <TT>#load</TT> a bytecode object file that
+does not exist yet. Fix: compile <I>mod</I><TT>.ml</TT> first.</P><P>If your program spans several directories, this error can also appear
+because you haven&#X2019;t specified the directories to look into. Fix: use
+the <TT>#directory</TT> directive to add the correct directories to the
+search path.</P></DD><DT CLASS="dt-description"><B>This expression has type <I>t</I><SUB>1</SUB>, but is used with type <I>t</I><SUB>2</SUB></B></DT><DD CLASS="dd-description">
+See section <A HREF="manual022.html#s:comp-errors">8.4</A>.</DD><DT CLASS="dt-description"><B>Reference to undefined global <I>mod</I></B></DT><DD CLASS="dd-description">
+You have neglected to load in memory an implementation for a module
+with <TT>#load</TT>. See section <A HREF="#s:toplevel-modules">9.3</A> above.</DD></DL><H2 CLASS="section"><A NAME="toc93"></A><A NAME="htoc124">9.5</A>  Building custom toplevel systems: <TT>ocamlmktop</TT></H2><P>The <TT>ocamlmktop</TT> command builds OCaml toplevels that
+contain user code preloaded at start-up. </P><P>The <TT>ocamlmktop</TT> command takes as argument a set of <TT>.cmo</TT> and <TT>.cma</TT>
+files, and links them with the object files that implement the OCaml toplevel.
+The typical use is:
+</P><PRE CLASS="verbatim">        ocamlmktop -o mytoplevel foo.cmo bar.cmo gee.cmo
+</PRE><P>This creates the bytecode file <TT>mytoplevel</TT>, containing the OCaml toplevel
+system, plus the code from the three <TT>.cmo</TT>
+files. This toplevel is directly executable and is started by:
+</P><PRE CLASS="verbatim">        ./mytoplevel
+</PRE><P>This enters a regular toplevel loop, except that the code from
+<TT>foo.cmo</TT>, <TT>bar.cmo</TT> and <TT>gee.cmo</TT> is already loaded in memory, just as
+if you had typed:
+</P><PRE CLASS="verbatim">        #load "foo.cmo";;
+        #load "bar.cmo";;
+        #load "gee.cmo";;
+</PRE><P>on entrance to the toplevel. The modules <TT>Foo</TT>, <TT>Bar</TT> and <TT>Gee</TT> are
+not opened, though; you still have to do
+</P><PRE CLASS="verbatim">        open Foo;;
+</PRE><P>yourself, if this is what you wish.</P><H2 CLASS="section"><A NAME="toc94"></A><A NAME="htoc125">9.6</A>  Options</H2><P>The following command-line options are recognized by <TT>ocamlmktop</TT>.</P><DL CLASS="description"><DT CLASS="dt-description"><B><TT>-cclib</TT> <I>libname</I></B></DT><DD CLASS="dd-description">
+Pass the <TT>-l</TT><I>libname</I> option to the C linker when linking in
+&#X201C;custom runtime&#X201D; mode. See the corresponding option for
+<TT>ocamlc</TT>, in chapter <A HREF="manual022.html#c:camlc">8</A>.</DD><DT CLASS="dt-description"><B><TT>-ccopt</TT> <I>option</I></B></DT><DD CLASS="dd-description">
+Pass the given option to the C compiler and linker, when linking in
+&#X201C;custom runtime&#X201D; mode. See the corresponding option for
+<TT>ocamlc</TT>, in chapter <A HREF="manual022.html#c:camlc">8</A>.</DD><DT CLASS="dt-description"><TT><B>-custom</B></TT></DT><DD CLASS="dd-description">
+Link in &#X201C;custom runtime&#X201D; mode. See the corresponding option for
+<TT>ocamlc</TT>, in chapter <A HREF="manual022.html#c:camlc">8</A>.</DD><DT CLASS="dt-description"><B><TT>-I</TT> <I>directory</I></B></DT><DD CLASS="dd-description">
+Add the given directory to the list of directories searched for
+compiled object code files (<TT>.cmo</TT> and <TT>.cma</TT>).</DD><DT CLASS="dt-description"><B><TT>-o</TT> <I>exec-file</I></B></DT><DD CLASS="dd-description">
+Specify the name of the toplevel file produced by the linker.
+The default is <TT>a.out</TT>.</DD></DL><HR>
+<A HREF="manual022.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual024.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

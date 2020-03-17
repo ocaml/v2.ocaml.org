@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;32&#XA0;&#XA0;The graphics library</title>
+</head>
+<body>
+<a href="libthreads.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="libdynlink.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec564">Chapter&#XA0;32&#XA0;&#XA0;The graphics library</h1>
+<p>The <span class="c003">graphics</span> library provides a set of portable drawing primitives.
+Drawing takes place
+in a separate window that is created when <span class="c003">Graphics.open_graph</span> is called.</p><blockquote class="quote"><span class="c007">Unix:</span>&#XA0;&#XA0;
+This library is implemented under the X11 windows system. 
+Programs that use the <span class="c003">graphics</span> library must be linked as follows:
+<pre>
+        ocamlc <span class="c009">other options</span> graphics.cma <span class="c009">other files</span>
+</pre>
+For interactive use of the <span class="c003">graphics</span> library, do:
+<pre>
+        ocamlmktop -o mytop graphics.cma
+        ./mytop
+</pre>
+or (if dynamic linking of C libraries is supported on your platform),
+start <span class="c003">ocaml</span> and type <span class="c003">#load "graphics.cma";;</span>.<p>Here are the graphics mode specifications supported by
+<span class="c003">Graphics.open_graph</span> on
+the X11 implementation of this library:
+the argument to <span class="c003">Graphics.open_graph</span> has the format
+<span class="c003">"</span><span class="c009">display-name geometry</span><span class="c003">"</span>,
+where <span class="c009">display-name</span> is the name of the X-windows display to
+connect to, and <span class="c009">geometry</span> is a standard X-windows geometry
+specification. The two components are separated by a space. Either can
+be omitted, or both. Examples:
+</p><dl class="description"><dt class="dt-description">
+<span class="c006">Graphics.open_graph "foo:0"</span></dt><dd class="dd-description">
+connects to the display <span class="c003">foo:0</span> and creates a window with the default geometry
+</dd><dt class="dt-description"><span class="c006">Graphics.open_graph "foo:0 300x100+50-0"</span></dt><dd class="dd-description">
+connects to the display <span class="c003">foo:0</span> and creates a window 300 pixels wide
+by 100 pixels tall, at location (50,0)
+</dd><dt class="dt-description"><span class="c006">Graphics.open_graph " 300x100+50-0"</span></dt><dd class="dd-description">
+connects to the default display and creates a window 300 pixels wide
+by 100 pixels tall, at location (50,0)
+</dd><dt class="dt-description"><span class="c006">Graphics.open_graph ""</span></dt><dd class="dd-description">
+connects to the default display and creates a window with the default
+geometry.
+</dd></dl></blockquote><blockquote class="quote"><span class="c007">Windows:</span>&#XA0;&#XA0;
+This library is available both for standalone compiled programs and
+under the toplevel application <span class="c003">ocamlwin.exe</span>. For the latter, this
+library must be loaded in-core by typing
+<pre>        #load "graphics.cma";;
+</pre></blockquote><p>The screen coordinates are interpreted as shown in the figure below.
+Notice that the coordinate system used is the same as in mathematics:
+<span class="c009">y</span> increases from the bottom of the screen to the top of the screen,
+and angles are measured counterclockwise (in degrees).
+Drawing is clipped to the screen.
+</p><div class="center">
+<img src="libgraph.gif">
+</div><ul class="ftoc2"><li class="li-links">
+<a href="libref/Graphics.html">Module <span class="c003">Graphics</span>: machine-independent graphics primitives</a>
+</li></ul>
+<hr>
+<a href="libthreads.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="libdynlink.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

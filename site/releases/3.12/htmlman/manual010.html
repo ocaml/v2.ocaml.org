@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Values</TITLE>
+</HEAD>
+<BODY >
+<A HREF="lex.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual011.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H2 CLASS="section"><A NAME="htoc53">6.2</A>  Values</H2><UL>
+<LI><A HREF="manual010.html#toc40">Base values</A>
+</LI><LI><A HREF="manual010.html#toc41">Tuples</A>
+</LI><LI><A HREF="manual010.html#toc42">Records</A>
+</LI><LI><A HREF="manual010.html#toc43">Arrays</A>
+</LI><LI><A HREF="manual010.html#toc44">Variant values</A>
+</LI><LI><A HREF="manual010.html#toc45">Polymorphic variants</A>
+</LI><LI><A HREF="manual010.html#toc46">Functions</A>
+</LI><LI><A HREF="manual010.html#toc47">Objects</A>
+</LI></UL>
+<P>This section describes the kinds of values that are manipulated by
+OCaml programs.</P><H3 CLASS="subsection"><A NAME="toc40"></A><A NAME="htoc54">6.2.1</A>  Base values</H3><H4 CLASS="subsubsection">Integer numbers</H4><P>Integer values are integer numbers from &#X2212;2<SUP>30</SUP> to 2<SUP>30</SUP>&#X2212;1, that
+is &#X2212;1073741824 to 1073741823. The implementation may support a
+wider range of integer values: on 64-bit platforms, the current
+implementation supports integers ranging from &#X2212;2<SUP>62</SUP> to 2<SUP>62</SUP>&#X2212;1.</P><H4 CLASS="subsubsection">Floating-point numbers</H4><P>Floating-point values are numbers in floating-point representation.
+The current implementation uses double-precision floating-point
+numbers conforming to the IEEE 754 standard, with 53 bits of mantissa
+and an exponent ranging from &#X2212;1022 to 1023.</P><H4 CLASS="subsubsection">Characters</H4><P>Character values are represented as 8-bit integers between 0 and 255.
+Character codes between 0 and 127 are interpreted following the ASCII
+standard. The current implementation interprets character codes
+between 128 and 255 following the ISO 8859-1 standard.</P><H4 CLASS="subsubsection">Character strings</H4><P> <A NAME="s:string-val"></A></P><P>String values are finite sequences of characters. The current
+implementation supports strings containing up to 2<SUP>24</SUP> &#X2212; 5
+characters (16777211 characters); on 64-bit platforms, the limit is
+2<SUP>57</SUP> &#X2212; 9.</P><H3 CLASS="subsection"><A NAME="toc41"></A><A NAME="htoc55">6.2.2</A>  Tuples</H3><P>Tuples of values are written (<I>v</I><SUB>1</SUB>, &#X2026;, <I>v<SUB>n</SUB></I>), standing for the
+<I>n</I>-tuple of values <I>v</I><SUB>1</SUB> to <I>v<SUB>n</SUB></I>. The current implementation
+supports tuple of up to 2<SUP>22</SUP> &#X2212; 1 elements (4194303 elements).</P><H3 CLASS="subsection"><A NAME="toc42"></A><A NAME="htoc56">6.2.3</A>  Records</H3><P>Record values are labeled tuples of values. The record value written
+{ <I>field</I><SUB>1</SUB> = <I>v</I><SUB>1</SUB>; &#X2026;; <I>field<SUB>n</SUB></I> = <I>v<SUB>n</SUB></I> } associates the value
+<I>v<SUB>i</SUB></I> to the record field <I>field<SUB>i</SUB></I>, for <I>i</I> = 1 &#X2026; <I>n</I>. The current
+implementation supports records with up to 2<SUP>22</SUP> &#X2212; 1 fields
+(4194303 fields).</P><H3 CLASS="subsection"><A NAME="toc43"></A><A NAME="htoc57">6.2.4</A>  Arrays</H3><P>Arrays are finite, variable-sized sequences of values of the same
+type. The current implementation supports arrays containing up to
+2<SUP>22</SUP> &#X2212; 1 elements (4194303 elements) unless the elements are
+floating-point numbers (2097151 elements in this case); on 64-bit
+platforms, the limit is 2<SUP>54</SUP> &#X2212; 1 for all arrays.</P><H3 CLASS="subsection"><A NAME="toc44"></A><A NAME="htoc58">6.2.5</A>  Variant values</H3><P>Variant values are either a constant constructor, or a pair of a
+non-constant constructor and a value. The former case is written
+<I>constr</I>; the latter case is written <I>constr</I>(<I>v</I>), where <I>v</I> is said
+to be the argument of the non-constant constructor <I>constr</I>.</P><P>The following constants are treated like built-in constant
+constructors:
+</P><DIV CLASS="center"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1 WIDTH="80%"><TR><TD ALIGN=center NOWRAP><B>Constant</B></TD><TD ALIGN=center NOWRAP><B>Constructor</B></TD></TR>
+<TR><TD ALIGN=left NOWRAP>
+<TT>false</TT></TD><TD ALIGN=left NOWRAP>the boolean false</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>true</TT></TD><TD ALIGN=left NOWRAP>the boolean true</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>()</TT></TD><TD ALIGN=left NOWRAP>the &#X201C;unit&#X201D; value</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>[]</TT></TD><TD ALIGN=left NOWRAP>the empty list</TD></TR>
+</TABLE></DIV><P>The current implementation limits each variant type to have at most
+246 non-constant constructors.</P><H3 CLASS="subsection"><A NAME="toc45"></A><A NAME="htoc59">6.2.6</A>  Polymorphic variants</H3><P>Polymorphic variants are an alternate form of variant values, not
+belonging explicitly to a predefined variant type, and following
+specific typing rules. They can be either constant, written
+<FONT COLOR=blue><TT>`</TT></FONT><I><A HREF="manual011.html#tag-name"><FONT COLOR=maroon>tag-name</FONT></A></I>, or non-constant, written <FONT COLOR=blue><TT>`</TT></FONT><I><A HREF="manual011.html#tag-name"><FONT COLOR=maroon>tag-name</FONT></A></I>(<I>v</I>).</P><H3 CLASS="subsection"><A NAME="toc46"></A><A NAME="htoc60">6.2.7</A>  Functions</H3><P>Functional values are mappings from values to values.</P><H3 CLASS="subsection"><A NAME="toc47"></A><A NAME="htoc61">6.2.8</A>  Objects</H3><P>Objects are composed of a hidden internal state which is a
+record of instance variables, and a set of methods for accessing and
+modifying these variables. The structure of an object is described by
+the toplevel class that created it.</P><HR>
+<A HREF="lex.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual011.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

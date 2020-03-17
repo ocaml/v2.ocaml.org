@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.14  Extensible variant types</title>
+</head>
+<body>
+<a href="extensionnodes.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="generativefunctors.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:extensible-variants"><a class="section-anchor" href="#s:extensible-variants" aria-hidden="true">﻿</a>8.14  Extensible variant types</h2>
+<ul>
+<li><a href="extensiblevariants.html#ss%3Aprivate-extensible">8.14.1  Private extensible variant types</a>
+</li></ul>
+<p>(Introduced in OCaml 4.02)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-representation"><span class="c010">type-representation</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">=</span> <span class="c004">..</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">type</span> [<a class="syntax" href="typedecl.html#type-params"><span class="c010">type-params</span></a>]  <a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>  <a class="syntax" href="#type-extension-spec"><span class="c010">type-extension-spec</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">type</span> [<a class="syntax" href="typedecl.html#type-params"><span class="c010">type-params</span></a>]  <a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>  <a class="syntax" href="#type-extension-def"><span class="c010">type-extension-def</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-extension-spec"><span class="c010">type-extension-spec</span></a></td><td class="c015">::=</td><td class="c017"> <span class="c004">+=</span> [<span class="c004">private</span>] [<span class="c004">|</span>] <a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>  { <span class="c004">|</span> <a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a> }
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-extension-def"><span class="c010">type-extension-def</span></a></td><td class="c015">::=</td><td class="c017"> <span class="c004">+=</span> [<span class="c004">private</span>] [<span class="c004">|</span>] <a class="syntax" href="#constr-def"><span class="c010">constr-def</span></a>  { <span class="c004">|</span> <a class="syntax" href="#constr-def"><span class="c010">constr-def</span></a> }
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="constr-def"><span class="c010">constr-def</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a> <span class="c004">=</span>  <a class="syntax" href="names.html#constr"><span class="c010">constr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Extensible variant types are variant types which can be extended with
+new variant constructors. Extensible variant types are defined using
+<span class="c003">..</span>. New variant constructors are added using <span class="c003">+=</span>.
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> Expr = <span class="ocamlkeyword">struct</span>
+   <span class="ocamlkeyword">type</span> attr = ..
+
+   <span class="ocamlkeyword">type</span> attr += Str <span class="ocamlkeyword">of</span> string
+
+   <span class="ocamlkeyword">type</span> attr +=
+     | Int <span class="ocamlkeyword">of</span> int
+     | Float <span class="ocamlkeyword">of</span> float
+ <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>Pattern matching on an extensible variant type requires a default case
+to handle unknown variant constructors:
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> to_string = <span class="ocamlkeyword">function</span>
+   | Expr.Str s -&gt; s
+   | Expr.Int i -&gt; Int.to_string i
+   | Expr.Float f -&gt; string_of_float f
+   | _ -&gt; <span class="ocamlstring">"?"</span></div></div>
+
+</div><p>A preexisting example of an extensible variant type is the built-in
+<span class="c003">exn</span> type used for exceptions. Indeed, exception constructors can be
+declared using the type extension syntax:
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> exn += Exc <span class="ocamlkeyword">of</span> int</div></div>
+
+</div><p>Extensible variant constructors can be rebound to a different name. This
+allows exporting variants from another module.
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> not_in_scope = <span class="ocamlhighlight">Str</span> <span class="ocamlstring">"Foo"</span>;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: Unbound constructor Str</div></div>
+
+</div><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> Expr.attr += Str = Expr.Str</div></div>
+
+</div><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> now_works = Str <span class="ocamlstring">"foo"</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> now_works : Expr.attr = Expr.Str <span class="ocamlstring">"foo"</span></div></div>
+
+</div><p>Extensible variant constructors can be declared <span class="c003">private</span>. As with
+regular variants, this prevents them from being constructed directly by
+constructor application while still allowing them to be de-structured in
+pattern-matching.
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> B : <span class="ocamlkeyword">sig</span>
+   <span class="ocamlkeyword">type</span> Expr.attr += <span class="ocamlkeyword">private</span> Bool <span class="ocamlkeyword">of</span> int
+   <span class="ocamlkeyword">val</span> bool : bool -&gt; Expr.attr
+ <span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span>
+   <span class="ocamlkeyword">type</span> Expr.attr += Bool <span class="ocamlkeyword">of</span> int
+   <span class="ocamlkeyword">let</span> bool p = <span class="ocamlkeyword">if</span> p <span class="ocamlkeyword">then</span> Bool 1 <span class="ocamlkeyword">else</span> Bool 0
+ <span class="ocamlkeyword">end</span></div></div>
+
+</div><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> inspection_works = <span class="ocamlkeyword">function</span>
+   | B.Bool p -&gt; (p = 1)
+   | _ -&gt; <span class="ocamlkeyword">true</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> inspection_works : Expr.attr -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> construction_is_forbidden = <span class="ocamlhighlight">B.Bool 1</span>;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: Cannot use private constructor Bool to create values of type Expr.attr</div></div>
+
+</div>
+<h3 class="subsection" id="ss:private-extensible"><a class="section-anchor" href="#ss:private-extensible" aria-hidden="true">﻿</a>8.14.1  Private extensible variant types</h3>
+<p>(Introduced in OCaml 4.06)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-representation"><span class="c010">type-representation</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">=</span> <span class="c004">private</span> <span class="c004">..</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Extensible variant types can be declared <span class="c003">private</span>. This prevents new
+constructors from being declared directly, but allows extension
+constructors to be referred to in interfaces.
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> Msg : <span class="ocamlkeyword">sig</span>
+   <span class="ocamlkeyword">type</span> t = <span class="ocamlkeyword">private</span> ..
+   <span class="ocamlkeyword">module</span> MkConstr (X : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t <span class="ocamlkeyword">end</span>) : <span class="ocamlkeyword">sig</span>
+     <span class="ocamlkeyword">type</span> t += C <span class="ocamlkeyword">of</span> X.t
+   <span class="ocamlkeyword">end</span>
+ <span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span>
+   <span class="ocamlkeyword">type</span> t = ..
+   <span class="ocamlkeyword">module</span> MkConstr (X : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t <span class="ocamlkeyword">end</span>) = <span class="ocamlkeyword">struct</span>
+     <span class="ocamlkeyword">type</span> t += C <span class="ocamlkeyword">of</span> X.t
+   <span class="ocamlkeyword">end</span>
+ <span class="ocamlkeyword">end</span></div></div>
+
+</div>
+<hr>
+<a href="extensionnodes.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="generativefunctors.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

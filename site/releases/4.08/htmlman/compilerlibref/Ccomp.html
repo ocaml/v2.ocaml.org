@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="CamlinternalMenhirLib.html">
+<link rel="next" href="Clflags.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="CamlinternalMenhirLib" rel="Chapter" href="CamlinternalMenhirLib.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Compiler_libs" rel="Chapter" href="Compiler_libs.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Load_path" rel="Chapter" href="Load_path.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html"><title>Ccomp</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="CamlinternalMenhirLib.html" title="CamlinternalMenhirLib">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Clflags.html" title="Clflags">Next</a>
+</div>
+<h1>Module <a href="type_Ccomp.html">Ccomp</a></h1>
+
+<pre><span id="MODULECcomp"><span class="keyword">module</span> Ccomp</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Ccomp.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Compiling C files and building C libraries</p>
+
+<p><b>Warning:</b> this module is unstable and part of
+  <a href="Compiler_libs.html">compiler-libs</a>.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="VALcommand"><span class="keyword">val</span> command</span> : <code class="type">string -> int</code></pre>
+<pre><span id="VALrun_command"><span class="keyword">val</span> run_command</span> : <code class="type">string -> unit</code></pre>
+<pre><span id="VALcompile_file"><span class="keyword">val</span> compile_file</span> : <code class="type">?output:string -> ?opt:string -> ?stable_name:string -> string -> int</code></pre>
+<pre><span id="VALcreate_archive"><span class="keyword">val</span> create_archive</span> : <code class="type">string -> string list -> int</code></pre>
+<pre><span id="VALexpand_libname"><span class="keyword">val</span> expand_libname</span> : <code class="type">string -> string</code></pre>
+<pre><span id="VALquote_files"><span class="keyword">val</span> quote_files</span> : <code class="type">string list -> string</code></pre>
+<pre><span id="VALquote_optfile"><span class="keyword">val</span> quote_optfile</span> : <code class="type">string option -> string</code></pre>
+<pre><code><span id="TYPElink_mode"><span class="keyword">type</span> <code class="type"></code>link_mode</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlink_mode.Exe"><span class="constructor">Exe</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlink_mode.Dll"><span class="constructor">Dll</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlink_mode.MainDll"><span class="constructor">MainDll</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlink_mode.Partial"><span class="constructor">Partial</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="VALcall_linker"><span class="keyword">val</span> call_linker</span> : <code class="type"><a href="Ccomp.html#TYPElink_mode">link_mode</a> -> string -> string list -> string -> bool</code></pre></body></html>

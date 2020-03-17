@@ -1,0 +1,2289 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;8&#XA0;&#XA0;Language extensions</title>
+</head>
+<body>
+<a href="language.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="comp.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec232">Chapter&#XA0;8&#XA0;&#XA0;Language extensions</h1>
+<ul>
+<li><a href="extn.html#sec233">8.1&#XA0;&#XA0;Integer literals for types <span class="c003">int32</span>, <span class="c003">int64</span>
+and <span class="c003">nativeint</span></a>
+</li><li><a href="extn.html#sec234">8.2&#XA0;&#XA0;Recursive definitions of values</a>
+</li><li><a href="extn.html#sec235">8.3&#XA0;&#XA0;Lazy patterns</a>
+</li><li><a href="extn.html#sec236">8.4&#XA0;&#XA0;Recursive modules</a>
+</li><li><a href="extn.html#sec237">8.5&#XA0;&#XA0;Private types</a>
+</li><li><a href="extn.html#sec241">8.6&#XA0;&#XA0;Local opens for patterns</a>
+</li><li><a href="extn.html#sec242">8.7&#XA0;&#XA0;Object copy short notations</a>
+</li><li><a href="extn.html#sec243">8.8&#XA0;&#XA0;Locally abstract types</a>
+</li><li><a href="extn.html#sec245">8.9&#XA0;&#XA0;First-class modules</a>
+</li><li><a href="extn.html#sec248">8.10&#XA0;&#XA0;Recovering the type of a module</a>
+</li><li><a href="extn.html#sec249">8.11&#XA0;&#XA0;Substituting inside a signature</a>
+</li><li><a href="extn.html#sec250">8.12&#XA0;&#XA0;Type-level module aliases</a>
+</li><li><a href="extn.html#sec251">8.13&#XA0;&#XA0;Overriding in open statements</a>
+</li><li><a href="extn.html#sec252">8.14&#XA0;&#XA0;Generalized algebraic datatypes</a>
+</li><li><a href="extn.html#sec259">8.15&#XA0;&#XA0;Syntax for Bigarray access</a>
+</li><li><a href="extn.html#sec260">8.16&#XA0;&#XA0;Attributes</a>
+</li><li><a href="extn.html#sec262">8.17&#XA0;&#XA0;Extension nodes</a>
+</li><li><a href="extn.html#sec264">8.18&#XA0;&#XA0;Quoted strings</a>
+</li><li><a href="extn.html#sec265">8.19&#XA0;&#XA0;Exception cases in pattern matching</a>
+</li><li><a href="extn.html#sec266">8.20&#XA0;&#XA0;Extensible variant types</a>
+</li><li><a href="extn.html#sec268">8.21&#XA0;&#XA0;Generative functors</a>
+</li><li><a href="extn.html#sec269">8.22&#XA0;&#XA0;Extension-only syntax</a>
+</li><li><a href="extn.html#sec272">8.23&#XA0;&#XA0;Inline records</a>
+</li><li><a href="extn.html#sec273">8.24&#XA0;&#XA0;Local exceptions</a>
+</li><li><a href="extn.html#sec274">8.25&#XA0;&#XA0;Documentation comments</a>
+</li><li><a href="extn.html#s%3Aindex-operators">8.26&#XA0;&#XA0;Extended indexing operators  </a>
+</li><li><a href="extn.html#s%3Aempty-variants">8.27&#XA0;&#XA0;Empty variant types </a>
+</li></ul>
+<p> <a id="c:extensions"></a>
+
+</p><p>This chapter describes language extensions and convenience features
+that are implemented in OCaml, but not described in the
+OCaml reference manual.</p>
+<h2 class="section" id="sec233">8.1&#XA0;&#XA0;Integer literals for types <span class="c003">int32</span>, <span class="c003">int64</span>
+and <span class="c003">nativeint</span></h2>
+<p> <a id="s:ext-integer"></a></p><p>(Introduced in Objective Caml 3.07)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="const.html#constant"><span class="c010">constant</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#int32-literal"><span class="c010">int32-literal</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#int64-literal"><span class="c010">int64-literal</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#nativeint-literal"><span class="c010">nativeint-literal</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="int32-literal"><span class="c010">int32-literal</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;<a class="syntax" href="lex.html#integer-literal"><span class="c010">integer-literal</span></a>&#XA0;<span class="c004">l</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="int64-literal"><span class="c010">int64-literal</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;<a class="syntax" href="lex.html#integer-literal"><span class="c010">integer-literal</span></a>&#XA0;<span class="c004">L</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="nativeint-literal"><span class="c010">nativeint-literal</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;<a class="syntax" href="lex.html#integer-literal"><span class="c010">integer-literal</span></a>&#XA0;<span class="c004">n</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>An integer literal can be followed by one of the letters <span class="c003">l</span>, <span class="c003">L</span> or <span class="c003">n</span>
+to indicate that this integer has type <span class="c003">int32</span>, <span class="c003">int64</span> or <span class="c003">nativeint</span>
+respectively, instead of the default type <span class="c003">int</span> for integer literals.
+<a id="hevea_manual4"></a>
+<a id="hevea_manual5"></a>
+<a id="hevea_manual6"></a>
+The library modules <span class="c003">Int32</span>[<a href="libref/Int32.html"><span class="c003">Int32</span></a>],
+<span class="c003">Int64</span>[<a href="libref/Int64.html"><span class="c003">Int64</span></a>] and <span class="c003">Nativeint</span>[<a href="libref/Nativeint.html"><span class="c003">Nativeint</span></a>]
+provide operations on these integer types.</p>
+<h2 class="section" id="sec234">8.2&#XA0;&#XA0;Recursive definitions of values</h2>
+<p> <a id="s:letrecvalues"></a></p><p>(Introduced in Objective Caml 1.00)</p><p>As mentioned in section&#XA0;<a href="expr.html#s%3Alocaldef">7.7.1</a>, the <span class="c002"><span class="c003">let</span> <span class="c003">rec</span></span> binding
+construct, in addition to the definition of recursive functions,
+also supports a certain class of recursive definitions of
+non-functional values, such as
+</p><div class="center">
+<span class="c002"><span class="c003">let</span> <span class="c003">rec</span></span> <span class="c010">name</span><sub>1</sub> <span class="c002"><span class="c003">=</span> <span class="c003">1</span> <span class="c003">::</span></span> &#XA0;<span class="c010">name</span><sub>2</sub>
+<span class="c004">and</span> &#XA0;<span class="c010">name</span><sub>2</sub> <span class="c002"><span class="c003">=</span> <span class="c003">2</span> <span class="c003">::</span></span> &#XA0;<span class="c010">name</span><sub>1</sub>
+<span class="c004">in</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+</div><p>
+which binds <span class="c010">name</span><sub>1</sub> to the cyclic list <span class="c003">1::2::1::2::</span>&#X2026;, and
+<span class="c010">name</span><sub>2</sub> to the cyclic list <span class="c003">2::1::2::1::</span>&#X2026;Informally, the class of accepted definitions consists of those
+definitions where the defined names occur only inside function
+bodies or as argument to a data constructor.</p><p>More precisely, consider the expression:
+</p><div class="center">
+<span class="c002"><span class="c003">let</span> <span class="c003">rec</span></span> <span class="c010">name</span><sub>1</sub> <span class="c004">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">and</span> &#X2026; <span class="c004">and</span> &#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub> <span class="c004">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">n</span></sub> <span class="c004">in</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+</div><p>
+It will be accepted if each one of <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> &#X2026; &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">n</span></sub> is
+statically constructive with respect to <span class="c010">name</span><sub>1</sub> &#X2026; &#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub>,
+is not immediately linked to any of <span class="c010">name</span><sub>1</sub> &#X2026; &#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub>,
+and is not an array constructor whose arguments have abstract type.</p><p>An expression <span class="c010">e</span> is said to be <em>statically constructive
+with respect to</em> the variables <span class="c010">name</span><sub>1</sub> &#X2026; &#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub> if at least
+one of the following conditions is true:
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c010">e</span> has no free occurrence of any of <span class="c010">name</span><sub>1</sub> &#X2026; &#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub>
+</li><li class="li-itemize"><span class="c010">e</span> is a variable
+</li><li class="li-itemize"><span class="c010">e</span> has the form <span class="c004">fun</span> &#X2026; <span class="c004">-&gt;</span> &#X2026;
+</li><li class="li-itemize"><span class="c010">e</span> has the form <span class="c004">function</span> &#X2026; <span class="c004">-&gt;</span> &#X2026;
+</li><li class="li-itemize"><span class="c010">e</span> has the form <span class="c002"><span class="c003">lazy</span> <span class="c003">(</span></span> &#X2026; <span class="c004">)</span>
+</li><li class="li-itemize"><span class="c010">e</span> has one of the following forms, where each one of
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> &#X2026; &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> is statically constructive with respect to
+<span class="c010">name</span><sub>1</sub> &#X2026; &#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub>, and <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> is statically constructive with
+respect to <span class="c010">name</span><sub>1</sub> &#X2026; &#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub>, &#XA0;<span class="c010">xname</span><sub>1</sub> &#X2026; &#XA0;<span class="c010">xname</span><sub><span class="c009">m</span></sub>:
+<ul class="itemize"><li class="li-itemize">
+<span class="c004">let</span> [<span class="c004">rec</span>] <span class="c010">xname</span><sub>1</sub> <span class="c004">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">and</span> &#X2026;
+<span class="c004">and</span> &#XA0;<span class="c010">xname</span><sub><span class="c009">m</span></sub> <span class="c004">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">in</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub>
+</li><li class="li-itemize"><span class="c002"><span class="c003">let</span> <span class="c003">module</span></span> &#X2026; <span class="c004">in</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub>
+</li><li class="li-itemize"><a class="syntax" href="names.html#constr"><span class="c010">constr</span></a> <span class="c004">(</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#X2026; <span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub><span class="c004">)</span>
+</li><li class="li-itemize"><span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a> <span class="c004">(</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#X2026; <span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub><span class="c004">)</span>
+</li><li class="li-itemize"><span class="c004">[|</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">;</span> &#X2026; <span class="c004">;</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">|]</span>
+</li><li class="li-itemize"><span class="c004">{</span> <a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub>1</sub> <span class="c004">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">;</span> &#X2026; <span class="c004">;</span> &#XA0;<a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub><span class="c009">m</span></sub> = &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">}</span>
+</li><li class="li-itemize"><span class="c004">{</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">with</span> &#XA0;<a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub>2</sub> <span class="c004">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub><span class="c004">;</span> &#X2026; <span class="c004">;</span>
+&#XA0;<a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub><span class="c009">m</span></sub> = &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">}</span> where <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> is not immediately
+linked to <span class="c010">name</span><sub>1</sub> &#X2026; &#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub>
+</li><li class="li-itemize"><span class="c004">(</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#X2026; <span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">)</span>
+</li><li class="li-itemize"><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">;</span> &#X2026; <span class="c004">;</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub>
+</li></ul>
+</li></ul><p>An expression <span class="c010">e</span> is said to be <em>immediately linked to</em> the variable
+<span class="c010">name</span> in the following cases:
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c010">e</span> is <span class="c010">name</span>
+</li><li class="li-itemize"><span class="c010">e</span> has the form <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">;</span> &#X2026; <span class="c004">;</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> where <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub>
+is immediately linked to <span class="c010">name</span>
+</li><li class="li-itemize"><span class="c010">e</span> has the form <span class="c004">let</span> [<span class="c004">rec</span>] <span class="c010">xname</span><sub>1</sub> <span class="c004">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">and</span> &#X2026;
+<span class="c004">and</span> &#XA0;<span class="c010">xname</span><sub><span class="c009">m</span></sub> <span class="c004">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">in</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> where <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> is immediately
+linked to <span class="c010">name</span> or to one of the <span class="c010">xname</span><sub><span class="c009">i</span></sub> such that <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">i</span></sub>
+is immediately linked to <span class="c010">name</span>.
+</li></ul>
+<h2 class="section" id="sec235">8.3&#XA0;&#XA0;Lazy patterns</h2>
+<p> <a id="s:lazypat"></a></p><p><a id="hevea_manual.kwd204"></a></p><p>(Introduced in Objective Caml 3.11)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">lazy</span>&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>The pattern <span class="c004">lazy</span> <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> matches a value <span class="c009">v</span> of type <span class="c003">Lazy.t</span>,
+provided <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> matches the result of forcing <span class="c009">v</span> with
+<span class="c003">Lazy.force</span>. A successful match of a pattern containing <span class="c004">lazy</span>
+sub-patterns forces the corresponding parts of the value being matched, even
+those that imply no test such as <span class="c004">lazy</span> <a class="syntax" href="names.html#value-name"><span class="c010">value-name</span></a> or <span class="c002"><span class="c003">lazy</span> <span class="c003">_</span></span>.
+Matching a value with a <a class="syntax" href="expr.html#pattern-matching"><span class="c010">pattern-matching</span></a> where some patterns
+contain <span class="c004">lazy</span> sub-patterns may imply forcing parts of the value,
+even when the pattern selected in the end has no <span class="c004">lazy</span> sub-pattern.</p><p>For more information, see the description of module <span class="c003">Lazy</span> in the
+standard library (
+<a href="libref/Lazy.html">Module <span class="c003">Lazy</span></a>).
+<a id="hevea_manual7"></a><a id="hevea_manual8"></a></p>
+<h2 class="section" id="sec236">8.4&#XA0;&#XA0;Recursive modules</h2>
+<p> <a id="s-recursive-modules"></a>
+<a id="hevea_manual.kwd205"></a>
+<a id="hevea_manual.kwd206"></a></p><p>(Introduced in Objective Caml 3.07)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<span class="c004">rec</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>&#XA0;
+&#XA0;{&#XA0;<span class="c004">and</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<span class="c004">rec</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>
+&#XA0;{&#XA0;<span class="c004">and</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a><span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;}
+</td></tr>
+</table></td></tr>
+</table></div><p>Recursive module definitions, introduced by the <span class="c004">module rec</span> &#X2026;<span class="c004">and</span> &#X2026; construction, generalize regular module definitions
+<span class="c004">module</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">=</span> &#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> and module specifications
+<span class="c004">module</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a> by allowing the defining
+<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> and the <a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a> to refer recursively to the module
+identifiers being defined. A typical example of a recursive module
+definition is:
+</p><pre>    module rec A : sig
+                     type t = Leaf of string | Node of ASet.t
+                     val compare: t -&gt; t -&gt; int
+                   end
+                 = struct
+                     type t = Leaf of string | Node of ASet.t
+                     let compare t1 t2 =
+                       match (t1, t2) with
+                         (Leaf s1, Leaf s2) -&gt; Pervasives.compare s1 s2
+                       | (Leaf _, Node _) -&gt; 1
+                       | (Node _, Leaf _) -&gt; -1
+                       | (Node n1, Node n2) -&gt; ASet.compare n1 n2
+                   end
+        and ASet : Set.S with type elt = A.t
+                 = Set.Make(A)
+</pre><p>It can be given the following specification:
+</p><pre>    module rec A : sig
+                     type t = Leaf of string | Node of ASet.t
+                     val compare: t -&gt; t -&gt; int
+                   end
+        and ASet : Set.S with type elt = A.t
+</pre><p>
+This is an experimental extension of OCaml: the class of
+recursive definitions accepted, as well as its dynamic semantics are
+not final and subject to change in future releases.</p><p>Currently, the compiler requires that all dependency cycles between
+the recursively-defined module identifiers go through at least one
+&#X201C;safe&#X201D; module. A module is &#X201C;safe&#X201D; if all value definitions that
+it contains have function types <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> <span class="c004">-&gt;</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub>2</sub>. Evaluation of a
+recursive module definition proceeds by building initial values for
+the safe modules involved, binding all (functional) values to
+<span class="c002"><span class="c003">fun</span> <span class="c003">_</span> <span class="c003">-&gt;</span> <span class="c003">raise</span></span> <span class="c003">Undefined_recursive_module</span>. The defining
+module expressions are then evaluated, and the initial values
+for the safe modules are replaced by the values thus computed. If a
+function component of a safe module is applied during this computation
+(which corresponds to an ill-founded recursive definition), the
+<span class="c003">Undefined_recursive_module</span> exception is raised at runtime:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module rec M: sig val f: unit -&gt; int end = struct let f () = N.x end
+ and N:sig val x: int end = struct let x = M.f () end
+
+</div><div class="caml-output ok">Exception: Undefined_recursive_module ("//toplevel//", 1, 43).
+</div></pre>
+
+
+</div><p>If there are no safe modules along a dependency cycle, an error is raised</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module rec M: sig val x: int end = <U>struct let x = N.y end</U>
+ and N:sig val x: int val y:int end = struct let x = M.x let y = 0 end
+
+</div><div class="caml-output error">Error: Cannot safely evaluate the definition of the following cycle
+       of recursively-defined modules: M -&gt; N -&gt; M.
+       There are no safe modules in this cycle (see manual section 8.4)
+</div></pre>
+
+
+</div><p>Note that, in the <a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a> case, the <a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>s must be
+parenthesized if they use the <span class="c004">with</span> <a class="syntax" href="modtypes.html#mod-constraint"><span class="c010">mod-constraint</span></a> construct.</p>
+<h2 class="section" id="sec237">8.5&#XA0;&#XA0;Private types</h2>
+<p><a id="s:private-types"></a>
+<a id="hevea_manual.kwd207"></a></p><p>Private type declarations in module signatures, of the form
+<span class="c003">type t = private ...</span>, enable libraries to
+reveal some, but not all aspects of the implementation of a type to
+clients of the library. In this respect, they strike a middle ground
+between abstract type declarations, where no information is revealed
+on the type implementation, and data type definitions and type
+abbreviations, where all aspects of the type implementation are
+publicized. Private type declarations come in three flavors: for
+variant and record types (section&#XA0;<a href="#s-private-types-variant">8.5.1</a>),
+for type abbreviations (section&#XA0;<a href="#s-private-types-abbrev">8.5.2</a>),
+and for row types (section&#XA0;<a href="#s-private-rows">8.5.3</a>).</p>
+<h3 class="subsection" id="sec238">8.5.1&#XA0;&#XA0;Private variant and record types</h3>
+<p> <a id="s-private-types-variant"></a></p><p>(Introduced in Objective Caml 3.07)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-representation"><span class="c010">type-representation</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">=</span>&#XA0;<span class="c004">private</span>&#XA0;[&#XA0;<span class="c004">|</span>&#XA0;]&#XA0;<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">|</span>&#XA0;<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">=</span>&#XA0;<span class="c004">private</span>&#XA0;<a class="syntax" href="typedecl.html#record-decl"><span class="c010">record-decl</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>Values of a variant or record type declared <span class="c004">private</span>
+can be de-structured normally in pattern-matching or via
+the <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">.</span> &#XA0;<a class="syntax" href="names.html#field"><span class="c010">field</span></a> notation for record accesses. However, values of
+these types cannot be constructed directly by constructor application
+or record construction. Moreover, assignment on a mutable field of a
+private record type is not allowed.</p><p>The typical use of private types is in the export signature of a
+module, to ensure that construction of values of the private type always
+go through the functions provided by the module, while still allowing
+pattern-matching outside the defining module. For example:
+</p><pre>        module M : sig
+                     type t = private A | B of int
+                     val a : t
+                     val b : int -&gt; t
+                   end
+                 = struct
+                     type t = A | B of int
+                     let a = A
+                     let b n = assert (n &gt; 0); B n
+                   end
+</pre><p>Here, the <span class="c004">private</span> declaration ensures that in any value of type
+<span class="c003">M.t</span>, the argument to the <span class="c003">B</span> constructor is always a positive integer.</p><p>With respect to the variance of their parameters, private types are
+handled like abstract types. That is, if a private type has
+parameters, their variance is the one explicitly given by prefixing
+the parameter by a &#X2018;<span class="c003">+</span>&#X2019; or a &#X2018;<span class="c003">-</span>&#X2019;, it is invariant otherwise.</p>
+<h3 class="subsection" id="sec239">8.5.2&#XA0;&#XA0;Private type abbreviations</h3>
+<p> <a id="s-private-types-abbrev"></a></p><p>(Introduced in Objective Caml 3.11)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-equation"><span class="c010">type-equation</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">=</span>&#XA0;<span class="c004">private</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>Unlike a regular type abbreviation, a private type abbreviation
+declares a type that is distinct from its implementation type <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>.
+However, coercions from the type to <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> are permitted.
+Moreover, the compiler &#X201C;knows&#X201D; the implementation type and can take
+advantage of this knowledge to perform type-directed optimizations.</p><p>The following example uses a private type abbreviation to define a
+module of nonnegative integers:
+</p><pre>        module N : sig
+                     type t = private int
+                     val of_int: int -&gt; t
+                     val to_int: t -&gt; int
+                   end
+                 = struct
+                     type t = int
+                     let of_int n = assert (n &gt;= 0); n
+                     let to_int n = n
+                   end
+</pre><p>The type <span class="c003">N.t</span> is incompatible with <span class="c003">int</span>, ensuring that nonnegative
+integers and regular integers are not confused. However, if <span class="c003">x</span> has
+type <span class="c003">N.t</span>, the coercion <span class="c003">(x :&gt; int)</span> is legal and returns the
+underlying integer, just like <span class="c003">N.to_int x</span>. Deep coercions are also
+supported: if <span class="c003">l</span> has type <span class="c003">N.t list</span>, the coercion <span class="c003">(l :&gt; int list)</span>
+returns the list of underlying integers, like <span class="c003">List.map N.to_int l</span>
+but without copying the list <span class="c003">l</span>.</p><p>Note that the coercion <span class="c004">(</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">:&gt;</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> <span class="c004">)</span> is actually an abbreviated
+form,
+and will only work in presence of private abbreviations if neither the
+type of <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> nor <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> contain any type variables. If they do,
+you must use the full form <span class="c004">(</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> <span class="c004">:&gt;</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub>2</sub> <span class="c004">)</span> where
+<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> is the expected type of <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>. Concretely, this would be <span class="c003">(x : N.t :&gt; int)</span> and <span class="c003">(l : N.t list :&gt; int list)</span> for the above examples.</p>
+<h3 class="subsection" id="sec240">8.5.3&#XA0;&#XA0;Private row types</h3>
+<p> <a id="s-private-rows"></a>
+<a id="hevea_manual.kwd208"></a></p><p>(Introduced in Objective Caml 3.09)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-equation"><span class="c010">type-equation</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">=</span>&#XA0;<span class="c004">private</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>Private row types are type abbreviations where part of the
+structure of the type is left abstract. Concretely <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> in the
+above should denote either an object type or a polymorphic variant
+type, with some possibility of refinement left. If the private
+declaration is used in an interface, the corresponding implementation
+may either provide a ground instance, or a refined private type.
+</p><pre>   module M : sig type c = private &lt; x : int; .. &gt; val o : c end =
+     struct
+       class c = object method x = 3 method y = 2 end
+       let o = new c
+     end
+</pre><p>This declaration does more than hiding the <span class="c003">y</span> method, it also makes
+the type <span class="c003">c</span> incompatible with any other closed object type, meaning
+that only <span class="c003">o</span> will be of type <span class="c003">c</span>. In that respect it behaves
+similarly to private record types. But private row types are
+more flexible with respect to incremental refinement. This feature can
+be used in combination with functors.
+</p><pre>   module F(X : sig type c = private &lt; x : int; .. &gt; end) =
+     struct
+       let get_x (o : X.c) = o#x
+     end
+   module G(X : sig type c = private &lt; x : int; y : int; .. &gt; end) =
+     struct
+       include F(X)
+       let get_y (o : X.c) = o#y
+     end
+</pre><p>
+A polymorphic variant type [t], for example
+</p><pre>   type t = [ `A of int | `B of bool ]
+</pre><p>can be refined in two ways. A definition [u] may add new field to [t],
+and the declaration
+</p><pre>  type u = private [&gt; t]
+</pre><p>will keep those new fields abstract. Construction of values of type
+[u] is possible using the known variants of [t], but any
+pattern-matching will require a default case to handle the potential
+extra fields. Dually, a declaration [u] may restrict the fields of [t]
+through abstraction: the declaration
+</p><pre>  type v = private [&lt; t &gt; `A]
+</pre><p>corresponds to private variant types. One cannot create a value of the
+private type [v], except using the constructors that are explicitly
+listed as present, <span class="c003">(`A n)</span> in this example; yet, when
+patter-matching on a [v], one should assume that any of the
+constructors of [t] could be present.</p><p>Similarly to abstract types, the variance of type parameters
+is not inferred, and must be given explicitly.</p>
+<h2 class="section" id="sec241">8.6&#XA0;&#XA0;Local opens for patterns</h2>
+<p>
+<a id="hevea_manual.kwd209"></a>
+<a id="hevea_manual.kwd210"></a> <a id="s:local-opens"></a></p><p>(Introduced in OCaml 4.04)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">.(</span>&#XA0;&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>&#XA0;<span class="c004">)</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">.[</span>&#XA0;&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">.[|</span>&#XA0;&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>&#XA0;<span class="c004">|]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">.{</span>&#XA0;&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>&#XA0;<span class="c004">}</span></td></tr>
+</table></td></tr>
+</table></div><p>For patterns, local opens are limited to the
+<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.(</span>&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a><span class="c004">)</span> construction. This
+construction locally open the module referred to by the module path
+<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> in the scope of the pattern <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>.</p><p>When the body of a local open pattern is delimited by
+<span class="c002"><span class="c003">[</span> <span class="c003">]</span></span>, <span class="c002"><span class="c003">[|</span> <span class="c003">|]</span></span>, or <span class="c002"><span class="c003">{</span> <span class="c003">}</span></span>, the parentheses can be omitted.
+For example, <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.[</span>&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a><span class="c004">]</span> is equivalent to
+<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.([</span>&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a><span class="c004">])</span>, and <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.[|</span> &#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> <span class="c004">|]</span> is
+equivalent to <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.([|</span> &#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> <span class="c004">|])</span>.</p>
+<h2 class="section" id="sec242">8.7&#XA0;&#XA0;Object copy short notations</h2>
+<p> <a id="s:object-notations"></a>
+<a id="hevea_manual.kwd211"></a></p><p>(Introduced in OCaml 4.03)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">{</span>&#XA0;<span class="c004">&lt;</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;<span class="c004">with</span>&#XA0;&#XA0;<a class="syntax" href="names.html#field"><span class="c010">field</span></a>&#XA0;&#XA0;[<span class="c004">=</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>]&#XA0;&#XA0;{&#XA0;<span class="c004">;</span>&#XA0;<a class="syntax" href="names.html#field"><span class="c010">field</span></a>&#XA0;&#XA0;[<span class="c004">=</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>]&#XA0;}&#XA0;&#XA0;[<span class="c004">;</span>]&#XA0;<span class="c004">&gt;</span>&#XA0;<span class="c004">}</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>In an object copy expression,
+a single identifier <span class="c010">id</span> stands for <span class="c010">id</span> <span class="c004">=</span> &#XA0;<span class="c010">id</span>, and a qualified identifier
+<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.</span> &#XA0;<span class="c010">id</span> stands for <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.</span> &#XA0;<span class="c010">id</span> <span class="c004">=</span> &#XA0;<span class="c010">id</span>.
+For example, all following methods are equivalent:
+</p><pre>          object
+            val x=0. val y=0. val z=0.
+            method f_0 x y = {&lt; x; y &gt;}
+            method f_1 x y = {&lt; x = x; y &gt;}
+            method f_2 x y = {&lt; x=x ; y = y &gt;}
+          end
+</pre>
+<h2 class="section" id="sec243">8.8&#XA0;&#XA0;Locally abstract types</h2>
+<p>
+<a id="hevea_manual.kwd212"></a>
+<a id="hevea_manual.kwd213"></a> <a id="s:locally-abstract"></a></p><p>(Introduced in OCaml 3.12, short syntax added in 4.03)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="expr.html#parameter"><span class="c010">parameter</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(</span>&#XA0;<span class="c004">type</span>&#XA0;{<a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a>}<sup>+</sup>&#XA0;<span class="c004">)</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>The expression <span class="c002"><span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> introduces a
+type constructor named <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> which is considered abstract
+in the scope of the sub-expression, but then replaced by a fresh type
+variable. Note that contrary to what the syntax could suggest, the
+expression <span class="c002"><span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> itself does not
+suspend the evaluation of <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> as a regular abstraction would. The
+syntax has been chosen to fit nicely in the context of function
+declarations, where it is generally used. It is possible to freely mix
+regular function parameters with pseudo type parameters, as in:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input">         let f = fun (type t) (foo : t list) -&gt; &#X2026;
+
+</div>
+</pre>
+
+
+</div><p>
+
+and even use the alternative syntax for declaring functions:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input">         let f (type t) (foo : t list) = &#X2026;
+
+</div>
+</pre>
+
+
+</div><p>
+
+If several locally abstract types need to be introduced, it is possible to use
+the syntax
+<span class="c002"><span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><sub>1</sub> &#X2026; &#XA0;<a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><sub><span class="c009">n</span></sub> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+as syntactic sugar for <span class="c002"><span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><sub>1</sub> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span> &#X2026; <span class="c002"><span class="c003">-&gt;</span>
+<span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span> &#XA0;<a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><sub><span class="c009">n</span></sub> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>. For instance,
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input">         let f = fun (type t u v) -&gt; fun (foo : (t * u * v) list) -&gt; &#X2026;
+         let f' (type t u v) (foo : (t * u * v) list) = &#X2026;
+
+</div>
+</pre>
+
+
+</div><p>This construction is useful because the type constructors it introduces
+can be used in places where a type variable is not allowed. For
+instance, one can use it to define an exception in a local module
+within a polymorphic function.
+</p><pre>        let f (type t) () =
+          let module M = struct exception E of t end in
+          (fun x -&gt; M.E x), (function M.E x -&gt; Some x | _ -&gt; None)
+</pre><p>
+Here is another example:
+</p><pre>        let sort_uniq (type s) (cmp : s -&gt; s -&gt; int) =
+          let module S = Set.Make(struct type t = s let compare = cmp end) in
+          fun l -&gt;
+            S.elements (List.fold_right S.add l S.empty)
+</pre><p>
+It is also extremely useful for first-class modules (see
+section&#XA0;<a href="#s-first-class-modules">8.9</a>) and generalized algebraic datatypes
+(GADTs: see section&#XA0;<a href="#s%3Agadts">8.14</a>).</p>
+<h5 class="paragraph" id="sec244">Polymorphic syntax</h5>
+<p> (Introduced in OCaml 4.00)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="expr.html#let-binding"><span class="c010">let-binding</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#value-name"><span class="c010">value-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;<span class="c004">type</span>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a>&#XA0;}<sup>+</sup>&#XA0;<span class="c004">.</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="classes.html#class-field"><span class="c010">class-field</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">method</span>&#XA0;[<span class="c004">private</span>]&#XA0;<a class="syntax" href="names.html#method-name"><span class="c010">method-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;<span class="c004">type</span>
+&#XA0;{&#XA0;<a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a>&#XA0;}<sup>+</sup>&#XA0;<span class="c004">.</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">method!</span>&#XA0;[<span class="c004">private</span>]&#XA0;<a class="syntax" href="names.html#method-name"><span class="c010">method-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;<span class="c004">type</span>
+&#XA0;{&#XA0;<a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a>&#XA0;}<sup>+</sup>&#XA0;<span class="c004">.</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>The <span class="c004">(type</span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><span class="c004">)</span> syntax construction by itself does not make
+polymorphic the type variable it introduces, but it can be combined
+with explicit polymorphic annotations where needed.
+The above rule is provided as syntactic sugar to make this easier:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input">         let rec f : type t1 t2. t1 * t2 list -&gt; t1 = &#X2026;
+
+</div>
+</pre>
+
+
+</div><p>
+
+is automatically expanded into
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input">         let rec f : 't1 't2. 't1 * 't2 list -&gt; 't1 =
+           fun (type t1) (type t2) -&gt; ( &#X2026; : t1 * t2 list -&gt; t1)
+
+</div>
+</pre>
+
+
+</div><p>
+
+This syntax can be very useful when defining recursive functions involving
+GADTs, see the section&#XA0;<a href="#s%3Agadts">8.14</a> for a more detailed explanation.</p><p>The same feature is provided for method definitions.</p>
+<h2 class="section" id="sec245">8.9&#XA0;&#XA0;First-class modules</h2>
+<p><a id="s-first-class-modules"></a>
+<a id="hevea_manual.kwd214"></a>
+<a id="hevea_manual.kwd215"></a>
+<a id="hevea_manual.kwd216"></a>
+<a id="hevea_manual.kwd217"></a></p><p>(Introduced in OCaml 3.12; pattern syntax and package type inference
+introduced in 4.00; structural comparison of package types introduced in 4.02.;
+fewer parens required starting from 4.05)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(module</span>&#XA0;<a class="syntax" href="#package-type"><span class="c010">package-type</span></a><span class="c004">)</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(val</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;&#XA0;[<span class="c004">:</span>&#XA0;<a class="syntax" href="#package-type"><span class="c010">package-type</span></a>]<span class="c004">)</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(module</span>&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>&#XA0;&#XA0;[<span class="c004">:</span>&#XA0;<a class="syntax" href="#package-type"><span class="c010">package-type</span></a>]<span class="c004">)</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(module</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;&#XA0;[<span class="c004">:</span>&#XA0;<a class="syntax" href="#package-type"><span class="c010">package-type</span></a>]<span class="c004">)</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="package-type"><span class="c010">package-type</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="names.html#modtype-path"><span class="c010">modtype-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#modtype-path"><span class="c010">modtype-path</span></a>&#XA0;<span class="c004">with</span>&#XA0;&#XA0;<a class="syntax" href="#package-constraint"><span class="c010">package-constraint</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">and</span>&#XA0;<a class="syntax" href="#package-constraint"><span class="c010">package-constraint</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="package-constraint"><span class="c010">package-constraint</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">type</span>&#XA0;<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Modules are typically thought of as static components. This extension
+makes it possible to pack a module as a first-class value, which can
+later be dynamically unpacked into a module.</p><p>The expression <span class="c002"><span class="c003">(</span> <span class="c003">module</span></span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span> converts the
+module (structure or functor) denoted by module expression <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+to a value of the core language that encapsulates this module. The
+type of this core language value is <span class="c002"><span class="c003">(</span> <span class="c003">module</span></span> <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span>.
+The <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> annotation can be omitted if it can be inferred
+from the context.</p><p>Conversely, the module expression <span class="c002"><span class="c003">(</span> <span class="c003">val</span></span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span>
+evaluates the core language expression <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> to a value, which must
+have type <span class="c004">module</span> <a class="syntax" href="#package-type"><span class="c010">package-type</span></a>, and extracts the module that was
+encapsulated in this value. Again <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> can be omitted if the
+type of <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> is known.
+If the module expression is already parenthesized, like the arguments
+of functors are, no additional parens are needed: <span class="c003">Map.Make(val key)</span>.</p><p>The pattern <span class="c002"><span class="c003">(</span> <span class="c003">module</span></span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span> matches a
+package with type <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> and binds it to <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>.
+It is not allowed in toplevel let bindings.
+Again <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> can be omitted if it can be inferred from the
+enclosing pattern.</p><p>The <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> syntactic class appearing in the <span class="c002"><span class="c003">(</span> <span class="c003">module</span></span>
+<a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span> type expression and in the annotated forms represents a
+subset of module types.
+This subset consists of named module types with optional constraints
+of a limited form: only non-parametrized types can be specified.</p><p>For type-checking purposes (and starting from OCaml 4.02), package types
+are compared using the structural comparison of module types.</p><p>In general, the module expression <span class="c002"><span class="c003">(</span> <span class="c003">val</span></span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="#package-type"><span class="c010">package-type</span></a>
+<span class="c004">)</span> cannot be used in the body of a functor, because this could cause
+unsoundness in conjunction with applicative functors.
+Since OCaml 4.02, this is relaxed in two ways:
+if <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> does not contain nominal type declarations (<em>i.e.</em> types that are created with a proper identity), then this
+expression can be used anywhere, and even if it contains such types
+it can be used inside the body of a generative
+functor, described in section&#XA0;<a href="#s%3Agenerative-functors">8.21</a>.
+It can also be used anywhere in the context of a local module binding
+<span class="c002"><span class="c003">let</span> <span class="c003">module</span></span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c002"><span class="c003">=</span> <span class="c003">(</span> <span class="c003">val</span></span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">:</span> &#XA0;<a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c002"><span class="c003">)</span>
+<span class="c003">in</span></span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub>.</p>
+<h5 class="paragraph" id="sec246">Basic example</h5>
+<p> A typical use of first-class modules is to
+select at run-time among several implementations of a signature.
+Each implementation is a structure that we can encapsulate as a
+first-class module, then store in a data structure such as a hash
+table:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input">         module type DEVICE = sig &#X2026; end
+         let devices : (string, (module DEVICE)) Hashtbl.t = Hashtbl.create 17
+
+         module SVG = struct &#X2026; end
+         let _ = Hashtbl.add devices "SVG" (module SVG : DEVICE)
+
+         module PDF = struct &#X2026; end
+         let _ = Hashtbl.add devices "PDF" (module PDF: DEVICE)
+
+</div>
+</pre>
+
+
+</div><p>
+
+We can then select one implementation based on command-line
+arguments, for instance:
+</p><pre>        module Device =
+          (val (try Hashtbl.find devices (parse_cmdline())
+                with Not_found -&gt; eprintf "Unknown device %s\n"; exit 2)
+           : DEVICE)
+</pre><p>Alternatively, the selection can be performed within a function:
+</p><pre>        let draw_using_device device_name picture =
+          let module Device =
+            (val (Hashtbl.find devices device_name) : DEVICE)
+          in
+            Device.draw picture
+</pre>
+<h5 class="paragraph" id="sec247">Advanced examples</h5>
+<p>
+With first-class modules, it is possible to parametrize some code over the
+implementation of a module without using a functor.</p><pre>        let sort (type s) (module Set : Set.S with type elt = s) l =
+          Set.elements (List.fold_right Set.add l Set.empty)
+        val sort : (module Set.S with type elt = 'a) -&gt; 'a list -&gt; 'a list
+</pre><p>
+To use this function, one can wrap the <span class="c003">Set.Make</span> functor:</p><pre>        let make_set (type s) cmp =
+          let module S = Set.Make(struct
+            type t = s
+            let compare = cmp
+          end) in
+          (module S : Set.S with type elt = s)
+        val make_set : ('a -&gt; 'a -&gt; int) -&gt; (module Set.S with type elt = 'a)
+</pre>
+<h2 class="section" id="sec248">8.10&#XA0;&#XA0;Recovering the type of a module</h2>
+<p> <a id="s:module-type-of"></a></p><p><a id="hevea_manual.kwd218"></a>
+<a id="hevea_manual.kwd219"></a>
+<a id="hevea_manual.kwd220"></a>
+<a id="hevea_manual.kwd221"></a></p><p>(Introduced in OCaml 3.12)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<span class="c004">type</span>&#XA0;<span class="c004">of</span>&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>The construction <span class="c002"><span class="c003">module</span> <span class="c003">type</span> <span class="c003">of</span></span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> expands to the module type
+(signature or functor type) inferred for the module expression <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>.
+To make this module type reusable in many situations, it is
+intentionally not strengthened: abstract types and datatypes are not
+explicitly related with the types of the original module.
+For the same reason, module aliases in the inferred type are expanded.</p><p>A typical use, in conjunction with the signature-level <span class="c004">include</span>
+construct, is to extend the signature of an existing structure.
+In that case, one wants to keep the types equal to types in the
+original module. This can done using the following idiom.
+</p><pre>        module type MYHASH = sig
+          include module type of struct include Hashtbl end
+          val replace: ('a, 'b) t -&gt; 'a -&gt; 'b -&gt; unit
+        end
+</pre><p>The signature <span class="c003">MYHASH</span> then contains all the fields of the signature
+of the module <span class="c003">Hashtbl</span> (with strengthened type definitions), plus the
+new field <span class="c003">replace</span>. An implementation of this signature can be
+obtained easily by using the <span class="c004">include</span> construct again, but this
+time at the structure level:
+</p><pre>        module MyHash : MYHASH = struct
+          include Hashtbl
+          let replace t k v = remove t k; add t k v
+        end
+</pre><p>
+Another application where the absence of strengthening comes handy, is
+to provide an alternative implementation for an existing module.
+</p><pre>        module MySet : module type of Set = struct
+          ...
+        end
+</pre><p>This idiom guarantees that <span class="c003">Myset</span> is compatible with Set, but allows
+it to represent sets internally in a different way.</p>
+<h2 class="section" id="sec249">8.11&#XA0;&#XA0;Substituting inside a signature</h2>
+<p>
+<a id="hevea_manual.kwd222"></a>
+<a id="hevea_manual.kwd223"></a>
+<a id="hevea_manual.kwd224"></a>
+<a id="s:signature-substitution"></a></p><p>(Introduced in OCaml 3.12, generalized in 4.06)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modtypes.html#mod-constraint"><span class="c010">mod-constraint</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">type</span>&#XA0;[<a class="syntax" href="typedecl.html#type-params"><span class="c010">type-params</span></a>]&#XA0;&#XA0;<a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a>&#XA0;<span class="c004">:=</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">:=</span>&#XA0;&#XA0;<a class="syntax" href="names.html#extended-module-path"><span class="c010">extended-module-path</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>A &#X201C;destructive&#X201D; substitution (<span class="c004">with</span> ... <span class="c004">:=</span> ...) behaves essentially like
+normal signature constraints (<span class="c004">with</span> ... <span class="c004">=</span> ...), but it additionally removes
+the redefined type or module from the signature.</p><p>Prior to OCaml 4.06, there were a number of restrictions: one could only remove
+types and modules at the outermost level (not inside submodules), and in the
+case of <span class="c004">with type</span> the definition had to be another type constructor with the
+same type parameters.</p><p>A natural application of destructive substitution is merging two
+signatures sharing a type name.
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input">         module type Printable = sig
+           type t
+           val print : Format.formatter -&gt; t -&gt; unit
+         end
+         module type Comparable = sig
+           type t
+           val compare : t -&gt; t -&gt; int
+         end
+         module type PrintableComparable = sig
+           include Printable
+           include Comparable with type t := t
+         end
+
+</div>
+</pre>
+
+
+</div><p>One can also use this to completely remove a field:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module type S = Comparable with type t := int
+
+</div><div class="caml-output ok">module type S = sig val compare : int -&gt; int -&gt; int end
+</div></pre>
+
+
+</div><p>
+
+or to rename one:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module type S = sig
+   type u
+   include Comparable with type t := u
+ end
+
+</div><div class="caml-output ok">module type S = sig type u val compare : u -&gt; u -&gt; int end
+</div></pre>
+
+
+</div><p>Note that you can also remove manifest types, by substituting with the
+same type.
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module type ComparableInt = Comparable with type t = int ;;
+</div><div class="caml-output ok">module type ComparableInt = sig type t = int val compare : t -&gt; t -&gt; int end
+</div></pre>
+
+<pre><div class="caml-input"> module type CompareInt = ComparableInt with type t := int
+
+</div><div class="caml-output ok">module type CompareInt = sig val compare : int -&gt; int -&gt; int end
+</div></pre>
+
+
+</div>
+<h2 class="section" id="sec250">8.12&#XA0;&#XA0;Type-level module aliases</h2>
+<p>
+<a id="hevea_manual.kwd225"></a>
+<a id="s:module-alias"></a></p><p>(Introduced in OCaml 4.02)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>The above specification, inside a signature, only matches a module
+definition equal to <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>. Conversely, a type-level module
+alias can be matched by itself, or by any supertype of the type of the
+module it references.</p><p>There are several restrictions on <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>:
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+it should be of the form <span class="c009">M</span><sub>0</sub>.<span class="c009">M</span><sub>1</sub>...<span class="c009">M</span><sub><span class="c009">n</span></sub> (<em>i.e.</em> without
+functor applications);
+</li><li class="li-enumerate">inside the body of a functor, <span class="c009">M</span><sub>0</sub> should not be one of the
+functor parameters;
+</li><li class="li-enumerate">inside a recursive module definition, <span class="c009">M</span><sub>0</sub> should not be one of
+the recursively defined modules.
+</li></ol><p>Such specifications are also inferred. Namely, when <span class="c010">P</span> is a path
+satisfying the above constraints,
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module N = P
+
+</div>
+</pre>
+
+
+</div><p>
+
+has type
+</p><pre>module N = P
+</pre><p>Type-level module aliases are used when checking module path
+equalities. That is, in a context where module name <span class="c010">N</span> is known to be
+an alias for <span class="c010">P</span>, not only these two module paths check as equal, but
+<span class="c010">F</span>&#XA0;(<span class="c010">N</span>) and <span class="c010">F</span>&#XA0;(<span class="c010">P</span>) are also recognized as equal. In the default
+compilation mode, this is the only difference with the previous
+approach of module aliases having just the same module type as the
+module they reference.</p><p>When the compiler flag <span class="c004">-no-alias-deps</span> is enabled, type-level
+module aliases are also exploited to avoid introducing dependencies
+between compilation units. Namely, a module alias referring to a
+module inside another compilation unit does not introduce a link-time
+dependency on that compilation unit, as long as it is not
+dereferenced; it still introduces a compile-time dependency if the
+interface needs to be read, <em>i.e.</em> if the module is a submodule
+of the compilation unit, or if some type components are referred to.
+Additionally, accessing a module alias introduces a link-time
+dependency on the compilation unit containing the module referenced by
+the alias, rather than the compilation unit containing the alias.
+Note that these differences in link-time behavior may be incompatible
+with the previous behavior, as some compilation units might not be
+extracted from libraries, and their side-effects ignored.</p><p>These weakened dependencies make possible to use module aliases in
+place of the <span class="c004">-pack</span> mechanism. Suppose that you have a library
+<span class="c004">Mylib</span> composed of modules <span class="c004">A</span> and <span class="c004">B</span>. Using <span class="c004">-pack</span>, one
+would issue the command line
+</p><pre>  ocamlc -pack a.cmo b.cmo -o mylib.cmo
+</pre><p>and as a result obtain a <span class="c004">Mylib</span> compilation unit, containing
+physically <span class="c004">A</span> and <span class="c004">B</span> as submodules, and with no dependencies on
+their respective compilation units.
+Here is a concrete example of a possible alternative approach:
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+Rename the files containing <span class="c004">A</span> and <span class="c004">B</span> to <span class="c004">Mylib__A</span> and
+<span class="c004">Mylib__B</span>.
+</li><li class="li-enumerate">Create a packing interface <span class="c004">Mylib.ml</span>, containing the
+following lines.
+<pre>    module A = Mylib__A
+    module B = Mylib__B
+</pre></li><li class="li-enumerate">Compile <span class="c004">Mylib.ml</span> using <span class="c004">-no-alias-deps</span>, and the other
+files using <span class="c004">-no-alias-deps</span> and <span class="c002"><span class="c003">-open</span> <span class="c003">Mylib</span></span> (the last one is
+equivalent to adding the line <span class="c002"><span class="c003">open!</span> <span class="c003">Mylib</span></span> at the top of each
+file).
+<pre>    ocamlc -c -no-alias-deps Mylib.ml
+    ocamlc -c -no-alias-deps -open Mylib Mylib__*.mli Mylib__*.ml
+</pre></li><li class="li-enumerate">Finally, create a library containing all the compilation units,
+and export all the compiled interfaces.
+<pre>    ocamlc -a Mylib*.cmo -o Mylib.cma
+</pre></li></ol><p>
+This approach lets you access <span class="c004">A</span> and <span class="c004">B</span> directly inside the
+library, and as <span class="c004">Mylib.A</span> and <span class="c004">Mylib.B</span> from outside.
+It also has the advantage that <span class="c004">Mylib</span> is no longer monolithic: if
+you use <span class="c004">Mylib.A</span>, only <span class="c004">Mylib__A</span> will be linked in, not
+<span class="c004">Mylib__B</span>.
+</p><p>Note the use of double underscores in <span class="c004">Mylib__A</span> and
+<span class="c004">Mylib__B</span>. These were chosen on purpose; the compiler uses the
+following heuristic when printing paths: given a path <span class="c004">Lib__fooBar</span>,
+if <span class="c004">Lib.FooBar</span> exists and is an alias for <span class="c004">Lib__fooBar</span>, then the
+compiler will always display <span class="c004">Lib.FooBar</span> instead of
+<span class="c004">Lib__fooBar</span>. This way the long <span class="c004">Mylib__</span> names stay hidden and
+all the user sees is the nicer dot names. This is how the OCaml
+standard library is compiled.</p>
+<h2 class="section" id="sec251">8.13&#XA0;&#XA0;Overriding in open statements</h2>
+<p><a id="s:explicit-overriding-open"></a>
+<a id="hevea_manual.kwd226"></a></p><p>(Introduced in OCaml 4.01)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<span class="c004">open!</span>&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<span class="c004">open!</span>&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">let</span>&#XA0;<span class="c004">open!</span>&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">in</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-body-type</span></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<span class="c004">let</span>&#XA0;<span class="c004">open!</span>&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">in</span>&#XA0;&#XA0;<a class="syntax" href="classes.html#class-body-type"><span class="c010">class-body-type</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-expr</span></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<span class="c004">let</span>&#XA0;<span class="c004">open!</span>&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">in</span>&#XA0;&#XA0;<a class="syntax" href="classes.html#class-expr"><span class="c010">class-expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Since OCaml 4.01, <span class="c004">open</span> statements shadowing an existing identifier
+(which is later used) trigger the warning 44. Adding a <span class="c004">!</span>
+character after the <span class="c004">open</span> keyword indicates that such a shadowing is
+intentional and should not trigger the warning.</p><p>This is also available (since OCaml 4.06) for local opens in class
+expressions and class type expressions.</p>
+<h2 class="section" id="sec252">8.14&#XA0;&#XA0;Generalized algebraic datatypes</h2>
+<p> <a id="hevea_manual.kwd227"></a>
+<a id="hevea_manual.kwd228"></a> <a id="s:gadts"></a></p><p>(Introduced in OCaml 4.00)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;[&#XA0;<a class="syntax" href="typedecl.html#constr-args"><span class="c010">constr-args</span></a>&#XA0;<span class="c004">-&gt;</span>&#XA0;]&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-param"><span class="c010">type-param</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;[<a class="syntax" href="typedecl.html#variance"><span class="c010">variance</span></a>]&#XA0;<span class="c004">_</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>Generalized algebraic datatypes, or GADTs, extend usual sum types in
+two ways: constraints on type parameters may change depending on the
+value constructor, and some type variables may be existentially
+quantified.
+Adding constraints is done by giving an explicit return type
+(the rightmost <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> in the above syntax), where type parameters
+are instantiated.
+This return type must use the same type constructor as the type being
+defined, and have the same number of parameters.
+Variables are made existential when they appear inside a constructor&#X2019;s
+argument, but not in its return type.</p><p>Since the use of a return type often eliminates the need to name type
+parameters in the left-hand side of a type definition, one can replace
+them with anonymous types <span class="c004">_</span> in that case.</p><p>The constraints associated to each constructor can be recovered
+through pattern-matching.
+Namely, if the type of the scrutinee of a pattern-matching contains
+a locally abstract type, this type can be refined according to the
+constructor used.
+These extra constraints are only valid inside the corresponding branch
+of the pattern-matching.
+If a constructor has some existential variables, fresh locally
+abstract types are generated, and they must not escape the
+scope of this branch.</p>
+<h5 class="paragraph" id="sec253">Recursive functions</h5>
+<p>Here is a concrete example:
+</p><pre>        type _ term =
+          | Int : int -&gt; int term
+          | Add : (int -&gt; int -&gt; int) term
+          | App : ('b -&gt; 'a) term * 'b term -&gt; 'a term
+
+        let rec eval : type a. a term -&gt; a = function
+          | Int n    -&gt; n                 (* a = int *)
+          | Add      -&gt; (fun x y -&gt; x+y)  (* a = int -&gt; int -&gt; int *)
+          | App(f,x) -&gt; (eval f) (eval x)
+                  (* eval called at types (b-&gt;a) and b for fresh b *)
+
+        let two = eval (App (App (Add, Int 1), Int 1))
+        val two : int = 2
+</pre><p>It is important to remark that the function <span class="c003">eval</span> is using the
+polymorphic syntax for locally abstract types. When defining a recursive
+function that manipulates a GADT, explicit polymorphic recursion should
+generally be used. For instance, the following definition fails with a
+type error:
+</p><pre>        let rec eval (type a) : a term -&gt; a = function
+          | Int n    -&gt; n
+          | Add      -&gt; (fun x y -&gt; x+y)
+          | App(f,x) -&gt; (eval f) (eval x)
+(*                            ^
+   Error: This expression has type ($App_'b -&gt; a) term but an expression was
+   expected of type 'a
+   The type constructor $App_'b would escape its scope
+*)
+</pre><p>In absence of an explicit polymorphic annotation, a monomorphic type
+is inferred for the recursive function. If a recursive call occurs
+inside the function definition at a type that involves an existential
+GADT type variable, this variable flows to the type of the recursive
+function, and thus escapes its scope. In the above example, this happens
+in the branch <span class="c003">App(f,x)</span> when <span class="c003">eval</span> is called with <span class="c003">f</span> as an argument.
+In this branch, the type of <span class="c003">f</span> is <span class="c003">($App_ 'b-&gt; a)</span>. The prefix <span class="c003">$</span> in
+<span class="c003">$App_ 'b</span> denotes an existential type named by the compiler
+(see&#XA0;<a href="#p%3Aexistential-names">8.14</a>). Since the type of <span class="c003">eval</span> is
+<span class="c003">'a term -&gt; 'a</span>, the call <span class="c003">eval f</span> makes the existential type <span class="c003">$App_'b</span>
+flow to the type variable <span class="c003">'a</span> and escape its scope. This triggers the
+above error.</p>
+<h5 class="paragraph" id="sec254">Type inference</h5>
+<p>Type inference for GADTs is notoriously hard.
+This is due to the fact some types may become ambiguous when escaping
+from a branch.
+For instance, in the <span class="c003">Int</span> case above, <span class="c003">n</span> could have either type <span class="c003">int</span>
+or <span class="c003">a</span>, and they are not equivalent outside of that branch.
+As a first approximation, type inference will always work if a
+pattern-matching is annotated with types containing no free type
+variables (both on the scrutinee and the return type).
+This is the case in the above example, thanks to the type annotation
+containing only locally abstract types.</p><p>In practice, type inference is a bit more clever than that: type
+annotations do not need to be immediately on the pattern-matching, and
+the types do not have to be always closed.
+As a result, it is usually enough to only annotate functions, as in
+the example above. Type annotations are
+propagated in two ways: for the scrutinee, they follow the flow of
+type inference, in a way similar to polymorphic methods; for the
+return type, they follow the structure of the program, they are split
+on functions, propagated to all branches of a pattern matching,
+and go through tuples, records, and sum types.
+Moreover, the notion of ambiguity used is stronger: a type is only
+seen as ambiguous if it was mixed with incompatible types (equated by
+constraints), without type annotations between them.
+For instance, the following program types correctly.
+</p><pre>        let rec sum : type a. a term -&gt; _ = fun x -&gt;
+          let y =
+            match x with
+            | Int n -&gt; n
+            | Add   -&gt; 0
+            | App(f,x) -&gt; sum f + sum x
+          in y + 1
+        val sum : 'a term -&gt; int = &lt;fun&gt;
+</pre><p>Here the return type <span class="c003">int</span> is never mixed with <span class="c003">a</span>, so it is seen as
+non-ambiguous, and can be inferred.
+When using such partial type annotations we strongly suggest
+specifying the <span class="c003">-principal</span> mode, to check that inference is
+principal.</p><p>The exhaustiveness check is aware of GADT constraints, and can
+automatically infer that some cases cannot happen.
+For instance, the following pattern matching is correctly seen as
+exhaustive (the <span class="c003">Add</span> case cannot happen).
+</p><pre>        let get_int : int term -&gt; int = function
+          | Int n    -&gt; n
+          | App(_,_) -&gt; 0
+</pre>
+<h5 class="paragraph" id="sec255">Refutation cases</h5>
+<p> (Introduced in OCaml 4.03)</p><p>Usually, the exhaustiveness check only tries to check whether the
+cases omitted from the pattern matching are typable or not.
+However, you can force it to try harder by adding <em>refutation cases</em>:
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="matching-case"><span class="c010">matching-case</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>&#XA0;&#XA0;[<span class="c004">when</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>]&#XA0;<span class="c004">-&gt;</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>&#XA0;<span class="c004">-&gt;</span>&#XA0;<span class="c004">.</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>
+In presence of a refutation case, the exhaustiveness check will first
+compute the intersection of the pattern with the complement of the
+cases preceding it. It then checks whether the resulting patterns can
+really match any concrete values by trying to type-check them.
+Wild cards in the generated patterns are handled in a special way: if
+their type is a variant type with only GADT constructors, then the
+pattern is split into the different constructors, in order to check whether
+any of them is possible (this splitting is not done for arguments of these
+constructors, to avoid non-termination). We also split tuples and
+variant types with only one case, since they may contain GADTs inside.
+For instance, the following code is deemed exhaustive:</p><pre>        type _ t =
+          | Int : int t
+          | Bool : bool t
+
+        let deep : (char t * int) option -&gt; char = function
+          | None -&gt; 'c'
+          | _ -&gt; .
+</pre><p>
+Namely, the inferred remaining case is <span class="c003">Some _</span>, which is split into
+<span class="c003">Some (Int, _)</span> and <span class="c003">Some (Bool, _)</span>, which are both untypable because
+<span class="c003">deep</span> expects a non-existing <span class="c003">char t</span> as the first element of the tuple.
+Note that the refutation case could be omitted here, because it is
+automatically added when there is only one case in the pattern
+matching.</p><p>Another addition is that the redundancy check is now aware of GADTs: a
+case will be detected as redundant if it could be replaced by a
+refutation case using the same pattern.</p>
+<h5 class="paragraph" id="sec256">Advanced examples</h5>
+<p>
+The <span class="c003">term</span> type we have defined above is an <em>indexed</em> type, where
+a type parameter reflects a property of the value contents.
+Another use of GADTs is <em>singleton</em> types, where a GADT value
+represents exactly one type. This value can be used as runtime
+representation for this type, and a function receiving it can have a
+polytypic behavior.</p><p>Here is an example of a polymorphic function that takes the
+runtime representation of some type <span class="c003">t</span> and a value of the same type,
+then pretty-prints the value as a string:
+</p><pre>        type _ typ =
+          | Int : int typ
+          | String : string typ
+          | Pair : 'a typ * 'b typ -&gt; ('a * 'b) typ
+
+        let rec to_string: type t. t typ -&gt; t -&gt; string =
+          fun t x -&gt;
+          match t with
+          | Int -&gt; string_of_int x
+          | String -&gt; Printf.sprintf "%S" x
+          | Pair(t1,t2) -&gt;
+              let (x1, x2) = x in
+              Printf.sprintf "(%s,%s)" (to_string t1 x1) (to_string t2 x2)
+</pre><p>
+Another frequent application of GADTs is equality witnesses.
+</p><pre>        type (_,_) eq = Eq : ('a,'a) eq
+
+        let cast : type a b. (a,b) eq -&gt; a -&gt; b = fun Eq x -&gt; x
+</pre><p>Here type <span class="c003">eq</span> has only one constructor, and by matching on it one
+adds a local constraint allowing the conversion between <span class="c003">a</span> and <span class="c003">b</span>.
+By building such equality witnesses, one can make equal types which
+are syntactically different.</p><p>Here is an example using both singleton types and equality witnesses
+to implement dynamic types.
+</p><pre>        let rec eq_type : type a b. a typ -&gt; b typ -&gt; (a,b) eq option =
+          fun a b -&gt;
+          match a, b with
+          | Int, Int -&gt; Some Eq
+          | String, String -&gt; Some Eq
+          | Pair(a1,a2), Pair(b1,b2) -&gt;
+              begin match eq_type a1 b1, eq_type a2 b2 with
+              | Some Eq, Some Eq -&gt; Some Eq
+              | _ -&gt; None
+              end
+          | _ -&gt; None
+
+        type dyn = Dyn : 'a typ * 'a -&gt; dyn
+
+        let get_dyn : type a. a typ -&gt; dyn -&gt; a option =
+          fun a (Dyn(b,x)) -&gt;
+          match eq_type a b with
+          | None -&gt; None
+          | Some Eq -&gt; Some x
+</pre>
+<h5 class="paragraph" id="sec257">Existential type names in error messages</h5>
+<p><a id="p:existential-names"></a>
+(Updated in OCaml 4.03.0)</p><p>The typing of pattern matching in presence of GADT can generate many
+existential types. When necessary, error messages refer to these
+existential types using compiler-generated names. Currently, the
+compiler generates these names according to the following nomenclature:
+</p><ul class="itemize"><li class="li-itemize">
+First, types whose name starts with a <span class="c003">$</span> are existentials.
+</li><li class="li-itemize"><span class="c003">$Constr_'a</span> denotes an existential type introduced for the type
+variable <span class="c003">'a</span> of the GADT constructor <span class="c003">Constr</span>:
+
+
+<div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type any = Any : 'name -&gt; any
+ let escape (Any x) = <U>x</U>
+
+</div><div class="caml-output error">Error: This expression has type $Any_'name
+       but an expression was expected of type 'a
+       The type constructor $Any_'name would escape its scope
+</div></pre>
+
+
+</div>
+
+</li><li class="li-itemize"><span class="c003">$Constr</span> denotes an existential type introduced for an anonymous type variable in the GADT constructor <span class="c003">Constr</span>:
+
+
+<div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type any = Any : _ -&gt; any
+ let escape (Any x) = <U>x</U>
+
+</div><div class="caml-output error">Error: This expression has type $Any but an expression was expected of type
+         'a
+       The type constructor $Any would escape its scope
+</div></pre>
+
+
+</div>
+
+</li><li class="li-itemize"><span class="c003">$'a</span> if the existential variable was unified with the type variable <span class="c003">'a</span> during typing:
+
+
+<div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type ('arg,'result,'aux) fn =
+   | Fun: ('a -&gt;'b) -&gt; ('a,'b,unit) fn
+   | Mem1: ('a -&gt;'b) * 'a * 'b -&gt; ('a, 'b, 'a * 'b) fn
+  let apply: ('arg,'result, _ ) fn -&gt; 'arg -&gt; 'result = fun f x -&gt;
+   match f with
+   | Fun f -&gt; f x
+   | <U>Mem1 (f,y,fy)</U> -&gt; if x = y then fy else f x
+
+</div><div class="caml-output error">Error: This pattern matches values of type
+         ($'arg, 'result, $'arg * 'result) fn
+       but a pattern was expected which matches values of type
+         ($'arg, 'result, unit) fn
+       The type constructor $'arg would escape its scope
+</div></pre>
+
+
+</div>
+
+</li><li class="li-itemize"><span class="c003">$n</span> (n a number) is an internally generated existential which could not be named using one of the previous schemes.
+</li></ul><p>As shown by the last item, the current behavior is imperfect
+and may be improved in future versions.</p>
+<h5 class="paragraph" id="sec258">Equations on non-local abstract types</h5>
+<p> (Introduced in OCaml
+4.04)</p><p>GADT pattern-matching may also add type equations to non-local
+abstract types. The behaviour is the same as with local abstract
+types. Reusing the above <span class="c003">eq</span> type, one can write:
+</p><pre>        module M : sig type t val x : t val e : (t,int) eq end = struct
+          type t = int
+          let x = 33
+          let e = Eq
+        end
+
+        let x : int = let Eq = M.e in M.x
+</pre><p>
+Of course, not all abstract types can be refined, as this would
+contradict the exhaustiveness check. Namely, builtin types (those
+defined by the compiler itself, such as <span class="c003">int</span> or <span class="c003">array</span>), and
+abstract types defined by the local module, are non-instantiable, and
+as such cause a type error rather than introduce an equation.</p>
+<h2 class="section" id="sec259">8.15&#XA0;&#XA0;Syntax for Bigarray access</h2>
+<p><a id="s:bigarray-access"></a></p><p>(Introduced in Objective Caml 3.00)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;<span class="c004">.{</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">,</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;}&#XA0;<span class="c004">}</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;<span class="c004">.{</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">,</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;}&#XA0;<span class="c004">}</span>&#XA0;<span class="c004">&lt;-</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>This extension provides syntactic sugar for getting and setting
+elements in the arrays provided by the
+<span class="c003">Bigarray</span>[<a href="libref/Bigarray.html"><span class="c003">Bigarray</span></a>] library.</p><p>The short expressions are translated into calls to functions of the
+<span class="c003">Bigarray</span> module as described in the following table.</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">expression</span></td><td class="c014"><span class="c013">translation</span> </td></tr>
+<tr><td class="c016">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub><span class="c004">.{</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">}</span></td><td class="c016"><span class="c003">Bigarray.Array1.get </span><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> </td></tr>
+<tr><td class="c016"><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub><span class="c004">.{</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c002"><span class="c003">}</span> <span class="c003">&lt;-</span></span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c016"><span class="c003">Bigarray.Array1.set </span><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> </td></tr>
+<tr><td class="c016"><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub><span class="c004">.{</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub><span class="c004">}</span></td><td class="c016"><span class="c003">Bigarray.Array2.get </span><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub> </td></tr>
+<tr><td class="c016"><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub><span class="c004">.{</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub><span class="c002"><span class="c003">}</span> <span class="c003">&lt;-</span></span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c016"><span class="c003">Bigarray.Array2.set </span><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> </td></tr>
+<tr><td class="c016"><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub><span class="c004">.{</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub><span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>3</sub><span class="c004">}</span></td><td class="c016"><span class="c003">Bigarray.Array3.get </span><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>3</sub> </td></tr>
+<tr><td class="c016"><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub><span class="c004">.{</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub><span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>3</sub><span class="c002"><span class="c003">}</span> <span class="c003">&lt;-</span></span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c016"><span class="c003">Bigarray.Array3.set </span><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>3</sub> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> </td></tr>
+<tr><td class="c016"><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub><span class="c004">.{</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#X2026;<span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">n</span></sub><span class="c004">}</span></td><td class="c016"><span class="c003">Bigarray.Genarray.get </span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> <span class="c004">[|</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#X2026; <span class="c004">,</span>
+&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">n</span></sub> <span class="c004">|]</span> </td></tr>
+<tr><td class="c016"><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub><span class="c004">.{</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#X2026;<span class="c004">,</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">n</span></sub><span class="c002"><span class="c003">}</span> <span class="c003">&lt;-</span></span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c016"><span class="c003">Bigarray.Genarray.set </span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> <span class="c004">[|</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> &#X2026; <span class="c004">,</span>
+&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">n</span></sub> <span class="c004">|]</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> </td></tr>
+</table></div></div><p>The last two entries are valid for any <span class="c009">n</span> &gt; 3.</p>
+<h2 class="section" id="sec260">8.16&#XA0;&#XA0;Attributes</h2>
+<p><a id="s:attributes"></a></p><p><a id="hevea_manual.kwd229"></a></p><p>(Introduced in OCaml 4.02,
+infix notations for constructs other than expressions added in 4.03)</p><p>Attributes are &#X201C;decorations&#X201D; of the syntax tree which are mostly
+ignored by the type-checker but can be used by external tools. An
+attribute is made of an identifier and a payload, which can be a
+structure, a type expression (prefixed with <span class="c003">:</span>), a signature
+(prefixed with <span class="c003">:</span>) or a pattern (prefixed with <span class="c003">?</span>) optionally
+followed by a <span class="c003">when</span> clause:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="attr-id"><span class="c010">attr-id</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<a class="syntax" href="lex.html#capitalized-ident"><span class="c010">capitalized-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<a class="syntax" href="#attr-id"><span class="c010">attr-id</span></a>&#XA0;<span class="c004">.</span>&#XA0;&#XA0;<a class="syntax" href="#attr-id"><span class="c010">attr-id</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="attr-payload"><span class="c010">attr-payload</span></a></td><td class="c015">::=</td><td class="c017">
+[&#XA0;<a class="syntax" href="modules.html#module-items"><span class="c010">module-items</span></a>&#XA0;]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<span class="c004">:</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<span class="c004">:</span>&#XA0;[&#XA0;<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a>&#XA0;]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<span class="c004">?</span>&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>&#XA0;&#XA0;[<span class="c004">when</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>The first form of attributes is attached with a postfix notation on
+&#X201C;algebraic&#X201D; categories:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="attribute"><span class="c010">attribute</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">[@</span>&#XA0;<a class="syntax" href="#attr-id"><span class="c010">attr-id</span></a>&#XA0;&#XA0;<a class="syntax" href="#attr-payload"><span class="c010">attr-payload</span></a>&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;&#XA0;<a class="syntax" href="#attribute"><span class="c010">attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;&#XA0;<a class="syntax" href="#attribute"><span class="c010">attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>&#XA0;&#XA0;<a class="syntax" href="#attribute"><span class="c010">attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>&#XA0;&#XA0;<a class="syntax" href="#attribute"><span class="c010">attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;&#XA0;<a class="syntax" href="#attribute"><span class="c010">attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-expr</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#class-expr"><span class="c010">class-expr</span></a>&#XA0;&#XA0;<a class="syntax" href="#attribute"><span class="c010">attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-type</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#class-type"><span class="c010">class-type</span></a>&#XA0;&#XA0;<a class="syntax" href="#attribute"><span class="c010">attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>This form of attributes can also be inserted after the <span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a>
+in polymorphic variant type expressions (<a class="syntax" href="types.html#tag-spec-first"><span class="c010">tag-spec-first</span></a>, <a class="syntax" href="types.html#tag-spec"><span class="c010">tag-spec</span></a>,
+<a class="syntax" href="types.html#tag-spec-full"><span class="c010">tag-spec-full</span></a>) or after the <a class="syntax" href="names.html#method-name"><span class="c010">method-name</span></a> in <a class="syntax" href="types.html#method-type"><span class="c010">method-type</span></a>.</p><p>The same syntactic form is also used to attach attributes to labels and
+constructors in type declarations:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<span class="c010">field-decl</span></td><td class="c015">::=</td><td class="c017">
+[<span class="c004">mutable</span>]&#XA0;<a class="syntax" href="names.html#field-name"><span class="c010">field-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c010">poly-typexpr</span></a>&#XA0;&#XA0;{<a class="syntax" href="#attribute"><span class="c010">attribute</span></a>}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a></td><td class="c015">::=</td><td class="c017">
+(<a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">()</span>)&#XA0;[&#XA0;<span class="c004">of</span>&#XA0;<a class="syntax" href="typedecl.html#constr-args"><span class="c010">constr-args</span></a>&#XA0;]&#XA0;&#XA0;{<a class="syntax" href="#attribute"><span class="c010">attribute</span></a>}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Note: when a label declaration is followed by a semi-colon, attributes
+can also be put after the semi-colon (in which case they are merged to
+those specified before).</p><p>The second form of attributes are attached to &#X201C;blocks&#X201D; such as type
+declarations, class fields, etc:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="item-attribute"><span class="c010">item-attribute</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">[@@</span>&#XA0;<a class="syntax" href="#attr-id"><span class="c010">attr-id</span></a>&#XA0;&#XA0;<a class="syntax" href="#attr-payload"><span class="c010">attr-payload</span></a>&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">typedef</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="typedecl.html#typedef"><span class="c010">typedef</span></a>&#XA0;&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">exception-definition</span></td><td class="c015">::=</td><td class="c017">
+<span class="c004">exception</span>&#XA0;<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">exception</span>&#XA0;<a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="names.html#constr"><span class="c010">constr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">module-items</span></td><td class="c015">::=</td><td class="c017">
+[<span class="c004">;;</span>]&#XA0;(&#XA0;<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a>&#XA0;&#X2223;&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}&#XA0;)&#XA0;&#XA0;{&#XA0;[<span class="c004">;;</span>]&#XA0;<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">;;</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}&#XA0;}&#XA0;&#XA0;[<span class="c004">;;</span>]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-binding</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#class-binding"><span class="c010">class-binding</span></a>&#XA0;&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-spec</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#class-spec"><span class="c010">class-spec</span></a>&#XA0;&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">classtype-def</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#classtype-def"><span class="c010">classtype-def</span></a>&#XA0;&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">let</span>&#XA0;[<span class="c004">rec</span>]&#XA0;<a class="syntax" href="expr.html#let-binding"><span class="c010">let-binding</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">and</span>&#XA0;<a class="syntax" href="expr.html#let-binding"><span class="c010">let-binding</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">external</span>&#XA0;<a class="syntax" href="names.html#value-name"><span class="c010">value-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="intfc.html#external-declaration"><span class="c010">external-declaration</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="typedecl.html#type-definition"><span class="c010">type-definition</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="typedecl.html#exception-definition"><span class="c010">exception-definition</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#class-definition"><span class="c010">class-definition</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#classtype-definition"><span class="c010">classtype-definition</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;<span class="c004">)</span>&#XA0;}
+&#XA0;[&#XA0;<span class="c004">:</span>&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;]&#XA0;&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<span class="c004">type</span>&#XA0;<a class="syntax" href="names.html#modtype-name"><span class="c010">modtype-name</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">open</span>&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">include</span>&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<span class="c004">rec</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;<span class="c004">=</span>&#XA0;
+&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}&#XA0;
+&#XA0;{&#XA0;<span class="c004">and</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>&#XA0;
+&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">val</span>&#XA0;<a class="syntax" href="names.html#value-name"><span class="c010">value-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">external</span>&#XA0;<a class="syntax" href="names.html#value-name"><span class="c010">value-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="intfc.html#external-declaration"><span class="c010">external-declaration</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="typedecl.html#type-definition"><span class="c010">type-definition</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">exception</span>&#XA0;<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#class-specification"><span class="c010">class-specification</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#classtype-definition"><span class="c010">classtype-definition</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;<span class="c004">)</span>&#XA0;}
+<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<span class="c004">type</span>&#XA0;<a class="syntax" href="names.html#modtype-name"><span class="c010">modtype-name</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<span class="c004">type</span>&#XA0;<a class="syntax" href="names.html#modtype-name"><span class="c010">modtype-name</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">open</span>&#XA0;<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">include</span>&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-field-spec</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#class-field-spec"><span class="c010">class-field-spec</span></a>&#XA0;&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="classes.html#class-field"><span class="c010">class-field</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="classes.html#class-field"><span class="c010">class-field</span></a>&#XA0;&#XA0;<a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>A third form of attributes appears as stand-alone structure or
+signature items in the module or class sub-languages. They are not
+attached to any specific node in the syntax tree:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="floating-attribute"><span class="c010">floating-attribute</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">[@@@</span>&#XA0;<a class="syntax" href="#attr-id"><span class="c010">attr-id</span></a>&#XA0;&#XA0;<a class="syntax" href="#attr-payload"><span class="c010">attr-payload</span></a>&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#floating-attribute"><span class="c010">floating-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#floating-attribute"><span class="c010">floating-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-field-spec</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#floating-attribute"><span class="c010">floating-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="classes.html#class-field"><span class="c010">class-field</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#floating-attribute"><span class="c010">floating-attribute</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>(Note: contrary to what the grammar above describes, <span class="c010">item-attributes</span>
+cannot be attached to these floating attributes in <a class="syntax" href="classes.html#class-field-spec"><span class="c010">class-field-spec</span></a>
+and <a class="syntax" href="classes.html#class-field"><span class="c010">class-field</span></a>.)</p><p>It is also possible to specify attributes using an infix syntax. For instance:</p><pre>let[@foo] x = 2 in x + 1          === (let x = 2 [@@foo] in x + 1)
+begin[@foo][@bar x] ... end       === (begin ... end)[@foo][@@bar x]
+module[@foo] M = ...              === module M = ... [@@foo]
+type[@foo] t = T                  === type t = T [@@foo]
+method[@foo] m = ...              === method m = ... [@@foo]
+</pre><p>
+For <span class="c003">let</span>, the attributes are applied to each bindings:</p><pre>let[@foo] x = 2 and y = 3 in x + y === (let x = 2 [@@foo] and y = 3 in x + y)
+let[@foo] x = 2
+and[@bar] y = 3 in x + y           === (let x = 2 [@@foo] and y = 3 [@bar] in x + y)
+</pre>
+<h3 class="subsection" id="sec261">8.16.1&#XA0;&#XA0;Built-in attributes</h3>
+<p>
+<a id="ss:builtin-attributes"></a></p><p>Some attributes are understood by the type-checker:
+</p><ul class="itemize"><li class="li-itemize">
+&#X201C;ocaml.warning&#X201D; or &#X201C;warning&#X201D;, with a string literal payload.
+This can be used as floating attributes in a
+signature/structure/object/object type. The string is parsed and has
+the same effect as the <span class="c003">-w</span> command-line option, in the scope between
+the attribute and the end of the current
+signature/structure/object/object type. The attribute can also be
+attached to any kind of syntactic item which support attributes
+(such as an expression, or a type expression)
+in which case its scope is limited to that item.
+Note that it is not well-defined which scope is used for a specific
+warning. This is implementation dependant and can change between versions.
+Some warnings are even completely outside the control of &#X201C;ocaml.warning&#X201D;
+(for instance, warnings 1, 2, 14, 29 and 50).</li><li class="li-itemize">&#X201C;ocaml.warnerror&#X201D; or &#X201C;warnerror&#X201D;, with a string literal payload.
+Same as &#X201C;ocaml.warning&#X201D;, for the <span class="c003">-warn-error</span> command-line option.
+</li><li class="li-itemize">&#X201C;ocaml.deprecated&#X201D; or &#X201C;deprecated&#X201D;.
+Can be applied to most kind of items in signatures or
+structures. When the element is later referenced, a warning (3) is
+triggered. If the payload of the attribute is a string literal,
+the warning message includes this text. It is also possible
+to use this &#X201C;ocaml.deprecated&#X201D; as a floating attribute
+on top of an &#X201C;.mli&#X201D; file (i.e. before any other non-attribute
+item) or on top of an &#X201C;.ml&#X201D; file without a corresponding
+interface; this marks the unit itself as being deprecated.
+</li><li class="li-itemize">&#X201C;ocaml.deprecated_mutable&#X201D; or &#X201C;deprecated_mutable&#X201D;.
+Can be applied to a mutable record label. If the label is later
+used to modify the field (with &#X201C;expr.l &lt;- expr&#X201D;), a warning (3)
+will be triggered. If the payload of the attribute is a string literal,
+the warning message includes this text.
+</li><li class="li-itemize">&#X201C;ocaml.ppwarning&#X201D; or &#X201C;ppwarning&#X201D;, in any context, with
+a string literal payload. The text is reported as warning (22)
+by the compiler (currently, the warning location is the location
+of the string payload). This is mostly useful for preprocessors which
+need to communicate warnings to the user. This could also be used
+to mark explicitly some code location for further inspection.
+</li><li class="li-itemize">&#X201C;ocaml.warn_on_literal_pattern&#X201D; or &#X201C;warn_on_literal_pattern&#X201D; annotate
+constructors in type definition. A warning (52) is then emitted when this
+constructor is pattern matched with a constant literal as argument. This
+attribute denotes constructors whose argument is purely informative and
+may change in the future. Therefore, pattern matching on this argument
+with a constant literal is unreliable. For instance, all built-in exception
+constructors are marked as &#X201C;warn_on_literal_pattern&#X201D;.
+Note that, due to an implementation limitation, this warning (52) is only
+triggered for single argument constructor.
+</li><li class="li-itemize">&#X201C;ocaml.tailcall&#X201D; or &#X201C;tailcall&#X201D; can be applied to function
+application in order to check that the call is tailcall optimized.
+If it it not the case, a warning (51) is emitted.
+</li><li class="li-itemize">&#X201C;ocaml.inline&#X201D; or &#X201C;inline&#X201D; take either &#X201C;never&#X201D;, &#X201C;always&#X201D;
+or nothing as payload on a function or functor definition. If no payload
+is provided, the default value is &#X201C;always&#X201D;. This payload controls when
+applications of the annotated functions should be inlined.
+</li><li class="li-itemize">&#X201C;ocaml.inlined&#X201D; or &#X201C;inlined&#X201D; can be applied to any function or functor
+application to check that the call is inlined by the compiler. If the call
+is not inlined, a warning (55) is emitted.
+</li><li class="li-itemize">&#X201C;ocaml.noalloc&#X201D;, &#X201C;ocaml.unboxed&#X201D;and &#X201C;ocaml.untagged&#X201D; or
+&#X201C;noalloc&#X201D;, &#X201C;unboxed&#X201D; and &#X201C;untagged&#X201D; can be used on external
+definitions to obtain finer control over the C-to-OCaml interface. See
+<a href="intfc.html#s%3AC-cheaper-call">20.11</a> for more details.
+</li><li class="li-itemize">&#X201C;ocaml.immediate&#X201D; or &#X201C;immediate&#X201D; applied on an abstract type mark the type as
+having a non-pointer implementation (e.g. &#X201C;int&#X201D;, &#X201C;bool&#X201D;, &#X201C;char&#X201D; or
+enumerated types). Mutation of these immediate types does not activate the
+garbage collector&#X2019;s write barrier, which can significantly boost performance in
+programs relying heavily on mutable state.
+</li><li class="li-itemize"><span class="c003">ocaml.unboxed</span> or <span class="c003">unboxed</span> can be used on a type definition if the
+type is a single-field record or a concrete type with a single
+constructor that has a single argument. It tells the compiler to
+optimize the representation of the type by removing the block that
+represents the record or the constructor (i.e. a value of this type
+is physically equal to its argument). In the case of GADTs, an
+additional restriction applies: the argument must not be an
+existential variable, represented by an existential type variable,
+or an abstract type constructor applied to an existential type
+variable.
+</li><li class="li-itemize"><span class="c003">ocaml.boxed</span> or <span class="c003">boxed</span> can be used on type definitions to mean
+the opposite of <span class="c003">ocaml.unboxed</span>: keep the unoptimized
+representation of the type. When there is no annotation, the
+default is currently <span class="c003">boxed</span> but it may change in the future.
+</li></ul><pre>module X = struct
+  [@@@warning "+9"]  (* locally enable warning 9 in this structure *)
+  ...
+end
+  [@@deprecated "Please use module 'Y' instead."]
+
+let x = begin[@warning "+9"] ... end in ....
+
+type t = A | B
+  [@@deprecated "Please use type 's' instead."]
+
+let f x =
+  assert (x &gt;= 0) [@ppwarning "TODO: remove this later"];
+
+let rec no_op = function
+  | [] -&gt; ()
+  | _ :: q -&gt; (no_op[@tailcall]) q;;
+
+let f x = x [@@inline]
+
+let () = (f[@inlined]) ()
+
+type fragile =
+  | Int of int [@warn_on_literal_pattern]
+  | String of string [@warn_on_literal_pattern]
+
+let f = function
+| Int 0 | String "constant" -&gt; () (* trigger warning 52 *)
+| _ -&gt; ()
+
+module Immediate: sig
+  type t [@@immediate]
+  val x: t ref
+end = struct
+  type t = A | B
+  let x = ref 0
+end
+  ....
+
+</pre>
+<h2 class="section" id="sec262">8.17&#XA0;&#XA0;Extension nodes</h2>
+<p><a id="s:extension-nodes"></a></p><p>(Introduced in OCaml 4.02,
+infix notations for constructs other than expressions added in 4.03,
+infix notation (e1 ;%ext e2) added in 4.04.
+)</p><p>Extension nodes are generic placeholders in the syntax tree. They are
+rejected by the type-checker and are intended to be &#X201C;expanded&#X201D; by external
+tools such as <span class="c003">-ppx</span> rewriters.</p><p>Extension nodes share the same notion of identifier and payload as
+attributes&#XA0;<a href="#s%3Aattributes">8.16</a>.</p><p>The first form of extension node is used for &#X201C;algebraic&#X201D; categories:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="extension"><span class="c010">extension</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">[%</span>&#XA0;<a class="syntax" href="#attr-id"><span class="c010">attr-id</span></a>&#XA0;&#XA0;<a class="syntax" href="#attr-payload"><span class="c010">attr-payload</span></a>&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#extension"><span class="c010">extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#extension"><span class="c010">extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#extension"><span class="c010">extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#extension"><span class="c010">extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#extension"><span class="c010">extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-expr</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#extension"><span class="c010">extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-type</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#extension"><span class="c010">extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>A second form of extension node can be used in structures and
+signatures, both in the module and object languages:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="item-extension"><span class="c010">item-extension</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">[%%</span>&#XA0;<a class="syntax" href="#attr-id"><span class="c010">attr-id</span></a>&#XA0;&#XA0;<a class="syntax" href="#attr-payload"><span class="c010">attr-payload</span></a>&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#item-extension"><span class="c010">item-extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#item-extension"><span class="c010">item-extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-field-spec</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#item-extension"><span class="c010">item-extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="classes.html#class-field"><span class="c010">class-field</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#item-extension"><span class="c010">item-extension</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>An infix form is available for extension nodes when
+the payload is of the same kind
+(expression with expression, pattern with pattern ...).</p><p>Examples:</p><pre>let%foo x = 2 in x + 1     === [%foo let x = 2 in x + 1]
+begin%foo ... end          === [%foo begin ... end]
+x ;%foo 2                  === [%foo x; 2]
+module%foo M = ..          === [%%foo module M = ... ]
+val%foo x : t              === [%%foo: val x : t]
+</pre><p>
+When this form is used together with the infix syntax for attributes,
+the attributes are considered to apply to the payload:</p><pre>fun%foo[@bar] x -&gt; x + 1 === [%foo (fun x -&gt; x + 1)[@bar ] ];
+</pre>
+<h3 class="subsection" id="sec263">8.17.1&#XA0;&#XA0;Built-in extension nodes</h3>
+<p>(Introduced in OCaml 4.03)</p><p>Some extension nodes are understood by the compiler itself:
+</p><ul class="itemize"><li class="li-itemize">
+&#X201C;ocaml.extension_constructor&#X201D; or &#X201C;extension_constructor&#X201D;
+take as payload a constructor from an extensible variant type
+(see <a href="#s%3Aextensible-variants">8.20</a>) and return its extension
+constructor slot.
+</li></ul><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = ..
+ type t += X of int | Y of string
+ let x = [%extension_constructor X]
+ let y = [%extension_constructor Y]
+
+</div>
+</pre>
+
+
+</div><div class="caml-example toplevel">
+
+<pre><div class="caml-input">  x &lt;&gt; y;;
+</div><div class="caml-output ok">- : bool = true
+</div></pre>
+
+
+</div>
+<h2 class="section" id="sec264">8.18&#XA0;&#XA0;Quoted strings</h2>
+<p><a id="s:quoted-strings"></a></p><p>(Introduced in OCaml 4.02)</p><p>Quoted strings <span class="c003">{foo|...|foo}</span> provide a different lexical syntax to
+write string literals in OCaml code. They are useful to represent
+strings of arbitrary content without escaping &#X2013; as long as the
+delimiter you chose (here <span class="c003">|foo}</span>) does not occur in the string
+itself.</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<span class="c010">string-literal</span></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;&#XA0;<span class="c004">{</span>&#XA0;<a class="syntax" href="#quoted-string-id"><span class="c010">quoted-string-id</span></a>&#XA0;<span class="c004">|</span>&#XA0;&#XA0;........&#XA0;<span class="c004">|</span>&#XA0;&#XA0;<a class="syntax" href="#quoted-string-id"><span class="c010">quoted-string-id</span></a>&#XA0;<span class="c004">}</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="quoted-string-id"><span class="c010">quoted-string-id</span></a></td><td class="c015">::=</td><td class="c017">
+{&#XA0;<span class="c004">a</span>...<span class="c004">z</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">_</span>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>The opening delimiter has the form <span class="c003">{id|</span> where <span class="c003">id</span> is a (possibly
+empty) sequence of lowercase letters and underscores. The
+corresponding closing delimiter is <span class="c003">|id}</span> (with the same
+identifier). Unlike regular OCaml string literals, quoted
+strings do not interpret any character in a special way.</p><p>Example:</p><pre>String.length {|\"|}         (* returns 2 *)
+String.length {foo|\"|foo}   (* returns 2 *)
+</pre><p>
+Quoted strings are interesting in particular in conjunction to
+extension nodes <span class="c003">[%foo ...]</span> (see <a href="#s%3Aextension-nodes">8.17</a>) to embed
+foreign syntax fragments to be interpreted by a preprocessor and
+turned into OCaml code: you can use <span class="c003">[%sql {|...|}]</span> for example to
+represent arbitrary SQL statements &#X2013; assuming you have a ppx-rewriter
+that recognizes the <span class="c003">%sql</span> extension &#X2013; without requiring escaping
+quotes.</p><p>Note that the non-extension form, for example <span class="c003">{sql|...|sql}</span>, should
+not be used for this purpose, as the user cannot see in the code that
+this string literal has a different semantics than they expect, and
+giving a semantics to a specific delimiter limits the freedom to
+change the delimiter to avoid escaping issues.</p>
+<h2 class="section" id="sec265">8.19&#XA0;&#XA0;Exception cases in pattern matching</h2>
+<p><a id="s:exception-match"></a></p><p>(Introduced in OCaml 4.02)</p><p>A new form of exception patterns is allowed, only as a toplevel
+pattern under a <span class="c003">match</span>...<span class="c003">with</span> pattern-matching (other occurrences
+are rejected by the type-checker).</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">exception</span>&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Cases with such a toplevel pattern are called &#X201C;exception cases&#X201D;,
+as opposed to regular &#X201C;value cases&#X201D;. Exception cases are applied
+when the evaluation of the matched expression raises an exception.
+The exception value is then matched against all the exception cases
+and re-raised if none of them accept the exception (as for a
+<span class="c003">try</span>...<span class="c003">with</span> block). Since the bodies of all exception and value
+cases is outside the scope of the exception handler, they are all
+considered to be in tail-position: if the <span class="c003">match</span>...<span class="c003">with</span> block
+itself is in tail position in the current function, any function call
+in tail position in one of the case bodies results in an actual tail
+call.</p><p>It is an error if all cases are exception cases in a given pattern
+matching.</p>
+<h2 class="section" id="sec266">8.20&#XA0;&#XA0;Extensible variant types</h2>
+<p><a id="s:extensible-variants"></a></p><p>(Introduced in OCaml 4.02)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-representation"><span class="c010">type-representation</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">=</span>&#XA0;<span class="c004">..</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">type</span>&#XA0;[<a class="syntax" href="typedecl.html#type-params"><span class="c010">type-params</span></a>]&#XA0;&#XA0;<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>&#XA0;&#XA0;<a class="syntax" href="#type-extension-spec"><span class="c010">type-extension-spec</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">type</span>&#XA0;[<a class="syntax" href="typedecl.html#type-params"><span class="c010">type-params</span></a>]&#XA0;&#XA0;<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>&#XA0;&#XA0;<a class="syntax" href="#type-extension-def"><span class="c010">type-extension-def</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-extension-spec"><span class="c010">type-extension-spec</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;<span class="c004">+=</span>&#XA0;[<span class="c004">private</span>]&#XA0;[<span class="c004">|</span>]&#XA0;<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">|</span>&#XA0;<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-extension-def"><span class="c010">type-extension-def</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;<span class="c004">+=</span>&#XA0;[<span class="c004">private</span>]&#XA0;[<span class="c004">|</span>]&#XA0;<a class="syntax" href="#constr-def"><span class="c010">constr-def</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">|</span>&#XA0;<a class="syntax" href="#constr-def"><span class="c010">constr-def</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="constr-def"><span class="c010">constr-def</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="names.html#constr"><span class="c010">constr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Extensible variant types are variant types which can be extended with
+new variant constructors. Extensible variant types are defined using
+<span class="c003">..</span>. New variant constructors are added using <span class="c003">+=</span>.
+</p><pre>        type attr = ..
+
+        type attr += Str of string
+
+        type attr +=
+          | Int of int
+          | Float of float
+</pre><p>
+Pattern matching on an extensible variant type requires a default case
+to handle unknown variant constructors:
+</p><pre>        let to_string = function
+          | Str s -&gt; s
+          | Int i -&gt; string_of_int i
+          | Float f -&gt; string_of_float f
+          | _ -&gt; "?"
+</pre><p>
+A preexisting example of an extensible variant type is the built-in
+<span class="c003">exn</span> type used for exceptions. Indeed, exception constructors can be
+declared using the type extension syntax:
+</p><pre>        type exn += Exc of int
+</pre><p>
+Extensible variant constructors can be rebound to a different name. This
+allows exporting variants from another module.
+</p><pre>        type Expr.attr += Str = Expr.Str
+</pre><p>
+Extensible variant constructors can be declared <span class="c003">private</span>. As with
+regular variants, this prevents them from being constructed directly by
+constructor application while still allowing them to be de-structured in
+pattern-matching.
+</p><pre>        module Bool : sig
+          type attr += private Bool of int
+          val bool : bool -&gt; attr
+        end = struct
+          type attr += Bool of int
+          let bool p = if p then Bool 1 else Bool 0
+        end
+</pre>
+<h3 class="subsection" id="sec267">8.20.1&#XA0;&#XA0;Private extensible variant types</h3>
+<p>(Introduced in OCaml 4.06)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-representation"><span class="c010">type-representation</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">=</span>&#XA0;<span class="c004">private</span>&#XA0;<span class="c004">..</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Extensible variant types can be declared <span class="c003">private</span>. This prevents new
+constructors from being declared directly, but allows extension
+constructors to be referred to in interfaces.
+</p><pre>        module Msg : sig
+          type t = private ..
+          module MkConstr (X : sig type t end) : sig
+            type t += C of X.t
+          end
+        end = struct
+          type t = ..
+          module MkConstr (X : sig type t end) = struct
+            type t += C of X.t
+          end
+        end
+</pre>
+<h2 class="section" id="sec268">8.21&#XA0;&#XA0;Generative functors</h2>
+<p><a id="s:generative-functors"></a></p><p>(Introduced in OCaml 4.02)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">functor</span>&#XA0;<span class="c004">()</span>&#XA0;<span class="c004">-&gt;</span>&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>&#XA0;<span class="c004">()</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;<span class="c004">)</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">()</span>&#XA0;}
+[&#XA0;<span class="c004">:</span>&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;]&#XA0;&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">functor</span>&#XA0;<span class="c004">()</span>&#XA0;<span class="c004">-&gt;</span>&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">module</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>&#XA0;<span class="c004">)</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">()</span>&#XA0;}
+<span class="c004">:</span>&#XA0;<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>A generative functor takes a unit <span class="c003">()</span> argument.
+In order to use it, one must necessarily apply it to this unit argument,
+ensuring that all type components in the result of the functor behave
+in a generative way, <em>i.e.</em> they are different from types obtained
+by other applications of the same functor.
+This is equivalent to taking an argument of signature <span class="c003">sig end</span>, and always
+applying to <span class="c003">struct end</span>, but not to some defined module (in the
+latter case, applying twice to the same module would return identical
+types).</p><p>As a side-effect of this generativity, one is allowed to unpack
+first-class modules in the body of generative functors.</p>
+<h2 class="section" id="sec269">8.22&#XA0;&#XA0;Extension-only syntax</h2>
+<p>
+(Introduced in OCaml 4.02.2, extended in 4.03)</p><p>Some syntactic constructions are accepted during parsing and rejected
+during type checking. These syntactic constructions can therefore not
+be used directly in vanilla OCaml. However, <span class="c003">-ppx</span> rewriters and other
+external tools can exploit this parser leniency to extend the language
+with these new syntactic constructions by rewriting them to
+vanilla constructions.
+</p>
+<h3 class="subsection" id="sec270">8.22.1&#XA0;&#XA0;Extension operators</h3>
+<p> <a id="s:ext-ops"></a>
+(Introduced in OCaml 4.02.2)
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<span class="c010">infix-symbol</span></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">#</span>&#XA0;{<span class="c010">operator-chars</span>}&#XA0;<span class="c004">#</span>&#XA0;&#XA0;&#XA0;{<a class="syntax" href="lex.html#operator-char"><span class="c010">operator-char</span></a>&#XA0;<span class="c004">|</span>&#XA0;<span class="c004">#</span>}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Operator names starting with a <span class="c003">#</span> character and containing more than
+one <span class="c003">#</span> character are reserved for extensions.</p>
+<h3 class="subsection" id="sec271">8.22.2&#XA0;&#XA0;Extension literals</h3>
+<p> <a id="s:extension-literals"></a>
+(Introduced in OCaml 4.03)
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<span class="c010">float-literal</span></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;[<span class="c004">-</span>]&#XA0;(<span class="c004">0</span>&#X2026;<span class="c004">9</span>)&#XA0;{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#X2223;&#XA0;<span class="c004">_</span>&#XA0;}&#XA0;[<span class="c004">.</span>&#XA0;{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#X2223;&#XA0;<span class="c004">_</span>&#XA0;}]
+[(<span class="c004">e</span>&#X2223;&#XA0;<span class="c004">E</span>)&#XA0;[<span class="c004">+</span>&#X2223;&#XA0;<span class="c004">-</span>]&#XA0;(<span class="c004">0</span>&#X2026;<span class="c004">9</span>)&#XA0;{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#X2223;&#XA0;<span class="c004">_</span>&#XA0;}]
+[<span class="c004">g</span>&#X2026;<span class="c004">z</span>&#X2223;&#XA0;<span class="c004">G</span>&#X2026;<span class="c004">Z</span>]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;[<span class="c004">-</span>]&#XA0;(<span class="c004">0x</span>&#X2223;&#XA0;<span class="c004">0X</span>)
+(<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#X2223;&#XA0;<span class="c004">A</span>&#X2026;<span class="c004">F</span>&#X2223;&#XA0;<span class="c004">a</span>&#X2026;<span class="c004">f</span>)
+{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#X2223;&#XA0;<span class="c004">A</span>&#X2026;<span class="c004">F</span>&#X2223;&#XA0;<span class="c004">a</span>&#X2026;<span class="c004">f</span>&#X2223;&#XA0;<span class="c004">_</span>&#XA0;}
+[<span class="c004">.</span>&#XA0;{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#X2223;&#XA0;<span class="c004">A</span>&#X2026;<span class="c004">F</span>&#X2223;&#XA0;<span class="c004">a</span>&#X2026;<span class="c004">f</span>&#X2223;&#XA0;<span class="c004">_</span>&#XA0;}]
+[(<span class="c004">p</span>&#X2223;&#XA0;<span class="c004">P</span>)&#XA0;[<span class="c004">+</span>&#X2223;&#XA0;<span class="c004">-</span>]&#XA0;(<span class="c004">0</span>&#X2026;<span class="c004">9</span>)&#XA0;{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#X2223;&#XA0;<span class="c004">_</span>&#XA0;}]
+[<span class="c004">g</span>&#X2026;<span class="c004">z</span>&#X2223;&#XA0;<span class="c004">G</span>&#X2026;<span class="c004">Z</span>]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="int-literal"><span class="c010">int-literal</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;[<span class="c004">-</span>]&#XA0;(<span class="c004">0</span>&#X2026;<span class="c004">9</span>)&#XA0;{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">_</span>&#XA0;}[<span class="c004">g</span>&#X2026;<span class="c004">z</span>&#X2223;&#XA0;<span class="c004">G</span>&#X2026;<span class="c004">Z</span>]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;[<span class="c004">-</span>]&#XA0;(<span class="c004">0x</span>&#X2223;&#XA0;<span class="c004">0X</span>)&#XA0;(<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#X2223;&#XA0;<span class="c004">A</span>&#X2026;<span class="c004">F</span>&#X2223;&#XA0;<span class="c004">a</span>&#X2026;<span class="c004">f</span>)
+{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">9</span>&#X2223;&#XA0;<span class="c004">A</span>&#X2026;<span class="c004">F</span>&#X2223;&#XA0;<span class="c004">a</span>&#X2026;<span class="c004">f</span>&#X2223;&#XA0;<span class="c004">_</span>&#XA0;}
+[<span class="c004">g</span>&#X2026;<span class="c004">z</span>&#X2223;&#XA0;<span class="c004">G</span>&#X2026;<span class="c004">Z</span>]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;[<span class="c004">-</span>]&#XA0;(<span class="c004">0o</span>&#X2223;&#XA0;<span class="c004">0O</span>)&#XA0;(<span class="c004">0</span>&#X2026;<span class="c004">7</span>)&#XA0;{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">7</span>&#X2223;&#XA0;<span class="c004">_</span>&#XA0;}
+[<span class="c004">g</span>&#X2026;<span class="c004">z</span>&#X2223;&#XA0;<span class="c004">G</span>&#X2026;<span class="c004">Z</span>]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;[<span class="c004">-</span>]&#XA0;(<span class="c004">0b</span>&#X2223;&#XA0;<span class="c004">0B</span>)&#XA0;(<span class="c004">0</span>&#X2026;<span class="c004">1</span>)&#XA0;{&#XA0;<span class="c004">0</span>&#X2026;<span class="c004">1</span>&#X2223;&#XA0;<span class="c004">_</span>&#XA0;}
+[<span class="c004">g</span>&#X2026;<span class="c004">z</span>&#X2223;&#XA0;<span class="c004">G</span>&#X2026;<span class="c004">Z</span>]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>
+Int and float literals followed by an one-letter identifier in the
+range [<span class="c004">g</span>..<span class="c004">z</span>&#X2223; <span class="c004">G</span>..<span class="c004">Z</span>] are extension-only literals.</p>
+<h2 class="section" id="sec272">8.23&#XA0;&#XA0;Inline records</h2>
+<p> <a id="s:inline-records"></a>
+(Introduced in OCaml 4.03)
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<span class="c010">constr-args</span></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="typedecl.html#record-decl"><span class="c010">record-decl</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>The arguments of a sum-type constructors can now be defined using the
+same syntax as records. Mutable and polymorphic fields are allowed.
+GADT syntax is supported. Attributes can be specified on individual
+fields.</p><p>Syntactically, building or matching constructors with such an inline
+record argument is similar to working with a unary constructor whose
+unique argument is a declared record type. A pattern can bind
+the inline record as a pseudo-value, but the record cannot escape the
+scope of the binding and can only be used with the dot-notation to
+extract or modify fields or to build new constructor values.</p><pre>type t =
+  | Point of {width: int; mutable x: float; mutable y: float}
+  | ...
+
+let v = Point {width = 10; x = 0.; y = 0.}
+
+let scale l = function
+  | Point p -&gt; Point {p with x = l *. p.x; y = l *. p.y}
+  | ....
+
+let print = function
+  | Point {x; y; _} -&gt; Printf.printf "%f/%f" x y
+  | ....
+
+let reset = function
+  | Point p -&gt; p.x &lt;- 0.; p.y &lt;- 0.
+  | ...
+
+let invalid = function
+  | Point p -&gt; p  (* INVALID *)
+  | ...
+</pre>
+<h2 class="section" id="sec273">8.24&#XA0;&#XA0;Local exceptions</h2>
+<p>
+<a id="hevea_manual.kwd230"></a>
+<a id="hevea_manual.kwd231"></a> <a id="s:local-exceptions"></a></p><p>(Introduced in OCaml 4.04)</p><p>It is possible to define local exceptions in expressions:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">let</span>&#XA0;<span class="c004">exception</span>&#XA0;<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a>&#XA0;<span class="c004">in</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>The syntactic scope of the exception constructor is the inner
+expression, but nothing prevents exception values created with this
+constructor from escaping this scope. Two executions of the definition
+above result in two incompatible exception constructors (as for any
+exception definition).</p>
+<h2 class="section" id="sec274">8.25&#XA0;&#XA0;Documentation comments</h2>
+<p>
+(Introduced in OCaml 4.03)</p><p>Comments which start with <span class="c003">**</span> are treated specially by the
+compiler. They are automatically converted during parsing into
+attributes (see <a href="#s%3Aattributes">8.16</a>) to allow tools to process them as
+documentation.</p><p>Such comments can take three forms: <em>floating comments</em>, <em>item
+comments</em> and <em>label comments</em>. Any comment starting with <span class="c003">**</span> which
+does not match one of these forms will cause the compiler to emit
+warning 50.</p><p>Comments which start with <span class="c003">**</span> are also used by the ocamldoc
+documentation generator (see <a href="ocamldoc.html#c%3Aocamldoc">16</a>). The three comment forms
+recognised by the compiler are a subset of the forms accepted by
+ocamldoc (see <a href="ocamldoc.html#s%3Aocamldoc-comments">16.2</a>).</p>
+<h3 class="subsection" id="sec275">8.25.1&#XA0;&#XA0;Floating comments</h3>
+<p>Comments surrounded by blank lines that appear within structures,
+signatures, classes or class types are converted into
+<a class="syntax" href="#floating-attribute"><span class="c010">floating-attribute</span></a>s. For example:</p><pre>type t = T
+
+(** Now some definitions for [t] *)
+
+let mkT = T
+</pre><p>
+will be converted to:</p><pre>type t = T
+
+[@@@ocaml.text " Now some definitions for [t] "]
+
+let mkT = T
+</pre>
+<h3 class="subsection" id="sec276">8.25.2&#XA0;&#XA0;Item comments</h3>
+<p>Comments which appear <em>immediately before</em> or <em>immediately
+after</em> a structure item, signature item, class item or class type item
+are converted into <a class="syntax" href="#item-attribute"><span class="c010">item-attribute</span></a>s. Immediately before or immediately
+after means that there must be no blank lines, <span class="c003">;;</span>, or other
+documentation comments between them. For example:</p><pre>type t = T
+(** A description of [t] *)
+
+</pre><p>
+or</p><pre>
+(** A description of [t] *)
+type t = T
+</pre><p>
+will be converted to:</p><pre>type t = T
+[@@ocaml.doc " A description of [t] "]
+</pre><p>
+Note that, if a comment appears immediately next to multiple items,
+as in:</p><pre>type t = T
+(** An ambiguous comment *)
+type s = S
+</pre><p>
+then it will be attached to both items:</p><pre>type t = T
+[@@ocaml.doc " An ambiguous comment "]
+type s = S
+[@@ocaml.doc " An ambiguous comment "]
+</pre><p>
+and the compiler will emit warning 50.</p>
+<h3 class="subsection" id="sec277">8.25.3&#XA0;&#XA0;Label comments</h3>
+<p>Comments which appear <em>immediately after</em> a labelled argument,
+record field, variant constructor, object method or polymorphic variant
+constructor are are converted into <a class="syntax" href="#attribute"><span class="c010">attribute</span></a>s. Immediately
+after means that there must be no blank lines or other documentation
+comments between them. For example:</p><pre>type t1 = lbl:int (** Labelled argument *) -&gt; unit
+
+type t2 = {
+  fld: int; (** Record field *)
+  fld2: float;
+}
+
+type t3 =
+  | Cstr of string (** Variant constructor *)
+  | Cstr2 of string
+
+type t4 = &lt; meth: int * int; (** Object method *) &gt;
+
+type t5 = [
+  `PCstr (** Polymorphic variant constructor *)
+]
+</pre><p>
+will be converted to:</p><pre>type t1 = lbl:(int [@ocaml.doc " Labelled argument "]) -&gt; unit
+
+type t2 = {
+  fld: int [@ocaml.doc " Record field "];
+  fld2: float;
+}
+
+type t3 =
+  | Cstr of string [@ocaml.doc " Variant constructor "]
+  | Cstr2 of string
+
+type t4 = &lt; meth : int * int [@ocaml.doc " Object method "] &gt;
+
+type t5 = [
+  `PCstr [@ocaml.doc " Polymorphic variant constructor "]
+]
+</pre><p>
+Note that label comments take precedence over item comments, so:</p><pre>type t = T of string
+(** Attaches to T not t *)
+</pre><p>
+will be converted to:</p><pre>type t =  T of string [@ocaml.doc " Attaches to T not t "]
+</pre><p>
+whilst:</p><pre>type t = T of string
+(** Attaches to T not t *)
+(** Attaches to t *)
+</pre><p>
+will be converted to:</p><pre>type t =  T of string [@ocaml.doc " Attaches to T not t "]
+[@@ocaml.doc " Attaches to t "]
+</pre><p>
+In the absence of meaningful comment on the last constructor of
+a type, an empty comment&#XA0;<span class="c003">(**)</span> can be used instead:</p><pre>type t = T of string
+(**)
+(** Attaches to t *)
+</pre><p>
+will be converted directly to</p><pre>type t =  T of string
+[@@ocaml.doc " Attaches to t "]
+</pre>
+<h2 class="section" id="s:index-operators">8.26&#XA0;&#XA0;Extended indexing operators  </h2>
+<p>
+(Introduced in 4.06)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018"><a class="syntax" id="dot-ext"><span class="c010">dot-ext</span></a></td><td class="c015">::=</td><td class="c017">
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;(<span class="c004">!</span>&#X2223;&#XA0;<span class="c004">$</span>&#X2223;&#XA0;<span class="c004">%</span>&#X2223;&#XA0;<span class="c004">&amp;</span>&#X2223;&#XA0;<span class="c004">*</span>&#X2223;&#XA0;<span class="c004">+</span>&#X2223;&#XA0;<span class="c004">-</span>&#X2223;&#XA0;<span class="c004">/</span>&#X2223;&#XA0;<span class="c004">:</span>&#X2223;&#XA0;<span class="c004">=</span>&#X2223;&#XA0;<span class="c004">&gt;</span>&#X2223;&#XA0;<span class="c004">?</span>&#X2223;&#XA0;<span class="c004">@</span>&#X2223;&#XA0;<span class="c004">^</span>&#X2223;&#XA0;<span class="c004">|</span>&#X2223;&#XA0;<span class="c004">~</span>)&#XA0;{&#XA0;<a class="syntax" href="lex.html#operator-char"><span class="c010">operator-char</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;<span class="c004">.</span>&#XA0;&#XA0;[<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>&#XA0;<span class="c004">.</span>]&#XA0;&#XA0;<a class="syntax" href="#dot-ext"><span class="c010">dot-ext</span></a>&#XA0;&#XA0;(&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;<span class="c004">)</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">[</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;<span class="c004">]</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">{</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;<span class="c004">}</span>&#XA0;)&#XA0;&#XA0;[&#XA0;<span class="c004">&lt;-</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">operator-name</span></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">.</span>&#XA0;<a class="syntax" href="#dot-ext"><span class="c010">dot-ext</span></a>&#XA0;&#XA0;(<span class="c004">()</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">[]</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">{}</span>)&#XA0;[<span class="c004">&lt;-</span>]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>This extension provides syntactic sugar for getting and setting elements
+for user-defined indexed types. For instance, we can define python-like
+dictionaries with
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module Dict = struct
+ include Hashtbl
+ let ( .%{} ) tabl index = find tabl index
+ let ( .%{}&lt;- ) tabl index value = add tabl index value
+ end
+ let dict =
+   let dict = Dict.create 10 in
+   let () =
+     dict.Dict.%{"one"} &lt;- 1;
+     let open Dict in
+     dict.%{"two"} &lt;- 2 in
+   dict
+
+</div>
+</pre>
+
+
+</div><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> dict.Dict.%{"one"};;
+</div><div class="caml-output ok">- : int = 1
+</div></pre>
+
+<pre><div class="caml-input"> let open Dict in dict.%{"two"};;
+</div><div class="caml-output ok">- : int = 2
+</div></pre>
+
+
+</div>
+<h2 class="section" id="s:empty-variants">8.27&#XA0;&#XA0;Empty variant types </h2>
+<p>
+(Introduced in 4.07.0)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-representation"><span class="c010">type-representation</span></a></td><td class="c015">::=</td><td class="c017">
+...
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">=</span>&#XA0;<span class="c004">|</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>
+This extension allows user to define empty variants.
+Empty variant type can be eliminated by refutation case of pattern matching.
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t = |
+ let f (x: t) = match x with _ -&gt; .
+
+</div>
+</pre>
+
+
+</div>
+<hr>
+<a href="language.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="comp.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

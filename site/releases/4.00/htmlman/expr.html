@@ -1,0 +1,643 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Expressions</TITLE>
+</HEAD>
+<BODY >
+<A HREF="patterns.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual016.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H2 CLASS="section"><A NAME="htoc66">6.7</A>&#XA0;&#XA0;Expressions<A NAME="s:value-expr"></A></H2><UL>
+<LI><A HREF="expr.html#toc48">Basic expressions</A>
+</LI><LI><A HREF="expr.html#toc49">Control structures</A>
+</LI><LI><A HREF="expr.html#toc50">Operations on data structures</A>
+</LI><LI><A HREF="expr.html#toc51">Operators</A>
+</LI><LI><A HREF="expr.html#toc52">Objects</A>
+</LI><LI><A HREF="expr.html#toc53">Coercions</A>
+</LI></UL>
+<P>
+<A NAME="@manual.kwd8"></A>
+<A NAME="@manual.kwd9"></A>
+<A NAME="@manual.kwd10"></A>
+<A NAME="@manual.kwd11"></A>
+<A NAME="@manual.kwd12"></A>
+<A NAME="@manual.kwd13"></A>
+<A NAME="@manual.kwd14"></A>
+<A NAME="@manual.kwd15"></A>
+<A NAME="@manual.kwd16"></A>
+<A NAME="@manual.kwd17"></A>
+<A NAME="@manual.kwd18"></A>
+<A NAME="@manual.kwd19"></A>
+<A NAME="@manual.kwd20"></A>
+<A NAME="@manual.kwd21"></A>
+<A NAME="@manual.kwd22"></A>
+<A NAME="@manual.kwd23"></A>
+<A NAME="@manual.kwd24"></A>
+<A NAME="@manual.kwd25"></A>
+<A NAME="@manual.kwd26"></A>
+<A NAME="@manual.kwd27"></A>
+<A NAME="@manual.kwd28"></A>
+<A NAME="@manual.kwd29"></A>
+<A NAME="@manual.kwd30"></A>
+<A NAME="@manual.kwd31"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A href="manual011.html#value-path" class="syntax"><FONT COLOR=maroon>value-path</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="manual013.html#constant" class="syntax"><FONT COLOR=maroon>constant</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>begin</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>end</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;&#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;{<FONT COLOR=blue><TT>,</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>}<SUP>+</SUP>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="manual011.html#constr" class="syntax"><FONT COLOR=maroon>constr</FONT></A></I>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>`</TT></FONT><I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A></I>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>::</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>[</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;}&#XA0;&#XA0;[<FONT COLOR=blue><TT>;</TT></FONT>]&#XA0;<FONT COLOR=blue><TT>]</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>[|</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;}&#XA0;&#XA0;[<FONT COLOR=blue><TT>;</TT></FONT>]&#XA0;<FONT COLOR=blue><TT>|]</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>{</TT></FONT>&#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;}&#XA0;&#XA0;[<FONT COLOR=blue><TT>;</TT></FONT>]&#XA0;<FONT COLOR=blue><TT>}</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>{</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>with</TT></FONT>&#XA0;&#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;}&#XA0;&#XA0;[<FONT COLOR=blue><TT>;</TT></FONT>]&#XA0;<FONT COLOR=blue><TT>}</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;{&#XA0;<I><A href="#argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A></I>&#XA0;}<SUP>+</SUP>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="lex.html#prefix-symbol" class="syntax"><FONT COLOR=maroon>prefix-symbol</FONT></A></I>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;<I><A href="manual011.html#infix-op" class="syntax"><FONT COLOR=maroon>infix-op</FONT></A></I>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>.</TT></FONT>&#XA0;&#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>.</TT></FONT>&#XA0;&#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>&lt;-</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>.(</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>.(</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>&#XA0;<FONT COLOR=blue><TT>&lt;-</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>.[</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>]</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>.[</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>]</TT></FONT>&#XA0;<FONT COLOR=blue><TT>&lt;-</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>if</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>then</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;[&#XA0;<FONT COLOR=blue><TT>else</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;]
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>while</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>do</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>done</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>for</TT></FONT>&#XA0;<I><A href="lex.html#ident" class="syntax"><FONT COLOR=maroon>ident</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;(&#XA0;<FONT COLOR=blue><TT>to</TT></FONT>&#XA0;&#X2223;&#XA0;&#XA0;<FONT COLOR=blue><TT>downto</TT></FONT>&#XA0;)&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>do</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>done</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>match</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>with</TT></FONT>&#XA0;&#XA0;<I><A href="#pattern-matching" class="syntax"><FONT COLOR=maroon>pattern-matching</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>function</TT></FONT>&#XA0;<I><A href="#pattern-matching" class="syntax"><FONT COLOR=maroon>pattern-matching</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>fun</TT></FONT>&#XA0;<I><A href="#multiple-matching" class="syntax"><FONT COLOR=maroon>multiple-matching</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>try</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>with</TT></FONT>&#XA0;&#XA0;<I><A href="#pattern-matching" class="syntax"><FONT COLOR=maroon>pattern-matching</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>let</TT></FONT>&#XA0;[<FONT COLOR=blue><TT>rec</TT></FONT>]&#XA0;<I><A href="#let-binding" class="syntax"><FONT COLOR=maroon>let-binding</FONT></A></I>&#XA0;&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>and</TT></FONT>&#XA0;<I><A href="#let-binding" class="syntax"><FONT COLOR=maroon>let-binding</FONT></A></I>&#XA0;}&#XA0;<FONT COLOR=blue><TT>in</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>new</TT></FONT>&#XA0;<I><A href="manual011.html#class-path" class="syntax"><FONT COLOR=maroon>class-path</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>object</TT></FONT>&#XA0;<I><A href="manual017.html#class-body" class="syntax"><FONT COLOR=maroon>class-body</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>end</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>#</TT></FONT>&#XA0;&#XA0;<I><A href="manual011.html#method-name" class="syntax"><FONT COLOR=maroon>method-name</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>&lt;-</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:&gt;</TT></FONT>&#XA0;&#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;&#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:&gt;</TT></FONT>&#XA0;&#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>{&lt;</TT></FONT>&#XA0;<I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;<I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;}&#XA0;&#XA0;[<FONT COLOR=blue><TT>;</TT></FONT>]&#XA0;<FONT COLOR=blue><TT>&gt;}</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>assert</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>lazy</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>~</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>~</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>?</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>?</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="pattern-matching" class="syntax"><FONT COLOR=maroon>pattern-matching</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+[&#XA0;<FONT COLOR=blue><TT>|</TT></FONT>&#XA0;]&#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;&#XA0;[<FONT COLOR=blue><TT>when</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>]&#XA0;<FONT COLOR=blue><TT>-&gt;</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;{&#XA0;<FONT COLOR=blue><TT>|</TT></FONT>&#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;&#XA0;[<FONT COLOR=blue><TT>when</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>]&#XA0;<FONT COLOR=blue><TT>-&gt;</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>&#XA0;}
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="multiple-matching" class="syntax"><FONT COLOR=maroon>multiple-matching</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+{&#XA0;<I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A></I>&#XA0;}<SUP>+</SUP>&#XA0;&#XA0;[<FONT COLOR=blue><TT>when</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>]&#XA0;<FONT COLOR=blue><TT>-&gt;</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="let-binding" class="syntax"><FONT COLOR=maroon>let-binding</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="manual011.html#value-name" class="syntax"><FONT COLOR=maroon>value-name</FONT></A></I>&#XA0;&#XA0;{&#XA0;<I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A></I>&#XA0;}&#XA0;&#XA0;[<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>]&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>~</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>~</TT></FONT>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>&#XA0;&#XA0;[<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>]&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>~</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;&#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>?</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>?</TT></FONT>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>&#XA0;&#XA0;[<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>]&#XA0;&#XA0;[<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>]&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>?</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;&#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>?</TT></FONT>&#XA0;<I><A href="lex.html#label-name" class="syntax"><FONT COLOR=maroon>label-name</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;&#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;&#XA0;[<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>]&#XA0;&#XA0;[<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>]&#XA0;<FONT COLOR=blue><TT>)</TT></FONT></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>The table below shows the relative precedences and associativity of
+operators and non-closed constructions. The constructions with higher
+precedence come first. For infix and prefix symbols, we write
+&#X201C;<TT>*</TT>&#X2026;&#X201D; to mean &#X201C;any symbol starting with <TT>*</TT>&#X201D;.
+<A NAME="@manual.kwd32"></A><A NAME="@manual.kwd33"></A><A NAME="@manual.kwd34"></A><A NAME="@manual.kwd35"></A><A NAME="@manual.kwd36"></A><A NAME="@manual.kwd37"></A><A NAME="@manual.kwd38"></A></P><DIV CLASS="center"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1 WIDTH="80%"><TR><TD ALIGN=center NOWRAP><B>Construction or operator</B></TD><TD ALIGN=center NOWRAP><B>Associativity</B></TD></TR>
+<TR><TD ALIGN=left NOWRAP>
+prefix-symbol</TD><TD ALIGN=left NOWRAP>&#X2013;</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>.   .(    .[</TT></TD><TD ALIGN=left NOWRAP>&#X2013;</TD></TR>
+<TR><TD ALIGN=left NOWRAP>function application, constructor application, <TT>assert</TT>, <TT>lazy</TT></TD><TD ALIGN=left NOWRAP>left</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>-   -.</TT> (prefix)</TD><TD ALIGN=left NOWRAP>&#X2013;</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>**</TT>&#X2026;<TT>   lsl   lsr   asr</TT></TD><TD ALIGN=left NOWRAP>right</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>*</TT>&#X2026;<TT>   /</TT>&#X2026;<TT>   %</TT>&#X2026;<TT>   mod   land   lor   lxor</TT></TD><TD ALIGN=left NOWRAP>left</TD></TR>
+<TR><TD ALIGN=left NOWRAP> <TT>+</TT>&#X2026;<TT>   -</TT>&#X2026;</TD><TD ALIGN=left NOWRAP>left</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>::</TT></TD><TD ALIGN=left NOWRAP>right</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>@</TT>&#X2026;<TT>   ^</TT>&#X2026;</TD><TD ALIGN=left NOWRAP>right</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>=</TT>&#X2026;<TT>   &lt;</TT>&#X2026;<TT>   &gt;</TT>&#X2026;<TT>   |</TT>&#X2026;<TT>   &amp;</TT>&#X2026;<TT>   $</TT>&#X2026;</TD><TD ALIGN=left NOWRAP>left</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>&amp;   &amp;&amp;</TT></TD><TD ALIGN=left NOWRAP>right</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>or  ||</TT></TD><TD ALIGN=left NOWRAP>right</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>,</TT></TD><TD ALIGN=left NOWRAP>&#X2013;</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>&lt;-   :=</TT></TD><TD ALIGN=left NOWRAP>right</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>if</TT></TD><TD ALIGN=left NOWRAP>&#X2013;</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>;</TT></TD><TD ALIGN=left NOWRAP>right</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>let  match  fun  function  try</TT></TD><TD ALIGN=left NOWRAP>&#X2013;</TD></TR>
+</TABLE></DIV><H3 CLASS="subsection"><A NAME="toc48"></A><A NAME="htoc67">6.7.1</A>&#XA0;&#XA0;Basic expressions</H3><H4 CLASS="subsubsection">Constants</H4><P>Expressions consisting in a constant evaluate to this constant.</P><H4 CLASS="subsubsection">Value paths</H4><P> <A NAME="expr:var"></A></P><P>Expressions consisting in an access path evaluate to the value bound to
+this path in the current evaluation environment. The path can
+be either a value name or an access path to a value component of a module.</P><H4 CLASS="subsubsection">Parenthesized expressions</H4><P>
+<A NAME="@manual.kwd39"></A>
+<A NAME="@manual.kwd40"></A></P><P>The expressions <FONT COLOR=blue><TT>(</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> and <FONT COLOR=blue><TT>begin</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>end</TT></FONT> have the same
+value as <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>. The two constructs are semantically equivalent, but it
+is good style to use <FONT COLOR=blue><TT>begin</TT></FONT> &#X2026; <FONT COLOR=blue><TT>end</TT></FONT> inside control structures:
+</P><PRE>
+        if &#X2026; then begin &#X2026; ; &#X2026; end else begin &#X2026; ; &#X2026; end
+</PRE><P>
+and <FONT COLOR=blue><TT>(</TT></FONT> &#X2026; <FONT COLOR=blue><TT>)</TT></FONT> for the other grouping situations.</P><P>Parenthesized expressions can contain a type constraint, as in <FONT COLOR=blue><TT>(</TT></FONT>
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>. This constraint forces the type of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> to be
+compatible with <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>.</P><P>Parenthesized expressions can also contain coercions
+<FONT COLOR=blue><TT>(</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> &#XA0;[<FONT COLOR=blue><TT>:</TT></FONT> <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>] <FONT COLOR=blue><TT>:&gt;</TT></FONT> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><FONT COLOR=blue><TT>)</TT></FONT> (see
+subsection&#XA0;<A HREF="#s:coercions">6.7.6</A> below).</P><H4 CLASS="subsubsection">Function application</H4><P>Function application is denoted by juxtaposition of (possibly labeled)
+expressions. The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> &#XA0;<I><A href="#argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="#argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A><SUB>n</SUB></I>
+evaluates the expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> and those appearing in <I><A href="#argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A></I><SUB>1</SUB>
+to <I><A href="#argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A><SUB>n</SUB></I>. The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> must evaluate to a
+functional value <I>f</I>, which is then applied to the values of 
+<I><A href="#argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A></I><SUB>1</SUB>, &#X2026;, &#XA0;<I><A href="#argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A><SUB>n</SUB></I>.</P><P>The order in which the expressions <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>, &#XA0;<I><A href="#argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A></I><SUB>1</SUB>, &#X2026;,
+&#XA0;<I><A href="#argument" class="syntax"><FONT COLOR=maroon>argument</FONT></A><SUB>n</SUB></I> are evaluated is not specified.</P><P>Arguments and parameters are matched according to their respective
+labels. Argument order is irrelevant, except among arguments with the
+same label, or no label.</P><P>If a parameter is specified as optional (label prefixed by <TT>?</TT>) in the
+type of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>, the corresponding argument will be automatically
+wrapped with the constructor <TT>Some</TT>, except if the argument itself is
+also prefixed by <TT>?</TT>, in which case it is passed as is.
+If a non-labeled argument is passed, and its corresponding parameter
+is preceded by one or several optional parameters, then these
+parameters are <EM>defaulted</EM>, <EM>i.e.</EM> the value <TT>None</TT> will be
+passed for them.
+All other missing parameters (without corresponding argument), both
+optional and non-optional, will be kept, and the result of the
+function will still be a function of these missing parameters to the
+body of <I>f</I>.</P><P>As a special case, if the function has a known arity, all the
+arguments are unlabeled, and their number matches the number of
+non-optional parameters, then labels are ignored and non-optional
+parameters are matched in their definition order. Optional arguments
+are defaulted.</P><P>In all cases but exact match of order and labels, without optional
+parameters, the function type should be known at the application
+point. This can be ensured by adding a type constraint. Principality
+of the derivation can be checked in the <TT>-principal</TT> mode.</P><H4 CLASS="subsubsection">Function definition</H4><P>Two syntactic forms are provided to define functions. The first form
+is introduced by the keyword <TT>function</TT>:
+<A NAME="@manual.kwd41"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>function</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>pattern</I></FONT><SUB>1</SUB></TD><TD ALIGN=left NOWRAP><FONT COLOR=blue><TT>-&gt;</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>expr</I></FONT><SUB>1</SUB>&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>|</TT></FONT></TD><TD ALIGN=left NOWRAP>&#X2026;&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>|</TT></FONT></TD><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>pattern</FONT><SUB>n</SUB></I></TD><TD ALIGN=left NOWRAP><FONT COLOR=blue><TT>-&gt;</TT></FONT></TD><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>expr</FONT><SUB>n</SUB></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+This expression evaluates to a functional value with one argument.
+When this function is applied to a value <I>v</I>, this value is
+matched against each pattern <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> to <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I>.
+If one of these matchings succeeds, that is, if the value <I>v</I>
+matches the pattern <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>i</SUB></I> for some <I>i</I>,
+then the expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>i</SUB></I> associated to the selected pattern
+is evaluated, and its value becomes the value of the function
+application. The evaluation of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>i</SUB></I> takes place in an
+environment enriched by the bindings performed during the matching.</P><P>If several patterns match the argument <I>v</I>, the one that occurs
+first in the function definition is selected. If none of the patterns
+matches the argument, the exception <TT>Match_failure</TT> is raised.
+<A NAME="@manual0"></A></P><P><BR>
+</P><P>The other form of function definition is introduced by the keyword <TT>fun</TT>:
+<A NAME="@manual.kwd42"></A>
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>fun</TT></FONT> <I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+This expression is equivalent to:
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>fun</TT></FONT> <I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>fun</TT></FONT> &#XA0;<I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>The parameter patterns <TT>~var</TT> and <FONT COLOR=blue><TT>~(var</TT></FONT> [<FONT COLOR=blue><TT>:</TT></FONT> <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><FONT COLOR=blue><TT>])</TT></FONT>
+are shorthands for respectively <TT>~var:var</TT> and
+<FONT COLOR=blue><TT>~var:(var</TT></FONT> [<FONT COLOR=blue><TT>:</TT></FONT> <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>]<FONT COLOR=blue><TT>)</TT></FONT>, and similarly for their optional
+counterparts.</P><P>Functions of the form <FONT COLOR=blue><TT>fun</TT> <TT>?lab:(</TT></FONT> <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>0</SUB> <FONT COLOR=blue><TT>)</TT> <TT>-&gt;</TT></FONT>
+&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> are equivalent to
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>fun</TT> <TT>?lab:</TT></FONT><I><A href="lex.html#ident" class="syntax"><FONT COLOR=maroon>ident</FONT></A></I> <FONT COLOR=blue><TT>-&gt;</TT>
+<TT>let</TT></FONT> &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I> <FONT COLOR=blue><TT>=</TT>
+<TT>match</TT></FONT> &#XA0;<I><A href="lex.html#ident" class="syntax"><FONT COLOR=maroon>ident</FONT></A></I> <FONT COLOR=blue><TT>with</TT> <TT>Some</TT></FONT> &#XA0;<I><A href="lex.html#ident" class="syntax"><FONT COLOR=maroon>ident</FONT></A></I> <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#XA0;<I><A href="lex.html#ident" class="syntax"><FONT COLOR=maroon>ident</FONT></A></I> <FONT COLOR=blue><TT>|</TT> <TT>None</TT> <TT>-&gt;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>0</SUB>
+<FONT COLOR=blue><TT>in</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+where <I><A href="lex.html#ident" class="syntax"><FONT COLOR=maroon>ident</FONT></A></I>
+is a fresh variable. When <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>0</SUB> will be evaluated is left
+unspecified.</P><P>After these two transformations, expressions are of the form
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>fun</TT></FONT> [<I><A href="lex.html#label" class="syntax"><FONT COLOR=maroon>label</FONT></A></I><SUB>1</SUB>] &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>fun</TT></FONT> &#XA0;[<I><A href="lex.html#label" class="syntax"><FONT COLOR=maroon>label</FONT></A><SUB>n</SUB></I>] &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+If we ignore labels, which will only be meaningful at function
+application, this is equivalent to
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>function</TT></FONT> <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>function</TT></FONT> &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+That is, the <TT>fun</TT> expression above evaluates to a curried function
+with <I>n</I> arguments: after applying this function <I>n</I> times to the
+values <I>v</I><SUB>1</SUB>&#XA0;&#X2026;&#XA0;<I>v<SUB>m</SUB></I>, the values will be matched
+in parallel against the patterns <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I>.
+If the matching succeeds, the function returns the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> in
+an environment enriched by the bindings performed during the matchings.
+If the matching fails, the exception <TT>Match_failure</TT> is raised.</P><H4 CLASS="subsubsection">Guards in pattern-matchings</H4><P><A NAME="@manual.kwd43"></A>
+Cases of a pattern matching (in the <TT>function</TT>, <TT>fun</TT>, <TT>match</TT> and
+<TT>try</TT> constructs) can include guard expressions, which are
+arbitrary boolean expressions that must evaluate to <TT>true</TT> for the
+match case to be selected. Guards occur just before the <TT>-&gt;</TT> token and
+are introduced by the <TT>when</TT> keyword:</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>function</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>pattern</I></FONT><SUB>1</SUB>&#XA0;&#XA0;&#XA0;[<FONT COLOR=blue><TT>when</TT></FONT>&#XA0;&#XA0;&#XA0;<FONT COLOR=maroon><I>cond</I></FONT><SUB>1</SUB>]</TD><TD ALIGN=left NOWRAP><FONT COLOR=blue><TT>-&gt;</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>expr</I></FONT><SUB>1</SUB>&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>|</TT></FONT></TD><TD ALIGN=left NOWRAP>&#X2026;&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>|</TT></FONT></TD><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>pattern</FONT><SUB>n</SUB></I>&#XA0;&#XA0;&#XA0;&#XA0;[<FONT COLOR=blue><TT>when</TT></FONT>&#XA0;&#XA0;&#XA0;<I><FONT COLOR=maroon>cond</FONT><SUB>n</SUB></I>]</TD><TD ALIGN=left NOWRAP><FONT COLOR=blue><TT>-&gt;</TT></FONT></TD><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>expr</FONT><SUB>n</SUB></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Matching proceeds as described before, except that if the value
+matches some pattern <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>i</SUB></I> which has a guard <I><FONT COLOR=maroon>cond</FONT><SUB>i</SUB></I>, then the
+expression <I><FONT COLOR=maroon>cond</FONT><SUB>i</SUB></I> is evaluated (in an environment enriched by the
+bindings performed during matching). If <I><FONT COLOR=maroon>cond</FONT><SUB>i</SUB></I> evaluates to <TT>true</TT>,
+then <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>i</SUB></I> is evaluated and its value returned as the result of the
+matching, as usual. But if <I><FONT COLOR=maroon>cond</FONT><SUB>i</SUB></I> evaluates to <TT>false</TT>, the matching
+is resumed against the patterns following <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>i</SUB></I>.</P><H4 CLASS="subsubsection">Local definitions</H4><P> <A NAME="s:localdef"></A></P><P><A NAME="@manual.kwd44"></A></P><P>The <TT>let</TT> and <TT>let rec</TT> constructs bind value names locally.
+The construct
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>let</TT></FONT> <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>and</TT></FONT> &#X2026; <FONT COLOR=blue><TT>and</TT></FONT> &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>in</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+evaluates <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> in some unspecified order, then matches
+their values against the patterns <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I>. If the
+matchings succeed, <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> is evaluated in the environment enriched by
+the bindings performed during matching, and the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> is
+returned as the value of the whole <TT>let</TT> expression. If one of the
+matchings fails, the exception <TT>Match_failure</TT> is raised.
+<A NAME="@manual1"></A></P><P>An alternate syntax is provided to bind variables to functional
+values: instead of writing
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>let</TT></FONT> <I><A href="lex.html#ident" class="syntax"><FONT COLOR=maroon>ident</FONT></A></I> <FONT COLOR=blue><TT>=</TT> <TT>fun</TT></FONT> &#XA0;<I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A><SUB>m</SUB></I> <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+in a <TT>let</TT> expression, one may instead write
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>let</TT></FONT> <I><A href="lex.html#ident" class="syntax"><FONT COLOR=maroon>ident</FONT></A></I> &#XA0;<I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="#parameter" class="syntax"><FONT COLOR=maroon>parameter</FONT></A><SUB>m</SUB></I> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P><BR>
+Recursive definitions of names are introduced by <TT>let rec</TT>:
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>let</TT> <TT>rec</TT></FONT> <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>and</TT></FONT> &#X2026; <FONT COLOR=blue><TT>and</TT></FONT> &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I>
+<FONT COLOR=blue><TT>in</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+The only difference with the <TT>let</TT> construct described above is
+that the bindings of names to values performed by the
+pattern-matching are considered already performed when the expressions
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> are evaluated. That is, the expressions <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB>
+to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> can reference identifiers that are bound by one of the
+patterns <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB>, &#X2026;, &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I>, and expect them to have the
+same value as in <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>, the body of the <TT>let rec</TT> construct.</P><P>The recursive definition is guaranteed to behave as described above if
+the expressions <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> are function definitions
+(<FONT COLOR=blue><TT>fun</TT></FONT> &#X2026; or <FONT COLOR=blue><TT>function</TT></FONT> &#X2026;), and the patterns <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB>
+&#X2026; &#XA0;<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> are just value names, as in:
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>let</TT> <TT>rec</TT></FONT> <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT> <TT>fun</TT></FONT> &#X2026;
+<FONT COLOR=blue><TT>and</TT></FONT> &#X2026;
+<FONT COLOR=blue><TT>and</TT></FONT> &#XA0;<I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I> <FONT COLOR=blue><TT>=</TT> <TT>fun</TT></FONT> &#X2026;
+<FONT COLOR=blue><TT>in</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+This defines <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#X2026; &#XA0;<I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I> as mutually recursive functions
+local to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>. </P><P>The behavior of other forms of <TT>let rec</TT> definitions is
+implementation-dependent. The current implementation also supports
+a certain class of recursive definitions of non-functional values,
+as explained in section&#XA0;<A HREF="manual021.html#s:letrecvalues">7.3</A>.</P><H3 CLASS="subsection"><A NAME="toc49"></A><A NAME="htoc68">6.7.2</A>&#XA0;&#XA0;Control structures</H3><H4 CLASS="subsubsection">Sequence</H4><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> evaluates <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> first, then
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB>, and returns the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB>.</P><H4 CLASS="subsubsection">Conditional</H4><P>
+<A NAME="@manual.kwd45"></A></P><P>The expression <FONT COLOR=blue><TT>if</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>then</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>else</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB> evaluates to
+the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> if <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> evaluates to the boolean <FONT COLOR=blue><TT>true</TT></FONT>,
+and to the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB> if <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> evaluates to the boolean
+<FONT COLOR=blue><TT>false</TT></FONT>.</P><P>The <FONT COLOR=blue><TT>else</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB> part can be omitted, in which case it defaults to
+<FONT COLOR=blue><TT>else</TT> <TT>()</TT></FONT>.</P><H4 CLASS="subsubsection">Case expression</H4><P><A NAME="@manual.kwd46"></A></P><P>The expression
+</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>match</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>expr</I></FONT>&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>with</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>pattern</I></FONT><SUB>1</SUB></TD><TD ALIGN=left NOWRAP><FONT COLOR=blue><TT>-&gt;</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>expr</I></FONT><SUB>1</SUB>&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>|</TT></FONT></TD><TD ALIGN=left NOWRAP>&#X2026;&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>|</TT></FONT></TD><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>pattern</FONT><SUB>n</SUB></I></TD><TD ALIGN=left NOWRAP><FONT COLOR=blue><TT>-&gt;</TT></FONT></TD><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>expr</FONT><SUB>n</SUB></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+matches the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> against the patterns <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> to
+<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I>. If the matching against <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>i</SUB></I> succeeds, the
+associated expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>i</SUB></I> is evaluated, and its value becomes the
+value of the whole <FONT COLOR=blue><TT>match</TT></FONT> expression. The evaluation of
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>i</SUB></I> takes place in an environment enriched by the bindings
+performed during matching. If several patterns match the value of
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>, the one that occurs first in the <FONT COLOR=blue><TT>match</TT></FONT> expression is
+selected. If none of the patterns match the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>, the
+exception <FONT COLOR=blue><TT>Match_failure</TT></FONT> is raised.
+<A NAME="@manual2"></A></P><H4 CLASS="subsubsection">Boolean operators</H4><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>&amp;&amp;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> evaluates to <FONT COLOR=blue><TT>true</TT></FONT> if both
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> and <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> evaluate to <FONT COLOR=blue><TT>true</TT></FONT>; otherwise, it evaluates to
+<FONT COLOR=blue><TT>false</TT></FONT>. The first component, <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB>, is evaluated first. The
+second component, <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB>, is not evaluated if the first component
+evaluates to <FONT COLOR=blue><TT>false</TT></FONT>. Hence, the expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>&amp;&amp;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> behaves
+exactly as
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>if</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>then</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>else</TT> <TT>false</TT></FONT>.
+</DIV><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>||</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> evaluates to <FONT COLOR=blue><TT>true</TT></FONT> if one of
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> and <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> evaluates to <FONT COLOR=blue><TT>true</TT></FONT>; otherwise, it evaluates to
+<FONT COLOR=blue><TT>false</TT></FONT>. The first component, <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB>, is evaluated first. The
+second component, <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB>, is not evaluated if the first component
+evaluates to <FONT COLOR=blue><TT>true</TT></FONT>. Hence, the expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>||</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> behaves
+exactly as
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>if</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>then</TT> <TT>true</TT> <TT>else</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB>.
+</DIV><P><A NAME="@manual.kwd47"></A>
+The boolean operator <FONT COLOR=blue><TT>&amp;</TT></FONT> is synonymous for <FONT COLOR=blue><TT>&amp;&amp;</TT></FONT>. The boolean operator
+<FONT COLOR=blue><TT>or</TT></FONT> is synonymous for <FONT COLOR=blue><TT>||</TT></FONT>.</P><H4 CLASS="subsubsection">Loops</H4><P><A NAME="@manual.kwd48"></A>
+The expression <FONT COLOR=blue><TT>while</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>do</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>done</TT></FONT> repeatedly
+evaluates <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> while <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> evaluates to <FONT COLOR=blue><TT>true</TT></FONT>. The loop
+condition <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> is evaluated and tested at the beginning of each
+iteration. The whole <FONT COLOR=blue><TT>while</TT></FONT> &#X2026; <FONT COLOR=blue><TT>done</TT></FONT> expression evaluates to
+the unit value <FONT COLOR=blue><TT>()</TT></FONT>.</P><P><A NAME="@manual.kwd49"></A>
+The expression <FONT COLOR=blue><TT>for</TT> <FONT COLOR=maroon><I>name</I></FONT> <TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>to</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>do</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB> <FONT COLOR=blue><TT>done</TT></FONT>
+first evaluates the expressions <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> and <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> (the boundaries)
+into integer values <I>n</I> and <I>p</I>. Then, the loop body <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB> is
+repeatedly evaluated in an environment where <FONT COLOR=maroon><I>name</I></FONT> is successively
+bound to the values
+<I>n</I>, <I>n</I>+1, &#X2026;, <I>p</I>&#X2212;1, <I>p</I>.
+The loop body is never evaluated if <I>n</I> &gt; <I>p</I>.</P><P>The expression <FONT COLOR=blue><TT>for</TT> <FONT COLOR=maroon><I>name</I></FONT> <TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>downto</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>do</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB> <FONT COLOR=blue><TT>done</TT></FONT>
+evaluates similarly, except that <FONT COLOR=maroon><I>name</I></FONT> is successively bound to the values
+<I>n</I>, <I>n</I>&#X2212;1, &#X2026;, <I>p</I>+1, <I>p</I>.
+The loop body is never evaluated if <I>n</I> &lt; <I>p</I>.</P><P>In both cases, the whole <FONT COLOR=blue><TT>for</TT></FONT> expression evaluates to the unit
+value <FONT COLOR=blue><TT>()</TT></FONT>.</P><H4 CLASS="subsubsection">Exception handling</H4><P>
+<A NAME="@manual.kwd50"></A></P><P>The expression
+</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>try&#XA0;</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>expr</I></FONT>&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>with</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>pattern</I></FONT><SUB>1</SUB></TD><TD ALIGN=left NOWRAP><FONT COLOR=blue><TT>-&gt;</TT></FONT></TD><TD ALIGN=left NOWRAP><FONT COLOR=maroon><I>expr</I></FONT><SUB>1</SUB>&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>|</TT></FONT></TD><TD ALIGN=left NOWRAP>&#X2026;&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP><FONT COLOR=blue><TT>|</TT></FONT></TD><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>pattern</FONT><SUB>n</SUB></I></TD><TD ALIGN=left NOWRAP><FONT COLOR=blue><TT>-&gt;</TT></FONT></TD><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>expr</FONT><SUB>n</SUB></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+evaluates the expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> and returns its value if the
+evaluation of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> does not raise any exception. If the evaluation
+of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> raises an exception, the exception value is matched against
+the patterns <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> to <I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I>. If the matching against
+<I><A href="patterns.html#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>i</SUB></I> succeeds, the associated expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>i</SUB></I> is evaluated,
+and its value becomes the value of the whole <FONT COLOR=blue><TT>try</TT></FONT> expression. The
+evaluation of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>i</SUB></I> takes place in an environment enriched by the
+bindings performed during matching. If several patterns match the value of
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>, the one that occurs first in the <FONT COLOR=blue><TT>try</TT></FONT> expression is
+selected. If none of the patterns matches the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>, the
+exception value is raised again, thereby transparently &#X201C;passing
+through&#X201D; the <FONT COLOR=blue><TT>try</TT></FONT> construct.</P><H3 CLASS="subsection"><A NAME="toc50"></A><A NAME="htoc69">6.7.3</A>&#XA0;&#XA0;Operations on data structures</H3><H4 CLASS="subsubsection">Products</H4><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>,</TT></FONT> &#X2026; <FONT COLOR=blue><TT>,</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> evaluates to the
+<I>n</I>-tuple of the values of expressions <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I>. The
+evaluation order for the subexpressions is not specified.</P><H4 CLASS="subsubsection">Variants</H4><P>The expression <I><A href="manual011.html#constr" class="syntax"><FONT COLOR=maroon>constr</FONT></A></I> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> evaluates to the variant value whose
+constructor is <I><A href="manual011.html#constr" class="syntax"><FONT COLOR=maroon>constr</FONT></A></I>, and whose argument is the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>.</P><P>For lists, some syntactic sugar is provided. The expression
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>::</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> stands for the constructor <FONT COLOR=blue><TT>(</TT> <TT>::</TT> <TT>)</TT></FONT> 
+applied to the argument <FONT COLOR=blue><TT>(</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>,</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>)</TT></FONT>, and therefore
+evaluates to the list whose head is the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> and whose tail
+is the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB>. The expression <FONT COLOR=blue><TT>[</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT>
+&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>]</TT></FONT> is equivalent to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>::</TT></FONT> &#X2026; <FONT COLOR=blue><TT>::</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>::</TT>
+<TT>[]</TT></FONT>, and therefore evaluates to the list whose elements are the
+values of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I>.</P><H4 CLASS="subsubsection">Polymorphic variants</H4><P>The expression <FONT COLOR=blue><TT>`</TT></FONT><I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A></I> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> evaluates to the polymorphic variant
+value whose tag is <I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A></I>, and whose argument is the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>.</P><H4 CLASS="subsubsection">Records</H4><P>The expression <FONT COLOR=blue><TT>{</TT></FONT> <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT> &#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>=</TT></FONT>
+&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>}</TT></FONT> evaluates to the record value
+{ <I>field</I><SUB>1</SUB> = <I>v</I><SUB>1</SUB>; &#X2026;; <I>field<SUB>n</SUB></I> = <I>v<SUB>n</SUB></I> }
+where <I>v<SUB>i</SUB></I> is the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>i</SUB></I> for <I>i</I> = 1,&#X2026; , <I>n</I>.
+The fields <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I><SUB>1</SUB> to <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A><SUB>n</SUB></I> must all belong to the same record
+types; all fields belonging to this record type must appear exactly
+once in the record expression, though they can appear in any
+order. The order in which <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> are evaluated is not
+specified.</P><P>The expression
+<FONT COLOR=blue><TT>{</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>with</TT></FONT> &#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT> &#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>}</TT></FONT>
+builds a fresh record with fields <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A><SUB>n</SUB></I> equal to
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I>, and all other fields having the same value as
+in the record <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>. In other terms, it returns a shallow copy of
+the record <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>, except for the fields <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A><SUB>n</SUB></I>,
+which are initialized to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I>.</P><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>.</TT></FONT> &#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I> evaluates <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> to a record
+value, and returns the value associated to <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I> in this record
+value.</P><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>.</TT></FONT> &#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I> <FONT COLOR=blue><TT>&lt;-</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> evaluates <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> to a record
+value, which is then modified in-place by replacing the value
+associated to <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I> in this record by the value of
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB>. This operation is permitted only if <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I> has been
+declared <FONT COLOR=blue><TT>mutable</TT></FONT> in the definition of the record type. The whole
+expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>.</TT></FONT> &#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I> <FONT COLOR=blue><TT>&lt;-</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> evaluates to the unit value
+<FONT COLOR=blue><TT>()</TT></FONT>.</P><H4 CLASS="subsubsection">Arrays</H4><P>The expression <FONT COLOR=blue><TT>[|</TT></FONT> <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>|]</TT></FONT> evaluates to
+a <I>n</I>-element array, whose elements are initialized with the values of
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> to <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> respectively. The order in which these
+expressions are evaluated is unspecified.</P><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>.(</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>)</TT></FONT> returns the value of element
+number <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> in the array denoted by <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB>. The first element
+has number 0; the last element has number <I>n</I>&#X2212;1, where <I>n</I> is the
+size of the array. The exception <TT>Invalid_argument</TT> is raised if the
+access is out of bounds.</P><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>.(</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>)</TT> <TT>&lt;-</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB> modifies in-place
+the array denoted by <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB>, replacing element number <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> by
+the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB>. The exception <TT>Invalid_argument</TT> is raised if
+the access is out of bounds. The value of the whole expression is <FONT COLOR=blue><TT>()</TT></FONT>.</P><H4 CLASS="subsubsection">Strings</H4><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>.[</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>]</TT></FONT> returns the value of character
+number <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> in the string denoted by <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB>. The first character
+has number 0; the last character has number <I>n</I>&#X2212;1, where <I>n</I> is the
+length of the string. The exception <TT>Invalid_argument</TT> is raised if the
+access is out of bounds.</P><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>.[</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>]</TT> <TT>&lt;-</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB> modifies in-place
+the string denoted by <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB>, replacing character number <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> by
+the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>3</SUB>. The exception <TT>Invalid_argument</TT> is raised if
+the access is out of bounds. The value of the whole expression is <FONT COLOR=blue><TT>()</TT></FONT>.</P><H3 CLASS="subsection"><A NAME="toc51"></A><A NAME="htoc70">6.7.4</A>&#XA0;&#XA0;Operators</H3><P>Symbols from the class <FONT COLOR=blue><TT>infix-symbols</TT></FONT>, as well as the keywords
+<TT>*</TT>, <TT>=</TT>, <TT>or</TT> and <TT>&amp;</TT>, can appear in infix position (between two
+expressions). Symbols from the class <FONT COLOR=blue><TT>prefix-symbols</TT></FONT>
+can appear in prefix position (in front of an expression).</P><P>Infix and prefix symbols do not have a fixed meaning: they are simply
+interpreted as applications of functions bound to the names
+corresponding to the symbols. The expression <I><A href="lex.html#prefix-symbol" class="syntax"><FONT COLOR=maroon>prefix-symbol</FONT></A></I> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> is
+interpreted as the application <FONT COLOR=blue><TT>(</TT></FONT> <I><A href="lex.html#prefix-symbol" class="syntax"><FONT COLOR=maroon>prefix-symbol</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>. Similarly, the expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> &#XA0;<I><A href="lex.html#infix-symbol" class="syntax"><FONT COLOR=maroon>infix-symbol</FONT></A></I> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB> is
+interpreted as the application <FONT COLOR=blue><TT>(</TT></FONT> <I><A href="lex.html#infix-symbol" class="syntax"><FONT COLOR=maroon>infix-symbol</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB>.</P><P>The table below lists the symbols defined in the initial environment
+and their initial meaning. (See the description of the core
+library module <TT>Pervasives</TT> in chapter&#XA0;<A HREF="manual034.html#c:corelib">20</A> for more
+details). Their meaning may be changed at any time using
+<FONT COLOR=blue><TT>let</TT> <TT>(</TT></FONT> <I><A href="manual011.html#infix-op" class="syntax"><FONT COLOR=maroon>infix-op</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> &#XA0;<FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#XA0;<FONT COLOR=maroon><I>name</I></FONT><SUB>2</SUB> <FONT COLOR=blue><TT>=</TT></FONT> &#X2026;</P><DIV CLASS="center"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1 WIDTH="80%"><TR><TD ALIGN=center NOWRAP><B>Operator</B></TD><TD ALIGN=center NOWRAP><B>Initial meaning</B></TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>
+<TT>+</TT></TD><TD VALIGN=top ALIGN=left>Integer addition.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>-</TT> (infix)</TD><TD VALIGN=top ALIGN=left>Integer subtraction.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>-</TT> (prefix)</TD><TD VALIGN=top ALIGN=left>Integer negation.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>*</TT></TD><TD VALIGN=top ALIGN=left>Integer multiplication.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>/</TT></TD><TD VALIGN=top ALIGN=left>Integer division.
+Raise <TT>Division_by_zero</TT> if second argument is zero.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>mod</TT></TD><TD VALIGN=top ALIGN=left>Integer modulus. Raise
+<TT>Division_by_zero</TT> if second argument is zero.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>land</TT></TD><TD VALIGN=top ALIGN=left>Bitwise logical &#X201C;and&#X201D; on integers.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>lor</TT></TD><TD VALIGN=top ALIGN=left>Bitwise logical &#X201C;or&#X201D; on integers.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>lxor</TT></TD><TD VALIGN=top ALIGN=left>Bitwise logical &#X201C;exclusive or&#X201D; on integers.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>lsl</TT></TD><TD VALIGN=top ALIGN=left>Bitwise logical shift left on integers.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>lsr</TT></TD><TD VALIGN=top ALIGN=left>Bitwise logical shift right on integers.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>asr</TT></TD><TD VALIGN=top ALIGN=left>Bitwise arithmetic shift right on integers.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>+.</TT></TD><TD VALIGN=top ALIGN=left>Floating-point addition.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>-.</TT> (infix)</TD><TD VALIGN=top ALIGN=left>Floating-point subtraction.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>-.</TT> (prefix)</TD><TD VALIGN=top ALIGN=left>Floating-point negation.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>*.</TT></TD><TD VALIGN=top ALIGN=left>Floating-point multiplication.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>/.</TT></TD><TD VALIGN=top ALIGN=left>Floating-point division.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>**</TT></TD><TD VALIGN=top ALIGN=left>Floating-point exponentiation.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>@</TT> </TD><TD VALIGN=top ALIGN=left>List concatenation.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>^</TT> </TD><TD VALIGN=top ALIGN=left>String concatenation.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>!</TT> </TD><TD VALIGN=top ALIGN=left>Dereferencing (return the current
+contents of a reference).</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>:=</TT></TD><TD VALIGN=top ALIGN=left>Reference assignment (update the
+reference given as first argument with the value of the second
+argument).</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>=</TT> </TD><TD VALIGN=top ALIGN=left>Structural equality test.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>&lt;&gt;</TT> </TD><TD VALIGN=top ALIGN=left>Structural inequality test.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>==</TT> </TD><TD VALIGN=top ALIGN=left>Physical equality test.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>!=</TT> </TD><TD VALIGN=top ALIGN=left>Physical inequality test.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>&lt;</TT> </TD><TD VALIGN=top ALIGN=left>Test &#X201C;less than&#X201D;.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>&lt;=</TT> </TD><TD VALIGN=top ALIGN=left>Test &#X201C;less than or equal&#X201D;.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>&gt;</TT> </TD><TD VALIGN=top ALIGN=left>Test &#X201C;greater than&#X201D;.</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><TT>&gt;=</TT> </TD><TD VALIGN=top ALIGN=left>Test &#X201C;greater than or equal&#X201D;.</TD></TR>
+</TABLE></DIV><H3 CLASS="subsection"><A NAME="toc52"></A><A NAME="htoc71">6.7.5</A>&#XA0;&#XA0;Objects</H3><P> <A NAME="s:objects"></A></P><H4 CLASS="subsubsection">Object creation</H4><P><A NAME="@manual.kwd51"></A></P><P>When <I><A href="manual011.html#class-path" class="syntax"><FONT COLOR=maroon>class-path</FONT></A></I> evaluates to a class body, <FONT COLOR=blue><TT>new</TT></FONT> <I><A href="manual011.html#class-path" class="syntax"><FONT COLOR=maroon>class-path</FONT></A></I>
+evaluates to an object containing the instance variables and
+methods of this class.</P><P>When <I><A href="manual011.html#class-path" class="syntax"><FONT COLOR=maroon>class-path</FONT></A></I> evaluates to a class function, <FONT COLOR=blue><TT>new</TT></FONT> <I><A href="manual011.html#class-path" class="syntax"><FONT COLOR=maroon>class-path</FONT></A></I>
+evaluates to a function expecting the same number of arguments and
+returning a new object of this class.</P><H4 CLASS="subsubsection">Immediate object creation</H4><P><A NAME="@manual.kwd52"></A></P><P>Creating directly an object through the <FONT COLOR=blue><TT>object</TT></FONT> <I><A href="manual017.html#class-body" class="syntax"><FONT COLOR=maroon>class-body</FONT></A></I> <FONT COLOR=blue><TT>end</TT></FONT>
+construct is operationally equivalent to defining locally a <FONT COLOR=blue><TT>class</TT></FONT>
+<I><A href="manual011.html#class-name" class="syntax"><FONT COLOR=maroon>class-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT> <TT>object</TT></FONT> &#XA0;<I><A href="manual017.html#class-body" class="syntax"><FONT COLOR=maroon>class-body</FONT></A></I> <FONT COLOR=blue><TT>end</TT></FONT> &#X2014;see sections
+<A HREF="manual017.html#ss:class-body">6.9.2</A> and following for the syntax of <I><A href="manual017.html#class-body" class="syntax"><FONT COLOR=maroon>class-body</FONT></A></I>&#X2014;
+and immediately creating a single object from it by <FONT COLOR=blue><TT>new</TT></FONT> <I><A href="manual011.html#class-name" class="syntax"><FONT COLOR=maroon>class-name</FONT></A></I>.</P><P>The typing of immediate objects is slightly different from explicitely
+defining a class in two respects. First, the inferred object type may
+contain free type variables. Second, since the class body of an
+immediate object will never be extended, its self type can be unified
+with a closed object type.</P><H4 CLASS="subsubsection">Message sending</H4><P>The expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>#</TT></FONT> &#XA0;<I><A href="manual011.html#method-name" class="syntax"><FONT COLOR=maroon>method-name</FONT></A></I> invokes the method
+<I><A href="manual011.html#method-name" class="syntax"><FONT COLOR=maroon>method-name</FONT></A></I> of the object denoted by <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>.</P><P>If <I><A href="manual011.html#method-name" class="syntax"><FONT COLOR=maroon>method-name</FONT></A></I> is a polymorphic method, its type should be known at
+the invocation site. This is true for instance if <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> is the name
+of a fresh object (<FONT COLOR=blue><TT>let</TT></FONT> <I><A href="lex.html#ident" class="syntax"><FONT COLOR=maroon>ident</FONT></A></I> = <FONT COLOR=blue><TT>new</TT></FONT> &#XA0;<I><A href="manual011.html#class-path" class="syntax"><FONT COLOR=maroon>class-path</FONT></A></I> &#X2026; ) or if
+there is a type constraint. Principality of the derivation can be
+checked in the <TT>-principal</TT> mode.</P><H4 CLASS="subsubsection">Accessing and modifying instance variables</H4><P>The instance variables of a class are visible only in the body of the
+methods defined in the same class or a class that inherits from the
+class defining the instance variables. The expression <I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I>
+evaluates to the value of the given instance variable. The expression
+<I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I> <FONT COLOR=blue><TT>&lt;-</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> assigns the value of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> to the instance
+variable <I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I>, which must be mutable. The whole expression
+<I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I> <FONT COLOR=blue><TT>&lt;-</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> evaluates to <FONT COLOR=blue><TT>()</TT></FONT>.</P><H4 CLASS="subsubsection">Object duplication</H4><P>An object can be duplicated using the library function <TT>Oo.copy</TT>
+(see 
+<A HREF="libref/Oo.html">Module <TT>Oo</TT></A>). Inside a method, the expression
+ <FONT COLOR=blue><TT>{&lt;</TT></FONT> <I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> &#XA0;{ <FONT COLOR=blue><TT>;</TT></FONT> <I><A href="manual011.html#inst-var-name" class="syntax"><FONT COLOR=maroon>inst-var-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> } <FONT COLOR=blue><TT>&gt;}</TT></FONT>
+returns a copy of self with the given instance variables replaced by
+the values of the associated expressions; other instance variables
+have the same value in the returned object as in self.</P><H3 CLASS="subsection"><A NAME="toc53"></A><A NAME="htoc72">6.7.6</A>&#XA0;&#XA0;Coercions</H3><P> <A NAME="s:coercions"></A></P><P>Expressions whose type contains object or polymorphic variant types
+can be explicitly coerced (weakened) to a supertype.
+The expression <FONT COLOR=blue><TT>(</TT></FONT><I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>:&gt;</TT></FONT> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><FONT COLOR=blue><TT>)</TT></FONT> coerces the expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+to type <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>.
+The expression <FONT COLOR=blue><TT>(</TT></FONT><I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>:&gt;</TT></FONT> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>2</SUB><FONT COLOR=blue><TT>)</TT></FONT> coerces the
+expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> from type <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> to type <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>2</SUB>.</P><P>The former operator will sometimes fail to coerce an expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+from a type <I>t</I><SUB>1</SUB> to a type <I>t</I><SUB>2</SUB> even if type <I>t</I><SUB>1</SUB> is a subtype of type
+<I>t</I><SUB>2</SUB>: in the current implementation it only expands two levels of
+type abbreviations containing objects and/or polymorphic variants,
+keeping only recursion when it is explicit in the class type (for objects).
+As an exception to the above algorithm, if both the inferred type of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I>
+and <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I> are ground (<EM>i.e.</EM> do not contain type variables), the
+former operator behaves as the latter one, taking the inferred type of
+<I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> as <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB>. In case of failure with the former operator,
+the latter one should be used.</P><P>It is only possible to coerce an expression <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> from type
+<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> to type <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>2</SUB>, if the type of <I><A href="#expr" class="syntax"><FONT COLOR=maroon>expr</FONT></A></I> is an instance of
+<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> (like for a type annotation), and <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> is a subtype
+of <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>2</SUB>. The type of the coerced expression is an
+instance of <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>2</SUB>. If the types contain variables,
+they may be instantiated by the subtyping algorithm, but this is only
+done after determining whether <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> is a potential subtype of
+<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>2</SUB>. This means that typing may fail during this latter
+unification step, even if some instance of <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> is a subtype of
+some instance of <I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>2</SUB>.
+In the following paragraphs we describe the subtyping relation used.</P><H4 CLASS="subsubsection">Object types</H4><P>A fixed object type admits as subtype any object type including all
+its methods. The types of the methods shall be subtypes of those in
+the supertype. Namely,
+</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TT>&lt;&#XA0;</TT>&#XA0;<I>met</I><SUB>1</SUB>&#XA0;<TT>&#XA0;:&#XA0;</TT>&#XA0;<I>typ</I><SUB>1</SUB>&#XA0;<TT>&#XA0;;&#XA0;</TT>&#XA0;...&#XA0;<TT>&#XA0;;&#XA0;</TT>&#XA0;<I>met<SUB>n</SUB></I>&#XA0;<TT>&#XA0;:&#XA0;</TT>&#XA0;<I>typ<SUB>n</SUB></I>&#XA0;<TT>&gt;&#XA0;</TT>&#XA0;</TD></TR>
+</TABLE><P>
+is a supertype of
+</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TT>&lt;&#XA0;</TT>&#XA0;<I>met</I><SUB>1</SUB>&#XA0;<TT>&#XA0;:&#XA0;</TT>&#XA0;<I>typ</I>&#X2032;<SUB>1</SUB>&#XA0;<TT>&#XA0;;&#XA0;</TT>&#XA0;...&#XA0;<TT>&#XA0;;&#XA0;</TT>&#XA0;<I>met<SUB>n</SUB></I>&#XA0;<TT>&#XA0;:&#XA0;</TT>&#XA0;<I>typ</I>&#X2032;<I><SUB>n</SUB></I>&#XA0;<TT>&#XA0;;&#XA0;</TT>
+<I>met</I><SUB><I>n</I>+1</SUB>&#XA0;<TT>&#XA0;:&#XA0;</TT>&#XA0;<I>typ</I>&#X2032;<SUB><I>n</I>+1</SUB>&#XA0;<TT>&#XA0;;&#XA0;</TT>&#XA0;...&#XA0;<TT>&#XA0;;&#XA0;</TT>&#XA0;<I>met</I><SUB><I>n</I>+<I>m</I></SUB>&#XA0;<TT>&#XA0;:&#XA0;</TT>&#XA0;<I>typ</I>&#X2032;<SUB><I>n</I>+<I>m</I></SUB>
+&#XA0;[<TT>;&#XA0;..</TT>]&#XA0;<TT>&#XA0;&gt;</TT>&#XA0;</TD></TR>
+</TABLE><P>
+which may contain an ellipsis <TT>..</TT>, if every <I>typ<SUB>i</SUB></I> is a supertype of
+<I>typ</I>&#X2032;<I><SUB>i</SUB></I>.</P><P>A monomorphic method type can be a supertype of a polymorphic method
+type. Namely, if <FONT COLOR=maroon><I>typ</I></FONT> is an instance of <I>typ</I>&#X2032;, then <TT>'</TT><I>a</I><SUB>1</SUB>
+...<TT>'</TT><I>a<SUB>n</SUB></I><TT>.</TT><I>typ</I>&#X2032; is a subtype of <FONT COLOR=maroon><I>typ</I></FONT>.</P><P>Inside a class definition, newly defined types are not available for
+subtyping, as the type abbreviations are not yet completely
+defined. There is an exception for coercing <FONT COLOR=maroon><I>self</I></FONT> to the (exact)
+type of its class: this is allowed if the type of <FONT COLOR=maroon><I>self</I></FONT> does not
+appear in a contravariant position in the class type, <EM>i.e.</EM> if
+there are no binary methods.</P><H4 CLASS="subsubsection">Polymorphic variant types</H4><P>A polymorphic variant type <FONT COLOR=maroon><I>typ</I></FONT> is subtype of another polymorphic
+variant type <I>typ</I>&#X2032; if the upper bound of <FONT COLOR=maroon><I>typ</I></FONT> (<EM>i.e.</EM> the
+maximum set of constructors that may appear in an instance of <FONT COLOR=maroon><I>typ</I></FONT>)
+is included in the lower bound of <I>typ</I>&#X2032;, and the types of arguments
+for the constructors of <FONT COLOR=maroon><I>typ</I></FONT> are subtypes of those in
+<I>typ</I>&#X2032;. Namely,
+</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TT>[</TT>[<TT>&lt;</TT>]&#XA0;<TT>&#XA0;'</TT><I>C</I><SUB>1</SUB>&#XA0;<TT>&#XA0;<I>of</I>&#XA0;</TT>&#XA0;<I>typ</I><SUB>1</SUB>&#XA0;<TT>&#XA0;|&#XA0;</TT>&#XA0;...&#XA0;<TT>&#XA0;|&#XA0;'</TT><I>C<SUB>n</SUB></I>&#XA0;<TT>&#XA0;<I>of</I>&#XA0;</TT>&#XA0;<I>typ<SUB>n</SUB></I>&#XA0;<TT>&#XA0;]</TT>&#XA0;</TD></TR>
+</TABLE><P>
+which may be a shrinkable type, is a subtype of
+</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TT>[</TT>[<TT>&gt;</TT>]&#XA0;<TT>&#XA0;'</TT><I>C</I><SUB>1</SUB>&#XA0;<TT>&#XA0;<I>of</I>&#XA0;</TT>&#XA0;<I>typ</I>&#X2032;<SUB>1</SUB>&#XA0;<TT>&#XA0;|&#XA0;</TT>&#XA0;...&#XA0;<TT>&#XA0;|&#XA0;'</TT><I>C<SUB>n</SUB></I>&#XA0;<TT>&#XA0;<I>of</I>&#XA0;</TT>&#XA0;<I>typ</I>&#X2032;<I><SUB>n</SUB></I>
+<TT>|&#XA0;'</TT><I>C</I><SUB><I>n</I>+1</SUB>&#XA0;<TT>&#XA0;<I>of</I>&#XA0;</TT>&#XA0;<I>typ</I>&#X2032;<SUB><I>n</I>+1</SUB>&#XA0;<TT>&#XA0;|&#XA0;</TT>&#XA0;...&#XA0;<TT>&#XA0;|&#XA0;'</TT><I>C</I><SUB><I>n</I>+<I>m</I></SUB>&#XA0;<TT>&#XA0;<I>of</I>&#XA0;</TT>
+<I>typ</I>&#X2032;<SUB><I>n</I>+<I>m</I></SUB>&#XA0;<TT>&#XA0;]</TT>&#XA0;</TD></TR>
+</TABLE><P>
+which may be an extensible type, if every <I>typ<SUB>i</SUB></I> is a subtype of <I>typ</I>&#X2032;<I><SUB>i</SUB></I>.</P><H4 CLASS="subsubsection">Variance</H4><P>Other types do not introduce new subtyping, but they may propagate the
+subtyping of their arguments. For instance, <I>typ</I><SUB>1</SUB> <TT> * </TT> <I>typ</I><SUB>2</SUB> is a
+subtype of <I>typ</I>&#X2032;<SUB>1</SUB> <TT> * </TT> <I>typ</I>&#X2032;<SUB>2</SUB> when <I>typ</I><SUB>1</SUB> and <I>typ</I><SUB>2</SUB> are
+respectively subtypes of <I>typ</I>&#X2032;<SUB>1</SUB> and <I>typ</I>&#X2032;<SUB>2</SUB>.
+For function types, the relation is more subtle:
+<I>typ</I><SUB>1</SUB> <TT>-&gt;</TT> <I>typ</I><SUB>2</SUB> is a subtype of <I>typ</I>&#X2032;<SUB>1</SUB> <TT>-&gt;</TT> <I>typ</I>&#X2032;<SUB>2</SUB>
+if <I>typ</I><SUB>1</SUB> is a supertype of <I>typ</I>&#X2032;<SUB>1</SUB> and <I>typ</I><SUB>2</SUB> is a
+subtype of <I>typ</I>&#X2032;<SUB>2</SUB>. For this reason, function types are covariant in
+their second argument (like tuples), but contravariant in their first
+argument. Mutable types, like <TT>array</TT> or <TT>ref</TT> are neither covariant
+nor contravariant, they are nonvariant, that is they do not propagate
+subtyping.</P><P>For user defined types, the variance is automatically inferred: a
+parameter is covariant if it has only covariant occurences,
+contravariant if it has only contravariant occurences,
+variance-free if it has no occurences, and nonvariant otherwise.
+A variance-free parameter may change freely through subtyping, it does
+not have to be a subtype or a supertype.
+For abstract and private types, the variance must be given explicitly,
+otherwise the default is nonvariant. This is also the case for
+constrained arguments in type definitions.</P><HR>
+<A HREF="patterns.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual016.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

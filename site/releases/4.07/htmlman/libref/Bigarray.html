@@ -1,0 +1,787 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Attr_helper.html">
+<link rel="next" href="Buffer.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="Bytes" rel="Chapter" href="Bytes.html">
+<link title="BytesLabels" rel="Chapter" href="BytesLabels.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="CamlinternalFormat" rel="Chapter" href="CamlinternalFormat.html">
+<link title="CamlinternalFormatBasics" rel="Chapter" href="CamlinternalFormatBasics.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Ephemeron" rel="Chapter" href="Ephemeron.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Float" rel="Chapter" href="Float.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Genlex" rel="Chapter" href="Genlex.html">
+<link title="Graphics" rel="Chapter" href="Graphics.html">
+<link title="GraphicsX11" rel="Chapter" href="GraphicsX11.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Pervasives" rel="Chapter" href="Pervasives.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Seq" rel="Chapter" href="Seq.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Sort" rel="Chapter" href="Sort.html">
+<link title="Spacetime" rel="Chapter" href="Spacetime.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="Stream" rel="Chapter" href="Stream.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Tbl" rel="Chapter" href="Tbl.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="ThreadUnix" rel="Chapter" href="ThreadUnix.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Uchar" rel="Chapter" href="Uchar.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Weak" rel="Chapter" href="Weak.html"><link title="Element kinds" rel="Section" href="#1_Elementkinds">
+<link title="Array layouts" rel="Section" href="#1_Arraylayouts">
+<link title="Generic arrays (of arbitrarily many dimensions)" rel="Section" href="#1_Genericarraysofarbitrarilymanydimensions">
+<link title="Zero-dimensional arrays" rel="Section" href="#1_Zerodimensionalarrays">
+<link title="One-dimensional arrays" rel="Section" href="#1_Onedimensionalarrays">
+<link title="Two-dimensional arrays" rel="Section" href="#1_Twodimensionalarrays">
+<link title="Three-dimensional arrays" rel="Section" href="#1_Threedimensionalarrays">
+<link title="Coercions between generic big arrays and fixed-dimension big arrays" rel="Section" href="#1_Coercionsbetweengenericbigarraysandfixeddimensionbigarrays">
+<link title="Re-shaping big arrays" rel="Section" href="#1_Reshapingbigarrays">
+<link title="Supported layouts" rel="Subsection" href="#7_Supportedlayouts">
+<title>Bigarray</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Attr_helper.html" title="Attr_helper">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Buffer.html" title="Buffer">Next</a>
+</div>
+<h1>Module <a href="type_Bigarray.html">Bigarray</a></h1>
+
+<pre><span id="MODULEBigarray"><span class="keyword">module</span> Bigarray</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Bigarray.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Large, multi-dimensional, numerical arrays.</p>
+
+<p>This module implements multi-dimensional arrays of integers and
+   floating-point numbers, thereafter referred to as 'big arrays',
+   to distinguish them from the standard OCaml arrays described in
+   <a href="Array.html"><code class="code"><span class="constructor">Array</span></code></a>.</p>
+
+<p>The implementation allows efficient sharing of large numerical
+   arrays between OCaml code and C or Fortran numerical libraries.</p>
+
+<p>The main differences between 'big arrays' and standard OCaml
+   arrays are as follows:</p>
+<ul>
+<li>Big arrays are not limited in size, unlike OCaml arrays.
+     (Normal float arrays are limited to 2,097,151 elements on a 32-bit
+     platform, and normal arrays of other types to 4,194,303 elements.)</li>
+<li>Big arrays are multi-dimensional.  Any number of dimensions
+     between 0 and 16 is supported.  In contrast, OCaml arrays
+     are mono-dimensional and require encoding multi-dimensional
+     arrays as arrays of arrays.</li>
+<li>Big arrays can only contain integers and floating-point numbers,
+     while OCaml arrays can contain arbitrary OCaml data types.</li>
+<li>Big arrays provide more space-efficient storage of
+     integer and floating-point elements than normal OCaml arrays, in
+     particular because they support 'small' types such as
+     single-precision floats and 8 and 16-bit integers, in addition to
+     the standard OCaml types of double-precision floats and 32 and
+     64-bit integers.</li>
+<li>The memory layout of big arrays is entirely compatible with that
+     of arrays in C and Fortran, allowing large arrays to be passed
+     back and forth between OCaml code and C / Fortran code with no
+     data copying at all.</li>
+<li>Big arrays support interesting high-level operations that normal
+     arrays do not provide efficiently, such as extracting sub-arrays
+     and 'slicing' a multi-dimensional array along certain dimensions,
+     all without any copying.</li>
+</ul>
+<p>Users of this module are encouraged to do <code class="code"><span class="keyword">open</span>&nbsp;<span class="constructor">Bigarray</span></code> in their
+   source, then refer to array types and operations via short dot
+   notation, e.g. <code class="code"><span class="constructor">Array1</span>.t</code> or <code class="code"><span class="constructor">Array2</span>.sub</code>.</p>
+
+<p>Big arrays support all the OCaml ad-hoc polymorphic operations:</p>
+<ul>
+<li>comparisons (<code class="code">=</code>, <code class="code">&lt;&gt;</code>, <code class="code">&lt;=</code>, etc, as well as <a href="Pervasives.html#VALcompare"><code class="code">compare</code></a>);</li>
+<li>hashing (module <code class="code"><span class="constructor">Hash</span></code>);</li>
+<li>and structured input-output (the functions from the
+     <a href="Marshal.html"><code class="code"><span class="constructor">Marshal</span></code></a> module, as well as <a href="Pervasives.html#VALoutput_value"><code class="code">output_value</code></a>
+     and <a href="Pervasives.html#VALinput_value"><code class="code">input_value</code></a>).</li>
+</ul>
+</div>
+</div>
+<hr width="100%">
+<h2 id="1_Elementkinds">Element kinds</h2><p>Big arrays can contain elements of the following kinds:</p>
+<ul>
+<li>IEEE single precision (32 bits) floating-point numbers
+   (<a href="Bigarray.html#TYPEfloat32_elt"><code class="code"><span class="constructor">Bigarray</span>.float32_elt</code></a>),</li>
+<li>IEEE double precision (64 bits) floating-point numbers
+   (<a href="Bigarray.html#TYPEfloat64_elt"><code class="code"><span class="constructor">Bigarray</span>.float64_elt</code></a>),</li>
+<li>IEEE single precision (2 * 32 bits) floating-point complex numbers
+   (<a href="Bigarray.html#TYPEcomplex32_elt"><code class="code"><span class="constructor">Bigarray</span>.complex32_elt</code></a>),</li>
+<li>IEEE double precision (2 * 64 bits) floating-point complex numbers
+   (<a href="Bigarray.html#TYPEcomplex64_elt"><code class="code"><span class="constructor">Bigarray</span>.complex64_elt</code></a>),</li>
+<li>8-bit integers (signed or unsigned)
+   (<a href="Bigarray.html#TYPEint8_signed_elt"><code class="code"><span class="constructor">Bigarray</span>.int8_signed_elt</code></a> or <a href="Bigarray.html#TYPEint8_unsigned_elt"><code class="code"><span class="constructor">Bigarray</span>.int8_unsigned_elt</code></a>),</li>
+<li>16-bit integers (signed or unsigned)
+   (<a href="Bigarray.html#TYPEint16_signed_elt"><code class="code"><span class="constructor">Bigarray</span>.int16_signed_elt</code></a> or <a href="Bigarray.html#TYPEint16_unsigned_elt"><code class="code"><span class="constructor">Bigarray</span>.int16_unsigned_elt</code></a>),</li>
+<li>OCaml integers (signed, 31 bits on 32-bit architectures,
+   63 bits on 64-bit architectures) (<a href="Bigarray.html#TYPEint_elt"><code class="code"><span class="constructor">Bigarray</span>.int_elt</code></a>),</li>
+<li>32-bit signed integers (<a href="Bigarray.html#TYPEint32_elt"><code class="code"><span class="constructor">Bigarray</span>.int32_elt</code></a>),</li>
+<li>64-bit signed integers (<a href="Bigarray.html#TYPEint64_elt"><code class="code"><span class="constructor">Bigarray</span>.int64_elt</code></a>),</li>
+<li>platform-native signed integers (32 bits on 32-bit architectures,
+   64 bits on 64-bit architectures) (<a href="Bigarray.html#TYPEnativeint_elt"><code class="code"><span class="constructor">Bigarray</span>.nativeint_elt</code></a>).</li>
+</ul>
+<p>Each element kind is represented at the type level by one of the
+   <code class="code">*_elt</code> types defined below (defined with a single constructor instead
+   of abstract types for technical injectivity reasons).</p>
+
+<pre><code><span id="TYPEfloat32_elt"><span class="keyword">type</span> <code class="type"></code>float32_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTfloat32_elt.Float32_elt"><span class="constructor">Float32_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEfloat64_elt"><span class="keyword">type</span> <code class="type"></code>float64_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTfloat64_elt.Float64_elt"><span class="constructor">Float64_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEint8_signed_elt"><span class="keyword">type</span> <code class="type"></code>int8_signed_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTint8_signed_elt.Int8_signed_elt"><span class="constructor">Int8_signed_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEint8_unsigned_elt"><span class="keyword">type</span> <code class="type"></code>int8_unsigned_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTint8_unsigned_elt.Int8_unsigned_elt"><span class="constructor">Int8_unsigned_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEint16_signed_elt"><span class="keyword">type</span> <code class="type"></code>int16_signed_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTint16_signed_elt.Int16_signed_elt"><span class="constructor">Int16_signed_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEint16_unsigned_elt"><span class="keyword">type</span> <code class="type"></code>int16_unsigned_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTint16_unsigned_elt.Int16_unsigned_elt"><span class="constructor">Int16_unsigned_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEint32_elt"><span class="keyword">type</span> <code class="type"></code>int32_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTint32_elt.Int32_elt"><span class="constructor">Int32_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEint64_elt"><span class="keyword">type</span> <code class="type"></code>int64_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTint64_elt.Int64_elt"><span class="constructor">Int64_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEint_elt"><span class="keyword">type</span> <code class="type"></code>int_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTint_elt.Int_elt"><span class="constructor">Int_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEnativeint_elt"><span class="keyword">type</span> <code class="type"></code>nativeint_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnativeint_elt.Nativeint_elt"><span class="constructor">Nativeint_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEcomplex32_elt"><span class="keyword">type</span> <code class="type"></code>complex32_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomplex32_elt.Complex32_elt"><span class="constructor">Complex32_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEcomplex64_elt"><span class="keyword">type</span> <code class="type"></code>complex64_elt</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomplex64_elt.Complex64_elt"><span class="constructor">Complex64_elt</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEkind"><span class="keyword">type</span> <code class="type">('a, 'b)</code> kind</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Float32"><span class="constructor">Float32</span></span> <span class="keyword">:</span> <code class="type">(float, <a href="Bigarray.html#TYPEfloat32_elt">float32_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Float64"><span class="constructor">Float64</span></span> <span class="keyword">:</span> <code class="type">(float, <a href="Bigarray.html#TYPEfloat64_elt">float64_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Int8_signed"><span class="constructor">Int8_signed</span></span> <span class="keyword">:</span> <code class="type">(int, <a href="Bigarray.html#TYPEint8_signed_elt">int8_signed_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Int8_unsigned"><span class="constructor">Int8_unsigned</span></span> <span class="keyword">:</span> <code class="type">(int, <a href="Bigarray.html#TYPEint8_unsigned_elt">int8_unsigned_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Int16_signed"><span class="constructor">Int16_signed</span></span> <span class="keyword">:</span> <code class="type">(int, <a href="Bigarray.html#TYPEint16_signed_elt">int16_signed_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Int16_unsigned"><span class="constructor">Int16_unsigned</span></span> <span class="keyword">:</span> <code class="type">(int, <a href="Bigarray.html#TYPEint16_unsigned_elt">int16_unsigned_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Int32"><span class="constructor">Int32</span></span> <span class="keyword">:</span> <code class="type">(int32, <a href="Bigarray.html#TYPEint32_elt">int32_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Int64"><span class="constructor">Int64</span></span> <span class="keyword">:</span> <code class="type">(int64, <a href="Bigarray.html#TYPEint64_elt">int64_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Int"><span class="constructor">Int</span></span> <span class="keyword">:</span> <code class="type">(int, <a href="Bigarray.html#TYPEint_elt">int_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Nativeint"><span class="constructor">Nativeint</span></span> <span class="keyword">:</span> <code class="type">(nativeint, <a href="Bigarray.html#TYPEnativeint_elt">nativeint_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Complex32"><span class="constructor">Complex32</span></span> <span class="keyword">:</span> <code class="type">(<a href="Complex.html#TYPEt">Complex.t</a>, <a href="Bigarray.html#TYPEcomplex32_elt">complex32_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Complex64"><span class="constructor">Complex64</span></span> <span class="keyword">:</span> <code class="type">(<a href="Complex.html#TYPEt">Complex.t</a>, <a href="Bigarray.html#TYPEcomplex64_elt">complex64_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTkind.Char"><span class="constructor">Char</span></span> <span class="keyword">:</span> <code class="type">(char, <a href="Bigarray.html#TYPEint8_unsigned_elt">int8_unsigned_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></code></td>
+
+</tr></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>To each element kind is associated an OCaml type, which is
+   the type of OCaml values that can be stored in the big array
+   or read back from it.  This type is not necessarily the same
+   as the type of the array elements proper: for instance,
+   a big array whose elements are of kind <code class="code">float32_elt</code> contains
+   32-bit single precision floats, but reading or writing one of
+   its elements from OCaml uses the OCaml type <code class="code">float</code>, which is
+   64-bit double precision floats.</p>
+
+<p>The GADT type <code class="code">(<span class="keywordsign">'</span>a,&nbsp;<span class="keywordsign">'</span>b)&nbsp;kind</code> captures this association
+   of an OCaml type <code class="code"><span class="keywordsign">'</span>a</code> for values read or written in the big array,
+   and of an element kind <code class="code"><span class="keywordsign">'</span>b</code> which represents the actual contents
+   of the big array. Its constructors list all possible associations
+   of OCaml types with element kinds, and are re-exported below for
+   backward-compatibility reasons.</p>
+
+<p>Using a generalized algebraic datatype (GADT) here allows to write
+   well-typed polymorphic functions whose return type depend on the
+   argument type, such as:</p>
+
+<pre class="codepre"><code class="code">  <span class="keyword">let</span> zero : <span class="keyword">type</span> a b. (a, b) kind <span class="keywordsign">-&gt;</span> a = <span class="keyword">function</span>
+    <span class="keywordsign">|</span> <span class="constructor">Float32</span> <span class="keywordsign">-&gt;</span> 0.0 <span class="keywordsign">|</span> <span class="constructor">Complex32</span> <span class="keywordsign">-&gt;</span> <span class="constructor">Complex</span>.zero
+    <span class="keywordsign">|</span> <span class="constructor">Float64</span> <span class="keywordsign">-&gt;</span> 0.0 <span class="keywordsign">|</span> <span class="constructor">Complex64</span> <span class="keywordsign">-&gt;</span> <span class="constructor">Complex</span>.zero
+    <span class="keywordsign">|</span> <span class="constructor">Int8_signed</span> <span class="keywordsign">-&gt;</span> 0 <span class="keywordsign">|</span> <span class="constructor">Int8_unsigned</span> <span class="keywordsign">-&gt;</span> 0
+    <span class="keywordsign">|</span> <span class="constructor">Int16_signed</span> <span class="keywordsign">-&gt;</span> 0 <span class="keywordsign">|</span> <span class="constructor">Int16_unsigned</span> <span class="keywordsign">-&gt;</span> 0
+    <span class="keywordsign">|</span> <span class="constructor">Int32</span> <span class="keywordsign">-&gt;</span> 0l <span class="keywordsign">|</span> <span class="constructor">Int64</span> <span class="keywordsign">-&gt;</span> 0<span class="constructor">L</span>
+    <span class="keywordsign">|</span> <span class="constructor">Int</span> <span class="keywordsign">-&gt;</span> 0 <span class="keywordsign">|</span> <span class="constructor">Nativeint</span> <span class="keywordsign">-&gt;</span> 0n
+    <span class="keywordsign">|</span> <span class="constructor">Char</span> <span class="keywordsign">-&gt;</span> <span class="string">'\000'</span>
+</code></pre></div>
+</div>
+
+
+<pre><span id="VALfloat32"><span class="keyword">val</span> float32</span> : <code class="type">(float, <a href="Bigarray.html#TYPEfloat32_elt">float32_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALfloat64"><span class="keyword">val</span> float64</span> : <code class="type">(float, <a href="Bigarray.html#TYPEfloat64_elt">float64_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALcomplex32"><span class="keyword">val</span> complex32</span> : <code class="type">(<a href="Complex.html#TYPEt">Complex.t</a>, <a href="Bigarray.html#TYPEcomplex32_elt">complex32_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALcomplex64"><span class="keyword">val</span> complex64</span> : <code class="type">(<a href="Complex.html#TYPEt">Complex.t</a>, <a href="Bigarray.html#TYPEcomplex64_elt">complex64_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALint8_signed"><span class="keyword">val</span> int8_signed</span> : <code class="type">(int, <a href="Bigarray.html#TYPEint8_signed_elt">int8_signed_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALint8_unsigned"><span class="keyword">val</span> int8_unsigned</span> : <code class="type">(int, <a href="Bigarray.html#TYPEint8_unsigned_elt">int8_unsigned_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALint16_signed"><span class="keyword">val</span> int16_signed</span> : <code class="type">(int, <a href="Bigarray.html#TYPEint16_signed_elt">int16_signed_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALint16_unsigned"><span class="keyword">val</span> int16_unsigned</span> : <code class="type">(int, <a href="Bigarray.html#TYPEint16_unsigned_elt">int16_unsigned_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALint"><span class="keyword">val</span> int</span> : <code class="type">(int, <a href="Bigarray.html#TYPEint_elt">int_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALint32"><span class="keyword">val</span> int32</span> : <code class="type">(int32, <a href="Bigarray.html#TYPEint32_elt">int32_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALint64"><span class="keyword">val</span> int64</span> : <code class="type">(int64, <a href="Bigarray.html#TYPEint64_elt">int64_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALnativeint"><span class="keyword">val</span> nativeint</span> : <code class="type">(nativeint, <a href="Bigarray.html#TYPEnativeint_elt">nativeint_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALchar"><code class="code"><span class="constructor">Bigarray</span>.char</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALchar"><span class="keyword">val</span> char</span> : <code class="type">(char, <a href="Bigarray.html#TYPEint8_unsigned_elt">int8_unsigned_elt</a>) <a href="Bigarray.html#TYPEkind">kind</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>As shown by the types of the values above,
+   big arrays of kind <code class="code">float32_elt</code> and <code class="code">float64_elt</code> are
+   accessed using the OCaml type <code class="code">float</code>.  Big arrays of complex kinds
+   <code class="code">complex32_elt</code>, <code class="code">complex64_elt</code> are accessed with the OCaml type
+   <a href="Complex.html#TYPEt"><code class="code"><span class="constructor">Complex</span>.t</code></a>. Big arrays of
+   integer kinds are accessed using the smallest OCaml integer
+   type large enough to represent the array elements:
+   <code class="code">int</code> for 8- and 16-bit integer bigarrays, as well as OCaml-integer
+   bigarrays; <code class="code">int32</code> for 32-bit integer bigarrays; <code class="code">int64</code>
+   for 64-bit integer bigarrays; and <code class="code">nativeint</code> for
+   platform-native integer bigarrays.  Finally, big arrays of
+   kind <code class="code">int8_unsigned_elt</code> can also be accessed as arrays of
+   characters instead of arrays of small integers, by using
+   the kind value <code class="code">char</code> instead of <code class="code">int8_unsigned</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALkind_size_in_bytes"><span class="keyword">val</span> kind_size_in_bytes</span> : <code class="type">('a, 'b) <a href="Bigarray.html#TYPEkind">kind</a> -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">kind_size_in_bytes&nbsp;k</code> is the number of bytes used to store
+   an element of type <code class="code">k</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03.0</li>
+</ul>
+</div>
+<h2 id="1_Arraylayouts">Array layouts</h2>
+<pre><code><span id="TYPEc_layout"><span class="keyword">type</span> <code class="type"></code>c_layout</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTc_layout.C_layout_typ"><span class="constructor">C_layout_typ</span></span></code></td>
+
+</tr></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>See <a href="Bigarray.html#VALfortran_layout"><code class="code"><span class="constructor">Bigarray</span>.fortran_layout</code></a>.</p>
+</div>
+</div>
+
+
+<pre><code><span id="TYPEfortran_layout"><span class="keyword">type</span> <code class="type"></code>fortran_layout</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTfortran_layout.Fortran_layout_typ"><span class="constructor">Fortran_layout_typ</span></span></code></td>
+
+</tr></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>To facilitate interoperability with existing C and Fortran code,
+   this library supports two different memory layouts for big arrays,
+   one compatible with the C conventions,
+   the other compatible with the Fortran conventions.</p>
+
+<p>In the C-style layout, array indices start at 0, and
+   multi-dimensional arrays are laid out in row-major format.
+   That is, for a two-dimensional array, all elements of
+   row 0 are contiguous in memory, followed by all elements of
+   row 1, etc.  In other terms, the array elements at <code class="code">(x,y)</code>
+   and <code class="code">(x,&nbsp;y+1)</code> are adjacent in memory.</p>
+
+<p>In the Fortran-style layout, array indices start at 1, and
+   multi-dimensional arrays are laid out in column-major format.
+   That is, for a two-dimensional array, all elements of
+   column 0 are contiguous in memory, followed by all elements of
+   column 1, etc.  In other terms, the array elements at <code class="code">(x,y)</code>
+   and <code class="code">(x+1,&nbsp;y)</code> are adjacent in memory.</p>
+
+<p>Each layout style is identified at the type level by the
+   phantom types <a href="Bigarray.html#VALc_layout"><code class="code"><span class="constructor">Bigarray</span>.c_layout</code></a> and <a href="Bigarray.html#VALfortran_layout"><code class="code"><span class="constructor">Bigarray</span>.fortran_layout</code></a>
+   respectively.</p>
+</div>
+</div>
+
+<div class="h8" id="7_Supportedlayouts">Supported layouts</div>
+<p>The GADT type <code class="code"><span class="keywordsign">'</span>a&nbsp;layout</code> represents one of the two supported
+   memory layouts: C-style or Fortran-style. Its constructors are
+   re-exported as values below for backward-compatibility reasons.</p>
+
+<pre><code><span id="TYPElayout"><span class="keyword">type</span> <code class="type">'a</code> layout</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlayout.C_layout"><span class="constructor">C_layout</span></span> <span class="keyword">:</span> <code class="type"><a href="Bigarray.html#TYPEc_layout">c_layout</a> <a href="Bigarray.html#TYPElayout">layout</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlayout.Fortran_layout"><span class="constructor">Fortran_layout</span></span> <span class="keyword">:</span> <code class="type"><a href="Bigarray.html#TYPEfortran_layout">fortran_layout</a> <a href="Bigarray.html#TYPElayout">layout</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="VALc_layout"><span class="keyword">val</span> c_layout</span> : <code class="type"><a href="Bigarray.html#TYPEc_layout">c_layout</a> <a href="Bigarray.html#TYPElayout">layout</a></code></pre>
+<pre><span id="VALfortran_layout"><span class="keyword">val</span> fortran_layout</span> : <code class="type"><a href="Bigarray.html#TYPEfortran_layout">fortran_layout</a> <a href="Bigarray.html#TYPElayout">layout</a></code></pre><h2 id="1_Genericarraysofarbitrarilymanydimensions">Generic arrays (of arbitrarily many dimensions)</h2>
+<pre><span id="MODULEGenarray"><span class="keyword">module</span> <a href="Bigarray.Genarray.html">Genarray</a></span>: <code class="code"><span class="keyword">sig</span></code> <a href="Bigarray.Genarray.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><h2 id="1_Zerodimensionalarrays">Zero-dimensional arrays</h2>
+<pre><span id="MODULEArray0"><span class="keyword">module</span> <a href="Bigarray.Array0.html">Array0</a></span>: <code class="code"><span class="keyword">sig</span></code> <a href="Bigarray.Array0.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+<p>Zero-dimensional arrays.</p>
+
+</div>
+<h2 id="1_Onedimensionalarrays">One-dimensional arrays</h2>
+<pre><span id="MODULEArray1"><span class="keyword">module</span> <a href="Bigarray.Array1.html">Array1</a></span>: <code class="code"><span class="keyword">sig</span></code> <a href="Bigarray.Array1.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+<p>One-dimensional arrays.</p>
+
+</div>
+<h2 id="1_Twodimensionalarrays">Two-dimensional arrays</h2>
+<pre><span id="MODULEArray2"><span class="keyword">module</span> <a href="Bigarray.Array2.html">Array2</a></span>: <code class="code"><span class="keyword">sig</span></code> <a href="Bigarray.Array2.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+<p>Two-dimensional arrays.</p>
+
+</div>
+<h2 id="1_Threedimensionalarrays">Three-dimensional arrays</h2>
+<pre><span id="MODULEArray3"><span class="keyword">module</span> <a href="Bigarray.Array3.html">Array3</a></span>: <code class="code"><span class="keyword">sig</span></code> <a href="Bigarray.Array3.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+<p>Three-dimensional arrays.</p>
+
+</div>
+<h2 id="1_Coercionsbetweengenericbigarraysandfixeddimensionbigarrays">Coercions between generic big arrays and fixed-dimension big arrays</h2>
+<pre><span id="VALgenarray_of_array0"><span class="keyword">val</span> genarray_of_array0</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Array0.html#TYPEt">Array0.t</a> -> ('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the generic big array corresponding to the given zero-dimensional
+   big array.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.05.0</li>
+</ul>
+</div>
+
+<pre><span id="VALgenarray_of_array1"><span class="keyword">val</span> genarray_of_array1</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Array1.html#TYPEt">Array1.t</a> -> ('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the generic big array corresponding to the given one-dimensional
+   big array.</p>
+</div>
+</div>
+
+<pre><span id="VALgenarray_of_array2"><span class="keyword">val</span> genarray_of_array2</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Array2.html#TYPEt">Array2.t</a> -> ('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the generic big array corresponding to the given two-dimensional
+   big array.</p>
+</div>
+</div>
+
+<pre><span id="VALgenarray_of_array3"><span class="keyword">val</span> genarray_of_array3</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Array3.html#TYPEt">Array3.t</a> -> ('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the generic big array corresponding to the given three-dimensional
+   big array.</p>
+</div>
+</div>
+
+<pre><span id="VALarray0_of_genarray"><span class="keyword">val</span> array0_of_genarray</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -> ('a, 'b, 'c) <a href="Bigarray.Array0.html#TYPEt">Array0.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the zero-dimensional big array corresponding to the given
+   generic big array.  Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if the generic big array
+   does not have exactly zero dimension.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.05.0</li>
+</ul>
+</div>
+
+<pre><span id="VALarray1_of_genarray"><span class="keyword">val</span> array1_of_genarray</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -> ('a, 'b, 'c) <a href="Bigarray.Array1.html#TYPEt">Array1.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the one-dimensional big array corresponding to the given
+   generic big array.  Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if the generic big array
+   does not have exactly one dimension.</p>
+</div>
+</div>
+
+<pre><span id="VALarray2_of_genarray"><span class="keyword">val</span> array2_of_genarray</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -> ('a, 'b, 'c) <a href="Bigarray.Array2.html#TYPEt">Array2.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the two-dimensional big array corresponding to the given
+   generic big array.  Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if the generic big array
+   does not have exactly two dimensions.</p>
+</div>
+</div>
+
+<pre><span id="VALarray3_of_genarray"><span class="keyword">val</span> array3_of_genarray</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -> ('a, 'b, 'c) <a href="Bigarray.Array3.html#TYPEt">Array3.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the three-dimensional big array corresponding to the given
+   generic big array.  Raise <code class="code"><span class="constructor">Invalid_argument</span></code> if the generic big array
+   does not have exactly three dimensions.</p>
+</div>
+</div>
+<h2 id="1_Reshapingbigarrays">Re-shaping big arrays</h2>
+<pre><span id="VALreshape"><span class="keyword">val</span> reshape</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -><br>       int array -> ('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">reshape&nbsp;b&nbsp;[|d1;...;dN|]</code> converts the big array <code class="code">b</code> to a
+   <code class="code"><span class="constructor">N</span></code>-dimensional array of dimensions <code class="code">d1</code>...<code class="code">dN</code>.  The returned
+   array and the original array <code class="code">b</code> share their data
+   and have the same layout.  For instance, assuming that <code class="code">b</code>
+   is a one-dimensional array of dimension 12, <code class="code">reshape&nbsp;b&nbsp;[|3;4|]</code>
+   returns a two-dimensional array <code class="code">b'</code> of dimensions 3 and 4.
+   If <code class="code">b</code> has C layout, the element <code class="code">(x,y)</code> of <code class="code">b'</code> corresponds
+   to the element <code class="code">x&nbsp;*&nbsp;3&nbsp;+&nbsp;y</code> of <code class="code">b</code>.  If <code class="code">b</code> has Fortran layout,
+   the element <code class="code">(x,y)</code> of <code class="code">b'</code> corresponds to the element
+   <code class="code">x&nbsp;+&nbsp;(y&nbsp;-&nbsp;1)&nbsp;*&nbsp;4</code> of <code class="code">b</code>.
+   The returned big array must have exactly the same number of
+   elements as the original big array <code class="code">b</code>.  That is, the product
+   of the dimensions of <code class="code">b</code> must be equal to <code class="code">i1&nbsp;*&nbsp;...&nbsp;*&nbsp;iN</code>.
+   Otherwise, <code class="code"><span class="constructor">Invalid_argument</span></code> is raised.</p>
+</div>
+</div>
+
+<pre><span id="VALreshape_0"><span class="keyword">val</span> reshape_0</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -> ('a, 'b, 'c) <a href="Bigarray.Array0.html#TYPEt">Array0.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Specialized version of <a href="Bigarray.html#VALreshape"><code class="code"><span class="constructor">Bigarray</span>.reshape</code></a> for reshaping to
+   zero-dimensional arrays.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.05.0</li>
+</ul>
+</div>
+
+<pre><span id="VALreshape_1"><span class="keyword">val</span> reshape_1</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -> int -> ('a, 'b, 'c) <a href="Bigarray.Array1.html#TYPEt">Array1.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Specialized version of <a href="Bigarray.html#VALreshape"><code class="code"><span class="constructor">Bigarray</span>.reshape</code></a> for reshaping to
+   one-dimensional arrays.</p>
+</div>
+</div>
+
+<pre><span id="VALreshape_2"><span class="keyword">val</span> reshape_2</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -><br>       int -> int -> ('a, 'b, 'c) <a href="Bigarray.Array2.html#TYPEt">Array2.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Specialized version of <a href="Bigarray.html#VALreshape"><code class="code"><span class="constructor">Bigarray</span>.reshape</code></a> for reshaping to
+   two-dimensional arrays.</p>
+</div>
+</div>
+
+<pre><span id="VALreshape_3"><span class="keyword">val</span> reshape_3</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -><br>       int -> int -> int -> ('a, 'b, 'c) <a href="Bigarray.Array3.html#TYPEt">Array3.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Specialized version of <a href="Bigarray.html#VALreshape"><code class="code"><span class="constructor">Bigarray</span>.reshape</code></a> for reshaping to
+   three-dimensional arrays.</p>
+</div>
+</div>
+</body></html>

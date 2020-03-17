@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Module types (module specifications)</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual017.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual019.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H2 CLASS="section"><A NAME="htoc82">6.10</A>  Module types (module specifications)</H2><UL>
+<LI><A HREF="manual018.html#toc61">Simple module types</A>
+</LI><LI><A HREF="manual018.html#toc62">Signatures</A>
+</LI><LI><A HREF="manual018.html#toc63">Functor types</A>
+</LI><LI><A HREF="manual018.html#toc64">The <TT>with</TT> operator</A>
+</LI></UL>
+<P>Module types are the module-level equivalent of type expressions: they
+specify the general shape and type properties of modules.</P><P><A NAME="@manual.kwd119"></A>
+<A NAME="@manual.kwd120"></A>
+<A NAME="@manual.kwd121"></A>
+<A NAME="@manual.kwd122"></A>
+<A NAME="@manual.kwd123"></A>
+<A NAME="@manual.kwd124"></A>
+<A NAME="@manual.kwd125"></A>
+<A NAME="@manual.kwd126"></A>
+<A NAME="@manual.kwd127"></A>
+<A NAME="@manual.kwd128"></A>
+<A NAME="@manual.kwd129"></A>
+<A NAME="@manual.kwd130"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="module-type"><FONT COLOR=maroon>module-type</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="manual011.html#modtype-path"><FONT COLOR=maroon>modtype-path</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>sig</TT></FONT> { <I><A HREF="#specification"><FONT COLOR=maroon>specification</FONT></A></I>  [<FONT COLOR=blue><TT>;;</TT></FONT>] } <FONT COLOR=blue><TT>end</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>functor</TT></FONT> <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> <FONT COLOR=blue><TT>-&gt;</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>with</TT></FONT>  <I><A HREF="#mod-constraint"><FONT COLOR=maroon>mod-constraint</FONT></A></I>  { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="#mod-constraint"><FONT COLOR=maroon>mod-constraint</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="mod-constraint"><FONT COLOR=maroon>mod-constraint</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>type</TT></FONT> [<I><A HREF="manual017.html#type-parameters"><FONT COLOR=maroon>type-parameters</FONT></A></I>]  <I><A HREF="manual011.html#typeconstr"><FONT COLOR=maroon>typeconstr</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual011.html#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="specification"><FONT COLOR=maroon>specification</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>val</TT></FONT> <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>external</TT></FONT> <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <FONT COLOR=maroon><I>external-declaration</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual016.html#type-definition"><FONT COLOR=maroon>type-definition</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>exception</TT></FONT> <I><A HREF="manual016.html#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual017.html#class-specification"><FONT COLOR=maroon>class-specification</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual017.html#classtype-definition"><FONT COLOR=maroon>classtype-definition</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I>  { <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> }
+<FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <FONT COLOR=blue><TT>type</TT></FONT> <I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <FONT COLOR=blue><TT>type</TT></FONT> <I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>open</TT></FONT> <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>include</TT></FONT> <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><H3 CLASS="subsection"><A NAME="toc61"></A><A NAME="htoc83">6.10.1</A>  Simple module types</H3><P>The expression <I><A HREF="manual011.html#modtype-path"><FONT COLOR=maroon>modtype-path</FONT></A></I> is equivalent to the module type bound
+to the name <I><A HREF="manual011.html#modtype-path"><FONT COLOR=maroon>modtype-path</FONT></A></I>.
+The expression <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT> denotes the same type as
+<I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>.</P><H3 CLASS="subsection"><A NAME="toc62"></A><A NAME="htoc84">6.10.2</A>  Signatures</H3><P><A NAME="@manual.kwd131"></A>
+<A NAME="@manual.kwd132"></A></P><P>Signatures are type specifications for structures. Signatures
+<FONT COLOR=blue><TT>sig</TT></FONT> &#X2026; <FONT COLOR=blue><TT>end</TT></FONT> are collections of type specifications for value
+names, type names, exceptions, module names and module type names. A
+structure will match a signature if the structure provides definitions
+(implementations) for all the names specified in the signature (and
+possibly more), and these definitions meet the type requirements given
+in the signature.</P><P>For compatibility with Caml Light, an optional <TT>;;</TT> is allowed after each
+specification in a signature. The <TT>;;</TT> has no semantic meaning.</P><H4 CLASS="subsubsection">Value specifications</H4><P><A NAME="@manual.kwd133"></A></P><P>A specification of a value component in a signature is written
+<FONT COLOR=blue><TT>val</TT></FONT> <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>, where <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> is the name of the
+value and <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> its expected type.</P><P><A NAME="@manual.kwd134"></A></P><P>The form <FONT COLOR=blue><TT>external</TT></FONT> <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <FONT COLOR=maroon><I>external-declaration</I></FONT>
+is similar, except that it requires in addition the name to be
+implemented as the external function specified in <FONT COLOR=maroon><I>external-declaration</I></FONT>
+(see chapter <A HREF="manual032.html#c:intf-c">18</A>).</P><H4 CLASS="subsubsection">Type specifications</H4><P><A NAME="@manual.kwd135"></A></P><P>A specification of one or several type components in a signature is
+written <FONT COLOR=blue><TT>type</TT></FONT> <I><A HREF="manual016.html#typedef"><FONT COLOR=maroon>typedef</FONT></A></I>  { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="manual016.html#typedef"><FONT COLOR=maroon>typedef</FONT></A></I> } and consists of a sequence
+of mutually recursive definitions of type names.</P><P>Each type definition in the signature specifies an optional type
+equation <FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> and an optional type representation 
+<FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="manual016.html#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I> &#X2026; or <FONT COLOR=blue><TT>=</TT> <TT>{</TT></FONT> <I><A HREF="manual016.html#field-decl"><FONT COLOR=maroon>field-decl</FONT></A></I> &#X2026; <FONT COLOR=blue><TT>}</TT></FONT>.
+The implementation of the type name in a matching structure must
+be compatible with the type expression specified in the equation (if
+given), and have the specified representation (if given). Conversely,
+users of that signature will be able to rely on the type equation
+or type representation, if given. More precisely, we have the
+following four situations:</P><DL CLASS="description"><DT CLASS="dt-description">
+<B>Abstract type: no equation, no representation.</B></DT><DD CLASS="dd-description">  <BR>
+Names that are defined as abstract types in a signature can be
+implemented in a matching structure by any kind of type definition
+(provided it has the same number of type parameters). The exact
+implementation of the type will be hidden to the users of the
+structure. In particular, if the type is implemented as a variant type
+or record type, the associated constructors and fields will not be
+accessible to the users; if the type is implemented as an
+abbreviation, the type equality between the type name and the
+right-hand side of the abbreviation will be hidden from the users of the
+structure. Users of the structure consider that type as incompatible
+with any other type: a fresh type has been generated.</DD><DT CLASS="dt-description"><B>Type abbreviation: an equation <FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>, no representation.</B></DT><DD CLASS="dd-description">  <BR>
+The type name must be implemented by a type compatible with <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>.
+All users of the structure know that the type name is
+compatible with <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>.</DD><DT CLASS="dt-description"><B>New variant type or record type: no equation, a representation.</B></DT><DD CLASS="dd-description">  <BR>
+The type name must be implemented by a variant type or record type
+with exactly the constructors or fields specified. All users of the
+structure have access to the constructors or fields, and can use them
+to create or inspect values of that type. However, users of the
+structure consider that type as incompatible with any other type: a
+fresh type has been generated.</DD><DT CLASS="dt-description"><B>Re-exported variant type or record type: an equation,
+a representation.</B></DT><DD CLASS="dd-description">  <BR>
+This case combines the previous two: the representation of the type is
+made visible to all users, and no fresh type is generated.
+</DD></DL><H4 CLASS="subsubsection">Exception specification</H4><P><A NAME="@manual.kwd136"></A></P><P>The specification <FONT COLOR=blue><TT>exception</TT></FONT> <I><A HREF="manual016.html#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I> in a signature requires the
+matching structure to provide an exception with the name and arguments
+specified in the definition, and makes the exception available to all
+users of the structure.</P><H4 CLASS="subsubsection">Class specifications</H4><P><A NAME="@manual.kwd137"></A></P><P>A specification of one or several classes in a signature is written
+<FONT COLOR=blue><TT>class</TT></FONT> <I><A HREF="manual017.html#class-spec"><FONT COLOR=maroon>class-spec</FONT></A></I>  { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="manual017.html#class-spec"><FONT COLOR=maroon>class-spec</FONT></A></I> } and consists of a sequence
+of mutually recursive definitions of class names.</P><P>Class specifications are described more precisely in
+section <A HREF="manual017.html#s:class-spec">6.9.4</A>.</P><H4 CLASS="subsubsection">Class type specifications</H4><P><A NAME="@manual.kwd138"></A>
+<A NAME="@manual.kwd139"></A></P><P>A specification of one or several classe types in a signature is
+written <FONT COLOR=blue><TT>class</TT> <TT>type</TT></FONT> <I><A HREF="manual017.html#classtype-def"><FONT COLOR=maroon>classtype-def</FONT></A></I> { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="manual017.html#classtype-def"><FONT COLOR=maroon>classtype-def</FONT></A></I> } and
+consists of a sequence of mutually recursive definitions of class type
+names. Class type specifications are described more precisely in
+section <A HREF="manual017.html#s:classtype">6.9.5</A>.</P><H4 CLASS="subsubsection">Module specifications</H4><P><A NAME="@manual.kwd140"></A></P><P>A specification of a module component in a signature is written
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>, where <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> is the
+name of the module component and <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> its expected type.
+Modules can be nested arbitrarily; in particular, functors can appear
+as components of structures and functor types as components of
+signatures.</P><P>For specifying a module component that is a functor, one may write
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>(</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>)</TT></FONT>
+&#X2026; <FONT COLOR=blue><TT>(</TT></FONT>  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>)</TT>
+<TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+</DIV><P>
+instead of
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT>
+<TT>functor</TT> <TT>(</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>)</TT> <TT>-&gt;</TT></FONT> &#X2026;
+<FONT COLOR=blue><TT>-&gt;</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+</DIV><H4 CLASS="subsubsection">Module type specifications</H4><P><A NAME="@manual.kwd141"></A>
+<A NAME="@manual.kwd142"></A></P><P>A module type component of a signature can be specified either as a
+manifest module type or as an abstract module type.</P><P>An abstract module type specification
+<FONT COLOR=blue><TT>module</TT> <TT>type</TT></FONT> <I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I> allows the name <I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I> to be
+implemented by any module type in a matching signature, but hides the
+implementation of the module type to all users of the signature.</P><P>A manifest module type specification
+<FONT COLOR=blue><TT>module</TT> <TT>type</TT></FONT> <I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+requires the name <I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I> to be implemented by the module type
+<I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> in a matching signature, but makes the equality between
+<I><A HREF="manual011.html#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I> and <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> apparent to all users of the signature.</P><H4 CLASS="subsubsection">Opening a module path</H4><P><A NAME="@manual.kwd143"></A></P><P>The expression <FONT COLOR=blue><TT>open</TT></FONT> <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> in a signature does not specify
+any components. It simply affects the parsing of the following items
+of the signature, allowing components of the module denoted by
+<I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> to be referred to by their simple names <FONT COLOR=maroon><I>name</I></FONT> instead of
+path accesses <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT>. The scope of the <TT>open</TT>
+stops at the end of the signature expression.</P><H4 CLASS="subsubsection">Including a signature</H4><P><A NAME="@manual.kwd144"></A></P><P>The expression <FONT COLOR=blue><TT>include</TT></FONT> <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> in a signature performs textual
+inclusion of the components of the signature denoted by <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>.
+It behaves as if the components of the included signature were copied
+at the location of the <FONT COLOR=blue><TT>include</TT></FONT>. The <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> argument must
+refer to a module type that is a signature, not a functor type.</P><H3 CLASS="subsection"><A NAME="toc63"></A><A NAME="htoc85">6.10.3</A>  Functor types</H3><P><A NAME="@manual.kwd145"></A></P><P>The module type expression 
+<FONT COLOR=blue><TT>functor</TT> <TT>(</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>)</TT> <TT>-&gt;</TT></FONT>  <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>2</SUB> 
+is the type of functors (functions from modules to modules) that take
+as argument a module of type <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>1</SUB> and return as result a
+module of type <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>2</SUB>. The module type <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I><SUB>2</SUB> can
+use the name <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> to refer to type components of the actual
+argument of the functor. No restrictions are placed on the type of the
+functor argument; in particular, a functor may take another functor as
+argument (&#X201C;higher-order&#X201D; functor).</P><H3 CLASS="subsection"><A NAME="toc64"></A><A NAME="htoc86">6.10.4</A>  The <TT>with</TT> operator</H3><P><A NAME="@manual.kwd146"></A></P><P>Assuming <I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> denotes a signature, the expression
+<I><A HREF="#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>with</TT></FONT>  <I><A HREF="#mod-constraint"><FONT COLOR=maroon>mod-constraint</FONT></A></I> { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="#mod-constraint"><FONT COLOR=maroon>mod-constraint</FONT></A></I> } denotes
+the same signature where type equations have been added to some of the
+type specifications, as described by the constraints following the
+<TT>with</TT> keyword. The constraint <FONT COLOR=blue><TT>type</TT></FONT> [<I><A HREF="manual017.html#type-parameters"><FONT COLOR=maroon>type-parameters</FONT></A></I>]  <I><A HREF="manual011.html#typeconstr"><FONT COLOR=maroon>typeconstr</FONT></A></I>
+<FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> adds the type equation <FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> to the specification
+of the type component named <I><A HREF="manual011.html#typeconstr"><FONT COLOR=maroon>typeconstr</FONT></A></I> of the constrained signature.
+The constraint <FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual011.html#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I> adds
+type equations to all type components of the sub-structure denoted by
+<I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I>, making them equivalent to the corresponding type
+components of the structure denoted by <I><A HREF="manual011.html#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I>.</P><P>For instance, if the module type name <TT>S</TT> is bound to the signature
+</P><PRE CLASS="verbatim">        sig type t module M: (sig type u end) end
+</PRE><P>then <TT>S with type t=int</TT> denotes the signature
+</P><PRE CLASS="verbatim">        sig type t=int module M: (sig type u end) end
+</PRE><P>and <TT>S with module M = N</TT> denotes the signature
+</P><PRE CLASS="verbatim">        sig type t module M: (sig type u=N.u end) end
+</PRE><P>A functor taking two arguments of type <TT>S</TT> that share their <TT>t</TT> component
+is written
+</P><PRE CLASS="verbatim">        functor (A: S) (B: S with type t = A.t) ...
+</PRE><P>Constraints are added left to right. After each constraint has been
+applied, the resulting signature must be a subtype of the signature
+before the constraint was applied. Thus, the <FONT COLOR=blue><TT>with</TT></FONT> operator can
+only add information on the type components of a signature, but never
+remove information.
+
+</P><HR>
+<A HREF="manual017.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual019.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

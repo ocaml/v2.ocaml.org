@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>7.4&#XA0;&#XA0;Type expressions</title>
+</head>
+<body>
+<a href="names.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="const.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec103">7.4&#XA0;&#XA0;Type expressions</h2>
+<p>
+<a id="hevea_manual.kwd7"></a></p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="typexpr"><span class="c010">typexpr</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">'</span>&#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">_</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">)</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;[[<span class="c004">?</span>]<a class="syntax" href="lex.html#label-name"><span class="c010">label-name</span></a><span class="c004">:</span>]&#XA0;&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">-&gt;</span>&#XA0;&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">*</span>&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;}<sup>+</sup>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;&#XA0;<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">,</span>&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;}&#XA0;<span class="c004">)</span>&#XA0;&#XA0;<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">as</span>&#XA0;<span class="c004">'</span>&#XA0;&#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#polymorphic-variant-type"><span class="c010">polymorphic-variant-type</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">&lt;</span>&#XA0;[<span class="c004">..</span>]&#XA0;<span class="c004">&gt;</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">&lt;</span>&#XA0;<a class="syntax" href="#method-type"><span class="c010">method-type</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">;</span>&#XA0;<a class="syntax" href="#method-type"><span class="c010">method-type</span></a>&#XA0;}&#XA0;&#XA0;[<span class="c004">;</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">;</span>&#XA0;<span class="c004">..</span>]&#XA0;<span class="c004">&gt;</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">#</span>&#XA0;<a class="syntax" href="names.html#class-path"><span class="c010">class-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;<span class="c004">#</span>&#XA0;&#XA0;<a class="syntax" href="names.html#class-path"><span class="c010">class-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">,</span>&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;}&#XA0;<span class="c004">)</span>&#XA0;<span class="c004">#</span>&#XA0;&#XA0;<a class="syntax" href="names.html#class-path"><span class="c010">class-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="poly-typexpr"><span class="c010">poly-typexpr</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;{&#XA0;<span class="c004">'</span>&#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>&#XA0;}<sup>+</sup>&#XA0;<span class="c004">.</span>&#XA0;&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="method-type"><span class="c010">method-type</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="names.html#method-name"><span class="c010">method-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="#poly-typexpr"><span class="c010">poly-typexpr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>
+See also the following language extensions:
+<a href="extn.html#s-first-class-modules">first-class modules</a>,
+<a href="extn.html#s%3Aattributes">attributes</a> and
+<a href="extn.html#s%3Aextension-nodes">extension nodes</a>.</p><p>The table below shows the relative precedences and associativity of
+operators and non-closed type constructions. The constructions with
+higher precedences come first.
+<a id="hevea_manual.kwd8"></a>
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">Operator</span></td><td class="c014"><span class="c013">Associativity</span> </td></tr>
+<tr><td class="c016">
+Type constructor application</td><td class="c016">&#X2013; </td></tr>
+<tr><td class="c016"><span class="c003">#</span></td><td class="c016">&#X2013; </td></tr>
+<tr><td class="c016"><span class="c003">*</span></td><td class="c016">&#X2013; </td></tr>
+<tr><td class="c016"><span class="c003">-&gt;</span></td><td class="c016">right </td></tr>
+<tr><td class="c016"><span class="c003">as</span></td><td class="c016">&#X2013; </td></tr>
+</table></div></div><p>Type expressions denote types in definitions of data types as well as
+in type constraints over patterns and expressions.</p><h4 class="subsubsection" id="sec104">Type variables</h4>
+<p>The type expression <span class="c004">'</span> <a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a> stands for the type variable named
+<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>. The type expression <span class="c004">_</span> stands for either an anonymous type
+variable or anonymous type parameters. In data type definitions, type
+variables are names for the data type parameters. In type constraints,
+they represent unspecified types that can be instantiated by any type
+to satisfy the type constraint. In general the scope of a named type
+variable is the whole top-level phrase where it appears, and it can
+only be generalized when leaving this scope. Anonymous variables have
+no such restriction. In the following cases, the scope of named type
+variables is restricted to the type expression where they appear:
+1) for universal (explicitly polymorphic) type variables;
+2) for type variables that only appear in public method specifications
+(as those variables will be made universal, as described in
+section&#XA0;<a href="classes.html#sec-methspec">7.9.1</a>);
+3) for variables used as aliases, when the type they are aliased to
+would be invalid in the scope of the enclosing definition (<span class="c009">i.e.</span>
+when it contains free universal type variables, or locally
+defined types.)</p><h4 class="subsubsection" id="sec105">Parenthesized types</h4>
+<p>The type expression <span class="c004">(</span> <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a> <span class="c004">)</span> denotes the same type as
+<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>.</p><h4 class="subsubsection" id="sec106">Function types</h4>
+<p>The type expression <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> <span class="c004">-&gt;</span> &#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>2</sub> denotes the type of
+functions mapping arguments of type <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> to results of type
+<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>2</sub>.</p><p><a class="syntax" href="lex.html#label-name"><span class="c010">label-name</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> <span class="c004">-&gt;</span> &#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>2</sub> denotes the same function type, but
+the argument is labeled <a class="syntax" href="lex.html#label"><span class="c010">label</span></a>.</p><p><span class="c004">?</span> <a class="syntax" href="lex.html#label-name"><span class="c010">label-name</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> <span class="c004">-&gt;</span> &#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>2</sub> denotes the type of functions
+mapping an optional labeled argument of type <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> to results of
+type <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>2</sub>. That is, the physical type of the function will be
+<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> <span class="c002"><span class="c003">option</span> <span class="c003">-&gt;</span></span> &#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>2</sub>.</p><h4 class="subsubsection" id="sec107">Tuple types</h4>
+<p>The type expression <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> <span class="c004">*</span> &#X2026; <span class="c004">*</span> &#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub><span class="c009">n</span></sub>
+denotes the type of tuples whose elements belong to types <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub>,
+&#X2026; &#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub><span class="c009">n</span></sub> respectively.</p><h4 class="subsubsection" id="sec108">Constructed types</h4>
+<p>Type constructors with no parameter, as in <a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>, are type
+expressions.</p><p>The type expression <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a> &#XA0;<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>, where <a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a> is a type
+constructor with one parameter, denotes the application of the unary type
+constructor <a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a> to the type <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>.</p><p>The type expression (<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub>,&#X2026;,&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub><span class="c009">n</span></sub>) &#XA0;<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>, where
+<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a> is a type constructor with <span class="c009">n</span> parameters, denotes the
+application of the <span class="c009">n</span>-ary type constructor <a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a> to the types
+<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> through <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a><sub><span class="c009">n</span></sub>.</p><p>In the type expression  <span class="c004">_</span> <a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a> , the anonymous type expression
+ <span class="c004">_</span>  stands in for anonymous type parameters and is equivalent to
+ (<span class="c004">_</span>, &#X2026;,<span class="c004">_</span>)  with as many repetitions of <span class="c003">_</span> as the arity of
+<a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a>.</p><h4 class="subsubsection" id="sec109">Aliased and recursive types</h4>
+<p><a id="hevea_manual.kwd9"></a></p><p>The type expression <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a> <span class="c002"><span class="c003">as</span> <span class="c003">'</span></span> &#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a> denotes the same type as
+<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>, and also binds the type variable <a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a> to type <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a> both
+in <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a> and in other types. In general the scope of an alias is
+the same as for a named type variable, and covers the whole enclosing
+definition. If the type variable
+<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a> actually occurs in <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>, a recursive type is created. Recursive
+types for which there exists a recursive path that does not contain
+an object or polymorphic variant type constructor are rejected, except
+when the <span class="c003">-rectypes</span> mode is selected.</p><p>If <span class="c004">'</span> <a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a> denotes an explicit polymorphic variable, and <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>
+denotes either an object or polymorphic variant type, the row variable
+of <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a> is captured by <span class="c004">'</span> <a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>, and quantified upon.</p><h4 class="subsubsection" id="sec110">Polymorphic variant types</h4>
+<p>
+<a id="hevea_manual.kwd10"></a></p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="polymorphic-variant-type"><span class="c010">polymorphic-variant-type</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">[</span>&#XA0;<a class="syntax" href="#tag-spec-first"><span class="c010">tag-spec-first</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">|</span>&#XA0;<a class="syntax" href="#tag-spec"><span class="c010">tag-spec</span></a>&#XA0;}&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">[&gt;</span>&#XA0;[&#XA0;<a class="syntax" href="#tag-spec"><span class="c010">tag-spec</span></a>&#XA0;]&#XA0;&#XA0;{&#XA0;<span class="c004">|</span>&#XA0;<a class="syntax" href="#tag-spec"><span class="c010">tag-spec</span></a>&#XA0;}&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">[&lt;</span>&#XA0;[<span class="c004">|</span>]&#XA0;<a class="syntax" href="#tag-spec-full"><span class="c010">tag-spec-full</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">|</span>&#XA0;<a class="syntax" href="#tag-spec-full"><span class="c010">tag-spec-full</span></a>&#XA0;}
+&#XA0;[&#XA0;<span class="c004">&gt;</span>&#XA0;{&#XA0;<span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a>&#XA0;}<sup>+</sup>&#XA0;]&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="tag-spec-first"><span class="c010">tag-spec-first</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a>&#XA0;&#XA0;[&#XA0;<span class="c004">of</span>&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;[&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;]&#XA0;<span class="c004">|</span>&#XA0;&#XA0;<a class="syntax" href="#tag-spec"><span class="c010">tag-spec</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="tag-spec"><span class="c010">tag-spec</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a>&#XA0;&#XA0;[&#XA0;<span class="c004">of</span>&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="tag-spec-full"><span class="c010">tag-spec-full</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a>&#XA0;&#XA0;[&#XA0;<span class="c004">of</span>&#XA0;[<span class="c004">&amp;</span>]&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">&amp;</span>&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>&#XA0;}&#XA0;]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>Polymorphic variant types describe the values a polymorphic variant
+may take.</p><p>The first case is an exact variant type: all possible tags are
+known, with their associated types, and they can all be present.
+Its structure is fully known.</p><p>The second case is an open variant type, describing a polymorphic
+variant value: it gives the list of all tags the value could take,
+with their associated types. This type is still compatible with a
+variant type containing more tags. A special case is the unknown
+type, which does not define any tag, and is compatible with any
+variant type.</p><p>The third case is a closed variant type. It gives information about
+all the possible tags and their associated types, and which tags are
+known to potentially appear in values. The exact variant type (first
+case) is
+just an abbreviation for a closed variant type where all possible tags
+are also potentially present.</p><p>In all three cases, tags may be either specified directly in the
+<span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a> &#XA0;[<span class="c004">of</span> <a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>] form, or indirectly through a type
+expression, which must expand to an
+exact variant type, whose tag specifications are inserted in its
+place.</p><p>Full specifications of variant tags are only used for non-exact closed
+types. They can be understood as a conjunctive type for the argument:
+it is intended to have all the types enumerated in the
+specification.</p><p>Such conjunctive constraints may be unsatisfiable. In such a case the
+corresponding tag may not be used in a value of this type. This
+does not mean that the whole type is not valid: one can still use
+other available tags.
+Conjunctive constraints are mainly intended as output from the type
+checker. When they are used in source programs, unsolvable constraints
+may cause early failures.</p><h4 class="subsubsection" id="sec111">Object types</h4>
+<p>An object type
+<span class="c004">&lt;</span> [<a class="syntax" href="#method-type"><span class="c010">method-type</span></a> &#XA0;{ <span class="c004">;</span> <a class="syntax" href="#method-type"><span class="c010">method-type</span></a> }] <span class="c004">&gt;</span>
+is a record of method types.</p><p>Each method may have an explicit polymorphic type: { <span class="c004">'</span> <a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a> }<sup>+</sup>
+<span class="c004">.</span> &#XA0;<a class="syntax" href="#typexpr"><span class="c010">typexpr</span></a>. Explicit polymorphic variables have a local scope, and
+an explicit polymorphic type can only be unified to an
+equivalent one, where only the order and names of polymorphic
+variables may change.</p><p>The type <span class="c004">&lt;</span> {<a class="syntax" href="#method-type"><span class="c010">method-type</span></a> <span class="c004">;</span>} <span class="c002"><span class="c003">..</span> <span class="c003">&gt;</span></span> is the
+type of an object whose method names and types are described by
+<a class="syntax" href="#method-type"><span class="c010">method-type</span></a><sub>1</sub>, &#X2026;, &#XA0;<a class="syntax" href="#method-type"><span class="c010">method-type</span></a><sub><span class="c009">n</span></sub>, and possibly some other
+methods represented by the ellipsis. This ellipsis actually is
+a special kind of type variable (called <em>row variable</em> in the
+literature) that stands for any number of extra method types.</p><h4 class="subsubsection" id="sec112">#-types</h4>
+<p>
+<a id="s:sharp-types"></a></p><p>The type <span class="c004">#</span> <a class="syntax" href="names.html#class-path"><span class="c010">class-path</span></a> is a special kind of abbreviation. This
+abbreviation unifies with the type of any object belonging to a subclass
+of class <a class="syntax" href="names.html#class-path"><span class="c010">class-path</span></a>.
+It is handled in a special way as it usually hides a type variable (an
+ellipsis, representing the methods that may be added in a subclass).
+In particular, it vanishes when the ellipsis gets instantiated.
+Each type expression <span class="c004">#</span> <a class="syntax" href="names.html#class-path"><span class="c010">class-path</span></a> defines a new type variable, so
+type <span class="c004">#</span> <a class="syntax" href="names.html#class-path"><span class="c010">class-path</span></a> <span class="c002"><span class="c003">-&gt;</span> <span class="c003">#</span></span> &#XA0;<a class="syntax" href="names.html#class-path"><span class="c010">class-path</span></a> is usually not the same as
+type (<span class="c004">#</span> <a class="syntax" href="names.html#class-path"><span class="c010">class-path</span></a> <span class="c002"><span class="c003">as</span> <span class="c003">'</span></span> &#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>) <span class="c002"><span class="c003">-&gt;</span> <span class="c003">'</span></span> &#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>.
+</p><p>Use of #-types to abbreviate polymorphic variant types is deprecated.
+If <span class="c010">t</span> is an exact variant type then <span class="c004">#</span><span class="c010">t</span> translates to <span class="c002"><span class="c003">[&lt;</span> <span class="c010">t</span><span class="c003">]</span></span>,
+and <span class="c002"><span class="c003">#</span><span class="c010">t</span><span class="c003">[&gt;</span> <span class="c003">`</span></span><a class="syntax" href="names.html#tag-name"><span class="c010">tag</span></a><sub>1</sub> &#X2026;<span class="c004">`</span>&#XA0;<a class="syntax" href="names.html#tag-name"><span class="c010">tag</span></a><sub><span class="c009">k</span></sub><span class="c004">]</span> translates to
+<span class="c002"><span class="c003">[&lt;</span> <span class="c010">t</span> <span class="c003">&gt;</span> <span class="c003">`</span></span><a class="syntax" href="names.html#tag-name"><span class="c010">tag</span></a><sub>1</sub> &#X2026;<span class="c004">`</span>&#XA0;<a class="syntax" href="names.html#tag-name"><span class="c010">tag</span></a><sub><span class="c009">k</span></sub><span class="c004">]</span></p><h4 class="subsubsection" id="sec113">Variant and record types</h4>
+<p>There are no type expressions describing (defined) variant types nor
+record types, since those are always named, i.e. defined before use
+and referred to by name. Type definitions are described in
+section&#XA0;<a href="typedecl.html#s%3Atype-defs">7.8.1</a>.
+
+</p>
+<hr>
+<a href="names.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="const.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>
