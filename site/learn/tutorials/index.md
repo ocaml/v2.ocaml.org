@@ -97,7 +97,7 @@ tracker there to request or offer new tutorials. Thanks!
 
 ###  Tutorials on OCaml
 
-* [The OCaml System](http://caml.inria.fr/pub/docs/manual-ocaml/) (by
+* [The OCaml System](/releases/latest/manual.html) (by
  Inria) is the official user's manual. The first part provides an
  introduction to the core language, objects and classes, and modules.
  Previous versions are [here](http://caml.inria.fr/pub/docs/).
@@ -152,7 +152,7 @@ with another language.
 
 ###  Advanced Tutorials & Articles
 
-* [Manual](http://caml.inria.fr/pub/docs/manual-ocaml/)
+* [Manual](/releases/latest/manual.html)
 * [Detecting use cases for GADTs in OCaml](http://mads-hartmann.com/ocaml/2015/01/05/gadt-ocaml.html),
   (by Mads Hartmann), on using generalized algebraic data types in writing interpreters.
 

@@ -119,7 +119,7 @@ Library "bar"
 ```
 
 As you can see, `BuildDepends` is also used for intra-project dependencies: the bar library is dependent on the foo library.
-`Modules` and `InternalModules` are comma separated list of modules. They should contain only capitalized name with no file extensions. They can include module provided by any type of file, being `.ml`, `.mli`, `.mll` or `.mly` (for [ocamllex, ocamlyacc](http://caml.inria.fr/pub/docs/manual-ocaml/lexyacc.html) and [menhir](http://cristal.inria.fr/~fpottier/menhir/)).
+`Modules` and `InternalModules` are comma separated list of modules. They should contain only capitalized name with no file extensions. They can include module provided by any type of file, being `.ml`, `.mli`, `.mll` or `.mly` (for [ocamllex, ocamlyacc](/releases/latest/manual.htmllexyacc.html) and [menhir](http://cristal.inria.fr/~fpottier/menhir/)).
 `InternalModules` is used to list modules that are part of the library but should be kept hidden and not be part of the public interface of the library.
 
 `make` builds the various libraries and `make install` installs them. OASIS handles the installation using ocamlfind.
@@ -130,7 +130,7 @@ Executable and Library are enough to create a basic project. The following secti
 
 #### Documentation
 
-Documentation is a very important part of a library. OASIS allows to build an [ocamldoc](http://caml.inria.fr/pub/docs/manual-ocaml/ocamldoc.html)-powered HTML documentation for the complete project quite easily.
+Documentation is a very important part of a library. OASIS allows to build an [ocamldoc](/releases/latest/manual.htmlocamldoc.html)-powered HTML documentation for the complete project quite easily.
 
 ```oasis
 AlphaFeatures: ocamlbuild_more_args

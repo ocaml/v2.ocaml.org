@@ -11,7 +11,7 @@
         <section class="span6 condensed">
             <h1 class="ruled">Références</h1>
             <div class="row">
-                <a href="http://caml.inria.fr/pub/docs/manual-ocaml/"
+                <a href="/releases/latest/manual.html"
 				    target="_blank" class="span3 documentation-highlight">
                     <img src="/img/manual.svg" alt="" class="svg" />
                     <img src="/img/manual.png" alt="" class="png" />

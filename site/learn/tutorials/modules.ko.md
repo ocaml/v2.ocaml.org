@@ -115,7 +115,7 @@ val hello : unit -> unit
 ```
 
 (.mli 파일을
-[ocamldoc](http://caml.inria.fr/pub/docs/manual-ocaml/ocamldoc.html)에서
+[ocamldoc](/releases/latest/manual.htmlocamldoc.html)에서
 지원하는 포맷을 이용해 문서화 하는 습관을 들이는 것이 좋다.)
 
 .mli 파일은 .ml 파일과 매칭하기 직전에 컴파일 되어야 한다. `ocamlc`를

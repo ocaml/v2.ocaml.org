@@ -7,8 +7,8 @@
 
 这是一篇讲解只用OCaml标准库中提供的操作来实现基本文件操作的指南。
 
-请看官方模块文档:[Pervasives](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html),
-[Printf](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Printf.html).
+请看官方模块文档:[Pervasives](/releases/latest/manual.htmllibref/Pervasives.html),
+[Printf](/releases/latest/manual.htmllibref/Printf.html).
 
 标准库不提供可以直接读取文件成字符串或保存字符串到文件中的函数。这样的函数可以在第三方类如[Extlib](http://ocaml-lib.sourceforge.net/ "http://ocaml-lib.sourceforge.net/")找到.
 请见 [Std.input_file与

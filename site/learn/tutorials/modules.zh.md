@@ -78,7 +78,7 @@ val hello : unit -> unit
 val hello : unit -> unit
 (** 显示一句问候消息。 *)
 ```
-(注意，使用[ocamldoc](http://caml.inria.fr/pub/docs/manual-ocaml/ocamldoc.html)支持的格式来写 .mli 文件的文档是个好习惯。)
+(注意，使用[ocamldoc](/releases/latest/manual.htmlocamldoc.html)支持的格式来写 .mli 文件的文档是个好习惯。)
 
 .mli 文件必须在对应的 .ml 文件之前编译。它们用`ocamlc`来编译，而 .ml 文件用`ocamlopt`来编译成原生码。
 
