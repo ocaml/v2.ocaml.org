@@ -9,8 +9,8 @@
 の基本的なファイル操作のガイドだ。
 
 興味のあるモジュールの公式ドキュメントはこちら:
-[Pervasives](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html),
-[Printf](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Printf.html).
+[Pervasives](/releases/latest/manual.htmllibref/Pervasives.html),
+[Printf](/releases/latest/manual.htmllibref/Printf.html).
 
 標準ライブラリは、読み込んだファイルを直接文字列に入れたり、
 直接文字列をファイルに保存したりするような存在しない。 このような関数は

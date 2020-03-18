@@ -1,0 +1,103 @@
+.c000{border-spacing:0;width:80%}
+.c001{border-spacing:6px;border-collapse:separate;}
+.c002{color:blue}
+.c003{font-family:monospace}
+.c004{font-family:monospace;color:blue}
+.c005{font-family:monospace;font-style:italic}
+.c006{font-family:monospace;font-weight:bold}
+.c007{font-family:sans-serif}
+.c008{font-size:small}
+.c009{font-style:italic}
+.c010{font-style:italic;color:maroon}
+.c011{font-style:italic;font-weight:bold}
+.c012{font-style:oblique}
+.c013{font-weight:bold}
+.c014{text-align:center;border:solid 1px;white-space:nowrap}
+.c015{text-align:center;white-space:nowrap}
+.c016{text-align:left;border:solid 1px;white-space:nowrap}
+.c017{text-align:left;white-space:nowrap}
+.c018{text-align:right;white-space:nowrap}
+.c019{vertical-align:middle}
+.c020{vertical-align:top;text-align:left;}
+.c021{vertical-align:top;text-align:left;border:solid 1px;}
+.c022{vertical-align:top;text-align:left;border:solid 1px;white-space:nowrap}
+.c023{vertical-align:top;text-align:left;white-space:nowrap}
+.c024{vertical-align:top;text-align:right;white-space:nowrap}
+.li-itemize{margin:1ex 0ex;}
+.li-enumerate{margin:1ex 0ex;}
+.dd-description{margin:0ex 0ex 1ex 4ex;}
+.dt-description{margin:0ex;}
+.toc{list-style:none;}
+.footnotetext{margin:0ex; padding:0ex;}
+div.footnotetext P{margin:0px; text-indent:1em;}
+.thefootnotes{text-align:left;margin:0ex;}
+.dt-thefootnotes{margin:0em;}
+.dd-thefootnotes{margin:0em 0em 0em 2em;}
+.footnoterule{margin:1em auto 1em 0px;width:50%;}
+.center{text-align:center;margin-left:auto;margin-right:auto;}
+div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}
+td table{margin:auto;}
+table{border-collapse:collapse;}
+td{padding:0;}
+.cellpadding1 tr td{padding:1px;}
+pre{text-align:left;margin-left:0ex;margin-right:auto;}
+blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}
+td p{margin:0px;}
+.hbar{border:none;height:2px;width:100%;background-color:black;}
+.display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}
+.dcell{white-space:nowrap;padding:0px; border:none;}
+.dcenter{margin:0ex auto;}
+.theorem{text-align:left;margin:1ex auto 1ex 0ex;}
+.part{margin:2ex auto;text-align:center}
+a:link{color:#4286f4;text-decoration:underline;}
+a:visited{color:#0d46a3;text-decoration:underline;}
+a:hover{color:black;text-decoration:underline;background-color:subsection}
+@media all{@font-face {
+/* fira-sans-regular - latin */
+font-family: 'Fira Sans';
+font-style: normal;
+font-weight: 400;
+src: url('/pub/docs/manual-ocaml/fonts/fira-sans-v8-latin-regular.eot'); /* IE9 Compat Modes */
+src: local('Fira Sans Regular'), local('FiraSans-Regular'),
+url('/pub/docs/manual-ocaml/fonts/fira-sans-v8-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+url('/pub/docs/manual-ocaml/fonts/fira-sans-v8-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+url('/pub/docs/manual-ocaml/fonts/fira-sans-v8-latin-regular.woff') format('woff'), /* Modern Browsers */
+url('/pub/docs/manual-ocaml/fonts/fira-sans-v8-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+url('/pub/docs/manual-ocaml/fonts/fira-sans-v8-latin-regular.svg#FiraSans') format('svg'); /* Legacy iOS */
+}
+}
+body{max-width:750px;
+width: 85%;
+margin: auto;
+background: #f7f7f7;
+margin-top: 80px;
+font-size: 1rem;
+}
+.maintitle{font-family: "Fira Sans", sans-serif;
+text-align: center;
+}
+h1, h2, h3{font-family: "Fira Sans", sans-serif;
+font-weight: normal;
+border-bottom: 1px solid black;
+}
+pre{font-size: 1rem;
+background: beige;
+border: 1px solid grey;
+padding: 10px;
+overflow-y:auto;
+white-space: pre-wrap;
+}
+p,ul{line-height:1.3em}
+.cellpadding1 tr td{padding:1px 4px}
+div.caml-output{color:maroon;}
+div.caml-example pre{margin:2ex 0px;}
+div.caml-example.toplevel div.caml-input::before{content:"#"; color:black;}
+div.caml-example.toplevel div.caml-input{color:#006000;}
+.tableau, .syntax, .syntaxleft{/* same width as body */
+max-width: 750px;
+overflow-y: auto;
+}
+.li-links{margin:0ex 0ex;}
+a.syntax:link{color:maroon;text-decoration:underline}
+a.syntax:visited{color:maroon;text-decoration:underline}
+a.syntax:hover{color:black;text-decoration:none;background-color:#FF6060}

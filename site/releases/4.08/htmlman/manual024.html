@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.2  Recursive modules</title>
+</head>
+<body>
+<a href="manual023.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual025.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec239">8.2  Recursive modules</h2>
+<p> <a id="s-recursive-modules"></a>
+<a id="hevea_manual.kwd205"></a>
+<a id="hevea_manual.kwd206"></a></p><p>(Introduced in Objective Caml 3.07)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">module</span> <span class="c004">rec</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">:</span>  <a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a> <span class="c004">=</span>  <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> 
+ { <span class="c004">and</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">:</span>  <a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a> <span class="c004">=</span>  <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> }
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">module</span> <span class="c004">rec</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">:</span>  <a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>
+ { <span class="c004">and</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a><span class="c004">:</span>  <a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a> }
+</td></tr>
+</table></td></tr>
+</table></div><p>Recursive module definitions, introduced by the <span class="c004">module rec</span> …<span class="c004">and</span> … construction, generalize regular module definitions
+<span class="c004">module</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">=</span>  <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> and module specifications
+<span class="c004">module</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">:</span>  <a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a> by allowing the defining
+<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> and the <a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a> to refer recursively to the module
+identifiers being defined. A typical example of a recursive module
+definition is:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module rec A : sig
+   type t = Leaf of string | Node of ASet.t
+   val compare: t -&gt; t -&gt; int
+ end = struct
+   type t = Leaf of string | Node of ASet.t
+   let compare t1 t2 =
+     match (t1, t2) with
+     | (Leaf s1, Leaf s2) -&gt; Stdlib.compare s1 s2
+     | (Leaf _, Node _) -&gt; 1
+     | (Node _, Leaf _) -&gt; -1
+     | (Node n1, Node n2) -&gt; ASet.compare n1 n2
+ end
+ and ASet
+   : Set.S with type elt = A.t
+   = Set.Make(A)
+</div>
+</pre>
+
+
+</div><p>
+
+It can be given the following specification:
+
+
+</p><div class="caml-example signature">
+
+<pre><div class="caml-input"> module rec A : sig
+   type t = Leaf of string | Node of ASet.t
+   val compare: t -&gt; t -&gt; int
+ end
+ and ASet : Set.S with type elt = A.t
+</div>
+</pre>
+
+
+</div><p>This is an experimental extension of OCaml: the class of
+recursive definitions accepted, as well as its dynamic semantics are
+not final and subject to change in future releases.</p><p>Currently, the compiler requires that all dependency cycles between
+the recursively-defined module identifiers go through at least one
+“safe” module. A module is “safe” if all value definitions that
+it contains have function types <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> <span class="c004">-&gt;</span>  <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub>2</sub>. Evaluation of a
+recursive module definition proceeds by building initial values for
+the safe modules involved, binding all (functional) values to
+<span class="c002"><span class="c003">fun</span> <span class="c003">_</span> <span class="c003">-&gt;</span> <span class="c003">raise</span></span> <span class="c003">Undefined_recursive_module</span>. The defining
+module expressions are then evaluated, and the initial values
+for the safe modules are replaced by the values thus computed. If a
+function component of a safe module is applied during this computation
+(which corresponds to an ill-founded recursive definition), the
+<span class="c003">Undefined_recursive_module</span> exception is raised at runtime:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module rec M: sig val f: unit -&gt; int end = struct let f () = N.x end
+ and N:sig val x: int end = struct let x = M.f () end
+</div><div class="caml-output ok">Exception: Undefined_recursive_module ("exten.etex", 1, 43).
+</div></pre>
+
+
+</div><p>If there are no safe modules along a dependency cycle, an error is raised</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module rec M: sig val x: int end = <U>struct let x = N.y end</U>
+ and N:sig val x: int val y:int end = struct let x = M.x let y = 0 end
+</div><div class="caml-output error">Error: Cannot safely evaluate the definition of the following cycle
+       of recursively-defined modules: M -&gt; N -&gt; M.
+       There are no safe modules in this cycle (see manual section 8.2).
+File "exten.etex", line 1, characters 18-28:
+1 | module rec M: sig val x: int end = struct let x = N.y end
+                      ^^^^^^^^^^
+  Module M defines an unsafe value, x .
+File "exten.etex", line 2, characters 10-20:
+2 | and N:sig val x: int val y:int end = struct let x = M.x let y = 0 end
+              ^^^^^^^^^^
+  Module N defines an unsafe value, x .
+</div></pre>
+
+
+</div><p>Note that, in the <a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a> case, the <a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a>s must be
+parenthesized if they use the <span class="c004">with</span> <a class="syntax" href="modtypes.html#mod-constraint"><span class="c010">mod-constraint</span></a> construct.</p>
+<hr>
+<a href="manual023.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual025.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

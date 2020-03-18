@@ -1,0 +1,1471 @@
+\new@anchor@label{sec3}{conventions}{{}{X}}
+\@deflabeltype{conventions}{none}
+\new@anchor@label{sec4}{license}{{}{X}}
+\@deflabeltype{license}{none}
+\new@anchor@label{sec5}{availability}{{}{X}}
+\@deflabeltype{availability}{none}
+\@@addtocsec{htoc}{sec6}{-2}{\@print{Part I}\quad{}An introduction to OCaml{}}
+\newlabel{p:tutorials}{{I}{X}}
+\@deflabeltype{p:tutorials}{part}
+\@@addtocsec{htoc}{sec7}{-1}{\@print{Chapter 1}\quad{}The core language{}}
+\newlabel{c:core-xamples}{{1}{X}}
+\@deflabeltype{c:core-xamples}{chapter}
+\@@addtocsec{htoc}{s:basics}{0}{\@print{1.1}\quad{}\label{s:basics}Basics{}}
+\new@anchor@label{sec8}{s:basics}{{1.1}{X}}
+\@deflabeltype{s:basics}{section}
+\@@addtocsec{htoc}{s:datatypes}{0}{\@print{1.2}\quad{}\label{s:datatypes}Data types{}}
+\new@anchor@label{sec9}{s:datatypes}{{1.2}{X}}
+\@deflabeltype{s:datatypes}{section}
+\@@addtocsec{htoc}{s:functions-as-values}{0}{\@print{1.3}\quad{}\label{s:functions-as-values}Functions as values{}}
+\new@anchor@label{sec10}{s:functions-as-values}{{1.3}{X}}
+\@deflabeltype{s:functions-as-values}{section}
+\@@addtocsec{htoc}{s:tut-recvariants}{0}{\@print{1.4}\quad{}\label{s:tut-recvariants}Records and variants{}}
+\new@anchor@label{sec11}{s:tut-recvariants}{{1.4}{X}}
+\@deflabeltype{s:tut-recvariants}{section}
+\@@addtocsec{htoc}{ss:record-and-variant-disambiguation}{1}{\@print{1.4.1}\quad{}\label{ss:record-and-variant-disambiguation}Record and variant disambiguation{}}
+\new@anchor@label{sec12}{ss:record-and-variant-disambiguation}{{1.4.1}{X}}
+\@deflabeltype{ss:record-and-variant-disambiguation}{subsection}
+\@@addtocsec{htoc}{s:imperative-features}{0}{\@print{1.5}\quad{}\label{s:imperative-features}Imperative features{}}
+\new@anchor@label{sec13}{s:imperative-features}{{1.5}{X}}
+\@deflabeltype{s:imperative-features}{section}
+\@@addtocsec{htoc}{s:exceptions}{0}{\@print{1.6}\quad{}\label{s:exceptions}Exceptions{}}
+\new@anchor@label{sec14}{s:exceptions}{{1.6}{X}}
+\@deflabeltype{s:exceptions}{section}
+\@@addtocsec{htoc}{s:lazy-expr}{0}{\@print{1.7}\quad{}\label{s:lazy-expr}Lazy expressions{}}
+\new@anchor@label{sec15}{s:lazy-expr}{{1.7}{X}}
+\@deflabeltype{s:lazy-expr}{section}
+\@@addtocsec{htoc}{s:symb-expr}{0}{\@print{1.8}\quad{}\label{s:symb-expr}Symbolic processing of expressions{}}
+\new@anchor@label{sec16}{s:symb-expr}{{1.8}{X}}
+\@deflabeltype{s:symb-expr}{section}
+\@@addtocsec{htoc}{s:pretty-printing}{0}{\@print{1.9}\quad{}\label{s:pretty-printing}Pretty-printing{}}
+\new@anchor@label{sec17}{s:pretty-printing}{{1.9}{X}}
+\@deflabeltype{s:pretty-printing}{section}
+\@@addtocsec{htoc}{s:printf}{0}{\@print{1.10}\quad{}\label{s:printf}Printf formats{}}
+\new@anchor@label{sec18}{s:printf}{{1.10}{X}}
+\@deflabeltype{s:printf}{section}
+\@@addtocsec{htoc}{s:standalone-programs}{0}{\@print{1.11}\quad{}\label{s:standalone-programs}Standalone OCaml programs{}}
+\new@anchor@label{sec19}{s:standalone-programs}{{1.11}{X}}
+\@deflabeltype{s:standalone-programs}{section}
+\@@addtocsec{htoc}{sec20}{-1}{\@print{Chapter 2}\quad{}The module system{}}
+\newlabel{c:moduleexamples}{{2}{X}}
+\@deflabeltype{c:moduleexamples}{chapter}
+\@@addtocsec{htoc}{s:module:structures}{0}{\@print{2.1}\quad{}\label{s:module:structures}Structures{}}
+\new@anchor@label{sec21}{s:module:structures}{{2.1}{X}}
+\@deflabeltype{s:module:structures}{section}
+\@@addtocsec{htoc}{s:signature}{0}{\@print{2.2}\quad{}\label{s:signature}Signatures{}}
+\new@anchor@label{sec22}{s:signature}{{2.2}{X}}
+\@deflabeltype{s:signature}{section}
+\@@addtocsec{htoc}{s:functors}{0}{\@print{2.3}\quad{}\label{s:functors}Functors{}}
+\new@anchor@label{sec23}{s:functors}{{2.3}{X}}
+\@deflabeltype{s:functors}{section}
+\@@addtocsec{htoc}{s:functors-and-abstraction}{0}{\@print{2.4}\quad{}\label{s:functors-and-abstraction}Functors and type abstraction{}}
+\new@anchor@label{sec24}{s:functors-and-abstraction}{{2.4}{X}}
+\@deflabeltype{s:functors-and-abstraction}{section}
+\@@addtocsec{htoc}{s:separate-compilation}{0}{\@print{2.5}\quad{}\label{s:separate-compilation}Modules and separate compilation{}}
+\new@anchor@label{sec25}{s:separate-compilation}{{2.5}{X}}
+\@deflabeltype{s:separate-compilation}{section}
+\@@addtocsec{htoc}{sec26}{-1}{\@print{Chapter 3}\quad{}Objects in OCaml{}}
+\newlabel{c:objectexamples}{{3}{X}}
+\@deflabeltype{c:objectexamples}{chapter}
+\@@addtocsec{htoc}{s:classes-and-objects}{0}{\@print{3.1}\quad{}\label{s:classes-and-objects}Classes and objects{}}
+\new@anchor@label{sec27}{s:classes-and-objects}{{3.1}{X}}
+\@deflabeltype{s:classes-and-objects}{section}
+\@@addtocsec{htoc}{s:immediate-objects}{0}{\@print{3.2}\quad{}\label{s:immediate-objects}Immediate objects{}}
+\new@anchor@label{sec28}{s:immediate-objects}{{3.2}{X}}
+\@deflabeltype{s:immediate-objects}{section}
+\@@addtocsec{htoc}{s:reference-to-self}{0}{\@print{3.3}\quad{}\label{s:reference-to-self}Reference to self{}}
+\new@anchor@label{sec29}{s:reference-to-self}{{3.3}{X}}
+\@deflabeltype{s:reference-to-self}{section}
+\@@addtocsec{htoc}{s:initializers}{0}{\@print{3.4}\quad{}\label{s:initializers}Initializers{}}
+\new@anchor@label{sec30}{s:initializers}{{3.4}{X}}
+\@deflabeltype{s:initializers}{section}
+\@@addtocsec{htoc}{s:virtual-methods}{0}{\@print{3.5}\quad{}\label{s:virtual-methods}Virtual methods{}}
+\new@anchor@label{sec31}{s:virtual-methods}{{3.5}{X}}
+\@deflabeltype{s:virtual-methods}{section}
+\@@addtocsec{htoc}{s:private-methods}{0}{\@print{3.6}\quad{}\label{s:private-methods}Private methods{}}
+\new@anchor@label{sec32}{s:private-methods}{{3.6}{X}}
+\@deflabeltype{s:private-methods}{section}
+\@@addtocsec{htoc}{s:class-interfaces}{0}{\@print{3.7}\quad{}\label{s:class-interfaces}Class interfaces{}}
+\new@anchor@label{sec33}{s:class-interfaces}{{3.7}{X}}
+\@deflabeltype{s:class-interfaces}{section}
+\@@addtocsec{htoc}{s:inheritance}{0}{\@print{3.8}\quad{}\label{s:inheritance}Inheritance{}}
+\new@anchor@label{sec34}{s:inheritance}{{3.8}{X}}
+\@deflabeltype{s:inheritance}{section}
+\@@addtocsec{htoc}{s:multiple-inheritance}{0}{\@print{3.9}\quad{}\label{s:multiple-inheritance}Multiple inheritance{}}
+\new@anchor@label{sec35}{s:multiple-inheritance}{{3.9}{X}}
+\@deflabeltype{s:multiple-inheritance}{section}
+\@@addtocsec{htoc}{s:parameterized-classes}{0}{\@print{3.10}\quad{}\label{s:parameterized-classes}Parameterized classes{}}
+\new@anchor@label{sec36}{s:parameterized-classes}{{3.10}{X}}
+\@deflabeltype{s:parameterized-classes}{section}
+\@@addtocsec{htoc}{s:polymorphic-methods}{0}{\@print{3.11}\quad{}\label{s:polymorphic-methods}Polymorphic methods{}}
+\new@anchor@label{sec37}{s:polymorphic-methods}{{3.11}{X}}
+\@deflabeltype{s:polymorphic-methods}{section}
+\@@addtocsec{htoc}{s:using-coercions}{0}{\@print{3.12}\quad{}\label{s:using-coercions}Using coercions{}}
+\new@anchor@label{sec38}{s:using-coercions}{{3.12}{X}}
+\@deflabeltype{s:using-coercions}{section}
+\@@addtocsec{htoc}{s:functional-objects}{0}{\@print{3.13}\quad{}\label{s:functional-objects}Functional objects{}}
+\new@anchor@label{sec39}{s:functional-objects}{{3.13}{X}}
+\@deflabeltype{s:functional-objects}{section}
+\@@addtocsec{htoc}{s:cloning-objects}{0}{\@print{3.14}\quad{}\label{s:cloning-objects}Cloning objects{}}
+\new@anchor@label{sec40}{s:cloning-objects}{{3.14}{X}}
+\@deflabeltype{s:cloning-objects}{section}
+\@@addtocsec{htoc}{s:recursive-classes}{0}{\@print{3.15}\quad{}\label{s:recursive-classes}Recursive classes{}}
+\new@anchor@label{sec41}{s:recursive-classes}{{3.15}{X}}
+\@deflabeltype{s:recursive-classes}{section}
+\@@addtocsec{htoc}{s:binary-methods}{0}{\@print{3.16}\quad{}\label{s:binary-methods}Binary methods{}}
+\new@anchor@label{sec42}{s:binary-methods}{{3.16}{X}}
+\@deflabeltype{s:binary-methods}{section}
+\@@addtocsec{htoc}{s:friends}{0}{\@print{3.17}\quad{}\label{s:friends}Friends{}}
+\new@anchor@label{sec43}{s:friends}{{3.17}{X}}
+\@deflabeltype{s:friends}{section}
+\@@addtocsec{htoc}{sec44}{-1}{\@print{Chapter 4}\quad{}Labels and variants{}}
+\newlabel{c:labl-examples}{{4}{X}}
+\@deflabeltype{c:labl-examples}{chapter}
+\@@addtocsec{htoc}{s:labels}{0}{\@print{4.1}\quad{}\label{s:labels}Labels{}}
+\new@anchor@label{sec45}{s:labels}{{4.1}{X}}
+\@deflabeltype{s:labels}{section}
+\@@addtocsec{htoc}{ss:optional-arguments}{1}{\@print{4.1.1}\quad{}\label{ss:optional-arguments}Optional arguments{}}
+\new@anchor@label{sec46}{ss:optional-arguments}{{4.1.1}{X}}
+\@deflabeltype{ss:optional-arguments}{subsection}
+\@@addtocsec{htoc}{ss:label-inference}{1}{\@print{4.1.2}\quad{}\label{ss:label-inference}Labels and type inference{}}
+\new@anchor@label{sec47}{ss:label-inference}{{4.1.2}{X}}
+\@deflabeltype{ss:label-inference}{subsection}
+\@@addtocsec{htoc}{ss:label-suggestions}{1}{\@print{4.1.3}\quad{}\label{ss:label-suggestions}Suggestions for labeling{}}
+\new@anchor@label{sec48}{ss:label-suggestions}{{4.1.3}{X}}
+\@deflabeltype{ss:label-suggestions}{subsection}
+\@@addtocsec{htoc}{s:polymorphic-variants}{0}{\@print{4.2}\quad{}\label{s:polymorphic-variants}Polymorphic variants{}}
+\new@anchor@label{sec49}{s:polymorphic-variants}{{4.2}{X}}
+\@deflabeltype{s:polymorphic-variants}{section}
+\new@anchor@label{sec50}{ss:polyvariant:basic-use}{{4.2}{X}}
+\@deflabeltype{ss:polyvariant:basic-use}{section}
+\new@anchor@label{sec51}{ss:polyvariant-advanced}{{4.2}{X}}
+\@deflabeltype{ss:polyvariant-advanced}{section}
+\@@addtocsec{htoc}{ss:polyvariant-weaknesses}{1}{\@print{4.2.1}\quad{}\label{ss:polyvariant-weaknesses}Weaknesses of polymorphic variants{}}
+\new@anchor@label{sec52}{ss:polyvariant-weaknesses}{{4.2.1}{X}}
+\@deflabeltype{ss:polyvariant-weaknesses}{subsection}
+\@@addtocsec{htoc}{sec53}{-1}{\@print{Chapter 5}\quad{}Polymorphism and its limitations{}}
+\newlabel{c:polymorphism}{{5}{X}}
+\@deflabeltype{c:polymorphism}{chapter}
+\@@addtocsec{htoc}{s:weak-polymorphism}{0}{\@print{5.1}\quad{}\label{s:weak-polymorphism}Weak polymorphism and mutation{}}
+\new@anchor@label{sec54}{s:weak-polymorphism}{{5.1}{X}}
+\@deflabeltype{s:weak-polymorphism}{section}
+\@@addtocsec{htoc}{ss:weak-types}{1}{\@print{5.1.1}\quad{}\label{ss:weak-types}Weakly polymorphic types{}}
+\new@anchor@label{sec55}{ss:weak-types}{{5.1.1}{X}}
+\@deflabeltype{ss:weak-types}{subsection}
+\@@addtocsec{htoc}{ss:valuerestriction}{1}{\@print{5.1.2}\quad{}\label{ss:valuerestriction}The value restriction{}}
+\new@anchor@label{sec56}{ss:valuerestriction}{{5.1.2}{X}}
+\@deflabeltype{ss:valuerestriction}{subsection}
+\@@addtocsec{htoc}{ss:relaxed-value-restriction}{1}{\@print{5.1.3}\quad{}\label{ss:relaxed-value-restriction}The relaxed value restriction{}}
+\new@anchor@label{sec57}{ss:relaxed-value-restriction}{{5.1.3}{X}}
+\@deflabeltype{ss:relaxed-value-restriction}{subsection}
+\@@addtocsec{htoc}{ss:variance-and-value-restriction}{1}{\@print{5.1.4}\quad{}\label{ss:variance-and-value-restriction}Variance and value restriction{}}
+\new@anchor@label{sec58}{ss:variance-and-value-restriction}{{5.1.4}{X}}
+\@deflabeltype{ss:variance-and-value-restriction}{subsection}
+\@@addtocsec{htoc}{ss:variance:abstract-data-types}{1}{\@print{5.1.5}\quad{}\label{ss:variance:abstract-data-types}Abstract data types{}}
+\new@anchor@label{sec59}{ss:variance:abstract-data-types}{{5.1.5}{X}}
+\@deflabeltype{ss:variance:abstract-data-types}{subsection}
+\@@addtocsec{htoc}{s:polymorphic-recursion}{0}{\@print{5.2}\quad{}\label{s:polymorphic-recursion}Polymorphic recursion{}}
+\new@anchor@label{sec60}{s:polymorphic-recursion}{{5.2}{X}}
+\@deflabeltype{s:polymorphic-recursion}{section}
+\@@addtocsec{htoc}{ss:explicit-polymorphism}{1}{\@print{5.2.1}\quad{}\label{ss:explicit-polymorphism}Explicitly polymorphic annotations{}}
+\new@anchor@label{sec61}{ss:explicit-polymorphism}{{5.2.1}{X}}
+\@deflabeltype{ss:explicit-polymorphism}{subsection}
+\@@addtocsec{htoc}{ss:recursive-poly-examples}{1}{\@print{5.2.2}\quad{}\label{ss:recursive-poly-examples}More examples{}}
+\new@anchor@label{sec62}{ss:recursive-poly-examples}{{5.2.2}{X}}
+\@deflabeltype{ss:recursive-poly-examples}{subsection}
+\@@addtocsec{htoc}{s:higher-rank-poly}{0}{\@print{5.3}\quad{}\label{s:higher-rank-poly}Higher-rank polymorphic functions{}}
+\new@anchor@label{sec63}{s:higher-rank-poly}{{5.3}{X}}
+\@deflabeltype{s:higher-rank-poly}{section}
+\@@addtocsec{htoc}{sec64}{-1}{\@print{Chapter 6}\quad{}Advanced examples with classes and modules{}}
+\newlabel{c:advexamples}{{6}{X}}
+\@deflabeltype{c:advexamples}{chapter}
+\@@addtocsec{htoc}{s:extended-bank-accounts}{0}{\@print{6.1}\quad{}\label{s:extended-bank-accounts}Extended example: bank accounts{}}
+\new@anchor@label{sec65}{s:extended-bank-accounts}{{6.1}{X}}
+\@deflabeltype{s:extended-bank-accounts}{section}
+\@@addtocsec{htoc}{s:modules-as-classes}{0}{\@print{6.2}\quad{}\label{s:modules-as-classes}Simple modules as classes{}}
+\new@anchor@label{sec66}{s:modules-as-classes}{{6.2}{X}}
+\@deflabeltype{s:modules-as-classes}{section}
+\@@addtocsec{htoc}{ss:string-as-class}{1}{\@print{6.2.1}\quad{}\label{ss:string-as-class}Strings{}}
+\new@anchor@label{sec67}{ss:string-as-class}{{6.2.1}{X}}
+\@deflabeltype{ss:string-as-class}{subsection}
+\new@anchor@label{sec68}{sss:stack-as-class}{{6.2.1}{X}}
+\@deflabeltype{sss:stack-as-class}{subsection}
+\@@addtocsec{htoc}{ss:hashtbl-as-class}{1}{\@print{6.2.2}\quad{}\label{ss:hashtbl-as-class}Hashtbl{}}
+\new@anchor@label{sec69}{ss:hashtbl-as-class}{{6.2.2}{X}}
+\@deflabeltype{ss:hashtbl-as-class}{subsection}
+\@@addtocsec{htoc}{ss:set-as-class}{1}{\@print{6.2.3}\quad{}\label{ss:set-as-class}Sets{}}
+\new@anchor@label{sec70}{ss:set-as-class}{{6.2.3}{X}}
+\@deflabeltype{ss:set-as-class}{subsection}
+\@@addtocsec{htoc}{s:subject-observer}{0}{\@print{6.3}\quad{}\label{s:subject-observer}The subject/observer pattern{}}
+\new@anchor@label{sec71}{s:subject-observer}{{6.3}{X}}
+\@deflabeltype{s:subject-observer}{section}
+\@@addtocsec{htoc}{sec72}{-2}{\@print{Part II}\quad{}The OCaml language{}}
+\newlabel{p:refman}{{II}{X}}
+\@deflabeltype{p:refman}{part}
+\@@addtocsec{htoc}{sec73}{-1}{\@print{Chapter 7}\quad{}The OCaml language{}}
+\newlabel{c:refman}{{7}{X}}
+\@deflabeltype{c:refman}{chapter}
+\new@anchor@label{sec74}{ss:foreword}{{7}{X}}
+\@deflabeltype{ss:foreword}{chapter}
+\new@anchor@label{sec75}{ss:notations}{{7}{X}}
+\@deflabeltype{ss:notations}{chapter}
+\@@addtocsec{htoc}{s:lexical-conventions}{0}{\@print{7.1}\quad{}\label{s:lexical-conventions}Lexical conventions{}}
+\new@anchor@label{sec76}{s:lexical-conventions}{{7.1}{X}}
+\@deflabeltype{s:lexical-conventions}{section}
+\new@anchor@label{sec77}{sss:lex:blanks}{{7.1}{X}}
+\@deflabeltype{sss:lex:blanks}{section}
+\new@anchor@label{sec78}{sss:lex:comments}{{7.1}{X}}
+\@deflabeltype{sss:lex:comments}{section}
+\new@anchor@label{sec79}{sss:lex:identifiers}{{7.1}{X}}
+\@deflabeltype{sss:lex:identifiers}{section}
+\stx@exists{ident}\stx@exists{capitalized-ident}\stx@exists{lowercase-ident}\stx@exists{letter}\new@anchor@label{sec80}{sss:integer-literals}{{7.1}{X}}
+\@deflabeltype{sss:integer-literals}{section}
+\stx@exists{integer-literal}\stx@exists{int32-literal}\stx@exists{int64-literal}\stx@exists{nativeint-literal}\new@anchor@label{sec81}{sss:floating-point-literals}{{7.1}{X}}
+\@deflabeltype{sss:floating-point-literals}{section}
+\stx@exists{float-literal}\new@anchor@label{sec82}{sss:character-literals}{{7.1}{X}}
+\@deflabeltype{sss:character-literals}{section}
+\newlabel{s:characterliteral}{{7.1}{X}}
+\@deflabeltype{s:characterliteral}{section}
+\stx@exists{char-literal}\stx@exists{escape-sequence}\new@anchor@label{sec83}{sss:stringliterals}{{7.1}{X}}
+\@deflabeltype{sss:stringliterals}{section}
+\stx@exists{string-literal}\stx@exists{quoted-string-id}\stx@exists{string-character}\new@anchor@label{sec84}{sss:labelname}{{7.1}{X}}
+\@deflabeltype{sss:labelname}{section}
+\stx@exists{label-name}\stx@exists{label}\stx@exists{optlabel}\new@anchor@label{sec85}{sss:lex-ops-symbols}{{7.1}{X}}
+\@deflabeltype{sss:lex-ops-symbols}{section}
+\stx@exists{infix-symbol}\stx@exists{prefix-symbol}\stx@exists{operator-char}\stx@exists{core-operator-char}\new@anchor@label{sec86}{sss:keywords}{{7.1}{X}}
+\@deflabeltype{sss:keywords}{section}
+\new@anchor@label{sec87}{sss:lex-ambiguities}{{7.1}{X}}
+\@deflabeltype{sss:lex-ambiguities}{section}
+\new@anchor@label{sec88}{sss:lex-linedir}{{7.1}{X}}
+\@deflabeltype{sss:lex-linedir}{section}
+\stx@exists{linenum-directive}\@@addtocsec{htoc}{s:values}{0}{\@print{7.2}\quad{}\label{s:values}Values{}}
+\new@anchor@label{sec89}{s:values}{{7.2}{X}}
+\@deflabeltype{s:values}{section}
+\@@addtocsec{htoc}{ss:values:base}{1}{\@print{7.2.1}\quad{}\label{ss:values:base}Base values{}}
+\new@anchor@label{sec90}{ss:values:base}{{7.2.1}{X}}
+\@deflabeltype{ss:values:base}{subsection}
+\new@anchor@label{sec91}{sss:values:integer}{{7.2.1}{X}}
+\@deflabeltype{sss:values:integer}{subsection}
+\new@anchor@label{sec92}{sss:values:float}{{7.2.1}{X}}
+\@deflabeltype{sss:values:float}{subsection}
+\new@anchor@label{sec93}{sss:values:char}{{7.2.1}{X}}
+\@deflabeltype{sss:values:char}{subsection}
+\new@anchor@label{sec94}{sss:values:string}{{7.2.1}{X}}
+\@deflabeltype{sss:values:string}{subsection}
+\@@addtocsec{htoc}{ss:values:tuple}{1}{\@print{7.2.2}\quad{}\label{ss:values:tuple}Tuples{}}
+\new@anchor@label{sec95}{ss:values:tuple}{{7.2.2}{X}}
+\@deflabeltype{ss:values:tuple}{subsection}
+\@@addtocsec{htoc}{ss:values:records}{1}{\@print{7.2.3}\quad{}\label{ss:values:records}Records{}}
+\new@anchor@label{sec96}{ss:values:records}{{7.2.3}{X}}
+\@deflabeltype{ss:values:records}{subsection}
+\@@addtocsec{htoc}{ss:values:array}{1}{\@print{7.2.4}\quad{}\label{ss:values:array}Arrays{}}
+\new@anchor@label{sec97}{ss:values:array}{{7.2.4}{X}}
+\@deflabeltype{ss:values:array}{subsection}
+\@@addtocsec{htoc}{ss:values:variant}{1}{\@print{7.2.5}\quad{}\label{ss:values:variant}Variant values{}}
+\new@anchor@label{sec98}{ss:values:variant}{{7.2.5}{X}}
+\@deflabeltype{ss:values:variant}{subsection}
+\@@addtocsec{htoc}{ss:values:polyvars}{1}{\@print{7.2.6}\quad{}\label{ss:values:polyvars}Polymorphic variants{}}
+\new@anchor@label{sec99}{ss:values:polyvars}{{7.2.6}{X}}
+\@deflabeltype{ss:values:polyvars}{subsection}
+\@@addtocsec{htoc}{ss:values:fun}{1}{\@print{7.2.7}\quad{}\label{ss:values:fun}Functions{}}
+\new@anchor@label{sec100}{ss:values:fun}{{7.2.7}{X}}
+\@deflabeltype{ss:values:fun}{subsection}
+\@@addtocsec{htoc}{ss:values:obj}{1}{\@print{7.2.8}\quad{}\label{ss:values:obj}Objects{}}
+\new@anchor@label{sec101}{ss:values:obj}{{7.2.8}{X}}
+\@deflabeltype{ss:values:obj}{subsection}
+\@@addtocsec{htoc}{s:names}{0}{\@print{7.3}\quad{}\label{s:names}Names{}}
+\new@anchor@label{sec102}{s:names}{{7.3}{X}}
+\@deflabeltype{s:names}{section}
+\new@anchor@label{sec103}{sss:naming-objects}{{7.3}{X}}
+\@deflabeltype{sss:naming-objects}{section}
+\stx@exists{value-name}\stx@exists{operator-name}\stx@exists{infix-op}\stx@exists{constr-name}\stx@exists{tag-name}\stx@exists{typeconstr-name}\stx@exists{field-name}\stx@exists{module-name}\stx@exists{modtype-name}\stx@exists{class-name}\stx@exists{inst-var-name}\stx@exists{method-name}\new@anchor@label{sec104}{sss:refer-named}{{7.3}{X}}
+\@deflabeltype{sss:refer-named}{section}
+\stx@exists{value-path}\stx@exists{constr}\stx@exists{typeconstr}\stx@exists{field}\stx@exists{modtype-path}\stx@exists{class-path}\stx@exists{classtype-path}\stx@exists{module-path}\stx@exists{extended-module-path}\stx@exists{extended-module-name}\@@addtocsec{htoc}{s:typexpr}{0}{\@print{7.4}\quad{}\label{s:typexpr}Type expressions{}}
+\new@anchor@label{sec105}{s:typexpr}{{7.4}{X}}
+\@deflabeltype{s:typexpr}{section}
+\stx@exists{typexpr}\stx@exists{poly-typexpr}\stx@exists{method-type}\new@anchor@label{sec106}{sss:typexpr-variables}{{7.4}{X}}
+\@deflabeltype{sss:typexpr-variables}{section}
+\new@anchor@label{sec107}{sss:typexr:parenthesized}{{7.4}{X}}
+\@deflabeltype{sss:typexr:parenthesized}{section}
+\new@anchor@label{sec108}{sss:typexr-fun}{{7.4}{X}}
+\@deflabeltype{sss:typexr-fun}{section}
+\new@anchor@label{sec109}{sss:typexpr-tuple}{{7.4}{X}}
+\@deflabeltype{sss:typexpr-tuple}{section}
+\new@anchor@label{sec110}{sss:typexpr-constructed}{{7.4}{X}}
+\@deflabeltype{sss:typexpr-constructed}{section}
+\new@anchor@label{sec111}{sss:typexpr-aliased-recursive}{{7.4}{X}}
+\@deflabeltype{sss:typexpr-aliased-recursive}{section}
+\new@anchor@label{sec112}{sss:typexpr-polyvar}{{7.4}{X}}
+\@deflabeltype{sss:typexpr-polyvar}{section}
+\stx@exists{polymorphic-variant-type}\stx@exists{tag-spec-first}\stx@exists{tag-spec}\stx@exists{tag-spec-full}\new@anchor@label{sec113}{sss:typexpr-obj}{{7.4}{X}}
+\@deflabeltype{sss:typexpr-obj}{section}
+\new@anchor@label{sec114}{sss:typexpr-sharp-types}{{7.4}{X}}
+\@deflabeltype{sss:typexpr-sharp-types}{section}
+\new@anchor@label{sec115}{sss:typexpr-variant-record}{{7.4}{X}}
+\@deflabeltype{sss:typexpr-variant-record}{section}
+\@@addtocsec{htoc}{s:const}{0}{\@print{7.5}\quad{}\label{s:const}Constants{}}
+\new@anchor@label{sec116}{s:const}{{7.5}{X}}
+\@deflabeltype{s:const}{section}
+\stx@exists{constant}\@@addtocsec{htoc}{s:patterns}{0}{\@print{7.6}\quad{}\label{s:patterns}Patterns{}}
+\new@anchor@label{sec117}{s:patterns}{{7.6}{X}}
+\@deflabeltype{s:patterns}{section}
+\stx@exists{pattern}\new@anchor@label{sec118}{sss:pat-variable}{{7.6}{X}}
+\@deflabeltype{sss:pat-variable}{section}
+\new@anchor@label{sec119}{sss:pat-const}{{7.6}{X}}
+\@deflabeltype{sss:pat-const}{section}
+\new@anchor@label{sec120}{sss:pat-alias}{{7.6}{X}}
+\@deflabeltype{sss:pat-alias}{section}
+\new@anchor@label{sec121}{sss:pat-parenthesized}{{7.6}{X}}
+\@deflabeltype{sss:pat-parenthesized}{section}
+\new@anchor@label{sec122}{sss:pat-or}{{7.6}{X}}
+\@deflabeltype{sss:pat-or}{section}
+\new@anchor@label{sec123}{sss:pat-variant}{{7.6}{X}}
+\@deflabeltype{sss:pat-variant}{section}
+\new@anchor@label{sec124}{sss:pat-polyvar}{{7.6}{X}}
+\@deflabeltype{sss:pat-polyvar}{section}
+\new@anchor@label{sec125}{sss:pat-polyvar-abbrev}{{7.6}{X}}
+\@deflabeltype{sss:pat-polyvar-abbrev}{section}
+\new@anchor@label{sec126}{sss:pat-tuple}{{7.6}{X}}
+\@deflabeltype{sss:pat-tuple}{section}
+\new@anchor@label{sec127}{sss:pat-record}{{7.6}{X}}
+\@deflabeltype{sss:pat-record}{section}
+\new@anchor@label{sec128}{sss:pat-array}{{7.6}{X}}
+\@deflabeltype{sss:pat-array}{section}
+\new@anchor@label{sec129}{sss:pat-range}{{7.6}{X}}
+\@deflabeltype{sss:pat-range}{section}
+\new@anchor@label{sec130}{sss:pat-lazy}{{7.6}{X}}
+\@deflabeltype{sss:pat-lazy}{section}
+\new@anchor@label{sec131}{sss:exception-match}{{7.6}{X}}
+\@deflabeltype{sss:exception-match}{section}
+\new@anchor@label{sec132}{sss:pat-open}{{7.6}{X}}
+\@deflabeltype{sss:pat-open}{section}
+\@@addtocsec{htoc}{s:value-expr}{0}{\@print{7.7}\quad{}\label{s:value-expr}Expressions{}}
+\new@anchor@label{sec133}{s:value-expr}{{7.7}{X}}
+\@deflabeltype{s:value-expr}{section}
+\stx@exists{expr}\stx@exists{argument}\stx@exists{pattern-matching}\stx@exists{let-binding}\stx@exists{parameter}\@@addtocsec{htoc}{ss:precedence-and-associativity}{1}{\@print{7.7.1}\quad{}\label{ss:precedence-and-associativity}Precedence and associativity{}}
+\new@anchor@label{sec134}{ss:precedence-and-associativity}{{7.7.1}{X}}
+\@deflabeltype{ss:precedence-and-associativity}{subsection}
+\@@addtocsec{htoc}{ss:expr-basic}{1}{\@print{7.7.2}\quad{}\label{ss:expr-basic}Basic expressions{}}
+\new@anchor@label{sec135}{ss:expr-basic}{{7.7.2}{X}}
+\@deflabeltype{ss:expr-basic}{subsection}
+\new@anchor@label{sec136}{sss:expr-constants}{{7.7.2}{X}}
+\@deflabeltype{sss:expr-constants}{subsection}
+\new@anchor@label{sec137}{sss:expr-var}{{7.7.2}{X}}
+\@deflabeltype{sss:expr-var}{subsection}
+\new@anchor@label{sec138}{sss:expr-parenthesized}{{7.7.2}{X}}
+\@deflabeltype{sss:expr-parenthesized}{subsection}
+\new@anchor@label{sec139}{sss:expr-functions-application}{{7.7.2}{X}}
+\@deflabeltype{sss:expr-functions-application}{subsection}
+\new@anchor@label{sec140}{sss:expr-function-definition}{{7.7.2}{X}}
+\@deflabeltype{sss:expr-function-definition}{subsection}
+\new@anchor@label{sec141}{sss:guards-in-pattern-matchings}{{7.7.2}{X}}
+\@deflabeltype{sss:guards-in-pattern-matchings}{subsection}
+\new@anchor@label{sec142}{sss:expr-localdef}{{7.7.2}{X}}
+\@deflabeltype{sss:expr-localdef}{subsection}
+\new@anchor@label{sec143}{sss:expr-explicit-polytype}{{7.7.2}{X}}
+\@deflabeltype{sss:expr-explicit-polytype}{subsection}
+\@@addtocsec{htoc}{ss:expr-control}{1}{\@print{7.7.3}\quad{}\label{ss:expr-control}Control structures{}}
+\new@anchor@label{sec144}{ss:expr-control}{{7.7.3}{X}}
+\@deflabeltype{ss:expr-control}{subsection}
+\new@anchor@label{sec145}{sss:expr-sequence}{{7.7.3}{X}}
+\@deflabeltype{sss:expr-sequence}{subsection}
+\new@anchor@label{sec146}{sss:expr-conditional}{{7.7.3}{X}}
+\@deflabeltype{sss:expr-conditional}{subsection}
+\new@anchor@label{sec147}{sss:expr-case}{{7.7.3}{X}}
+\@deflabeltype{sss:expr-case}{subsection}
+\new@anchor@label{sec148}{sss:expr-boolean-operators}{{7.7.3}{X}}
+\@deflabeltype{sss:expr-boolean-operators}{subsection}
+\new@anchor@label{sec149}{sss:expr-loops}{{7.7.3}{X}}
+\@deflabeltype{sss:expr-loops}{subsection}
+\new@anchor@label{sec150}{sss:expr-exception-handling}{{7.7.3}{X}}
+\@deflabeltype{sss:expr-exception-handling}{subsection}
+\@@addtocsec{htoc}{ss:expr-ops-on-data}{1}{\@print{7.7.4}\quad{}\label{ss:expr-ops-on-data}Operations on data structures{}}
+\new@anchor@label{sec151}{ss:expr-ops-on-data}{{7.7.4}{X}}
+\@deflabeltype{ss:expr-ops-on-data}{subsection}
+\new@anchor@label{sec152}{sss:expr-products}{{7.7.4}{X}}
+\@deflabeltype{sss:expr-products}{subsection}
+\new@anchor@label{sec153}{sss:expr-variants}{{7.7.4}{X}}
+\@deflabeltype{sss:expr-variants}{subsection}
+\new@anchor@label{sec154}{sss:expr-polyvars}{{7.7.4}{X}}
+\@deflabeltype{sss:expr-polyvars}{subsection}
+\new@anchor@label{sec155}{sss:expr-records}{{7.7.4}{X}}
+\@deflabeltype{sss:expr-records}{subsection}
+\new@anchor@label{sec156}{sss:expr-arrays}{{7.7.4}{X}}
+\@deflabeltype{sss:expr-arrays}{subsection}
+\new@anchor@label{sec157}{sss:expr-strings}{{7.7.4}{X}}
+\@deflabeltype{sss:expr-strings}{subsection}
+\@@addtocsec{htoc}{ss:expr-operators}{1}{\@print{7.7.5}\quad{}\label{ss:expr-operators}Operators{}}
+\new@anchor@label{sec158}{ss:expr-operators}{{7.7.5}{X}}
+\@deflabeltype{ss:expr-operators}{subsection}
+\@@addtocsec{htoc}{ss:expr-obj}{1}{\@print{7.7.6}\quad{}\label{ss:expr-obj}Objects{}}
+\new@anchor@label{sec159}{ss:expr-obj}{{7.7.6}{X}}
+\@deflabeltype{ss:expr-obj}{subsection}
+\newlabel{s:objects}{{7.7.6}{X}}
+\@deflabeltype{s:objects}{subsection}
+\new@anchor@label{sec160}{sss:expr-obj-creation}{{7.7.6}{X}}
+\@deflabeltype{sss:expr-obj-creation}{subsection}
+\new@anchor@label{sec161}{sss:expr-obj-immediate}{{7.7.6}{X}}
+\@deflabeltype{sss:expr-obj-immediate}{subsection}
+\new@anchor@label{sec162}{sss:expr-method}{{7.7.6}{X}}
+\@deflabeltype{sss:expr-method}{subsection}
+\new@anchor@label{sec163}{sss:expr-obj-variables}{{7.7.6}{X}}
+\@deflabeltype{sss:expr-obj-variables}{subsection}
+\new@anchor@label{sec164}{sss:expr-obj-duplication}{{7.7.6}{X}}
+\@deflabeltype{sss:expr-obj-duplication}{subsection}
+\@@addtocsec{htoc}{ss:expr-coercions}{1}{\@print{7.7.7}\quad{}\label{ss:expr-coercions}Coercions{}}
+\new@anchor@label{sec165}{ss:expr-coercions}{{7.7.7}{X}}
+\@deflabeltype{ss:expr-coercions}{subsection}
+\new@anchor@label{sec166}{sss:expr-obj-types}{{7.7.7}{X}}
+\@deflabeltype{sss:expr-obj-types}{subsection}
+\new@anchor@label{sec167}{sss:expr-polyvar-types}{{7.7.7}{X}}
+\@deflabeltype{sss:expr-polyvar-types}{subsection}
+\new@anchor@label{sec168}{sss:expr-variance}{{7.7.7}{X}}
+\@deflabeltype{sss:expr-variance}{subsection}
+\@@addtocsec{htoc}{ss:expr-other}{1}{\@print{7.7.8}\quad{}\label{ss:expr-other}Other{}}
+\new@anchor@label{sec169}{ss:expr-other}{{7.7.8}{X}}
+\@deflabeltype{ss:expr-other}{subsection}
+\new@anchor@label{sec170}{sss:expr-assertion}{{7.7.8}{X}}
+\@deflabeltype{sss:expr-assertion}{subsection}
+\new@anchor@label{sec171}{sss:expr-lazy}{{7.7.8}{X}}
+\@deflabeltype{sss:expr-lazy}{subsection}
+\new@anchor@label{sec172}{sss:expr-local-modules}{{7.7.8}{X}}
+\@deflabeltype{sss:expr-local-modules}{subsection}
+\new@anchor@label{sec173}{sss:local-opens}{{7.7.8}{X}}
+\@deflabeltype{sss:local-opens}{subsection}
+\@@addtocsec{htoc}{s:tydef}{0}{\@print{7.8}\quad{}\label{s:tydef}Type and exception definitions{}}
+\new@anchor@label{sec174}{s:tydef}{{7.8}{X}}
+\@deflabeltype{s:tydef}{section}
+\@@addtocsec{htoc}{ss:typedefs}{1}{\@print{7.8.1}\quad{}\label{ss:typedefs}Type definitions{}}
+\new@anchor@label{sec175}{ss:typedefs}{{7.8.1}{X}}
+\@deflabeltype{ss:typedefs}{subsection}
+\stx@exists{type-definition}\stx@exists{typedef}\stx@exists{type-information}\stx@exists{type-equation}\stx@exists{type-representation}\stx@exists{type-params}\stx@exists{type-param}\stx@exists{variance}\stx@exists{record-decl}\stx@exists{constr-decl}\stx@exists{constr-args}\stx@exists{field-decl}\stx@exists{type-constraint}\@@addtocsec{htoc}{ss:exndef}{1}{\@print{7.8.2}\quad{}\label{ss:exndef}Exception definitions{}}
+\new@anchor@label{sec176}{ss:exndef}{{7.8.2}{X}}
+\@deflabeltype{ss:exndef}{subsection}
+\stx@exists{exception-definition}\@@addtocsec{htoc}{s:classes}{0}{\@print{7.9}\quad{}\label{s:classes}Classes{}}
+\new@anchor@label{sec177}{s:classes}{{7.9}{X}}
+\@deflabeltype{s:classes}{section}
+\@@addtocsec{htoc}{ss:classes:class-types}{1}{\@print{7.9.1}\quad{}\label{ss:classes:class-types}Class types{}}
+\new@anchor@label{sec178}{ss:classes:class-types}{{7.9.1}{X}}
+\@deflabeltype{ss:classes:class-types}{subsection}
+\stx@exists{class-type}\stx@exists{class-body-type}\stx@exists{class-field-spec}\new@anchor@label{sec179}{sss:clty:simple}{{7.9.1}{X}}
+\@deflabeltype{sss:clty:simple}{subsection}
+\new@anchor@label{sec180}{sss:clty-fun}{{7.9.1}{X}}
+\@deflabeltype{sss:clty-fun}{subsection}
+\new@anchor@label{sec181}{sss:clty:body}{{7.9.1}{X}}
+\@deflabeltype{sss:clty:body}{subsection}
+\new@anchor@label{sec182}{sss:clty-open}{{7.9.1}{X}}
+\@deflabeltype{sss:clty-open}{subsection}
+\new@anchor@label{sec183}{sss:clty-inheritance}{{7.9.1}{X}}
+\@deflabeltype{sss:clty-inheritance}{subsection}
+\new@anchor@label{sec184}{sss:clty-variable}{{7.9.1}{X}}
+\@deflabeltype{sss:clty-variable}{subsection}
+\new@anchor@label{sec185}{sss:clty-meth}{{7.9.1}{X}}
+\@deflabeltype{sss:clty-meth}{subsection}
+\new@anchor@label{sec186}{sss:class-virtual-meth-spec}{{7.9.1}{X}}
+\@deflabeltype{sss:class-virtual-meth-spec}{subsection}
+\new@anchor@label{sec187}{sss:class-constraints}{{7.9.1}{X}}
+\@deflabeltype{sss:class-constraints}{subsection}
+\@@addtocsec{htoc}{ss:class-expr}{1}{\@print{7.9.2}\quad{}\label{ss:class-expr}Class expressions{}}
+\new@anchor@label{sec188}{ss:class-expr}{{7.9.2}{X}}
+\@deflabeltype{ss:class-expr}{subsection}
+\stx@exists{class-expr}\stx@exists{class-field}\new@anchor@label{sec189}{sss:class-simple}{{7.9.2}{X}}
+\@deflabeltype{sss:class-simple}{subsection}
+\new@anchor@label{sec190}{sss:class-app}{{7.9.2}{X}}
+\@deflabeltype{sss:class-app}{subsection}
+\new@anchor@label{sec191}{sss:class-fun}{{7.9.2}{X}}
+\@deflabeltype{sss:class-fun}{subsection}
+\new@anchor@label{sec192}{sss:class-localdefs}{{7.9.2}{X}}
+\@deflabeltype{sss:class-localdefs}{subsection}
+\new@anchor@label{sec193}{sss:class-opens}{{7.9.2}{X}}
+\@deflabeltype{sss:class-opens}{subsection}
+\new@anchor@label{sec194}{sss:class-body}{{7.9.2}{X}}
+\@deflabeltype{sss:class-body}{subsection}
+\stx@exists{class-body}\new@anchor@label{sec195}{sss:class-inheritance}{{7.9.2}{X}}
+\@deflabeltype{sss:class-inheritance}{subsection}
+\new@anchor@label{sec196}{sss:class-variables}{{7.9.2}{X}}
+\@deflabeltype{sss:class-variables}{subsection}
+\new@anchor@label{sec197}{sss:class-virtual-variable}{{7.9.2}{X}}
+\@deflabeltype{sss:class-virtual-variable}{subsection}
+\new@anchor@label{sec198}{sss:class-method}{{7.9.2}{X}}
+\@deflabeltype{sss:class-method}{subsection}
+\new@anchor@label{sec199}{sss:class-virtual-meth}{{7.9.2}{X}}
+\@deflabeltype{sss:class-virtual-meth}{subsection}
+\new@anchor@label{sec200}{sss:class-explicit-overriding}{{7.9.2}{X}}
+\@deflabeltype{sss:class-explicit-overriding}{subsection}
+\new@anchor@label{sec201}{sss:class-type-constraints}{{7.9.2}{X}}
+\@deflabeltype{sss:class-type-constraints}{subsection}
+\new@anchor@label{sec202}{sss:class-initializers}{{7.9.2}{X}}
+\@deflabeltype{sss:class-initializers}{subsection}
+\@@addtocsec{htoc}{ss:class-def}{1}{\@print{7.9.3}\quad{}\label{ss:class-def}Class definitions{}}
+\new@anchor@label{sec203}{ss:class-def}{{7.9.3}{X}}
+\@deflabeltype{ss:class-def}{subsection}
+\newlabel{s:classdef}{{7.9.3}{X}}
+\@deflabeltype{s:classdef}{subsection}
+\stx@exists{class-definition}\stx@exists{class-binding}\stx@exists{type-parameters}\new@anchor@label{sec204}{sss:class-virtual}{{7.9.3}{X}}
+\@deflabeltype{sss:class-virtual}{subsection}
+\new@anchor@label{sec205}{sss:class-type-params}{{7.9.3}{X}}
+\@deflabeltype{sss:class-type-params}{subsection}
+\@@addtocsec{htoc}{ss:class-spec}{1}{\@print{7.9.4}\quad{}\label{ss:class-spec}Class specifications{}}
+\new@anchor@label{sec206}{ss:class-spec}{{7.9.4}{X}}
+\@deflabeltype{ss:class-spec}{subsection}
+\stx@exists{class-specification}\stx@exists{class-spec}\@@addtocsec{htoc}{ss:classtype}{1}{\@print{7.9.5}\quad{}\label{ss:classtype}Class type definitions{}}
+\new@anchor@label{sec207}{ss:classtype}{{7.9.5}{X}}
+\@deflabeltype{ss:classtype}{subsection}
+\stx@exists{classtype-definition}\stx@exists{classtype-def}\@@addtocsec{htoc}{s:modtypes}{0}{\@print{7.10}\quad{}\label{s:modtypes}Module types (module specifications){}}
+\new@anchor@label{sec208}{s:modtypes}{{7.10}{X}}
+\@deflabeltype{s:modtypes}{section}
+\stx@exists{module-type}\stx@exists{mod-constraint}\stx@exists{specification}\@@addtocsec{htoc}{ss:mty-simple}{1}{\@print{7.10.1}\quad{}\label{ss:mty-simple}Simple module types{}}
+\new@anchor@label{sec209}{ss:mty-simple}{{7.10.1}{X}}
+\@deflabeltype{ss:mty-simple}{subsection}
+\@@addtocsec{htoc}{ss:mty-signatures}{1}{\@print{7.10.2}\quad{}\label{ss:mty-signatures}Signatures{}}
+\new@anchor@label{sec210}{ss:mty-signatures}{{7.10.2}{X}}
+\@deflabeltype{ss:mty-signatures}{subsection}
+\new@anchor@label{sec211}{sss:mty-values}{{7.10.2}{X}}
+\@deflabeltype{sss:mty-values}{subsection}
+\new@anchor@label{sec212}{sss:mty-type}{{7.10.2}{X}}
+\@deflabeltype{sss:mty-type}{subsection}
+\new@anchor@label{sec213}{sss:mty-exn}{{7.10.2}{X}}
+\@deflabeltype{sss:mty-exn}{subsection}
+\new@anchor@label{sec214}{sss:mty-class}{{7.10.2}{X}}
+\@deflabeltype{sss:mty-class}{subsection}
+\new@anchor@label{sec215}{sss:mty-classtype}{{7.10.2}{X}}
+\@deflabeltype{sss:mty-classtype}{subsection}
+\new@anchor@label{sec216}{sss:mty-module}{{7.10.2}{X}}
+\@deflabeltype{sss:mty-module}{subsection}
+\new@anchor@label{sec217}{sss:mty-mty}{{7.10.2}{X}}
+\@deflabeltype{sss:mty-mty}{subsection}
+\new@anchor@label{sec218}{sss:mty-open}{{7.10.2}{X}}
+\@deflabeltype{sss:mty-open}{subsection}
+\new@anchor@label{sec219}{sss:mty-include}{{7.10.2}{X}}
+\@deflabeltype{sss:mty-include}{subsection}
+\@@addtocsec{htoc}{ss:mty-functors}{1}{\@print{7.10.3}\quad{}\label{ss:mty-functors}Functor types{}}
+\new@anchor@label{sec220}{ss:mty-functors}{{7.10.3}{X}}
+\@deflabeltype{ss:mty-functors}{subsection}
+\@@addtocsec{htoc}{ss:mty-with}{1}{\@print{7.10.4}\quad{}\label{ss:mty-with}The {\machine{with}} operator{}}
+\new@anchor@label{sec221}{ss:mty-with}{{7.10.4}{X}}
+\@deflabeltype{ss:mty-with}{subsection}
+\@@addtocsec{htoc}{s:module-expr}{0}{\@print{7.11}\quad{}\label{s:module-expr}Module expressions (module implementations){}}
+\new@anchor@label{sec222}{s:module-expr}{{7.11}{X}}
+\@deflabeltype{s:module-expr}{section}
+\stx@exists{module-expr}\stx@exists{module-items}\stx@exists{definition}\@@addtocsec{htoc}{ss:mexpr-simple}{1}{\@print{7.11.1}\quad{}\label{ss:mexpr-simple}Simple module expressions{}}
+\new@anchor@label{sec223}{ss:mexpr-simple}{{7.11.1}{X}}
+\@deflabeltype{ss:mexpr-simple}{subsection}
+\@@addtocsec{htoc}{ss:mexpr-structures}{1}{\@print{7.11.2}\quad{}\label{ss:mexpr-structures}Structures{}}
+\new@anchor@label{sec224}{ss:mexpr-structures}{{7.11.2}{X}}
+\@deflabeltype{ss:mexpr-structures}{subsection}
+\new@anchor@label{sec225}{sss:mexpr-value-defs}{{7.11.2}{X}}
+\@deflabeltype{sss:mexpr-value-defs}{subsection}
+\new@anchor@label{sec226}{sss:mexpr-type-defs}{{7.11.2}{X}}
+\@deflabeltype{sss:mexpr-type-defs}{subsection}
+\new@anchor@label{sec227}{sss:mexpr-exn-defs}{{7.11.2}{X}}
+\@deflabeltype{sss:mexpr-exn-defs}{subsection}
+\new@anchor@label{sec228}{sss:mexpr-class-defs}{{7.11.2}{X}}
+\@deflabeltype{sss:mexpr-class-defs}{subsection}
+\new@anchor@label{sec229}{sss:mexpr-classtype-defs}{{7.11.2}{X}}
+\@deflabeltype{sss:mexpr-classtype-defs}{subsection}
+\new@anchor@label{sec230}{sss:mexpr-module-defs}{{7.11.2}{X}}
+\@deflabeltype{sss:mexpr-module-defs}{subsection}
+\new@anchor@label{sec231}{sss:mexpr-modtype-defs}{{7.11.2}{X}}
+\@deflabeltype{sss:mexpr-modtype-defs}{subsection}
+\new@anchor@label{sec232}{sss:mexpr-open}{{7.11.2}{X}}
+\@deflabeltype{sss:mexpr-open}{subsection}
+\new@anchor@label{sec233}{sss:mexpr-include}{{7.11.2}{X}}
+\@deflabeltype{sss:mexpr-include}{subsection}
+\@@addtocsec{htoc}{ss:mexpr-functors}{1}{\@print{7.11.3}\quad{}\label{ss:mexpr-functors}Functors{}}
+\new@anchor@label{sec234}{ss:mexpr-functors}{{7.11.3}{X}}
+\@deflabeltype{ss:mexpr-functors}{subsection}
+\new@anchor@label{sec235}{sss:mexpr-functor-defs}{{7.11.3}{X}}
+\@deflabeltype{sss:mexpr-functor-defs}{subsection}
+\new@anchor@label{sec236}{sss:mexpr-functor-app}{{7.11.3}{X}}
+\@deflabeltype{sss:mexpr-functor-app}{subsection}
+\@@addtocsec{htoc}{s:compilation-units}{0}{\@print{7.12}\quad{}\label{s:compilation-units}Compilation units{}}
+\new@anchor@label{sec237}{s:compilation-units}{{7.12}{X}}
+\@deflabeltype{s:compilation-units}{section}
+\stx@exists{unit-interface}\stx@exists{unit-implementation}\@@addtocsec{htoc}{sec238}{-1}{\@print{Chapter 8}\quad{}Language extensions{}}
+\newlabel{c:extensions}{{8}{X}}
+\@deflabeltype{c:extensions}{chapter}
+\@@addtocsec{htoc}{s:letrecvalues}{0}{\@print{8.1}\quad{}\label{s:letrecvalues}Recursive definitions of values{}}
+\new@anchor@label{sec239}{s:letrecvalues}{{8.1}{X}}
+\@deflabeltype{s:letrecvalues}{section}
+\@@addtocsec{htoc}{s:recursive-modules}{0}{\@print{8.2}\quad{}\label{s:recursive-modules}Recursive modules{}}
+\new@anchor@label{sec240}{s:recursive-modules}{{8.2}{X}}
+\@deflabeltype{s:recursive-modules}{section}
+\@@addtocsec{htoc}{s:private-types}{0}{\@print{8.3}\quad{}\label{s:private-types}Private types{}}
+\new@anchor@label{sec241}{s:private-types}{{8.3}{X}}
+\@deflabeltype{s:private-types}{section}
+\@@addtocsec{htoc}{ss:private-types-variant}{1}{\@print{8.3.1}\quad{}\label{ss:private-types-variant}Private variant and record types{}}
+\new@anchor@label{sec242}{ss:private-types-variant}{{8.3.1}{X}}
+\@deflabeltype{ss:private-types-variant}{subsection}
+\@@addtocsec{htoc}{ss:private-types-abbrev}{1}{\@print{8.3.2}\quad{}\label{ss:private-types-abbrev}Private type abbreviations{}}
+\new@anchor@label{sec243}{ss:private-types-abbrev}{{8.3.2}{X}}
+\@deflabeltype{ss:private-types-abbrev}{subsection}
+\@@addtocsec{htoc}{ss:private-rows}{1}{\@print{8.3.3}\quad{}\label{ss:private-rows}Private row types{}}
+\new@anchor@label{sec244}{ss:private-rows}{{8.3.3}{X}}
+\@deflabeltype{ss:private-rows}{subsection}
+\@@addtocsec{htoc}{s:locally-abstract}{0}{\@print{8.4}\quad{}\label{s:locally-abstract}Locally abstract types{}}
+\new@anchor@label{sec245}{s:locally-abstract}{{8.4}{X}}
+\@deflabeltype{s:locally-abstract}{section}
+\new@anchor@label{sec246}{p:polymorpic-locally-abstract}{{8.4}{X}}
+\@deflabeltype{p:polymorpic-locally-abstract}{section}
+\@@addtocsec{htoc}{s:first-class-modules}{0}{\@print{8.5}\quad{}\label{s:first-class-modules}First-class modules{}}
+\new@anchor@label{sec247}{s:first-class-modules}{{8.5}{X}}
+\@deflabeltype{s:first-class-modules}{section}
+\stx@exists{package-type}\stx@exists{package-constraint}\new@anchor@label{sec248}{p:fst-mod-example}{{8.5}{X}}
+\@deflabeltype{p:fst-mod-example}{section}
+\new@anchor@label{sec249}{p:fst-mod-advexamples}{{8.5}{X}}
+\@deflabeltype{p:fst-mod-advexamples}{section}
+\@@addtocsec{htoc}{s:module-type-of}{0}{\@print{8.6}\quad{}\label{s:module-type-of}Recovering the type of a module{}}
+\new@anchor@label{sec250}{s:module-type-of}{{8.6}{X}}
+\@deflabeltype{s:module-type-of}{section}
+\@@addtocsec{htoc}{s:signature-substitution}{0}{\@print{8.7}\quad{}\label{s:signature-substitution}Substituting inside a signature{}}
+\new@anchor@label{sec251}{s:signature-substitution}{{8.7}{X}}
+\@deflabeltype{s:signature-substitution}{section}
+\@@addtocsec{htoc}{ss:destructive-substitution}{1}{\@print{8.7.1}\quad{}\label{ss:destructive-substitution}Destructive substitutions{}}
+\new@anchor@label{sec252}{ss:destructive-substitution}{{8.7.1}{X}}
+\@deflabeltype{ss:destructive-substitution}{subsection}
+\@@addtocsec{htoc}{ss:local-substitution}{1}{\@print{8.7.2}\quad{}\label{ss:local-substitution}Local substitution declarations{}}
+\new@anchor@label{sec253}{ss:local-substitution}{{8.7.2}{X}}
+\@deflabeltype{ss:local-substitution}{subsection}
+\stx@exists{type-subst}\@@addtocsec{htoc}{s:module-alias}{0}{\@print{8.8}\quad{}\label{s:module-alias}Type-level module aliases{}}
+\new@anchor@label{sec254}{s:module-alias}{{8.8}{X}}
+\@deflabeltype{s:module-alias}{section}
+\@@addtocsec{htoc}{s:explicit-overriding-open}{0}{\@print{8.9}\quad{}\label{s:explicit-overriding-open}Overriding in open statements{}}
+\new@anchor@label{sec255}{s:explicit-overriding-open}{{8.9}{X}}
+\@deflabeltype{s:explicit-overriding-open}{section}
+\@@addtocsec{htoc}{s:gadts}{0}{\@print{8.10}\quad{}\label{s:gadts}Generalized algebraic datatypes{}}
+\new@anchor@label{sec256}{s:gadts}{{8.10}{X}}
+\@deflabeltype{s:gadts}{section}
+\new@anchor@label{sec257}{p:gadts-recfun}{{8.10}{X}}
+\@deflabeltype{p:gadts-recfun}{section}
+\new@anchor@label{sec258}{p:gadts-type-inference}{{8.10}{X}}
+\@deflabeltype{p:gadts-type-inference}{section}
+\new@anchor@label{sec259}{p:gadt-refutation-cases}{{8.10}{X}}
+\@deflabeltype{p:gadt-refutation-cases}{section}
+\stx@exists{matching-case}\new@anchor@label{sec260}{p:gadts-advexamples}{{8.10}{X}}
+\@deflabeltype{p:gadts-advexamples}{section}
+\new@anchor@label{sec261}{p:existential-names}{{8.10}{X}}
+\@deflabeltype{p:existential-names}{section}
+\new@anchor@label{sec262}{p:gadt-equation-nonlocal-abstract}{{8.10}{X}}
+\@deflabeltype{p:gadt-equation-nonlocal-abstract}{section}
+\@@addtocsec{htoc}{s:bigarray-access}{0}{\@print{8.11}\quad{}\label{s:bigarray-access}Syntax for Bigarray access{}}
+\new@anchor@label{sec263}{s:bigarray-access}{{8.11}{X}}
+\@deflabeltype{s:bigarray-access}{section}
+\@@addtocsec{htoc}{s:attributes}{0}{\@print{8.12}\quad{}\label{s:attributes}Attributes{}}
+\new@anchor@label{sec264}{s:attributes}{{8.12}{X}}
+\@deflabeltype{s:attributes}{section}
+\stx@exists{attr-id}\stx@exists{attr-payload}\stx@exists{attribute}\stx@exists{item-attribute}\stx@exists{floating-attribute}\@@addtocsec{htoc}{ss:builtin-attributes}{1}{\@print{8.12.1}\quad{}\label{ss:builtin-attributes}Built-in attributes{}}
+\new@anchor@label{sec265}{ss:builtin-attributes}{{8.12.1}{X}}
+\@deflabeltype{ss:builtin-attributes}{subsection}
+\@@addtocsec{htoc}{s:extension-nodes}{0}{\@print{8.13}\quad{}\label{s:extension-nodes}Extension nodes{}}
+\new@anchor@label{sec266}{s:extension-nodes}{{8.13}{X}}
+\@deflabeltype{s:extension-nodes}{section}
+\stx@exists{extension}\stx@exists{item-extension}\@@addtocsec{htoc}{ss:builtin-extension-nodes}{1}{\@print{8.13.1}\quad{}\label{ss:builtin-extension-nodes}Built-in extension nodes{}}
+\new@anchor@label{sec267}{ss:builtin-extension-nodes}{{8.13.1}{X}}
+\@deflabeltype{ss:builtin-extension-nodes}{subsection}
+\@@addtocsec{htoc}{s:extensible-variants}{0}{\@print{8.14}\quad{}\label{s:extensible-variants}Extensible variant types{}}
+\new@anchor@label{sec268}{s:extensible-variants}{{8.14}{X}}
+\@deflabeltype{s:extensible-variants}{section}
+\stx@exists{type-extension-spec}\stx@exists{type-extension-def}\stx@exists{constr-def}\@@addtocsec{htoc}{ss:private-extensible}{1}{\@print{8.14.1}\quad{}\label{ss:private-extensible}Private extensible variant types{}}
+\new@anchor@label{sec269}{ss:private-extensible}{{8.14.1}{X}}
+\@deflabeltype{ss:private-extensible}{subsection}
+\@@addtocsec{htoc}{s:generative-functors}{0}{\@print{8.15}\quad{}\label{s:generative-functors}Generative functors{}}
+\new@anchor@label{sec270}{s:generative-functors}{{8.15}{X}}
+\@deflabeltype{s:generative-functors}{section}
+\@@addtocsec{htoc}{s:extension-syntax}{0}{\@print{8.16}\quad{}\label{s:extension-syntax}Extension-only syntax{}}
+\new@anchor@label{sec271}{s:extension-syntax}{{8.16}{X}}
+\@deflabeltype{s:extension-syntax}{section}
+\@@addtocsec{htoc}{ss:extension-operators}{1}{\@print{8.16.1}\quad{}\label{ss:extension-operators}Extension operators{}}
+\new@anchor@label{sec272}{ss:extension-operators}{{8.16.1}{X}}
+\@deflabeltype{ss:extension-operators}{subsection}
+\newlabel{s:ext-ops}{{8.16.1}{X}}
+\@deflabeltype{s:ext-ops}{subsection}
+\@@addtocsec{htoc}{ss:extension-literals}{1}{\@print{8.16.2}\quad{}\label{ss:extension-literals}Extension literals{}}
+\new@anchor@label{sec273}{ss:extension-literals}{{8.16.2}{X}}
+\@deflabeltype{ss:extension-literals}{subsection}
+\stx@exists{int-literal}\@@addtocsec{htoc}{s:inline-records}{0}{\@print{8.17}\quad{}\label{s:inline-records}Inline records{}}
+\new@anchor@label{sec274}{s:inline-records}{{8.17}{X}}
+\@deflabeltype{s:inline-records}{section}
+\@@addtocsec{htoc}{s:doc-comments}{0}{\@print{8.18}\quad{}\label{s:doc-comments}Documentation comments{}}
+\new@anchor@label{sec275}{s:doc-comments}{{8.18}{X}}
+\@deflabeltype{s:doc-comments}{section}
+\@@addtocsec{htoc}{ss:floating-comments}{1}{\@print{8.18.1}\quad{}\label{ss:floating-comments}Floating comments{}}
+\new@anchor@label{sec276}{ss:floating-comments}{{8.18.1}{X}}
+\@deflabeltype{ss:floating-comments}{subsection}
+\@@addtocsec{htoc}{ss:item-comments}{1}{\@print{8.18.2}\quad{}\label{ss:item-comments}Item comments{}}
+\new@anchor@label{sec277}{ss:item-comments}{{8.18.2}{X}}
+\@deflabeltype{ss:item-comments}{subsection}
+\@@addtocsec{htoc}{ss:label-comments}{1}{\@print{8.18.3}\quad{}\label{ss:label-comments}Label comments{}}
+\new@anchor@label{sec278}{ss:label-comments}{{8.18.3}{X}}
+\@deflabeltype{ss:label-comments}{subsection}
+\@@addtocsec{htoc}{s:index-operators}{0}{\@print{8.19}\quad{}\label{s:index-operators}Extended indexing operators {}}
+\new@anchor@label{sec279}{s:index-operators}{{8.19}{X}}
+\@deflabeltype{s:index-operators}{section}
+\stx@exists{dot-ext}\stx@exists{dot-operator-char}\@@addtocsec{htoc}{ss:multiindexing}{1}{\@print{8.19.1}\quad{}\label{ss:multiindexing}Multi-index notation{}}
+\new@anchor@label{sec280}{ss:multiindexing}{{8.19.1}{X}}
+\@deflabeltype{ss:multiindexing}{subsection}
+\@@addtocsec{htoc}{s:empty-variants}{0}{\@print{8.20}\quad{}\label{s:empty-variants}Empty variant types{}}
+\new@anchor@label{sec281}{s:empty-variants}{{8.20}{X}}
+\@deflabeltype{s:empty-variants}{section}
+\@@addtocsec{htoc}{s:alerts}{0}{\@print{8.21}\quad{}\label{s:alerts}Alerts{}}
+\new@anchor@label{sec282}{s:alerts}{{8.21}{X}}
+\@deflabeltype{s:alerts}{section}
+\@@addtocsec{htoc}{s:generalized-open}{0}{\@print{8.22}\quad{}\label{s:generalized-open}Generalized open statements{}}
+\new@anchor@label{sec283}{s:generalized-open}{{8.22}{X}}
+\@deflabeltype{s:generalized-open}{section}
+\@@addtocsec{htoc}{s:binding-operators}{0}{\@print{8.23}\quad{}\label{s:binding-operators}Binding operators{}}
+\new@anchor@label{sec284}{s:binding-operators}{{8.23}{X}}
+\@deflabeltype{s:binding-operators}{section}
+\stx@exists{let-operator}\stx@exists{and-operator}\@@addtocsec{htoc}{ss:letops-rationale}{1}{\@print{8.23.1}\quad{}\label{ss:letops-rationale}Rationale{}}
+\new@anchor@label{sec285}{ss:letops-rationale}{{8.23.1}{X}}
+\@deflabeltype{ss:letops-rationale}{subsection}
+\@@addtocsec{htoc}{sec286}{-2}{\@print{Part III}\quad{}The OCaml tools{}}
+\newlabel{p:commands}{{III}{X}}
+\@deflabeltype{p:commands}{part}
+\@@addtocsec{htoc}{sec287}{-1}{\@print{Chapter 9}\quad{}Batch compilation (ocamlc){}}
+\newlabel{c:camlc}{{9}{X}}
+\@deflabeltype{c:camlc}{chapter}
+\@@addtocsec{htoc}{s:comp-overview}{0}{\@print{9.1}\quad{}\label{s:comp-overview}Overview of the compiler{}}
+\new@anchor@label{sec288}{s:comp-overview}{{9.1}{X}}
+\@deflabeltype{s:comp-overview}{section}
+\@@addtocsec{htoc}{s:comp-options}{0}{\@print{9.2}\quad{}\label{s:comp-options}Options{}}
+\new@anchor@label{sec289}{s:comp-options}{{9.2}{X}}
+\@deflabeltype{s:comp-options}{section}
+\@@addtocsec{htoc}{s:modules-file-system}{0}{\@print{9.3}\quad{}\label{s:modules-file-system}Modules and the file system{}}
+\new@anchor@label{sec291}{s:modules-file-system}{{9.3}{X}}
+\@deflabeltype{s:modules-file-system}{section}
+\@@addtocsec{htoc}{s:comp-errors}{0}{\@print{9.4}\quad{}\label{s:comp-errors}Common errors{}}
+\new@anchor@label{sec292}{s:comp-errors}{{9.4}{X}}
+\@deflabeltype{s:comp-errors}{section}
+\@@addtocsec{htoc}{s:comp-warnings}{0}{\@print{9.5}\quad{}\label{s:comp-warnings}Warning reference{}}
+\new@anchor@label{sec293}{s:comp-warnings}{{9.5}{X}}
+\@deflabeltype{s:comp-warnings}{section}
+\@@addtocsec{htoc}{ss:warn9}{1}{\@print{9.5.1}\quad{}\label{ss:warn9}Warning 9: missing fields in a record pattern{}}
+\new@anchor@label{sec294}{ss:warn9}{{9.5.1}{X}}
+\@deflabeltype{ss:warn9}{subsection}
+\@@addtocsec{htoc}{ss:warn52}{1}{\@print{9.5.2}\quad{}\label{ss:warn52}Warning 52: fragile constant pattern{}}
+\new@anchor@label{sec295}{ss:warn52}{{9.5.2}{X}}
+\@deflabeltype{ss:warn52}{subsection}
+\@@addtocsec{htoc}{ss:warn57}{1}{\@print{9.5.3}\quad{}\label{ss:warn57}Warning 57: Ambiguous or-pattern variables under guard{}}
+\new@anchor@label{sec296}{ss:warn57}{{9.5.3}{X}}
+\@deflabeltype{ss:warn57}{subsection}
+\@@addtocsec{htoc}{sec297}{-1}{\@print{Chapter 10}\quad{}The toplevel system or REPL (ocaml){}}
+\newlabel{c:camllight}{{10}{X}}
+\@deflabeltype{c:camllight}{chapter}
+\stx@exists{toplevel-input}\stx@exists{directive-argument}\@@addtocsec{htoc}{s:toplevel-options}{0}{\@print{10.1}\quad{}\label{s:toplevel-options}Options{}}
+\new@anchor@label{sec298}{s:toplevel-options}{{10.1}{X}}
+\@deflabeltype{s:toplevel-options}{section}
+\@@addtocsec{htoc}{s:toplevel-directives}{0}{\@print{10.2}\quad{}\label{s:toplevel-directives}Toplevel directives{}}
+\new@anchor@label{sec299}{s:toplevel-directives}{{10.2}{X}}
+\@deflabeltype{s:toplevel-directives}{section}
+\@@addtocsec{htoc}{s:toplevel-modules}{0}{\@print{10.3}\quad{}\label{s:toplevel-modules}The toplevel and the module system{}}
+\new@anchor@label{sec300}{s:toplevel-modules}{{10.3}{X}}
+\@deflabeltype{s:toplevel-modules}{section}
+\@@addtocsec{htoc}{s:toplevel-common-errors}{0}{\@print{10.4}\quad{}\label{s:toplevel-common-errors}Common errors{}}
+\new@anchor@label{sec301}{s:toplevel-common-errors}{{10.4}{X}}
+\@deflabeltype{s:toplevel-common-errors}{section}
+\@@addtocsec{htoc}{s:custom-toplevel}{0}{\@print{10.5}\quad{}\label{s:custom-toplevel}Building custom toplevel systems: \texttt{ocamlmktop}{}}
+\new@anchor@label{sec302}{s:custom-toplevel}{{10.5}{X}}
+\@deflabeltype{s:custom-toplevel}{section}
+\@@addtocsec{htoc}{ss:ocamlmktop-options}{1}{\@print{10.5.1}\quad{}\label{ss:ocamlmktop-options}Options{}}
+\new@anchor@label{sec303}{ss:ocamlmktop-options}{{10.5.1}{X}}
+\@deflabeltype{ss:ocamlmktop-options}{subsection}
+\@@addtocsec{htoc}{s:ocamlnat}{0}{\@print{10.6}\quad{}\label{s:ocamlnat}The native toplevel: \texttt{ocamlnat}\ (experimental){}}
+\new@anchor@label{sec304}{s:ocamlnat}{{10.6}{X}}
+\@deflabeltype{s:ocamlnat}{section}
+\@@addtocsec{htoc}{sec305}{-1}{\@print{Chapter 11}\quad{}The runtime system (ocamlrun){}}
+\newlabel{c:runtime}{{11}{X}}
+\@deflabeltype{c:runtime}{chapter}
+\@@addtocsec{htoc}{s:ocamlrun-overview}{0}{\@print{11.1}\quad{}\label{s:ocamlrun-overview}Overview{}}
+\new@anchor@label{sec306}{s:ocamlrun-overview}{{11.1}{X}}
+\@deflabeltype{s:ocamlrun-overview}{section}
+\@@addtocsec{htoc}{s:ocamlrun-options}{0}{\@print{11.2}\quad{}\label{s:ocamlrun-options}Options{}}
+\new@anchor@label{sec307}{s:ocamlrun-options}{{11.2}{X}}
+\@deflabeltype{s:ocamlrun-options}{section}
+\@@addtocsec{htoc}{s:ocamlrun-dllpath}{0}{\@print{11.3}\quad{}\label{s:ocamlrun-dllpath}Dynamic loading of shared libraries{}}
+\new@anchor@label{sec308}{s:ocamlrun-dllpath}{{11.3}{X}}
+\@deflabeltype{s:ocamlrun-dllpath}{section}
+\@@addtocsec{htoc}{s:ocamlrun-common-errors}{0}{\@print{11.4}\quad{}\label{s:ocamlrun-common-errors}Common errors{}}
+\new@anchor@label{sec309}{s:ocamlrun-common-errors}{{11.4}{X}}
+\@deflabeltype{s:ocamlrun-common-errors}{section}
+\@@addtocsec{htoc}{sec310}{-1}{\@print{Chapter 12}\quad{}Native-code compilation (ocamlopt){}}
+\newlabel{c:nativecomp}{{12}{X}}
+\@deflabeltype{c:nativecomp}{chapter}
+\@@addtocsec{htoc}{s:native-overview}{0}{\@print{12.1}\quad{}\label{s:native-overview}Overview of the compiler{}}
+\new@anchor@label{sec311}{s:native-overview}{{12.1}{X}}
+\@deflabeltype{s:native-overview}{section}
+\@@addtocsec{htoc}{s:native-options}{0}{\@print{12.2}\quad{}\label{s:native-options}Options{}}
+\new@anchor@label{sec312}{s:native-options}{{12.2}{X}}
+\@deflabeltype{s:native-options}{section}
+\@@addtocsec{htoc}{s:native-common-errors}{0}{\@print{12.3}\quad{}\label{s:native-common-errors}Common errors{}}
+\new@anchor@label{sec316}{s:native-common-errors}{{12.3}{X}}
+\@deflabeltype{s:native-common-errors}{section}
+\@@addtocsec{htoc}{s:native:running-executable}{0}{\@print{12.4}\quad{}\label{s:native:running-executable}Running executables produced by ocamlopt{}}
+\new@anchor@label{sec317}{s:native:running-executable}{{12.4}{X}}
+\@deflabeltype{s:native:running-executable}{section}
+\@@addtocsec{htoc}{s:compat-native-bytecode}{0}{\@print{12.5}\quad{}\label{s:compat-native-bytecode}Compatibility with the bytecode compiler{}}
+\new@anchor@label{sec318}{s:compat-native-bytecode}{{12.5}{X}}
+\@deflabeltype{s:compat-native-bytecode}{section}
+\@@addtocsec{htoc}{sec319}{-1}{\@print{Chapter 13}\quad{}Lexer and parser generators (ocamllex, ocamlyacc){}}
+\newlabel{c:ocamlyacc}{{13}{X}}
+\@deflabeltype{c:ocamlyacc}{chapter}
+\@@addtocsec{htoc}{s:ocamllex-overview}{0}{\@print{13.1}\quad{}\label{s:ocamllex-overview}Overview of \texttt{ocamllex}{}}
+\new@anchor@label{sec320}{s:ocamllex-overview}{{13.1}{X}}
+\@deflabeltype{s:ocamllex-overview}{section}
+\@@addtocsec{htoc}{ss:ocamllex-options}{1}{\@print{13.1.1}\quad{}\label{ss:ocamllex-options}Options{}}
+\new@anchor@label{sec321}{ss:ocamllex-options}{{13.1.1}{X}}
+\@deflabeltype{ss:ocamllex-options}{subsection}
+\@@addtocsec{htoc}{s:ocamllex-syntax}{0}{\@print{13.2}\quad{}\label{s:ocamllex-syntax}Syntax of lexer definitions{}}
+\new@anchor@label{sec322}{s:ocamllex-syntax}{{13.2}{X}}
+\@deflabeltype{s:ocamllex-syntax}{section}
+\@@addtocsec{htoc}{ss:ocamllex-header-trailer}{1}{\@print{13.2.1}\quad{}\label{ss:ocamllex-header-trailer}Header and trailer{}}
+\new@anchor@label{sec323}{ss:ocamllex-header-trailer}{{13.2.1}{X}}
+\@deflabeltype{ss:ocamllex-header-trailer}{subsection}
+\@@addtocsec{htoc}{ss:ocamllex-named-regexp}{1}{\@print{13.2.2}\quad{}\label{ss:ocamllex-named-regexp}Naming regular expressions{}}
+\new@anchor@label{sec324}{ss:ocamllex-named-regexp}{{13.2.2}{X}}
+\@deflabeltype{ss:ocamllex-named-regexp}{subsection}
+\@@addtocsec{htoc}{ss:ocamllex-entry-points}{1}{\@print{13.2.3}\quad{}\label{ss:ocamllex-entry-points}Entry points{}}
+\new@anchor@label{sec325}{ss:ocamllex-entry-points}{{13.2.3}{X}}
+\@deflabeltype{ss:ocamllex-entry-points}{subsection}
+\@@addtocsec{htoc}{ss:ocamllex-regexp}{1}{\@print{13.2.4}\quad{}\label{ss:ocamllex-regexp}Regular expressions{}}
+\new@anchor@label{sec326}{ss:ocamllex-regexp}{{13.2.4}{X}}
+\@deflabeltype{ss:ocamllex-regexp}{subsection}
+\stx@exists{regexp}\@@addtocsec{htoc}{ss:ocamllex-actions}{1}{\@print{13.2.5}\quad{}\label{ss:ocamllex-actions}Actions{}}
+\new@anchor@label{sec327}{ss:ocamllex-actions}{{13.2.5}{X}}
+\@deflabeltype{ss:ocamllex-actions}{subsection}
+\@@addtocsec{htoc}{ss:ocamllex-variables}{1}{\@print{13.2.6}\quad{}\label{ss:ocamllex-variables}Variables in regular expressions{}}
+\new@anchor@label{sec328}{ss:ocamllex-variables}{{13.2.6}{X}}
+\@deflabeltype{ss:ocamllex-variables}{subsection}
+\@@addtocsec{htoc}{ss:refill-handlers}{1}{\@print{13.2.7}\quad{}\label{ss:refill-handlers}Refill handlers{}}
+\new@anchor@label{sec329}{ss:refill-handlers}{{13.2.7}{X}}
+\@deflabeltype{ss:refill-handlers}{subsection}
+\@@addtocsec{htoc}{ss:ocamllex-reserved-ident}{1}{\@print{13.2.8}\quad{}\label{ss:ocamllex-reserved-ident}Reserved identifiers{}}
+\new@anchor@label{sec330}{ss:ocamllex-reserved-ident}{{13.2.8}{X}}
+\@deflabeltype{ss:ocamllex-reserved-ident}{subsection}
+\@@addtocsec{htoc}{s:ocamlyacc-overview}{0}{\@print{13.3}\quad{}\label{s:ocamlyacc-overview}Overview of \texttt{ocamlyacc}{}}
+\new@anchor@label{sec331}{s:ocamlyacc-overview}{{13.3}{X}}
+\@deflabeltype{s:ocamlyacc-overview}{section}
+\@@addtocsec{htoc}{s:ocamlyacc-syntax}{0}{\@print{13.4}\quad{}\label{s:ocamlyacc-syntax}Syntax of grammar definitions{}}
+\new@anchor@label{sec332}{s:ocamlyacc-syntax}{{13.4}{X}}
+\@deflabeltype{s:ocamlyacc-syntax}{section}
+\@@addtocsec{htoc}{ss:ocamlyacc-header-trailer}{1}{\@print{13.4.1}\quad{}\label{ss:ocamlyacc-header-trailer}Header and trailer{}}
+\new@anchor@label{sec333}{ss:ocamlyacc-header-trailer}{{13.4.1}{X}}
+\@deflabeltype{ss:ocamlyacc-header-trailer}{subsection}
+\@@addtocsec{htoc}{ss:ocamlyacc-declarations}{1}{\@print{13.4.2}\quad{}\label{ss:ocamlyacc-declarations}Declarations{}}
+\new@anchor@label{sec334}{ss:ocamlyacc-declarations}{{13.4.2}{X}}
+\@deflabeltype{ss:ocamlyacc-declarations}{subsection}
+\@@addtocsec{htoc}{ss:ocamlyacc-rules}{1}{\@print{13.4.3}\quad{}\label{ss:ocamlyacc-rules}Rules{}}
+\new@anchor@label{sec335}{ss:ocamlyacc-rules}{{13.4.3}{X}}
+\@deflabeltype{ss:ocamlyacc-rules}{subsection}
+\@@addtocsec{htoc}{ss:ocamlyacc-error-handling}{1}{\@print{13.4.4}\quad{}\label{ss:ocamlyacc-error-handling}Error handling{}}
+\new@anchor@label{sec336}{ss:ocamlyacc-error-handling}{{13.4.4}{X}}
+\@deflabeltype{ss:ocamlyacc-error-handling}{subsection}
+\@@addtocsec{htoc}{s:ocamlyacc-options}{0}{\@print{13.5}\quad{}\label{s:ocamlyacc-options}Options{}}
+\new@anchor@label{sec337}{s:ocamlyacc-options}{{13.5}{X}}
+\@deflabeltype{s:ocamlyacc-options}{section}
+\@@addtocsec{htoc}{s:lexyacc-example}{0}{\@print{13.6}\quad{}\label{s:lexyacc-example}A complete example{}}
+\new@anchor@label{sec338}{s:lexyacc-example}{{13.6}{X}}
+\@deflabeltype{s:lexyacc-example}{section}
+\@@addtocsec{htoc}{s:lexyacc-common-errors}{0}{\@print{13.7}\quad{}\label{s:lexyacc-common-errors}Common errors{}}
+\new@anchor@label{sec339}{s:lexyacc-common-errors}{{13.7}{X}}
+\@deflabeltype{s:lexyacc-common-errors}{section}
+\@@addtocsec{htoc}{sec340}{-1}{\@print{Chapter 14}\quad{}Dependency generator (ocamldep){}}
+\newlabel{c:camldep}{{14}{X}}
+\@deflabeltype{c:camldep}{chapter}
+\@@addtocsec{htoc}{s:ocamldep-options}{0}{\@print{14.1}\quad{}\label{s:ocamldep-options}Options{}}
+\new@anchor@label{sec341}{s:ocamldep-options}{{14.1}{X}}
+\@deflabeltype{s:ocamldep-options}{section}
+\@@addtocsec{htoc}{s:ocamldep-makefile}{0}{\@print{14.2}\quad{}\label{s:ocamldep-makefile}A typical Makefile{}}
+\new@anchor@label{sec342}{s:ocamldep-makefile}{{14.2}{X}}
+\@deflabeltype{s:ocamldep-makefile}{section}
+\@@addtocsec{htoc}{sec343}{-1}{\@print{Chapter 15}\quad{}The browser/editor (ocamlbrowser){}}
+\newlabel{c:browser}{{15}{X}}
+\@deflabeltype{c:browser}{chapter}
+\@@addtocsec{htoc}{sec344}{-1}{\@print{Chapter 16}\quad{}The documentation generator (ocamldoc){}}
+\newlabel{c:ocamldoc}{{16}{X}}
+\@deflabeltype{c:ocamldoc}{chapter}
+\@@addtocsec{htoc}{s:ocamldoc-usage}{0}{\@print{16.1}\quad{}\label{s:ocamldoc-usage}Usage{}}
+\new@anchor@label{sec345}{s:ocamldoc-usage}{{16.1}{X}}
+\@deflabeltype{s:ocamldoc-usage}{section}
+\@@addtocsec{htoc}{ss:ocamldoc-invocation}{1}{\@print{16.1.1}\quad{}\label{ss:ocamldoc-invocation}Invocation{}}
+\new@anchor@label{sec346}{ss:ocamldoc-invocation}{{16.1.1}{X}}
+\@deflabeltype{ss:ocamldoc-invocation}{subsection}
+\new@anchor@label{sec347}{sss:ocamldoc-output}{{16.1.1}{X}}
+\@deflabeltype{sss:ocamldoc-output}{subsection}
+\new@anchor@label{sec348}{sss:ocamldoc-options}{{16.1.1}{X}}
+\@deflabeltype{sss:ocamldoc-options}{subsection}
+\new@anchor@label{sec349}{sss:ocamldoc-type-checking}{{16.1.1}{X}}
+\@deflabeltype{sss:ocamldoc-type-checking}{subsection}
+\new@anchor@label{sec350}{sss:ocamldoc-html}{{16.1.1}{X}}
+\@deflabeltype{sss:ocamldoc-html}{subsection}
+\new@anchor@label{sec351}{sss:ocamldoc-latex}{{16.1.1}{X}}
+\@deflabeltype{sss:ocamldoc-latex}{subsection}
+\new@anchor@label{sec352}{sss:ocamldoc-info}{{16.1.1}{X}}
+\@deflabeltype{sss:ocamldoc-info}{subsection}
+\new@anchor@label{sec353}{sss:ocamldoc-dot}{{16.1.1}{X}}
+\@deflabeltype{sss:ocamldoc-dot}{subsection}
+\new@anchor@label{sec354}{sss:ocamldoc-man}{{16.1.1}{X}}
+\@deflabeltype{sss:ocamldoc-man}{subsection}
+\@@addtocsec{htoc}{ss:ocamldoc-merge}{1}{\@print{16.1.2}\quad{}\label{ss:ocamldoc-merge}Merging of module information{}}
+\new@anchor@label{sec355}{ss:ocamldoc-merge}{{16.1.2}{X}}
+\@deflabeltype{ss:ocamldoc-merge}{subsection}
+\@@addtocsec{htoc}{ss:ocamldoc-rules}{1}{\@print{16.1.3}\quad{}\label{ss:ocamldoc-rules}Coding rules{}}
+\new@anchor@label{sec356}{ss:ocamldoc-rules}{{16.1.3}{X}}
+\@deflabeltype{ss:ocamldoc-rules}{subsection}
+\@@addtocsec{htoc}{s:ocamldoc-comments}{0}{\@print{16.2}\quad{}\label{s:ocamldoc-comments}Syntax of documentation comments{}}
+\new@anchor@label{sec357}{s:ocamldoc-comments}{{16.2}{X}}
+\@deflabeltype{s:ocamldoc-comments}{section}
+\@@addtocsec{htoc}{ss:ocamldoc-placement}{1}{\@print{16.2.1}\quad{}\label{ss:ocamldoc-placement}Placement of documentation comments{}}
+\new@anchor@label{sec358}{ss:ocamldoc-placement}{{16.2.1}{X}}
+\@deflabeltype{ss:ocamldoc-placement}{subsection}
+\new@anchor@label{sec359}{sss:ocamldoc-mli}{{16.2.1}{X}}
+\@deflabeltype{sss:ocamldoc-mli}{subsection}
+\new@anchor@label{sec360}{sss:ocamldoc-comments-ml}{{16.2.1}{X}}
+\@deflabeltype{sss:ocamldoc-comments-ml}{subsection}
+\@@addtocsec{htoc}{ss:ocamldoc-stop}{1}{\@print{16.2.2}\quad{}\label{ss:ocamldoc-stop}The Stop special comment{}}
+\new@anchor@label{sec361}{ss:ocamldoc-stop}{{16.2.2}{X}}
+\@deflabeltype{ss:ocamldoc-stop}{subsection}
+\@@addtocsec{htoc}{ss:ocamldoc-syntax}{1}{\@print{16.2.3}\quad{}\label{ss:ocamldoc-syntax}Syntax of documentation comments{}}
+\new@anchor@label{sec362}{ss:ocamldoc-syntax}{{16.2.3}{X}}
+\@deflabeltype{ss:ocamldoc-syntax}{subsection}
+\@@addtocsec{htoc}{ss:ocamldoc-formatting}{1}{\@print{16.2.4}\quad{}\label{ss:ocamldoc-formatting}Text formatting{}}
+\new@anchor@label{sec363}{ss:ocamldoc-formatting}{{16.2.4}{X}}
+\@deflabeltype{ss:ocamldoc-formatting}{subsection}
+\stx@exists{text}\stx@exists{text-element}\new@anchor@label{sec364}{sss:ocamldoc-list}{{16.2.4.1}{X}}
+\@deflabeltype{sss:ocamldoc-list}{subsubsection}
+\stx@exists{list}\new@anchor@label{sec365}{sss:ocamldoc-crossref}{{16.2.4.2}{X}}
+\@deflabeltype{sss:ocamldoc-crossref}{subsubsection}
+\new@anchor@label{sec366}{sss:ocamldoc-preamble}{{16.2.4.3}{X}}
+\@deflabeltype{sss:ocamldoc-preamble}{subsubsection}
+\new@anchor@label{sec367}{sss:ocamldoc-target-specific-syntax}{{16.2.4.4}{X}}
+\@deflabeltype{sss:ocamldoc-target-specific-syntax}{subsubsection}
+\new@anchor@label{sec368}{sss:ocamldoc-html-tags}{{16.2.4.5}{X}}
+\@deflabeltype{sss:ocamldoc-html-tags}{subsubsection}
+\@@addtocsec{htoc}{ss:ocamldoc-tags}{1}{\@print{16.2.5}\quad{}\label{ss:ocamldoc-tags}Documentation tags (@-tags){}}
+\new@anchor@label{sec369}{ss:ocamldoc-tags}{{16.2.5}{X}}
+\@deflabeltype{ss:ocamldoc-tags}{subsection}
+\new@anchor@label{sec370}{sss:ocamldoc-builtin-tags}{{16.2.5}{X}}
+\@deflabeltype{sss:ocamldoc-builtin-tags}{subsection}
+\new@anchor@label{sec371}{sss:ocamldoc-custom-tags}{{16.2.5}{X}}
+\@deflabeltype{sss:ocamldoc-custom-tags}{subsection}
+\@@addtocsec{htoc}{s:ocamldoc-custom-generators}{0}{\@print{16.3}\quad{}\label{s:ocamldoc-custom-generators}Custom generators{}}
+\new@anchor@label{sec372}{s:ocamldoc-custom-generators}{{16.3}{X}}
+\@deflabeltype{s:ocamldoc-custom-generators}{section}
+\@@addtocsec{htoc}{ss:ocamldoc-generators}{1}{\@print{16.3.1}\quad{}\label{ss:ocamldoc-generators}The generator modules{}}
+\new@anchor@label{sec373}{ss:ocamldoc-generators}{{16.3.1}{X}}
+\@deflabeltype{ss:ocamldoc-generators}{subsection}
+\@@addtocsec{htoc}{ss:ocamldoc-handling-custom-tags}{1}{\@print{16.3.2}\quad{}\label{ss:ocamldoc-handling-custom-tags}Handling custom tags{}}
+\new@anchor@label{sec374}{ss:ocamldoc-handling-custom-tags}{{16.3.2}{X}}
+\@deflabeltype{ss:ocamldoc-handling-custom-tags}{subsection}
+\new@anchor@label{sec375}{sss:ocamldoc-html-generator}{{16.3.2}{X}}
+\@deflabeltype{sss:ocamldoc-html-generator}{subsection}
+\new@anchor@label{sec376}{sss:ocamldoc-other-generators}{{16.3.2}{X}}
+\@deflabeltype{sss:ocamldoc-other-generators}{subsection}
+\@@addtocsec{htoc}{s:ocamldoc-adding-flags}{0}{\@print{16.4}\quad{}\label{s:ocamldoc-adding-flags}Adding command line options{}}
+\new@anchor@label{sec377}{s:ocamldoc-adding-flags}{{16.4}{X}}
+\@deflabeltype{s:ocamldoc-adding-flags}{section}
+\@@addtocsec{htoc}{ss:ocamldoc-compilation-and-usage}{1}{\@print{16.4.1}\quad{}\label{ss:ocamldoc-compilation-and-usage}Compilation and usage{}}
+\new@anchor@label{sec378}{ss:ocamldoc-compilation-and-usage}{{16.4.1}{X}}
+\@deflabeltype{ss:ocamldoc-compilation-and-usage}{subsection}
+\new@anchor@label{sec379}{sss:ocamldoc-generator-class}{{16.4.1}{X}}
+\@deflabeltype{sss:ocamldoc-generator-class}{subsection}
+\new@anchor@label{sec380}{sss:ocamldoc-modular-generator}{{16.4.1}{X}}
+\@deflabeltype{sss:ocamldoc-modular-generator}{subsection}
+\@@addtocsec{htoc}{sec381}{-1}{\@print{Chapter 17}\quad{}The debugger (ocamldebug){}}
+\newlabel{c:debugger}{{17}{X}}
+\@deflabeltype{c:debugger}{chapter}
+\@@addtocsec{htoc}{s:debugger-compilation}{0}{\@print{17.1}\quad{}\label{s:debugger-compilation}Compiling for debugging{}}
+\new@anchor@label{sec382}{s:debugger-compilation}{{17.1}{X}}
+\@deflabeltype{s:debugger-compilation}{section}
+\@@addtocsec{htoc}{s:debugger-invocation}{0}{\@print{17.2}\quad{}\label{s:debugger-invocation}Invocation{}}
+\new@anchor@label{sec383}{s:debugger-invocation}{{17.2}{X}}
+\@deflabeltype{s:debugger-invocation}{section}
+\@@addtocsec{htoc}{ss:debugger-start}{1}{\@print{17.2.1}\quad{}\label{ss:debugger-start}Starting the debugger{}}
+\new@anchor@label{sec384}{ss:debugger-start}{{17.2.1}{X}}
+\@deflabeltype{ss:debugger-start}{subsection}
+\@@addtocsec{htoc}{ss:debugger-init-file}{1}{\@print{17.2.2}\quad{}\label{ss:debugger-init-file}Initialization file{}}
+\new@anchor@label{sec385}{ss:debugger-init-file}{{17.2.2}{X}}
+\@deflabeltype{ss:debugger-init-file}{subsection}
+\@@addtocsec{htoc}{ss:debugger-exut}{1}{\@print{17.2.3}\quad{}\label{ss:debugger-exut}Exiting the debugger{}}
+\new@anchor@label{sec386}{ss:debugger-exut}{{17.2.3}{X}}
+\@deflabeltype{ss:debugger-exut}{subsection}
+\@@addtocsec{htoc}{s:debugger-commands}{0}{\@print{17.3}\quad{}\label{s:debugger-commands}Commands{}}
+\new@anchor@label{sec387}{s:debugger-commands}{{17.3}{X}}
+\@deflabeltype{s:debugger-commands}{section}
+\@@addtocsec{htoc}{ss:debugger-help}{1}{\@print{17.3.1}\quad{}\label{ss:debugger-help}Getting help{}}
+\new@anchor@label{sec388}{ss:debugger-help}{{17.3.1}{X}}
+\@deflabeltype{ss:debugger-help}{subsection}
+\@@addtocsec{htoc}{ss:debugger-state}{1}{\@print{17.3.2}\quad{}\label{ss:debugger-state}Accessing the debugger state{}}
+\new@anchor@label{sec389}{ss:debugger-state}{{17.3.2}{X}}
+\@deflabeltype{ss:debugger-state}{subsection}
+\@@addtocsec{htoc}{s:debugger-execution}{0}{\@print{17.4}\quad{}\label{s:debugger-execution}Executing a program{}}
+\new@anchor@label{sec390}{s:debugger-execution}{{17.4}{X}}
+\@deflabeltype{s:debugger-execution}{section}
+\@@addtocsec{htoc}{ss:debugger-events}{1}{\@print{17.4.1}\quad{}\label{ss:debugger-events}Events{}}
+\new@anchor@label{sec391}{ss:debugger-events}{{17.4.1}{X}}
+\@deflabeltype{ss:debugger-events}{subsection}
+\@@addtocsec{htoc}{ss:debugger-starting-program}{1}{\@print{17.4.2}\quad{}\label{ss:debugger-starting-program}Starting the debugged program{}}
+\new@anchor@label{sec392}{ss:debugger-starting-program}{{17.4.2}{X}}
+\@deflabeltype{ss:debugger-starting-program}{subsection}
+\@@addtocsec{htoc}{ss:debugger-running}{1}{\@print{17.4.3}\quad{}\label{ss:debugger-running}Running the program{}}
+\new@anchor@label{sec393}{ss:debugger-running}{{17.4.3}{X}}
+\@deflabeltype{ss:debugger-running}{subsection}
+\@@addtocsec{htoc}{ss:debugger-time-travel}{1}{\@print{17.4.4}\quad{}\label{ss:debugger-time-travel}Time travel{}}
+\new@anchor@label{sec394}{ss:debugger-time-travel}{{17.4.4}{X}}
+\@deflabeltype{ss:debugger-time-travel}{subsection}
+\@@addtocsec{htoc}{ss:debugger-kill}{1}{\@print{17.4.5}\quad{}\label{ss:debugger-kill}Killing the program{}}
+\new@anchor@label{sec395}{ss:debugger-kill}{{17.4.5}{X}}
+\@deflabeltype{ss:debugger-kill}{subsection}
+\@@addtocsec{htoc}{s:breakpoints}{0}{\@print{17.5}\quad{}\label{s:breakpoints}Breakpoints{}}
+\new@anchor@label{sec396}{s:breakpoints}{{17.5}{X}}
+\@deflabeltype{s:breakpoints}{section}
+\@@addtocsec{htoc}{s:debugger-callstack}{0}{\@print{17.6}\quad{}\label{s:debugger-callstack}The call stack{}}
+\new@anchor@label{sec397}{s:debugger-callstack}{{17.6}{X}}
+\@deflabeltype{s:debugger-callstack}{section}
+\@@addtocsec{htoc}{s:debugger-examining-values}{0}{\@print{17.7}\quad{}\label{s:debugger-examining-values}Examining variable values{}}
+\new@anchor@label{sec398}{s:debugger-examining-values}{{17.7}{X}}
+\@deflabeltype{s:debugger-examining-values}{section}
+\stx@exists{simple-expr}\@@addtocsec{htoc}{s:debugger-control}{0}{\@print{17.8}\quad{}\label{s:debugger-control}Controlling the debugger{}}
+\new@anchor@label{sec399}{s:debugger-control}{{17.8}{X}}
+\@deflabeltype{s:debugger-control}{section}
+\@@addtocsec{htoc}{ss:debugger-name-and-arguments}{1}{\@print{17.8.1}\quad{}\label{ss:debugger-name-and-arguments}Setting the program name and arguments{}}
+\new@anchor@label{sec400}{ss:debugger-name-and-arguments}{{17.8.1}{X}}
+\@deflabeltype{ss:debugger-name-and-arguments}{subsection}
+\@@addtocsec{htoc}{ss:debugger-loading}{1}{\@print{17.8.2}\quad{}\label{ss:debugger-loading}How programs are loaded{}}
+\new@anchor@label{sec401}{ss:debugger-loading}{{17.8.2}{X}}
+\@deflabeltype{ss:debugger-loading}{subsection}
+\@@addtocsec{htoc}{ss:debugger-search-path}{1}{\@print{17.8.3}\quad{}\label{ss:debugger-search-path}Search path for files{}}
+\new@anchor@label{sec402}{ss:debugger-search-path}{{17.8.3}{X}}
+\@deflabeltype{ss:debugger-search-path}{subsection}
+\@@addtocsec{htoc}{ss:debugger-working-dir}{1}{\@print{17.8.4}\quad{}\label{ss:debugger-working-dir}Working directory{}}
+\new@anchor@label{sec403}{ss:debugger-working-dir}{{17.8.4}{X}}
+\@deflabeltype{ss:debugger-working-dir}{subsection}
+\@@addtocsec{htoc}{ss:debugger-reverse-execution}{1}{\@print{17.8.5}\quad{}\label{ss:debugger-reverse-execution}Turning reverse execution on and off{}}
+\new@anchor@label{sec404}{ss:debugger-reverse-execution}{{17.8.5}{X}}
+\@deflabeltype{ss:debugger-reverse-execution}{subsection}
+\@@addtocsec{htoc}{ss:debugger-fork}{1}{\@print{17.8.6}\quad{}\label{ss:debugger-fork}Behavior of the debugger with respect to {\machine{fork}}{}}
+\new@anchor@label{sec405}{ss:debugger-fork}{{17.8.6}{X}}
+\@deflabeltype{ss:debugger-fork}{subsection}
+\@@addtocsec{htoc}{ss:debugger-stop-at-new-load}{1}{\@print{17.8.7}\quad{}\label{ss:debugger-stop-at-new-load}Stopping execution when new code is loaded{}}
+\new@anchor@label{sec406}{ss:debugger-stop-at-new-load}{{17.8.7}{X}}
+\@deflabeltype{ss:debugger-stop-at-new-load}{subsection}
+\@@addtocsec{htoc}{ss:debugger-communication}{1}{\@print{17.8.8}\quad{}\label{ss:debugger-communication}Communication between the debugger and the program{}}
+\new@anchor@label{sec407}{ss:debugger-communication}{{17.8.8}{X}}
+\@deflabeltype{ss:debugger-communication}{subsection}
+\@@addtocsec{htoc}{ss:debugger-fine-tuning}{1}{\@print{17.8.9}\quad{}\label{ss:debugger-fine-tuning}Fine-tuning the debugger{}}
+\new@anchor@label{sec408}{ss:debugger-fine-tuning}{{17.8.9}{X}}
+\@deflabeltype{ss:debugger-fine-tuning}{subsection}
+\@@addtocsec{htoc}{ss:debugger-printers}{1}{\@print{17.8.10}\quad{}\label{ss:debugger-printers}User-defined printers{}}
+\new@anchor@label{sec409}{ss:debugger-printers}{{17.8.10}{X}}
+\@deflabeltype{ss:debugger-printers}{subsection}
+\@@addtocsec{htoc}{s:debugger-misc-cmds}{0}{\@print{17.9}\quad{}\label{s:debugger-misc-cmds}Miscellaneous commands{}}
+\new@anchor@label{sec410}{s:debugger-misc-cmds}{{17.9}{X}}
+\@deflabeltype{s:debugger-misc-cmds}{section}
+\@@addtocsec{htoc}{s:inf-debugger}{0}{\@print{17.10}\quad{}\label{s:inf-debugger}Running the debugger under Emacs{}}
+\new@anchor@label{sec411}{s:inf-debugger}{{17.10}{X}}
+\@deflabeltype{s:inf-debugger}{section}
+\@@addtocsec{htoc}{sec412}{-1}{\@print{Chapter 18}\quad{}Profiling (ocamlprof){}}
+\newlabel{c:profiler}{{18}{X}}
+\@deflabeltype{c:profiler}{chapter}
+\@@addtocsec{htoc}{s:ocamlprof-compiling}{0}{\@print{18.1}\quad{}\label{s:ocamlprof-compiling}Compiling for profiling{}}
+\new@anchor@label{sec413}{s:ocamlprof-compiling}{{18.1}{X}}
+\@deflabeltype{s:ocamlprof-compiling}{section}
+\new@anchor@label{sec414}{p:ocamlprof-warning}{{18.1}{X}}
+\@deflabeltype{p:ocamlprof-warning}{section}
+\new@anchor@label{sec415}{p:ocamlprof-reserved}{{18.1}{X}}
+\@deflabeltype{p:ocamlprof-reserved}{section}
+\@@addtocsec{htoc}{s:ocamlprof-profiling}{0}{\@print{18.2}\quad{}\label{s:ocamlprof-profiling}Profiling an execution{}}
+\new@anchor@label{sec417}{s:ocamlprof-profiling}{{18.2}{X}}
+\@deflabeltype{s:ocamlprof-profiling}{section}
+\@@addtocsec{htoc}{s:ocamlprof-printing}{0}{\@print{18.3}\quad{}\label{s:ocamlprof-printing}Printing profiling information{}}
+\new@anchor@label{sec418}{s:ocamlprof-printing}{{18.3}{X}}
+\@deflabeltype{s:ocamlprof-printing}{section}
+\@@addtocsec{htoc}{s:ocamlprof-time-profiling}{0}{\@print{18.4}\quad{}\label{s:ocamlprof-time-profiling}Time profiling{}}
+\new@anchor@label{sec419}{s:ocamlprof-time-profiling}{{18.4}{X}}
+\@deflabeltype{s:ocamlprof-time-profiling}{section}
+\@@addtocsec{htoc}{sec420}{-1}{\@print{Chapter 19}\quad{}The ocamlbuild compilation manager{}}
+\newlabel{c:ocamlbuild}{{19}{X}}
+\@deflabeltype{c:ocamlbuild}{chapter}
+\@@addtocsec{htoc}{c:intf-c}{-1}{\@print{Chapter 20}\quad{}Interfacing\label{c:intf-c} C with OCaml{}}
+\new@anchor@label{sec421}{c:intf-c}{{20}{X}}
+\@deflabeltype{c:intf-c}{chapter}
+\@@addtocsec{htoc}{s:c-overview}{0}{\@print{20.1}\quad{}\label{s:c-overview}Overview and compilation information{}}
+\new@anchor@label{sec422}{s:c-overview}{{20.1}{X}}
+\@deflabeltype{s:c-overview}{section}
+\@@addtocsec{htoc}{ss:c-prim-decl}{1}{\@print{20.1.1}\quad{}\label{ss:c-prim-decl}Declaring primitives{}}
+\new@anchor@label{sec423}{ss:c-prim-decl}{{20.1.1}{X}}
+\@deflabeltype{ss:c-prim-decl}{subsection}
+\stx@exists{external-declaration}\@@addtocsec{htoc}{ss:c-prim-impl}{1}{\@print{20.1.2}\quad{}\label{ss:c-prim-impl}Implementing primitives{}}
+\new@anchor@label{sec424}{ss:c-prim-impl}{{20.1.2}{X}}
+\@deflabeltype{ss:c-prim-impl}{subsection}
+\@@addtocsec{htoc}{ss:staticlink-c-code}{1}{\@print{20.1.3}\quad{}\label{ss:staticlink-c-code}Statically linking C code with OCaml code{}}
+\new@anchor@label{sec425}{ss:staticlink-c-code}{{20.1.3}{X}}
+\@deflabeltype{ss:staticlink-c-code}{subsection}
+\@@addtocsec{htoc}{ss:dynlink-c-code}{1}{\@print{20.1.4}\quad{}\label{ss:dynlink-c-code}Dynamically linking C code with OCaml code{}}
+\new@anchor@label{sec426}{ss:dynlink-c-code}{{20.1.4}{X}}
+\@deflabeltype{ss:dynlink-c-code}{subsection}
+\@@addtocsec{htoc}{ss:c-static-vs-dynamic}{1}{\@print{20.1.5}\quad{}\label{ss:c-static-vs-dynamic}Choosing between static linking and dynamic linking{}}
+\new@anchor@label{sec427}{ss:c-static-vs-dynamic}{{20.1.5}{X}}
+\@deflabeltype{ss:c-static-vs-dynamic}{subsection}
+\@@addtocsec{htoc}{ss:custom-runtime}{1}{\@print{20.1.6}\quad{}\label{ss:custom-runtime}Building standalone custom runtime systems{}}
+\new@anchor@label{sec428}{ss:custom-runtime}{{20.1.6}{X}}
+\@deflabeltype{ss:custom-runtime}{subsection}
+\@@addtocsec{htoc}{s:c-value}{0}{\@print{20.2}\quad{}\label{s:c-value}The \texttt{value} type{}}
+\new@anchor@label{sec429}{s:c-value}{{20.2}{X}}
+\@deflabeltype{s:c-value}{section}
+\@@addtocsec{htoc}{ss:c-int}{1}{\@print{20.2.1}\quad{}\label{ss:c-int}Integer values{}}
+\new@anchor@label{sec430}{ss:c-int}{{20.2.1}{X}}
+\@deflabeltype{ss:c-int}{subsection}
+\@@addtocsec{htoc}{ss:c-blocks}{1}{\@print{20.2.2}\quad{}\label{ss:c-blocks}Blocks{}}
+\new@anchor@label{sec431}{ss:c-blocks}{{20.2.2}{X}}
+\@deflabeltype{ss:c-blocks}{subsection}
+\@@addtocsec{htoc}{ss:c-outside-head}{1}{\@print{20.2.3}\quad{}\label{ss:c-outside-head}Pointers outside the heap{}}
+\new@anchor@label{sec432}{ss:c-outside-head}{{20.2.3}{X}}
+\@deflabeltype{ss:c-outside-head}{subsection}
+\@@addtocsec{htoc}{s:c-ocaml-datatype-repr}{0}{\@print{20.3}\quad{}\label{s:c-ocaml-datatype-repr}Representation of OCaml data types{}}
+\new@anchor@label{sec433}{s:c-ocaml-datatype-repr}{{20.3}{X}}
+\@deflabeltype{s:c-ocaml-datatype-repr}{section}
+\@@addtocsec{htoc}{ss:c-atomic}{1}{\@print{20.3.1}\quad{}\label{ss:c-atomic}Atomic types{}}
+\new@anchor@label{sec434}{ss:c-atomic}{{20.3.1}{X}}
+\@deflabeltype{ss:c-atomic}{subsection}
+\@@addtocsec{htoc}{ss:c-tuples-and-records}{1}{\@print{20.3.2}\quad{}\label{ss:c-tuples-and-records}Tuples and records{}}
+\new@anchor@label{sec435}{ss:c-tuples-and-records}{{20.3.2}{X}}
+\@deflabeltype{ss:c-tuples-and-records}{subsection}
+\@@addtocsec{htoc}{ss:c-arrays}{1}{\@print{20.3.3}\quad{}\label{ss:c-arrays}Arrays{}}
+\new@anchor@label{sec436}{ss:c-arrays}{{20.3.3}{X}}
+\@deflabeltype{ss:c-arrays}{subsection}
+\@@addtocsec{htoc}{ss:c-concrete-datatypes}{1}{\@print{20.3.4}\quad{}\label{ss:c-concrete-datatypes}Concrete data types{}}
+\new@anchor@label{sec437}{ss:c-concrete-datatypes}{{20.3.4}{X}}
+\@deflabeltype{ss:c-concrete-datatypes}{subsection}
+\@@addtocsec{htoc}{ss:c-objects}{1}{\@print{20.3.5}\quad{}\label{ss:c-objects}Objects{}}
+\new@anchor@label{sec438}{ss:c-objects}{{20.3.5}{X}}
+\@deflabeltype{ss:c-objects}{subsection}
+\@@addtocsec{htoc}{ss:c-polyvar}{1}{\@print{20.3.6}\quad{}\label{ss:c-polyvar}Polymorphic variants{}}
+\new@anchor@label{sec439}{ss:c-polyvar}{{20.3.6}{X}}
+\@deflabeltype{ss:c-polyvar}{subsection}
+\@@addtocsec{htoc}{s:c-ops-on-values}{0}{\@print{20.4}\quad{}\label{s:c-ops-on-values}Operations on values{}}
+\new@anchor@label{sec440}{s:c-ops-on-values}{{20.4}{X}}
+\@deflabeltype{s:c-ops-on-values}{section}
+\@@addtocsec{htoc}{ss:c-kind-tests}{1}{\@print{20.4.1}\quad{}\label{ss:c-kind-tests}Kind tests{}}
+\new@anchor@label{sec441}{ss:c-kind-tests}{{20.4.1}{X}}
+\@deflabeltype{ss:c-kind-tests}{subsection}
+\@@addtocsec{htoc}{ss:c-int-ops}{1}{\@print{20.4.2}\quad{}\label{ss:c-int-ops}Operations on integers{}}
+\new@anchor@label{sec442}{ss:c-int-ops}{{20.4.2}{X}}
+\@deflabeltype{ss:c-int-ops}{subsection}
+\@@addtocsec{htoc}{ss:c-block-access}{1}{\@print{20.4.3}\quad{}\label{ss:c-block-access}Accessing blocks{}}
+\new@anchor@label{sec443}{ss:c-block-access}{{20.4.3}{X}}
+\@deflabeltype{ss:c-block-access}{subsection}
+\@@addtocsec{htoc}{ss:c-block-allocation}{1}{\@print{20.4.4}\quad{}\label{ss:c-block-allocation}Allocating blocks{}}
+\new@anchor@label{sec444}{ss:c-block-allocation}{{20.4.4}{X}}
+\@deflabeltype{ss:c-block-allocation}{subsection}
+\new@anchor@label{sec445}{sss:c-simple-allocation}{{20.4.4}{X}}
+\@deflabeltype{sss:c-simple-allocation}{subsection}
+\new@anchor@label{sec446}{sss:c-low-level-alloc}{{20.4.4}{X}}
+\@deflabeltype{sss:c-low-level-alloc}{subsection}
+\@@addtocsec{htoc}{ss:c-exceptions}{1}{\@print{20.4.5}\quad{}\label{ss:c-exceptions}Raising exceptions{}}
+\new@anchor@label{sec447}{ss:c-exceptions}{{20.4.5}{X}}
+\@deflabeltype{ss:c-exceptions}{subsection}
+\@@addtocsec{htoc}{s:c-gc-harmony}{0}{\@print{20.5}\quad{}\label{s:c-gc-harmony}Living in harmony with the garbage collector{}}
+\new@anchor@label{sec448}{s:c-gc-harmony}{{20.5}{X}}
+\@deflabeltype{s:c-gc-harmony}{section}
+\@@addtocsec{htoc}{ss:c-simple-gc-harmony}{1}{\@print{20.5.1}\quad{}\label{ss:c-simple-gc-harmony}Simple interface{}}
+\new@anchor@label{sec449}{ss:c-simple-gc-harmony}{{20.5.1}{X}}
+\@deflabeltype{ss:c-simple-gc-harmony}{subsection}
+\@@addtocsec{htoc}{ss:c-low-level-gc-harmony}{1}{\@print{20.5.2}\quad{}\label{ss:c-low-level-gc-harmony}Low-level interface{}}
+\new@anchor@label{sec455}{ss:c-low-level-gc-harmony}{{20.5.2}{X}}
+\@deflabeltype{ss:c-low-level-gc-harmony}{subsection}
+\@@addtocsec{htoc}{ss:c-process-pending-actions}{1}{\@print{20.5.3}\quad{}\label{ss:c-process-pending-actions}Pending actions and asynchronous exceptions{}}
+\new@anchor@label{sec456}{ss:c-process-pending-actions}{{20.5.3}{X}}
+\@deflabeltype{ss:c-process-pending-actions}{subsection}
+\@@addtocsec{htoc}{s:c-intf-example}{0}{\@print{20.6}\quad{}\label{s:c-intf-example}A complete example{}}
+\new@anchor@label{sec457}{s:c-intf-example}{{20.6}{X}}
+\@deflabeltype{s:c-intf-example}{section}
+\@@addtocsec{htoc}{s:c-callback}{0}{\@print{20.7}\quad{}\label{s:c-callback}Advanced topic: callbacks from C to OCaml{}}
+\new@anchor@label{sec458}{s:c-callback}{{20.7}{X}}
+\@deflabeltype{s:c-callback}{section}
+\@@addtocsec{htoc}{ss:c-callbacks}{1}{\@print{20.7.1}\quad{}\label{ss:c-callbacks}Applying OCaml closures from C{}}
+\new@anchor@label{sec459}{ss:c-callbacks}{{20.7.1}{X}}
+\@deflabeltype{ss:c-callbacks}{subsection}
+\@@addtocsec{htoc}{ss:c-closures}{1}{\@print{20.7.2}\quad{}\label{ss:c-closures}Obtaining or registering OCaml closures for use in C functions{}}
+\new@anchor@label{sec461}{ss:c-closures}{{20.7.2}{X}}
+\@deflabeltype{ss:c-closures}{subsection}
+\@@addtocsec{htoc}{ss:c-register-exn}{1}{\@print{20.7.3}\quad{}\label{ss:c-register-exn}Registering OCaml exceptions for use in C functions{}}
+\new@anchor@label{sec462}{ss:c-register-exn}{{20.7.3}{X}}
+\@deflabeltype{ss:c-register-exn}{subsection}
+\@@addtocsec{htoc}{ss:main-c}{1}{\@print{20.7.4}\quad{}\label{ss:main-c}Main program in C{}}
+\new@anchor@label{sec463}{ss:main-c}{{20.7.4}{X}}
+\@deflabeltype{ss:main-c}{subsection}
+\@@addtocsec{htoc}{ss:c-embedded-code}{1}{\@print{20.7.5}\quad{}\label{ss:c-embedded-code}Embedding the OCaml code in the C code{}}
+\new@anchor@label{sec464}{ss:c-embedded-code}{{20.7.5}{X}}
+\@deflabeltype{ss:c-embedded-code}{subsection}
+\@@addtocsec{htoc}{s:c-advexample}{0}{\@print{20.8}\quad{}\label{s:c-advexample}Advanced example with callbacks{}}
+\new@anchor@label{sec468}{s:c-advexample}{{20.8}{X}}
+\@deflabeltype{s:c-advexample}{section}
+\@@addtocsec{htoc}{s:c-custom}{0}{\@print{20.9}\quad{}\label{s:c-custom}Advanced topic: custom blocks{}}
+\new@anchor@label{sec469}{s:c-custom}{{20.9}{X}}
+\@deflabeltype{s:c-custom}{section}
+\@@addtocsec{htoc}{ss:c-custom-ops}{1}{\@print{20.9.1}\quad{}\label{ss:c-custom-ops}The {\machine{struct\ custom{\char95}operations}}{}}
+\new@anchor@label{sec470}{ss:c-custom-ops}{{20.9.1}{X}}
+\@deflabeltype{ss:c-custom-ops}{subsection}
+\@@addtocsec{htoc}{ss:c-custom-alloc}{1}{\@print{20.9.2}\quad{}\label{ss:c-custom-alloc}Allocating custom blocks{}}
+\new@anchor@label{sec471}{ss:c-custom-alloc}{{20.9.2}{X}}
+\@deflabeltype{ss:c-custom-alloc}{subsection}
+\@@addtocsec{htoc}{ss:c-custom-access}{1}{\@print{20.9.3}\quad{}\label{ss:c-custom-access}Accessing custom blocks{}}
+\new@anchor@label{sec472}{ss:c-custom-access}{{20.9.3}{X}}
+\@deflabeltype{ss:c-custom-access}{subsection}
+\@@addtocsec{htoc}{ss:c-custom-serialization}{1}{\@print{20.9.4}\quad{}\label{ss:c-custom-serialization}Writing custom serialization and deserialization functions{}}
+\new@anchor@label{sec473}{ss:c-custom-serialization}{{20.9.4}{X}}
+\@deflabeltype{ss:c-custom-serialization}{subsection}
+\@@addtocsec{htoc}{ss:c-custom-idents}{1}{\@print{20.9.5}\quad{}\label{ss:c-custom-idents}Choosing identifiers{}}
+\new@anchor@label{sec474}{ss:c-custom-idents}{{20.9.5}{X}}
+\@deflabeltype{ss:c-custom-idents}{subsection}
+\@@addtocsec{htoc}{ss:c-finalized}{1}{\@print{20.9.6}\quad{}\label{ss:c-finalized}Finalized blocks{}}
+\new@anchor@label{sec475}{ss:c-finalized}{{20.9.6}{X}}
+\@deflabeltype{ss:c-finalized}{subsection}
+\@@addtocsec{htoc}{s:C-Bigarrays}{0}{\@print{20.10}\quad{}\label{s:C-Bigarrays}Advanced topic: Bigarrays and the OCaml-C interface{}}
+\new@anchor@label{sec476}{s:C-Bigarrays}{{20.10}{X}}
+\@deflabeltype{s:C-Bigarrays}{section}
+\@@addtocsec{htoc}{ss:C-Bigarrays-include}{1}{\@print{20.10.1}\quad{}\label{ss:C-Bigarrays-include}Include file{}}
+\new@anchor@label{sec477}{ss:C-Bigarrays-include}{{20.10.1}{X}}
+\@deflabeltype{ss:C-Bigarrays-include}{subsection}
+\@@addtocsec{htoc}{ss:C-Bigarrays-access}{1}{\@print{20.10.2}\quad{}\label{ss:C-Bigarrays-access}Accessing an OCaml bigarray from C or Fortran{}}
+\new@anchor@label{sec478}{ss:C-Bigarrays-access}{{20.10.2}{X}}
+\@deflabeltype{ss:C-Bigarrays-access}{subsection}
+\@@addtocsec{htoc}{ss:C-Bigarrays-wrap}{1}{\@print{20.10.3}\quad{}\label{ss:C-Bigarrays-wrap}Wrapping a C or Fortran array as an OCaml Bigarray{}}
+\new@anchor@label{sec479}{ss:C-Bigarrays-wrap}{{20.10.3}{X}}
+\@deflabeltype{ss:C-Bigarrays-wrap}{subsection}
+\@@addtocsec{htoc}{s:C-cheaper-call}{0}{\@print{20.11}\quad{}\label{s:C-cheaper-call}Advanced topic: cheaper C call{}}
+\new@anchor@label{sec480}{s:C-cheaper-call}{{20.11}{X}}
+\@deflabeltype{s:C-cheaper-call}{section}
+\@@addtocsec{htoc}{ss:c-unboxed}{1}{\@print{20.11.1}\quad{}\label{ss:c-unboxed}Passing unboxed values{}}
+\new@anchor@label{sec481}{ss:c-unboxed}{{20.11.1}{X}}
+\@deflabeltype{ss:c-unboxed}{subsection}
+\@@addtocsec{htoc}{ss:c-direct-call}{1}{\@print{20.11.2}\quad{}\label{ss:c-direct-call}Direct C call{}}
+\new@anchor@label{sec482}{ss:c-direct-call}{{20.11.2}{X}}
+\@deflabeltype{ss:c-direct-call}{subsection}
+\@@addtocsec{htoc}{ss:c-direct-call-example}{1}{\@print{20.11.3}\quad{}\label{ss:c-direct-call-example}Example: calling C library functions without indirection{}}
+\new@anchor@label{sec483}{ss:c-direct-call-example}{{20.11.3}{X}}
+\@deflabeltype{ss:c-direct-call-example}{subsection}
+\@@addtocsec{htoc}{s:C-multithreading}{0}{\@print{20.12}\quad{}\label{s:C-multithreading}Advanced topic: multithreading{}}
+\new@anchor@label{sec484}{s:C-multithreading}{{20.12}{X}}
+\@deflabeltype{s:C-multithreading}{section}
+\@@addtocsec{htoc}{ss:c-thread-register}{1}{\@print{20.12.1}\quad{}\label{ss:c-thread-register}Registering threads created from C{}}
+\new@anchor@label{sec485}{ss:c-thread-register}{{20.12.1}{X}}
+\@deflabeltype{ss:c-thread-register}{subsection}
+\@@addtocsec{htoc}{ss:parallel-execution-long-running-c-code}{1}{\@print{20.12.2}\quad{}\label{ss:parallel-execution-long-running-c-code}Parallel execution of long-running C code{}}
+\new@anchor@label{sec486}{ss:parallel-execution-long-running-c-code}{{20.12.2}{X}}
+\@deflabeltype{ss:parallel-execution-long-running-c-code}{subsection}
+\@@addtocsec{htoc}{s:interfacing-windows-unicode-apis}{0}{\@print{20.13}\quad{}\label{s:interfacing-windows-unicode-apis}Advanced topic: interfacing with Windows Unicode APIs{}}
+\new@anchor@label{sec487}{s:interfacing-windows-unicode-apis}{{20.13}{X}}
+\@deflabeltype{s:interfacing-windows-unicode-apis}{section}
+\@@addtocsec{htoc}{s:ocamlmklib}{0}{\@print{20.14}\quad{}\label{s:ocamlmklib}Building mixed C/OCaml libraries: \texttt{ocamlmklib}{}}
+\new@anchor@label{sec489}{s:ocamlmklib}{{20.14}{X}}
+\@deflabeltype{s:ocamlmklib}{section}
+\@@addtocsec{htoc}{s:c-internal-guidelines}{0}{\@print{20.15}\quad{}\label{s:c-internal-guidelines}Cautionary words: the internal runtime API{}}
+\new@anchor@label{sec491}{s:c-internal-guidelines}{{20.15}{X}}
+\@deflabeltype{s:c-internal-guidelines}{section}
+\@@addtocsec{htoc}{ss:c-internals}{1}{\@print{20.15.1}\quad{}\label{ss:c-internals}Internal variables and CAML_INTERNALS{}}
+\new@anchor@label{sec493}{ss:c-internals}{{20.15.1}{X}}
+\@deflabeltype{ss:c-internals}{subsection}
+\@@addtocsec{htoc}{ss:c-internal-macros}{1}{\@print{20.15.2}\quad{}\label{ss:c-internal-macros}OCaml version macros{}}
+\new@anchor@label{sec494}{ss:c-internal-macros}{{20.15.2}{X}}
+\@deflabeltype{ss:c-internal-macros}{subsection}
+\@@addtocsec{htoc}{sec495}{-1}{\@print{Chapter 21}\quad{}Optimisation with Flambda{}}
+\@@addtocsec{htoc}{s:flambda-overview}{0}{\@print{21.1}\quad{}\label{s:flambda-overview}Overview{}}
+\new@anchor@label{sec496}{s:flambda-overview}{{21.1}{X}}
+\@deflabeltype{s:flambda-overview}{section}
+\@@addtocsec{htoc}{s:flambda-cli}{0}{\@print{21.2}\quad{}\label{s:flambda-cli}Command-line flags{}}
+\new@anchor@label{sec497}{s:flambda-cli}{{21.2}{X}}
+\@deflabeltype{s:flambda-cli}{section}
+\@@addtocsec{htoc}{ss:flambda-rounds}{1}{\@print{21.2.1}\quad{}\label{ss:flambda-rounds}Specification of optimisation parameters by round{}}
+\new@anchor@label{sec499}{ss:flambda-rounds}{{21.2.1}{X}}
+\@deflabeltype{ss:flambda-rounds}{subsection}
+\@@addtocsec{htoc}{s:flambda-inlining}{0}{\@print{21.3}\quad{}\label{s:flambda-inlining}Inlining{}}
+\new@anchor@label{sec500}{s:flambda-inlining}{{21.3}{X}}
+\@deflabeltype{s:flambda-inlining}{section}
+\new@anchor@label{sec501}{sss:flambda-inlining-aside}{{21.3}{X}}
+\@deflabeltype{sss:flambda-inlining-aside}{section}
+\@@addtocsec{htoc}{ss:flambda-classic}{1}{\@print{21.3.1}\quad{}\label{ss:flambda-classic}Classic inlining heuristic{}}
+\new@anchor@label{sec502}{ss:flambda-classic}{{21.3.1}{X}}
+\@deflabeltype{ss:flambda-classic}{subsection}
+\@@addtocsec{htoc}{ss:flambda-inlining-overview}{1}{\@print{21.3.2}\quad{}\label{ss:flambda-inlining-overview}Overview of ``Flambda'' inlining heuristics{}}
+\new@anchor@label{sec503}{ss:flambda-inlining-overview}{{21.3.2}{X}}
+\@deflabeltype{ss:flambda-inlining-overview}{subsection}
+\@@addtocsec{htoc}{ss:flambda-by-constructs}{1}{\@print{21.3.3}\quad{}\label{ss:flambda-by-constructs}Handling of specific language constructs{}}
+\new@anchor@label{sec504}{ss:flambda-by-constructs}{{21.3.3}{X}}
+\@deflabeltype{ss:flambda-by-constructs}{subsection}
+\new@anchor@label{sec505}{sss:flambda-functors}{{21.3.3}{X}}
+\@deflabeltype{sss:flambda-functors}{subsection}
+\new@anchor@label{sec506}{sss:flambda-first-class-modules}{{21.3.3}{X}}
+\@deflabeltype{sss:flambda-first-class-modules}{subsection}
+\new@anchor@label{sec507}{sss:flambda-objects}{{21.3.3}{X}}
+\@deflabeltype{sss:flambda-objects}{subsection}
+\@@addtocsec{htoc}{ss:flambda-inlining-reports}{1}{\@print{21.3.4}\quad{}\label{ss:flambda-inlining-reports}Inlining reports{}}
+\new@anchor@label{sec508}{ss:flambda-inlining-reports}{{21.3.4}{X}}
+\@deflabeltype{ss:flambda-inlining-reports}{subsection}
+\@@addtocsec{htoc}{ss:flambda-assessment-inlining}{1}{\@print{21.3.5}\quad{}\label{ss:flambda-assessment-inlining}Assessment of inlining benefit{}}
+\new@anchor@label{sec509}{ss:flambda-assessment-inlining}{{21.3.5}{X}}
+\@deflabeltype{ss:flambda-assessment-inlining}{subsection}
+\@@addtocsec{htoc}{ss:flambda-speculation}{1}{\@print{21.3.6}\quad{}\label{ss:flambda-speculation}Control of speculation{}}
+\new@anchor@label{sec510}{ss:flambda-speculation}{{21.3.6}{X}}
+\@deflabeltype{ss:flambda-speculation}{subsection}
+\@@addtocsec{htoc}{s:flambda-specialisation}{0}{\@print{21.4}\quad{}\label{s:flambda-specialisation}Specialisation{}}
+\new@anchor@label{sec511}{s:flambda-specialisation}{{21.4}{X}}
+\@deflabeltype{s:flambda-specialisation}{section}
+\@@addtocsec{htoc}{ss:flambda-assessment-specialisation}{1}{\@print{21.4.1}\quad{}\label{ss:flambda-assessment-specialisation}Assessment of specialisation benefit{}}
+\new@anchor@label{sec514}{ss:flambda-assessment-specialisation}{{21.4.1}{X}}
+\@deflabeltype{ss:flambda-assessment-specialisation}{subsection}
+\@@addtocsec{htoc}{s:flambda-defaults}{0}{\@print{21.5}\quad{}\label{s:flambda-defaults}Default settings of parameters{}}
+\new@anchor@label{sec515}{s:flambda-defaults}{{21.5}{X}}
+\@deflabeltype{s:flambda-defaults}{section}
+\@@addtocsec{htoc}{ss:flambda-o2}{1}{\@print{21.5.1}\quad{}\label{ss:flambda-o2}Settings at -O2 optimisation level{}}
+\new@anchor@label{sec516}{ss:flambda-o2}{{21.5.1}{X}}
+\@deflabeltype{ss:flambda-o2}{subsection}
+\@@addtocsec{htoc}{ss:flambda-o3}{1}{\@print{21.5.2}\quad{}\label{ss:flambda-o3}Settings at -O3 optimisation level{}}
+\new@anchor@label{sec517}{ss:flambda-o3}{{21.5.2}{X}}
+\@deflabeltype{ss:flambda-o3}{subsection}
+\@@addtocsec{htoc}{s:flambda-manual-control}{0}{\@print{21.6}\quad{}\label{s:flambda-manual-control}Manual control of inlining and specialisation{}}
+\new@anchor@label{sec518}{s:flambda-manual-control}{{21.6}{X}}
+\@deflabeltype{s:flambda-manual-control}{section}
+\@@addtocsec{htoc}{s:flambda-simplification}{0}{\@print{21.7}\quad{}\label{s:flambda-simplification}Simplification{}}
+\new@anchor@label{sec520}{s:flambda-simplification}{{21.7}{X}}
+\@deflabeltype{s:flambda-simplification}{section}
+\@@addtocsec{htoc}{s:flambda-other-transfs}{0}{\@print{21.8}\quad{}\label{s:flambda-other-transfs}Other code motion transformations{}}
+\new@anchor@label{sec521}{s:flambda-other-transfs}{{21.8}{X}}
+\@deflabeltype{s:flambda-other-transfs}{section}
+\@@addtocsec{htoc}{ss:flambda-lift-const}{1}{\@print{21.8.1}\quad{}\label{ss:flambda-lift-const}Lifting of constants{}}
+\new@anchor@label{sec522}{ss:flambda-lift-const}{{21.8.1}{X}}
+\@deflabeltype{ss:flambda-lift-const}{subsection}
+\@@addtocsec{htoc}{ss:flambda-lift-toplevel-let}{1}{\@print{21.8.2}\quad{}\label{ss:flambda-lift-toplevel-let}Lifting of toplevel let bindings{}}
+\new@anchor@label{sec524}{ss:flambda-lift-toplevel-let}{{21.8.2}{X}}
+\@deflabeltype{ss:flambda-lift-toplevel-let}{subsection}
+\@@addtocsec{htoc}{s:flambda-unboxing}{0}{\@print{21.9}\quad{}\label{s:flambda-unboxing}Unboxing transformations{}}
+\new@anchor@label{sec525}{s:flambda-unboxing}{{21.9}{X}}
+\@deflabeltype{s:flambda-unboxing}{section}
+\@@addtocsec{htoc}{ss:flambda-unbox-fvs}{1}{\@print{21.9.1}\quad{}\label{ss:flambda-unbox-fvs}Unboxing of closure variables{}}
+\new@anchor@label{sec526}{ss:flambda-unbox-fvs}{{21.9.1}{X}}
+\@deflabeltype{ss:flambda-unbox-fvs}{subsection}
+\@@addtocsec{htoc}{ss:flambda-unbox-spec-args}{1}{\@print{21.9.2}\quad{}\label{ss:flambda-unbox-spec-args}Unboxing of specialised arguments{}}
+\new@anchor@label{sec528}{ss:flambda-unbox-spec-args}{{21.9.2}{X}}
+\@deflabeltype{ss:flambda-unbox-spec-args}{subsection}
+\@@addtocsec{htoc}{ss:flambda-unbox-closures}{1}{\@print{21.9.3}\quad{}\label{ss:flambda-unbox-closures}Unboxing of closures{}}
+\new@anchor@label{sec530}{ss:flambda-unbox-closures}{{21.9.3}{X}}
+\@deflabeltype{ss:flambda-unbox-closures}{subsection}
+\@@addtocsec{htoc}{s:flambda-remove-unused}{0}{\@print{21.10}\quad{}\label{s:flambda-remove-unused}Removal of unused code and values{}}
+\new@anchor@label{sec533}{s:flambda-remove-unused}{{21.10}{X}}
+\@deflabeltype{s:flambda-remove-unused}{section}
+\@@addtocsec{htoc}{ss:flambda-redundant-let}{1}{\@print{21.10.1}\quad{}\label{ss:flambda-redundant-let}Removal of redundant let expressions{}}
+\new@anchor@label{sec534}{ss:flambda-redundant-let}{{21.10.1}{X}}
+\@deflabeltype{ss:flambda-redundant-let}{subsection}
+\@@addtocsec{htoc}{ss:flambda-redundant}{1}{\@print{21.10.2}\quad{}\label{ss:flambda-redundant}Removal of redundant program constructs{}}
+\new@anchor@label{sec535}{ss:flambda-redundant}{{21.10.2}{X}}
+\@deflabeltype{ss:flambda-redundant}{subsection}
+\@@addtocsec{htoc}{ss:flambda-remove-unused-args}{1}{\@print{21.10.3}\quad{}\label{ss:flambda-remove-unused-args}Removal of unused arguments{}}
+\new@anchor@label{sec536}{ss:flambda-remove-unused-args}{{21.10.3}{X}}
+\@deflabeltype{ss:flambda-remove-unused-args}{subsection}
+\@@addtocsec{htoc}{ss:flambda-removal-closure-vars}{1}{\@print{21.10.4}\quad{}\label{ss:flambda-removal-closure-vars}Removal of unused closure variables{}}
+\new@anchor@label{sec537}{ss:flambda-removal-closure-vars}{{21.10.4}{X}}
+\@deflabeltype{ss:flambda-removal-closure-vars}{subsection}
+\@@addtocsec{htoc}{s:flambda-other}{0}{\@print{21.11}\quad{}\label{s:flambda-other}Other code transformations{}}
+\new@anchor@label{sec538}{s:flambda-other}{{21.11}{X}}
+\@deflabeltype{s:flambda-other}{section}
+\@@addtocsec{htoc}{ss:flambda-non-escaping-refs}{1}{\@print{21.11.1}\quad{}\label{ss:flambda-non-escaping-refs}Transformation of non-escaping references into mutable variables{}}
+\new@anchor@label{sec539}{ss:flambda-non-escaping-refs}{{21.11.1}{X}}
+\@deflabeltype{ss:flambda-non-escaping-refs}{subsection}
+\@@addtocsec{htoc}{ss:flambda-subst-closure-vars}{1}{\@print{21.11.2}\quad{}\label{ss:flambda-subst-closure-vars}Substitution of closure variables for specialised arguments{}}
+\new@anchor@label{sec540}{ss:flambda-subst-closure-vars}{{21.11.2}{X}}
+\@deflabeltype{ss:flambda-subst-closure-vars}{subsection}
+\@@addtocsec{htoc}{s:flambda-effects}{0}{\@print{21.12}\quad{}\label{s:flambda-effects}Treatment of effects{}}
+\new@anchor@label{sec541}{s:flambda-effects}{{21.12}{X}}
+\@deflabeltype{s:flambda-effects}{section}
+\@@addtocsec{htoc}{s:flambda-static-modules}{0}{\@print{21.13}\quad{}\label{s:flambda-static-modules}Compilation of statically-allocated modules{}}
+\new@anchor@label{sec542}{s:flambda-static-modules}{{21.13}{X}}
+\@deflabeltype{s:flambda-static-modules}{section}
+\@@addtocsec{htoc}{s:flambda-inhibition}{0}{\@print{21.14}\quad{}\label{s:flambda-inhibition}Inhibition of optimisation{}}
+\new@anchor@label{sec543}{s:flambda-inhibition}{{21.14}{X}}
+\@deflabeltype{s:flambda-inhibition}{section}
+\@@addtocsec{htoc}{s:flambda-unsafe}{0}{\@print{21.15}\quad{}\label{s:flambda-unsafe}Use of unsafe operations{}}
+\new@anchor@label{sec544}{s:flambda-unsafe}{{21.15}{X}}
+\@deflabeltype{s:flambda-unsafe}{section}
+\@@addtocsec{htoc}{s:flambda-glossary}{0}{\@print{21.16}\quad{}\label{s:flambda-glossary}Glossary{}}
+\new@anchor@label{sec545}{s:flambda-glossary}{{21.16}{X}}
+\@deflabeltype{s:flambda-glossary}{section}
+\@@addtocsec{htoc}{sec546}{-1}{\@print{Chapter 22}\quad{}Memory profiling with Spacetime{}}
+\@@addtocsec{htoc}{s:spacetime-overview}{0}{\@print{22.1}\quad{}\label{s:spacetime-overview}Overview{}}
+\new@anchor@label{sec547}{s:spacetime-overview}{{22.1}{X}}
+\@deflabeltype{s:spacetime-overview}{section}
+\@@addtocsec{htoc}{s:spacetime-howto}{0}{\@print{22.2}\quad{}\label{s:spacetime-howto}How to use it{}}
+\new@anchor@label{sec548}{s:spacetime-howto}{{22.2}{X}}
+\@deflabeltype{s:spacetime-howto}{section}
+\@@addtocsec{htoc}{ss:spacetime-building}{1}{\@print{22.2.1}\quad{}\label{ss:spacetime-building}Building{}}
+\new@anchor@label{sec549}{ss:spacetime-building}{{22.2.1}{X}}
+\@deflabeltype{ss:spacetime-building}{subsection}
+\@@addtocsec{htoc}{ss:spacetime-running}{1}{\@print{22.2.2}\quad{}\label{ss:spacetime-running}Running{}}
+\new@anchor@label{sec550}{ss:spacetime-running}{{22.2.2}{X}}
+\@deflabeltype{ss:spacetime-running}{subsection}
+\@@addtocsec{htoc}{ss:spacetime-analysis}{1}{\@print{22.2.3}\quad{}\label{ss:spacetime-analysis}Analysis{}}
+\new@anchor@label{sec551}{ss:spacetime-analysis}{{22.2.3}{X}}
+\@deflabeltype{ss:spacetime-analysis}{subsection}
+\@@addtocsec{htoc}{s:spacetime-runtimeoverhead}{0}{\@print{22.3}\quad{}\label{s:spacetime-runtimeoverhead}Runtime overhead{}}
+\new@anchor@label{sec552}{s:spacetime-runtimeoverhead}{{22.3}{X}}
+\@deflabeltype{s:spacetime-runtimeoverhead}{section}
+\@@addtocsec{htoc}{s:spacetime-dev}{0}{\@print{22.4}\quad{}\label{s:spacetime-dev}For developers{}}
+\new@anchor@label{sec553}{s:spacetime-dev}{{22.4}{X}}
+\@deflabeltype{s:spacetime-dev}{section}
+\@@addtocsec{htoc}{sec554}{-1}{\@print{Chapter 23}\quad{}Fuzzing with afl-fuzz{}}
+\@@addtocsec{htoc}{s:afl-overview}{0}{\@print{23.1}\quad{}\label{s:afl-overview}Overview{}}
+\new@anchor@label{sec555}{s:afl-overview}{{23.1}{X}}
+\@deflabeltype{s:afl-overview}{section}
+\@@addtocsec{htoc}{s:afl-generate}{0}{\@print{23.2}\quad{}\label{s:afl-generate}Generating instrumentation{}}
+\new@anchor@label{sec556}{s:afl-generate}{{23.2}{X}}
+\@deflabeltype{s:afl-generate}{section}
+\@@addtocsec{htoc}{ss:afl-advanced}{1}{\@print{23.2.1}\quad{}\label{ss:afl-advanced}Advanced options{}}
+\new@anchor@label{sec557}{ss:afl-advanced}{{23.2.1}{X}}
+\@deflabeltype{ss:afl-advanced}{subsection}
+\@@addtocsec{htoc}{s:afl-example}{0}{\@print{23.3}\quad{}\label{s:afl-example}Example{}}
+\new@anchor@label{sec558}{s:afl-example}{{23.3}{X}}
+\@deflabeltype{s:afl-example}{section}
+\@@addtocsec{htoc}{sec559}{-2}{\@print{Part IV}\quad{}The OCaml library{}}
+\newlabel{p:library}{{IV}{X}}
+\@deflabeltype{p:library}{part}
+\@@addtocsec{htoc}{sec560}{-1}{\@print{Chapter 24}\quad{}The core library{}}
+\newlabel{c:corelib}{{24}{X}}
+\@deflabeltype{c:corelib}{chapter}
+\new@anchor@label{sec561}{s:core-conventions}{{24}{X}}
+\@deflabeltype{s:core-conventions}{chapter}
+\@@addtocsec{htoc}{s:core-builtins}{0}{\@print{24.1}\quad{}\label{s:core-builtins}Built-in types and predefined exceptions{}}
+\new@anchor@label{sec562}{s:core-builtins}{{24.1}{X}}
+\@deflabeltype{s:core-builtins}{section}
+\@@addtocsec{htoc}{ss:builtin-types}{1}{\@print{24.1.1}\quad{}\label{ss:builtin-types}*{}}
+\new@anchor@label{sec563}{ss:builtin-types}{{24.1.1}{X}}
+\@deflabeltype{ss:builtin-types}{subsection}
+\new@anchor@label{sec564}{ss:predef-exn}{{24.1.1}{X}}
+\@deflabeltype{ss:predef-exn}{subsection}
+\@@addtocsec{htoc}{s:stdlib-module}{0}{\@print{24.2}\quad{}\label{s:stdlib-module}Module {\tt Stdlib}: the initially opened module{}}
+\new@anchor@label{sec565}{s:stdlib-module}{{24.2}{X}}
+\@deflabeltype{s:stdlib-module}{section}
+\@@addtocsec{htoc}{sec566}{-1}{\@print{Chapter 25}\quad{}The standard library{}}
+\newlabel{c:stdlib}{{25}{X}}
+\@deflabeltype{c:stdlib}{chapter}
+\newlabel{stdlib:top}{{25}{X}}
+\@deflabeltype{stdlib:top}{chapter}
+\new@anchor@label{sec567}{s:stdlib-conv}{{25}{X}}
+\@deflabeltype{s:stdlib-conv}{chapter}
+\@@addtocsec{htoc}{sec568}{-1}{\@print{Chapter 26}\quad{}The compiler front-end{}}
+\newlabel{c:parsinglib}{{26}{X}}
+\@deflabeltype{c:parsinglib}{chapter}
+\newlabel{Compiler-underscorelibs}{{26}{X}}
+\@deflabeltype{Compiler-underscorelibs}{chapter}
+\@@addtocsec{htoc}{sec569}{-1}{\@print{Chapter 27}\quad{}The unix library: Unix system calls{}}
+\newlabel{c:unix}{{27}{X}}
+\@deflabeltype{c:unix}{chapter}
+\@@addtocsec{htoc}{sec570}{-1}{\@print{Chapter 28}\quad{}The num library: arbitrary-precision rational arithmetic{}}
+\@@addtocsec{htoc}{sec571}{-1}{\@print{Chapter 29}\quad{}The str library: regular expressions and string processing{}}
+\@@addtocsec{htoc}{sec572}{-1}{\@print{Chapter 30}\quad{}The threads library{}}
+\newlabel{c:threads}{{30}{X}}
+\@deflabeltype{c:threads}{chapter}
+\@@addtocsec{htoc}{sec573}{-1}{\@print{Chapter 31}\quad{}The graphics library{}}
+\@@addtocsec{htoc}{sec574}{-1}{\@print{Chapter 32}\quad{}The dynlink library: dynamic loading and linking of object files{}}
+\@@addtocsec{htoc}{sec575}{-1}{\@print{Chapter 33}\quad{}The bigarray library{}}
+\@@addtocsec{htoc}{sec576}{-2}{\@print{Part V}\quad{}Appendix{}}
+\newlabel{p:appendix}{{V}{X}}
+\@deflabeltype{p:appendix}{part}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.20  Empty variant types</title>
+</head>
+<body>
+<a href="indexops.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="alerts.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:empty-variants"><a class="section-anchor" href="#s:empty-variants" aria-hidden="true">﻿</a>8.20  Empty variant types</h2>
+<p>
+(Introduced in 4.07.0)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-representation"><span class="c010">type-representation</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">=</span> <span class="c004">|</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>
+This extension allows user to define empty variants.
+Empty variant type can be eliminated by refutation case of pattern matching.
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> t = |
+ <span class="ocamlkeyword">let</span> f (x: t) = <span class="ocamlkeyword">match</span> x <span class="ocamlkeyword">with</span> _ -&gt; .</div></div>
+
+</div>
+<hr>
+<a href="indexops.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="alerts.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

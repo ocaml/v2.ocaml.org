@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;17&#XA0;&#XA0;The debugger (ocamldebug)</title>
+</head>
+<body>
+<a href="ocamldoc.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="profil.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec375">Chapter&#XA0;17&#XA0;&#XA0;The debugger (ocamldebug)</h1>
+<ul>
+<li><a href="debugger.html#sec376">17.1&#XA0;&#XA0;Compiling for debugging</a>
+</li><li><a href="debugger.html#sec377">17.2&#XA0;&#XA0;Invocation</a>
+</li><li><a href="debugger.html#sec381">17.3&#XA0;&#XA0;Commands</a>
+</li><li><a href="debugger.html#sec384">17.4&#XA0;&#XA0;Executing a program</a>
+</li><li><a href="debugger.html#sec390">17.5&#XA0;&#XA0;Breakpoints</a>
+</li><li><a href="debugger.html#sec391">17.6&#XA0;&#XA0;The call stack</a>
+</li><li><a href="debugger.html#sec392">17.7&#XA0;&#XA0;Examining variable values</a>
+</li><li><a href="debugger.html#sec393">17.8&#XA0;&#XA0;Controlling the debugger</a>
+</li><li><a href="debugger.html#sec402">17.9&#XA0;&#XA0;Miscellaneous commands</a>
+</li><li><a href="debugger.html#sec403">17.10&#XA0;&#XA0;Running the debugger under Emacs</a>
+</li></ul>
+<p> <a id="c:debugger"></a>
+
+</p><p>This chapter describes the OCaml source-level replay debugger
+<span class="c003">ocamldebug</span>.</p><blockquote class="quote"><span class="c007">Unix:</span>&#XA0;&#XA0; The debugger is available on Unix systems that provide
+BSD sockets.
+</blockquote><blockquote class="quote"><span class="c007">Windows:</span>&#XA0;&#XA0; The debugger is available under the Cygwin port of
+OCaml, but not under the native Win32 ports.
+</blockquote>
+<h2 class="section" id="sec376">17.1&#XA0;&#XA0;Compiling for debugging</h2>
+<p>Before the debugger can be used, the program must be compiled and
+linked with the <span class="c003">-g</span> option: all <span class="c003">.cmo</span> and <span class="c003">.cma</span> files that are part
+of the program should have been created with <span class="c003">ocamlc -g</span>, and they
+must be linked together with <span class="c003">ocamlc -g</span>.</p><p>Compiling with <span class="c003">-g</span> entails no penalty on the running time of
+programs: object files and bytecode executable files are bigger and
+take longer to produce, but the executable files run at
+exactly the same speed as if they had been compiled without <span class="c003">-g</span>.</p>
+<h2 class="section" id="sec377">17.2&#XA0;&#XA0;Invocation</h2>
+<h3 class="subsection" id="sec378">17.2.1&#XA0;&#XA0;Starting the debugger</h3>
+<p>The OCaml debugger is invoked by running the program
+<span class="c003">ocamldebug</span> with the name of the bytecode executable file as first
+argument:
+</p><pre>
+        ocamldebug [<span class="c009">options</span>] <span class="c009">program</span> [<span class="c009">arguments</span>]
+</pre><p>
+The arguments following <span class="c009">program</span> are optional, and are passed as
+command-line arguments to the program being debugged. (See also the
+<span class="c003">set arguments</span> command.)</p><p>The following command-line options are recognized:
+</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">-c </span> <span class="c009">count</span></span></dt><dd class="dd-description">
+Set the maximum number of simultaneously live checkpoints to <span class="c009">count</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">-cd </span> <span class="c009">dir</span></span></dt><dd class="dd-description">
+Run the debugger program from the working directory <span class="c009">dir</span>,
+instead of the current directory. (See also the <span class="c003">cd</span> command.)</dd><dt class="dt-description"><span class="c006">-emacs</span></dt><dd class="dd-description">
+Tell the debugger it is executed under Emacs. (See
+section&#XA0;<a href="#s%3Ainf-debugger">17.10</a> for information on how to run the
+debugger under Emacs.)</dd><dt class="dt-description"><span class="c013"><span class="c003">-I </span><span class="c009">directory</span></span></dt><dd class="dd-description">
+Add <span class="c009">directory</span> to the list of directories searched for source
+files and compiled files. (See also the <span class="c003">directory</span> command.)</dd><dt class="dt-description"><span class="c013"><span class="c003">-s </span><span class="c009">socket</span></span></dt><dd class="dd-description">
+Use <span class="c009">socket</span> for communicating with the debugged program. See the
+description of the command <span class="c003">set socket</span> (section&#XA0;<a href="#s%3Acommunication">17.8.6</a>)
+for the format of <span class="c009">socket</span>.</dd><dt class="dt-description"><span class="c006">-version</span></dt><dd class="dd-description">
+Print version string and exit.</dd><dt class="dt-description"><span class="c006">-vnum</span></dt><dd class="dd-description">
+Print short version number and exit.</dd><dt class="dt-description"><span class="c013"><span class="c003">-help</span> or <span class="c003">--help</span></span></dt><dd class="dd-description">
+Display a short usage summary and exit.
+</dd></dl>
+<h3 class="subsection" id="sec379">17.2.2&#XA0;&#XA0;Initialization file</h3>
+<p>On start-up, the debugger will read commands from an initialization
+file before giving control to the user. The default file is
+<span class="c003">.ocamldebug</span> in the current directory if it exists, otherwise
+<span class="c003">.ocamldebug</span> in the user&#X2019;s home directory.</p>
+<h3 class="subsection" id="sec380">17.2.3&#XA0;&#XA0;Exiting the debugger</h3>
+<p>The command <span class="c003">quit</span> exits the debugger. You can also exit the debugger
+by typing an end-of-file character (usually <span class="c003">ctrl-D</span>).</p><p>Typing an interrupt character (usually <span class="c003">ctrl-C</span>) will not exit the
+debugger, but will terminate the action of any debugger command that is in
+progress and return to the debugger command level. </p>
+<h2 class="section" id="sec381">17.3&#XA0;&#XA0;Commands</h2>
+<p> <a id="s:debugger-commands"></a></p><p>A debugger command is a single line of input. It starts with a command
+name, which is followed by arguments depending on this name. Examples:
+</p><pre>        run
+        goto 1000
+        set arguments arg1 arg2
+</pre><p>
+A command name can be truncated as long as there is no ambiguity. For
+instance, <span class="c003">go 1000</span> is understood as <span class="c003">goto 1000</span>, since there are no
+other commands whose name starts with <span class="c003">go</span>. For the most frequently
+used commands, ambiguous abbreviations are allowed. For instance, <span class="c003">r</span>
+stands for <span class="c003">run</span> even though there are others commands starting with
+<span class="c003">r</span>. You can test the validity of an abbreviation using the <span class="c003">help</span> command.</p><p>If the previous command has been successful, a blank line (typing just
+<span class="c003">RET</span>) will repeat it.</p>
+<h3 class="subsection" id="sec382">17.3.1&#XA0;&#XA0;Getting help</h3>
+<p>The OCaml debugger has a simple on-line help system, which gives
+a brief description of each command and variable.</p><dl class="description"><dt class="dt-description">
+<span class="c006">help</span></dt><dd class="dd-description">
+Print the list of commands.</dd><dt class="dt-description"><span class="c013"><span class="c003">help </span><span class="c009">command</span></span></dt><dd class="dd-description">
+Give help about the command <span class="c009">command</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">help set </span><span class="c009">variable</span>, <span class="c003">help show </span><span class="c009">variable</span></span></dt><dd class="dd-description">
+Give help about the variable <span class="c009">variable</span>. The list of all debugger
+variables can be obtained with <span class="c003">help set</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">help info </span><span class="c009">topic</span></span></dt><dd class="dd-description">
+Give help about <span class="c009">topic</span>. Use <span class="c003">help info</span> to get a list of known topics.
+</dd></dl>
+<h3 class="subsection" id="sec383">17.3.2&#XA0;&#XA0;Accessing the debugger state</h3>
+<dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">set </span><span class="c009">variable value</span></span></dt><dd class="dd-description">
+Set the debugger variable <span class="c009">variable</span> to the value <span class="c009">value</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">show </span><span class="c009">variable</span></span></dt><dd class="dd-description">
+Print the value of the debugger variable <span class="c009">variable</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">info </span><span class="c009">subject</span></span></dt><dd class="dd-description">
+Give information about the given subject.
+For instance, <span class="c003">info breakpoints</span> will print the list of all breakpoints.
+</dd></dl>
+<h2 class="section" id="sec384">17.4&#XA0;&#XA0;Executing a program</h2>
+<h3 class="subsection" id="sec385">17.4.1&#XA0;&#XA0;Events</h3>
+<p>Events are &#X201C;interesting&#X201D; locations in the source code, corresponding
+to the beginning or end of evaluation of &#X201C;interesting&#X201D;
+sub-expressions. Events are the unit of single-stepping (stepping goes
+to the next or previous event encountered in the program execution).
+Also, breakpoints can only be set at events. Thus, events play the
+role of line numbers in debuggers for conventional languages.</p><p>During program execution, a counter is incremented at each event
+encountered. The value of this counter is referred as the <em>current
+time</em>. Thanks to reverse execution, it is possible to jump back and
+forth to any time of the execution.</p><p>Here is where the debugger events (written &#XA7;&#XA7;) are located in
+the source code:
+</p><ul class="itemize"><li class="li-itemize">
+Following a function application:
+<pre>
+(f arg)&#XA7;&#XA7;
+</pre>
+</li><li class="li-itemize">On entrance to a function:
+<pre>
+fun x y z -&gt; &#XA7;&#XA7; ...
+</pre>
+</li><li class="li-itemize">On each case of a pattern-matching definition (function,
+<span class="c003">match</span>&#X2026;<span class="c003">with</span> construct, <span class="c003">try</span>&#X2026;<span class="c003">with</span> construct):
+<pre>
+function pat1 -&gt; &#XA7;&#XA7; expr1
+       | ...
+       | patN -&gt; &#XA7;&#XA7; exprN
+</pre>
+</li><li class="li-itemize">Between subexpressions of a sequence:
+<pre>
+expr1; &#XA7;&#XA7; expr2; &#XA7;&#XA7; ...; &#XA7;&#XA7; exprN
+</pre>
+</li><li class="li-itemize">In the two branches of a conditional expression:
+<pre>
+if cond then &#XA7;&#XA7; expr1 else &#XA7;&#XA7; expr2
+</pre>
+</li><li class="li-itemize">At the beginning of each iteration of a loop:
+<pre>
+while cond do &#XA7;&#XA7; body done
+for i = a to b do &#XA7;&#XA7; body done
+</pre>
+</li></ul><p>
+Exceptions: A function application followed by a function return is replaced
+by the compiler by a jump (tail-call optimization). In this case, no
+event is put after the function application.
+</p>
+<h3 class="subsection" id="sec386">17.4.2&#XA0;&#XA0;Starting the debugged program</h3>
+<p>The debugger starts executing the debugged program only when needed.
+This allows setting breakpoints or assigning debugger variables before
+execution starts. There are several ways to start execution:
+</p><dl class="description"><dt class="dt-description">
+<span class="c006">run</span></dt><dd class="dd-description"> Run the program until a breakpoint is hit, or the program
+terminates.
+</dd><dt class="dt-description"><span class="c006">goto 0</span></dt><dd class="dd-description"> Load the program and stop on the first event.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">goto </span><span class="c009">time</span></span></dt><dd class="dd-description"> Load the program and execute it until the
+given time. Useful when you already know approximately at what time
+the problem appears. Also useful to set breakpoints on function values
+that have not been computed at time 0 (see section&#XA0;<a href="#s%3Abreakpoints">17.5</a>).
+</dd></dl><p>The execution of a program is affected by certain information it
+receives when the debugger starts it, such as the command-line
+arguments to the program and its working directory. The debugger
+provides commands to specify this information (<span class="c003">set arguments</span> and <span class="c003">cd</span>).
+These commands must be used before program execution starts. If you try
+to change the arguments or the working directory after starting your
+program, the debugger will kill the program (after asking for confirmation).</p>
+<h3 class="subsection" id="sec387">17.4.3&#XA0;&#XA0;Running the program</h3>
+<p>The following commands execute the program forward or backward,
+starting at the current time. The execution will stop either when
+specified by the command or when a breakpoint is encountered.</p><dl class="description"><dt class="dt-description">
+<span class="c006">run</span></dt><dd class="dd-description"> Execute the program forward from current time. Stops at
+next breakpoint or when the program terminates.
+</dd><dt class="dt-description"><span class="c006">reverse</span></dt><dd class="dd-description"> Execute the program backward from current time.
+Mostly useful to go to the last breakpoint encountered before the
+current time.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">step </span>[<span class="c009">count</span>]</span></dt><dd class="dd-description"> Run the program and stop at the next
+event. With an argument, do it <span class="c009">count</span> times. If <span class="c009">count</span> is 0,
+run until the program terminates or a breakpoint is hit.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">backstep </span>[<span class="c009">count</span>]</span></dt><dd class="dd-description"> Run the program backward and stop at
+the previous event. With an argument, do it <span class="c009">count</span> times.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">next </span>[<span class="c009">count</span>]</span></dt><dd class="dd-description"> Run the program and stop at the next
+event, skipping over function calls. With an argument, do it
+<span class="c009">count</span> times.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">previous </span>[<span class="c009">count</span>]</span></dt><dd class="dd-description"> Run the program backward and stop at
+the previous event, skipping over function calls. With an argument, do
+it <span class="c009">count</span> times.
+</dd><dt class="dt-description"><span class="c006">finish</span></dt><dd class="dd-description"> Run the program until the current function returns.
+</dd><dt class="dt-description"><span class="c006">start</span></dt><dd class="dd-description"> Run the program backward and stop at the first event
+before the current function invocation.
+</dd></dl>
+<h3 class="subsection" id="sec388">17.4.4&#XA0;&#XA0;Time travel</h3>
+<p>You can jump directly to a given time, without stopping on
+breakpoints, using the <span class="c003">goto</span> command.</p><p>As you move through the program, the debugger maintains an history of
+the successive times you stop at. The <span class="c003">last</span> command can be used to
+revisit these times: each <span class="c003">last</span> command moves one step back through
+the history. That is useful mainly to undo commands such as <span class="c003">step</span>
+and <span class="c003">next</span>.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">goto </span><span class="c009">time</span></span></dt><dd class="dd-description">
+Jump to the given time.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">last </span>[<span class="c009">count</span>]</span></dt><dd class="dd-description">
+Go back to the latest time recorded in the execution history. With an
+argument, do it <span class="c009">count</span> times.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">set history </span><span class="c009">size</span></span></dt><dd class="dd-description">
+Set the size of the execution history.
+</dd></dl>
+<h3 class="subsection" id="sec389">17.4.5&#XA0;&#XA0;Killing the program</h3>
+<dl class="description"><dt class="dt-description">
+<span class="c006">kill</span></dt><dd class="dd-description"> Kill the program being executed. This command is mainly
+useful if you wish to recompile the program without leaving the debugger.
+</dd></dl>
+<h2 class="section" id="sec390">17.5&#XA0;&#XA0;Breakpoints</h2>
+<p> <a id="s:breakpoints"></a></p><p>A breakpoint causes the program to stop whenever a certain point in
+the program is reached. It can be set in several ways using the
+<span class="c003">break</span> command. Breakpoints are assigned numbers when set, for
+further reference. The most comfortable way to set breakpoints is
+through the Emacs interface (see section&#XA0;<a href="#s%3Ainf-debugger">17.10</a>).</p><dl class="description"><dt class="dt-description">
+<span class="c006">break</span></dt><dd class="dd-description">
+Set a breakpoint at the current position in the program execution. The
+current position must be on an event (i.e., neither at the beginning,
+nor at the end of the program).</dd><dt class="dt-description"><span class="c013"><span class="c003">break </span><span class="c009">function</span></span></dt><dd class="dd-description">
+Set a breakpoint at the beginning of <span class="c009">function</span>. This works only
+when the functional value of the identifier <span class="c009">function</span> has been
+computed and assigned to the identifier. Hence this command cannot be
+used at the very beginning of the program execution, when all
+identifiers are still undefined; use <span class="c003">goto</span> <span class="c009">time</span> to advance
+execution until the functional value is available.</dd><dt class="dt-description"><span class="c013"><span class="c003">break @</span> [<span class="c009">module</span>] <span class="c009">line</span></span></dt><dd class="dd-description">
+Set a breakpoint in module <span class="c009">module</span> (or in the current module if
+<span class="c009">module</span> is not given), at the first event of line <span class="c009">line</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">break @</span> [<span class="c009">module</span>] <span class="c009">line column</span></span></dt><dd class="dd-description">
+Set a breakpoint in module <span class="c009">module</span> (or in the current module if
+<span class="c009">module</span> is not given), at the event closest to line <span class="c009">line</span>,
+column <span class="c009">column</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">break @</span> [<span class="c009">module</span>] <span class="c003">#</span> <span class="c009">character</span></span></dt><dd class="dd-description">
+Set a breakpoint in module <span class="c009">module</span> at the event closest to
+character number <span class="c009">character</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">break </span><span class="c009">address</span></span></dt><dd class="dd-description">
+Set a breakpoint at the code address <span class="c009">address</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">delete </span>[<span class="c009">breakpoint-numbers</span>]</span></dt><dd class="dd-description">
+Delete the specified breakpoints. Without argument, all breakpoints
+are deleted (after asking for confirmation).</dd><dt class="dt-description"><span class="c006">info breakpoints</span></dt><dd class="dd-description"> Print the list of all breakpoints.
+</dd></dl>
+<h2 class="section" id="sec391">17.6&#XA0;&#XA0;The call stack</h2>
+<p>Each time the program performs a function application, it saves the
+location of the application (the return address) in a block of data
+called a stack frame. The frame also contains the local variables of
+the caller function. All the frames are allocated in a region of
+memory called the call stack. The command <span class="c003">backtrace</span> (or <span class="c003">bt</span>)
+displays parts of the call stack.</p><p>At any time, one of the stack frames is &#X201C;selected&#X201D; by the debugger; several
+debugger commands refer implicitly to the selected frame. In particular,
+whenever you ask the debugger for the value of a local variable, the
+value is found in the selected frame. The commands <span class="c003">frame</span>, <span class="c003">up</span> and <span class="c003">down</span>
+select whichever frame you are interested in.</p><p>When the program stops, the debugger automatically selects the
+currently executing frame and describes it briefly as the <span class="c003">frame</span>
+command does.</p><dl class="description"><dt class="dt-description">
+<span class="c006">frame</span></dt><dd class="dd-description">
+Describe the currently selected stack frame.</dd><dt class="dt-description"><span class="c013"><span class="c003">frame</span> <span class="c009">frame-number</span></span></dt><dd class="dd-description">
+Select a stack frame by number and describe it. The frame currently
+executing when the program stopped has number 0; its caller has number
+1; and so on up the call stack.</dd><dt class="dt-description"><span class="c013"><span class="c003">backtrace </span>[<span class="c009">count</span>], <span class="c003">bt </span>[<span class="c009">count</span>]</span></dt><dd class="dd-description">
+Print the call stack. This is useful to see which sequence of function
+calls led to the currently executing frame. With a positive argument,
+print only the innermost <span class="c009">count</span> frames.
+With a negative argument, print only the outermost -<span class="c009">count</span> frames.</dd><dt class="dt-description"><span class="c013"><span class="c003">up</span> [<span class="c009">count</span>]</span></dt><dd class="dd-description">
+Select and display the stack frame just &#X201C;above&#X201D; the selected frame,
+that is, the frame that called the selected frame. An argument says how
+many frames to go up.</dd><dt class="dt-description"><span class="c013"><span class="c003">down </span>[<span class="c009">count</span>]</span></dt><dd class="dd-description">
+Select and display the stack frame just &#X201C;below&#X201D; the selected frame,
+that is, the frame that was called by the selected frame. An argument
+says how many frames to go down.
+</dd></dl>
+<h2 class="section" id="sec392">17.7&#XA0;&#XA0;Examining variable values</h2>
+<p>The debugger can print the current value of simple expressions. The
+expressions can involve program variables: all the identifiers that
+are in scope at the selected program point can be accessed.</p><p>Expressions that can be printed are a subset of OCaml
+expressions, as described by the following grammar:
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="simple-expr"><span class="c010">simple-expr</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;{&#XA0;<a class="syntax" href="lex.html#capitalized-ident"><span class="c010">capitalized-ident</span></a>&#XA0;<span class="c004">.</span>&#XA0;}&#XA0;&#XA0;<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">*</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">$</span>&#XA0;<span class="c010">integer</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#simple-expr"><span class="c010">simple-expr</span></a>&#XA0;<span class="c004">.</span>&#XA0;&#XA0;<a class="syntax" href="lex.html#lowercase-ident"><span class="c010">lowercase-ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#simple-expr"><span class="c010">simple-expr</span></a>&#XA0;<span class="c004">.(</span>&#XA0;&#XA0;<span class="c010">integer</span>&#XA0;<span class="c004">)</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="#simple-expr"><span class="c010">simple-expr</span></a>&#XA0;<span class="c004">.[</span>&#XA0;&#XA0;<span class="c010">integer</span>&#XA0;<span class="c004">]</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">!</span>&#XA0;<a class="syntax" href="#simple-expr"><span class="c010">simple-expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="#simple-expr"><span class="c010">simple-expr</span></a>&#XA0;<span class="c004">)</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>
+The first two cases refer to a value identifier, either unqualified or
+qualified by the path to the structure that define it.
+<span class="c003">*</span> refers to the result just computed (typically, the value of a
+function application), and is valid only if the selected event is an
+&#X201C;after&#X201D; event (typically, a function application).
+<span class="c004">$</span> <span class="c010">integer</span> refer to a previously printed value. The remaining four
+forms select part of an expression: respectively, a record field, an
+array element, a string element, and the current contents of a
+reference.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">print </span><span class="c009">variables</span></span></dt><dd class="dd-description">
+Print the values of the given variables. <span class="c003">print</span> can be abbreviated as
+<span class="c003">p</span>.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">display </span><span class="c009">variables</span></span></dt><dd class="dd-description">
+Same as <span class="c003">print</span>, but limit the depth of printing to 1. Useful to
+browse large data structures without printing them in full.
+<span class="c003">display</span> can be abbreviated as <span class="c003">d</span>.
+</dd></dl><p>When printing a complex expression, a name of the form <span class="c003">$</span><span class="c009">integer</span>
+is automatically assigned to its value. Such names are also assigned
+to parts of the value that cannot be printed because the maximal
+printing depth is exceeded. Named values can be printed later on
+with the commands <span class="c003">p $</span><span class="c009">integer</span> or <span class="c003">d $</span><span class="c009">integer</span>.
+Named values are valid only as long as the program is stopped. They
+are forgotten as soon as the program resumes execution.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">set print_depth</span> <span class="c009">d</span></span></dt><dd class="dd-description">
+Limit the printing of values to a maximal depth of <span class="c009">d</span>. 
+</dd><dt class="dt-description"><span class="c013"><span class="c003">set print_length</span> <span class="c009">l</span></span></dt><dd class="dd-description">
+Limit the printing of values to at most <span class="c009">l</span> nodes printed.
+</dd></dl>
+<h2 class="section" id="sec393">17.8&#XA0;&#XA0;Controlling the debugger</h2>
+<h3 class="subsection" id="sec394">17.8.1&#XA0;&#XA0;Setting the program name and arguments</h3>
+<dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">set program</span> <span class="c009">file</span></span></dt><dd class="dd-description">
+Set the program name to <span class="c009">file</span>.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">set arguments</span> <span class="c009">arguments</span></span></dt><dd class="dd-description">
+Give <span class="c009">arguments</span> as command-line arguments for the program.
+</dd></dl><p>A shell is used to pass the arguments to the debugged program. You can
+therefore use wildcards, shell variables, and file redirections inside
+the arguments. To debug programs that read from standard input, it is
+recommended to redirect their input from a file (using
+<span class="c003">set arguments &lt; input-file</span>), otherwise input to the program and
+input to the debugger are not properly separated, and inputs are not
+properly replayed when running the program backwards.</p>
+<h3 class="subsection" id="sec395">17.8.2&#XA0;&#XA0;How programs are loaded</h3>
+<p>The <span class="c003">loadingmode</span> variable controls how the program is executed.</p><dl class="description"><dt class="dt-description">
+<span class="c006">set loadingmode direct</span></dt><dd class="dd-description">
+The program is run directly by the debugger. This is the default mode.
+</dd><dt class="dt-description"><span class="c006">set loadingmode runtime</span></dt><dd class="dd-description">
+The debugger execute the OCaml runtime <span class="c003">ocamlrun</span> on the program.
+Rarely useful; moreover it prevents the debugging of programs compiled
+in &#X201C;custom runtime&#X201D; mode.
+</dd><dt class="dt-description"><span class="c006">set loadingmode manual</span></dt><dd class="dd-description">
+The user starts manually the program, when asked by the debugger.
+Allows remote debugging (see section&#XA0;<a href="#s%3Acommunication">17.8.6</a>).
+</dd></dl>
+<h3 class="subsection" id="sec396">17.8.3&#XA0;&#XA0;Search path for files</h3>
+<p>The debugger searches for source files and compiled interface files in
+a list of directories, the search path. The search path initially
+contains the current directory <span class="c003">.</span> and the standard library directory.
+The <span class="c003">directory</span> command adds directories to the path.</p><p>Whenever the search path is modified, the debugger will clear any
+information it may have cached about the files.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">directory</span> <span class="c009">directorynames</span></span></dt><dd class="dd-description">
+Add the given directories to the search path. These directories are
+added at the front, and will therefore be searched first.</dd><dt class="dt-description"><span class="c013"><span class="c003">directory</span> <span class="c009">directorynames</span> <span class="c003">for</span> <span class="c009">modulename</span></span></dt><dd class="dd-description">
+Same as <span class="c003">directory</span> <span class="c009">directorynames</span>, but the given directories will be
+searched only when looking for the source file of a module that has 
+been packed into <span class="c009">modulename</span>.</dd><dt class="dt-description"><span class="c006">directory</span></dt><dd class="dd-description">
+Reset the search path. This requires confirmation.
+</dd></dl>
+<h3 class="subsection" id="sec397">17.8.4&#XA0;&#XA0;Working directory</h3>
+<p>Each time a program is started in the debugger, it inherits its working
+directory from the current working directory of the debugger. This
+working directory is initially whatever it inherited from its parent
+process (typically the shell), but you can specify a new working
+directory in the debugger with the <span class="c003">cd</span> command or the <span class="c003">-cd</span>
+command-line option.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">cd</span> <span class="c009">directory</span></span></dt><dd class="dd-description">
+Set the working directory for <span class="c003">ocamldebug</span> to <span class="c009">directory</span>.</dd><dt class="dt-description"><span class="c006">pwd</span></dt><dd class="dd-description">
+Print the working directory for <span class="c003">ocamldebug</span>.
+</dd></dl>
+<h3 class="subsection" id="sec398">17.8.5&#XA0;&#XA0;Turning reverse execution on and off</h3>
+<p>In some cases, you may want to turn reverse execution off. This speeds
+up the program execution, and is also sometimes useful for interactive
+programs.</p><p>Normally, the debugger takes checkpoints of the program state from
+time to time. That is, it makes a copy of the current state of the
+program (using the Unix system call <span class="c003">fork</span>). If the variable
+<span class="c009">checkpoints</span> is set to <span class="c003">off</span>, the debugger will not take any
+checkpoints.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">set checkpoints</span> <span class="c009">on/off</span></span></dt><dd class="dd-description">
+Select whether the debugger makes checkpoints or not.
+</dd></dl>
+<h3 class="subsection" id="sec399">17.8.6&#XA0;&#XA0;Communication between the debugger and the program</h3>
+<p>
+<a id="s:communication"></a></p><p>The debugger communicate with the program being debugged through a
+Unix socket. You may need to change the socket name, for example if
+you need to run the debugger on a machine and your program on another.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">set socket</span> <span class="c009">socket</span></span></dt><dd class="dd-description">
+Use <span class="c009">socket</span> for communication with the program. <span class="c009">socket</span> can be
+either a file name, or an Internet port specification
+<span class="c009">host</span>:<span class="c009">port</span>, where <span class="c009">host</span> is a host name or an Internet
+address in dot notation, and <span class="c009">port</span> is a port number on the host.
+</dd></dl><p>On the debugged program side, the socket name is passed through the
+<span class="c003">CAML_DEBUG_SOCKET</span> environment variable.</p>
+<h3 class="subsection" id="sec400">17.8.7&#XA0;&#XA0;Fine-tuning the debugger</h3>
+<p> <a id="s:fine-tuning"></a></p><p>Several variables enables to fine-tune the debugger. Reasonable
+defaults are provided, and you should normally not have to change them.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">set processcount</span> <span class="c009">count</span></span></dt><dd class="dd-description">
+Set the maximum number of checkpoints to <span class="c009">count</span>. More checkpoints
+facilitate going far back in time, but use more memory and create more
+Unix processes.
+</dd></dl><p>As checkpointing is quite expensive, it must not be done too often. On
+the other hand, backward execution is faster when checkpoints are
+taken more often. In particular, backward single-stepping is more
+responsive when many checkpoints have been taken just before the
+current time. To fine-tune the checkpointing strategy, the debugger
+does not take checkpoints at the same frequency for long displacements
+(e.g. <span class="c003">run</span>) and small ones (e.g. <span class="c003">step</span>). The two variables <span class="c003">bigstep</span>
+and <span class="c003">smallstep</span> contain the number of events between two checkpoints
+in each case.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">set bigstep</span> <span class="c009">count</span></span></dt><dd class="dd-description">
+Set the number of events between two checkpoints for long displacements.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">set smallstep</span> <span class="c009">count</span></span></dt><dd class="dd-description">
+Set the number of events between two checkpoints for small
+displacements.
+</dd></dl><p>The following commands display information on checkpoints and events:</p><dl class="description"><dt class="dt-description">
+<span class="c006">info checkpoints</span></dt><dd class="dd-description">
+Print a list of checkpoints.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">info events</span> [<span class="c009">module</span>]</span></dt><dd class="dd-description">
+Print the list of events in the given module (the current module, by default).
+</dd></dl>
+<h3 class="subsection" id="sec401">17.8.8&#XA0;&#XA0;User-defined printers</h3>
+<p>Just as in the toplevel system (section&#XA0;<a href="toplevel.html#s%3Atoplevel-directives">10.2</a>),
+the user can register functions for printing values of certain types.
+For technical reasons, the debugger cannot call printing functions
+that reside in the program being debugged. The code for the printing
+functions must therefore be loaded explicitly in the debugger.</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">load_printer "</span><span class="c009">file-name</span><span class="c003">"</span></span></dt><dd class="dd-description">
+Load in the debugger the indicated <span class="c003">.cmo</span> or <span class="c003">.cma</span> object file. The
+file is loaded in an environment consisting only of the OCaml
+standard library plus the definitions provided by object files
+previously loaded using <span class="c003">load_printer</span>. If this file depends on other
+object files not yet loaded, the debugger automatically loads them if
+it is able to find them in the search path. The loaded file does not
+have direct access to the modules of the program being debugged.</dd><dt class="dt-description"><span class="c013"><span class="c003">install_printer </span><span class="c009">printer-name</span></span></dt><dd class="dd-description">
+Register the function named <span class="c009">printer-name</span> (a
+value path) as a printer for objects whose types match the argument
+type of the function. That is, the debugger will call
+<span class="c009">printer-name</span> when it has such an object to print.
+The printing function <span class="c009">printer-name</span> must use the <span class="c003">Format</span> library
+module to produce its output, otherwise its output will not be
+correctly located in the values printed by the toplevel loop.<p>The value path <span class="c009">printer-name</span> must refer to one of the functions
+defined by the object files loaded using <span class="c003">load_printer</span>. It cannot
+reference the functions of the program being debugged.</p></dd><dt class="dt-description"><span class="c013"><span class="c003">remove_printer </span><span class="c009">printer-name</span></span></dt><dd class="dd-description">
+Remove the named function from the table of value printers.
+</dd></dl>
+<h2 class="section" id="sec402">17.9&#XA0;&#XA0;Miscellaneous commands</h2>
+<dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">list</span> [<span class="c009">module</span>] [<span class="c009">beginning</span>] [<span class="c009">end</span>]</span></dt><dd class="dd-description">
+List the source of module <span class="c009">module</span>, from line number
+<span class="c009">beginning</span> to line number <span class="c009">end</span>. By default, 20 lines of the
+current module are displayed, starting 10 lines before the current
+position.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">source</span> <span class="c009">filename</span></span></dt><dd class="dd-description">
+Read debugger commands from the script <span class="c009">filename</span>.
+</dd></dl>
+<h2 class="section" id="sec403">17.10&#XA0;&#XA0;Running the debugger under Emacs</h2>
+<p> <a id="s:inf-debugger"></a></p><p>The most user-friendly way to use the debugger is to run it under Emacs.
+See the file <span class="c003">emacs/README</span> in the distribution for information on how
+to load the Emacs Lisp files for OCaml support.</p><p>The OCaml debugger is started under Emacs by the command <span class="c003">M-x camldebug</span>, with argument the name of the executable file
+<span class="c009">progname</span> to debug. Communication with the debugger takes place
+in an Emacs buffer named <span class="c003">*camldebug-</span><span class="c009">progname</span><span class="c003">*</span>. The editing
+and history facilities of Shell mode are available for interacting
+with the debugger.</p><p>In addition, Emacs displays the source files containing the current
+event (the current position in the program execution) and highlights
+the location of the event. This display is updated synchronously with
+the debugger action.</p><p>The following bindings for the most common debugger commands are
+available in the <span class="c003">*camldebug-</span><span class="c009">progname</span><span class="c003">*</span> buffer:</p><dl class="description"><dt class="dt-description">
+<span class="c006">C-c C-s</span></dt><dd class="dd-description"> (command <span class="c003">step</span>): execute the program one step forward.
+</dd><dt class="dt-description"><span class="c006">C-c C-k</span></dt><dd class="dd-description"> (command <span class="c003">backstep</span>): execute the program one step backward.
+</dd><dt class="dt-description"><span class="c006">C-c C-n</span></dt><dd class="dd-description"> (command <span class="c003">next</span>): execute the program one step
+forward, skipping over function calls.
+</dd><dt class="dt-description"><span class="c013">Middle mouse button</span></dt><dd class="dd-description"> (command <span class="c003">display</span>): display named value.
+<span class="c003">$</span><span class="c009">n</span> under mouse cursor (support incremental browsing of large
+data structures).
+</dd><dt class="dt-description"><span class="c006">C-c C-p</span></dt><dd class="dd-description"> (command <span class="c003">print</span>): print value of identifier at point.
+</dd><dt class="dt-description"><span class="c006">C-c C-d</span></dt><dd class="dd-description"> (command <span class="c003">display</span>): display value of identifier at point.
+</dd><dt class="dt-description"><span class="c006">C-c C-r</span></dt><dd class="dd-description"> (command <span class="c003">run</span>): execute the program forward to next
+breakpoint.
+</dd><dt class="dt-description"><span class="c006">C-c C-v</span></dt><dd class="dd-description"> (command <span class="c003">reverse</span>): execute the program backward to
+latest breakpoint.
+</dd><dt class="dt-description"><span class="c006">C-c C-l</span></dt><dd class="dd-description"> (command <span class="c003">last</span>): go back one step in the command history.
+</dd><dt class="dt-description"><span class="c006">C-c C-t</span></dt><dd class="dd-description"> (command <span class="c003">backtrace</span>): display backtrace of function calls.
+</dd><dt class="dt-description"><span class="c006">C-c C-f</span></dt><dd class="dd-description"> (command <span class="c003">finish</span>): run forward till the current
+function returns.
+</dd><dt class="dt-description"><span class="c006">C-c &lt;</span></dt><dd class="dd-description"> (command <span class="c003">up</span>): select the stack frame below the
+current frame.
+</dd><dt class="dt-description"><span class="c006">C-c &gt;</span></dt><dd class="dd-description"> (command <span class="c003">down</span>): select the stack frame above the
+current frame.
+</dd></dl><p>In all buffers in OCaml editing mode, the following debugger commands
+are also available:</p><dl class="description"><dt class="dt-description">
+<span class="c006">C-x C-a C-b</span></dt><dd class="dd-description"> (command <span class="c003">break</span>): set a breakpoint at event closest
+to point
+</dd><dt class="dt-description"><span class="c006">C-x C-a C-p</span></dt><dd class="dd-description"> (command <span class="c003">print</span>): print value of identifier at point
+</dd><dt class="dt-description"><span class="c006">C-x C-a C-d</span></dt><dd class="dd-description"> (command <span class="c003">display</span>): display value of identifier at point
+</dd></dl>
+<hr>
+<a href="ocamldoc.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="profil.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

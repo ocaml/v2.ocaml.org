@@ -1,0 +1,647 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The core language</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual002.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual004.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc2">Chapter&#XA0;1</A>&#XA0;&#XA0;The core language</H1><UL>
+<LI><A HREF="manual003.html#toc4">Basics</A>
+</LI><LI><A HREF="manual003.html#toc5">Data types</A>
+</LI><LI><A HREF="manual003.html#toc6">Functions as values</A>
+</LI><LI><A HREF="manual003.html#toc7">Records and variants</A>
+</LI><LI><A HREF="manual003.html#toc8">Imperative features</A>
+</LI><LI><A HREF="manual003.html#toc9">Exceptions</A>
+</LI><LI><A HREF="manual003.html#toc10">Symbolic processing of expressions</A>
+</LI><LI><A HREF="manual003.html#toc11">Pretty-printing and parsing</A>
+</LI><LI><A HREF="manual003.html#toc12">Standalone OCaml programs</A>
+</LI></UL>
+<P> <A NAME="c:core-xamples"></A>
+</P><P>This part of the manual is a tutorial introduction to the
+OCaml language. A good familiarity with programming in a conventional
+languages (say, Pascal or C) is assumed, but no prior exposure to
+functional languages is required. The present chapter introduces the
+core language. Chapter&#XA0;<A HREF="manual004.html#c:moduleexamples">2</A> deals with the
+module system, chapter&#XA0;<A HREF="manual005.html#c:objectexamples">3</A> with the
+object-oriented features, chapter&#XA0;<A HREF="manual006.html#c:labl-examples">4</A> with
+extensions to the core language (labeled arguments and polymorphic
+variants), and chapter&#XA0;<A HREF="manual007.html#c:advexamples">5</A> gives some advanced examples.</P><H2 CLASS="section"><A NAME="toc4"></A><A NAME="htoc3">1.1</A>&#XA0;&#XA0;Basics</H2><P>For this overview of OCaml, we use the interactive system, which
+is started by running <TT>ocaml</TT> from the Unix shell, or by launching the
+<TT>OCamlwin.exe</TT> application under Windows. This tutorial is presented
+as the transcript of a session with the interactive system:
+lines starting with <TT>#</TT> represent user input; the system responses are
+printed below, without a leading <TT>#</TT>.</P><P>Under the interactive system, the user types OCaml phrases terminated
+by <TT>;;</TT> in response to the <TT>#</TT> prompt, and the system compiles them
+on the fly, executes them, and prints the outcome of evaluation.
+Phrases are either simple expressions, or <TT>let</TT> definitions of
+identifiers (either values or functions).
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> 1+2*3;;
+<FONT COLOR=maroon>- : int = 7
+
+</FONT><FONT COLOR=black>#</FONT> let pi = 4.0 *. atan 1.0;;
+<FONT COLOR=maroon>val pi : float = 3.14159265358979312
+
+</FONT><FONT COLOR=black>#</FONT> let square x = x *. x;;
+<FONT COLOR=maroon>val square : float -&gt; float = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> square(sin pi) +. square(cos pi);;
+</FONT><FONT COLOR=maroon>- : float = 1.
+</FONT></PRE><P>
+The OCaml system computes both the value and the type for
+each phrase. Even function parameters need no explicit type declaration:
+the system infers their types from their usage in the
+function. Notice also that integers and floating-point numbers are
+distinct types, with distinct operators: <TT>+</TT> and <TT>*</TT> operate on
+integers, but <TT>+.</TT> and <TT>*.</TT> operate on floats.
+</P><PRE><FONT COLOR=black>#</FONT> <FONT COLOR="#006000"><U>1.0</U> * 2;;
+</FONT><FONT COLOR=maroon>Error: This expression has type float but an expression was expected of type
+         int
+</FONT></PRE><P>Recursive functions are defined with the <TT>let rec</TT> binding:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let rec fib n =
+    if n &lt; 2 then n else fib(n-1) + fib(n-2);;
+<FONT COLOR=maroon>val fib : int -&gt; int = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> fib 10;;
+</FONT><FONT COLOR=maroon>- : int = 55
+</FONT></PRE><H2 CLASS="section"><A NAME="toc5"></A><A NAME="htoc4">1.2</A>&#XA0;&#XA0;Data types</H2><P>In addition to integers and floating-point numbers, OCaml offers the
+usual basic data types: booleans, characters, and character strings.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> (1 &lt; 2) = false;;
+<FONT COLOR=maroon>- : bool = false
+
+</FONT><FONT COLOR=black>#</FONT> 'a';;
+<FONT COLOR=maroon>- : char = 'a'
+
+</FONT><FONT COLOR=black>#</FONT> "Hello world";;
+</FONT><FONT COLOR=maroon>- : string = "Hello world"
+</FONT></PRE><P>Predefined data structures include tuples, arrays, and lists. General
+mechanisms for defining your own data structures are also provided.
+They will be covered in more details later; for now, we concentrate on lists.
+Lists are either given in extension as a bracketed list of
+semicolon-separated elements, or built from the empty list <TT>[]</TT>
+(pronounce &#X201C;nil&#X201D;) by adding elements in front using the <TT>::</TT>
+(&#X201C;cons&#X201D;) operator.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let l = ["is"; "a"; "tale"; "told"; "etc."];;
+<FONT COLOR=maroon>val l : string list = ["is"; "a"; "tale"; "told"; "etc."]
+
+</FONT><FONT COLOR=black>#</FONT> "Life" :: l;;
+</FONT><FONT COLOR=maroon>- : string list = ["Life"; "is"; "a"; "tale"; "told"; "etc."]
+</FONT></PRE><P>
+As with all other OCaml data structures, lists do not need to be
+explicitly allocated and deallocated from memory: all memory
+management is entirely automatic in OCaml. Similarly, there is no
+explicit handling of pointers: the OCaml compiler silently introduces
+pointers where necessary.</P><P>As with most OCaml data structures, inspecting and destructuring lists
+is performed by pattern-matching. List patterns have the exact same
+shape as list expressions, with identifier representing unspecified
+parts of the list. As an example, here is insertion sort on a list:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let rec sort lst =
+    match lst with
+      [] -&gt; []
+    | head :: tail -&gt; insert head (sort tail)
+  and insert elt lst =
+    match lst with
+      [] -&gt; [elt]
+    | head :: tail -&gt; if elt &lt;= head then elt :: lst else head :: insert elt tail
+  ;;
+<FONT COLOR=maroon>val sort : 'a list -&gt; 'a list = &lt;fun&gt;
+val insert : 'a -&gt; 'a list -&gt; 'a list = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> sort l;;
+</FONT><FONT COLOR=maroon>- : string list = ["a"; "etc."; "is"; "tale"; "told"]
+</FONT></PRE><P>The type inferred for <TT>sort</TT>, <TT>'a list -&gt; 'a list</TT>, means that <TT>sort</TT>
+can actually apply to lists of any type, and returns a list of the
+same type. The type <TT>'a</TT> is a <EM>type variable</EM>, and stands for any
+given type. The reason why <TT>sort</TT> can apply to lists of any type is
+that the comparisons (<TT>=</TT>, <TT>&lt;=</TT>, etc.) are <EM>polymorphic</EM> in OCaml:
+they operate between any two values of the same type. This makes
+<TT>sort</TT> itself polymorphic over all list types.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> sort [6;2;5;3];;
+<FONT COLOR=maroon>- : int list = [2; 3; 5; 6]
+
+</FONT><FONT COLOR=black>#</FONT> sort [3.14; 2.718];;
+</FONT><FONT COLOR=maroon>- : float list = [2.718; 3.14]
+</FONT></PRE><P>The <TT>sort</TT> function above does not modify its input list: it builds
+and returns a new list containing the same elements as the input list,
+in ascending order. There is actually no way in OCaml to modify
+in-place a list once it is built: we say that lists are <EM>immutable</EM>
+data structures. Most OCaml data structures are immutable, but a few
+(most notably arrays) are <EM>mutable</EM>, meaning that they can be
+modified in-place at any time.</P><H2 CLASS="section"><A NAME="toc6"></A><A NAME="htoc5">1.3</A>&#XA0;&#XA0;Functions as values</H2><P>OCaml is a functional language: functions in the full mathematical
+sense are supported and can be passed around freely just as any other
+piece of data. For instance, here is a <TT>deriv</TT> function that takes any
+float function as argument and returns an approximation of its
+derivative function:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let deriv f dx = function x -&gt; (f(x +. dx) -. f(x)) /. dx;;
+<FONT COLOR=maroon>val deriv : (float -&gt; float) -&gt; float -&gt; float -&gt; float = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> let sin' = deriv sin 1e-6;;
+<FONT COLOR=maroon>val sin' : float -&gt; float = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> sin' pi;;
+</FONT><FONT COLOR=maroon>- : float = -1.00000000013961143
+</FONT></PRE><P>
+Even function composition is definable:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let compose f g = function x -&gt; f(g(x));;
+<FONT COLOR=maroon>val compose : ('a -&gt; 'b) -&gt; ('c -&gt; 'a) -&gt; 'c -&gt; 'b = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> let cos2 = compose square cos;;
+</FONT><FONT COLOR=maroon>val cos2 : float -&gt; float = &lt;fun&gt;
+</FONT></PRE><P>Functions that take other functions as arguments are called
+&#X201C;functionals&#X201D;, or &#X201C;higher-order functions&#X201D;. Functionals are
+especially useful to provide iterators or similar generic operations
+over a data structure. For instance, the standard OCaml library
+provides a <TT>List.map</TT> functional that applies a given function to each
+element of a list, and returns the list of the results:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> List.map (function n -&gt; n * 2 + 1) [0;1;2;3;4];;
+</FONT><FONT COLOR=maroon>- : int list = [1; 3; 5; 7; 9]
+</FONT></PRE><P>
+This functional, along with a number of other list and array
+functionals, is predefined because it is often useful, but there is
+nothing magic with it: it can easily be defined as follows.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let rec map f l =
+    match l with
+      [] -&gt; []
+    | hd :: tl -&gt; f hd :: map f tl;;
+</FONT><FONT COLOR=maroon>val map : ('a -&gt; 'b) -&gt; 'a list -&gt; 'b list = &lt;fun&gt;
+</FONT></PRE><H2 CLASS="section"><A NAME="toc7"></A><A NAME="htoc6">1.4</A>&#XA0;&#XA0;Records and variants</H2><P>
+
+<A NAME="s:tut-recvariants"></A></P><P>User-defined data structures include records and variants. Both are
+defined with the <TT>type</TT> declaration. Here, we declare a record type to
+represent rational numbers.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> type ratio = {num: int; denom: int};;
+<FONT COLOR=maroon>type ratio = { num : int; denom : int; }
+
+</FONT><FONT COLOR=black>#</FONT> let add_ratio r1 r2 =
+    {num = r1.num * r2.denom + r2.num * r1.denom;
+     denom = r1.denom * r2.denom};;
+<FONT COLOR=maroon>val add_ratio : ratio -&gt; ratio -&gt; ratio = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> add_ratio {num=1; denom=3} {num=2; denom=5};;
+</FONT><FONT COLOR=maroon>- : ratio = {num = 11; denom = 15}
+</FONT></PRE><P>The declaration of a variant type lists all possible shapes for values
+of that type. Each case is identified by a name, called a constructor,
+which serves both for constructing values of the variant type and
+inspecting them by pattern-matching. Constructor names are capitalized
+to distinguish them from variable names (which must start with a
+lowercase letter). For instance, here is a variant
+type for doing mixed arithmetic (integers and floats):
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> type number = Int of int | Float of float | Error;;
+</FONT><FONT COLOR=maroon>type number = Int of int | Float of float | Error
+</FONT></PRE><P>
+This declaration expresses that a value of type <TT>number</TT> is either an
+integer, a floating-point number, or the constant <TT>Error</TT> representing
+the result of an invalid operation (e.g. a division by zero).</P><P>Enumerated types are a special case of variant types, where all
+alternatives are constants:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> type sign = Positive | Negative;;
+<FONT COLOR=maroon>type sign = Positive | Negative
+
+</FONT><FONT COLOR=black>#</FONT> let sign_int n = if n &gt;= 0 then Positive else Negative;;
+</FONT><FONT COLOR=maroon>val sign_int : int -&gt; sign = &lt;fun&gt;
+</FONT></PRE><P>To define arithmetic operations for the <TT>number</TT> type, we use
+pattern-matching on the two numbers involved:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let add_num n1 n2 =
+    match (n1, n2) with
+      (Int i1, Int i2) -&gt;
+        (* Check for overflow of integer addition *)
+        if sign_int i1 = sign_int i2 &amp;&amp; sign_int(i1 + i2) &lt;&gt; sign_int i1
+        then Float(float i1 +. float i2)
+        else Int(i1 + i2)
+    | (Int i1, Float f2) -&gt; Float(float i1 +. f2)
+    | (Float f1, Int i2) -&gt; Float(f1 +. float i2)
+    | (Float f1, Float f2) -&gt; Float(f1 +. f2)
+    | (Error, _) -&gt; Error
+    | (_, Error) -&gt; Error;;
+<FONT COLOR=maroon>val add_num : number -&gt; number -&gt; number = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> add_num (Int 123) (Float 3.14159);;
+</FONT><FONT COLOR=maroon>- : number = Float 126.14159
+</FONT></PRE><P>The most common usage of variant types is to describe recursive data
+structures. Consider for example the type of binary trees:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> type 'a btree = Empty | Node of 'a * 'a btree * 'a btree;;
+</FONT><FONT COLOR=maroon>type 'a btree = Empty | Node of 'a * 'a btree * 'a btree
+</FONT></PRE><P>
+This definition reads as follow: a binary tree containing values of
+type <TT>'a</TT> (an arbitrary type) is either empty, or is a node containing
+one value of type <TT>'a</TT> and two subtrees containing also values of type
+<TT>'a</TT>, that is, two <TT>'a btree</TT>.</P><P>Operations on binary trees are naturally expressed as recursive functions
+following the same structure as the type definition itself. For
+instance, here are functions performing lookup and insertion in
+ordered binary trees (elements increase from left to right):
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let rec member x btree =
+    match btree with
+      Empty -&gt; false
+    | Node(y, left, right) -&gt;
+        if x = y then true else
+        if x &lt; y then member x left else member x right;;
+<FONT COLOR=maroon>val member : 'a -&gt; 'a btree -&gt; bool = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> let rec insert x btree =
+    match btree with
+      Empty -&gt; Node(x, Empty, Empty)
+    | Node(y, left, right) -&gt;
+        if x &lt;= y then Node(y, insert x left, right)
+                  else Node(y, left, insert x right);;
+</FONT><FONT COLOR=maroon>val insert : 'a -&gt; 'a btree -&gt; 'a btree = &lt;fun&gt;
+</FONT></PRE><H2 CLASS="section"><A NAME="toc8"></A><A NAME="htoc7">1.5</A>&#XA0;&#XA0;Imperative features</H2><P>Though all examples so far were written in purely applicative style,
+OCaml is also equipped with full imperative features. This includes the
+usual <TT>while</TT> and <TT>for</TT> loops, as well as mutable data structures such
+as arrays. Arrays are either given in extension between <TT>[|</TT> and <TT>|]</TT>
+brackets, or allocated and initialized with the <TT>Array.create</TT>
+function, then filled up later by assignments. For instance, the
+function below sums two vectors (represented as float arrays) componentwise.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let add_vect v1 v2 =
+    let len = min (Array.length v1) (Array.length v2) in
+    let res = Array.create len 0.0 in
+    for i = 0 to len - 1 do
+      res.(i) &lt;- v1.(i) +. v2.(i)
+    done;
+    res;;
+<FONT COLOR=maroon>val add_vect : float array -&gt; float array -&gt; float array = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> add_vect [| 1.0; 2.0 |] [| 3.0; 4.0 |];;
+</FONT><FONT COLOR=maroon>- : float array = [|4.; 6.|]
+</FONT></PRE><P>Record fields can also be modified by assignment, provided they are
+declared <TT>mutable</TT> in the definition of the record type:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> type mutable_point = { mutable x: float; mutable y: float };;
+<FONT COLOR=maroon>type mutable_point = { mutable x : float; mutable y : float; }
+
+</FONT><FONT COLOR=black>#</FONT> let translate p dx dy =
+    p.x &lt;- p.x +. dx; p.y &lt;- p.y +. dy;;
+<FONT COLOR=maroon>val translate : mutable_point -&gt; float -&gt; float -&gt; unit = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> let mypoint = { x = 0.0; y = 0.0 };;
+<FONT COLOR=maroon>val mypoint : mutable_point = {x = 0.; y = 0.}
+
+</FONT><FONT COLOR=black>#</FONT> translate mypoint 1.0 2.0;;
+<FONT COLOR=maroon>- : unit = ()
+
+</FONT><FONT COLOR=black>#</FONT> mypoint;;
+</FONT><FONT COLOR=maroon>- : mutable_point = {x = 1.; y = 2.}
+</FONT></PRE><P>OCaml has no built-in notion of variable &#X2013; identifiers whose current
+value can be changed by assignment. (The <TT>let</TT> binding is not an
+assignment, it introduces a new identifier with a new scope.)
+However, the standard library provides references, which are mutable
+indirection cells (or one-element arrays), with operators <TT>!</TT> to fetch
+the current contents of the reference and <TT>:=</TT> to assign the contents.
+Variables can then be emulated by <TT>let</TT>-binding a reference. For
+instance, here is an in-place insertion sort over arrays:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let insertion_sort a =
+    for i = 1 to Array.length a - 1 do
+      let val_i = a.(i) in
+      let j = ref i in
+      while !j &gt; 0 &amp;&amp; val_i &lt; a.(!j - 1) do
+        a.(!j) &lt;- a.(!j - 1);
+        j := !j - 1
+      done;
+      a.(!j) &lt;- val_i
+    done;;
+</FONT><FONT COLOR=maroon>val insertion_sort : 'a array -&gt; unit = &lt;fun&gt;
+</FONT></PRE><P>References are also useful to write functions that maintain a current
+state between two calls to the function. For instance, the following
+pseudo-random number generator keeps the last returned number in a
+reference:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let current_rand = ref 0;;
+<FONT COLOR=maroon>val current_rand : int ref = {contents = 0}
+
+</FONT><FONT COLOR=black>#</FONT> let random () =
+    current_rand := !current_rand * 25713 + 1345;
+    !current_rand;;
+</FONT><FONT COLOR=maroon>val random : unit -&gt; int = &lt;fun&gt;
+</FONT></PRE><P>Again, there is nothing magical with references: they are implemented as
+a single-field mutable record, as follows.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> type 'a ref = { mutable contents: 'a };;
+<FONT COLOR=maroon>type 'a ref = { mutable contents : 'a; }
+
+</FONT><FONT COLOR=black>#</FONT> let (!) r = r.contents;;
+<FONT COLOR=maroon>val ( ! ) : 'a ref -&gt; 'a = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> let (:=) r newval = r.contents &lt;- newval;;
+</FONT><FONT COLOR=maroon>val ( := ) : 'a ref -&gt; 'a -&gt; unit = &lt;fun&gt;
+</FONT></PRE><P>In some special cases, you may need to store a polymorphic function in
+a data structure, keeping its polymorphism. Without user-provided
+type annotations, this is not allowed, as polymorphism is only
+introduced on a global level. However, you can give explicitly
+polymorphic types to record fields.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> type idref = { mutable id: 'a. 'a -&gt; 'a };;
+<FONT COLOR=maroon>type idref = { mutable id : 'a. 'a -&gt; 'a; }
+
+</FONT><FONT COLOR=black>#</FONT> let r = {id = fun x -&gt; x};;
+<FONT COLOR=maroon>val r : idref = {id = &lt;fun&gt;}
+
+</FONT><FONT COLOR=black>#</FONT> let g s = (s.id 1, s.id true);;
+<FONT COLOR=maroon>val g : idref -&gt; int * bool = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> r.id &lt;- (fun x -&gt; print_string "called id\n"; x);;
+<FONT COLOR=maroon>- : unit = ()
+
+</FONT><FONT COLOR=black>#</FONT> g r;;
+</FONT><FONT COLOR=maroon>called id
+called id
+- : int * bool = (1, true)
+</FONT></PRE><H2 CLASS="section"><A NAME="toc9"></A><A NAME="htoc8">1.6</A>&#XA0;&#XA0;Exceptions</H2><P>OCaml provides exceptions for signalling and handling exceptional
+conditions. Exceptions can also be used as a general-purpose non-local
+control structure. Exceptions are declared with the <TT>exception</TT>
+construct, and signalled with the <TT>raise</TT> operator. For instance, the
+function below for taking the head of a list uses an exception to
+signal the case where an empty list is given.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> exception Empty_list;;
+<FONT COLOR=maroon>exception Empty_list
+
+</FONT><FONT COLOR=black>#</FONT> let head l =
+    match l with
+      [] -&gt; raise Empty_list
+    | hd :: tl -&gt; hd;;
+<FONT COLOR=maroon>val head : 'a list -&gt; 'a = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> head [1;2];;
+<FONT COLOR=maroon>- : int = 1
+
+</FONT><FONT COLOR=black>#</FONT> head [];;
+</FONT><FONT COLOR=maroon>Exception: Empty_list.
+</FONT></PRE><P>Exceptions are used throughout the standard library to signal cases
+where the library functions cannot complete normally. For instance,
+the <TT>List.assoc</TT> function, which returns the data associated with a
+given key in a list of (key, data) pairs, raises the predefined
+exception <TT>Not_found</TT> when the key does not appear in the list:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> List.assoc 1 [(0, "zero"); (1, "one")];;
+<FONT COLOR=maroon>- : string = "one"
+
+</FONT><FONT COLOR=black>#</FONT> List.assoc 2 [(0, "zero"); (1, "one")];;
+</FONT><FONT COLOR=maroon>Exception: Not_found.
+</FONT></PRE><P>Exceptions can be trapped with the <TT>try</TT>&#X2026;<TT>with</TT> construct:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let name_of_binary_digit digit =
+    try
+      List.assoc digit [0, "zero"; 1, "one"]
+    with Not_found -&gt;
+      "not a binary digit";;
+<FONT COLOR=maroon>val name_of_binary_digit : int -&gt; string = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> name_of_binary_digit 0;;
+<FONT COLOR=maroon>- : string = "zero"
+
+</FONT><FONT COLOR=black>#</FONT> name_of_binary_digit (-1);;
+</FONT><FONT COLOR=maroon>- : string = "not a binary digit"
+</FONT></PRE><P>The <TT>with</TT> part is actually a regular pattern-matching on the
+exception value. Thus, several exceptions can be caught by one
+<TT>try</TT>&#X2026;<TT>with</TT> construct. Also, finalization can be performed by
+trapping all exceptions, performing the finalization, then raising
+again the exception:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let temporarily_set_reference ref newval funct =
+    let oldval = !ref in
+    try
+      ref := newval;
+      let res = funct () in
+      ref := oldval;
+      res
+    with x -&gt;
+      ref := oldval;
+      raise x;;
+</FONT><FONT COLOR=maroon>val temporarily_set_reference : 'a ref -&gt; 'a -&gt; (unit -&gt; 'b) -&gt; 'b = &lt;fun&gt;
+</FONT></PRE><H2 CLASS="section"><A NAME="toc10"></A><A NAME="htoc9">1.7</A>&#XA0;&#XA0;Symbolic processing of expressions</H2><P>We finish this introduction with a more complete example
+representative of the use of OCaml for symbolic processing: formal
+manipulations of arithmetic expressions containing variables. The
+following variant type describes the expressions we shall manipulate:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> type expression =
+      Const of float
+    | Var of string
+    | Sum of expression * expression    (* e1 + e2 *)
+    | Diff of expression * expression   (* e1 - e2 *)
+    | Prod of expression * expression   (* e1 * e2 *)
+    | Quot of expression * expression   (* e1 / e2 *)
+  ;;
+</FONT><FONT COLOR=maroon>type expression =
+    Const of float
+  | Var of string
+  | Sum of expression * expression
+  | Diff of expression * expression
+  | Prod of expression * expression
+  | Quot of expression * expression
+</FONT></PRE><P>We first define a function to evaluate an expression given an
+environment that maps variable names to their values. For simplicity,
+the environment is represented as an association list.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> exception Unbound_variable of string;;
+<FONT COLOR=maroon>exception Unbound_variable of string
+
+</FONT><FONT COLOR=black>#</FONT> let rec eval env exp =
+    match exp with
+      Const c -&gt; c
+    | Var v -&gt;
+        (try List.assoc v env with Not_found -&gt; raise(Unbound_variable v))
+    | Sum(f, g) -&gt; eval env f +. eval env g
+    | Diff(f, g) -&gt; eval env f -. eval env g
+    | Prod(f, g) -&gt; eval env f *. eval env g
+    | Quot(f, g) -&gt; eval env f /. eval env g;;
+<FONT COLOR=maroon>val eval : (string * float) list -&gt; expression -&gt; float = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> eval [("x", 1.0); ("y", 3.14)] (Prod(Sum(Var "x", Const 2.0), Var "y"));;
+</FONT><FONT COLOR=maroon>- : float = 9.42
+</FONT></PRE><P>Now for a real symbolic processing, we define the derivative of an
+expression with respect to a variable <TT>dv</TT>:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let rec deriv exp dv =
+    match exp with
+      Const c -&gt; Const 0.0
+    | Var v -&gt; if v = dv then Const 1.0 else Const 0.0
+    | Sum(f, g) -&gt; Sum(deriv f dv, deriv g dv)
+    | Diff(f, g) -&gt; Diff(deriv f dv, deriv g dv)
+    | Prod(f, g) -&gt; Sum(Prod(f, deriv g dv), Prod(deriv f dv, g))
+    | Quot(f, g) -&gt; Quot(Diff(Prod(deriv f dv, g), Prod(f, deriv g dv)),
+                         Prod(g, g))
+  ;;
+<FONT COLOR=maroon>val deriv : expression -&gt; string -&gt; expression = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> deriv (Quot(Const 1.0, Var "x")) "x";;
+</FONT><FONT COLOR=maroon>- : expression =
+Quot (Diff (Prod (Const 0., Var "x"), Prod (Const 1., Const 1.)),
+ Prod (Var "x", Var "x"))
+</FONT></PRE><H2 CLASS="section"><A NAME="toc11"></A><A NAME="htoc10">1.8</A>&#XA0;&#XA0;Pretty-printing and parsing</H2><P>As shown in the examples above, the internal representation (also
+called <EM>abstract syntax</EM>) of expressions quickly becomes hard to
+read and write as the expressions get larger. We need a printer and a
+parser to go back and forth between the abstract syntax and the <EM>concrete syntax</EM>, which in the case of expressions is the familiar
+algebraic notation (e.g. <TT>2*x+1</TT>).</P><P>For the printing function, we take into account the usual precedence
+rules (i.e. <TT>*</TT> binds tighter than <TT>+</TT>) to avoid printing unnecessary
+parentheses. To this end, we maintain the current operator precedence
+and print parentheses around an operator only if its precedence is
+less than the current precedence.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let print_expr exp =
+    (* Local function definitions *)
+    let open_paren prec op_prec =
+      if prec &gt; op_prec then print_string "(" in
+    let close_paren prec op_prec =
+      if prec &gt; op_prec then print_string ")" in
+    let rec print prec exp =     (* prec is the current precedence *)
+      match exp with
+        Const c -&gt; print_float c
+      | Var v -&gt; print_string v
+      | Sum(f, g) -&gt;
+          open_paren prec 0;
+          print 0 f; print_string " + "; print 0 g;
+          close_paren prec 0
+      | Diff(f, g) -&gt;
+          open_paren prec 0;
+          print 0 f; print_string " - "; print 1 g;
+          close_paren prec 0
+      | Prod(f, g) -&gt;
+          open_paren prec 2;
+          print 2 f; print_string " * "; print 2 g;
+          close_paren prec 2
+      | Quot(f, g) -&gt;
+          open_paren prec 2;
+          print 2 f; print_string " / "; print 3 g;
+          close_paren prec 2
+    in print 0 exp;;
+<FONT COLOR=maroon>val print_expr : expression -&gt; unit = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> let e = Sum(Prod(Const 2.0, Var "x"), Const 1.0);;
+<FONT COLOR=maroon>val e : expression = Sum (Prod (Const 2., Var "x"), Const 1.)
+
+</FONT><FONT COLOR=black>#</FONT> print_expr e; print_newline();;
+<FONT COLOR=maroon>2. * x + 1.
+- : unit = ()
+
+</FONT><FONT COLOR=black>#</FONT> print_expr (deriv e "x"); print_newline();;
+</FONT><FONT COLOR=maroon>2. * 1. + 0. * x + 0.
+- : unit = ()
+</FONT></PRE><P>Parsing (transforming concrete syntax into abstract syntax) is usually
+more delicate. OCaml offers several tools to help write parsers:
+on the one hand, OCaml versions of the lexer generator Lex and the
+parser generator Yacc (see chapter&#XA0;<A HREF="manual026.html#c:ocamlyacc">12</A>), which handle
+LALR(1) languages using push-down automata; on the other hand, a
+predefined type of streams (of characters or tokens) and
+pattern-matching over streams, which facilitate the writing of
+recursive-descent parsers for LL(1) languages. An example using
+<TT>ocamllex</TT> and <TT>ocamlyacc</TT> is given in
+chapter&#XA0;<A HREF="manual026.html#c:ocamlyacc">12</A>. Here, we will use stream parsers.
+The syntactic support for stream parsers is provided by the Camlp4
+preprocessor, which can be loaded into the interactive toplevel via
+the <TT>#load</TT> directives below.</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> #load "dynlink.cma";;
+
+  #load "camlp4o.cma";;
+<FONT COLOR=maroon>	Camlp4 Parsing version 4.00.0
+
+
+</FONT><FONT COLOR=black>#</FONT> open Genlex;;
+
+  let lexer = make_lexer ["("; ")"; "+"; "-"; "*"; "/"];;
+</FONT><FONT COLOR=maroon>val lexer : char Stream.t -&gt; Genlex.token Stream.t = &lt;fun&gt;
+</FONT></PRE><P>
+For the lexical analysis phase (transformation of the input text into
+a stream of tokens), we use a &#X201C;generic&#X201D; lexer provided in the
+standard library module <TT>Genlex</TT>. The <TT>make_lexer</TT> function takes a
+list of keywords and returns a lexing function that &#X201C;tokenizes&#X201D; an
+input stream of characters. Tokens are either identifiers, keywords,
+or literals (integer, floats, characters, strings). Whitespace and
+comments are skipped.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let token_stream = lexer(Stream.of_string "1.0 +x");;
+<FONT COLOR=maroon>val token_stream : Genlex.token Stream.t = &lt;abstr&gt;
+
+</FONT><FONT COLOR=black>#</FONT> Stream.next token_stream;;
+<FONT COLOR=maroon>- : Genlex.token = Float 1.
+
+</FONT><FONT COLOR=black>#</FONT> Stream.next token_stream;;
+<FONT COLOR=maroon>- : Genlex.token = Kwd "+"
+
+</FONT><FONT COLOR=black>#</FONT> Stream.next token_stream;;
+</FONT><FONT COLOR=maroon>- : Genlex.token = Ident "x"
+</FONT></PRE><P>The parser itself operates by pattern-matching on the stream of
+tokens. As usual with recursive descent parsers, we use several
+intermediate parsing functions to reflect the precedence and
+associativity of operators. Pattern-matching over streams is more
+powerful than on regular data structures, as it allows recursive calls
+to parsing functions inside the patterns, for matching sub-components of
+the input stream. See the Camlp4 documentation for more details.</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let rec parse_expr = parser
+      [&lt; e1 = parse_mult; e = parse_more_adds e1 &gt;] -&gt; e
+  and parse_more_adds e1 = parser
+      [&lt; 'Kwd "+"; e2 = parse_mult; e = parse_more_adds (Sum(e1, e2)) &gt;] -&gt; e
+    | [&lt; 'Kwd "-"; e2 = parse_mult; e = parse_more_adds (Diff(e1, e2)) &gt;] -&gt; e
+    | [&lt; &gt;] -&gt; e1
+  and parse_mult = parser
+      [&lt; e1 = parse_simple; e = parse_more_mults e1 &gt;] -&gt; e
+  and parse_more_mults e1 = parser
+      [&lt; 'Kwd "*"; e2 = parse_simple; e = parse_more_mults (Prod(e1, e2)) &gt;] -&gt; e
+    | [&lt; 'Kwd "/"; e2 = parse_simple; e = parse_more_mults (Quot(e1, e2)) &gt;] -&gt; e
+    | [&lt; &gt;] -&gt; e1
+  and parse_simple = parser
+      [&lt; 'Ident s &gt;] -&gt; Var s
+    | [&lt; 'Int i &gt;] -&gt; Const(float i)
+    | [&lt; 'Float f &gt;] -&gt; Const f
+    | [&lt; 'Kwd "("; e = parse_expr; 'Kwd ")" &gt;] -&gt; e;;
+<FONT COLOR=maroon>val parse_expr : Genlex.token Stream.t -&gt; expression = &lt;fun&gt;
+val parse_more_adds : expression -&gt; Genlex.token Stream.t -&gt; expression =
+  &lt;fun&gt;
+val parse_mult : Genlex.token Stream.t -&gt; expression = &lt;fun&gt;
+val parse_more_mults : expression -&gt; Genlex.token Stream.t -&gt; expression =
+  &lt;fun&gt;
+val parse_simple : Genlex.token Stream.t -&gt; expression = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> let parse_expression = parser [&lt; e = parse_expr; _ = Stream.empty &gt;] -&gt; e;;
+</FONT><FONT COLOR=maroon>val parse_expression : Genlex.token Stream.t -&gt; expression = &lt;fun&gt;
+</FONT></PRE><P>Composing the lexer and parser, we finally obtain a function to read
+an expression from a character string:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> let read_expression s = parse_expression(lexer(Stream.of_string s));;
+<FONT COLOR=maroon>val read_expression : string -&gt; expression = &lt;fun&gt;
+
+</FONT><FONT COLOR=black>#</FONT> read_expression "2*(x+y)";;
+</FONT><FONT COLOR=maroon>- : expression = Prod (Const 2., Sum (Var "x", Var "y"))
+</FONT></PRE><P>
+A small puzzle: why do we get different results in the following two
+examples?
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR="#006000"> read_expression "x - 1";;
+<FONT COLOR=maroon>- : expression = Diff (Var "x", Const 1.)
+
+</FONT><FONT COLOR=black>#</FONT> read_expression "x-1";;
+</FONT><FONT COLOR=maroon>Exception: Stream.Error "".
+</FONT></PRE><P>
+Answer: the generic lexer provided by <TT>Genlex</TT> recognizes negative
+integer literals as one integer token. Hence, <TT>x-1</TT> is read as
+the token <TT>Ident "x"</TT> followed by the token <TT>Int(-1)</TT>; this sequence
+does not match any of the parser rules. On the other hand,
+the second space in <TT>x - 1</TT> causes the lexer to return the three
+expected tokens: <TT>Ident "x"</TT>, then <TT>Kwd "-"</TT>, then <TT>Int(1)</TT>.</P><H2 CLASS="section"><A NAME="toc12"></A><A NAME="htoc11">1.9</A>&#XA0;&#XA0;Standalone OCaml programs</H2><P>All examples given so far were executed under the interactive system.
+OCaml code can also be compiled separately and executed
+non-interactively using the batch compilers <TT>ocamlc</TT> and <TT>ocamlopt</TT>.
+The source code must be put in a file with extension <TT>.ml</TT>. It
+consists of a sequence of phrases, which will be evaluated at runtime
+in their order of appearance in the source file. Unlike in interactive
+mode, types and values are not printed automatically; the program must
+call printing functions explicitly to produce some output. Here is a
+sample standalone program to print Fibonacci numbers:
+</P><PRE>(* File fib.ml *)
+let rec fib n =
+  if n &lt; 2 then 1 else fib(n-1) + fib(n-2);;
+let main () =
+  let arg = int_of_string Sys.argv.(1) in
+  print_int(fib arg);
+  print_newline();
+  exit 0;;
+main ();;
+</PRE><P><TT>Sys.argv</TT> is an array of strings containing the command-line
+parameters. <TT>Sys.argv.(1)</TT> is thus the first command-line parameter.
+The program above is compiled and executed with the following shell
+commands:
+</P><PRE>$ ocamlc -o fib fib.ml
+$ ./fib 10
+89
+$ ./fib 20
+10946
+</PRE><P>
+More complex standalone OCaml programs are typically composed of
+multiple source files, and can link with precompiled libraries.
+Chapters&#XA0;<A HREF="manual022.html#c:camlc">8</A> and&#XA0;<A HREF="manual025.html#c:nativecomp">11</A> explain how to use the
+batch compilers <TT>ocamlc</TT> and <TT>ocamlopt</TT>. Recompilation of
+multi-file OCaml projects can be automated using the <TT>ocamlbuild</TT>
+compilation manager, documented in chapter&#XA0;<A HREF="manual032.html#c:ocamlbuild">18</A>.
+
+</P><HR>
+<A HREF="manual002.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual004.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

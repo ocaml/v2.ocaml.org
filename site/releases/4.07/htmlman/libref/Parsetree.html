@@ -1,0 +1,2254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Parser.html">
+<link rel="next" href="Parsing.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="Bytes" rel="Chapter" href="Bytes.html">
+<link title="BytesLabels" rel="Chapter" href="BytesLabels.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="CamlinternalFormat" rel="Chapter" href="CamlinternalFormat.html">
+<link title="CamlinternalFormatBasics" rel="Chapter" href="CamlinternalFormatBasics.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Ephemeron" rel="Chapter" href="Ephemeron.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Float" rel="Chapter" href="Float.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Genlex" rel="Chapter" href="Genlex.html">
+<link title="Graphics" rel="Chapter" href="Graphics.html">
+<link title="GraphicsX11" rel="Chapter" href="GraphicsX11.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Pervasives" rel="Chapter" href="Pervasives.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Seq" rel="Chapter" href="Seq.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Sort" rel="Chapter" href="Sort.html">
+<link title="Spacetime" rel="Chapter" href="Spacetime.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="Stream" rel="Chapter" href="Stream.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Tbl" rel="Chapter" href="Tbl.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="ThreadUnix" rel="Chapter" href="ThreadUnix.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Uchar" rel="Chapter" href="Uchar.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Weak" rel="Chapter" href="Weak.html"><link title="Extension points" rel="Section" href="#1_Extensionpoints">
+<link title="Core language" rel="Section" href="#1_Corelanguage">
+<link title="Class language" rel="Section" href="#1_Classlanguage">
+<link title="Module language" rel="Section" href="#1_Modulelanguage">
+<link title="Toplevel" rel="Section" href="#1_Toplevel">
+<title>Parsetree</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Parser.html" title="Parser">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Parsing.html" title="Parsing">Next</a>
+</div>
+<h1>Module <a href="type_Parsetree.html">Parsetree</a></h1>
+
+<pre><span id="MODULEParsetree"><span class="keyword">module</span> Parsetree</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Parsetree.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Abstract syntax tree produced by parsing</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEconstant"><span class="keyword">type</span> <code class="type"></code>constant</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Pconst_integer"><span class="constructor">Pconst_integer</span></span> <span class="keyword">of</span> <code class="type">string * char option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Pconst_char"><span class="constructor">Pconst_char</span></span> <span class="keyword">of</span> <code class="type">char</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Pconst_string"><span class="constructor">Pconst_string</span></span> <span class="keyword">of</span> <code class="type">string * string option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstant.Pconst_float"><span class="constructor">Pconst_float</span></span> <span class="keyword">of</span> <code class="type">string * char option</code></code></td>
+
+</tr></table>
+
+
+<h2 id="1_Extensionpoints">Extension points</h2>
+<pre><span id="TYPEattribute"><span class="keyword">type</span> <code class="type"></code>attribute</span> = <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEpayload">payload</a></code> </pre>
+
+
+<pre><span id="TYPEextension"><span class="keyword">type</span> <code class="type"></code>extension</span> = <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEpayload">payload</a></code> </pre>
+
+
+<pre><span id="TYPEattributes"><span class="keyword">type</span> <code class="type"></code>attributes</span> = <code class="type"><a href="Parsetree.html#TYPEattribute">attribute</a> list</code> </pre>
+
+
+<pre><code><span id="TYPEpayload"><span class="keyword">type</span> <code class="type"></code>payload</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpayload.PStr"><span class="constructor">PStr</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEstructure">structure</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpayload.PSig"><span class="constructor">PSig</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEsignature">signature</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpayload.PTyp"><span class="constructor">PTyp</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpayload.PPat"><span class="constructor">PPat</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a> * <a href="Parsetree.html#TYPEexpression">expression</a> option</code></code></td>
+
+</tr></table>
+
+
+<h2 id="1_Corelanguage">Core language</h2>
+<pre><code><span id="TYPEcore_type"><span class="keyword">type</span> <code class="type"></code>core_type</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type.ptyp_desc">ptyp_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEcore_type_desc">core_type_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type.ptyp_loc">ptyp_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type.ptyp_attributes">ptyp_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEcore_type_desc"><span class="keyword">type</span> <code class="type"></code>core_type_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_any"><span class="constructor">Ptyp_any</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_var"><span class="constructor">Ptyp_var</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_arrow"><span class="constructor">Ptyp_arrow</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPEarg_label">Asttypes.arg_label</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_tuple"><span class="constructor">Ptyp_tuple</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_constr"><span class="constructor">Ptyp_constr</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_object"><span class="constructor">Ptyp_object</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEobject_field">object_field</a> list * <a href="Asttypes.html#TYPEclosed_flag">Asttypes.closed_flag</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_class"><span class="constructor">Ptyp_class</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_alias"><span class="constructor">Ptyp_alias</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a> * string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_variant"><span class="constructor">Ptyp_variant</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPErow_field">row_field</a> list * <a href="Asttypes.html#TYPEclosed_flag">Asttypes.closed_flag</a> * <a href="Asttypes.html#TYPElabel">Asttypes.label</a> list option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_poly"><span class="constructor">Ptyp_poly</span></span> <span class="keyword">of</span> <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> list * <a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_package"><span class="constructor">Ptyp_package</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpackage_type">package_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcore_type_desc.Ptyp_extension"><span class="constructor">Ptyp_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPEpackage_type"><span class="keyword">type</span> <code class="type"></code>package_type</span> = <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> *<br>       (<a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a>) list</code> </pre>
+
+
+<pre><code><span id="TYPErow_field"><span class="keyword">type</span> <code class="type"></code>row_field</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrow_field.Rtag"><span class="constructor">Rtag</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPElabel">Asttypes.label</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEattributes">attributes</a> * bool<br>        * <a href="Parsetree.html#TYPEcore_type">core_type</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrow_field.Rinherit"><span class="constructor">Rinherit</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEobject_field"><span class="keyword">type</span> <code class="type"></code>object_field</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTobject_field.Otag"><span class="constructor">Otag</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPElabel">Asttypes.label</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEattributes">attributes</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTobject_field.Oinherit"><span class="constructor">Oinherit</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEpattern"><span class="keyword">type</span> <code class="type"></code>pattern</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern.ppat_desc">ppat_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEpattern_desc">pattern_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern.ppat_loc">ppat_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern.ppat_attributes">ppat_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEpattern_desc"><span class="keyword">type</span> <code class="type"></code>pattern_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_any"><span class="constructor">Ppat_any</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_var"><span class="constructor">Ppat_var</span></span> <span class="keyword">of</span> <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_alias"><span class="constructor">Ppat_alias</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a> * string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_constant"><span class="constructor">Ppat_constant</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEconstant">constant</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_interval"><span class="constructor">Ppat_interval</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEconstant">constant</a> * <a href="Parsetree.html#TYPEconstant">constant</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_tuple"><span class="constructor">Ppat_tuple</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_construct"><span class="constructor">Ppat_construct</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEpattern">pattern</a> option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_variant"><span class="constructor">Ppat_variant</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPElabel">Asttypes.label</a> * <a href="Parsetree.html#TYPEpattern">pattern</a> option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_record"><span class="constructor">Ppat_record</span></span> <span class="keyword">of</span> <code class="type">(<a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEpattern">pattern</a>) list * <a href="Asttypes.html#TYPEclosed_flag">Asttypes.closed_flag</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_array"><span class="constructor">Ppat_array</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_or"><span class="constructor">Ppat_or</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a> * <a href="Parsetree.html#TYPEpattern">pattern</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_constraint"><span class="constructor">Ppat_constraint</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_type"><span class="constructor">Ppat_type</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_lazy"><span class="constructor">Ppat_lazy</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_unpack"><span class="constructor">Ppat_unpack</span></span> <span class="keyword">of</span> <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_exception"><span class="constructor">Ppat_exception</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_extension"><span class="constructor">Ppat_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpattern_desc.Ppat_open"><span class="constructor">Ppat_open</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEpattern">pattern</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEexpression"><span class="keyword">type</span> <code class="type"></code>expression</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression.pexp_desc">pexp_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEexpression_desc">expression_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression.pexp_loc">pexp_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression.pexp_attributes">pexp_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEexpression_desc"><span class="keyword">type</span> <code class="type"></code>expression_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_ident"><span class="constructor">Pexp_ident</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_constant"><span class="constructor">Pexp_constant</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEconstant">constant</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_let"><span class="constructor">Pexp_let</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPErec_flag">Asttypes.rec_flag</a> * <a href="Parsetree.html#TYPEvalue_binding">value_binding</a> list * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_function"><span class="constructor">Pexp_function</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEcase">case</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_fun"><span class="constructor">Pexp_fun</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPEarg_label">Asttypes.arg_label</a> * <a href="Parsetree.html#TYPEexpression">expression</a> option * <a href="Parsetree.html#TYPEpattern">pattern</a><br>        * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_apply"><span class="constructor">Pexp_apply</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * (<a href="Asttypes.html#TYPEarg_label">Asttypes.arg_label</a> * <a href="Parsetree.html#TYPEexpression">expression</a>) list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_match"><span class="constructor">Pexp_match</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEcase">case</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_try"><span class="constructor">Pexp_try</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEcase">case</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_tuple"><span class="constructor">Pexp_tuple</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_construct"><span class="constructor">Pexp_construct</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEexpression">expression</a> option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_variant"><span class="constructor">Pexp_variant</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPElabel">Asttypes.label</a> * <a href="Parsetree.html#TYPEexpression">expression</a> option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_record"><span class="constructor">Pexp_record</span></span> <span class="keyword">of</span> <code class="type">(<a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEexpression">expression</a>) list<br>        * <a href="Parsetree.html#TYPEexpression">expression</a> option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_field"><span class="constructor">Pexp_field</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_setfield"><span class="constructor">Pexp_setfield</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_array"><span class="constructor">Pexp_array</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_ifthenelse"><span class="constructor">Pexp_ifthenelse</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEexpression">expression</a> option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_sequence"><span class="constructor">Pexp_sequence</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_while"><span class="constructor">Pexp_while</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_for"><span class="constructor">Pexp_for</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a> * <a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEexpression">expression</a><br>        * <a href="Asttypes.html#TYPEdirection_flag">Asttypes.direction_flag</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_constraint"><span class="constructor">Pexp_constraint</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_coerce"><span class="constructor">Pexp_coerce</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> option * <a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_send"><span class="constructor">Pexp_send</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Asttypes.html#TYPElabel">Asttypes.label</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_new"><span class="constructor">Pexp_new</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_setinstvar"><span class="constructor">Pexp_setinstvar</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPElabel">Asttypes.label</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_override"><span class="constructor">Pexp_override</span></span> <span class="keyword">of</span> <code class="type">(<a href="Asttypes.html#TYPElabel">Asttypes.label</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEexpression">expression</a>) list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_letmodule"><span class="constructor">Pexp_letmodule</span></span> <span class="keyword">of</span> <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEmodule_expr">module_expr</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_letexception"><span class="constructor">Pexp_letexception</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension_constructor">extension_constructor</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_assert"><span class="constructor">Pexp_assert</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_lazy"><span class="constructor">Pexp_lazy</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_poly"><span class="constructor">Pexp_poly</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_object"><span class="constructor">Pexp_object</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_structure">class_structure</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_newtype"><span class="constructor">Pexp_newtype</span></span> <span class="keyword">of</span> <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_pack"><span class="constructor">Pexp_pack</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_expr">module_expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_open"><span class="constructor">Pexp_open</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPEoverride_flag">Asttypes.override_flag</a> * <a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_extension"><span class="constructor">Pexp_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpression_desc.Pexp_unreachable"><span class="constructor">Pexp_unreachable</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEcase"><span class="keyword">type</span> <code class="type"></code>case</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcase.pc_lhs">pc_lhs</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcase.pc_guard">pc_guard</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcase.pc_rhs">pc_rhs</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEvalue_description"><span class="keyword">type</span> <code class="type"></code>value_description</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue_description.pval_name">pval_name</span>&nbsp;: <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue_description.pval_type">pval_type</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue_description.pval_prim">pval_prim</span>&nbsp;: <code class="type">string list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue_description.pval_attributes">pval_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue_description.pval_loc">pval_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEtype_declaration"><span class="keyword">type</span> <code class="type"></code>type_declaration</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_declaration.ptype_name">ptype_name</span>&nbsp;: <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_declaration.ptype_params">ptype_params</span>&nbsp;: <code class="type">(<a href="Parsetree.html#TYPEcore_type">core_type</a> * <a href="Asttypes.html#TYPEvariance">Asttypes.variance</a>) list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_declaration.ptype_cstrs">ptype_cstrs</span>&nbsp;: <code class="type">(<a href="Parsetree.html#TYPEcore_type">core_type</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> * <a href="Location.html#TYPEt">Location.t</a>) list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_declaration.ptype_kind">ptype_kind</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEtype_kind">type_kind</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_declaration.ptype_private">ptype_private</span>&nbsp;: <code class="type"><a href="Asttypes.html#TYPEprivate_flag">Asttypes.private_flag</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_declaration.ptype_manifest">ptype_manifest</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_declaration.ptype_attributes">ptype_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_declaration.ptype_loc">ptype_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEtype_kind"><span class="keyword">type</span> <code class="type"></code>type_kind</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_kind.Ptype_abstract"><span class="constructor">Ptype_abstract</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_kind.Ptype_variant"><span class="constructor">Ptype_variant</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEconstructor_declaration">constructor_declaration</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_kind.Ptype_record"><span class="constructor">Ptype_record</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPElabel_declaration">label_declaration</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_kind.Ptype_open"><span class="constructor">Ptype_open</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPElabel_declaration"><span class="keyword">type</span> <code class="type"></code>label_declaration</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlabel_declaration.pld_name">pld_name</span>&nbsp;: <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlabel_declaration.pld_mutable">pld_mutable</span>&nbsp;: <code class="type"><a href="Asttypes.html#TYPEmutable_flag">Asttypes.mutable_flag</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlabel_declaration.pld_type">pld_type</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlabel_declaration.pld_loc">pld_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTlabel_declaration.pld_attributes">pld_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEconstructor_declaration"><span class="keyword">type</span> <code class="type"></code>constructor_declaration</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstructor_declaration.pcd_name">pcd_name</span>&nbsp;: <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstructor_declaration.pcd_args">pcd_args</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEconstructor_arguments">constructor_arguments</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstructor_declaration.pcd_res">pcd_res</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstructor_declaration.pcd_loc">pcd_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstructor_declaration.pcd_attributes">pcd_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEconstructor_arguments"><span class="keyword">type</span> <code class="type"></code>constructor_arguments</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstructor_arguments.Pcstr_tuple"><span class="constructor">Pcstr_tuple</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconstructor_arguments.Pcstr_record"><span class="constructor">Pcstr_record</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPElabel_declaration">label_declaration</a> list</code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEtype_extension"><span class="keyword">type</span> <code class="type"></code>type_extension</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_extension.ptyext_path">ptyext_path</span>&nbsp;: <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_extension.ptyext_params">ptyext_params</span>&nbsp;: <code class="type">(<a href="Parsetree.html#TYPEcore_type">core_type</a> * <a href="Asttypes.html#TYPEvariance">Asttypes.variance</a>) list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_extension.ptyext_constructors">ptyext_constructors</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEextension_constructor">extension_constructor</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_extension.ptyext_private">ptyext_private</span>&nbsp;: <code class="type"><a href="Asttypes.html#TYPEprivate_flag">Asttypes.private_flag</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_extension.ptyext_attributes">ptyext_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEextension_constructor"><span class="keyword">type</span> <code class="type"></code>extension_constructor</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTextension_constructor.pext_name">pext_name</span>&nbsp;: <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTextension_constructor.pext_kind">pext_kind</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEextension_constructor_kind">extension_constructor_kind</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTextension_constructor.pext_loc">pext_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTextension_constructor.pext_attributes">pext_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEextension_constructor_kind"><span class="keyword">type</span> <code class="type"></code>extension_constructor_kind</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTextension_constructor_kind.Pext_decl"><span class="constructor">Pext_decl</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEconstructor_arguments">constructor_arguments</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTextension_constructor_kind.Pext_rebind"><span class="constructor">Pext_rebind</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr></table>
+
+
+<h2 id="1_Classlanguage">Class language</h2>
+<pre><code><span id="TYPEclass_type"><span class="keyword">type</span> <code class="type"></code>class_type</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type.pcty_desc">pcty_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEclass_type_desc">class_type_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type.pcty_loc">pcty_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type.pcty_attributes">pcty_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEclass_type_desc"><span class="keyword">type</span> <code class="type"></code>class_type_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_desc.Pcty_constr"><span class="constructor">Pcty_constr</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_desc.Pcty_signature"><span class="constructor">Pcty_signature</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_signature">class_signature</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_desc.Pcty_arrow"><span class="constructor">Pcty_arrow</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPEarg_label">Asttypes.arg_label</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> * <a href="Parsetree.html#TYPEclass_type">class_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_desc.Pcty_extension"><span class="constructor">Pcty_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_desc.Pcty_open"><span class="constructor">Pcty_open</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPEoverride_flag">Asttypes.override_flag</a> * <a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEclass_type">class_type</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEclass_signature"><span class="keyword">type</span> <code class="type"></code>class_signature</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_signature.pcsig_self">pcsig_self</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_signature.pcsig_fields">pcsig_fields</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEclass_type_field">class_type_field</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEclass_type_field"><span class="keyword">type</span> <code class="type"></code>class_type_field</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_field.pctf_desc">pctf_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEclass_type_field_desc">class_type_field_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_field.pctf_loc">pctf_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_field.pctf_attributes">pctf_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEclass_type_field_desc"><span class="keyword">type</span> <code class="type"></code>class_type_field_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_field_desc.Pctf_inherit"><span class="constructor">Pctf_inherit</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_type">class_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_field_desc.Pctf_val"><span class="constructor">Pctf_val</span></span> <span class="keyword">of</span> <code class="type">(<a href="Asttypes.html#TYPElabel">Asttypes.label</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Asttypes.html#TYPEmutable_flag">Asttypes.mutable_flag</a> *<br>      <a href="Asttypes.html#TYPEvirtual_flag">Asttypes.virtual_flag</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a>)</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_field_desc.Pctf_method"><span class="constructor">Pctf_method</span></span> <span class="keyword">of</span> <code class="type">(<a href="Asttypes.html#TYPElabel">Asttypes.label</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Asttypes.html#TYPEprivate_flag">Asttypes.private_flag</a> *<br>      <a href="Asttypes.html#TYPEvirtual_flag">Asttypes.virtual_flag</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a>)</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_field_desc.Pctf_constraint"><span class="constructor">Pctf_constraint</span></span> <span class="keyword">of</span> <code class="type">(<a href="Parsetree.html#TYPEcore_type">core_type</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a>)</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_field_desc.Pctf_attribute"><span class="constructor">Pctf_attribute</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEattribute">attribute</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_type_field_desc.Pctf_extension"><span class="constructor">Pctf_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEclass_infos"><span class="keyword">type</span> <code class="type">'a</code> class_infos</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_infos.pci_virt">pci_virt</span>&nbsp;: <code class="type"><a href="Asttypes.html#TYPEvirtual_flag">Asttypes.virtual_flag</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_infos.pci_params">pci_params</span>&nbsp;: <code class="type">(<a href="Parsetree.html#TYPEcore_type">core_type</a> * <a href="Asttypes.html#TYPEvariance">Asttypes.variance</a>) list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_infos.pci_name">pci_name</span>&nbsp;: <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_infos.pci_expr">pci_expr</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_infos.pci_loc">pci_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_infos.pci_attributes">pci_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEclass_description"><span class="keyword">type</span> <code class="type"></code>class_description</span> = <code class="type"><a href="Parsetree.html#TYPEclass_type">class_type</a> <a href="Parsetree.html#TYPEclass_infos">class_infos</a></code> </pre>
+
+
+<pre><span id="TYPEclass_type_declaration"><span class="keyword">type</span> <code class="type"></code>class_type_declaration</span> = <code class="type"><a href="Parsetree.html#TYPEclass_type">class_type</a> <a href="Parsetree.html#TYPEclass_infos">class_infos</a></code> </pre>
+
+
+<pre><code><span id="TYPEclass_expr"><span class="keyword">type</span> <code class="type"></code>class_expr</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr.pcl_desc">pcl_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEclass_expr_desc">class_expr_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr.pcl_loc">pcl_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr.pcl_attributes">pcl_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEclass_expr_desc"><span class="keyword">type</span> <code class="type"></code>class_expr_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr_desc.Pcl_constr"><span class="constructor">Pcl_constr</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr_desc.Pcl_structure"><span class="constructor">Pcl_structure</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_structure">class_structure</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr_desc.Pcl_fun"><span class="constructor">Pcl_fun</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPEarg_label">Asttypes.arg_label</a> * <a href="Parsetree.html#TYPEexpression">expression</a> option * <a href="Parsetree.html#TYPEpattern">pattern</a><br>        * <a href="Parsetree.html#TYPEclass_expr">class_expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr_desc.Pcl_apply"><span class="constructor">Pcl_apply</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_expr">class_expr</a> * (<a href="Asttypes.html#TYPEarg_label">Asttypes.arg_label</a> * <a href="Parsetree.html#TYPEexpression">expression</a>) list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr_desc.Pcl_let"><span class="constructor">Pcl_let</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPErec_flag">Asttypes.rec_flag</a> * <a href="Parsetree.html#TYPEvalue_binding">value_binding</a> list * <a href="Parsetree.html#TYPEclass_expr">class_expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr_desc.Pcl_constraint"><span class="constructor">Pcl_constraint</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_expr">class_expr</a> * <a href="Parsetree.html#TYPEclass_type">class_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr_desc.Pcl_extension"><span class="constructor">Pcl_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_expr_desc.Pcl_open"><span class="constructor">Pcl_open</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPEoverride_flag">Asttypes.override_flag</a> * <a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEclass_expr">class_expr</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEclass_structure"><span class="keyword">type</span> <code class="type"></code>class_structure</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_structure.pcstr_self">pcstr_self</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_structure.pcstr_fields">pcstr_fields</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEclass_field">class_field</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEclass_field"><span class="keyword">type</span> <code class="type"></code>class_field</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field.pcf_desc">pcf_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEclass_field_desc">class_field_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field.pcf_loc">pcf_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field.pcf_attributes">pcf_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEclass_field_desc"><span class="keyword">type</span> <code class="type"></code>class_field_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field_desc.Pcf_inherit"><span class="constructor">Pcf_inherit</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPEoverride_flag">Asttypes.override_flag</a> * <a href="Parsetree.html#TYPEclass_expr">class_expr</a> * string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field_desc.Pcf_val"><span class="constructor">Pcf_val</span></span> <span class="keyword">of</span> <code class="type">(<a href="Asttypes.html#TYPElabel">Asttypes.label</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Asttypes.html#TYPEmutable_flag">Asttypes.mutable_flag</a> *<br>      <a href="Parsetree.html#TYPEclass_field_kind">class_field_kind</a>)</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field_desc.Pcf_method"><span class="constructor">Pcf_method</span></span> <span class="keyword">of</span> <code class="type">(<a href="Asttypes.html#TYPElabel">Asttypes.label</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Asttypes.html#TYPEprivate_flag">Asttypes.private_flag</a> *<br>      <a href="Parsetree.html#TYPEclass_field_kind">class_field_kind</a>)</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field_desc.Pcf_constraint"><span class="constructor">Pcf_constraint</span></span> <span class="keyword">of</span> <code class="type">(<a href="Parsetree.html#TYPEcore_type">core_type</a> * <a href="Parsetree.html#TYPEcore_type">core_type</a>)</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field_desc.Pcf_initializer"><span class="constructor">Pcf_initializer</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field_desc.Pcf_attribute"><span class="constructor">Pcf_attribute</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEattribute">attribute</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field_desc.Pcf_extension"><span class="constructor">Pcf_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEclass_field_kind"><span class="keyword">type</span> <code class="type"></code>class_field_kind</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field_kind.Cfk_virtual"><span class="constructor">Cfk_virtual</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEcore_type">core_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTclass_field_kind.Cfk_concrete"><span class="constructor">Cfk_concrete</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPEoverride_flag">Asttypes.override_flag</a> * <a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPEclass_declaration"><span class="keyword">type</span> <code class="type"></code>class_declaration</span> = <code class="type"><a href="Parsetree.html#TYPEclass_expr">class_expr</a> <a href="Parsetree.html#TYPEclass_infos">class_infos</a></code> </pre>
+
+<h2 id="1_Modulelanguage">Module language</h2>
+<pre><code><span id="TYPEmodule_type"><span class="keyword">type</span> <code class="type"></code>module_type</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type.pmty_desc">pmty_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEmodule_type_desc">module_type_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type.pmty_loc">pmty_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type.pmty_attributes">pmty_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEmodule_type_desc"><span class="keyword">type</span> <code class="type"></code>module_type_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_desc.Pmty_ident"><span class="constructor">Pmty_ident</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_desc.Pmty_signature"><span class="constructor">Pmty_signature</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEsignature">signature</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_desc.Pmty_functor"><span class="constructor">Pmty_functor</span></span> <span class="keyword">of</span> <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEmodule_type">module_type</a> option * <a href="Parsetree.html#TYPEmodule_type">module_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_desc.Pmty_with"><span class="constructor">Pmty_with</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_type">module_type</a> * <a href="Parsetree.html#TYPEwith_constraint">with_constraint</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_desc.Pmty_typeof"><span class="constructor">Pmty_typeof</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_expr">module_expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_desc.Pmty_extension"><span class="constructor">Pmty_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_desc.Pmty_alias"><span class="constructor">Pmty_alias</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPEsignature"><span class="keyword">type</span> <code class="type"></code>signature</span> = <code class="type"><a href="Parsetree.html#TYPEsignature_item">signature_item</a> list</code> </pre>
+
+
+<pre><code><span id="TYPEsignature_item"><span class="keyword">type</span> <code class="type"></code>signature_item</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item.psig_desc">psig_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEsignature_item_desc">signature_item_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item.psig_loc">psig_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEsignature_item_desc"><span class="keyword">type</span> <code class="type"></code>signature_item_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_value"><span class="constructor">Psig_value</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEvalue_description">value_description</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_type"><span class="constructor">Psig_type</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPErec_flag">Asttypes.rec_flag</a> * <a href="Parsetree.html#TYPEtype_declaration">type_declaration</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_typext"><span class="constructor">Psig_typext</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEtype_extension">type_extension</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_exception"><span class="constructor">Psig_exception</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension_constructor">extension_constructor</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_module"><span class="constructor">Psig_module</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_declaration">module_declaration</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_recmodule"><span class="constructor">Psig_recmodule</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_declaration">module_declaration</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_modtype"><span class="constructor">Psig_modtype</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_type_declaration">module_type_declaration</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_open"><span class="constructor">Psig_open</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEopen_description">open_description</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_include"><span class="constructor">Psig_include</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEinclude_description">include_description</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_class"><span class="constructor">Psig_class</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_description">class_description</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_class_type"><span class="constructor">Psig_class_type</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_type_declaration">class_type_declaration</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_attribute"><span class="constructor">Psig_attribute</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEattribute">attribute</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignature_item_desc.Psig_extension"><span class="constructor">Psig_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a> * <a href="Parsetree.html#TYPEattributes">attributes</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEmodule_declaration"><span class="keyword">type</span> <code class="type"></code>module_declaration</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_declaration.pmd_name">pmd_name</span>&nbsp;: <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_declaration.pmd_type">pmd_type</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEmodule_type">module_type</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_declaration.pmd_attributes">pmd_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_declaration.pmd_loc">pmd_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEmodule_type_declaration"><span class="keyword">type</span> <code class="type"></code>module_type_declaration</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_declaration.pmtd_name">pmtd_name</span>&nbsp;: <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_declaration.pmtd_type">pmtd_type</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEmodule_type">module_type</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_declaration.pmtd_attributes">pmtd_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_type_declaration.pmtd_loc">pmtd_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEopen_description"><span class="keyword">type</span> <code class="type"></code>open_description</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTopen_description.popen_lid">popen_lid</span>&nbsp;: <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTopen_description.popen_override">popen_override</span>&nbsp;: <code class="type"><a href="Asttypes.html#TYPEoverride_flag">Asttypes.override_flag</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTopen_description.popen_loc">popen_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTopen_description.popen_attributes">popen_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEinclude_infos"><span class="keyword">type</span> <code class="type">'a</code> include_infos</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTinclude_infos.pincl_mod">pincl_mod</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTinclude_infos.pincl_loc">pincl_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTinclude_infos.pincl_attributes">pincl_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEinclude_description"><span class="keyword">type</span> <code class="type"></code>include_description</span> = <code class="type"><a href="Parsetree.html#TYPEmodule_type">module_type</a> <a href="Parsetree.html#TYPEinclude_infos">include_infos</a></code> </pre>
+
+
+<pre><span id="TYPEinclude_declaration"><span class="keyword">type</span> <code class="type"></code>include_declaration</span> = <code class="type"><a href="Parsetree.html#TYPEmodule_expr">module_expr</a> <a href="Parsetree.html#TYPEinclude_infos">include_infos</a></code> </pre>
+
+
+<pre><code><span id="TYPEwith_constraint"><span class="keyword">type</span> <code class="type"></code>with_constraint</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTwith_constraint.Pwith_type"><span class="constructor">Pwith_type</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEtype_declaration">type_declaration</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTwith_constraint.Pwith_module"><span class="constructor">Pwith_module</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTwith_constraint.Pwith_typesubst"><span class="constructor">Pwith_typesubst</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEtype_declaration">type_declaration</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTwith_constraint.Pwith_modsubst"><span class="constructor">Pwith_modsubst</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEmodule_expr"><span class="keyword">type</span> <code class="type"></code>module_expr</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr.pmod_desc">pmod_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEmodule_expr_desc">module_expr_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr.pmod_loc">pmod_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr.pmod_attributes">pmod_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEmodule_expr_desc"><span class="keyword">type</span> <code class="type"></code>module_expr_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr_desc.Pmod_ident"><span class="constructor">Pmod_ident</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a> <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr_desc.Pmod_structure"><span class="constructor">Pmod_structure</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEstructure">structure</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr_desc.Pmod_functor"><span class="constructor">Pmod_functor</span></span> <span class="keyword">of</span> <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a> * <a href="Parsetree.html#TYPEmodule_type">module_type</a> option * <a href="Parsetree.html#TYPEmodule_expr">module_expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr_desc.Pmod_apply"><span class="constructor">Pmod_apply</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_expr">module_expr</a> * <a href="Parsetree.html#TYPEmodule_expr">module_expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr_desc.Pmod_constraint"><span class="constructor">Pmod_constraint</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_expr">module_expr</a> * <a href="Parsetree.html#TYPEmodule_type">module_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr_desc.Pmod_unpack"><span class="constructor">Pmod_unpack</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_expr_desc.Pmod_extension"><span class="constructor">Pmod_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPEstructure"><span class="keyword">type</span> <code class="type"></code>structure</span> = <code class="type"><a href="Parsetree.html#TYPEstructure_item">structure_item</a> list</code> </pre>
+
+
+<pre><code><span id="TYPEstructure_item"><span class="keyword">type</span> <code class="type"></code>structure_item</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item.pstr_desc">pstr_desc</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEstructure_item_desc">structure_item_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item.pstr_loc">pstr_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEstructure_item_desc"><span class="keyword">type</span> <code class="type"></code>structure_item_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_eval"><span class="constructor">Pstr_eval</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a> * <a href="Parsetree.html#TYPEattributes">attributes</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_value"><span class="constructor">Pstr_value</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPErec_flag">Asttypes.rec_flag</a> * <a href="Parsetree.html#TYPEvalue_binding">value_binding</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_primitive"><span class="constructor">Pstr_primitive</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEvalue_description">value_description</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_type"><span class="constructor">Pstr_type</span></span> <span class="keyword">of</span> <code class="type"><a href="Asttypes.html#TYPErec_flag">Asttypes.rec_flag</a> * <a href="Parsetree.html#TYPEtype_declaration">type_declaration</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_typext"><span class="constructor">Pstr_typext</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEtype_extension">type_extension</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_exception"><span class="constructor">Pstr_exception</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension_constructor">extension_constructor</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_module"><span class="constructor">Pstr_module</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_binding">module_binding</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_recmodule"><span class="constructor">Pstr_recmodule</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_binding">module_binding</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_modtype"><span class="constructor">Pstr_modtype</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEmodule_type_declaration">module_type_declaration</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_open"><span class="constructor">Pstr_open</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEopen_description">open_description</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_class"><span class="constructor">Pstr_class</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_declaration">class_declaration</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_class_type"><span class="constructor">Pstr_class_type</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEclass_type_declaration">class_type_declaration</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_include"><span class="constructor">Pstr_include</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEinclude_declaration">include_declaration</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_attribute"><span class="constructor">Pstr_attribute</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEattribute">attribute</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstructure_item_desc.Pstr_extension"><span class="constructor">Pstr_extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEextension">extension</a> * <a href="Parsetree.html#TYPEattributes">attributes</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEvalue_binding"><span class="keyword">type</span> <code class="type"></code>value_binding</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue_binding.pvb_pat">pvb_pat</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEpattern">pattern</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue_binding.pvb_expr">pvb_expr</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEexpression">expression</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue_binding.pvb_attributes">pvb_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue_binding.pvb_loc">pvb_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEmodule_binding"><span class="keyword">type</span> <code class="type"></code>module_binding</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_binding.pmb_name">pmb_name</span>&nbsp;: <code class="type">string <a href="Asttypes.html#TYPEloc">Asttypes.loc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_binding.pmb_expr">pmb_expr</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEmodule_expr">module_expr</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_binding.pmb_attributes">pmb_attributes</span>&nbsp;: <code class="type"><a href="Parsetree.html#TYPEattributes">attributes</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodule_binding.pmb_loc">pmb_loc</span>&nbsp;: <code class="type"><a href="Location.html#TYPEt">Location.t</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+<h2 id="1_Toplevel">Toplevel</h2>
+<pre><code><span id="TYPEtoplevel_phrase"><span class="keyword">type</span> <code class="type"></code>toplevel_phrase</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtoplevel_phrase.Ptop_def"><span class="constructor">Ptop_def</span></span> <span class="keyword">of</span> <code class="type"><a href="Parsetree.html#TYPEstructure">structure</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtoplevel_phrase.Ptop_dir"><span class="constructor">Ptop_dir</span></span> <span class="keyword">of</span> <code class="type">string * <a href="Parsetree.html#TYPEdirective_argument">directive_argument</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEdirective_argument"><span class="keyword">type</span> <code class="type"></code>directive_argument</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdirective_argument.Pdir_none"><span class="constructor">Pdir_none</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdirective_argument.Pdir_string"><span class="constructor">Pdir_string</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdirective_argument.Pdir_int"><span class="constructor">Pdir_int</span></span> <span class="keyword">of</span> <code class="type">string * char option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdirective_argument.Pdir_ident"><span class="constructor">Pdir_ident</span></span> <span class="keyword">of</span> <code class="type"><a href="Longident.html#TYPEt">Longident.t</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdirective_argument.Pdir_bool"><span class="constructor">Pdir_bool</span></span> <span class="keyword">of</span> <code class="type">bool</code></code></td>
+
+</tr></table>
+
+
+</body></html>

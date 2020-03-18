@@ -1,0 +1,545 @@
+\begin{tocenv}
+\tocitem \@locref{sec6}{\begin{@norefs}\@print{Part I}\quad{}An introduction to OCaml{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec7}{\begin{@norefs}\@print{Chapter 1}\quad{}The core language{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:basics}{\begin{@norefs}\@print{1.1}\quad{}\label{s:basics}Basics{}\end{@norefs}}
+\tocitem \@locref{s:datatypes}{\begin{@norefs}\@print{1.2}\quad{}\label{s:datatypes}Data types{}\end{@norefs}}
+\tocitem \@locref{s:functions-as-values}{\begin{@norefs}\@print{1.3}\quad{}\label{s:functions-as-values}Functions as values{}\end{@norefs}}
+\tocitem \@locref{s:tut-recvariants}{\begin{@norefs}\@print{1.4}\quad{}\label{s:tut-recvariants}Records and variants{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:record-and-variant-disambiguation}{\begin{@norefs}\@print{1.4.1}\quad{}\label{ss:record-and-variant-disambiguation}Record and variant disambiguation{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:imperative-features}{\begin{@norefs}\@print{1.5}\quad{}\label{s:imperative-features}Imperative features{}\end{@norefs}}
+\tocitem \@locref{s:exceptions}{\begin{@norefs}\@print{1.6}\quad{}\label{s:exceptions}Exceptions{}\end{@norefs}}
+\tocitem \@locref{s:lazy-expr}{\begin{@norefs}\@print{1.7}\quad{}\label{s:lazy-expr}Lazy expressions{}\end{@norefs}}
+\tocitem \@locref{s:symb-expr}{\begin{@norefs}\@print{1.8}\quad{}\label{s:symb-expr}Symbolic processing of expressions{}\end{@norefs}}
+\tocitem \@locref{s:pretty-printing}{\begin{@norefs}\@print{1.9}\quad{}\label{s:pretty-printing}Pretty-printing{}\end{@norefs}}
+\tocitem \@locref{s:printf}{\begin{@norefs}\@print{1.10}\quad{}\label{s:printf}Printf formats{}\end{@norefs}}
+\tocitem \@locref{s:standalone-programs}{\begin{@norefs}\@print{1.11}\quad{}\label{s:standalone-programs}Standalone OCaml programs{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec20}{\begin{@norefs}\@print{Chapter 2}\quad{}The module system{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:module:structures}{\begin{@norefs}\@print{2.1}\quad{}\label{s:module:structures}Structures{}\end{@norefs}}
+\tocitem \@locref{s:signature}{\begin{@norefs}\@print{2.2}\quad{}\label{s:signature}Signatures{}\end{@norefs}}
+\tocitem \@locref{s:functors}{\begin{@norefs}\@print{2.3}\quad{}\label{s:functors}Functors{}\end{@norefs}}
+\tocitem \@locref{s:functors-and-abstraction}{\begin{@norefs}\@print{2.4}\quad{}\label{s:functors-and-abstraction}Functors and type abstraction{}\end{@norefs}}
+\tocitem \@locref{s:separate-compilation}{\begin{@norefs}\@print{2.5}\quad{}\label{s:separate-compilation}Modules and separate compilation{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec26}{\begin{@norefs}\@print{Chapter 3}\quad{}Objects in OCaml{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:classes-and-objects}{\begin{@norefs}\@print{3.1}\quad{}\label{s:classes-and-objects}Classes and objects{}\end{@norefs}}
+\tocitem \@locref{s:immediate-objects}{\begin{@norefs}\@print{3.2}\quad{}\label{s:immediate-objects}Immediate objects{}\end{@norefs}}
+\tocitem \@locref{s:reference-to-self}{\begin{@norefs}\@print{3.3}\quad{}\label{s:reference-to-self}Reference to self{}\end{@norefs}}
+\tocitem \@locref{s:initializers}{\begin{@norefs}\@print{3.4}\quad{}\label{s:initializers}Initializers{}\end{@norefs}}
+\tocitem \@locref{s:virtual-methods}{\begin{@norefs}\@print{3.5}\quad{}\label{s:virtual-methods}Virtual methods{}\end{@norefs}}
+\tocitem \@locref{s:private-methods}{\begin{@norefs}\@print{3.6}\quad{}\label{s:private-methods}Private methods{}\end{@norefs}}
+\tocitem \@locref{s:class-interfaces}{\begin{@norefs}\@print{3.7}\quad{}\label{s:class-interfaces}Class interfaces{}\end{@norefs}}
+\tocitem \@locref{s:inheritance}{\begin{@norefs}\@print{3.8}\quad{}\label{s:inheritance}Inheritance{}\end{@norefs}}
+\tocitem \@locref{s:multiple-inheritance}{\begin{@norefs}\@print{3.9}\quad{}\label{s:multiple-inheritance}Multiple inheritance{}\end{@norefs}}
+\tocitem \@locref{s:parameterized-classes}{\begin{@norefs}\@print{3.10}\quad{}\label{s:parameterized-classes}Parameterized classes{}\end{@norefs}}
+\tocitem \@locref{s:polymorphic-methods}{\begin{@norefs}\@print{3.11}\quad{}\label{s:polymorphic-methods}Polymorphic methods{}\end{@norefs}}
+\tocitem \@locref{s:using-coercions}{\begin{@norefs}\@print{3.12}\quad{}\label{s:using-coercions}Using coercions{}\end{@norefs}}
+\tocitem \@locref{s:functional-objects}{\begin{@norefs}\@print{3.13}\quad{}\label{s:functional-objects}Functional objects{}\end{@norefs}}
+\tocitem \@locref{s:cloning-objects}{\begin{@norefs}\@print{3.14}\quad{}\label{s:cloning-objects}Cloning objects{}\end{@norefs}}
+\tocitem \@locref{s:recursive-classes}{\begin{@norefs}\@print{3.15}\quad{}\label{s:recursive-classes}Recursive classes{}\end{@norefs}}
+\tocitem \@locref{s:binary-methods}{\begin{@norefs}\@print{3.16}\quad{}\label{s:binary-methods}Binary methods{}\end{@norefs}}
+\tocitem \@locref{s:friends}{\begin{@norefs}\@print{3.17}\quad{}\label{s:friends}Friends{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec44}{\begin{@norefs}\@print{Chapter 4}\quad{}Labels and variants{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:labels}{\begin{@norefs}\@print{4.1}\quad{}\label{s:labels}Labels{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:optional-arguments}{\begin{@norefs}\@print{4.1.1}\quad{}\label{ss:optional-arguments}Optional arguments{}\end{@norefs}}
+\tocitem \@locref{ss:label-inference}{\begin{@norefs}\@print{4.1.2}\quad{}\label{ss:label-inference}Labels and type inference{}\end{@norefs}}
+\tocitem \@locref{ss:label-suggestions}{\begin{@norefs}\@print{4.1.3}\quad{}\label{ss:label-suggestions}Suggestions for labeling{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:polymorphic-variants}{\begin{@norefs}\@print{4.2}\quad{}\label{s:polymorphic-variants}Polymorphic variants{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:polyvariant-weaknesses}{\begin{@norefs}\@print{4.2.1}\quad{}\label{ss:polyvariant-weaknesses}Weaknesses of polymorphic variants{}\end{@norefs}}
+\end{tocenv}
+\end{tocenv}
+\tocitem \@locref{sec53}{\begin{@norefs}\@print{Chapter 5}\quad{}Polymorphism and its limitations{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:weak-polymorphism}{\begin{@norefs}\@print{5.1}\quad{}\label{s:weak-polymorphism}Weak polymorphism and mutation{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:weak-types}{\begin{@norefs}\@print{5.1.1}\quad{}\label{ss:weak-types}Weakly polymorphic types{}\end{@norefs}}
+\tocitem \@locref{ss:valuerestriction}{\begin{@norefs}\@print{5.1.2}\quad{}\label{ss:valuerestriction}The value restriction{}\end{@norefs}}
+\tocitem \@locref{ss:relaxed-value-restriction}{\begin{@norefs}\@print{5.1.3}\quad{}\label{ss:relaxed-value-restriction}The relaxed value restriction{}\end{@norefs}}
+\tocitem \@locref{ss:variance-and-value-restriction}{\begin{@norefs}\@print{5.1.4}\quad{}\label{ss:variance-and-value-restriction}Variance and value restriction{}\end{@norefs}}
+\tocitem \@locref{ss:variance:abstract-data-types}{\begin{@norefs}\@print{5.1.5}\quad{}\label{ss:variance:abstract-data-types}Abstract data types{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:polymorphic-recursion}{\begin{@norefs}\@print{5.2}\quad{}\label{s:polymorphic-recursion}Polymorphic recursion{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:explicit-polymorphism}{\begin{@norefs}\@print{5.2.1}\quad{}\label{ss:explicit-polymorphism}Explicitly polymorphic annotations{}\end{@norefs}}
+\tocitem \@locref{ss:recursive-poly-examples}{\begin{@norefs}\@print{5.2.2}\quad{}\label{ss:recursive-poly-examples}More examples{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:higher-rank-poly}{\begin{@norefs}\@print{5.3}\quad{}\label{s:higher-rank-poly}Higher-rank polymorphic functions{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec64}{\begin{@norefs}\@print{Chapter 6}\quad{}Advanced examples with classes and modules{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:extended-bank-accounts}{\begin{@norefs}\@print{6.1}\quad{}\label{s:extended-bank-accounts}Extended example: bank accounts{}\end{@norefs}}
+\tocitem \@locref{s:modules-as-classes}{\begin{@norefs}\@print{6.2}\quad{}\label{s:modules-as-classes}Simple modules as classes{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:string-as-class}{\begin{@norefs}\@print{6.2.1}\quad{}\label{ss:string-as-class}Strings{}\end{@norefs}}
+\tocitem \@locref{ss:hashtbl-as-class}{\begin{@norefs}\@print{6.2.2}\quad{}\label{ss:hashtbl-as-class}Hashtbl{}\end{@norefs}}
+\tocitem \@locref{ss:set-as-class}{\begin{@norefs}\@print{6.2.3}\quad{}\label{ss:set-as-class}Sets{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:subject-observer}{\begin{@norefs}\@print{6.3}\quad{}\label{s:subject-observer}The subject/observer pattern{}\end{@norefs}}
+\end{tocenv}
+\end{tocenv}
+\tocitem \@locref{sec72}{\begin{@norefs}\@print{Part II}\quad{}The OCaml language{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec73}{\begin{@norefs}\@print{Chapter 7}\quad{}The OCaml language{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:lexical-conventions}{\begin{@norefs}\@print{7.1}\quad{}\label{s:lexical-conventions}Lexical conventions{}\end{@norefs}}
+\tocitem \@locref{s:values}{\begin{@norefs}\@print{7.2}\quad{}\label{s:values}Values{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:values:base}{\begin{@norefs}\@print{7.2.1}\quad{}\label{ss:values:base}Base values{}\end{@norefs}}
+\tocitem \@locref{ss:values:tuple}{\begin{@norefs}\@print{7.2.2}\quad{}\label{ss:values:tuple}Tuples{}\end{@norefs}}
+\tocitem \@locref{ss:values:records}{\begin{@norefs}\@print{7.2.3}\quad{}\label{ss:values:records}Records{}\end{@norefs}}
+\tocitem \@locref{ss:values:array}{\begin{@norefs}\@print{7.2.4}\quad{}\label{ss:values:array}Arrays{}\end{@norefs}}
+\tocitem \@locref{ss:values:variant}{\begin{@norefs}\@print{7.2.5}\quad{}\label{ss:values:variant}Variant values{}\end{@norefs}}
+\tocitem \@locref{ss:values:polyvars}{\begin{@norefs}\@print{7.2.6}\quad{}\label{ss:values:polyvars}Polymorphic variants{}\end{@norefs}}
+\tocitem \@locref{ss:values:fun}{\begin{@norefs}\@print{7.2.7}\quad{}\label{ss:values:fun}Functions{}\end{@norefs}}
+\tocitem \@locref{ss:values:obj}{\begin{@norefs}\@print{7.2.8}\quad{}\label{ss:values:obj}Objects{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:names}{\begin{@norefs}\@print{7.3}\quad{}\label{s:names}Names{}\end{@norefs}}
+\tocitem \@locref{s:typexpr}{\begin{@norefs}\@print{7.4}\quad{}\label{s:typexpr}Type expressions{}\end{@norefs}}
+\tocitem \@locref{s:const}{\begin{@norefs}\@print{7.5}\quad{}\label{s:const}Constants{}\end{@norefs}}
+\tocitem \@locref{s:patterns}{\begin{@norefs}\@print{7.6}\quad{}\label{s:patterns}Patterns{}\end{@norefs}}
+\tocitem \@locref{s:value-expr}{\begin{@norefs}\@print{7.7}\quad{}\label{s:value-expr}Expressions{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:precedence-and-associativity}{\begin{@norefs}\@print{7.7.1}\quad{}\label{ss:precedence-and-associativity}Precedence and associativity{}\end{@norefs}}
+\tocitem \@locref{ss:expr-basic}{\begin{@norefs}\@print{7.7.2}\quad{}\label{ss:expr-basic}Basic expressions{}\end{@norefs}}
+\tocitem \@locref{ss:expr-control}{\begin{@norefs}\@print{7.7.3}\quad{}\label{ss:expr-control}Control structures{}\end{@norefs}}
+\tocitem \@locref{ss:expr-ops-on-data}{\begin{@norefs}\@print{7.7.4}\quad{}\label{ss:expr-ops-on-data}Operations on data structures{}\end{@norefs}}
+\tocitem \@locref{ss:expr-operators}{\begin{@norefs}\@print{7.7.5}\quad{}\label{ss:expr-operators}Operators{}\end{@norefs}}
+\tocitem \@locref{ss:expr-obj}{\begin{@norefs}\@print{7.7.6}\quad{}\label{ss:expr-obj}Objects{}\end{@norefs}}
+\tocitem \@locref{ss:expr-coercions}{\begin{@norefs}\@print{7.7.7}\quad{}\label{ss:expr-coercions}Coercions{}\end{@norefs}}
+\tocitem \@locref{ss:expr-other}{\begin{@norefs}\@print{7.7.8}\quad{}\label{ss:expr-other}Other{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:tydef}{\begin{@norefs}\@print{7.8}\quad{}\label{s:tydef}Type and exception definitions{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:typedefs}{\begin{@norefs}\@print{7.8.1}\quad{}\label{ss:typedefs}Type definitions{}\end{@norefs}}
+\tocitem \@locref{ss:exndef}{\begin{@norefs}\@print{7.8.2}\quad{}\label{ss:exndef}Exception definitions{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:classes}{\begin{@norefs}\@print{7.9}\quad{}\label{s:classes}Classes{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:classes:class-types}{\begin{@norefs}\@print{7.9.1}\quad{}\label{ss:classes:class-types}Class types{}\end{@norefs}}
+\tocitem \@locref{ss:class-expr}{\begin{@norefs}\@print{7.9.2}\quad{}\label{ss:class-expr}Class expressions{}\end{@norefs}}
+\tocitem \@locref{ss:class-def}{\begin{@norefs}\@print{7.9.3}\quad{}\label{ss:class-def}Class definitions{}\end{@norefs}}
+\tocitem \@locref{ss:class-spec}{\begin{@norefs}\@print{7.9.4}\quad{}\label{ss:class-spec}Class specifications{}\end{@norefs}}
+\tocitem \@locref{ss:classtype}{\begin{@norefs}\@print{7.9.5}\quad{}\label{ss:classtype}Class type definitions{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:modtypes}{\begin{@norefs}\@print{7.10}\quad{}\label{s:modtypes}Module types (module specifications){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:mty-simple}{\begin{@norefs}\@print{7.10.1}\quad{}\label{ss:mty-simple}Simple module types{}\end{@norefs}}
+\tocitem \@locref{ss:mty-signatures}{\begin{@norefs}\@print{7.10.2}\quad{}\label{ss:mty-signatures}Signatures{}\end{@norefs}}
+\tocitem \@locref{ss:mty-functors}{\begin{@norefs}\@print{7.10.3}\quad{}\label{ss:mty-functors}Functor types{}\end{@norefs}}
+\tocitem \@locref{ss:mty-with}{\begin{@norefs}\@print{7.10.4}\quad{}\label{ss:mty-with}The {\machine{with}} operator{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:module-expr}{\begin{@norefs}\@print{7.11}\quad{}\label{s:module-expr}Module expressions (module implementations){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:mexpr-simple}{\begin{@norefs}\@print{7.11.1}\quad{}\label{ss:mexpr-simple}Simple module expressions{}\end{@norefs}}
+\tocitem \@locref{ss:mexpr-structures}{\begin{@norefs}\@print{7.11.2}\quad{}\label{ss:mexpr-structures}Structures{}\end{@norefs}}
+\tocitem \@locref{ss:mexpr-functors}{\begin{@norefs}\@print{7.11.3}\quad{}\label{ss:mexpr-functors}Functors{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:compilation-units}{\begin{@norefs}\@print{7.12}\quad{}\label{s:compilation-units}Compilation units{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec238}{\begin{@norefs}\@print{Chapter 8}\quad{}Language extensions{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:letrecvalues}{\begin{@norefs}\@print{8.1}\quad{}\label{s:letrecvalues}Recursive definitions of values{}\end{@norefs}}
+\tocitem \@locref{s:recursive-modules}{\begin{@norefs}\@print{8.2}\quad{}\label{s:recursive-modules}Recursive modules{}\end{@norefs}}
+\tocitem \@locref{s:private-types}{\begin{@norefs}\@print{8.3}\quad{}\label{s:private-types}Private types{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:private-types-variant}{\begin{@norefs}\@print{8.3.1}\quad{}\label{ss:private-types-variant}Private variant and record types{}\end{@norefs}}
+\tocitem \@locref{ss:private-types-abbrev}{\begin{@norefs}\@print{8.3.2}\quad{}\label{ss:private-types-abbrev}Private type abbreviations{}\end{@norefs}}
+\tocitem \@locref{ss:private-rows}{\begin{@norefs}\@print{8.3.3}\quad{}\label{ss:private-rows}Private row types{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:locally-abstract}{\begin{@norefs}\@print{8.4}\quad{}\label{s:locally-abstract}Locally abstract types{}\end{@norefs}}
+\tocitem \@locref{s:first-class-modules}{\begin{@norefs}\@print{8.5}\quad{}\label{s:first-class-modules}First-class modules{}\end{@norefs}}
+\tocitem \@locref{s:module-type-of}{\begin{@norefs}\@print{8.6}\quad{}\label{s:module-type-of}Recovering the type of a module{}\end{@norefs}}
+\tocitem \@locref{s:signature-substitution}{\begin{@norefs}\@print{8.7}\quad{}\label{s:signature-substitution}Substituting inside a signature{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:destructive-substitution}{\begin{@norefs}\@print{8.7.1}\quad{}\label{ss:destructive-substitution}Destructive substitutions{}\end{@norefs}}
+\tocitem \@locref{ss:local-substitution}{\begin{@norefs}\@print{8.7.2}\quad{}\label{ss:local-substitution}Local substitution declarations{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:module-alias}{\begin{@norefs}\@print{8.8}\quad{}\label{s:module-alias}Type-level module aliases{}\end{@norefs}}
+\tocitem \@locref{s:explicit-overriding-open}{\begin{@norefs}\@print{8.9}\quad{}\label{s:explicit-overriding-open}Overriding in open statements{}\end{@norefs}}
+\tocitem \@locref{s:gadts}{\begin{@norefs}\@print{8.10}\quad{}\label{s:gadts}Generalized algebraic datatypes{}\end{@norefs}}
+\tocitem \@locref{s:bigarray-access}{\begin{@norefs}\@print{8.11}\quad{}\label{s:bigarray-access}Syntax for Bigarray access{}\end{@norefs}}
+\tocitem \@locref{s:attributes}{\begin{@norefs}\@print{8.12}\quad{}\label{s:attributes}Attributes{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:builtin-attributes}{\begin{@norefs}\@print{8.12.1}\quad{}\label{ss:builtin-attributes}Built-in attributes{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:extension-nodes}{\begin{@norefs}\@print{8.13}\quad{}\label{s:extension-nodes}Extension nodes{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:builtin-extension-nodes}{\begin{@norefs}\@print{8.13.1}\quad{}\label{ss:builtin-extension-nodes}Built-in extension nodes{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:extensible-variants}{\begin{@norefs}\@print{8.14}\quad{}\label{s:extensible-variants}Extensible variant types{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:private-extensible}{\begin{@norefs}\@print{8.14.1}\quad{}\label{ss:private-extensible}Private extensible variant types{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:generative-functors}{\begin{@norefs}\@print{8.15}\quad{}\label{s:generative-functors}Generative functors{}\end{@norefs}}
+\tocitem \@locref{s:extension-syntax}{\begin{@norefs}\@print{8.16}\quad{}\label{s:extension-syntax}Extension-only syntax{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:extension-operators}{\begin{@norefs}\@print{8.16.1}\quad{}\label{ss:extension-operators}Extension operators{}\end{@norefs}}
+\tocitem \@locref{ss:extension-literals}{\begin{@norefs}\@print{8.16.2}\quad{}\label{ss:extension-literals}Extension literals{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:inline-records}{\begin{@norefs}\@print{8.17}\quad{}\label{s:inline-records}Inline records{}\end{@norefs}}
+\tocitem \@locref{s:doc-comments}{\begin{@norefs}\@print{8.18}\quad{}\label{s:doc-comments}Documentation comments{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:floating-comments}{\begin{@norefs}\@print{8.18.1}\quad{}\label{ss:floating-comments}Floating comments{}\end{@norefs}}
+\tocitem \@locref{ss:item-comments}{\begin{@norefs}\@print{8.18.2}\quad{}\label{ss:item-comments}Item comments{}\end{@norefs}}
+\tocitem \@locref{ss:label-comments}{\begin{@norefs}\@print{8.18.3}\quad{}\label{ss:label-comments}Label comments{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:index-operators}{\begin{@norefs}\@print{8.19}\quad{}\label{s:index-operators}Extended indexing operators {}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:multiindexing}{\begin{@norefs}\@print{8.19.1}\quad{}\label{ss:multiindexing}Multi-index notation{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:empty-variants}{\begin{@norefs}\@print{8.20}\quad{}\label{s:empty-variants}Empty variant types{}\end{@norefs}}
+\tocitem \@locref{s:alerts}{\begin{@norefs}\@print{8.21}\quad{}\label{s:alerts}Alerts{}\end{@norefs}}
+\tocitem \@locref{s:generalized-open}{\begin{@norefs}\@print{8.22}\quad{}\label{s:generalized-open}Generalized open statements{}\end{@norefs}}
+\tocitem \@locref{s:binding-operators}{\begin{@norefs}\@print{8.23}\quad{}\label{s:binding-operators}Binding operators{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:letops-rationale}{\begin{@norefs}\@print{8.23.1}\quad{}\label{ss:letops-rationale}Rationale{}\end{@norefs}}
+\end{tocenv}
+\end{tocenv}
+\end{tocenv}
+\tocitem \@locref{sec286}{\begin{@norefs}\@print{Part III}\quad{}The OCaml tools{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec287}{\begin{@norefs}\@print{Chapter 9}\quad{}Batch compilation (ocamlc){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:comp-overview}{\begin{@norefs}\@print{9.1}\quad{}\label{s:comp-overview}Overview of the compiler{}\end{@norefs}}
+\tocitem \@locref{s:comp-options}{\begin{@norefs}\@print{9.2}\quad{}\label{s:comp-options}Options{}\end{@norefs}}
+\tocitem \@locref{s:modules-file-system}{\begin{@norefs}\@print{9.3}\quad{}\label{s:modules-file-system}Modules and the file system{}\end{@norefs}}
+\tocitem \@locref{s:comp-errors}{\begin{@norefs}\@print{9.4}\quad{}\label{s:comp-errors}Common errors{}\end{@norefs}}
+\tocitem \@locref{s:comp-warnings}{\begin{@norefs}\@print{9.5}\quad{}\label{s:comp-warnings}Warning reference{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:warn9}{\begin{@norefs}\@print{9.5.1}\quad{}\label{ss:warn9}Warning 9: missing fields in a record pattern{}\end{@norefs}}
+\tocitem \@locref{ss:warn52}{\begin{@norefs}\@print{9.5.2}\quad{}\label{ss:warn52}Warning 52: fragile constant pattern{}\end{@norefs}}
+\tocitem \@locref{ss:warn57}{\begin{@norefs}\@print{9.5.3}\quad{}\label{ss:warn57}Warning 57: Ambiguous or-pattern variables under guard{}\end{@norefs}}
+\end{tocenv}
+\end{tocenv}
+\tocitem \@locref{sec297}{\begin{@norefs}\@print{Chapter 10}\quad{}The toplevel system or REPL (ocaml){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:toplevel-options}{\begin{@norefs}\@print{10.1}\quad{}\label{s:toplevel-options}Options{}\end{@norefs}}
+\tocitem \@locref{s:toplevel-directives}{\begin{@norefs}\@print{10.2}\quad{}\label{s:toplevel-directives}Toplevel directives{}\end{@norefs}}
+\tocitem \@locref{s:toplevel-modules}{\begin{@norefs}\@print{10.3}\quad{}\label{s:toplevel-modules}The toplevel and the module system{}\end{@norefs}}
+\tocitem \@locref{s:toplevel-common-errors}{\begin{@norefs}\@print{10.4}\quad{}\label{s:toplevel-common-errors}Common errors{}\end{@norefs}}
+\tocitem \@locref{s:custom-toplevel}{\begin{@norefs}\@print{10.5}\quad{}\label{s:custom-toplevel}Building custom toplevel systems: \texttt{ocamlmktop}{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:ocamlmktop-options}{\begin{@norefs}\@print{10.5.1}\quad{}\label{ss:ocamlmktop-options}Options{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:ocamlnat}{\begin{@norefs}\@print{10.6}\quad{}\label{s:ocamlnat}The native toplevel: \texttt{ocamlnat}\ (experimental){}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec305}{\begin{@norefs}\@print{Chapter 11}\quad{}The runtime system (ocamlrun){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:ocamlrun-overview}{\begin{@norefs}\@print{11.1}\quad{}\label{s:ocamlrun-overview}Overview{}\end{@norefs}}
+\tocitem \@locref{s:ocamlrun-options}{\begin{@norefs}\@print{11.2}\quad{}\label{s:ocamlrun-options}Options{}\end{@norefs}}
+\tocitem \@locref{s:ocamlrun-dllpath}{\begin{@norefs}\@print{11.3}\quad{}\label{s:ocamlrun-dllpath}Dynamic loading of shared libraries{}\end{@norefs}}
+\tocitem \@locref{s:ocamlrun-common-errors}{\begin{@norefs}\@print{11.4}\quad{}\label{s:ocamlrun-common-errors}Common errors{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec310}{\begin{@norefs}\@print{Chapter 12}\quad{}Native-code compilation (ocamlopt){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:native-overview}{\begin{@norefs}\@print{12.1}\quad{}\label{s:native-overview}Overview of the compiler{}\end{@norefs}}
+\tocitem \@locref{s:native-options}{\begin{@norefs}\@print{12.2}\quad{}\label{s:native-options}Options{}\end{@norefs}}
+\tocitem \@locref{s:native-common-errors}{\begin{@norefs}\@print{12.3}\quad{}\label{s:native-common-errors}Common errors{}\end{@norefs}}
+\tocitem \@locref{s:native:running-executable}{\begin{@norefs}\@print{12.4}\quad{}\label{s:native:running-executable}Running executables produced by ocamlopt{}\end{@norefs}}
+\tocitem \@locref{s:compat-native-bytecode}{\begin{@norefs}\@print{12.5}\quad{}\label{s:compat-native-bytecode}Compatibility with the bytecode compiler{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec319}{\begin{@norefs}\@print{Chapter 13}\quad{}Lexer and parser generators (ocamllex, ocamlyacc){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:ocamllex-overview}{\begin{@norefs}\@print{13.1}\quad{}\label{s:ocamllex-overview}Overview of \texttt{ocamllex}{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:ocamllex-options}{\begin{@norefs}\@print{13.1.1}\quad{}\label{ss:ocamllex-options}Options{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:ocamllex-syntax}{\begin{@norefs}\@print{13.2}\quad{}\label{s:ocamllex-syntax}Syntax of lexer definitions{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:ocamllex-header-trailer}{\begin{@norefs}\@print{13.2.1}\quad{}\label{ss:ocamllex-header-trailer}Header and trailer{}\end{@norefs}}
+\tocitem \@locref{ss:ocamllex-named-regexp}{\begin{@norefs}\@print{13.2.2}\quad{}\label{ss:ocamllex-named-regexp}Naming regular expressions{}\end{@norefs}}
+\tocitem \@locref{ss:ocamllex-entry-points}{\begin{@norefs}\@print{13.2.3}\quad{}\label{ss:ocamllex-entry-points}Entry points{}\end{@norefs}}
+\tocitem \@locref{ss:ocamllex-regexp}{\begin{@norefs}\@print{13.2.4}\quad{}\label{ss:ocamllex-regexp}Regular expressions{}\end{@norefs}}
+\tocitem \@locref{ss:ocamllex-actions}{\begin{@norefs}\@print{13.2.5}\quad{}\label{ss:ocamllex-actions}Actions{}\end{@norefs}}
+\tocitem \@locref{ss:ocamllex-variables}{\begin{@norefs}\@print{13.2.6}\quad{}\label{ss:ocamllex-variables}Variables in regular expressions{}\end{@norefs}}
+\tocitem \@locref{ss:refill-handlers}{\begin{@norefs}\@print{13.2.7}\quad{}\label{ss:refill-handlers}Refill handlers{}\end{@norefs}}
+\tocitem \@locref{ss:ocamllex-reserved-ident}{\begin{@norefs}\@print{13.2.8}\quad{}\label{ss:ocamllex-reserved-ident}Reserved identifiers{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:ocamlyacc-overview}{\begin{@norefs}\@print{13.3}\quad{}\label{s:ocamlyacc-overview}Overview of \texttt{ocamlyacc}{}\end{@norefs}}
+\tocitem \@locref{s:ocamlyacc-syntax}{\begin{@norefs}\@print{13.4}\quad{}\label{s:ocamlyacc-syntax}Syntax of grammar definitions{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:ocamlyacc-header-trailer}{\begin{@norefs}\@print{13.4.1}\quad{}\label{ss:ocamlyacc-header-trailer}Header and trailer{}\end{@norefs}}
+\tocitem \@locref{ss:ocamlyacc-declarations}{\begin{@norefs}\@print{13.4.2}\quad{}\label{ss:ocamlyacc-declarations}Declarations{}\end{@norefs}}
+\tocitem \@locref{ss:ocamlyacc-rules}{\begin{@norefs}\@print{13.4.3}\quad{}\label{ss:ocamlyacc-rules}Rules{}\end{@norefs}}
+\tocitem \@locref{ss:ocamlyacc-error-handling}{\begin{@norefs}\@print{13.4.4}\quad{}\label{ss:ocamlyacc-error-handling}Error handling{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:ocamlyacc-options}{\begin{@norefs}\@print{13.5}\quad{}\label{s:ocamlyacc-options}Options{}\end{@norefs}}
+\tocitem \@locref{s:lexyacc-example}{\begin{@norefs}\@print{13.6}\quad{}\label{s:lexyacc-example}A complete example{}\end{@norefs}}
+\tocitem \@locref{s:lexyacc-common-errors}{\begin{@norefs}\@print{13.7}\quad{}\label{s:lexyacc-common-errors}Common errors{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec340}{\begin{@norefs}\@print{Chapter 14}\quad{}Dependency generator (ocamldep){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:ocamldep-options}{\begin{@norefs}\@print{14.1}\quad{}\label{s:ocamldep-options}Options{}\end{@norefs}}
+\tocitem \@locref{s:ocamldep-makefile}{\begin{@norefs}\@print{14.2}\quad{}\label{s:ocamldep-makefile}A typical Makefile{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec343}{\begin{@norefs}\@print{Chapter 15}\quad{}The browser/editor (ocamlbrowser){}\end{@norefs}}
+\tocitem \@locref{sec344}{\begin{@norefs}\@print{Chapter 16}\quad{}The documentation generator (ocamldoc){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:ocamldoc-usage}{\begin{@norefs}\@print{16.1}\quad{}\label{s:ocamldoc-usage}Usage{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:ocamldoc-invocation}{\begin{@norefs}\@print{16.1.1}\quad{}\label{ss:ocamldoc-invocation}Invocation{}\end{@norefs}}
+\tocitem \@locref{ss:ocamldoc-merge}{\begin{@norefs}\@print{16.1.2}\quad{}\label{ss:ocamldoc-merge}Merging of module information{}\end{@norefs}}
+\tocitem \@locref{ss:ocamldoc-rules}{\begin{@norefs}\@print{16.1.3}\quad{}\label{ss:ocamldoc-rules}Coding rules{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:ocamldoc-comments}{\begin{@norefs}\@print{16.2}\quad{}\label{s:ocamldoc-comments}Syntax of documentation comments{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:ocamldoc-placement}{\begin{@norefs}\@print{16.2.1}\quad{}\label{ss:ocamldoc-placement}Placement of documentation comments{}\end{@norefs}}
+\tocitem \@locref{ss:ocamldoc-stop}{\begin{@norefs}\@print{16.2.2}\quad{}\label{ss:ocamldoc-stop}The Stop special comment{}\end{@norefs}}
+\tocitem \@locref{ss:ocamldoc-syntax}{\begin{@norefs}\@print{16.2.3}\quad{}\label{ss:ocamldoc-syntax}Syntax of documentation comments{}\end{@norefs}}
+\tocitem \@locref{ss:ocamldoc-formatting}{\begin{@norefs}\@print{16.2.4}\quad{}\label{ss:ocamldoc-formatting}Text formatting{}\end{@norefs}}
+\tocitem \@locref{ss:ocamldoc-tags}{\begin{@norefs}\@print{16.2.5}\quad{}\label{ss:ocamldoc-tags}Documentation tags (@-tags){}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:ocamldoc-custom-generators}{\begin{@norefs}\@print{16.3}\quad{}\label{s:ocamldoc-custom-generators}Custom generators{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:ocamldoc-generators}{\begin{@norefs}\@print{16.3.1}\quad{}\label{ss:ocamldoc-generators}The generator modules{}\end{@norefs}}
+\tocitem \@locref{ss:ocamldoc-handling-custom-tags}{\begin{@norefs}\@print{16.3.2}\quad{}\label{ss:ocamldoc-handling-custom-tags}Handling custom tags{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:ocamldoc-adding-flags}{\begin{@norefs}\@print{16.4}\quad{}\label{s:ocamldoc-adding-flags}Adding command line options{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:ocamldoc-compilation-and-usage}{\begin{@norefs}\@print{16.4.1}\quad{}\label{ss:ocamldoc-compilation-and-usage}Compilation and usage{}\end{@norefs}}
+\end{tocenv}
+\end{tocenv}
+\tocitem \@locref{sec381}{\begin{@norefs}\@print{Chapter 17}\quad{}The debugger (ocamldebug){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:debugger-compilation}{\begin{@norefs}\@print{17.1}\quad{}\label{s:debugger-compilation}Compiling for debugging{}\end{@norefs}}
+\tocitem \@locref{s:debugger-invocation}{\begin{@norefs}\@print{17.2}\quad{}\label{s:debugger-invocation}Invocation{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:debugger-start}{\begin{@norefs}\@print{17.2.1}\quad{}\label{ss:debugger-start}Starting the debugger{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-init-file}{\begin{@norefs}\@print{17.2.2}\quad{}\label{ss:debugger-init-file}Initialization file{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-exut}{\begin{@norefs}\@print{17.2.3}\quad{}\label{ss:debugger-exut}Exiting the debugger{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:debugger-commands}{\begin{@norefs}\@print{17.3}\quad{}\label{s:debugger-commands}Commands{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:debugger-help}{\begin{@norefs}\@print{17.3.1}\quad{}\label{ss:debugger-help}Getting help{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-state}{\begin{@norefs}\@print{17.3.2}\quad{}\label{ss:debugger-state}Accessing the debugger state{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:debugger-execution}{\begin{@norefs}\@print{17.4}\quad{}\label{s:debugger-execution}Executing a program{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:debugger-events}{\begin{@norefs}\@print{17.4.1}\quad{}\label{ss:debugger-events}Events{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-starting-program}{\begin{@norefs}\@print{17.4.2}\quad{}\label{ss:debugger-starting-program}Starting the debugged program{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-running}{\begin{@norefs}\@print{17.4.3}\quad{}\label{ss:debugger-running}Running the program{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-time-travel}{\begin{@norefs}\@print{17.4.4}\quad{}\label{ss:debugger-time-travel}Time travel{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-kill}{\begin{@norefs}\@print{17.4.5}\quad{}\label{ss:debugger-kill}Killing the program{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:breakpoints}{\begin{@norefs}\@print{17.5}\quad{}\label{s:breakpoints}Breakpoints{}\end{@norefs}}
+\tocitem \@locref{s:debugger-callstack}{\begin{@norefs}\@print{17.6}\quad{}\label{s:debugger-callstack}The call stack{}\end{@norefs}}
+\tocitem \@locref{s:debugger-examining-values}{\begin{@norefs}\@print{17.7}\quad{}\label{s:debugger-examining-values}Examining variable values{}\end{@norefs}}
+\tocitem \@locref{s:debugger-control}{\begin{@norefs}\@print{17.8}\quad{}\label{s:debugger-control}Controlling the debugger{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:debugger-name-and-arguments}{\begin{@norefs}\@print{17.8.1}\quad{}\label{ss:debugger-name-and-arguments}Setting the program name and arguments{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-loading}{\begin{@norefs}\@print{17.8.2}\quad{}\label{ss:debugger-loading}How programs are loaded{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-search-path}{\begin{@norefs}\@print{17.8.3}\quad{}\label{ss:debugger-search-path}Search path for files{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-working-dir}{\begin{@norefs}\@print{17.8.4}\quad{}\label{ss:debugger-working-dir}Working directory{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-reverse-execution}{\begin{@norefs}\@print{17.8.5}\quad{}\label{ss:debugger-reverse-execution}Turning reverse execution on and off{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-fork}{\begin{@norefs}\@print{17.8.6}\quad{}\label{ss:debugger-fork}Behavior of the debugger with respect to {\machine{fork}}{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-stop-at-new-load}{\begin{@norefs}\@print{17.8.7}\quad{}\label{ss:debugger-stop-at-new-load}Stopping execution when new code is loaded{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-communication}{\begin{@norefs}\@print{17.8.8}\quad{}\label{ss:debugger-communication}Communication between the debugger and the program{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-fine-tuning}{\begin{@norefs}\@print{17.8.9}\quad{}\label{ss:debugger-fine-tuning}Fine-tuning the debugger{}\end{@norefs}}
+\tocitem \@locref{ss:debugger-printers}{\begin{@norefs}\@print{17.8.10}\quad{}\label{ss:debugger-printers}User-defined printers{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:debugger-misc-cmds}{\begin{@norefs}\@print{17.9}\quad{}\label{s:debugger-misc-cmds}Miscellaneous commands{}\end{@norefs}}
+\tocitem \@locref{s:inf-debugger}{\begin{@norefs}\@print{17.10}\quad{}\label{s:inf-debugger}Running the debugger under Emacs{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec412}{\begin{@norefs}\@print{Chapter 18}\quad{}Profiling (ocamlprof){}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:ocamlprof-compiling}{\begin{@norefs}\@print{18.1}\quad{}\label{s:ocamlprof-compiling}Compiling for profiling{}\end{@norefs}}
+\tocitem \@locref{s:ocamlprof-profiling}{\begin{@norefs}\@print{18.2}\quad{}\label{s:ocamlprof-profiling}Profiling an execution{}\end{@norefs}}
+\tocitem \@locref{s:ocamlprof-printing}{\begin{@norefs}\@print{18.3}\quad{}\label{s:ocamlprof-printing}Printing profiling information{}\end{@norefs}}
+\tocitem \@locref{s:ocamlprof-time-profiling}{\begin{@norefs}\@print{18.4}\quad{}\label{s:ocamlprof-time-profiling}Time profiling{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec420}{\begin{@norefs}\@print{Chapter 19}\quad{}The ocamlbuild compilation manager{}\end{@norefs}}
+\tocitem \@locref{c:intf-c}{\begin{@norefs}\@print{Chapter 20}\quad{}Interfacing\label{c:intf-c} C with OCaml{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:c-overview}{\begin{@norefs}\@print{20.1}\quad{}\label{s:c-overview}Overview and compilation information{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-prim-decl}{\begin{@norefs}\@print{20.1.1}\quad{}\label{ss:c-prim-decl}Declaring primitives{}\end{@norefs}}
+\tocitem \@locref{ss:c-prim-impl}{\begin{@norefs}\@print{20.1.2}\quad{}\label{ss:c-prim-impl}Implementing primitives{}\end{@norefs}}
+\tocitem \@locref{ss:staticlink-c-code}{\begin{@norefs}\@print{20.1.3}\quad{}\label{ss:staticlink-c-code}Statically linking C code with OCaml code{}\end{@norefs}}
+\tocitem \@locref{ss:dynlink-c-code}{\begin{@norefs}\@print{20.1.4}\quad{}\label{ss:dynlink-c-code}Dynamically linking C code with OCaml code{}\end{@norefs}}
+\tocitem \@locref{ss:c-static-vs-dynamic}{\begin{@norefs}\@print{20.1.5}\quad{}\label{ss:c-static-vs-dynamic}Choosing between static linking and dynamic linking{}\end{@norefs}}
+\tocitem \@locref{ss:custom-runtime}{\begin{@norefs}\@print{20.1.6}\quad{}\label{ss:custom-runtime}Building standalone custom runtime systems{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:c-value}{\begin{@norefs}\@print{20.2}\quad{}\label{s:c-value}The \texttt{value} type{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-int}{\begin{@norefs}\@print{20.2.1}\quad{}\label{ss:c-int}Integer values{}\end{@norefs}}
+\tocitem \@locref{ss:c-blocks}{\begin{@norefs}\@print{20.2.2}\quad{}\label{ss:c-blocks}Blocks{}\end{@norefs}}
+\tocitem \@locref{ss:c-outside-head}{\begin{@norefs}\@print{20.2.3}\quad{}\label{ss:c-outside-head}Pointers outside the heap{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:c-ocaml-datatype-repr}{\begin{@norefs}\@print{20.3}\quad{}\label{s:c-ocaml-datatype-repr}Representation of OCaml data types{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-atomic}{\begin{@norefs}\@print{20.3.1}\quad{}\label{ss:c-atomic}Atomic types{}\end{@norefs}}
+\tocitem \@locref{ss:c-tuples-and-records}{\begin{@norefs}\@print{20.3.2}\quad{}\label{ss:c-tuples-and-records}Tuples and records{}\end{@norefs}}
+\tocitem \@locref{ss:c-arrays}{\begin{@norefs}\@print{20.3.3}\quad{}\label{ss:c-arrays}Arrays{}\end{@norefs}}
+\tocitem \@locref{ss:c-concrete-datatypes}{\begin{@norefs}\@print{20.3.4}\quad{}\label{ss:c-concrete-datatypes}Concrete data types{}\end{@norefs}}
+\tocitem \@locref{ss:c-objects}{\begin{@norefs}\@print{20.3.5}\quad{}\label{ss:c-objects}Objects{}\end{@norefs}}
+\tocitem \@locref{ss:c-polyvar}{\begin{@norefs}\@print{20.3.6}\quad{}\label{ss:c-polyvar}Polymorphic variants{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:c-ops-on-values}{\begin{@norefs}\@print{20.4}\quad{}\label{s:c-ops-on-values}Operations on values{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-kind-tests}{\begin{@norefs}\@print{20.4.1}\quad{}\label{ss:c-kind-tests}Kind tests{}\end{@norefs}}
+\tocitem \@locref{ss:c-int-ops}{\begin{@norefs}\@print{20.4.2}\quad{}\label{ss:c-int-ops}Operations on integers{}\end{@norefs}}
+\tocitem \@locref{ss:c-block-access}{\begin{@norefs}\@print{20.4.3}\quad{}\label{ss:c-block-access}Accessing blocks{}\end{@norefs}}
+\tocitem \@locref{ss:c-block-allocation}{\begin{@norefs}\@print{20.4.4}\quad{}\label{ss:c-block-allocation}Allocating blocks{}\end{@norefs}}
+\tocitem \@locref{ss:c-exceptions}{\begin{@norefs}\@print{20.4.5}\quad{}\label{ss:c-exceptions}Raising exceptions{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:c-gc-harmony}{\begin{@norefs}\@print{20.5}\quad{}\label{s:c-gc-harmony}Living in harmony with the garbage collector{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-simple-gc-harmony}{\begin{@norefs}\@print{20.5.1}\quad{}\label{ss:c-simple-gc-harmony}Simple interface{}\end{@norefs}}
+\tocitem \@locref{ss:c-low-level-gc-harmony}{\begin{@norefs}\@print{20.5.2}\quad{}\label{ss:c-low-level-gc-harmony}Low-level interface{}\end{@norefs}}
+\tocitem \@locref{ss:c-process-pending-actions}{\begin{@norefs}\@print{20.5.3}\quad{}\label{ss:c-process-pending-actions}Pending actions and asynchronous exceptions{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:c-intf-example}{\begin{@norefs}\@print{20.6}\quad{}\label{s:c-intf-example}A complete example{}\end{@norefs}}
+\tocitem \@locref{s:c-callback}{\begin{@norefs}\@print{20.7}\quad{}\label{s:c-callback}Advanced topic: callbacks from C to OCaml{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-callbacks}{\begin{@norefs}\@print{20.7.1}\quad{}\label{ss:c-callbacks}Applying OCaml closures from C{}\end{@norefs}}
+\tocitem \@locref{ss:c-closures}{\begin{@norefs}\@print{20.7.2}\quad{}\label{ss:c-closures}Obtaining or registering OCaml closures for use in C functions{}\end{@norefs}}
+\tocitem \@locref{ss:c-register-exn}{\begin{@norefs}\@print{20.7.3}\quad{}\label{ss:c-register-exn}Registering OCaml exceptions for use in C functions{}\end{@norefs}}
+\tocitem \@locref{ss:main-c}{\begin{@norefs}\@print{20.7.4}\quad{}\label{ss:main-c}Main program in C{}\end{@norefs}}
+\tocitem \@locref{ss:c-embedded-code}{\begin{@norefs}\@print{20.7.5}\quad{}\label{ss:c-embedded-code}Embedding the OCaml code in the C code{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:c-advexample}{\begin{@norefs}\@print{20.8}\quad{}\label{s:c-advexample}Advanced example with callbacks{}\end{@norefs}}
+\tocitem \@locref{s:c-custom}{\begin{@norefs}\@print{20.9}\quad{}\label{s:c-custom}Advanced topic: custom blocks{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-custom-ops}{\begin{@norefs}\@print{20.9.1}\quad{}\label{ss:c-custom-ops}The {\machine{struct\ custom{\char95}operations}}{}\end{@norefs}}
+\tocitem \@locref{ss:c-custom-alloc}{\begin{@norefs}\@print{20.9.2}\quad{}\label{ss:c-custom-alloc}Allocating custom blocks{}\end{@norefs}}
+\tocitem \@locref{ss:c-custom-access}{\begin{@norefs}\@print{20.9.3}\quad{}\label{ss:c-custom-access}Accessing custom blocks{}\end{@norefs}}
+\tocitem \@locref{ss:c-custom-serialization}{\begin{@norefs}\@print{20.9.4}\quad{}\label{ss:c-custom-serialization}Writing custom serialization and deserialization functions{}\end{@norefs}}
+\tocitem \@locref{ss:c-custom-idents}{\begin{@norefs}\@print{20.9.5}\quad{}\label{ss:c-custom-idents}Choosing identifiers{}\end{@norefs}}
+\tocitem \@locref{ss:c-finalized}{\begin{@norefs}\@print{20.9.6}\quad{}\label{ss:c-finalized}Finalized blocks{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:C-Bigarrays}{\begin{@norefs}\@print{20.10}\quad{}\label{s:C-Bigarrays}Advanced topic: Bigarrays and the OCaml-C interface{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:C-Bigarrays-include}{\begin{@norefs}\@print{20.10.1}\quad{}\label{ss:C-Bigarrays-include}Include file{}\end{@norefs}}
+\tocitem \@locref{ss:C-Bigarrays-access}{\begin{@norefs}\@print{20.10.2}\quad{}\label{ss:C-Bigarrays-access}Accessing an OCaml bigarray from C or Fortran{}\end{@norefs}}
+\tocitem \@locref{ss:C-Bigarrays-wrap}{\begin{@norefs}\@print{20.10.3}\quad{}\label{ss:C-Bigarrays-wrap}Wrapping a C or Fortran array as an OCaml Bigarray{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:C-cheaper-call}{\begin{@norefs}\@print{20.11}\quad{}\label{s:C-cheaper-call}Advanced topic: cheaper C call{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-unboxed}{\begin{@norefs}\@print{20.11.1}\quad{}\label{ss:c-unboxed}Passing unboxed values{}\end{@norefs}}
+\tocitem \@locref{ss:c-direct-call}{\begin{@norefs}\@print{20.11.2}\quad{}\label{ss:c-direct-call}Direct C call{}\end{@norefs}}
+\tocitem \@locref{ss:c-direct-call-example}{\begin{@norefs}\@print{20.11.3}\quad{}\label{ss:c-direct-call-example}Example: calling C library functions without indirection{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:C-multithreading}{\begin{@norefs}\@print{20.12}\quad{}\label{s:C-multithreading}Advanced topic: multithreading{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-thread-register}{\begin{@norefs}\@print{20.12.1}\quad{}\label{ss:c-thread-register}Registering threads created from C{}\end{@norefs}}
+\tocitem \@locref{ss:parallel-execution-long-running-c-code}{\begin{@norefs}\@print{20.12.2}\quad{}\label{ss:parallel-execution-long-running-c-code}Parallel execution of long-running C code{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:interfacing-windows-unicode-apis}{\begin{@norefs}\@print{20.13}\quad{}\label{s:interfacing-windows-unicode-apis}Advanced topic: interfacing with Windows Unicode APIs{}\end{@norefs}}
+\tocitem \@locref{s:ocamlmklib}{\begin{@norefs}\@print{20.14}\quad{}\label{s:ocamlmklib}Building mixed C/OCaml libraries: \texttt{ocamlmklib}{}\end{@norefs}}
+\tocitem \@locref{s:c-internal-guidelines}{\begin{@norefs}\@print{20.15}\quad{}\label{s:c-internal-guidelines}Cautionary words: the internal runtime API{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:c-internals}{\begin{@norefs}\@print{20.15.1}\quad{}\label{ss:c-internals}Internal variables and CAML_INTERNALS{}\end{@norefs}}
+\tocitem \@locref{ss:c-internal-macros}{\begin{@norefs}\@print{20.15.2}\quad{}\label{ss:c-internal-macros}OCaml version macros{}\end{@norefs}}
+\end{tocenv}
+\end{tocenv}
+\tocitem \@locref{sec495}{\begin{@norefs}\@print{Chapter 21}\quad{}Optimisation with Flambda{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:flambda-overview}{\begin{@norefs}\@print{21.1}\quad{}\label{s:flambda-overview}Overview{}\end{@norefs}}
+\tocitem \@locref{s:flambda-cli}{\begin{@norefs}\@print{21.2}\quad{}\label{s:flambda-cli}Command-line flags{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:flambda-rounds}{\begin{@norefs}\@print{21.2.1}\quad{}\label{ss:flambda-rounds}Specification of optimisation parameters by round{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:flambda-inlining}{\begin{@norefs}\@print{21.3}\quad{}\label{s:flambda-inlining}Inlining{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:flambda-classic}{\begin{@norefs}\@print{21.3.1}\quad{}\label{ss:flambda-classic}Classic inlining heuristic{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-inlining-overview}{\begin{@norefs}\@print{21.3.2}\quad{}\label{ss:flambda-inlining-overview}Overview of ``Flambda'' inlining heuristics{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-by-constructs}{\begin{@norefs}\@print{21.3.3}\quad{}\label{ss:flambda-by-constructs}Handling of specific language constructs{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-inlining-reports}{\begin{@norefs}\@print{21.3.4}\quad{}\label{ss:flambda-inlining-reports}Inlining reports{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-assessment-inlining}{\begin{@norefs}\@print{21.3.5}\quad{}\label{ss:flambda-assessment-inlining}Assessment of inlining benefit{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-speculation}{\begin{@norefs}\@print{21.3.6}\quad{}\label{ss:flambda-speculation}Control of speculation{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:flambda-specialisation}{\begin{@norefs}\@print{21.4}\quad{}\label{s:flambda-specialisation}Specialisation{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:flambda-assessment-specialisation}{\begin{@norefs}\@print{21.4.1}\quad{}\label{ss:flambda-assessment-specialisation}Assessment of specialisation benefit{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:flambda-defaults}{\begin{@norefs}\@print{21.5}\quad{}\label{s:flambda-defaults}Default settings of parameters{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:flambda-o2}{\begin{@norefs}\@print{21.5.1}\quad{}\label{ss:flambda-o2}Settings at -O2 optimisation level{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-o3}{\begin{@norefs}\@print{21.5.2}\quad{}\label{ss:flambda-o3}Settings at -O3 optimisation level{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:flambda-manual-control}{\begin{@norefs}\@print{21.6}\quad{}\label{s:flambda-manual-control}Manual control of inlining and specialisation{}\end{@norefs}}
+\tocitem \@locref{s:flambda-simplification}{\begin{@norefs}\@print{21.7}\quad{}\label{s:flambda-simplification}Simplification{}\end{@norefs}}
+\tocitem \@locref{s:flambda-other-transfs}{\begin{@norefs}\@print{21.8}\quad{}\label{s:flambda-other-transfs}Other code motion transformations{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:flambda-lift-const}{\begin{@norefs}\@print{21.8.1}\quad{}\label{ss:flambda-lift-const}Lifting of constants{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-lift-toplevel-let}{\begin{@norefs}\@print{21.8.2}\quad{}\label{ss:flambda-lift-toplevel-let}Lifting of toplevel let bindings{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:flambda-unboxing}{\begin{@norefs}\@print{21.9}\quad{}\label{s:flambda-unboxing}Unboxing transformations{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:flambda-unbox-fvs}{\begin{@norefs}\@print{21.9.1}\quad{}\label{ss:flambda-unbox-fvs}Unboxing of closure variables{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-unbox-spec-args}{\begin{@norefs}\@print{21.9.2}\quad{}\label{ss:flambda-unbox-spec-args}Unboxing of specialised arguments{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-unbox-closures}{\begin{@norefs}\@print{21.9.3}\quad{}\label{ss:flambda-unbox-closures}Unboxing of closures{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:flambda-remove-unused}{\begin{@norefs}\@print{21.10}\quad{}\label{s:flambda-remove-unused}Removal of unused code and values{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:flambda-redundant-let}{\begin{@norefs}\@print{21.10.1}\quad{}\label{ss:flambda-redundant-let}Removal of redundant let expressions{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-redundant}{\begin{@norefs}\@print{21.10.2}\quad{}\label{ss:flambda-redundant}Removal of redundant program constructs{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-remove-unused-args}{\begin{@norefs}\@print{21.10.3}\quad{}\label{ss:flambda-remove-unused-args}Removal of unused arguments{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-removal-closure-vars}{\begin{@norefs}\@print{21.10.4}\quad{}\label{ss:flambda-removal-closure-vars}Removal of unused closure variables{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:flambda-other}{\begin{@norefs}\@print{21.11}\quad{}\label{s:flambda-other}Other code transformations{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:flambda-non-escaping-refs}{\begin{@norefs}\@print{21.11.1}\quad{}\label{ss:flambda-non-escaping-refs}Transformation of non-escaping references into mutable variables{}\end{@norefs}}
+\tocitem \@locref{ss:flambda-subst-closure-vars}{\begin{@norefs}\@print{21.11.2}\quad{}\label{ss:flambda-subst-closure-vars}Substitution of closure variables for specialised arguments{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:flambda-effects}{\begin{@norefs}\@print{21.12}\quad{}\label{s:flambda-effects}Treatment of effects{}\end{@norefs}}
+\tocitem \@locref{s:flambda-static-modules}{\begin{@norefs}\@print{21.13}\quad{}\label{s:flambda-static-modules}Compilation of statically-allocated modules{}\end{@norefs}}
+\tocitem \@locref{s:flambda-inhibition}{\begin{@norefs}\@print{21.14}\quad{}\label{s:flambda-inhibition}Inhibition of optimisation{}\end{@norefs}}
+\tocitem \@locref{s:flambda-unsafe}{\begin{@norefs}\@print{21.15}\quad{}\label{s:flambda-unsafe}Use of unsafe operations{}\end{@norefs}}
+\tocitem \@locref{s:flambda-glossary}{\begin{@norefs}\@print{21.16}\quad{}\label{s:flambda-glossary}Glossary{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec546}{\begin{@norefs}\@print{Chapter 22}\quad{}Memory profiling with Spacetime{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:spacetime-overview}{\begin{@norefs}\@print{22.1}\quad{}\label{s:spacetime-overview}Overview{}\end{@norefs}}
+\tocitem \@locref{s:spacetime-howto}{\begin{@norefs}\@print{22.2}\quad{}\label{s:spacetime-howto}How to use it{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:spacetime-building}{\begin{@norefs}\@print{22.2.1}\quad{}\label{ss:spacetime-building}Building{}\end{@norefs}}
+\tocitem \@locref{ss:spacetime-running}{\begin{@norefs}\@print{22.2.2}\quad{}\label{ss:spacetime-running}Running{}\end{@norefs}}
+\tocitem \@locref{ss:spacetime-analysis}{\begin{@norefs}\@print{22.2.3}\quad{}\label{ss:spacetime-analysis}Analysis{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:spacetime-runtimeoverhead}{\begin{@norefs}\@print{22.3}\quad{}\label{s:spacetime-runtimeoverhead}Runtime overhead{}\end{@norefs}}
+\tocitem \@locref{s:spacetime-dev}{\begin{@norefs}\@print{22.4}\quad{}\label{s:spacetime-dev}For developers{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec554}{\begin{@norefs}\@print{Chapter 23}\quad{}Fuzzing with afl-fuzz{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:afl-overview}{\begin{@norefs}\@print{23.1}\quad{}\label{s:afl-overview}Overview{}\end{@norefs}}
+\tocitem \@locref{s:afl-generate}{\begin{@norefs}\@print{23.2}\quad{}\label{s:afl-generate}Generating instrumentation{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:afl-advanced}{\begin{@norefs}\@print{23.2.1}\quad{}\label{ss:afl-advanced}Advanced options{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:afl-example}{\begin{@norefs}\@print{23.3}\quad{}\label{s:afl-example}Example{}\end{@norefs}}
+\end{tocenv}
+\end{tocenv}
+\tocitem \@locref{sec559}{\begin{@norefs}\@print{Part IV}\quad{}The OCaml library{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec560}{\begin{@norefs}\@print{Chapter 24}\quad{}The core library{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{s:core-builtins}{\begin{@norefs}\@print{24.1}\quad{}\label{s:core-builtins}Built-in types and predefined exceptions{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{ss:builtin-types}{\begin{@norefs}\@print{24.1.1}\quad{}\label{ss:builtin-types}*{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{s:stdlib-module}{\begin{@norefs}\@print{24.2}\quad{}\label{s:stdlib-module}Module {\tt Stdlib}: the initially opened module{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec566}{\begin{@norefs}\@print{Chapter 25}\quad{}The standard library{}\end{@norefs}}
+\tocitem \@locref{sec568}{\begin{@norefs}\@print{Chapter 26}\quad{}The compiler front-end{}\end{@norefs}}
+\tocitem \@locref{sec569}{\begin{@norefs}\@print{Chapter 27}\quad{}The unix library: Unix system calls{}\end{@norefs}}
+\tocitem \@locref{sec570}{\begin{@norefs}\@print{Chapter 28}\quad{}The num library: arbitrary-precision rational arithmetic{}\end{@norefs}}
+\tocitem \@locref{sec571}{\begin{@norefs}\@print{Chapter 29}\quad{}The str library: regular expressions and string processing{}\end{@norefs}}
+\tocitem \@locref{sec572}{\begin{@norefs}\@print{Chapter 30}\quad{}The threads library{}\end{@norefs}}
+\tocitem \@locref{sec573}{\begin{@norefs}\@print{Chapter 31}\quad{}The graphics library{}\end{@norefs}}
+\tocitem \@locref{sec574}{\begin{@norefs}\@print{Chapter 32}\quad{}The dynlink library: dynamic loading and linking of object files{}\end{@norefs}}
+\tocitem \@locref{sec575}{\begin{@norefs}\@print{Chapter 33}\quad{}The bigarray library{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec576}{\begin{@norefs}\@print{Part V}\quad{}Appendix{}\end{@norefs}}
+\end{tocenv}

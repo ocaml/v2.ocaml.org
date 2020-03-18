@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;4&#XA0;&#XA0;Labels and variants</title>
+</head>
+<body>
+<a href="objectexamples.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="polymorphism.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec42">Chapter&#XA0;4&#XA0;&#XA0;Labels and variants</h1>
+<ul>
+<li><a href="lablexamples.html#sec43">4.1&#XA0;&#XA0;Labels</a>
+</li><li><a href="lablexamples.html#sec47">4.2&#XA0;&#XA0;Polymorphic variants</a>
+</li></ul>
+<p> <a id="c:labl-examples"></a>
+
+</p><p>
+<span class="c009">(Chapter written by Jacques Garrigue)</span></p><p><br>
+<br>
+</p><p>This chapter gives an overview of the new features in
+OCaml 3: labels, and polymorphic variants.</p>
+<h2 class="section" id="sec43">4.1&#XA0;&#XA0;Labels</h2>
+<p>If you have a look at modules ending in <span class="c003">Labels</span> in the standard
+library, you will see that function types have annotations you did not
+have in the functions you defined yourself.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> ListLabels.map;;
+</div><div class="caml-output ok">- : f:('a -&gt; 'b) -&gt; 'a list -&gt; 'b list = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> StringLabels.sub;;
+</div><div class="caml-output ok">- : string -&gt; pos:int -&gt; len:int -&gt; string = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>Such annotations of the form <span class="c003">name:</span> are called <em>labels</em>. They are
+meant to document the code, allow more checking, and give more
+flexibility to function application.
+You can give such names to arguments in your programs, by prefixing them
+with a tilde <span class="c003">~</span>.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let f ~x ~y = x - y;;
+</div><div class="caml-output ok">val f : x:int -&gt; y:int -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> let x = 3 and y = 2 in f ~x ~y;;
+</div><div class="caml-output ok">- : int = 1
+</div></pre>
+
+
+</div><p>When you want to use distinct names for the variable and the label
+appearing in the type, you can use a naming label of the form
+<span class="c003">~name:</span>. This also applies when the argument is not a variable.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let f ~x:x1 ~y:y1 = x1 - y1;;
+</div><div class="caml-output ok">val f : x:int -&gt; y:int -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> f ~x:3 ~y:2;;
+</div><div class="caml-output ok">- : int = 1
+</div></pre>
+
+
+</div><p>Labels obey the same rules as other identifiers in OCaml, that is you
+cannot use a reserved keyword (like <span class="c003">in</span> or <span class="c003">to</span>) as label.</p><p>Formal parameters and arguments are matched according to their
+respective labels<sup><a id="text1" href="#note1">1</a></sup>, the absence of label
+being interpreted as the empty label.
+This allows commuting arguments in applications. One can also
+partially apply a function on any argument, creating a new function of
+the remaining parameters.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let f ~x ~y = x - y;;
+</div><div class="caml-output ok">val f : x:int -&gt; y:int -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> f ~y:2 ~x:3;;
+</div><div class="caml-output ok">- : int = 1
+</div></pre>
+
+<pre><div class="caml-input"> ListLabels.fold_left;;
+</div><div class="caml-output ok">- : f:('a -&gt; 'b -&gt; 'a) -&gt; init:'a -&gt; 'b list -&gt; 'a = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> ListLabels.fold_left [1;2;3] ~init:0 ~f:( + );;
+</div><div class="caml-output ok">- : int = 6
+</div></pre>
+
+<pre><div class="caml-input"> ListLabels.fold_left ~init:0;;
+</div><div class="caml-output ok">- : f:(int -&gt; 'a -&gt; int) -&gt; 'a list -&gt; int = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>If several arguments of a function bear the same label (or no label),
+they will not commute among themselves, and order matters. But they
+can still commute with other arguments.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let hline ~x:x1 ~x:x2 ~y = (x1, x2, y);;
+</div><div class="caml-output ok">val hline : x:'a -&gt; x:'b -&gt; y:'c -&gt; 'a * 'b * 'c = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> hline ~x:3 ~y:2 ~x:5;;
+</div><div class="caml-output ok">- : int * int * int = (3, 5, 2)
+</div></pre>
+
+
+</div><p>As an exception to the above parameter matching rules, if an
+application is total (omitting all optional arguments), labels may be
+omitted.
+In practice, many applications are total, so that labels can often be
+omitted.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> f 3 2;;
+</div><div class="caml-output ok">- : int = 1
+</div></pre>
+
+<pre><div class="caml-input"> ListLabels.map succ [1;2;3];;
+</div><div class="caml-output ok">- : int list = [2; 3; 4]
+</div></pre>
+
+
+</div><p>
+
+But beware that functions like <span class="c003">ListLabels.fold_left</span> whose result
+type is a type variable will never be considered as totally applied.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> ListLabels.fold_left <U>( + )</U> 0 [1;2;3];;
+</div><div class="caml-output error">Error: This expression has type int -&gt; int -&gt; int
+       but an expression was expected of type 'a list
+</div></pre>
+
+
+</div><p>When a function is passed as an argument to a higher-order function,
+labels must match in both types. Neither adding nor removing labels
+are allowed.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let h g = g ~x:3 ~y:2;;
+</div><div class="caml-output ok">val h : (x:int -&gt; y:int -&gt; 'a) -&gt; 'a = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> h f;;
+</div><div class="caml-output ok">- : int = 1
+</div></pre>
+
+<pre><div class="caml-input"> h <U>( + )</U> ;;
+</div><div class="caml-output error">Error: This expression has type int -&gt; int -&gt; int
+       but an expression was expected of type x:int -&gt; y:int -&gt; 'a
+</div></pre>
+
+
+</div><p>
+
+Note that when you don&#X2019;t need an argument, you can still use a wildcard
+pattern, but you must prefix it with the label.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> h (fun ~x:_ ~y -&gt; y+1);;
+</div><div class="caml-output ok">- : int = 3
+</div></pre>
+
+
+</div>
+<h3 class="subsection" id="sec44">4.1.1&#XA0;&#XA0;Optional arguments</h3>
+<p>An interesting feature of labeled arguments is that they can be made
+optional. For optional parameters, the question mark <span class="c003">?</span> replaces the
+tilde <span class="c003">~</span> of non-optional ones, and the label is also prefixed by <span class="c003">?</span>
+in the function type.
+Default values may be given for such optional parameters.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let bump ?(step = 1) x = x + step;;
+</div><div class="caml-output ok">val bump : ?step:int -&gt; int -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> bump 2;;
+</div><div class="caml-output ok">- : int = 3
+</div></pre>
+
+<pre><div class="caml-input"> bump ~step:3 2;;
+</div><div class="caml-output ok">- : int = 5
+</div></pre>
+
+
+</div><p>A function taking some optional arguments must also take at least one
+non-optional argument. The criterion for deciding whether an optional
+argument has been omitted is the non-labeled application of an
+argument appearing after this optional argument in the function type.
+Note that if that argument is labeled, you will only be able to
+eliminate optional arguments through the special case for total
+applications.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let test ?(x = 0) ?(y = 0) () ?(z = 0) () = (x, y, z);;
+</div><div class="caml-output ok">val test : ?x:int -&gt; ?y:int -&gt; unit -&gt; ?z:int -&gt; unit -&gt; int * int * int =
+  &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> test ();;
+</div><div class="caml-output ok">- : ?z:int -&gt; unit -&gt; int * int * int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> test ~x:2 () ~z:3 ();;
+</div><div class="caml-output ok">- : int * int * int = (2, 0, 3)
+</div></pre>
+
+
+</div><p>Optional parameters may also commute with non-optional or unlabeled
+ones, as long as they are applied simultaneously. By nature, optional
+arguments do not commute with unlabeled arguments applied
+independently.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> test ~y:2 ~x:3 () ();;
+</div><div class="caml-output ok">- : int * int * int = (3, 2, 0)
+</div></pre>
+
+<pre><div class="caml-input"> test () () ~z:1 ~y:2 ~x:3;;
+</div><div class="caml-output ok">- : int * int * int = (3, 2, 1)
+</div></pre>
+
+<pre><div class="caml-input"> <U>(test () ())</U> ~z:1 ;;
+</div><div class="caml-output error">Error: This expression has type int * int * int
+       This is not a function; it cannot be applied.
+</div></pre>
+
+
+</div><p>
+
+Here <span class="c003">(test () ())</span> is already <span class="c003">(0,0,0)</span> and cannot be further
+applied.</p><p>Optional arguments are actually implemented as option types. If
+you do not give a default value, you have access to their internal
+representation, <span class="c003">type 'a option = None | Some of 'a</span>. You can then
+provide different behaviors when an argument is present or not.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let bump ?step x =
+    match step with
+    | None -&gt; x * 2
+    | Some y -&gt; x + y
+  ;;
+</div><div class="caml-output ok">val bump : ?step:int -&gt; int -&gt; int = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>It may also be useful to relay an optional argument from a function
+call to another. This can be done by prefixing the applied argument
+with <span class="c003">?</span>. This question mark disables the wrapping of optional
+argument in an option type.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let test2 ?x ?y () = test ?x ?y () ();;
+</div><div class="caml-output ok">val test2 : ?x:int -&gt; ?y:int -&gt; unit -&gt; int * int * int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> test2 ?x:None;;
+</div><div class="caml-output ok">- : ?y:int -&gt; unit -&gt; int * int * int = &lt;fun&gt;
+</div></pre>
+
+
+</div>
+<h3 class="subsection" id="sec45">4.1.2&#XA0;&#XA0;Labels and type inference</h3>
+<p>
+<a id="ss:label-inference"></a></p><p>While they provide an increased comfort for writing function
+applications, labels and optional arguments have the pitfall that they
+cannot be inferred as completely as the rest of the language.</p><p>You can see it in the following two examples.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let h' g = g ~y:2 ~x:3;;
+</div><div class="caml-output ok">val h' : (y:int -&gt; x:int -&gt; 'a) -&gt; 'a = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> h' <U>f</U> ;;
+</div><div class="caml-output error">Error: This expression has type x:int -&gt; y:int -&gt; int
+       but an expression was expected of type y:int -&gt; x:int -&gt; 'a
+</div></pre>
+
+<pre><div class="caml-input"> let bump_it bump x =
+    bump ~step:2 x;;
+</div><div class="caml-output ok">val bump_it : (step:int -&gt; 'a -&gt; 'b) -&gt; 'a -&gt; 'b = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> bump_it <U>bump</U> 1 ;;
+</div><div class="caml-output error">Error: This expression has type ?step:int -&gt; int -&gt; int
+       but an expression was expected of type step:int -&gt; 'a -&gt; 'b
+</div></pre>
+
+
+</div><p>
+
+The first case is simple: <span class="c003">g</span> is passed <span class="c003">~y</span> and then <span class="c003">~x</span>, but <span class="c003">f</span>
+expects <span class="c003">~x</span> and then <span class="c003">~y</span>. This is correctly handled if we know the
+type of <span class="c003">g</span> to be <span class="c003">x:int -&gt; y:int -&gt; int</span> in advance, but otherwise
+this causes the above type clash. The simplest workaround is to apply
+formal parameters in a standard order.</p><p>The second example is more subtle: while we intended the argument
+<span class="c003">bump</span> to be of type <span class="c003">?step:int -&gt; int -&gt; int</span>, it is inferred as
+<span class="c003">step:int -&gt; int -&gt; 'a</span>.
+These two types being incompatible (internally normal and optional
+arguments are different), a type error occurs when applying <span class="c003">bump_it</span>
+to the real <span class="c003">bump</span>.</p><p>We will not try here to explain in detail how type inference works.
+One must just understand that there is not enough information in the
+above program to deduce the correct type of <span class="c003">g</span> or <span class="c003">bump</span>. That is,
+there is no way to know whether an argument is optional or not, or
+which is the correct order, by looking only at how a function is
+applied. The strategy used by the compiler is to assume that there are
+no optional arguments, and that applications are done in the right
+order.</p><p>The right way to solve this problem for optional parameters is to add
+a type annotation to the argument <span class="c003">bump</span>.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let bump_it (bump : ?step:int -&gt; int -&gt; int) x =
+    bump ~step:2 x;;
+</div><div class="caml-output ok">val bump_it : (?step:int -&gt; int -&gt; int) -&gt; int -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> bump_it bump 1;;
+</div><div class="caml-output ok">- : int = 3
+</div></pre>
+
+
+</div><p>
+
+In practice, such problems appear mostly when using objects whose
+methods have optional arguments, so that writing the type of object
+arguments is often a good idea.</p><p>Normally the compiler generates a type error if you attempt to pass to
+a function a parameter whose type is different from the expected one.
+However, in the specific case where the expected type is a non-labeled
+function type, and the argument is a function expecting optional
+parameters, the compiler will attempt to transform the argument to
+have it match the expected type, by passing <span class="c003">None</span> for all optional
+parameters.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let twice f (x : int) = f(f x);;
+</div><div class="caml-output ok">val twice : (int -&gt; int) -&gt; int -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> twice bump 2;;
+</div><div class="caml-output ok">- : int = 8
+</div></pre>
+
+
+</div><p>This transformation is coherent with the intended semantics,
+including side-effects. That is, if the application of optional
+parameters shall produce side-effects, these are delayed until the
+received function is really applied to an argument.</p>
+<h3 class="subsection" id="sec46">4.1.3&#XA0;&#XA0;Suggestions for labeling</h3>
+<p>Like for names, choosing labels for functions is not an easy task. A
+good labeling is a labeling which</p><ul class="itemize"><li class="li-itemize">
+makes programs more readable,
+</li><li class="li-itemize">is easy to remember,
+</li><li class="li-itemize">when possible, allows useful partial applications.
+</li></ul><p>We explain here the rules we applied when labeling OCaml
+libraries.</p><p>To speak in an &#X201C;object-oriented&#X201D; way, one can consider that each
+function has a main argument, its <em>object</em>, and other arguments
+related with its action, the <em>parameters</em>. To permit the
+combination of functions through functionals in commuting label mode, the
+object will not be labeled. Its role is clear from the function
+itself. The parameters are labeled with names reminding of
+their nature or their role. The best labels combine nature and
+role. When this is not possible the role is to be preferred, since the
+nature will
+often be given by the type itself. Obscure abbreviations should be
+avoided.
+</p><pre>
+<span class="c003">ListLabels.map : f:('a -&gt; 'b) -&gt; 'a list -&gt; 'b list</span>
+UnixLabels.write : file_descr -&gt; buf:bytes -&gt; pos:int -&gt; len:int -&gt; unit
+</pre><p>When there are several objects of same nature and role, they are all
+left unlabeled.
+</p><pre>
+<span class="c003">ListLabels.iter2 : f:('a -&gt; 'b -&gt; 'c) -&gt; 'a list -&gt; 'b list -&gt; unit</span>
+</pre><p>When there is no preferable object, all arguments are labeled.
+</p><pre>
+BytesLabels.blit :
+  src:bytes -&gt; src_pos:int -&gt; dst:bytes -&gt; dst_pos:int -&gt; len:int -&gt; unit
+</pre><p>However, when there is only one argument, it is often left unlabeled.
+</p><pre>
+BytesLabels.create : int -&gt; bytes
+</pre><p>
+This principle also applies to functions of several arguments whose
+return type is a type variable, as long as the role of each argument
+is not ambiguous. Labeling such functions may lead to awkward error
+messages when one attempts to omit labels in an application, as we
+have seen with <span class="c003">ListLabels.fold_left</span>.</p><p>Here are some of the label names you will find throughout the
+libraries.</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">Label</span></td><td class="c014"><span class="c013">Meaning</span> </td></tr>
+<tr><td class="c016">
+<span class="c003">f:</span></td><td class="c016">a function to be applied </td></tr>
+<tr><td class="c016"><span class="c003">pos:</span></td><td class="c016">a position in a string, array or byte sequence </td></tr>
+<tr><td class="c016"><span class="c003">len:</span></td><td class="c016">a length </td></tr>
+<tr><td class="c016"><span class="c003">buf:</span></td><td class="c016">a byte sequence or string used as buffer </td></tr>
+<tr><td class="c016"><span class="c003">src:</span></td><td class="c016">the source of an operation </td></tr>
+<tr><td class="c016"><span class="c003">dst:</span></td><td class="c016">the destination of an operation </td></tr>
+<tr><td class="c016"><span class="c003">init:</span></td><td class="c016">the initial value for an iterator </td></tr>
+<tr><td class="c016"><span class="c003">cmp:</span></td><td class="c016">a comparison function, <span class="c009">e.g.</span> <span class="c003">Pervasives.compare</span> </td></tr>
+<tr><td class="c016"><span class="c003">mode:</span></td><td class="c016">an operation mode or a flag list </td></tr>
+</table></div></div><p>All these are only suggestions, but keep in mind that the
+choice of labels is essential for readability. Bizarre choices will
+make the program harder to maintain.</p><p>In the ideal, the right function name with right labels should be
+enough to understand the function&#X2019;s meaning. Since one can get this
+information with OCamlBrowser or the <span class="c003">ocaml</span> toplevel, the documentation
+is only used when a more detailed specification is needed.</p>
+<h2 class="section" id="sec47">4.2&#XA0;&#XA0;Polymorphic variants</h2>
+<p>Variants as presented in section&#XA0;<a href="coreexamples.html#s%3Atut-recvariants">1.4</a> are a
+powerful tool to build data structures and algorithms. However they
+sometimes lack flexibility when used in modular programming. This is
+due to the fact that every constructor is assigned to a unique type
+when defined and used. Even if the same name appears in the definition
+of multiple types, the constructor itself belongs to only one type.
+Therefore, one cannot decide that a given constructor belongs to
+multiple types, or consider a value of some type to belong to some
+other type with more constructors.</p><p>With polymorphic variants, this original assumption is removed. That
+is, a variant tag does not belong to any type in particular, the type
+system will just check that it is an admissible value according to its
+use. You need not define a type before using a variant tag. A variant
+type will be inferred independently for each of its uses.</p><h3 class="subsection" id="sec48">Basic use</h3>
+<p>In programs, polymorphic variants work like usual ones. You just have
+to prefix their names with a backquote character <span class="c003">`</span>.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> [`On; `Off];;
+</div><div class="caml-output ok">- : [&gt; `Off | `On ] list = [`On; `Off]
+</div></pre>
+
+<pre><div class="caml-input"> `Number 1;;
+</div><div class="caml-output ok">- : [&gt; `Number of int ] = `Number 1
+</div></pre>
+
+<pre><div class="caml-input"> let f = function `On -&gt; 1 | `Off -&gt; 0 | `Number n -&gt; n;;
+</div><div class="caml-output ok">val f : [&lt; `Number of int | `Off | `On ] -&gt; int = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> List.map f [`On; `Off];;
+</div><div class="caml-output ok">- : int list = [1; 0]
+</div></pre>
+
+
+</div><p>
+
+<span class="c003">[&gt;`Off|`On] list</span> means that to match this list, you should at
+least be able to match <span class="c003">`Off</span> and <span class="c003">`On</span>, without argument.
+<span class="c003">[&lt;`On|`Off|`Number of int]</span> means that <span class="c003">f</span> may be applied to <span class="c003">`Off</span>,
+<span class="c003">`On</span> (both without argument), or <span class="c003">`Number</span> <span class="c009">n</span> where
+<span class="c009">n</span> is an integer.
+The <span class="c003">&gt;</span> and <span class="c003">&lt;</span> inside the variant types show that they may still be
+refined, either by defining more tags or by allowing less. As such, they
+contain an implicit type variable. Because each of the variant types
+appears only once in the whole type, their implicit type variables are
+not shown.</p><p>The above variant types were polymorphic, allowing further refinement.
+When writing type annotations, one will most often describe fixed
+variant types, that is types that cannot be refined. This is
+also the case for type abbreviations. Such types do not contain <span class="c003">&lt;</span> or
+<span class="c003">&gt;</span>, but just an enumeration of the tags and their associated types,
+just like in a normal datatype definition.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> type 'a vlist = [`Nil | `Cons of 'a * 'a vlist];;
+</div><div class="caml-output ok">type 'a vlist = [ `Cons of 'a * 'a vlist | `Nil ]
+</div></pre>
+
+<pre><div class="caml-input"> let rec map f : 'a vlist -&gt; 'b vlist = function
+    | `Nil -&gt; `Nil
+    | `Cons(a, l) -&gt; `Cons(f a, map f l)
+  ;;
+</div><div class="caml-output ok">val map : ('a -&gt; 'b) -&gt; 'a vlist -&gt; 'b vlist = &lt;fun&gt;
+</div></pre>
+
+
+</div><h3 class="subsection" id="sec49">Advanced use</h3>
+<p>Type-checking polymorphic variants is a subtle thing, and some
+expressions may result in more complex type information.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let f = function `A -&gt; `C | `B -&gt; `D | x -&gt; x;;
+</div><div class="caml-output ok">val f : ([&gt; `A | `B | `C | `D ] as 'a) -&gt; 'a = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> f `E;;
+</div><div class="caml-output ok">- : [&gt; `A | `B | `C | `D | `E ] = `E
+</div></pre>
+
+
+</div><p>
+
+Here we are seeing two phenomena. First, since this matching is open
+(the last case catches any tag), we obtain the type <span class="c003">[&gt; `A | `B]</span>
+rather than <span class="c003">[&lt; `A | `B]</span> in a closed matching. Then, since <span class="c003">x</span> is
+returned as is, input and return types are identical. The notation <span class="c003">as 'a</span> denotes such type sharing. If we apply <span class="c003">f</span> to yet another tag
+<span class="c003">`E</span>, it gets added to the list.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let f1 = function `A x -&gt; x = 1 | `B -&gt; true | `C -&gt; false
+  let f2 = function `A x -&gt; x = "a" | `B -&gt; true ;;
+</div><div class="caml-output ok">val f1 : [&lt; `A of int | `B | `C ] -&gt; bool = &lt;fun&gt;
+val f2 : [&lt; `A of string | `B ] -&gt; bool = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> let f x = f1 x &amp;&amp; f2 x;;
+</div><div class="caml-output ok">val f : [&lt; `A of string &amp; int | `B ] -&gt; bool = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+Here <span class="c003">f1</span> and <span class="c003">f2</span> both accept the variant tags <span class="c003">`A</span> and <span class="c003">`B</span>, but the
+argument of <span class="c003">`A</span> is <span class="c003">int</span> for <span class="c003">f1</span> and <span class="c003">string</span> for <span class="c003">f2</span>. In <span class="c003">f</span>&#X2019;s
+type <span class="c003">`C</span>, only accepted by <span class="c003">f1</span>, disappears, but both argument types
+appear for <span class="c003">`A</span> as <span class="c003">int &amp; string</span>. This means that if we
+pass the variant tag <span class="c003">`A</span> to <span class="c003">f</span>, its argument should be <em>both</em>
+<span class="c003">int</span> and <span class="c003">string</span>. Since there is no such value, <span class="c003">f</span> cannot be
+applied to <span class="c003">`A</span>, and <span class="c003">`B</span> is the only accepted input.</p><p>Even if a value has a fixed variant type, one can still give it a
+larger type through coercions. Coercions are normally written with
+both the source type and the destination type, but in simple cases the
+source type may be omitted.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> type 'a wlist = [`Nil | `Cons of 'a * 'a wlist | `Snoc of 'a wlist * 'a];;
+</div><div class="caml-output ok">type 'a wlist = [ `Cons of 'a * 'a wlist | `Nil | `Snoc of 'a wlist * 'a ]
+</div></pre>
+
+<pre><div class="caml-input"> let wlist_of_vlist  l = (l : 'a vlist :&gt; 'a wlist);;
+</div><div class="caml-output ok">val wlist_of_vlist : 'a vlist -&gt; 'a wlist = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> let open_vlist l = (l : 'a vlist :&gt; [&gt; 'a vlist]);;
+</div><div class="caml-output ok">val open_vlist : 'a vlist -&gt; [&gt; 'a vlist ] = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> fun x -&gt; (x :&gt; [`A|`B|`C]);;
+</div><div class="caml-output ok">- : [&lt; `A | `B | `C ] -&gt; [ `A | `B | `C ] = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>You may also selectively coerce values through pattern matching.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let split_cases = function
+    | `Nil | `Cons _ as x -&gt; `A x
+    | `Snoc _ as x -&gt; `B x
+  ;;
+</div><div class="caml-output ok">val split_cases :
+  [&lt; `Cons of 'a | `Nil | `Snoc of 'b ] -&gt;
+  [&gt; `A of [&gt; `Cons of 'a | `Nil ] | `B of [&gt; `Snoc of 'b ] ] = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+When an or-pattern composed of variant tags is wrapped inside an
+alias-pattern, the alias is given a type containing only the tags
+enumerated in the or-pattern. This allows for many useful idioms, like
+incremental definition of functions.</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let num x = `Num x
+  let eval1 eval (`Num x) = x
+  let rec eval x = eval1 eval x ;;
+</div><div class="caml-output ok">val num : 'a -&gt; [&gt; `Num of 'a ] = &lt;fun&gt;
+val eval1 : 'a -&gt; [&lt; `Num of 'b ] -&gt; 'b = &lt;fun&gt;
+val eval : [&lt; `Num of 'a ] -&gt; 'a = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> let plus x y = `Plus(x,y)
+  let eval2 eval = function
+    | `Plus(x,y) -&gt; eval x + eval y
+    | `Num _ as x -&gt; eval1 eval x
+  let rec eval x = eval2 eval x ;;
+</div><div class="caml-output ok">val plus : 'a -&gt; 'b -&gt; [&gt; `Plus of 'a * 'b ] = &lt;fun&gt;
+val eval2 : ('a -&gt; int) -&gt; [&lt; `Num of int | `Plus of 'a * 'a ] -&gt; int = &lt;fun&gt;
+val eval : ([&lt; `Num of int | `Plus of 'a * 'a ] as 'a) -&gt; int = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>To make this even more comfortable, you may use type definitions as
+abbreviations for or-patterns. That is, if you have defined <span class="c003">type myvariant = [`Tag1 of int | `Tag2 of bool]</span>, then the pattern <span class="c003">#myvariant</span> is
+equivalent to writing <span class="c003">(`Tag1(_ : int) | `Tag2(_ : bool))</span>.</p><p>Such abbreviations may be used alone,
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let f = function
+    | #myvariant -&gt; "myvariant"
+    | `Tag3 -&gt; "Tag3";;
+</div><div class="caml-output ok">val f : [&lt; `Tag1 of int | `Tag2 of bool | `Tag3 ] -&gt; string = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+or combined with with aliases.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let g1 = function `Tag1 _ -&gt; "Tag1" | `Tag2 _ -&gt; "Tag2";;
+</div><div class="caml-output ok">val g1 : [&lt; `Tag1 of 'a | `Tag2 of 'b ] -&gt; string = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> let g = function
+    | #myvariant as x -&gt; g1 x
+    | `Tag3 -&gt; "Tag3";;
+</div><div class="caml-output ok">val g : [&lt; `Tag1 of int | `Tag2 of bool | `Tag3 ] -&gt; string = &lt;fun&gt;
+</div></pre>
+
+
+</div>
+<h3 class="subsection" id="sec50">4.2.1&#XA0;&#XA0;Weaknesses of polymorphic variants</h3>
+<p>After seeing the power of polymorphic variants, one may wonder why
+they were added to core language variants, rather than replacing them.</p><p>The answer is twofold. One first aspect is that while being pretty
+efficient, the lack of static type information allows for less
+optimizations, and makes polymorphic variants slightly heavier than
+core language ones. However noticeable differences would only
+appear on huge data structures.</p><p>More important is the fact that polymorphic variants, while being
+type-safe, result in a weaker type discipline. That is, core language
+variants do actually much more than ensuring type-safety, they also
+check that you use only declared constructors, that all constructors
+present in a data-structure are compatible, and they enforce typing
+constraints to their parameters.</p><p>For this reason, you must be more careful about making types explicit
+when you use polymorphic variants. When you write a library, this is
+easy since you can describe exact types in interfaces, but for simple
+programs you are probably better off with core language variants.</p><p>Beware also that some idioms make trivial errors very hard to find.
+For instance, the following code is probably wrong but the compiler
+has no way to see it.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> type abc = [`A | `B | `C] ;;
+</div><div class="caml-output ok">type abc = [ `A | `B | `C ]
+</div></pre>
+
+<pre><div class="caml-input"> let f = function
+    | `As -&gt; "A"
+    | #abc -&gt; "other" ;;
+</div><div class="caml-output ok">val f : [&lt; `A | `As | `B | `C ] -&gt; string = &lt;fun&gt;
+</div></pre>
+
+<pre><div class="caml-input"> let f : abc -&gt; string = f ;;
+</div><div class="caml-output ok">val f : abc -&gt; string = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>
+
+You can avoid such risks by annotating the definition itself.
+
+
+</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> let f : abc -&gt; string = function
+    | <U>`As</U> -&gt; "A"
+    | #abc -&gt; "other" ;;
+</div><div class="caml-output error">Error: This pattern matches values of type [? `As ]
+       but a pattern was expected which matches values of type abc
+       The second variant type does not allow tag(s) `As
+</div></pre>
+
+
+</div>
+<hr class="footnoterule"><dl class="thefootnotes"><dt class="dt-thefootnotes">
+<a id="note1" href="#text1">1</a></dt><dd class="dd-thefootnotes"><div class="footnotetext">This correspond to the commuting label mode
+of Objective Caml 3.00 through 3.02, with some additional flexibility
+on total applications. The so-called classic mode (<span class="c003">-nolabels</span>
+options) is now deprecated for normal use.</div></dd></dl>
+<hr>
+<a href="objectexamples.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="polymorphism.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

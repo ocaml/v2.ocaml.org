@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;25&#XA0;&#XA0;The core library</title>
+</head>
+<body>
+<a href="plugins.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="stdlib.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec551">Chapter&#XA0;25&#XA0;&#XA0;The core library</h1>
+<ul>
+<li><a href="core.html#sec552">Conventions</a>
+</li><li><a href="core.html#sec553">25.1&#XA0;&#XA0;Built-in types and predefined exceptions</a>
+</li><li><a href="core.html#sec556">25.2&#XA0;&#XA0;Module <span class="c003">Pervasives</span>: the initially opened module</a>
+</li></ul>
+<p> <a id="c:corelib"></a></p><p>This chapter describes the OCaml core library, which is
+composed of declarations for built-in types and exceptions, plus
+the module <span class="c003">Pervasives</span> that provides basic operations on these
+built-in types. The <span class="c003">Pervasives</span> module is special in two
+ways:
+</p><ul class="itemize"><li class="li-itemize">
+It is automatically linked with the user&#X2019;s object code files by
+the <span class="c003">ocamlc</span> command (chapter&#XA0;<a href="comp.html#c%3Acamlc">9</a>).</li><li class="li-itemize">It is automatically &#X201C;opened&#X201D; when a compilation starts, or
+when the toplevel system is launched. Hence, it is possible to use
+unqualified identifiers to refer to the functions provided by the
+<span class="c003">Pervasives</span> module, without adding a <span class="c003">open Pervasives</span> directive.
+</li></ul><h2 class="section" id="sec552">Conventions</h2>
+<p>The declarations of the built-in types and the components of module
+<span class="c003">Pervasives</span> are printed one by one in typewriter font, followed by a
+short comment. All library modules and the components they provide are
+indexed at the end of this report.</p>
+<h2 class="section" id="sec553">25.1&#XA0;&#XA0;Built-in types and predefined exceptions</h2>
+<p>The following built-in types and predefined exceptions are always
+defined in the
+compilation environment, but are not part of any module. As a
+consequence, they can only be referred by their short names.</p><h3 class="subsection" id="sec554">Built-in types</h3>
+<pre> type int
+</pre><p><a id="hevea_manual9"></a>
+</p><blockquote class="quote">
+The type of integer numbers.
+</blockquote><pre> type char
+</pre><p><a id="hevea_manual10"></a>
+</p><blockquote class="quote">
+The type of characters.
+</blockquote><pre> type bytes
+</pre><p><a id="hevea_manual11"></a>
+</p><blockquote class="quote">
+The type of (writable) byte sequences.
+</blockquote><pre> type string
+</pre><p><a id="hevea_manual12"></a>
+</p><blockquote class="quote">
+The type of (read-only) character strings.
+</blockquote><pre> type float
+</pre><p><a id="hevea_manual13"></a>
+</p><blockquote class="quote">
+The type of floating-point numbers.
+</blockquote><pre> type bool = false | true
+</pre><p><a id="hevea_manual14"></a>
+</p><blockquote class="quote">
+The type of booleans (truth values).
+</blockquote><pre> type unit = ()
+</pre><p><a id="hevea_manual15"></a>
+</p><blockquote class="quote">
+The type of the unit value.
+</blockquote><pre> type exn
+</pre><p><a id="hevea_manual16"></a>
+</p><blockquote class="quote">
+The type of exception values.
+</blockquote><pre> type 'a array
+</pre><p><a id="hevea_manual17"></a>
+</p><blockquote class="quote">
+The type of arrays whose elements have type <span class="c003">'a</span>.
+</blockquote><pre> type 'a list = [] | :: of 'a * 'a list
+</pre><p><a id="hevea_manual18"></a>
+</p><blockquote class="quote">
+The type of lists whose elements have type <span class="c003">'a</span>.
+</blockquote><pre>type 'a option = None | Some of 'a
+</pre><p><a id="hevea_manual19"></a>
+</p><blockquote class="quote">
+The type of optional values of type <span class="c003">'a</span>.
+</blockquote><pre>type int32
+</pre><p><a id="hevea_manual20"></a>
+</p><blockquote class="quote">
+The type of signed 32-bit integers.
+See the <span class="c003">Int32</span>[<a href="libref/Int32.html"><span class="c003">Int32</span></a>] module.
+</blockquote><pre>type int64
+</pre><p><a id="hevea_manual21"></a>
+</p><blockquote class="quote">
+The type of signed 64-bit integers.
+See the <span class="c003">Int64</span>[<a href="libref/Int64.html"><span class="c003">Int64</span></a>] module.
+</blockquote><pre>type nativeint
+</pre><p><a id="hevea_manual22"></a>
+</p><blockquote class="quote">
+The type of signed, platform-native integers (32 bits on 32-bit
+processors, 64 bits on 64-bit processors).
+See the <span class="c003">Nativeint</span>[<a href="libref/Nativeint.html"><span class="c003">Nativeint</span></a>] module.
+</blockquote><pre>type ('a, 'b, 'c, 'd, 'e, 'f) format6
+</pre><p><a id="hevea_manual23"></a>
+</p><blockquote class="quote">
+The type of format strings. <span class="c003">'a</span> is the type of the parameters of
+the format, <span class="c003">'f</span> is the result type for the <span class="c003">printf</span>-style
+functions, <span class="c003">'b</span> is the type of the first argument given to <span class="c003">%a</span> and
+<span class="c003">%t</span> printing functions (see module <span class="c003">Printf</span>[<a href="libref/Printf.html"><span class="c003">Printf</span></a>]),
+<span class="c003">'c</span> is the result type of these functions, and also the type of the
+argument transmitted to the first argument of <span class="c003">kprintf</span>-style
+functions, <span class="c003">'d</span> is the result type for the <span class="c003">scanf</span>-style functions
+(see module <span class="c003">Scanf</span>[<a href="libref/Scanf.html"><span class="c003">Scanf</span></a>]),
+and <span class="c003">'e</span> is the type of the receiver function for the <span class="c003">scanf</span>-style
+functions.
+</blockquote><pre>type 'a lazy_t
+</pre><p><a id="hevea_manual24"></a>
+</p><blockquote class="quote">
+This type is used to implement the <span class="c003">Lazy</span>[<a href="libref/Lazy.html"><span class="c003">Lazy</span></a>] module.
+It should not be used directly.
+</blockquote><h3 class="subsection" id="sec555">Predefined exceptions</h3>
+<pre>exception Match_failure of (string * int * int)
+</pre><p><a id="hevea_manual25"></a>
+</p><blockquote class="quote">
+Exception raised when none of the cases of a pattern-matching
+apply. The arguments are the location of the <span class="c003">match</span> keyword
+in the source code (file name, line number, column number).
+</blockquote><pre>exception Assert_failure of (string * int * int)
+</pre><p><a id="hevea_manual26"></a>
+</p><blockquote class="quote">
+Exception raised when an assertion fails. The arguments are
+the location of the <span class="c003">assert</span> keyword in the source code
+(file name, line number, column number).
+</blockquote><pre>exception Invalid_argument of string
+</pre><p><a id="hevea_manual27"></a>
+</p><blockquote class="quote">
+Exception raised by library functions to signal that the given
+arguments do not make sense. The string gives some information
+to the programmer. As a general rule, this exception should not
+be caught, it denotes a programming error and the code should be
+modified not to trigger it.
+</blockquote><pre>exception Failure of string
+</pre><p><a id="hevea_manual28"></a>
+</p><blockquote class="quote">
+Exception raised by library functions to signal that they are
+undefined on the given arguments. The string is meant to give some
+information to the programmer; you must <em>not</em> pattern match on
+the string literal because it may change in future versions (use
+<code>Failure _</code> instead).
+</blockquote><pre>exception Not_found
+</pre><p><a id="hevea_manual29"></a>
+</p><blockquote class="quote">
+Exception raised by search functions when the desired object
+could not be found.
+</blockquote><pre>exception Out_of_memory
+</pre><p><a id="hevea_manual30"></a>
+</p><blockquote class="quote">
+Exception raised by the garbage collector
+when there is insufficient memory to complete the computation.
+</blockquote><pre>exception Stack_overflow
+</pre><p><a id="hevea_manual31"></a>
+</p><blockquote class="quote">
+Exception raised by the bytecode interpreter when the evaluation
+stack reaches its maximal size. This often indicates infinite
+or excessively deep recursion in the user&#X2019;s program.
+(Not fully implemented by the native-code compiler;
+see section&#XA0;<a href="native.html#s%3Acompat-native-bytecode">12.5</a>.)
+</blockquote><pre>exception Sys_error of string
+</pre><p><a id="hevea_manual32"></a>
+</p><blockquote class="quote">
+Exception raised by the input/output functions to report an
+operating system error. The string is meant to give some
+information to the programmer; you must <em>not</em> pattern match on
+the string literal because it may change in future versions (use
+<code>Sys_error _</code> instead).
+</blockquote><pre>exception End_of_file
+</pre><p><a id="hevea_manual33"></a>
+</p><blockquote class="quote">
+Exception raised by input functions to signal that the
+end of file has been reached.
+</blockquote><pre>exception Division_by_zero
+</pre><p><a id="hevea_manual34"></a>
+</p><blockquote class="quote">
+Exception raised by integer division and remainder operations
+when their second argument is zero.
+</blockquote><pre>exception Sys_blocked_io
+</pre><p><a id="hevea_manual35"></a>
+</p><blockquote class="quote">
+A special case of <span class="c003">Sys_error</span> raised when no I/O is possible
+on a non-blocking I/O channel.
+</blockquote><pre>exception Undefined_recursive_module of (string * int * int)
+</pre><p><a id="hevea_manual36"></a>
+</p><blockquote class="quote">
+Exception raised when an ill-founded recursive module definition
+is evaluated. (See section&#XA0;<a href="extn.html#s-recursive-modules">8.4</a>.)
+The arguments are the location of the definition in the source code
+(file name, line number, column number).
+</blockquote>
+<h2 class="section" id="sec556">25.2&#XA0;&#XA0;Module <span class="c003">Pervasives</span>: the initially opened module</h2>
+<ul class="ftoc2"><li class="li-links">
+<a href="libref/Pervasives.html">Module <span class="c003">Pervasives</span>: the initially opened module</a>
+</li></ul>
+<hr>
+<a href="plugins.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="stdlib.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

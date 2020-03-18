@@ -1,0 +1,75 @@
+.c000{border-spacing:0;width:80%}
+.c001{border-spacing:6px;border-collapse:separate;}
+.c002{color:blue}
+.c003{font-family:monospace}
+.c004{font-family:monospace;color:blue}
+.c005{font-family:monospace;font-style:italic}
+.c006{font-family:monospace;font-weight:bold}
+.c007{font-family:sans-serif}
+.c008{font-size:small}
+.c009{font-style:italic}
+.c010{font-style:italic;color:maroon}
+.c011{font-style:italic;font-weight:bold}
+.c012{font-style:oblique}
+.c013{font-weight:bold}
+.c014{text-align:center;border:solid 1px;white-space:nowrap}
+.c015{text-align:center;white-space:nowrap}
+.c016{text-align:left;border:solid 1px;white-space:nowrap}
+.c017{text-align:left;white-space:nowrap}
+.c018{text-align:right;white-space:nowrap}
+.c019{vertical-align:middle}
+.c020{vertical-align:top;text-align:left;}
+.c021{vertical-align:top;text-align:left;border:solid 1px;}
+.c022{vertical-align:top;text-align:left;border:solid 1px;white-space:nowrap}
+.c023{vertical-align:top;text-align:left;white-space:nowrap}
+.c024{vertical-align:top;text-align:right;white-space:nowrap}
+.li-itemize{margin:1ex 0ex;}
+.li-enumerate{margin:1ex 0ex;}
+.dd-description{margin:0ex 0ex 1ex 4ex;}
+.dt-description{margin:0ex;}
+.footnotetext{margin:0ex; padding:0ex;}
+div.footnotetext P{margin:0px; text-indent:1em;}
+.thefootnotes{text-align:left;margin:0ex;}
+.dt-thefootnotes{margin:0em;}
+.dd-thefootnotes{margin:0em 0em 0em 2em;}
+.center{text-align:center;margin-left:auto;margin-right:auto;}
+div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}
+td table{margin:auto;}
+table{border-collapse:collapse;}
+td{padding:0;}
+.cellpadding1 tr td{padding:1px;}
+pre{text-align:left;margin-left:0ex;margin-right:auto;}
+blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}
+td p{margin:0px;}
+.hbar{border:none;height:2px;width:100%;background-color:black;}
+.display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}
+.dcell{white-space:nowrap;padding:0px; border:none;}
+.dcenter{margin:0ex auto;}
+.theorem{text-align:left;margin:1ex auto 1ex 0ex;}
+.part{margin:2ex auto;text-align:center}
+a:link{color:#00A000;text-decoration:underline;}
+a:visited{color:#006000;text-decoration:underline;}
+a:hover{color:black;text-decoration:none;background-color:#7FFF7F}
+div.caml-output{color:maroon;}
+div.caml-input::before{content:"#"; color:black;}
+div.caml-input{color:#006000;}
+div.caml-example pre{margin:2ex 0px;}
+.li-links{margin:0ex 0ex;}
+a.syntax:link{color:maroon;text-decoration:underline}
+a.syntax:visited{color:maroon;text-decoration:underline}
+a.syntax:hover{color:black;text-decoration:none;background-color:#FF6060}
+body{background-color:white}
+a:link{color:#00B200;text-decoration:underline;}
+a:visited{color:#006600;text-decoration:underline;}
+a:hover{color:black;text-decoration:none;background-color:#99FF99}
+.part{padding:1ex;background-color:#00CC00}
+.section{padding:.5ex;background-color:#66FF66}
+.subsection{padding:0.3ex;background-color:#7FFF7F}
+.subsubsection{padding:0.5ex;background-color:#99FF99}
+.paragraph{padding:0.5ex;background-color:#CCFFCC}
+.chapter{padding:0.5ex;background-color:#2DE52D}
+.ffootnoterule{border:none;margin:1em auto 1em 0px;width:50%;background-color:#00CC00}
+.ftoc1{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #00CC00}
+.ftoc2{list-style:none;margin:1ex 1ex;padding:0ex 1ex;border-left:1ex solid #2DE52D}
+.ftoc3{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #66FF66}
+.ftoc4{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #7FFF7F}

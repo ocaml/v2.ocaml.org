@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Profiling (ocamlprof)</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual030.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual032.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc210">Chapter 17</A>  Profiling (ocamlprof)</H1><UL>
+<LI><A HREF="manual031.html#toc132">Compiling for profiling</A>
+</LI><LI><A HREF="manual031.html#toc133">Profiling an execution</A>
+</LI><LI><A HREF="manual031.html#toc134">Printing profiling information</A>
+</LI><LI><A HREF="manual031.html#toc135">Time profiling</A>
+</LI></UL>
+<P> <A NAME="c:profiler"></A>
+</P><P>This chapter describes how the execution of OCaml
+programs can be profiled, by recording how many times functions are
+called, branches of conditionals are taken, &#X2026;</P><H2 CLASS="section"><A NAME="toc132"></A><A NAME="htoc211">17.1</A>  Compiling for profiling</H2><P>Before profiling an execution, the program must be compiled in
+profiling mode, using the <TT>ocamlcp</TT> front-end to the <TT>ocamlc</TT> compiler
+(see chapter <A HREF="manual022.html#c:camlc">8</A>). When compiling modules separately,
+<TT>ocamlcp</TT> must be used when compiling the modules (production
+of <TT>.cmo</TT> files), and can also be used (though this is not strictly
+necessary) when linking them together.</P><H5 CLASS="paragraph">Note</H5><P> If a module (<TT>.ml</TT> file) doesn&#X2019;t have a corresponding
+interface (<TT>.mli</TT> file), then compiling it with <TT>ocamlcp</TT> will produce
+object files (<TT>.cmi</TT> and <TT>.cmo</TT>) that are not compatible with the ones
+produced by <TT>ocamlc</TT>, which may lead to problems (if the <TT>.cmi</TT> or
+<TT>.cmo</TT> is still around) when switching between profiling and
+non-profiling compilations. To avoid this problem, you should always
+have a <TT>.mli</TT> file for each <TT>.ml</TT> file.</P><H5 CLASS="paragraph">Note</H5><P> To make sure your programs can be compiled in
+profiling mode, avoid using any identifier that begins with
+<TT>__ocaml_prof</TT>.</P><P>The amount of profiling information can be controlled through the <TT>-p</TT>
+option to <TT>ocamlcp</TT>, followed by one or several letters indicating which
+parts of the program should be profiled:</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>a</B></TT></DT><DD CLASS="dd-description"> all options
+</DD><DT CLASS="dt-description"><TT><B>f</B></TT></DT><DD CLASS="dd-description"> function calls : a count point is set at the beginning of
+each function body
+</DD><DT CLASS="dt-description"><TT><B>i</B></TT></DT><DD CLASS="dd-description"> <B>if &#X2026;then &#X2026;else &#X2026;</B> : count points are set in
+both <B>then</B> branch and <B>else</B> branch
+</DD><DT CLASS="dt-description"><TT><B>l</B></TT></DT><DD CLASS="dd-description"> <B>while, for</B> loops: a count point is set at the beginning of
+the loop body
+</DD><DT CLASS="dt-description"><TT><B>m</B></TT></DT><DD CLASS="dd-description"> <B>match</B> branches: a count point is set at the beginning of the
+body of each branch
+</DD><DT CLASS="dt-description"><TT><B>t</B></TT></DT><DD CLASS="dd-description"> <B>try &#X2026;with &#X2026;</B> branches: a count point is set at the
+beginning of the body of each branch
+</DD></DL><P>For instance, compiling with <TT>ocamlcp -p film</TT> profiles function calls,
+if&#X2026;then&#X2026;else&#X2026;, loops and pattern matching.</P><P>Calling <TT>ocamlcp</TT> without the <TT>-p</TT> option defaults to <TT>-p fm</TT>, meaning
+that only function calls and pattern matching are profiled.</P><P><B>Note:</B> Due to the implementation of streams and stream patterns as
+syntactic sugar, it is hard to predict what parts of stream expressions
+and patterns will be profiled by a given flag. To profile a program with
+streams, we recommend using <TT>ocamlcp -p a</TT>.</P><H2 CLASS="section"><A NAME="toc133"></A><A NAME="htoc212">17.2</A>  Profiling an execution</H2><P>Running a bytecode executable file that has been compiled with <TT>ocamlcp</TT>
+records the execution counts for the specified parts of the program
+and saves them in a file called <TT>ocamlprof.dump</TT> in the current directory.</P><P>If the environment variable <TT>OCAMLPROF_DUMP</TT> is set when the program
+exits, its value is used as the file name instead of <TT>ocamlprof.dump</TT>.</P><P>The dump file is written only if the program terminates
+normally (by calling <TT>exit</TT> or by falling through). It is not written
+if the program terminates with an <TT>uncaught exception</TT>.</P><P>If a compatible dump file already exists in the current directory, then the
+profiling information is accumulated in this dump file. This allows, for
+instance, the profiling of several executions of a program on
+different inputs.</P><H2 CLASS="section"><A NAME="toc134"></A><A NAME="htoc213">17.3</A>  Printing profiling information</H2><P>The <TT>ocamlprof</TT> command produces a source listing of the program modules
+where execution counts have been inserted as comments. For instance,
+</P><PRE CLASS="verbatim">        ocamlprof foo.ml
+</PRE><P>prints the source code for the <TT>foo</TT> module, with comments indicating
+how many times the functions in this module have been called. Naturally,
+this information is accurate only if the source file has not been modified
+since the profiling execution took place.</P><P>The following options are recognized by <TT>ocamlprof</TT>:</P><DL CLASS="description"><DT CLASS="dt-description"><B><TT>-f</TT> <I>dumpfile</I></B></DT><DD CLASS="dd-description"> 
+Specifies an alternate dump file of profiling information to be read.</DD><DT CLASS="dt-description"><B><TT>-F</TT> <I>string</I></B></DT><DD CLASS="dd-description">
+Specifies an additional string to be output with profiling information.
+By default, <TT>ocamlprof</TT> will annotate programs with comments of the form
+<TT>(* <I>n</I> *)</TT> where <I>n</I> is the counter value for a profiling
+point. With option <TT>-F <I>s</I></TT>, the annotation will be
+<TT>(* <I>sn</I> *)</TT>.</DD><DT CLASS="dt-description"><B><TT>-impl</TT> <I>filename</I></B></DT><DD CLASS="dd-description">
+Process the file <I>filename</I> as an implementation file, even if its
+extension is not <TT>.ml</TT>.</DD><DT CLASS="dt-description"><B><TT>-intf</TT> <I>filename</I></B></DT><DD CLASS="dd-description">
+Process the file <I>filename</I> as an interface file, even if its
+extension is not <TT>.mli</TT>.</DD><DT CLASS="dt-description"><TT><B>-version</B></TT></DT><DD CLASS="dd-description">
+Print version string and exit.</DD><DT CLASS="dt-description"><TT><B>-vnum</B></TT></DT><DD CLASS="dd-description">
+Print short version number and exit.</DD><DT CLASS="dt-description"><B><TT>-help</TT> or <TT>--help</TT></B></DT><DD CLASS="dd-description">
+Display a short usage summary and exit.
+</DD></DL><H2 CLASS="section"><A NAME="toc135"></A><A NAME="htoc214">17.4</A>  Time profiling</H2><P>Profiling with <TT>ocamlprof</TT> only records execution counts, not the actual
+time spent into each function. There is currently no way to perform
+time profiling on bytecode programs generated by <TT>ocamlc</TT>.</P><P>Native-code programs generated by <TT>ocamlopt</TT> can be profiled for time
+and execution counts using the <TT>-p</TT> option and the standard Unix
+profiler <TT>gprof</TT>. Just add the <TT>-p</TT> option when compiling and linking
+the program:
+</P><PRE>
+        ocamlopt -o myprog -p <I>other-options files</I>
+        ./myprog
+        gprof myprog
+</PRE><P>
+Caml function names in the output of <TT>gprof</TT> have the following format:
+</P><PRE>
+        <I>Module-name</I>_<I>function-name</I>_<I>unique-number</I>
+</PRE><P>
+Other functions shown are either parts of the Caml run-time system or
+external C functions linked with the program.</P><P>The output of <TT>gprof</TT> is described in the Unix manual page for
+<TT>gprof(1)</TT>. It generally consists of two parts: a &#X201C;flat&#X201D; profile
+showing the time spent in each function and the number of invocation
+of each function, and a &#X201C;hierarchical&#X201D; profile based on the call
+graph. Currently, only the Intel x86/Linux and Alpha/Digital Unix
+ports of <TT>ocamlopt</TT> support the two profiles. On other platforms,
+<TT>gprof</TT> will report only the &#X201C;flat&#X201D; profile with just time
+information. When reading the output of <TT>gprof</TT>, keep in mind that
+the accumulated times computed by <TT>gprof</TT> are based on heuristics and
+may not be exact.
+
+</P><HR>
+<A HREF="manual030.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual032.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

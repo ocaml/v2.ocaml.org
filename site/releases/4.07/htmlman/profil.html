@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;18&#XA0;&#XA0;Profiling (ocamlprof)</title>
+</head>
+<body>
+<a href="debugger.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual033.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec404">Chapter&#XA0;18&#XA0;&#XA0;Profiling (ocamlprof)</h1>
+<ul>
+<li><a href="profil.html#sec405">18.1&#XA0;&#XA0;Compiling for profiling</a>
+</li><li><a href="profil.html#sec409">18.2&#XA0;&#XA0;Profiling an execution</a>
+</li><li><a href="profil.html#sec410">18.3&#XA0;&#XA0;Printing profiling information</a>
+</li><li><a href="profil.html#sec411">18.4&#XA0;&#XA0;Time profiling</a>
+</li></ul>
+<p> <a id="c:profiler"></a>
+
+</p><p>This chapter describes how the execution of OCaml
+programs can be profiled, by recording how many times functions are
+called, branches of conditionals are taken, &#X2026;</p>
+<h2 class="section" id="sec405">18.1&#XA0;&#XA0;Compiling for profiling</h2>
+<p>Before profiling an execution, the program must be compiled in
+profiling mode, using the <span class="c003">ocamlcp</span> front-end to the <span class="c003">ocamlc</span> compiler
+(see chapter&#XA0;<a href="comp.html#c%3Acamlc">9</a>) or the <span class="c003">ocamloptp</span> front-end to the
+<span class="c003">ocamlopt</span> compiler (see chapter&#XA0;<a href="native.html#c%3Anativecomp">12</a>). When compiling
+modules separately, <span class="c003">ocamlcp</span> or <span class="c003">ocamloptp</span> must be used when
+compiling the modules (production of <span class="c003">.cmo</span> or <span class="c003">.cmx</span> files), and can
+also be used (though this is not strictly necessary) when linking them
+together.</p>
+<h5 class="paragraph" id="sec406">Note</h5>
+<p> If a module (<span class="c003">.ml</span> file) doesn&#X2019;t have a corresponding
+interface (<span class="c003">.mli</span> file), then compiling it with <span class="c003">ocamlcp</span> will produce
+object files (<span class="c003">.cmi</span> and <span class="c003">.cmo</span>) that are not compatible with the ones
+produced by <span class="c003">ocamlc</span>, which may lead to problems (if the <span class="c003">.cmi</span> or
+<span class="c003">.cmo</span> is still around) when switching between profiling and
+non-profiling compilations. To avoid this problem, you should always
+have a <span class="c003">.mli</span> file for each <span class="c003">.ml</span> file. The same problem exists with
+<span class="c003">ocamloptp</span>.</p>
+<h5 class="paragraph" id="sec407">Note</h5>
+<p> To make sure your programs can be compiled in
+profiling mode, avoid using any identifier that begins with
+<span class="c003">__ocaml_prof</span>.</p><p>The amount of profiling information can be controlled through the <span class="c003">-P</span>
+option to <span class="c003">ocamlcp</span> or <span class="c003">ocamloptp</span>, followed by one or several letters
+indicating which parts of the program should be profiled:</p><dl class="description"><dt class="dt-description">
+<span class="c006">a</span></dt><dd class="dd-description"> all options
+</dd><dt class="dt-description"><span class="c006">f</span></dt><dd class="dd-description"> function calls : a count point is set at the beginning of
+each function body
+</dd><dt class="dt-description"><span class="c006">i</span></dt><dd class="dd-description"> <span class="c013">if &#X2026;then &#X2026;else &#X2026;</span> : count points are set in
+both <span class="c013">then</span> branch and <span class="c013">else</span> branch
+</dd><dt class="dt-description"><span class="c006">l</span></dt><dd class="dd-description"> <span class="c013">while, for</span> loops: a count point is set at the beginning of
+the loop body
+</dd><dt class="dt-description"><span class="c006">m</span></dt><dd class="dd-description"> <span class="c013">match</span> branches: a count point is set at the beginning of the
+body of each branch
+</dd><dt class="dt-description"><span class="c006">t</span></dt><dd class="dd-description"> <span class="c013">try &#X2026;with &#X2026;</span> branches: a count point is set at the
+beginning of the body of each branch
+</dd></dl><p>For instance, compiling with <span class="c003">ocamlcp -P film</span> profiles function calls,
+if&#X2026;then&#X2026;else&#X2026;, loops and pattern matching.</p><p>Calling <span class="c003">ocamlcp</span> or <span class="c003">ocamloptp</span> without the <span class="c003">-P</span> option defaults to
+<span class="c003">-P fm</span>, meaning that only function calls and pattern matching are
+profiled.</p>
+<h5 class="paragraph" id="sec408">Note</h5>
+<p> For compatibility with previous releases, <span class="c003">ocamlcp</span>
+also accepts the <span class="c003">-p</span> option, with the same arguments and behaviour as
+<span class="c003">-P</span>.</p><p>The <span class="c003">ocamlcp</span> and <span class="c003">ocamloptp</span> commands also accept all the options of
+the corresponding <span class="c003">ocamlc</span> or <span class="c003">ocamlopt</span> compiler, except the <span class="c003">-pp</span>
+(preprocessing) option.</p>
+<h2 class="section" id="sec409">18.2&#XA0;&#XA0;Profiling an execution</h2>
+<p>Running an executable that has been compiled with <span class="c003">ocamlcp</span> or
+<span class="c003">ocamloptp</span> records the execution counts for the specified parts of
+the program and saves them in a file called <span class="c003">ocamlprof.dump</span> in the
+current directory.</p><p>If the environment variable <span class="c003">OCAMLPROF_DUMP</span> is set when the program
+exits, its value is used as the file name instead of <span class="c003">ocamlprof.dump</span>.</p><p>The dump file is written only if the program terminates
+normally (by calling <span class="c003">exit</span> or by falling through). It is not written
+if the program terminates with an uncaught exception.</p><p>If a compatible dump file already exists in the current directory, then the
+profiling information is accumulated in this dump file. This allows, for
+instance, the profiling of several executions of a program on
+different inputs. Note that dump files produced by byte-code
+executables (compiled with <span class="c003">ocamlcp</span>) are compatible with the dump
+files produced by native executables (compiled with <span class="c003">ocamloptp</span>).</p>
+<h2 class="section" id="sec410">18.3&#XA0;&#XA0;Printing profiling information</h2>
+<p>The <span class="c003">ocamlprof</span> command produces a source listing of the program modules
+where execution counts have been inserted as comments. For instance,
+</p><pre>        ocamlprof foo.ml
+</pre><p>prints the source code for the <span class="c003">foo</span> module, with comments indicating
+how many times the functions in this module have been called. Naturally,
+this information is accurate only if the source file has not been modified
+after it was compiled.</p><p>The following options are recognized by <span class="c003">ocamlprof</span>:</p><dl class="description"><dt class="dt-description"><span class="c013"><span class="c003">-args</span> <span class="c009">filename</span></span></dt><dd class="dd-description">
+Read additional newline-terminated command line arguments from <span class="c009">filename</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">-args0</span> <span class="c009">filename</span></span></dt><dd class="dd-description">
+Read additional null character terminated command line arguments from <span class="c009">filename</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">-f</span> <span class="c009">dumpfile</span></span></dt><dd class="dd-description">
+Specifies an alternate dump file of profiling information to be read.</dd><dt class="dt-description"><span class="c013"><span class="c003">-F</span> <span class="c009">string</span></span></dt><dd class="dd-description">
+Specifies an additional string to be output with profiling information.
+By default, <span class="c003">ocamlprof</span> will annotate programs with comments of the form
+<span class="c003">(* <span class="c009">n</span> *)</span> where <span class="c009">n</span> is the counter value for a profiling
+point. With option <span class="c003">-F <span class="c009">s</span></span>, the annotation will be
+<span class="c003">(* <span class="c009">sn</span> *)</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">-impl</span> <span class="c009">filename</span></span></dt><dd class="dd-description">
+Process the file <span class="c009">filename</span> as an implementation file, even if its
+extension is not <span class="c003">.ml</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">-intf</span> <span class="c009">filename</span></span></dt><dd class="dd-description">
+Process the file <span class="c009">filename</span> as an interface file, even if its
+extension is not <span class="c003">.mli</span>.</dd><dt class="dt-description"><span class="c006">-version</span></dt><dd class="dd-description">
+Print version string and exit.</dd><dt class="dt-description"><span class="c006">-vnum</span></dt><dd class="dd-description">
+Print short version number and exit.</dd><dt class="dt-description"><span class="c013"><span class="c003">-help</span> or <span class="c003">--help</span></span></dt><dd class="dd-description">
+Display a short usage summary and exit.
+</dd></dl>
+<h2 class="section" id="sec411">18.4&#XA0;&#XA0;Time profiling</h2>
+<p>Profiling with <span class="c003">ocamlprof</span> only records execution counts, not the actual
+time spent within each function. There is currently no way to perform
+time profiling on bytecode programs generated by <span class="c003">ocamlc</span>.</p><p>Native-code programs generated by <span class="c003">ocamlopt</span> can be profiled for time
+and execution counts using the <span class="c003">-p</span> option and the standard Unix
+profiler <span class="c003">gprof</span>. Just add the <span class="c003">-p</span> option when compiling and linking
+the program:
+</p><pre>
+        ocamlopt -o myprog -p <span class="c009">other-options files</span>
+        ./myprog
+        gprof myprog
+</pre><p>
+OCaml function names in the output of <span class="c003">gprof</span> have the following format:
+</p><pre>
+        <span class="c009">Module-name</span>_<span class="c009">function-name</span>_<span class="c009">unique-number</span>
+</pre><p>
+Other functions shown are either parts of the OCaml run-time system or
+external C functions linked with the program.</p><p>The output of <span class="c003">gprof</span> is described in the Unix manual page for
+<span class="c003">gprof(1)</span>. It generally consists of two parts: a &#X201C;flat&#X201D; profile
+showing the time spent in each function and the number of invocation
+of each function, and a &#X201C;hierarchical&#X201D; profile based on the call
+graph. Currently, only the Intel x86 ports of <span class="c003">ocamlopt</span> under
+Linux, BSD and MacOS X support the two profiles. On other platforms,
+<span class="c003">gprof</span> will report only the &#X201C;flat&#X201D; profile with just time
+information. When reading the output of <span class="c003">gprof</span>, keep in mind that
+the accumulated times computed by <span class="c003">gprof</span> are based on heuristics and
+may not be exact.</p>
+<h5 class="paragraph" id="sec412">Note</h5>
+<p> The <span class="c003">ocamloptp</span> command also accepts the <span class="c003">-p</span>
+option. In that case, both kinds of profiling are performed by the
+program, and you can display the results with the <span class="c003">gprof</span> and <span class="c003">ocamlprof</span>
+commands, respectively.
+
+</p>
+<hr>
+<a href="debugger.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual033.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

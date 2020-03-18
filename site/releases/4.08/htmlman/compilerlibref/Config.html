@@ -1,0 +1,504 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Compiler_libs.html">
+<link rel="next" href="Consistbl.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="CamlinternalMenhirLib" rel="Chapter" href="CamlinternalMenhirLib.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Compiler_libs" rel="Chapter" href="Compiler_libs.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Load_path" rel="Chapter" href="Load_path.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html"><title>Config</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Compiler_libs.html" title="Compiler_libs">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Consistbl.html" title="Consistbl">Next</a>
+</div>
+<h1>Module <a href="type_Config.html">Config</a></h1>
+
+<pre><span id="MODULEConfig"><span class="keyword">module</span> Config</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Config.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>System configuration</p>
+
+<p><b>Warning:</b> this module is unstable and part of
+  <a href="Compiler_libs.html">compiler-libs</a>.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="VALversion"><span class="keyword">val</span> version</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The current version number of the system</p>
+</div>
+</div>
+
+<pre><span id="VALstandard_library"><span class="keyword">val</span> standard_library</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The directory containing the standard libraries</p>
+</div>
+</div>
+
+<pre><span id="VALccomp_type"><span class="keyword">val</span> ccomp_type</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The "kind" of the C compiler, assembler and linker used: one of
+    "cc" (for Unix-style C compilers)
+    "msvc" (for Microsoft Visual C++ and MASM)</p>
+</div>
+</div>
+
+<pre><span id="VALc_compiler"><span class="keyword">val</span> c_compiler</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The compiler to use for compiling C files</p>
+</div>
+</div>
+
+<pre><span id="VALc_output_obj"><span class="keyword">val</span> c_output_obj</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Name of the option of the C compiler for specifying the output
+    file</p>
+</div>
+</div>
+
+<pre><span id="VALc_has_debug_prefix_map"><span class="keyword">val</span> c_has_debug_prefix_map</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the C compiler supports -fdebug-prefix-map</p>
+</div>
+</div>
+
+<pre><span id="VALas_has_debug_prefix_map"><span class="keyword">val</span> as_has_debug_prefix_map</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the assembler supports --debug-prefix-map</p>
+</div>
+</div>
+
+<pre><span id="VALocamlc_cflags"><span class="keyword">val</span> ocamlc_cflags</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The flags ocamlc should pass to the C compiler</p>
+</div>
+</div>
+
+<pre><span id="VALocamlc_cppflags"><span class="keyword">val</span> ocamlc_cppflags</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The flags ocamlc should pass to the C preprocessor</p>
+</div>
+</div>
+
+<pre><span id="VALocamlopt_cflags"><span class="keyword">val</span> ocamlopt_cflags</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The flags ocamlopt should pass to the C compiler</p>
+</div>
+</div>
+
+<pre><span id="VALocamlopt_cppflags"><span class="keyword">val</span> ocamlopt_cppflags</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The flags ocamlopt should pass to the C preprocessor</p>
+</div>
+</div>
+
+<pre><span id="VALbytecomp_c_libraries"><span class="keyword">val</span> bytecomp_c_libraries</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The C libraries to link with custom runtimes</p>
+</div>
+</div>
+
+<pre><span id="VALnative_c_libraries"><span class="keyword">val</span> native_c_libraries</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The C libraries to link with native-code programs</p>
+</div>
+</div>
+
+<pre><span id="VALnative_pack_linker"><span class="keyword">val</span> native_pack_linker</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The linker to use for packaging (ocamlopt -pack) and for partial
+    links (ocamlopt -output-obj).</p>
+</div>
+</div>
+
+<pre><span id="VALmkdll"><span class="keyword">val</span> mkdll</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The linker command line to build dynamic libraries.</p>
+</div>
+</div>
+
+<pre><span id="VALmkexe"><span class="keyword">val</span> mkexe</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The linker command line to build executables.</p>
+</div>
+</div>
+
+<pre><span id="VALmkmaindll"><span class="keyword">val</span> mkmaindll</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The linker command line to build main programs as dlls.</p>
+</div>
+</div>
+
+<pre><span id="VALranlib"><span class="keyword">val</span> ranlib</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Command to randomize a library, or "" if not needed</p>
+</div>
+</div>
+
+<pre><span id="VALar"><span class="keyword">val</span> ar</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Name of the ar command, or "" if not needed  (MSVC)</p>
+</div>
+</div>
+
+<pre><span id="VALcc_profile"><span class="keyword">val</span> cc_profile</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The command line option to the C compiler to enable profiling.</p>
+</div>
+</div>
+
+<pre><span id="VALinterface_suffix"><span class="keyword">val</span> interface_suffix</span> : <code class="type">string ref</code></pre><div class="info ">
+<div class="info-desc">
+<p>Suffix for interface file names</p>
+</div>
+</div>
+
+<pre><span id="VALexec_magic_number"><span class="keyword">val</span> exec_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for bytecode executable files</p>
+</div>
+</div>
+
+<pre><span id="VALcmi_magic_number"><span class="keyword">val</span> cmi_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for compiled interface files</p>
+</div>
+</div>
+
+<pre><span id="VALcmo_magic_number"><span class="keyword">val</span> cmo_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for object bytecode files</p>
+</div>
+</div>
+
+<pre><span id="VALcma_magic_number"><span class="keyword">val</span> cma_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for archive files</p>
+</div>
+</div>
+
+<pre><span id="VALcmx_magic_number"><span class="keyword">val</span> cmx_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for compilation unit descriptions</p>
+</div>
+</div>
+
+<pre><span id="VALcmxa_magic_number"><span class="keyword">val</span> cmxa_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for libraries of compilation unit descriptions</p>
+</div>
+</div>
+
+<pre><span id="VALast_intf_magic_number"><span class="keyword">val</span> ast_intf_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for file holding an interface syntax tree</p>
+</div>
+</div>
+
+<pre><span id="VALast_impl_magic_number"><span class="keyword">val</span> ast_impl_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for file holding an implementation syntax tree</p>
+</div>
+</div>
+
+<pre><span id="VALcmxs_magic_number"><span class="keyword">val</span> cmxs_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for dynamically-loadable plugins</p>
+</div>
+</div>
+
+<pre><span id="VALcmt_magic_number"><span class="keyword">val</span> cmt_magic_number</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Magic number for compiled interface files</p>
+</div>
+</div>
+
+<pre><span id="VALmax_tag"><span class="keyword">val</span> max_tag</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Biggest tag that can be stored in the header of a regular block.</p>
+</div>
+</div>
+
+<pre><span id="VALlazy_tag"><span class="keyword">val</span> lazy_tag</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Normally the same as Obj.lazy_tag.  Separate definition because
+    of technical reasons for bootstrapping.</p>
+</div>
+</div>
+
+<pre><span id="VALmax_young_wosize"><span class="keyword">val</span> max_young_wosize</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Maximal size of arrays that are directly allocated in the
+    minor heap</p>
+</div>
+</div>
+
+<pre><span id="VALstack_threshold"><span class="keyword">val</span> stack_threshold</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Size in words of safe area at bottom of VM stack,
+    see runtime/caml/config.h</p>
+</div>
+</div>
+
+<pre><span id="VALstack_safety_margin"><span class="keyword">val</span> stack_safety_margin</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Size in words of the safety margin between the bottom of
+    the stack and the stack pointer. This margin can be used by
+    intermediate computations of some instructions, or the event
+    handler.</p>
+</div>
+</div>
+
+<pre><span id="VALarchitecture"><span class="keyword">val</span> architecture</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Name of processor type for the native-code compiler</p>
+</div>
+</div>
+
+<pre><span id="VALmodel"><span class="keyword">val</span> model</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Name of processor submodel for the native-code compiler</p>
+</div>
+</div>
+
+<pre><span id="VALsystem"><span class="keyword">val</span> system</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Name of operating system for the native-code compiler</p>
+</div>
+</div>
+
+<pre><span id="VALasm"><span class="keyword">val</span> asm</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The assembler (and flags) to use for assembling
+    ocamlopt-generated code.</p>
+</div>
+</div>
+
+<pre><span id="VALasm_cfi_supported"><span class="keyword">val</span> asm_cfi_supported</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether assembler understands CFI directives</p>
+</div>
+</div>
+
+<pre><span id="VALwith_frame_pointers"><span class="keyword">val</span> with_frame_pointers</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether assembler should maintain frame pointers</p>
+</div>
+</div>
+
+<pre><span id="VALext_obj"><span class="keyword">val</span> ext_obj</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Extension for object files, e.g. <code class="code">.o</code> under Unix.</p>
+</div>
+</div>
+
+<pre><span id="VALext_asm"><span class="keyword">val</span> ext_asm</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Extension for assembler files, e.g. <code class="code">.s</code> under Unix.</p>
+</div>
+</div>
+
+<pre><span id="VALext_lib"><span class="keyword">val</span> ext_lib</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Extension for library files, e.g. <code class="code">.a</code> under Unix.</p>
+</div>
+</div>
+
+<pre><span id="VALext_dll"><span class="keyword">val</span> ext_dll</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Extension for dynamically-loaded libraries, e.g. <code class="code">.so</code> under Unix.</p>
+</div>
+</div>
+
+<pre><span id="VALdefault_executable_name"><span class="keyword">val</span> default_executable_name</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Name of executable produced by linking if none is given with -o,
+    e.g. <code class="code">a.out</code> under Unix.</p>
+</div>
+</div>
+
+<pre><span id="VALsysthread_supported"><span class="keyword">val</span> systhread_supported</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the system thread library is implemented</p>
+</div>
+</div>
+
+<pre><span id="VALflexdll_dirs"><span class="keyword">val</span> flexdll_dirs</span> : <code class="type">string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Directories needed for the FlexDLL objects</p>
+</div>
+</div>
+
+<pre><span id="VALhost"><span class="keyword">val</span> host</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the compiler is a cross-compiler</p>
+</div>
+</div>
+
+<pre><span id="VALtarget"><span class="keyword">val</span> target</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the compiler is a cross-compiler</p>
+</div>
+</div>
+
+<pre><span id="VALprofiling"><span class="keyword">val</span> profiling</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether profiling with gprof is supported on this platform</p>
+</div>
+</div>
+
+<pre><span id="VALflambda"><span class="keyword">val</span> flambda</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the compiler was configured for flambda</p>
+</div>
+</div>
+
+<pre><span id="VALwith_flambda_invariants"><span class="keyword">val</span> with_flambda_invariants</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the invariants checks for flambda are enabled</p>
+</div>
+</div>
+
+<pre><span id="VALspacetime"><span class="keyword">val</span> spacetime</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the compiler was configured for Spacetime profiling</p>
+</div>
+</div>
+
+<pre><span id="VALenable_call_counts"><span class="keyword">val</span> enable_call_counts</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether call counts are to be available when Spacetime profiling</p>
+</div>
+</div>
+
+<pre><span id="VALprofinfo"><span class="keyword">val</span> profinfo</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the compiler was configured for profiling</p>
+</div>
+</div>
+
+<pre><span id="VALprofinfo_width"><span class="keyword">val</span> profinfo_width</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>How many bits are to be used in values' headers for profiling
+    information</p>
+</div>
+</div>
+
+<pre><span id="VALlibunwind_available"><span class="keyword">val</span> libunwind_available</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the libunwind library is available on the target</p>
+</div>
+</div>
+
+<pre><span id="VALlibunwind_link_flags"><span class="keyword">val</span> libunwind_link_flags</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Linker flags to use libunwind</p>
+</div>
+</div>
+
+<pre><span id="VALsafe_string"><span class="keyword">val</span> safe_string</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the compiler was configured with -force-safe-string;
+    in that case, the -unsafe-string compile-time option is unavailable</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.05.0</li>
+</ul>
+</div>
+
+<pre><span id="VALdefault_safe_string"><span class="keyword">val</span> default_safe_string</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the compiler was configured to use the -safe-string
+    or -unsafe-string compile-time option by default.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06.0</li>
+</ul>
+</div>
+
+<pre><span id="VALflat_float_array"><span class="keyword">val</span> flat_float_array</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the compiler and runtime automagically flatten float
+    arrays</p>
+</div>
+</div>
+
+<pre><span id="VALwindows_unicode"><span class="keyword">val</span> windows_unicode</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether Windows Unicode runtime is enabled</p>
+</div>
+</div>
+
+<pre><span id="VALsupports_shared_libraries"><span class="keyword">val</span> supports_shared_libraries</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether shared libraries are supported</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.08.0</li>
+</ul>
+</div>
+
+<pre><span id="VALafl_instrument"><span class="keyword">val</span> afl_instrument</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether afl-fuzz instrumentation is generated by default</p>
+</div>
+</div>
+
+<pre><span id="VALprint_config"><span class="keyword">val</span> print_config</span> : <code class="type">out_channel -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Access to configuration values</p>
+</div>
+</div>
+
+<pre><span id="VALconfig_var"><span class="keyword">val</span> config_var</span> : <code class="type">string -> string option</code></pre><div class="info ">
+<div class="info-desc">
+<p>the configuration value of a variable, if it exists</p>
+</div>
+</div>
+</body></html>

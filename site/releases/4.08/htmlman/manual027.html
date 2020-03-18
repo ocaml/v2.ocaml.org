@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.5  Locally abstract types</title>
+</head>
+<body>
+<a href="manual026.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual028.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec245">8.5  Locally abstract types</h2>
+<p>
+<a id="hevea_manual.kwd211"></a>
+<a id="hevea_manual.kwd212"></a> <a id="s:locally-abstract"></a></p><p>(Introduced in OCaml 3.12, short syntax added in 4.03)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="expr.html#parameter"><span class="c010">parameter</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">(</span> <span class="c004">type</span> {<a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a>}<sup>+</sup> <span class="c004">)</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>The expression <span class="c002"><span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> introduces a
+type constructor named <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> which is considered abstract
+in the scope of the sub-expression, but then replaced by a fresh type
+variable. Note that contrary to what the syntax could suggest, the
+expression <span class="c002"><span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> itself does not
+suspend the evaluation of <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> as a regular abstraction would. The
+syntax has been chosen to fit nicely in the context of function
+declarations, where it is generally used. It is possible to freely mix
+regular function parameters with pseudo type parameters, as in:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let f = fun (type t) (foo : t list) -&gt; …
+</div>
+</pre>
+
+
+</div><p>
+
+and even use the alternative syntax for declaring functions:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let f (type t) (foo : t list) = …
+</div>
+</pre>
+
+
+</div><p>
+
+If several locally abstract types need to be introduced, it is possible to use
+the syntax
+<span class="c002"><span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><sub>1</sub> …  <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><sub><span class="c009">n</span></sub> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+as syntactic sugar for <span class="c002"><span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><sub>1</sub> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span> … <span class="c002"><span class="c003">-&gt;</span>
+<span class="c003">fun</span> <span class="c003">(</span> <span class="c003">type</span></span>  <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><sub><span class="c009">n</span></sub> <span class="c002"><span class="c003">)</span> <span class="c003">-&gt;</span></span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>. For instance,
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let f = fun (type t u v) -&gt; fun (foo : (t * u * v) list) -&gt; …
+ let f' (type t u v) (foo : (t * u * v) list) = …
+</div>
+</pre>
+
+
+</div><p>This construction is useful because the type constructors it introduces
+can be used in places where a type variable is not allowed. For
+instance, one can use it to define an exception in a local module
+within a polymorphic function.
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let f (type t) () =
+   let module M = struct exception E of t end in
+   (fun x -&gt; M.E x), (function M.E x -&gt; Some x | _ -&gt; None)
+</div>
+</pre>
+
+
+</div><p>Here is another example:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let sort_uniq (type s) (cmp : s -&gt; s -&gt; int) =
+   let module S = Set.Make(struct type t = s let compare = cmp end) in
+   fun l -&gt;
+     S.elements (List.fold_right S.add l S.empty)
+</div>
+</pre>
+
+
+</div><p>It is also extremely useful for first-class modules (see
+section <a href="manual028.html#s-first-class-modules">8.6</a>) and generalized algebraic datatypes
+(GADTs: see section <a href="manual033.html#s%3Agadts">8.11</a>).</p>
+<h5 class="paragraph" id="sec246">Polymorphic syntax</h5>
+<p> (Introduced in OCaml 4.00)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="expr.html#let-binding"><span class="c010">let-binding</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="names.html#value-name"><span class="c010">value-name</span></a> <span class="c004">:</span> <span class="c004">type</span>  { <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> }<sup>+</sup> <span class="c004">.</span>  <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="classes.html#class-field"><span class="c010">class-field</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">method</span> [<span class="c004">private</span>] <a class="syntax" href="names.html#method-name"><span class="c010">method-name</span></a> <span class="c004">:</span> <span class="c004">type</span>
+ { <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> }<sup>+</sup> <span class="c004">.</span>  <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">method!</span> [<span class="c004">private</span>] <a class="syntax" href="names.html#method-name"><span class="c010">method-name</span></a> <span class="c004">:</span> <span class="c004">type</span>
+ { <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> }<sup>+</sup> <span class="c004">.</span>  <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>The <span class="c004">(type</span> <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a><span class="c004">)</span> syntax construction by itself does not make
+polymorphic the type variable it introduces, but it can be combined
+with explicit polymorphic annotations where needed.
+The above rule is provided as syntactic sugar to make this easier:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let rec f : type t1 t2. t1 * t2 list -&gt; t1 = …
+</div>
+</pre>
+
+
+</div><p>
+
+is automatically expanded into
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let rec f : 't1 't2. 't1 * 't2 list -&gt; 't1 =
+   fun (type t1) (type t2) -&gt; ( … : t1 * t2 list -&gt; t1)
+</div>
+</pre>
+
+
+</div><p>
+
+This syntax can be very useful when defining recursive functions involving
+GADTs, see the section <a href="manual033.html#s%3Agadts">8.11</a> for a more detailed explanation.</p><p>The same feature is provided for method definitions.</p>
+<hr>
+<a href="manual026.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual028.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The dbm library: access to NDBM databases</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual039.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual041.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc272">Chapter 26</A>  The dbm library: access to NDBM databases</H1><P>The <TT>dbm</TT> library provides access to NDBM databases under Unix.
+NDBM databases maintain key/data associations, where both the key and
+the data are arbitrary strings. They support fairly large databases
+(several gigabytes) and can retrieve a keyed item in one or two file
+system accesses. Refer to the Unix manual pages for more information.</P><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Unix:</FONT>  
+Programs that use the <TT>dbm</TT> library must be linked as follows:
+<PRE>
+        ocamlc <I>other options</I> dbm.cma <I>other files</I>
+        ocamlopt <I>other options</I> dbm.cmxa <I>other files</I>
+</PRE>
+For interactive use of the <TT>dbm</TT> library, do:
+<PRE>
+        ocamlmktop -o mytop dbm.cma
+        ./mytop
+</PRE>
+</BLOCKQUOTE><P>
+or (if dynamic linking of C libraries is supported on your platform),
+start <TT>ocaml</TT> and type <TT>#load "dbm.cma";;</TT>.</P><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Windows:</FONT>  
+This library is not available.
+</BLOCKQUOTE><UL CLASS="ftoc2"><LI CLASS="li-links">
+<A HREF="libref/Dbm.html">Module <TT>Dbm</TT>: interface to the NDBM database</A>
+</LI></UL><HR>
+<A HREF="manual039.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual041.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

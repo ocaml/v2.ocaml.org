@@ -1,0 +1,754 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Advanced examples with classes and modules</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual006.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="language.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc43">Chapter 5</A>  Advanced examples with classes and modules</H1><UL>
+<LI><A HREF="manual007.html#toc37">Extended example: bank accounts</A>
+</LI><LI><A HREF="manual007.html#toc38">Simple modules as classes</A>
+</LI><LI><A HREF="manual007.html#toc39">The subject/observer pattern</A>
+</LI></UL>
+<P><I>(Chapter written by Didier Rémy)</I></P><P><BR>
+<BR>
+</P><P>In this chapter, we show some larger examples using objects, classes
+and modules. We review many of the object features simultaneously on
+the example of a bank account. We show how modules taken from the
+standard library can be expressed as classes. Lastly, we describe a
+programming pattern know of as <EM>virtual types</EM> through the example
+of window managers.</P><H2 CLASS="section"><A NAME="toc37"></A><A NAME="htoc44">5.1</A>  Extended example: bank accounts</H2><P>
+
+<A NAME="ss:bank-accounts"></A></P><P>In this section, we illustrate most aspects of Object and inheritance
+by refining, debugging, and specializing the following 
+initial naive definition of a simple bank account. (We reuse the
+module <TT>Euro</TT> defined at the end of chapter <A HREF="manual005.html#c:objectexamples">3</A>.)
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>let euro = new Euro.c;;
+</FONT><FONT COLOR=maroon>val euro : float -&gt; Euro.c = &lt;fun&gt;
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>let zero = euro 0.;;
+</FONT>val zero : Euro.c = &lt;obj&gt;
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>let neg x = x#times (-1.);;
+</FONT>val neg : &lt; times : float -&gt; &#X2019;a; .. &gt; -&gt; &#X2019;a = &lt;fun&gt;
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>class account =
+   object 
+     val mutable balance = zero
+     method balance = balance
+     method deposit x = balance &lt;- balance # plus x
+     method withdraw x =
+       if x#leq balance then (balance &lt;- balance # plus (neg x); x) else zero
+   end;;
+</FONT>class account :
+  object
+    val mutable balance : Euro.c
+    method balance : Euro.c
+    method deposit : Euro.c -&gt; unit
+    method withdraw : Euro.c -&gt; Euro.c
+  end
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>let c = new account in c # deposit (euro 100.); c # withdraw (euro 50.);;
+</FONT>- : Euro.c = &lt;obj&gt;
+</FONT></PRE><P>
+We now refine this definition with a method to compute interest.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class account_with_interests =
+   object (self)
+     inherit account
+     method private interest = self # deposit (self # balance # times 0.03)
+   end;;
+</FONT><FONT COLOR=maroon>class account_with_interests :
+  object
+    val mutable balance : Euro.c
+    method balance : Euro.c
+    method deposit : Euro.c -&gt; unit
+    method private interest : unit
+    method withdraw : Euro.c -&gt; Euro.c
+  end
+</FONT></PRE><P>
+We make the method <TT>interest</TT> private, since clearly it should not be
+called freely from the outside. Here, it is only made accessible to subclasses
+that will manage monthly or yearly updates of the account. </P><P>We should soon fix a bug in the current definition: the deposit method can
+be used for withdrawing money by depositing negative amounts. We can
+fix this directly:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class safe_account =
+   object
+     inherit account
+     method deposit x = if zero#leq x then balance &lt;- balance#plus x
+   end;;
+</FONT><FONT COLOR=maroon>class safe_account :
+  object
+    val mutable balance : Euro.c
+    method balance : Euro.c
+    method deposit : Euro.c -&gt; unit
+    method withdraw : Euro.c -&gt; Euro.c
+  end
+</FONT></PRE><P>
+However, the bug might be fixed more safely by the following definition:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class safe_account =
+   object
+     inherit account as unsafe
+     method deposit x =
+       if zero#leq x then unsafe # deposit x
+       else raise (Invalid_argument "deposit")
+   end;;
+</FONT><FONT COLOR=maroon>class safe_account :
+  object
+    val mutable balance : Euro.c
+    method balance : Euro.c
+    method deposit : Euro.c -&gt; unit
+    method withdraw : Euro.c -&gt; Euro.c
+  end
+</FONT></PRE><P>
+In particular, this does not require the knowledge of the implementation of 
+the method <TT>deposit</TT>.</P><P>To keep trace of operations, we extend the class with a mutable field
+<TT>history</TT> and a private method <TT>trace</TT> to add an operation in the
+log. Then each method to be traced is redefined.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>type &#X2019;a operation = Deposit of &#X2019;a | Retrieval of &#X2019;a;;
+</FONT><FONT COLOR=maroon>type &#X2019;a operation = Deposit of &#X2019;a | Retrieval of &#X2019;a
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>class account_with_history =
+   object (self) 
+     inherit safe_account as super  
+     val mutable history = []
+     method private trace x = history &lt;- x :: history
+     method deposit x = self#trace (Deposit x);  super#deposit x
+     method withdraw x = self#trace (Retrieval x); super#withdraw x
+     method history = List.rev history
+   end;;
+</FONT>class account_with_history :
+  object
+    val mutable balance : Euro.c
+    val mutable history : Euro.c operation list
+    method balance : Euro.c
+    method deposit : Euro.c -&gt; unit
+    method history : Euro.c operation list
+    method private trace : Euro.c operation -&gt; unit
+    method withdraw : Euro.c -&gt; Euro.c
+  end
+</FONT></PRE><P>
+One may wish to open an account and simultaneously deposit some initial
+amount. Although the initial implementation did not address this
+requirement, it can be achieved by using an initializer.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class account_with_deposit x =
+   object 
+     inherit account_with_history 
+     initializer balance &lt;- x 
+   end;;
+</FONT><FONT COLOR=maroon>class account_with_deposit :
+  Euro.c -&gt;
+  object
+    val mutable balance : Euro.c
+    val mutable history : Euro.c operation list
+    method balance : Euro.c
+    method deposit : Euro.c -&gt; unit
+    method history : Euro.c operation list
+    method private trace : Euro.c operation -&gt; unit
+    method withdraw : Euro.c -&gt; Euro.c
+  end
+</FONT></PRE><P>
+A better alternative is:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class account_with_deposit x =
+   object (self)
+     inherit account_with_history 
+     initializer self#deposit x
+   end;;
+</FONT><FONT COLOR=maroon>class account_with_deposit :
+  Euro.c -&gt;
+  object
+    val mutable balance : Euro.c
+    val mutable history : Euro.c operation list
+    method balance : Euro.c
+    method deposit : Euro.c -&gt; unit
+    method history : Euro.c operation list
+    method private trace : Euro.c operation -&gt; unit
+    method withdraw : Euro.c -&gt; Euro.c
+  end
+</FONT></PRE><P>
+Indeed, the latter is safer since the call to <TT>deposit</TT> will automatically
+benefit from safety checks and from the trace.
+Let&#X2019;s test it:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>let ccp = new account_with_deposit (euro 100.) in 
+ let <U>balance</U> = ccp#withdraw (euro 50.) in
+ ccp#history;;
+</FONT><FONT COLOR=maroon>Warning 26: unused variable balance.
+- : Euro.c operation list = [Deposit &lt;obj&gt;; Retrieval &lt;obj&gt;]
+</FONT></PRE><P>
+Closing an account can be done with the following polymorphic function:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>let close c = c#withdraw (c#balance);;
+</FONT><FONT COLOR=maroon>val close : &lt; balance : &#X2019;a; withdraw : &#X2019;a -&gt; &#X2019;b; .. &gt; -&gt; &#X2019;b = &lt;fun&gt;
+</FONT></PRE><P>
+Of course, this applies to all sorts of accounts. </P><P>Finally, we gather several versions of the account into a module <TT>Account</TT>
+abstracted over some currency.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>let today () = (01,01,2000) (* an approximation *)
+ module Account (M:MONEY) =
+   struct
+     type m = M.c
+     let m = new M.c
+     let zero = m 0. 
+         
+     class bank =
+       object (self) 
+         val mutable balance = zero
+         method balance = balance
+         val mutable history = []
+         method private trace x = history &lt;- x::history
+         method deposit x =
+           self#trace (Deposit x);
+           if zero#leq x then balance &lt;- balance # plus x
+           else raise (Invalid_argument "deposit")
+         method withdraw x =
+           if x#leq balance then
+             (balance &lt;- balance # plus (neg x); self#trace (Retrieval x); x)
+           else zero
+         method history = List.rev history
+       end
+         
+     class type client_view = 
+       object
+         method deposit : m -&gt; unit
+         method history : m operation list
+         method withdraw : m -&gt; m
+         method balance : m
+       end
+           
+     class virtual check_client x = 
+       let y = if (m 100.)#leq x then x
+       else raise (Failure "Insufficient initial deposit") in
+       object (self) initializer <U>self#deposit</U> y end
+         
+     module Client (B : sig class bank : client_view end) =
+       struct
+         class account x : client_view =
+           object
+             inherit B.bank
+             inherit check_client x
+           end
+             
+         let discount x =
+           let c = new account x in
+           if today() &lt; (1998,10,30) then c # deposit (m 100.); c
+       end
+   end;;
+</FONT></PRE><P>
+This shows the use of modules to group several class definitions that can in
+fact be thought of as a single unit. This unit would be provided by a bank
+for both internal and external uses. 
+This is implemented as a functor that abstracts over the currency so that
+the same code can be used to provide accounts in different currencies.</P><P>The class <TT>bank</TT> is the <EM>real</EM> implementation of the bank account (it
+could have been inlined). This is the one that will be used for further
+extensions, refinements, etc. Conversely, the client will only be given the client view.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>module Euro_account = Account(Euro);;
+ 
+ module Client = Euro_account.Client (Euro_account);;
+ 
+ new Client.account (new Euro.c 100.);;
+</FONT></PRE><P>
+Hence, the clients do not have direct access to the <TT>balance</TT>, nor the
+<TT>history</TT> of their own accounts. Their only way to change their balance is
+to deposit or withdraw money. It is important to give the clients
+a class and not just the ability to create accounts (such as the
+promotional <TT>discount</TT> account), so that they can
+personalize their account.
+For instance, a client may refine the <TT>deposit</TT> and <TT>withdraw</TT> methods
+so as to do his own financial bookkeeping, automatically. On the
+other hand, the function <TT>discount</TT> is given as such, with no
+possibility for further personalization.</P><P>It is important that to provide the client&#X2019;s view as a functor
+<TT>Client</TT> so that client accounts can still be build after a possible
+specialization of the <TT>bank</TT>. 
+The functor <TT>Client</TT> may remain unchanged and be passed
+the new definition to initialize a client&#X2019;s view of the extended account.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>module Investment_account (M : MONEY) = 
+   struct
+     type m = M.c
+     module A = Account(M)
+         
+     class bank =
+       object
+         inherit A.bank as super
+         method deposit x =
+           if (new M.c 1000.)#leq x then
+             print_string "Would you like to invest?";
+           super#deposit x
+       end
+         
+     module Client = A.Client
+   end;;
+</FONT></PRE><P>
+The functor <TT>Client</TT> may also be redefined when some new features of the
+account can be given to the client. 
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>module Internet_account (M : MONEY) = 
+   struct
+     type m = M.c
+     module A = Account(M)
+
+     class bank =
+       object
+         inherit A.bank 
+         method mail s = print_string s
+       end
+         
+     class type client_view = 
+       object
+         method deposit : m -&gt; unit
+         method history : m operation list
+         method withdraw : m -&gt; m
+         method balance : m
+         method mail : string -&gt; unit
+       end
+           
+     module Client (B : sig class bank : client_view end) =
+       struct
+         class account x : client_view =
+           object
+             inherit B.bank
+             inherit A.check_client x
+           end
+       end
+   end;;
+</FONT></PRE><H2 CLASS="section"><A NAME="toc38"></A><A NAME="htoc45">5.2</A>  Simple modules as classes</H2><P>
+
+<A NAME="ss:modules-as-classes"></A></P><P>One may wonder whether it is possible to treat primitive types such as
+integers and strings as objects. Although this is usually uninteresting
+for integers or strings, there may be some situations where
+this is desirable. The class <TT>money</TT> above is such an example. 
+We show here how to do it for strings. </P><H3 CLASS="subsection"><A NAME="htoc46">5.2.1</A>  Strings</H3><P>
+<A NAME="module:string"></A></P><P>A naive definition of strings as objects could be:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class ostring s =
+   object
+      method get n = String.get s n
+      method set n c = String.set s n c
+      method print = print_string s
+      method copy = new ostring (String.copy s)
+   end;;
+</FONT><FONT COLOR=maroon>class ostring :
+  string -&gt;
+  object
+    method copy : ostring
+    method get : int -&gt; char
+    method print : unit
+    method set : int -&gt; char -&gt; unit
+  end
+</FONT></PRE><P>
+However, the method <TT>copy</TT> returns an object of the class <TT>ostring</TT>,
+and not an objet of the current class. Hence, if the class is further
+extended, the method <TT>copy</TT> will only return an object of the parent
+class.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class sub_string s =
+   object
+      inherit ostring s
+      method sub start len = new sub_string (String.sub s  start len)
+   end;;
+</FONT><FONT COLOR=maroon>class sub_string :
+  string -&gt;
+  object
+    method copy : ostring
+    method get : int -&gt; char
+    method print : unit
+    method set : int -&gt; char -&gt; unit
+    method sub : int -&gt; int -&gt; sub_string
+  end
+</FONT></PRE><P>
+As seen in section <A HREF="manual005.html#ss:binary-methods">3.16</A>, the solution is to use
+functional update instead. We need to create an instance variable
+containing the representation <TT>s</TT> of the string.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class better_string s =
+   object
+      val repr = s
+      method get n = String.get repr n
+      method set n c = String.set repr n c
+      method print = print_string repr
+      method copy = {&lt; repr = String.copy repr &gt;}
+      method sub start len = {&lt; repr = String.sub s  start len &gt;}
+   end;;
+</FONT><FONT COLOR=maroon>class better_string :
+  string -&gt;
+  object (&#X2019;a)
+    val repr : string
+    method copy : &#X2019;a
+    method get : int -&gt; char
+    method print : unit
+    method set : int -&gt; char -&gt; unit
+    method sub : int -&gt; int -&gt; &#X2019;a
+  end
+</FONT></PRE><P>
+As shown in the inferred type, the methods <TT>copy</TT> and <TT>sub</TT> now return
+objects of the same type as the one of the class.</P><P>Another difficulty is the implementation of the method <TT>concat</TT>. 
+In order to concatenate a string with another string of the same class, 
+one must be able to access the instance variable externally. Thus, a method
+<TT>repr</TT> returning s must be defined. Here is the correct definition of
+strings: 
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class ostring s =
+   object (self : &#X2019;mytype)
+      val repr = s
+      method repr = repr
+      method get n = String.get repr n
+      method set n c = String.set repr n c
+      method print = print_string repr
+      method copy = {&lt; repr = String.copy repr &gt;}
+      method sub start len = {&lt; repr = String.sub s start len &gt;}
+      method concat (t : &#X2019;mytype) = {&lt; repr = repr ^ t#repr &gt;}
+   end;;
+</FONT><FONT COLOR=maroon>class ostring :
+  string -&gt;
+  object (&#X2019;a)
+    val repr : string
+    method concat : &#X2019;a -&gt; &#X2019;a
+    method copy : &#X2019;a
+    method get : int -&gt; char
+    method print : unit
+    method repr : string
+    method set : int -&gt; char -&gt; unit
+    method sub : int -&gt; int -&gt; &#X2019;a
+  end
+</FONT></PRE><P>
+Another constructor of the class string can be defined to return an
+uninitialized string of a given length:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class cstring n = ostring (String.create n);;
+</FONT><FONT COLOR=maroon>class cstring : int -&gt; ostring
+</FONT></PRE><P>
+Here, exposing the representation of strings is probably harmless. We do
+could also hide the representation of strings as we hid the currency in the
+class <TT>money</TT> of section <A HREF="manual005.html#ss:friends">3.17</A>.</P><H4 CLASS="subsubsection">Stacks</H4><P>
+<A NAME="module:stack"></A></P><P>There is sometimes an alternative between using modules or classes for
+parametric data types. 
+Indeed, there are situations when the two approaches are quite similar. 
+For instance, a stack can be straightforwardly implemented as a class:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>exception Empty;;
+</FONT><FONT COLOR=maroon>exception Empty
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;a] stack =
+   object 
+     val mutable l = ([] : &#X2019;a list)
+     method push x = l &lt;- x::l
+     method pop = match l with [] -&gt; raise Empty | a::l&#X2019; -&gt; l &lt;- l&#X2019;; a
+     method clear = l &lt;- []
+     method length = List.length l
+   end;;
+</FONT>class [&#X2019;a] stack :
+  object
+    val mutable l : &#X2019;a list
+    method clear : unit
+    method length : int
+    method pop : &#X2019;a
+    method push : &#X2019;a -&gt; unit
+  end
+</FONT></PRE><P>
+However, writing a method for iterating over a stack is more
+problematic. A method <TT>fold</TT> would have type
+<TT>(&#X2019;b -&gt; &#X2019;a -&gt; &#X2019;b) -&gt; &#X2019;b -&gt; &#X2019;b</TT>. Here <TT>&#X2019;a</TT> is the parameter of the stack.
+The parameter <TT>&#X2019;b</TT> is not related to the class <TT>&#X2019;a stack</TT> but to the
+argument that will be passed to the method <TT>fold</TT>.
+A naive approach is to make <TT>&#X2019;b</TT> an extra parameter of class <TT>stack</TT>:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;a, &#X2019;b] stack2 =
+   object
+     inherit [&#X2019;a] stack
+     method fold f (x : &#X2019;b) = List.fold_left f x l
+   end;;
+</FONT><FONT COLOR=maroon>class [&#X2019;a, &#X2019;b] stack2 :
+  object
+    val mutable l : &#X2019;a list
+    method clear : unit
+    method fold : (&#X2019;b -&gt; &#X2019;a -&gt; &#X2019;b) -&gt; &#X2019;b -&gt; &#X2019;b
+    method length : int
+    method pop : &#X2019;a
+    method push : &#X2019;a -&gt; unit
+  end
+</FONT></PRE><P>
+However, the method <TT>fold</TT> of a given object can only be
+applied to functions that all have the same type:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>let s = new stack2;;
+</FONT><FONT COLOR=maroon>val s : (&#X2019;_a, &#X2019;_b) stack2 = &lt;obj&gt;
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>s#fold (+) 0;;
+</FONT>- : int = 0
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>s;;
+</FONT>- : (int, int) stack2 = &lt;obj&gt;
+</FONT></PRE><P>
+A better solution is to use polymorphic methods, which were
+introduced in OCaml version 3.05. Polymorphic methods makes
+it possible to treat the type variable <TT>&#X2019;b</TT> in the type of <TT>fold</TT> as
+universally quantified, giving <TT>fold</TT> the polymorphic type
+<TT>Forall &#X2019;b. (&#X2019;b -&gt; &#X2019;a -&gt; &#X2019;b) -&gt; &#X2019;b -&gt; &#X2019;b</TT>.
+An explicit type declaration on the method <TT>fold</TT> is required, since
+the type checker cannot infer the polymorphic type by itself.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;a] stack3 =
+   object
+     inherit [&#X2019;a] stack
+     method fold : &#X2019;b. (&#X2019;b -&gt; &#X2019;a -&gt; &#X2019;b) -&gt; &#X2019;b -&gt; &#X2019;b
+                 = fun f x -&gt; List.fold_left f x l
+   end;;
+</FONT><FONT COLOR=maroon>class [&#X2019;a] stack3 :
+  object
+    val mutable l : &#X2019;a list
+    method clear : unit
+    method fold : (&#X2019;b -&gt; &#X2019;a -&gt; &#X2019;b) -&gt; &#X2019;b -&gt; &#X2019;b
+    method length : int
+    method pop : &#X2019;a
+    method push : &#X2019;a -&gt; unit
+  end
+</FONT></PRE><H3 CLASS="subsection"><A NAME="htoc47">5.2.2</A>  Hashtbl</H3><P>
+<A NAME="module:hashtbl"></A></P><P>A simplified version of object-oriented hash tables should have the
+following class type.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class type [&#X2019;a, &#X2019;b] hash_table =
+   object 
+     method find : &#X2019;a -&gt; &#X2019;b
+     method add : &#X2019;a -&gt; &#X2019;b -&gt; unit
+   end;;
+</FONT><FONT COLOR=maroon>class type [&#X2019;a, &#X2019;b] hash_table =
+  object method add : &#X2019;a -&gt; &#X2019;b -&gt; unit method find : &#X2019;a -&gt; &#X2019;b end
+</FONT></PRE><P>
+A simple implementation, which is quite reasonable for small hastables is
+to use an association list:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;a, &#X2019;b] small_hashtbl : [&#X2019;a, &#X2019;b] hash_table =
+   object
+     val mutable table = []
+     method find key = List.assoc key table
+     method add key valeur = table &lt;- (key, valeur) :: table
+   end;;
+</FONT><FONT COLOR=maroon>class [&#X2019;a, &#X2019;b] small_hashtbl : [&#X2019;a, &#X2019;b] hash_table
+</FONT></PRE><P>
+A better implementation, and one that scales up better, is to use a
+true hash tables&#X2026; whose elements are small hash tables!
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;a, &#X2019;b] hashtbl size : [&#X2019;a, &#X2019;b] hash_table =
+   object (self)
+     val table = Array.init size (fun i -&gt; new small_hashtbl) 
+     method private hash key =
+       (Hashtbl.hash key) mod (Array.length table)
+     method find key = table.(self#hash key) # find key
+     method add key = table.(self#hash key) # add key
+   end;;
+</FONT><FONT COLOR=maroon>class [&#X2019;a, &#X2019;b] hashtbl : int -&gt; [&#X2019;a, &#X2019;b] hash_table
+</FONT></PRE><H3 CLASS="subsection"><A NAME="htoc48">5.2.3</A>  Sets</H3><P>
+<A NAME="module:set"></A></P><P>Implementing sets leads to another difficulty. Indeed, the method
+<TT>union</TT> needs to be able to access the internal representation of
+another object of the same class. </P><P>This is another instance of friend functions as seen in section
+<A HREF="manual005.html#ss:friends">3.17</A>. Indeed, this is the same mechanism used in the module
+<TT>Set</TT> in the absence of objects.</P><P>In the object-oriented version of sets, we only need to add an additional 
+method <TT>tag</TT> to return the representation of a set. Since sets are
+parametric in the type of elements, the method <TT>tag</TT> has a parametric type
+<TT>&#X2019;a tag</TT>, concrete within 
+the module definition but abstract in its signature.
+From outside, it will then be guaranteed that two objects with a method <TT>tag</TT> 
+of the same type will share the same representation.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>module type SET =
+   sig
+     type &#X2019;a tag
+     class [&#X2019;a] c :
+       object (&#X2019;b)
+         method is_empty : bool
+         method mem : &#X2019;a -&gt; bool
+         method add : &#X2019;a -&gt; &#X2019;b
+         method union : &#X2019;b -&gt; &#X2019;b
+         method iter : (&#X2019;a -&gt; unit) -&gt; unit
+         method tag : &#X2019;a tag
+       end
+   end;;
+ 
+ module Set : SET =
+   struct
+     let rec merge l1 l2 =
+       match l1 with
+         [] -&gt; l2
+       | h1 :: t1 -&gt;
+           match l2 with
+             [] -&gt; l1
+           | h2 :: t2 -&gt;
+               if h1 &lt; h2 then h1 :: merge t1 l2
+               else if h1 &gt; h2 then h2 :: merge l1 t2
+               else merge t1 l2
+     type &#X2019;a tag = &#X2019;a list
+     class [&#X2019;a] c =
+       object (_ : &#X2019;b)
+         val repr = ([] : &#X2019;a list)
+         method is_empty = (repr = [])
+         method mem x = List.exists ((=) x) repr
+         method add x = {&lt; repr = merge [x] repr &gt;}
+         method union (s : &#X2019;b) = {&lt; repr = merge repr s#tag &gt;}
+         method iter (f : &#X2019;a -&gt; unit) = List.iter f repr
+         method tag = repr
+       end
+   end;;
+</FONT></PRE><H2 CLASS="section"><A NAME="toc39"></A><A NAME="htoc49">5.3</A>  The subject/observer pattern</H2><P>
+
+<A NAME="ss:subject-observer"></A></P><P>The following example, known as the subject/observer pattern, is often
+presented in the literature as a difficult inheritance problem with
+inter-connected classes.
+The general pattern amounts to the definition a pair of two
+classes that recursively interact with one another. </P><P>The class <TT>observer</TT> has a distinguished method <TT>notify</TT> that requires 
+two arguments, a subject and an event to execute an action. 
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class virtual [&#X2019;subject, &#X2019;event] observer =
+   object
+     method virtual notify : &#X2019;subject -&gt;  &#X2019;event -&gt; unit
+   end;;
+</FONT><FONT COLOR=maroon>class virtual [&#X2019;a, &#X2019;b] observer :
+  object method virtual notify : &#X2019;a -&gt; &#X2019;b -&gt; unit end
+</FONT></PRE><P>
+The class <TT>subject</TT> remembers a list of observers in an instance variable,
+and has a distinguished method <TT>notify_observers</TT> to broadcast the message
+<TT>notify</TT> to all observers with a particular event <TT>e</TT>. 
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;observer, &#X2019;event] subject =
+   object (self)
+     val mutable observers = ([]:&#X2019;observer list)
+     method add_observer obs = observers &lt;- (obs :: observers)
+     method notify_observers (e : &#X2019;event) = 
+         List.iter (fun x -&gt; x#notify self e) observers
+   end;;
+</FONT><FONT COLOR=maroon>class [&#X2019;a, &#X2019;b] subject :
+  object (&#X2019;c)
+    constraint &#X2019;a = &lt; notify : &#X2019;c -&gt; &#X2019;b -&gt; unit; .. &gt;
+    val mutable observers : &#X2019;a list
+    method add_observer : &#X2019;a -&gt; unit
+    method notify_observers : &#X2019;b -&gt; unit
+  end
+</FONT></PRE><P>
+The difficulty usually relies in defining instances of the pattern above
+by inheritance. This can be done in a natural and obvious manner in
+Ocaml, as shown on the following example manipulating windows.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>type event = Raise | Resize | Move;;
+</FONT><FONT COLOR=maroon>type event = Raise | Resize | Move
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>let string_of_event = function
+     Raise -&gt; "Raise" | Resize -&gt; "Resize" | Move -&gt; "Move";;
+</FONT>val string_of_event : event -&gt; string = &lt;fun&gt;
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>let count = ref 0;;
+</FONT>val count : int ref = {contents = 0}
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;observer] window_subject =
+   let id = count := succ !count; !count in
+   object (self)
+     inherit [&#X2019;observer, event] subject
+     val mutable position = 0
+     method identity = id
+     method move x = position &lt;- position + x; self#notify_observers Move
+     method draw = Printf.printf "{Position = %d}\n"  position;
+   end;;
+</FONT>class [&#X2019;a] window_subject :
+  object (&#X2019;b)
+    constraint &#X2019;a = &lt; notify : &#X2019;b -&gt; event -&gt; unit; .. &gt;
+    val mutable observers : &#X2019;a list
+    val mutable position : int
+    method add_observer : &#X2019;a -&gt; unit
+    method draw : unit
+    method identity : int
+    method move : int -&gt; unit
+    method notify_observers : event -&gt; unit
+  end
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;subject] window_observer =
+   object
+     inherit [&#X2019;subject, event] observer
+     method notify s e = s#draw
+   end;;
+</FONT>class [&#X2019;a] window_observer :
+  object
+    constraint &#X2019;a = &lt; draw : unit; .. &gt;
+    method notify : &#X2019;a -&gt; event -&gt; unit
+  end
+</FONT></PRE><P>
+Unsurprisingly the type of <TT>window</TT> is recursive. 
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>let window = new window_subject;;
+</FONT><FONT COLOR=maroon>val window : &lt; notify : &#X2019;a -&gt; event -&gt; unit; _.. &gt; window_subject as &#X2019;a =
+  &lt;obj&gt;
+</FONT></PRE><P>
+However, the two classes of <TT>window_subject</TT> and <TT>window_observer</TT> are not
+mutually recursive. 
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>let window_observer = new window_observer;;
+</FONT><FONT COLOR=maroon>val window_observer : &lt; draw : unit; _.. &gt; window_observer = &lt;obj&gt;
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>window#add_observer window_observer;;
+</FONT>- : unit = ()
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>window#move 1;;
+</FONT>{Position = 1}
+- : unit = ()
+</FONT></PRE><P>Classes <TT>window_observer</TT> and <TT>window_subject</TT> can still be extended by
+inheritance. For instance, one may enrich the <TT>subject</TT> with new
+behaviors and refined the behavior of the observer. 
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;observer] richer_window_subject =
+   object (self)
+     inherit [&#X2019;observer] window_subject
+     val mutable size = 1
+     method resize x = size &lt;- size + x; self#notify_observers Resize
+     val mutable top = false
+     method raise = top &lt;- true; self#notify_observers Raise
+     method draw = Printf.printf "{Position = %d; Size = %d}\n"  position size;
+   end;;
+</FONT><FONT COLOR=maroon>class [&#X2019;a] richer_window_subject :
+  object (&#X2019;b)
+    constraint &#X2019;a = &lt; notify : &#X2019;b -&gt; event -&gt; unit; .. &gt;
+    val mutable observers : &#X2019;a list
+    val mutable position : int
+    val mutable size : int
+    val mutable top : bool
+    method add_observer : &#X2019;a -&gt; unit
+    method draw : unit
+    method identity : int
+    method move : int -&gt; unit
+    method notify_observers : event -&gt; unit
+    method raise : unit
+    method resize : int -&gt; unit
+  end
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;subject] richer_window_observer =
+   object 
+     inherit [&#X2019;subject] window_observer as super
+     method notify s e = if e &lt;&gt; Raise then s#raise; super#notify s e
+   end;;
+</FONT>class [&#X2019;a] richer_window_observer :
+  object
+    constraint &#X2019;a = &lt; draw : unit; raise : unit; .. &gt;
+    method notify : &#X2019;a -&gt; event -&gt; unit
+  end
+</FONT></PRE><P>
+We can also create a different kind of observer: 
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>class [&#X2019;subject] trace_observer = 
+   object 
+     inherit [&#X2019;subject, event] observer
+     method notify s e =
+       Printf.printf
+         "&lt;Window %d &lt;== %s&gt;\n" s#identity (string_of_event e)
+   end;;
+</FONT><FONT COLOR=maroon>class [&#X2019;a] trace_observer :
+  object
+    constraint &#X2019;a = &lt; identity : int; .. &gt;
+    method notify : &#X2019;a -&gt; event -&gt; unit
+  end
+</FONT></PRE><P>
+and attached several observers to the same object:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>let window = new richer_window_subject;;
+</FONT><FONT COLOR=maroon>val window :
+  &lt; notify : &#X2019;a -&gt; event -&gt; unit; _.. &gt; richer_window_subject as &#X2019;a = &lt;obj&gt;
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>window#add_observer (new richer_window_observer);;
+</FONT>- : unit = ()
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>window#add_observer (new trace_observer);;
+</FONT>- : unit = ()
+ 
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>window#move 1; window#resize 2;;
+</FONT>&lt;Window 1 &lt;== Move&gt;
+&lt;Window 1 &lt;== Raise&gt;
+{Position = 1; Size = 1}
+{Position = 1; Size = 1}
+&lt;Window 1 &lt;== Resize&gt;
+&lt;Window 1 &lt;== Raise&gt;
+{Position = 1; Size = 3}
+{Position = 1; Size = 3}
+- : unit = ()
+</FONT></PRE><HR>
+<A HREF="manual006.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="language.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

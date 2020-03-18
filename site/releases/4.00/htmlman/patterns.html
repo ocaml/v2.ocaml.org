@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Patterns</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual013.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="expr.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H2 CLASS="section"><A NAME="htoc65">6.6</A>&#XA0;&#XA0;Patterns</H2><P>
+
+<A NAME="@manual.kwd5"></A>
+</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A href="manual011.html#value-name" class="syntax"><FONT COLOR=maroon>value-name</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>_</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="manual013.html#constant" class="syntax"><FONT COLOR=maroon>constant</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>as</TT></FONT>&#XA0;&#XA0;<I><A href="manual011.html#value-name" class="syntax"><FONT COLOR=maroon>value-name</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>:</TT></FONT>&#XA0;&#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>|</TT></FONT>&#XA0;&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="manual011.html#constr" class="syntax"><FONT COLOR=maroon>constr</FONT></A></I>&#XA0;&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>`</TT></FONT><I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A></I>&#XA0;&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>#</TT></FONT><I><A href="manual011.html#typeconstr-name" class="syntax"><FONT COLOR=maroon>typeconstr-name</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>,</TT></FONT>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;}
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>{</TT></FONT>&#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>=</TT></FONT>&#XA0;&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;}&#XA0;&#XA0;[&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;]&#XA0;<FONT COLOR=blue><TT>}</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>[</TT></FONT>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;}&#XA0;&#XA0;[&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;]&#XA0;<FONT COLOR=blue><TT>]</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>::</TT></FONT>&#XA0;&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>[|</TT></FONT>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;&#XA0;{&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I>&#XA0;}&#XA0;&#XA0;[&#XA0;<FONT COLOR=blue><TT>;</TT></FONT>&#XA0;]&#XA0;<FONT COLOR=blue><TT>|]</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>lazy</TT></FONT>&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>The table below shows the relative precedences and associativity of
+operators and non-closed pattern constructions. The constructions with
+higher precedences come first.
+<A NAME="@manual.kwd6"></A>
+</P><DIV CLASS="center"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1 WIDTH="80%"><TR><TD ALIGN=center NOWRAP><B>Operator</B></TD><TD ALIGN=center NOWRAP><B>Associativity</B></TD></TR>
+<TR><TD ALIGN=left NOWRAP>
+Constructor application</TD><TD ALIGN=left NOWRAP>&#X2013;</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>::</TT></TD><TD ALIGN=left NOWRAP>right</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>,</TT></TD><TD ALIGN=left NOWRAP>&#X2013;</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>|</TT></TD><TD ALIGN=left NOWRAP>left</TD></TR>
+<TR><TD ALIGN=left NOWRAP><TT>as</TT></TD><TD ALIGN=left NOWRAP>&#X2013;</TD></TR>
+</TABLE></DIV><P>Patterns are templates that allow selecting data structures of a
+given shape, and binding identifiers to components of the data
+structure. This selection operation is called pattern matching; its
+outcome is either &#X201C;this value does not match this pattern&#X201D;, or
+&#X201C;this value matches this pattern, resulting in the following bindings
+of names to values&#X201D;.</P><H4 CLASS="subsubsection">Variable patterns</H4><P>A pattern that consists in a value name matches any value,
+binding the name to the value. The pattern <FONT COLOR=blue><TT>_</TT></FONT> also matches
+any value, but does not bind any name.</P><P>Patterns are <EM>linear</EM>: a variable cannot be bound several times by
+a given pattern. In particular, there is no way to test for equality
+between two parts of a data structure using only a pattern (but
+<FONT COLOR=blue><TT>when</TT></FONT> guards can be used for this purpose).</P><H4 CLASS="subsubsection">Constant patterns</H4><P>A pattern consisting in a constant matches the values that
+are equal to this constant.</P><H4 CLASS="subsubsection">Alias patterns</H4><P>
+<A NAME="@manual.kwd7"></A></P><P>The pattern <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>as</TT></FONT> &#XA0;<I><A href="manual011.html#value-name" class="syntax"><FONT COLOR=maroon>value-name</FONT></A></I> matches the same values as
+<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB>. If the matching against <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> is successful,
+the name <I><A href="manual011.html#value-name" class="syntax"><FONT COLOR=maroon>value-name</FONT></A></I> is bound to the matched value, in addition to the
+bindings performed by the matching against <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB>.</P><H4 CLASS="subsubsection">Parenthesized patterns</H4><P>The pattern <FONT COLOR=blue><TT>(</TT></FONT> <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>)</TT></FONT> matches the same values as
+<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB>. A type constraint can appear in a
+parenthesized pattern, as in <FONT COLOR=blue><TT>(</TT></FONT> <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>:</TT></FONT> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>. This
+constraint forces the type of <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> to be compatible with
+<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I>.</P><H4 CLASS="subsubsection">&#X201C;Or&#X201D; patterns</H4><P>The pattern <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>|</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>2</SUB> represents the logical &#X201C;or&#X201D; of
+the two patterns <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> and <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>2</SUB>. A value matches
+<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>|</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>2</SUB> if it matches <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> or
+<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>2</SUB>. The two sub-patterns <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> and <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>2</SUB>
+must bind exactly the same identifiers to values having the same types.
+Matching is performed from left to right.
+More precisely,
+in case some value&#XA0;<I>v</I> matches <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>|</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>2</SUB>, the bindings
+performed are those of <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> when <I>v</I> matches <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB>.
+Otherwise, value&#XA0;<I>v</I> matches <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>2</SUB> whose bindings are performed.</P><H4 CLASS="subsubsection">Variant patterns</H4><P>The pattern <I><A href="manual011.html#constr" class="syntax"><FONT COLOR=maroon>constr</FONT></A></I> <FONT COLOR=blue><TT>(</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>,</TT></FONT> &#X2026; <FONT COLOR=blue><TT>,</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>)</TT></FONT> matches
+all variants whose
+constructor is equal to <I><A href="manual011.html#constr" class="syntax"><FONT COLOR=maroon>constr</FONT></A></I>, and whose arguments match
+<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> &#X2026; &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I>. It is a type error if <I>n</I> is not the
+number of arguments expected by the constructor.</P><P>The pattern <I><A href="manual011.html#constr" class="syntax"><FONT COLOR=maroon>constr</FONT></A></I> <FONT COLOR=blue><TT>_</TT></FONT> matches all variants whose constructor is
+<I><A href="manual011.html#constr" class="syntax"><FONT COLOR=maroon>constr</FONT></A></I>.</P><P>The pattern <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>::</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>2</SUB> matches non-empty lists whose
+heads match <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB>, and whose tails match <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>2</SUB>.</P><P>The pattern <FONT COLOR=blue><TT>[</TT></FONT> <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>]</TT></FONT> matches lists
+of length <I>n</I> whose elements match <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> &#X2026;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I>,
+respectively. This pattern behaves like
+<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>::</TT></FONT> &#X2026; <FONT COLOR=blue><TT>::</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>::</TT> <TT>[]</TT></FONT>.</P><H4 CLASS="subsubsection">Polymorphic variant patterns</H4><P>The pattern <FONT COLOR=blue><TT>`</TT></FONT><I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A></I> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> matches all polymorphic variants
+whose tag is equal to <I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A></I>, and whose argument matches
+<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB>.</P><H4 CLASS="subsubsection">Polymorphic variant abbreviation patterns</H4><P>If the type [<FONT COLOR=blue><TT>('a,'b,</TT></FONT>&#X2026;<FONT COLOR=blue><TT>)</TT></FONT>] <I><A href="manual011.html#typeconstr" class="syntax"><FONT COLOR=maroon>typeconstr</FONT></A></I> = <FONT COLOR=blue><TT>[</TT> <TT>`</TT></FONT>&#XA0;<I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A></I><SUB>1</SUB> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>|</TT></FONT>
+&#X2026; <FONT COLOR=blue><TT>|</TT> <TT>`</TT></FONT>&#XA0;<I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A><SUB>n</SUB></I> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A><SUB>n</SUB></I><FONT COLOR=blue><TT>]</TT></FONT> is defined, then the pattern <FONT COLOR=blue><TT>#</TT></FONT><I><A href="manual011.html#typeconstr" class="syntax"><FONT COLOR=maroon>typeconstr</FONT></A></I>
+is a shorthand for the following or-pattern:
+<FONT COLOR=blue><TT>(</TT> <TT>`</TT></FONT><I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A></I><SUB>1</SUB><FONT COLOR=blue><TT>(_</TT> <TT>:</TT></FONT> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB><FONT COLOR=blue><TT>)</TT> <TT>|</TT></FONT> &#X2026; <FONT COLOR=blue><TT>|</TT> <TT>`</TT></FONT>&#XA0;<I><A href="manual011.html#tag-name" class="syntax"><FONT COLOR=maroon>tag-name</FONT></A><SUB>n</SUB></I><FONT COLOR=blue><TT>(_</TT>
+<TT>:</TT></FONT> &#XA0;<I><A href="types.html#typexpr" class="syntax"><FONT COLOR=maroon>typexpr</FONT></A><SUB>n</SUB></I><FONT COLOR=blue><TT>))</TT></FONT>. It matches all values of type <FONT COLOR=blue><TT>[&lt;</TT></FONT> <I><A href="manual011.html#typeconstr" class="syntax"><FONT COLOR=maroon>typeconstr</FONT></A></I> <FONT COLOR=blue><TT>]</TT></FONT>.</P><H4 CLASS="subsubsection">Tuple patterns</H4><P>The pattern <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>,</TT></FONT> &#X2026; <FONT COLOR=blue><TT>,</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> matches <I>n</I>-tuples
+whose components match the patterns <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> through <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I>. That
+is, the pattern matches the tuple values (<I>v</I><SUB>1</SUB>, &#X2026;, <I>v<SUB>n</SUB></I>) such that
+<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>i</SUB></I> matches <I>v<SUB>i</SUB></I> for <I>i</I> = 1,&#X2026; , <I>n</I>.</P><H4 CLASS="subsubsection">Record patterns</H4><P>The pattern <FONT COLOR=blue><TT>{</TT></FONT> <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT> &#XA0;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>=</TT></FONT>
+&#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>}</TT></FONT> matches records that define at least the fields
+<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I><SUB>1</SUB> through <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A><SUB>n</SUB></I>, and such that the value associated to
+<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A><SUB>i</SUB></I> matches the pattern <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>i</SUB></I>, for <I>i</I> = 1,&#X2026; , <I>n</I>.
+The record value can define more fields than <I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A></I><SUB>1</SUB> &#X2026;<I><A href="manual011.html#field" class="syntax"><FONT COLOR=maroon>field</FONT></A><SUB>n</SUB></I>; the values associated to these extra fields are not taken
+into account for matching.</P><H4 CLASS="subsubsection">Array patterns</H4><P>The pattern <FONT COLOR=blue><TT>[|</TT></FONT> <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT> &#XA0;<I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>|]</TT></FONT>
+matches arrays of length <I>n</I> such that the <I>i</I>-th array element
+matches the pattern <I><A href="#pattern" class="syntax"><FONT COLOR=maroon>pattern</FONT></A><SUB>i</SUB></I>, for <I>i</I> = 1,&#X2026; , <I>n</I>.</P><HR>
+<A HREF="manual013.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="expr.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

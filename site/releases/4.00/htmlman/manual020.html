@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Compilation units</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual019.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<HR>
+<H2 CLASS="section"><A NAME="htoc91">6.12</A>&#XA0;&#XA0;Compilation units</H2><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="unit-interface" class="syntax"><FONT COLOR=maroon>unit-interface</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>&#XA0;{&#XA0;<I><A href="manual018.html#specification" class="syntax"><FONT COLOR=maroon>specification</FONT></A></I>&#XA0;&#XA0;[<FONT COLOR=blue><TT>;;</TT></FONT>]&#XA0;}
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="unit-implementation" class="syntax"><FONT COLOR=maroon>unit-implementation</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>&#XA0;{&#XA0;<I><A href="manual019.html#definition" class="syntax"><FONT COLOR=maroon>definition</FONT></A></I>&#XA0;&#XA0;[<FONT COLOR=blue><TT>;;</TT></FONT>]&#XA0;}</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Compilation units bridge the module system and the separate
+compilation system. A compilation unit is composed of two parts: an
+interface and an implementation. The interface contains a sequence of
+specifications, just as the inside of a <FONT COLOR=blue><TT>sig</TT></FONT> &#X2026; <FONT COLOR=blue><TT>end</TT></FONT>
+signature expression. The implementation contains a sequence of
+definitions, just as the inside of a <FONT COLOR=blue><TT>struct</TT></FONT> &#X2026; <FONT COLOR=blue><TT>end</TT></FONT> module
+expression. A compilation unit also has a name <FONT COLOR=maroon><I>unit-name</I></FONT>, derived
+from the names of the files containing the interface and the
+implementation (see chapter&#XA0;<A HREF="manual022.html#c:camlc">8</A> for more details). A
+compilation unit behaves roughly as the module definition
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>module</TT> <FONT COLOR=maroon><I>unit-name</I></FONT> <TT>:</TT> <TT>sig</TT></FONT> &#XA0;<I><A href="#unit-interface" class="syntax"><FONT COLOR=maroon>unit-interface</FONT></A></I> <FONT COLOR=blue><TT>end</TT> <TT>=</TT>
+<TT>struct</TT></FONT> &#XA0;<I><A href="#unit-implementation" class="syntax"><FONT COLOR=maroon>unit-implementation</FONT></A></I> <FONT COLOR=blue><TT>end</TT></FONT>
+</DIV><P>A compilation unit can refer to other compilation units by their
+names, as if they were regular modules. For instance, if <TT>U</TT> is a
+compilation unit that defines a type <TT>t</TT>, other compilation units can
+refer to that type under the name <TT>U.t</TT>; they can also refer to <TT>U</TT> as
+a whole structure. Except for names of other compilation units, a unit
+interface or unit implementation must not have any other free variables.
+In other terms, the type-checking and compilation of an interface or
+implementation proceeds in the initial environment
+</P><DIV CLASS="center">
+<FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>:</TT> <TT>sig</TT></FONT> &#XA0;<I><A href="manual018.html#specification" class="syntax"><FONT COLOR=maroon>specification</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>end</TT></FONT> &#X2026;
+&#XA0;<I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I> <FONT COLOR=blue><TT>:</TT> <TT>sig</TT></FONT> &#XA0;<I><A href="manual018.html#specification" class="syntax"><FONT COLOR=maroon>specification</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>end</TT></FONT>
+</DIV><P>
+where <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#X2026; &#XA0;<I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I> are the names of the other
+compilation units available in the search path (see
+chapter&#XA0;<A HREF="manual022.html#c:camlc">8</A> for more details) and <I><A href="manual018.html#specification" class="syntax"><FONT COLOR=maroon>specification</FONT></A></I><SUB>1</SUB> &#X2026;
+&#XA0;<I><A href="manual018.html#specification" class="syntax"><FONT COLOR=maroon>specification</FONT></A><SUB>n</SUB></I> are their respective interfaces.
+
+</P><HR>
+<A HREF="manual019.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+</BODY>
+</HTML>

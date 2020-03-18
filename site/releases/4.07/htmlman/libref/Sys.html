@@ -1,0 +1,709 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Syntaxerr.html">
+<link rel="next" href="Targetint.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="Bytes" rel="Chapter" href="Bytes.html">
+<link title="BytesLabels" rel="Chapter" href="BytesLabels.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="CamlinternalFormat" rel="Chapter" href="CamlinternalFormat.html">
+<link title="CamlinternalFormatBasics" rel="Chapter" href="CamlinternalFormatBasics.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Ephemeron" rel="Chapter" href="Ephemeron.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Float" rel="Chapter" href="Float.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Genlex" rel="Chapter" href="Genlex.html">
+<link title="Graphics" rel="Chapter" href="Graphics.html">
+<link title="GraphicsX11" rel="Chapter" href="GraphicsX11.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Pervasives" rel="Chapter" href="Pervasives.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Seq" rel="Chapter" href="Seq.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Sort" rel="Chapter" href="Sort.html">
+<link title="Spacetime" rel="Chapter" href="Spacetime.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="Stream" rel="Chapter" href="Stream.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Tbl" rel="Chapter" href="Tbl.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="ThreadUnix" rel="Chapter" href="ThreadUnix.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Uchar" rel="Chapter" href="Uchar.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Weak" rel="Chapter" href="Weak.html"><link title="Signal handling" rel="Section" href="#1_Signalhandling">
+<link title="Optimization" rel="Section" href="#1_Optimization">
+<link title="Signal numbers for the standard POSIX signals." rel="Subsection" href="#2_SignalnumbersforthestandardPOSIXsignals">
+<title>Sys</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Syntaxerr.html" title="Syntaxerr">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Targetint.html" title="Targetint">Next</a>
+</div>
+<h1>Module <a href="type_Sys.html">Sys</a></h1>
+
+<pre><span id="MODULESys"><span class="keyword">module</span> Sys</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Sys.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>System interface.</p>
+
+<p>Every function in this module raises <code class="code"><span class="constructor">Sys_error</span></code> with an
+  informative message when the underlying system call signal
+  an error.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="VALargv"><span class="keyword">val</span> argv</span> : <code class="type">string array</code></pre><div class="info ">
+<div class="info-desc">
+<p>The command line arguments given to the process.
+   The first element is the command name used to invoke the program.
+   The following elements are the command-line arguments
+   given to the program.</p>
+</div>
+</div>
+
+<pre><span id="VALexecutable_name"><span class="keyword">val</span> executable_name</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The name of the file containing the executable currently running.
+    This name may be absolute or relative to the current directory, depending
+    on the platform and whether the program was compiled to bytecode or a native
+    executable.</p>
+</div>
+</div>
+
+<pre><span id="VALfile_exists"><span class="keyword">val</span> file_exists</span> : <code class="type">string -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Test if a file with the given name exists.</p>
+</div>
+</div>
+
+<pre><span id="VALis_directory"><span class="keyword">val</span> is_directory</span> : <code class="type">string -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Returns <code class="code"><span class="keyword">true</span></code> if the given name refers to a directory,
+    <code class="code"><span class="keyword">false</span></code> if it refers to another kind of file.
+    Raise <code class="code"><span class="constructor">Sys_error</span></code> if no file exists with the given name.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 3.10.0</li>
+</ul>
+</div>
+
+<pre><span id="VALremove"><span class="keyword">val</span> remove</span> : <code class="type">string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Remove the given file name from the file system.</p>
+</div>
+</div>
+
+<pre><span id="VALrename"><span class="keyword">val</span> rename</span> : <code class="type">string -> string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Rename a file.  <code class="code">rename&nbsp;oldpath&nbsp;newpath</code> renames the file
+    called <code class="code">oldpath</code>, giving it <code class="code">newpath</code> as its new name,
+    moving it between directories if needed.  If <code class="code">newpath</code> already
+    exists, its contents will be replaced with those of <code class="code">oldpath</code>.
+    Depending on the operating system, the metadata (permissions,
+    owner, etc) of <code class="code">newpath</code> can either be preserved or be replaced by
+    those of <code class="code">oldpath</code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.06 concerning the "replace existing file" behavior</li>
+</ul>
+</div>
+
+<pre><span id="VALgetenv"><span class="keyword">val</span> getenv</span> : <code class="type">string -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the value associated to a variable in the process
+   environment. Raise <code class="code"><span class="constructor">Not_found</span></code> if the variable is unbound.</p>
+</div>
+</div>
+
+<pre><span id="VALgetenv_opt"><span class="keyword">val</span> getenv_opt</span> : <code class="type">string -> string option</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the value associated to a variable in the process
+    environment or <code class="code"><span class="constructor">None</span></code> if the variable is unbound.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.05</li>
+</ul>
+</div>
+
+<pre><span id="VALcommand"><span class="keyword">val</span> command</span> : <code class="type">string -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Execute the given shell command and return its exit code.</p>
+</div>
+</div>
+
+<pre><span id="VALtime"><span class="keyword">val</span> time</span> : <code class="type">unit -> float</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the processor time, in seconds, used by the program
+   since the beginning of execution.</p>
+</div>
+</div>
+
+<pre><span id="VALchdir"><span class="keyword">val</span> chdir</span> : <code class="type">string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Change the current working directory of the process.</p>
+</div>
+</div>
+
+<pre><span id="VALgetcwd"><span class="keyword">val</span> getcwd</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the current working directory of the process.</p>
+</div>
+</div>
+
+<pre><span id="VALreaddir"><span class="keyword">val</span> readdir</span> : <code class="type">string -> string array</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the names of all files present in the given directory.
+   Names denoting the current directory and the parent directory
+   (<code class="code"><span class="string">"."</span></code> and <code class="code"><span class="string">".."</span></code> in Unix) are not returned.  Each string in the
+   result is a file name rather than a complete path.  There is no
+   guarantee that the name strings in the resulting array will appear
+   in any specific order; they are not, in particular, guaranteed to
+   appear in alphabetical order.</p>
+</div>
+</div>
+
+<pre><span id="VALinteractive"><span class="keyword">val</span> interactive</span> : <code class="type">bool <a href="Pervasives.html#TYPEref">ref</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>This reference is initially set to <code class="code"><span class="keyword">false</span></code> in standalone
+   programs and to <code class="code"><span class="keyword">true</span></code> if the code is being executed under
+   the interactive toplevel system <code class="code">ocaml</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALos_type"><span class="keyword">val</span> os_type</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Operating system currently executing the OCaml program. One of</p>
+<ul>
+<li> <code class="code"><span class="string">"Unix"</span></code> (for all Unix versions, including Linux and Mac OS X),</li>
+<li> <code class="code"><span class="string">"Win32"</span></code> (for MS-Windows, OCaml compiled with MSVC++ or Mingw),</li>
+<li> <code class="code"><span class="string">"Cygwin"</span></code> (for MS-Windows, OCaml compiled with Cygwin).</li>
+</ul>
+</div>
+</div>
+
+<pre><code><span id="TYPEbackend_type"><span class="keyword">type</span> <code class="type"></code>backend_type</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbackend_type.Native"><span class="constructor">Native</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbackend_type.Bytecode"><span class="constructor">Bytecode</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbackend_type.Other"><span class="constructor">Other</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>Currently, the official distribution only supports <code class="code"><span class="constructor">Native</span></code> and
+    <code class="code"><span class="constructor">Bytecode</span></code>, but it can be other backends with alternative
+    compilers, for example, javascript.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.04.0</li>
+</ul>
+</div>
+
+
+<pre><span id="VALbackend_type"><span class="keyword">val</span> backend_type</span> : <code class="type"><a href="Sys.html#TYPEbackend_type">backend_type</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Backend type  currently executing the OCaml program.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.04.0</li>
+</ul>
+</div>
+
+<pre><span id="VALunix"><span class="keyword">val</span> unix</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>True if <code class="code"><span class="constructor">Sys</span>.os_type&nbsp;=&nbsp;<span class="string">"Unix"</span></code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.01.0</li>
+</ul>
+</div>
+
+<pre><span id="VALwin32"><span class="keyword">val</span> win32</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>True if <code class="code"><span class="constructor">Sys</span>.os_type&nbsp;=&nbsp;<span class="string">"Win32"</span></code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.01.0</li>
+</ul>
+</div>
+
+<pre><span id="VALcygwin"><span class="keyword">val</span> cygwin</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>True if <code class="code"><span class="constructor">Sys</span>.os_type&nbsp;=&nbsp;<span class="string">"Cygwin"</span></code>.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.01.0</li>
+</ul>
+</div>
+
+<pre><span id="VALword_size"><span class="keyword">val</span> word_size</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Size of one word on the machine currently executing the OCaml
+    program, in bits: 32 or 64.</p>
+</div>
+</div>
+
+<pre><span id="VALint_size"><span class="keyword">val</span> int_size</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Size of <code class="code">int</code>, in bits. It is 31 (resp. 63) when using OCaml on a
+    32-bit (resp. 64-bit) platform. It may differ for other implementations,
+    e.g. it can be 32 bits when compiling to JavaScript.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03.0</li>
+</ul>
+</div>
+
+<pre><span id="VALbig_endian"><span class="keyword">val</span> big_endian</span> : <code class="type">bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether the machine currently executing the Caml program is big-endian.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.00.0</li>
+</ul>
+</div>
+
+<pre><span id="VALmax_string_length"><span class="keyword">val</span> max_string_length</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Maximum length of strings and byte sequences.</p>
+</div>
+</div>
+
+<pre><span id="VALmax_array_length"><span class="keyword">val</span> max_array_length</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Maximum length of a normal array.  The maximum length of a float
+    array is <code class="code">max_array_length/2</code> on 32-bit machines and
+    <code class="code">max_array_length</code> on 64-bit machines.</p>
+</div>
+</div>
+
+<pre><span id="VALruntime_variant"><span class="keyword">val</span> runtime_variant</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the name of the runtime variant the program is running on.
+    This is normally the argument given to <code class="code">-runtime-variant</code> at compile
+    time, but for byte-code it can be changed after compilation.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03.0</li>
+</ul>
+</div>
+
+<pre><span id="VALruntime_parameters"><span class="keyword">val</span> runtime_parameters</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the value of the runtime parameters, in the same format
+    as the contents of the <code class="code"><span class="constructor">OCAMLRUNPARAM</span></code> environment variable.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03.0</li>
+</ul>
+</div>
+<h2 id="1_Signalhandling">Signal handling</h2>
+<pre><code><span id="TYPEsignal_behavior"><span class="keyword">type</span> <code class="type"></code>signal_behavior</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignal_behavior.Signal_default"><span class="constructor">Signal_default</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignal_behavior.Signal_ignore"><span class="constructor">Signal_ignore</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsignal_behavior.Signal_handle"><span class="constructor">Signal_handle</span></span> <span class="keyword">of</span> <code class="type">(int -> unit)</code></code></td>
+
+</tr></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>What to do when receiving a signal:</p>
+<ul>
+<li><code class="code"><span class="constructor">Signal_default</span></code>: take the default behavior
+     (usually: abort the program)</li>
+<li><code class="code"><span class="constructor">Signal_ignore</span></code>: ignore the signal</li>
+<li><code class="code"><span class="constructor">Signal_handle</span>&nbsp;f</code>: call function <code class="code">f</code>, giving it the signal
+   number as argument.</li>
+</ul>
+</div>
+</div>
+
+
+<pre><span id="VALsignal"><span class="keyword">val</span> signal</span> : <code class="type">int -> <a href="Sys.html#TYPEsignal_behavior">signal_behavior</a> -> <a href="Sys.html#TYPEsignal_behavior">signal_behavior</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Set the behavior of the system on receipt of a given signal.  The
+   first argument is the signal number.  Return the behavior
+   previously associated with the signal. If the signal number is
+   invalid (or not available on your system), an <code class="code"><span class="constructor">Invalid_argument</span></code>
+   exception is raised.</p>
+</div>
+</div>
+
+<pre><span id="VALset_signal"><span class="keyword">val</span> set_signal</span> : <code class="type">int -> <a href="Sys.html#TYPEsignal_behavior">signal_behavior</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Same as <a href="Sys.html#VALsignal"><code class="code"><span class="constructor">Sys</span>.signal</code></a> but return value is ignored.</p>
+</div>
+</div>
+<h3 id="2_SignalnumbersforthestandardPOSIXsignals">Signal numbers for the standard POSIX signals.</h3>
+<pre><span id="VALsigabrt"><span class="keyword">val</span> sigabrt</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Abnormal termination</p>
+</div>
+</div>
+
+<pre><span id="VALsigalrm"><span class="keyword">val</span> sigalrm</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Timeout</p>
+</div>
+</div>
+
+<pre><span id="VALsigfpe"><span class="keyword">val</span> sigfpe</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Arithmetic exception</p>
+</div>
+</div>
+
+<pre><span id="VALsighup"><span class="keyword">val</span> sighup</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Hangup on controlling terminal</p>
+</div>
+</div>
+
+<pre><span id="VALsigill"><span class="keyword">val</span> sigill</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Invalid hardware instruction</p>
+</div>
+</div>
+
+<pre><span id="VALsigint"><span class="keyword">val</span> sigint</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Interactive interrupt (ctrl-C)</p>
+</div>
+</div>
+
+<pre><span id="VALsigkill"><span class="keyword">val</span> sigkill</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Termination (cannot be ignored)</p>
+</div>
+</div>
+
+<pre><span id="VALsigpipe"><span class="keyword">val</span> sigpipe</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Broken pipe</p>
+</div>
+</div>
+
+<pre><span id="VALsigquit"><span class="keyword">val</span> sigquit</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Interactive termination</p>
+</div>
+</div>
+
+<pre><span id="VALsigsegv"><span class="keyword">val</span> sigsegv</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Invalid memory reference</p>
+</div>
+</div>
+
+<pre><span id="VALsigterm"><span class="keyword">val</span> sigterm</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Termination</p>
+</div>
+</div>
+
+<pre><span id="VALsigusr1"><span class="keyword">val</span> sigusr1</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Application-defined signal 1</p>
+</div>
+</div>
+
+<pre><span id="VALsigusr2"><span class="keyword">val</span> sigusr2</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Application-defined signal 2</p>
+</div>
+</div>
+
+<pre><span id="VALsigchld"><span class="keyword">val</span> sigchld</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Child process terminated</p>
+</div>
+</div>
+
+<pre><span id="VALsigcont"><span class="keyword">val</span> sigcont</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Continue</p>
+</div>
+</div>
+
+<pre><span id="VALsigstop"><span class="keyword">val</span> sigstop</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Stop</p>
+</div>
+</div>
+
+<pre><span id="VALsigtstp"><span class="keyword">val</span> sigtstp</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Interactive stop</p>
+</div>
+</div>
+
+<pre><span id="VALsigttin"><span class="keyword">val</span> sigttin</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Terminal read from background process</p>
+</div>
+</div>
+
+<pre><span id="VALsigttou"><span class="keyword">val</span> sigttou</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Terminal write from background process</p>
+</div>
+</div>
+
+<pre><span id="VALsigvtalrm"><span class="keyword">val</span> sigvtalrm</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Timeout in virtual time</p>
+</div>
+</div>
+
+<pre><span id="VALsigprof"><span class="keyword">val</span> sigprof</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Profiling interrupt</p>
+</div>
+</div>
+
+<pre><span id="VALsigbus"><span class="keyword">val</span> sigbus</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Bus error</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03</li>
+</ul>
+</div>
+
+<pre><span id="VALsigpoll"><span class="keyword">val</span> sigpoll</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Pollable event</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03</li>
+</ul>
+</div>
+
+<pre><span id="VALsigsys"><span class="keyword">val</span> sigsys</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Bad argument to routine</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03</li>
+</ul>
+</div>
+
+<pre><span id="VALsigtrap"><span class="keyword">val</span> sigtrap</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Trace/breakpoint trap</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03</li>
+</ul>
+</div>
+
+<pre><span id="VALsigurg"><span class="keyword">val</span> sigurg</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Urgent condition on socket</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03</li>
+</ul>
+</div>
+
+<pre><span id="VALsigxcpu"><span class="keyword">val</span> sigxcpu</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Timeout in cpu time</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03</li>
+</ul>
+</div>
+
+<pre><span id="VALsigxfsz"><span class="keyword">val</span> sigxfsz</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>File size limit exceeded</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03</li>
+</ul>
+</div>
+
+<pre><span id="EXCEPTIONBreak"><span class="keyword">exception</span> Break</span></pre>
+<div class="info ">
+<div class="info-desc">
+<p>Exception raised on interactive interrupt if <a href="Sys.html#VALcatch_break"><code class="code"><span class="constructor">Sys</span>.catch_break</code></a>
+   is on.</p>
+</div>
+</div>
+
+<pre><span id="VALcatch_break"><span class="keyword">val</span> catch_break</span> : <code class="type">bool -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">catch_break</code> governs whether interactive interrupt (ctrl-C)
+   terminates the program or raises the <code class="code"><span class="constructor">Break</span></code> exception.
+   Call <code class="code">catch_break&nbsp;<span class="keyword">true</span></code> to enable raising <code class="code"><span class="constructor">Break</span></code>,
+   and <code class="code">catch_break&nbsp;<span class="keyword">false</span></code> to let the system
+   terminate the program on user interrupt.</p>
+</div>
+</div>
+
+<pre><span id="VALocaml_version"><span class="keyword">val</span> ocaml_version</span> : <code class="type">string</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">ocaml_version</code> is the version of OCaml.
+    It is a string of the form <code class="code"><span class="string">"major.minor[.patchlevel][+additional-info]"</span></code>,
+    where <code class="code">major</code>, <code class="code">minor</code>, and <code class="code">patchlevel</code> are integers, and
+    <code class="code">additional-info</code> is an arbitrary string. The <code class="code">[.patchlevel]</code> and
+    <code class="code">[+additional-info]</code> parts may be absent.</p>
+</div>
+</div>
+
+<pre><span id="VALenable_runtime_warnings"><span class="keyword">val</span> enable_runtime_warnings</span> : <code class="type">bool -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Control whether the OCaml runtime system can emit warnings
+    on stderr.  Currently, the only supported warning is triggered
+    when a channel created by <code class="code">open_*</code> functions is finalized without
+    being closed.  Runtime warnings are enabled by default.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03.0</li>
+</ul>
+</div>
+
+<pre><span id="VALruntime_warnings_enabled"><span class="keyword">val</span> runtime_warnings_enabled</span> : <code class="type">unit -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return whether runtime warnings are currently enabled.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03.0</li>
+</ul>
+</div>
+<h2 id="1_Optimization">Optimization</h2>
+<pre><span id="VALopaque_identity"><span class="keyword">val</span> opaque_identity</span> : <code class="type">'a -> 'a</code></pre><div class="info ">
+<div class="info-desc">
+<p>For the purposes of optimization, <code class="code">opaque_identity</code> behaves like an
+    unknown (and thus possibly side-effecting) function.</p>
+
+<p>At runtime, <code class="code">opaque_identity</code> disappears altogether.</p>
+
+<p>A typical use of this function is to prevent pure computations from being
+    optimized away in benchmarking loops.  For example:</p>
+<pre class="codepre"><code class="code">      <span class="keyword">for</span> _round = 1 <span class="keyword">to</span> 100_000 <span class="keyword">do</span>
+        ignore (<span class="constructor">Sys</span>.opaque_identity (my_pure_computation ()))
+      <span class="keyword">done</span>
+    </code></pre></div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.03.0</li>
+</ul>
+</div>
+</body></html>

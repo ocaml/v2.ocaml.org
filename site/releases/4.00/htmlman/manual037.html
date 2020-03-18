@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The num library: arbitrary-precision rational arithmetic</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual036.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual038.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc301">Chapter&#XA0;23</A>&#XA0;&#XA0;The num library: arbitrary-precision rational arithmetic</H1><P>The <TT>num</TT> library implements integer arithmetic and rational
+arithmetic in arbitrary precision.</P><P>More documentation on the functions provided in this library can be found
+in <EM>The CAML Numbers Reference Manual</EM> by
+Val&#XE9;rie M&#XE9;nissier-Morain, technical report 141, INRIA, july 1992
+(available electronically,
+<TT><A HREF="http://hal.inria.fr/docs/00/07/00/27/PDF/RT-0141.pdf">http://hal.inria.fr/docs/00/07/00/27/PDF/RT-0141.pdf</A></TT>).</P><P>Programs that use the <TT>num</TT> library must be linked as follows:
+</P><PRE>
+        ocamlc <I>other options</I> nums.cma <I>other files</I>
+        ocamlopt <I>other options</I> nums.cmxa <I>other files</I>
+</PRE><P>
+For interactive use of the <TT>nums</TT> library, do:
+</P><PRE>
+        ocamlmktop -o mytop nums.cma
+        ./mytop
+</PRE><P>
+or (if dynamic linking of C libraries is supported on your platform),
+start <TT>ocaml</TT> and type <TT>#load "nums.cma";;</TT>.</P><UL CLASS="ftoc2"><LI CLASS="li-links">
+<A HREF="libref/Num.html">Module <TT>Num</TT>: operation on arbitrary-precision numbers</A>
+</LI><LI CLASS="li-links"><A HREF="libref/Big_int.html">Module <TT>Big_int</TT>: operations on arbitrary-precision integers</A>
+</LI><LI CLASS="li-links"><A HREF="libref/Arith_status.html">Module <TT>Arith_status</TT>: flags that control rational arithmetic</A>
+</LI></UL><HR>
+<A HREF="manual036.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual038.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

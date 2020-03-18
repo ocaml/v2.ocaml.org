@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.22  Generalized open statements</title>
+</head>
+<body>
+<a href="alerts.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="bindingops.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:generalized-open"><a class="section-anchor" href="#s:generalized-open" aria-hidden="true">﻿</a>8.22  Generalized open statements</h2>
+<p>(Introduced in 4.08)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open</span>  <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open!</span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open</span>  <a class="syntax" href="names.html#extended-module-path"><span class="c010">extended-module-path</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open!</span> <a class="syntax" href="names.html#extended-module-path"><span class="c010">extended-module-path</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">let</span> <span class="c004">open</span>  <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> <span class="c004">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">let</span> <span class="c004">open!</span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> <span class="c004">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>This extension makes it possible to open any module expression in
+module structures and expressions. A similar mechanism is also available
+inside module types, but only for extended module paths (e.g. <span class="c003">F(X).G(Y)</span>).</p><p>For instance, a module can be constrained when opened with</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> M = <span class="ocamlkeyword">struct</span> <span class="ocamlkeyword">let</span> x = 0 <span class="ocamlkeyword">let</span> hidden = 1 <span class="ocamlkeyword">end</span>
+ <span class="ocamlkeyword">open</span> (M:<span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">val</span> x: int <span class="ocamlkeyword">end</span>)
+ <span class="ocamlkeyword">let</span> y = <span class="ocamlhighlight">hidden</span></div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: Unbound value hidden</div></div>
+
+</div><p>Another possibility is to immediately open the result of a functor application</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   <span class="ocamlkeyword">let</span> sort (<span class="ocamlkeyword">type</span> x) (x:x list) =
+     <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">open</span> Set.Make(<span class="ocamlkeyword">struct</span> <span class="ocamlkeyword">type</span> t = x <span class="ocamlkeyword">let</span> compare=compare <span class="ocamlkeyword">end</span>) <span class="ocamlkeyword">in</span>
+     elements (of_list x)</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> sort : 'x list -&gt; 'x list = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>Going further, this construction can introduce local components inside a
+structure,</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> M = <span class="ocamlkeyword">struct</span>
+   <span class="ocamlkeyword">let</span> x = 0
+   <span class="ocamlkeyword">open</span>! <span class="ocamlkeyword">struct</span>
+     <span class="ocamlkeyword">let</span> x = 0
+     <span class="ocamlkeyword">let</span> y = 1
+   <span class="ocamlkeyword">end</span>
+   <span class="ocamlkeyword">let</span> w = x + y
+ <span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> M : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">val</span> x : int <span class="ocamlkeyword">val</span> w : int <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>One important restriction is that types introduced by <span class="c002"><span class="c003">open</span> <span class="c003">struct</span></span> ...
+<span class="c004">end</span> cannot appear in the signature of the enclosing structure, unless they
+are defined equal to some non-local type.
+So:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> M = <span class="ocamlkeyword">struct</span>
+   <span class="ocamlkeyword">open</span> <span class="ocamlkeyword">struct</span> <span class="ocamlkeyword">type</span> 'a t = 'a option = None | Some <span class="ocamlkeyword">of</span> 'a <span class="ocamlkeyword">end</span>
+   <span class="ocamlkeyword">let</span> x : int t = Some 1
+ <span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> M : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">val</span> x : int option <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+
+is OK, but:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> M = <span class="ocamlkeyword">struct</span>
+   <span class="ocamlhighlight">open struct type t = A end</span>
+   <span class="ocamlkeyword">let</span> x = A
+ <span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: The type t/4516 introduced by this open appears in the signature
+       File "exten.etex", line 3, characters 6-7:
+         The value x has no valid type if t/4516 is hidden</div></div>
+
+</div><p>
+
+
+is not because <span class="c003">x</span> cannot be given any type other than <span class="c003">t</span>, which only exists
+locally. Although the above would be OK if <span class="c003">x</span> too was local:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> M: <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span>
+   <span class="ocamlkeyword">open</span> <span class="ocamlkeyword">struct</span>
+   <span class="ocamlkeyword">type</span> t = A
+   <span class="ocamlkeyword">end</span>
+   …
+   <span class="ocamlkeyword">open</span> <span class="ocamlkeyword">struct</span> <span class="ocamlkeyword">let</span> x = A <span class="ocamlkeyword">end</span>
+   …
+ <span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> M : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>Inside signatures, extended opens are limited to extended module paths,
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S = <span class="ocamlkeyword">sig</span>
+   <span class="ocamlkeyword">module</span> F: <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">end</span> -&gt; <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t <span class="ocamlkeyword">end</span>
+   <span class="ocamlkeyword">module</span> X: <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">end</span>
+   <span class="ocamlkeyword">open</span> F(X)
+   <span class="ocamlkeyword">val</span> f: t
+ <span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S =
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">module</span> F : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">end</span> -&gt; <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t <span class="ocamlkeyword">end</span>
+    <span class="ocamlkeyword">module</span> X : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">end</span>
+    <span class="ocamlkeyword">val</span> f : F(X).t
+  <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>and not</p><pre>  open struct type t = int end
+</pre><p>
+In those situations, local substitutions(see <a href="signaturesubstitution.html#ss%3Alocal-substitution">8.7.2</a>)
+can be used instead.</p><p>Beware that this extension is not available inside class definitions:</p><pre>class c =
+  let open Set.Make(Int) in
+  ...
+</pre>
+<hr>
+<a href="alerts.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="bindingops.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -15,7 +15,7 @@ to OCaml. Updated for each version of OCaml, it contains the description
 of the language, of its extensions, and the documentation of the tools
 and libraries included in the official distribution.
 
-[Online](http://caml.inria.fr/pub/docs/manual-ocaml/) |
+[Online](/releases/latest/manual.html) |
 [PDF](http://caml.inria.fr/distrib/ocaml-{{! get LATEST_OCAML_VERSION_MAIN !}}/ocaml-{{! get LATEST_OCAML_VERSION_MAIN !}}-refman.pdf) |
 [HTML
 Tarball](http://caml.inria.fr/distrib/ocaml-{{! get LATEST_OCAML_VERSION_MAIN !}}/ocaml-{{! get LATEST_OCAML_VERSION_MAIN !}}-refman-html.tar.gz)

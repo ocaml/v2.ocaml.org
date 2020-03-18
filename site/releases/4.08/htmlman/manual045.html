@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.23  Generalized open statements</title>
+</head>
+<body>
+<a href="manual044.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual046.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:generalized-open">8.23  Generalized open statements</h2>
+<p>(Introduced in 4.08)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open</span>  <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open!</span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open</span>  <a class="syntax" href="names.html#extended-module-path"><span class="c010">extended-module-path</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open!</span> <a class="syntax" href="names.html#extended-module-path"><span class="c010">extended-module-path</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">let</span> <span class="c004">open</span>  <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> <span class="c004">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">let</span> <span class="c004">open!</span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> <span class="c004">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>This extension makes it possible to open any module expression in
+module structures and expressions. A similar mechanism is also available
+inside module types, but only for extended module paths (e.g. <span class="c003">F(X).G(Y)</span>).</p><p>For instance, a module can be constrained when opened with</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module M = struct let x = 0 let hidden = 1 end
+ open (M:sig val x: int end)
+ let y = <U>hidden</U>
+</div>
+<div class="caml-output error">Error: Unbound value hidden
+</div></pre>
+
+
+</div><p>Another possibility is to immediately open the result of a functor application</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input">   let sort (type x) (x:x list) =
+     let open Set.Make(struct type t = x let compare=compare end) in
+     elements (of_list x)
+</div><div class="caml-output ok">val sort : 'a list -&gt; 'a list = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>Going further, this construction can introduce local components inside a
+structure,</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module M = struct
+   let x = 0
+   open! struct
+     let x = 0
+     let y = 1
+   end
+   let w = x + y
+ end
+</div><div class="caml-output ok">module M : sig val x : int val w : int end
+</div></pre>
+
+
+</div><p>One important restriction is that types introduced by <span class="c002"><span class="c003">open</span> <span class="c003">struct</span></span> ...
+<span class="c004">end</span> cannot appear in the signature of the enclosing structure, unless they
+are defined equal to some non-local type.
+So:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module M = struct
+   open struct type 'a t = 'a option = None | Some of 'a end
+   let x : int t = Some 1
+ end
+</div><div class="caml-output ok">module M : sig val x : int option end
+</div></pre>
+
+
+</div><p>
+
+is OK, but:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module M = struct
+   <U>open struct type t = A end</U>
+   let x = A
+ end
+</div><div class="caml-output error">Error: The type t/3742 introduced by this open appears in the signature
+       File "exten.etex", line 3, characters 6-7:
+         The value x has no valid type if t/3742 is hidden
+</div></pre>
+
+
+</div><p>
+
+is not because <span class="c003">x</span> cannot be given any type other than <span class="c003">t</span>, which only exists
+locally. Although the above would be OK if <span class="c003">x</span> too was local:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module M: sig end = struct
+   open struct
+   type t = A
+   end
+   …
+   open struct let x = A end
+   …
+ end
+</div><div class="caml-output ok">module M : sig  end
+</div></pre>
+
+
+</div><p>Inside signatures, extended opens are limited to extended module paths,
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module type S = sig
+   module F: sig end -&gt; sig type t end
+   module X: sig end
+   open F(X)
+   val f: t
+ end
+</div><div class="caml-output ok">module type S =
+  sig
+    module F : sig  end -&gt; sig type t end
+    module X : sig  end
+    val f : F(X).t
+  end
+</div></pre>
+
+
+</div><p>and not</p><pre>  open struct type t = int end
+</pre><p>
+In those situations, local substitutions(see <a href="manual030.html#ss%3Alocal-substitution">8.8.2</a>)
+can be used instead.</p><p>Beware that this extension is not available inside class definitions:</p><pre>class c =
+  let open Set.Make(Int) in
+  ...
+</pre>
+<hr>
+<a href="manual044.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual046.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

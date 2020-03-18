@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Identifiable.html">
+<link rel="next" href="Load_path.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="CamlinternalMenhirLib" rel="Chapter" href="CamlinternalMenhirLib.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Compiler_libs" rel="Chapter" href="Compiler_libs.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Load_path" rel="Chapter" href="Load_path.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html"><title>Lexer</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Identifiable.html" title="Identifiable">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Load_path.html" title="Load_path">Next</a>
+</div>
+<h1>Module <a href="type_Lexer.html">Lexer</a></h1>
+
+<pre><span id="MODULELexer"><span class="keyword">module</span> Lexer</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Lexer.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>The lexical analyzer</p>
+
+<p><b>Warning:</b> this module is unstable and part of
+  <a href="Compiler_libs.html">compiler-libs</a>.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="VALinit"><span class="keyword">val</span> init</span> : <code class="type">unit -> unit</code></pre>
+<pre><span id="VALtoken"><span class="keyword">val</span> token</span> : <code class="type">Lexing.lexbuf -> <a href="Parser.html#TYPEtoken">Parser.token</a></code></pre>
+<pre><span id="VALskip_hash_bang"><span class="keyword">val</span> skip_hash_bang</span> : <code class="type">Lexing.lexbuf -> unit</code></pre>
+<pre><code><span id="TYPEerror"><span class="keyword">type</span> <code class="type"></code>error</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTerror.Illegal_character"><span class="constructor">Illegal_character</span></span> <span class="keyword">of</span> <code class="type">char</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTerror.Illegal_escape"><span class="constructor">Illegal_escape</span></span> <span class="keyword">of</span> <code class="type">string * string option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTerror.Reserved_sequence"><span class="constructor">Reserved_sequence</span></span> <span class="keyword">of</span> <code class="type">string * string option</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTerror.Unterminated_comment"><span class="constructor">Unterminated_comment</span></span> <span class="keyword">of</span> <code class="type"><a href="Location.html#TYPEt">Location.t</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTerror.Unterminated_string"><span class="constructor">Unterminated_string</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTerror.Unterminated_string_in_comment"><span class="constructor">Unterminated_string_in_comment</span></span> <span class="keyword">of</span> <code class="type"><a href="Location.html#TYPEt">Location.t</a> * <a href="Location.html#TYPEt">Location.t</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTerror.Keyword_as_label"><span class="constructor">Keyword_as_label</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTerror.Invalid_literal"><span class="constructor">Invalid_literal</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTerror.Invalid_directive"><span class="constructor">Invalid_directive</span></span> <span class="keyword">of</span> <code class="type">string * string option</code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="EXCEPTIONError"><span class="keyword">exception</span> Error</span> <span class="keyword">of</span> <code class="type"><a href="Lexer.html#TYPEerror">error</a> * <a href="Location.html#TYPEt">Location.t</a></code></pre>
+
+<pre><span id="VALin_comment"><span class="keyword">val</span> in_comment</span> : <code class="type">unit -> bool</code></pre>
+<pre><span id="VALin_string"><span class="keyword">val</span> in_string</span> : <code class="type">unit -> bool</code></pre>
+<pre><span id="VALprint_warnings"><span class="keyword">val</span> print_warnings</span> : <code class="type">bool ref</code></pre>
+<pre><span id="VALhandle_docstrings"><span class="keyword">val</span> handle_docstrings</span> : <code class="type">bool ref</code></pre>
+<pre><span id="VALcomments"><span class="keyword">val</span> comments</span> : <code class="type">unit -> (string * <a href="Location.html#TYPEt">Location.t</a>) list</code></pre>
+<pre><span id="VALtoken_with_comments"><span class="keyword">val</span> token_with_comments</span> : <code class="type">Lexing.lexbuf -> <a href="Parser.html#TYPEtoken">Parser.token</a></code></pre>
+<pre><span id="VALset_preprocessor"><span class="keyword">val</span> set_preprocessor</span> : <code class="type">(unit -> unit) -><br>       ((Lexing.lexbuf -> <a href="Parser.html#TYPEtoken">Parser.token</a>) -><br>        Lexing.lexbuf -> <a href="Parser.html#TYPEtoken">Parser.token</a>) -><br>       unit</code></pre></body></html>

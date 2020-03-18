@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>7.12&#XA0;&#XA0;Compilation units</title>
+</head>
+<body>
+<a href="modules.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<hr>
+<h2 class="section" id="sec231">7.12&#XA0;&#XA0;Compilation units</h2>
+<div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="unit-interface"><span class="c010">unit-interface</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;{&#XA0;<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a>&#XA0;&#XA0;[<span class="c004">;;</span>]&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="unit-implementation"><span class="c010">unit-implementation</span></a></td><td class="c015">::=</td><td class="c017">&#XA0;[&#XA0;<a class="syntax" href="modules.html#module-items"><span class="c010">module-items</span></a>&#XA0;]
+</td></tr>
+</table></td></tr>
+</table></div><p>Compilation units bridge the module system and the separate
+compilation system. A compilation unit is composed of two parts: an
+interface and an implementation. The interface contains a sequence of
+specifications, just as the inside of a <span class="c004">sig</span> &#X2026; <span class="c004">end</span>
+signature expression. The implementation contains a sequence of
+definitions and expressions, just as the inside of a
+<span class="c004">struct</span> &#X2026; <span class="c004">end</span> module
+expression. A compilation unit also has a name <span class="c010">unit-name</span>, derived
+from the names of the files containing the interface and the
+implementation (see chapter&#XA0;<a href="comp.html#c%3Acamlc">9</a> for more details). A
+compilation unit behaves roughly as the module definition
+</p><div class="center">
+<span class="c002"><span class="c003">module</span> <span class="c010">unit-name</span> <span class="c003">:</span> <span class="c003">sig</span></span> &#XA0;<a class="syntax" href="#unit-interface"><span class="c010">unit-interface</span></a> <span class="c002"><span class="c003">end</span> <span class="c003">=</span>
+<span class="c003">struct</span></span> &#XA0;<a class="syntax" href="#unit-implementation"><span class="c010">unit-implementation</span></a> <span class="c004">end</span>
+</div><p>A compilation unit can refer to other compilation units by their
+names, as if they were regular modules. For instance, if <span class="c003">U</span> is a
+compilation unit that defines a type <span class="c003">t</span>, other compilation units can
+refer to that type under the name <span class="c003">U.t</span>; they can also refer to <span class="c003">U</span> as
+a whole structure. Except for names of other compilation units, a unit
+interface or unit implementation must not have any other free variables.
+In other terms, the type-checking and compilation of an interface or
+implementation proceeds in the initial environment
+</p><div class="center">
+<span class="c010">name</span><sub>1</sub> <span class="c002"><span class="c003">:</span> <span class="c003">sig</span></span> &#XA0;<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a><sub>1</sub> <span class="c004">end</span> &#X2026;
+&#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub> <span class="c002"><span class="c003">:</span> <span class="c003">sig</span></span> &#XA0;<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a><sub><span class="c009">n</span></sub> <span class="c004">end</span>
+</div><p>
+where <span class="c010">name</span><sub>1</sub> &#X2026; &#XA0;<span class="c010">name</span><sub><span class="c009">n</span></sub> are the names of the other
+compilation units available in the search path (see
+chapter&#XA0;<a href="comp.html#c%3Acamlc">9</a> for more details) and <a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a><sub>1</sub> &#X2026;
+&#XA0;<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a><sub><span class="c009">n</span></sub> are their respective interfaces.
+
+</p><hr>
+<a href="modules.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+</body>
+</html>
