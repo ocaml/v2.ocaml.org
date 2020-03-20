@@ -114,7 +114,7 @@ val hello : unit -> unit
 ```
 (note that it is a good habit to document .mli files, using the format
 supported by
-[ocamldoc](/releases/latest/manual.htmlocamldoc.html))
+[ocamldoc](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/ocamldoc.html))
 
 .mli files must be compiled just before the matching .ml files. They are
 compiled using `ocamlc`, even if .ml files are compiled to native code
