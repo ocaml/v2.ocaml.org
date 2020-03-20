@@ -122,7 +122,7 @@ val hello : unit -> unit
 (** Displays a greeting message. *)
 ```
 
-([ocamldoc](/releases/latest/manual.htmlocamldoc.html)
+([ocamldoc](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/ocamldoc.html)
 がサポートしているフォーマットに基づいて、
 `.mli`ファイルにドキュメントを残すのは良い習慣だ)
 

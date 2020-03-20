@@ -3,7 +3,7 @@
 
 # Dynamic Functor Example
 
-**Deprecation Warning:** this tutorial describes technology that is considered obsolete. It's been replaced by [extensions points and ppx rewriters](/releases/latest/manual.html/extn.html#sec243)
+**Deprecation Warning:** this tutorial describes technology that is considered obsolete. It's been replaced by [extensions points and ppx rewriters](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/extn.html#sec243)
 
 dynamic_functor_example.ml:
 
