@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;30&#XA0;&#XA0;The str library: regular expressions and string processing</title>
+</head>
+<body>
+<a href="libnum.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="libthreads.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec562">Chapter&#XA0;30&#XA0;&#XA0;The str library: regular expressions and string processing</h1>
+<p>The <span class="c003">str</span> library provides high-level string processing functions,
+some based on regular expressions. It is intended to support the kind
+of file processing that is usually performed with scripting languages
+such as <span class="c003">awk</span>, <span class="c003">perl</span> or <span class="c003">sed</span>.</p><p>Programs that use the <span class="c003">str</span> library must be linked as follows:
+</p><pre>
+        ocamlc <span class="c009">other options</span> str.cma <span class="c009">other files</span>
+        ocamlopt <span class="c009">other options</span> str.cmxa <span class="c009">other files</span>
+</pre><p>
+For interactive use of the <span class="c003">str</span> library, do:
+</p><pre>
+        ocamlmktop -o mytop str.cma
+        ./mytop
+</pre><p>
+or (if dynamic linking of C libraries is supported on your platform),
+start <span class="c003">ocaml</span> and type <span class="c003">#load "str.cma";;</span>.</p><ul class="ftoc2"><li class="li-links">
+<a href="libref/Str.html">Module <span class="c003">Str</span>: regular expressions and string processing</a>
+</li></ul>
+<hr>
+<a href="libnum.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="libthreads.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

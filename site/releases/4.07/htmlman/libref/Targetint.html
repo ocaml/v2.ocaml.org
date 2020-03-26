@@ -1,0 +1,428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Sys.html">
+<link rel="next" href="Tbl.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="Bytes" rel="Chapter" href="Bytes.html">
+<link title="BytesLabels" rel="Chapter" href="BytesLabels.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="CamlinternalFormat" rel="Chapter" href="CamlinternalFormat.html">
+<link title="CamlinternalFormatBasics" rel="Chapter" href="CamlinternalFormatBasics.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Ephemeron" rel="Chapter" href="Ephemeron.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Float" rel="Chapter" href="Float.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Genlex" rel="Chapter" href="Genlex.html">
+<link title="Graphics" rel="Chapter" href="Graphics.html">
+<link title="GraphicsX11" rel="Chapter" href="GraphicsX11.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Pervasives" rel="Chapter" href="Pervasives.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Seq" rel="Chapter" href="Seq.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Sort" rel="Chapter" href="Sort.html">
+<link title="Spacetime" rel="Chapter" href="Spacetime.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="Stream" rel="Chapter" href="Stream.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Tbl" rel="Chapter" href="Tbl.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="ThreadUnix" rel="Chapter" href="ThreadUnix.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Uchar" rel="Chapter" href="Uchar.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Weak" rel="Chapter" href="Weak.html"><title>Targetint</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Sys.html" title="Sys">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Tbl.html" title="Tbl">Next</a>
+</div>
+<h1>Module <a href="type_Targetint.html">Targetint</a></h1>
+
+<pre><span id="MODULETargetint"><span class="keyword">module</span> Targetint</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Targetint.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Target processor-native integers.</p>
+
+<p>This module provides operations on the type of
+   signed 32-bit integers (on 32-bit target platforms) or
+   signed 64-bit integers (on 64-bit target platforms).
+   This integer type has exactly the same width as that of a
+   pointer type in the C compiler.  All arithmetic operations over
+   are taken modulo 2<sup class="superscript">32</sup> or 2<sup class="superscript">64</sup> depending
+   on the word size of the target architecture.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>The type of target integers.</p>
+</div>
+</div>
+
+
+<pre><span id="VALzero"><span class="keyword">val</span> zero</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>The target integer 0.</p>
+</div>
+</div>
+
+<pre><span id="VALone"><span class="keyword">val</span> one</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>The target integer 1.</p>
+</div>
+</div>
+
+<pre><span id="VALminus_one"><span class="keyword">val</span> minus_one</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>The target integer -1.</p>
+</div>
+</div>
+
+<pre><span id="VALneg"><span class="keyword">val</span> neg</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Unary negation.</p>
+</div>
+</div>
+
+<pre><span id="VALadd"><span class="keyword">val</span> add</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Addition.</p>
+</div>
+</div>
+
+<pre><span id="VALsub"><span class="keyword">val</span> sub</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Subtraction.</p>
+</div>
+</div>
+
+<pre><span id="VALmul"><span class="keyword">val</span> mul</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Multiplication.</p>
+</div>
+</div>
+
+<pre><span id="VALdiv"><span class="keyword">val</span> div</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Integer division.  Raise <code class="code"><span class="constructor">Division_by_zero</span></code> if the second
+   argument is zero.  This division rounds the real quotient of
+   its arguments towards zero, as specified for <a href="Pervasives.html#VAL(/)"><code class="code">(/)</code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALrem"><span class="keyword">val</span> rem</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Integer remainder.  If <code class="code">y</code> is not zero, the result
+   of <code class="code"><span class="constructor">Targetint</span>.rem&nbsp;x&nbsp;y</code> satisfies the following properties:
+   <code class="code"><span class="constructor">Targetint</span>.zero&nbsp;&lt;=&nbsp;<span class="constructor">Nativeint</span>.rem&nbsp;x&nbsp;y&nbsp;&lt;&nbsp;<span class="constructor">Targetint</span>.abs&nbsp;y</code> and
+   <code class="code">x&nbsp;=&nbsp;<span class="constructor">Targetint</span>.add&nbsp;(<span class="constructor">Targetint</span>.mul&nbsp;(<span class="constructor">Targetint</span>.div&nbsp;x&nbsp;y)&nbsp;y)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Targetint</span>.rem&nbsp;x&nbsp;y)</code>.
+   If <code class="code">y&nbsp;=&nbsp;0</code>, <code class="code"><span class="constructor">Targetint</span>.rem&nbsp;x&nbsp;y</code> raises <code class="code"><span class="constructor">Division_by_zero</span></code>.</p>
+</div>
+</div>
+
+<pre><span id="VALsucc"><span class="keyword">val</span> succ</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Successor.
+   <code class="code"><span class="constructor">Targetint</span>.succ&nbsp;x</code> is <code class="code"><span class="constructor">Targetint</span>.add&nbsp;x&nbsp;<span class="constructor">Targetint</span>.one</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALpred"><span class="keyword">val</span> pred</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Predecessor.
+   <code class="code"><span class="constructor">Targetint</span>.pred&nbsp;x</code> is <code class="code"><span class="constructor">Targetint</span>.sub&nbsp;x&nbsp;<span class="constructor">Targetint</span>.one</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALabs"><span class="keyword">val</span> abs</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the absolute value of its argument.</p>
+</div>
+</div>
+
+<pre><span id="VALsize"><span class="keyword">val</span> size</span> : <code class="type">int</code></pre><div class="info ">
+<div class="info-desc">
+<p>The size in bits of a target native integer.</p>
+</div>
+</div>
+
+<pre><span id="VALmax_int"><span class="keyword">val</span> max_int</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>The greatest representable target integer,
+    either 2<sup class="superscript">31</sup> - 1 on a 32-bit platform,
+    or 2<sup class="superscript">63</sup> - 1 on a 64-bit platform.</p>
+</div>
+</div>
+
+<pre><span id="VALmin_int"><span class="keyword">val</span> min_int</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>The smallest representable target integer,
+   either -2<sup class="superscript">31</sup> on a 32-bit platform,
+   or -2<sup class="superscript">63</sup> on a 64-bit platform.</p>
+</div>
+</div>
+
+<pre><span id="VALlogand"><span class="keyword">val</span> logand</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Bitwise logical and.</p>
+</div>
+</div>
+
+<pre><span id="VALlogor"><span class="keyword">val</span> logor</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Bitwise logical or.</p>
+</div>
+</div>
+
+<pre><span id="VALlogxor"><span class="keyword">val</span> logxor</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Bitwise logical exclusive or.</p>
+</div>
+</div>
+
+<pre><span id="VALlognot"><span class="keyword">val</span> lognot</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Bitwise logical negation.</p>
+</div>
+</div>
+
+<pre><span id="VALshift_left"><span class="keyword">val</span> shift_left</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> int -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code"><span class="constructor">Targetint</span>.shift_left&nbsp;x&nbsp;y</code> shifts <code class="code">x</code> to the left by <code class="code">y</code> bits.
+    The result is unspecified if <code class="code">y&nbsp;&lt;&nbsp;0</code> or <code class="code">y&nbsp;&gt;=&nbsp;bitsize</code>,
+    where <code class="code">bitsize</code> is <code class="code">32</code> on a 32-bit platform and
+    <code class="code">64</code> on a 64-bit platform.</p>
+</div>
+</div>
+
+<pre><span id="VALshift_right"><span class="keyword">val</span> shift_right</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> int -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code"><span class="constructor">Targetint</span>.shift_right&nbsp;x&nbsp;y</code> shifts <code class="code">x</code> to the right by <code class="code">y</code> bits.
+    This is an arithmetic shift: the sign bit of <code class="code">x</code> is replicated
+    and inserted in the vacated bits.
+    The result is unspecified if <code class="code">y&nbsp;&lt;&nbsp;0</code> or <code class="code">y&nbsp;&gt;=&nbsp;bitsize</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALshift_right_logical"><span class="keyword">val</span> shift_right_logical</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> int -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code"><span class="constructor">Targetint</span>.shift_right_logical&nbsp;x&nbsp;y</code> shifts <code class="code">x</code> to the right
+    by <code class="code">y</code> bits.
+    This is a logical shift: zeroes are inserted in the vacated bits
+    regardless of the sign of <code class="code">x</code>.
+    The result is unspecified if <code class="code">y&nbsp;&lt;&nbsp;0</code> or <code class="code">y&nbsp;&gt;=&nbsp;bitsize</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALof_int"><span class="keyword">val</span> of_int</span> : <code class="type">int -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given integer (type <code class="code">int</code>) to a target integer
+    (type <code class="code">t</code>), module the target word size.</p>
+</div>
+</div>
+
+<pre><span id="VALof_int_exn"><span class="keyword">val</span> of_int_exn</span> : <code class="type">int -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given integer (type <code class="code">int</code>) to a target integer
+    (type <code class="code">t</code>).  Raises a fatal error if the conversion is not exact.</p>
+</div>
+</div>
+
+<pre><span id="VALto_int"><span class="keyword">val</span> to_int</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given target integer (type <code class="code">t</code>) to an
+    integer (type <code class="code">int</code>).  The high-order bit is lost during
+    the conversion.</p>
+</div>
+</div>
+
+<pre><span id="VALof_float"><span class="keyword">val</span> of_float</span> : <code class="type">float -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given floating-point number to a target integer,
+   discarding the fractional part (truncate towards 0).
+   The result of the conversion is undefined if, after truncation,
+   the number is outside the range
+   [<a href="Targetint.html#VALmin_int"><code class="code"><span class="constructor">Targetint</span>.min_int</code></a>, <a href="Targetint.html#VALmax_int"><code class="code"><span class="constructor">Targetint</span>.max_int</code></a>].</p>
+</div>
+</div>
+
+<pre><span id="VALto_float"><span class="keyword">val</span> to_float</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> float</code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given target integer to a floating-point number.</p>
+</div>
+</div>
+
+<pre><span id="VALof_int32"><span class="keyword">val</span> of_int32</span> : <code class="type">int32 -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given 32-bit integer (type <code class="code">int32</code>)
+    to a target integer.</p>
+</div>
+</div>
+
+<pre><span id="VALto_int32"><span class="keyword">val</span> to_int32</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> int32</code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given target integer to a
+    32-bit integer (type <code class="code">int32</code>).  On 64-bit platforms,
+    the 64-bit native integer is taken modulo 2<sup class="superscript">32</sup>,
+    i.e. the top 32 bits are lost.  On 32-bit platforms,
+    the conversion is exact.</p>
+</div>
+</div>
+
+<pre><span id="VALof_int64"><span class="keyword">val</span> of_int64</span> : <code class="type">int64 -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given 64-bit integer (type <code class="code">int64</code>)
+    to a target integer.</p>
+</div>
+</div>
+
+<pre><span id="VALto_int64"><span class="keyword">val</span> to_int64</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> int64</code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given target integer to a
+    64-bit integer (type <code class="code">int64</code>).</p>
+</div>
+</div>
+
+<pre><span id="VALof_string"><span class="keyword">val</span> of_string</span> : <code class="type">string -> <a href="Targetint.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Convert the given string to a target integer.
+    The string is read in decimal (by default) or in hexadecimal,
+    octal or binary if the string begins with <code class="code">0x</code>, <code class="code">0o</code> or <code class="code">0b</code>
+    respectively.
+    Raise <code class="code"><span class="constructor">Failure</span>&nbsp;<span class="string">"int_of_string"</span></code> if the given string is not
+    a valid representation of an integer, or if the integer represented
+    exceeds the range of integers representable in type <code class="code">nativeint</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALto_string"><span class="keyword">val</span> to_string</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return the string representation of its argument, in decimal.</p>
+</div>
+</div>
+
+<pre><span id="VALcompare"><span class="keyword">val</span> compare</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p>The comparison function for target integers, with the same specification as
+    <a href="Pervasives.html#VALcompare"><code class="code">compare</code></a>.  Along with the type <code class="code">t</code>, this function <code class="code">compare</code>
+    allows the module <code class="code"><span class="constructor">Targetint</span></code> to be passed as argument to the functors
+    <a href="Set.Make.html"><code class="code"><span class="constructor">Set</span>.<span class="constructor">Make</span></code></a> and <a href="Map.Make.html"><code class="code"><span class="constructor">Map</span>.<span class="constructor">Make</span></code></a>.</p>
+</div>
+</div>
+
+<pre><span id="VALequal"><span class="keyword">val</span> equal</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPEt">t</a> -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>The equal function for target ints.</p>
+</div>
+</div>
+
+<pre><code><span id="TYPErepr"><span class="keyword">type</span> <code class="type"></code>repr</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrepr.Int32"><span class="constructor">Int32</span></span> <span class="keyword">of</span> <code class="type">int32</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrepr.Int64"><span class="constructor">Int64</span></span> <span class="keyword">of</span> <code class="type">int64</code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="VALrepr"><span class="keyword">val</span> repr</span> : <code class="type"><a href="Targetint.html#TYPEt">t</a> -> <a href="Targetint.html#TYPErepr">repr</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>The concrete representation of a native integer.</p>
+</div>
+</div>
+</body></html>

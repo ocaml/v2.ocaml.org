@@ -104,7 +104,7 @@ info fields and you are done!)_
 This is a list of books and lecture notes that are being used for
 teaching OCaml. There is also a wider list of books to choose from, which you can find on the [books page](//ocaml.org/learn/books.html).
 
-1. [The OCaml System: Documentation and User's Manual](http://caml.inria.fr/pub/docs/manual-ocaml/) This the official User's Manual. It serves as a complete reference guide to OCaml. Updated for each version of OCaml, it contains the description of the language, of its extensions, and the documentation of the tools and libraries included in the official distribution.
+1. [The OCaml System: Documentation and User's Manual](/releases/latest/manual.html) This the official User's Manual. It serves as a complete reference guide to OCaml. Updated for each version of OCaml, it contains the description of the language, of its extensions, and the documentation of the tools and libraries included in the official distribution.
 
 1. [Lecture notes](http://www.seas.upenn.edu/~cis120/current/notes/120notes.pdf)
    for Penn's CIS120.  Like the course, this book covers both OCaml

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>7.5  Constants</title>
+</head>
+<body>
+<a href="types.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="patterns.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:const"><a class="section-anchor" href="#s:const" aria-hidden="true">﻿</a>7.5  Constants</h2>
+<p><a id="hevea_manual.kwd11"></a>
+<a id="hevea_manual.kwd12"></a>
+<a id="hevea_manual.kwd13"></a>
+<a id="hevea_manual.kwd14"></a></p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="constant"><span class="c010">constant</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#integer-literal"><span class="c010">integer-literal</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="lex.html#int32-literal"><span class="c010">int32-literal</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="lex.html#int64-literal"><span class="c010">int64-literal</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="lex.html#nativeint-literal"><span class="c010">nativeint-literal</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="lex.html#float-literal"><span class="c010">float-literal</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="lex.html#char-literal"><span class="c010">char-literal</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="lex.html#string-literal"><span class="c010">string-literal</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="names.html#constr"><span class="c010">constr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">false</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">true</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">()</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">begin</span> <span class="c004">end</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">[]</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">[||]</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>
+See also the following language extension:
+<a href="extensionsyntax.html#ss%3Aextension-literals">extension literals</a>.</p><p>The syntactic class of constants comprises literals from the four
+base types (integers, floating-point numbers, characters, character
+strings), the integer variants, and constant constructors
+from both normal and polymorphic variants, as well as the special
+constants <span class="c004">false</span>, <span class="c004">true</span>, <span class="c004">()</span>,
+<span class="c004">[]</span>, and <span class="c004">[||]</span>, which behave like constant constructors, and
+<span class="c002"><span class="c003">begin</span> <span class="c003">end</span></span>, which is equivalent to <span class="c004">()</span>.
+
+</p>
+<hr>
+<a href="types.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="patterns.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

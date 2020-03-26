@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.4  Local opens for patterns</title>
+</head>
+<body>
+<a href="manual025.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual027.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec244">8.4  Local opens for patterns</h2>
+<p>
+<a id="hevea_manual.kwd209"></a>
+<a id="hevea_manual.kwd210"></a> <a id="s:local-opens"></a></p><p>(Introduced in OCaml 4.04)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.(</span>  <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> <span class="c004">)</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.[</span>  <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> <span class="c004">]</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.[|</span>  <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> <span class="c004">|]</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.{</span>  <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> <span class="c004">}</span></td></tr>
+</table></td></tr>
+</table></div><p>For patterns, local opens are limited to the
+<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.(</span> <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a><span class="c004">)</span> construction. This
+construction locally open the module referred to by the module path
+<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> in the scope of the pattern <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>.</p><p>When the body of a local open pattern is delimited by
+<span class="c002"><span class="c003">[</span> <span class="c003">]</span></span>, <span class="c002"><span class="c003">[|</span> <span class="c003">|]</span></span>, or <span class="c002"><span class="c003">{</span> <span class="c003">}</span></span>, the parentheses can be omitted.
+For example, <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.[</span> <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a><span class="c004">]</span> is equivalent to
+<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.([</span> <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a><span class="c004">])</span>, and <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.[|</span>  <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> <span class="c004">|]</span> is
+equivalent to <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a><span class="c004">.([|</span>  <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> <span class="c004">|])</span>.</p>
+<hr>
+<a href="manual025.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual027.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

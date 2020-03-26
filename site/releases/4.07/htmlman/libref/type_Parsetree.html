@@ -1,0 +1,508 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="Bytes" rel="Chapter" href="Bytes.html">
+<link title="BytesLabels" rel="Chapter" href="BytesLabels.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="CamlinternalFormat" rel="Chapter" href="CamlinternalFormat.html">
+<link title="CamlinternalFormatBasics" rel="Chapter" href="CamlinternalFormatBasics.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Ephemeron" rel="Chapter" href="Ephemeron.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Float" rel="Chapter" href="Float.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Genlex" rel="Chapter" href="Genlex.html">
+<link title="Graphics" rel="Chapter" href="Graphics.html">
+<link title="GraphicsX11" rel="Chapter" href="GraphicsX11.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Pervasives" rel="Chapter" href="Pervasives.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Seq" rel="Chapter" href="Seq.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Simplif" rel="Chapter" href="Simplif.html">
+<link title="Sort" rel="Chapter" href="Sort.html">
+<link title="Spacetime" rel="Chapter" href="Spacetime.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="Stream" rel="Chapter" href="Stream.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Tbl" rel="Chapter" href="Tbl.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="ThreadUnix" rel="Chapter" href="ThreadUnix.html">
+<link title="Typemod" rel="Chapter" href="Typemod.html">
+<link title="Uchar" rel="Chapter" href="Uchar.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Weak" rel="Chapter" href="Weak.html"><title>Parsetree</title>
+</head>
+<body>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;constant&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pconst_integer</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;*&nbsp;char&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pconst_char</span>&nbsp;<span class="keyword">of</span>&nbsp;char<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pconst_string</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;*&nbsp;string&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pconst_float</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;*&nbsp;char&nbsp;option<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;attribute&nbsp;=&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.payload<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;extension&nbsp;=&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.payload<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;attributes&nbsp;=&nbsp;<span class="constructor">Parsetree</span>.attribute&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;payload&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">PStr</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.structure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">PSig</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.signature<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">PTyp</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">PPat</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;option<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;core_type&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptyp_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.core_type_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptyp_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptyp_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;core_type_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Ptyp_any</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_var</span>&nbsp;<span class="keyword">of</span>&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_arrow</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.arg_label&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_tuple</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_constr</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_object</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.object_field&nbsp;list&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.closed_flag<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_class</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_alias</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;*&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_variant</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.row_field&nbsp;list&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.closed_flag&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Asttypes</span>.label&nbsp;list&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_poly</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;list&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_package</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.package_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptyp_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;package_type&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type)&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;row_field&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Rtag</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.label&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.attributes&nbsp;*&nbsp;bool&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Rinherit</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;object_field&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Otag</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.label&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.attributes&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Oinherit</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;pattern&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ppat_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.pattern_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ppat_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ppat_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;pattern_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Ppat_any</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_var</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_alias</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;*&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_constant</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.constant<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_interval</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.constant&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.constant<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_tuple</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_construct</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_variant</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.label&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_record</span>&nbsp;<span class="keyword">of</span>&nbsp;(<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.pattern)&nbsp;list&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Asttypes</span>.closed_flag<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_array</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_or</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.pattern<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_constraint</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_type</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_lazy</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.pattern<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_unpack</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_exception</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.pattern<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ppat_open</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.pattern<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;expression&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pexp_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.expression_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pexp_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pexp_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;expression_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pexp_ident</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_constant</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.constant<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_let</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.rec_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.value_binding&nbsp;list&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_function</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.case&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_fun</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.arg_label&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;option&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_apply</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Asttypes</span>.arg_label&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression)&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_match</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.case&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_try</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.case&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_tuple</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_construct</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_variant</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.label&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_record</span>&nbsp;<span class="keyword">of</span>&nbsp;(<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression)&nbsp;list&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_field</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_setfield</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_array</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_ifthenelse</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_sequence</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_while</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_for</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.direction_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_constraint</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_coerce</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;option&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_send</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.label&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_new</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_setinstvar</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.label&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_override</span>&nbsp;<span class="keyword">of</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Asttypes</span>.label&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression)&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_letmodule</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.module_expr&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_letexception</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension_constructor&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_assert</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_lazy</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_poly</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_object</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_structure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_newtype</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_pack</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_open</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.override_flag&nbsp;*&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pexp_unreachable</span><br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;case&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pc_lhs&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.pattern;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pc_guard&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;option;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pc_rhs&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.expression;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;value_description&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pval_name&nbsp;:&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pval_type&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.core_type;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pval_prim&nbsp;:&nbsp;string&nbsp;list;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pval_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pval_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;type_declaration&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptype_name&nbsp;:&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptype_params&nbsp;:&nbsp;(<span class="constructor">Parsetree</span>.core_type&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.variance)&nbsp;list;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptype_cstrs&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Parsetree</span>.core_type&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;*&nbsp;<span class="constructor">Location</span>.t)&nbsp;list;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptype_kind&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.type_kind;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptype_private&nbsp;:&nbsp;<span class="constructor">Asttypes</span>.private_flag;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptype_manifest&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;option;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptype_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptype_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;type_kind&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Ptype_abstract</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptype_variant</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.constructor_declaration&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptype_record</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.label_declaration&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptype_open</span><br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;label_declaration&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pld_name&nbsp;:&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pld_mutable&nbsp;:&nbsp;<span class="constructor">Asttypes</span>.mutable_flag;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pld_type&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.core_type;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pld_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pld_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;constructor_declaration&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcd_name&nbsp;:&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcd_args&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.constructor_arguments;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcd_res&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;option;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcd_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcd_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;constructor_arguments&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pcstr_tuple</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcstr_record</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.label_declaration&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;type_extension&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptyext_path&nbsp;:&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptyext_params&nbsp;:&nbsp;(<span class="constructor">Parsetree</span>.core_type&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.variance)&nbsp;list;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptyext_constructors&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.extension_constructor&nbsp;list;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptyext_private&nbsp;:&nbsp;<span class="constructor">Asttypes</span>.private_flag;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ptyext_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;extension_constructor&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pext_name&nbsp;:&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pext_kind&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.extension_constructor_kind;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pext_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pext_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;extension_constructor_kind&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pext_decl</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.constructor_arguments&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pext_rebind</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_type&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcty_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.class_type_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcty_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcty_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_type_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pcty_constr</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcty_signature</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_signature<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcty_arrow</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.arg_label&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.class_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcty_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcty_open</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.override_flag&nbsp;*&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.class_type<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_signature&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcsig_self&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.core_type;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcsig_fields&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.class_type_field&nbsp;list;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_type_field&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pctf_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.class_type_field_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pctf_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pctf_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_type_field_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pctf_inherit</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pctf_val</span>&nbsp;<span class="keyword">of</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Asttypes</span>.label&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.mutable_flag&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Asttypes</span>.virtual_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pctf_method</span>&nbsp;<span class="keyword">of</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Asttypes</span>.label&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.private_flag&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Asttypes</span>.virtual_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pctf_constraint</span>&nbsp;<span class="keyword">of</span>&nbsp;(<span class="constructor">Parsetree</span>.core_type&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pctf_attribute</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.attribute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pctf_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;<span class="keywordsign">'</span>a&nbsp;class_infos&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pci_virt&nbsp;:&nbsp;<span class="constructor">Asttypes</span>.virtual_flag;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pci_params&nbsp;:&nbsp;(<span class="constructor">Parsetree</span>.core_type&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.variance)&nbsp;list;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pci_name&nbsp;:&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pci_expr&nbsp;:&nbsp;<span class="keywordsign">'</span>a;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pci_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pci_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_description&nbsp;=&nbsp;<span class="constructor">Parsetree</span>.class_type&nbsp;<span class="constructor">Parsetree</span>.class_infos<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_type_declaration&nbsp;=&nbsp;<span class="constructor">Parsetree</span>.class_type&nbsp;<span class="constructor">Parsetree</span>.class_infos<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_expr&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcl_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.class_expr_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcl_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcl_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_expr_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pcl_constr</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcl_structure</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_structure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcl_fun</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.arg_label&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;option&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.pattern&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.class_expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcl_apply</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_expr&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Asttypes</span>.arg_label&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression)&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcl_let</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.rec_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.value_binding&nbsp;list&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.class_expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcl_constraint</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_expr&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.class_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcl_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcl_open</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.override_flag&nbsp;*&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.class_expr<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_structure&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcstr_self&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.pattern;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcstr_fields&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.class_field&nbsp;list;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_field&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcf_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.class_field_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcf_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pcf_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_field_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pcf_inherit</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.override_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.class_expr&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcf_val</span>&nbsp;<span class="keyword">of</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Asttypes</span>.label&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.mutable_flag&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.class_field_kind)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcf_method</span>&nbsp;<span class="keyword">of</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Asttypes</span>.label&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Asttypes</span>.private_flag&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.class_field_kind)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcf_constraint</span>&nbsp;<span class="keyword">of</span>&nbsp;(<span class="constructor">Parsetree</span>.core_type&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.core_type)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcf_initializer</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcf_attribute</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.attribute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pcf_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_field_kind&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Cfk_virtual</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.core_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Cfk_concrete</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.override_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;class_declaration&nbsp;=&nbsp;<span class="constructor">Parsetree</span>.class_expr&nbsp;<span class="constructor">Parsetree</span>.class_infos<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;module_type&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmty_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.module_type_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmty_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmty_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;module_type_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pmty_ident</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmty_signature</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.signature<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmty_functor</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.module_type&nbsp;option&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.module_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmty_with</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_type&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.with_constraint&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmty_typeof</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmty_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmty_alias</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;signature&nbsp;=&nbsp;<span class="constructor">Parsetree</span>.signature_item&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;signature_item&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;psig_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.signature_item_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;psig_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;signature_item_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Psig_value</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.value_description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_type</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.rec_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.type_declaration&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_typext</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.type_extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_exception</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension_constructor<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_module</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_declaration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_recmodule</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_declaration&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_modtype</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_type_declaration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_open</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.open_description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_include</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.include_description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_class</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_description&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_class_type</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_type_declaration&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_attribute</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.attribute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Psig_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.attributes<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;module_declaration&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmd_name&nbsp;:&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmd_type&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.module_type;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmd_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmd_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;module_type_declaration&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmtd_name&nbsp;:&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmtd_type&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.module_type&nbsp;option;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmtd_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmtd_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;open_description&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;popen_lid&nbsp;:&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;popen_override&nbsp;:&nbsp;<span class="constructor">Asttypes</span>.override_flag;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;popen_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;popen_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;<span class="keywordsign">'</span>a&nbsp;include_infos&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pincl_mod&nbsp;:&nbsp;<span class="keywordsign">'</span>a;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pincl_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pincl_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;include_description&nbsp;=&nbsp;<span class="constructor">Parsetree</span>.module_type&nbsp;<span class="constructor">Parsetree</span>.include_infos<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;include_declaration&nbsp;=&nbsp;<span class="constructor">Parsetree</span>.module_expr&nbsp;<span class="constructor">Parsetree</span>.include_infos<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;with_constraint&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pwith_type</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.type_declaration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pwith_module</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pwith_typesubst</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.type_declaration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pwith_modsubst</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;module_expr&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmod_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.module_expr_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmod_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmod_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;module_expr_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pmod_ident</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="constructor">Asttypes</span>.loc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmod_structure</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.structure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmod_functor</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.module_type&nbsp;option&nbsp;*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parsetree</span>.module_expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmod_apply</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_expr&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.module_expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmod_constraint</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_expr&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.module_type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmod_unpack</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pmod_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;structure&nbsp;=&nbsp;<span class="constructor">Parsetree</span>.structure_item&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;structure_item&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pstr_desc&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.structure_item_desc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pstr_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;structure_item_desc&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pstr_eval</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.expression&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.attributes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_value</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.rec_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.value_binding&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_primitive</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.value_description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_type</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Asttypes</span>.rec_flag&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.type_declaration&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_typext</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.type_extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_exception</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension_constructor<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_module</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_binding<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_recmodule</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_binding&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_modtype</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.module_type_declaration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_open</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.open_description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_class</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_declaration&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_class_type</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.class_type_declaration&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_include</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.include_declaration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_attribute</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.attribute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pstr_extension</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.extension&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.attributes<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;value_binding&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pvb_pat&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.pattern;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pvb_expr&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.expression;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pvb_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pvb_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;module_binding&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmb_name&nbsp;:&nbsp;string&nbsp;<span class="constructor">Asttypes</span>.loc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmb_expr&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.module_expr;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmb_attributes&nbsp;:&nbsp;<span class="constructor">Parsetree</span>.attributes;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pmb_loc&nbsp;:&nbsp;<span class="constructor">Location</span>.t;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;toplevel_phrase&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Ptop_def</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Parsetree</span>.structure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ptop_dir</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;*&nbsp;<span class="constructor">Parsetree</span>.directive_argument<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;directive_argument&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Pdir_none</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pdir_string</span>&nbsp;<span class="keyword">of</span>&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pdir_int</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;*&nbsp;char&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pdir_ident</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Longident</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pdir_bool</span>&nbsp;<span class="keyword">of</span>&nbsp;bool<br>
+<span class="keyword">end</span></code></body></html>

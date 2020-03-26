@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>7.2&#XA0;&#XA0;Values</title>
+</head>
+<body>
+<a href="lex.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="names.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec87">7.2&#XA0;&#XA0;Values</h2>
+<ul>
+<li><a href="values.html#sec88">7.2.1&#XA0;&#XA0;Base values</a>
+</li><li><a href="values.html#sec93">7.2.2&#XA0;&#XA0;Tuples</a>
+</li><li><a href="values.html#sec94">7.2.3&#XA0;&#XA0;Records</a>
+</li><li><a href="values.html#sec95">7.2.4&#XA0;&#XA0;Arrays</a>
+</li><li><a href="values.html#sec96">7.2.5&#XA0;&#XA0;Variant values</a>
+</li><li><a href="values.html#sec97">7.2.6&#XA0;&#XA0;Polymorphic variants</a>
+</li><li><a href="values.html#sec98">7.2.7&#XA0;&#XA0;Functions</a>
+</li><li><a href="values.html#sec99">7.2.8&#XA0;&#XA0;Objects</a>
+</li></ul>
+<p>This section describes the kinds of values that are manipulated by
+OCaml programs.</p>
+<h3 class="subsection" id="sec88">7.2.1&#XA0;&#XA0;Base values</h3>
+<h4 class="subsubsection" id="sec89">Integer numbers</h4>
+<p>Integer values are integer numbers from &#X2212;2<sup>30</sup> to 2<sup>30</sup>&#X2212;1, that
+is &#X2212;1073741824 to 1073741823. The implementation may support a
+wider range of integer values: on 64-bit platforms, the current
+implementation supports integers ranging from &#X2212;2<sup>62</sup> to 2<sup>62</sup>&#X2212;1.</p><h4 class="subsubsection" id="sec90">Floating-point numbers</h4>
+<p>Floating-point values are numbers in floating-point representation.
+The current implementation uses double-precision floating-point
+numbers conforming to the IEEE 754 standard, with 53 bits of mantissa
+and an exponent ranging from &#X2212;1022 to 1023.</p><h4 class="subsubsection" id="sec91">Characters</h4>
+<p>Character values are represented as 8-bit integers between 0 and 255.
+Character codes between 0 and 127 are interpreted following the ASCII
+standard. The current implementation interprets character codes
+between 128 and 255 following the ISO 8859-1 standard.</p><h4 class="subsubsection" id="sec92">Character strings</h4>
+<p> <a id="s:string-val"></a></p><p>String values are finite sequences of characters. The current
+implementation supports strings containing up to 2<sup>24</sup> &#X2212; 5
+characters (16777211 characters); on 64-bit platforms, the limit is
+2<sup>57</sup> &#X2212; 9.</p>
+<h3 class="subsection" id="sec93">7.2.2&#XA0;&#XA0;Tuples</h3>
+<p>Tuples of values are written <span class="c004">(</span><span class="c010">v</span><sub>1</sub><span class="c004">,</span> &#X2026;<span class="c004">,</span> <span class="c010">v</span><sub><span class="c009">n</span></sub><span class="c004">)</span>, standing for the
+<span class="c009">n</span>-tuple of values <span class="c010">v</span><sub>1</sub> to <span class="c010">v</span><sub><span class="c009">n</span></sub>. The current implementation
+supports tuple of up to 2<sup>22</sup> &#X2212; 1 elements (4194303 elements).</p>
+<h3 class="subsection" id="sec94">7.2.3&#XA0;&#XA0;Records</h3>
+<p>Record values are labeled tuples of values. The record value written
+<span class="c004">{</span> <a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub>1</sub> <span class="c004">=</span> <span class="c010">v</span><sub>1</sub><span class="c004">;</span> &#X2026;<span class="c004">;</span> &#XA0;<a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub><span class="c009">n</span></sub> <span class="c004">=</span> <span class="c010">v</span><sub><span class="c009">n</span></sub> <span class="c004">}</span> associates the value
+<span class="c010">v</span><sub><span class="c009">i</span></sub> to the record field <a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub><span class="c009">i</span></sub>, for <span class="c009">i</span> = 1 &#X2026; <span class="c009">n</span>. The current
+implementation supports records with up to 2<sup>22</sup> &#X2212; 1 fields
+(4194303 fields).</p>
+<h3 class="subsection" id="sec95">7.2.4&#XA0;&#XA0;Arrays</h3>
+<p>Arrays are finite, variable-sized sequences of values of the same
+type. The current implementation supports arrays containing up to
+2<sup>22</sup> &#X2212; 1 elements (4194303 elements) unless the elements are
+floating-point numbers (2097151 elements in this case); on 64-bit
+platforms, the limit is 2<sup>54</sup> &#X2212; 1 for all arrays.</p>
+<h3 class="subsection" id="sec96">7.2.5&#XA0;&#XA0;Variant values</h3>
+<p>Variant values are either a constant constructor, or a non-constant
+constructor applied to a number of values. The former case is written
+<a class="syntax" href="names.html#constr"><span class="c010">constr</span></a>; the latter case is written <a class="syntax" href="names.html#constr"><span class="c010">constr</span></a> <span class="c004">(</span><span class="c010">v</span><sub>1</sub><span class="c004">,</span> ... <span class="c004">,</span> <span class="c010">v</span><sub><span class="c009">n</span></sub>
+<span class="c004">)</span>, where the <span class="c010">v</span><sub><span class="c009">i</span></sub> are said to be the arguments of the non-constant
+constructor <a class="syntax" href="names.html#constr"><span class="c010">constr</span></a>. The parentheses may be omitted if there is only
+one argument.</p><p>The following constants are treated like built-in constant
+constructors:
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border=1><tr><td class="c014"><span class="c013">Constant</span></td><td class="c014"><span class="c013">Constructor</span> </td></tr>
+<tr><td class="c016">
+<span class="c003">false</span></td><td class="c016">the boolean false </td></tr>
+<tr><td class="c016"><span class="c003">true</span></td><td class="c016">the boolean true </td></tr>
+<tr><td class="c016"><span class="c003">()</span></td><td class="c016">the &#X201C;unit&#X201D; value </td></tr>
+<tr><td class="c016"><span class="c003">[]</span></td><td class="c016">the empty list </td></tr>
+</table></div></div><p>The current implementation limits each variant type to have at most
+246 non-constant constructors and 2<sup>30</sup>&#X2212;1 constant constructors.</p>
+<h3 class="subsection" id="sec97">7.2.6&#XA0;&#XA0;Polymorphic variants</h3>
+<p>Polymorphic variants are an alternate form of variant values, not
+belonging explicitly to a predefined variant type, and following
+specific typing rules. They can be either constant, written
+<span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a>, or non-constant, written <span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a><span class="c002"><span class="c003">(</span><span class="c010">v</span><span class="c003">)</span></span>.</p>
+<h3 class="subsection" id="sec98">7.2.7&#XA0;&#XA0;Functions</h3>
+<p>Functional values are mappings from values to values.</p>
+<h3 class="subsection" id="sec99">7.2.8&#XA0;&#XA0;Objects</h3>
+<p>Objects are composed of a hidden internal state which is a
+record of instance variables, and a set of methods for accessing and
+modifying these variables. The structure of an object is described by
+the toplevel class that created it.
+
+</p>
+<hr>
+<a href="lex.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="names.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

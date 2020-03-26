@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.1  Recursive definitions of values</title>
+</head>
+<body>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual024.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:letrecvalues"><a class="section-anchor" href="#s:letrecvalues" aria-hidden="true">﻿</a>8.1  Recursive definitions of values</h2>
+<p>(Introduced in Objective Caml 1.00)</p><p>As mentioned in section <a href="expr.html#sss%3Aexpr-localdef">7.7.2</a>, the <span class="c002"><span class="c003">let</span> <span class="c003">rec</span></span> binding
+construct, in addition to the definition of recursive functions,
+also supports a certain class of recursive definitions of
+non-functional values, such as
+</p><div class="center">
+<span class="c002"><span class="c003">let</span> <span class="c003">rec</span></span> <span class="c010">name</span><sub>1</sub> <span class="c002"><span class="c003">=</span> <span class="c003">1</span> <span class="c003">::</span></span>  <span class="c010">name</span><sub>2</sub>
+<span class="c004">and</span>  <span class="c010">name</span><sub>2</sub> <span class="c002"><span class="c003">=</span> <span class="c003">2</span> <span class="c003">::</span></span>  <span class="c010">name</span><sub>1</sub>
+<span class="c004">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+</div><p>
+which binds <span class="c010">name</span><sub>1</sub> to the cyclic list <span class="c003">1::2::1::2::</span>…, and
+<span class="c010">name</span><sub>2</sub> to the cyclic list <span class="c003">2::1::2::1::</span>…Informally, the class of accepted definitions consists of those
+definitions where the defined names occur only inside function
+bodies or as argument to a data constructor.</p><p>More precisely, consider the expression:
+</p><div class="center">
+<span class="c002"><span class="c003">let</span> <span class="c003">rec</span></span> <span class="c010">name</span><sub>1</sub> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">and</span> … <span class="c004">and</span>  <span class="c010">name</span><sub><span class="c009">n</span></sub> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">n</span></sub> <span class="c004">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+</div><p>
+It will be accepted if each one of <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> …  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">n</span></sub> is
+statically constructive with respect to <span class="c010">name</span><sub>1</sub> …  <span class="c010">name</span><sub><span class="c009">n</span></sub>,
+is not immediately linked to any of <span class="c010">name</span><sub>1</sub> …  <span class="c010">name</span><sub><span class="c009">n</span></sub>,
+and is not an array constructor whose arguments have abstract type.</p><p>An expression <span class="c010">e</span> is said to be <em>statically constructive
+with respect to</em> the variables <span class="c010">name</span><sub>1</sub> …  <span class="c010">name</span><sub><span class="c009">n</span></sub> if at least
+one of the following conditions is true:
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c010">e</span> has no free occurrence of any of <span class="c010">name</span><sub>1</sub> …  <span class="c010">name</span><sub><span class="c009">n</span></sub>
+</li><li class="li-itemize"><span class="c010">e</span> is a variable
+</li><li class="li-itemize"><span class="c010">e</span> has the form <span class="c004">fun</span> … <span class="c004">-&gt;</span> …
+</li><li class="li-itemize"><span class="c010">e</span> has the form <span class="c004">function</span> … <span class="c004">-&gt;</span> …
+</li><li class="li-itemize"><span class="c010">e</span> has the form <span class="c002"><span class="c003">lazy</span> <span class="c003">(</span></span> … <span class="c004">)</span>
+</li><li class="li-itemize"><span class="c010">e</span> has one of the following forms, where each one of
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> …  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> is statically constructive with respect to
+<span class="c010">name</span><sub>1</sub> …  <span class="c010">name</span><sub><span class="c009">n</span></sub>, and <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> is statically constructive with
+respect to <span class="c010">name</span><sub>1</sub> …  <span class="c010">name</span><sub><span class="c009">n</span></sub>,  <span class="c010">xname</span><sub>1</sub> …  <span class="c010">xname</span><sub><span class="c009">m</span></sub>:
+<ul class="itemize"><li class="li-itemize">
+<span class="c004">let</span> [<span class="c004">rec</span>] <span class="c010">xname</span><sub>1</sub> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">and</span> …
+<span class="c004">and</span>  <span class="c010">xname</span><sub><span class="c009">m</span></sub> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub>
+</li><li class="li-itemize"><span class="c002"><span class="c003">let</span> <span class="c003">module</span></span> … <span class="c004">in</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub>
+</li><li class="li-itemize"><a class="syntax" href="names.html#constr"><span class="c010">constr</span></a> <span class="c004">(</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> … <span class="c004">,</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub><span class="c004">)</span>
+</li><li class="li-itemize"><span class="c004">`</span><a class="syntax" href="names.html#tag-name"><span class="c010">tag-name</span></a> <span class="c004">(</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> … <span class="c004">,</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub><span class="c004">)</span>
+</li><li class="li-itemize"><span class="c004">[|</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">;</span> … <span class="c004">;</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">|]</span>
+</li><li class="li-itemize"><span class="c004">{</span> <a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub>1</sub> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">;</span> … <span class="c004">;</span>  <a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub><span class="c009">m</span></sub> =  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">}</span>
+</li><li class="li-itemize"><span class="c004">{</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">with</span>  <a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub>2</sub> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub><span class="c004">;</span> … <span class="c004">;</span>
+ <a class="syntax" href="names.html#field"><span class="c010">field</span></a><sub><span class="c009">m</span></sub> =  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">}</span> where <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> is not immediately
+linked to <span class="c010">name</span><sub>1</sub> …  <span class="c010">name</span><sub><span class="c009">n</span></sub>
+</li><li class="li-itemize"><span class="c004">(</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">,</span> … <span class="c004">,</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">)</span>
+</li><li class="li-itemize"><a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">;</span> … <span class="c004">;</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub>
+</li></ul>
+</li></ul><p>An expression <span class="c010">e</span> is said to be <em>immediately linked to</em> the variable
+<span class="c010">name</span> in the following cases:
+</p><ul class="itemize"><li class="li-itemize">
+<span class="c010">e</span> is <span class="c010">name</span>
+</li><li class="li-itemize"><span class="c010">e</span> has the form <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub><span class="c004">;</span> … <span class="c004">;</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> where <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub>
+is immediately linked to <span class="c010">name</span>
+</li><li class="li-itemize"><span class="c010">e</span> has the form <span class="c004">let</span> [<span class="c004">rec</span>] <span class="c010">xname</span><sub>1</sub> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">and</span> …
+<span class="c004">and</span>  <span class="c010">xname</span><sub><span class="c009">m</span></sub> <span class="c004">=</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">m</span></sub> <span class="c004">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> where <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>0</sub> is immediately
+linked to <span class="c010">name</span> or to one of the <span class="c010">xname</span><sub><span class="c009">i</span></sub> such that <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub><span class="c009">i</span></sub>
+is immediately linked to <span class="c010">name</span>.
+</li></ul>
+<hr>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual024.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

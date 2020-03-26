@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;27&#XA0;&#XA0;The compiler front-end</title>
+</head>
+<body>
+<a href="stdlib.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="libunix.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec559">Chapter&#XA0;27&#XA0;&#XA0;The compiler front-end</h1>
+<p> <a id="c:parsinglib"></a></p><p>This chapter describes the OCaml front-end, which declares the abstract
+syntax tree used by the compiler, provides a way to parse, print
+and pretty-print OCaml code, and ultimately allows to write abstract
+syntax tree preprocessors invoked via the <span class="c003">-ppx</span> flag (see chapters&#XA0;<a href="comp.html#c%3Acamlc">9</a>
+and&#XA0;<a href="native.html#c%3Anativecomp">12</a>) and plugins invoked via the <span class="c003">-plugin</span> flag
+(see chapter&#XA0;<a href="plugins.html#c%3Aplugins">24</a>).</p><p>It is important to note that the exported front-end interface follows the evolution of the OCaml language and implementation, and thus does not provide <span class="c013">any</span> backwards compatibility guarantees.</p><p>The front-end is a part of <span class="c003">compiler-libs</span> library.
+Programs that use the <span class="c003">compiler-libs</span> library should be built as follows:
+</p><pre>
+        ocamlfind ocamlc <span class="c009">other options</span> -package compiler-libs.common <span class="c009">other files</span>
+        ocamlfind ocamlopt <span class="c009">other options</span> -package compiler-libs.common <span class="c009">other files</span>
+</pre><p>
+Use of the <span class="c003">ocamlfind</span> utility is recommended. However, if this is not possible, an alternative method may be used:
+</p><pre>
+        ocamlc <span class="c009">other options</span> -I +compiler-libs ocamlcommon.cma <span class="c009">other files</span>
+        ocamlopt <span class="c009">other options</span> -I +compiler-libs ocamlcommon.cmxa <span class="c009">other files</span>
+</pre><p>
+For interactive use of the <span class="c003">compiler-libs</span> library, start <span class="c003">ocaml</span> and
+type<br>
+<span class="c003">#load "compiler-libs/ocamlcommon.cma";;</span>.</p><ul class="ftoc2"><li class="li-links">
+<a href="libref/Ast_helper.html">Module <span class="c003">Ast_helper</span>: helper functions for AST construction</a>
+</li><li class="li-links"><a href="libref/Ast_mapper.html">Module <span class="c003">Ast_mapper</span>: -ppx rewriter interface</a>
+</li><li class="li-links"><a href="libref/Asttypes.html">Module <span class="c003">Asttypes</span>: auxiliary types used by Parsetree</a>
+</li><li class="li-links"><a href="libref/Location.html">Module <span class="c003">Location</span>: source code locations</a>
+</li><li class="li-links"><a href="libref/Longident.html">Module <span class="c003">Longident</span>: long identifiers</a>
+</li><li class="li-links"><a href="libref/Parse.html">Module <span class="c003">Parse</span>: OCaml syntax parsing</a>
+</li><li class="li-links"><a href="libref/Parsetree.html">Module <span class="c003">Parsetree</span>: OCaml syntax tree</a>
+</li><li class="li-links"><a href="libref/Pprintast.html">Module <span class="c003">Pprintast</span>: OCaml syntax printing</a>
+</li></ul><p>The following modules provides hooks for compiler plugins:
+</p><ul class="ftoc2"><li class="li-links">
+<a href="libref/Pparse.html">Module <span class="c003">Pparse</span>: OCaml parser driver</a>
+</li><li class="li-links"><a href="libref/Typemod.html">Module <span class="c003">Typemod</span>:
+OCaml module type checking</a>
+</li><li class="li-links"><a href="libref/Simplif.html">Module <span class="c003">Simplif</span>: Lambda simplification</a>
+</li><li class="li-links"><a href="libref/Clflags.html">Module <span class="c003">Clflags</span>: command line flags</a>
+</li></ul>
+<hr>
+<a href="stdlib.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="libunix.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

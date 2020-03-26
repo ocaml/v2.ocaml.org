@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.19  Extended indexing operators </title>
+</head>
+<body>
+<a href="doccomments.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="emptyvariants.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:index-operators"><a class="section-anchor" href="#s:index-operators" aria-hidden="true">﻿</a>8.19  Extended indexing operators </h2>
+<ul>
+<li><a href="indexops.html#ss%3Amultiindexing">8.19.1  Multi-index notation</a>
+</li></ul>
+<p>
+(Introduced in 4.06)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018"><a class="syntax" id="dot-ext"><span class="c010">dot-ext</span></a></td><td class="c015">::=</td><td class="c017">
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#dot-operator-char"><span class="c010">dot-operator-char</span></a>  { <a class="syntax" href="lex.html#operator-char"><span class="c010">operator-char</span></a> }
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="dot-operator-char"><span class="c010">dot-operator-char</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">!</span> ∣   <span class="c004">?</span> ∣  <a class="syntax" href="lex.html#core-operator-char"><span class="c010">core-operator-char</span></a> ∣  <span class="c004">%</span> ∣  <span class="c004">:</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">.</span>  [<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.</span>]  <a class="syntax" href="#dot-ext"><span class="c010">dot-ext</span></a>  ( <span class="c004">(</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">)</span> ∣  <span class="c004">[</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">]</span> ∣  <span class="c004">{</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">}</span> )  [ <span class="c004">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> ]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">operator-name</span></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">.</span> <a class="syntax" href="#dot-ext"><span class="c010">dot-ext</span></a>  (<span class="c004">()</span> ∣  <span class="c004">[]</span> ∣  <span class="c004">{}</span>) [<span class="c004">&lt;-</span>]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>This extension provides syntactic sugar for getting and setting elements
+for user-defined indexed types. For instance, we can define python-like
+dictionaries with
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> Dict = <span class="ocamlkeyword">struct</span>
+ <span class="ocamlkeyword">include</span> Hashtbl
+ <span class="ocamlkeyword">let</span> ( .%{} ) tabl index = find tabl index
+ <span class="ocamlkeyword">let</span> ( .%{}&lt;- ) tabl index value = add tabl index value
+ <span class="ocamlkeyword">end</span>
+ <span class="ocamlkeyword">let</span> dict =
+   <span class="ocamlkeyword">let</span> dict = Dict.create 10 <span class="ocamlkeyword">in</span>
+   <span class="ocamlkeyword">let</span> () =
+     dict.Dict.%{<span class="ocamlstring">"one"</span>} &lt;- 1;
+     <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">open</span> Dict <span class="ocamlkeyword">in</span>
+     dict.%{<span class="ocamlstring">"two"</span>} &lt;- 2 <span class="ocamlkeyword">in</span>
+   dict</div></div>
+
+</div><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> dict.Dict.%{<span class="ocamlstring">"one"</span>};;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 1</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">open</span> Dict <span class="ocamlkeyword">in</span> dict.%{<span class="ocamlstring">"two"</span>};;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 2</div></div>
+
+</div>
+<h3 class="subsection" id="ss:multiindexing"><a class="section-anchor" href="#ss:multiindexing" aria-hidden="true">﻿</a>8.19.1  Multi-index notation</h3>
+<div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">.</span>  [<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.</span>]  <a class="syntax" href="#dot-ext"><span class="c010">dot-ext</span></a> <span class="c004">(</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>  {<span class="c004">;</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> }<sup>+</sup> <span class="c004">)</span>  [ <span class="c004">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> ]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">.</span>  [<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.</span>]  <a class="syntax" href="#dot-ext"><span class="c010">dot-ext</span></a> <span class="c004">[</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>  {<span class="c004">;</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> }<sup>+</sup> <span class="c004">]</span>  [ <span class="c004">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> ]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">.</span>  [<a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">.</span>]  <a class="syntax" href="#dot-ext"><span class="c010">dot-ext</span></a> <span class="c004">{</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>  {<span class="c004">;</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> }<sup>+</sup> <span class="c004">}</span>  [ <span class="c004">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> ]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">operator-name</span></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">.</span> <a class="syntax" href="#dot-ext"><span class="c010">dot-ext</span></a>  (<span class="c004">(;..)</span> ∣  <span class="c004">[;..]</span> ∣  <span class="c004">{;..}</span>) [<span class="c004">&lt;-</span>]
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Multi-index are also supported through a second variant of indexing operators</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> (.%[;..]) = Bigarray.Genarray.get
+ <span class="ocamlkeyword">let</span> (.%{;..}) = Bigarray.Genarray.get
+ <span class="ocamlkeyword">let</span> (.%(;..)) = Bigarray.Genarray.get</div></div>
+
+</div><p>which is called when an index literals contain a semicolon separated list
+of expressions with two and more elements:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> sum x y = x.%[1;2;3] + y.%[1;2]
+ <span class="ocamlcomment">(* is equivalent to *)</span>
+ <span class="ocamlkeyword">let</span> sum x y = (.%[;..]) x [|1;2;3|] + (.%[;..]) y [|1;2|]</div></div>
+
+</div><p>In particular this multi-index notation makes it possible to uniformly handle
+indexing Genarray and other implementations of multidimensional arrays.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> A = Bigarray.Genarray
+ <span class="ocamlkeyword">let</span> (.%{;..}) = A.get
+ <span class="ocamlkeyword">let</span> (.%{;..}&lt;- ) = A.set
+ <span class="ocamlkeyword">let</span> (.%{ }) a k = A.get a [|k|]
+ <span class="ocamlkeyword">let</span> (.%{ }&lt;-) a k x = A.set a [|k|] x
+ <span class="ocamlkeyword">let</span> syntax_compare vec mat t3 t4 =
+           vec.%{0} = A.get vec [|0|]
+    &amp;&amp;   mat.%{0;0} = A.get mat [|0;0|]
+    &amp;&amp;   t3.%{0;0;0} = A.get t3 [|0;0;0|]
+    &amp;&amp; t4.%{0;0;0;0} = t4.{0,0,0,0}</div></div>
+
+</div>
+<hr>
+<a href="doccomments.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="emptyvariants.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

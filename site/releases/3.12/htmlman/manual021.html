@@ -1,0 +1,739 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Language extensions</TITLE>
+</HEAD>
+<BODY >
+<A HREF="language.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual022.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc92">Chapter 7</A>  Language extensions</H1><UL>
+<LI><A HREF="manual021.html#toc68">Integer literals for types <TT>int32</TT>, <TT>int64</TT> and <TT>nativeint</TT></A>
+</LI><LI><A HREF="manual021.html#toc69">Streams and stream parsers</A>
+</LI><LI><A HREF="manual021.html#toc70">Recursive definitions of values</A>
+</LI><LI><A HREF="manual021.html#toc71">Range patterns</A>
+</LI><LI><A HREF="manual021.html#toc72">Assertion checking</A>
+</LI><LI><A HREF="manual021.html#toc73">Lazy evaluation</A>
+</LI><LI><A HREF="manual021.html#toc74">Local modules</A>
+</LI><LI><A HREF="manual021.html#toc75">Recursive modules</A>
+</LI><LI><A HREF="manual021.html#toc76">Private types</A>
+</LI><LI><A HREF="manual021.html#toc77">Local opens</A>
+</LI><LI><A HREF="manual021.html#toc78">Record notations</A>
+</LI><LI><A HREF="manual021.html#toc79">Explicit polymorphic type annotations</A>
+</LI><LI><A HREF="manual021.html#toc80">Explicit naming of type variables</A>
+</LI><LI><A HREF="manual021.html#toc81">First-class modules</A>
+</LI><LI><A HREF="manual021.html#toc82">Recovering the type of a module</A>
+</LI><LI><A HREF="manual021.html#toc83">Substituting inside a signature</A>
+</LI><LI><A HREF="manual021.html#toc84">Explicit overriding in class definitions</A>
+</LI></UL>
+<P> <A NAME="c:extensions"></A>
+</P><P>This chapter describes language extensions and convenience features
+that are implemented in OCaml, but not described in the
+OCaml reference manual.</P><H2 CLASS="section"><A NAME="toc68"></A><A NAME="htoc93">7.1</A>  Integer literals for types <TT>int32</TT>, <TT>int64</TT> and <TT>nativeint</TT></H2><P>(Introduced in Objective Caml 3.07)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="int32-literal"><FONT COLOR=maroon>int32-literal</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP> <I><A HREF="lex.html#integer-literal"><FONT COLOR=maroon>integer-literal</FONT></A></I> <FONT COLOR=blue><TT>l</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="int64-literal"><FONT COLOR=maroon>int64-literal</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP> <I><A HREF="lex.html#integer-literal"><FONT COLOR=maroon>integer-literal</FONT></A></I> <FONT COLOR=blue><TT>L</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="nativeint-literal"><FONT COLOR=maroon>nativeint-literal</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP> <I><A HREF="lex.html#integer-literal"><FONT COLOR=maroon>integer-literal</FONT></A></I> <FONT COLOR=blue><TT>n</TT></FONT></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+An integer literal can be followed by one of the letters <TT>l</TT>, <TT>L</TT> or <TT>n</TT>
+to indicate that this integer has type <TT>int32</TT>, <TT>int64</TT> or <TT>nativeint</TT>
+respectively, instead of the default type <TT>int</TT> for integer literals.
+<A NAME="@manual3"></A>
+<A NAME="@manual4"></A>
+<A NAME="@manual5"></A>
+The library modules <TT>Int32</TT>[<TT><A HREF="libref/Int32.html">Int32</A></TT>],
+<TT>Int64</TT>[<TT><A HREF="libref/Int64.html">Int64</A></TT>] and <TT>Nativeint</TT>[<TT><A HREF="libref/Nativeint.html">Nativeint</A></TT>]
+provide operations on these integer types.</P><H2 CLASS="section"><A NAME="toc69"></A><A NAME="htoc94">7.2</A>  Streams and stream parsers</H2><P>
+<A NAME="s:streams"></A></P><P>(Removed in Objective Caml 3.03)</P><P>The syntax for streams and stream parsers is no longer part of the
+OCaml language, but available through a Camlp4 syntax
+extension. See the Camlp4 reference manual for more information.
+Support for basic operations on streams is still available through the
+<TT>Stream</TT>[<TT><A HREF="libref/Stream.html">Stream</A></TT>] module of the standard library.
+OCaml programs
+that use the stream parser syntax should be compiled with the
+<TT>-pp camlp4o</TT> option to <TT>ocamlc</TT> and <TT>ocamlopt</TT>. For interactive use,
+run <TT>ocaml</TT> and issue the <CODE>#load "camlp4o.cma";;</CODE> command.</P><H2 CLASS="section"><A NAME="toc70"></A><A NAME="htoc95">7.3</A>  Recursive definitions of values</H2><P> <A NAME="s:letrecvalues"></A></P><P>(Introduced in Objective Caml 1.00)</P><P>As mentioned in section <A HREF="expr.html#s:localdef">6.7.1</A>, the <FONT COLOR=blue><TT>let rec</TT></FONT> binding
+construct, in addition to the definition of recursive functions,
+also supports a certain class of recursive definitions of
+non-functional values, such as
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>let</TT> <TT>rec</TT></FONT> <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT> <TT>1</TT> <TT>::</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT><SUB>2</SUB>
+<FONT COLOR=blue><TT>and</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT><SUB>2</SUB> <FONT COLOR=blue><TT>=</TT> <TT>2</TT> <TT>::</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB>
+<FONT COLOR=blue><TT>in</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+which binds <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> to the cyclic list <TT>1::2::1::2::</TT>&#X2026;, and
+<FONT COLOR=maroon><I>name</I></FONT><SUB>2</SUB> to the cyclic list <TT>2::1::2::1::</TT>&#X2026;Informally, the class of accepted definitions consists of those
+definitions where the defined names occur only inside function
+bodies or as argument to a data constructor.</P><P>More precisely, consider the expression:
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>let</TT> <TT>rec</TT></FONT> <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>and</TT></FONT> &#X2026; <FONT COLOR=blue><TT>and</TT></FONT>  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> <FONT COLOR=blue><TT>in</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>
+</DIV><P>
+It will be accepted if each one of <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> &#X2026;  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>n</SUB></I> is
+statically constructive with respect to <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#X2026;  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I>,
+is not immediately linked to any of <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#X2026;  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I>,
+and is not an array constructor whose arguments have abstract type.</P><P>An expression <FONT COLOR=maroon><I>e</I></FONT> is said to be <EM>statically constructive
+with respect to</EM> the variables <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#X2026;  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I> if at least
+one of the following conditions is true:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<FONT COLOR=maroon><I>e</I></FONT> has no free occurrence of any of <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#X2026;  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I>
+</LI><LI CLASS="li-itemize"><FONT COLOR=maroon><I>e</I></FONT> is a variable
+</LI><LI CLASS="li-itemize"><FONT COLOR=maroon><I>e</I></FONT> has the form <FONT COLOR=blue><TT>fun</TT></FONT> &#X2026; <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#X2026;
+</LI><LI CLASS="li-itemize"><FONT COLOR=maroon><I>e</I></FONT> has the form <FONT COLOR=blue><TT>function</TT></FONT> &#X2026; <FONT COLOR=blue><TT>-&gt;</TT></FONT> &#X2026;
+</LI><LI CLASS="li-itemize"><FONT COLOR=maroon><I>e</I></FONT> has the form <FONT COLOR=blue><TT>lazy</TT> <TT>(</TT></FONT> &#X2026; <FONT COLOR=blue><TT>)</TT></FONT>
+</LI><LI CLASS="li-itemize"><FONT COLOR=maroon><I>e</I></FONT> has one of the following forms, where each one of
+<I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> &#X2026;  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I> is statically constructive with respect to
+<FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#X2026;  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I>, and <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>0</SUB> is statically constructive with
+respect to <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#X2026;  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I>,  <FONT COLOR=maroon><I>xname</I></FONT><SUB>1</SUB> &#X2026;  <I><FONT COLOR=maroon>xname</FONT><SUB>m</SUB></I>:
+<UL CLASS="itemize"><LI CLASS="li-itemize">
+<FONT COLOR=blue><TT>let</TT></FONT> [<FONT COLOR=blue><TT>rec</TT></FONT>] <FONT COLOR=maroon><I>xname</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>and</TT></FONT> &#X2026;
+<FONT COLOR=blue><TT>and</TT></FONT>  <I><FONT COLOR=maroon>xname</FONT><SUB>m</SUB></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I> <FONT COLOR=blue><TT>in</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>0</SUB>
+</LI><LI CLASS="li-itemize"><FONT COLOR=blue><TT>let</TT> <TT>module</TT></FONT> &#X2026; <FONT COLOR=blue><TT>in</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB>
+</LI><LI CLASS="li-itemize"><I><A HREF="manual011.html#constr"><FONT COLOR=maroon>constr</FONT></A></I> <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB><FONT COLOR=blue><TT>,</TT></FONT> &#X2026; <FONT COLOR=blue><TT>,</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I><FONT COLOR=blue><TT>)</TT></FONT>
+</LI><LI CLASS="li-itemize"><FONT COLOR=blue><TT>`</TT></FONT><I><A HREF="manual011.html#tag-name"><FONT COLOR=maroon>tag-name</FONT></A></I> <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB><FONT COLOR=blue><TT>,</TT></FONT> &#X2026; <FONT COLOR=blue><TT>,</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I><FONT COLOR=blue><TT>)</TT></FONT>
+</LI><LI CLASS="li-itemize"><FONT COLOR=blue><TT>[|</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB><FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I> <FONT COLOR=blue><TT>|]</TT></FONT>
+</LI><LI CLASS="li-itemize"><FONT COLOR=blue><TT>{</TT></FONT> <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB><FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT>  <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A><SUB>m</SUB></I> =  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I> <FONT COLOR=blue><TT>}</TT></FONT>
+</LI><LI CLASS="li-itemize"><FONT COLOR=blue><TT>{</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>with</TT></FONT>  <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A></I><SUB>2</SUB> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB><FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT>
+ <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A><SUB>m</SUB></I> =  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I> <FONT COLOR=blue><TT>}</TT></FONT> where <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> is not immediately
+linked to <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> &#X2026;  <I><FONT COLOR=maroon>name</FONT><SUB>n</SUB></I>
+</LI><LI CLASS="li-itemize"><FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB><FONT COLOR=blue><TT>,</TT></FONT> &#X2026; <FONT COLOR=blue><TT>,</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I> <FONT COLOR=blue><TT>)</TT></FONT>
+</LI><LI CLASS="li-itemize"><I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB><FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I>
+</LI></UL>
+</LI></UL><P>An expression <FONT COLOR=maroon><I>e</I></FONT> is said to be <EM>immediately linked to</EM> the variable
+<FONT COLOR=maroon><I>name</I></FONT> in the following cases:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<FONT COLOR=maroon><I>e</I></FONT> is <FONT COLOR=maroon><I>name</I></FONT>
+</LI><LI CLASS="li-itemize"><FONT COLOR=maroon><I>e</I></FONT> has the form <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB><FONT COLOR=blue><TT>;</TT></FONT> &#X2026; <FONT COLOR=blue><TT>;</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I> where <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I>
+is immediately linked to <FONT COLOR=maroon><I>name</I></FONT>
+</LI><LI CLASS="li-itemize"><FONT COLOR=maroon><I>e</I></FONT> has the form <FONT COLOR=blue><TT>let</TT></FONT> [<FONT COLOR=blue><TT>rec</TT></FONT>] <FONT COLOR=maroon><I>xname</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>and</TT></FONT> &#X2026;
+<FONT COLOR=blue><TT>and</TT></FONT>  <I><FONT COLOR=maroon>xname</FONT><SUB>m</SUB></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>m</SUB></I> <FONT COLOR=blue><TT>in</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>0</SUB> where <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>0</SUB> is immediately
+linked to <FONT COLOR=maroon><I>name</I></FONT> or to one of the <I><FONT COLOR=maroon>xname</FONT><SUB>i</SUB></I> such that <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A><SUB>i</SUB></I>
+is immediately linked to <FONT COLOR=maroon><I>name</I></FONT>.
+</LI></UL><H2 CLASS="section"><A NAME="toc71"></A><A NAME="htoc96">7.4</A>  Range patterns</H2><P>(Introduced in Objective Caml 1.00)</P><P>In patterns, OCaml recognizes the form
+<FONT COLOR=blue><TT>'</TT> <FONT COLOR=maroon><I>c</I></FONT> <TT>'</TT> <TT>..</TT> <TT>'</TT> <FONT COLOR=maroon><I>d</I></FONT> <TT>'</TT></FONT>
+(two character literals separated by <TT>..</TT>) as shorthand for the pattern
+</P><DIV CLASS="center">
+<FONT COLOR=blue><TT>'</TT></FONT> <FONT COLOR=maroon><I>c</I> <FONT COLOR=blue><TT>'</TT> <TT>|</TT> <TT>'</TT></FONT> <I>c</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>'</TT> <TT>|</TT> <TT>'</TT></FONT> <FONT COLOR=maroon><I>c</I></FONT><SUB>2</SUB> <FONT COLOR=blue><TT>'</TT> <TT>|</TT></FONT> &#X2026;
+<FONT COLOR=blue><TT>|</TT> <TT>'</TT></FONT> <I><FONT COLOR=maroon>c</FONT><SUB>n</SUB></I> <FONT COLOR=blue><TT>'</TT> <TT>|</TT> <TT>'</TT> <FONT COLOR=maroon><I>d</I></FONT> <TT>'</TT></FONT>
+</DIV><P>
+where <I>c</I><SUB>1</SUB>, <I>c</I><SUB>2</SUB>, &#X2026;, <I>c<SUB>n</SUB></I> are the characters
+that occur between <I>c</I> and <I>d</I> in the ASCII character set. For
+instance, the pattern <TT>&#X2019;0&#X2019;..&#X2019;9&#X2019;</TT> matches all characters that are digits.</P><H2 CLASS="section"><A NAME="toc72"></A><A NAME="htoc97">7.5</A>  Assertion checking</H2><P>
+<A NAME="@manual.kwd173"></A></P><P>(Introduced in Objective Caml 1.06)</P><P>OCaml supports the <TT>assert</TT> construct to check debugging assertions.
+The expression <FONT COLOR=blue><TT>assert</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> evaluates the expression <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> and
+returns <TT>()</TT> if <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> evaluates to <TT>true</TT>. Otherwise, the exception
+<TT>Assert_failure</TT> is raised with the source file name and the
+location of <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> as arguments. Assertion
+checking can be turned off with the <TT>-noassert</TT> compiler option.</P><P>As a special case, <TT>assert false</TT> is reduced to
+<TT>raise (Assert_failure ...)</TT>, which is polymorphic (and
+is not turned off by the <TT>-noassert</TT> option).
+<A NAME="@manual6"></A></P><H2 CLASS="section"><A NAME="toc73"></A><A NAME="htoc98">7.6</A>  Lazy evaluation</H2><P>
+<A NAME="@manual.kwd174"></A></P><P>(Introduced in Objective Caml 1.06 for expressions;
+in Objective Caml 3.11 for patterns)</P><P>The expression <FONT COLOR=blue><TT>lazy</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> returns a value <I>v</I> of type <TT>Lazy.t</TT> that
+encapsulates the computation of <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>. The argument <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> is not
+evaluated at this point in the program. Instead, its evaluation will
+be performed the first time <TT>Lazy.force</TT> is applied to the value
+<I>v</I>, returning the actual value of <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>. Subsequent applications
+of <TT>Lazy.force</TT> to <I>v</I> do not evaluate <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> again. Applications
+of <TT>Lazy.force</TT> may be implicit through pattern matching.</P><P>The pattern <FONT COLOR=blue><TT>lazy</TT></FONT> <I><A HREF="patterns.html#pattern"><FONT COLOR=maroon>pattern</FONT></A></I> matches values <I>v</I> of type <TT>Lazy.t</TT>,
+provided <I><A HREF="patterns.html#pattern"><FONT COLOR=maroon>pattern</FONT></A></I> matches the result of forcing <I>v</I> with
+<TT>Lazy.force</TT>. A successful match of a pattern containing <TT>lazy</TT>
+sub-patterns forces the corresponding parts of the value being matched, even
+those that imply no test such as <FONT COLOR=blue><TT>lazy</TT></FONT> <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> or <FONT COLOR=blue><TT>lazy</TT> <TT>_</TT></FONT>.
+Matching a value with a <I><A HREF="expr.html#pattern-matching"><FONT COLOR=maroon>pattern-matching</FONT></A></I> where some patterns
+contain <TT>lazy</TT> sub-patterns may imply forcing parts of the value,
+even when the pattern selected in the end has no <TT>lazy</TT> sub-pattern.</P><P>For more information, see the description of module <TT>Lazy</TT> in the
+standard library (see
+<A HREF="libref/Lazy.html">Module <TT>Lazy</TT></A>).
+<A NAME="@manual7"></A><A NAME="@manual8"></A></P><H2 CLASS="section"><A NAME="toc74"></A><A NAME="htoc99">7.7</A>  Local modules</H2><P>
+<A NAME="@manual.kwd175"></A>
+<A NAME="@manual.kwd176"></A></P><P>(Introduced in Objective Caml 2.00)</P><P>The expression
+<FONT COLOR=blue><TT>let</TT> <TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>in</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>
+locally binds the module expression <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> to the identifier
+<I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> during the evaluation of the expression <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>.
+It then returns the value of <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>. For example:
+</P><PRE CLASS="verbatim">        let remove_duplicates comparison_fun string_list =
+          let module StringSet =
+            Set.Make(struct type t = string
+                            let compare = comparison_fun end) in
+          StringSet.elements
+            (List.fold_right StringSet.add string_list StringSet.empty)
+</PRE><H2 CLASS="section"><A NAME="toc75"></A><A NAME="htoc100">7.8</A>  Recursive modules</H2><P> <A NAME="s-recursive-modules"></A>
+<A NAME="@manual.kwd177"></A>
+<A NAME="@manual.kwd178"></A></P><P>(Introduced in Objective Caml 3.07)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A HREF="manual019.html#definition"><FONT COLOR=maroon>definition</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <FONT COLOR=blue><TT>rec</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> 
+ { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I><FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A HREF="manual018.html#specification"><FONT COLOR=maroon>specification</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <FONT COLOR=blue><TT>rec</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I>
+ { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I><FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> }</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Recursive module definitions, introduced by the &#X2019;module rec&#X2019; &#X2026;&#X2019;and&#X2019; &#X2026; construction, generalize regular module definitions
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> and module specifications
+<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> by allowing the defining
+<I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> and the <I><A HREF="manual018.html#module-type"><FONT COLOR=maroon>module-type</FONT></A></I> to refer recursively to the module
+identifiers being defined. A typical example of a recursive module
+definition is:
+</P><PRE CLASS="verbatim">    module rec A : sig
+                     type t = Leaf of string | Node of ASet.t
+                     val compare: t -&gt; t -&gt; int
+                   end
+                 = struct
+                     type t = Leaf of string | Node of ASet.t
+                     let compare t1 t2 =
+                       match (t1, t2) with
+                         (Leaf s1, Leaf s2) -&gt; Pervasives.compare s1 s2
+                       | (Leaf _, Node _) -&gt; 1
+                       | (Node _, Leaf _) -&gt; -1
+                       | (Node n1, Node n2) -&gt; ASet.compare n1 n2
+                   end
+        and ASet : Set.S with type elt = A.t
+                 = Set.Make(A)
+</PRE><P>It can be given the following specification:
+</P><PRE CLASS="verbatim">    module rec A : sig
+                     type t = Leaf of string | Node of ASet.t
+                     val compare: t -&gt; t -&gt; int
+                   end
+        and ASet : Set.S with type elt = A.t
+</PRE><P>This is an experimental extension of OCaml: the class of
+recursive definitions accepted, as well as its dynamic semantics are
+not final and subject to change in future releases.</P><P>Currently, the compiler requires that all dependency cycles between
+the recursively-defined module identifiers go through at least one
+&#X201C;safe&#X201D; module. A module is &#X201C;safe&#X201D; if all value definitions that
+it contains have function types <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>-&gt;</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I><SUB>2</SUB>. Evaluation of a
+recursive module definition proceeds by building initial values for
+the safe modules involved, binding all (functional) values to
+<FONT COLOR=blue><TT>fun</TT> <TT>_</TT> <TT>-&gt;</TT> <TT>raise</TT> <TT>Undefined_recursive_module</TT></FONT>. The defining
+module expressions are then evaluated, and the initial values
+for the safe modules are replaced by the values thus computed. If a
+function component of a safe module is applied during this computation
+(which corresponds to an ill-founded recursive definition), the
+<TT>Undefined_recursive_module</TT> exception is raised.</P><H2 CLASS="section"><A NAME="toc76"></A><A NAME="htoc101">7.9</A>  Private types</H2><P>
+<A NAME="@manual.kwd179"></A></P><P>Private type declarations in module signatures, of the form 
+<TT>type t = private ...</TT>, enable libraries to
+reveal some, but not all aspects of the implementation of a type to
+clients of the library. In this respect, they strike a middle ground
+between abstract type declarations, where no information is revealed
+on the type implementation, and data type definitions and type
+abbreviations, where all aspects of the type implementation are
+publicized. Private type declarations come in three flavors: for
+variant and record types (section <A HREF="#s-private-types-variant">7.9.1</A>),
+for type abbreviations (section <A HREF="#s-private-types-abbrev">7.9.2</A>),
+and for row types (section <A HREF="#s-private-rows">7.9.3</A>).</P><H3 CLASS="subsection"><A NAME="htoc102">7.9.1</A>  Private variant and record types</H3><P>
+<A NAME="s-private-types-variant"></A></P><P>(Introduced in Objective Caml 3.07)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A HREF="manual016.html#type-representation"><FONT COLOR=maroon>type-representation</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>=</TT></FONT> <FONT COLOR=blue><TT>private</TT></FONT> <I><A HREF="manual016.html#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I>  { <FONT COLOR=blue><TT>|</TT></FONT> <I><A HREF="manual016.html#constr-decl"><FONT COLOR=maroon>constr-decl</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>=</TT></FONT> <FONT COLOR=blue><TT>private</TT></FONT> <FONT COLOR=blue><TT>{</TT></FONT> <I><A HREF="manual016.html#field-decl"><FONT COLOR=maroon>field-decl</FONT></A></I>  { <FONT COLOR=blue><TT>;</TT></FONT> <I><A HREF="manual016.html#field-decl"><FONT COLOR=maroon>field-decl</FONT></A></I> } <FONT COLOR=blue><TT>}</TT></FONT></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+Values of a variant or record type declared <TT>private</TT>
+can be de-structured normally in pattern-matching or via
+the <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A></I> notation for record accesses. However, values of
+these types cannot be constructed directly by constructor application
+or record construction. Moreover, assignment on a mutable field of a
+private record type is not allowed.</P><P>The typical use of private types is in the export signature of a
+module, to ensure that construction of values of the private type always
+go through the functions provided by the module, while still allowing
+pattern-matching outside the defining module. For example:
+</P><PRE CLASS="verbatim">        module M : sig
+                     type t = private A | B of int
+                     val a : t
+                     val b : int -&gt; t
+                   end
+                 = struct
+                     type t = A | B of int
+                     let a = A
+                     let b n = assert (n &gt; 0); B n
+                   end
+</PRE><P>Here, the <TT>private</TT> declaration ensures that in any value of type
+<TT>M.t</TT>, the argument to the <TT>B</TT> constructor is always a positive integer.</P><P>With respect to the variance of their parameters, private types are
+handled like abstract types. That is, if a private type has
+parameters, their variance is the one explicitly given by prefixing
+the parameter by a &#X2018;<TT>+</TT>&#X2019; or a &#X2018;<TT>-</TT>&#X2019;, it is invariant otherwise.</P><H3 CLASS="subsection"><A NAME="htoc103">7.9.2</A>  Private type abbreviations</H3><P> <A NAME="s-private-types-abbrev"></A></P><P>(Introduced in Objective Caml 3.11)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A HREF="manual016.html#type-equation"><FONT COLOR=maroon>type-equation</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>=</TT></FONT> <FONT COLOR=blue><TT>private</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+Unlike a regular type abbreviation, a private type abbreviation
+declares a type that is distinct from its implementation type <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>.
+However, coercions from the type to <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> are permitted. 
+Moreover, the compiler &#X201C;knows&#X201D; the implementation type and can take
+advantage of this knowledge to perform type-directed optimizations.
+For ambiguity reasons, <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> cannot be an object or polymorphic
+variant type, but a similar behaviour can be obtained through private
+row types.</P><P>The following example uses a private type abbreviation to define a
+module of nonnegative integers:
+</P><PRE CLASS="verbatim">        module N : sig
+                     type t = private int
+                     val of_int: int -&gt; t
+                     val to_int: t -&gt; int
+                   end
+                 = struct
+                     type t = int
+                     let of_int n = assert (n &gt;= 0); n
+                     let to_int n = n
+                   end
+</PRE><P>The type <TT>N.t</TT> is incompatible with <TT>int</TT>, ensuring that nonnegative
+integers and regular integers are not confused. However, if <TT>x</TT> has
+type <TT>N.t</TT>, the coercion <TT>(x :&gt; int)</TT> is legal and returns the
+underlying integer, just like <TT>N.to_int x</TT>. Deep coercions are also
+supported: if <TT>l</TT> has type <TT>N.t list</TT>, the coercion <TT>(l :&gt; int list)</TT>
+returns the list of underlying integers, like <TT>List.map N.to_int l</TT>
+but without copying the list <TT>l</TT>.</P><P>Note that the coercion <TT>(</TT><I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><TT> :&gt; </TT><I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I><TT>)</TT> is actually an abbreviated form,
+and will only work in presence of private abbreviations if both the
+type of <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> and <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> contain no type variables. If this is not the
+case, you must use the full form <TT>(</TT><I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><TT> : </TT>typ_e<TT> :&gt; </TT><I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I><TT>)</TT> where
+typ_e is the expected type of <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>. Concretely, this would be <TT>(x : N.t :&gt; int)</TT> and <TT>(l : N.t list :&gt; int list)</TT> for the above examples.</P><H3 CLASS="subsection"><A NAME="htoc104">7.9.3</A>  Private row types</H3><P> <A NAME="s-private-rows"></A>
+<A NAME="@manual.kwd180"></A></P><P>(Introduced in Objective Caml 3.09)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A HREF="manual016.html#type-equation"><FONT COLOR=maroon>type-equation</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>=</TT></FONT> <FONT COLOR=blue><TT>private</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+Private row types are type abbreviations where part of the
+structure of the type is left abstract. Concretely <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I> in the
+above should denote either an object type or a polymorphic variant
+type, with some possibility of refinement left. If the private
+declaration is used in an interface, the corresponding implementation
+may either provide a ground instance, or a refined private type.
+</P><PRE CLASS="verbatim">   module M : sig type c = private &lt; x : int; .. &gt; val o : c end =
+     struct
+       class c = object method x = 3 method y = 2 end
+       let o = new c
+     end
+</PRE><P>This declaration does more than hiding the <TT>y</TT> method, it also makes
+the type <TT>c</TT> incompatible with any other closed object type, meaning
+that only <TT>o</TT> will be of type <TT>c</TT>. In that respect it behaves
+similarly to private record types. But private row types are
+more flexible with respect to incremental refinement. This feature can
+be used in combination with functors.
+</P><PRE CLASS="verbatim">   module F(X : sig type c = private &lt; x : int; .. &gt; end) =
+     struct
+       let get_x (o : X.c) = o#x
+     end
+   module G(X : sig type c = private &lt; x : int; y : int; .. &gt; end) =
+     struct
+       include F(X)
+       let get_y (o : X.c) = o#y
+     end
+</PRE><P>Polymorphic variant types can be refined in two ways, either to allow
+the addition of new constructors, or to allow the disparition of
+declared constructors. The second case corresponds to private variant
+types (one cannot create a value of the private type), while the first
+case requires default cases in pattern-matching to handle addition.
+</P><PRE CLASS="verbatim">   type t = [ `A of int | `B of bool ]
+   type u = private [&lt; t &gt; `A ]
+   type v = private [&gt; t ]
+</PRE><P>With type <TT>u</TT>, it is possible to create values of the form <TT>(&#X2018;A n)</TT>,
+but not <TT>(&#X2018;B b)</TT>. With type <TT>v</TT>, construction is not restricted but
+pattern-matching must have a default case.</P><P>Like for abstract and private types, the variance of type parameters
+is not inferred, and must be given explicitly.</P><H2 CLASS="section"><A NAME="toc77"></A><A NAME="htoc105">7.10</A>  Local opens</H2><P>
+<A NAME="@manual.kwd181"></A>
+<A NAME="@manual.kwd182"></A></P><P>(Introduced in OCaml 3.12)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>let</TT></FONT> <FONT COLOR=blue><TT>open</TT></FONT> <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>in</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>.(</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>The expressions
+<FONT COLOR=blue><TT>let</TT> <TT>open</TT></FONT> <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>in</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>
+and
+<I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I>. (<I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>) are strictly equivalent. They
+locally open the module referred to by the module path <I><A HREF="manual011.html#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> in
+the scope of the expression <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>.</P><P>Restricting opening to the scope of a single expression instead of a
+whole structure allows one to benefit from shorter syntax to refer to
+components of the opened module, without polluting the global
+scope. Also, this can make the code easier to read (the open statement is
+closer to where it is used) and to refactor (because the code
+fragment is more self-contained).</P><H2 CLASS="section"><A NAME="toc78"></A><A NAME="htoc106">7.11</A>  Record notations</H2><P>(Introduced in OCaml 3.12)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<FONT COLOR=maroon><I>pattern</I></FONT></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>{</TT></FONT> <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A></I>  [<FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="patterns.html#pattern"><FONT COLOR=maroon>pattern</FONT></A></I>]  { <FONT COLOR=blue><TT>;</TT></FONT> <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A></I>  [<FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="patterns.html#pattern"><FONT COLOR=maroon>pattern</FONT></A></I>] }  [<FONT COLOR=blue><TT>;</TT></FONT> <FONT COLOR=blue><TT>_</TT></FONT> ] <FONT COLOR=blue><TT>}</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>{</TT></FONT> <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A></I>  [<FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>]  { <FONT COLOR=blue><TT>;</TT></FONT> <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A></I>  [<FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>] } <FONT COLOR=blue><TT>}</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>{</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>with</TT></FONT>  <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A></I>  [<FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>]  { <FONT COLOR=blue><TT>;</TT></FONT> <I><A HREF="manual011.html#field"><FONT COLOR=maroon>field</FONT></A></I>  [<FONT COLOR=blue><TT>=</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>] } <FONT COLOR=blue><TT>}</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>In a record pattern or a record construction expression, a single
+identifier <FONT COLOR=maroon><I>id</I></FONT> stands for <FONT COLOR=maroon><I>id</I></FONT> =  <FONT COLOR=maroon><I>id</I></FONT>, and a qualified identifier
+<FONT COLOR=maroon><I>path</I></FONT> <FONT COLOR=blue><TT>,</TT></FONT>  <FONT COLOR=maroon><I>id</I></FONT> stands for <FONT COLOR=maroon><I>path</I></FONT> <FONT COLOR=blue><TT>.</TT></FONT>  <FONT COLOR=maroon><I>id</I></FONT> =  <FONT COLOR=maroon><I>id</I></FONT>. For example, assuming
+the record type
+</P><PRE CLASS="verbatim">          type point = { x: float; y: float }
+</PRE><P>has been declared, the following expressions are equivalent:
+</P><PRE CLASS="verbatim">          let x = 1 and y = 2 in { x = x; y = y }
+          let x = 1 and y = 2 in { x; y }
+          let x = 1 and y = 2 in { x = x; y }
+</PRE><P>Likewise, the following functions are equivalent:
+</P><PRE CLASS="verbatim">          fun {x = x; y = y} -&gt; x + y
+          fun {x; y} -&gt; x + y
+</PRE><P>Optionally, a record pattern can be terminated by <TT>; _</TT> to convey the
+fact that not all fields of the record type are listed in the record
+pattern and that it is intentional. By default, the compiler ignores
+the <TT>; _</TT> annotation. If the <TT>R</TT> warning is turned on, however,
+the compiler will warn if a record pattern fails to list all fields of
+the corresponding record type and is not terminated by <TT>; _</TT>.
+Continuing the <TT>point</TT> example above,
+</P><PRE CLASS="verbatim">          fun {x} -&gt; x + 1
+</PRE><P>will warn if the <TT>R</TT> warning is on, while
+</P><PRE CLASS="verbatim">          fun {x; _} -&gt; x + 1
+</PRE><P>will not warn. This warning can help spot program points where record
+patterns may need to be modified after new fields were added to a
+record type.</P><H2 CLASS="section"><A NAME="toc79"></A><A NAME="htoc107">7.12</A>  Explicit polymorphic type annotations</H2><P>
+<A NAME="@manual.kwd183"></A></P><P>(Introduced in OCaml 3.12)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<FONT COLOR=maroon><I>let-binding</I></FONT></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#poly-typexpr"><FONT COLOR=maroon>poly-typexpr</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Polymorphic type annotations in <TT>let</TT>-definitions behave in a way
+similar to polymorphic methods: they explicitly require the defined
+value to be polymorphic, and allow one to use this polymorphism in
+recursive occurences (when using <TT>let rec</TT>). Note however that this
+is just an usual polymorphic type, unifiable with any instance of
+itself.</P><P>There two possible applications of this feature. One is polymorphic
+recursion:
+</P><PRE CLASS="verbatim">        type 'a t = Leaf of 'a | Node of ('a * 'a) t
+        let rec depth : 'a. 'a t -&gt; 'b = function
+            Leaf _ -&gt; 1
+          | Node x -&gt; 1 + depth x
+</PRE><P>Note that <TT>&#X2019;b</TT> is not explicitly polymorphic here, and it will
+actually be unified with <TT>int</TT>.</P><P>The other application is to ensure that some definition is sufficiently
+polymorphic.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>let id : &#X2019;a. &#X2019;a -&gt; &#X2019;a = <U>fun x -&gt; x+1</U> ;;
+</FONT><FONT COLOR=maroon>Error: This definition has type int -&gt; int which is less general than
+         &#X2019;a. &#X2019;a -&gt; &#X2019;a
+</FONT></PRE><H2 CLASS="section"><A NAME="toc80"></A><A NAME="htoc108">7.13</A>  Explicit naming of type variables</H2><P>
+<A NAME="@manual.kwd184"></A>
+<A NAME="@manual.kwd185"></A></P><P>(Introduced in OCaml 3.12)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<FONT COLOR=maroon><I>parameter</I></FONT></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>(</TT></FONT> <FONT COLOR=blue><TT>type</TT></FONT> <I><A HREF="manual011.html#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>The expression <FONT COLOR=blue><TT>fun</TT> <TT>(</TT> <TT>type</TT></FONT> <I><A HREF="manual011.html#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I> <FONT COLOR=blue><TT>)</TT> <TT>-&gt;</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> introduces a
+type constructor named <I><A HREF="manual011.html#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I> which is considered abstract
+in the scope of the sub-expression, but then replaced by a fresh type
+variable. Note that contrary to what the syntax could suggest, the
+expression <FONT COLOR=blue><TT>fun</TT> <TT>(</TT> <TT>type</TT></FONT> <I><A HREF="manual011.html#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I> <FONT COLOR=blue><TT>)</TT> <TT>-&gt;</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> itself does not
+suspend the evaluation of <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> as a regular abstraction would. The
+syntax has been chosen to fit nicely in the context of function
+declarations, where it is generally used. It is possible to freely mix
+regular function parameters with pseudo type parameters, as in:
+</P><PRE CLASS="verbatim">        let f = fun (type t) (foo : t list) -&gt; ...
+</PRE><P>and even use the alternative syntax for declaring functions:
+</P><PRE CLASS="verbatim">        let f (type t) (foo : t list) = ...
+</PRE><P>This construction is useful because the type constructor it introduces
+can be used in places where a type variable is not allowed. For
+instance, one can use it to define an exception in a local module
+within a polymorphic function.
+</P><PRE CLASS="verbatim">        let f (type t) () =
+          let module M = struct exception E of t end in
+          (fun x -&gt; M.E x), (function M.E x -&gt; Some x | _ -&gt; None)
+</PRE><P>Here is another example:
+</P><PRE CLASS="verbatim">        let sort_uniq (type s) (cmp : s -&gt; s -&gt; int) =
+          let module S = Set.Make(struct type t = s let compare = cmp end) in
+          fun l -&gt;
+            S.elements (List.fold_right S.add l S.empty)
+</PRE><P>This construction by itself does not make polymorphic the type
+variable it introduces, but it can be combined with explicit
+polymorphic annotations where needed. It is also extremely useful for
+first-class modules.</P><H2 CLASS="section"><A NAME="toc81"></A><A NAME="htoc109">7.14</A>  First-class modules</H2><P>
+<A NAME="@manual.kwd186"></A>
+<A NAME="@manual.kwd187"></A>
+<A NAME="@manual.kwd188"></A></P><P>(Introduced in OCaml 3.12)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>(module</TT></FONT> <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I><FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>(val</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I><FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>(module</TT></FONT> <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I><FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="package-type"><FONT COLOR=maroon>package-type</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="manual011.html#modtype-path"><FONT COLOR=maroon>modtype-path</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="manual011.html#modtype-path"><FONT COLOR=maroon>modtype-path</FONT></A></I> <FONT COLOR=blue><TT>with</TT></FONT>  <I><A HREF="#package-type-constraint"><FONT COLOR=maroon>package-type-constraint</FONT></A></I>  { <FONT COLOR=blue><TT>and</TT></FONT> <I><A HREF="#package-type-constraint"><FONT COLOR=maroon>package-type-constraint</FONT></A></I> }
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="package-type-constraint"><FONT COLOR=maroon>package-type-constraint</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=blue><TT>type</TT></FONT> <I><A HREF="manual011.html#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>Modules are typically thought as static components. This extension
+makes it possible to pack a module as a first-class value, which can
+later be dynamically unpacked into a module.</P><P>The expression (<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I>) converts the
+module (structure or functor) denoted by module expression <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>
+to a value of the core language that encapsulates this module. The
+type of this core language value is (<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I>).</P><P>Conversely, the module expression (<FONT COLOR=blue><TT>val</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I>)
+evaluates the core language expression <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> to a value, which must
+have type <FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I>, and extracts the module that was
+encapsulated in this value.</P><P>The <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I> syntactic class appearing in the (<FONT COLOR=blue><TT>module</TT></FONT>
+<I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I>) expressions, the (<FONT COLOR=blue><TT>val</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>
+ <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I>) module expressions and the (<FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I>)
+type expression represents a subset of module types. 
+This subset consists of named module types with optional constraints
+of a limited form: only non-parametrized types can be specified. For
+type-checking purposes, package types are compared by path equality on
+the module type name component, and normal type equality for
+constraints.</P><P>The module expression (<FONT COLOR=blue><TT>val</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I>) cannot be used in the
+body of a functor, because this can cause unsoundness in conjunction
+with applicative functors. It can be used anywhere in the context of a local
+module binding <FONT COLOR=blue><TT>let</TT></FONT> <I>M</I> = (<FONT COLOR=blue><TT>val</TT></FONT> <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>1</SUB> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="#package-type"><FONT COLOR=maroon>package-type</FONT></A></I>) <FONT COLOR=blue><TT>in</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I><SUB>2</SUB>,
+however.</P><H5 CLASS="paragraph">Basic example</H5><P> A typical use of first-class modules is to
+select at run-time among several implementations of a signatures. 
+Each implementation is a structure that we can encapsulate as a
+first-class module, then store in a data structure such as a hash
+table:
+</P><PRE CLASS="verbatim">        module type DEVICE = sig ... end
+        let devices : (string, module DEVICE) Hashtbl.t = Hashtbl.create 17
+
+        module SVG = struct ... end
+        let _ = Hashtbl.add devices "SVG" (module SVG : DEVICE)
+
+        module PDF = struct ... end
+        let _ = Hashtbl.add devices "PDF" (module PDF: DEVICE)
+</PRE><P>We can then select one implementation based on command-line
+arguments, for instance:
+</P><PRE CLASS="verbatim">        module Device =
+          (val (try Hashtbl.find devices (parse_cmdline())
+                with Not_found -&gt; eprintf "Unknown device %s\n"; exit 2)
+           : DEVICE)
+</PRE><P>Alternatively, the selection can be performed within a function:
+</P><PRE CLASS="verbatim">        let draw_using_device device_name picture =
+          let module Device =
+            (val (Hashtbl.find_devices device_name) : DEVICE)
+          in
+            Device.draw picture
+</PRE><H5 CLASS="paragraph">Advanced examples</H5><P>
+With first-class modules, it is possible to parametrize some code over the
+implementation of a module without using a functor.</P><PRE CLASS="verbatim">        let sort (type s) set l =
+          let module Set = (val set : Set.S with type elt = s) in
+          Set.elements (List.fold_right Set.add l Set.empty)
+</PRE><P>The type inferred for this function is <TT>(module Set.S with type elt = &#X2019;a) -&gt; &#X2019;a list -&gt; &#X2019;a list</TT>. To use this function, one can wrap the <TT>Set.Make</TT> functor:</P><PRE CLASS="verbatim">        let make_set (type s) cmp =
+          let module S = Set.Make(struct
+            type t = s
+            let compare = cmp
+          end) in
+          (module S : Set.S with type elt = s) 
+</PRE><P>This function has type <TT>(&#X2019;a -&gt; &#X2019;a -&gt; int) -&gt; (module Set.S with type elt = &#X2019;a)</TT>.</P><P>Another advanced use of first-class module is to encode existential
+types. In particular, they can be used to simulate generalized
+algebraic data types (GADT). To demonstrate this, we first define a type
+of witnesses for type equalities:</P><PRE CLASS="verbatim">        module TypEq : sig
+          type ('a, 'b) t
+          val apply: ('a, 'b) t -&gt; 'a -&gt; 'b
+          val refl: ('a, 'a) t
+          val sym: ('a, 'b) t -&gt; ('b, 'a) t
+        end = struct
+          type ('a, 'b) t = ('a -&gt; 'b) * ('b -&gt; 'a)
+          let refl = (fun x -&gt; x), (fun x -&gt; x)
+          let apply (f, _) x = f x
+          let sym (f, g) = (g, f)
+        end
+</PRE><P>We can then define a paramatrized algebraic data type whose
+constructors provide some information about the type parameter:</P><PRE CLASS="verbatim">        module rec Typ : sig
+          module type PAIR = sig
+            type t and t1 and t2
+            val eq: (t, t1 * t2) TypEq.t
+            val t1: t1 Typ.typ
+            val t2: t2 Typ.typ
+          end
+
+          type 'a typ =
+            | Int of ('a, int) TypEq.t
+            | String of ('a, string) TypEq.t
+            | Pair of (module PAIR with type t = 'a)
+        end = Typ
+</PRE><P>Values of type <TT>&#X2019;a typ</TT> are supposed to be runtime representations for
+the type <TT>&#X2019;a</TT>. The constructors <TT>Int</TT> and <TT>String</TT> are easy: they
+directly give a witness of type equality between the parameter <TT>&#X2019;a</TT>
+and the ground types <TT>int</TT> (resp. <TT>string</TT>). The constructor <TT>Pair</TT> is
+more complex. One wants to give a witness of type equality between
+<TT>&#X2019;a</TT> and a type of the form <TT>t1 * t2</TT> together with the representations
+for <TT>t1</TT> and <TT>t2</TT>. However, these two types are unknown. The code above
+shows how to use first-class modules to simulate existentials.</P><P>Here is how to construct values of type <TT>&#X2019;a typ</TT>:</P><PRE CLASS="verbatim">        let int = Typ.Int TypEq.refl
+
+        let str = Typ.String TypEq.refl
+
+        let pair (type s1) (type s2) t1 t2 =
+          let module P = struct
+            type t = s1 * s2
+            type t1 = s1
+            type t2 = s2
+            let eq = TypEq.refl
+            let t1 = t1
+            let t2 = t2
+          end in
+          let pair = (module P : Typ.PAIR with type t = s1 * s2) in
+          Typ.Pair pair
+</PRE><P>And finally, here is an example of a polymorphic function that takes the
+runtime representation of some type <TT>&#X2019;a</TT> and a value of the same type,
+then pretty-print the value as a string:</P><PRE CLASS="verbatim">        open Typ
+        let rec to_string: 'a. 'a Typ.typ -&gt; 'a -&gt; string =
+          fun (type s) t x -&gt;
+            match t with
+            | Int eq -&gt; string_of_int (TypEq.apply eq x)
+            | String eq -&gt; Printf.sprintf "%S" (TypEq.apply eq x)
+            | Pair p -&gt;
+                let module P = (val p : PAIR with type t = s) in
+                let (x1, x2) = TypEq.apply P.eq x in
+                Printf.sprintf "(%s,%s)" (to_string P.t1 x1) (to_string P.t2 x2)
+</PRE><P>Note that this function uses an explicit polymorphic annotation to obtain
+polymorphic recursion.</P><H2 CLASS="section"><A NAME="toc82"></A><A NAME="htoc110">7.15</A>  Recovering the type of a module</H2><P><A NAME="@manual.kwd189"></A>
+<A NAME="@manual.kwd190"></A>
+<A NAME="@manual.kwd191"></A></P><P>(Introduced in OCaml 3.12)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<FONT COLOR=maroon><I>module-type</I></FONT></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP> 
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <FONT COLOR=blue><TT>type</TT></FONT> <FONT COLOR=blue><TT>of</TT></FONT> <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>The construction <FONT COLOR=blue><TT>module</TT> <TT>type</TT> <TT>of</TT></FONT> <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I> expands to the module type
+(signature or functor type) inferred for the module expression <I><A HREF="manual019.html#module-expr"><FONT COLOR=maroon>module-expr</FONT></A></I>.</P><P>A typical use, in conjunction with the signature-level <FONT COLOR=blue><TT>include</TT></FONT>
+construct, is to extend the signature of an existing structure, as in
+the following example.
+</P><PRE CLASS="verbatim">        module type MYHASH = sig
+          include module type of Hashtbl
+          val replace: ('a, 'b) t -&gt; 'a -&gt; 'b -&gt; unit
+        end
+</PRE><P>The signature <TT>MYHASH</TT>, then, contains all the fields of the signature
+of module <TT>Hashtbl</TT>, plus the new field <TT>replace</TT>. An implementation
+of this signature can be obtained easily, using the <FONT COLOR=blue><TT>include</TT></FONT>
+construct at the structure level this time:
+</P><PRE CLASS="verbatim">        module MyHash : MYHASH = struct
+          include Hashtbl
+          let replace t k v = remove t k; add t k v
+        end
+</PRE><H2 CLASS="section"><A NAME="toc83"></A><A NAME="htoc111">7.16</A>  Substituting inside a signature</H2><P>
+<A NAME="@manual.kwd192"></A>
+<A NAME="@manual.kwd193"></A>
+<A NAME="@manual.kwd194"></A></P><P>(Introduced in OCaml 3.12)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<FONT COLOR=maroon><I>mod-constraint</I></FONT></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>type</TT></FONT> [<I><A HREF="manual017.html#type-parameters"><FONT COLOR=maroon>type-parameters</FONT></A></I>]  <I><A HREF="manual011.html#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I> <FONT COLOR=blue><TT>:=</TT></FONT>  [<I><A HREF="manual017.html#type-parameters"><FONT COLOR=maroon>type-parameters</FONT></A></I>]  <I><A HREF="manual011.html#typeconstr"><FONT COLOR=maroon>typeconstr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>module</TT></FONT> <I><A HREF="manual011.html#module-name"><FONT COLOR=maroon>module-name</FONT></A></I> <FONT COLOR=blue><TT>:=</TT></FONT>  <I><A HREF="manual011.html#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>&#X201C;Destructive&#X201D; substitution (<TT>with ... :=</TT>) behaves essentially like
+normal signature constraints (<TT>with ... =</TT>), but it additionally removes
+the redefined type or module from the signature. There are a number of
+restrictions: one can only remove types and modules at the outermost
+level (not inside submodules), and the definition must be either
+another type constructor (with identical type parameters), or a module
+path.</P><P>A natural application of destructive substitution is merging two
+signatures sharing a type name.
+</P><PRE CLASS="verbatim">        module type Printable = sig
+          type t
+          val print : Format.formatter -&gt; t -&gt; unit
+        end
+        module type Comparable = sig
+          type t
+          val compare : t -&gt; t -&gt; int
+        end
+        module type PrintableComparable = sig
+          include Printable
+          include Comparable with type t := t
+        end
+</PRE><P>One can also use this to completely remove a field:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>module type S = Comparable with type t := int;;
+</FONT><FONT COLOR=maroon>module type S = sig val compare : int -&gt; int -&gt; int end
+</FONT></PRE><P>
+or to rename one:
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>module type S = sig
+   type u
+   include Comparable with type t := u
+ end;;
+</FONT><FONT COLOR=maroon>module type S = sig type u val compare : u -&gt; u -&gt; int end
+</FONT></PRE><P>Note that you can also remove manifest types, by substituting with the
+same type.
+</P><PRE><FONT COLOR=black>#</FONT><FONT COLOR=blue>module type ComparableInt = Comparable with type t = int ;;
+</FONT><FONT COLOR=maroon>module type ComparableInt = sig type t = int val compare : t -&gt; t -&gt; int end
+<FONT COLOR=black>#</FONT><FONT COLOR=blue>module type CompareInt = ComparableInt with type t := int ;;
+</FONT>module type CompareInt = sig val compare : int -&gt; int -&gt; int end
+</FONT></PRE><H2 CLASS="section"><A NAME="toc84"></A><A NAME="htoc112">7.17</A>  Explicit overriding in class definitions</H2><P>
+<A NAME="@manual.kwd195"></A>
+<A NAME="@manual.kwd196"></A>
+<A NAME="@manual.kwd197"></A></P><P>(Introduced in OCaml 3.12)</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<FONT COLOR=maroon><I>class-field</I></FONT></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+...
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>  <FONT COLOR=blue><TT>inherit!</TT></FONT> <I><A HREF="manual017.html#class-expr"><FONT COLOR=maroon>class-expr</FONT></A></I>  [<FONT COLOR=blue><TT>as</TT></FONT> <I><A HREF="manual011.html#value-name"><FONT COLOR=maroon>value-name</FONT></A></I>]
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>  <FONT COLOR=blue><TT>val!</TT></FONT> [<FONT COLOR=blue><TT>mutable</TT></FONT>] <I><A HREF="manual011.html#inst-var-name"><FONT COLOR=maroon>inst-var-name</FONT></A></I>  [<FONT COLOR=blue><TT>:</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>] <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>  <FONT COLOR=blue><TT>method!</TT></FONT> [<FONT COLOR=blue><TT>private</TT></FONT>] <I><A HREF="manual011.html#method-name"><FONT COLOR=maroon>method-name</FONT></A></I>  {<I><A HREF="expr.html#parameter"><FONT COLOR=maroon>parameter</FONT></A></I>}  [<FONT COLOR=blue><TT>:</TT></FONT> <I><A HREF="types.html#typexpr"><FONT COLOR=maroon>typexpr</FONT></A></I>] <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>  <FONT COLOR=blue><TT>method!</TT></FONT> [<FONT COLOR=blue><TT>private</TT></FONT>] <I><A HREF="manual011.html#method-name"><FONT COLOR=maroon>method-name</FONT></A></I> <FONT COLOR=blue><TT>:</TT></FONT>  <I><A HREF="types.html#poly-typexpr"><FONT COLOR=maroon>poly-typexpr</FONT></A></I> <FONT COLOR=blue><TT>=</TT></FONT>  <I><A HREF="expr.html#expr"><FONT COLOR=maroon>expr</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>The keywords <TT>inherit!</TT>, <TT>val!</TT> and <TT>method!</TT> have the same semantics
+as <TT>inherit</TT>, <TT>val</TT> and <TT>method</TT>, but they additionally require the
+definition they introduce to be an overriding. Namely, <TT>method!</TT>
+requires <I><A HREF="manual011.html#method-name"><FONT COLOR=maroon>method-name</FONT></A></I> to be already defined in this class, <TT>val!</TT>
+requires <I><A HREF="manual011.html#inst-var-name"><FONT COLOR=maroon>inst-var-name</FONT></A></I> to be already defined in this class, and
+<TT>inherit!</TT> requires <I><A HREF="manual017.html#class-expr"><FONT COLOR=maroon>class-expr</FONT></A></I> to override some definitions.
+If no such overriding occurs, an error is signaled.</P><P>As a side-effect, these 3 keywords avoid the warnings
+&#X201C;method override&#X201D; and &#X201C; instance variable override&#X201D;.
+As of OCaml 3.12, the warning &#X201C;method override&#X201D; has to be
+enabled manually for backwards compatibility reasons.
+</P><HR>
+<A HREF="language.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual022.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

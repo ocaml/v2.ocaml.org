@@ -14,6 +14,10 @@ staging: pre-build
 	$(MAKE) gen_md gen_html SET_STAGING='-set staging'
 	$(MAKE) syncotherfiles
 
+# Pattern for directories containing the reference manuals
+# and other release material
+MANUAL_DIRS=site/releases/[1-9].[0-9][0-9]
+
 syncotherfiles:
 	rsync --exclude '*~' --exclude '*.md' --exclude '*.html' \
 	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
@@ -22,6 +26,7 @@ syncotherfiles:
 	 rsync --exclude '*~' --exclude '*.md' \
 	  --exclude '*.cmi' --exclude '*.cmo' --exclude '*.annot' \
 	  -rltHprogv ../ocaml.org-media/* ocaml.org/ ; fi
+	rsync -a --delete $(MANUAL_DIRS) ocaml.org/releases/
 
 deps:
 	opam pin add ocamlorg . --no-action --yes --kind=path
@@ -41,7 +46,8 @@ MD_FILES = $(patsubst site/%, ocaml.org/%, $(patsubst %.md, %.html, \
   $(shell find site -type f -name '*.md' -print)))
 
 HTML_FILES = $(patsubst site/%, ocaml.org/%, \
-  $(shell find site -type f -name '*.html' -print))
+  $(shell find site -type d -wholename '$(MANUAL_DIRS)' -prune \
+                 -o -type f -name '*.html' -print))
 
 feed: ocaml.org/feed.xml ocaml.org/opml.xml
 ocaml.org/feed.xml: script/rss2html

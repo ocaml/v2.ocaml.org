@@ -3,7 +3,7 @@
 
 # Static Functor Example
 
-**Deprecation Warning:** this tutorial describes technology that is considered obsolete. It's been replaced by [extensions points and ppx rewriters](http://caml.inria.fr/pub/docs/manual-ocaml-{{! get LATEST_OCAML_VERSION_MAIN !}}/extn.html#sec243)
+**Deprecation Warning:** this tutorial describes technology that is considered obsolete. It's been replaced by [extensions points and ppx rewriters](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/extn.html#sec243)
 
 static_functor_example.ml:
 

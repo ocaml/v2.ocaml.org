@@ -1,0 +1,455 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The debugger (ocamldebug)</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual029.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual031.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc183">Chapter&#XA0;16</A>&#XA0;&#XA0;The debugger (ocamldebug)</H1><UL>
+<LI><A HREF="manual030.html#toc123">Compiling for debugging</A>
+</LI><LI><A HREF="manual030.html#toc124">Invocation</A>
+</LI><LI><A HREF="manual030.html#toc125">Commands</A>
+</LI><LI><A HREF="manual030.html#toc126">Executing a program</A>
+</LI><LI><A HREF="manual030.html#toc127">Breakpoints</A>
+</LI><LI><A HREF="manual030.html#toc128">The call stack</A>
+</LI><LI><A HREF="manual030.html#toc129">Examining variable values</A>
+</LI><LI><A HREF="manual030.html#toc130">Controlling the debugger</A>
+</LI><LI><A HREF="manual030.html#toc131">Miscellaneous commands</A>
+</LI><LI><A HREF="manual030.html#toc132">Running the debugger under Emacs</A>
+</LI></UL>
+<P> <A NAME="c:debugger"></A>
+</P><P>This chapter describes the OCaml source-level replay debugger
+<TT>ocamldebug</TT>.</P><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Unix:</FONT>&#XA0;&#XA0; The debugger is available on Unix systems that provide
+BSD sockets.
+</BLOCKQUOTE><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Windows:</FONT>&#XA0;&#XA0; The debugger is available under the Cygwin port of
+OCaml, but not under the native Win32 ports.
+</BLOCKQUOTE><H2 CLASS="section"><A NAME="toc123"></A><A NAME="htoc184">16.1</A>&#XA0;&#XA0;Compiling for debugging</H2><P>Before the debugger can be used, the program must be compiled and
+linked with the <TT>-g</TT> option: all <TT>.cmo</TT> and <TT>.cma</TT> files that are part
+of the program should have been created with <TT>ocamlc -g</TT>, and they
+must be linked together with <TT>ocamlc -g</TT>.</P><P>Compiling with <TT>-g</TT> entails no penalty on the running time of
+programs: object files and bytecode executable files are bigger and
+take longer to produce, but the executable files run at
+exactly the same speed as if they had been compiled without <TT>-g</TT>.</P><H2 CLASS="section"><A NAME="toc124"></A><A NAME="htoc185">16.2</A>&#XA0;&#XA0;Invocation</H2><H3 CLASS="subsection"><A NAME="htoc186">16.2.1</A>&#XA0;&#XA0;Starting the debugger</H3><P>The OCaml debugger is invoked by running the program
+<TT>ocamldebug</TT> with the name of the bytecode executable file as first
+argument:
+</P><PRE>
+        ocamldebug [<I>options</I>] <I>program</I> [<I>arguments</I>]
+</PRE><P>
+The arguments following <I>program</I> are optional, and are passed as
+command-line arguments to the program being debugged. (See also the
+<TT>set arguments</TT> command.)</P><P>The following command-line options are recognized:
+</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>-c </TT> <I>count</I></B></DT><DD CLASS="dd-description">
+Set the maximum number of simultaneously live checkpoints to <I>count</I>.</DD><DT CLASS="dt-description"><B><TT>-cd </TT> <I>dir</I></B></DT><DD CLASS="dd-description">
+Run the debugger program from the working directory <I>dir</I>,
+instead of the current directory. (See also the <TT>cd</TT> command.)</DD><DT CLASS="dt-description"><TT><B>-emacs</B></TT></DT><DD CLASS="dd-description">
+Tell the debugger it is executed under Emacs. (See
+section&#XA0;<A HREF="#s:inf-debugger">16.10</A> for information on how to run the
+debugger under Emacs.)</DD><DT CLASS="dt-description"><B><TT>-I </TT><I>directory</I></B></DT><DD CLASS="dd-description">
+Add <I>directory</I> to the list of directories searched for source
+files and compiled files. (See also the <TT>directory</TT> command.)</DD><DT CLASS="dt-description"><B><TT>-s </TT><I>socket</I></B></DT><DD CLASS="dd-description">
+Use <I>socket</I> for communicating with the debugged program. See the
+description of the command <TT>set socket</TT> (section&#XA0;<A HREF="#s:communication">16.8.6</A>)
+for the format of <I>socket</I>.</DD><DT CLASS="dt-description"><TT><B>-version</B></TT></DT><DD CLASS="dd-description">
+Print version string and exit.</DD><DT CLASS="dt-description"><TT><B>-vnum</B></TT></DT><DD CLASS="dd-description">
+Print short version number and exit.</DD><DT CLASS="dt-description"><B><TT>-help</TT> or <TT>--help</TT></B></DT><DD CLASS="dd-description">
+Display a short usage summary and exit.
+</DD></DL><H3 CLASS="subsection"><A NAME="htoc187">16.2.2</A>&#XA0;&#XA0;Exiting the debugger</H3><P>The command <TT>quit</TT> exits the debugger. You can also exit the debugger
+by typing an end-of-file character (usually <TT>ctrl-D</TT>).</P><P>Typing an interrupt character (usually <TT>ctrl-C</TT>) will not exit the
+debugger, but will terminate the action of any debugger command that is in
+progress and return to the debugger command level. </P><H2 CLASS="section"><A NAME="toc125"></A><A NAME="htoc188">16.3</A>&#XA0;&#XA0;Commands</H2><P> <A NAME="s:debugger-commands"></A></P><P>A debugger command is a single line of input. It starts with a command
+name, which is followed by arguments depending on this name. Examples:
+</P><PRE>        run
+        goto 1000
+        set arguments arg1 arg2
+</PRE><P>
+A command name can be truncated as long as there is no ambiguity. For
+instance, <TT>go 1000</TT> is understood as <TT>goto 1000</TT>, since there are no
+other commands whose name starts with <TT>go</TT>. For the most frequently
+used commands, ambiguous abbreviations are allowed. For instance, <TT>r</TT>
+stands for <TT>run</TT> even though there are others commands starting with
+<TT>r</TT>. You can test the validity of an abbreviation using the <TT>help</TT> command.</P><P>If the previous command has been successful, a blank line (typing just
+<TT>RET</TT>) will repeat it.</P><H3 CLASS="subsection"><A NAME="htoc189">16.3.1</A>&#XA0;&#XA0;Getting help</H3><P>The OCaml debugger has a simple on-line help system, which gives
+a brief description of each command and variable.</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>help</B></TT></DT><DD CLASS="dd-description">
+Print the list of commands.</DD><DT CLASS="dt-description"><B><TT>help </TT><I>command</I></B></DT><DD CLASS="dd-description">
+Give help about the command <I>command</I>.</DD><DT CLASS="dt-description"><B><TT>help set </TT><I>variable</I>, <TT>help show </TT><I>variable</I></B></DT><DD CLASS="dd-description">
+Give help about the variable <I>variable</I>. The list of all debugger
+variables can be obtained with <TT>help set</TT>.</DD><DT CLASS="dt-description"><B><TT>help info </TT><I>topic</I></B></DT><DD CLASS="dd-description">
+Give help about <I>topic</I>. Use <TT>help info</TT> to get a list of known topics.
+</DD></DL><H3 CLASS="subsection"><A NAME="htoc190">16.3.2</A>&#XA0;&#XA0;Accessing the debugger state</H3><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>set </TT><I>variable value</I></B></DT><DD CLASS="dd-description">
+Set the debugger variable <I>variable</I> to the value <I>value</I>.</DD><DT CLASS="dt-description"><B><TT>show </TT><I>variable</I></B></DT><DD CLASS="dd-description">
+Print the value of the debugger variable <I>variable</I>.</DD><DT CLASS="dt-description"><B><TT>info </TT><I>subject</I></B></DT><DD CLASS="dd-description">
+Give information about the given subject.
+For instance, <TT>info breakpoints</TT> will print the list of all breakpoints.
+</DD></DL><H2 CLASS="section"><A NAME="toc126"></A><A NAME="htoc191">16.4</A>&#XA0;&#XA0;Executing a program</H2><H3 CLASS="subsection"><A NAME="htoc192">16.4.1</A>&#XA0;&#XA0;Events</H3><P>Events are &#X201C;interesting&#X201D; locations in the source code, corresponding
+to the beginning or end of evaluation of &#X201C;interesting&#X201D;
+sub-expressions. Events are the unit of single-stepping (stepping goes
+to the next or previous event encountered in the program execution).
+Also, breakpoints can only be set at events. Thus, events play the
+role of line numbers in debuggers for conventional languages.</P><P>During program execution, a counter is incremented at each event
+encountered. The value of this counter is referred as the <EM>current
+time</EM>. Thanks to reverse execution, it is possible to jump back and
+forth to any time of the execution.</P><P>Here is where the debugger events (written &#XA7;&#XA7;) are located in
+the source code:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+Following a function application:
+<PRE>
+(f arg)&#XA7;&#XA7;
+</PRE>
+</LI><LI CLASS="li-itemize">On entrance to a function:
+<PRE>
+fun x y z -&gt; &#XA7;&#XA7; ...
+</PRE>
+</LI><LI CLASS="li-itemize">On each case of a pattern-matching definition (function,
+<TT>match</TT>&#X2026;<TT>with</TT> construct, <TT>try</TT>&#X2026;<TT>with</TT> construct):
+<PRE>
+function pat1 -&gt; &#XA7;&#XA7; expr1
+       | ...
+       | patN -&gt; &#XA7;&#XA7; exprN
+</PRE>
+</LI><LI CLASS="li-itemize">Between subexpressions of a sequence:
+<PRE>
+expr1; &#XA7;&#XA7; expr2; &#XA7;&#XA7; ...; &#XA7;&#XA7; exprN
+</PRE>
+</LI><LI CLASS="li-itemize">In the two branches of a conditional expression:
+<PRE>
+if cond then &#XA7;&#XA7; expr1 else &#XA7;&#XA7; expr2
+</PRE>
+</LI><LI CLASS="li-itemize">At the beginning of each iteration of a loop:
+<PRE>
+while cond do &#XA7;&#XA7; body done
+for i = a to b do &#XA7;&#XA7; body done
+</PRE>
+</LI></UL><P>
+Exceptions: A function application followed by a function return is replaced
+by the compiler by a jump (tail-call optimization). In this case, no
+event is put after the function application.
+</P><H3 CLASS="subsection"><A NAME="htoc193">16.4.2</A>&#XA0;&#XA0;Starting the debugged program</H3><P>The debugger starts executing the debugged program only when needed.
+This allows setting breapoints or assigning debugger variables before
+execution starts. There are several ways to start execution:
+</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>run</B></TT></DT><DD CLASS="dd-description"> Run the program until a breakpoint is hit, or the program
+terminates.
+</DD><DT CLASS="dt-description"><TT><B>step 0</B></TT></DT><DD CLASS="dd-description"> Load the program and stop on the first event.
+</DD><DT CLASS="dt-description"><B><TT>goto </TT><I>time</I></B></DT><DD CLASS="dd-description"> Load the program and execute it until the
+given time. Useful when you already know approximately at what time
+the problem appears. Also useful to set breakpoints on function values
+that have not been computed at time 0 (see section&#XA0;<A HREF="#s:breakpoints">16.5</A>).
+</DD></DL><P>The execution of a program is affected by certain information it
+receives when the debugger starts it, such as the command-line
+arguments to the program and its working directory. The debugger
+provides commands to specify this information (<TT>set arguments</TT> and <TT>cd</TT>).
+These commands must be used before program execution starts. If you try
+to change the arguments or the working directory after starting your
+program, the debugger will kill the program (after asking for confirmation).</P><H3 CLASS="subsection"><A NAME="htoc194">16.4.3</A>&#XA0;&#XA0;Running the program</H3><P>The following commands execute the program forward or backward,
+starting at the current time. The execution will stop either when
+specified by the command or when a breakpoint is encountered.</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>run</B></TT></DT><DD CLASS="dd-description"> Execute the program forward from current time. Stops at
+next breakpoint or when the program terminates.
+</DD><DT CLASS="dt-description"><TT><B>reverse</B></TT></DT><DD CLASS="dd-description"> Execute the program backward from current time.
+Mostly useful to go to the last breakpoint encountered before the
+current time.
+</DD><DT CLASS="dt-description"><B><TT>step </TT>[<I>count</I>]</B></DT><DD CLASS="dd-description"> Run the program and stop at the next event. With
+an argument, do it <I>count</I> times.
+</DD><DT CLASS="dt-description"><B><TT>backstep </TT>[<I>count</I>]</B></DT><DD CLASS="dd-description"> Run the program backward and stop at
+the previous event. With an argument, do it <I>count</I> times.
+</DD><DT CLASS="dt-description"><B><TT>next </TT>[<I>count</I>]</B></DT><DD CLASS="dd-description"> Run the program and stop at the next
+event, skipping over function calls. With an argument, do it
+<I>count</I> times.
+</DD><DT CLASS="dt-description"><B><TT>previous </TT>[<I>count</I>]</B></DT><DD CLASS="dd-description"> Run the program backward and stop at
+the previous event, skipping over function calls. With an argument, do
+it <I>count</I> times.
+</DD><DT CLASS="dt-description"><TT><B>finish</B></TT></DT><DD CLASS="dd-description"> Run the program until the current function returns.
+</DD><DT CLASS="dt-description"><TT><B>start</B></TT></DT><DD CLASS="dd-description"> Run the program backward and stop at the first event
+before the current function invocation.
+</DD></DL><H3 CLASS="subsection"><A NAME="htoc195">16.4.4</A>&#XA0;&#XA0;Time travel</H3><P>You can jump directly to a given time, without stopping on
+breakpoints, using the <TT>goto</TT> command.</P><P>As you move through the program, the debugger maintains an history of
+the successive times you stop at. The <TT>last</TT> command can be used to
+revisit these times: each <TT>last</TT> command moves one step back through
+the history. That is useful mainly to undo commands such as <TT>step</TT>
+and <TT>next</TT>.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>goto </TT><I>time</I></B></DT><DD CLASS="dd-description">
+Jump to the given time.
+</DD><DT CLASS="dt-description"><B><TT>last </TT>[<I>count</I>]</B></DT><DD CLASS="dd-description">
+Go back to the latest time recorded in the execution history. With an
+argument, do it <I>count</I> times.
+</DD><DT CLASS="dt-description"><B><TT>set history </TT><I>size</I></B></DT><DD CLASS="dd-description">
+Set the size of the execution history.
+</DD></DL><H3 CLASS="subsection"><A NAME="htoc196">16.4.5</A>&#XA0;&#XA0;Killing the program</H3><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>kill</B></TT></DT><DD CLASS="dd-description"> Kill the program being executed. This command is mainly
+useful if you wish to recompile the program without leaving the debugger.
+</DD></DL><H2 CLASS="section"><A NAME="toc127"></A><A NAME="htoc197">16.5</A>&#XA0;&#XA0;Breakpoints</H2><P> <A NAME="s:breakpoints"></A></P><P>A breakpoint causes the program to stop whenever a certain point in
+the program is reached. It can be set in several ways using the
+<TT>break</TT> command. Breakpoints are assigned numbers when set, for
+further reference. The most comfortable way to set breakpoints is
+through the Emacs interface (see section&#XA0;<A HREF="#s:inf-debugger">16.10</A>).</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>break</B></TT></DT><DD CLASS="dd-description">
+Set a breakpoint at the current position in the program execution. The
+current position must be on an event (i.e., neither at the beginning,
+nor at the end of the program).</DD><DT CLASS="dt-description"><B><TT>break </TT><I>function</I></B></DT><DD CLASS="dd-description">
+Set a breakpoint at the beginning of <I>function</I>. This works only
+when the functional value of the identifier <I>function</I> has been
+computed and assigned to the identifier. Hence this command cannot be
+used at the very beginning of the program execution, when all
+identifiers are still undefined; use <TT>goto</TT> <I>time</I> to advance
+execution until the functional value is available.</DD><DT CLASS="dt-description"><B><TT>break @</TT> [<I>module</I>] <I>line</I></B></DT><DD CLASS="dd-description">
+Set a breakpoint in module <I>module</I> (or in the current module if
+<I>module</I> is not given), at the first event of line <I>line</I>.</DD><DT CLASS="dt-description"><B><TT>break @</TT> [<I>module</I>] <I>line column</I></B></DT><DD CLASS="dd-description">
+Set a breakpoint in module <I>module</I> (or in the current module if
+<I>module</I> is not given), at the event closest to line <I>line</I>,
+column <I>column</I>.</DD><DT CLASS="dt-description"><B><TT>break @</TT> [<I>module</I>] <TT>#</TT> <I>character</I></B></DT><DD CLASS="dd-description">
+Set a breakpoint in module <I>module</I> at the event closest to
+character number <I>character</I>.</DD><DT CLASS="dt-description"><B><TT>break </TT><I>address</I></B></DT><DD CLASS="dd-description">
+Set a breakpoint at the code address <I>address</I>.</DD><DT CLASS="dt-description"><B><TT>delete </TT>[<I>breakpoint-numbers</I>]</B></DT><DD CLASS="dd-description">
+Delete the specified breakpoints. Without argument, all breakpoints
+are deleted (after asking for confirmation).</DD><DT CLASS="dt-description"><TT><B>info breakpoints</B></TT></DT><DD CLASS="dd-description"> Print the list of all breakpoints.
+</DD></DL><H2 CLASS="section"><A NAME="toc128"></A><A NAME="htoc198">16.6</A>&#XA0;&#XA0;The call stack</H2><P>Each time the program performs a function application, it saves the
+location of the application (the return address) in a block of data
+called a stack frame. The frame also contains the local variables of
+the caller function. All the frames are allocated in a region of
+memory called the call stack. The command <TT>backtrace</TT> (or <TT>bt</TT>)
+displays parts of the call stack.</P><P>At any time, one of the stack frames is &#X201C;selected&#X201D; by the debugger; several
+debugger commands refer implicitly to the selected frame. In particular,
+whenever you ask the debugger for the value of a local variable, the
+value is found in the selected frame. The commands <TT>frame</TT>, <TT>up</TT> and <TT>down</TT>
+select whichever frame you are interested in.</P><P>When the program stops, the debugger automatically selects the
+currently executing frame and describes it briefly as the <TT>frame</TT>
+command does.</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>frame</B></TT></DT><DD CLASS="dd-description">
+Describe the currently selected stack frame.</DD><DT CLASS="dt-description"><B><TT>frame</TT> <I>frame-number</I></B></DT><DD CLASS="dd-description">
+Select a stack frame by number and describe it. The frame currently
+executing when the program stopped has number 0; its caller has number
+1; and so on up the call stack.</DD><DT CLASS="dt-description"><B><TT>backtrace </TT>[<I>count</I>], <TT>bt </TT>[<I>count</I>]</B></DT><DD CLASS="dd-description">
+Print the call stack. This is useful to see which sequence of function
+calls led to the currently executing frame. With a positive argument,
+print only the innermost <I>count</I> frames.
+With a negative argument, print only the outermost -<I>count</I> frames.</DD><DT CLASS="dt-description"><B><TT>up</TT> [<I>count</I>]</B></DT><DD CLASS="dd-description">
+Select and display the stack frame just &#X201C;above&#X201D; the selected frame,
+that is, the frame that called the selected frame. An argument says how
+many frames to go up.</DD><DT CLASS="dt-description"><B><TT>down </TT>[<I>count</I>]</B></DT><DD CLASS="dd-description">
+Select and display the stack frame just &#X201C;below&#X201D; the selected frame,
+that is, the frame that was called by the selected frame. An argument
+says how many frames to go down.
+</DD></DL><H2 CLASS="section"><A NAME="toc129"></A><A NAME="htoc199">16.7</A>&#XA0;&#XA0;Examining variable values</H2><P>The debugger can print the current value of simple expressions. The
+expressions can involve program variables: all the identifiers that
+are in scope at the selected program point can be accessed.</P><P>Expressions that can be printed are a subset of OCaml
+expressions, as described by the following grammar:
+</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="simple-expr" class="syntax"><FONT COLOR=maroon>simple-expr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>lowercase-ident</I></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;{&#XA0;<FONT COLOR=maroon><I>capitalized-ident</I></FONT>&#XA0;<FONT COLOR=blue><TT>.</TT></FONT>&#XA0;}&#XA0;&#XA0;<FONT COLOR=maroon><I>lowercase-ident</I></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>*</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>$</TT></FONT>&#XA0;<FONT COLOR=maroon><I>integer</I></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#simple-expr" class="syntax"><FONT COLOR=maroon>simple-expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>.</TT></FONT>&#XA0;&#XA0;<FONT COLOR=maroon><I>lowercase-ident</I></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#simple-expr" class="syntax"><FONT COLOR=maroon>simple-expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>.(</TT></FONT>&#XA0;&#XA0;<FONT COLOR=maroon><I>integer</I></FONT>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<I><A href="#simple-expr" class="syntax"><FONT COLOR=maroon>simple-expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>.[</TT></FONT>&#XA0;&#XA0;<FONT COLOR=maroon><I>integer</I></FONT>&#XA0;<FONT COLOR=blue><TT>]</TT></FONT>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>!</TT></FONT>&#XA0;<I><A href="#simple-expr" class="syntax"><FONT COLOR=maroon>simple-expr</FONT></A></I>
+&#XA0;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP>&#XA0;<FONT COLOR=blue><TT>(</TT></FONT>&#XA0;<I><A href="#simple-expr" class="syntax"><FONT COLOR=maroon>simple-expr</FONT></A></I>&#XA0;<FONT COLOR=blue><TT>)</TT></FONT></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+The first two cases refer to a value identifier, either unqualified or
+qualified by the path to the structure that define it.
+<TT>*</TT> refers to the result just computed (typically, the value of a
+function application), and is valid only if the selected event is an
+&#X201C;after&#X201D; event (typically, a function application).
+<FONT COLOR=blue><TT>$</TT></FONT> <FONT COLOR=maroon><I>integer</I></FONT> refer to a previously printed value. The remaining four
+forms select part of an expression: respectively, a record field, an
+array element, a string element, and the current contents of a
+reference.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>print </TT><I>variables</I></B></DT><DD CLASS="dd-description">
+Print the values of the given variables. <TT>print</TT> can be abbreviated as
+<TT>p</TT>.
+</DD><DT CLASS="dt-description"><B><TT>display </TT><I>variables</I></B></DT><DD CLASS="dd-description">
+Same as <TT>print</TT>, but limit the depth of printing to 1. Useful to
+browse large data structures without printing them in full.
+<TT>display</TT> can be abbreviated as <TT>d</TT>.
+</DD></DL><P>When printing a complex expression, a name of the form <TT>$</TT><I>integer</I>
+is automatically assigned to its value. Such names are also assigned
+to parts of the value that cannot be printed because the maximal
+printing depth is exceeded. Named values can be printed later on
+with the commands <TT>p $</TT><I>integer</I> or <TT>d $</TT><I>integer</I>.
+Named values are valid only as long as the program is stopped. They
+are forgotten as soon as the program resumes execution.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>set print_depth</TT> <I>d</I></B></DT><DD CLASS="dd-description">
+Limit the printing of values to a maximal depth of <I>d</I>. 
+</DD><DT CLASS="dt-description"><B><TT>set print_length</TT> <I>l</I></B></DT><DD CLASS="dd-description">
+Limit the printing of values to at most <I>l</I> nodes printed.
+</DD></DL><H2 CLASS="section"><A NAME="toc130"></A><A NAME="htoc200">16.8</A>&#XA0;&#XA0;Controlling the debugger</H2><H3 CLASS="subsection"><A NAME="htoc201">16.8.1</A>&#XA0;&#XA0;Setting the program name and arguments</H3><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>set program</TT> <I>file</I></B></DT><DD CLASS="dd-description">
+Set the program name to <I>file</I>.
+</DD><DT CLASS="dt-description"><B><TT>set arguments</TT> <I>arguments</I></B></DT><DD CLASS="dd-description">
+Give <I>arguments</I> as command-line arguments for the program.
+</DD></DL><P>A shell is used to pass the arguments to the debugged program. You can
+therefore use wildcards, shell variables, and file redirections inside
+the arguments. To debug programs that read from standard input, it is
+recommended to redirect their input from a file (using
+<TT>set arguments &lt; input-file</TT>), otherwise input to the program and
+input to the debugger are not properly separated, and inputs are not
+properly replayed when running the program backwards.</P><H3 CLASS="subsection"><A NAME="htoc202">16.8.2</A>&#XA0;&#XA0;How programs are loaded</H3><P>The <TT>loadingmode</TT> variable controls how the program is executed.</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>set loadingmode direct</B></TT></DT><DD CLASS="dd-description">
+The program is run directly by the debugger. This is the default mode.
+</DD><DT CLASS="dt-description"><TT><B>set loadingmode runtime</B></TT></DT><DD CLASS="dd-description">
+The debugger execute the OCaml runtime <TT>ocamlrun</TT> on the program.
+Rarely useful; moreover it prevents the debugging of programs compiled
+in &#X201C;custom runtime&#X201D; mode.
+</DD><DT CLASS="dt-description"><TT><B>set loadingmode manual</B></TT></DT><DD CLASS="dd-description">
+The user starts manually the program, when asked by the debugger.
+Allows remote debugging (see section&#XA0;<A HREF="#s:communication">16.8.6</A>).
+</DD></DL><H3 CLASS="subsection"><A NAME="htoc203">16.8.3</A>&#XA0;&#XA0;Search path for files</H3><P>The debugger searches for source files and compiled interface files in
+a list of directories, the search path. The search path initially
+contains the current directory <TT>.</TT> and the standard library directory.
+The <TT>directory</TT> command adds directories to the path.</P><P>Whenever the search path is modified, the debugger will clear any
+information it may have cached about the files.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>directory</TT> <I>directorynames</I></B></DT><DD CLASS="dd-description">
+Add the given directories to the search path. These directories are
+added at the front, and will therefore be searched first.</DD><DT CLASS="dt-description"><B><TT>directory</TT> <I>directorynames</I> <TT>for</TT> <I>modulename</I></B></DT><DD CLASS="dd-description">
+Same as <TT>directory</TT> <I>directorynames</I>, but the given directories will be
+searched only when looking for the source file of a module that has 
+been packed into <I>modulename</I>.</DD><DT CLASS="dt-description"><TT><B>directory</B></TT></DT><DD CLASS="dd-description">
+Reset the search path. This requires confirmation.
+</DD></DL><H3 CLASS="subsection"><A NAME="htoc204">16.8.4</A>&#XA0;&#XA0;Working directory</H3><P>Each time a program is started in the debugger, it inherits its working
+directory from the current working directory of the debugger. This
+working directory is initially whatever it inherited from its parent
+process (typically the shell), but you can specify a new working
+directory in the debugger with the <TT>cd</TT> command or the <TT>-cd</TT>
+command-line option.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>cd</TT> <I>directory</I></B></DT><DD CLASS="dd-description">
+Set the working directory for <TT>ocamldebug</TT> to <I>directory</I>.</DD><DT CLASS="dt-description"><TT><B>pwd</B></TT></DT><DD CLASS="dd-description">
+Print the working directory for <TT>ocamldebug</TT>.
+</DD></DL><H3 CLASS="subsection"><A NAME="htoc205">16.8.5</A>&#XA0;&#XA0;Turning reverse execution on and off</H3><P>In some cases, you may want to turn reverse execution off. This speeds
+up the program execution, and is also sometimes useful for interactive
+programs.</P><P>Normally, the debugger takes checkpoints of the program state from
+time to time. That is, it makes a copy of the current state of the
+program (using the Unix system call <TT>fork</TT>). If the variable
+<I>checkpoints</I> is set to <TT>off</TT>, the debugger will not take any
+checkpoints.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>set checkpoints</TT> <I>on/off</I></B></DT><DD CLASS="dd-description">
+Select whether the debugger makes checkpoints or not.
+</DD></DL><H3 CLASS="subsection"><A NAME="htoc206">16.8.6</A>&#XA0;&#XA0;Communication between the debugger and the program</H3><P>
+<A NAME="s:communication"></A></P><P>The debugger communicate with the program being debugged through a
+Unix socket. You may need to change the socket name, for example if
+you need to run the debugger on a machine and your program on another.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>set socket</TT> <I>socket</I></B></DT><DD CLASS="dd-description">
+Use <I>socket</I> for communication with the program. <I>socket</I> can be
+either a file name, or an Internet port specification
+<I>host</I>:<I>port</I>, where <I>host</I> is a host name or an Internet
+address in dot notation, and <I>port</I> is a port number on the host.
+</DD></DL><P>On the debugged program side, the socket name is passed through the
+<TT>CAML_DEBUG_SOCKET</TT> environment variable.</P><H3 CLASS="subsection"><A NAME="htoc207">16.8.7</A>&#XA0;&#XA0;Fine-tuning the debugger</H3><P> <A NAME="s:fine-tuning"></A></P><P>Several variables enables to fine-tune the debugger. Reasonable
+defaults are provided, and you should normally not have to change them.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>set processcount</TT> <I>count</I></B></DT><DD CLASS="dd-description">
+Set the maximum number of checkpoints to <I>count</I>. More checkpoints
+facilitate going far back in time, but use more memory and create more
+Unix processes.
+</DD></DL><P>As checkpointing is quite expensive, it must not be done too often. On
+the other hand, backward execution is faster when checkpoints are
+taken more often. In particular, backward single-stepping is more
+responsive when many checkpoints have been taken just before the
+current time. To fine-tune the checkpointing strategy, the debugger
+does not take checkpoints at the same frequency for long displacements
+(e.g. <TT>run</TT>) and small ones (e.g. <TT>step</TT>). The two variables <TT>bigstep</TT>
+and <TT>smallstep</TT> contain the number of events between two checkpoints
+in each case.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>set bigstep</TT> <I>count</I></B></DT><DD CLASS="dd-description">
+Set the number of events between two checkpoints for long displacements.
+</DD><DT CLASS="dt-description"><B><TT>set smallstep</TT> <I>count</I></B></DT><DD CLASS="dd-description">
+Set the number of events between two checkpoints for small
+displacements.
+</DD></DL><P>The following commands display information on checkpoints and events:</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>info checkpoints</B></TT></DT><DD CLASS="dd-description">
+Print a list of checkpoints.
+</DD><DT CLASS="dt-description"><B><TT>info events</TT> [<I>module</I>]</B></DT><DD CLASS="dd-description">
+Print the list of events in the given module (the current module, by default).
+</DD></DL><H3 CLASS="subsection"><A NAME="htoc208">16.8.8</A>&#XA0;&#XA0;User-defined printers</H3><P>Just as in the toplevel system (section&#XA0;<A HREF="manual023.html#s:toplevel-directives">9.2</A>),
+the user can register functions for printing values of certain types.
+For technical reasons, the debugger cannot call printing functions
+that reside in the program being debugged. The code for the printing
+functions must therefore be loaded explicitly in the debugger.</P><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>load_printer "</TT><I>file-name</I><TT>"</TT></B></DT><DD CLASS="dd-description">
+Load in the debugger the indicated <TT>.cmo</TT> or <TT>.cma</TT> object file. The
+file is loaded in an environment consisting only of the OCaml
+standard library plus the definitions provided by object files
+previously loaded using <TT>load_printer</TT>. If this file depends on other
+object files not yet loaded, the debugger automatically loads them if
+it is able to find them in the search path. The loaded file does not
+have direct access to the modules of the program being debugged.</DD><DT CLASS="dt-description"><B><TT>install_printer </TT><I>printer-name</I></B></DT><DD CLASS="dd-description">
+Register the function named <I>printer-name</I> (a
+value path) as a printer for objects whose types match the argument
+type of the function. That is, the debugger will call
+<I>printer-name</I> when it has such an object to print.
+The printing function <I>printer-name</I> must use the <TT>Format</TT> library
+module to produce its output, otherwise its output will not be
+correctly located in the values printed by the toplevel loop.<P>The value path <I>printer-name</I> must refer to one of the functions
+defined by the object files loaded using <TT>load_printer</TT>. It cannot
+reference the functions of the program being debugged.</P></DD><DT CLASS="dt-description"><B><TT>remove_printer </TT><I>printer-name</I></B></DT><DD CLASS="dd-description">
+Remove the named function from the table of value printers.
+</DD></DL><H2 CLASS="section"><A NAME="toc131"></A><A NAME="htoc209">16.9</A>&#XA0;&#XA0;Miscellaneous commands</H2><DL CLASS="description"><DT CLASS="dt-description">
+<B><TT>list</TT> [<I>module</I>] [<I>beginning</I>] [<I>end</I>]</B></DT><DD CLASS="dd-description">
+List the source of module <I>module</I>, from line number
+<I>beginning</I> to line number <I>end</I>. By default, 20 lines of the
+current module are displayed, starting 10 lines before the current
+position.
+</DD><DT CLASS="dt-description"><B><TT>source</TT> <I>filename</I></B></DT><DD CLASS="dd-description">
+Read debugger commands from the script <I>filename</I>.
+</DD></DL><H2 CLASS="section"><A NAME="toc132"></A><A NAME="htoc210">16.10</A>&#XA0;&#XA0;Running the debugger under Emacs</H2><P> <A NAME="s:inf-debugger"></A></P><P>The most user-friendly way to use the debugger is to run it under Emacs.
+See the file <TT>emacs/README</TT> in the distribution for information on how
+to load the Emacs Lisp files for OCaml support.</P><P>The OCaml debugger is started under Emacs by the command <TT>M-x camldebug</TT>, with argument the name of the executable file
+<I>progname</I> to debug. Communication with the debugger takes place
+in an Emacs buffer named <TT>*camldebug-</TT><I>progname</I><TT>*</TT>. The editing
+and history facilities of Shell mode are available for interacting
+with the debugger.</P><P>In addition, Emacs displays the source files containing the current
+event (the current position in the program execution) and highlights
+the location of the event. This display is updated synchronously with
+the debugger action.</P><P>The following bindings for the most common debugger commands are
+available in the <TT>*camldebug-</TT><I>progname</I><TT>*</TT> buffer:</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>C-c C-s</B></TT></DT><DD CLASS="dd-description"> (command <TT>step</TT>): execute the program one step forward.
+</DD><DT CLASS="dt-description"><TT><B>C-c C-k</B></TT></DT><DD CLASS="dd-description"> (command <TT>backstep</TT>): execute the program one step backward.
+</DD><DT CLASS="dt-description"><TT><B>C-c C-n</B></TT></DT><DD CLASS="dd-description"> (command <TT>next</TT>): execute the program one step
+forward, skipping over function calls.
+</DD><DT CLASS="dt-description"><B>Middle mouse button</B></DT><DD CLASS="dd-description"> (command <TT>display</TT>): display named value.
+<TT>$</TT><I>n</I> under mouse cursor (support incremental browsing of large
+data structures).
+</DD><DT CLASS="dt-description"><TT><B>C-c C-p</B></TT></DT><DD CLASS="dd-description"> (command <TT>print</TT>): print value of identifier at point.
+</DD><DT CLASS="dt-description"><TT><B>C-c C-d</B></TT></DT><DD CLASS="dd-description"> (command <TT>display</TT>): display value of identifier at point.
+</DD><DT CLASS="dt-description"><TT><B>C-c C-r</B></TT></DT><DD CLASS="dd-description"> (command <TT>run</TT>): execute the program forward to next
+breakpoint.
+</DD><DT CLASS="dt-description"><TT><B>C-c C-v</B></TT></DT><DD CLASS="dd-description"> (command <TT>reverse</TT>): execute the program backward to
+latest breakpoint.
+</DD><DT CLASS="dt-description"><TT><B>C-c C-l</B></TT></DT><DD CLASS="dd-description"> (command <TT>last</TT>): go back one step in the command history.
+</DD><DT CLASS="dt-description"><TT><B>C-c C-t</B></TT></DT><DD CLASS="dd-description"> (command <TT>backtrace</TT>): display backtrace of function calls.
+</DD><DT CLASS="dt-description"><TT><B>C-c C-f</B></TT></DT><DD CLASS="dd-description"> (command <TT>finish</TT>): run forward till the current
+function returns.
+</DD><DT CLASS="dt-description"><TT><B>C-c &lt;</B></TT></DT><DD CLASS="dd-description"> (command <TT>up</TT>): select the stack frame below the
+current frame.
+</DD><DT CLASS="dt-description"><TT><B>C-c &gt;</B></TT></DT><DD CLASS="dd-description"> (command <TT>down</TT>): select the stack frame above the
+current frame.
+</DD></DL><P>In all buffers in OCaml editing mode, the following debugger commands
+are also available:</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>C-x C-a C-b</B></TT></DT><DD CLASS="dd-description"> (command <TT>break</TT>): set a breakpoint at event closest
+to point
+</DD><DT CLASS="dt-description"><TT><B>C-x C-a C-p</B></TT></DT><DD CLASS="dd-description"> (command <TT>print</TT>): print value of identifier at point
+</DD><DT CLASS="dt-description"><TT><B>C-x C-a C-d</B></TT></DT><DD CLASS="dd-description"> (command <TT>display</TT>): display value of identifier at point
+</DD></DL><HR>
+<A HREF="manual029.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual031.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

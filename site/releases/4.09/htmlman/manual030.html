@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.8  Substituting inside a signature</title>
+</head>
+<body>
+<a href="manual029.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual031.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec251">8.8  Substituting inside a signature</h2>
+<ul>
+<li><a href="manual030.html#sec252">8.8.1  Destructive substitutions</a>
+</li><li><a href="manual030.html#sec253">8.8.2  Local substitution declarations</a>
+</li></ul>
+<p>
+<a id="hevea_manual.kwd221"></a>
+<a id="hevea_manual.kwd222"></a>
+<a id="hevea_manual.kwd223"></a>
+<a id="s:signature-substitution"></a></p>
+<h3 class="subsection" id="sec252">8.8.1  Destructive substitutions</h3>
+<p>
+<a id="ss:destructive-substitution"></a></p><p>(Introduced in OCaml 3.12, generalized in 4.06)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modtypes.html#mod-constraint"><span class="c010">mod-constraint</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">type</span> [<a class="syntax" href="typedecl.html#type-params"><span class="c010">type-params</span></a>]  <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> <span class="c004">:=</span>  <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">module</span> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">:=</span>  <a class="syntax" href="names.html#extended-module-path"><span class="c010">extended-module-path</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>A “destructive” substitution (<span class="c004">with</span> ... <span class="c004">:=</span> ...) behaves essentially like
+normal signature constraints (<span class="c004">with</span> ... <span class="c004">=</span> ...), but it additionally removes
+the redefined type or module from the signature.</p><p>Prior to OCaml 4.06, there were a number of restrictions: one could only remove
+types and modules at the outermost level (not inside submodules), and in the
+case of <span class="c004">with type</span> the definition had to be another type constructor with the
+same type parameters.</p><p>A natural application of destructive substitution is merging two
+signatures sharing a type name.
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module type Printable = sig
+   type t
+   val print : Format.formatter -&gt; t -&gt; unit
+ end
+ module type Comparable = sig
+   type t
+   val compare : t -&gt; t -&gt; int
+ end
+ module type PrintableComparable = sig
+   include Printable
+   include Comparable with type t := t
+ end
+</div>
+</pre>
+
+
+</div><p>One can also use this to completely remove a field:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module type S = Comparable with type t := int
+</div><div class="caml-output ok">module type S = sig val compare : int -&gt; int -&gt; int end
+</div></pre>
+
+
+</div><p>
+
+or to rename one:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module type S = sig
+   type u
+   include Comparable with type t := u
+ end
+</div><div class="caml-output ok">module type S = sig type u val compare : u -&gt; u -&gt; int end
+</div></pre>
+
+
+</div><p>Note that you can also remove manifest types, by substituting with the
+same type.
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module type ComparableInt = Comparable with type t = int ;;
+</div><div class="caml-output ok">module type ComparableInt = sig type t = int val compare : t -&gt; t -&gt; int end
+</div></pre>
+
+<pre><div class="caml-input"> module type CompareInt = ComparableInt with type t := int
+</div><div class="caml-output ok">module type CompareInt = sig val compare : int -&gt; int -&gt; int end
+</div></pre>
+
+
+</div>
+<h3 class="subsection" id="sec253">8.8.2  Local substitution declarations</h3>
+<p>
+<a id="ss:local-substitution"></a></p><p>(Introduced in OCaml 4.08)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">type</span> <a class="syntax" href="#type-subst"><span class="c010">type-subst</span></a>  { <span class="c004">and</span> <a class="syntax" href="#type-subst"><span class="c010">type-subst</span></a> }
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">module</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">:=</span>  <a class="syntax" href="names.html#extended-module-path"><span class="c010">extended-module-path</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018"><a class="syntax" id="type-subst"><span class="c010">type-subst</span></a></td><td class="c015">::=</td><td class="c017">
+[<a class="syntax" href="typedecl.html#type-params"><span class="c010">type-params</span></a>]  <a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a> <span class="c004">:=</span>  <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>  { <a class="syntax" href="typedecl.html#type-constraint"><span class="c010">type-constraint</span></a> }
+</td></tr>
+</table></td></tr>
+</table></div><p>Local substitutions behave like destructive substitutions (<span class="c004">with</span> ... <span class="c004">:=</span> ...)
+but instead of being applied to a whole signature after the fact, they are
+introduced during the specification of the signature, and will apply to all the
+items that follow.</p><p>This provides a convenient way to introduce local names for types and modules
+when defining a signature:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> module type S = sig
+   type t
+   module Sub : sig
+     type outer := t
+     type t
+     val to_outer : t -&gt; outer
+   end
+ end
+</div><div class="caml-output ok">module type S =
+  sig type t module Sub : sig type t val to_outer : t/1 -&gt; t/2 end end
+</div></pre>
+
+
+</div><p>Note that, unlike type declarations, type substitution declarations are not
+recursive, so substitutions like the following are rejected:</p><div class="caml-example toplevel">
+
+<pre><div class="caml-input"> module type S = sig
+    type 'a poly_list := [ `Cons of 'a * 'a <U>poly_list</U> | `Nil ]
+  end ;;
+</div><div class="caml-output error">Error: Unbound type constructor poly_list
+</div></pre>
+
+
+</div>
+<hr>
+<a href="manual029.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual031.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

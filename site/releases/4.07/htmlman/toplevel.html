@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter&#XA0;10&#XA0;&#XA0;The toplevel system or REPL (ocaml)</title>
+</head>
+<body>
+<a href="comp.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="runtime.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec291">Chapter&#XA0;10&#XA0;&#XA0;The toplevel system or REPL (ocaml)</h1>
+<ul>
+<li><a href="toplevel.html#sec292">10.1&#XA0;&#XA0;Options</a>
+</li><li><a href="toplevel.html#sec293">10.2&#XA0;&#XA0;Toplevel directives</a>
+</li><li><a href="toplevel.html#sec294">10.3&#XA0;&#XA0;The toplevel and the module system</a>
+</li><li><a href="toplevel.html#sec295">10.4&#XA0;&#XA0;Common errors</a>
+</li><li><a href="toplevel.html#sec296">10.5&#XA0;&#XA0;Building custom toplevel systems: <span class="c003">ocamlmktop</span></a>
+</li><li><a href="toplevel.html#sec298">10.6&#XA0;&#XA0;The native toplevel: <span class="c003">ocamlnat</span> (experimental)</a>
+</li></ul>
+<p> <a id="c:camllight"></a>
+
+</p><p>This chapter describes the toplevel system for OCaml, that permits
+interactive use of the OCaml system
+through a read-eval-print loop (REPL). In this mode, the system repeatedly
+reads OCaml phrases from the input, then typechecks, compile and
+evaluate them, then prints the inferred type and result value, if
+any. The system prints a <span class="c003">#</span> (sharp) prompt before reading each
+phrase.</p><p>Input to the toplevel can span several lines. It is terminated by <span class="c004">;;</span> (a
+double-semicolon). The toplevel input consists in one or several
+toplevel phrases, with the following syntax:</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="toplevel-input"><span class="c010">toplevel-input</span></a></td><td class="c015">::=</td><td class="c017">
+{&#XA0;<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a>&#XA0;}<sup>+</sup>&#XA0;<span class="c004">;;</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>&#XA0;<span class="c004">;;</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">#</span>&#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>&#XA0;&#XA0;[&#XA0;<a class="syntax" href="#directive-argument"><span class="c010">directive-argument</span></a>&#XA0;]&#XA0;<span class="c004">;;</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="directive-argument"><span class="c010">directive-argument</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="lex.html#string-literal"><span class="c010">string-literal</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="lex.html#integer-literal"><span class="c010">integer-literal</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<a class="syntax" href="names.html#value-path"><span class="c010">value-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">true</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">false</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>A phrase can consist of a definition, like those found in
+implementations of compilation units or in <span class="c004">struct</span> &#X2026; <span class="c004">end</span>
+module expressions. The definition can bind value names, type names,
+an exception, a module name, or a module type name. The toplevel
+system performs the bindings, then prints the types and values (if
+any) for the names thus defined.</p><p>A phrase may also consist in a value expression
+(section&#XA0;<a href="expr.html#s%3Avalue-expr">7.7</a>). It is simply evaluated
+without performing any bindings, and its value is
+printed.</p><p>Finally, a phrase can also consist in a toplevel directive,
+starting with <span class="c004">#</span> (the sharp sign). These directives control the
+behavior of the toplevel; they are listed below in
+section&#XA0;<a href="#s%3Atoplevel-directives">10.2</a>.</p><blockquote class="quote"><span class="c007">Unix:</span>&#XA0;&#XA0;
+The toplevel system is started by the command <span class="c003">ocaml</span>, as follows:
+<pre>
+        ocaml <span class="c009">options objects</span>                # interactive mode
+        ocaml <span class="c009">options objects scriptfile</span>        # script mode
+</pre>
+<span class="c009">options</span> are described below.
+<span class="c009">objects</span> are filenames ending in <span class="c003">.cmo</span> or <span class="c003">.cma</span>; they are
+loaded into the interpreter immediately after <span class="c009">options</span> are set.
+<span class="c009">scriptfile</span> is any file name not ending in <span class="c003">.cmo</span> or <span class="c003">.cma</span>.<p>If no <span class="c009">scriptfile</span> is given on the command line, the toplevel system
+enters interactive mode: phrases are read on standard input, results
+are printed on standard output, errors on standard error. End-of-file
+on standard input terminates <span class="c003">ocaml</span> (see also the <span class="c003">#quit</span> directive
+in section&#XA0;<a href="#s%3Atoplevel-directives">10.2</a>).</p><p>On start-up (before the first phrase is read), if the file
+<span class="c003">.ocamlinit</span> exists in the current directory,
+its contents are read as a sequence of OCaml phrases
+and executed as per the <span class="c003">#use</span> directive
+described in section&#XA0;<a href="#s%3Atoplevel-directives">10.2</a>.
+The evaluation outcode for each phrase are not displayed.
+If the current directory does not contain an <span class="c003">.ocamlinit</span> file, but
+the user&#X2019;s home directory (environment variable <span class="c003">HOME</span>) does, the
+latter is read and executed as described below.</p><p>The toplevel system does not perform line editing, but it can
+easily be used in conjunction with an external line editor such as
+<span class="c003">ledit</span>, <span class="c003">ocaml2</span> or <span class="c003">rlwrap</span>
+
+
+(see the
+<a href="http://caml.inria.fr/humps/index_framed_caml.html">Caml Hump</a>).
+
+Another option is to use <span class="c003">ocaml</span> under Gnu Emacs, which gives the
+full editing power of Emacs (command <span class="c003">run-caml</span> from library <span class="c003">inf-caml</span>).</p><p>At any point, the parsing, compilation or evaluation of the current
+phrase can be interrupted by pressing <span class="c003">ctrl-C</span> (or, more precisely,
+by sending the <span class="c003">INTR</span> signal to the <span class="c003">ocaml</span> process). The toplevel
+then immediately returns to the <span class="c003">#</span> prompt.</p><p>If <span class="c009">scriptfile</span> is given on the command-line to <span class="c003">ocaml</span>, the toplevel
+system enters script mode: the contents of the file are read as a
+sequence of OCaml phrases and executed, as per the <span class="c003">#use</span>
+directive (section&#XA0;<a href="#s%3Atoplevel-directives">10.2</a>). The outcome of the
+evaluation is not printed. On reaching the end of file, the <span class="c003">ocaml</span>
+command exits immediately. No commands are read from standard input.
+<span class="c003">Sys.argv</span> is transformed, ignoring all OCaml parameters, and
+starting with the script file name in <span class="c003">Sys.argv.(0)</span>.</p><p>In script mode, the first line of the script is ignored if it starts
+with <span class="c003">#!</span>. Thus, it should be possible to make the script
+itself executable and put as first line <span class="c003">#!/usr/local/bin/ocaml</span>,
+thus calling the toplevel system automatically when the script is
+run. However, <span class="c003">ocaml</span> itself is a <span class="c003">#!</span> script on most installations
+of OCaml, and Unix kernels usually do not handle nested <span class="c003">#!</span>
+scripts. A better solution is to put the following as the first line
+of the script:
+</p><pre>        #!/usr/local/bin/ocamlrun /usr/local/bin/ocaml
+</pre></blockquote>
+<h2 class="section" id="sec292">10.1&#XA0;&#XA0;Options</h2>
+<p> <a id="s:toplevel-options"></a></p><p>The following command-line options are recognized by the <span class="c003">ocaml</span> command.
+</p><dl class="description"><dt class="dt-description">
+<span class="c006">-absname</span></dt><dd class="dd-description">
+Force error messages to show absolute paths for file names.</dd><dt class="dt-description"><span class="c013"><span class="c003">-args</span> <span class="c009">filename</span></span></dt><dd class="dd-description">
+Read additional newline-terminated command line arguments from <span class="c009">filename</span>.
+It is not possible to pass a <span class="c009">scriptfile</span> via file to the toplevel.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-args0</span> <span class="c009">filename</span></span></dt><dd class="dd-description">
+Read additional null character terminated command line arguments from <span class="c009">filename</span>.
+It is not possible to pass a <span class="c009">scriptfile</span> via file to the toplevel.
+</dd><dt class="dt-description"><span class="c006">-config</span></dt><dd class="dd-description">
+Print the version number of  and a detailed
+summary of its configuration, then exit.</dd><dt class="dt-description"><span class="c013"><span class="c003">-I</span> <span class="c009">directory</span></span></dt><dd class="dd-description">
+Add the given directory to the list of directories searched for
+
+
+source and compiled files.
+By default, the current directory is searched first, then the standard
+library directory. Directories added with <span class="c003">-I</span> are searched after the
+current directory, in the order in which they were given on the command line,
+but before the standard library directory. See also option <span class="c003">-nostdlib</span>.<p>If the given directory starts with <span class="c003">+</span>, it is taken relative to the
+standard library directory. For instance, <span class="c003">-I +unix</span> adds the
+subdirectory <span class="c003">unix</span> of the standard library to the search path.</p><p>Directories can also be added to the list once
+the toplevel is running with the <span class="c003">#directory</span> directive
+(section&#XA0;<a href="#s%3Atoplevel-directives">10.2</a>).
+</p></dd><dt class="dt-description"><span class="c013"><span class="c003">-init</span> <span class="c009">file</span></span></dt><dd class="dd-description">
+Load the given file instead of the default initialization file.
+The default file is <span class="c003">.ocamlinit</span> in the current directory if it
+exists, otherwise <span class="c003">.ocamlinit</span> in the user&#X2019;s home directory.
+</dd><dt class="dt-description"><span class="c006">-labels</span></dt><dd class="dd-description">
+Labels are not ignored in types, labels may be used in applications,
+and labelled parameters can be given in any order. This is the default.</dd><dt class="dt-description"><span class="c006">-no-app-funct</span></dt><dd class="dd-description">
+Deactivates the applicative behaviour of functors. With this option,
+each functor application generates new types in its result and
+applying the same functor twice to the same argument yields two
+incompatible structures.</dd><dt class="dt-description"><span class="c006">-noassert</span></dt><dd class="dd-description">
+Do not compile assertion checks. Note that the special form
+<span class="c003">assert false</span> is always compiled because it is typed specially.
+</dd><dt class="dt-description"><span class="c006">-nolabels</span></dt><dd class="dd-description">
+Ignore non-optional labels in types. Labels cannot be used in
+applications, and parameter order becomes strict.</dd><dt class="dt-description"><span class="c006">-noprompt</span></dt><dd class="dd-description">
+Do not display any prompt when waiting for input.
+</dd><dt class="dt-description"><span class="c006">-nopromptcont</span></dt><dd class="dd-description">
+Do not display the secondary prompt when waiting for continuation
+lines in multi-line inputs. This should be used e.g. when running
+<span class="c003">ocaml</span> in an <span class="c003">emacs</span> window.
+</dd><dt class="dt-description"><span class="c006">-nostdlib</span></dt><dd class="dd-description">
+Do not include the standard library directory in the list of
+directories searched for source and compiled files.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-ppx</span> <span class="c009">command</span></span></dt><dd class="dd-description">
+After parsing, pipe the abstract syntax tree through the preprocessor
+<span class="c009">command</span>. The module <span class="c003">Ast_mapper</span>, described in
+chapter&#XA0;<a href="parsing.html#c%3Aparsinglib">27</a>: <a href="libref/Ast_mapper.html"> <span class="c003">Ast_mapper</span> </a>
+,
+implements the external interface of a preprocessor.</dd><dt class="dt-description"><span class="c006">-principal</span></dt><dd class="dd-description">
+Check information path during type-checking, to make sure that all
+types are derived in a principal way. When using labelled arguments
+and/or polymorphic methods, this flag is required to ensure future
+versions of the compiler will be able to infer types correctly, even
+if internal algorithms change.
+All programs accepted in <span class="c003">-principal</span> mode are also accepted in the
+default mode with equivalent types, but different binary signatures,
+and this may slow down type checking; yet it is a good idea to
+use it once before publishing source code.</dd><dt class="dt-description"><span class="c006">-rectypes</span></dt><dd class="dd-description">
+Allow arbitrary recursive types during type-checking. By default,
+only recursive types where the recursion goes through an object type
+are supported.</dd><dt class="dt-description"><span class="c006">-safe-string</span></dt><dd class="dd-description">
+Enforce the separation between types <span class="c003">string</span> and <span class="c003">bytes</span>,
+thereby making strings read-only. This is the default.</dd><dt class="dt-description"><span class="c006">-short-paths</span></dt><dd class="dd-description">
+When a type is visible under several module-paths, use the shortest
+one when printing the type&#X2019;s name in inferred interfaces and error and
+warning messages. Identifier names starting with an underscore <span class="c003">_</span> or
+containing double underscores <span class="c003">__</span> incur a penalty of +10 when computing
+their length.</dd><dt class="dt-description"><span class="c006">-stdin</span></dt><dd class="dd-description">
+Read the standard input as a script file rather than starting an
+interactive session.
+</dd><dt class="dt-description"><span class="c006">-strict-sequence</span></dt><dd class="dd-description">
+Force the left-hand part of each sequence to have type unit.</dd><dt class="dt-description"><span class="c006">-strict-formats</span></dt><dd class="dd-description">
+Reject invalid formats that were accepted in legacy format
+implementations. You should use this flag to detect and fix such
+invalid formats, as they will be rejected by future OCaml versions.</dd><dt class="dt-description"><span class="c006">-unsafe</span></dt><dd class="dd-description">
+Turn bound checking off for array and string accesses (the <span class="c003">v.(i)</span> and
+<span class="c003">s.[i]</span> constructs). Programs compiled with <span class="c003">-unsafe</span> are therefore
+ faster, but unsafe: anything can happen if the program
+accesses an array or string outside of its bounds.
+</dd><dt class="dt-description"><span class="c006">-unsafe-string</span></dt><dd class="dd-description">
+Identify the types <span class="c003">string</span> and <span class="c003">bytes</span>, thereby making strings writable.
+This is intended for compatibility with old source code and should not
+be used with new software.</dd><dt class="dt-description"><span class="c006">-v</span></dt><dd class="dd-description">
+Print the version number of the compiler and the location of the
+standard library directory, then exit.</dd><dt class="dt-description"><span class="c006">-verbose</span></dt><dd class="dd-description">
+Print all external commands before they are executed,
+
+
+Useful to debug C library problems.</dd><dt class="dt-description"><span class="c006">-version</span></dt><dd class="dd-description">
+Print version string and exit.</dd><dt class="dt-description"><span class="c006">-vnum</span></dt><dd class="dd-description">
+Print short version number and exit.</dd><dt class="dt-description"><span class="c006">-no-version</span></dt><dd class="dd-description">
+Do not print the version banner at startup.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-w</span> <span class="c009">warning-list</span></span></dt><dd class="dd-description">
+Enable, disable, or mark as fatal the warnings specified by the argument
+<span class="c009">warning-list</span>.
+Each warning can be <em>enabled</em> or <em>disabled</em>, and each warning
+can be <em>fatal</em> or <em>non-fatal</em>.
+If a warning is disabled, it isn&#X2019;t displayed and doesn&#X2019;t affect
+compilation in any way (even if it is fatal). If a warning is
+enabled, it is displayed normally by the compiler whenever the source
+code triggers it. If it is enabled and fatal, the compiler will also
+stop with an error after displaying it.<p>The <span class="c009">warning-list</span> argument is a sequence of warning specifiers,
+with no separators between them. A warning specifier is one of the
+following:</p><dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">+</span><span class="c009">num</span></span></dt><dd class="dd-description"> Enable warning number <span class="c009">num</span>.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-</span><span class="c009">num</span></span></dt><dd class="dd-description"> Disable warning number <span class="c009">num</span>.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">@</span><span class="c009">num</span></span></dt><dd class="dd-description"> Enable and mark as fatal warning number <span class="c009">num</span>.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">+</span><span class="c009">num1</span>..<span class="c009">num2</span></span></dt><dd class="dd-description"> Enable warnings in the given range.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-</span><span class="c009">num1</span>..<span class="c009">num2</span></span></dt><dd class="dd-description"> Disable warnings in the given range.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">@</span><span class="c009">num1</span>..<span class="c009">num2</span></span></dt><dd class="dd-description"> Enable and mark as fatal warnings in
+the given range.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">+</span><span class="c009">letter</span></span></dt><dd class="dd-description"> Enable the set of warnings corresponding to
+<span class="c009">letter</span>. The letter may be uppercase or lowercase.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">-</span><span class="c009">letter</span></span></dt><dd class="dd-description"> Disable the set of warnings corresponding to
+<span class="c009">letter</span>. The letter may be uppercase or lowercase.
+</dd><dt class="dt-description"><span class="c013"><span class="c003">@</span><span class="c009">letter</span></span></dt><dd class="dd-description"> Enable and mark as fatal the set of warnings
+corresponding to <span class="c009">letter</span>. The letter may be uppercase or
+lowercase.
+</dd><dt class="dt-description"><span class="c011">uppercase-letter</span></dt><dd class="dd-description"> Enable the set of warnings corresponding
+to <span class="c009">uppercase-letter</span>.
+</dd><dt class="dt-description"><span class="c011">lowercase-letter</span></dt><dd class="dd-description"> Disable the set of warnings corresponding
+to <span class="c009">lowercase-letter</span>.
+</dd></dl><p>Warning numbers and letters which are out of the range of warnings
+that are currently defined are ignored. The warnings are as follows.
+</p><dl class="description"><dt class="dt-description">
+<span class="c013">1</span></dt><dd class="dd-description"> Suspicious-looking start-of-comment mark.
+</dd><dt class="dt-description"><span class="c013">2</span></dt><dd class="dd-description"> Suspicious-looking end-of-comment mark.
+</dd><dt class="dt-description"><span class="c013">3</span></dt><dd class="dd-description"> Deprecated feature.
+</dd><dt class="dt-description"><span class="c013">4</span></dt><dd class="dd-description"> Fragile pattern matching: matching that will remain complete even
+if additional constructors are added to one of the variant types
+matched.
+</dd><dt class="dt-description"><span class="c013">5</span></dt><dd class="dd-description"> Partially applied function: expression whose result has function
+type and is ignored.
+</dd><dt class="dt-description"><span class="c013">6</span></dt><dd class="dd-description"> Label omitted in function application.
+</dd><dt class="dt-description"><span class="c013">7</span></dt><dd class="dd-description"> Method overridden.
+</dd><dt class="dt-description"><span class="c013">8</span></dt><dd class="dd-description"> Partial match: missing cases in pattern-matching.
+</dd><dt class="dt-description"><span class="c013">9</span></dt><dd class="dd-description"> Missing fields in a record pattern.
+</dd><dt class="dt-description"><span class="c013">10</span></dt><dd class="dd-description"> Expression on the left-hand side of a sequence that doesn&#X2019;t have type
+<span class="c003">unit</span> (and that is not a function, see warning number 5).
+</dd><dt class="dt-description"><span class="c013">11</span></dt><dd class="dd-description"> Redundant case in a pattern matching (unused match case).
+</dd><dt class="dt-description"><span class="c013">12</span></dt><dd class="dd-description"> Redundant sub-pattern in a pattern-matching.
+</dd><dt class="dt-description"><span class="c013">13</span></dt><dd class="dd-description"> Instance variable overridden.
+</dd><dt class="dt-description"><span class="c013">14</span></dt><dd class="dd-description"> Illegal backslash escape in a string constant.
+</dd><dt class="dt-description"><span class="c013">15</span></dt><dd class="dd-description"> Private method made public implicitly.
+</dd><dt class="dt-description"><span class="c013">16</span></dt><dd class="dd-description"> Unerasable optional argument.
+</dd><dt class="dt-description"><span class="c013">17</span></dt><dd class="dd-description"> Undeclared virtual method.
+</dd><dt class="dt-description"><span class="c013">18</span></dt><dd class="dd-description"> Non-principal type.
+</dd><dt class="dt-description"><span class="c013">19</span></dt><dd class="dd-description"> Type without principality.
+</dd><dt class="dt-description"><span class="c013">20</span></dt><dd class="dd-description"> Unused function argument.
+</dd><dt class="dt-description"><span class="c013">21</span></dt><dd class="dd-description"> Non-returning statement.
+</dd><dt class="dt-description"><span class="c013">22</span></dt><dd class="dd-description"> Preprocessor warning.
+</dd><dt class="dt-description"><span class="c013">23</span></dt><dd class="dd-description"> Useless record <span class="c003">with</span> clause.
+</dd><dt class="dt-description"><span class="c013">24</span></dt><dd class="dd-description"> Bad module name: the source file name is not a valid OCaml module name.
+</dd><dt class="dt-description"><span class="c013">25</span></dt><dd class="dd-description"> Deprecated: now part of warning 8.
+</dd><dt class="dt-description"><span class="c013">26</span></dt><dd class="dd-description"> Suspicious unused variable: unused variable that is bound
+with <span class="c003">let</span> or <span class="c003">as</span>, and doesn&#X2019;t start with an underscore (<span class="c003">_</span>)
+character.
+</dd><dt class="dt-description"><span class="c013">27</span></dt><dd class="dd-description"> Innocuous unused variable: unused variable that is not bound with
+<span class="c003">let</span> nor <span class="c003">as</span>, and doesn&#X2019;t start with an underscore (<span class="c003">_</span>)
+character.
+</dd><dt class="dt-description"><span class="c013">28</span></dt><dd class="dd-description"> Wildcard pattern given as argument to a constant constructor.
+</dd><dt class="dt-description"><span class="c013">29</span></dt><dd class="dd-description"> Unescaped end-of-line in a string constant (non-portable code).
+</dd><dt class="dt-description"><span class="c013">30</span></dt><dd class="dd-description"> Two labels or constructors of the same name are defined in two
+mutually recursive types.
+</dd><dt class="dt-description"><span class="c013">31</span></dt><dd class="dd-description"> A module is linked twice in the same executable.
+</dd><dt class="dt-description"><span class="c013">32</span></dt><dd class="dd-description"> Unused value declaration.
+</dd><dt class="dt-description"><span class="c013">33</span></dt><dd class="dd-description"> Unused open statement.
+</dd><dt class="dt-description"><span class="c013">34</span></dt><dd class="dd-description"> Unused type declaration.
+</dd><dt class="dt-description"><span class="c013">35</span></dt><dd class="dd-description"> Unused for-loop index.
+</dd><dt class="dt-description"><span class="c013">36</span></dt><dd class="dd-description"> Unused ancestor variable.
+</dd><dt class="dt-description"><span class="c013">37</span></dt><dd class="dd-description"> Unused constructor.
+</dd><dt class="dt-description"><span class="c013">38</span></dt><dd class="dd-description"> Unused extension constructor.
+</dd><dt class="dt-description"><span class="c013">39</span></dt><dd class="dd-description"> Unused rec flag.
+</dd><dt class="dt-description"><span class="c013">40</span></dt><dd class="dd-description"> Constructor or label name used out of scope.
+</dd><dt class="dt-description"><span class="c013">41</span></dt><dd class="dd-description"> Ambiguous constructor or label name.
+</dd><dt class="dt-description"><span class="c013">42</span></dt><dd class="dd-description"> Disambiguated constructor or label name (compatibility warning).
+</dd><dt class="dt-description"><span class="c013">43</span></dt><dd class="dd-description"> Nonoptional label applied as optional.
+</dd><dt class="dt-description"><span class="c013">44</span></dt><dd class="dd-description"> Open statement shadows an already defined identifier.
+</dd><dt class="dt-description"><span class="c013">45</span></dt><dd class="dd-description"> Open statement shadows an already defined label or constructor.
+</dd><dt class="dt-description"><span class="c013">46</span></dt><dd class="dd-description"> Error in environment variable.
+</dd><dt class="dt-description"><span class="c013">47</span></dt><dd class="dd-description"> Illegal attribute payload.
+</dd><dt class="dt-description"><span class="c013">48</span></dt><dd class="dd-description"> Implicit elimination of optional arguments.
+</dd><dt class="dt-description"><span class="c013">49</span></dt><dd class="dd-description"> Absent cmi file when looking up module alias.
+</dd><dt class="dt-description"><span class="c013">50</span></dt><dd class="dd-description"> Unexpected documentation comment.
+</dd><dt class="dt-description"><span class="c013">51</span></dt><dd class="dd-description"> Warning on non-tail calls if @tailcall present.
+</dd><dt class="dt-description"><span class="c013">52 (see </span><a href="comp.html#ss%3Awarn52"><span class="c013">9.5.2</span></a><span class="c013">)</span></dt><dd class="dd-description"> Fragile constant pattern.
+</dd><dt class="dt-description"><span class="c013">53</span></dt><dd class="dd-description"> Attribute cannot appear in this context
+</dd><dt class="dt-description"><span class="c013">54</span></dt><dd class="dd-description"> Attribute used more than once on an expression
+</dd><dt class="dt-description"><span class="c013">55</span></dt><dd class="dd-description"> Inlining impossible
+</dd><dt class="dt-description"><span class="c013">56</span></dt><dd class="dd-description"> Unreachable case in a pattern-matching (based on type information).
+</dd><dt class="dt-description"><span class="c013">57 (see </span><a href="comp.html#ss%3Awarn57"><span class="c013">9.5.3</span></a><span class="c013">)</span></dt><dd class="dd-description"> Ambiguous or-pattern variables under guard
+</dd><dt class="dt-description"><span class="c013">58</span></dt><dd class="dd-description"> Missing cmx file
+</dd><dt class="dt-description"><span class="c013">59</span></dt><dd class="dd-description"> Assignment to non-mutable value
+</dd><dt class="dt-description"><span class="c013">60</span></dt><dd class="dd-description"> Unused module declaration
+</dd><dt class="dt-description"><span class="c013">61</span></dt><dd class="dd-description"> Unboxable type in primitive declaration
+</dd><dt class="dt-description"><span class="c013">62</span></dt><dd class="dd-description"> Type constraint on GADT type declaration
+</dd><dt class="dt-description"><span class="c013">A</span></dt><dd class="dd-description"> all warnings
+</dd><dt class="dt-description"><span class="c013">C</span></dt><dd class="dd-description"> warnings 1, 2.
+</dd><dt class="dt-description"><span class="c013">D</span></dt><dd class="dd-description"> Alias for warning 3.
+</dd><dt class="dt-description"><span class="c013">E</span></dt><dd class="dd-description"> Alias for warning 4.
+</dd><dt class="dt-description"><span class="c013">F</span></dt><dd class="dd-description"> Alias for warning 5.
+</dd><dt class="dt-description"><span class="c013">K</span></dt><dd class="dd-description"> warnings 32, 33, 34, 35, 36, 37, 38, 39.
+</dd><dt class="dt-description"><span class="c013">L</span></dt><dd class="dd-description"> Alias for warning 6.
+</dd><dt class="dt-description"><span class="c013">M</span></dt><dd class="dd-description"> Alias for warning 7.
+</dd><dt class="dt-description"><span class="c013">P</span></dt><dd class="dd-description"> Alias for warning 8.
+</dd><dt class="dt-description"><span class="c013">R</span></dt><dd class="dd-description"> Alias for warning 9.
+</dd><dt class="dt-description"><span class="c013">S</span></dt><dd class="dd-description"> Alias for warning 10.
+</dd><dt class="dt-description"><span class="c013">U</span></dt><dd class="dd-description"> warnings 11, 12.
+</dd><dt class="dt-description"><span class="c013">V</span></dt><dd class="dd-description"> Alias for warning 13.
+</dd><dt class="dt-description"><span class="c013">X</span></dt><dd class="dd-description"> warnings 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 30.
+</dd><dt class="dt-description"><span class="c013">Y</span></dt><dd class="dd-description"> Alias for warning 26.
+</dd><dt class="dt-description"><span class="c013">Z</span></dt><dd class="dd-description"> Alias for warning 27.
+
+</dd></dl><p>The default setting is <span class="c003">-w +a-4-6-7-9-27-29-32..42-44-45-48-50-60</span>.
+It is displayed by <span class="c003"> -help</span>.
+Note that warnings 5 and 10 are not always triggered, depending on
+the internals of the type checker.</p></dd><dt class="dt-description"><span class="c013"><span class="c003">-warn-error</span> <span class="c009">warning-list</span></span></dt><dd class="dd-description">
+Mark as fatal the warnings specified in the argument <span class="c009">warning-list</span>.
+The compiler will stop with an error when one of these warnings is
+emitted. The <span class="c009">warning-list</span> has the same meaning as for
+the <span class="c003">-w</span> option: a <span class="c003">+</span> sign (or an uppercase letter) marks the
+corresponding warnings as fatal, a <span class="c003">-</span>
+sign (or a lowercase letter) turns them back into non-fatal warnings,
+and a <span class="c003">@</span> sign both enables and marks as fatal the corresponding
+warnings.<p>Note: it is not recommended to use warning sets (i.e. letters) as
+arguments to <span class="c003">-warn-error</span>
+in production code, because this can break your build when future versions
+of OCaml add some new warnings.</p><p>The default setting is <span class="c003">-warn-error -a+31</span> (only warning 31 is fatal).</p></dd><dt class="dt-description"><span class="c006">-warn-help</span></dt><dd class="dd-description">
+Show the description of all available warning numbers.</dd><dt class="dt-description"><span class="c013"><span class="c003">-</span> <span class="c009">file</span></span></dt><dd class="dd-description">
+
+Use <span class="c009">file</span> as a script file name, even when it starts with a
+hyphen (-).</dd><dt class="dt-description"><span class="c013"><span class="c003">-help</span> or <span class="c003">--help</span></span></dt><dd class="dd-description">
+Display a short usage summary and exit.</dd></dl><blockquote class="quote"><span class="c007">Unix:</span>&#XA0;&#XA0;
+The following environment variables are also consulted:
+<dl class="description"><dt class="dt-description">
+<span class="c006">OCAMLTOP_UTF_8</span></dt><dd class="dd-description"> When printing string values, non-ascii bytes
+(  &gt; <span class="c003">\0<span class="c009">x</span>7<span class="c009">E</span></span> ) are printed as decimal escape sequence if <span class="c003">OCAMLTOP_UTF_8</span> is
+set to false. Otherwise, they are printed unescaped.</dd><dt class="dt-description"><span class="c006">TERM</span></dt><dd class="dd-description"> When printing error messages, the toplevel system
+attempts to underline visually the location of the error. It
+consults the <span class="c003">TERM</span> variable to determines the type of output terminal
+and look up its capabilities in the terminal database.</dd><dt class="dt-description"><span class="c006">HOME</span></dt><dd class="dd-description"> Directory where the <span class="c003">.ocamlinit</span> file is searched.
+</dd></dl>
+</blockquote>
+<h2 class="section" id="sec293">10.2&#XA0;&#XA0;Toplevel directives</h2>
+<p>
+<a id="s:toplevel-directives"></a></p><p>The following directives control the toplevel behavior, load files in
+memory, and trace program execution.</p><p><span class="c013">Note:</span> all directives start with a <span class="c003">#</span> (sharp) symbol. This <span class="c003">#</span>
+must be typed before the directive, and must not be confused with the
+<span class="c003">#</span> prompt displayed by the interactive loop. For instance,
+typing <span class="c003">#quit;;</span> will exit the toplevel loop, but typing <span class="c003">quit;;</span>
+will result in an &#X201C;unbound value <span class="c003">quit</span>&#X201D; error.</p><dl class="description"><dt class="dt-description">
+<span class="c013">General</span></dt><dd class="dd-description">
+<dl class="description"><dt class="dt-description">
+<span class="c006">#help;;</span></dt><dd class="dd-description">
+Prints a list of all available directives, with corresponding argument type
+if appropriate.
+</dd><dt class="dt-description"><span class="c006">#quit;;</span></dt><dd class="dd-description">
+Exit the toplevel loop and terminate the <span class="c003">ocaml</span> command.
+</dd></dl></dd><dt class="dt-description"><span class="c013">Loading codes</span></dt><dd class="dd-description">
+<dl class="description"><dt class="dt-description"><span class="c013"><span class="c003">#cd "</span><span class="c009">dir-name</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+Change the current working directory.</dd><dt class="dt-description"><span class="c013"><span class="c003">#directory "</span><span class="c009">dir-name</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+Add the given directory to the list of directories searched for
+source and compiled files.</dd><dt class="dt-description"><span class="c013"><span class="c003">#remove_directory "</span><span class="c009">dir-name</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+Remove the given directory from the list of directories searched for
+source and compiled files. Do nothing if the list does not contain
+the given directory.</dd><dt class="dt-description"><span class="c013"><span class="c003">#load "</span><span class="c009">file-name</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+Load in memory a bytecode object file (<span class="c003">.cmo</span> file) or library file
+(<span class="c003">.cma</span> file) produced by the batch compiler <span class="c003">ocamlc</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">#load_rec "</span><span class="c009">file-name</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+Load in memory a bytecode object file (<span class="c003">.cmo</span> file) or library file
+(<span class="c003">.cma</span> file) produced by the batch compiler <span class="c003">ocamlc</span>.
+When loading an object file that depends on other modules
+which have not been loaded yet, the .cmo files for these modules
+are searched and loaded as well, recursively. The loading order
+is not specified.</dd><dt class="dt-description"><span class="c013"><span class="c003">#use "</span><span class="c009">file-name</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+Read, compile and execute source phrases from the given file.
+This is textual inclusion: phrases are processed just as if
+they were typed on standard input. The reading of the file stops at
+the first error encountered.</dd><dt class="dt-description"><span class="c013"><span class="c003">#mod_use "</span><span class="c009">file-name</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+Similar to <span class="c003">#use</span> but also wrap the code into a top-level module of the
+same name as capitalized file name without extensions, following
+semantics of the compiler.
+</dd></dl><p>For directives that take file names as arguments, if the given file
+name specifies no directory, the file is searched in the following
+directories:
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+In script mode, the directory containing the script currently
+executing; in interactive mode, the current working directory.
+</li><li class="li-enumerate">Directories added with the <span class="c003">#directory</span> directive.
+</li><li class="li-enumerate">Directories given on the command line with <span class="c003">-I</span> options.
+</li><li class="li-enumerate">The standard library directory.
+</li></ol></dd><dt class="dt-description"><span class="c013">Environment queries</span></dt><dd class="dd-description">
+<dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">#show_class </span><span class="c009">class-path</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+</dd><dt class="dt-description"><span class="c013"><span class="c003">#show_class_type </span><span class="c009">class-path</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+</dd><dt class="dt-description"><span class="c013"><span class="c003">#show_exception </span><span class="c009">ident</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+</dd><dt class="dt-description"><span class="c013"><span class="c003">#show_module </span><span class="c009">module-path</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+</dd><dt class="dt-description"><span class="c013"><span class="c003">#show_module_type </span><span class="c009">modtype-path</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+</dd><dt class="dt-description"><span class="c013"><span class="c003">#show_type </span><span class="c009">typeconstr</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+</dd><dt class="dt-description"><span class="c013"><span class="c003">#show_val </span><span class="c009">value-path</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+Print the signature of the corresponding component.</dd><dt class="dt-description"><span class="c013"><span class="c003">#show </span><span class="c009">ident</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+Print the signatures of components with name <span class="c009">ident</span> in all the
+above categories.
+</dd></dl></dd><dt class="dt-description"><span class="c013">Pretty-printing</span></dt><dd class="dd-description">
+<dl class="description"><dt class="dt-description"><span class="c013"><span class="c003">#install_printer </span><span class="c009">printer-name</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+This directive registers the function named <span class="c009">printer-name</span> (a
+value path) as a printer for values whose types match the argument
+type of the function. That is, the toplevel loop will call
+<span class="c009">printer-name</span> when it has such a value to print.<p>The printing function <span class="c009">printer-name</span> should have type
+<span class="c002"><span class="c003">Format.formatter</span> <span class="c003">-&gt;</span> <span class="c010">t</span> <span class="c003">-&gt;</span> <span class="c003">unit</span></span>, where <span class="c010">t</span> is the
+type for the values to be printed, and should output its textual
+representation for the value of type <span class="c010">t</span> on the given formatter,
+using the functions provided by the <span class="c003">Format</span> library. For backward
+compatibility, <span class="c009">printer-name</span> can also have type
+<span class="c010">t</span> <span class="c002"><span class="c003">-&gt;</span> <span class="c003">unit</span></span> and should then output on the standard
+formatter, but this usage is deprecated.</p></dd><dt class="dt-description"><span class="c013"><span class="c003">#print_depth </span><span class="c009">n</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+Limit the printing of values to a maximal depth of <span class="c009">n</span>.
+The parts of values whose depth exceeds <span class="c009">n</span> are printed as <span class="c003">...</span>
+(ellipsis).</dd><dt class="dt-description"><span class="c013"><span class="c003">#print_length </span><span class="c009">n</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+Limit the number of value nodes printed to at most <span class="c009">n</span>.
+Remaining parts of values are printed as <span class="c003">...</span> (ellipsis).</dd><dt class="dt-description"><span class="c013"><span class="c003">#remove_printer </span><span class="c009">printer-name</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+Remove the named function from the table of toplevel printers.
+</dd></dl></dd><dt class="dt-description"><span class="c013">Tracing</span></dt><dd class="dd-description">
+<dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">#trace </span><span class="c009">function-name</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+After executing this directive, all calls to the function named
+<span class="c009">function-name</span> will be &#X201C;traced&#X201D;. That is, the argument and the
+result are displayed for each call, as well as the exceptions escaping
+out of the function, raised either by the function itself or by
+another function it calls. If the function is curried, each argument
+is printed as it is passed to the function.</dd><dt class="dt-description"><span class="c013"><span class="c003">#untrace </span><span class="c009">function-name</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+Stop tracing the given function.</dd><dt class="dt-description"><span class="c006">#untrace_all;;</span></dt><dd class="dd-description">
+Stop tracing all functions traced so far.
+</dd></dl></dd><dt class="dt-description"><span class="c013">Compiler options</span></dt><dd class="dd-description">
+<dl class="description"><dt class="dt-description">
+<span class="c013"><span class="c003">#labels </span><span class="c009">bool</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+Ignore labels in function types if argument is <span class="c003">false</span>, or switch back
+to default behaviour (commuting style) if argument is <span class="c003">true</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">#ppx  "</span><span class="c009">file-name</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+After parsing, pipe the abstract syntax tree through the preprocessor
+command.</dd><dt class="dt-description"><span class="c013"><span class="c003">#principal </span><span class="c009">bool</span><span class="c003">;;</span></span></dt><dd class="dd-description">
+If the argument is <span class="c003">true</span>, check information paths during
+type-checking, to make sure that all types are derived in a principal
+way. If the argument is <span class="c003">false</span>, do not check information paths.</dd><dt class="dt-description"><span class="c006">#rectypes;;</span></dt><dd class="dd-description">
+Allow arbitrary recursive types during type-checking. Note: once
+enabled, this option cannot be disabled because that would lead to
+unsoundness of the type system.</dd><dt class="dt-description"><span class="c013"><span class="c003">#warn_error "</span><span class="c009">warning-list</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+Treat as errors the warnings enabled by the argument and as normal
+warnings the warnings disabled by the argument.</dd><dt class="dt-description"><span class="c013"><span class="c003">#warnings "</span><span class="c009">warning-list</span><span class="c003">";;</span></span></dt><dd class="dd-description">
+Enable or disable warnings according to the argument.</dd></dl></dd></dl>
+<h2 class="section" id="sec294">10.3&#XA0;&#XA0;The toplevel and the module system</h2>
+<p> <a id="s:toplevel-modules"></a></p><p>Toplevel phrases can refer to identifiers defined in compilation units
+with the same mechanisms as for separately compiled units: either by
+using qualified names (<span class="c003">Modulename.localname</span>), or by using
+the <span class="c003">open</span> construct and unqualified names (see section&#XA0;<a href="names.html#s%3Anames">7.3</a>).</p><p>However, before referencing another compilation unit, an
+implementation of that unit must be present in memory.
+At start-up, the toplevel system contains implementations for all the
+modules in the the standard library. Implementations for user modules
+can be entered with the <span class="c003">#load</span> directive described above. Referencing
+a unit for which no implementation has been provided
+results in the error <span class="c003">Reference to undefined global `...'</span>.</p><p>Note that entering <span class="c003">open </span><span class="c009">Mod</span> merely accesses the compiled
+interface (<span class="c003">.cmi</span> file) for <span class="c009">Mod</span>, but does not load the
+implementation of <span class="c009">Mod</span>, and does not cause any error if no
+implementation of <span class="c009">Mod</span> has been loaded. The error
+&#X201C;reference to undefined global <span class="c009">Mod</span>&#X201D; will occur only when
+executing a value or module definition that refers to <span class="c009">Mod</span>.</p>
+<h2 class="section" id="sec295">10.4&#XA0;&#XA0;Common errors</h2>
+<p>This section describes and explains the most frequently encountered
+error messages.</p><dl class="description"><dt class="dt-description"><span class="c013">Cannot find file <span class="c009">filename</span></span></dt><dd class="dd-description">
+The named file could not be found in the current directory, nor in the
+directories of the search path.<p>If <span class="c009">filename</span> has the format <span class="c009">mod</span><span class="c003">.cmi</span>, this
+means you have referenced the compilation unit <span class="c009">mod</span>, but its
+compiled interface could not be found. Fix: compile <span class="c009">mod</span><span class="c003">.mli</span> or
+<span class="c009">mod</span><span class="c003">.ml</span> first, to create the compiled interface <span class="c009">mod</span><span class="c003">.cmi</span>.</p><p>If <span class="c009">filename</span> has the format <span class="c009">mod</span><span class="c003">.cmo</span>, this
+means you are trying to load with <span class="c003">#load</span> a bytecode object file that
+does not exist yet. Fix: compile <span class="c009">mod</span><span class="c003">.ml</span> first.</p><p>If your program spans several directories, this error can also appear
+because you haven&#X2019;t specified the directories to look into. Fix: use
+the <span class="c003">#directory</span> directive to add the correct directories to the
+search path.</p></dd><dt class="dt-description"><span class="c013">This expression has type </span><span class="c009">t</span><sub>1</sub><span class="c013">, but is used with type </span><span class="c009">t</span><sub>2</sub></dt><dd class="dd-description">
+See section&#XA0;<a href="comp.html#s%3Acomp-errors">9.4</a>.</dd><dt class="dt-description"><span class="c013">Reference to undefined global <span class="c009">mod</span></span></dt><dd class="dd-description">
+You have neglected to load in memory an implementation for a module
+with <span class="c003">#load</span>. See section&#XA0;<a href="#s%3Atoplevel-modules">10.3</a> above.</dd></dl>
+<h2 class="section" id="sec296">10.5&#XA0;&#XA0;Building custom toplevel systems: <span class="c003">ocamlmktop</span></h2>
+<p>The <span class="c003">ocamlmktop</span> command builds OCaml toplevels that
+contain user code preloaded at start-up.</p><p>The <span class="c003">ocamlmktop</span> command takes as argument a set of <span class="c003">.cmo</span> and <span class="c003">.cma</span>
+files, and links them with the object files that implement the OCaml toplevel.
+The typical use is:
+</p><pre>        ocamlmktop -o mytoplevel foo.cmo bar.cmo gee.cmo
+</pre><p>This creates the bytecode file <span class="c003">mytoplevel</span>, containing the OCaml toplevel
+system, plus the code from the three <span class="c003">.cmo</span>
+files. This toplevel is directly executable and is started by:
+</p><pre>        ./mytoplevel
+</pre><p>This enters a regular toplevel loop, except that the code from
+<span class="c003">foo.cmo</span>, <span class="c003">bar.cmo</span> and <span class="c003">gee.cmo</span> is already loaded in memory, just as
+if you had typed:
+</p><pre>        #load "foo.cmo";;
+        #load "bar.cmo";;
+        #load "gee.cmo";;
+</pre><p>on entrance to the toplevel. The modules <span class="c003">Foo</span>, <span class="c003">Bar</span> and <span class="c003">Gee</span> are
+not opened, though; you still have to do
+</p><pre>        open Foo;;
+</pre><p>yourself, if this is what you wish.</p>
+<h3 class="subsection" id="sec297">10.5.1&#XA0;&#XA0;Options</h3>
+<p>The following command-line options are recognized by <span class="c003">ocamlmktop</span>.</p><dl class="description"><dt class="dt-description"><span class="c013"><span class="c003">-cclib</span> <span class="c009">libname</span></span></dt><dd class="dd-description">
+Pass the <span class="c003">-l</span><span class="c009">libname</span> option to the C linker when linking in
+&#X201C;custom runtime&#X201D; mode. See the corresponding option for
+<span class="c003">ocamlc</span>, in chapter&#XA0;<a href="comp.html#c%3Acamlc">9</a>.</dd><dt class="dt-description"><span class="c013"><span class="c003">-ccopt</span> <span class="c009">option</span></span></dt><dd class="dd-description">
+Pass the given option to the C compiler and linker, when linking in
+&#X201C;custom runtime&#X201D; mode. See the corresponding option for
+<span class="c003">ocamlc</span>, in chapter&#XA0;<a href="comp.html#c%3Acamlc">9</a>.</dd><dt class="dt-description"><span class="c006">-custom</span></dt><dd class="dd-description">
+Link in &#X201C;custom runtime&#X201D; mode. See the corresponding option for
+<span class="c003">ocamlc</span>, in chapter&#XA0;<a href="comp.html#c%3Acamlc">9</a>.</dd><dt class="dt-description"><span class="c013"><span class="c003">-I</span> <span class="c009">directory</span></span></dt><dd class="dd-description">
+Add the given directory to the list of directories searched for
+compiled object code files (<span class="c003">.cmo</span> and <span class="c003">.cma</span>).</dd><dt class="dt-description"><span class="c013"><span class="c003">-o</span> <span class="c009">exec-file</span></span></dt><dd class="dd-description">
+Specify the name of the toplevel file produced by the linker.
+The default is <span class="c003">a.out</span>.</dd></dl>
+<h2 class="section" id="sec298">10.6&#XA0;&#XA0;The native toplevel: <span class="c003">ocamlnat</span> (experimental)</h2>
+<p><span class="c013">This section describes a tool that is not yet officially supported but may be found useful.</span></p><p>OCaml code executing in the traditional toplevel system uses the bytecode
+interpreter. When increased performance is required, or for testing
+programs that will only execute correctly when compiled to native code,
+the <em>native toplevel</em> may be used instead.</p><p>For the majority of installations the native toplevel will not have been
+installed along with the rest of the OCaml toolchain. In such circumstances
+it will be necessary to build the OCaml distribution from source.
+From the built source tree of the distribution you may use
+<span class="c003">make natruntop</span> to build and execute a native toplevel. (Alternatively
+<span class="c003">make ocamlnat</span> can be used, which just performs the build step.)</p><p>If the <span class="c003">make install</span> command is run after having built the native
+toplevel then the <span class="c003">ocamlnat</span> program (either from the source or the
+installation directory) may be invoked directly rather than using
+<span class="c003">make natruntop</span>.
+
+</p>
+<hr>
+<a href="comp.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="runtime.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

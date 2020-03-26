@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>7.8&#XA0;&#XA0;Type and exception definitions</title>
+</head>
+<body>
+<a href="expr.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="classes.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec168">7.8&#XA0;&#XA0;Type and exception definitions</h2>
+<ul>
+<li><a href="typedecl.html#sec169">7.8.1&#XA0;&#XA0;Type definitions</a>
+</li><li><a href="typedecl.html#sec170">7.8.2&#XA0;&#XA0;Exception definitions</a>
+</li></ul>
+
+<h3 class="subsection" id="sec169">7.8.1&#XA0;&#XA0;Type definitions</h3>
+<p>
+<a id="s:type-defs"></a></p><p>Type definitions bind type constructors to data types: either
+variant types, record types, type abbreviations, or abstract data
+types. They also bind the value constructors and record fields
+associated with the definition.</p><p><a id="hevea_manual.kwd90"></a>
+<a id="hevea_manual.kwd91"></a>
+<a id="hevea_manual.kwd92"></a>
+<a id="hevea_manual.kwd93"></a></p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="type-definition"><span class="c010">type-definition</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">type</span>&#XA0;[<span class="c004">nonrec</span>]&#XA0;<a class="syntax" href="#typedef"><span class="c010">typedef</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">and</span>&#XA0;<a class="syntax" href="#typedef"><span class="c010">typedef</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="typedef"><span class="c010">typedef</span></a></td><td class="c015">::=</td><td class="c017">
+[<a class="syntax" href="#type-params"><span class="c010">type-params</span></a>]&#XA0;&#XA0;<a class="syntax" href="names.html#typeconstr-name"><span class="c010">typeconstr-name</span></a>&#XA0;&#XA0;<a class="syntax" href="#type-information"><span class="c010">type-information</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-information"><span class="c010">type-information</span></a></td><td class="c015">::=</td><td class="c017">
+[<a class="syntax" href="#type-equation"><span class="c010">type-equation</span></a>]&#XA0;&#XA0;[<a class="syntax" href="#type-representation"><span class="c010">type-representation</span></a>]&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#type-constraint"><span class="c010">type-constraint</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-equation"><span class="c010">type-equation</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">=</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-representation"><span class="c010">type-representation</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">=</span>&#XA0;[<span class="c004">|</span>]&#XA0;<a class="syntax" href="#constr-decl"><span class="c010">constr-decl</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">|</span>&#XA0;<a class="syntax" href="#constr-decl"><span class="c010">constr-decl</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">=</span>&#XA0;<a class="syntax" href="#record-decl"><span class="c010">record-decl</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">=</span>&#XA0;<span class="c004">|</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-params"><span class="c010">type-params</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="#type-param"><span class="c010">type-param</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">(</span>&#XA0;<a class="syntax" href="#type-param"><span class="c010">type-param</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">,</span>&#XA0;<a class="syntax" href="#type-param"><span class="c010">type-param</span></a>&#XA0;}&#XA0;<span class="c004">)</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-param"><span class="c010">type-param</span></a></td><td class="c015">::=</td><td class="c017">
+[<a class="syntax" href="#variance"><span class="c010">variance</span></a>]&#XA0;<span class="c004">'</span>&#XA0;&#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="variance"><span class="c010">variance</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">+</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">-</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="record-decl"><span class="c010">record-decl</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">{</span>&#XA0;<a class="syntax" href="#field-decl"><span class="c010">field-decl</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">;</span>&#XA0;<a class="syntax" href="#field-decl"><span class="c010">field-decl</span></a>&#XA0;}&#XA0;&#XA0;[<span class="c004">;</span>]&#XA0;<span class="c004">}</span>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="constr-decl"><span class="c010">constr-decl</span></a></td><td class="c015">::=</td><td class="c017">
+(<a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">[]</span>&#XA0;&#X2223;&#XA0;&#XA0;<span class="c004">(::)</span>)&#XA0;[&#XA0;<span class="c004">of</span>&#XA0;<a class="syntax" href="#constr-args"><span class="c010">constr-args</span></a>&#XA0;]
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="constr-args"><span class="c010">constr-args</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;&#XA0;{&#XA0;<span class="c004">*</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="field-decl"><span class="c010">field-decl</span></a></td><td class="c015">::=</td><td class="c017">
+[<span class="c004">mutable</span>]&#XA0;<a class="syntax" href="names.html#field-name"><span class="c010">field-name</span></a>&#XA0;<span class="c004">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c010">poly-typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="type-constraint"><span class="c010">type-constraint</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">constraint</span>&#XA0;<span class="c004">'</span>&#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>
+<a id="hevea_manual.kwd94"></a>
+<a id="hevea_manual.kwd95"></a>
+See also the following language extensions:
+<a href="extn.html#s%3Aprivate-types">private types</a>,
+<a href="extn.html#s%3Agadts">generalized algebraic datatypes</a>,
+<a href="extn.html#s%3Aattributes">attributes</a>,
+<a href="extn.html#s%3Aextension-nodes">extension nodes</a>,
+<a href="extn.html#s%3Aextensible-variants">extensible variant types</a> and
+<a href="extn.html#s%3Ainline-records">inline records</a>.</p><p>Type definitions are introduced by the <span class="c003">type</span> keyword, and
+consist in one or several simple definitions, possibly mutually
+recursive, separated by the <span class="c003">and</span> keyword. Each simple definition
+defines one type constructor.</p><p>A simple definition consists in a lowercase identifier, possibly
+preceded by one or several type parameters, and followed by an
+optional type equation, then an optional type representation, and then
+a constraint clause. The identifier is the name of the type
+constructor being defined.</p><p>In the right-hand side of type definitions, references to one of the
+type constructor name being defined are considered as recursive,
+unless <span class="c003">type</span> is followed by <span class="c003">nonrec</span>. The <span class="c003">nonrec</span> keyword was
+introduced in OCaml 4.02.2.</p><p>The optional type parameters are either one type variable <span class="c004">'</span> <a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a>,
+for type constructors with one parameter, or a list of type variables
+<span class="c004">('</span><a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a><sub>1</sub>,&#X2026;,<span class="c004">'</span>&#XA0;<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a><sub><span class="c009">n</span></sub><span class="c004">)</span>, for type constructors with several
+parameters. Each type parameter may be prefixed by a variance
+constraint <span class="c004">+</span> (resp. <span class="c004">-</span>) indicating that the parameter is
+covariant (resp. contravariant). These type parameters can appear in
+the type expressions of the right-hand side of the definition,
+optionally restricted by a variance constraint ; <em>i.e.</em> a
+covariant parameter may only appear on the right side of a functional
+arrow (more precisely, follow the left branch of an even number of
+arrows), and a contravariant parameter only the left side (left branch of
+an odd number of arrows). If the type has a representation or
+an equation, and the parameter is free (<em>i.e.</em> not bound via a
+type constraint to a constructed type), its variance constraint is
+checked but subtyping <em>etc.</em> will use the inferred variance of the
+parameter, which may be less restrictive; otherwise (<em>i.e.</em> for abstract
+types or non-free parameters), the variance must be given explicitly,
+and the parameter is invariant if no variance is given.</p><p>The optional type equation <span class="c004">=</span> <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> makes the defined type
+equivalent to the type expression <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>:
+one can be substituted for the other during typing.
+If no type equation is given, a new type is generated: the defined type
+is incompatible with any other type.</p><p>The optional type representation describes the data structure
+representing the defined type, by giving the list of associated
+constructors (if it is a variant type) or associated fields (if it is
+a record type). If no type representation is given, nothing is
+assumed on the structure of the type besides what is stated in the
+optional type equation.</p><p>The type representation <span class="c004">=</span> [<span class="c004">|</span>] <a class="syntax" href="#constr-decl"><span class="c010">constr-decl</span></a> &#XA0;{ <span class="c004">|</span> <a class="syntax" href="#constr-decl"><span class="c010">constr-decl</span></a> }
+describes a variant type. The constructor declarations
+<a class="syntax" href="#constr-decl"><span class="c010">constr-decl</span></a><sub>1</sub>, &#X2026;, &#XA0;<a class="syntax" href="#constr-decl"><span class="c010">constr-decl</span></a><sub><span class="c009">n</span></sub> describe the constructors
+associated to this variant type. The constructor
+declaration <a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a> <span class="c004">of</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> <span class="c004">*</span> &#X2026; <span class="c004">*</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub><span class="c009">n</span></sub>
+declares the name <a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a> as a non-constant constructor, whose
+arguments have types <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub>1</sub> &#X2026;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a><sub><span class="c009">n</span></sub>.
+The constructor declaration <a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a>
+declares the name <a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a> as a constant
+constructor. Constructor names must be capitalized.</p><p>The type representation <span class="c002"><span class="c003">=</span> <span class="c003">{</span></span> <a class="syntax" href="#field-decl"><span class="c010">field-decl</span></a> &#XA0;{ <span class="c004">;</span> <a class="syntax" href="#field-decl"><span class="c010">field-decl</span></a> } &#XA0;[<span class="c004">;</span>] <span class="c004">}</span>
+describes a record type. The field declarations <a class="syntax" href="#field-decl"><span class="c010">field-decl</span></a><sub>1</sub>, &#X2026;,
+&#XA0;<a class="syntax" href="#field-decl"><span class="c010">field-decl</span></a><sub><span class="c009">n</span></sub> describe the fields associated to this record type.
+The field declaration <a class="syntax" href="names.html#field-name"><span class="c010">field-name</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c010">poly-typexpr</span></a> declares
+<a class="syntax" href="names.html#field-name"><span class="c010">field-name</span></a> as a field whose argument has type <a class="syntax" href="types.html#poly-typexpr"><span class="c010">poly-typexpr</span></a>.
+The field declaration <span class="c004">mutable</span> <a class="syntax" href="names.html#field-name"><span class="c010">field-name</span></a> <span class="c004">:</span> &#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c010">poly-typexpr</span></a>
+<a id="hevea_manual.kwd96"></a>
+behaves similarly; in addition, it allows physical modification of
+this field.
+Immutable fields are covariant, mutable fields are non-variant.
+Both mutable and immutable fields may have explicitly polymorphic
+types. The polymorphism of the contents is statically checked whenever
+a record value is created or modified. Extracted values may have their
+types instantiated.</p><p>The two components of a type definition, the optional equation and the
+optional representation, can be combined independently, giving
+rise to four typical situations:</p><dl class="description"><dt class="dt-description">
+<span class="c013">Abstract type: no equation, no representation.</span></dt><dd class="dd-description"> &#XA0;<br>
+When appearing in a module signature, this definition specifies
+nothing on the type constructor, besides its number of parameters:
+its representation is hidden and it is assumed incompatible with any
+other type.</dd><dt class="dt-description"><span class="c013">Type abbreviation: an equation, no representation.</span></dt><dd class="dd-description"> &#XA0;<br>
+This defines the type constructor as an abbreviation for the type
+expression on the right of the <span class="c004">=</span> sign.</dd><dt class="dt-description"><span class="c013">New variant type or record type: no equation, a representation.</span></dt><dd class="dd-description"> &#XA0;<br>
+This generates a new type constructor and defines associated
+constructors or fields, through which values of that type can be
+directly built or inspected.</dd><dt class="dt-description"><span class="c013">Re-exported variant type or record type: an equation,
+a representation.</span></dt><dd class="dd-description"> &#XA0;<br>
+In this case, the type constructor is defined as an abbreviation for
+the type expression given in the equation, but in addition the
+constructors or fields given in the representation remain attached to
+the defined type constructor. The type expression in the equation part
+must agree with the representation: it must be of the same kind
+(record or variant) and have exactly the same constructors or fields,
+in the same order, with the same arguments.
+</dd></dl><p>The type variables appearing as type parameters can optionally be
+prefixed by <span class="c003">+</span> or <span class="c003">-</span> to indicate that the type constructor is
+covariant or contravariant with respect to this parameter. This
+variance information is used to decide subtyping relations when
+checking the validity of <span class="c004">:&gt;</span> coercions (see section <a href="expr.html#s%3Acoercions">7.7.6</a>).</p><p>For instance, <span class="c003">type +'a t</span> declares <span class="c003">t</span> as an abstract type that is
+covariant in its parameter; this means that if the type &#X3C4; is a
+subtype of the type &#X3C3;, then &#X3C4; <span class="c005"> t</span> is a subtype of &#X3C3;
+<span class="c005"> t</span>. Similarly, <span class="c003">type -'a t</span> declares that the abstract type <span class="c003">t</span> is
+contravariant in its parameter: if &#X3C4; is a subtype of &#X3C3;, then
+&#X3C3; <span class="c005"> t</span> is a subtype of &#X3C4; <span class="c005"> t</span>. If no <span class="c003">+</span> or <span class="c003">-</span> variance
+annotation is given, the type constructor is assumed non-variant in the
+corresponding parameter. For instance, the abstract type declaration
+<span class="c003">type 'a t</span> means that &#X3C4; <span class="c005"> t</span> is neither a subtype nor a
+supertype of &#X3C3; <span class="c005"> t</span> if &#X3C4; is subtype of &#X3C3;.</p><p>The variance indicated by the <span class="c003">+</span> and <span class="c003">-</span> annotations on parameters
+is enforced only for abstract and private types, or when there are
+type constraints.
+Otherwise, for abbreviations, variant and record types without type
+constraints, the variance properties of the type constructor
+are inferred from its definition, and the variance annotations are
+only checked for conformance with the definition.</p><p><a id="hevea_manual.kwd97"></a>
+The construct  <span class="c002"><span class="c003">constraint</span> <span class="c003">'</span></span> <a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a> <span class="c004">=</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>  allows the
+specification of
+type parameters. Any actual type argument corresponding to the type
+parameter <a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a> has to be an instance of <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> (more precisely,
+<a class="syntax" href="lex.html#ident"><span class="c010">ident</span></a> and <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> are unified). Type variables of <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> can
+appear in the type equation and the type declaration.</p>
+<h3 class="subsection" id="sec170">7.8.2&#XA0;&#XA0;Exception definitions</h3>
+<p> <a id="s:excdef"></a>
+<a id="hevea_manual.kwd98"></a></p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="exception-definition"><span class="c010">exception-definition</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">exception</span>&#XA0;<a class="syntax" href="#constr-decl"><span class="c010">constr-decl</span></a>
+&#XA0;</td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">&#X2223;</td><td class="c017">&#XA0;<span class="c004">exception</span>&#XA0;<a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a>&#XA0;<span class="c004">=</span>&#XA0;&#XA0;<a class="syntax" href="names.html#constr"><span class="c010">constr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>Exception definitions add new constructors to the built-in variant
+type <code>exn</code> of exception values. The constructors are declared as
+for a definition of a variant type.</p><p>The form <span class="c004">exception</span> <a class="syntax" href="#constr-decl"><span class="c010">constr-decl</span></a>
+generates a new exception, distinct from all other exceptions in the system.
+The form <span class="c004">exception</span> <a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a> <span class="c004">=</span> &#XA0;<a class="syntax" href="names.html#constr"><span class="c010">constr</span></a>
+gives an alternate name to an existing exception.
+
+</p>
+<hr>
+<a href="expr.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="classes.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

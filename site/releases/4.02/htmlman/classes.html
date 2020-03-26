@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.18">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Classes</title>
+</head>
+<body>
+<a href="typedecl.html"><img src="previous_motif.gif" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.gif" alt="Up"></a>
+<a href="modtypes.html"><img src="next_motif.gif" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec152">6.9&#XA0;&#XA0;Classes</h2>
+<ul>
+<li><a href="classes.html#sec153">Class types</a>
+</li><li><a href="classes.html#sec162">Class expressions</a>
+</li><li><a href="classes.html#sec175">Class definitions</a>
+</li><li><a href="classes.html#sec178">Class specifications</a>
+</li><li><a href="classes.html#sec179">Class type definitions</a>
+</li></ul>
+<p>
+Classes are defined using a small language, similar to the module
+language.</p>
+<h3 class="subsection" id="sec153">6.9.1&#XA0;&#XA0;Class types</h3>
+<p>Class types are the class-level equivalent of type expressions: they
+specify the general shape and type properties of classes.</p><p><a id="hevea_manual.kwd59"></a>
+<a id="hevea_manual.kwd60"></a>
+<a id="hevea_manual.kwd61"></a>
+<a id="hevea_manual.kwd62"></a>
+<a id="hevea_manual.kwd63"></a>
+<a id="hevea_manual.kwd64"></a>
+<a id="hevea_manual.kwd65"></a>
+<a id="hevea_manual.kwd66"></a>
+<a id="hevea_manual.kwd67"></a></p><table class="display dcenter"><tr class="c026"><td class="dcell"><table class="c002 cellpading0"><tr><td class="c025">
+<a class="syntax" id="class-type"><span class="c014">class-type</span></a></td><td class="c022">::=</td><td class="c024">
+[[<span class="c008">?</span>]<a class="syntax" href="lex.html#label-name"><span class="c014">label-name</span></a><span class="c008">:</span>]&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>&#XA0;<span class="c008">-&gt;</span>&#XA0;&#XA0;<a class="syntax" href="#class-type"><span class="c014">class-type</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;&#XA0;<a class="syntax" href="#class-body-type"><span class="c014">class-body-type</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td></tr>
+<tr><td class="c025">
+<a class="syntax" id="class-body-type"><span class="c014">class-body-type</span></a></td><td class="c022">::=</td><td class="c024">
+<span class="c008">object</span>&#XA0;[<span class="c008">(</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>&#XA0;<span class="c008">)</span>]&#XA0;&#XA0;{<a class="syntax" href="#class-field-spec"><span class="c014">class-field-spec</span></a>}&#XA0;<span class="c008">end</span>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;[<span class="c008">[</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>&#XA0;&#XA0;{<span class="c008">,</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>}&#XA0;<span class="c008">]</span>]&#XA0;&#XA0;<a class="syntax" href="names.html#classtype-path"><span class="c014">classtype-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td></tr>
+<tr><td class="c025">
+<a class="syntax" id="class-field-spec"><span class="c014">class-field-spec</span></a></td><td class="c022">::=</td><td class="c024">
+<span class="c008">inherit</span>&#XA0;<a class="syntax" href="#class-body-type"><span class="c014">class-body-type</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">val</span>&#XA0;[<span class="c008">mutable</span>]&#XA0;[<span class="c008">virtual</span>]&#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">val</span>&#XA0;<span class="c008">virtual</span>&#XA0;<span class="c008">mutable</span>&#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">method</span>&#XA0;[<span class="c008">private</span>]&#XA0;[<span class="c008">virtual</span>]&#XA0;<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">method</span>&#XA0;<span class="c008">virtual</span>&#XA0;<span class="c008">private</span>&#XA0;<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">constraint</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>&#XA0;<span class="c008">=</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>
+</td></tr>
+</table></td></tr>
+</table><h4 class="subsubsection" id="sec154">Simple class expressions</h4>
+<p>The expression <a class="syntax" href="names.html#classtype-path"><span class="c014">classtype-path</span></a> is equivalent to the class type bound to
+the name <a class="syntax" href="names.html#classtype-path"><span class="c014">classtype-path</span></a>. Similarly, the expression
+<span class="c008">[</span> <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub>1</sub> <span class="c008">,</span> &#X2026; &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub><span class="c013">n</span></sub> <span class="c008">]</span> &#XA0;<a class="syntax" href="names.html#classtype-path"><span class="c014">classtype-path</span></a> is equivalent to
+the parametric class type bound to the name <a class="syntax" href="names.html#classtype-path"><span class="c014">classtype-path</span></a>, in which
+type parameters have been instantiated to respectively <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub>1</sub>,
+&#X2026;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub><span class="c013">n</span></sub>.</p><h4 class="subsubsection" id="sec155">Class function type</h4>
+<p>The class type expression <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a> <span class="c008">-&gt;</span> &#XA0;<a class="syntax" href="#class-type"><span class="c014">class-type</span></a> is the type of
+class functions (functions from values to classes) that take as
+argument a value of type <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a> and return as result a class of
+type <a class="syntax" href="#class-type"><span class="c014">class-type</span></a>.</p><h4 class="subsubsection" id="sec156">Class body type</h4>
+<p>The class type expression
+<span class="c008">object</span> [<span class="c008">(</span> <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a> <span class="c008">)</span>] &#XA0;{<a class="syntax" href="#class-field-spec"><span class="c014">class-field-spec</span></a>} <span class="c008">end</span>
+is the type of a class body. It specifies its instance variables and
+methods. In this type, <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a> is matched against the self type, therefore
+providing a name for the self type.</p><p>A class body will match a class body type if it provides definitions
+for all the components specified in the class body type, and these
+definitions meet the type requirements given in the class body type.
+Furthermore, all methods either virtual or public present in the class
+body must also be present in the class body type (on the other hand, some
+instance variables and concrete private methods may be omitted). A
+virtual method will match a concrete method, which makes it possible
+to forget its implementation. An immutable instance variable will match a
+mutable instance variable.</p><h4 class="subsubsection" id="sec157">Inheritance</h4>
+<p><a id="hevea_manual.kwd68"></a></p><p>The inheritance construct <span class="c008">inherit</span> <a class="syntax" href="#class-body-type"><span class="c014">class-body-type</span></a> provides for inclusion of
+methods and instance variables from other class types.
+The instance variable and method types from <a class="syntax" href="#class-body-type"><span class="c014">class-body-type</span></a> are added
+into the current class type.</p><h4 class="subsubsection" id="sec158">Instance variable specification</h4>
+<p><a id="hevea_manual.kwd69"></a>
+<a id="hevea_manual.kwd70"></a>
+<a id="hevea_manual.kwd71"></a></p><p>A specification of an instance variable is written
+<span class="c008">val</span> [<span class="c008">mutable</span>] [<span class="c008">virtual</span>] <a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a> <span class="c008">:</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>, where
+<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a>
+is the name of the instance variable and <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a> its expected type.
+The flag <span class="c008">mutable</span> indicates whether this instance variable can be
+physically modified.
+The flag <span class="c008">virtual</span> indicates that this instance variable is not
+initialized. It can be initialized later through inheritance.</p><p>An instance variable specification will hide any previous
+specification of an instance variable of the same name.</p><h4 class="subsubsection" id="sec159">Method specification</h4>
+<p>
+<a id="sec-methspec"></a></p><p><a id="hevea_manual.kwd72"></a>
+<a id="hevea_manual.kwd73"></a></p><p>The specification of a method is written
+<span class="c008">method</span> [<span class="c008">private</span>] <a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a> <span class="c008">:</span> &#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a>, where
+<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a> is the name of the method and <a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a> its
+expected type, possibly polymorphic. The flag <span class="c008">private</span> indicates
+that the method cannot be accessed from outside the object.</p><p>The polymorphism may be left implicit in public method specifications:
+any type variable which is not bound to a class parameter and does not
+appear elsewhere inside the class specification will be assumed to be
+universal, and made polymorphic in the resulting method type.
+Writing an explicit polymorphic type will disable this behaviour.</p><p>If several specifications are present for the same method, they
+must have compatible types.
+Any non-private specification of a method forces it to be public.</p><h4 class="subsubsection" id="sec160">Virtual method specification</h4>
+<p><a id="hevea_manual.kwd74"></a>
+<a id="hevea_manual.kwd75"></a>
+<a id="hevea_manual.kwd76"></a></p><p>A virtual method specification is written <span class="c008">method</span> [<span class="c008">private</span>]
+<span class="c008">virtual</span> <a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a> <span class="c008">:</span> &#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a>, where <a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a> is the
+name of the method and <a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a> its expected type.</p><h4 class="subsubsection" id="sec161">Constraints on type parameters</h4>
+<p><a id="hevea_manual.kwd77"></a></p><p>The construct <span class="c008">constraint</span> <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub>1</sub> <span class="c008">=</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub>2</sub> forces the two
+type expressions to be equal. This is typically used to specify type
+parameters: in this way, they can be bound to specific type
+expressions.</p>
+<h3 class="subsection" id="sec162">6.9.2&#XA0;&#XA0;Class expressions</h3>
+<p>Class expressions are the class-level equivalent of value expressions:
+they evaluate to classes, thus providing implementations for the
+specifications expressed in class types.</p><p><a id="hevea_manual.kwd78"></a>
+<a id="hevea_manual.kwd79"></a>
+<a id="hevea_manual.kwd80"></a>
+<a id="hevea_manual.kwd81"></a>
+<a id="hevea_manual.kwd82"></a>
+<a id="hevea_manual.kwd83"></a>
+<a id="hevea_manual.kwd84"></a>
+<a id="hevea_manual.kwd85"></a>
+<a id="hevea_manual.kwd86"></a>
+<a id="hevea_manual.kwd87"></a>
+<a id="hevea_manual.kwd88"></a>
+<a id="hevea_manual.kwd89"></a>
+<a id="hevea_manual.kwd90"></a>
+<a id="hevea_manual.kwd91"></a>
+<a id="hevea_manual.kwd92"></a>
+<a id="hevea_manual.kwd93"></a></p><table class="display dcenter"><tr class="c026"><td class="dcell"><table class="c002 cellpading0"><tr><td class="c025">
+<a class="syntax" id="class-expr"><span class="c014">class-expr</span></a></td><td class="c022">::=</td><td class="c024">
+<a class="syntax" href="names.html#class-path"><span class="c014">class-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">[</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>&#XA0;&#XA0;{<span class="c008">,</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>}&#XA0;<span class="c008">]</span>&#XA0;&#XA0;<a class="syntax" href="names.html#class-path"><span class="c014">class-path</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">(</span>&#XA0;<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>&#XA0;<span class="c008">)</span>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">(</span>&#XA0;<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="#class-type"><span class="c014">class-type</span></a>&#XA0;<span class="c008">)</span>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>&#XA0;&#XA0;{<a class="syntax" href="expr.html#argument"><span class="c014">argument</span></a>}<sup>+</sup>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">fun</span>&#XA0;{<a class="syntax" href="expr.html#parameter"><span class="c014">parameter</span></a>}<sup>+</sup>&#XA0;<span class="c008">-&gt;</span>&#XA0;&#XA0;<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">let</span>&#XA0;[<span class="c008">rec</span>]&#XA0;<a class="syntax" href="expr.html#let-binding"><span class="c014">let-binding</span></a>&#XA0;&#XA0;{<span class="c008">and</span>&#XA0;<a class="syntax" href="expr.html#let-binding"><span class="c014">let-binding</span></a>}&#XA0;<span class="c008">in</span>&#XA0;&#XA0;<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">object</span>&#XA0;<a class="syntax" href="#class-body"><span class="c014">class-body</span></a>&#XA0;<span class="c008">end</span>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="display dcenter"><tr class="c026"><td class="dcell"><table class="c002 cellpading0"><tr><td class="c025">
+<a class="syntax" id="class-field"><span class="c014">class-field</span></a></td><td class="c022">::=</td><td class="c024">
+<span class="c008">inherit</span>&#XA0;<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>&#XA0;&#XA0;[<span class="c008">as</span>&#XA0;<a class="syntax" href="lex.html#lowercase-ident"><span class="c014">lowercase-ident</span></a>]
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">val</span>&#XA0;[<span class="c008">mutable</span>]&#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a>&#XA0;&#XA0;[<span class="c008">:</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>]&#XA0;<span class="c008">=</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">val</span>&#XA0;[<span class="c008">mutable</span>]&#XA0;<span class="c008">virtual</span>&#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">val</span>&#XA0;<span class="c008">virtual</span>&#XA0;<span class="c008">mutable</span>&#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">method</span>&#XA0;[<span class="c008">private</span>]&#XA0;<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a>&#XA0;&#XA0;{<a class="syntax" href="expr.html#parameter"><span class="c014">parameter</span></a>}&#XA0;&#XA0;[<span class="c008">:</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>]&#XA0;<span class="c008">=</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">method</span>&#XA0;[<span class="c008">private</span>]&#XA0;<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a>&#XA0;<span class="c008">=</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">method</span>&#XA0;[<span class="c008">private</span>]&#XA0;<span class="c008">virtual</span>&#XA0;<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">method</span>&#XA0;<span class="c008">virtual</span>&#XA0;<span class="c008">private</span>&#XA0;<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a>&#XA0;<span class="c008">:</span>&#XA0;&#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">constraint</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>&#XA0;<span class="c008">=</span>&#XA0;&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;&#XA0;<span class="c008">initializer</span>&#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>
+</td></tr>
+</table></td></tr>
+</table><h4 class="subsubsection" id="sec163">Simple class expressions</h4>
+<p>The expression <a class="syntax" href="names.html#class-path"><span class="c014">class-path</span></a> evaluates to the class bound to the name
+<a class="syntax" href="names.html#class-path"><span class="c014">class-path</span></a>. Similarly, the expression
+<span class="c008">[</span> <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub>1</sub> <span class="c008">,</span> &#X2026; &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub><span class="c013">n</span></sub> <span class="c008">]</span> &#XA0;<a class="syntax" href="names.html#class-path"><span class="c014">class-path</span></a>
+evaluates to the parametric class bound to the name <a class="syntax" href="names.html#class-path"><span class="c014">class-path</span></a>,
+in which type parameters have been instantiated respectively to
+<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub>1</sub>, &#X2026;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub><span class="c013">n</span></sub>.</p><p>The expression <span class="c008">(</span> <a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a> <span class="c008">)</span> evaluates to the same module as
+<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>.</p><p>The expression <span class="c008">(</span> <a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a> <span class="c008">:</span> &#XA0;<a class="syntax" href="#class-type"><span class="c014">class-type</span></a> <span class="c008">)</span> checks that
+<a class="syntax" href="#class-type"><span class="c014">class-type</span></a> matches the type of <a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a> (that is, that the
+implementation <a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a> meets the type specification
+<a class="syntax" href="#class-type"><span class="c014">class-type</span></a>). The whole expression evaluates to the same class as
+<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>, except that all components not specified in
+<a class="syntax" href="#class-type"><span class="c014">class-type</span></a> are hidden and can no longer be accessed.</p><h4 class="subsubsection" id="sec164">Class application</h4>
+<p>Class application is denoted by juxtaposition of (possibly labeled)
+expressions. It denotes the class whose constructor is the first
+expression applied to the given arguments. The arguments are
+evaluated as for expression application, but the constructor itself will
+only be evaluated when objects are created. In particular, side-effects
+caused by the application of the constructor will only occur at object
+creation time.</p><h4 class="subsubsection" id="sec165">Class function</h4>
+<p>The expression <span class="c008">fun</span> [[<span class="c008">?</span>]<a class="syntax" href="lex.html#label-name"><span class="c014">label-name</span></a><span class="c008">:</span>]&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c014">pattern</span></a> <span class="c008">-&gt;</span> &#XA0;<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a> evaluates
+to a function from values to classes.
+When this function is applied to a value <span class="c013">v</span>, this value is
+matched against the pattern <a class="syntax" href="patterns.html#pattern"><span class="c014">pattern</span></a> and the result is the result of
+the evaluation of <a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a> in the extended environment.</p><p>Conversion from functions with default values to functions with
+patterns only works identically for class functions as for normal
+functions.</p><p>The expression
+</p><div class="center">
+<span class="c008">fun</span> <a class="syntax" href="expr.html#parameter"><span class="c014">parameter</span></a><sub>1</sub> &#X2026; &#XA0;<a class="syntax" href="expr.html#parameter"><span class="c014">parameter</span></a><sub><span class="c013">n</span></sub> <span class="c008">-&gt;</span> &#XA0;<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>
+</div><p>
+is a short form for
+</p><div class="center">
+<span class="c008">fun</span> <a class="syntax" href="expr.html#parameter"><span class="c014">parameter</span></a><sub>1</sub> <span class="c008">-&gt;</span> &#X2026; <span class="c008">fun</span> &#XA0;<a class="syntax" href="expr.html#parameter"><span class="c014">parameter</span></a><sub><span class="c013">n</span></sub> <span class="c008">-&gt;</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>
+</div><h4 class="subsubsection" id="sec166">Local definitions</h4>
+<p>The <span class="c007">let</span> and <span class="c007">let rec</span> constructs bind value names locally,
+as for the core language expressions.</p><p>If a local definition occurs at the very beginning of a class
+definition, it will be evaluated when the class is created (just as if
+the definition was outside of the class).
+Otherwise, it will be evaluated when the object constructor is called.</p><h4 class="subsubsection" id="ss:class-body">Class body</h4>
+<table class="display dcenter"><tr class="c026"><td class="dcell"><table class="c002 cellpading0"><tr><td class="c025">
+<a class="syntax" id="class-body"><span class="c014">class-body</span></a></td><td class="c022">::=</td><td class="c024">&#XA0;&#XA0;[<span class="c008">(</span>&#XA0;<a class="syntax" href="patterns.html#pattern"><span class="c014">pattern</span></a>&#XA0;&#XA0;[<span class="c008">:</span>&#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>]&#XA0;<span class="c008">)</span>]&#XA0;&#XA0;{&#XA0;<a class="syntax" href="#class-field"><span class="c014">class-field</span></a>&#XA0;}
+</td></tr>
+</table></td></tr>
+</table><p>
+The expression
+<span class="c008">object</span> <a class="syntax" href="#class-body"><span class="c014">class-body</span></a> <span class="c008">end</span> denotes
+a class body. This is the prototype for an object : it lists the
+instance variables and methods of an objet of this class.</p><p>A class body is a class value: it is not evaluated at once. Rather,
+its components are evaluated each time an object is created.</p><p>In a class body, the pattern <span class="c008">(</span> <a class="syntax" href="patterns.html#pattern"><span class="c014">pattern</span></a> &#XA0;[<span class="c008">:</span> <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>] <span class="c008">)</span> is
+matched against self, therefore providing a binding for self and self
+type. Self can only be used in method and initializers.</p><p>Self type cannot be a closed object type, so that the class remains
+extensible.</p><p>Since OCaml 4.01, it is an error if the same method or instance
+variable name is defined several times in the same class body.</p><h4 class="subsubsection" id="sec168">Inheritance</h4>
+<p><a id="hevea_manual.kwd94"></a></p><p>The inheritance construct <span class="c008">inherit</span> <a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a> allows reusing
+methods and instance variables from other classes. The class
+expression <a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a> must evaluate to a class body. The instance
+variables, methods and initializers from this class body are added
+into the current class. The addition of a method will override any
+previously defined method of the same name.</p><p><a id="hevea_manual.kwd95"></a>
+An ancestor can be bound by appending <span class="c008">as</span> <a class="syntax" href="lex.html#lowercase-ident"><span class="c014">lowercase-ident</span></a>
+to the inheritance construct. <a class="syntax" href="lex.html#lowercase-ident"><span class="c014">lowercase-ident</span></a> is not a true
+variable and can only be used to select a method, i.e. in an expression
+<a class="syntax" href="lex.html#lowercase-ident"><span class="c014">lowercase-ident</span></a> <span class="c008">#</span> &#XA0;<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a>. This gives access to the
+method <a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a> as it was defined in the parent class even if it is
+redefined in the current class.
+The scope of this ancestor binding is limited to the current class.
+The ancestor method may be called from a subclass but only indirectly.</p><h4 class="subsubsection" id="sec169">Instance variable definition</h4>
+<p><a id="hevea_manual.kwd96"></a>
+<a id="hevea_manual.kwd97"></a></p><p>The definition <span class="c008">val</span> [<span class="c008">mutable</span>] <a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a> <span class="c008">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a> adds an
+instance variable <a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a> whose initial value is the value of
+expression <a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>.
+The flag <span class="c008">mutable</span> allows physical modification of this variable by
+methods.</p><p>An instance variable can only be used in the methods and
+initializers that follow its definition.</p><p>Since version 3.10, redefinitions of a visible instance variable with
+the same name do not create a new variable, but are merged, using the
+last value for initialization. They must have identical types and
+mutability.
+However, if an instance variable is hidden by
+omitting it from an interface, it will be kept distinct from
+other instance variables with the same name.</p><h4 class="subsubsection" id="sec170">Virtual instance variable definition</h4>
+<p><a id="hevea_manual.kwd98"></a>
+<a id="hevea_manual.kwd99"></a>
+<a id="hevea_manual.kwd100"></a></p><p>A variable specification is written <span class="c008">val</span> [<span class="c008">mutable</span>] <span class="c008">virtual</span>
+<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a> <span class="c008">:</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a>. It specifies whether the variable is
+modifiable, and gives its type.</p><p>Virtual instance variables were added in version 3.10.</p><h4 class="subsubsection" id="sec171">Method definition</h4>
+<p><a id="hevea_manual.kwd101"></a>
+<a id="hevea_manual.kwd102"></a></p><p>A method definition is written <span class="c008">method</span> <a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a> <span class="c008">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>. The
+definition of a method overrides any previous definition of this
+method. The method will be public (that is, not private) if any of
+the definition states so.</p><p>A private method, <span class="c005"><span class="c007">method</span> <span class="c007">private</span></span> <a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a> <span class="c008">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>, is a
+method that can only be invoked on self (from other methods of the
+same object, defined in this class or one of its subclasses). This
+invocation is performed using the expression
+<a class="syntax" href="names.html#value-name"><span class="c014">value-name</span></a> <span class="c008">#</span> &#XA0;<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a>, where <a class="syntax" href="names.html#value-name"><span class="c014">value-name</span></a> is directly bound to
+self at the beginning of the class definition. Private methods do
+not appear in object types. A method may have both public and private
+definitions, but as soon as there is a public one, all subsequent
+definitions will be made public.</p><p>Methods may have an explicitly polymorphic type, allowing them to be
+used polymorphically in programs (even for the same object). The
+explicit declaration may be done in one of three ways: (1) by giving an
+explicit polymorphic type in the method definition, immediately after
+the method name, <em>i.e.</em>
+<span class="c008">method</span> [<span class="c008">private</span>] <a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a> <span class="c008">:</span> &#XA0;{<span class="c008">'</span> <a class="syntax" href="lex.html#ident"><span class="c014">ident</span></a>}<sup>+</sup> <span class="c008">.</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a> <span class="c008">=</span>
+&#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>; (2) by a forward declaration of the explicit polymorphic type
+through a virtual method definition; (3) by importing such a
+declaration through inheritance and/or constraining the type of <em>self</em>.</p><p>Some special expressions are available in method bodies for
+manipulating instance variables and duplicating self:
+</p><table class="display dcenter"><tr class="c026"><td class="dcell"><table class="c002 cellpading0"><tr><td class="c025">
+<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a></td><td class="c022">::=</td><td class="c024">
+&#X2026;
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a>&#XA0;<span class="c008">&lt;-</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td><td class="c022">&#X2223;</td><td class="c024">&#XA0;<span class="c008">{&lt;</span>&#XA0;[&#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a>&#XA0;<span class="c008">=</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>&#XA0;&#XA0;{&#XA0;<span class="c008">;</span>&#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a>&#XA0;<span class="c008">=</span>&#XA0;&#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>&#XA0;}&#XA0;&#XA0;[<span class="c008">;</span>]&#XA0;]&#XA0;<span class="c008">&gt;}</span>
+</td></tr>
+</table></td></tr>
+</table><p>The expression <a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a> <span class="c008">&lt;-</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a> modifies in-place the current
+object by replacing the value associated to <a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a> by the
+value of <a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a>. Of course, this instance variable must have been
+declared mutable.</p><p>The expression
+<span class="c008">{&lt;</span> <a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a><sub>1</sub> <span class="c008">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a><sub>1</sub> <span class="c008">;</span> &#X2026; <span class="c008">;</span> &#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a><sub><span class="c013">n</span></sub> <span class="c008">=</span> &#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a><sub><span class="c013">n</span></sub> <span class="c008">&gt;}</span>
+evaluates to a copy of the current object in which the values of
+instance variables <a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a><sub>1</sub>, &#X2026;, &#XA0;<a class="syntax" href="names.html#inst-var-name"><span class="c014">inst-var-name</span></a><sub><span class="c013">n</span></sub> have
+been replaced by the values of the corresponding expressions <a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a><sub>1</sub>,
+&#X2026;, &#XA0;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a><sub><span class="c013">n</span></sub>.</p><h4 class="subsubsection" id="sec172">Virtual method definition</h4>
+<p><a id="hevea_manual.kwd103"></a>
+<a id="hevea_manual.kwd104"></a>
+<a id="hevea_manual.kwd105"></a></p><p>A method specification is written <span class="c008">method</span> [<span class="c008">private</span>] <span class="c008">virtual</span>
+<a class="syntax" href="names.html#method-name"><span class="c014">method-name</span></a> <span class="c008">:</span> &#XA0;<a class="syntax" href="types.html#poly-typexpr"><span class="c014">poly-typexpr</span></a>. It specifies whether the method is
+public or private, and gives its type. If the method is intended to be
+polymorphic, the type must be explicitly polymorphic.</p><h4 class="subsubsection" id="sec173">Constraints on type parameters</h4>
+<p><a id="hevea_manual.kwd106"></a></p><p>The construct <span class="c008">constraint</span> <a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub>1</sub> <span class="c008">=</span> &#XA0;<a class="syntax" href="types.html#typexpr"><span class="c014">typexpr</span></a><sub>2</sub> forces the two
+type expressions to be equals. This is typically used to specify type
+parameters: in that way they can be bound to specific type
+expressions.</p><h4 class="subsubsection" id="sec174">Initializers</h4>
+<p><a id="hevea_manual.kwd107"></a></p><p>A class initializer <span class="c008">initializer</span> <a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a> specifies an expression that
+will be evaluated whenever an object is created from the class, once
+all its instance variables have been initialized.</p>
+<h3 class="subsection" id="sec175">6.9.3&#XA0;&#XA0;Class definitions</h3>
+<p>
+<a id="s:classdef"></a></p><p><a id="hevea_manual.kwd108"></a>
+<a id="hevea_manual.kwd109"></a>
+<a id="hevea_manual.kwd110"></a></p><table class="display dcenter"><tr class="c026"><td class="dcell"><table class="c002 cellpading0"><tr><td class="c025">
+<a class="syntax" id="class-definition"><span class="c014">class-definition</span></a></td><td class="c022">::=</td><td class="c024">
+<span class="c008">class</span>&#XA0;<a class="syntax" href="#class-binding"><span class="c014">class-binding</span></a>&#XA0;&#XA0;{&#XA0;<span class="c008">and</span>&#XA0;<a class="syntax" href="#class-binding"><span class="c014">class-binding</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td></tr>
+<tr><td class="c025">
+<a class="syntax" id="class-binding"><span class="c014">class-binding</span></a></td><td class="c022">::=</td><td class="c024">
+[<span class="c008">virtual</span>]&#XA0;[<span class="c008">[</span>&#XA0;<a class="syntax" href="#type-parameters"><span class="c014">type-parameters</span></a>&#XA0;<span class="c008">]</span>]&#XA0;&#XA0;<a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a>
+&#XA0;{<a class="syntax" href="expr.html#parameter"><span class="c014">parameter</span></a>}&#XA0;&#XA0;[<span class="c008">:</span>&#XA0;<a class="syntax" href="#class-type"><span class="c014">class-type</span></a>]&#XA0;&#XA0;<span class="c008">=</span>&#XA0;&#XA0;<a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td></tr>
+<tr><td class="c025">
+<a class="syntax" id="type-parameters"><span class="c014">type-parameters</span></a></td><td class="c022">::=</td><td class="c024">
+<span class="c008">'</span>&#XA0;<a class="syntax" href="lex.html#ident"><span class="c014">ident</span></a>&#XA0;&#XA0;{&#XA0;<span class="c008">,</span>&#XA0;<span class="c008">'</span>&#XA0;<a class="syntax" href="lex.html#ident"><span class="c014">ident</span></a>&#XA0;}
+</td></tr>
+</table></td></tr>
+</table><p>A class definition <span class="c008">class</span> <a class="syntax" href="#class-binding"><span class="c014">class-binding</span></a> &#XA0;{ <span class="c008">and</span> <a class="syntax" href="#class-binding"><span class="c014">class-binding</span></a> } is
+recursive. Each <a class="syntax" href="#class-binding"><span class="c014">class-binding</span></a> defines a <a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a> that can be
+used in the whole expression except for inheritance. It can also be
+used for inheritance, but only in the definitions that follow its own.</p><p>A class binding binds the class name <a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a> to the value of
+expression <a class="syntax" href="#class-expr"><span class="c014">class-expr</span></a>. It also binds the class type <a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a> to
+the type of the class, and defines two type abbreviations :
+<a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a> and <span class="c008">#</span> <a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a>. The first one is the type of
+objects of this class, while the second is more general as it unifies
+with the type of any object belonging to a subclass (see
+section&#XA0;<a href="types.html#s%3Asharp-types">6.4</a>).</p><h4 class="subsubsection" id="sec176">Virtual class</h4>
+<p><a id="hevea_manual.kwd111"></a>
+A class must be flagged virtual if one of its methods is virtual (that
+is, appears in the class type, but is not actually defined).
+Objects cannot be created from a virtual class.</p><h4 class="subsubsection" id="sec177">Type parameters</h4>
+<p>The class type parameters correspond to the ones of the class type and
+of the two type abbreviations defined by the class binding. They must
+be bound to actual types in the class definition using type
+constraints. So that the abbreviations are well-formed, type
+variables of the inferred type of the class must either be type
+parameters or be bound in the constraint clause.</p>
+<h3 class="subsection" id="sec178">6.9.4&#XA0;&#XA0;Class specifications</h3>
+<p>
+<a id="s:class-spec"></a></p><p><a id="hevea_manual.kwd112"></a>
+<a id="hevea_manual.kwd113"></a>
+<a id="hevea_manual.kwd114"></a></p><table class="display dcenter"><tr class="c026"><td class="dcell"><table class="c002 cellpading0"><tr><td class="c025">
+<a class="syntax" id="class-specification"><span class="c014">class-specification</span></a></td><td class="c022">::=</td><td class="c024">
+<span class="c008">class</span>&#XA0;<a class="syntax" href="#class-spec"><span class="c014">class-spec</span></a>&#XA0;&#XA0;{&#XA0;<span class="c008">and</span>&#XA0;<a class="syntax" href="#class-spec"><span class="c014">class-spec</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td></tr>
+<tr><td class="c025">
+<a class="syntax" id="class-spec"><span class="c014">class-spec</span></a></td><td class="c022">::=</td><td class="c024">
+[<span class="c008">virtual</span>]&#XA0;[<span class="c008">[</span>&#XA0;<a class="syntax" href="#type-parameters"><span class="c014">type-parameters</span></a>&#XA0;<span class="c008">]</span>]&#XA0;&#XA0;<a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a>&#XA0;<span class="c008">:</span>
+&#XA0;<a class="syntax" href="#class-type"><span class="c014">class-type</span></a>
+</td></tr>
+</table></td></tr>
+</table><p>This is the counterpart in signatures of class definitions.
+A class specification matches a class definition if they have the same
+type parameters and their types match.</p>
+<h3 class="subsection" id="sec179">6.9.5&#XA0;&#XA0;Class type definitions</h3>
+<p>
+<a id="s:classtype"></a></p><p><a id="hevea_manual.kwd115"></a>
+<a id="hevea_manual.kwd116"></a>
+<a id="hevea_manual.kwd117"></a>
+<a id="hevea_manual.kwd118"></a></p><table class="display dcenter"><tr class="c026"><td class="dcell"><table class="c002 cellpading0"><tr><td class="c025">
+<a class="syntax" id="classtype-definition"><span class="c014">classtype-definition</span></a></td><td class="c022">::=</td><td class="c024">
+<span class="c008">class</span>&#XA0;<span class="c008">type</span>&#XA0;<a class="syntax" href="#classtype-def"><span class="c014">classtype-def</span></a>
+&#XA0;{&#XA0;<span class="c008">and</span>&#XA0;<a class="syntax" href="#classtype-def"><span class="c014">classtype-def</span></a>&#XA0;}
+&#XA0;</td></tr>
+<tr><td class="c025">&nbsp;</td></tr>
+<tr><td class="c025">
+<a class="syntax" id="classtype-def"><span class="c014">classtype-def</span></a></td><td class="c022">::=</td><td class="c024">
+[<span class="c008">virtual</span>]&#XA0;[<span class="c008">[</span>&#XA0;<a class="syntax" href="#type-parameters"><span class="c014">type-parameters</span></a>&#XA0;<span class="c008">]</span>]&#XA0;&#XA0;<a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a>&#XA0;<span class="c008">=</span>&#XA0;&#XA0;<a class="syntax" href="#class-body-type"><span class="c014">class-body-type</span></a>
+</td></tr>
+</table></td></tr>
+</table><p>A class type definition <span class="c008">class</span> <a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a> <span class="c008">=</span> &#XA0;<a class="syntax" href="#class-body-type"><span class="c014">class-body-type</span></a>
+defines an abbreviation <a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a> for the class body type
+<a class="syntax" href="#class-body-type"><span class="c014">class-body-type</span></a>. As for class definitions, two type abbreviations
+<a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a> and <span class="c008">#</span> <a class="syntax" href="names.html#class-name"><span class="c014">class-name</span></a> are also defined. The definition can
+be parameterized by some type parameters. If any method in the class
+type body is virtual, the definition must be flagged <span class="c008">virtual</span>.</p><p>Two class type definitions match if they have the same type parameters
+and they expand to matching types.
+
+</p>
+<hr>
+<a href="typedecl.html"><img src="previous_motif.gif" alt="Previous"></a>
+<a href="language.html"><img src="contents_motif.gif" alt="Up"></a>
+<a href="modtypes.html"><img src="next_motif.gif" alt="Next"></a>
+</body>
+</html>

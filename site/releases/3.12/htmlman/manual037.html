@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The str library: regular expressions and string processing</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual036.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual038.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc269">Chapter 23</A>  The str library: regular expressions and string processing</H1><P>The <TT>str</TT> library provides high-level string processing functions,
+some based on regular expressions. It is intended to support the kind
+of file processing that is usually performed with scripting languages
+such as <TT>awk</TT>, <TT>perl</TT> or <TT>sed</TT>.</P><P>Programs that use the <TT>str</TT> library must be linked as follows:
+</P><PRE>
+        ocamlc <I>other options</I> str.cma <I>other files</I>
+        ocamlopt <I>other options</I> str.cmxa <I>other files</I>
+</PRE><P>
+For interactive use of the <TT>str</TT> library, do:
+</P><PRE>
+        ocamlmktop -o mytop str.cma
+        ./mytop
+</PRE><P>
+or (if dynamic linking of C libraries is supported on your platform),
+start <TT>ocaml</TT> and type <TT>#load "str.cma";;</TT>.</P><UL CLASS="ftoc2"><LI CLASS="li-links">
+<A HREF="libref/Str.html">Module <TT>Str</TT>: regular expressions and string processing</A>
+</LI></UL><HR>
+<A HREF="manual036.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual038.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

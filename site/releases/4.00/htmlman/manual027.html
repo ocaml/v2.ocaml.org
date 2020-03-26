@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Dependency generator (ocamldep)</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual026.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual028.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc158">Chapter&#XA0;13</A>&#XA0;&#XA0;Dependency generator (ocamldep)</H1><UL>
+<LI><A HREF="manual027.html#toc112">Options</A>
+</LI><LI><A HREF="manual027.html#toc113">A typical Makefile</A>
+</LI></UL>
+<P> <A NAME="c:camldep"></A>
+</P><P>The <TT>ocamldep</TT> command scans a set of OCaml source files
+(<TT>.ml</TT> and <TT>.mli</TT> files) for references to external compilation units,
+and outputs dependency lines in a format suitable for the <TT>make</TT>
+utility. This ensures that <TT>make</TT> will compile the source files in the
+correct order, and recompile those files that need to when a source
+file is modified.</P><P>The typical usage is:
+</P><PRE>
+        ocamldep <I>options</I> *.mli *.ml &gt; .depend
+</PRE><P>
+where <TT>*.mli *.ml</TT> expands to all source files in the current
+directory and <TT>.depend</TT> is the file that should contain the
+dependencies. (See below for a typical <TT>Makefile</TT>.)</P><P>Dependencies are generated both for compiling with the bytecode
+compiler <TT>ocamlc</TT> and with the native-code compiler <TT>ocamlopt</TT>.</P><P>The <TT>ocamlbuild</TT> compilation manager (see chapter&#XA0;<A HREF="manual032.html#c:ocamlbuild">18</A>)
+provide a higher-level, more automated alternative to the combination
+of <TT>make</TT> and <TT>ocamldep</TT>. </P><H2 CLASS="section"><A NAME="toc112"></A><A NAME="htoc159">13.1</A>&#XA0;&#XA0;Options</H2><P>The following command-line options are recognized by <TT>ocamldep</TT>.</P><DL CLASS="description"><DT CLASS="dt-description"><B><TT>-I</TT> <I>directory</I></B></DT><DD CLASS="dd-description">
+Add the given directory to the list of directories searched for
+source files. If a source file <TT>foo.ml</TT> mentions an external
+compilation unit <TT>Bar</TT>, a dependency on that unit&#X2019;s interface
+<TT>bar.cmi</TT> is generated only if the source for <TT>bar</TT> is found in the
+current directory or in one of the directories specified with <TT>-I</TT>.
+Otherwise, <TT>Bar</TT> is assumed to be a module from the standard library,
+and no dependencies are generated. For programs that span multiple
+directories, it is recommended to pass <TT>ocamldep</TT> the same <TT>-I</TT> options
+that are passed to the compiler.</DD><DT CLASS="dt-description"><B><TT>-ml-synonym</TT> <I>.ext</I></B></DT><DD CLASS="dd-description">
+Consider the given extension (with leading dot) to be a synonym for .ml.</DD><DT CLASS="dt-description"><B><TT>-mli-synonym</TT> <I>.ext</I></B></DT><DD CLASS="dd-description">
+Consider the given extension (with leading dot) to be a synonym for .mli.</DD><DT CLASS="dt-description"><TT><B>-modules</B></TT></DT><DD CLASS="dd-description">
+Output raw dependencies of the form
+<PRE>      filename: Module1 Module2 ... ModuleN
+</PRE>where <TT>Module1</TT>, &#X2026;, <TT>ModuleN</TT> are the names of the compilation
+units referenced within the file <TT>filename</TT>, but these names are not
+resolved to source file names. Such raw dependencies cannot be used
+by <TT>make</TT>, but can be post-processed by other tools such as <TT>Omake</TT>.</DD><DT CLASS="dt-description"><TT><B>-native</B></TT></DT><DD CLASS="dd-description">
+Generate dependencies for a pure native-code program (no bytecode
+version). When an implementation file (<TT>.ml</TT> file) has no explicit
+interface file (<TT>.mli</TT> file), <TT>ocamldep</TT> generates dependencies on the
+bytecode compiled file (<TT>.cmo</TT> file) to reflect interface changes.
+This can cause unnecessary bytecode recompilations for programs that
+are compiled to native-code only. The flag <TT>-native</TT> causes
+dependencies on native compiled files (<TT>.cmx</TT>) to be generated instead
+of on <TT>.cmo</TT> files. (This flag makes no difference if all source files
+have explicit <TT>.mli</TT> interface files.)</DD><DT CLASS="dt-description"><B><TT>-pp</TT> <I>command</I></B></DT><DD CLASS="dd-description">
+Cause <TT>ocamldep</TT> to call the given <I>command</I> as a preprocessor
+for each source file.</DD><DT CLASS="dt-description"><TT><B>-slash</B></TT></DT><DD CLASS="dd-description">
+Under Windows, use a forward slash (/) as the path separator instead
+of the usual backward slash (\). Under Unix, this option does
+nothing.</DD><DT CLASS="dt-description"><TT><B>-version</B></TT></DT><DD CLASS="dd-description">
+Print version string and exit.</DD><DT CLASS="dt-description"><TT><B>-vnum</B></TT></DT><DD CLASS="dd-description">
+Print short version number and exit.</DD><DT CLASS="dt-description"><B><TT>-help</TT> or <TT>--help</TT></B></DT><DD CLASS="dd-description">
+Display a short usage summary and exit.
+</DD></DL><H2 CLASS="section"><A NAME="toc113"></A><A NAME="htoc160">13.2</A>&#XA0;&#XA0;A typical Makefile</H2><P>Here is a template <TT>Makefile</TT> for a OCaml program.</P><PRE>OCAMLC=ocamlc
+OCAMLOPT=ocamlopt
+OCAMLDEP=ocamldep
+INCLUDES=                 # all relevant -I options here
+OCAMLFLAGS=$(INCLUDES)    # add other options for ocamlc here
+OCAMLOPTFLAGS=$(INCLUDES) # add other options for ocamlopt here
+
+# prog1 should be compiled to bytecode, and is composed of three
+# units: mod1, mod2 and mod3.
+
+# The list of object files for prog1
+PROG1_OBJS=mod1.cmo mod2.cmo mod3.cmo
+
+prog1: $(PROG1_OBJS)
+        $(OCAMLC) -o prog1 $(OCAMLFLAGS) $(PROG1_OBJS)
+
+# prog2 should be compiled to native-code, and is composed of two
+# units: mod4 and mod5.
+
+# The list of object files for prog2
+PROG2_OBJS=mod4.cmx mod5.cmx
+
+prog2: $(PROG2_OBJS)
+        $(OCAMLOPT) -o prog2 $(OCAMLFLAGS) $(PROG2_OBJS)
+
+# Common rules
+.SUFFIXES: .ml .mli .cmo .cmi .cmx
+
+.ml.cmo:
+        $(OCAMLC) $(OCAMLFLAGS) -c $&lt;
+
+.mli.cmi:
+        $(OCAMLC) $(OCAMLFLAGS) -c $&lt;
+
+.ml.cmx:
+        $(OCAMLOPT) $(OCAMLOPTFLAGS) -c $&lt;
+
+# Clean up
+clean:
+        rm -f prog1 prog2
+        rm -f *.cm[iox]
+
+# Dependencies
+depend:
+        $(OCAMLDEP) $(INCLUDES) *.mli *.ml &gt; .depend
+
+include .depend
+</PRE><HR>
+<A HREF="manual026.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual028.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

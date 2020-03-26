@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The core library</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual033.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual035.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc296">Chapter&#XA0;20</A>&#XA0;&#XA0;The core library</H1><UL>
+<LI><A HREF="manual034.html#toc153">Conventions</A>
+</LI><LI><A HREF="manual034.html#toc154">Built-in types and predefined exceptions</A>
+</LI><LI><A HREF="manual034.html#toc155">Module <TT>Pervasives</TT>: the initially opened module</A>
+</LI></UL>
+<P> <A NAME="c:corelib"></A>
+</P><P>This chapter describes the OCaml core library, which is
+composed of declarations for built-in types and exceptions, plus
+the module <TT>Pervasives</TT> that provides basic operations on these
+built-in types. The <TT>Pervasives</TT> module is special in two
+ways:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+It is automatically linked with the user&#X2019;s object code files by
+the <TT>ocamlc</TT> command (chapter&#XA0;<A HREF="manual022.html#c:camlc">8</A>).</LI><LI CLASS="li-itemize">It is automatically &#X201C;opened&#X201D; when a compilation starts, or
+when the toplevel system is launched. Hence, it is possible to use
+unqualified identifiers to refer to the functions provided by the
+<TT>Pervasives</TT> module, without adding a <TT>open Pervasives</TT> directive.
+</LI></UL><H2 CLASS="section"><A NAME="toc153"></A>Conventions</H2><P>The declarations of the built-in types and the components of module
+<TT>Pervasives</TT> are printed one by one in typewriter font, followed by a
+short comment. All library modules and the components they provide are
+indexed at the end of this report.</P><H2 CLASS="section"><A NAME="toc154"></A><A NAME="htoc297">20.1</A>&#XA0;&#XA0;Built-in types and predefined exceptions</H2><P>The following built-in types and predefined exceptions are always
+defined in the
+compilation environment, but are not part of any module. As a
+consequence, they can only be referred by their short names.</P><H3 CLASS="subsection">Built-in types</H3><PRE> type int
+</PRE><P><A NAME="@manual9"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of integer numbers.
+</BLOCKQUOTE><PRE> type char
+</PRE><P><A NAME="@manual10"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of characters.
+</BLOCKQUOTE><PRE> type string
+</PRE><P><A NAME="@manual11"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of character strings.
+</BLOCKQUOTE><PRE> type float
+</PRE><P><A NAME="@manual12"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of floating-point numbers.
+</BLOCKQUOTE><PRE> type bool = false | true
+</PRE><P><A NAME="@manual13"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of booleans (truth values).
+</BLOCKQUOTE><PRE> type unit = ()
+</PRE><P><A NAME="@manual14"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of the unit value.
+</BLOCKQUOTE><PRE> type exn
+</PRE><P><A NAME="@manual15"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of exception values.
+</BLOCKQUOTE><PRE> type 'a array
+</PRE><P><A NAME="@manual16"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of arrays whose elements have type <TT>'a</TT>.
+</BLOCKQUOTE><PRE> type 'a list = [] | :: of 'a * 'a list
+</PRE><P><A NAME="@manual17"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of lists whose elements have type <TT>'a</TT>.
+</BLOCKQUOTE><PRE>type 'a option = None | Some of 'a
+</PRE><P><A NAME="@manual18"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of optional values of type <TT>'a</TT>.
+</BLOCKQUOTE><PRE>type int32
+</PRE><P><A NAME="@manual19"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of signed 32-bit integers.
+See the <TT>Int32</TT>[<TT><A HREF="libref/Int32.html">Int32</A></TT>] module.
+</BLOCKQUOTE><PRE>type int64
+</PRE><P><A NAME="@manual20"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of signed 64-bit integers.
+See the <TT>Int64</TT>[<TT><A HREF="libref/Int64.html">Int64</A></TT>] module.
+</BLOCKQUOTE><PRE>type nativeint
+</PRE><P><A NAME="@manual21"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of signed, platform-native integers (32 bits on 32-bit
+processors, 64 bits on 64-bit processors).
+See the <TT>Nativeint</TT>[<TT><A HREF="libref/Nativeint.html">Nativeint</A></TT>] module.
+</BLOCKQUOTE><PRE>type ('a, 'b, 'c, 'd, 'e, 'f) format6
+</PRE><P><A NAME="@manual22"></A>
+</P><BLOCKQUOTE CLASS="quote">
+The type of format strings. <TT>'a</TT> is the type of the parameters of
+the format, <TT>'f</TT> is the result type for the <TT>printf</TT>-style
+functions, <TT>'b</TT> is the type of the first argument given to <TT>%a</TT> and
+<TT>%t</TT> printing functions (see module <TT>Printf</TT>[<TT><A HREF="libref/Printf.html">Printf</A></TT>]),
+<TT>'c</TT> is the result type of these functions, and also the type of the
+argument transmitted to the first argument of <TT>kprintf</TT>-style
+functions, <TT>'d</TT> is the result type for the <TT>scanf</TT>-style functions
+(see module <TT>Scanf</TT>[<TT><A HREF="libref/Scanf.html">Scanf</A></TT>]),
+and <TT>'e</TT> is the type of the receiver function for the <TT>scanf</TT>-style
+functions.
+</BLOCKQUOTE><PRE>type 'a lazy_t
+</PRE><P><A NAME="@manual23"></A>
+</P><BLOCKQUOTE CLASS="quote">
+This type is used to implement the <TT>Lazy</TT>[<TT><A HREF="libref/Lazy.html">Lazy</A></TT>] module.
+It should not be used directly.
+</BLOCKQUOTE><H3 CLASS="subsection">Predefined exceptions</H3><PRE>exception Match_failure of (string * int * int)
+</PRE><P><A NAME="@manual24"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised when none of the cases of a pattern-matching
+apply. The arguments are the location of the <TT>match</TT> keyword
+in the source code (file name, line number, column number).
+</BLOCKQUOTE><PRE>exception Assert_failure of (string * int * int)
+</PRE><P><A NAME="@manual25"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised when an assertion fails. The arguments are
+the location of the <TT>assert</TT> keyword in the source code
+(file name, line number, column number).
+</BLOCKQUOTE><PRE>exception Invalid_argument of string
+</PRE><P><A NAME="@manual26"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised by library functions to signal that the given
+arguments do not make sense.
+</BLOCKQUOTE><PRE>exception Failure of string
+</PRE><P><A NAME="@manual27"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised by library functions to signal that they are
+undefined on the given arguments.
+</BLOCKQUOTE><PRE>exception Not_found
+</PRE><P><A NAME="@manual28"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised by search functions when the desired object
+could not be found.
+</BLOCKQUOTE><PRE>exception Out_of_memory
+</PRE><P><A NAME="@manual29"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised by the garbage collector
+when there is insufficient memory to complete the computation.
+</BLOCKQUOTE><PRE>exception Stack_overflow
+</PRE><P><A NAME="@manual30"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised by the bytecode interpreter when the evaluation
+stack reaches its maximal size. This often indicates infinite
+or excessively deep recursion in the user&#X2019;s program.
+(Not fully implemented by the native-code compiler;
+see section&#XA0;<A HREF="manual025.html#s:compat-native-bytecode">11.5</A>.)
+</BLOCKQUOTE><PRE>exception Sys_error of string
+</PRE><P><A NAME="@manual31"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised by the input/output functions to report
+an operating system error.
+</BLOCKQUOTE><PRE>exception End_of_file
+</PRE><P><A NAME="@manual32"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised by input functions to signal that the
+end of file has been reached.
+</BLOCKQUOTE><PRE>exception Division_by_zero
+</PRE><P><A NAME="@manual33"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised by integer division and remainder operations
+when their second argument is zero.
+</BLOCKQUOTE><PRE>exception Sys_blocked_io
+</PRE><P><A NAME="@manual34"></A>
+</P><BLOCKQUOTE CLASS="quote">
+A special case of <TT>Sys_error</TT> raised when no I/O is possible
+on a non-blocking I/O channel.
+</BLOCKQUOTE><PRE>exception Undefined_recursive_module of (string * int * int)
+</PRE><P><A NAME="@manual35"></A>
+</P><BLOCKQUOTE CLASS="quote">
+Exception raised when an ill-founded recursive module definition
+is evaluated. (See section&#XA0;<A HREF="manual021.html#s-recursive-modules">7.8</A>.)
+The arguments are the location of the definition in the source code
+(file name, line number, column number).
+</BLOCKQUOTE><H2 CLASS="section"><A NAME="toc155"></A><A NAME="htoc298">20.2</A>&#XA0;&#XA0;Module <TT>Pervasives</TT>: the initially opened module</H2><UL CLASS="ftoc2"><LI CLASS="li-links">
+<A HREF="libref/Pervasives.html">Module <TT>Pervasives</TT>: the initially opened module</A>
+</LI></UL><HR>
+<A HREF="manual033.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual035.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

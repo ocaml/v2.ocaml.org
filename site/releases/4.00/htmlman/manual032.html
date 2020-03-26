@@ -1,0 +1,691 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The ocamlbuild compilation manager</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual031.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual033.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc216">Chapter&#XA0;18</A>&#XA0;&#XA0;The ocamlbuild compilation manager</H1><UL>
+<LI><A HREF="manual032.html#toc137">Features of <TT>ocamlbuild</TT></A>
+</LI><LI><A HREF="manual032.html#toc138">Limitations</A>
+</LI><LI><A HREF="manual032.html#toc139">Using <TT>ocamlbuild</TT></A>
+</LI><LI><A HREF="manual032.html#toc140">Appendix: Motivations</A>
+</LI><LI><A HREF="manual032.html#toc141">Appendix: Summary of default rules</A>
+</LI></UL>
+<P> <A NAME="c:ocamlbuild"></A>
+</P><P><I>(Chapter written by Berke Durak and Nicolas Pouillard)</I></P><P><BR>
+<BR>
+</P><P><TT>ocamlbuild</TT> is a tool automating the compilation of most OCaml projects with minimal
+user input. Its use is not restricted to projects having a simple structure &#X2013;
+the extra effort needed to make it work with the more complex projects is in
+reasonable proportion with their added complexity. In practice, one will use a
+set of small text files, and, if needed, an OCaml compilation module that can
+fine-tune the behaviour and define custom rules.</P><H2 CLASS="section"><A NAME="toc137"></A><A NAME="htoc217">18.1</A>&#XA0;&#XA0;Features of <TT>ocamlbuild</TT></H2><P>
+<EM>This section is intended to read like a sales brochure or a datasheet.</EM></P><UL CLASS="itemize"><LI CLASS="li-itemize">
+Built-in compilation rules for OCaml projects handle all the nasty cases:
+native and byte-code, missing <TT>.mli</TT> files, preprocessor rules,
+libraries, package (-pack) debugging and profiling flags, C stubs.
+</LI><LI CLASS="li-itemize">Plugin mechanism for writing compilation rules and actions in a real programming language,
+OCaml itself.
+</LI><LI CLASS="li-itemize">Automatic inference of dependencies.
+</LI><LI CLASS="li-itemize">Correct handling of dynamically discovered dependencies.
+</LI><LI CLASS="li-itemize">Object files and other temporary files are created in a specific directory, leaving your main directory uncluttered.
+</LI><LI CLASS="li-itemize">Sanity checks ensure that object files are where they are supposed to be: in the build directory.
+</LI><LI CLASS="li-itemize">Regular projects are built using a single command with no extra files.
+</LI><LI CLASS="li-itemize">Parallel compilation to speed up things on multi-core systems.
+</LI><LI CLASS="li-itemize">Sophisticated display mode to keep your screen free of boring and repetitive compilation message
+while giving you important progress information in a glimpse, and correctly multiplexing the error messages.
+</LI><LI CLASS="li-itemize">Tags and flags provide a concise and convenient mechanism for automatic selection of compilation, preprocessing and
+other options.
+</LI><LI CLASS="li-itemize">Extended shell-like glob patterns, that can be combined using boolean operators,
+allow you to concisely define the tags that apply to a given file.
+</LI><LI CLASS="li-itemize">Mechanisms for defining the mutual visibility of subdirectories.
+</LI><LI CLASS="li-itemize">Cache mechanism avoiding unnecessary compilations where reasonably computable.
+</LI></UL><H2 CLASS="section"><A NAME="toc138"></A><A NAME="htoc218">18.2</A>&#XA0;&#XA0;Limitations</H2><P>
+<EM>Not perfect nor complete yet, but already pretty damn useful.</EM></P><P>We were not expecting to write the ultimate compilation tool in a few man-months, however we believe we have
+a tool that solves many compilation problems, especially our own, in a satisfactory way. Hence there are a
+lot of missing features, incomplete options and hideous bugs lurking in <TT>ocamlbuild</TT>, and we hope that the OCaml community
+will find our first try at <TT>ocamlbuild</TT> useful and hopefully help it grow into a tool that satisfies most needs of most users
+by providing feedback, bug reports and patches.</P><P>The plugin API maybe somewhat lacking in maturity, as it has only been tested
+by a few people. We believe a good API can only evolve under pressure from
+many peers and the courage to rewrite things cleanly when time is ripe by the
+developers. Most of the important functions a user will need are encapsulated
+in the plugin API, which is the <TT>Ocamlbuild_plugin</TT> module pack. We
+intend to keep that API backwards compatible. It may happen that intricate
+projects need features not available in that module &#X2013; you may then use
+functions or values directly from the core <TT>ocamlbuild</TT> modules. We ask you to report
+such usage to the authors so that we may make the necessary changes to the API;
+you may also want to isolate calls to the non-API parts of the <TT>ocamlbuild</TT> library
+from the rest of your plugin to be able to keep the later when incompatible
+changes arise.</P><P>The way that <TT>ocamlbuild</TT> handles the command-line options, the <TT>_tags</TT> file,
+the target names, names of the tags, and so on, are not expected to change in
+incompatible ways. We intend to keep a project that compiles without a plugin
+compilable without modifications in the future.
+</P><H2 CLASS="section"><A NAME="toc139"></A><A NAME="htoc219">18.3</A>&#XA0;&#XA0;Using <TT>ocamlbuild</TT></H2><P>
+<EM>Learn how to use <TT>ocamlbuild</TT> with short, specific, straight-to-the-point examples.</EM></P><P>The amount of time and effort spent on the compilation process of a project
+should be proportionate to that spent on the project itself. It should be easy
+to set up a small project, maybe a little harder for a medium-sized project,
+and it may take some more time, but not too much, for a big project. Ideally
+setting up a big project would be as easy as setting up a small project. However,
+as projects grow, modularization techniques start to be used, and the probability
+of using meta programming or multiple programming languages increases, thus making
+the compilation process more delicate.</P><P><TT>ocamlbuild</TT> is intended to be very easy to use for projects, large or small, with a simple
+compilation process: typing
+<TT>ocamlbuild foo.native</TT> should be enough to compile the native version
+of a program whose top module is <TT>foo.ml</TT> and whose dependencies are in
+the same directory. As your project gets more complex, you will gradually
+start to use command-line options to specify libraries to link with, then
+configuration files, ultimately culminating in a custom OCaml plugin for
+complex projects with arbitrary dependencies and actions.</P><H3 CLASS="subsection"><A NAME="htoc220">18.3.1</A>&#XA0;&#XA0;Hygiene &amp; where is my code ?</H3><P>
+Your code is in the <TT>_build</TT> directory, but <TT>ocamlbuild</TT> automatically creates
+a symbolic link to the executables it produces in the current directory.
+<TT>ocamlbuild</TT> copies the source files and compiles them in a separate directory
+which is <TT>_build</TT> by default.</P><P>For <TT>ocamlbuild</TT>, any file that is not in the build directory is a source file.
+It is not unreasonable to think that some users may have bought binary object files
+they keep in their project directory. Usually binary files cluttering the project
+directory are due to previous builds using other systems. <TT>ocamlbuild</TT> has so-called
+&#X201C;hygiene&#X201D; rules that state that object files (<TT>.cmo</TT>, <TT>.cmi</TT>,
+or <TT>.o</TT> files, for instance) must not appear outside of the build
+directory. These rules are enforced at startup; any violations will be reported
+and <TT>ocamlbuild</TT> will exit. You must then remove these files by hand or run, with caution,
+the script <TT>sanitize.sh</TT>, which is generated in your source directory.
+This script will contain commands to remove them for you.</P><P>To disable these checks, you can use the <TT>-no-hygiene</TT> flag. If you have
+files that must elude the hygiene squad, just tag them with <TT>precious</TT>
+or <TT>not_hygienic</TT>.
+</P><H3 CLASS="subsection"><A NAME="htoc221">18.3.2</A>&#XA0;&#XA0;Hello, world !</H3><P>
+Assuming we are in a directory named <TT>example1</TT> containing one file <TT>hello.ml</TT>
+whose contents are
+</P><PRE>let _ =
+  Printf.printf "Hello, %s ! My name is %s\n"
+    (if Array.length Sys.argv &gt; 1 then Sys.argv.(1) else "stranger")
+    Sys.argv.(0)
+;;
+</PRE><P>we can compile and link it into a native executable by invoking <TT>ocamlbuild hello.native</TT>.
+Here, <TT>hello</TT> is the basename of the top-level module and <TT>native</TT> is an extension used
+by <TT>ocamlbuild</TT> to denote native code executables.
+</P><PRE>% ls
+hello.ml
+% ocamlbuild hello.native
+Finished, 4 targets (0 cached) in 00:00:00.
+% ls -l
+total 12
+drwxrwx&#X2014; 2 linus gallium 4096 2007-01-17 16:24 _build/
+-rw-rw&#X2014;- 1 linus gallium   43 2007-01-17 16:23 hello.ml
+lrwxrwxrwx 1 linus gallium   19 2007-01-17 16:24 hello.native -&gt; _build/hello.native*
+</PRE><P>What&#X2019;s this funny <TT>_build</TT> directory ? Well that&#X2019;s where <TT>ocamlbuild</TT> does its dirty work
+of compiling. You usually won&#X2019;t have to look very often into this directory. Source files are copied
+into <TT>_build</TT> and this is where the compilers will be run. Various cache files are also stored
+there. Its contents may look like this:
+</P><PRE>% ls -l _build
+total 208
+-rw-rw&#X2014;- 1 linus gallium    337 2007-01-17 16:24 _digests
+-rw-rw&#X2014;- 1 linus gallium    191 2007-01-17 16:24 hello.cmi
+-rw-rw&#X2014;- 1 linus gallium    262 2007-01-17 16:24 hello.cmo
+-rw-rw&#X2014;- 1 linus gallium    225 2007-01-17 16:24 hello.cmx
+-rw-rw&#X2014;- 1 linus gallium     43 2007-01-17 16:23 hello.ml
+-rw-rw&#X2014;- 1 linus gallium     17 2007-01-17 16:24 hello.ml.depends
+-rwxrwx&#X2014; 1 linus gallium 173528 2007-01-17 16:24 hello.native*
+-rw-rw&#X2014;- 1 linus gallium    936 2007-01-17 16:24 hello.o
+-rw-rw&#X2014;- 1 linus gallium     22 2007-01-17 16:24 ocamlc.where
+</PRE><H3 CLASS="subsection"><A NAME="htoc222">18.3.3</A>&#XA0;&#XA0;Executing my code</H3><P>
+You can execute your code the old-fashioned way (<TT>./hello.native</TT>).
+You may also type
+</P><PRE>ocamlbuild hello.native &#X2013; Caesar
+</PRE><P>and it will compile and then run <TT>hello.native</TT> with the arguments following <TT>--</TT>,
+which should display:
+</P><PRE>% ocamlbuild hello.native &#X2013; Caesar
+Finished, 4 targets (0 cached) in 00:00:00.
+Hello, Caesar ! My name is _build/hello.native
+</PRE><H3 CLASS="subsection"><A NAME="htoc223">18.3.4</A>&#XA0;&#XA0;The log file, verbosity and debugging</H3><P>
+By default, if you run <TT>ocamlbuild</TT> on a terminal, it will use some ANSI escape sequences
+to display a nice, one-line progress indicator. To see what commands <TT>ocamlbuild</TT> has actually run,
+you can check the contents of the <TT>_build/_log</TT> file. To change the name of the
+log file or to disable logging, use the <TT>-log &lt;file&gt;</TT> or <TT>-no-log</TT> options.
+Note that the log file is truncated at each execution of <TT>ocamlbuild</TT>.</P><P>The log file contains all the external commands that <TT>ocamlbuild</TT> ran or intended to
+run along with the target name and the computed tags. With the
+<TT>-verbose &lt;level&gt;</TT> option, <TT>ocamlbuild</TT> will also write more or less useful
+debugging information; a verbosity level of 1 (which can also be specified
+using the <TT>-verbose</TT> switch) prints generally useful information; higher
+levels produce much more output.
+</P><H3 CLASS="subsection"><A NAME="htoc224">18.3.5</A>&#XA0;&#XA0;Cleaning</H3><P>
+<TT>ocamlbuild</TT> may leave a <TT>_build</TT> directory and symbolic links to executables in
+that directory (unless when using -no-links). All of these can be removed safely
+by hand, or by invoking <TT>ocamlbuild</TT> with the <TT>-clean</TT> flag.
+</P><H3 CLASS="subsection"><A NAME="htoc225">18.3.6</A>&#XA0;&#XA0;Where and how to run <TT>ocamlbuild</TT>?</H3><P>
+An important point is that <TT>ocamlbuild</TT> must be invoked from the root of the project,
+even if this project has multiple, nested subdirectories. This is because <TT>ocamlbuild</TT> likes to store the object files in a single <TT>_build</TT> directory. You
+can change the name of that directory with the <TT>-build-dir</TT> option.</P><P><TT>ocamlbuild</TT> can be either invoked manually from the UNIX or Windows shell, or
+automatically from a build script or a Makefile. Unless run with the
+<TT>-no-hygiene</TT> option, there is the possibility that <TT>ocamlbuild</TT> will prompt the
+user for a response. By default, on UNIX systems, if <TT>ocamlbuild</TT> senses that the
+standard output is a terminal, it will use a nice progress indicator using ANSI
+codes, instrumenting the output of the processes it spawns to have a consistent
+display. Under non-UNIX systems, or if the standard output is not a terminal,
+it will run in classic mode where it will echo the executed commands on its
+standard output. This selection can be overridden with the <TT>-classic-display</TT> option.
+</P><H3 CLASS="subsection"><A NAME="htoc226">18.3.7</A>&#XA0;&#XA0;Dependencies</H3><P>
+<EM>Dependencies are automatically discovered.</EM></P><P>Most of the value of <TT>ocamlbuild</TT> lies in the fact that it often needs no extra
+information to compile a project besides the name of the top-level module.
+<TT>ocamlbuild</TT> calls <TT>ocamldep</TT> to automatically find the dependencies of any
+modules it wants to compile. These dependencies are dynamically incorporated
+in the dependency graph, something <TT>make</TT> cannot do.
+For instance, let&#X2019;s add a module <TT>Greet</TT> that implements various ways of
+greeting people.
+</P><PRE>% cat greet.ml
+type how = Nicely | Badly;;
+
+let greet how who =
+  match how with Nicely -&gt; Printf.printf "Hello, %s !\n" who
+               | Badly  -&gt; Printf.printf "Oh, here is that %s again.\n" who
+;;
+% cat hello.ml
+open Greet
+
+let _ =
+  let name =
+    if Array.length Sys.argv &gt; 1 then
+      Sys.argv.(1)
+    else
+      "stranger"
+  in
+  greet
+    (if name = "Caesar" then Nicely else Badly)
+    name;
+  Printf.printf "My name is %s\n" Sys.argv.(0)
+;;
+</PRE><P>Then the module <TT>Hello</TT> depends on the module <TT>Greet</TT> and <TT>ocamlbuild</TT> can
+figure this out for himself &#X2013; we still only have to invoke <TT>ocamlbuild hello.native</TT>. Needless to say, this works for any number of modules.
+</P><H3 CLASS="subsection"><A NAME="htoc227">18.3.8</A>&#XA0;&#XA0;Native and byte-code</H3><P>
+If we want to compile byte-code instead of native, we just a target name of
+<TT>hello.byte</TT> instead of <TT>hello.native</TT>, i.e., we type
+<TT>ocamlbuild hello.byte</TT>.
+</P><H3 CLASS="subsection"><A NAME="htoc228">18.3.9</A>&#XA0;&#XA0;Compile flags</H3><P>
+To pass a flag to the compiler, such as the <TT>-rectypes</TT> option,
+use the <TT>-cflag</TT> option as in:
+</P><PRE>ocamlbuild -cflag -rectypes hello.native
+</PRE><P>You can put multiple <TT>-cflag</TT> options, they will be passed to the compiler
+in the same order. You can also give them in a comma-separated list with the
+<TT>-cflags</TT> option (notice the plural):
+</P><PRE>ocamlbuild -cflags -I,+lablgtk,-rectypes hello.native
+</PRE><P>These flags apply when compiling, that is, when producing <TT>.cmi</TT>,
+<TT>.cmo</TT>,<TT>.cmx</TT> and <TT>.o</TT> files from <TT>.ml</TT> or
+<TT>.mli</TT> files.
+</P><H3 CLASS="subsection"><A NAME="htoc229">18.3.10</A>&#XA0;&#XA0;Link flags</H3><P>
+Link flags apply when the various object files are collected and linked into
+one executable. These will typically be include directories for libraries.
+They are given using the <TT>-lflag</TT> and <TT>-lflags</TT> options, which
+work in the same way as the <TT>-cflag</TT> and <TT>-cflags</TT> options.
+</P><H3 CLASS="subsection"><A NAME="htoc230">18.3.11</A>&#XA0;&#XA0;Linking with external libraries</H3><P>
+In our third example, we use one Unix system call and functions from the <TT>num</TT>
+library:
+</P><PRE>% cat epoch.ml
+let _ =
+  let s = Num.num_of_string (Printf.sprintf "%.0f" (Unix.gettimeofday ())) in
+  let ps = Num.mult_num (Num.num_of_string "1000000000000") s in
+  Printf.printf "%s picoseconds have passed since January 1st, 1970.\n"
+    (Num.string_of_num ps)
+;;
+</PRE><P>This requires linking with the <TT>unix</TT> and <TT>num</TT> modules, which is accomplished
+by using the <TT>-lib unix</TT> and <TT>-lib num</TT> flags, or, alternatively, <TT>-libs unix,num</TT>:
+</P><PRE>% ocamlbuild -libs nums,unix epoch.native &#X2013;
+Finished, 4 targets (4 cached) in 00:00:00.
+1169051647000000000000 picoseconds have passed since January 1st, 1970.
+</PRE><P>You may need to add options such as <TT>-cflags -I,/usr/local/lib/ocaml/</TT>
+and <TT>-lflags -I,/usr/local/lib/ocaml/</TT> if the libraries you wish to
+link with are not in OCaml&#X2019;s default search path.
+</P><H3 CLASS="subsection"><A NAME="htoc231">18.3.12</A>&#XA0;&#XA0;The <TT>_tags</TT> files</H3><P>
+Finer control over the compiler flags applied to each source file, such as
+preprocessing, debugging, profiling and linking options, can be gained using
+<TT>ocamlbuild</TT>&#X2019;s tagging mechanism.</P><P>Every source file has a set of tags which tells <TT>ocamlbuild</TT> what kind of file it is
+and what to do with it. A tag is simply a string, usually lowercase, for
+example <TT>ocaml</TT> or <TT>native</TT>. The set of tags attached to a file
+is computed by applying the tagging rules to the filename. Tagging rules are
+defined in <TT>_tags</TT> files in any parent directory of a file, up to the main
+project directory.</P><P>Each line in the <TT>_tags</TT> file is made of a glob pattern (see subsection
+<A HREF="#subsec:glob">18.3.13</A>) and a list of tags. More than one rule can apply to a file
+and rules are applied in the order in which they appear in a file.
+By preceding a tag with a minus sign, one may remove tags from one or more files.</P><H4 CLASS="subsubsection">Example: the built-in <TT>_tags</TT> file</H4><PRE>     &lt;**/*.ml&gt; or &lt;**/*.mli&gt; or &lt;**/*.mlpack&gt; or &lt;**/*.ml.depends&gt;: ocaml
+     &lt;**/*.byte&gt;: ocaml, byte, program
+     &lt;**/*.odoc&gt;: ocaml, doc
+     &lt;**/*.native&gt;: ocaml, native, program
+     &lt;**/*.cma&gt;: ocaml, byte, library
+     &lt;**/*.cmxa&gt;: ocaml, native, library
+     &lt;**/*.cmo&gt;: ocaml, byte
+     &lt;**/*.cmi&gt;: ocaml, byte, native
+     &lt;**/*.cmx&gt;: ocaml, native
+</PRE><P>
+Two special tags made from the path name of the file relative to the toplevel
+of the project are automatically defined for each file. For a file
+<TT>foo/bar.ml</TT> those tags will be <TT>file:foo/bar.ml</TT>, and
+<TT>extension:ml</TT>.</P><P>If you do not have subdirectories, you can put <TT>*.ml</TT> instead of
+<TT>**/*.ml</TT>.
+</P><H3 CLASS="subsection"><A NAME="htoc232">18.3.13</A>&#XA0;&#XA0;Glob patterns and expressions</H3><P>
+<A NAME="subsec:glob"></A>
+Glob patterns have a syntax similar to those used by UNIX shells to select path
+names (like <TT>foo_*.ba?</TT>). They are used in <TT>ocamlbuild</TT> to define the files
+and directories to which tags apply. Glob expressions are glob patterns
+enclosed in brackets <TT>&lt;</TT> and <TT>&gt;</TT> combined using the standard
+boolean operators <TT>and</TT>, <TT>or</TT>, <TT>not</TT>. This allows one to
+describe sets of path names in more concise and more readable ways.</P><P>Please note that file and directory names are supposed to be made of the
+following characters: <TT>a</TT>, &#X2026;, <TT>z</TT>, <TT>A</TT>,
+&#X2026;, <TT>Z</TT>, <TT>0</TT>, &#X2026;, <TT>9</TT>, <TT>_</TT>,
+<TT>-</TT> and <TT>.</TT>. This is called the pathname alphabet <I>P</I>.</P><BLOCKQUOTE CLASS="table"><DIV CLASS="center"><HR WIDTH="80%" SIZE=2></DIV>
+<DIV CLASS="center">
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1><TR><TD VALIGN=top ALIGN=left> <EM>Formal syntax</EM></TD><TD VALIGN=top ALIGN=left NOWRAP> <EM>Example</EM></TD><TD VALIGN=top ALIGN=left><EM>Matches</EM></TD><TD VALIGN=top ALIGN=left><EM>Does not match</EM></TD><TD VALIGN=top ALIGN=left> <EM>Meaning (formal meaning)</EM></TD></TR>
+<TR><TD VALIGN=top ALIGN=left><I>u</I> <BR>
+ A string of pathname characters</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>foo.ml</TT></TD><TD VALIGN=top ALIGN=left> <TT>foo.ml</TT></TD><TD VALIGN=top ALIGN=left> <TT>fo.ml</TT>, <TT>bar/foo.ml</TT></TD><TD VALIGN=top ALIGN=left> The exact string <I>u</I>
+({ <I>u</I> }, where <I>u</I> &#X2208; <I>P</I><SUP>*</SUP>)</TD></TR>
+<TR><TD VALIGN=top ALIGN=left><TT>*</TT> <BR>
+ The wild-card star</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>*</TT></TD><TD VALIGN=top ALIGN=left> &#X3B5;, <TT>foo</TT>, <TT>bar</TT></TD><TD VALIGN=top ALIGN=left> <TT>foo/bar</TT>, <TT>/bar</TT></TD><TD VALIGN=top ALIGN=left> Any string not containing a slash
+(<I>P</I><SUP>*</SUP>)</TD></TR>
+<TR><TD VALIGN=top ALIGN=left><TT>?</TT> <BR>
+ The joker</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>?</TT></TD><TD VALIGN=top ALIGN=left> <TT>a</TT>, <TT>b</TT>, <TT>z</TT></TD><TD VALIGN=top ALIGN=left> <TT>/</TT>, <TT>bar</TT></TD><TD VALIGN=top ALIGN=left> Any one-letter string, excluding the slash</TD></TR>
+<TR><TD VALIGN=top ALIGN=left><TT>**/</TT> <BR>
+ The prefix inter-directory star</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>**/foo.ml</TT></TD><TD VALIGN=top ALIGN=left> <TT>foo.ml</TT>, <TT>bar/foo.ml</TT>, <TT>bar/baz/foo.ml</TT></TD><TD VALIGN=top ALIGN=left> <TT>foo/bar</TT>, <TT>/bar</TT></TD><TD VALIGN=top ALIGN=left> The empty string, or any string ending with a slash
+(&#X3B5; &#X222A; <I>P</I><SUP>*</SUP><TT>/</TT>)</TD></TR>
+<TR><TD VALIGN=top ALIGN=left><TT>/**</TT> <BR>
+ The suffix inter-directory star</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>foo/**</TT></TD><TD VALIGN=top ALIGN=left> <TT>foo</TT>, <TT>foo/bar</TT></TD><TD VALIGN=top ALIGN=left> <TT>bar/foo</TT></TD><TD VALIGN=top ALIGN=left> Any string starting with a slash, or the empty string
+(&#X3B5; &#X222A; <TT>/</TT><I>P</I><SUP>*</SUP>)</TD></TR>
+<TR><TD VALIGN=top ALIGN=left><TT>/**/</TT> <BR>
+ The infix inter-directory star</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>bar/**/foo.ml</TT></TD><TD VALIGN=top ALIGN=left> <TT>bar/foo.ml</TT>, <TT>bar/baz/foo.ml</TT></TD><TD VALIGN=top ALIGN=left> <TT>foo.ml</TT></TD><TD VALIGN=top ALIGN=left> Any string starting and ending with a slash
+(&#X3B5; &#X222A; <TT>/</TT><I>P</I><SUP>*</SUP><TT>/</TT>)</TD></TR>
+<TR><TD VALIGN=top ALIGN=left><TT>[</TT> <I>r</I><SUB>1</SUB> <I>r</I><SUB>2</SUB> &#X22EF; <I>r<SUB>k</SUB></I> <TT>]</TT>
+where <I>r<SUB>i</SUB></I> is either <I>c</I> or <I>c</I><SUB>1</SUB>&#X2212;<I>c</I><SUB>2</SUB> (1 &#X2264; <I>i</I> &#X2264; <I>k</I>)
+<BR>
+ The positive character class</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>[a-fA-F0-9_.]</TT></TD><TD VALIGN=top ALIGN=left> <TT>3</TT>, <TT>F</TT>, <TT>.</TT></TD><TD VALIGN=top ALIGN=left> <TT>z</TT>, <TT>bar</TT></TD><TD VALIGN=top ALIGN=left> Any one-letter string made of characters from one of the ranges
+<I>r<SUB>i</SUB></I> (1 &#X2264; <I>i</I> &#X2264; <I>n</I>).
+(<FONT COLOR=red><I>L</I></FONT>(<I>r</I><SUB>1</SUB>) &#X222A; &#X22EF; &#X222A; <FONT COLOR=red><I>L</I></FONT>(<I>r<SUB>n</SUB></I>))</TD></TR>
+<TR><TD VALIGN=top ALIGN=left><TT>[^</TT><I>r</I><SUB>1</SUB> <I>r</I><SUB>2</SUB> &#X22EF; <I>r<SUB>k</SUB></I> <TT>]</TT>
+where <I>r<SUB>i</SUB></I> is either <I>c</I> or <I>c</I><SUB>1</SUB>&#X2212;<I>c</I><SUB>2</SUB> (1 &#X2264; <I>i</I> &#X2264; <I>k</I>)
+<BR>
+ The negative character class</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>[^a-fA-F0-9_.]</TT></TD><TD VALIGN=top ALIGN=left> <TT>z</TT>, <TT>bar</TT></TD><TD VALIGN=top ALIGN=left> <TT>3</TT>, <TT>F</TT>, <TT>.</TT></TD><TD VALIGN=top ALIGN=left> Any one-letter string NOT made of characters from one of the ranges
+<I>r<SUB>i</SUB></I> (1 &#X2264; <I>i</I> &#X2264; <I>n</I>).
+(&#X3A3;<SUP>*</SUP> &#X2216; (<FONT COLOR=red><I>L</I></FONT>(<I>r</I><SUB>1</SUB>) &#X222A; &#X22EF; &#X222A; <FONT COLOR=red><I>L</I></FONT>(<I>r<SUB>n</SUB></I>)))</TD></TR>
+<TR><TD VALIGN=top ALIGN=left><I>p</I><SUB>1</SUB> <I>p</I><SUB>2</SUB> <BR>
+ A concatenation of patterns</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>foo*</TT></TD><TD VALIGN=top ALIGN=left> <TT>foo</TT>, <TT>foob</TT>, <TT>foobar</TT></TD><TD VALIGN=top ALIGN=left> <TT>fo</TT>, <TT>bar</TT></TD><TD VALIGN=top ALIGN=left> Any string with a prefix matching <I>p</I><SUB>1</SUB> and the corresponding suffix
+matching <I>p</I><SUB>2</SUB>,
+({ <I>uv</I> &#X2223; <I>u</I> &#X2208; <FONT COLOR=red><I>L</I></FONT>(<I>p</I><SUB>1</SUB>), <I>v</I> &#X2208; <FONT COLOR=red><I>L</I></FONT>(<I>p</I><SUB>2</SUB>) })</TD></TR>
+<TR><TD VALIGN=top ALIGN=left><TT>{</TT> <I>p</I><SUB>1</SUB> <TT>,</TT> <I>p</I><SUB>2</SUB> <TT>,</TT> &#X22EF; <TT>,</TT> <I>p<SUB>k</SUB></I> <TT>}</TT> <BR>
+ A union of patterns</TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>toto.{ml,mli}</TT></TD><TD VALIGN=top ALIGN=left> <TT>toto.ml</TT>, <TT>toto.mli</TT></TD><TD VALIGN=top ALIGN=left> <TT>toto.</TT></TD><TD VALIGN=top ALIGN=left> Any string matching one of the patterns <I>p<SUB>i</SUB></I> for 1 &#X2264; <I>i</I> &#X2264; <I>k</I>.
+(<FONT COLOR=red><I>L</I></FONT>(<I>p</I><SUB>1</SUB>) &#X222A; &#X22EF; &#X222A; <FONT COLOR=red><I>L</I></FONT>(<I>p<SUB>k</SUB></I>))</TD></TR>
+</TABLE>
+</DIV>
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Table 18.1: 
+Syntax and semantics of glob patterns.</TD></TR>
+</TABLE></DIV>
+<DIV CLASS="center"><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE><BLOCKQUOTE CLASS="table"><DIV CLASS="center"><HR WIDTH="80%" SIZE=2></DIV>
+<DIV CLASS="center">
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1><TR><TD VALIGN=top ALIGN=left> <EM>Formal syntax</EM></TD><TD VALIGN=top ALIGN=left NOWRAP> <EM>Example</EM></TD><TD VALIGN=top ALIGN=left> <EM>Meaning (formal meaning)</EM></TD></TR>
+<TR><TD VALIGN=top ALIGN=left> <TT>&lt;</TT><I>p</I><TT>&gt;</TT></TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>&lt;foo.ml&gt;</TT></TD><TD VALIGN=top ALIGN=left> Pathnames matching the pattern <I>p</I></TD></TR>
+<TR><TD VALIGN=top ALIGN=left> <I>e</I><SUB>1</SUB> &#XA0; <I><TT>or</TT></I> &#XA0; <I>e</I><SUB>2</SUB></TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>&lt;*.ml&gt; or &lt;foo/bar.ml&gt;</TT></TD><TD VALIGN=top ALIGN=left> Pathnames matching at least one of the expressions <I>e</I><SUB>1</SUB> and <I>e</I><SUB>2</SUB></TD></TR>
+<TR><TD VALIGN=top ALIGN=left> <I>e</I><SUB>1</SUB> &#XA0; <I><TT>and</TT></I> &#XA0; <I>e</I><SUB>2</SUB></TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>&lt;*.ml&gt; and &lt;foo_*&gt;</TT></TD><TD VALIGN=top ALIGN=left> Pathnames matching both expressions <I>e</I><SUB>1</SUB> and <I>e</I><SUB>2</SUB></TD></TR>
+<TR><TD VALIGN=top ALIGN=left> <I><TT>not</TT></I> &#XA0; <I>e</I></TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>not &lt;*.mli&gt;</TT></TD><TD VALIGN=top ALIGN=left> Pathnames not matching the expression <I>e</I></TD></TR>
+<TR><TD VALIGN=top ALIGN=left> <I><TT>true</TT></I></TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>true</TT></TD><TD VALIGN=top ALIGN=left> All pathnames</TD></TR>
+<TR><TD VALIGN=top ALIGN=left> <I><TT>false</TT></I></TD><TD VALIGN=top ALIGN=left NOWRAP> <TT>false</TT></TD><TD VALIGN=top ALIGN=left> No pathnames</TD></TR>
+</TABLE>
+</DIV>
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Table 18.2: 
+Syntax and semantics of glob expressions.</TD></TR>
+</TABLE></DIV>
+<DIV CLASS="center"><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE><H3 CLASS="subsection"><A NAME="htoc233">18.3.14</A>&#XA0;&#XA0;Subdirectories</H3><P>
+If the files of your project are held in one or more subdirectories,
+<TT>ocamlbuild</TT> must be made aware of that fact using the <TT>-I</TT> or <TT>-Is</TT> options
+or by adding an <TT>include</TT> tag. For instance, assume your project is made
+of three subdirectories, <TT>foo</TT>, <TT>bar</TT> and <TT>baz</TT> containing
+various <TT>.ml</TT> files, the main file being <TT>foo/main.ml</TT>. Then you can
+either type:
+</P><PRE>% ocamlbuild -Is foo,bar,baz foo/main.native
+</PRE><P>or add the following line in the <TT>_tags</TT> file
+</P><PRE>&lt;foo&gt; or &lt;bar&gt; or &lt;baz&gt;: include
+</PRE><P>and call
+</P><PRE>% ocamlbuild foo/main.native
+</PRE><P>
+There are then two cases. If no other modules named <TT>Bar</TT> or
+<TT>Baz</TT> exist elsewhere in the project, then you are done. Just use
+<TT>Foo</TT>, <TT>Foo.Bar</TT> and <TT>Foo.Baz</TT> in your code.
+Otherwise, you will need to use the plugin mechanism and define the mutual
+visibility of the subdirectories using the <TT>Pathname.define_context</TT>
+function.</P><H4 CLASS="subsubsection">Note on subdirectory traversal</H4><P>
+<TT>ocamlbuild</TT> used to traverse by default any subdirectory not explicitly excluded.
+This is no longer the case. Note that you can still have a fine grained
+control using your <TT>_tags</TT> file and the <TT>traverse</TT> tag.</P><P>There is no longer the <TT>true: traverse</TT> tag declaration by default. To
+make <TT>ocamlbuild</TT> recursive use one of these:
+</P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate">
+Give the <TT>-r</TT> flag to ocamlbuild.
+</LI><LI CLASS="li-enumerate">Have a <TT>_tags</TT> or myocamlbuild.ml file in your top directory.
+</LI></OL><H3 CLASS="subsection"><A NAME="htoc234">18.3.15</A>&#XA0;&#XA0;Grouping targets with <TT>.itarget</TT></H3><P>
+You can create a file named <TT>foo.itarget</TT> containing
+a list of targets, one per line, such as
+</P><PRE>main.native
+main.byte
+stuff.docdir/index.html
+</PRE><P>Requesting the target <TT>foo.otarget</TT> will then build every target
+listed in the file <TT>foo.itarget</TT>. Blank lines and lines starting
+with a sharp (<TT>#</TT>) are ignored.
+</P><H3 CLASS="subsection"><A NAME="htoc235">18.3.16</A>&#XA0;&#XA0;Packing subdirectories into modules</H3><P>
+OCaml&#X2019;s <TT>-pack</TT> option allows you to structure the contents of a
+module in a subdirectory. For instance, assume you have a directory
+<TT>foo</TT> containing two modules <TT>bar.ml</TT> and <TT>baz.ml</TT>.
+You want from these to build a module <TT>Foo</TT> containing <TT>Bar</TT>
+and <TT>Baz</TT> as submodules. In the case where no modules named
+<TT>Bar</TT> or <TT>Baz</TT> exist outside of <TT>Foo</TT>, to do this you
+must write a file <TT>foo.mlpack</TT>, preferably sitting in the same
+directory as the directory <TT>Foo</TT> and containing the list of modules
+(one per line) it must contain:
+</P><PRE>Bar
+Baz
+</PRE><P>Then when you will request for building <TT>foo.cmo</TT> the package will be
+made from <TT>bar.cmo</TT> and <TT>baz.cmo</TT>.
+</P><H3 CLASS="subsection"><A NAME="htoc236">18.3.17</A>&#XA0;&#XA0;Making an OCaml library</H3><P>
+In a similar way than for packaged modules you can make a library by putting
+it&#X2019;s contents in a file (with the mllib extension). For instance, assume you
+have a two modules <TT>bar.ml</TT> and <TT>baz.ml</TT>. You want from these to
+build a library <TT>foo.cmx?a</TT> containing <TT>Bar</TT> and <TT>Baz</TT>
+modules. To do this you must write a file <TT>foo.mllib</TT> containing the
+list of modules (one per line) it must contain:
+</P><PRE>Bar
+Baz
+</PRE><P>Then when you will request for building <TT>foo.cma</TT> the library will be
+made from <TT>bar.cmo</TT> and <TT>baz.cmo</TT>.
+</P><H3 CLASS="subsection"><A NAME="htoc237">18.3.18</A>&#XA0;&#XA0;Making an OCaml toplevel</H3><P>
+Making a toplevel is almost the same thing than making a packaged module or a
+library. Just write a file with the <TT>mltop</TT> extension (like
+<TT>foo.mltop</TT>) and request for building the toplevel using the
+<TT>top</TT> extension (<TT>foo.top</TT> in this example).
+</P><H3 CLASS="subsection"><A NAME="htoc238">18.3.19</A>&#XA0;&#XA0;Preprocessor options and tags</H3><P>
+You can specify preprocessor options with <TT>-pp</TT> followed by the
+preprocessor string, for instance <TT>ocamlbuild -pp camlp4o.opt -unsafe</TT>
+would run your sources through CamlP4 with the <TT>-unsafe</TT> option.
+Another way is to use the tags file.
+</P><DIV CLASS="center">
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1><TR><TD ALIGN=left NOWRAP> <B>Tag</B></TD><TD ALIGN=left NOWRAP><B>Preprocessor command</B></TD><TD ALIGN=left NOWRAP><B>Remark</B></TD></TR>
+<TR><TD ALIGN=left NOWRAP> <TT>pp(cmd...)</TT></TD><TD ALIGN=left NOWRAP><TT>cmd...</TT></TD><TD ALIGN=left NOWRAP>Arbitrary
+preprocessor command<SUP><A NAME="text3" HREF="#note3">1</A></SUP></TD></TR>
+<TR><TD ALIGN=left NOWRAP> <TT>camlp4o</TT></TD><TD ALIGN=left NOWRAP><TT>camlp4o</TT></TD><TD ALIGN=left NOWRAP>Original OCaml syntax</TD></TR>
+<TR><TD ALIGN=left NOWRAP> <TT>camlp4r</TT></TD><TD ALIGN=left NOWRAP><TT>camlp4r</TT></TD><TD ALIGN=left NOWRAP>Revised OCaml syntax</TD></TR>
+<TR><TD ALIGN=left NOWRAP> <TT>camlp4of</TT></TD><TD ALIGN=left NOWRAP><TT>camlp4of</TT></TD><TD ALIGN=left NOWRAP>Original OCaml syntax with extensions</TD></TR>
+<TR><TD ALIGN=left NOWRAP> <TT>camlp4rf</TT></TD><TD ALIGN=left NOWRAP><TT>camlp4rf</TT></TD><TD ALIGN=left NOWRAP>Revised OCaml syntax with extensions</TD></TR>
+</TABLE>
+</DIV><H3 CLASS="subsection"><A NAME="htoc239">18.3.20</A>&#XA0;&#XA0;Debugging byte code and profiling native code</H3><P>
+The preferred way of compiling code suitable for debugging with <TT>ocamldebug</TT> or
+profiling native code with <TT>ocamlprof</TT> is to use the appropriate target
+extensions, <TT>.d.byte</TT> for debugging or <TT>.p.native</TT>.</P><P>Another way is to add use the <TT>debug</TT> or <TT>profile</TT> tags.
+Note that these tags must be applied at the compilation and linking stages.
+Hence you must either use <TT>-tag debug</TT> or <TT>-tag profile</TT>
+on the command line, or add a
+</P><PRE>true: debug
+</PRE><P>line to your <TT>_tags</TT> file.
+Please note that the byte-code profiler works in a wholly different way
+and is not supported by <TT>ocamlbuild</TT>.
+</P><H3 CLASS="subsection"><A NAME="htoc240">18.3.21</A>&#XA0;&#XA0;Generating documentation using <TT>ocamldoc</TT></H3><P>
+Write the names of the modules whose interfaces will be documented in a file
+whose extension is <TT>.odocl</TT>, for example <TT>foo.odocl</TT>, then invoke
+<TT>ocamlbuild</TT> on the target <TT>foo.docdir/index.html</TT>. This will collect all the
+documentation from the interfaces (which will be build, if necessary) using
+<TT>ocamldoc</TT> and generate a set of HTML files under the directory
+<TT>foo.docdir/</TT>, which is actually a link to <TT>_build/foo.docdir/</TT>.
+As for packing subdirectories into modules, the module names must be written
+one per line, without extensions and correctly capitalized. Note that
+generating documentation in formats other than HTML or from implementations is
+not supported.
+</P><H3 CLASS="subsection"><A NAME="htoc241">18.3.22</A>&#XA0;&#XA0;The display line</H3><P>
+Provided <TT>ocamlbuild</TT> runs in a terminal under a POSIX environment, it will
+display a sophisticated progress-indicator line that graciously interacts
+with the output of subcommands. This line looks like this:
+</P><PRE>00:00:02 210  (180 ) main.cmx                             ONbp&#X2013;il /
+</PRE><P>Here, 00:00:02 is the elapsed time in hour:minute:second format since <TT>ocamlbuild</TT> has
+been invoked; 210 is the number of external commands, typically calls to the
+compiler or the like, that may or may not have been invoked; 180 is the number
+of external commands that have not been invoked since their result is already
+in the build directory; <TT>main.cmx</TT> is the name of the last target built;
+<TT>ONbp--il</TT> is a short string that describes the tags that have been
+encountered and the slash at the end is a frame from a rotating ticker. Hence,
+the display line has the following structure:
+</P><PRE>HH:MM:SS JOBS (CACHED) PATHNAME                           TAGS TICKER
+</PRE><P>
+The tag string is made of 8 indicators which each monitor a tag. These tags
+are <TT>ocaml</TT>, <TT>native</TT>, <TT>byte</TT>, <TT>program</TT>,
+<TT>pp</TT>, <TT>debug</TT>, <TT>interf</TT> and <TT>link</TT>. Initially,
+each indicator displays a dash <TT>-</TT>. If the current target has the
+monitored tag, then the indicator displays the corresponding character
+(see table <A HREF="#tab:tag-chars">18.3</A>) in uppercase. Otherwise, it displays that
+character in lowercase. This allows you to see the set of tags that have
+been applied to files in your project during the current invocation of <TT>ocamlbuild</TT>.</P><P>Hence the tag string <TT>ONbp--il</TT> means that the current target
+<TT>main.cmx</TT> has the tags <TT>ocaml</TT> and <TT>native</TT>, and that
+the tags <TT>ocaml</TT>, <TT>native</TT>, <TT>byte</TT>, <TT>program</TT>,
+<TT>interf</TT> and <TT>link</TT> have already been seen.</P><BLOCKQUOTE CLASS="table"><DIV CLASS="center"><HR WIDTH="80%" SIZE=2></DIV>
+<DIV CLASS="center">
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1><TR><TD ALIGN=left NOWRAP> <B>Tag</B></TD><TD ALIGN=center NOWRAP><B>Display character</B></TD></TR>
+<TR><TD ALIGN=left NOWRAP> ocaml</TD><TD ALIGN=center NOWRAP>O</TD></TR>
+<TR><TD ALIGN=left NOWRAP> native</TD><TD ALIGN=center NOWRAP>N</TD></TR>
+<TR><TD ALIGN=left NOWRAP> byte</TD><TD ALIGN=center NOWRAP>B</TD></TR>
+<TR><TD ALIGN=left NOWRAP> program</TD><TD ALIGN=center NOWRAP>P</TD></TR>
+<TR><TD ALIGN=left NOWRAP> pp</TD><TD ALIGN=center NOWRAP>R</TD></TR>
+<TR><TD ALIGN=left NOWRAP> debug</TD><TD ALIGN=center NOWRAP>D</TD></TR>
+<TR><TD ALIGN=left NOWRAP> interf</TD><TD ALIGN=center NOWRAP>I</TD></TR>
+<TR><TD ALIGN=left NOWRAP> link</TD><TD ALIGN=center NOWRAP>L</TD></TR>
+</TABLE>
+</DIV>
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Table 18.3: <A NAME="tab:tag-chars"></A> Relation between the characters displayed in
+the tag string and the tags.</TD></TR>
+</TABLE></DIV>
+<DIV CLASS="center"><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE><H3 CLASS="subsection"><A NAME="htoc242">18.3.23</A>&#XA0;&#XA0;<TT>ocamllex</TT>, <TT>ocamlyacc</TT> and <TT>menhir</TT></H3><P>
+<TT>ocamlbuild</TT> knows how to run the standard lexer and parser generator tools
+<TT>ocamllex</TT> and <TT>ocamlyacc</TT> when your files have the
+standard <TT>.mll</TT> and <TT>.mly</TT> extensions. If you want to
+use <TT>menhir</TT> instead of <TT>ocamlyacc</TT>, you can either
+launch <TT>ocamlbuild</TT> with the <TT>-use-menhir</TT> option or add a
+</P><PRE>true: use_menhir
+</PRE><P>line to your <TT>_tags</TT> file. Note that there is currently no way
+of using <TT>menhir</TT> and <TT>ocamlyacc</TT> in the same execution
+of <TT>ocamlbuild</TT>.
+</P><H3 CLASS="subsection"><A NAME="htoc243">18.3.24</A>&#XA0;&#XA0;Changing the compilers or tools</H3><P>
+As <TT>ocamlbuild</TT> is part of your OCaml distribution, it knows if it can call the
+native compilers and tools (<TT>ocamlc.opt</TT>, <TT>ocamlopt.opt</TT>...)
+or not. However you may want <TT>ocamlbuild</TT> to use another <TT>ocaml</TT> compiler
+for different reasons (such as cross-compiling or using a wrapper such as
+<TT>ocamlfind</TT>). Here is the list of relevant options:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<TT>-ocamlc &lt;command&gt;</TT>
+</LI><LI CLASS="li-itemize"><TT>-ocamlopt &lt;command&gt;</TT>
+</LI><LI CLASS="li-itemize"><TT>-ocamldep &lt;command&gt;</TT>
+</LI><LI CLASS="li-itemize"><TT>-ocamlyacc &lt;command&gt;</TT>
+</LI><LI CLASS="li-itemize"><TT>-menhir &lt;command&gt;</TT>
+</LI><LI CLASS="li-itemize"><TT>-ocamllex &lt;command&gt;</TT>
+</LI><LI CLASS="li-itemize"><TT>-ocamlmktop &lt;command&gt;</TT>
+</LI><LI CLASS="li-itemize"><TT>-ocamlrun &lt;command&gt;</TT>
+</LI></UL><H3 CLASS="subsection"><A NAME="htoc244">18.3.25</A>&#XA0;&#XA0;Interaction with version control systems</H3><P>
+Here are tips for configuring your version control system to ignore the files
+and directories generated by <TT>ocamlbuild</TT>.</P><P>The directory <TT>_build</TT> and any symbolic links
+pointing into <TT>_build</TT> should be ignored.
+To do this, you must add the following ignore patterns to your version
+control system&#X2019;s ignore set:
+</P><PRE>_build
+*.native
+*.byte
+*.d.native
+*.p.byte
+</PRE><P>
+For CVS, add the above lines to the <TT>.cvsignore</TT> file.
+For Subversion (SVN), type <TT>svn propedit svn:ignore .</TT> and add the
+above lines.
+</P><H3 CLASS="subsection"><A NAME="htoc245">18.3.26</A>&#XA0;&#XA0;A shell script for driving it all?</H3><P>
+<EM>To shell or to make ?</EM>
+Traditionally, makefiles have two major functions. The first one
+is the dependency-ordering, rule-matching logic used for compiling.
+The second one is as a dispatcher for various actions defined using
+phony targets with shell script actions. These actions include cleaning,
+cleaning really well, archiving, uploading and so on. Their characteristic
+is that they rely little or not on the building process &#X2013; they either need
+the building to have been completed, or they don&#X2019;t need anything.
+As <TT>/bin/sh</TT> scripts have been here for three to four decades and are
+not going anywhere, why not replace that functionality of makefiles with a
+shell script ? We have thought of three bad reasons:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+Typing <TT>make</TT> to compile is now an automatism,
+</LI><LI CLASS="li-itemize">We need to share variable definitions between rules and actions,
+</LI><LI CLASS="li-itemize">Escaping already way too special-character-sensitive shell code with
+invisible tabs and backslashes is a dangerously fun game.
+</LI></UL><P>
+We also have bad reasons for not using an OCaml script to drive everything:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<TT>Sys.command</TT> calls the <TT>/bin/sh</TT> anyway,
+</LI><LI CLASS="li-itemize">Shell scripts can execute partial commands or commands with badly formed arguments.
+</LI><LI CLASS="li-itemize">Shell scripts are more concise for expressing... shell scripts.
+</LI></UL><P>
+Anyway you are of course free to use a makefile or an OCaml script to call ocamlbuild.
+Here is an example shell driver script:
+</P><PRE>#!/bin/sh
+
+set -e
+
+TARGET=epoch
+FLAGS="-libs unix,nums"
+OCAMLBUILD=ocamlbuild
+
+ocb()
+{
+  $OCAMLBUILD $FLAGS $*
+}
+
+rule() {
+  case $1 in
+    clean)  ocb -clean;;
+    native) ocb $TARGET.native;;
+    byte)   ocb $TARGET.byte;;
+    all)    ocb $TARGET.native $TARGET.byte;;
+    depend) echo "Not needed.";;
+    *)      echo "Unknown action $1";;
+  esac;
+}
+
+if [ $# -eq 0 ]; then
+  rule all
+else
+  while [ $# -gt 0 ]; do
+    rule $1;
+    shift
+  done
+fi
+</PRE><H2 CLASS="section"><A NAME="toc140"></A><A NAME="htoc246">18.4</A>&#XA0;&#XA0;Appendix: Motivations</H2><P>
+<EM>This inflammatory appendix describes the frustration that led us to write <TT>ocamlbuild</TT>.</EM></P><P>Many people have painfully found that the utilities of the <TT>make</TT>
+family, namely GNU Make, BSD Make, and their derivatives, fail to scale to
+large projects, especially when using multi-stage compilation rules, such as
+custom pre-processors, unless dependencies are hand-defined. But as your
+project gets larger, more modular, and uses more diverse pre-processing tools,
+it becomes increasingly difficult to correctly define dependencies by hand.
+Hence people tend to use language-specific tools that attempt to extract
+dependencies. However another problem then appears: <TT>make</TT> was designed
+with the idea of a static dependency graph. Dependency extracting tools,
+however, are typically run by a rule in <TT>make</TT> itself; this means that
+make has to reload the dependency information. This is the origin of the
+<TT>make clean; make depend; make</TT> mantra. This approach tends to work
+quite well as long as all the files sit in a single directory and there is only
+one stage of pre-processing. If there are two or more stages, then dependency
+extracting tools must be run two or more times - and this means multiple
+invocations of <TT>make</TT>. Also, if one distributes the modules of a large
+project into multiple subdirectories, it becomes difficult to distribute the
+makefiles themselves, because the language of <TT>make</TT> was not conceived
+to be modular; the only two mechanisms permitted, inclusion of makefile
+fragments, and invocation of other make instances, must be skillfully
+coordinated with phony target names (<TT>depend1, depend2...</TT>) to insure
+inclusion of generated dependencies with multi-stage programming; changes in
+the structure of the project must be reflected by hand and the order of
+variable definitions must be well-thought ahead to avoid long afternoons spent
+combinatorially fiddling makefiles until it works but no one understands why.</P><P>These problems become especially apparent with OCaml: to ensure type safety and
+to allow a small amount of cross-unit optimization when compiling native code,
+interface and object files include cryptographical digests of interfaces they
+are to be linked with. This means that linking is safer, but that makefile sloppiness
+leads to messages such as:
+</P><PRE>Files foo.cmo and bar.cmo
+make inconsistent assumptions over interface Bar
+</PRE><P>
+The typical reaction is then to issue the mantra <TT>make clean; make
+depend; make</TT> and everything compiles just fine... from the beginning. Hence
+on medium projects, the programmer often has to wait for minutes instead of the
+few seconds that would be taken if <TT>make</TT> could correctly guess the
+small number of files that really had to be recompiled.</P><P>It is not surprising that hacking a build tool such as <TT>make</TT> to include
+a programming language while retaining the original syntax and semantics gives
+an improvised and cumbersome macro language of dubious expressive power. For
+example, using GNU make, suppose you have a list of <TT>.ml</TT>s that you want
+to convert into a list including both <TT>.cmo</TT>s and <TT>.cmi</TT>s, that
+is you want to transform <TT>a.ml b.ml c.ml</TT> into <TT>a.cmi a.cmo b.cmi
+b.cmo c.cmi c.cmo</TT> while preserving the dependency order which must be hand
+specified for linking <SUP><A NAME="text4" HREF="#note4">2</A></SUP>.
+Unfortunately <TT>$patsubst %.ml, %.cmi %.cmo, a.ml b.ml c.ml</TT> won&#X2019;t
+work since the %-sign in the right-hand of a <TT>patsubst</TT> gets
+substituted only once. You then have to delve into something that is hardly
+lambda calculus: an intricate network of <TT>foreach</TT>, <TT>eval</TT>,
+<TT>call</TT> and <TT>define</TT>s may get you the job done, unless you chicken
+out and opt for an external <TT>awk</TT>, <TT>sed</TT> or <TT>perl</TT> call.
+People who at this point have not lost their temper or sanity usually resort to
+metaprogramming by writing Makefile generators using a mixture of shell and m4.
+One such an attempt gave something that is the nightmare of wannabe package
+maintainers: it&#X2019;s called <TT>autotools</TT>.</P><P>Note that it is also difficult to write <TT>Makefiles</TT> to build object
+files in a separate directory. It is not impossible since the language of
+<TT>make</TT> is Turing-complete, a proof of which is left as an exercise.
+Note that building things in a separate directory is not necessarily a young
+enthusiast&#X2019;s way of giving a different look and feel to his projects &#X2013; it may
+be a good way of telling the computer that <TT>foo.mli</TT> is generated by
+<TT>ocamlyacc</TT> using <TT>foo.mly</TT> and can thus be removed.
+</P><H2 CLASS="section"><A NAME="toc141"></A><A NAME="htoc247">18.5</A>&#XA0;&#XA0;Appendix: Summary of default rules</H2><P>
+The contents of this table give a summary of the most important default rules.
+To get the most accurate and up-to-date information, launch <TT>ocamlbuild</TT> with the
+<TT>-documentation</TT> option.
+</P><DIV CLASS="center">
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1><TR><TD VALIGN=top ALIGN=left NOWRAP> <B>Tags</B></TD><TD VALIGN=top ALIGN=left NOWRAP><B>Dependencies</B></TD><TD VALIGN=top ALIGN=left><B>Targets</B></TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD><TD VALIGN=top ALIGN=left NOWRAP>%.itarget</TD><TD VALIGN=top ALIGN=left>%.otarget</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mli %.mli.depends</TD><TD VALIGN=top ALIGN=left>%.cmi</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, debug, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mlpack %.cmi</TD><TD VALIGN=top ALIGN=left>%.d.cmo</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mlpack</TD><TD VALIGN=top ALIGN=left>%.cmo %.cmi</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mli %.ml %.ml.depends %.cmi</TD><TD VALIGN=top ALIGN=left>%.d.cmo</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mli %.ml %.ml.depends %.cmi</TD><TD VALIGN=top ALIGN=left>%.cmo</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> native, ocaml, profile</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mlpack %.cmi</TD><TD VALIGN=top ALIGN=left>%.p.cmx %.p.o</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> native, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mlpack %.cmi</TD><TD VALIGN=top ALIGN=left>%.cmx %.o</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> native, ocaml, profile</TD><TD VALIGN=top ALIGN=left NOWRAP>%.ml %.ml.depends %.cmi</TD><TD VALIGN=top ALIGN=left>%.p.cmx %.p.o</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> native, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.ml %.ml.depends %.cmi</TD><TD VALIGN=top ALIGN=left>%.cmx %.o</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> debug, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.ml %.ml.depends %.cmi</TD><TD VALIGN=top ALIGN=left>%.d.cmo</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.ml %.ml.depends</TD><TD VALIGN=top ALIGN=left>%.cmo %.cmi</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, debug, ocaml, program</TD><TD VALIGN=top ALIGN=left NOWRAP>%.d.cmo</TD><TD VALIGN=top ALIGN=left>%.d.byte</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, ocaml, program</TD><TD VALIGN=top ALIGN=left NOWRAP>%.cmo</TD><TD VALIGN=top ALIGN=left>%.byte</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> native, ocaml, profile, program</TD><TD VALIGN=top ALIGN=left NOWRAP>%.p.cmx %.p.o</TD><TD VALIGN=top ALIGN=left>%.p.native</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> native, ocaml, program</TD><TD VALIGN=top ALIGN=left NOWRAP>%.cmx %.o</TD><TD VALIGN=top ALIGN=left>%.native</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, debug, library, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mllib</TD><TD VALIGN=top ALIGN=left>%.d.cma</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, library, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mllib</TD><TD VALIGN=top ALIGN=left>%.cma</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, debug, library, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.d.cmo</TD><TD VALIGN=top ALIGN=left>%.d.cma</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> byte, library, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.cmo</TD><TD VALIGN=top ALIGN=left>%.cma</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD><TD VALIGN=top ALIGN=left NOWRAP>lib%(libname).clib</TD><TD VALIGN=top ALIGN=left>lib%(libname).a dll%(libname).so</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD><TD VALIGN=top ALIGN=left NOWRAP>%(path)/lib%(libname).clib</TD><TD VALIGN=top ALIGN=left>%(path)/lib%(libname).a %(path)/dll%(libname).so</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> library, native, ocaml, profile</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mllib</TD><TD VALIGN=top ALIGN=left>%.p.cmxa %.p.a</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> library, native, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mllib</TD><TD VALIGN=top ALIGN=left>%.cmxa %.a</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> library, native, ocaml, profile</TD><TD VALIGN=top ALIGN=left NOWRAP>%.p.cmx %.p.o</TD><TD VALIGN=top ALIGN=left>%.p.cmxa %.p.a</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> library, native, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.cmx %.o</TD><TD VALIGN=top ALIGN=left>%.cmxa %.a</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD><TD VALIGN=top ALIGN=left NOWRAP>%.ml</TD><TD VALIGN=top ALIGN=left>%.ml.depends</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mli</TD><TD VALIGN=top ALIGN=left>%.mli.depends</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mll</TD><TD VALIGN=top ALIGN=left>%.ml</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> doc, ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mli %.mli.depends</TD><TD VALIGN=top ALIGN=left>%.odoc</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD><TD VALIGN=top ALIGN=left NOWRAP>%.odocl</TD><TD VALIGN=top ALIGN=left>%.docdir/index.html</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP> ocaml</TD><TD VALIGN=top ALIGN=left NOWRAP>%.mly</TD><TD VALIGN=top ALIGN=left>%.ml %.mli</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD><TD VALIGN=top ALIGN=left NOWRAP>%.c</TD><TD VALIGN=top ALIGN=left>%.o</TD></TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD><TD VALIGN=top ALIGN=left NOWRAP>%.ml %.ml.depends</TD><TD VALIGN=top ALIGN=left>%.inferred.mli</TD></TR>
+</TABLE>
+</DIV><HR CLASS="ffootnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes">
+<A NAME="note3" HREF="#text3">1</A></DT><DD CLASS="dd-thefootnotes">The command must not contain newlines or parentheses.
+</DD><DT CLASS="dt-thefootnotes"><A NAME="note4" HREF="#text4">2</A></DT><DD CLASS="dd-thefootnotes">By the way, what&#X2019;s the point of having a
+declarative language if <TT>make</TT> can&#X2019;t sort the dependencies in
+topological order for giving them to <TT>gcc</TT> or whatever ?
+</DD></DL>
+<HR>
+<A HREF="manual031.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual033.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

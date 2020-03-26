@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.6  First-class modules</title>
+</head>
+<body>
+<a href="manual027.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual029.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec247">8.6  First-class modules</h2>
+<p><a id="s-first-class-modules"></a>
+<a id="hevea_manual.kwd213"></a>
+<a id="hevea_manual.kwd214"></a>
+<a id="hevea_manual.kwd215"></a>
+<a id="hevea_manual.kwd216"></a></p><p>(Introduced in OCaml 3.12; pattern syntax and package type inference
+introduced in 4.00; structural comparison of package types introduced in 4.02.;
+fewer parens required starting from 4.05)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">(module</span> <a class="syntax" href="#package-type"><span class="c010">package-type</span></a><span class="c004">)</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">(val</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>  [<span class="c004">:</span> <a class="syntax" href="#package-type"><span class="c010">package-type</span></a>]<span class="c004">)</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">(module</span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>  [<span class="c004">:</span> <a class="syntax" href="#package-type"><span class="c010">package-type</span></a>]<span class="c004">)</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">(module</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>  [<span class="c004">:</span> <a class="syntax" href="#package-type"><span class="c010">package-type</span></a>]<span class="c004">)</span>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="package-type"><span class="c010">package-type</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="names.html#modtype-path"><span class="c010">modtype-path</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="names.html#modtype-path"><span class="c010">modtype-path</span></a> <span class="c004">with</span>  <a class="syntax" href="#package-constraint"><span class="c010">package-constraint</span></a>  { <span class="c004">and</span> <a class="syntax" href="#package-constraint"><span class="c010">package-constraint</span></a> }
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="package-constraint"><span class="c010">package-constraint</span></a></td><td class="c015">::=</td><td class="c017">
+<span class="c004">type</span> <a class="syntax" href="names.html#typeconstr"><span class="c010">typeconstr</span></a> <span class="c004">=</span>  <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Modules are typically thought of as static components. This extension
+makes it possible to pack a module as a first-class value, which can
+later be dynamically unpacked into a module.</p><p>The expression <span class="c002"><span class="c003">(</span> <span class="c003">module</span></span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> <span class="c004">:</span>  <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span> converts the
+module (structure or functor) denoted by module expression <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+to a value of the core language that encapsulates this module. The
+type of this core language value is <span class="c002"><span class="c003">(</span> <span class="c003">module</span></span> <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span>.
+The <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> annotation can be omitted if it can be inferred
+from the context.</p><p>Conversely, the module expression <span class="c002"><span class="c003">(</span> <span class="c003">val</span></span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">:</span>  <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span>
+evaluates the core language expression <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> to a value, which must
+have type <span class="c004">module</span> <a class="syntax" href="#package-type"><span class="c010">package-type</span></a>, and extracts the module that was
+encapsulated in this value. Again <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> can be omitted if the
+type of <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> is known.
+If the module expression is already parenthesized, like the arguments
+of functors are, no additional parens are needed: <span class="c003">Map.Make(val key)</span>.</p><p>The pattern <span class="c002"><span class="c003">(</span> <span class="c003">module</span></span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">:</span>  <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span> matches a
+package with type <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> and binds it to <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a>.
+It is not allowed in toplevel let bindings.
+Again <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> can be omitted if it can be inferred from the
+enclosing pattern.</p><p>The <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> syntactic class appearing in the <span class="c002"><span class="c003">(</span> <span class="c003">module</span></span>
+<a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c004">)</span> type expression and in the annotated forms represents a
+subset of module types.
+This subset consists of named module types with optional constraints
+of a limited form: only non-parametrized types can be specified.</p><p>For type-checking purposes (and starting from OCaml 4.02), package types
+are compared using the structural comparison of module types.</p><p>In general, the module expression <span class="c002"><span class="c003">(</span> <span class="c003">val</span></span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a> <span class="c004">:</span>  <a class="syntax" href="#package-type"><span class="c010">package-type</span></a>
+<span class="c004">)</span> cannot be used in the body of a functor, because this could cause
+unsoundness in conjunction with applicative functors.
+Since OCaml 4.02, this is relaxed in two ways:
+if <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> does not contain nominal type declarations (<em>i.e.</em> types that are created with a proper identity), then this
+expression can be used anywhere, and even if it contains such types
+it can be used inside the body of a generative
+functor, described in section <a href="manual038.html#s%3Agenerative-functors">8.16</a>.
+It can also be used anywhere in the context of a local module binding
+<span class="c002"><span class="c003">let</span> <span class="c003">module</span></span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c002"><span class="c003">=</span> <span class="c003">(</span> <span class="c003">val</span></span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>1</sub> <span class="c004">:</span>  <a class="syntax" href="#package-type"><span class="c010">package-type</span></a> <span class="c002"><span class="c003">)</span>
+<span class="c003">in</span></span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a><sub>2</sub>.</p>
+<h5 class="paragraph" id="sec248">Basic example</h5>
+<p> A typical use of first-class modules is to
+select at run-time among several implementations of a signature.
+Each implementation is a structure that we can encapsulate as a
+first-class module, then store in a data structure such as a hash
+table:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type picture = …
+ module type DEVICE = sig
+   val draw : picture -&gt; unit
+   …
+ end
+ let devices : (string, (module DEVICE)) Hashtbl.t = Hashtbl.create 17
+
+ module SVG = struct … end
+ let _ = Hashtbl.add devices "SVG" (module SVG : DEVICE)
+
+ module PDF = struct … end
+ let _ = Hashtbl.add devices "PDF" (module PDF: DEVICE)
+</div>
+</pre>
+
+
+</div><p>We can then select one implementation based on command-line
+arguments, for instance:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let parse_cmdline () = …
+ module Device =
+   (val (let device_name = parse_cmdline () in
+         try Hashtbl.find devices device_name
+         with Not_found -&gt;
+           Printf.eprintf "Unknown device %s\n" device_name;
+           exit 2)
+    : DEVICE)
+</div>
+</pre>
+
+
+</div><p>
+
+Alternatively, the selection can be performed within a function:
+
+
+</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let draw_using_device device_name picture =
+   let module Device =
+     (val (Hashtbl.find devices device_name) : DEVICE)
+   in
+   Device.draw picture
+</div>
+</pre>
+
+
+</div>
+<h5 class="paragraph" id="sec249">Advanced examples</h5>
+<p>
+With first-class modules, it is possible to parametrize some code over the
+implementation of a module without using a functor.</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let sort (type s) (module Set : Set.S with type elt = s) l =
+   Set.elements (List.fold_right Set.add l Set.empty)
+</div><div class="caml-output ok">val sort : (module Set.S with type elt = 'a) -&gt; 'a list -&gt; 'a list = &lt;fun&gt;
+</div></pre>
+
+
+</div><p>To use this function, one can wrap the <span class="c003">Set.Make</span> functor:</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let make_set (type s) cmp =
+   let module S = Set.Make(struct
+     type t = s
+     let compare = cmp
+   end) in
+   (module S : Set.S with type elt = s)
+</div><div class="caml-output ok">val make_set : ('a -&gt; 'a -&gt; int) -&gt; (module Set.S with type elt = 'a) = &lt;fun&gt;
+</div></pre>
+
+
+</div>
+<hr>
+<a href="manual027.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual029.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

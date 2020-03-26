@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>Names</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual010.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="types.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H2 CLASS="section"><A NAME="htoc62">6.3</A>  Names</H2><P> <A NAME="s:names"></A>
+</P><P>Identifiers are used to give names to several classes of language
+objects and refer to these objects by name later:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+value names (syntactic class <I><A HREF="#value-name"><FONT COLOR=maroon>value-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">value constructors and exception constructors (class <I><A HREF="#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">labels (<I><A HREF="lex.html#label-name"><FONT COLOR=maroon>label-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">variant tags (<I><A HREF="#tag-name"><FONT COLOR=maroon>tag-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">type constructors (<I><A HREF="#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">record fields (<I><A HREF="#field-name"><FONT COLOR=maroon>field-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">class names (<I><A HREF="#class-name"><FONT COLOR=maroon>class-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">method names (<I><A HREF="#method-name"><FONT COLOR=maroon>method-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">instance variable names (<I><A HREF="#inst-var-name"><FONT COLOR=maroon>inst-var-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">module names (<I><A HREF="#module-name"><FONT COLOR=maroon>module-name</FONT></A></I>),
+</LI><LI CLASS="li-itemize">module type names (<I><A HREF="#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I>).
+</LI></UL><P>
+These eleven name spaces are distinguished both by the context and by the
+capitalization of the identifier: whether the first letter of the
+identifier is in lowercase (written <FONT COLOR=maroon><I>lowercase-ident</I></FONT> below) or in
+uppercase (written <FONT COLOR=maroon><I>capitalized-ident</I></FONT>). Underscore is considered a
+lowercase letter for this purpose.</P><P><A NAME="@manual.kwd0"></A>
+<A NAME="@manual.kwd1"></A></P><H4 CLASS="subsubsection">Naming objects</H4><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="value-name"><FONT COLOR=maroon>value-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>lowercase-ident</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>(</TT></FONT> <I><A HREF="#operator-name"><FONT COLOR=maroon>operator-name</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="operator-name"><FONT COLOR=maroon>operator-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="lex.html#prefix-symbol"><FONT COLOR=maroon>prefix-symbol</FONT></A></I> &#X2223;  <I><A HREF="#infix-op"><FONT COLOR=maroon>infix-op</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="infix-op"><FONT COLOR=maroon>infix-op</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="lex.html#infix-symbol"><FONT COLOR=maroon>infix-symbol</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>*</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>=</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>or</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>&amp;</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>:=</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <FONT COLOR=blue><TT>mod</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>land</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>lor</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>lxor</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>lsl</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>lsr</TT></FONT> &#X2223;  <FONT COLOR=blue><TT>asr</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>capitalized-ident</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A HREF="lex.html#label-name"><FONT COLOR=maroon>label-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>lowercase-ident</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="tag-name"><FONT COLOR=maroon>tag-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>capitalized-ident</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>lowercase-ident</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="field-name"><FONT COLOR=maroon>field-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>lowercase-ident</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="module-name"><FONT COLOR=maroon>module-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>capitalized-ident</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="lex.html#ident"><FONT COLOR=maroon>ident</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="class-name"><FONT COLOR=maroon>class-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>lowercase-ident</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="inst-var-name"><FONT COLOR=maroon>inst-var-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>lowercase-ident</I></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="method-name"><FONT COLOR=maroon>method-name</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<FONT COLOR=maroon><I>lowercase-ident</I></FONT></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>
+As shown above, prefix and infix symbols as well as some keywords can
+be used as value names, provided they are written between parentheses.
+The capitalization rules are summarized in the table below.</P><DIV CLASS="center"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1 WIDTH="80%"><TR><TD ALIGN=center NOWRAP><B>Name space</B></TD><TD ALIGN=center NOWRAP><B>Case of first letter</B></TD></TR>
+<TR><TD ALIGN=left NOWRAP>
+Values</TD><TD ALIGN=left NOWRAP>lowercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Constructors</TD><TD ALIGN=left NOWRAP>uppercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Labels</TD><TD ALIGN=left NOWRAP>lowercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Variant tags</TD><TD ALIGN=left NOWRAP>uppercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Exceptions</TD><TD ALIGN=left NOWRAP>uppercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Type constructors</TD><TD ALIGN=left NOWRAP>lowercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Record fields</TD><TD ALIGN=left NOWRAP>lowercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Classes</TD><TD ALIGN=left NOWRAP>lowercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Instance variables</TD><TD ALIGN=left NOWRAP>lowercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Methods</TD><TD ALIGN=left NOWRAP>lowercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Modules</TD><TD ALIGN=left NOWRAP>uppercase</TD></TR>
+<TR><TD ALIGN=left NOWRAP>Module types</TD><TD ALIGN=left NOWRAP>any</TD></TR>
+</TABLE></DIV><P><I>Note on variant tags:</I> the current implementation accepts
+lowercase variant tags in addition to uppercase variant tags, but we
+suggest you avoid lowercase variant tags for portability and
+compatibility with future OCaml versions.</P><H4 CLASS="subsubsection">Referring to named objects</H4><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD ALIGN=right NOWRAP>
+<I><A NAME="value-path"><FONT COLOR=maroon>value-path</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="#value-name"><FONT COLOR=maroon>value-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <I><A HREF="#value-name"><FONT COLOR=maroon>value-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="constr"><FONT COLOR=maroon>constr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <I><A HREF="#constr-name"><FONT COLOR=maroon>constr-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="typeconstr"><FONT COLOR=maroon>typeconstr</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <I><A HREF="#typeconstr-name"><FONT COLOR=maroon>typeconstr-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="field"><FONT COLOR=maroon>field</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="#field-name"><FONT COLOR=maroon>field-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <I><A HREF="#field-name"><FONT COLOR=maroon>field-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="module-path"><FONT COLOR=maroon>module-path</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="#module-name"><FONT COLOR=maroon>module-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <I><A HREF="#module-name"><FONT COLOR=maroon>module-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="#module-name"><FONT COLOR=maroon>module-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <I><A HREF="#module-name"><FONT COLOR=maroon>module-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I> <FONT COLOR=blue><TT>(</TT></FONT>  <I><A HREF="#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I> <FONT COLOR=blue><TT>)</TT></FONT>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="modtype-path"><FONT COLOR=maroon>modtype-path</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <I><A HREF="#modtype-name"><FONT COLOR=maroon>modtype-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD></TR>
+<TR><TD ALIGN=right NOWRAP>
+<I><A NAME="class-path"><FONT COLOR=maroon>class-path</FONT></A></I></TD><TD ALIGN=center NOWRAP>::=</TD><TD ALIGN=left NOWRAP>
+<I><A HREF="#class-name"><FONT COLOR=maroon>class-name</FONT></A></I>
+ </TD></TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&#X2223;</TD><TD ALIGN=left NOWRAP> <I><A HREF="#module-path"><FONT COLOR=maroon>module-path</FONT></A></I> <FONT COLOR=blue><TT>.</TT></FONT>  <I><A HREF="#class-name"><FONT COLOR=maroon>class-name</FONT></A></I></TD></TR>
+</TABLE></TD></TR>
+</TABLE><P>A named object can be referred to either by its name (following the
+usual static scoping rules for names) or by an access path <FONT COLOR=maroon><I>prefix</I></FONT> <FONT COLOR=blue><TT>.</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT>,
+where <FONT COLOR=maroon><I>prefix</I></FONT> designates a module and <FONT COLOR=maroon><I>name</I></FONT> is the name of an object
+defined in that module. The first component of the path, <FONT COLOR=maroon><I>prefix</I></FONT>, is
+either a simple module name or an access path <FONT COLOR=maroon><I>name</I></FONT><SUB>1</SUB> <FONT COLOR=blue><TT>.</TT></FONT>  <FONT COLOR=maroon><I>name</I></FONT><SUB>2</SUB> &#X2026;,
+in case the defining module is itself nested inside other modules.
+For referring to type constructors or module types, the <FONT COLOR=maroon><I>prefix</I></FONT> can
+also contain simple functor applications (as in the syntactic class
+<I><A HREF="#extended-module-path"><FONT COLOR=maroon>extended-module-path</FONT></A></I> above), in case the defining module is the
+result of a functor application.</P><P>Label names, tag names, method names and instance variable names need
+not be qualified: the former three are global labels, while the latter
+are local to a class.</P><HR>
+<A HREF="manual010.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="language.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="types.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

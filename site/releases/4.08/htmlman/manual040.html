@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.18  Inline records</title>
+</head>
+<body>
+<a href="manual039.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual041.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="sec274">8.18  Inline records</h2>
+<p> <a id="s:inline-records"></a>
+(Introduced in OCaml 4.03)
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<span class="c010">constr-args</span></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="typedecl.html#record-decl"><span class="c010">record-decl</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>The arguments of sum-type constructors can now be defined using the
+same syntax as records. Mutable and polymorphic fields are allowed.
+GADT syntax is supported. Attributes can be specified on individual
+fields.</p><p>Syntactically, building or matching constructors with such an inline
+record argument is similar to working with a unary constructor whose
+unique argument is a declared record type. A pattern can bind
+the inline record as a pseudo-value, but the record cannot escape the
+scope of the binding and can only be used with the dot-notation to
+extract or modify fields or to build new constructor values.</p><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> type t =
+   | Point of {width: int; mutable x: float; mutable y: float}
+   | Other
+
+ let v = Point {width = 10; x = 0.; y = 0.}
+
+ let scale l = function
+   | Point p -&gt; Point {p with x = l *. p.x; y = l *. p.y}
+   | Other -&gt; Other
+
+ let print = function
+   | Point {x; y; _} -&gt; Printf.printf "%f/%f" x y
+   | Other -&gt; ()
+
+ let reset = function
+   | Point p -&gt; p.x &lt;- 0.; p.y &lt;- 0.
+   | Other -&gt; ()
+</div>
+</pre>
+
+
+</div><div class="caml-example verbatim">
+
+<pre><div class="caml-input"> let invalid = function
+   | Point p -&gt; <U>p</U>
+</div><div class="caml-output error">Error: This form is not allowed as the type of the inlined record could escape.
+</div></pre>
+
+
+</div>
+<hr>
+<a href="manual039.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="manual041.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

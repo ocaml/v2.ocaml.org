@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="manual.css">
+<TITLE>The LablTk library: Tcl/Tk GUI interface</TITLE>
+</HEAD>
+<BODY >
+<A HREF="manual041.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual043.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc306">Chapter&#XA0;28</A>&#XA0;&#XA0;The LablTk library: Tcl/Tk GUI interface</H1><P>The <TT>labltk</TT> library provides access to the Tcl/Tk GUI from
+OCaml programs. This interface is generated in an automated way, and
+you should refer to Tcl/Tk books and man pages for detailed
+information on the behavior of the numerous functions. We also suggest
+to use <TT>ocamlbrowser</TT> to see the types of the various functions, that
+are the best documentation for the library itself.</P><P><BR>
+Programs that use the <TT>labltk</TT> library must be linked as follows:
+</P><PRE>
+        ocamlc <I>other options</I> -I +labltk labltk.cma <I>other files</I>
+        ocamlopt <I>other options</I> -I +labltk labltk.cmxa <I>other files</I>
+</PRE><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Unix:</FONT>&#XA0;&#XA0;
+The <TT>labltk</TT> library is available for any system with Tcl/Tk installed,
+starting from Tcl 7.5/Tk 4.1 up to Tcl/Tk 8.4. Beware that some beta
+versions may have compatibility problems.<P>If the library was not compiled correctly, try to run again the
+<TT>configure</TT> script with the option <TT>-tkdefs</TT> <I>switches</I>,
+where <I>switches</I> is a list of C-style inclusion paths leading to
+the right <TT>tcl.h</TT> and <TT>tk.h</TT>, for instance
+<TT>"-I/usr/local/include/tcl8.4 -I/usr/local/include/tk8.4"</TT>.</P><P>A script is installed, to make easier the use of the <TT>labltk</TT>
+library as toplevel.
+</P><DL CLASS="description"><DT CLASS="dt-description">
+<TT><B>labltk</B></TT></DT><DD CLASS="dd-description">
+This is a toplevel including the <TT>labltk</TT> library, and the path is
+already set as to allow the use of the various modules. It also
+includes code for the Unix and Str libraries. You can use it
+in place of <TT>ocaml</TT>.
+</DD></DL></BLOCKQUOTE><BLOCKQUOTE CLASS="quote"><FONT COLOR=purple>Windows:</FONT>&#XA0;&#XA0;
+The <TT>labltk</TT> library has been precompiled for use with Tcl/Tk 8.4.
+You must first have it installed on your system.
+It can be downloaded from<BR>
+<TT>http://www.activestate.com/products/ActiveTcl/</TT>.
+After installing it, you must put the dynamically loaded libraries
+<TT>tcl84.dll</TT> and <TT>tk84.dll</TT> (from the <TT>bin</TT> directory of the Tcl
+installation) in a directory included in you path.<P>No toplevel is available, but you can load the library from the
+standard toplevel with the following commands.
+</P><BLOCKQUOTE CLASS="quote">
+<PRE># #directory "+labltk";;
+# #load "labltk.cma";;
+</PRE></BLOCKQUOTE><P>
+You can also load it directly from the command line.
+</P><BLOCKQUOTE CLASS="quote">
+<PRE>C:\ocaml\bin&gt; ocaml -I +labltk labltk.cma
+</PRE></BLOCKQUOTE></BLOCKQUOTE><P>The <TT>labltk</TT> library is composed of a large number of modules.
+</P><BLOCKQUOTE CLASS="quote">
+<PRE>Bell                Imagebitmap         Place
+Button              Imagephoto          Radiobutton
+Canvas              Label               Scale
+Checkbutton         Listbox             Scrollbar
+Clipboard           Menu                Selection
+Dialog              Menubutton          Text
+Entry               Message             Tk
+Focus               Option              Tkwait
+Frame               Optionmenu          Toplevel
+Grab                Pack                Winfo
+Grid                Palette             Wm
+</PRE></BLOCKQUOTE><P>Giving a detailed account of each of these module would be impractical
+here. We will just present some of the basic functions in the module
+<TT>Tk</TT>. Note that for most other modules information can be found in the
+Tcl <TT>man</TT> page of their name.</P><UL CLASS="ftoc2"><LI CLASS="li-links">
+<A HREF="libref/Tk.html">The <TT>Tk</TT> library: Basic functions and types for LablTk</A>
+</LI></UL><HR>
+<A HREF="manual041.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="manual043.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>
