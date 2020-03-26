@@ -6,13 +6,13 @@
 
 <h1 class="chapter" id="sec275"><span>Chapter 12</span>&nbsp;&nbsp;Lexer and parser generators (ocamllex, ocamlyacc)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.02</a></div><div class="toc_title"><a href="#">Lexer and parser generators (ocamllex, ocamlyacc)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec276">Overview of <span class="c007">ocamllex</span></a>
-</li><li><a href="#sec278">Syntax of lexer definitions</a>
-</li><li><a href="#sec287">Overview of <span class="c007">ocamlyacc</span></a>
-</li><li><a href="#sec288">Syntax of grammar definitions</a>
-</li><li><a href="#sec293">Options</a>
-</li><li><a href="#sec294">A complete example</a>
-</li><li><a href="#sec295">Common errors</a>
+<li><a href="lexyacc.html#sec276">Overview of <span class="c007">ocamllex</span></a>
+</li><li><a href="lexyacc.html#sec278">Syntax of lexer definitions</a>
+</li><li><a href="lexyacc.html#sec287">Overview of <span class="c007">ocamlyacc</span></a>
+</li><li><a href="lexyacc.html#sec288">Syntax of grammar definitions</a>
+</li><li><a href="lexyacc.html#sec293">Options</a>
+</li><li><a href="lexyacc.html#sec294">A complete example</a>
+</li><li><a href="lexyacc.html#sec295">Common errors</a>
 </li></ul></nav></header>
 <p>
 <a id="c:ocamlyacc"></a>

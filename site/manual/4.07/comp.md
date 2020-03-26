@@ -6,11 +6,11 @@
 
 <h1 class="chapter" id="sec281"><span>Chapter 9</span>&nbsp;&nbsp;Batch compilation (ocamlc)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.07</a></div><div class="toc_title"><a href="#">Batch compilation (ocamlc)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec282">1&nbsp;&nbsp;Overview of the compiler</a>
-</li><li><a href="#sec283">2&nbsp;&nbsp;Options</a>
-</li><li><a href="#sec285">3&nbsp;&nbsp;Modules and the file system</a>
-</li><li><a href="#sec286">4&nbsp;&nbsp;Common errors</a>
-</li><li><a href="#sec287">5&nbsp;&nbsp;Warning reference</a>
+<li><a href="comp.html#sec282">1&nbsp;&nbsp;Overview of the compiler</a>
+</li><li><a href="comp.html#sec283">2&nbsp;&nbsp;Options</a>
+</li><li><a href="comp.html#sec285">3&nbsp;&nbsp;Modules and the file system</a>
+</li><li><a href="comp.html#sec286">4&nbsp;&nbsp;Common errors</a>
+</li><li><a href="comp.html#sec287">5&nbsp;&nbsp;Warning reference</a>
 </li></ul></nav></header>
 <p> <a id="c:camlc"></a>
 

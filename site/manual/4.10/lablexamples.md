@@ -6,8 +6,8 @@
 
 <h1 class="chapter" id="sec44"><span>Chapter 4</span>&nbsp;&nbsp;Labels and variants</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">Labels and variants</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Alabels">1&nbsp;&nbsp;Labels</a>
-</li><li><a href="#s%3Apolymorphic-variants">2&nbsp;&nbsp;Polymorphic variants</a>
+<li><a href="lablexamples.html#s%3Alabels">1&nbsp;&nbsp;Labels</a>
+</li><li><a href="lablexamples.html#s%3Apolymorphic-variants">2&nbsp;&nbsp;Polymorphic variants</a>
 </li></ul></nav></header>
 <p> <a id="c:labl-examples"></a>
 </p><p>

@@ -6,9 +6,9 @@
 
 <h1 class="chapter" id="sec50"><span>Chapter 5</span>&nbsp;&nbsp;Polymorphism and its limitations</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.06</a></div><div class="toc_title"><a href="#">Polymorphism and its limitations</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec51">1&nbsp;&nbsp;Weak polymorphism and mutation</a>
-</li><li><a href="#sec57">2&nbsp;&nbsp;Polymorphic recursion</a>
-</li><li><a href="#sec60">3&nbsp;&nbsp;Higher-rank polymorphic functions</a>
+<li><a href="polymorphism.html#sec51">1&nbsp;&nbsp;Weak polymorphism and mutation</a>
+</li><li><a href="polymorphism.html#sec57">2&nbsp;&nbsp;Polymorphic recursion</a>
+</li><li><a href="polymorphism.html#sec60">3&nbsp;&nbsp;Higher-rank polymorphic functions</a>
 </li></ul></nav></header>
 <p><a id="c:polymorphism"></a>
 

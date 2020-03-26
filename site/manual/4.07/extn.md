@@ -6,34 +6,34 @@
 
 <h1 class="chapter" id="sec232"><span>Chapter 8</span>&nbsp;&nbsp;Language extensions</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.07</a></div><div class="toc_title"><a href="#">Language extensions</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec233">1&nbsp;&nbsp;Integer literals for types <span class="c003">int32</span>, <span class="c003">int64</span>
+<li><a href="extn.html#sec233">1&nbsp;&nbsp;Integer literals for types <span class="c003">int32</span>, <span class="c003">int64</span>
 and <span class="c003">nativeint</span></a>
-</li><li><a href="#sec234">2&nbsp;&nbsp;Recursive definitions of values</a>
-</li><li><a href="#sec235">3&nbsp;&nbsp;Lazy patterns</a>
-</li><li><a href="#sec236">4&nbsp;&nbsp;Recursive modules</a>
-</li><li><a href="#sec237">5&nbsp;&nbsp;Private types</a>
-</li><li><a href="#sec241">6&nbsp;&nbsp;Local opens for patterns</a>
-</li><li><a href="#sec242">7&nbsp;&nbsp;Object copy short notations</a>
-</li><li><a href="#sec243">8&nbsp;&nbsp;Locally abstract types</a>
-</li><li><a href="#sec245">9&nbsp;&nbsp;First-class modules</a>
-</li><li><a href="#sec248">10&nbsp;&nbsp;Recovering the type of a module</a>
-</li><li><a href="#sec249">11&nbsp;&nbsp;Substituting inside a signature</a>
-</li><li><a href="#sec250">12&nbsp;&nbsp;Type-level module aliases</a>
-</li><li><a href="#sec251">13&nbsp;&nbsp;Overriding in open statements</a>
-</li><li><a href="#sec252">14&nbsp;&nbsp;Generalized algebraic datatypes</a>
-</li><li><a href="#sec259">15&nbsp;&nbsp;Syntax for Bigarray access</a>
-</li><li><a href="#sec260">16&nbsp;&nbsp;Attributes</a>
-</li><li><a href="#sec262">17&nbsp;&nbsp;Extension nodes</a>
-</li><li><a href="#sec264">18&nbsp;&nbsp;Quoted strings</a>
-</li><li><a href="#sec265">19&nbsp;&nbsp;Exception cases in pattern matching</a>
-</li><li><a href="#sec266">20&nbsp;&nbsp;Extensible variant types</a>
-</li><li><a href="#sec268">21&nbsp;&nbsp;Generative functors</a>
-</li><li><a href="#sec269">22&nbsp;&nbsp;Extension-only syntax</a>
-</li><li><a href="#sec272">23&nbsp;&nbsp;Inline records</a>
-</li><li><a href="#sec273">24&nbsp;&nbsp;Local exceptions</a>
-</li><li><a href="#sec274">25&nbsp;&nbsp;Documentation comments</a>
-</li><li><a href="#s%3Aindex-operators">26&nbsp;&nbsp;Extended indexing operators  </a>
-</li><li><a href="#s%3Aempty-variants">27&nbsp;&nbsp;Empty variant types </a>
+</li><li><a href="extn.html#sec234">2&nbsp;&nbsp;Recursive definitions of values</a>
+</li><li><a href="extn.html#sec235">3&nbsp;&nbsp;Lazy patterns</a>
+</li><li><a href="extn.html#sec236">4&nbsp;&nbsp;Recursive modules</a>
+</li><li><a href="extn.html#sec237">5&nbsp;&nbsp;Private types</a>
+</li><li><a href="extn.html#sec241">6&nbsp;&nbsp;Local opens for patterns</a>
+</li><li><a href="extn.html#sec242">7&nbsp;&nbsp;Object copy short notations</a>
+</li><li><a href="extn.html#sec243">8&nbsp;&nbsp;Locally abstract types</a>
+</li><li><a href="extn.html#sec245">9&nbsp;&nbsp;First-class modules</a>
+</li><li><a href="extn.html#sec248">10&nbsp;&nbsp;Recovering the type of a module</a>
+</li><li><a href="extn.html#sec249">11&nbsp;&nbsp;Substituting inside a signature</a>
+</li><li><a href="extn.html#sec250">12&nbsp;&nbsp;Type-level module aliases</a>
+</li><li><a href="extn.html#sec251">13&nbsp;&nbsp;Overriding in open statements</a>
+</li><li><a href="extn.html#sec252">14&nbsp;&nbsp;Generalized algebraic datatypes</a>
+</li><li><a href="extn.html#sec259">15&nbsp;&nbsp;Syntax for Bigarray access</a>
+</li><li><a href="extn.html#sec260">16&nbsp;&nbsp;Attributes</a>
+</li><li><a href="extn.html#sec262">17&nbsp;&nbsp;Extension nodes</a>
+</li><li><a href="extn.html#sec264">18&nbsp;&nbsp;Quoted strings</a>
+</li><li><a href="extn.html#sec265">19&nbsp;&nbsp;Exception cases in pattern matching</a>
+</li><li><a href="extn.html#sec266">20&nbsp;&nbsp;Extensible variant types</a>
+</li><li><a href="extn.html#sec268">21&nbsp;&nbsp;Generative functors</a>
+</li><li><a href="extn.html#sec269">22&nbsp;&nbsp;Extension-only syntax</a>
+</li><li><a href="extn.html#sec272">23&nbsp;&nbsp;Inline records</a>
+</li><li><a href="extn.html#sec273">24&nbsp;&nbsp;Local exceptions</a>
+</li><li><a href="extn.html#sec274">25&nbsp;&nbsp;Documentation comments</a>
+</li><li><a href="extn.html#s%3Aindex-operators">26&nbsp;&nbsp;Extended indexing operators  </a>
+</li><li><a href="extn.html#s%3Aempty-variants">27&nbsp;&nbsp;Empty variant types </a>
 </li></ul></nav></header>
 <p> <a id="c:extensions"></a>
 

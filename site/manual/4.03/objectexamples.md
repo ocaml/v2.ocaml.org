@@ -6,23 +6,23 @@
 
 <h1 class="chapter" id="sec23"><span>Chapter 3</span>&nbsp;&nbsp;Objects in OCaml</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.03</a></div><div class="toc_title"><a href="#">Objects in OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec24">Classes and objects</a>
-</li><li><a href="#sec25">Immediate objects</a>
-</li><li><a href="#sec26">Reference to self</a>
-</li><li><a href="#sec27">Initializers</a>
-</li><li><a href="#sec28">Virtual methods</a>
-</li><li><a href="#sec29">Private methods</a>
-</li><li><a href="#sec30">Class interfaces</a>
-</li><li><a href="#sec31">Inheritance</a>
-</li><li><a href="#sec32">Multiple inheritance</a>
-</li><li><a href="#sec33">Parameterized classes</a>
-</li><li><a href="#sec34">Polymorphic methods</a>
-</li><li><a href="#sec35">Using coercions</a>
-</li><li><a href="#sec36">Functional objects</a>
-</li><li><a href="#sec37">Cloning objects</a>
-</li><li><a href="#sec38">Recursive classes</a>
-</li><li><a href="#sec39">Binary methods</a>
-</li><li><a href="#sec40">Friends</a>
+<li><a href="objectexamples.html#sec24">Classes and objects</a>
+</li><li><a href="objectexamples.html#sec25">Immediate objects</a>
+</li><li><a href="objectexamples.html#sec26">Reference to self</a>
+</li><li><a href="objectexamples.html#sec27">Initializers</a>
+</li><li><a href="objectexamples.html#sec28">Virtual methods</a>
+</li><li><a href="objectexamples.html#sec29">Private methods</a>
+</li><li><a href="objectexamples.html#sec30">Class interfaces</a>
+</li><li><a href="objectexamples.html#sec31">Inheritance</a>
+</li><li><a href="objectexamples.html#sec32">Multiple inheritance</a>
+</li><li><a href="objectexamples.html#sec33">Parameterized classes</a>
+</li><li><a href="objectexamples.html#sec34">Polymorphic methods</a>
+</li><li><a href="objectexamples.html#sec35">Using coercions</a>
+</li><li><a href="objectexamples.html#sec36">Functional objects</a>
+</li><li><a href="objectexamples.html#sec37">Cloning objects</a>
+</li><li><a href="objectexamples.html#sec38">Recursive classes</a>
+</li><li><a href="objectexamples.html#sec39">Binary methods</a>
+</li><li><a href="objectexamples.html#sec40">Friends</a>
 </li></ul></nav></header>
 <p>
 <a id="c:objectexamples"></a>

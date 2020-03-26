@@ -6,7 +6,7 @@
 
 <h1 class="chapter" id="sec566"><span>Chapter 25</span>&nbsp;&nbsp;The standard library</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">The standard library</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Astdlib-conv">Conventions</a>
+<li><a href="stdlib.html#s%3Astdlib-conv">Conventions</a>
 </li></ul></nav></header>
 <p> <a id="c:stdlib"></a></p><p>This chapter describes the functions provided by the OCaml
 standard library. The modules from the standard library are

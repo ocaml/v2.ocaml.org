@@ -6,11 +6,11 @@
 
 <h1 class="chapter" id="sec17"><span>Chapter 2</span>&nbsp;&nbsp;The module system</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.03</a></div><div class="toc_title"><a href="#">The module system</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec18">Structures</a>
-</li><li><a href="#sec19">Signatures</a>
-</li><li><a href="#sec20">Functors</a>
-</li><li><a href="#sec21">Functors and type abstraction</a>
-</li><li><a href="#sec22">Modules and separate compilation</a>
+<li><a href="moduleexamples.html#sec18">Structures</a>
+</li><li><a href="moduleexamples.html#sec19">Signatures</a>
+</li><li><a href="moduleexamples.html#sec20">Functors</a>
+</li><li><a href="moduleexamples.html#sec21">Functors and type abstraction</a>
+</li><li><a href="moduleexamples.html#sec22">Modules and separate compilation</a>
 </li></ul></nav></header>
 <p> <a id="c:moduleexamples"></a>
 

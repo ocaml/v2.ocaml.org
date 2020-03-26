@@ -6,23 +6,23 @@
 
 <h1 class="chapter" id="sec26"><span>Chapter 3</span>&nbsp;&nbsp;Objects in OCaml</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">Objects in OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Aclasses-and-objects">1&nbsp;&nbsp;Classes and objects</a>
-</li><li><a href="#s%3Aimmediate-objects">2&nbsp;&nbsp;Immediate objects</a>
-</li><li><a href="#s%3Areference-to-self">3&nbsp;&nbsp;Reference to self</a>
-</li><li><a href="#s%3Ainitializers">4&nbsp;&nbsp;Initializers</a>
-</li><li><a href="#s%3Avirtual-methods">5&nbsp;&nbsp;Virtual methods</a>
-</li><li><a href="#s%3Aprivate-methods">6&nbsp;&nbsp;Private methods</a>
-</li><li><a href="#s%3Aclass-interfaces">7&nbsp;&nbsp;Class interfaces</a>
-</li><li><a href="#s%3Ainheritance">8&nbsp;&nbsp;Inheritance</a>
-</li><li><a href="#s%3Amultiple-inheritance">9&nbsp;&nbsp;Multiple inheritance</a>
-</li><li><a href="#s%3Aparameterized-classes">10&nbsp;&nbsp;Parameterized classes</a>
-</li><li><a href="#s%3Apolymorphic-methods">11&nbsp;&nbsp;Polymorphic methods</a>
-</li><li><a href="#s%3Ausing-coercions">12&nbsp;&nbsp;Using coercions</a>
-</li><li><a href="#s%3Afunctional-objects">13&nbsp;&nbsp;Functional objects</a>
-</li><li><a href="#s%3Acloning-objects">14&nbsp;&nbsp;Cloning objects</a>
-</li><li><a href="#s%3Arecursive-classes">15&nbsp;&nbsp;Recursive classes</a>
-</li><li><a href="#s%3Abinary-methods">16&nbsp;&nbsp;Binary methods</a>
-</li><li><a href="#s%3Afriends">17&nbsp;&nbsp;Friends</a>
+<li><a href="objectexamples.html#s%3Aclasses-and-objects">1&nbsp;&nbsp;Classes and objects</a>
+</li><li><a href="objectexamples.html#s%3Aimmediate-objects">2&nbsp;&nbsp;Immediate objects</a>
+</li><li><a href="objectexamples.html#s%3Areference-to-self">3&nbsp;&nbsp;Reference to self</a>
+</li><li><a href="objectexamples.html#s%3Ainitializers">4&nbsp;&nbsp;Initializers</a>
+</li><li><a href="objectexamples.html#s%3Avirtual-methods">5&nbsp;&nbsp;Virtual methods</a>
+</li><li><a href="objectexamples.html#s%3Aprivate-methods">6&nbsp;&nbsp;Private methods</a>
+</li><li><a href="objectexamples.html#s%3Aclass-interfaces">7&nbsp;&nbsp;Class interfaces</a>
+</li><li><a href="objectexamples.html#s%3Ainheritance">8&nbsp;&nbsp;Inheritance</a>
+</li><li><a href="objectexamples.html#s%3Amultiple-inheritance">9&nbsp;&nbsp;Multiple inheritance</a>
+</li><li><a href="objectexamples.html#s%3Aparameterized-classes">10&nbsp;&nbsp;Parameterized classes</a>
+</li><li><a href="objectexamples.html#s%3Apolymorphic-methods">11&nbsp;&nbsp;Polymorphic methods</a>
+</li><li><a href="objectexamples.html#s%3Ausing-coercions">12&nbsp;&nbsp;Using coercions</a>
+</li><li><a href="objectexamples.html#s%3Afunctional-objects">13&nbsp;&nbsp;Functional objects</a>
+</li><li><a href="objectexamples.html#s%3Acloning-objects">14&nbsp;&nbsp;Cloning objects</a>
+</li><li><a href="objectexamples.html#s%3Arecursive-classes">15&nbsp;&nbsp;Recursive classes</a>
+</li><li><a href="objectexamples.html#s%3Abinary-methods">16&nbsp;&nbsp;Binary methods</a>
+</li><li><a href="objectexamples.html#s%3Afriends">17&nbsp;&nbsp;Friends</a>
 </li></ul></nav></header>
 <p>
 <a id="c:objectexamples"></a>

@@ -6,12 +6,12 @@
 
 <h1 class="chapter" id="sec246"><span>Chapter 9</span>&nbsp;&nbsp;The toplevel system (ocaml)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.01</a></div><div class="toc_title"><a href="#">The toplevel system (ocaml)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec247">Options</a>
-</li><li><a href="#sec248">Toplevel directives</a>
-</li><li><a href="#sec249">The toplevel and the module system</a>
-</li><li><a href="#sec250">Common errors</a>
-</li><li><a href="#sec251">Building custom toplevel systems: <span class="c007">ocamlmktop</span></a>
-</li><li><a href="#sec252">Options</a>
+<li><a href="toplevel.html#sec247">Options</a>
+</li><li><a href="toplevel.html#sec248">Toplevel directives</a>
+</li><li><a href="toplevel.html#sec249">The toplevel and the module system</a>
+</li><li><a href="toplevel.html#sec250">Common errors</a>
+</li><li><a href="toplevel.html#sec251">Building custom toplevel systems: <span class="c007">ocamlmktop</span></a>
+</li><li><a href="toplevel.html#sec252">Options</a>
 </li></ul></nav></header>
 <p> <a id="c:camllight"></a>
 

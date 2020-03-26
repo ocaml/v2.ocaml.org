@@ -5,15 +5,15 @@
 
 
 <h1 class="chapter"><a name="htoc2"><span>Chapter 1</span></a>&nbsp;&nbsp;The core language</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The core language</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc4">Basics</a>
-</li><li><a href="#toc5">Data types</a>
-</li><li><a href="#toc6">Functions as values</a>
-</li><li><a href="#toc7">Records and variants</a>
-</li><li><a href="#toc8">Imperative features</a>
-</li><li><a href="#toc9">Exceptions</a>
-</li><li><a href="#toc10">Symbolic processing of expressions</a>
-</li><li><a href="#toc11">Pretty-printing and parsing</a>
-</li><li><a href="#toc12">Standalone OCaml programs</a>
+<li><a href="manual003.html#toc4">Basics</a>
+</li><li><a href="manual003.html#toc5">Data types</a>
+</li><li><a href="manual003.html#toc6">Functions as values</a>
+</li><li><a href="manual003.html#toc7">Records and variants</a>
+</li><li><a href="manual003.html#toc8">Imperative features</a>
+</li><li><a href="manual003.html#toc9">Exceptions</a>
+</li><li><a href="manual003.html#toc10">Symbolic processing of expressions</a>
+</li><li><a href="manual003.html#toc11">Pretty-printing and parsing</a>
+</li><li><a href="manual003.html#toc12">Standalone OCaml programs</a>
 </li></ul></nav></header>
 <p> <a name="c:core-xamples"></a>
 </p><p>This part of the manual is a tutorial introduction to the

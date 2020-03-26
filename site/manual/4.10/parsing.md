@@ -22,14 +22,14 @@ Use of the <span class="c003">ocamlfind</span> utility is recommended. However, 
 For interactive use of the <span class="c003">compiler-libs</span> library, start <span class="c003">ocaml</span> and
 type<br>
 <span class="c003">#load "compiler-libs/ocamlcommon.cma";;</span>.</p><ul class="ftoc2"><li class="li-links">
-<a href="compilerlibref/Ast_helper.html">Module <span class="c003">Ast_helper</span>: helper functions for AST construction</a>
-</li><li class="li-links"><a href="compilerlibref/Ast_mapper.html">Module <span class="c003">Ast_mapper</span>: -ppx rewriter interface</a>
-</li><li class="li-links"><a href="compilerlibref/Asttypes.html">Module <span class="c003">Asttypes</span>: auxiliary types used by Parsetree</a>
-</li><li class="li-links"><a href="compilerlibref/Location.html">Module <span class="c003">Location</span>: source code locations</a>
-</li><li class="li-links"><a href="compilerlibref/Longident.html">Module <span class="c003">Longident</span>: long identifiers</a>
-</li><li class="li-links"><a href="compilerlibref/Parse.html">Module <span class="c003">Parse</span>: OCaml syntax parsing</a>
-</li><li class="li-links"><a href="compilerlibref/Parsetree.html">Module <span class="c003">Parsetree</span>: OCaml syntax tree</a>
-</li><li class="li-links"><a href="compilerlibref/Pprintast.html">Module <span class="c003">Pprintast</span>: OCaml syntax printing</a>
+<a href="../../api/4.10/compilerlibref/Ast_helper.html">Module <span class="c003">Ast_helper</span>: helper functions for AST construction</a>
+</li><li class="li-links"><a href="../../api/4.10/compilerlibref/Ast_mapper.html">Module <span class="c003">Ast_mapper</span>: -ppx rewriter interface</a>
+</li><li class="li-links"><a href="../../api/4.10/compilerlibref/Asttypes.html">Module <span class="c003">Asttypes</span>: auxiliary types used by Parsetree</a>
+</li><li class="li-links"><a href="../../api/4.10/compilerlibref/Location.html">Module <span class="c003">Location</span>: source code locations</a>
+</li><li class="li-links"><a href="../../api/4.10/compilerlibref/Longident.html">Module <span class="c003">Longident</span>: long identifiers</a>
+</li><li class="li-links"><a href="../../api/4.10/compilerlibref/Parse.html">Module <span class="c003">Parse</span>: OCaml syntax parsing</a>
+</li><li class="li-links"><a href="../../api/4.10/compilerlibref/Parsetree.html">Module <span class="c003">Parsetree</span>: OCaml syntax tree</a>
+</li><li class="li-links"><a href="../../api/4.10/compilerlibref/Pprintast.html">Module <span class="c003">Pprintast</span>: OCaml syntax printing</a>
 </li></ul>
 <hr>
 

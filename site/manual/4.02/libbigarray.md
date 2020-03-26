@@ -6,8 +6,8 @@
 
 <h1 class="chapter" id="sec485"><span>Chapter 28</span>&nbsp;&nbsp;The bigarray library</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.02</a></div><div class="toc_title"><a href="#">The bigarray library</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec486">Module <span class="c007">Bigarray</span>: large, multi-dimensional, numerical arrays</a>
-</li><li><a href="#sec487">Big arrays in the OCaml-C interface</a>
+<li><a href="libbigarray.html#sec486">Module <span class="c007">Bigarray</span>: large, multi-dimensional, numerical arrays</a>
+</li><li><a href="libbigarray.html#sec487">Big arrays in the OCaml-C interface</a>
 </li></ul></nav></header>
 <p>The <span class="c007">bigarray</span> library implements large, multi-dimensional, numerical
 arrays. These arrays are called “big arrays” to distinguish them

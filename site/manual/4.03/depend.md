@@ -6,8 +6,8 @@
 
 <h1 class="chapter" id="sec312"><span>Chapter 13</span>&nbsp;&nbsp;Dependency generator (ocamldep)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.03</a></div><div class="toc_title"><a href="#">Dependency generator (ocamldep)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec313">Options</a>
-</li><li><a href="#sec314">A typical Makefile</a>
+<li><a href="depend.html#sec313">Options</a>
+</li><li><a href="depend.html#sec314">A typical Makefile</a>
 </li></ul></nav></header>
 <p> <a id="c:camldep"></a>
 

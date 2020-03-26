@@ -5,17 +5,17 @@
 
 
 <h1 class="chapter"><a name="htoc248"><span>Chapter 19</span></a>&nbsp;&nbsp;Interfacing<a name="c:intf-c"></a> C with OCaml</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Interfacing C with OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc142">Overview and compilation information</a>
-</li><li><a href="#toc143">The <tt>value</tt> type</a>
-</li><li><a href="#toc144">Representation of OCaml data types</a>
-</li><li><a href="#toc145">Operations on values</a>
-</li><li><a href="#toc146">Living in harmony with the garbage collector</a>
-</li><li><a href="#toc147">A complete example</a>
-</li><li><a href="#toc148">Advanced topic: callbacks from C to OCaml</a>
-</li><li><a href="#toc149">Advanced example with callbacks</a>
-</li><li><a href="#toc150">Advanced topic: custom blocks</a>
-</li><li><a href="#toc151">Advanced topic: multithreading</a>
-</li><li><a href="#toc152">Building mixed C/OCaml libraries: <tt>ocamlmklib</tt></a>
+<li><a href="manual033.html#toc142">Overview and compilation information</a>
+</li><li><a href="manual033.html#toc143">The <tt>value</tt> type</a>
+</li><li><a href="manual033.html#toc144">Representation of OCaml data types</a>
+</li><li><a href="manual033.html#toc145">Operations on values</a>
+</li><li><a href="manual033.html#toc146">Living in harmony with the garbage collector</a>
+</li><li><a href="manual033.html#toc147">A complete example</a>
+</li><li><a href="manual033.html#toc148">Advanced topic: callbacks from C to OCaml</a>
+</li><li><a href="manual033.html#toc149">Advanced example with callbacks</a>
+</li><li><a href="manual033.html#toc150">Advanced topic: custom blocks</a>
+</li><li><a href="manual033.html#toc151">Advanced topic: multithreading</a>
+</li><li><a href="manual033.html#toc152">Building mixed C/OCaml libraries: <tt>ocamlmklib</tt></a>
 </li></ul></nav></header>
 <p>This chapter describes how user-defined primitives, written in C, can
 be linked with OCaml code and called from OCaml functions.</p><h2 class="section"><a name="toc142"></a><a name="htoc249">1</a>&nbsp;&nbsp;Overview and compilation information</h2><h3 class="subsection"><a name="htoc250">19.1.1</a>&nbsp;&nbsp;Declaring primitives</h3><p>

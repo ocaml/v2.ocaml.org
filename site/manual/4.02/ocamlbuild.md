@@ -6,11 +6,11 @@
 
 <h1 class="chapter" id="sec379"><span>Chapter 18</span>&nbsp;&nbsp;The ocamlbuild compilation manager</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.02</a></div><div class="toc_title"><a href="#">The ocamlbuild compilation manager</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec380">Features of <span class="c007">ocamlbuild</span></a>
-</li><li><a href="#sec381">Limitations</a>
-</li><li><a href="#sec382">Using <span class="c007">ocamlbuild</span></a>
-</li><li><a href="#sec411">Appendix: Motivations</a>
-</li><li><a href="#sec412">Appendix: Summary of default rules</a>
+<li><a href="ocamlbuild.html#sec380">Features of <span class="c007">ocamlbuild</span></a>
+</li><li><a href="ocamlbuild.html#sec381">Limitations</a>
+</li><li><a href="ocamlbuild.html#sec382">Using <span class="c007">ocamlbuild</span></a>
+</li><li><a href="ocamlbuild.html#sec411">Appendix: Motivations</a>
+</li><li><a href="ocamlbuild.html#sec412">Appendix: Summary of default rules</a>
 </li></ul></nav></header>
 <p> <a id="c:ocamlbuild"></a>
 

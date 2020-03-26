@@ -1,0 +1,28 @@
+<!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
+<div class="api"><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">API Version 4.09</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="Strongly_connected_components.html">Strongly_connected_components</a></div><ul></ul></nav></header>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="keyword">type</span>&nbsp;<span class="constructor">S</span>&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Id</span>&nbsp;:&nbsp;<span class="constructor">Identifiable</span>.<span class="constructor">S</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;directed_graph&nbsp;=&nbsp;<span class="constructor">Id</span>.<span class="constructor">Set</span>.t&nbsp;<span class="constructor">Id</span>.<span class="constructor">Map</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;component&nbsp;=&nbsp;<span class="constructor">Has_loop</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Id</span>.t&nbsp;list&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">No_loop</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Id</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;connected_components_sorted_from_roots_to_leaf&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Strongly_connected_components</span>.<span class="constructor">S</span>.directed_graph&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Strongly_connected_components</span>.<span class="constructor">S</span>.component&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;component_graph&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Strongly_connected_components</span>.<span class="constructor">S</span>.directed_graph&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Strongly_connected_components</span>.<span class="constructor">S</span>.component&nbsp;*&nbsp;int&nbsp;list)&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Make</span>&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">functor</span>&nbsp;(<span class="constructor">Id</span>&nbsp;:&nbsp;<span class="constructor">Identifiable</span>.<span class="constructor">S</span>)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;directed_graph&nbsp;=&nbsp;<span class="constructor">Id</span>.<span class="constructor">Set</span>.t&nbsp;<span class="constructor">Id</span>.<span class="constructor">Map</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;component&nbsp;=&nbsp;<span class="constructor">Has_loop</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Id</span>.t&nbsp;list&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">No_loop</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Id</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;connected_components_sorted_from_roots_to_leaf&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directed_graph&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;component&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;component_graph&nbsp;:&nbsp;directed_graph&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(component&nbsp;*&nbsp;int&nbsp;list)&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+<span class="keyword">end</span></code>
+<div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

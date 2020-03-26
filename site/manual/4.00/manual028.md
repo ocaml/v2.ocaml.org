@@ -5,11 +5,11 @@
 
 
 <h1 class="chapter"><a name="htoc161"><span>Chapter 14</span></a>&nbsp;&nbsp;The browser/editor (ocamlbrowser)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The browser/editor (ocamlbrowser)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc114">Invocation</a>
-</li><li><a href="#toc115">Viewer</a>
-</li><li><a href="#toc116">Module browsing</a>
-</li><li><a href="#toc117">File editor</a>
-</li><li><a href="#toc118">Shell</a>
+<li><a href="manual028.html#toc114">Invocation</a>
+</li><li><a href="manual028.html#toc115">Viewer</a>
+</li><li><a href="manual028.html#toc116">Module browsing</a>
+</li><li><a href="manual028.html#toc117">File editor</a>
+</li><li><a href="manual028.html#toc118">Shell</a>
 </li></ul></nav></header>
 <p> <a name="c:browser"></a>
 </p><p>This chapter describes OCamlBrowser, a source and compiled interface

@@ -6,9 +6,9 @@
 
 <h1 class="chapter" id="sec523"><span>Chapter 23</span>&nbsp;&nbsp;The core library</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.05</a></div><div class="toc_title"><a href="#">The core library</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec524">Conventions</a>
-</li><li><a href="#sec525">1&nbsp;&nbsp;Built-in types and predefined exceptions</a>
-</li><li><a href="#sec528">2&nbsp;&nbsp;Module <span class="c003">Pervasives</span>: the initially opened module</a>
+<li><a href="core.html#sec524">Conventions</a>
+</li><li><a href="core.html#sec525">1&nbsp;&nbsp;Built-in types and predefined exceptions</a>
+</li><li><a href="core.html#sec528">2&nbsp;&nbsp;Module <span class="c003">Pervasives</span>: the initially opened module</a>
 </li></ul></nav></header>
 <p> <a id="c:corelib"></a></p><p>This chapter describes the OCaml core library, which is
 composed of declarations for built-in types and exceptions, plus

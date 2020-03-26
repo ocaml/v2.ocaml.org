@@ -6,16 +6,16 @@
 
 <h1 class="chapter" id="sec380"><span>Chapter 17</span>&nbsp;&nbsp;The debugger (ocamldebug)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.08</a></div><div class="toc_title"><a href="#">The debugger (ocamldebug)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec381">1&nbsp;&nbsp;Compiling for debugging</a>
-</li><li><a href="#sec382">2&nbsp;&nbsp;Invocation</a>
-</li><li><a href="#sec386">3&nbsp;&nbsp;Commands</a>
-</li><li><a href="#sec389">4&nbsp;&nbsp;Executing a program</a>
-</li><li><a href="#sec395">5&nbsp;&nbsp;Breakpoints</a>
-</li><li><a href="#sec396">6&nbsp;&nbsp;The call stack</a>
-</li><li><a href="#sec397">7&nbsp;&nbsp;Examining variable values</a>
-</li><li><a href="#sec398">8&nbsp;&nbsp;Controlling the debugger</a>
-</li><li><a href="#sec407">9&nbsp;&nbsp;Miscellaneous commands</a>
-</li><li><a href="#sec408">10&nbsp;&nbsp;Running the debugger under Emacs</a>
+<li><a href="debugger.html#sec381">1&nbsp;&nbsp;Compiling for debugging</a>
+</li><li><a href="debugger.html#sec382">2&nbsp;&nbsp;Invocation</a>
+</li><li><a href="debugger.html#sec386">3&nbsp;&nbsp;Commands</a>
+</li><li><a href="debugger.html#sec389">4&nbsp;&nbsp;Executing a program</a>
+</li><li><a href="debugger.html#sec395">5&nbsp;&nbsp;Breakpoints</a>
+</li><li><a href="debugger.html#sec396">6&nbsp;&nbsp;The call stack</a>
+</li><li><a href="debugger.html#sec397">7&nbsp;&nbsp;Examining variable values</a>
+</li><li><a href="debugger.html#sec398">8&nbsp;&nbsp;Controlling the debugger</a>
+</li><li><a href="debugger.html#sec407">9&nbsp;&nbsp;Miscellaneous commands</a>
+</li><li><a href="debugger.html#sec408">10&nbsp;&nbsp;Running the debugger under Emacs</a>
 </li></ul></nav></header>
 <p> <a id="c:debugger"></a>
 </p><p>This chapter describes the OCaml source-level replay debugger

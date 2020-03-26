@@ -6,17 +6,17 @@
 
 <h1 class="chapter" id="c:intf-c"><span>Chapter 19</span>&nbsp;&nbsp;Interfacing C with OCaml</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.02</a></div><div class="toc_title"><a href="#">Interfacing C with OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec414">Overview and compilation information</a>
-</li><li><a href="#sec421">The <span class="c007">value</span> type</a>
-</li><li><a href="#sec425">Representation of OCaml data types</a>
-</li><li><a href="#sec432">Operations on values</a>
-</li><li><a href="#sec440">Living in harmony with the garbage collector</a>
-</li><li><a href="#sec447">A complete example</a>
-</li><li><a href="#sec448">Advanced topic: callbacks from C to OCaml</a>
-</li><li><a href="#sec457">Advanced example with callbacks</a>
-</li><li><a href="#sec458">Advanced topic: custom blocks</a>
-</li><li><a href="#sec465">Advanced topic: multithreading</a>
-</li><li><a href="#sec468">Building mixed C/OCaml libraries: <span class="c007">ocamlmklib</span></a>
+<li><a href="intfc.html#sec414">Overview and compilation information</a>
+</li><li><a href="intfc.html#sec421">The <span class="c007">value</span> type</a>
+</li><li><a href="intfc.html#sec425">Representation of OCaml data types</a>
+</li><li><a href="intfc.html#sec432">Operations on values</a>
+</li><li><a href="intfc.html#sec440">Living in harmony with the garbage collector</a>
+</li><li><a href="intfc.html#sec447">A complete example</a>
+</li><li><a href="intfc.html#sec448">Advanced topic: callbacks from C to OCaml</a>
+</li><li><a href="intfc.html#sec457">Advanced example with callbacks</a>
+</li><li><a href="intfc.html#sec458">Advanced topic: custom blocks</a>
+</li><li><a href="intfc.html#sec465">Advanced topic: multithreading</a>
+</li><li><a href="intfc.html#sec468">Building mixed C/OCaml libraries: <span class="c007">ocamlmklib</span></a>
 </li></ul></nav></header>
 <p>This chapter describes how user-defined primitives, written in C, can
 be linked with OCaml code and called from OCaml functions, and how

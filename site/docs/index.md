@@ -11,21 +11,28 @@
       // let link = document.getElementById("refref");
       // link.setAttribute("href", ref);
       
-      ref = '../manual/' + version + '/extn.html'
+      ref = '../manual/' + version + '/extn.html';
       link = document.getElementById("extref");
       link.setAttribute("href", ref);
+      link = document.getElementById("extref_b");
+      link.setAttribute("href", ref);
+
+
+      ref = '../manual/' + version;
+      link = document.getElementById("manual");
+      link.setAttribute("href", ref);
       
-      ref = '../manual/' + version + '/core.html'
+      ref = '../manual/' + version + '/core.html';
       link = document.getElementById("corref");
       link.setAttribute("href", ref);
       
-      ref = '../manual/' + version + '/comp.html'
+      ref = '../manual/' + version + '/comp.html';
       link = document.getElementById("toolref");
       link.setAttribute("href", ref);
       link = document.getElementById("toolref_b");
       link.setAttribute("href", ref);
           
-      ref = '../manual/' + version + '/coreexamples.html'
+      ref = '../manual/' + version + '/coreexamples.html';
       link = document.getElementById("tutref");
       link.setAttribute("href", ref);
       link = document.getElementById("tutref_b");
@@ -37,6 +44,22 @@
 
       ref = '../api/' + version + '/index.html';
       link = document.getElementById("api_b");
+      link.setAttribute("href", ref);
+
+      ref = '../manual/' + version + '/ocaml-' + version + '-refman.pdf';
+      link = document.getElementById("refman-pdf");
+      link.setAttribute("href", ref);
+
+      ref = '../manual/' + version + '/ocaml-' + version + '-refman.txt';
+      link = document.getElementById("refman-txt");
+      link.setAttribute("href", ref);
+
+      ref = '../manual/' + version + '/ocaml-' + version + '-refman-html.tar.gz';
+      link = document.getElementById("refman-html");
+      link.setAttribute("href", ref);
+
+      ref = '../manual/' + version + '/ocaml-' + version + '-refman.info.tar.gz';
+      link = document.getElementById("refman-info");
       link.setAttribute("href", ref);
           
       let stdlib = "Stdlib";
@@ -122,7 +145,7 @@
 	   href="../manual/4.10/comp.html">
 	  <input type="button" class="btn btn-default"
 		 style="float:right;" name="button-api"
-		 onClick="goTOOL()" value="OCaml Tools"></a>
+		 value="OCaml Tools"></a>
       </p>
     </section>
     
@@ -138,44 +161,46 @@
       <p>Don't forget to regulary check the <a id="extref"
 	href="../manual/4.10/extn.html">Language Extensions</a>, they
 	will keep you up-to-date with useful new OCaml idioms and
-	constructions.
+	constructions.<br>
+
+	<a id="extref_b"
+	   href="../manual/4.10/comp.html">
+	  <input type="button" class="btn btn-default"
+		 style="float:right;" name="button-ext"
+		 value="OCaml Extensions"></a>
+
       </p>
     </section>
 
      <section class="span6 condensed">
        <h1 class="ruled">The Ocaml Manual</h1>
        <p>The complete documentation is bundled as a
-	 large <a id="extref" href="../manual/4.10/">
+	 large <a id="manual" href="../manual/4.10/">
           <!-- <img src="/img/manual.svg" alt="" class="svg"> -->
           <!-- <img src="/img/manual.png" alt="" class="png"> -->
 	   Ocaml Manual</a>.  This manual is also available in
-	 <a href="http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman.pdf">PDF</a>.
-	 <a href="http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman.txt">plain
-	 text</a>, as a
-	 <a href="http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman-html.tar.gz">bundle
-	 of HTML files</a>, and as a
-	 <a href="http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman.info.tar.gz">bundle
-	 of Emacs Info files</a>.
-	 <hr style="height:2">
+	 <a id="refman-pdf"
+	 href="../manual/4.10/ocaml-4.10-refman.pdf">PDF</a>,
+	 <a id="refman-txt"
+	 href="../manual/4.10/ocaml-4.10-refman.txt">plain text</a>,
+	 as a
+	 <a id="refman-html"
+	 href="../manual/4.10/ocaml-4.10-refman-html.tar.gz">bundle of
+	 HTML files</a>, and as a
+	 <a id="reman-info"
+	 href="../manual/4.10/ocaml-4.10-refman.info.tar.gz">bundle of
+	 Emacs Info files</a>.
       </p>
      </section>
 
      
     <section class="span6 condensed">
-      <h1 class="ruled">Reference</h1>
+      <h1 class="ruled">Other docs</h1>
       <div class="row">
         <a href="license.html" class="span3 documentation-highlight">
           <img src="/img/license.svg" alt="" class="svg">
           <img src="/img/license.png" alt="" class="png">
           OCaml License
-        </a>
-      </div>
-      <div class="row">
-        <a href="https://opam.ocaml.org/packages/"
-	   class="span3 documentation-highlight">
-          <img src="/img/documents.svg" alt="" class="svg" />
-          <img src="/img/documents.png" alt="" class="png" />
-          Package Documents
         </a>
         <a href="cheat_sheets.html"
 	   class="span3 documentation-highlight">

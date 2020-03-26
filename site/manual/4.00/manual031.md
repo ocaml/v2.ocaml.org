@@ -5,10 +5,10 @@
 
 
 <h1 class="chapter"><a name="htoc211"><span>Chapter 17</span></a>&nbsp;&nbsp;Profiling (ocamlprof)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Profiling (ocamlprof)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc133">Compiling for profiling</a>
-</li><li><a href="#toc134">Profiling an execution</a>
-</li><li><a href="#toc135">Printing profiling information</a>
-</li><li><a href="#toc136">Time profiling</a>
+<li><a href="manual031.html#toc133">Compiling for profiling</a>
+</li><li><a href="manual031.html#toc134">Profiling an execution</a>
+</li><li><a href="manual031.html#toc135">Printing profiling information</a>
+</li><li><a href="manual031.html#toc136">Time profiling</a>
 </li></ul></nav></header>
 <p> <a name="c:profiler"></a>
 </p><p>This chapter describes how the execution of OCaml

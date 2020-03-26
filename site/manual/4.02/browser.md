@@ -6,11 +6,11 @@
 
 <h1 class="chapter" id="sec299"><span>Chapter 14</span>&nbsp;&nbsp;The browser/editor (ocamlbrowser)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.02</a></div><div class="toc_title"><a href="#">The browser/editor (ocamlbrowser)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec300">Invocation</a>
-</li><li><a href="#sec301">Viewer</a>
-</li><li><a href="#sec302">Module browsing</a>
-</li><li><a href="#sec303">File editor</a>
-</li><li><a href="#sec304">Shell</a>
+<li><a href="browser.html#sec300">Invocation</a>
+</li><li><a href="browser.html#sec301">Viewer</a>
+</li><li><a href="browser.html#sec302">Module browsing</a>
+</li><li><a href="browser.html#sec303">File editor</a>
+</li><li><a href="browser.html#sec304">Shell</a>
 </li></ul></nav></header>
 <p> <a id="c:browser"></a>
 

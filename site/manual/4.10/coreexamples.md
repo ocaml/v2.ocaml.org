@@ -6,17 +6,17 @@
 
 <h1 class="chapter" id="sec7"><span>Chapter 1</span>&nbsp;&nbsp;The core language</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">The core language</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Abasics">1&nbsp;&nbsp;Basics</a>
-</li><li><a href="#s%3Adatatypes">2&nbsp;&nbsp;Data types</a>
-</li><li><a href="#s%3Afunctions-as-values">3&nbsp;&nbsp;Functions as values</a>
-</li><li><a href="#s%3Atut-recvariants">4&nbsp;&nbsp;Records and variants</a>
-</li><li><a href="#s%3Aimperative-features">5&nbsp;&nbsp;Imperative features</a>
-</li><li><a href="#s%3Aexceptions">6&nbsp;&nbsp;Exceptions</a>
-</li><li><a href="#s%3Alazy-expr">7&nbsp;&nbsp;Lazy expressions</a>
-</li><li><a href="#s%3Asymb-expr">8&nbsp;&nbsp;Symbolic processing of expressions</a>
-</li><li><a href="#s%3Apretty-printing">9&nbsp;&nbsp;Pretty-printing</a>
-</li><li><a href="#s%3Aprintf">10&nbsp;&nbsp;Printf formats</a>
-</li><li><a href="#s%3Astandalone-programs">11&nbsp;&nbsp;Standalone OCaml programs</a>
+<li><a href="coreexamples.html#s%3Abasics">1&nbsp;&nbsp;Basics</a>
+</li><li><a href="coreexamples.html#s%3Adatatypes">2&nbsp;&nbsp;Data types</a>
+</li><li><a href="coreexamples.html#s%3Afunctions-as-values">3&nbsp;&nbsp;Functions as values</a>
+</li><li><a href="coreexamples.html#s%3Atut-recvariants">4&nbsp;&nbsp;Records and variants</a>
+</li><li><a href="coreexamples.html#s%3Aimperative-features">5&nbsp;&nbsp;Imperative features</a>
+</li><li><a href="coreexamples.html#s%3Aexceptions">6&nbsp;&nbsp;Exceptions</a>
+</li><li><a href="coreexamples.html#s%3Alazy-expr">7&nbsp;&nbsp;Lazy expressions</a>
+</li><li><a href="coreexamples.html#s%3Asymb-expr">8&nbsp;&nbsp;Symbolic processing of expressions</a>
+</li><li><a href="coreexamples.html#s%3Apretty-printing">9&nbsp;&nbsp;Pretty-printing</a>
+</li><li><a href="coreexamples.html#s%3Aprintf">10&nbsp;&nbsp;Printf formats</a>
+</li><li><a href="coreexamples.html#s%3Astandalone-programs">11&nbsp;&nbsp;Standalone OCaml programs</a>
 </li></ul></nav></header>
 <p> <a id="c:core-xamples"></a>
 </p><p>This part of the manual is a tutorial introduction to the

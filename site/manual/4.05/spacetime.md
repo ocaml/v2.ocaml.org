@@ -6,10 +6,10 @@
 
 <h1 class="chapter" id="sec509"><span>Chapter 21</span>&nbsp;&nbsp;Memory profiling with Spacetime</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.05</a></div><div class="toc_title"><a href="#">Memory profiling with Spacetime</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec510">1&nbsp;&nbsp;Overview</a>
-</li><li><a href="#sec511">2&nbsp;&nbsp;How to use it</a>
-</li><li><a href="#sec515">3&nbsp;&nbsp;Runtime overhead</a>
-</li><li><a href="#sec516">4&nbsp;&nbsp;For developers</a>
+<li><a href="spacetime.html#sec510">1&nbsp;&nbsp;Overview</a>
+</li><li><a href="spacetime.html#sec511">2&nbsp;&nbsp;How to use it</a>
+</li><li><a href="spacetime.html#sec515">3&nbsp;&nbsp;Runtime overhead</a>
+</li><li><a href="spacetime.html#sec516">4&nbsp;&nbsp;For developers</a>
 </li></ul></nav></header>
 
 <h2 class="section" id="sec510">1&nbsp;&nbsp;Overview</h2>

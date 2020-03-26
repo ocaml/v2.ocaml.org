@@ -1,7 +1,7 @@
 <!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
 <div class="api"><h1>The OCaml API</h1><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(true);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
-<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(true)"><span class="search_comment">(search values and descriptions - case sensitive)</span></div>
-<div id="search_results"></div><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.09</a></div><div class="toc_title"><a href="#top"></a></div><ul>
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(true)"><span class="search_comment">(search values, type signatures, and descriptions - case sensitive)</span></div>
+<div id="search_results"></div><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">API Version 4.09</a></div><div class="toc_title"><a href="#top"></a></div><ul>
 <li><a href="index_types.html">Index of types</a></li>
 <li><a href="index_extensions.html">Index of extensions</a></li>
 <li><a href="index_exceptions.html">Index of exceptions</a></li>

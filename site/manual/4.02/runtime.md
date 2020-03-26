@@ -6,10 +6,10 @@
 
 <h1 class="chapter" id="sec261"><span>Chapter 10</span>&nbsp;&nbsp;The runtime system (ocamlrun)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.02</a></div><div class="toc_title"><a href="#">The runtime system (ocamlrun)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec262">Overview</a>
-</li><li><a href="#sec263">Options</a>
-</li><li><a href="#sec264">Dynamic loading of shared libraries</a>
-</li><li><a href="#sec265">Common errors</a>
+<li><a href="runtime.html#sec262">Overview</a>
+</li><li><a href="runtime.html#sec263">Options</a>
+</li><li><a href="runtime.html#sec264">Dynamic loading of shared libraries</a>
+</li><li><a href="runtime.html#sec265">Common errors</a>
 </li></ul></nav></header>
 <p> <a id="c:runtime"></a>
 

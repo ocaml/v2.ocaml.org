@@ -6,10 +6,10 @@
 
 <h1 class="chapter" id="sec344"><span>Chapter 16</span>&nbsp;&nbsp;The documentation generator (ocamldoc)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">The documentation generator (ocamldoc)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Aocamldoc-usage">1&nbsp;&nbsp;Usage</a>
-</li><li><a href="#s%3Aocamldoc-comments">2&nbsp;&nbsp;Syntax of documentation comments</a>
-</li><li><a href="#s%3Aocamldoc-custom-generators">3&nbsp;&nbsp;Custom generators</a>
-</li><li><a href="#s%3Aocamldoc-adding-flags">4&nbsp;&nbsp;Adding command line options</a>
+<li><a href="ocamldoc.html#s%3Aocamldoc-usage">1&nbsp;&nbsp;Usage</a>
+</li><li><a href="ocamldoc.html#s%3Aocamldoc-comments">2&nbsp;&nbsp;Syntax of documentation comments</a>
+</li><li><a href="ocamldoc.html#s%3Aocamldoc-custom-generators">3&nbsp;&nbsp;Custom generators</a>
+</li><li><a href="ocamldoc.html#s%3Aocamldoc-adding-flags">4&nbsp;&nbsp;Adding command line options</a>
 </li></ul></nav></header>
 <p> <a id="c:ocamldoc"></a>
 </p><p>This chapter describes OCamldoc, a tool that generates documentation from

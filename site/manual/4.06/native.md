@@ -6,11 +6,11 @@
 
 <h1 class="chapter" id="sec302"><span>Chapter 12</span>&nbsp;&nbsp;Native-code compilation (ocamlopt)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.06</a></div><div class="toc_title"><a href="#">Native-code compilation (ocamlopt)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec303">1&nbsp;&nbsp;Overview of the compiler</a>
-</li><li><a href="#sec304">2&nbsp;&nbsp;Options</a>
-</li><li><a href="#sec308">3&nbsp;&nbsp;Common errors</a>
-</li><li><a href="#sec309">4&nbsp;&nbsp;Running executables produced by ocamlopt</a>
-</li><li><a href="#sec310">5&nbsp;&nbsp;Compatibility with the bytecode compiler</a>
+<li><a href="native.html#sec303">1&nbsp;&nbsp;Overview of the compiler</a>
+</li><li><a href="native.html#sec304">2&nbsp;&nbsp;Options</a>
+</li><li><a href="native.html#sec308">3&nbsp;&nbsp;Common errors</a>
+</li><li><a href="native.html#sec309">4&nbsp;&nbsp;Running executables produced by ocamlopt</a>
+</li><li><a href="native.html#sec310">5&nbsp;&nbsp;Compatibility with the bytecode compiler</a>
 </li></ul></nav></header>
 <p> <a id="c:nativecomp"></a>
 

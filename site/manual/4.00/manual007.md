@@ -5,9 +5,9 @@
 
 
 <h1 class="chapter"><a name="htoc43"><span>Chapter 5</span></a>&nbsp;&nbsp;Advanced examples with classes and modules</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Advanced examples with classes and modules</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc37">Extended example: bank accounts</a>
-</li><li><a href="#toc38">Simple modules as classes</a>
-</li><li><a href="#toc39">The subject/observer pattern</a>
+<li><a href="manual007.html#toc37">Extended example: bank accounts</a>
+</li><li><a href="manual007.html#toc38">Simple modules as classes</a>
+</li><li><a href="manual007.html#toc39">The subject/observer pattern</a>
 </li></ul></nav></header>
 <p>
 

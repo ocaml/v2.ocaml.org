@@ -6,27 +6,27 @@
 
 <h1 class="chapter" id="sec210"><span>Chapter 7</span>&nbsp;&nbsp;Language extensions</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.01</a></div><div class="toc_title"><a href="#">Language extensions</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec211">Integer literals for types <span class="c007">int32</span>, <span class="c007">int64</span>
+<li><a href="extn.html#sec211">Integer literals for types <span class="c007">int32</span>, <span class="c007">int64</span>
 and <span class="c007">nativeint</span></a>
-</li><li><a href="#sec212">Streams and stream parsers</a>
-</li><li><a href="#sec213">Recursive definitions of values</a>
-</li><li><a href="#sec214">Range patterns</a>
-</li><li><a href="#sec215">Assertion checking</a>
-</li><li><a href="#sec216">Lazy evaluation</a>
-</li><li><a href="#sec219">Local modules</a>
-</li><li><a href="#sec220">Recursive modules</a>
-</li><li><a href="#sec221">Private types</a>
-</li><li><a href="#sec225">Local opens</a>
-</li><li><a href="#sec226">Record notations</a>
-</li><li><a href="#sec227">Explicit polymorphic type annotations</a>
-</li><li><a href="#sec228">Locally abstract types</a>
-</li><li><a href="#sec230">First-class modules</a>
-</li><li><a href="#sec233">Recovering the type of a module</a>
-</li><li><a href="#sec234">Substituting inside a signature</a>
-</li><li><a href="#sec235">Explicit overriding in class definitions</a>
-</li><li><a href="#sec236">Overriding in open statements</a>
-</li><li><a href="#sec237">Generalized algebraic datatypes</a>
-</li><li><a href="#sec239">Syntax for Bigarray access</a>
+</li><li><a href="extn.html#sec212">Streams and stream parsers</a>
+</li><li><a href="extn.html#sec213">Recursive definitions of values</a>
+</li><li><a href="extn.html#sec214">Range patterns</a>
+</li><li><a href="extn.html#sec215">Assertion checking</a>
+</li><li><a href="extn.html#sec216">Lazy evaluation</a>
+</li><li><a href="extn.html#sec219">Local modules</a>
+</li><li><a href="extn.html#sec220">Recursive modules</a>
+</li><li><a href="extn.html#sec221">Private types</a>
+</li><li><a href="extn.html#sec225">Local opens</a>
+</li><li><a href="extn.html#sec226">Record notations</a>
+</li><li><a href="extn.html#sec227">Explicit polymorphic type annotations</a>
+</li><li><a href="extn.html#sec228">Locally abstract types</a>
+</li><li><a href="extn.html#sec230">First-class modules</a>
+</li><li><a href="extn.html#sec233">Recovering the type of a module</a>
+</li><li><a href="extn.html#sec234">Substituting inside a signature</a>
+</li><li><a href="extn.html#sec235">Explicit overriding in class definitions</a>
+</li><li><a href="extn.html#sec236">Overriding in open statements</a>
+</li><li><a href="extn.html#sec237">Generalized algebraic datatypes</a>
+</li><li><a href="extn.html#sec239">Syntax for Bigarray access</a>
 </li></ul></nav></header>
 <p> <a id="c:extensions"></a>
 

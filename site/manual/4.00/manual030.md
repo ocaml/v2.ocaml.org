@@ -5,16 +5,16 @@
 
 
 <h1 class="chapter"><a name="htoc183"><span>Chapter 16</span></a>&nbsp;&nbsp;The debugger (ocamldebug)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The debugger (ocamldebug)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc123">Compiling for debugging</a>
-</li><li><a href="#toc124">Invocation</a>
-</li><li><a href="#toc125">Commands</a>
-</li><li><a href="#toc126">Executing a program</a>
-</li><li><a href="#toc127">Breakpoints</a>
-</li><li><a href="#toc128">The call stack</a>
-</li><li><a href="#toc129">Examining variable values</a>
-</li><li><a href="#toc130">Controlling the debugger</a>
-</li><li><a href="#toc131">Miscellaneous commands</a>
-</li><li><a href="#toc132">Running the debugger under Emacs</a>
+<li><a href="manual030.html#toc123">Compiling for debugging</a>
+</li><li><a href="manual030.html#toc124">Invocation</a>
+</li><li><a href="manual030.html#toc125">Commands</a>
+</li><li><a href="manual030.html#toc126">Executing a program</a>
+</li><li><a href="manual030.html#toc127">Breakpoints</a>
+</li><li><a href="manual030.html#toc128">The call stack</a>
+</li><li><a href="manual030.html#toc129">Examining variable values</a>
+</li><li><a href="manual030.html#toc130">Controlling the debugger</a>
+</li><li><a href="manual030.html#toc131">Miscellaneous commands</a>
+</li><li><a href="manual030.html#toc132">Running the debugger under Emacs</a>
 </li></ul></nav></header>
 <p> <a name="c:debugger"></a>
 </p><p>This chapter describes the OCaml source-level replay debugger

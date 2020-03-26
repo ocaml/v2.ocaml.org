@@ -1,0 +1,24 @@
+<!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
+<div class="api"><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">API Version 4.10</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="Depend.html">Depend</a></div><ul></ul></nav></header>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">String</span>&nbsp;=&nbsp;<span class="constructor">Misc</span>.<span class="constructor">Stdlib</span>.<span class="constructor">String</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;map_tree&nbsp;=&nbsp;<span class="constructor">Node</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">String</span>.<span class="constructor">Set</span>.t&nbsp;*&nbsp;<span class="constructor">Depend</span>.bound_map<br>
+&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;bound_map&nbsp;=&nbsp;<span class="constructor">Depend</span>.map_tree&nbsp;<span class="constructor">String</span>.<span class="constructor">Map</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;make_leaf&nbsp;:&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Depend</span>.map_tree<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;make_node&nbsp;:&nbsp;<span class="constructor">Depend</span>.bound_map&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Depend</span>.map_tree<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;weaken_map&nbsp;:&nbsp;<span class="constructor">String</span>.<span class="constructor">Set</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Depend</span>.map_tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Depend</span>.map_tree<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;free_structure_names&nbsp;:&nbsp;<span class="constructor">String</span>.<span class="constructor">Set</span>.t&nbsp;<span class="constructor">Stdlib</span>.ref<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;pp_deps&nbsp;:&nbsp;string&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;open_module&nbsp;:&nbsp;<span class="constructor">Depend</span>.bound_map&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Longident</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Depend</span>.bound_map<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;add_use_file&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Depend</span>.bound_map&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Parsetree</span>.toplevel_phrase&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;add_signature&nbsp;:&nbsp;<span class="constructor">Depend</span>.bound_map&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Parsetree</span>.signature&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;add_implementation&nbsp;:&nbsp;<span class="constructor">Depend</span>.bound_map&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Parsetree</span>.structure&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;add_implementation_binding&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Depend</span>.bound_map&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Parsetree</span>.structure&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Depend</span>.bound_map<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;add_signature_binding&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Depend</span>.bound_map&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Parsetree</span>.signature&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Depend</span>.bound_map<br>
+<span class="keyword">end</span></code>
+<div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

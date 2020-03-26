@@ -5,11 +5,11 @@
 
 
 <h1 class="chapter"><a name="htoc132"><span>Chapter 11</span></a>&nbsp;&nbsp;Native-code compilation (ocamlopt)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Native-code compilation (ocamlopt)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc100">Overview of the compiler</a>
-</li><li><a href="#toc101">Options</a>
-</li><li><a href="#toc102">Common errors</a>
-</li><li><a href="#toc103">Running executables produced by ocamlopt</a>
-</li><li><a href="#toc104">Compatibility with the bytecode compiler</a>
+<li><a href="manual025.html#toc100">Overview of the compiler</a>
+</li><li><a href="manual025.html#toc101">Options</a>
+</li><li><a href="manual025.html#toc102">Common errors</a>
+</li><li><a href="manual025.html#toc103">Running executables produced by ocamlopt</a>
+</li><li><a href="manual025.html#toc104">Compatibility with the bytecode compiler</a>
 </li></ul></nav></header>
 <p> <a name="c:nativecomp"></a>
 </p><p>This chapter describes the OCaml high-performance

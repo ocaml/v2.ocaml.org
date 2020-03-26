@@ -5,11 +5,11 @@
 
 
 <h1 class="chapter"><a name="htoc12"><span>Chapter 2</span></a>&nbsp;&nbsp;The module system</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The module system</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc13">Structures</a>
-</li><li><a href="#toc14">Signatures</a>
-</li><li><a href="#toc15">Functors</a>
-</li><li><a href="#toc16">Functors and type abstraction</a>
-</li><li><a href="#toc17">Modules and separate compilation</a>
+<li><a href="manual004.html#toc13">Structures</a>
+</li><li><a href="manual004.html#toc14">Signatures</a>
+</li><li><a href="manual004.html#toc15">Functors</a>
+</li><li><a href="manual004.html#toc16">Functors and type abstraction</a>
+</li><li><a href="manual004.html#toc17">Modules and separate compilation</a>
 </li></ul></nav></header>
 <p> <a name="c:moduleexamples"></a>
 </p><p>This chapter introduces the module system of OCaml.</p><h2 class="section"><a name="toc13"></a><a name="htoc13">1</a>&nbsp;&nbsp;Structures</h2><p>A primary motivation for modules is to package together related

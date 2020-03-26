@@ -5,25 +5,25 @@
 
 
 <h1 class="chapter"><a name="htoc92"><span>Chapter 7</span></a>&nbsp;&nbsp;Language extensions</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Language extensions</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc68">Integer literals for types <tt>int32</tt>, <tt>int64</tt>
+<li><a href="manual021.html#toc68">Integer literals for types <tt>int32</tt>, <tt>int64</tt>
 and <tt>nativeint</tt></a>
-</li><li><a href="#toc69">Streams and stream parsers</a>
-</li><li><a href="#toc70">Recursive definitions of values</a>
-</li><li><a href="#toc71">Range patterns</a>
-</li><li><a href="#toc72">Assertion checking</a>
-</li><li><a href="#toc73">Lazy evaluation</a>
-</li><li><a href="#toc74">Local modules</a>
-</li><li><a href="#toc75">Recursive modules</a>
-</li><li><a href="#toc76">Private types</a>
-</li><li><a href="#toc77">Local opens</a>
-</li><li><a href="#toc78">Record notations</a>
-</li><li><a href="#toc79">Explicit polymorphic type annotations</a>
-</li><li><a href="#toc80">Locally abstract types</a>
-</li><li><a href="#toc81">First-class modules</a>
-</li><li><a href="#toc82">Recovering the type of a module</a>
-</li><li><a href="#toc83">Substituting inside a signature</a>
-</li><li><a href="#toc84">Explicit overriding in class definitions</a>
-</li><li><a href="#toc85">Generalized algebraic datatypes</a>
+</li><li><a href="manual021.html#toc69">Streams and stream parsers</a>
+</li><li><a href="manual021.html#toc70">Recursive definitions of values</a>
+</li><li><a href="manual021.html#toc71">Range patterns</a>
+</li><li><a href="manual021.html#toc72">Assertion checking</a>
+</li><li><a href="manual021.html#toc73">Lazy evaluation</a>
+</li><li><a href="manual021.html#toc74">Local modules</a>
+</li><li><a href="manual021.html#toc75">Recursive modules</a>
+</li><li><a href="manual021.html#toc76">Private types</a>
+</li><li><a href="manual021.html#toc77">Local opens</a>
+</li><li><a href="manual021.html#toc78">Record notations</a>
+</li><li><a href="manual021.html#toc79">Explicit polymorphic type annotations</a>
+</li><li><a href="manual021.html#toc80">Locally abstract types</a>
+</li><li><a href="manual021.html#toc81">First-class modules</a>
+</li><li><a href="manual021.html#toc82">Recovering the type of a module</a>
+</li><li><a href="manual021.html#toc83">Substituting inside a signature</a>
+</li><li><a href="manual021.html#toc84">Explicit overriding in class definitions</a>
+</li><li><a href="manual021.html#toc85">Generalized algebraic datatypes</a>
 </li></ul></nav></header>
 <p> <a name="c:extensions"></a>
 </p><p>This chapter describes language extensions and convenience features

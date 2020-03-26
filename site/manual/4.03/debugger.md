@@ -6,16 +6,16 @@
 
 <h1 class="chapter" id="sec358"><span>Chapter 16</span>&nbsp;&nbsp;The debugger (ocamldebug)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.03</a></div><div class="toc_title"><a href="#">The debugger (ocamldebug)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec359">Compiling for debugging</a>
-</li><li><a href="#sec360">Invocation</a>
-</li><li><a href="#sec364">Commands</a>
-</li><li><a href="#sec367">Executing a program</a>
-</li><li><a href="#sec373">Breakpoints</a>
-</li><li><a href="#sec374">The call stack</a>
-</li><li><a href="#sec375">Examining variable values</a>
-</li><li><a href="#sec376">Controlling the debugger</a>
-</li><li><a href="#sec385">Miscellaneous commands</a>
-</li><li><a href="#sec386">Running the debugger under Emacs</a>
+<li><a href="debugger.html#sec359">Compiling for debugging</a>
+</li><li><a href="debugger.html#sec360">Invocation</a>
+</li><li><a href="debugger.html#sec364">Commands</a>
+</li><li><a href="debugger.html#sec367">Executing a program</a>
+</li><li><a href="debugger.html#sec373">Breakpoints</a>
+</li><li><a href="debugger.html#sec374">The call stack</a>
+</li><li><a href="debugger.html#sec375">Examining variable values</a>
+</li><li><a href="debugger.html#sec376">Controlling the debugger</a>
+</li><li><a href="debugger.html#sec385">Miscellaneous commands</a>
+</li><li><a href="debugger.html#sec386">Running the debugger under Emacs</a>
 </li></ul></nav></header>
 <p> <a id="c:debugger"></a>
 

@@ -6,22 +6,22 @@
 
 <h1 class="chapter" id="sec495"><span>Chapter 21</span>&nbsp;&nbsp;Optimisation with Flambda</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">Optimisation with Flambda</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Aflambda-overview">1&nbsp;&nbsp;Overview</a>
-</li><li><a href="#s%3Aflambda-cli">2&nbsp;&nbsp;Command-line flags</a>
-</li><li><a href="#s%3Aflambda-inlining">3&nbsp;&nbsp;Inlining</a>
-</li><li><a href="#s%3Aflambda-specialisation">4&nbsp;&nbsp;Specialisation</a>
-</li><li><a href="#s%3Aflambda-defaults">5&nbsp;&nbsp;Default settings of parameters</a>
-</li><li><a href="#s%3Aflambda-manual-control">6&nbsp;&nbsp;Manual control of inlining and specialisation</a>
-</li><li><a href="#s%3Aflambda-simplification">7&nbsp;&nbsp;Simplification</a>
-</li><li><a href="#s%3Aflambda-other-transfs">8&nbsp;&nbsp;Other code motion transformations</a>
-</li><li><a href="#s%3Aflambda-unboxing">9&nbsp;&nbsp;Unboxing transformations</a>
-</li><li><a href="#s%3Aflambda-remove-unused">10&nbsp;&nbsp;Removal of unused code and values</a>
-</li><li><a href="#s%3Aflambda-other">11&nbsp;&nbsp;Other code transformations</a>
-</li><li><a href="#s%3Aflambda-effects">12&nbsp;&nbsp;Treatment of effects</a>
-</li><li><a href="#s%3Aflambda-static-modules">13&nbsp;&nbsp;Compilation of statically-allocated modules</a>
-</li><li><a href="#s%3Aflambda-inhibition">14&nbsp;&nbsp;Inhibition of optimisation</a>
-</li><li><a href="#s%3Aflambda-unsafe">15&nbsp;&nbsp;Use of unsafe operations</a>
-</li><li><a href="#s%3Aflambda-glossary">16&nbsp;&nbsp;Glossary</a>
+<li><a href="flambda.html#s%3Aflambda-overview">1&nbsp;&nbsp;Overview</a>
+</li><li><a href="flambda.html#s%3Aflambda-cli">2&nbsp;&nbsp;Command-line flags</a>
+</li><li><a href="flambda.html#s%3Aflambda-inlining">3&nbsp;&nbsp;Inlining</a>
+</li><li><a href="flambda.html#s%3Aflambda-specialisation">4&nbsp;&nbsp;Specialisation</a>
+</li><li><a href="flambda.html#s%3Aflambda-defaults">5&nbsp;&nbsp;Default settings of parameters</a>
+</li><li><a href="flambda.html#s%3Aflambda-manual-control">6&nbsp;&nbsp;Manual control of inlining and specialisation</a>
+</li><li><a href="flambda.html#s%3Aflambda-simplification">7&nbsp;&nbsp;Simplification</a>
+</li><li><a href="flambda.html#s%3Aflambda-other-transfs">8&nbsp;&nbsp;Other code motion transformations</a>
+</li><li><a href="flambda.html#s%3Aflambda-unboxing">9&nbsp;&nbsp;Unboxing transformations</a>
+</li><li><a href="flambda.html#s%3Aflambda-remove-unused">10&nbsp;&nbsp;Removal of unused code and values</a>
+</li><li><a href="flambda.html#s%3Aflambda-other">11&nbsp;&nbsp;Other code transformations</a>
+</li><li><a href="flambda.html#s%3Aflambda-effects">12&nbsp;&nbsp;Treatment of effects</a>
+</li><li><a href="flambda.html#s%3Aflambda-static-modules">13&nbsp;&nbsp;Compilation of statically-allocated modules</a>
+</li><li><a href="flambda.html#s%3Aflambda-inhibition">14&nbsp;&nbsp;Inhibition of optimisation</a>
+</li><li><a href="flambda.html#s%3Aflambda-unsafe">15&nbsp;&nbsp;Use of unsafe operations</a>
+</li><li><a href="flambda.html#s%3Aflambda-glossary">16&nbsp;&nbsp;Glossary</a>
 </li></ul></nav></header>
 
 <h2 class="section" id="s:flambda-overview"><a class="section-anchor" href="#s:flambda-overview" aria-hidden="true"></a>1&nbsp;&nbsp;Overview</h2>

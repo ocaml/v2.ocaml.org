@@ -5,10 +5,10 @@
 
 
 <h1 class="chapter"><a name="htoc167"><span>Chapter 15</span></a>&nbsp;&nbsp;The documentation generator (ocamldoc)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The documentation generator (ocamldoc)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc119">Usage</a>
-</li><li><a href="#toc120">Syntax of documentation comments</a>
-</li><li><a href="#toc121">Custom generators</a>
-</li><li><a href="#toc122">Adding command line options</a>
+<li><a href="manual029.html#toc119">Usage</a>
+</li><li><a href="manual029.html#toc120">Syntax of documentation comments</a>
+</li><li><a href="manual029.html#toc121">Custom generators</a>
+</li><li><a href="manual029.html#toc122">Adding command line options</a>
 </li></ul></nav></header>
 <p> <a name="c:ocamldoc"></a>
 </p><p>This chapter describes OCamldoc, a tool that generates documentation from

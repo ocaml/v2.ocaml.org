@@ -6,23 +6,23 @@
 
 <h1 class="chapter" id="sec23"><span>Chapter 3</span>&nbsp;&nbsp;Objects in OCaml</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.06</a></div><div class="toc_title"><a href="#">Objects in OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec24">1&nbsp;&nbsp;Classes and objects</a>
-</li><li><a href="#sec25">2&nbsp;&nbsp;Immediate objects</a>
-</li><li><a href="#sec26">3&nbsp;&nbsp;Reference to self</a>
-</li><li><a href="#sec27">4&nbsp;&nbsp;Initializers</a>
-</li><li><a href="#sec28">5&nbsp;&nbsp;Virtual methods</a>
-</li><li><a href="#sec29">6&nbsp;&nbsp;Private methods</a>
-</li><li><a href="#sec30">7&nbsp;&nbsp;Class interfaces</a>
-</li><li><a href="#sec31">8&nbsp;&nbsp;Inheritance</a>
-</li><li><a href="#sec32">9&nbsp;&nbsp;Multiple inheritance</a>
-</li><li><a href="#sec33">10&nbsp;&nbsp;Parameterized classes</a>
-</li><li><a href="#sec34">11&nbsp;&nbsp;Polymorphic methods</a>
-</li><li><a href="#sec35">12&nbsp;&nbsp;Using coercions</a>
-</li><li><a href="#sec36">13&nbsp;&nbsp;Functional objects</a>
-</li><li><a href="#sec37">14&nbsp;&nbsp;Cloning objects</a>
-</li><li><a href="#sec38">15&nbsp;&nbsp;Recursive classes</a>
-</li><li><a href="#sec39">16&nbsp;&nbsp;Binary methods</a>
-</li><li><a href="#sec40">17&nbsp;&nbsp;Friends</a>
+<li><a href="objectexamples.html#sec24">1&nbsp;&nbsp;Classes and objects</a>
+</li><li><a href="objectexamples.html#sec25">2&nbsp;&nbsp;Immediate objects</a>
+</li><li><a href="objectexamples.html#sec26">3&nbsp;&nbsp;Reference to self</a>
+</li><li><a href="objectexamples.html#sec27">4&nbsp;&nbsp;Initializers</a>
+</li><li><a href="objectexamples.html#sec28">5&nbsp;&nbsp;Virtual methods</a>
+</li><li><a href="objectexamples.html#sec29">6&nbsp;&nbsp;Private methods</a>
+</li><li><a href="objectexamples.html#sec30">7&nbsp;&nbsp;Class interfaces</a>
+</li><li><a href="objectexamples.html#sec31">8&nbsp;&nbsp;Inheritance</a>
+</li><li><a href="objectexamples.html#sec32">9&nbsp;&nbsp;Multiple inheritance</a>
+</li><li><a href="objectexamples.html#sec33">10&nbsp;&nbsp;Parameterized classes</a>
+</li><li><a href="objectexamples.html#sec34">11&nbsp;&nbsp;Polymorphic methods</a>
+</li><li><a href="objectexamples.html#sec35">12&nbsp;&nbsp;Using coercions</a>
+</li><li><a href="objectexamples.html#sec36">13&nbsp;&nbsp;Functional objects</a>
+</li><li><a href="objectexamples.html#sec37">14&nbsp;&nbsp;Cloning objects</a>
+</li><li><a href="objectexamples.html#sec38">15&nbsp;&nbsp;Recursive classes</a>
+</li><li><a href="objectexamples.html#sec39">16&nbsp;&nbsp;Binary methods</a>
+</li><li><a href="objectexamples.html#sec40">17&nbsp;&nbsp;Friends</a>
 </li></ul></nav></header>
 <p>
 <a id="c:objectexamples"></a>

@@ -5,8 +5,8 @@
 
 
 <h1 class="chapter"><a name="htoc158"><span>Chapter 13</span></a>&nbsp;&nbsp;Dependency generator (ocamldep)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Dependency generator (ocamldep)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc112">Options</a>
-</li><li><a href="#toc113">A typical Makefile</a>
+<li><a href="manual027.html#toc112">Options</a>
+</li><li><a href="manual027.html#toc113">A typical Makefile</a>
 </li></ul></nav></header>
 <p> <a name="c:camldep"></a>
 </p><p>The <tt>ocamldep</tt> command scans a set of OCaml source files

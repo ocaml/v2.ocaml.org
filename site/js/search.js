@@ -5,6 +5,12 @@
 
 const MAX_RESULTS = 20;
 const MAX_ERROR = 10;
+const DESCR_INDEX = 4; // index of HTML description in index.js
+const SIG_INDEX = 6; // index of HTML signature in index.js
+const ERR_INDEX = 8; // length of each line in index.js. This is used
+		     // for storing error, except if we don't want
+		     // description and type signature, the ERR_INDEX
+		     // becomes DESCR_INDEX.
 
 let indexState = 'NOT_LOADED';
 
@@ -63,19 +69,30 @@ function subError (sub, s) {
     // between 0 and 2, except if MAX_ERROR
 }
 
+// Minimal substring error. In particular, it returns 0 if the string
+// 'sub' has an exact match with one of the strings in 'line'.
 function subMinError (sub, line) {
-    let strings = [line[0], line[1], line[2]];
-    let errs = strings.map(function (s) { return subError (sub, s); });
-    return Math.min(errs[0],errs[1],errs[2]);
+    //let strings = [line[0], line[1], line[2]];
+    let errs = line.map(function (s) { return subError (sub, s); });
+    return Math.min(...errs); // destructuring assignment
 }
-    // do the general case?
+
 
 function add (acc, a) {
     return acc + a;
 }
 
+// return the mean of SubErrors for all substrings subs inside s
 function subsError (subs, s) {
     let errs = subs.map(function (sub) { return subError (sub, s); });
+    return errs.reduce(add,0) / subs.length;
+}
+
+// for each sub we compute the minimal error within 'line', and then
+// take the average over all 'subs'. Thus it returns 0 if each sub has
+// an exact match with one of the strings in 'line'.
+function subsMinError (subs, line) {
+    let errs = subs.map(function (sub) { return subMinError (sub, line); });
     return errs.reduce(add,0) / subs.length;
 }
     
@@ -87,16 +104,23 @@ function subsError (subs, s) {
 //    return (hasSubString("iter", line)); })[0]);
 
 function formatLine (line) {
+    let li = '<li>';
     let html = '<code class="code"><a href="' + line[1] + '"><span class="constructor">' + line[0] + '</span></a>' +
 	'.' + '<a href="' + line[3] + '">' + line[2] + '</a></code>';
-    if (line.length > 5) { html += line[4]; }
-    return (html);
+    if (line.length > 5) {
+	if ( line[ERR_INDEX] == 0 ) {
+	    li = '<li class="match">';
+	}
+	html += (' : ' + line[SIG_INDEX] + '</pre>');
+	html = '<pre>' + html + line[DESCR_INDEX]; }
+    return (li + html + "</li>\n");
 }
 
 // The initial format of an entry of the GENERAL_INDEX array is
 // [ module, module_link,
 //   value, value_link,
-//   html_description, bare_description ]
+//   html_description, bare_description,
+//   html_signature, bare_signature ]
 
 // If includeDescr is true, the line is truncated to its first 4
 // elements.  When searching, the search error is added at the end of
@@ -114,32 +138,48 @@ function mySearch (includeDescr) {
     let results = [];
     let html = "";
     let count = 0;
-    let err_index = 4;
+    let err_index = DESCR_INDEX;
+
     if (text !== "") {
 	let words = [];
 	if ( includeDescr ) {
-	    err_index = 6;
+	    err_index = ERR_INDEX;
+	    //console.log ('err_index=' + parseInt(err_index));
+	    
 	    // Split text into an array of non-empty words:
-	    words = text.split(" ").filter(function (s) {
+	    if ( text.includes("->") ) {
+		// this must be a type, so we don't split on single space
+		words = text.split("  "); } else {
+		    words = text.split(" ");
+		};
+	    words = words.filter(function (s) {
 		return (s !== "");})}
+	
 	results = GENERAL_INDEX.filter(function (line) {
 	    // We remove the html hrefs and add the Module.value complete name:
 	    let cleanLine = [line[0], line[2], line[0] + '.' + line[2]];
-	    line.length = err_index;
+	    line.length = err_index; // This truncates the line:
 	    // this removes the description part if includeDescr =
 	    // false (which modifies the lines of the GENERAL_INDEX.)
 	    if ( includeDescr ) {
-		cleanLine.push(line[5]); } // add the description
+		cleanLine.push(line[DESCR_INDEX+1]);
+		cleanLine.push(line[SIG_INDEX+1]);
+		// add the description and signature (txt format)
+	    }
 	    if ( hasSubString(text, cleanLine) ||
 		 // if includeDescr, we search for all separated words
-		 ( includeDescr && hasSubStrings(words, cleanLine))) {
+		 ( includeDescr && hasSubStrings(words, cleanLine) ) ) {
 		// one could merge hasSubString and subMinError for efficiency
 		let error = subMinError(text, cleanLine);
 		if ( includeDescr ) {
-		    error = Math.min(error, subsError(words, line[5])); }
-		line.push(error); // we add the error as element #err_index
-		return (true); } else {
-		    return (false); }});
+		    error = subsMinError(words, cleanLine); }
+		line[err_index] = error;
+		// we add the error as element #err_index
+		return (true); }
+	    else {
+		return (false); }
+	});
+	
 	// We sort the results by relevance:
 	results.sort(function(line1, line2) {
 	    return (line1[err_index] - line2[err_index])});
@@ -151,9 +191,10 @@ function mySearch (includeDescr) {
     }
     // injects new html
     if (results.length > 0) {
+	console.log("Best match has error=" + results[0][err_index].toString());
 	html = "<ul>";
 	function myIter(line, index, array) {
-	    html = html + "<li>" + formatLine(line) + "</li>\n";
+	    html = html + formatLine(line);
 	}
 	results.forEach(myIter);
 	html += "</ul>";

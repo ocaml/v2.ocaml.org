@@ -6,11 +6,11 @@
 
 <h1 class="chapter" id="sec20"><span>Chapter 2</span>&nbsp;&nbsp;The module system</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">The module system</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Amodule%3Astructures">1&nbsp;&nbsp;Structures</a>
-</li><li><a href="#s%3Asignature">2&nbsp;&nbsp;Signatures</a>
-</li><li><a href="#s%3Afunctors">3&nbsp;&nbsp;Functors</a>
-</li><li><a href="#s%3Afunctors-and-abstraction">4&nbsp;&nbsp;Functors and type abstraction</a>
-</li><li><a href="#s%3Aseparate-compilation">5&nbsp;&nbsp;Modules and separate compilation</a>
+<li><a href="moduleexamples.html#s%3Amodule%3Astructures">1&nbsp;&nbsp;Structures</a>
+</li><li><a href="moduleexamples.html#s%3Asignature">2&nbsp;&nbsp;Signatures</a>
+</li><li><a href="moduleexamples.html#s%3Afunctors">3&nbsp;&nbsp;Functors</a>
+</li><li><a href="moduleexamples.html#s%3Afunctors-and-abstraction">4&nbsp;&nbsp;Functors and type abstraction</a>
+</li><li><a href="moduleexamples.html#s%3Aseparate-compilation">5&nbsp;&nbsp;Modules and separate compilation</a>
 </li></ul></nav></header>
 <p> <a id="c:moduleexamples"></a>
 </p><p>This chapter introduces the module system of OCaml.</p>

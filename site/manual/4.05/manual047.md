@@ -1,0 +1,134 @@
+<!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->
+<div class="manual content"><ul class="part_menu"></ul>
+
+
+<div class="center">
+&nbsp;<span style="font-size:xx-large"><span style="font-size:150%">The OCaml system <br>
+ release 4.05<br>
+<span style="font-size:x-large">Documentation and user’s manual <br>
+<span style="font-size:large">Xavier Leroy, <br>
+ Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy and Jérôme Vouillon <br>
+ July&nbsp;13, 2017<br>
+ &nbsp;
+<span style="font-size:medium">Copyright © 2013 Institut National de
+Recherche en Informatique et en Automatique
+</span></span></span></span></span></div><blockquote class="quote">
+
+This manual is also available in
+<a href="http://caml.inria.fr/distrib/ocaml-4.05/ocaml-4.05-refman.pdf">PDF</a>.
+<a href="http://caml.inria.fr/distrib/ocaml-4.05/ocaml-4.05-refman.ps.gz">Postscript</a>,
+<a href="http://caml.inria.fr/distrib/ocaml-4.05/ocaml-4.05-refman.dvi.gz">DVI</a>,
+<a href="http://caml.inria.fr/distrib/ocaml-4.05/ocaml-4.05-refman.txt">plain text</a>,
+as a
+<a href="http://caml.inria.fr/distrib/ocaml-4.05/ocaml-4.05-refman-html.tar.gz">bundle of HTML files</a>,
+and as a
+<a href="http://caml.inria.fr/distrib/ocaml-4.05/ocaml-4.05-refman.info.tar.gz">bundle of Emacs Info files</a>.
+<hr style="height:2">
+</blockquote><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.05</a></div><div class="toc_title"><a href="#">The OCaml Manual</a></div><ul><li class="top"><a href="#">Top</a></li>
+<li><a href="manual001.html#start-section">Contents</a>
+</li><li><a href="foreword.html#start-section">Foreword</a>
+</li><li class="top"><a href="manual047.html#start-section">Index of keywords</a></li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+<h1 class="chapter" id="sec545">Index of keywords</h1>
+<p></p><table class="c001 cellpading0"><tbody><tr><td class="c020"><ul class="indexenv"><li class="li-indexenv">
+<span class="c003">and</span>, <a href="expr.html#hevea_manual.kwd19">6.7</a>, <a href="typedecl.html#hevea_manual.kwd89">6.8.1</a>, <a href="classes.html#hevea_manual.kwd118">6.9.2</a>, <a href="classes.html#hevea_manual.kwd140">6.9.3</a>, <a href="classes.html#hevea_manual.kwd142">6.9.4</a>, <a href="classes.html#hevea_manual.kwd145">6.9.5</a>, <a href="modtypes.html#hevea_manual.kwd150">6.10</a>, <a href="modules.html#hevea_manual.kwd179">6.11</a>, <a href="extn.html#hevea_manual.kwd204">7.4</a>, <a href="extn.html#hevea_manual.kwd216">7.10</a>
+</li><li class="li-indexenv"><span class="c003">as</span>, <a href="types.html#hevea_manual.kwd7">6.4</a>, <a href="types.html#hevea_manual.kwd8">6.4</a>, <a href="types.html#hevea_manual.kwd9">6.4</a>, <a href="patterns.html#hevea_manual.kwd15">6.6</a>, <a href="patterns.html#hevea_manual.kwd16">6.6</a>, <a href="patterns.html#hevea_manual.kwd17">6.6</a>, <a href="classes.html#hevea_manual.kwd120">6.9.2</a>, <a href="classes.html#hevea_manual.kwd128">6.9.2</a>
+</li><li class="li-indexenv"><span class="c003">asr</span>, <a href="names.html#hevea_manual.kwd6">6.3</a>, <a href="expr.html#hevea_manual.kwd55">6.7</a>, <a href="expr.html#hevea_manual.kwd74">6.7.4</a>, <a href="expr.html#hevea_manual.kwd81">6.7.4</a>
+</li><li class="li-indexenv"><span class="c003">assert</span>, <a href="expr.html#hevea_manual.kwd84">6.7.7</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">begin</span>, <a href="const.html#hevea_manual.kwd13">6.5</a>, <a href="expr.html#hevea_manual.kwd36">6.7</a>, <a href="expr.html#hevea_manual.kwd56">6.7.1</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">class</span>, <a href="classes.html#hevea_manual.kwd139">6.9.3</a>, <a href="classes.html#hevea_manual.kwd141">6.9.4</a>, <a href="classes.html#hevea_manual.kwd143">6.9.5</a>, <a href="modtypes.html#hevea_manual.kwd155">6.10</a>, <a href="modtypes.html#hevea_manual.kwd165">6.10.2</a>, <a href="modtypes.html#hevea_manual.kwd166">6.10.2</a>, <a href="modules.html#hevea_manual.kwd183">6.11</a>, <a href="modules.html#hevea_manual.kwd193">6.11.2</a>, <a href="modules.html#hevea_manual.kwd194">6.11.2</a>
+</li><li class="li-indexenv"><span class="c003">constraint</span>, <a href="typedecl.html#hevea_manual.kwd93">6.8.1</a>, <a href="typedecl.html#hevea_manual.kwd95">6.8.1</a>, <a href="classes.html#hevea_manual.kwd105">6.9.1</a>, <a href="classes.html#hevea_manual.kwd113">6.9.1</a>, <a href="classes.html#hevea_manual.kwd125">6.9.2</a>, <a href="classes.html#hevea_manual.kwd137">6.9.2</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">do</span>, see <span class="c009"><span class="c003">while</span>, <span class="c003">for</span></span>
+</li><li class="li-indexenv"><span class="c003">done</span>, see <span class="c009"><span class="c003">while</span>, <span class="c003">for</span></span>
+</li><li class="li-indexenv"><span class="c003">downto</span>, see <span class="c005">for</span>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">else</span>, see <span class="c005">if</span>
+</li><li class="li-indexenv"><span class="c003">end</span>, <a href="const.html#hevea_manual.kwd14">6.5</a>, <a href="expr.html#hevea_manual.kwd37">6.7</a>, <a href="expr.html#hevea_manual.kwd57">6.7.1</a>, <a href="classes.html#hevea_manual.kwd98">6.9.1</a>, <a href="classes.html#hevea_manual.kwd115">6.9.2</a>, <a href="modtypes.html#hevea_manual.kwd147">6.10</a>, <a href="modtypes.html#hevea_manual.kwd160">6.10.2</a>, <a href="modules.html#hevea_manual.kwd176">6.11</a>, <a href="modules.html#hevea_manual.kwd188">6.11.2</a>
+</li><li class="li-indexenv"><span class="c003">exception</span>, <a href="typedecl.html#hevea_manual.kwd96">6.8.2</a>, <a href="modtypes.html#hevea_manual.kwd154">6.10</a>, <a href="modtypes.html#hevea_manual.kwd164">6.10.2</a>, <a href="modules.html#hevea_manual.kwd182">6.11</a>, <a href="modules.html#hevea_manual.kwd192">6.11.2</a>, <a href="extn.html#hevea_manual.kwd233">7.26</a>
+</li><li class="li-indexenv"><span class="c003">external</span>, <a href="modtypes.html#hevea_manual.kwd152">6.10</a>, <a href="modtypes.html#hevea_manual.kwd162">6.10.2</a>, <a href="modules.html#hevea_manual.kwd180">6.11</a>, <a href="modules.html#hevea_manual.kwd190">6.11.2</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">false</span>, <a href="const.html#hevea_manual.kwd11">6.5</a>
+</li><li class="li-indexenv"><span class="c003">for</span>, <a href="expr.html#hevea_manual.kwd30">6.7</a>, <a href="expr.html#hevea_manual.kwd66">6.7.2</a>
+</li><li class="li-indexenv"><span class="c003">fun</span>, <a href="expr.html#hevea_manual.kwd24">6.7</a>, <a href="expr.html#hevea_manual.kwd44">6.7</a>, <a href="expr.html#hevea_manual.kwd59">6.7.1</a>, <a href="classes.html#hevea_manual.kwd116">6.9.2</a>, <a href="extn.html#hevea_manual.kwd212">7.9</a>
+</li><li class="li-indexenv"><span class="c003">function</span>, <a href="expr.html#hevea_manual.kwd23">6.7</a>, <a href="expr.html#hevea_manual.kwd45">6.7</a>, <a href="expr.html#hevea_manual.kwd58">6.7.1</a>
+</li><li class="li-indexenv"><span class="c003">functor</span>, <a href="modtypes.html#hevea_manual.kwd148">6.10</a>, <a href="modtypes.html#hevea_manual.kwd173">6.10.3</a>, <a href="modules.html#hevea_manual.kwd177">6.11</a>, <a href="modules.html#hevea_manual.kwd201">6.11.3</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">if</span>, <a href="expr.html#hevea_manual.kwd33">6.7</a>, <a href="expr.html#hevea_manual.kwd43">6.7</a>, <a href="expr.html#hevea_manual.kwd62">6.7.2</a>
+</li><li class="li-indexenv"><span class="c003">in</span>, see <span class="c005">let</span>
+</li><li class="li-indexenv"><span class="c003">include</span>, <a href="modtypes.html#hevea_manual.kwd158">6.10</a>, <a href="modtypes.html#hevea_manual.kwd172">6.10.2</a>, <a href="modules.html#hevea_manual.kwd186">6.11</a>, <a href="modules.html#hevea_manual.kwd200">6.11.2</a>, <a href="extn.html#hevea_manual.kwd220">7.11</a>
+</li><li class="li-indexenv"><span class="c003">inherit</span>, <a href="classes.html#hevea_manual.kwd99">6.9.1</a>, <a href="classes.html#hevea_manual.kwd106">6.9.1</a>, <a href="classes.html#hevea_manual.kwd119">6.9.2</a>, <a href="classes.html#hevea_manual.kwd127">6.9.2</a>
+</li><li class="li-indexenv"><span class="c003">inherit!</span>, <a href="extn.html#hevea_manual.kwd227">7.14</a>
+</li><li class="li-indexenv"><span class="c003">initializer</span>, <a href="classes.html#hevea_manual.kwd126">6.9.2</a>, <a href="classes.html#hevea_manual.kwd138">6.9.2</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">land</span>, <a href="names.html#hevea_manual.kwd1">6.3</a>, <a href="expr.html#hevea_manual.kwd50">6.7</a>, <a href="expr.html#hevea_manual.kwd69">6.7.4</a>, <a href="expr.html#hevea_manual.kwd76">6.7.4</a>
+</li><li class="li-indexenv"><span class="c003">lazy</span>, <a href="expr.html#hevea_manual.kwd41">6.7</a>, <a href="expr.html#hevea_manual.kwd85">6.7.7</a>, <a href="extn.html#hevea_manual.kwd202">7.3</a>
+</li><li class="li-indexenv"><span class="c003">let</span>, <a href="expr.html#hevea_manual.kwd21">6.7</a>, <a href="expr.html#hevea_manual.kwd48">6.7</a>, <a href="expr.html#hevea_manual.kwd61">6.7.1</a>, <a href="expr.html#hevea_manual.kwd86">6.7.7</a>, <a href="classes.html#hevea_manual.kwd117">6.9.2</a>, <a href="modules.html#hevea_manual.kwd178">6.11</a>, <a href="modules.html#hevea_manual.kwd189">6.11.2</a>, <a href="extn.html#hevea_manual.kwd207">7.6</a>, <a href="extn.html#hevea_manual.kwd210">7.8</a>, <a href="extn.html#hevea_manual.kwd232">7.26</a>
+</li><li class="li-indexenv"><span class="c003">lor</span>, <a href="names.html#hevea_manual.kwd2">6.3</a>, <a href="expr.html#hevea_manual.kwd51">6.7</a>, <a href="expr.html#hevea_manual.kwd70">6.7.4</a>, <a href="expr.html#hevea_manual.kwd77">6.7.4</a>
+</li><li class="li-indexenv"><span class="c003">lsl</span>, <a href="names.html#hevea_manual.kwd4">6.3</a>, <a href="expr.html#hevea_manual.kwd53">6.7</a>, <a href="expr.html#hevea_manual.kwd72">6.7.4</a>, <a href="expr.html#hevea_manual.kwd79">6.7.4</a>
+</li><li class="li-indexenv"><span class="c003">lsr</span>, <a href="names.html#hevea_manual.kwd5">6.3</a>, <a href="expr.html#hevea_manual.kwd54">6.7</a>, <a href="expr.html#hevea_manual.kwd73">6.7.4</a>, <a href="expr.html#hevea_manual.kwd80">6.7.4</a>
+</li></ul></td><td class="c020"><ul class="indexenv"><li class="li-indexenv"><span class="c003">lxor</span>, <a href="names.html#hevea_manual.kwd3">6.3</a>, <a href="expr.html#hevea_manual.kwd52">6.7</a>, <a href="expr.html#hevea_manual.kwd71">6.7.4</a>, <a href="expr.html#hevea_manual.kwd78">6.7.4</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">match</span>, <a href="expr.html#hevea_manual.kwd35">6.7</a>, <a href="expr.html#hevea_manual.kwd46">6.7</a>, <a href="expr.html#hevea_manual.kwd63">6.7.2</a>, <a href="extn.html#hevea_manual.kwd230">7.16</a>
+</li><li class="li-indexenv"><span class="c003">method</span>, <a href="classes.html#hevea_manual.kwd102">6.9.1</a>, <a href="classes.html#hevea_manual.kwd109">6.9.1</a>, <a href="classes.html#hevea_manual.kwd111">6.9.1</a>, <a href="classes.html#hevea_manual.kwd123">6.9.2</a>, <a href="classes.html#hevea_manual.kwd133">6.9.2</a>, <a href="classes.html#hevea_manual.kwd135">6.9.2</a>
+</li><li class="li-indexenv"><span class="c003">method!</span>, <a href="extn.html#hevea_manual.kwd225">7.14</a>
+</li><li class="li-indexenv"><span class="c003">mod</span>, <a href="names.html#hevea_manual.kwd0">6.3</a>, <a href="expr.html#hevea_manual.kwd49">6.7</a>, <a href="expr.html#hevea_manual.kwd68">6.7.4</a>, <a href="expr.html#hevea_manual.kwd75">6.7.4</a>
+</li><li class="li-indexenv"><span class="c003">module</span>, <a href="expr.html#hevea_manual.kwd87">6.7.7</a>, <a href="modtypes.html#hevea_manual.kwd156">6.10</a>, <a href="modtypes.html#hevea_manual.kwd168">6.10.2</a>, <a href="modtypes.html#hevea_manual.kwd170">6.10.2</a>, <a href="modules.html#hevea_manual.kwd184">6.11</a>, <a href="modules.html#hevea_manual.kwd196">6.11.2</a>, <a href="modules.html#hevea_manual.kwd198">6.11.2</a>, <a href="extn.html#hevea_manual.kwd203">7.4</a>, <a href="extn.html#hevea_manual.kwd213">7.10</a>, <a href="extn.html#hevea_manual.kwd217">7.11</a>, <a href="extn.html#hevea_manual.kwd222">7.12</a>, <a href="extn.html#hevea_manual.kwd224">7.13</a>
+</li><li class="li-indexenv"><span class="c003">mutable</span>, <a href="typedecl.html#hevea_manual.kwd92">6.8.1</a>, <a href="typedecl.html#hevea_manual.kwd94">6.8.1</a>, <a href="classes.html#hevea_manual.kwd101">6.9.1</a>, <a href="classes.html#hevea_manual.kwd108">6.9.1</a>, <a href="classes.html#hevea_manual.kwd122">6.9.2</a>, <a href="classes.html#hevea_manual.kwd130">6.9.2</a>, <a href="classes.html#hevea_manual.kwd132">6.9.2</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">new</span>, <a href="expr.html#hevea_manual.kwd39">6.7</a>, <a href="expr.html#hevea_manual.kwd82">6.7.5</a>
+</li><li class="li-indexenv"><span class="c003">nonrec</span>, <a href="typedecl.html#hevea_manual.kwd90">6.8.1</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">object</span>, <a href="expr.html#hevea_manual.kwd40">6.7</a>, <a href="expr.html#hevea_manual.kwd83">6.7.5</a>, <a href="classes.html#hevea_manual.kwd97">6.9.1</a>, <a href="classes.html#hevea_manual.kwd114">6.9.2</a>
+</li><li class="li-indexenv"><span class="c003">of</span>, <a href="types.html#hevea_manual.kwd10">6.4</a>, <a href="typedecl.html#hevea_manual.kwd91">6.8.1</a>, <a href="extn.html#hevea_manual.kwd219">7.11</a>
+</li><li class="li-indexenv"><span class="c003">open</span>, <a href="modtypes.html#hevea_manual.kwd157">6.10</a>, <a href="modtypes.html#hevea_manual.kwd171">6.10.2</a>, <a href="modules.html#hevea_manual.kwd185">6.11</a>, <a href="modules.html#hevea_manual.kwd199">6.11.2</a>, <a href="extn.html#hevea_manual.kwd208">7.6</a>
+</li><li class="li-indexenv"><span class="c003">open!</span>, <a href="extn.html#hevea_manual.kwd228">7.15</a>
+</li><li class="li-indexenv"><span class="c003">or</span>, <a href="expr.html#hevea_manual.kwd34">6.7</a>, <a href="expr.html#hevea_manual.kwd42">6.7</a>, <a href="expr.html#hevea_manual.kwd64">6.7.2</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">private</span>, <a href="classes.html#hevea_manual.kwd103">6.9.1</a>, <a href="classes.html#hevea_manual.kwd110">6.9.1</a>, <a href="classes.html#hevea_manual.kwd112">6.9.1</a>, <a href="classes.html#hevea_manual.kwd124">6.9.2</a>, <a href="classes.html#hevea_manual.kwd134">6.9.2</a>, <a href="classes.html#hevea_manual.kwd136">6.9.2</a>, <a href="extn.html#hevea_manual.kwd205">7.5</a>, <a href="extn.html#hevea_manual.kwd206">7.5.3</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">rec</span>, see <span class="c009"><span class="c003">let</span>, <span class="c003">module</span></span>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">sig</span>, <a href="modtypes.html#hevea_manual.kwd146">6.10</a>, <a href="modtypes.html#hevea_manual.kwd159">6.10.2</a>
+</li><li class="li-indexenv"><span class="c003">struct</span>, <a href="modules.html#hevea_manual.kwd175">6.11</a>, <a href="modules.html#hevea_manual.kwd187">6.11.2</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">then</span>, see <span class="c005">if</span>
+</li><li class="li-indexenv"><span class="c003">to</span>, see <span class="c005">for</span>
+</li><li class="li-indexenv"><span class="c003">true</span>, <a href="const.html#hevea_manual.kwd12">6.5</a>
+</li><li class="li-indexenv"><span class="c003">try</span>, <a href="expr.html#hevea_manual.kwd22">6.7</a>, <a href="expr.html#hevea_manual.kwd47">6.7</a>, <a href="expr.html#hevea_manual.kwd67">6.7.2</a>
+</li><li class="li-indexenv"><span class="c003">type</span>, <a href="typedecl.html#hevea_manual.kwd88">6.8.1</a>, <a href="classes.html#hevea_manual.kwd144">6.9.5</a>, <a href="modtypes.html#hevea_manual.kwd153">6.10</a>, <a href="modtypes.html#hevea_manual.kwd163">6.10.2</a>, <a href="modtypes.html#hevea_manual.kwd167">6.10.2</a>, <a href="modtypes.html#hevea_manual.kwd169">6.10.2</a>, <a href="modules.html#hevea_manual.kwd181">6.11</a>, <a href="modules.html#hevea_manual.kwd191">6.11.2</a>, <a href="modules.html#hevea_manual.kwd195">6.11.2</a>, <a href="modules.html#hevea_manual.kwd197">6.11.2</a>, <a href="extn.html#hevea_manual.kwd211">7.9</a>, <a href="extn.html#hevea_manual.kwd218">7.11</a>, <a href="extn.html#hevea_manual.kwd223">7.12</a>, <a href="extn.html#hevea_manual.kwd229">7.16</a>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">val</span>, <a href="classes.html#hevea_manual.kwd100">6.9.1</a>, <a href="classes.html#hevea_manual.kwd107">6.9.1</a>, <a href="classes.html#hevea_manual.kwd121">6.9.2</a>, <a href="classes.html#hevea_manual.kwd129">6.9.2</a>, <a href="classes.html#hevea_manual.kwd131">6.9.2</a>, <a href="modtypes.html#hevea_manual.kwd151">6.10</a>, <a href="modtypes.html#hevea_manual.kwd161">6.10.2</a>, <a href="extn.html#hevea_manual.kwd214">7.10</a>
+</li><li class="li-indexenv"><span class="c003">val!</span>, <a href="extn.html#hevea_manual.kwd226">7.14</a>
+</li><li class="li-indexenv"><span class="c003">virtual</span>, see <span class="c009"><span class="c003">val</span>, <span class="c003">method</span>, <span class="c003">class</span></span>
+<br>
+<br>
+</li><li class="li-indexenv"><span class="c003">when</span>, <a href="expr.html#hevea_manual.kwd38">6.7</a>, <a href="expr.html#hevea_manual.kwd60">6.7.1</a>, <a href="extn.html#hevea_manual.kwd231">7.18</a>
+</li><li class="li-indexenv"><span class="c003">while</span>, <a href="expr.html#hevea_manual.kwd65">6.7.2</a>
+</li><li class="li-indexenv"><span class="c003">with</span>, <a href="expr.html#hevea_manual.kwd25">6.7</a>, <a href="modtypes.html#hevea_manual.kwd149">6.10</a>, <a href="modtypes.html#hevea_manual.kwd174">6.10.4</a>, <a href="extn.html#hevea_manual.kwd209">7.7</a>, <a href="extn.html#hevea_manual.kwd215">7.10</a>, <a href="extn.html#hevea_manual.kwd221">7.12</a>
+</li></ul></td></tr>
+</tbody></table>
+
+
+
+
+</section><div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

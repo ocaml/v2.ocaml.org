@@ -6,11 +6,11 @@
 
 <h1 class="chapter" id="sec287"><span>Chapter 9</span>&nbsp;&nbsp;Batch compilation (ocamlc)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">Batch compilation (ocamlc)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Acomp-overview">1&nbsp;&nbsp;Overview of the compiler</a>
-</li><li><a href="#s%3Acomp-options">2&nbsp;&nbsp;Options</a>
-</li><li><a href="#s%3Amodules-file-system">3&nbsp;&nbsp;Modules and the file system</a>
-</li><li><a href="#s%3Acomp-errors">4&nbsp;&nbsp;Common errors</a>
-</li><li><a href="#s%3Acomp-warnings">5&nbsp;&nbsp;Warning reference</a>
+<li><a href="comp.html#s%3Acomp-overview">1&nbsp;&nbsp;Overview of the compiler</a>
+</li><li><a href="comp.html#s%3Acomp-options">2&nbsp;&nbsp;Options</a>
+</li><li><a href="comp.html#s%3Amodules-file-system">3&nbsp;&nbsp;Modules and the file system</a>
+</li><li><a href="comp.html#s%3Acomp-errors">4&nbsp;&nbsp;Common errors</a>
+</li><li><a href="comp.html#s%3Acomp-warnings">5&nbsp;&nbsp;Warning reference</a>
 </li></ul></nav></header>
 <p> <a id="c:camlc"></a>
 </p><p>This chapter describes the OCaml batch compiler <span class="c003">ocamlc</span>,
@@ -375,7 +375,7 @@ errors, the intermediate file is deleted afterwards.
 After parsing, pipe the abstract syntax tree through the preprocessor
 <span class="c009">command</span>. The module <span class="c003">Ast_mapper</span>, described in
 chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">26</a>:
-<a href="compilerlibref/Ast_mapper.html"> <span class="c003">Ast_mapper</span> </a>
+<a href="../../api/4.10/compilerlibref/Ast_mapper.html"> <span class="c003">Ast_mapper</span> </a>
 ,
 implements the external interface of a preprocessor.</dd><dt class="dt-description"><span class="c006">-principal</span></dt><dd class="dd-description">
 Check information path during type-checking, to make sure that all

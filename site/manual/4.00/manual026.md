@@ -5,13 +5,13 @@
 
 
 <h1 class="chapter"><a name="htoc138"><span>Chapter 12</span></a>&nbsp;&nbsp;Lexer and parser generators (ocamllex, ocamlyacc)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Lexer and parser generators (ocamllex, ocamlyacc)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc105">Overview of <tt>ocamllex</tt></a>
-</li><li><a href="#toc106">Syntax of lexer definitions</a>
-</li><li><a href="#toc107">Overview of <tt>ocamlyacc</tt></a>
-</li><li><a href="#toc108">Syntax of grammar definitions</a>
-</li><li><a href="#toc109">Options</a>
-</li><li><a href="#toc110">A complete example</a>
-</li><li><a href="#toc111">Common errors</a>
+<li><a href="manual026.html#toc105">Overview of <tt>ocamllex</tt></a>
+</li><li><a href="manual026.html#toc106">Syntax of lexer definitions</a>
+</li><li><a href="manual026.html#toc107">Overview of <tt>ocamlyacc</tt></a>
+</li><li><a href="manual026.html#toc108">Syntax of grammar definitions</a>
+</li><li><a href="manual026.html#toc109">Options</a>
+</li><li><a href="manual026.html#toc110">A complete example</a>
+</li><li><a href="manual026.html#toc111">Common errors</a>
 </li></ul></nav></header>
 <p>
 <a name="c:ocamlyacc"></a>

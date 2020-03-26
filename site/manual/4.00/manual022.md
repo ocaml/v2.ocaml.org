@@ -5,10 +5,10 @@
 
 
 <h1 class="chapter"><a name="htoc115"><span>Chapter 8</span></a>&nbsp;&nbsp;Batch compilation (ocamlc)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Batch compilation (ocamlc)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc86">Overview of the compiler</a>
-</li><li><a href="#toc87">Options</a>
-</li><li><a href="#toc88">Modules and the file system</a>
-</li><li><a href="#toc89">Common errors</a>
+<li><a href="manual022.html#toc86">Overview of the compiler</a>
+</li><li><a href="manual022.html#toc87">Options</a>
+</li><li><a href="manual022.html#toc88">Modules and the file system</a>
+</li><li><a href="manual022.html#toc89">Common errors</a>
 </li></ul></nav></header>
 <p> <a name="c:camlc"></a>
 </p><p>This chapter describes the OCaml batch compiler <tt>ocamlc</tt>,

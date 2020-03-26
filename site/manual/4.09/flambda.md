@@ -6,22 +6,22 @@
 
 <h1 class="chapter" id="sec487"><span>Chapter 21</span>&nbsp;&nbsp;Optimisation with Flambda</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.09</a></div><div class="toc_title"><a href="#">Optimisation with Flambda</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec488">1&nbsp;&nbsp;Overview</a>
-</li><li><a href="#sec489">2&nbsp;&nbsp;Command-line flags</a>
-</li><li><a href="#sec492">3&nbsp;&nbsp;Inlining</a>
-</li><li><a href="#sec503">4&nbsp;&nbsp;Specialisation</a>
-</li><li><a href="#sec507">5&nbsp;&nbsp;Default settings of parameters</a>
-</li><li><a href="#sec510">6&nbsp;&nbsp;Manual control of inlining and specialisation</a>
-</li><li><a href="#sec512">7&nbsp;&nbsp;Simplification</a>
-</li><li><a href="#sec513">8&nbsp;&nbsp;Other code motion transformations</a>
-</li><li><a href="#sec517">9&nbsp;&nbsp;Unboxing transformations</a>
-</li><li><a href="#sec525">10&nbsp;&nbsp;Removal of unused code and values</a>
-</li><li><a href="#sec530">11&nbsp;&nbsp;Other code transformations</a>
-</li><li><a href="#sec533">12&nbsp;&nbsp;Treatment of effects</a>
-</li><li><a href="#sec534">13&nbsp;&nbsp;Compilation of statically-allocated modules</a>
-</li><li><a href="#sec535">14&nbsp;&nbsp;Inhibition of optimisation</a>
-</li><li><a href="#sec536">15&nbsp;&nbsp;Use of unsafe operations</a>
-</li><li><a href="#sec537">16&nbsp;&nbsp;Glossary</a>
+<li><a href="flambda.html#sec488">1&nbsp;&nbsp;Overview</a>
+</li><li><a href="flambda.html#sec489">2&nbsp;&nbsp;Command-line flags</a>
+</li><li><a href="flambda.html#sec492">3&nbsp;&nbsp;Inlining</a>
+</li><li><a href="flambda.html#sec503">4&nbsp;&nbsp;Specialisation</a>
+</li><li><a href="flambda.html#sec507">5&nbsp;&nbsp;Default settings of parameters</a>
+</li><li><a href="flambda.html#sec510">6&nbsp;&nbsp;Manual control of inlining and specialisation</a>
+</li><li><a href="flambda.html#sec512">7&nbsp;&nbsp;Simplification</a>
+</li><li><a href="flambda.html#sec513">8&nbsp;&nbsp;Other code motion transformations</a>
+</li><li><a href="flambda.html#sec517">9&nbsp;&nbsp;Unboxing transformations</a>
+</li><li><a href="flambda.html#sec525">10&nbsp;&nbsp;Removal of unused code and values</a>
+</li><li><a href="flambda.html#sec530">11&nbsp;&nbsp;Other code transformations</a>
+</li><li><a href="flambda.html#sec533">12&nbsp;&nbsp;Treatment of effects</a>
+</li><li><a href="flambda.html#sec534">13&nbsp;&nbsp;Compilation of statically-allocated modules</a>
+</li><li><a href="flambda.html#sec535">14&nbsp;&nbsp;Inhibition of optimisation</a>
+</li><li><a href="flambda.html#sec536">15&nbsp;&nbsp;Use of unsafe operations</a>
+</li><li><a href="flambda.html#sec537">16&nbsp;&nbsp;Glossary</a>
 </li></ul></nav></header>
 
 <h2 class="section" id="sec488">1&nbsp;&nbsp;Overview</h2>

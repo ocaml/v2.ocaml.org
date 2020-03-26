@@ -5,23 +5,23 @@
 
 
 <h1 class="chapter"><a name="htoc18"><span>Chapter 3</span></a>&nbsp;&nbsp;Objects in OCaml</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">Objects in OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc18">Classes and objects</a>
-</li><li><a href="#toc19">Immediate objects</a>
-</li><li><a href="#toc20">Reference to self</a>
-</li><li><a href="#toc21">Initializers</a>
-</li><li><a href="#toc22">Virtual methods</a>
-</li><li><a href="#toc23">Private methods</a>
-</li><li><a href="#toc24">Class interfaces</a>
-</li><li><a href="#toc25">Inheritance</a>
-</li><li><a href="#toc26">Multiple inheritance</a>
-</li><li><a href="#toc27">Parameterized classes</a>
-</li><li><a href="#toc28">Polymorphic methods</a>
-</li><li><a href="#toc29">Using coercions</a>
-</li><li><a href="#toc30">Functional objects</a>
-</li><li><a href="#toc31">Cloning objects</a>
-</li><li><a href="#toc32">Recursive classes</a>
-</li><li><a href="#toc33">Binary methods</a>
-</li><li><a href="#toc34">Friends</a>
+<li><a href="manual005.html#toc18">Classes and objects</a>
+</li><li><a href="manual005.html#toc19">Immediate objects</a>
+</li><li><a href="manual005.html#toc20">Reference to self</a>
+</li><li><a href="manual005.html#toc21">Initializers</a>
+</li><li><a href="manual005.html#toc22">Virtual methods</a>
+</li><li><a href="manual005.html#toc23">Private methods</a>
+</li><li><a href="manual005.html#toc24">Class interfaces</a>
+</li><li><a href="manual005.html#toc25">Inheritance</a>
+</li><li><a href="manual005.html#toc26">Multiple inheritance</a>
+</li><li><a href="manual005.html#toc27">Parameterized classes</a>
+</li><li><a href="manual005.html#toc28">Polymorphic methods</a>
+</li><li><a href="manual005.html#toc29">Using coercions</a>
+</li><li><a href="manual005.html#toc30">Functional objects</a>
+</li><li><a href="manual005.html#toc31">Cloning objects</a>
+</li><li><a href="manual005.html#toc32">Recursive classes</a>
+</li><li><a href="manual005.html#toc33">Binary methods</a>
+</li><li><a href="manual005.html#toc34">Friends</a>
 </li></ul></nav></header>
 <p>
 <a name="c:objectexamples"></a>

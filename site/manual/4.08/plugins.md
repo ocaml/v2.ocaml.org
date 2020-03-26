@@ -6,8 +6,8 @@
 
 <h1 class="chapter" id="c:plugins"><span>Chapter 24</span>&nbsp;&nbsp;Compiler plugins</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.08</a></div><div class="toc_title"><a href="#">Compiler plugins</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec553">1&nbsp;&nbsp;Overview</a>
-</li><li><a href="#sec554">2&nbsp;&nbsp;Basic example</a>
+<li><a href="plugins.html#sec553">1&nbsp;&nbsp;Overview</a>
+</li><li><a href="plugins.html#sec554">2&nbsp;&nbsp;Basic example</a>
 </li></ul></nav></header>
 
 <h2 class="section" id="sec553">1&nbsp;&nbsp;Overview</h2>
@@ -18,21 +18,21 @@ Beware however that plugins are an advanced feature of which the design
 is still in flux and breaking changes may happen in the future. Plugins features
 are based on the compiler library API. In complement, new hooks have been added to
 the compiler to increase its flexibility.</p><p>In particular, hooks are available in the
-<a href="compilerlibref/Pparse.html"><span class="c003">Pparse</span> module</a>
+<a href="../../api/4.08/compilerlibref/Pparse.html"><span class="c003">Pparse</span> module</a>
 to transform the parsed abstract syntax tree, providing similar functionality
 to extension point based preprocessors.
 Other hooks are available to analyze the typed tree in the
-<a href="compilerlibref/Typemod.html"><span class="c003">Typemod</span> module</a>
+<a href="../../api/4.08/compilerlibref/Typemod.html"><span class="c003">Typemod</span> module</a>
 after the type-checking phase of the compiler. Since the typed tree relies
 on numerous invariants that play a vital part in ulterior phases of the
 compiler, it is not possible however to transform the typed tree.
 Similarly, the intermediary lambda representation can be modified by using the
 hooks provided in the
-<a href="compilerlibref/Simplif.html"><span class="c003">Simplif</span> module</a>
+<a href="../../api/4.08/compilerlibref/Simplif.html"><span class="c003">Simplif</span> module</a>
 .
 A plugin can also add new options to a tool through the
 <span class="c003">Clflags.add_arguments</span> function (see
-<a href="compilerlibref/Clflags.html"><span class="c003">Clflags</span> module</a>
+<a href="../../api/4.08/compilerlibref/Clflags.html"><span class="c003">Clflags</span> module</a>
 ).</p><p>Plugins are dynamically loaded and need to be compiled in the same mode (i.e.
 native or bytecode) that the tool they extend.</p>
 <h2 class="section" id="sec554">2&nbsp;&nbsp;Basic example</h2>

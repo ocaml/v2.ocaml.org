@@ -6,15 +6,15 @@
 
 <h1 class="chapter" id="sec7"><span>Chapter 1</span>&nbsp;&nbsp;The core language</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.02</a></div><div class="toc_title"><a href="#">The core language</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec8">Basics</a>
-</li><li><a href="#sec9">Data types</a>
-</li><li><a href="#sec10">Functions as values</a>
-</li><li><a href="#sec11">Records and variants</a>
-</li><li><a href="#sec12">Imperative features</a>
-</li><li><a href="#sec13">Exceptions</a>
-</li><li><a href="#sec14">Symbolic processing of expressions</a>
-</li><li><a href="#sec15">Pretty-printing and parsing</a>
-</li><li><a href="#sec16">Standalone OCaml programs</a>
+<li><a href="coreexamples.html#sec8">Basics</a>
+</li><li><a href="coreexamples.html#sec9">Data types</a>
+</li><li><a href="coreexamples.html#sec10">Functions as values</a>
+</li><li><a href="coreexamples.html#sec11">Records and variants</a>
+</li><li><a href="coreexamples.html#sec12">Imperative features</a>
+</li><li><a href="coreexamples.html#sec13">Exceptions</a>
+</li><li><a href="coreexamples.html#sec14">Symbolic processing of expressions</a>
+</li><li><a href="coreexamples.html#sec15">Pretty-printing and parsing</a>
+</li><li><a href="coreexamples.html#sec16">Standalone OCaml programs</a>
 </li></ul></nav></header>
 <p> <a id="c:core-xamples"></a>
 

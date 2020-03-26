@@ -6,19 +6,19 @@
 
 <h1 class="chapter" id="c:intf-c"><span>Chapter 20</span>&nbsp;&nbsp;Interfacing C with OCaml</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.06</a></div><div class="toc_title"><a href="#">Interfacing C with OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec413">1&nbsp;&nbsp;Overview and compilation information</a>
-</li><li><a href="#sec420">2&nbsp;&nbsp;The <span class="c003">value</span> type</a>
-</li><li><a href="#sec424">3&nbsp;&nbsp;Representation of OCaml data types</a>
-</li><li><a href="#sec431">4&nbsp;&nbsp;Operations on values</a>
-</li><li><a href="#sec439">5&nbsp;&nbsp;Living in harmony with the garbage collector</a>
-</li><li><a href="#sec447">6&nbsp;&nbsp;A complete example</a>
-</li><li><a href="#sec448">7&nbsp;&nbsp;Advanced topic: callbacks from C to OCaml</a>
-</li><li><a href="#sec458">8&nbsp;&nbsp;Advanced example with callbacks</a>
-</li><li><a href="#sec459">9&nbsp;&nbsp;Advanced topic: custom blocks</a>
-</li><li><a href="#sec466">10&nbsp;&nbsp;Advanced topic: cheaper C call</a>
-</li><li><a href="#sec470">11&nbsp;&nbsp;Advanced topic: multithreading</a>
-</li><li><a href="#sec473">12&nbsp;&nbsp;Advanced topic: interfacing with Windows Unicode APIs</a>
-</li><li><a href="#sec475">13&nbsp;&nbsp;Building mixed C/OCaml libraries: <span class="c003">ocamlmklib</span></a>
+<li><a href="intfc.html#sec413">1&nbsp;&nbsp;Overview and compilation information</a>
+</li><li><a href="intfc.html#sec420">2&nbsp;&nbsp;The <span class="c003">value</span> type</a>
+</li><li><a href="intfc.html#sec424">3&nbsp;&nbsp;Representation of OCaml data types</a>
+</li><li><a href="intfc.html#sec431">4&nbsp;&nbsp;Operations on values</a>
+</li><li><a href="intfc.html#sec439">5&nbsp;&nbsp;Living in harmony with the garbage collector</a>
+</li><li><a href="intfc.html#sec447">6&nbsp;&nbsp;A complete example</a>
+</li><li><a href="intfc.html#sec448">7&nbsp;&nbsp;Advanced topic: callbacks from C to OCaml</a>
+</li><li><a href="intfc.html#sec458">8&nbsp;&nbsp;Advanced example with callbacks</a>
+</li><li><a href="intfc.html#sec459">9&nbsp;&nbsp;Advanced topic: custom blocks</a>
+</li><li><a href="intfc.html#sec466">10&nbsp;&nbsp;Advanced topic: cheaper C call</a>
+</li><li><a href="intfc.html#sec470">11&nbsp;&nbsp;Advanced topic: multithreading</a>
+</li><li><a href="intfc.html#sec473">12&nbsp;&nbsp;Advanced topic: interfacing with Windows Unicode APIs</a>
+</li><li><a href="intfc.html#sec475">13&nbsp;&nbsp;Building mixed C/OCaml libraries: <span class="c003">ocamlmklib</span></a>
 </li></ul></nav></header>
 <p>This chapter describes how user-defined primitives, written in C, can
 be linked with OCaml code and called from OCaml functions, and how

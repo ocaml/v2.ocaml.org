@@ -6,9 +6,9 @@
 
 <h1 class="chapter" id="sec517"><span>Chapter 22</span>&nbsp;&nbsp;Fuzzing with afl-fuzz</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.05</a></div><div class="toc_title"><a href="#">Fuzzing with afl-fuzz</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec518">1&nbsp;&nbsp;Overview</a>
-</li><li><a href="#sec519">2&nbsp;&nbsp;Generating instrumentation</a>
-</li><li><a href="#sec521">3&nbsp;&nbsp;Example</a>
+<li><a href="afl-fuzz.html#sec518">1&nbsp;&nbsp;Overview</a>
+</li><li><a href="afl-fuzz.html#sec519">2&nbsp;&nbsp;Generating instrumentation</a>
+</li><li><a href="afl-fuzz.html#sec521">3&nbsp;&nbsp;Example</a>
 </li></ul></nav></header>
 
 <h2 class="section" id="sec518">1&nbsp;&nbsp;Overview</h2>

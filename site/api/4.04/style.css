@@ -2,7 +2,7 @@
 /* CSS file for the Ocaml API
    San Vu Ngoc 2019
 */
-/* set this to true for integration into the ocaml.org wesite */
+/* ocaml logo color */
 /* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Fira+Mono:400,500");
 @import url("https://fonts.googleapis.com/css?family=Noticia+Text:400,400i,700");
@@ -33,8 +33,20 @@ html.smooth-scroll {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto; } }
+.api > table {
+  word-break: break-word; }
+  .api > table td.module,
+  .api > table td:first-child {
+    width: 33%; }
+  .api > table td:nth-child(2) {
+    width: 65%; }
+  .api > table td[align="left"] {
+    word-break: normal; }
+  .api > table td[align="left"]:first-child {
+    width: 1%; }
+
 .api {
-  font-size: 15px;
+  font-size: 16px;
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   text-align: left;
   color: #333;
@@ -64,7 +76,6 @@ html.smooth-scroll {
   /* } */
   /* Collapsible inlined include and module */
   /* FIXME: Does not work in Firefox. */
-  /* Records and variants FIXME */
   /* @ tags */
   /* FIXME remove */
   /* FIXME random other things to review. */
@@ -75,12 +86,55 @@ html.smooth-scroll {
   /*.toc ul:before */
   /* First level titles */
   /* Mobile adjustements. */
-  /* Syntax highlighting (based on github-gist) */
-  /* pour l'API */
-  /* add some room at the end of the table */ }
+  /* pour l'API */ }
   .api table {
     border-collapse: collapse;
-    border-spacing: 0; }
+    border-spacing: 0;
+    /* must be same as <pre>: */
+    background: linear-gradient(to left, white 0%, #ede8e5 100%);
+    width: 100%;
+    /* add some room at the end of the table */ }
+    .api table thead {
+      background: #e4d9d3; }
+    .api table td {
+      padding-left: 1ex;
+      padding-right: 1ex;
+      /*float: left;*/ }
+    .api table tr:last-child td {
+      padding-bottom: 7px; }
+  .api table.typetable {
+    width: 100%;
+    word-break: normal;
+    box-shadow: none; }
+    .api table.typetable td {
+      float: left; }
+    .api table.typetable td:nth-child(2) {
+      width: 35%; }
+    .api table.typetable td:last-child {
+      width: calc(100% - 1.1em); }
+    .api table.typetable td:first-child {
+      width: 1em; }
+    .api table.typetable td:nth-child(4).typefieldcomment {
+      /* this should be the column with the type */
+      width: 60%;
+      /* not optimal, see: file:///home/san/prog/ocaml/ocaml-api/dune-version/docs/Format.html#symbolic
+      but leaving it automatic is not always good either: see: file:///home/san/prog/ocaml/ocaml-api/dune-version/docs/Arg.html */ }
+  .api table.paramstable {
+    word-break: normal; }
+    .api table.paramstable td code {
+      white-space: pre-wrap; }
+    .api table.paramstable td:first-child, .api table.paramstable td:nth-child(2) {
+      width: 1em; }
+  .api .sig_block {
+    border-left: 4px solid #e69c7f;
+    padding-left: 1em;
+    background: linear-gradient(to left, white 0%, #ede8e5 100%); }
+    .api .sig_block pre {
+      margin-top: 0;
+      background: none;
+      border-left: 0; }
+  .api pre .sig_block {
+    margin-bottom: 0; }
   .api *, .api *:before, .api *:after {
     box-sizing: border-box; }
   .api > header {
@@ -291,14 +345,6 @@ html.smooth-scroll {
     top: calc(50% - 5px);
     height: 11px;
     right: -29px; }
-  .api div.def table {
-    text-indent: 0em;
-    padding: 0;
-    margin-left: -2ex; }
-  .api td.def {
-    padding-right: 2ex; }
-  .api .record td.def {
-    padding-left: 2ex; }
   .api td.doc *:first-child {
     margin-top: 0em; }
   .api ul.at-tag {
@@ -445,9 +491,11 @@ html.smooth-scroll {
     font-family: inherit; }
   .api .toc #search_results {
     font-size: smaller; }
-  .api .toc #search_results ul a {
-    display: inline-block;
-    padding-left: 0; }
+    .api .toc #search_results ul li {
+      margin-bottom: 0; }
+    .api .toc #search_results ul a {
+      display: inline-block;
+      padding-left: 0; }
   .api .toc ul li a:hover {
     box-shadow: none;
     background-color: #edbf84;
@@ -467,12 +515,6 @@ html.smooth-scroll {
     border-left: 1px solid #ccc;
     margin-left: 5px;
     padding-left: 12px; }
-  .api .hljs {
-    display: block;
-    background: white;
-    padding: 0.5em;
-    color: #333333;
-    overflow-x: auto; }
   .api .ocaml {
     background: linear-gradient(to left, white 0%, #f3f7f6 100%); }
   .api span.arrow {
@@ -488,6 +530,12 @@ html.smooth-scroll {
     display: inline-block; }
   .api pre {
     background: linear-gradient(to left, white 0%, #ede8e5 100%); }
+  .api #search_results li.match::before {
+    content: "▶";
+    font-size: smaller;
+    color: #ec6a0d;
+    float: left;
+    margin-left: -3ex; }
   .api code.caml-example,
   .api div.caml-example, .api div.toplevel {
     /*    background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%); */ }
@@ -499,7 +547,6 @@ html.smooth-scroll {
   .api div.caml-output.error {
     color: orangered; }
   .api .tutorial span {
-    /* ocaml logo color */
     color: #ec6a0d; }
   .api ul.tutos_menu {
     font-family: "Fira Sans";
@@ -561,29 +608,6 @@ html.smooth-scroll {
   .api hr {
     margin-bottom: 2em;
     visibility: hidden; }
-  .api table {
-    /* must be same as <pre> */
-    background: linear-gradient(to left, white 0%, #ede8e5 100%);
-    width: 100%; }
-  .api table td {
-    padding-left: 1ex;
-    padding-right: 1ex;
-    float: left; }
-  .api table tr:last-child td {
-    padding-bottom: 7px; }
-
-.api > table {
-  word-break: break-word; }
-
-.api > table td.module,
-.api > table td:first-child {
-  width: 33%; }
-
-.api > table td:nth-child(2) {
-  width: 65%; }
-
-.api {
-  /* essai pour les types union */ }
   .api code.type {
     color: #8d543c; }
   .api td div.info p {
@@ -598,6 +622,8 @@ html.smooth-scroll {
     font-family: inherit; }
   .api #search_results ul {
     list-style: none; }
+    .api #search_results ul li {
+      margin-bottom: 4px; }
   .api #search_results li div.info {
     /* index page */
     display: block;
@@ -624,10 +650,6 @@ html.smooth-scroll {
     margin-bottom: 0; }
     .api .info-desc p code {
       white-space: normal; }
-  .api table.typetable {
-    width: 100%;
-    word-break: normal;
-    box-shadow: none; }
   .api td.typefieldcomment > code {
     display: none;
     /* this only applies to "(*" and "*)" */ }
@@ -638,17 +660,6 @@ html.smooth-scroll {
   .api td.typefieldcomment:nth-child(3),
   .api td.typefieldcomment:last-child {
     display: none; }
-  .api table.typetable td:nth-child(2) {
-    width: 35%; }
-  .api table.typetable td:last-child {
-    width: auto; }
-  .api table.typetable tr td:first-child {
-    width: 1em; }
-  .api table.typetable tr td:nth-child(4).typefieldcomment {
-    /* this should be the column with the type */
-    width: 60%;
-    /* not optimal, see: file:///home/san/prog/ocaml/ocaml-api/dune-version/docs/Format.html#symbolic
-    but leaving it automatic is not always good either: see: file:///home/san/prog/ocaml/ocaml-api/dune-version/docs/Arg.html */ }
   .api .api_search img {
     height: 1em;
     vertical-align: middle;
@@ -667,6 +678,13 @@ html.smooth-scroll {
 
   .api > header {
     box-shadow: 0px 3px 9px 3px #ddd; }
+
+  .api > table {
+    box-shadow: 0px 3px 9px 3px #ddd;
+    margin-bottom: 1em;
+    padding-bottom: 2px; }
+    .api > table td:nth-child(2) {
+      width: 59%; }
 
   .api *:target {
     padding-top: 0px;
@@ -687,28 +705,19 @@ html.smooth-scroll {
     padding-left: 2%; }
   .api table td:first-child {
     padding-right: 0; }
-
-  .api > table {
-    box-shadow: 0px 3px 9px 3px #ddd;
-    margin-bottom: 1em;
-    padding-bottom: 2px; }
-
-  .api > table td:nth-child(2) {
-    width: 59%; }
-
   .api table.typetable {
     box-shadow: none; }
-  .api table.typetable td:nth-child(2) {
-    white-space: normal;
-    width: 41%; }
-  .api table.typetable tr td:nth-child(4).typefieldcomment {
-    width: 50%;
-    word-break: break-word; }
-  .api table.typetable td:last-child {
-    width: auto; }
-  .api table.typetable tr td:first-child {
-    padding-right: 0;
-    width: auto; }
+    .api table.typetable td:nth-child(2) {
+      white-space: normal;
+      width: 41%; }
+    .api table.typetable tr td:nth-child(4).typefieldcomment {
+      width: 50%;
+      word-break: break-word; }
+    .api table.typetable td:last-child {
+      width: auto; }
+    .api table.typetable tr td:first-child {
+      padding-right: 0;
+      width: auto; }
   .api td div.info div.info-desc {
     padding-left: 0; }
   .api span.search_comment {

@@ -5,7 +5,7 @@
 
 
 <h1 class="chapter"><a name="htoc299"><span>Chapter 21</span></a>&nbsp;&nbsp;The standard library</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The standard library</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc156">Conventions</a>
+<li><a href="manual035.html#toc156">Conventions</a>
 </li></ul></nav></header>
 <p> <a name="c:stdlib"></a>
 </p><p>This chapter describes the functions provided by the OCaml

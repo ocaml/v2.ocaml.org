@@ -5,12 +5,12 @@
 
 
 <h1 class="chapter"><a name="htoc120"><span>Chapter 9</span></a>&nbsp;&nbsp;The toplevel system (ocaml)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The toplevel system (ocaml)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc90">Options</a>
-</li><li><a href="#toc91">Toplevel directives</a>
-</li><li><a href="#toc92">The toplevel and the module system</a>
-</li><li><a href="#toc93">Common errors</a>
-</li><li><a href="#toc94">Building custom toplevel systems: <tt>ocamlmktop</tt></a>
-</li><li><a href="#toc95">Options</a>
+<li><a href="manual023.html#toc90">Options</a>
+</li><li><a href="manual023.html#toc91">Toplevel directives</a>
+</li><li><a href="manual023.html#toc92">The toplevel and the module system</a>
+</li><li><a href="manual023.html#toc93">Common errors</a>
+</li><li><a href="manual023.html#toc94">Building custom toplevel systems: <tt>ocamlmktop</tt></a>
+</li><li><a href="manual023.html#toc95">Options</a>
 </li></ul></nav></header>
 <p> <a name="c:camllight"></a>
 </p><p>This chapter describes the toplevel system for OCaml, that permits interactive use of the OCaml system

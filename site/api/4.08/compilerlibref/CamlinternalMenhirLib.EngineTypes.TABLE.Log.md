@@ -1,0 +1,17 @@
+<!-- ((! set title API !)) ((! set documentation !)) ((! set api !)) ((! set nobreadcrumb !)) -->
+<div class="api"><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">API Version 4.08</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="#top">CamlinternalMenhirLib.EngineTypes.TABLE.Log</a></div><ul></ul></nav></header>
+
+<h1>Module <a href="type_CamlinternalMenhirLib.EngineTypes.TABLE.Log.html">CamlinternalMenhirLib.EngineTypes.TABLE.Log</a></h1>
+
+<pre><span id="MODULELog"><span class="keyword">module</span> Log</span>: <code class="code"><span class="keyword">sig</span></code> <a href="CamlinternalMenhirLib.EngineTypes.TABLE.Log.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><hr width="100%">
+
+<pre><span id="VALstate"><span class="keyword">val</span> state</span> : <code class="type"><a href="CamlinternalMenhirLib.EngineTypes.TABLE.html#TYPEstate">CamlinternalMenhirLib.EngineTypes.TABLE.state</a> -&gt; unit</code></pre>
+<pre><span id="VALshift"><span class="keyword">val</span> shift</span> : <code class="type"><a href="CamlinternalMenhirLib.EngineTypes.TABLE.html#TYPEterminal">CamlinternalMenhirLib.EngineTypes.TABLE.terminal</a> -&gt;<br>       <a href="CamlinternalMenhirLib.EngineTypes.TABLE.html#TYPEstate">CamlinternalMenhirLib.EngineTypes.TABLE.state</a> -&gt; unit</code></pre>
+<pre><span id="VALreduce_or_accept"><span class="keyword">val</span> reduce_or_accept</span> : <code class="type"><a href="CamlinternalMenhirLib.EngineTypes.TABLE.html#TYPEproduction">CamlinternalMenhirLib.EngineTypes.TABLE.production</a> -&gt; unit</code></pre>
+<pre><span id="VALlookahead_token"><span class="keyword">val</span> lookahead_token</span> : <code class="type"><a href="CamlinternalMenhirLib.EngineTypes.TABLE.html#TYPEterminal">CamlinternalMenhirLib.EngineTypes.TABLE.terminal</a> -&gt;<br>       Lexing.position -&gt; Lexing.position -&gt; unit</code></pre>
+<pre><span id="VALinitiating_error_handling"><span class="keyword">val</span> initiating_error_handling</span> : <code class="type">unit -&gt; unit</code></pre>
+<pre><span id="VALresuming_error_handling"><span class="keyword">val</span> resuming_error_handling</span> : <code class="type">unit -&gt; unit</code></pre>
+<pre><span id="VALhandling_error"><span class="keyword">val</span> handling_error</span> : <code class="type"><a href="CamlinternalMenhirLib.EngineTypes.TABLE.html#TYPEstate">CamlinternalMenhirLib.EngineTypes.TABLE.state</a> -&gt; unit</code></pre>
+<div class="copyright">The present documentation is copyright Institut National de Recherche en Informatique et en Automatique (INRIA). A complete version can be obtained from <a href="http://caml.inria.fr/pub/docs/manual-ocaml/">this page</a>.</div></div>

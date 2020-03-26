@@ -6,10 +6,10 @@
 
 <h1 class="chapter" id="sec361"><span>Chapter 17</span>&nbsp;&nbsp;Profiling (ocamlprof)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.01</a></div><div class="toc_title"><a href="#">Profiling (ocamlprof)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec362">Compiling for profiling</a>
-</li><li><a href="#sec366">Profiling an execution</a>
-</li><li><a href="#sec367">Printing profiling information</a>
-</li><li><a href="#sec368">Time profiling</a>
+<li><a href="profil.html#sec362">Compiling for profiling</a>
+</li><li><a href="profil.html#sec366">Profiling an execution</a>
+</li><li><a href="profil.html#sec367">Printing profiling information</a>
+</li><li><a href="profil.html#sec368">Time profiling</a>
 </li></ul></nav></header>
 <p> <a id="c:profiler"></a>
 

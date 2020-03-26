@@ -5,9 +5,9 @@
 
 
 <h1 class="chapter"><a name="htoc296"><span>Chapter 20</span></a>&nbsp;&nbsp;The core library</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The core library</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc153">Conventions</a>
-</li><li><a href="#toc154">Built-in types and predefined exceptions</a>
-</li><li><a href="#toc155">Module <tt>Pervasives</tt>: the initially opened module</a>
+<li><a href="manual034.html#toc153">Conventions</a>
+</li><li><a href="manual034.html#toc154">Built-in types and predefined exceptions</a>
+</li><li><a href="manual034.html#toc155">Module <tt>Pervasives</tt>: the initially opened module</a>
 </li></ul></nav></header>
 <p> <a name="c:corelib"></a>
 </p><p>This chapter describes the OCaml core library, which is

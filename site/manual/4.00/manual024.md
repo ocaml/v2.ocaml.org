@@ -5,10 +5,10 @@
 
 
 <h1 class="chapter"><a name="htoc127"><span>Chapter 10</span></a>&nbsp;&nbsp;The runtime system (ocamlrun)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.00</a></div><div class="toc_title"><a href="#">The runtime system (ocamlrun)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#toc96">Overview</a>
-</li><li><a href="#toc97">Options</a>
-</li><li><a href="#toc98">Dynamic loading of shared libraries</a>
-</li><li><a href="#toc99">Common errors</a>
+<li><a href="manual024.html#toc96">Overview</a>
+</li><li><a href="manual024.html#toc97">Options</a>
+</li><li><a href="manual024.html#toc98">Dynamic loading of shared libraries</a>
+</li><li><a href="manual024.html#toc99">Common errors</a>
 </li></ul></nav></header>
 <p> <a name="c:runtime"></a>
 </p><p>The <tt>ocamlrun</tt> command executes bytecode files produced by the

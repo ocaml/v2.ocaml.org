@@ -23,21 +23,21 @@ Use of the <span class="c003">ocamlfind</span> utility is recommended. However, 
 For interactive use of the <span class="c003">compiler-libs</span> library, start <span class="c003">ocaml</span> and
 type<br>
 <span class="c003">#load "compiler-libs/ocamlcommon.cma";;</span>.</p><ul class="ftoc2"><li class="li-links">
-<a href="compilerlibref/Ast_helper.html">Module <span class="c003">Ast_helper</span>: helper functions for AST construction</a>
-</li><li class="li-links"><a href="compilerlibref/Ast_mapper.html">Module <span class="c003">Ast_mapper</span>: -ppx rewriter interface</a>
-</li><li class="li-links"><a href="compilerlibref/Asttypes.html">Module <span class="c003">Asttypes</span>: auxiliary types used by Parsetree</a>
-</li><li class="li-links"><a href="compilerlibref/Location.html">Module <span class="c003">Location</span>: source code locations</a>
-</li><li class="li-links"><a href="compilerlibref/Longident.html">Module <span class="c003">Longident</span>: long identifiers</a>
-</li><li class="li-links"><a href="compilerlibref/Parse.html">Module <span class="c003">Parse</span>: OCaml syntax parsing</a>
-</li><li class="li-links"><a href="compilerlibref/Parsetree.html">Module <span class="c003">Parsetree</span>: OCaml syntax tree</a>
-</li><li class="li-links"><a href="compilerlibref/Pprintast.html">Module <span class="c003">Pprintast</span>: OCaml syntax printing</a>
+<a href="../../api/4.08/compilerlibref/Ast_helper.html">Module <span class="c003">Ast_helper</span>: helper functions for AST construction</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Ast_mapper.html">Module <span class="c003">Ast_mapper</span>: -ppx rewriter interface</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Asttypes.html">Module <span class="c003">Asttypes</span>: auxiliary types used by Parsetree</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Location.html">Module <span class="c003">Location</span>: source code locations</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Longident.html">Module <span class="c003">Longident</span>: long identifiers</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Parse.html">Module <span class="c003">Parse</span>: OCaml syntax parsing</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Parsetree.html">Module <span class="c003">Parsetree</span>: OCaml syntax tree</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Pprintast.html">Module <span class="c003">Pprintast</span>: OCaml syntax printing</a>
 </li></ul><p>The following modules provides hooks for compiler plugins:
 </p><ul class="ftoc2"><li class="li-links">
-<a href="compilerlibref/Pparse.html">Module <span class="c003">Pparse</span>: OCaml parser driver</a>
-</li><li class="li-links"><a href="compilerlibref/Typemod.html">Module <span class="c003">Typemod</span>:
+<a href="../../api/4.08/compilerlibref/Pparse.html">Module <span class="c003">Pparse</span>: OCaml parser driver</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Typemod.html">Module <span class="c003">Typemod</span>:
 OCaml module type checking</a>
-</li><li class="li-links"><a href="compilerlibref/Simplif.html">Module <span class="c003">Simplif</span>: Lambda simplification</a>
-</li><li class="li-links"><a href="compilerlibref/Clflags.html">Module <span class="c003">Clflags</span>: command line flags</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Simplif.html">Module <span class="c003">Simplif</span>: Lambda simplification</a>
+</li><li class="li-links"><a href="../../api/4.08/compilerlibref/Clflags.html">Module <span class="c003">Clflags</span>: command line flags</a>
 </li></ul>
 <hr>
 

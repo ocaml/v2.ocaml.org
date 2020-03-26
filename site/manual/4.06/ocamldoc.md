@@ -6,10 +6,10 @@
 
 <h1 class="chapter" id="sec336"><span>Chapter 16</span>&nbsp;&nbsp;The documentation generator (ocamldoc)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.06</a></div><div class="toc_title"><a href="#">The documentation generator (ocamldoc)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec337">1&nbsp;&nbsp;Usage</a>
-</li><li><a href="#sec349">2&nbsp;&nbsp;Syntax of documentation comments</a>
-</li><li><a href="#sec364">3&nbsp;&nbsp;Custom generators</a>
-</li><li><a href="#sec369">4&nbsp;&nbsp;Adding command line options</a>
+<li><a href="ocamldoc.html#sec337">1&nbsp;&nbsp;Usage</a>
+</li><li><a href="ocamldoc.html#sec349">2&nbsp;&nbsp;Syntax of documentation comments</a>
+</li><li><a href="ocamldoc.html#sec364">3&nbsp;&nbsp;Custom generators</a>
+</li><li><a href="ocamldoc.html#sec369">4&nbsp;&nbsp;Adding command line options</a>
 </li></ul></nav></header>
 <p> <a id="c:ocamldoc"></a>
 

@@ -6,12 +6,12 @@
 
 <h1 class="chapter" id="sec297"><span>Chapter 10</span>&nbsp;&nbsp;The toplevel system or REPL (ocaml)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">The toplevel system or REPL (ocaml)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Atoplevel-options">1&nbsp;&nbsp;Options</a>
-</li><li><a href="#s%3Atoplevel-directives">2&nbsp;&nbsp;Toplevel directives</a>
-</li><li><a href="#s%3Atoplevel-modules">3&nbsp;&nbsp;The toplevel and the module system</a>
-</li><li><a href="#s%3Atoplevel-common-errors">4&nbsp;&nbsp;Common errors</a>
-</li><li><a href="#s%3Acustom-toplevel">5&nbsp;&nbsp;Building custom toplevel systems: <span class="c003">ocamlmktop</span></a>
-</li><li><a href="#s%3Aocamlnat">6&nbsp;&nbsp;The native toplevel: <span class="c003">ocamlnat</span> (experimental)</a>
+<li><a href="toplevel.html#s%3Atoplevel-options">1&nbsp;&nbsp;Options</a>
+</li><li><a href="toplevel.html#s%3Atoplevel-directives">2&nbsp;&nbsp;Toplevel directives</a>
+</li><li><a href="toplevel.html#s%3Atoplevel-modules">3&nbsp;&nbsp;The toplevel and the module system</a>
+</li><li><a href="toplevel.html#s%3Atoplevel-common-errors">4&nbsp;&nbsp;Common errors</a>
+</li><li><a href="toplevel.html#s%3Acustom-toplevel">5&nbsp;&nbsp;Building custom toplevel systems: <span class="c003">ocamlmktop</span></a>
+</li><li><a href="toplevel.html#s%3Aocamlnat">6&nbsp;&nbsp;The native toplevel: <span class="c003">ocamlnat</span> (experimental)</a>
 </li></ul></nav></header>
 <p> <a id="c:camllight"></a>
 </p><p>This chapter describes the toplevel system for OCaml, that permits
@@ -153,7 +153,7 @@ directories searched for source and compiled files.
 After parsing, pipe the abstract syntax tree through the preprocessor
 <span class="c009">command</span>. The module <span class="c003">Ast_mapper</span>, described in
 chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">26</a>:
-<a href="compilerlibref/Ast_mapper.html"> <span class="c003">Ast_mapper</span> </a>
+<a href="../../api/4.10/compilerlibref/Ast_mapper.html"> <span class="c003">Ast_mapper</span> </a>
 ,
 implements the external interface of a preprocessor.</dd><dt class="dt-description"><span class="c006">-principal</span></dt><dd class="dd-description">
 Check information path during type-checking, to make sure that all

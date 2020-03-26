@@ -6,16 +6,16 @@
 
 <h1 class="chapter" id="sec381"><span>Chapter 17</span>&nbsp;&nbsp;The debugger (ocamldebug)</h1>
 <header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a href="/docs" id="version-select">Version 4.10</a></div><div class="toc_title"><a href="#">The debugger (ocamldebug)</a></div><ul><li class="top"><a href="#">Top</a></li>
-<li><a href="#s%3Adebugger-compilation">1&nbsp;&nbsp;Compiling for debugging</a>
-</li><li><a href="#s%3Adebugger-invocation">2&nbsp;&nbsp;Invocation</a>
-</li><li><a href="#s%3Adebugger-commands">3&nbsp;&nbsp;Commands</a>
-</li><li><a href="#s%3Adebugger-execution">4&nbsp;&nbsp;Executing a program</a>
-</li><li><a href="#s%3Abreakpoints">5&nbsp;&nbsp;Breakpoints</a>
-</li><li><a href="#s%3Adebugger-callstack">6&nbsp;&nbsp;The call stack</a>
-</li><li><a href="#s%3Adebugger-examining-values">7&nbsp;&nbsp;Examining variable values</a>
-</li><li><a href="#s%3Adebugger-control">8&nbsp;&nbsp;Controlling the debugger</a>
-</li><li><a href="#s%3Adebugger-misc-cmds">9&nbsp;&nbsp;Miscellaneous commands</a>
-</li><li><a href="#s%3Ainf-debugger">10&nbsp;&nbsp;Running the debugger under Emacs</a>
+<li><a href="debugger.html#s%3Adebugger-compilation">1&nbsp;&nbsp;Compiling for debugging</a>
+</li><li><a href="debugger.html#s%3Adebugger-invocation">2&nbsp;&nbsp;Invocation</a>
+</li><li><a href="debugger.html#s%3Adebugger-commands">3&nbsp;&nbsp;Commands</a>
+</li><li><a href="debugger.html#s%3Adebugger-execution">4&nbsp;&nbsp;Executing a program</a>
+</li><li><a href="debugger.html#s%3Abreakpoints">5&nbsp;&nbsp;Breakpoints</a>
+</li><li><a href="debugger.html#s%3Adebugger-callstack">6&nbsp;&nbsp;The call stack</a>
+</li><li><a href="debugger.html#s%3Adebugger-examining-values">7&nbsp;&nbsp;Examining variable values</a>
+</li><li><a href="debugger.html#s%3Adebugger-control">8&nbsp;&nbsp;Controlling the debugger</a>
+</li><li><a href="debugger.html#s%3Adebugger-misc-cmds">9&nbsp;&nbsp;Miscellaneous commands</a>
+</li><li><a href="debugger.html#s%3Ainf-debugger">10&nbsp;&nbsp;Running the debugger under Emacs</a>
 </li></ul></nav></header>
 <p> <a id="c:debugger"></a>
 </p><p>This chapter describes the OCaml source-level replay debugger
