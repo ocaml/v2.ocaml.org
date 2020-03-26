@@ -268,7 +268,8 @@ html.smooth-scroll {
     /*#f6f8fa;*/
     color: #0d2b3e;
     border-radius: 3px;
-    padding: 0 0.3ex; }
+    padding: 0 0.3ex;
+    white-space: pre-wrap; }
   .api pre code {
     background-color: inherit; }
   .api p a > code {
