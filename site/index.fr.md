@@ -104,10 +104,10 @@
 			<ul class="news-feed" style="margin-bottom: 0px">
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
-			       href="/meetings/ocaml/2019/">OCaml 2019</a></h1>
-			  <p>23 août, 2019</p>
+			       href="/meetings/ocaml/2020/">OCaml 2020</a></h1>
+			  <p>28 août, 2020</p>
 			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2019/">
+			     href="/meetings/ocaml/2020/">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>

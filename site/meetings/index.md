@@ -2,7 +2,8 @@
 
 OCaml Users and Developers Workshop
 ===================================
-
+* [OCaml 2020](ocaml/2020/):
+  Jersey City (New Jersey, USA), August 28, colocated with ICFP 2020.
 * [OCaml 2019](ocaml/2019/):
   Berlin (Germany), August 23, colocated with ICFP 2019.
 * [OCaml 2018](ocaml/2018/):
@@ -62,4 +63,3 @@ OCaml Meetings
 ## In the UK
 * 2012: [Cambridge NonDysFunctional
  Programmers](http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/)
-
