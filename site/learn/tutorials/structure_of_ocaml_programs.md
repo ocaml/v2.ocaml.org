@@ -262,7 +262,7 @@ first load the
 library with
 
 ```ocaml
-#load "graphics.cma";;
+#require "graphics";;
 ```
 Windows users: For this example to work interactively on Windows, you
 will need to create a custom toplevel. Issue the command `ocamlmktop
