@@ -106,10 +106,10 @@
             <!-- Commented out between workshops -->
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
-			       href="/meetings/ocaml/2019/">OCaml 2019</a></h1>
-			  <p>August 23, 2019</p>
+			       href="/meetings/ocaml/2020/">OCaml 2020</a></h1>
+			  <p>August 28, 2020</p>
 			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2019/">
+			     href="/meetings/ocaml/2020/">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
@@ -134,7 +134,7 @@
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
 			</article></li>
-                        
+
 	        </ul>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <p><a href="community/planet/">More...</a></p>

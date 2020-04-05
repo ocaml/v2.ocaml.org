@@ -5,11 +5,12 @@
 ## Conférence OCaml
 
 ### Prochains événements
-* [OCaml 2019](ocaml/2019/):
-  Berlin (Germany), 23 août 2019, colocalisé avec ICFP 2019.
+* [OCaml 2020](ocaml/2019/):
+  Jersey City (New Jersey, USA), 28 août 2020, colocalisé avec ICFP 2020.
 
 ### Événements passés
-
+* [OCaml 2019](ocaml/2019/):
+  Berlin (Germany), 23 août 2019, colocalisé avec ICFP 2019.
 * [OCaml 2018](ocaml/2018/):
   St Louis (Missouri, USA), 27 septembre 2018, colocalisé avec ICFP 2018.
 * [OCaml 2017](ocaml/2017/):
@@ -63,4 +64,3 @@
 ### Au Royaume Uni
 * 2012: [Cambridge NonDysFunctional
  Programmers](http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/)
-
