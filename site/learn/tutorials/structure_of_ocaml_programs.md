@@ -394,7 +394,7 @@ in order to evaluate it.
 
 Outside of the toplevel, uses of `;;` are, at best, infrequent
 and are _never required_ for well written code.
-Briefly, double semi-colon `;;` can used for three reasons:
+Briefly, double semi-colon `;;` can be used for three reasons:
 
 * For compatibility with the toplevel;
 * To split the code to ease debugging;
