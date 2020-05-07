@@ -14,17 +14,19 @@ and the free software community.
 
 The meeting is an informal community gathering of users of the language,
 library authors, and developers, using and extending OCaml in new ways.
+The meeting will be held online this year.
 
 News
 ----
+- May 7, 2020: Deadline Extension.
 
 - March 30, 2020: [Workshop annoucement](https://icfp20.sigplan.org/home/ocaml-2020#Call-for-Presentations). The [submission website](https://ocaml2020.hotcrp.com/) is also open.
 
 Important dates
 ---------------
 
-- Friday 8th May (any time zone): Abstract submission deadline
-- Friday 26th June: Author notification
+- Friday 29th May (any time zone): Abstract submission deadline (updated)
+- Friday 17th July: Author notification
 - Friday 28th August: OCaml Workshop
 
 Program Committee
