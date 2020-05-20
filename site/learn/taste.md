@@ -52,6 +52,32 @@ let li = 1 :: 2 :: 3 :: [];;
 [1; 2; 3];;
 5 :: li;;
 ```
+## Higher-order functions
+
+There is no restriction on functions, which may thus be passed as
+arguments to other functions. Let us define a function `sigma` that
+returns the sum of the results of applying a given function `f` to each
+element of a list:
+
+```ocamltop
+let rec sigma f = function
+  | [] -> 0
+  | x :: l -> f x + sigma f l
+```
+Anonymous functions may be defined using the `fun` or `function`
+construct:
+
+```ocamltop
+sigma (fun x -> x * x) [1; 2; 3];;
+```
+Polymorphism and higher-order functions allow defining function
+composition in its most general form:
+
+```ocamltop
+let compose f g = fun x -> f (g x);;
+let square_o_fact = compose square fact;;
+square_o_fact 5;;
+```
 ## Polymorphism: sorting lists
 
 Insertion sort is defined using two recursive functions.
@@ -104,32 +130,6 @@ let fact n =
   done;
   !result;;
 fact 5;;
-```
-## Higher-order functions
-
-There is no restriction on functions, which may thus be passed as
-arguments to other functions. Let us define a function `sigma` that
-returns the sum of the results of applying a given function `f` to each
-element of a list:
-
-```ocamltop
-let rec sigma f = function
-  | [] -> 0
-  | x :: l -> f x + sigma f l
-```
-Anonymous functions may be defined using the `fun` or `function`
-construct:
-
-```ocamltop
-sigma (fun x -> x * x) [1; 2; 3];;
-```
-Polymorphism and higher-order functions allow defining function
-composition in its most general form:
-
-```ocamltop
-let compose f g = fun x -> f (g x);;
-let square_o_fact = compose square fact;;
-square_o_fact 5;;
 ```
 ## The power of functions
 
