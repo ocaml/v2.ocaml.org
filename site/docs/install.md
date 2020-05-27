@@ -191,22 +191,19 @@ Under Windows, the following direct solutions are available to use OCaml:
 * [OCaml for Windows](https://fdopen.github.io/opam-repository-mingw/)
   provides an experimental OPAM repository and opam build for Windows.
 
-* [OCPWin](http://www.typerex.org/ocpwin.html) is a self-contained binary
-  distribution of OCaml for Windows. Some additional features have
-  been added to OCaml for better support of Windows, such as auto-detection
-  of MSVC and support for MSVC 9.0, 10.0, 11.0, 12.0 and 14.0 (VS2015).
-
 Here are a few other alternatives:
+
+* Use the *[Windows Subsystem for
+  Linux](https://docs.microsoft.com/en-us/windows/wsl/about)* and install OCaml
+  as on the chosen Linux distribution. Main OCaml versions and OPAM work.  The
+  disadvantage of this method is that you don't build native Windows binaries
+  but Linux binaries.
 
 * The OCaml source distribution directly supports many different Windows
   ports. You will have to compile
-  [from source](#FromSource). See the
+  [from source](#From-Source). See the
   [README.win32](https://github.com/ocaml/ocaml/blob/trunk/README.win32.adoc)
   file included in the distribution for details.
-
-* Use « Bash on Windows » and install OCaml as on Ubuntu. Main OCaml versions
-  and OPAM work. The disadvantage of this method is that you don't build native
-  Windows binaries but Linux binaries. [See tutorial.](http://themargin.io/2017/02/02/OCaml_on_win/)
 
 * [Cygwin](http://cygwin.com/)-based port. Requires Cygwin, you can
   install them using the `setup` tool. The compilers generate executables
