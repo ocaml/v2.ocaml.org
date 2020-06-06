@@ -534,7 +534,7 @@ ul.translations {
   font-style: italic; }
 .manual span.c013 {
   font-weight: bold; }
-.manual .caml-input span.kw {
+.manual .caml-input span.kw, .manual .caml-input span.ocamlkeyword {
   font-weight: 500;
   color: #444; }
 .manual .caml-input span.kw1 {
@@ -554,7 +554,7 @@ ul.translations {
   font-weight: 500; }
 .manual .caml-input span.string, .manual .caml-input span.ocamlstring {
   color: #df5000; }
-.manual .caml-input span.comment {
+.manual .caml-input span.comment, .manual .caml-input span.ocamlcomment {
   color: #969896; }
 .manual .copyright {
   font-size: smaller; }

@@ -475,15 +475,14 @@ ul.translations:after { content: "]"; }
 }
 @media (max-width: 767px) {
   #footer .column {
-    text-align: left;
-    padding-left: 10%;
-    padding-right: 5%;
+      text-align: left;
+      /* No padding: cf below */
   }
 }
 @media (max-width: 480px) {
   #footer .column {
     width: 98%;
-    padding-left: 20%;
+    /* padding-left: 20%; /* /* this creates a too large column, forcing a horizontal scroll for empty white space on the right. On could fix this by replacing padding by margin, but in fact I think that no margin at all makes it nicer visually. */
   }
 }
 #footer .entry {

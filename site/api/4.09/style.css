@@ -109,7 +109,9 @@ html.smooth-scroll {
     .api table.typetable td {
       float: left; }
     .api table.typetable td:nth-child(2) {
-      width: 35%; }
+      width: 37%; }
+      .api table.typetable td:nth-child(2) code {
+        white-space: pre-line; }
     .api table.typetable td:last-child {
       width: calc(100% - 1.1em); }
     .api table.typetable td:first-child {
@@ -564,7 +566,7 @@ html.smooth-scroll {
     top: 76px; }
   .api nav.brand {
     top: 0px;
-    height: 66px; }
+    height: 67px; }
   .api span.c003 {
     font-family: "Fira Mono", courier;
     background-color: #f3ece6;
@@ -710,15 +712,22 @@ html.smooth-scroll {
     box-shadow: none; }
     .api table.typetable td:nth-child(2) {
       white-space: normal;
-      width: 41%; }
+      /*width: 41%;*/
+      width: auto;
+      max-width: calc(100% - 3ex); }
     .api table.typetable tr td:nth-child(4).typefieldcomment {
-      width: 50%;
-      word-break: break-word; }
+      /*width: 50%;*/
+      width: auto;
+      margin-left: 3ex;
+      word-break: break-word;
+      float: right; }
     .api table.typetable td:last-child {
       width: auto; }
     .api table.typetable tr td:first-child {
       padding-right: 0;
       width: auto; }
+  .api .info-desc p code {
+    word-break: break-word; }
   .api td div.info div.info-desc {
     padding-left: 0; }
   .api span.search_comment {
@@ -728,7 +737,8 @@ html.smooth-scroll {
     width: 40%; }
 
   .api code {
-    word-break: break-word; }
+    word-break: break-word;
+    white-space: pre-wrap; }
 
   #footer {
     margin-left: auto; } }
