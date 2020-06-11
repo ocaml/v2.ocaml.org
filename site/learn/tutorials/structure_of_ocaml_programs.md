@@ -524,7 +524,7 @@ let scrollbar = GRange.scrollbar `VERTICAL ~packing:hbox#pack ()
 ```
 
 Third snippet: The author imports all the symbols from the `GdkKeysyms`
-module. Now we have an unusual let-binding. `let _ = expression` means
+module. Now we have an unusual let-binding. `let () = expression` means
 "calculate the value of the expression (with all the side-effects that
 may entail), but throw away the result". In this case, "calculate the
 value of the expression" means to run `Main.main ()` which is Gtk's main
