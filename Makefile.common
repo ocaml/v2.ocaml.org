@@ -1,9 +1,11 @@
 # -*- mode: Makefile-gmake -*-
 
-LATEST_OCAML_VERSION=$(shell opam list -V ocaml-base-compiler --no-switch -s --columns version | tail -n 1)
-LATEST_OCAML_MAJOR=$(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 1)
-LATEST_OCAML_MINOR=$(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 2)
-LATEST_OCAML_VERSION_MAIN=$(LATEST_OCAML_MAJOR).$(LATEST_OCAML_MINOR)
+ifeq ($(LATEST_OCAML_VERSION),)
+	export LATEST_OCAML_VERSION := $(shell opam list -V ocaml-base-compiler --no-switch -s --columns version | tail -n 1)
+	export LATEST_OCAML_MAJOR := $(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 1)
+	export LATEST_OCAML_MINOR := $(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 2)
+	export LATEST_OCAML_VERSION_MAIN := $(LATEST_OCAML_MAJOR).$(LATEST_OCAML_MINOR)
+endif
 
 MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its -set "LATEST_OCAML_VERSION=$(LATEST_OCAML_VERSION)" -set "LATEST_OCAML_VERSION_MAIN=$(LATEST_OCAML_VERSION_MAIN)" $(SET_STAGING)
 MPP = mpp ${MPP_OPTIONS}
