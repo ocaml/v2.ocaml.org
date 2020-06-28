@@ -1,0 +1,96 @@
+// This script changes links depending on the selected ocaml version
+
+// This variable should be manually modified when a new version appears.
+// TODO: do this automatically.
+var ALL_VERSIONS = [ "4.10", "4.09", "4.08", "4.07", "4.06",
+		     "4.05", "4.04", "4.03", "4.02", "4.01" ];
+
+
+var CURRENT_VERSION_INDEX = localStorage.getItem("CURRENT_VERSION_INDEX");
+if ( CURRENT_VERSION_INDEX == null ) {
+    CURRENT_VERSION_INDEX = 0;
+    console.log ("set storage " + CURRENT_VERSION_INDEX); 
+    localStorage.setItem("CURRENT_VERSION_INDEX", CURRENT_VERSION_INDEX);
+}
+
+console.log(CURRENT_VERSION_INDEX);
+
+// Which HTML "id" is used for the tools section.  This could be
+// autodetected; it will be easier to do it when we merge the manual
+// post-processing from https://github.com/sanette/ocaml-tutorial. In
+// fact, it will probably be unnecessary, since we can directly link
+// to the first file of Part III.
+var tools_sec = {
+    "4.10" : 286,
+    "4.09" : 285,
+    "4.08" : 285,
+    "4.07" : 280,
+    "4.06" : 278,
+    "4.05" : 263,
+    "4.04" : 263,
+    "4.03" : 261,
+    "4.02" : 248,
+    "4.01" : 240 };
+
+function changeLink(version, right, id) {
+    let ref = '/releases/' + version + right;
+    let link = document.getElementById(id);
+    link.setAttribute("href", ref);
+}
+
+function setVersion(version) {
+    var list = document.getElementsByClassName("form-control");
+    for (let item of list) {
+	item.value = version;
+    }
+    
+    changeLink(version, '/htmlman/extn.html', "extref");
+    changeLink(version, '/htmlman/extn.html', "extref_b");
+    changeLink(version, '/htmlman/index.html', "manual");
+    changeLink(version, '/htmlman/core.html', "corref");
+    changeLink(version, '/htmlman/index.html#sec' + tools_sec[version],
+	       "toolref");
+    changeLink(version, '/htmlman/index.html#sec' + tools_sec[version],
+	       "toolref_b");
+    changeLink(version, '/htmlman/index.html#sec6', "tutref");
+    changeLink(version, '/htmlman/index.html#sec6', "tutref_b");
+    changeLink(version, '/htmlman/stdlib.html', "stdlib");
+    changeLink(version, '/htmlman/libref/index.html', "api_b");
+    changeLink(version, '/ocaml-' + version + '-refman.pdf', "refman-pdf");
+    changeLink(version, '/ocaml-' + version + '-refman.txt', "refman-txt");
+    changeLink(version, '/ocaml-' + version + '-refman-html.tar.gz', "refman-html");
+    changeLink(version, '/ocaml-' + version + '-refman.info.tar.gz', "refman-info");
+
+    let stdlib = "Stdlib";
+    if (parseFloat(version) < 4.08) { stdlib = "Pervasives"; }
+    document.getElementById("stdlib_name").textContent=stdlib;
+}
+
+// TODO: it would be better to do this (fill the html for the version
+// selector in index.md and index.fr.md) by a preprocessing, so that
+// we don't have to bother with saving the CURRENT_VERSION variable...
+function fill_selector(){
+    let html = "";
+    for (const version of ALL_VERSIONS) {
+	html = html + '<option>' + version + '</option>';
+    }
+    document.getElementById("version-selector").innerHTML = html;
+}
+
+
+function refresh(){
+    let i = document.Versions.selector.selectedIndex;
+    CURRENT_VERSION_INDEX = i;
+    localStorage.setItem("CURRENT_VERSION_INDEX", i);
+    let version = document.Versions.selector.options[i].value;
+    setVersion(version);
+}
+
+function init(){
+    fill_selector();
+    document.Versions.selector.selectedIndex = CURRENT_VERSION_INDEX;
+}
+
+init();
+window.onload = refresh;
+

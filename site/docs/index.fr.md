@@ -1,48 +1,5 @@
 <!-- ((! set title Docs !)) ((! set documentation !)) ((! set nobreadcrumb !)) -->
 
-<script type="text/javascript">
- <!--  null;
- // This script changes links depending on the selected ocaml version
- function changeLink(version, right, id) {
-   let ref = '/releases/' + version + right;
-   let link = document.getElementById(id);
-   link.setAttribute("href", ref);
- }
-
- function setVersion(version) {
-   var list = document.getElementsByClassName("form-control");
-   for (let item of list) {
-     item.value = version;
-   }
-
-   changeLink(version, '/htmlman/extn.html', "extref");
-   changeLink(version, '/htmlman/extn.html', "extref_b");
-   changeLink(version, '/htmlman/index.html', "manual");
-   changeLink(version, '/htmlman/core.html', "corref");
-   changeLink(version, '/htmlman/index.html#sec286', "toolref");
-   changeLink(version, '/htmlman/index.html#sec286', "toolref_b");
-   changeLink(version, '/htmlman/index.html#sec6', "tutref");
-   changeLink(version, '/htmlman/index.html#sec6', "tutref_b");
-   changeLink(version, '/htmlman/stdlib.html', "stdlib");
-   changeLink(version, '/htmlman/libref/index.html', "api_b");
-   changeLink(version, '/ocaml-' + version + '-refman.pdf', "refman-pdf");
-   changeLink(version, '/ocaml-' + version + '-refman.txt', "refman-txt");
-   changeLink(version, '/ocaml-' + version + '-refman-html.tar.gz', "refman-html");
-   changeLink(version, '/ocaml-' + version + '-refman.info.tar.gz', "refman-info");
-
-   let stdlib = "Stdlib";
-   if (parseFloat(version) < 4.08) { stdlib = "Pervasives"; }
-   document.getElementById("stdlib_name").textContent=stdlib;
- }
-
- function refresh(){
-   let version = document.Versions.selector.options[document.Versions.selector.selectedIndex].value;
-   setVersion(version);
- }
- window.onload = refresh;
- //-->
-</script>
-
 <div class="container">
   <h1>Documentation</h1>
   <div class="form-group">
@@ -53,18 +10,13 @@
 	      style="width: 10ex;vertical-align: baseline;"
 	      onChange="refresh()">
 	<option>4.10</option>
-	<option>4.09</option>
-	<option>4.08</option>
-	<option>4.07</option>
-	<option>4.06</option>
-	<option>4.05</option>
-	<option>4.04</option>
-	<option>4.03</option>
-	<option>4.02</option>
-	<option>4.01</option>
       </select>
     </form>
   </div>
+
+  <!-- this will fill-in the select above with all versions -->
+  <script src="version_selector.js"></script>
+  
   <div class="row">
     <section class="span6 condensed">
       <h1 class="ruled">Les Tutoriels OCaml</h1>
