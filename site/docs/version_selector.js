@@ -9,11 +9,8 @@ var ALL_VERSIONS = [ "4.10", "4.09", "4.08", "4.07", "4.06",
 var CURRENT_VERSION_INDEX = localStorage.getItem("CURRENT_VERSION_INDEX");
 if ( CURRENT_VERSION_INDEX == null ) {
     CURRENT_VERSION_INDEX = 0;
-    console.log ("set storage " + CURRENT_VERSION_INDEX); 
     localStorage.setItem("CURRENT_VERSION_INDEX", CURRENT_VERSION_INDEX);
 }
-
-console.log(CURRENT_VERSION_INDEX);
 
 // Which HTML "id" is used for the tools section.  This could be
 // autodetected; it will be easier to do it when we merge the manual
