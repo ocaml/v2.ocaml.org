@@ -61,7 +61,7 @@ Psellos|http://psellos.com/atom.xml
 Richard Jones|http://rwmj.wordpress.com/tag/ocaml/feed/
 Rudenoise|http://rudenoise.uk/ocaml.rss
 Rudi Grinberg|http://rgrinberg.com/blog/atom.xml
-Sebastien Mondet|http://seb.mondet.org/blog/feed/ocaml.rss
+Sebastien Mondet|https://seb.mondet.org/b/OCaml.rss
 Shayne Fletcher|http://blog.shaynefletcher.org/feeds/posts/default/-/OCaml
 Stefano Zacchiroli|http://upsilon.cc/~zack/tags/ocaml/index.rss
 Sylvain Le Gall|http://le-gall.net/sylvain+violaine/blog/index.php?feed/tag/ocaml/atom
