@@ -8,11 +8,16 @@ local: script/relative_urls
 production: pre-build
 	$(MAKE) gen_md gen_html
 	$(MAKE) syncotherfiles
+	$(MAKE) link-to-latest-manual
 	$(RM) ocaml.org/robots.txt
 
 staging: pre-build
 	$(MAKE) gen_md gen_html SET_STAGING='-set staging'
 	$(MAKE) syncotherfiles
+
+link-to-latest-manual:
+	$(RM) site/manual
+	cd site && ln -s "$(shell cd site && ls -d releases/[0-9].[0-9][0-9]/htmlman |sort|tail -n 1)" manual
 
 # Pattern for directories containing the reference manuals
 # and other release material
