@@ -18,6 +18,8 @@ env:
   - OPAM_SWITCH=4.06.1
   - OPAM_SWITCH=4.07.1
   - OPAM_SWITCH=4.08.1
+  - OPAM_SWITCH=4.09.1
+  - OPAM_SWITCH=4.10.0
 # cache:
 #   directories:
 #   - $HOME/.opam
