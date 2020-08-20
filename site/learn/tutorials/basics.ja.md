@@ -60,7 +60,7 @@ $ ./my_prog.native
 Hello, World!
 ```
 
-詳細に付いては、[Compiling OCaml projects](compiling_ocaml_projects.html)を参照して下さい。
+詳細に付いては、[OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)を参照して下さい。
 
 コメント
 --------
