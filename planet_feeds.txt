@@ -76,3 +76,4 @@ Gabriel Radanne|http://drup.github.io/feed-ocaml.xml
 The BAP Blog|https://binaryanalysisplatform.github.io/feed.xml
 Tarides|https://tarides.com/feed.xml
 Ahrefs|https://medium.com/feed/ahrefs/tagged/ocaml
+Daniil Baturin|https://baturin.org/blog/atom-ocaml.xml
