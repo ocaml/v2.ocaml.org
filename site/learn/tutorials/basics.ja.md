@@ -60,7 +60,7 @@ $ ./my_prog.native
 Hello, World!
 ```
 
-詳細に付いては、[Compiling OCaml projects](compiling_ocaml_projects.html)を参照して下さい。
+詳細に付いては、[OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)を参照して下さい。
 
 コメント
 --------
@@ -76,7 +76,7 @@ OCamlのコメントは`(*` と `*)`で囲まれた部分である。
  *)
 ```
 
-別の言い方をすると、コメントの仕方はCに昔からあるコメント文によく似ている。(`/* ... */`)
+別の言い方をすると、コメントの仕方はCに昔からあるコメント文によく似ている(`/* ... */`)。
 また (Perl の `#...` や C99, C++, Java の `//...` のような)
 行コメントの文法はない。
 
@@ -125,7 +125,7 @@ repeated (get_string_from_user ("Please type in a string."), 3)
 repeated (get_string_from_user "Please type in a string.") 3
 ```
 
-括弧のつけ方とコンマの有無に注意してほしい。一個で言うと「関数呼び出し全体を括弧でくくる。引数の周りには括弧はつけない。」ということになる。さらに例を示そう。
+括弧のつけ方とコンマの有無に注意してほしい。一言でいうと「関数呼び出し全体を括弧でくくる。引数の周りには括弧はつけない。」ということになる。さらに例を示そう。
 
 ```ocaml
 f 5 (g "hello") 3    (* fの引数は3つ。gは一つ *)

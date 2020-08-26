@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>Chapter 2  The module system</title>
+</head>
+<body>
+<a href="coreexamples.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="objectexamples.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h1 class="chapter" id="sec20">Chapter 2  The module system</h1>
+<ul>
+<li><a href="moduleexamples.html#s%3Amodule%3Astructures">2.1  Structures</a>
+</li><li><a href="moduleexamples.html#s%3Asignature">2.2  Signatures</a>
+</li><li><a href="moduleexamples.html#s%3Afunctors">2.3  Functors</a>
+</li><li><a href="moduleexamples.html#s%3Afunctors-and-abstraction">2.4  Functors and type abstraction</a>
+</li><li><a href="moduleexamples.html#s%3Aseparate-compilation">2.5  Modules and separate compilation</a>
+</li></ul>
+<p> <a id="c:moduleexamples"></a>
+</p><p>This chapter introduces the module system of OCaml.</p>
+<h2 class="section" id="s:module:structures"><a class="section-anchor" href="#s:module:structures" aria-hidden="true">﻿</a>2.1  Structures</h2>
+<p>A primary motivation for modules is to package together related
+definitions (such as the definitions of a data type and associated
+operations over that type) and enforce a consistent naming scheme for
+these definitions. This avoids running out of names or accidentally
+confusing names. Such a package is called a <em>structure</em> and
+is introduced by the <span class="c003">struct</span>…<span class="c003">end</span> construct, which contains an
+arbitrary sequence of definitions. The structure is usually given a
+name with the <span class="c003">module</span> binding. Here is for instance a structure
+packaging together a type of priority queues and their operations:
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> PrioQueue =
+   <span class="ocamlkeyword">struct</span>
+     <span class="ocamlkeyword">type</span> priority = int
+     <span class="ocamlkeyword">type</span> 'a queue = Empty | Node <span class="ocamlkeyword">of</span> priority * 'a * 'a queue * 'a queue
+     <span class="ocamlkeyword">let</span> empty = Empty
+     <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> insert queue prio elt =
+       <span class="ocamlkeyword">match</span> queue <span class="ocamlkeyword">with</span>
+         Empty -&gt; Node(prio, elt, Empty, Empty)
+       | Node(p, e, left, right) -&gt;
+           <span class="ocamlkeyword">if</span> prio &lt;= p
+           <span class="ocamlkeyword">then</span> Node(prio, elt, insert right p e, left)
+           <span class="ocamlkeyword">else</span> Node(p, e, insert right prio elt, left)
+     <span class="ocamlkeyword">exception</span> Queue_is_empty
+     <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> remove_top = <span class="ocamlkeyword">function</span>
+         Empty -&gt; raise Queue_is_empty
+       | Node(prio, elt, left, Empty) -&gt; left
+       | Node(prio, elt, Empty, right) -&gt; right
+       | Node(prio, elt, (Node(lprio, lelt, _, _) <span class="ocamlkeyword">as</span> left),
+                         (Node(rprio, relt, _, _) <span class="ocamlkeyword">as</span> right)) -&gt;
+           <span class="ocamlkeyword">if</span> lprio &lt;= rprio
+           <span class="ocamlkeyword">then</span> Node(lprio, lelt, remove_top left, right)
+           <span class="ocamlkeyword">else</span> Node(rprio, relt, left, remove_top right)
+     <span class="ocamlkeyword">let</span> extract = <span class="ocamlkeyword">function</span>
+         Empty -&gt; raise Queue_is_empty
+       | Node(prio, elt, _, _) <span class="ocamlkeyword">as</span> queue -&gt; (prio, elt, remove_top queue)
+   <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> PrioQueue :
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> priority = int
+    <span class="ocamlkeyword">type</span> 'a queue = Empty | Node <span class="ocamlkeyword">of</span> priority * 'a * 'a queue * 'a queue
+    <span class="ocamlkeyword">val</span> empty : 'a queue
+    <span class="ocamlkeyword">val</span> insert : 'a queue -&gt; priority -&gt; 'a -&gt; 'a queue
+    <span class="ocamlkeyword">exception</span> Queue_is_empty
+    <span class="ocamlkeyword">val</span> remove_top : 'a queue -&gt; 'a queue
+    <span class="ocamlkeyword">val</span> extract : 'a queue -&gt; priority * 'a * 'a queue
+  <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+
+Outside the structure, its components can be referred to using the
+“dot notation”, that is, identifiers qualified by a structure name.
+For instance, <span class="c003">PrioQueue.insert</span> is the function <span class="c003">insert</span> defined
+inside the structure <span class="c003">PrioQueue</span> and <span class="c003">PrioQueue.queue</span> is the type
+<span class="c003">queue</span> defined in <span class="c003">PrioQueue</span>.
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> PrioQueue.insert PrioQueue.empty 1 <span class="ocamlstring">"hello"</span>;;</div>
+
+
+
+<div class="pre caml-output ok">- : string PrioQueue.queue =
+PrioQueue.Node (1, <span class="ocamlstring">"hello"</span>, PrioQueue.Empty, PrioQueue.Empty)</div></div>
+
+</div><p>Another possibility is to open the module, which brings all
+identifiers defined inside the module in the scope of the current
+structure.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   <span class="ocamlkeyword">open</span> PrioQueue;;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   insert empty 1 <span class="ocamlstring">"hello"</span>;;</div>
+
+
+
+<div class="pre caml-output ok">- : string PrioQueue.queue = Node (1, <span class="ocamlstring">"hello"</span>, Empty, Empty)</div></div>
+
+</div><p>Opening a module enables lighter access to its components, at the
+cost of making it harder to identify in which module a identifier
+has been defined. In particular, opened modules can shadow
+identifiers present in the current scope, potentially leading
+to confusing errors:</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   <span class="ocamlkeyword">let</span> empty = []
+   <span class="ocamlkeyword">open</span> PrioQueue;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> empty : 'a list = []</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   <span class="ocamlkeyword">let</span> x = 1 :: <span class="ocamlhighlight">empty</span> ;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This expression has type 'a PrioQueue.queue
+       but an expression was expected of type int list</div></div>
+
+</div><p>A partial solution to this conundrum is to open modules locally,
+making the components of the module available only in the
+concerned expression. This can also make the code easier to read
+– the open statement is closer to where it is used– and to refactor
+– the code fragment is more self-contained.
+Two constructions are available for this purpose:
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">open</span> PrioQueue <span class="ocamlkeyword">in</span>
+   insert empty 1 <span class="ocamlstring">"hello"</span>;;</div>
+
+
+
+<div class="pre caml-output ok">- : string PrioQueue.queue = Node (1, <span class="ocamlstring">"hello"</span>, Empty, Empty)</div></div>
+
+</div><p>
+
+
+and
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   PrioQueue.(insert empty 1 <span class="ocamlstring">"hello"</span>);;</div>
+
+
+
+<div class="pre caml-output ok">- : string PrioQueue.queue = Node (1, <span class="ocamlstring">"hello"</span>, Empty, Empty)</div></div>
+
+</div><p>
+
+
+In the second form, when the body of a local open is itself delimited
+by parentheses, braces or bracket, the parentheses of the local open
+can be omitted. For instance,
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   PrioQueue.[empty] = PrioQueue.([empty]);;</div>
+
+
+
+<div class="pre caml-output ok">- : bool = <span class="ocamlkeyword">true</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   PrioQueue.[|empty|] = PrioQueue.([|empty|]);;</div>
+
+
+
+<div class="pre caml-output ok">- : bool = <span class="ocamlkeyword">true</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">    PrioQueue.{ contents = empty } = PrioQueue.({ contents = empty });;</div>
+
+
+
+<div class="pre caml-output ok">- : bool = <span class="ocamlkeyword">true</span></div></div>
+
+</div><p>
+
+
+becomes
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   PrioQueue.[insert empty 1 <span class="ocamlstring">"hello"</span>];;</div>
+
+
+
+<div class="pre caml-output ok">- : string PrioQueue.queue list = [Node (1, <span class="ocamlstring">"hello"</span>, Empty, Empty)]</div></div>
+
+</div><p>
+
+
+This second form also works for patterns:
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   <span class="ocamlkeyword">let</span> at_most_one_element x = <span class="ocamlkeyword">match</span> x <span class="ocamlkeyword">with</span>
+   | PrioQueue.( Empty| Node (_,_, Empty,Empty) ) -&gt; <span class="ocamlkeyword">true</span>
+   | _ -&gt; <span class="ocamlkeyword">false</span> ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> at_most_one_element : 'a PrioQueue.queue -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>It is also possible to copy the components of a module inside
+another module by using an <span class="c003">include</span> statement. This can be
+particularly useful to extend existing modules. As an illustration,
+we could add functions that returns an optional value rather than
+an exception when the priority queue is empty.
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">   <span class="ocamlkeyword">module</span> PrioQueueOpt =
+   <span class="ocamlkeyword">struct</span>
+     <span class="ocamlkeyword">include</span> PrioQueue
+
+     <span class="ocamlkeyword">let</span> remove_top_opt x =
+       <span class="ocamlkeyword">try</span> Some(remove_top x) <span class="ocamlkeyword">with</span> Queue_is_empty -&gt; None
+
+     <span class="ocamlkeyword">let</span> extract_opt x =
+       <span class="ocamlkeyword">try</span> Some(extract x) <span class="ocamlkeyword">with</span> Queue_is_empty -&gt; None
+   <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> PrioQueueOpt :
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> priority = int
+    <span class="ocamlkeyword">type</span> 'a queue =
+      'a PrioQueue.queue =
+        Empty
+      | Node <span class="ocamlkeyword">of</span> priority * 'a * 'a queue * 'a queue
+    <span class="ocamlkeyword">val</span> empty : 'a queue
+    <span class="ocamlkeyword">val</span> insert : 'a queue -&gt; priority -&gt; 'a -&gt; 'a queue
+    <span class="ocamlkeyword">exception</span> Queue_is_empty
+    <span class="ocamlkeyword">val</span> remove_top : 'a queue -&gt; 'a queue
+    <span class="ocamlkeyword">val</span> extract : 'a queue -&gt; priority * 'a * 'a queue
+    <span class="ocamlkeyword">val</span> remove_top_opt : 'a queue -&gt; 'a queue option
+    <span class="ocamlkeyword">val</span> extract_opt : 'a queue -&gt; (priority * 'a * 'a queue) option
+  <span class="ocamlkeyword">end</span></div></div>
+
+</div>
+<h2 class="section" id="s:signature"><a class="section-anchor" href="#s:signature" aria-hidden="true">﻿</a>2.2  Signatures</h2>
+<p>Signatures are interfaces for structures. A signature specifies
+which components of a structure are accessible from the outside, and
+with which type. It can be used to hide some components of a structure
+(e.g. local function definitions) or export some components with a
+restricted type. For instance, the signature below specifies the three
+priority queue operations <span class="c003">empty</span>, <span class="c003">insert</span> and <span class="c003">extract</span>, but not the
+auxiliary function <span class="c003">remove_top</span>. Similarly, it makes the <span class="c003">queue</span> type
+abstract (by not providing its actual representation as a concrete type).
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> PRIOQUEUE =
+   <span class="ocamlkeyword">sig</span>
+     <span class="ocamlkeyword">type</span> priority = int         <span class="ocamlcomment">(* still concrete *)</span>
+     <span class="ocamlkeyword">type</span> 'a queue               <span class="ocamlcomment">(* now abstract *)</span>
+     <span class="ocamlkeyword">val</span> empty : 'a queue
+     <span class="ocamlkeyword">val</span> insert : 'a queue -&gt; int -&gt; 'a -&gt; 'a queue
+     <span class="ocamlkeyword">val</span> extract : 'a queue -&gt; int * 'a * 'a queue
+     <span class="ocamlkeyword">exception</span> Queue_is_empty
+   <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> PRIOQUEUE =
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> priority = int
+    <span class="ocamlkeyword">type</span> 'a queue
+    <span class="ocamlkeyword">val</span> empty : 'a queue
+    <span class="ocamlkeyword">val</span> insert : 'a queue -&gt; int -&gt; 'a -&gt; 'a queue
+    <span class="ocamlkeyword">val</span> extract : 'a queue -&gt; int * 'a * 'a queue
+    <span class="ocamlkeyword">exception</span> Queue_is_empty
+  <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+
+Restricting the <span class="c003">PrioQueue</span> structure by this signature results in
+another view of the <span class="c003">PrioQueue</span> structure where the <span class="c003">remove_top</span>
+function is not accessible and the actual representation of priority
+queues is hidden:
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> AbstractPrioQueue = (PrioQueue : PRIOQUEUE);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> AbstractPrioQueue : PRIOQUEUE</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlhighlight">AbstractPrioQueue.remove_top</span> ;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: Unbound value AbstractPrioQueue.remove_top</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> AbstractPrioQueue.insert AbstractPrioQueue.empty 1 <span class="ocamlstring">"hello"</span>;;</div>
+
+
+
+<div class="pre caml-output ok">- : string AbstractPrioQueue.queue = &lt;abstr&gt;</div></div>
+
+</div><p>
+
+
+The restriction can also be performed during the definition of the
+structure, as in
+</p><pre>module PrioQueue = (struct ... end : PRIOQUEUE);;
+</pre><p>An alternate syntax is provided for the above:
+</p><pre>module PrioQueue : PRIOQUEUE = struct ... end;;
+</pre><p>
+Like for modules, it is possible to include a signature to copy
+its components inside the current signature. For instance, we
+can extend the PRIOQUEUE signature with the <span class="c003">extract_opt</span>
+function:</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> PRIOQUEUE_WITH_OPT =
+   <span class="ocamlkeyword">sig</span>
+     <span class="ocamlkeyword">include</span> PRIOQUEUE
+     <span class="ocamlkeyword">val</span> extract_opt : 'a queue -&gt; (int * 'a * 'a queue) option
+   <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> PRIOQUEUE_WITH_OPT =
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> priority = int
+    <span class="ocamlkeyword">type</span> 'a queue
+    <span class="ocamlkeyword">val</span> empty : 'a queue
+    <span class="ocamlkeyword">val</span> insert : 'a queue -&gt; int -&gt; 'a -&gt; 'a queue
+    <span class="ocamlkeyword">val</span> extract : 'a queue -&gt; int * 'a * 'a queue
+    <span class="ocamlkeyword">exception</span> Queue_is_empty
+    <span class="ocamlkeyword">val</span> extract_opt : 'a queue -&gt; (int * 'a * 'a queue) option
+  <span class="ocamlkeyword">end</span></div></div>
+
+</div>
+<h2 class="section" id="s:functors"><a class="section-anchor" href="#s:functors" aria-hidden="true">﻿</a>2.3  Functors</h2>
+<p>Functors are “functions” from modules to modules. Functors let you create
+parameterized modules and then provide other modules as parameter(s) to get
+a specific implementation. For instance, a <span class="c003">Set</span> module implementing sets
+as sorted lists could be parameterized to work with any module that provides
+an element type and a comparison function <span class="c003">compare</span> (such as <span class="c003">OrderedString</span>):</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> comparison = Less | Equal | Greater;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">type</span> comparison = Less | Equal | Greater</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> ORDERED_TYPE =
+   <span class="ocamlkeyword">sig</span>
+     <span class="ocamlkeyword">type</span> t
+     <span class="ocamlkeyword">val</span> compare: t -&gt; t -&gt; comparison
+   <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> ORDERED_TYPE = <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t <span class="ocamlkeyword">val</span> compare : t -&gt; t -&gt; comparison <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> Set =
+   <span class="ocamlkeyword">functor</span> (Elt: ORDERED_TYPE) -&gt;
+     <span class="ocamlkeyword">struct</span>
+       <span class="ocamlkeyword">type</span> element = Elt.t
+       <span class="ocamlkeyword">type</span> set = element list
+       <span class="ocamlkeyword">let</span> empty = []
+       <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> add x s =
+         <span class="ocamlkeyword">match</span> s <span class="ocamlkeyword">with</span>
+           [] -&gt; [x]
+         | hd::tl -&gt;
+            <span class="ocamlkeyword">match</span> Elt.compare x hd <span class="ocamlkeyword">with</span>
+              Equal   -&gt; s         <span class="ocamlcomment">(* x is already in s *)</span>
+            | Less    -&gt; x :: s    <span class="ocamlcomment">(* x is smaller than all elements of s *)</span>
+            | Greater -&gt; hd :: add x tl
+       <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> member x s =
+         <span class="ocamlkeyword">match</span> s <span class="ocamlkeyword">with</span>
+           [] -&gt; <span class="ocamlkeyword">false</span>
+         | hd::tl -&gt;
+             <span class="ocamlkeyword">match</span> Elt.compare x hd <span class="ocamlkeyword">with</span>
+               Equal   -&gt; <span class="ocamlkeyword">true</span>     <span class="ocamlcomment">(* x belongs to s *)</span>
+             | Less    -&gt; <span class="ocamlkeyword">false</span>    <span class="ocamlcomment">(* x is smaller than all elements of s *)</span>
+             | Greater -&gt; member x tl
+     <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> Set :
+  <span class="ocamlkeyword">functor</span> (Elt : ORDERED_TYPE) -&gt;
+    <span class="ocamlkeyword">sig</span>
+      <span class="ocamlkeyword">type</span> element = Elt.t
+      <span class="ocamlkeyword">type</span> set = element list
+      <span class="ocamlkeyword">val</span> empty : 'a list
+      <span class="ocamlkeyword">val</span> add : Elt.t -&gt; Elt.t list -&gt; Elt.t list
+      <span class="ocamlkeyword">val</span> member : Elt.t -&gt; Elt.t list -&gt; bool
+    <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+
+By applying the <span class="c003">Set</span> functor to a structure implementing an ordered
+type, we obtain set operations for this type:
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> OrderedString =
+   <span class="ocamlkeyword">struct</span>
+     <span class="ocamlkeyword">type</span> t = string
+     <span class="ocamlkeyword">let</span> compare x y = <span class="ocamlkeyword">if</span> x = y <span class="ocamlkeyword">then</span> Equal <span class="ocamlkeyword">else</span> <span class="ocamlkeyword">if</span> x &lt; y <span class="ocamlkeyword">then</span> Less <span class="ocamlkeyword">else</span> Greater
+   <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> OrderedString :
+  <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t = string <span class="ocamlkeyword">val</span> compare : 'a -&gt; 'a -&gt; comparison <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> StringSet = Set(OrderedString);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> StringSet :
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> element = OrderedString.t
+    <span class="ocamlkeyword">type</span> set = element list
+    <span class="ocamlkeyword">val</span> empty : 'a list
+    <span class="ocamlkeyword">val</span> add : OrderedString.t -&gt; OrderedString.t list -&gt; OrderedString.t list
+    <span class="ocamlkeyword">val</span> member : OrderedString.t -&gt; OrderedString.t list -&gt; bool
+  <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> StringSet.member <span class="ocamlstring">"bar"</span> (StringSet.add <span class="ocamlstring">"foo"</span> StringSet.empty);;</div>
+
+
+
+<div class="pre caml-output ok">- : bool = <span class="ocamlkeyword">false</span></div></div>
+
+</div>
+<h2 class="section" id="s:functors-and-abstraction"><a class="section-anchor" href="#s:functors-and-abstraction" aria-hidden="true">﻿</a>2.4  Functors and type abstraction</h2>
+<p>As in the <span class="c003">PrioQueue</span> example, it would be good style to hide the
+actual implementation of the type <span class="c003">set</span>, so that users of the
+structure will not rely on sets being lists, and we can switch later
+to another, more efficient representation of sets without breaking
+their code. This can be achieved by restricting <span class="c003">Set</span> by a suitable
+functor signature:
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> SETFUNCTOR =
+   <span class="ocamlkeyword">functor</span> (Elt: ORDERED_TYPE) -&gt;
+     <span class="ocamlkeyword">sig</span>
+       <span class="ocamlkeyword">type</span> element = Elt.t      <span class="ocamlcomment">(* concrete *)</span>
+       <span class="ocamlkeyword">type</span> set                  <span class="ocamlcomment">(* abstract *)</span>
+       <span class="ocamlkeyword">val</span> empty : set
+       <span class="ocamlkeyword">val</span> add : element -&gt; set -&gt; set
+       <span class="ocamlkeyword">val</span> member : element -&gt; set -&gt; bool
+     <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> SETFUNCTOR =
+  <span class="ocamlkeyword">functor</span> (Elt : ORDERED_TYPE) -&gt;
+    <span class="ocamlkeyword">sig</span>
+      <span class="ocamlkeyword">type</span> element = Elt.t
+      <span class="ocamlkeyword">type</span> set
+      <span class="ocamlkeyword">val</span> empty : set
+      <span class="ocamlkeyword">val</span> add : element -&gt; set -&gt; set
+      <span class="ocamlkeyword">val</span> member : element -&gt; set -&gt; bool
+    <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> AbstractSet = (Set : SETFUNCTOR);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> AbstractSet : SETFUNCTOR</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> AbstractStringSet = AbstractSet(OrderedString);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> AbstractStringSet :
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> element = OrderedString.t
+    <span class="ocamlkeyword">type</span> set = AbstractSet(OrderedString).set
+    <span class="ocamlkeyword">val</span> empty : set
+    <span class="ocamlkeyword">val</span> add : element -&gt; set -&gt; set
+    <span class="ocamlkeyword">val</span> member : element -&gt; set -&gt; bool
+  <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> AbstractStringSet.add <span class="ocamlstring">"gee"</span> AbstractStringSet.empty;;</div>
+
+
+
+<div class="pre caml-output ok">- : AbstractStringSet.set = &lt;abstr&gt;</div></div>
+
+</div><p>In an attempt to write the type constraint above more elegantly,
+one may wish to name the signature of the structure
+returned by the functor, then use that signature in the constraint:
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> SET =
+   <span class="ocamlkeyword">sig</span>
+     <span class="ocamlkeyword">type</span> element
+     <span class="ocamlkeyword">type</span> set
+     <span class="ocamlkeyword">val</span> empty : set
+     <span class="ocamlkeyword">val</span> add : element -&gt; set -&gt; set
+     <span class="ocamlkeyword">val</span> member : element -&gt; set -&gt; bool
+   <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> SET =
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> element
+    <span class="ocamlkeyword">type</span> set
+    <span class="ocamlkeyword">val</span> empty : set
+    <span class="ocamlkeyword">val</span> add : element -&gt; set -&gt; set
+    <span class="ocamlkeyword">val</span> member : element -&gt; set -&gt; bool
+  <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> WrongSet = (Set : <span class="ocamlkeyword">functor</span>(Elt: ORDERED_TYPE) -&gt; SET);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> WrongSet : <span class="ocamlkeyword">functor</span> (Elt : ORDERED_TYPE) -&gt; SET</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> WrongStringSet = WrongSet(OrderedString);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> WrongStringSet :
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> element = WrongSet(OrderedString).element
+    <span class="ocamlkeyword">type</span> set = WrongSet(OrderedString).set
+    <span class="ocamlkeyword">val</span> empty : set
+    <span class="ocamlkeyword">val</span> add : element -&gt; set -&gt; set
+    <span class="ocamlkeyword">val</span> member : element -&gt; set -&gt; bool
+  <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> WrongStringSet.add <span class="ocamlhighlight">"gee"</span> WrongStringSet.empty ;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This expression has type string but an expression was expected of type
+         WrongStringSet.element = WrongSet(OrderedString).element</div></div>
+
+</div><p>
+
+
+The problem here is that <span class="c003">SET</span> specifies the type <span class="c003">element</span>
+abstractly, so that the type equality between <span class="c003">element</span> in the result
+of the functor and <span class="c003">t</span> in its argument is forgotten. Consequently,
+<span class="c003">WrongStringSet.element</span> is not the same type as <span class="c003">string</span>, and the
+operations of <span class="c003">WrongStringSet</span> cannot be applied to strings.
+As demonstrated above, it is important that the type <span class="c003">element</span> in the
+signature <span class="c003">SET</span> be declared equal to <span class="c003">Elt.t</span>; unfortunately, this is
+impossible above since <span class="c003">SET</span> is defined in a context where <span class="c003">Elt</span> does
+not exist. To overcome this difficulty, OCaml provides a
+<span class="c003">with type</span> construct over signatures that allows enriching a signature
+with extra type equalities:
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> AbstractSet2 =
+   (Set : <span class="ocamlkeyword">functor</span>(Elt: ORDERED_TYPE) -&gt; (SET <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">type</span> element = Elt.t));;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> AbstractSet2 :
+  <span class="ocamlkeyword">functor</span> (Elt : ORDERED_TYPE) -&gt;
+    <span class="ocamlkeyword">sig</span>
+      <span class="ocamlkeyword">type</span> element = Elt.t
+      <span class="ocamlkeyword">type</span> set
+      <span class="ocamlkeyword">val</span> empty : set
+      <span class="ocamlkeyword">val</span> add : element -&gt; set -&gt; set
+      <span class="ocamlkeyword">val</span> member : element -&gt; set -&gt; bool
+    <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>As in the case of simple structures, an alternate syntax is provided
+for defining functors and restricting their result:
+</p><pre>module AbstractSet2(Elt: ORDERED_TYPE) : (SET with type element = Elt.t) =
+  struct ... end;;
+</pre><p>
+Abstracting a type component in a functor result is a powerful
+technique that provides a high degree of type safety, as we now
+illustrate. Consider an ordering over character strings that is
+different from the standard ordering implemented in the
+<span class="c003">OrderedString</span> structure. For instance, we compare strings without
+distinguishing upper and lower case.
+
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> NoCaseString =
+   <span class="ocamlkeyword">struct</span>
+     <span class="ocamlkeyword">type</span> t = string
+     <span class="ocamlkeyword">let</span> compare s1 s2 =
+       OrderedString.compare (String.lowercase_ascii s1) (String.lowercase_ascii s2)
+   <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> NoCaseString :
+  <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t = string <span class="ocamlkeyword">val</span> compare : string -&gt; string -&gt; comparison <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> NoCaseStringSet = AbstractSet(NoCaseString);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> NoCaseStringSet :
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> element = NoCaseString.t
+    <span class="ocamlkeyword">type</span> set = AbstractSet(NoCaseString).set
+    <span class="ocamlkeyword">val</span> empty : set
+    <span class="ocamlkeyword">val</span> add : element -&gt; set -&gt; set
+    <span class="ocamlkeyword">val</span> member : element -&gt; set -&gt; bool
+  <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> NoCaseStringSet.add <span class="ocamlstring">"FOO"</span> <span class="ocamlhighlight">AbstractStringSet.empty</span> ;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This expression has type
+         AbstractStringSet.set = AbstractSet(OrderedString).set
+       but an expression was expected of type
+         NoCaseStringSet.set = AbstractSet(NoCaseString).set</div></div>
+
+</div><p>
+
+
+Note that the two types <span class="c003">AbstractStringSet.set</span> and
+<span class="c003">NoCaseStringSet.set</span> are not compatible, and values of these
+two types do not match. This is the correct behavior: even though both
+set types contain elements of the same type (strings), they are built
+upon different orderings of that type, and different invariants need
+to be maintained by the operations (being strictly increasing for the
+standard ordering and for the case-insensitive ordering). Applying
+operations from <span class="c003">AbstractStringSet</span> to values of type
+<span class="c003">NoCaseStringSet.set</span> could give incorrect results, or build
+lists that violate the invariants of <span class="c003">NoCaseStringSet</span>.</p>
+<h2 class="section" id="s:separate-compilation"><a class="section-anchor" href="#s:separate-compilation" aria-hidden="true">﻿</a>2.5  Modules and separate compilation</h2>
+<p>All examples of modules so far have been given in the context of the
+interactive system. However, modules are most useful for large,
+batch-compiled programs. For these programs, it is a practical
+necessity to split the source into several files, called compilation
+units, that can be compiled separately, thus minimizing recompilation
+after changes.</p><p>In OCaml, compilation units are special cases of structures
+and signatures, and the relationship between the units can be
+explained easily in terms of the module system. A compilation unit <span class="c009">A</span>
+comprises two files:
+</p><ul class="itemize"><li class="li-itemize">
+the implementation file <span class="c009">A</span><span class="c003">.ml</span>, which contains a sequence
+of definitions, analogous to the inside of a <span class="c003">struct</span>…<span class="c003">end</span>
+construct;
+</li><li class="li-itemize">the interface file <span class="c009">A</span><span class="c003">.mli</span>, which contains a sequence of
+specifications, analogous to the inside of a <span class="c003">sig</span>…<span class="c003">end</span>
+construct.
+</li></ul><p>
+These two files together define a structure named <span class="c009">A</span> as if
+the following definition was entered at top-level:
+</p><pre>
+module <span class="c009">A</span>: sig (* contents of file <span class="c009">A</span>.mli *) end
+        = struct (* contents of file <span class="c009">A</span>.ml *) end;;
+</pre><p>
+The files that define the compilation units can be compiled separately
+using the <span class="c003">ocamlc -c</span> command (the <span class="c003">-c</span> option means “compile only, do
+not try to link”); this produces compiled interface files (with
+extension <span class="c003">.cmi</span>) and compiled object code files (with extension
+<span class="c003">.cmo</span>). When all units have been compiled, their <span class="c003">.cmo</span> files are
+linked together using the <span class="c003">ocamlc</span> command. For instance, the following
+commands compile and link a program composed of two compilation units
+<span class="c003">Aux</span> and <span class="c003">Main</span>:
+</p><pre>$ ocamlc -c Aux.mli                     # produces aux.cmi
+$ ocamlc -c Aux.ml                      # produces aux.cmo
+$ ocamlc -c Main.mli                    # produces main.cmi
+$ ocamlc -c Main.ml                     # produces main.cmo
+$ ocamlc -o theprogram Aux.cmo Main.cmo
+</pre><p>The program behaves exactly as if the following phrases were entered
+at top-level:
+</p><pre>
+module Aux: sig (* contents of Aux.mli *) end
+          = struct (* contents of Aux.ml *) end;;
+module Main: sig (* contents of Main.mli *) end
+           = struct (* contents of Main.ml *) end;;
+</pre><p>
+In particular, <span class="c003">Main</span> can refer to <span class="c003">Aux</span>: the definitions and
+declarations contained in <span class="c003">Main.ml</span> and <span class="c003">Main.mli</span> can refer to
+definition in <span class="c003">Aux.ml</span>, using the <span class="c003">Aux.</span><span class="c009">ident</span> notation, provided
+these definitions are exported in <span class="c003">Aux.mli</span>.</p><p>The order in which the <span class="c003">.cmo</span> files are given to <span class="c003">ocamlc</span> during the
+linking phase determines the order in which the module definitions
+occur. Hence, in the example above, <span class="c003">Aux</span> appears first and <span class="c003">Main</span> can
+refer to it, but <span class="c003">Aux</span> cannot refer to <span class="c003">Main</span>.</p><p>Note that only top-level structures can be mapped to
+separately-compiled files, but neither functors nor module types.
+However, all module-class objects can appear as components of a
+structure, so the solution is to put the functor or module type
+inside a structure, which can then be mapped to a file.
+
+</p>
+<hr>
+<a href="coreexamples.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="objectexamples.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

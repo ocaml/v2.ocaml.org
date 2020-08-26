@@ -57,7 +57,7 @@ Les autres paquets Debian liés à OCaml sont
 Ils sont disponibles selon
 [la politique de construction des paquets pour OCaml](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html) (en anglais) de Debian.
 
-### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 19.10](https://repology.org/badge/version-only-for-repo/ubuntu_19_10/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 20.04](https://repology.org/badge/version-only-for-repo/ubuntu_20_04/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 apt install ocaml # Avec le support de X11 (donc le module Graphics)
@@ -68,7 +68,7 @@ apt install ocaml-nox # Plus léger, si vous ne voulez pas le support de X11
 Les autres paquets Unbuntu liés à OCaml sont
 [listés ici](http://packages.ubuntu.com/search?keywords=ocaml) (en anglais).
 
-### [Fedora](https://getfedora.org/) [![Fedora 31](https://repology.org/badge/version-only-for-repo/fedora_31/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Fedora](https://getfedora.org/) [![Fedora 32](https://repology.org/badge/version-only-for-repo/fedora_32/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 yum install ocaml

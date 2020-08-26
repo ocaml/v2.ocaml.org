@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.10  Generalized algebraic datatypes</title>
+</head>
+<body>
+<a href="overridingopen.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="bigarray.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:gadts"><a class="section-anchor" href="#s:gadts" aria-hidden="true">﻿</a>8.10  Generalized algebraic datatypes</h2>
+<p> <a id="hevea_manual.kwd225"></a>
+<a id="hevea_manual.kwd226"></a>
+</p><p>(Introduced in OCaml 4.00)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="typedecl.html#constr-decl"><span class="c010">constr-decl</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="names.html#constr-name"><span class="c010">constr-name</span></a> <span class="c004">:</span>  [ <a class="syntax" href="typedecl.html#constr-args"><span class="c010">constr-args</span></a> <span class="c004">-&gt;</span> ]  <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="typedecl.html#type-param"><span class="c010">type-param</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> [<a class="syntax" href="typedecl.html#variance"><span class="c010">variance</span></a>] <span class="c004">_</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>Generalized algebraic datatypes, or GADTs, extend usual sum types in
+two ways: constraints on type parameters may change depending on the
+value constructor, and some type variables may be existentially
+quantified.
+Adding constraints is done by giving an explicit return type
+(the rightmost <a class="syntax" href="types.html#typexpr"><span class="c010">typexpr</span></a> in the above syntax), where type parameters
+are instantiated.
+This return type must use the same type constructor as the type being
+defined, and have the same number of parameters.
+Variables are made existential when they appear inside a constructor’s
+argument, but not in its return type.</p><p>Since the use of a return type often eliminates the need to name type
+parameters in the left-hand side of a type definition, one can replace
+them with anonymous types <span class="c004">_</span> in that case.</p><p>The constraints associated to each constructor can be recovered
+through pattern-matching.
+Namely, if the type of the scrutinee of a pattern-matching contains
+a locally abstract type, this type can be refined according to the
+constructor used.
+These extra constraints are only valid inside the corresponding branch
+of the pattern-matching.
+If a constructor has some existential variables, fresh locally
+abstract types are generated, and they must not escape the
+scope of this branch.</p>
+<h5 class="paragraph" id="p:gadts-recfun"><a class="section-anchor" href="#p:gadts-recfun" aria-hidden="true">﻿</a>Recursive functions</h5>
+<p>Here is a concrete example:
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> _ term =
+   | Int : int -&gt; int term
+   | Add : (int -&gt; int -&gt; int) term
+   | App : ('b -&gt; 'a) term * 'b term -&gt; 'a term
+
+ <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> eval : <span class="ocamlkeyword">type</span> a. a term -&gt; a = <span class="ocamlkeyword">function</span>
+   | Int n    -&gt; n                 <span class="ocamlcomment">(* a = int *)</span>
+   | Add      -&gt; (<span class="ocamlkeyword">fun</span> x y -&gt; x+y)  <span class="ocamlcomment">(* a = int -&gt; int -&gt; int *)</span>
+   | App(f,x) -&gt; (eval f) (eval x)
+           <span class="ocamlcomment">(* eval called at types (b-&gt;a) and b for fresh b *)</span></div></div>
+
+</div><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> two = eval (App (App (Add, Int 1), Int 1))</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> two : int = 2</div></div>
+
+</div><p>
+
+
+It is important to remark that the function <span class="c003">eval</span> is using the
+polymorphic syntax for locally abstract types. When defining a recursive
+function that manipulates a GADT, explicit polymorphic recursion should
+generally be used. For instance, the following definition fails with a
+type error:
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> eval (<span class="ocamlkeyword">type</span> a) : a term -&gt; a = <span class="ocamlkeyword">function</span>
+   | Int n    -&gt; n
+   | Add      -&gt; (<span class="ocamlkeyword">fun</span> x y -&gt; x+y)
+   | App(f,x) -&gt; (eval <span class="ocamlhighlight">f</span>) (eval x)</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This expression has type ($App_'b -&gt; a) term
+       but an expression was expected of type 'a
+       The type constructor $App_'b would escape its scope</div></div>
+
+</div><p>
+
+
+In absence of an explicit polymorphic annotation, a monomorphic type
+is inferred for the recursive function. If a recursive call occurs
+inside the function definition at a type that involves an existential
+GADT type variable, this variable flows to the type of the recursive
+function, and thus escapes its scope. In the above example, this happens
+in the branch <span class="c003">App(f,x)</span> when <span class="c003">eval</span> is called with <span class="c003">f</span> as an argument.
+In this branch, the type of <span class="c003">f</span> is <span class="c003">($App_ 'b-&gt; a)</span>. The prefix <span class="c003">$</span> in
+<span class="c003">$App_ 'b</span> denotes an existential type named by the compiler
+(see <a href="#p%3Aexistential-names">8.10</a>). Since the type of <span class="c003">eval</span> is
+<span class="c003">'a term -&gt; 'a</span>, the call <span class="c003">eval f</span> makes the existential type <span class="c003">$App_'b</span>
+flow to the type variable <span class="c003">'a</span> and escape its scope. This triggers the
+above error.</p>
+<h5 class="paragraph" id="p:gadts-type-inference"><a class="section-anchor" href="#p:gadts-type-inference" aria-hidden="true">﻿</a>Type inference</h5>
+<p>Type inference for GADTs is notoriously hard.
+This is due to the fact some types may become ambiguous when escaping
+from a branch.
+For instance, in the <span class="c003">Int</span> case above, <span class="c003">n</span> could have either type <span class="c003">int</span>
+or <span class="c003">a</span>, and they are not equivalent outside of that branch.
+As a first approximation, type inference will always work if a
+pattern-matching is annotated with types containing no free type
+variables (both on the scrutinee and the return type).
+This is the case in the above example, thanks to the type annotation
+containing only locally abstract types.</p><p>In practice, type inference is a bit more clever than that: type
+annotations do not need to be immediately on the pattern-matching, and
+the types do not have to be always closed.
+As a result, it is usually enough to only annotate functions, as in
+the example above. Type annotations are
+propagated in two ways: for the scrutinee, they follow the flow of
+type inference, in a way similar to polymorphic methods; for the
+return type, they follow the structure of the program, they are split
+on functions, propagated to all branches of a pattern matching,
+and go through tuples, records, and sum types.
+Moreover, the notion of ambiguity used is stronger: a type is only
+seen as ambiguous if it was mixed with incompatible types (equated by
+constraints), without type annotations between them.
+For instance, the following program types correctly.
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> sum : <span class="ocamlkeyword">type</span> a. a term -&gt; _ = <span class="ocamlkeyword">fun</span> x -&gt;
+   <span class="ocamlkeyword">let</span> y =
+     <span class="ocamlkeyword">match</span> x <span class="ocamlkeyword">with</span>
+     | Int n -&gt; n
+     | Add   -&gt; 0
+     | App(f,x) -&gt; sum f + sum x
+   <span class="ocamlkeyword">in</span> y + 1</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> sum : 'a term -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>
+
+
+Here the return type <span class="c003">int</span> is never mixed with <span class="c003">a</span>, so it is seen as
+non-ambiguous, and can be inferred.
+When using such partial type annotations we strongly suggest
+specifying the <span class="c003">-principal</span> mode, to check that inference is
+principal.</p><p>The exhaustiveness check is aware of GADT constraints, and can
+automatically infer that some cases cannot happen.
+For instance, the following pattern matching is correctly seen as
+exhaustive (the <span class="c003">Add</span> case cannot happen).
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> get_int : int term -&gt; int = <span class="ocamlkeyword">function</span>
+   | Int n    -&gt; n
+   | App(_,_) -&gt; 0</div></div>
+
+</div>
+<h5 class="paragraph" id="p:gadt-refutation-cases"><a class="section-anchor" href="#p:gadt-refutation-cases" aria-hidden="true">﻿</a>Refutation cases</h5>
+<p> (Introduced in OCaml 4.03)</p><p>Usually, the exhaustiveness check only tries to check whether the
+cases omitted from the pattern matching are typable or not.
+However, you can force it to try harder by adding <em>refutation cases</em>:
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="matching-case"><span class="c010">matching-case</span></a></td><td class="c015">::=</td><td class="c017">
+<a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a>  [<span class="c004">when</span> <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>] <span class="c004">-&gt;</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="patterns.html#pattern"><span class="c010">pattern</span></a> <span class="c004">-&gt;</span> <span class="c004">.</span>
+</td></tr>
+</table></td></tr>
+</table></div><p>
+In presence of a refutation case, the exhaustiveness check will first
+compute the intersection of the pattern with the complement of the
+cases preceding it. It then checks whether the resulting patterns can
+really match any concrete values by trying to type-check them.
+Wild cards in the generated patterns are handled in a special way: if
+their type is a variant type with only GADT constructors, then the
+pattern is split into the different constructors, in order to check whether
+any of them is possible (this splitting is not done for arguments of these
+constructors, to avoid non-termination). We also split tuples and
+variant types with only one case, since they may contain GADTs inside.
+For instance, the following code is deemed exhaustive:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> _ t =
+   | Int : int t
+   | Bool : bool t
+
+ <span class="ocamlkeyword">let</span> deep : (char t * int) option -&gt; char = <span class="ocamlkeyword">function</span>
+   | None -&gt; 'c'
+   | _ -&gt; .</div></div>
+
+</div><p>Namely, the inferred remaining case is <span class="c003">Some _</span>, which is split into
+<span class="c003">Some (Int, _)</span> and <span class="c003">Some (Bool, _)</span>, which are both untypable because
+<span class="c003">deep</span> expects a non-existing <span class="c003">char t</span> as the first element of the tuple.
+Note that the refutation case could be omitted here, because it is
+automatically added when there is only one case in the pattern
+matching.</p><p>Another addition is that the redundancy check is now aware of GADTs: a
+case will be detected as redundant if it could be replaced by a
+refutation case using the same pattern.</p>
+<h5 class="paragraph" id="p:gadts-advexamples"><a class="section-anchor" href="#p:gadts-advexamples" aria-hidden="true">﻿</a>Advanced examples</h5>
+<p>
+The <span class="c003">term</span> type we have defined above is an <em>indexed</em> type, where
+a type parameter reflects a property of the value contents.
+Another use of GADTs is <em>singleton</em> types, where a GADT value
+represents exactly one type. This value can be used as runtime
+representation for this type, and a function receiving it can have a
+polytypic behavior.</p><p>Here is an example of a polymorphic function that takes the
+runtime representation of some type <span class="c003">t</span> and a value of the same type,
+then pretty-prints the value as a string:
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> _ typ =
+   | Int : int typ
+   | String : string typ
+   | Pair : 'a typ * 'b typ -&gt; ('a * 'b) typ
+
+ <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> to_string: <span class="ocamlkeyword">type</span> t. t typ -&gt; t -&gt; string =
+   <span class="ocamlkeyword">fun</span> t x -&gt;
+   <span class="ocamlkeyword">match</span> t <span class="ocamlkeyword">with</span>
+   | Int -&gt; Int.to_string x
+   | String -&gt; Printf.sprintf <span class="ocamlstring">"%S"</span> x
+   | Pair(t1,t2) -&gt;
+       <span class="ocamlkeyword">let</span> (x1, x2) = x <span class="ocamlkeyword">in</span>
+       Printf.sprintf <span class="ocamlstring">"(%s,%s)"</span> (to_string t1 x1) (to_string t2 x2)</div></div>
+
+</div><p>Another frequent application of GADTs is equality witnesses.
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> (_,_) eq = Eq : ('a,'a) eq
+
+ <span class="ocamlkeyword">let</span> cast : <span class="ocamlkeyword">type</span> a b. (a,b) eq -&gt; a -&gt; b = <span class="ocamlkeyword">fun</span> Eq x -&gt; x</div></div>
+
+</div><p>
+
+
+Here type <span class="c003">eq</span> has only one constructor, and by matching on it one
+adds a local constraint allowing the conversion between <span class="c003">a</span> and <span class="c003">b</span>.
+By building such equality witnesses, one can make equal types which
+are syntactically different.</p><p>Here is an example using both singleton types and equality witnesses
+to implement dynamic types.
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> eq_type : <span class="ocamlkeyword">type</span> a b. a typ -&gt; b typ -&gt; (a,b) eq option =
+   <span class="ocamlkeyword">fun</span> a b -&gt;
+   <span class="ocamlkeyword">match</span> a, b <span class="ocamlkeyword">with</span>
+   | Int, Int -&gt; Some Eq
+   | String, String -&gt; Some Eq
+   | Pair(a1,a2), Pair(b1,b2) -&gt;
+       <span class="ocamlkeyword">begin</span> <span class="ocamlkeyword">match</span> eq_type a1 b1, eq_type a2 b2 <span class="ocamlkeyword">with</span>
+       | Some Eq, Some Eq -&gt; Some Eq
+       | _ -&gt; None
+       <span class="ocamlkeyword">end</span>
+   | _ -&gt; None
+
+ <span class="ocamlkeyword">type</span> dyn = Dyn : 'a typ * 'a -&gt; dyn
+
+ <span class="ocamlkeyword">let</span> get_dyn : <span class="ocamlkeyword">type</span> a. a typ -&gt; dyn -&gt; a option =
+   <span class="ocamlkeyword">fun</span> a (Dyn(b,x)) -&gt;
+   <span class="ocamlkeyword">match</span> eq_type a b <span class="ocamlkeyword">with</span>
+   | None -&gt; None
+   | Some Eq -&gt; Some x</div></div>
+
+</div>
+<h5 class="paragraph" id="p:existential-names"><a class="section-anchor" href="#p:existential-names" aria-hidden="true">﻿</a>Existential type names in error messages</h5>
+<p>(Updated in OCaml 4.03.0)</p><p>The typing of pattern matching in presence of GADT can generate many
+existential types. When necessary, error messages refer to these
+existential types using compiler-generated names. Currently, the
+compiler generates these names according to the following nomenclature:
+</p><ul class="itemize"><li class="li-itemize">
+First, types whose name starts with a <span class="c003">$</span> are existentials.
+</li><li class="li-itemize"><span class="c003">$Constr_'a</span> denotes an existential type introduced for the type
+variable <span class="c003">'a</span> of the GADT constructor <span class="c003">Constr</span>:
+
+
+<div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> any = Any : 'name -&gt; any
+ <span class="ocamlkeyword">let</span> escape (Any x) = <span class="ocamlhighlight">x</span></div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This expression has type $Any_'name
+       but an expression was expected of type 'a
+       The type constructor $Any_'name would escape its scope</div></div>
+
+</div>
+
+
+</li><li class="li-itemize"><span class="c003">$Constr</span> denotes an existential type introduced for an anonymous type variable in the GADT constructor <span class="c003">Constr</span>:
+
+
+<div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> any = Any : _ -&gt; any
+ <span class="ocamlkeyword">let</span> escape (Any x) = <span class="ocamlhighlight">x</span></div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This expression has type $Any but an expression was expected of type
+         'a
+       The type constructor $Any would escape its scope</div></div>
+
+</div>
+
+
+</li><li class="li-itemize"><span class="c003">$'a</span> if the existential variable was unified with the type variable <span class="c003">'a</span> during typing:
+
+
+<div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> ('arg,'result,'aux) fn =
+   | Fun: ('a -&gt;'b) -&gt; ('a,'b,unit) fn
+   | Mem1: ('a -&gt;'b) * 'a * 'b -&gt; ('a, 'b, 'a * 'b) fn
+  <span class="ocamlkeyword">let</span> apply: ('arg,'result, _ ) fn -&gt; 'arg -&gt; 'result = <span class="ocamlkeyword">fun</span> f x -&gt;
+   <span class="ocamlkeyword">match</span> f <span class="ocamlkeyword">with</span>
+   | Fun f -&gt; f x
+   | <span class="ocamlhighlight">Mem1 (f,y,fy)</span> -&gt; <span class="ocamlkeyword">if</span> x = y <span class="ocamlkeyword">then</span> fy <span class="ocamlkeyword">else</span> f x</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This pattern matches values of type
+         ($'arg, 'result, $'arg * 'result) fn
+       but a pattern was expected which matches values of type
+         ($'arg, 'result, unit) fn
+       The type constructor $'arg would escape its scope</div></div>
+
+</div>
+
+
+</li><li class="li-itemize"><span class="c003">$n</span> (n a number) is an internally generated existential which could not be named using one of the previous schemes.
+</li></ul><p>As shown by the last item, the current behavior is imperfect
+and may be improved in future versions.</p>
+<h5 class="paragraph" id="p:gadt-equation-nonlocal-abstract"><a class="section-anchor" href="#p:gadt-equation-nonlocal-abstract" aria-hidden="true">﻿</a>Equations on non-local abstract types</h5>
+<p> (Introduced in OCaml
+4.04)</p><p>GADT pattern-matching may also add type equations to non-local
+abstract types. The behaviour is the same as with local abstract
+types. Reusing the above <span class="c003">eq</span> type, one can write:
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> M : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t <span class="ocamlkeyword">val</span> x : t <span class="ocamlkeyword">val</span> e : (t,int) eq <span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span>
+   <span class="ocamlkeyword">type</span> t = int
+   <span class="ocamlkeyword">let</span> x = 33
+   <span class="ocamlkeyword">let</span> e = Eq
+ <span class="ocamlkeyword">end</span>
+
+ <span class="ocamlkeyword">let</span> x : int = <span class="ocamlkeyword">let</span> Eq = M.e <span class="ocamlkeyword">in</span> M.x</div></div>
+
+</div><p>Of course, not all abstract types can be refined, as this would
+contradict the exhaustiveness check. Namely, builtin types (those
+defined by the compiler itself, such as <span class="c003">int</span> or <span class="c003">array</span>), and
+abstract types defined by the local module, are non-instantiable, and
+as such cause a type error rather than introduce an equation.</p>
+<hr>
+<a href="overridingopen.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="bigarray.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>
