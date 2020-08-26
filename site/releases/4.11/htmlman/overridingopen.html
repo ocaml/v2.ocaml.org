@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.9  Overriding in open statements</title>
+</head>
+<body>
+<a href="modulealias.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="gadts.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:explicit-overriding-open"><a class="section-anchor" href="#s:explicit-overriding-open" aria-hidden="true">﻿</a>8.9  Overriding in open statements</h2>
+<p>
+<a id="hevea_manual.kwd224"></a>
+</p><p>(Introduced in OCaml 4.01)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modules.html#definition"><span class="c010">definition</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open!</span> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">open!</span> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">let</span> <span class="c004">open!</span> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-body-type</span></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">let</span> <span class="c004">open!</span> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">in</span>  <a class="syntax" href="classes.html#class-body-type"><span class="c010">class-body-type</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">class-expr</span></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017">  <span class="c004">let</span> <span class="c004">open!</span> <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a> <span class="c004">in</span>  <a class="syntax" href="classes.html#class-expr"><span class="c010">class-expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Since OCaml 4.01, <span class="c004">open</span> statements shadowing an existing identifier
+(which is later used) trigger the warning 44. Adding a <span class="c004">!</span>
+character after the <span class="c004">open</span> keyword indicates that such a shadowing is
+intentional and should not trigger the warning.</p><p>This is also available (since OCaml 4.06) for local opens in class
+expressions and class type expressions.</p>
+<hr>
+<a href="modulealias.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="gadts.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.8  Type-level module aliases</title>
+</head>
+<body>
+<a href="signaturesubstitution.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="overridingopen.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:module-alias"><a class="section-anchor" href="#s:module-alias" aria-hidden="true">﻿</a>8.8  Type-level module aliases</h2>
+<p>
+<a id="hevea_manual.kwd223"></a>
+</p><p>(Introduced in OCaml 4.02)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modtypes.html#specification"><span class="c010">specification</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">module</span> <a class="syntax" href="names.html#module-name"><span class="c010">module-name</span></a> <span class="c004">=</span>  <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>The above specification, inside a signature, only matches a module
+definition equal to <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>. Conversely, a type-level module
+alias can be matched by itself, or by any supertype of the type of the
+module it references.</p><p>There are several restrictions on <a class="syntax" href="names.html#module-path"><span class="c010">module-path</span></a>:
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+it should be of the form <span class="c009">M</span><sub>0</sub>.<span class="c009">M</span><sub>1</sub>...<span class="c009">M</span><sub><span class="c009">n</span></sub> (<em>i.e.</em> without
+functor applications);
+</li><li class="li-enumerate">inside the body of a functor, <span class="c009">M</span><sub>0</sub> should not be one of the
+functor parameters;
+</li><li class="li-enumerate">inside a recursive module definition, <span class="c009">M</span><sub>0</sub> should not be one of
+the recursively defined modules.
+</li></ol><p>Such specifications are also inferred. Namely, when <span class="c010">P</span> is a path
+satisfying the above constraints,
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> N = P</div></div>
+
+</div><p>
+
+
+has type
+
+
+</p><div class="caml-example signature">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> N = P</div></div>
+
+</div><p>Type-level module aliases are used when checking module path
+equalities. That is, in a context where module name <span class="c010">N</span> is known to be
+an alias for <span class="c010">P</span>, not only these two module paths check as equal, but
+<span class="c010">F</span> (<span class="c010">N</span>) and <span class="c010">F</span> (<span class="c010">P</span>) are also recognized as equal. In the default
+compilation mode, this is the only difference with the previous
+approach of module aliases having just the same module type as the
+module they reference.</p><p>When the compiler flag <span class="c004">-no-alias-deps</span> is enabled, type-level
+module aliases are also exploited to avoid introducing dependencies
+between compilation units. Namely, a module alias referring to a
+module inside another compilation unit does not introduce a link-time
+dependency on that compilation unit, as long as it is not
+dereferenced; it still introduces a compile-time dependency if the
+interface needs to be read, <em>i.e.</em> if the module is a submodule
+of the compilation unit, or if some type components are referred to.
+Additionally, accessing a module alias introduces a link-time
+dependency on the compilation unit containing the module referenced by
+the alias, rather than the compilation unit containing the alias.
+Note that these differences in link-time behavior may be incompatible
+with the previous behavior, as some compilation units might not be
+extracted from libraries, and their side-effects ignored.</p><p>These weakened dependencies make possible to use module aliases in
+place of the <span class="c004">-pack</span> mechanism. Suppose that you have a library
+<span class="c004">Mylib</span> composed of modules <span class="c004">A</span> and <span class="c004">B</span>. Using <span class="c004">-pack</span>, one
+would issue the command line
+</p><pre>ocamlc -pack a.cmo b.cmo -o mylib.cmo
+</pre><p>and as a result obtain a <span class="c004">Mylib</span> compilation unit, containing
+physically <span class="c004">A</span> and <span class="c004">B</span> as submodules, and with no dependencies on
+their respective compilation units.
+Here is a concrete example of a possible alternative approach:
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+Rename the files containing <span class="c004">A</span> and <span class="c004">B</span> to <span class="c004">Mylib__A</span> and
+<span class="c004">Mylib__B</span>.
+</li><li class="li-enumerate">Create a packing interface <span class="c004">Mylib.ml</span>, containing the
+following lines.
+<pre>module A = Mylib__A
+module B = Mylib__B
+</pre></li><li class="li-enumerate">Compile <span class="c004">Mylib.ml</span> using <span class="c004">-no-alias-deps</span>, and the other
+files using <span class="c004">-no-alias-deps</span> and <span class="c002"><span class="c003">-open</span> <span class="c003">Mylib</span></span> (the last one is
+equivalent to adding the line <span class="c002"><span class="c003">open!</span> <span class="c003">Mylib</span></span> at the top of each
+file).
+<pre>ocamlc -c -no-alias-deps Mylib.ml
+ocamlc -c -no-alias-deps -open Mylib Mylib__*.mli Mylib__*.ml
+</pre></li><li class="li-enumerate">Finally, create a library containing all the compilation units,
+and export all the compiled interfaces.
+<pre>ocamlc -a Mylib*.cmo -o Mylib.cma
+</pre></li></ol><p>
+This approach lets you access <span class="c004">A</span> and <span class="c004">B</span> directly inside the
+library, and as <span class="c004">Mylib.A</span> and <span class="c004">Mylib.B</span> from outside.
+It also has the advantage that <span class="c004">Mylib</span> is no longer monolithic: if
+you use <span class="c004">Mylib.A</span>, only <span class="c004">Mylib__A</span> will be linked in, not
+<span class="c004">Mylib__B</span>.
+</p><p>Note the use of double underscores in <span class="c004">Mylib__A</span> and
+<span class="c004">Mylib__B</span>. These were chosen on purpose; the compiler uses the
+following heuristic when printing paths: given a path <span class="c004">Lib__fooBar</span>,
+if <span class="c004">Lib.FooBar</span> exists and is an alias for <span class="c004">Lib__fooBar</span>, then the
+compiler will always display <span class="c004">Lib.FooBar</span> instead of
+<span class="c004">Lib__fooBar</span>. This way the long <span class="c004">Mylib__</span> names stay hidden and
+all the user sees is the nicer dot names. This is how the OCaml
+standard library is compiled.</p>
+<hr>
+<a href="signaturesubstitution.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="overridingopen.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>
