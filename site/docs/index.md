@@ -9,7 +9,7 @@
       <select class="form-control" id="version-selector" name="selector"
 	      style="width: 10ex;vertical-align: baseline;"
 	      onChange="refresh()">
-	<option>4.10</option>
+	<option>4.11</option>
       </select>
     </form>
   </div>
@@ -22,13 +22,13 @@
       <h1 class="ruled">The OCaml Tutorials</h1>
       <p>The official
 	<a id="tutref"
-	   href="/releases/4.10/htmlman/index.html#sec6">OCaml tutorials</a>
+	   href="/releases/4.11/htmlman/index.html#sec6">OCaml tutorials</a>
 	(chapters 1 to 6 of the manual), written by the creators of
 	the language, are the best place to start. They form a
 	complete introduction to programming in OCaml, including the
 	module system, objects, polymorphism, etc.
 
-	<a id="tutref_b" href="/releases/4.10/htmlman/index.html#sec6">
+	<a id="tutref_b" href="/releases/4.11/htmlman/index.html#sec6">
 	  <input type="button" class="btn btn-default"
 		 style="float:right;" name="button-tut"
 		 value="Read the tutorials"></a>
@@ -40,14 +40,14 @@
       <p>This is the place you'll end up most often!  You'll find the
 	documentation for all modules that ship with any ocaml
 	distribution. These modules form what is called
-	the <a id="stdlib" href="/releases/4.10/htmlman/stdlib.html">Standard
+	the <a id="stdlib" href="/releases/4.11/htmlman/stdlib.html">Standard
 	Library</a>. In addition, a special
 	module <code id="stdlib_name">Stdlib</code> contains
-	the <a id="corref" href="/releases/4.10/htmlman/core.html">core
+	the <a id="corref" href="/releases/4.11/htmlman/core.html">core
 	library</a>, and is always open.
 
 	<a id="api_b"
-	   href="/releases/4.10/htmlman/libref/index.html">
+	   href="/releases/4.11/htmlman/libref/index.html">
 	  <input type="button" class="btn btn-default"
 		 style="float:right;" name="button-api"
 		 value="OCaml API"></a>
@@ -58,13 +58,13 @@
       <h1 class="ruled">The Tools</h1>
       <p>
 	Many <a id="toolref"
-		    href="/releases/4.10/htmlman/index.html#sec286">tools</a>
+		    href="/releases/4.11/htmlman/index.html#sec286">tools</a>
 	are bundled with the OCaml language. Among them, the REPL (or
 	`toplevel'), the documentation generator, lexers, the
 	debugger, profiling tools, etc.
 
 	<a id="toolref_b"
-	   href="/releases/4.10/htmlman/index.html#sec286">
+	   href="/releases/4.11/htmlman/index.html#sec286">
 	  <input type="button" class="btn btn-default"
 		 style="float:right;" name="button-api"
 		 value="OCaml Tools"></a>
@@ -76,12 +76,12 @@
 
       <p>Don't forget to regulary check the
 	<a id="extref"
-	   href="/releases/4.10/htmlman/extn.html">Language Extensions</a>,
+	   href="/releases/4.11/htmlman/extn.html">Language Extensions</a>,
 	they will keep you up-to-date with useful new OCaml idioms
 	and constructions.<br>
 
 	<a id="extref_b"
-	   href="/releases/4.10/htmlman/extn.html">
+	   href="/releases/4.11/htmlman/extn.html">
 	  <input type="button" class="btn btn-default"
 		 style="float:right;" name="button-ext"
 		 value="OCaml Extensions"></a>
@@ -92,18 +92,18 @@
     <section class="span6 condensed">
       <h1 class="ruled">The OCaml Manual</h1>
       <p>The complete documentation is bundled as a
-	large <a id="manual" href="/releases/4.10/htmlman/index.html">
+	large <a id="manual" href="/releases/4.11/htmlman/index.html">
 	OCaml Manual</a>.  This manual is also available in
 	<a id="refman-pdf"
-	   href="/releases/4.10/ocaml-4.10-refman.pdf">PDF</a>,
+	   href="/releases/4.11/ocaml-4.11-refman.pdf">PDF</a>,
 	<a id="refman-txt"
-	   href="/releases/4.10/ocaml-4.10-refman.txt">plain text</a>,
+	   href="/releases/4.11/ocaml-4.11-refman.txt">plain text</a>,
 	as a
 	<a id="refman-html"
-	   href="/releases/4.10/ocaml-4.10-refman-html.tar.gz">bundle of
+	   href="/releases/4.11/ocaml-4.11-refman-html.tar.gz">bundle of
 	  HTML files</a>, and as a
 	<a id="refman-info"
-	   href="/releases/4.10/ocaml-4.10-refman.info.tar.gz">bundle of
+	   href="/releases/4.11/ocaml-4.11-refman.info.tar.gz">bundle of
 	  Emacs Info files</a>.
       </p>
     </section>
