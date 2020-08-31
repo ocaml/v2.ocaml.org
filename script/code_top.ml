@@ -5,16 +5,6 @@
 open Printf
 open Code_types
 
-(* Force the linking of some modules for #load "camlp4o.cma" *)
-module S___ = Stream
-module Q___ = Queue
-module C___ = CamlinternalOO
-module D___ = Dynlink
-module St__ = StdLabels
-module Ll__ = ListLabels
-module Al__ = ArrayLabels
-module Sl__ = StringLabels
-
 let () =
   eprintf "***** STARTING OCAML TOPLEVEL ******\n%!";
   Unix.putenv "TERM" "dumb";
@@ -94,11 +84,6 @@ let eval phrase =
        );
        if not backtrace_enabled then Printexc.record_backtrace false;
        let error = Format.flush_str_formatter () in
-       (* If [Errors.report_error] failed (e.g., in case the failure
-          happens in a camlp4 extension), use [out] and [err]. *)
-       let error = if error <> "" then error
-                   else if err <> "" then err
-                   else out in
        Error error
   )
 
