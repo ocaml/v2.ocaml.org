@@ -62,7 +62,7 @@
                 src="/img/OCaml_from_beginning.png" width="48%"
 				alt="OCaml from the very beginning"></a>
 				<p style="clear:both">There are a number of excellent
-				books, with two new titles published in 2013.
+				books, with two new titles published in recent years.
 		</p>
 		<footer>
                   <p><a href="books.html">See full list</a></p>

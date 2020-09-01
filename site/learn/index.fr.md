@@ -56,7 +56,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
                 src="/img/OCaml_from_beginning.png" width="48%"
 				alt="OCaml from the very beginning"></a>
 				<p style="clear:both"
->De nombreux livres sont disponibles sur OCaml, dont deux publiés en 2013.
+>De nombreux livres sont disponibles sur OCaml, dont deux publiés récemment.
 		</p>
 		<footer>
                   <p><a href="books.html">Voir la liste complète des livres sur OCaml</a></p>
