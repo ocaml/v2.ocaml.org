@@ -50,7 +50,7 @@
 
 * [OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)
 * OCamlbuild — [en](ocamlbuild/)
-* Setting up OCaml projects with OASIS — [en](setting_up_with_oasis.html)
+* OASISを使ったOCamlプロジェクトのセットアップ — [en](setting_up_with_oasis.html)
 
 ### 高度なトピックス
 
@@ -59,7 +59,7 @@
 
 ### 一般的なタスク
 
-* Formatting and Wrapping Text — [en](format.html)
+* テキストのフォーマットとラッピング — [en](format.html)
 * 99 Problems (solved) in OCaml — [en](99problems.html)
 * GTKプログラミング入門 — [en](introduction_to_gtk.html)
 * [コマンドライン引数](command-line_arguments.ja.html)
@@ -67,7 +67,7 @@
 
 ### 謝辞
 
-* [_Acknowledgements_](../../contributors.html#Oldercontributorstothetutorials)
+* [_謝辞_](../../contributors.html#Oldercontributorstothetutorials)
 
 日本語訳にあたり、以下の方から、寄稿、助言、提案をいただきました。ここに、心よりの感謝の意を表します。
 
