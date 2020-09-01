@@ -816,40 +816,14 @@ Profiling native code is done using your operating system's native
 support for profiling. In the case of Linux, we use `gprof`. An alternative
 is [perf](https://en.wikipedia.org/wiki/Perf_(Linux)), as explained below.
 
-To demonstrate native code profiling, I'm going to calculate the first
-3000 primes using the Sieve of Eratosthenes.
-This program uses streams and camlp4, techniques which we haven't
-covered in this tutorial.
-
-```ocaml
-let rec filter p = parser
-  [< 'n; s >] -> if p n then [< 'n; filter p s >] else [< filter p s >]
-  
-let naturals =
-  let rec gen n = [< 'n; gen (succ n) >] in gen 2
-  
-let primes =
-  let rec sieve = parser
-    [< 'n; s >] -> [< 'n; sieve (filter (fun m -> m mod n <> 0) s) >] in
-  sieve naturals
-  
-let () =
-  for i = 1 to 3000 do
-    ignore (Stream.next primes)
-  done
-```
-
 We compile it using the `-p` option to `ocamlopt` which tells the
 compiler to include profiling information for `gprof`:
 
-```shell
-ocamlopt -p -pp "camlp4o pa_extend.cmo" -I +camlp4 sieve.ml -o sieve
-```
 After running the program as normal, the profiling code dumps out a file
 `gmon.out` which we can interpret with `gprof`:
 
 ```
-$ gprof ./sieve
+$ gprof ./a.out
 Flat profile:
   
 Each sample counts as 0.01 seconds.
@@ -879,10 +853,6 @@ Each sample counts as 0.01 seconds.
   
 [ etc. ]
 ```
-In fact this program spends much of its time in the garbage collector
-(not surprisingly, since although the solution is elegant, it is far
-from optimal - a solution using arrays and loops would have been much
-faster).
 
 ### Using perf on Linux
 

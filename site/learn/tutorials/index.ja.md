@@ -44,10 +44,8 @@
 * [OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)
 * [コマンドライン引数](command-line_arguments.ja.html)
 * [ファイル操作](file_manipulation.ja.html)
-* Camlp4 3.10 — [en](camlp4_3.10/)
 * Filenames and Extensions — [en](filenames.html)
 * Streams — [en](streams.html)
-* Stream Expressions — [en](stream_expressions.html)
 * [_Acknowledgements_](../../contributors.html#Oldercontributorstothetutorials)
 
 ((! get end_two_columns !))

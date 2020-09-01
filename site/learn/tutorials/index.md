@@ -124,9 +124,6 @@ tracker there to request or offer new tutorials. Thanks!
 There are also tutorials that can be useful to learn how to use popular
 tools and libraries.
 
-* [Camlp4
- Tutorial](http://ambassadortothecomputers.blogspot.com/p/reading-camlp4.html)
- (by Jake Donham), to build syntax extensions for OCaml with Camlp4.
 * [OCamllex
  Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamllex-tutorial/)
  (by SooHyoung Oh), on how to create lexers using the `ocamllex` tool
@@ -141,7 +138,7 @@ tools and libraries.
  LablGTK library.
 * [Camlp5](camlp5.html)
 * [A Guide to Extension Points in OCaml](http://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/)
-  (by whitequark), on using PPX, the syntax extensions API that superseded camlp4.
+  (by whitequark), on using PPX, the syntax extensions API.
 
 ###  Coming From Another Language
 
@@ -160,7 +157,5 @@ with another language.
 These tutorials are either obsolete, or describe obsolete technologies. They're preserved here just in case they're still useful to someone.
 
 * [OCaml and the Web](ocaml_and_the_web.html) (Outdated, still uses CGI programming.)
-* [Camlp4 3.10](camlp4_3.10/) (Replaced by PPX, see [the PPX blog post](https://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/).)
 * [Mega Crash course on OCaml ecosystem + code](get_up_and_running.html) (Too opinionated for a community document.)
 * [Streams](streams.html) (Use stdlib's [Seq](https://github.com/ocaml/ocaml/blob/trunk/stdlib/seq.mli) introduced in 4.07 or the [compatibility opam package](https://github.com/c-cube/seq/).)
-* [Stream Expressions](stream_expressions.html) (Using deprecated camlp4 syntax. See Seq.)
