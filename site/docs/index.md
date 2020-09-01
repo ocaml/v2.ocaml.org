@@ -82,7 +82,7 @@
                 </div>
             </div>
             <footer>
-            <p>There are a number of excellent books available, with the most recent title published in 2014.</p>
+            <p>There are a number of excellent books available, with two new titles published recently.</p>
             <p><a href="/learn/books.html">See more books</a> / <a href="/docs/papers.html">See more papers</a> / <a href="https://realworldocaml.org">Read Real World OCaml online</a></p>
             </footer>
         </section>

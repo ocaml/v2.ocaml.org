@@ -123,17 +123,4 @@ TRASH += template/front_code_snippet.html opam_update_list \
   link_of_lang breadcrumb rss2html ocamltohtml md_preprocess \
   code_top relative_urls translations )
 
-# Camlp4 tutorials
-CAMLP4_TUT_DIR = learn/tutorials/camlp4_3.10
-CAMLP4_TUT_SOURCES = \
-  $(addprefix site/$(CAMLP4_TUT_DIR)/pa_foreach, .ml 2.ml 3.ml)
-ocaml.org/$(CAMLP4_TUT_DIR)/foreach_tutorial.html: \
-  $(CAMLP4_TUT_SOURCES:.ml=.cmo)
-
-site/$(CAMLP4_TUT_DIR)/%.cmo: site/$(CAMLP4_TUT_DIR)/%.ml
-	$(OCAMLC) -I +camlp4 camlp4lib.cma -pp camlp4orf -c $< -o $@
-
-TRASH += $(CAMLP4_TUT_SOURCES:.ml=.cmi) $(CAMLP4_TUT_SOURCES:.ml=.cmo) \
-  $(CAMLP4_TUT_SOURCES:.ml=.annot)
-
 .PHONY: pre-build
