@@ -31,7 +31,6 @@
 		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >Pleac</a>,
 		<a href="http://rosettacode.org/wiki/Category:OCaml"
 		   >Rosetta</a>,
-		<a href="http://langref.org/ocaml" >langref.org</a>, or
                 <a href="http://www.codecodex.com/wiki/Category:Objective_Caml">code codex</a>.</p>
             </footer>
         </section>
@@ -181,7 +180,7 @@
 	    <a href="http://www.fftw.org/pldi99.ps.gz"
 	       >“discovered” algorithms that were previously unknown</a>.
 	    It was awarded the
-	    <a href="http://www.mcs.anl.gov/about-us/j-h-wilkinson-prize-numerical-software"
+	    <a href="https://en.wikipedia.org/wiki/J._H._Wilkinson_Prize_for_Numerical_Software"
 	       >J. H. Wilkinson Prize for Numerical Software</a>
 	    that rewards software that "best addresses all phases of
 	    the preparation of high quality numerical software."

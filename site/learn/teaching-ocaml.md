@@ -9,7 +9,7 @@ languages, type theory and systems.
 
 For the full description of the benefits of the OCaml language
 please refer to the article on
-“[Why OCaml?](https://realworldocaml.org/v1/en/html/prologue.html)”.
+“[Why OCaml?](https://dev.realworldocaml.org/prologue.html#why-ocaml)”.
 
 This page is devoted to resources for people who are teaching OCaml in
 a University setting. It contains a list of courses in different
@@ -40,9 +40,9 @@ Please add yours if you don't see it listed!
 
 ### North America
 
-1. [Boston College](http://www.cs.bc.edu/~muller/teaching/cs110105/f14/) - Computer Science I (CS 1101)
+1. [Boston College](http://www.cs.bc.edu/~muller/teaching/cs1101/s16/) - Computer Science I (CS 1101)
 1. [Brown University](http://cs.brown.edu/courses/cs017/) - An Integrated introducion (CS 17/18)  (along with Racket, Scala and Java)
-1. [Caltech](http://users.cms.caltech.edu/~mvanier/cs4/Winter2016/) - Fundamentals of Computer Programming
+1. [Caltech](http://users.cms.caltech.edu/~mvanier/) - Fundamentals of Computer Programming
 1. [Columbia University](http://www1.cs.columbia.edu/~sedwards/classes/2014/w4115-fall/index.html) - Programming Languages and Translators
 1. [Cornell University](http://www.cs.cornell.edu/courses/cs3110/2016fa/) - Data Structures and Functional Programming (CS 3110)
 1. [Harvard University](http://people.fas.harvard.edu/~lib153/) - Principles of Programming Language Compilation (CS153)
@@ -54,7 +54,7 @@ Please add yours if you don't see it listed!
 1. [University of California, San Diego](http://cseweb.ucsd.edu/classes/wi14/cse130-a/) - Programming Languages: Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University of Illinois at Urbana-Champaign](https://courses.engr.illinois.edu/cs421/fa2014/) - Programming Languages and Compilers (CS 421)
 1. [University of Maryland](http://www.cs.umd.edu/class/spring2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages (CMSC 330)
-1. [University of Massachusetts Amherst](http://people.cs.umass.edu/~arjun/teaching/631/) - Programming Languages (CMPSCI 631)
+1. [University of Massachusetts Amherst](https://people.cs.umass.edu/~arjun/main/teaching/631/) - Programming Languages (CMPSCI 631)
 1. [University of Massachusetts](http://people.cs.umass.edu/~arjun/courses/cs691f/) - Programming Languages (CS691F)
 1. [University of Minnesota Twin Cities](https://www-users.cs.umn.edu/~kauffman/2041/syllabus.html)
    — Advanced Programming Principles (CSCI 2041)

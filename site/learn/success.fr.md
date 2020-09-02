@@ -139,7 +139,7 @@ fault »), ce qui est indispensable à un outil dont le but premier est
 justement la rigueur. »
 
 ## L'analyseur statique ASTRÉE
-[<img src='/img/astree.gif' alt='A340'  title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](http://www.airbus.com/product/a330_a340_backgrounder.asp)
+[<img src='/img/astree.gif' alt='A340'  title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](https://www.airbus.com/aircraft/previous-generation-aircraft/a340-family.html)
 
 *[David Monniaux](http://www-verimag.imag.fr/~monniaux/) (CNRS), membre
 du projet ASTRÉE :* « [ASTRÉE](http://www.astree.ens.fr/) est un
@@ -203,7 +203,7 @@ Transformées de Fourier Discrètes (DFT). Elle emploie un puissant
 optimiseur symbolique écrit en OCaml qui, étant donné un entier N,
 produit du code C hautement optimisé pour effectuer des DFTs de taille
 N. FFTW a reçu en 1999 le [prix
-Wilkinson](http://www.mcs.anl.gov/about-us/j-h-wilkinson-prize-numerical-software)
+Wilkinson](https://en.wikipedia.org/wiki/J._H._Wilkinson_Prize_for_Numerical_Software)
 pour les logiciels de calcul numérique.
 
 Des mesures effectuées sur diverses plate-formes montrent que les

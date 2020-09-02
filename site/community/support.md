@@ -16,7 +16,7 @@ widely used throughout the community, such as
 [Try OCaml](http://try.ocamlpro.com/), the
 [OPAM package manager](http://opam.ocamlpro.com/) and
 [ocp-indent](http://www.typerex.org/ocp-indent.html), as well as a
-[large contributor](http://www.ocamlpro.com/blog/2012/08/20/ocamlpro-and-4.00.0.html)
+large contributor
 to OCaml itself. Besides commercially supporting their tools, they offer to
 share their expertise through
 full OCaml support packages.
@@ -58,7 +58,7 @@ OCaml community, with projects such as
 OCaml to JavaScript optimizing compiler),
 [Dose](https://gforge.inria.fr/projects/dose/) (a key component of the
 OPAM package manager) and online services such as the [OPAM Weather
-Service](http://ows.irill.org/latest/today/). They also use OCaml
+Service](http://check.ocamllabs.io). They also use OCaml
 to contribute to other major open source projects
 ([Coccinelle](http://coccinelle.lip6.fr/), for example). 
 See details [here](http://www.irill.org/).
