@@ -38,6 +38,7 @@
         <section class="span4 condensed">
             <h1 class="ruled"><a href="tutorials/">Tutorials</a> &amp; <a href="faq.html">FAQ</a></h1>
             <ul>
+                <li><a href="tutorials/up_and_running.html">Up and Running</a></li>
                 <li><a href="tutorials/basics.html">Basics</a></li>
                 <li><a href="tutorials/structure_of_ocaml_programs.html">Structure of OCaml Programs</a></li>
                 <li><a href="tutorials/modules.html">Modules</a></li>

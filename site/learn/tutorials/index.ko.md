@@ -9,6 +9,7 @@
 
 ((! get begin_two_columns !))
 
+* [Up and Running](up_and_running.html)
 * [기본사항](basics.ko.html) 
 * [OCaml 프로그램의 구조](structure_of_ocaml_programs.ko.html)
 * 모듈(Modules) - [en](modules.html)

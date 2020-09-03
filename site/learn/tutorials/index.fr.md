@@ -5,6 +5,7 @@
 
 ((! get begin_two_columns !))
 
+* [Opérationnel avec OCaml](up_and_running.html)
 * [Notions de base](basics.fr.html)
   — Si vous débutez OCaml ou la programmation fonctionnelle, lisez
   ceci d'abord.

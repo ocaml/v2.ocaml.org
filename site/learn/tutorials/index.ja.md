@@ -9,6 +9,7 @@
 
 ((! get begin_two_columns !))
 
+* [Up and Running](up_and_running.html)
 * [はじめの一歩](basics.ja.html) — 基本中の基本
 * [OCamlプログラムの構造](structure_of_ocaml_programs.ja.html)
 * [モジュール](modules.ja.html)

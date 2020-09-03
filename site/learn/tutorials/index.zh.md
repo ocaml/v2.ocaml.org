@@ -9,6 +9,7 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 
 ((! get begin_two_columns !))
 
+* [Up and Running](up_and_running.html)
 * [基础](basics.zh.html) — 如果你是OCaml或函数式语言的初学者请先阅读本节。
 * [Ocaml程序的结构](structure_of_ocaml_programs.zh.html)
 * [模块](modules.zh.html)
