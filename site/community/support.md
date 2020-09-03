@@ -57,8 +57,7 @@ OCaml community, with projects such as
 [js_of_ocaml](http://ocsigen.org/js_of_ocaml/) (the
 OCaml to JavaScript optimizing compiler),
 [Dose](https://gforge.inria.fr/projects/dose/) (a key component of the
-OPAM package manager) and online services such as the [OPAM Weather
-Service](http://check.ocamllabs.io). They also use OCaml
+OPAM package manager). They also use OCaml
 to contribute to other major open source projects
 ([Coccinelle](http://coccinelle.lip6.fr/), for example). 
 See details [here](http://www.irill.org/).
