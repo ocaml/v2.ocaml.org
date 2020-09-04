@@ -36,13 +36,15 @@ and follow_redirect ~max_redirects request_uri (response, body) =
   match Cohttp.Response.status response with
   | `OK -> Lwt.return (response, body)
   | `Resume_incomplete (* actually 308 Permanent Redirect *)
+  | `Moved_permanently ->
+     handle_redirect ~permanent:true ~max_redirects request_uri response
   | `Found
-  | `Moved_permanently
-  | `Temporary_redirect -> handle_redirect ~max_redirects request_uri response
+  | `Temporary_redirect ->
+     handle_redirect ~permanent:false ~max_redirects request_uri response
   | `Not_found | `Gone -> error "Not found"
   | status -> error "Unhandled status: %s" (Cohttp.Code.string_of_status status)
 
-and handle_redirect ~max_redirects request_uri response =
+and handle_redirect ~permanent ~max_redirects request_uri response =
   if max_redirects <= 0 then
     error "Too many redirects"
   else
@@ -52,6 +54,9 @@ and handle_redirect ~max_redirects request_uri response =
     | None -> error "Redirection without Location header"
     | Some url ->
       let uri = make_uri request_uri url in
+      if permanent then
+        Format.eprintf "Warning: permanent redirection from %a to %a\n"
+          Uri.pp_hum request_uri Uri.pp_hum uri;
       http_get_and_follow uri ~max_redirects:(max_redirects - 1)
 
 let http_get url =
