@@ -72,8 +72,9 @@ let http_get url =
     )
   with
   | Lwt_unix.Timeout -> error "Timeout"
-  | Unix.Unix_error _ -> error "Unknown"
-  | Ssl.Connection_error _ ->  error "SSL connection error"
+  | Unix.Unix_error _ as e -> error "Unknown (%s)" (Printexc.to_string e)
+  | Ssl.Connection_error _ as e ->
+      error "SSL connection error (%s)" (Printexc.to_string e)
 
 let age fn =
   let now = Unix.time () in (* in sec *)
@@ -108,10 +109,10 @@ let get ?(cache_secs=cache_secs) url =
       close_out fh;
       eprintf "(cached).\n%!";
       data
-    with Error _ as e ->
+    with Error msg as e ->
       if Sys.file_exists fn then get_from_cache()
       else (
-        eprintf "FAILED!\n%!";
+        eprintf "FAILED! (%s)\n%!" msg;
         raise e
       )
   )
