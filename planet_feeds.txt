@@ -51,7 +51,6 @@ OCamlPro|https://www.ocamlpro.com/feed/
 ODNS project|http://odns.tuxfamily.org/feed/
 Ocaml XMPP project|http://ox.tuxfamily.org/feed/
 Ocsigen project|https://ocsigen.org/feed.xml
-Ocsigen blog|https://ocsigen.org/feed.xml
 Opa|http://www.blogger.com/feeds/2073503406800427577/posts/default
 Orbitz|http://functional-orbitz.blogspot.com/feeds/posts/default/-/planetocaml?alt=rss
 Paolo Donadeo|http://www.donadeo.net/facets/programming-languages/objective-caml/feed/
