@@ -34,7 +34,7 @@ Jane Street|https://blog.janestreet.com/feed.xml
 KC Sivaramakrishnan|https://kcsrk.info/atom-ocaml.xml
 Leo White|http://lpw25.net/rss.xml
 Magnus Skjegstad|http://www.skjegstad.com/feeds/ocaml.tag.atom.xml
-Marc Simpson|http://newblog.0branch.com/rss.xml
+Marc Simpson|https://blog.0branch.com/rss.xml
 Matthias Puech|https://syntaxexclamation.wordpress.com/tag/ocaml/feed/
 Matías Giovannini|http://www.blogger.com/feeds/5888658295182480819/posts/default
 Mindy Preston|https://www.somerandomidiot.com/blog/categories/ocaml/atom.xml
