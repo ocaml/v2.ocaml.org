@@ -125,9 +125,6 @@
 There are also tutorials that can be useful to learn how to use popular
 tools and libraries.
 
-* [Camlp4
- Tutorial](http://ambassadortothecomputers.blogspot.com/p/reading-camlp4.html)
- (by Jake Donham), to build syntax extensions for OCaml with Camlp4.
 * [OCamllex
  Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamllex-tutorial/)
  (by SooHyoung Oh), on how to create lexers using the `ocamllex` tool
@@ -159,11 +156,11 @@ with another language.
 
 ### チュートリアルのアーカイブ
 
-これらのチュートリアルは、廃止されたかあるいは、廃止された技術について記述されています。
-これらは、まだ誰かの役に立つ場合に備えてここに保存されています。
+これらのチュートリアルは、廃止されたかあるいは、廃止された技術について記述されている。
+これらは、まだ誰かの役に立つかもしれないので、念の為ここに保存されている。
 
 * [OCamlでWebプログラミング](ocaml_and_the_web.ja.html)
-* Camlp4 3.10 — [en](camlp4_3.10/)
-* Streams — [en](streams.html)
-* Stream Expressions — [en](stream_expressions.html)
+* Mega Crash course on OCaml ecosystem + code - [en](get_up_and_running.html)
+* Streams - [en](streams.html)
+
 
