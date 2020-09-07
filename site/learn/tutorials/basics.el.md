@@ -8,7 +8,7 @@
 
 Ο απλούστερος τρόπος να ξεκινήσετε είναι να τρέξετε μια διαδραστική
 συνεδρία στον φυλλομετρητή σας, στο
-<https://ocsigen.org/js_of_ocaml/2.7/files/toplevel/index.html>.
+<https://ocsigen.org/js_of_ocaml/2.7/manual/files/toplevel/index.html>.
 
 Για να εγκαταστήσετε την Ocaml στον υπολογιστή σας, δείτε τις [Οδηγίες Εγκατάστασης](/docs/install.html).
 

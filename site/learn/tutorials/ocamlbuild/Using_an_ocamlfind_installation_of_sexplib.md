@@ -1,9 +1,7 @@
 <!-- ((! set title Using an ocamlfind installation of sexplib !)) ((! set learn !)) -->
 
 # Using an ocamlfind installation of sexplib
-Install type-conv and sexplib according to the instructions given at
-[ocaml.info](http://www.ocaml.info/home/ocaml_sources.html) using
-ocamlfind.
+Install type-conv and sexplib.
 
 Define the following in your plugin :
 

@@ -18,8 +18,7 @@ following the OCaml Meetings that ran until [2011](../2011).
 OCaml 2017 will be held on Friday September 8th, 2017 in Oxford, UK,
 colocated with [ICFP 2017](http://conf.researchr.org/home/icfp-2017)
 and [FSCD 2017](http://www.cs.ox.ac.uk/conferences/fscd2017/). It
-happens the day after the [ML
-workshop](http://www.mlworkshop.org/ml2017).
+happens the day after the ML workshop.
 
 
 Presentations

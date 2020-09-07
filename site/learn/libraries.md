@@ -9,11 +9,11 @@ the most popular sites where you can find them.
   to check. The most high quality and most widely used libraries are
   provided as OPAM packages.
 
-* [GitHub](https://github.com/languages/OCaml) is an extremely popular
+* [GitHub](https://github.com/trending/ocaml) is an extremely popular
   code hosting site and very widely used amongst OCaml
   programmers. Click the link to find OCaml projects. Remember that
   many of these libraries are provided as OPAM packages, so you'll
-  have already found them in OPAM. However, there are many more
+  have already found them in OPAM. However, there are some
   libraries here that people haven't pushed to OPAM for one reason or
   another.
 

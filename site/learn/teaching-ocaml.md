@@ -53,18 +53,18 @@ Please add yours if you don't see it listed!
 1. [University of California, Los Angeles](http://www.registrar.ucla.edu/schedule/subdet.aspx?term=14F&srs=187510200) - Programming Languages (along with Python and Java) (CS 131)
 1. [University of California, San Diego](http://cseweb.ucsd.edu/classes/wi14/cse130-a/) - Programming Languages: Principles and Paradigms (CSE130-a)  (along with Python and Prolog)
 1. [University of Illinois at Urbana-Champaign](https://courses.engr.illinois.edu/cs421/fa2014/) - Programming Languages and Compilers (CS 421)
-1. [University of Maryland](http://www.cs.umd.edu/class/spring2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages (CMSC 330)
+1. [University of Maryland](https://www.cs.umd.edu/class/fall2014/cmsc330/) (along with Ruby, Prolog, Java) - Organization of Programming Languages (CMSC 330)
 1. [University of Massachusetts Amherst](https://people.cs.umass.edu/~arjun/main/teaching/631/) - Programming Languages (CMPSCI 631)
 1. [University of Massachusetts](http://people.cs.umass.edu/~arjun/courses/cs691f/) - Programming Languages (CS691F)
 1. [University of Minnesota Twin Cities](https://www-users.cs.umn.edu/~kauffman/2041/syllabus.html)
    — Advanced Programming Principles (CSCI 2041)
 1. [University of Pennsylvania](http://www.cis.upenn.edu/~cis341/current/) - Compilers  (CIS341)
 1. [University of Pennsylvania](http://www.seas.upenn.edu/~cis120/current/) - Programming Languages and Techniques I (CIS120)
-1. [University of Virginia](http://www.cs.virginia.edu/~weimer/4610/) - Programming Languages (CS 4610)
+1. University of Virginia - Programming Languages (CS 4610)
 
 ### Europe
 
-1. [Aarhus University](https://services.brics.dk/java/courseadmin/dOvs) - The compilation course (along with Java)
+1. [Aarhus University](https://kursuskatalog.au.dk/en/course/100489/Compilation) - The compilation course (along with Java)
 1. [Aix-Marseille University](http://assert-false.net/callcc/Guyslain/Teaching/ProgFonc/index) - Functional Programming
 1. [Epita](http://epita.fr/) - Introduction to Algorithms (Year 1 & 2)
 1. [ISAE/Supaéro](http://supaero.isae.fr/en) - Functional programming and introduction to type systems
@@ -76,7 +76,7 @@ Please add yours if you don't see it listed!
 1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/COMP) - Compilation (COMP)
 1. [University of Rennes 1](http://etudes.univ-rennes1.fr/masterInformatique/themes/PremiereAnnee/Programme/SEM) - Semantics (SEM)
 1. [University of Rennes 1](https://etudes.univ-rennes1.fr/licenceInformatique/themes/OrganisationEtudes/L3info/Programme) - Programming 2 (PRG2)
-1. [University of Wrocław](https://international.uni.wroc.pl/en/course/functional-programming) - Functional Programming
+1. [University of Wrocław](http://www.ii.uni.wroc.pl/~lukstafi/pmwiki/index.php?n=Functional.Functional) - Functional Programming
 1. [Université Paris-Diderot](http://www.dicosmo.org/CourseNotes/pfav/) - Advanced Functional Programming (PFAV)
 1. [Université Paris-Diderot](http://www.pps.univ-paris-diderot.fr/~treinen/teaching/pf5/) - Functional Programming (PF5)
 
@@ -111,7 +111,7 @@ teaching OCaml. There is also a wider list of books to choose from, which you ca
    and Java, and is intended for students with no programming
    background.
 1. [Real World OCaml](http://shop.oreilly.com/product/0636920024743.do),
-   also available [online](https://realworldocaml.org/).  Used by Harvard's CS51 course.
+   also available [online](https://dev.realworldocaml.org).  Used by Harvard's CS51 course.
 1. Jason Hickey's [Introduction to Objective Caml](http://courses.cms.caltech.edu/cs134/cs134b/book.pdf),
    originally developed as lecture notes for Jason's course at Caltech
 
