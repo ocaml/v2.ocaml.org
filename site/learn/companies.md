@@ -461,7 +461,7 @@
            be synced when needed; and
        (3) OCaml development tools (build system, code linters, documentation generators, etc),
            to make us more efficient.
-       Tarides was founded in early 2018 and is mainly based at <a href="https://stationf.co/">Station F</a>, in Paris.
+       Tarides was founded in early 2018 and is mainly based in Paris, France (remote work is possible).
         </p>
     </dd>
 </dl>
