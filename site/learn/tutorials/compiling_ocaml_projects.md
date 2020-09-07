@@ -8,7 +8,7 @@ This tutorial describes the base compilation commands provided with
 OCaml. It is useful to learn these commands to understand OCaml's
 compilation model. However, eventually you will want to use a build tool
 that automatically calls these commands internally. See [Compilation
-Tools](dev_tools.md#compilation-tools) for more information on the
+Tools](dev_tools.html#compilation-tools) for more information on the
 available options.
 
 ## Compilation basics

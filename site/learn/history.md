@@ -39,7 +39,7 @@ implementation was improved by the addition of a compiler.
 algebraic data types and pattern-matching, following ideas from
 [Robin Milner][], which he in turn had borrowed
 from Hope, a programming language designed by [Rod
-Burstall](http://homepages.inf.ed.ac.uk/rburstall/) and [Dave
+Burstall](https://en.wikipedia.org/wiki/Rod_Burstall) and [Dave
 McQueen](http://people.cs.uchicago.edu/~dbm/). At some point, this
 implementation was called Le_ML, a name that did not survive. It was
 used by [Larry Paulson][] to develop

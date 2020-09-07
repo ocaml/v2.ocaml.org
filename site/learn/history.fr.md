@@ -74,7 +74,7 @@ développer une nouvelle implantation de ML, basée sur la CAM. Cependant,
 le langage que nous implantâmes finalement ne fut pas Standard ML,
 mais... Caml. Pourquoi? Notre principale raison pour développer Caml
 était de l'utiliser pour développer le système
-[Coq](http://pauillac.inria.fr/coq/index.fr.html), qui, suite à la thèse
+[Coq](https://coq.inria.fr), qui, suite à la thèse
 de [Thierry Coquand](http://www.cs.chalmers.se/~coquand/) en 1985,
 devint le principal objectif de l'équipe. Nous n'étions pas pressés
 d'adopter un standard qui risquait ensuite de nous empêcher d'adapter le

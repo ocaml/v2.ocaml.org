@@ -8,7 +8,7 @@ OCaml 2015
 **The OCaml Users and Developers Workshop**
 Vancouver, British Columbia, Canada, September 4, 2015
 Colocated with [ICFP 2015](http://icfpconference.org/icfp2015/),
-the day after the [ML Family Workshop](http://www.mlworkshop.org/ml2015/).
+the day after the ML Family Workshop.
 
 News
 ----
@@ -71,7 +71,7 @@ Schedule
 ML family workshop and post-proceedings
 ---------------------------------------
 
-The [ML family workshop](http://www.mlworkshop.org/ml2015/), held on
+The ML family workshop, held on
 the previous day, deals with general issues
 of the ML-style programming and type systems, and is seen as more research
 oriented. Yet there is an overlap with the OCaml workshop, which we are

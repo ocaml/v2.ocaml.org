@@ -75,10 +75,8 @@ client.
 Public channel logs are available at <http://irclog.whitequark.org/ocaml/>
 
 If you wish to use a web-based IRC client, you can use Freenode's
-webchat <https://webchat.freenode.net/>. For a fancier/nicer
-interface, you may try
-<https://vector.im/beta/#/room/#freenode_#ocaml:matrix.org> -- it
-requires registration but is otherwise free.
+webchat <https://webchat.freenode.net/>.
+
 
 ### Discord Server
 

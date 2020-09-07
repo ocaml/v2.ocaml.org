@@ -6,7 +6,7 @@
 
 ## 运行 OCaml 代码
 
-运行OCaml代码的最简单的方式是在你的浏览器中使用<https://ocsigen.org/js_of_ocaml/2.7/files/toplevel/index.html>运行一个交互式会话。
+运行OCaml代码的最简单的方式是在你的浏览器中使用<https://ocsigen.org/js_of_ocaml/2.7/manual/files/toplevel/index.html>运行一个交互式会话。
 
 关于在你的电脑上安装OCaml，请参考[安装](/docs/install.html)文档。
 

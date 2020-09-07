@@ -15,9 +15,7 @@
 標準ライブラリは、読み込んだファイルを直接文字列に入れたり、
 直接文字列をファイルに保存したりするような存在しない。 このような関数は
 [Extlib](http://code.google.com/p/ocaml-extlib/)
-など、サードパーティ製のライブラリにある。 [Std.input_file and
-Std.output_file](http://ocaml-extlib.googlecode.com/svn/doc/apiref/Std.html)
-を見よ。
+など、サードパーティ製のライブラリにある。
 
 バッファリングされたチャネル
 --------------------------
