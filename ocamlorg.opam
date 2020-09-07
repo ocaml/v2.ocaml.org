@@ -6,12 +6,13 @@ license: "See LICENSE.md file."
 homepage: "https://github.com/ocaml/ocaml.org"
 bug-reports: "https://github.com/ocaml/ocaml.org/issues"
 depends: [
-  "ocaml" {>= "4.05.0"}
+  "ocaml" {>= "4.08.0"}
   "ocamlfind" {build}
   "base-bytes" {build}
   "omd" {>= "1.2.1"}
   "ocamlnet" {>= "4.0.1"}
-  "conf-gnutls"
+  "cohttp-lwt-unix"
+  "lwt_ssl"
   "mpp" {>= "0.3.1"}
   "uri" {>= "1.3.11"}
   "syndic" {>= "1.5.2"}

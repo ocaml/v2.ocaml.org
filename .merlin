@@ -7,5 +7,6 @@ PKG uri
 PKG omd
 PKG opam2web
 PKG cow
+PKG cohttp-lwt-unix
 S script
 B script
