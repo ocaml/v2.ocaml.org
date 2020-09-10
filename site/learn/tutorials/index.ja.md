@@ -101,11 +101,6 @@
  Inria) is the official user's manual. The first part provides an
  introduction to the core language, objects and classes, and modules.
  Previous versions are [here](http://caml.inria.fr/pub/docs/).
-* [How to wrap C functions to
-  OCaml](http://www.linux-nantes.org/~fmonnier/OCaml/ocaml-wrapping-c.html)
-  (by Florent Monnier) explains in an understandable way how to write C
-  stubs to call C functions from OCaml and back. It features a lot of
-  examples.
 * [OCaml for scientific
  computation](http://www.southampton.ac.uk/~fangohr/software/ocamltutorial/)
  (by Thomas Fischbacher), covers a broad sample of OCaml, from the
@@ -125,18 +120,6 @@
 There are also tutorials that can be useful to learn how to use popular
 tools and libraries.
 
-* [OCamllex
- Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamllex-tutorial/)
- (by SooHyoung Oh), on how to create lexers using the `ocamllex` tool
- of the standard distribution.
-* [OCamlyacc
- Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamlyacc-tutorial/)
- (by SooHyoung Oh), on how to create parsers using the `ocamlyacc`
- tool of the standard distribution.
-* [LablGTK 2.0
- Tutorial](http://plus.kaist.ac.kr/~shoh/ocaml/lablgtk2/lablgtk2-tutorial/)
- (by SooHyoung Oh), on how to create graphical applications with the
- LablGTK library.
 * [Camlp5](camlp5.html)
 * [A Guide to Extension Points in OCaml](http://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/)
   (by whitequark), on using PPX, the syntax extensions API that superseded camlp4.
