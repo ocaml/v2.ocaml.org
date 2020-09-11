@@ -22,10 +22,9 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
             ((! input template/learn_code_snippet.fr.html !))
             <footer>
               <p>Voir <a href="taste.html">plus d'exemples ici</a>, ou
-		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >sur Pleac</a>,
+		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >sur Pleac</a>, et
 		<a href="http://rosettacode.org/wiki/Category:OCaml"
-		   >sur Rosetta</a>,
-                <a href="http://www.codecodex.com/wiki/Category:Objective_Caml">sur Code Codex</a>.</p>
+		   >sur Rosetta</a>.</p>
             </footer>
         </section>
         <section class="span4 condensed">

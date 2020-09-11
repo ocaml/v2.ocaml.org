@@ -331,8 +331,6 @@ In order to generate an OASIS independent build system, you can simply run `oasi
 
 The OASIS description file can be used to generate packages. Two tools are available for that: [oasis2opam](https://github.com/ocaml/oasis2opam) will generate an opam descriptions and [oasis2debian](http://oasis.forge.ocamlcore.org/oasis2debian.html) for `.deb` packages. Of course, don't forget to use the _non dynamic_ setup before packaging, as describe earlier, or the package will need OASIS to be build.
 
-In order to ease the deployment, small scripts can be used. For example, [tyxml](https://github.com/ocsigen/tyxml) uses a [`Makefile.dist`](https://github.com/ocsigen/tyxml/blob/master/Makefile.dist) and [lwt](https://github.com/ocsigen/lwt) a [`dist.sh`](https://github.com/ocsigen/lwt/blob/master/dist.sh).
-
 
 ## Examples
 
@@ -340,8 +338,6 @@ OASIS is better learned by examples `_oasis` files you can copy and tweak. OASIS
 
 However, nothing is better than real world examples:
 - [ocaml-inotify](https://github.com/whitequark/ocaml-inotify/blob/master/_oasis) contains a very simple yet feature-full `_oasis` file that will showcase all the various elements explained in this tutorial.
-- [lwt](https://github.com/ocsigen/lwt/blob/master/_oasis)'s `_oasis` is very complete and will probably cover all your needs.
-- [cohttp](https://github.com/mirage/ocaml-cohttp/blob/master/_oasis#L17) shows how to avoid dependencies to syntax packages with `XMETARequires`.
 - [batteries](https://github.com/ocaml-batteries-team/batteries-included) uses OASIS for meta-data only and handles the build system separately using the `XCustom` fields.
 - [Some other examples](http://oasis.forge.ocamlcore.org/alreadyusing.html).
 
