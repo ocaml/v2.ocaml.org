@@ -32,7 +32,7 @@ are also several research grants associated with OCaml Labs:
 
 * RCUK [Horizon Digital Economy Research](http://www.horizon.ac.uk)
  Hub grant,
- [EP/G065802/1](http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/G065802/1).
+ [EP/G065802/1](https://gow.epsrc.ukri.org/NGBOViewGrant.aspx?GrantRef=EP/G065802/1).
 * EU FP7 [Trilogy2](http://trilogy2.eu) project.
 
 <table style="width: 100%">

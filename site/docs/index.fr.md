@@ -57,7 +57,7 @@
                     </a>
                 </div>
                 <div class="span2">                    
-                    <p>Il y a plusieurs excellents livres sur OCaml, dont deux nouveaux titres publiés en 2013. Ainsi, Real World OCaml est disponible <a href="https://realworldocaml.org">online</a> en anglais.</p>
+                    <p>Il y a plusieurs excellents livres sur OCaml, dont deux nouveaux titres publiés récemment. Ainsi, Real World OCaml est disponible <a href="https://realworldocaml.org">online</a> en anglais.</p>
                 </div>
             </div>
             <footer>

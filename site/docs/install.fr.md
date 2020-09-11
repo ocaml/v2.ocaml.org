@@ -80,7 +80,7 @@ Les paquets OCaml sont construits selon cette
 Il y a un
 [Groupe d'intérêt spécial OCaml](http://fedoraproject.org/wiki/SIGs/OCaml) (en anglais)
 et une
-[mailing liste](https://lists.fedoraproject.org/mailman/listinfo/Ocaml-devel) (en anglais)
+[mailing liste](https://lists.fedoraproject.org/archives/list/ocaml-devel@lists.fedoraproject.org/) (en anglais)
 pour les individus intéressés par OCaml sur Fedora ou Red Hat Enterprise Linux.
 
 ### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) [![CentOS 8](https://repology.org/badge/version-only-for-repo/centos_8/ocaml.svg)](https://repology.org/metapackage/ocaml)

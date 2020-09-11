@@ -74,16 +74,6 @@ LIBS = str unix
 INCDIRS = /path/to/somelibdirectory/
 ```
 
-これは普通、一つの方法でいろんな環境にインストールする、 慣習的には
-configure スクリプトで行う類の前準備段階で必要になる。
-他にも、デフォルトサーチパスに含まれていない標準ディレクトリ (たとえば
-/path/to/stdlib/camlp4) でも同じだ。
-この場合は以下のように書けば十分で、この方が可搬性がある:
-
-```makefile
-INCDIRS = +camlp4
-```
-
 よし。だがライブラリは ocamlfind を使ってインストールする方が好ましい。
 OCamlMakefile を使う場合、PACKS 変数を設定する必要がある:
 
@@ -96,50 +86,6 @@ unix, str, bigarray のような ライブラリは、Findlib
 が自動認識してくれる。 つまりこれらのパッケージを要求されるとき (例えば
 netstring は unix と pcre を要求する)は自動でロードされる。
 
-camlp4 による構文拡張はどうだろうか。
-プリプロセッサでロードされるバイトコードユニットみたいに
-構文拡張を定義しているパッケージがあるかもしれない。 OCamlMakefile
-を使う場合、
-プリプロセッサを使いたいときにはファイルの1行目に以下の定義をする:
-
-```ocaml
-(*pp ...
-```
-
-つまりこのように書く:
-
-```ocaml
-(*pp camlp4o -I /path/to/pa_infix pa_infix.cmo *)
-```
-
-うーん、このやりかたはちょっと不便だ。
-だから各ファイルで同じプリプロセッサを使うことにして、 Makefile の PP
-変数にこの共通の方法を代入する:
-
-```makefile
-PP = camlp4o -I /path/to/pa_infix pa_infix.cmo
-export PP
-```
-
-そうすれば、OCaml ファイルはこう始められる:
-
-```ocaml
-(*pp $PP *)
-```
-
-このプリプロセッサ定義でもまだ満足できない。 ocamlfind
-の特長と同じようにして構文拡張ファイルを取り込みたい。
-そのためには、[camlp4find](http://martin.jambon.free.fr/ocaml.html)
-スクリプトが使える。 普通、PACKS 変数に使うパッケージを羅列しておくと、
-camlp4 が ocamlfind と同じように構文拡張をロードしてくれる:
-
-```makefile
-PACKS = unix micmatch_pcre \
-   pa_tryfinally pa_lettry pa_forin pa_forstep pa_repeat pa_arg
-PP = camlp4find $(PACKS)
-export PP
-```
-
 ## まとめ
 
 必要なもの:
@@ -147,8 +93,6 @@ export PP
 -   GNU make
 -   OCamlMakefile (プロジェクトのメインディレクトリにコピーする)
 -   Findlib (ocamlfind)
--   camlp4find (プロジェクトのメインディレクトリにコピーする)
--   ocamlfind でインストールした Camlp4 パッケージ
 -   以下の雛型を元に小さい Makefile を書く
 -   ソースファイルの先頭行におまじないを書いておく
 
@@ -159,15 +103,7 @@ ocamllex と unix, micmatch\_pcre ライブラリを使う例を全部示す。 
 RESULT = myprogram
 SOURCES = mymodule1.mll mymodule2.mli mymodule2.ml mymainmodule.ml
 PACKS = unix micmatch_pcre
-PP = camlp4find $(PACKS)
-export PP
 CREATE_LIB = yes # ???
 OCAMLMAKEFILE = OCamlMakefile
 include $(OCAMLMAKEFILE)
-```
-
-.ml や .mli ファイルは以下の行で始める:
-
-```ocaml
-(*pp $PP *)
 ```
