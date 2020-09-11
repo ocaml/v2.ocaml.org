@@ -1,5 +1,5 @@
 opam-version: "2.0"
-name: "ocaml-org"
+name: "ocamlorg"
 maintainer: "The OCaml.org team"
 authors: "The OCaml.org team"
 license: "See LICENSE.md file."
