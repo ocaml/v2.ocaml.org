@@ -4,13 +4,180 @@
 
 #Up and Running with OCaml
 
+This page will help you install OCaml, the Dune build system, and support for
+your favourite text editor. All these instructions work on Windows, Unix
+systems like Linux, and MacOS.
+
 ##Installing OCaml
+
+**For Linux and MacOS**, we install OCaml using OPAM, the OCaml package manager.
+OPAM will also be used when we wish to install third-party OCaml libraries.
+
+First, we install OPAM:
+
+```
+sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
+```
+
+(If this method does not suit, please see [How to install
+OPAM](opam.ocaml.org/doc/install.html))
+
+Then, we install an OCaml compiler:
+
+```
+# environment setup
+opam init
+eval `opam env`
+
+# install given version of the compiler
+opam switch create 4.11.1
+eval `opam env`
+```
+
+Now, OCaml is up and running:
+
+```
+$ which ocaml
+/Users/frank/.opam/4.11.1/bin/ocaml
+
+$ ocaml -version
+The OCaml toplevel, version 4.11.1
+```
+
+Other (less recommended) ways to install OCaml, for example using your Linux
+distribution's package manager, are explained on the [install
+page](../docs/install.html).
+
+**For Windows** we use instead the [OCaml for
+Windows](https://fdopen.github.io/opam-repository-mingw/) installer which comes
+in 32bit and 64bit versions. This installer gives you OPAM and OCaml
+installations all in one go. It is used from within a Cygwin environment, but
+the executables produced have no dependency on Cygwin at all.
+
+##The OCaml top level
+
+OCaml comes with two compilers: for native code, and for byte code. We shall
+use one of those in a moment. But first, let's use OCaml's top level (sometimes
+known as a REPL in other languages):
+
+```
+$ ocaml
+        OCaml version 4.11.1
+
+# 1 + 2 * 3;;
+- : int = 7
+
+```
+
+We typed the phrase `1 + 2 * 3` and then signalled to OCaml that we had
+fininshed by typeing `;;` followed by the Enter key. OCaml calculated the
+result, `7` and its type `int` and showed them to us. We exit by running the
+built-in `exit` function with exit code 0:
+
+```
+$ ocaml
+        OCaml version 4.11.1
+
+# 1 + 2 * 3;;
+- : int = 7
+# exit 0;;
+$
+```
+
+There are two ways to improve your experience with the OCaml top level: you can install `rlwrap` on your system and invoke `rlwrap ocaml` instead of `ocaml` to get line-editing facilities inside the OCaml top level, or you can install the alternative top level `utop` using OPAM:
+
+```
+$opam install utop
+```
 
 ##Installing the Dune build system
 
+Dune is a build system for OCaml. It takes care of all the low level details of
+OCaml compilation. We install it with OPAM:
+
+```
+$ opam install dune
+The following actions will be performed:
+  - install dune 2.7.1
+
+<><> Gathering sources ><><><><><><><><><><><><><><><><><><><><><><><><>
+[default] https://opam.ocaml.org/2.0.7/archives/dune.2.7.1+opam.tar.gz
+downloaded
+
+<><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><>
+-> installed dune.2.7.1
+Done.
+```
+
 ##A first project
+
+Let's begin the simplest project with Dune and OCaml. We create a new directory
+and ask `dune` to initialise a new project:
+
+```
+$ mkdir helloworld
+$ cd helloworld/
+$ dune init exe helloworld
+Success: initialized executable component named helloworld
+```
+
+Building our program is as simple as typing `dune build`:
+
+```
+$ dune build
+Info: Creating file dune-project with this contents:
+| (lang dune 2.7)
+Done: 8/11 (jobs: 1)
+```
+
+When we change our program, we type `dune build` again to make a new
+executable. We can run the executable with `dune exec` (it's called
+`helloworld.exe` even when we're not using Windows):
+
+```
+$ dune exec ./helloworld.exe
+Hello, World!        
+```
+
+Let's look at the contents of our new directory. Dune has added the
+`helloworld.ml` file, which is our OCaml program. It has also added our `dune`
+file, which tells dune how to build the program, and a `_build` subdirectory,
+which is dune's working space.
+
+```
+$ ls
+_build		dune		helloworld.ml
+```
+
+The `helloworld.exe` executable is stored inside the `_build` structure, so
+it's easier to run with `dune exec`. To ship the executable, we can just copy
+it from inside `_build` to somewhere else.
+
+Here is the contents of the automatically-generated `dune` file. When we want
+to add components to your project, such as third-party libraries, we edit this
+file.
+
+```
+(executable
+ (name helloworld))
+```
+
 
 ##Editor support for OCaml
 
 ##Next steps
+
+##Templates(to delete)
+
+
+```ocaml
+class virtual widget ?show obj =
+  object (self)
+    inherit gtk_object obj
+    initializer
+      if show <> Some false then self#show
+  end
+```
+
+![Simple lablgtk program](/img/simplee29b.gif "")
 
