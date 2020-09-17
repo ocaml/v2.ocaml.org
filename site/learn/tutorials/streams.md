@@ -567,10 +567,5 @@ There are a few other documented methods in the `Stream` module:
 In addition, there are a few undocumented functions: `iapp`, `icons`,
 `ising`, `lapp`, `lcons`, `lsing`, `sempty`, `slazy`, and `dump`. They
 are visible in the interface with the caveat: "For system use only, not
-for the casual user". Some of these functions are used internally by
-Camlp4 [Stream
-Expressions](stream_expressions.html "Stream Expressions"), which are
-based on the `Stream` module as well. In any case, they are best left
-alone.
-
+for the casual user".
 

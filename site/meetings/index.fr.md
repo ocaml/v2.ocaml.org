@@ -55,7 +55,7 @@
 
 * 2013: [Nagoya](http://ocaml.jp/um2013)
 * 2010: [Nagoya](http://ocaml.jp/um2010)
-* 2009: [Tokyo](http://atnd.org/events/738)
+* 2009: Tokyo
 
 ### Aux États-Unis
 * 2012–present: [NYC OCaml Meetup](http://www.meetup.com/NYC-OCaml/)

@@ -68,14 +68,8 @@ INCDIRS = /path/to/somelibdirectory/
 ```
 Usually this requires some preliminary configuration as it is
 traditionally performed with a configure script since the path can vary
-from one installation to another. An exception is when using standard
-directories which are not included in the search path by default such as
-/path/to/stdlib/camlp4. In this case, this should be enough and
-portable:
+from one installation to another.
 
-```makefile
-INCDIRS = +camlp4
-```
 OK, but we prefer libraries that are installed with ocamlfind. To use
 them with OCamlMakefile, the PACKS variable must be set:
 
@@ -88,47 +82,6 @@ bigarray are automatically considered as Findlib packages. Any package
 which is required by a given package (e.g. netstring requires unix and
 pcre) is automatically loaded.
 
-How about Camlp4 syntax extensions? Some packages may define syntax
-extensions, which are bytecode units that are loaded by the
-preprocessor. With OCamlMakefile, a preprocessor to be used can be
-defined in the first line of the file:
-
-```ocaml
-(*pp ...
-```
-So it could be something like:
-
-```ocaml
-(*pp camlp4o -I /path/to/pa_infix pa_infix.cmo *)
-```
-Well, this form is not very convenient, so we will use the same
-preprocessor for each file and store its value in the PP variable of the
-Makefile:
-
-```makefile
-PP = camlp4o -I /path/to/pa_infix pa_infix.cmo
-export PP
-```
-So each OCaml file will start with:
-
-```ocaml
-(*pp $PP *)
-```
-This way of defining the preprocessor is still not satisfying: we would
-like to take advantage of ocamlfind to load the appropriate syntax
-extension files. For this, we will use the [camlp4find
-script](http://martin.jambon.free.fr/ocaml.html).
-Every package which we use will listed as usual in the PACKS variable,
-and camlp4find will call ocamlfind to know which syntax extensions to
-load:
-
-```makefile
-PACKS = unix micmatch_pcre \
-   pa_tryfinally pa_lettry pa_forin pa_forstep pa_repeat pa_arg
-PP = camlp4find $(PACKS)
-export PP
-```
-
 ## Summary
 
 You need:
@@ -136,8 +89,6 @@ You need:
 * GNU make
 * OCamlMakefile (copied to the project's main directory)
 * Findlib (ocamlfind)
-* camlp4find (copied to the project's main directory)
-* Camlp4 packages installed with ocamlfind
 * write a small Makefile according to the template below
 * add a constant magic line at the beginning of your source files
 
@@ -148,14 +99,7 @@ The Makefile file would be:
 RESULT = myprogram
 SOURCES = mymodule1.mll mymodule2.mli mymodule2.ml mymainmodule.ml
 PACKS = unix micmatch_pcre
-PP = camlp4find $(PACKS)
-export PP
 CREATE_LIB = yes # ???
 OCAMLMAKEFILE = OCamlMakefile
 include $(OCAMLMAKEFILE)
-```
-And each .ml or .mli file starts with:
-
-```ocaml
-(*pp $PP *)
 ```

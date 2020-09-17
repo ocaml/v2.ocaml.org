@@ -540,7 +540,7 @@ procedural commands. This is really a classic imperative program.
 (* Third snippet *)
 open GdkKeysyms
 
-let () =
+let _ =
   window#connect#destroy ~callback:Main.quit;
   let factory = new GMenu.factory file_menu ~accel_group in
   factory#add_item "Open..." ~key:_O ~callback:editor#open_file;

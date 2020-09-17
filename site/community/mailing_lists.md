@@ -34,8 +34,7 @@ implementations developed at Inria. The purpose of this list is to share
 experience, exchange ideas and code, and report on applications of the
 OCaml language. This list is not moderated, but posting is restricted to
 the subscribers of the list. Messages are generally in English but
-sometimes also in French. In 2010, the list has about 1500 subscribers,
-who exchange about 300 messages per month.
+sometimes also in French.
 
 [Subscribe](https://sympa.inria.fr/sympa/subscribe/caml-list)
 |
@@ -76,10 +75,8 @@ client.
 Public channel logs are available at <http://irclog.whitequark.org/ocaml/>
 
 If you wish to use a web-based IRC client, you can use Freenode's
-webchat <https://webchat.freenode.net/>. For a fancier/nicer
-interface, you may try
-<https://vector.im/beta/#/room/#freenode_#ocaml:matrix.org> -- it
-requires registration but is otherwise free.
+webchat <https://webchat.freenode.net/>.
+
 
 ### Discord Server
 

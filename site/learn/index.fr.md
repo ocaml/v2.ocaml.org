@@ -25,7 +25,6 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >sur Pleac</a>,
 		<a href="http://rosettacode.org/wiki/Category:OCaml"
 		   >sur Rosetta</a>,
-		<a href="http://langref.org/ocaml" >sur Langref</a>, or
                 <a href="http://www.codecodex.com/wiki/Category:Objective_Caml">sur Code Codex</a>.</p>
             </footer>
         </section>
@@ -57,7 +56,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
                 src="/img/OCaml_from_beginning.png" width="48%"
 				alt="OCaml from the very beginning"></a>
 				<p style="clear:both"
->De nombreux livres sont disponibles sur OCaml, dont deux publiés en 2013.
+>De nombreux livres sont disponibles sur OCaml, dont deux publiés récemment.
 		</p>
 		<footer>
                   <p><a href="books.html">Voir la liste complète des livres sur OCaml</a></p>
@@ -176,7 +175,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 	       >« découvre » des algorithmes qui étaient inconnus
 	       auparavant</a>.
 	    Elle a été couronnée
-	    <a href="http://www.mcs.anl.gov/about-us/j-h-wilkinson-prize-numerical-software"
+	    <a href="https://en.wikipedia.org/wiki/J._H._Wilkinson_Prize_for_Numerical_Software"
 	       >par le prix J. H. Wilkinson du logiciel numérique</a>,
 	    qui prime les développements qui excèlent dans toutes les phases
 	    de la préparation d'un logiciel numérique de haute qualité.

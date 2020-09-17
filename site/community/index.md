@@ -38,7 +38,7 @@
                 Intended for all users of OCaml. The purpose of this list is to share experience, exchange ideas and code, and discuss applications of the language.</p>
             </section>
             <section class="span4 condensed">
-                <p><strong><a href="http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce">caml-announce@inria.fr</a></strong><br />
+                <p><strong><a href="https://sympa.inria.fr/sympa/info/caml-announce">caml-announce@inria.fr</a></strong><br />
                 <strong><em>Low volume announcements</em></strong><br />
                 This is a low-traffic, moderated list for announcements of OCaml releases and new OCaml-related software, libraries, documents, etc.</p>
                 <p><strong><a href="http://lists.ocaml.org">lists.ocaml.org</a></strong><br />
