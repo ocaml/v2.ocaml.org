@@ -70,7 +70,7 @@ $ ocaml
 ```
 
 We typed the phrase `1 + 2 * 3` and then signalled to OCaml that we had
-fininshed by typeing `;;` followed by the Enter key. OCaml calculated the
+fininshed by typing `;;` followed by the Enter key. OCaml calculated the
 result, `7` and its type `int` and showed them to us. We exit by running the
 built-in `exit` function with exit code 0:
 
@@ -84,11 +84,17 @@ $ ocaml
 $
 ```
 
-There are two ways to improve your experience with the OCaml top level: you can install `rlwrap` on your system and invoke `rlwrap ocaml` instead of `ocaml` to get line-editing facilities inside the OCaml top level, or you can install the alternative top level `utop` using OPAM:
+There are two ways to improve your experience with the OCaml top level: you can
+install `rlwrap` on your system and invoke `rlwrap ocaml` instead of `ocaml` to
+get line-editing facilities inside the OCaml top level, or you can install the
+alternative top level `utop` using OPAM:
 
 ```
-$opam install utop
+$ opam install utop
 ```
+
+We run it by typing `utop` instead of `OCaml`. You can read [more about
+`utop`](https://github.com/ocaml-community/utop).
 
 ##Installing the Dune build system
 
@@ -162,22 +168,36 @@ file.
  (name helloworld))
 ```
 
-
 ##Editor support for OCaml
 
-##Next steps
+**For Vim and Emacs**, install the merlin system using OPAM:
 
-##Templates(to delete)
-
-
-```ocaml
-class virtual widget ?show obj =
-  object (self)
-    inherit gtk_object obj
-    initializer
-      if show <> Some false then self#show
-  end
+```
+$ opam install merlin
 ```
 
-![Simple lablgtk program](/img/simplee29b.gif "")
+the installation procedure will print instructions on how to link merlin with
+your editor. 
 
+For **Visual Studio Code**, the OCaml language server can by installed by OPAM.
+
+```
+$ opam pin add ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git
+$ opam install ocaml-lsp-server
+```
+
+Now, we install the OCaml Platform Visual Studio Code extension.
+
+Upon first loading an OCaml source file, you may be prompted to select the
+toolchain in use: pick OCaml the version of OCaml you are using, e.g. 4.11.1
+from the list.
+
+![Visual Studio Code](/img/vscode.png "")
+
+**On Windows**, we must launch Visual Studio Code from within the Cygwin window,
+rather than by clicking on its icon (otherwise, the language server will not be
+found):
+
+```
+$ /cygdrive/c/Users/Frank\ Smith/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe
+```
