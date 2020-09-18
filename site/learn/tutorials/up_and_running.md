@@ -5,7 +5,7 @@
 #Up and Running with OCaml
 
 This page will help you install OCaml, the Dune build system, and support for
-your favourite text editor. All these instructions work on Windows, Unix
+your favourite text editor or IDE. All these instructions work on Windows, Unix
 systems like Linux, and MacOS.
 
 ##Installing OCaml
@@ -19,7 +19,7 @@ First, we install OPAM:
 sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
 ```
 
-(If this method does not suit, please see [How to install
+(If this method does not suit you, please see [How to install
 OPAM](opam.ocaml.org/doc/install.html))
 
 Then, we install an OCaml compiler:
@@ -70,7 +70,7 @@ $ ocaml
 ```
 
 We typed the phrase `1 + 2 * 3` and then signalled to OCaml that we had
-fininshed by typing `;;` followed by the Enter key. OCaml calculated the
+finished by typing `;;` followed by the Enter key. OCaml calculated the
 result, `7` and its type `int` and showed them to us. We exit by running the
 built-in `exit` function with exit code 0:
 
@@ -93,8 +93,8 @@ alternative top level `utop` using OPAM:
 $ opam install utop
 ```
 
-We run it by typing `utop` instead of `OCaml`. You can read [more about
-`utop`](https://github.com/ocaml-community/utop).
+We run it by typing `utop` instead of `OCaml`. You can read more about
+[utop](https://github.com/ocaml-community/utop).
 
 ##Installing the Dune build system
 
@@ -170,27 +170,30 @@ file.
 
 ##Editor support for OCaml
 
-**For Vim and Emacs**, install the merlin system using OPAM:
+**For Vim and Emacs**, install the [merlin](https://github.com/ocaml/merlin)
+system using OPAM:
 
 ```
 $ opam install merlin
 ```
 
-the installation procedure will print instructions on how to link merlin with
+The installation procedure will print instructions on how to link merlin with
 your editor. 
 
-For **Visual Studio Code**, the OCaml language server can by installed by OPAM.
+For **Visual Studio Code**, and other editors support the Language Server
+Protocol, the OCaml language server can by installed with OPAM:
 
 ```
 $ opam pin add ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git
 $ opam install ocaml-lsp-server
 ```
 
-Now, we install the OCaml Platform Visual Studio Code extension.
+Now, we install the OCaml Platform Visual Studio Code extension from the Visual
+Studio Marketplace.
 
 Upon first loading an OCaml source file, you may be prompted to select the
 toolchain in use: pick OCaml the version of OCaml you are using, e.g. 4.11.1
-from the list.
+from the list. Now, help is available by hovering over symbols in your program:
 
 ![Visual Studio Code](/img/vscode.png "")
 
