@@ -5,7 +5,7 @@
 # Up and Running with OCaml
 
 This page will help you install OCaml, the Dune build system, and support for
-your favourite text editor or IDE. All these instructions work on Windows, Unix
+your favourite text editor or IDE. These instructions work on Windows, Unix
 systems like Linux, and MacOS.
 
 ## Installing OCaml
@@ -85,15 +85,16 @@ $
 ```
 
 There are two ways to improve your experience with the OCaml top level: you can
-install `rlwrap` on your system and invoke `rlwrap ocaml` instead of `ocaml` to
-get line-editing facilities inside the OCaml top level, or you can install the
-alternative top level `utop` using OPAM:
+install the popular [`rlwrap`](https://github.com/hanslub42/rlwrap) on your
+system and invoke `rlwrap ocaml` instead of `ocaml` to get line-editing
+facilities inside the OCaml top level, or you can install the alternative top
+level `utop` using OPAM:
 
 ```
 $ opam install utop
 ```
 
-We run it by typing `utop` instead of `OCaml`. You can read more about
+We run it by typing `utop` instead of `ocaml`. You can read more about
 [utop](https://github.com/ocaml-community/utop).
 
 ## Installing the Dune build system
@@ -170,16 +171,6 @@ file.
 
 ## Editor support for OCaml
 
-**For Vim and Emacs**, install the [merlin](https://github.com/ocaml/merlin)
-system using OPAM:
-
-```
-$ opam install merlin
-```
-
-The installation procedure will print instructions on how to link merlin with
-your editor. 
-
 For **Visual Studio Code**, and other editors support the Language Server
 Protocol, the OCaml language server can by installed with OPAM:
 
@@ -203,4 +194,23 @@ found):
 
 ```
 $ /cygdrive/c/Users/Frank\ Smith/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe
+```
+
+**For Vim and Emacs**, install the [Merlin](https://github.com/ocaml/merlin)
+system using OPAM:
+
+```
+$ opam install merlin
+```
+
+The installation procedure will print instructions on how to link Merlin with
+your editor.
+
+**On Windows**, when using Vim, the default cygwin Vim will not work with
+Merlin. You will need install Vim separately. In addition to the usual
+instructions printed when installing Merlin, you may need to set the PATH in
+Vim:
+
+```
+let $PATH .= ";".substitute(system('opam config var bin'),'\n$','','''')
 ```
