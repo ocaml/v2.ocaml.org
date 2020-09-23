@@ -2,13 +2,13 @@
 
 *Table of contents*
 
-#Up and Running with OCaml
+# Up and Running with OCaml
 
 This page will help you install OCaml, the Dune build system, and support for
 your favourite text editor or IDE. All these instructions work on Windows, Unix
 systems like Linux, and MacOS.
 
-##Installing OCaml
+## Installing OCaml
 
 **For Linux and MacOS**, we install OCaml using OPAM, the OCaml package manager.
 OPAM will also be used when we wish to install third-party OCaml libraries.
@@ -54,7 +54,7 @@ in 32bit and 64bit versions. This installer gives you OPAM and OCaml
 installations all in one go. It is used from within a Cygwin environment, but
 the executables produced have no dependency on Cygwin at all.
 
-##The OCaml top level
+## The OCaml top level
 
 OCaml comes with two compilers: for native code, and for byte code. We shall
 use one of those in a moment. But first, let's use OCaml's top level (sometimes
@@ -96,7 +96,7 @@ $ opam install utop
 We run it by typing `utop` instead of `OCaml`. You can read more about
 [utop](https://github.com/ocaml-community/utop).
 
-##Installing the Dune build system
+## Installing the Dune build system
 
 Dune is a build system for OCaml. It takes care of all the low level details of
 OCaml compilation. We install it with OPAM:
@@ -115,7 +115,7 @@ downloaded
 Done.
 ```
 
-##A first project
+## A first project
 
 Let's begin the simplest project with Dune and OCaml. We create a new directory
 and ask `dune` to initialise a new project:
@@ -168,7 +168,7 @@ file.
  (name helloworld))
 ```
 
-##Editor support for OCaml
+## Editor support for OCaml
 
 **For Vim and Emacs**, install the [merlin](https://github.com/ocaml/merlin)
 system using OPAM:
