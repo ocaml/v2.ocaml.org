@@ -10,17 +10,27 @@ systems like Linux, and MacOS.
 
 ## Installing OCaml
 
-**For Linux and MacOS**, we install OCaml using OPAM, the OCaml package manager.
-OPAM will also be used when we wish to install third-party OCaml libraries.
+There are two procedures: one for Unix-like systems, and one for Windows.
 
-First, we install OPAM:
+### For Linux and MacOS
+
+We will install OCaml using OPAM, the OCaml package manager.  OPAM will also be
+used when we wish to install third-party OCaml libraries.
+
+**For MacOS**
 
 ```
-sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
+# Homebrew
+brew install gpatch
+brew install opam
+
+# MacPort
+port install opam
 ```
 
-(If this method does not suit you, please see [How to install
-OPAM](opam.ocaml.org/doc/install.html))
+**For Linux** the preferred way is to use your system's package manager on
+Linux (e.g `apt-get install opam` or similar). [Details of all installation
+methods.](https://opam.ocaml.org/doc/Install.html)
 
 Then, we install an OCaml compiler:
 
@@ -44,15 +54,19 @@ $ ocaml -version
 The OCaml toplevel, version 4.11.1
 ```
 
-Other (less recommended) ways to install OCaml, for example using your Linux
-distribution's package manager, are explained on the [install
-page](../docs/install.html).
+**For either Linux or MacOS** as an alternative, a binary distribution of OPAM is
+available:
 
-**For Windows** we use instead the [OCaml for
-Windows](https://fdopen.github.io/opam-repository-mingw/) installer which comes
-in 32bit and 64bit versions. This installer gives you OPAM and OCaml
-installations all in one go. It is used from within a Cygwin environment, but
-the executables produced have no dependency on Cygwin at all.
+```
+sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
+```
+
+### For Windows
+
+We use the [OCaml for Windows](https://fdopen.github.io/opam-repository-mingw/)
+installer which comes in 32bit and 64bit versions. This installer gives you
+OPAM and OCaml installations all in one go. It is used from within a Cygwin
+environment, but the executables produced have no dependency on Cygwin at all.
 
 ## The OCaml top level
 
