@@ -8,7 +8,7 @@ OCaml 2016
 **The OCaml Users and Developers Workshop**: Nara, Japan, Friday 23rd September 2016.
 
 Colocated with [ICFP 2016](http://icfpconference.org/icfp2016/),
-the day after the [ML family workshop](http://www.mlworkshop.org/ml2016/).
+the day after the ML family workshop.
 
 The OCaml Users and Developers Workshop brings together industrial users of
 OCaml with academics and hackers who are working on extending the language,

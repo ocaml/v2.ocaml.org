@@ -163,18 +163,10 @@ let feed_of_url ~name url =
   with
   | Rss2.Error.Error _ ->
       broken_feed name url "Neither an Atom nor a RSS2 feed"
-  | Nethttp_client.Http_protocol(Nethttp_client.Timeout s)
-  | Nethttp_client.Http_protocol(Nethttp_client.Name_resolution_error s) ->
-     broken_feed name url s
-  | Nethttp_client.Http_protocol Nethttp_client.Too_many_redirections ->
-     broken_feed name url "Too many redirections"
-  | Nethttp_client.Http_protocol e ->
-     broken_feed name url (Printexc.to_string e)
-  | Nethttp_client.Http_error(err, _) ->
-     let msg = Nethttp.(string_of_http_status (http_status_of_int err)) in
-     broken_feed name url msg
   | Invalid_argument msg ->     (* e.g. Syndic.Date.of_string *)
      broken_feed name url ("Invalid_argument: " ^ msg)
+  | Http.Error s ->
+     broken_feed name url ("HTTP error: " ^ s)
 
 let planet_feeds =
   let add_feed acc line =

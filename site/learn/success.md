@@ -165,7 +165,7 @@ the desired property on a wide range of software.”
 
 “So far, ASTRÉE has proved the absence of runtime errors in the primary
 control software of the [Airbus A340
-family](http://www.airbus.com/product/a330_a340_backgrounder.asp). This
+family](https://www.airbus.com/aircraft/previous-generation-aircraft/a340-family.html). This
 would be impossible by *software testing*, for testing only considers a
 limited *subset* of the test cases, while abstract interpretation
 considers a *superset* of all possible outcomes of the system.”
@@ -200,12 +200,11 @@ robustness of its implementation provided a great productivity boost.”
 <img src='/img/fftw-thumb.png' alt='FFTW'
 style='float: left; margin-right: 10px' />
 
-[FFTW](http://www.fftw.org/) is a [very
-fast](http://www.fftw.org/benchfft/) C library for computing Discrete
-Fourier Transforms (DFT). It uses a powerful symbolic optimizer written
-in OCaml which, given an integer N, generates highly optimized C code to
-compute DFTs of size N. FFTW was awarded the 1999 [Wilkinson
-prize](http://www.mcs.anl.gov/about-us/j-h-wilkinson-prize-numerical-software)
+[FFTW](http://www.fftw.org/) is a [very fast](http://www.fftw.org/benchfft/) C
+library for computing Discrete Fourier Transforms (DFT). It uses a powerful
+symbolic optimizer written in OCaml which, given an integer N, generates highly
+optimized C code to compute DFTs of size N. FFTW was awarded the 1999
+[Wilkinson prize](https://en.wikipedia.org/wiki/J._H._Wilkinson_Prize_for_Numerical_Software)
 for numerical software.
 
 Benchmarks, performed on on a variety of platforms, show that FFTW's

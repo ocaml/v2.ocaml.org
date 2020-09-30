@@ -26,9 +26,7 @@ implémentations OCaml de l'Inria. Le but de cette tribune est de mettre
 en commun les expériences, échanger idées et morceaux de code, et
 discuter des applications du langage OCaml. Il faut être inscrit à la
 liste avant de pouvoir y poster des messages. Les messages y sont écrits
-principalement en anglais, mais parfois aussi en français. En 2010, la
-liste compte environ 1500 abonnées, qui échangent de l'ordre de 300
-messages par mois.
+principalement en anglais, mais parfois aussi en français.
 
 [Abonnement](https://sympa.inria.fr/sympa/subscribe/caml-list) |
 [Archives OCaml](https://inbox.ocaml.org/caml-list) |

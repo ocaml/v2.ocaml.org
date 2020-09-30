@@ -13,7 +13,6 @@ there to request or offer new tutorials.
 
 ### Getting Started
 
-* [Up and Running](up_and_running.html)
 * [Basics](basics.html)
 * [Structure of OCaml Programs](structure_of_ocaml_programs.html)
 * [Modules](modules.html)
@@ -113,6 +112,7 @@ Both in french:
   Introduction on functional programming using OCaml.
 * [fr.wikiversity.org/wiki/Premiers_pas_en_OCaml](http://fr.wikiversity.org/wiki/Premiers_pas_en_OCaml)
   The basics of the OCaml language.
+
 
 ### Tutorials on Tools and Other Articles
 
