@@ -4,7 +4,7 @@
 <header id="home-header">
     <div class="container">
         <div class="row">
-            <h1 class="span9">OCaml is an industrial strength programming language supporting functional, imperative and object-oriented styles</h1>
+            <h1 class="span9">OCaml is an industrial-strength programming language supporting functional, imperative and object-oriented styles</h1>
             <div class="span3">
                 <div>
                     <a class="btn" href="/docs/install.html">Install OCaml</a>
