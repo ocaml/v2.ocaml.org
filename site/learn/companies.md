@@ -308,7 +308,7 @@ the smart-contract language, Michelson.
 Tezos infrastructure is entirely implemented in OCaml. It strongly
 relies on OCaml efficiency and expressivity. For instance, Michelson
 smart contracts are represented using OCaml GADTs to prevent many
-runtime errors to happen. Safety and correctness are critical for a
+runtime errors from happening. Safety and correctness are critical for a
 blockchain and we are glad that the OCaml type system allows for a
 form of lightweight formal method that can be used on a daily basis.
 
