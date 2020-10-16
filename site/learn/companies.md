@@ -293,31 +293,6 @@
 
 <dl class="row">
     <dt class="span3">
-        <img src="/img/users/nomadic-labs.png" alt="Nomadic Labs">
-    </dt>
-    <dd class="span5">
-        <h2><a href="https://www.nomadic-labs.com">Paris</a>, France</h2>
-        <p>
-
-Nomadic Labs houses a team focused on Research and Development. Our
-core competencies are in programming language theory and practice,
-distributed systems, and formal verification. Nomadic Labs focuses on
-contributing to the development of the Tezos core software, including
-the smart-contract language, Michelson.
-
-Tezos infrastructure is entirely implemented in OCaml. It strongly
-relies on OCaml efficiency and expressivity. For instance, Michelson
-smart contracts are represented using OCaml GADTs to prevent many
-runtime errors from happening. Safety and correctness are critical for a
-blockchain and we are glad that the OCaml type system allows for a
-form of lightweight formal method that can be used on a daily basis.
-
-</p>
-    </dd>
-</dl>
-
-<dl class="row">
-    <dt class="span3">
         <img src="/img/users/wolfram-mathcore.gif" alt="Wolfram MathCore">
     </dt>
     <dd class="span5">
@@ -388,6 +363,32 @@ form of lightweight formal method that can be used on a daily basis.
         <p>Narrow Gate Logic is a company using the OCaml language in business and non-business applications.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/nomadic-labs.png" alt="Nomadic Labs">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://www.nomadic-labs.com">Paris</a>, France</h2>
+        <p>
+
+Nomadic Labs houses a team focused on Research and Development. Our
+core competencies are in programming language theory and practice,
+distributed systems, and formal verification. Nomadic Labs focuses on
+contributing to the development of the Tezos core software, including
+the smart-contract language, Michelson.
+
+Tezos infrastructure is entirely implemented in OCaml. It strongly
+relies on OCaml efficiency and expressivity. For instance, Michelson
+smart contracts are represented using OCaml GADTs to prevent many
+runtime errors from happening. Safety and correctness are critical for a
+blockchain and we are glad that the OCaml type system allows for a
+form of lightweight formal method that can be used on a daily basis.
+
+</p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/ocamlpro.png" alt="OCamlPro">
