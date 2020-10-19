@@ -34,8 +34,8 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
                 <li><a href="tutorials/basics.fr.html">Les bases syntaxiques</a></li>
                 <li><a href="tutorials/structure_of_ocaml_programs.fr.html">Les constructions de base</a></li>
                 <li><a href="tutorials/modules.fr.html">Les modules</a></li>
-                <li><a href="tutorials/map.html">Les dictionnaires</a></li>
-                <li><a href="tutorials/set.html">Les ensembles</a></li>
+                <li><a href="tutorials/map.fr.html">Les dictionnaires</a></li>
+                <li><a href="tutorials/set.fr.html">Les ensembles</a></li>
                 <li><a href="tutorials/hashtbl.html">Les tables de hachage</a></li>
                 <li><a href="tutorials/comparison_of_standard_containers.html">Une comparaison des structures de données</a></li>
                 <li><a href="faq.html">Questions frequentes (FAQ)</a></li>
