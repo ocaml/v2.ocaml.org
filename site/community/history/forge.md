@@ -12,13 +12,13 @@ of visibility for OCaml we wanted. When the forge was shutdown, there were 416 u
  
 The main goal was to provide an infrastructure for the OCaml community:
 
-- Make more visible OCaml enthusiasts
+- Make OCaml enthusiasts more visible
 - Allow to gather an important code base
-- Centralize contribution to gain more momentum
-- Improve the OCaml “marketing” by showing many projects and libraries available
+- Centralize contributions to gain more momentum
+- Improve the OCaml “marketing” by showing many projects and the available libraries
   
-When the forge was built, the market was different. The main code hosting sites were SourceForge and Google Code. They 
-were other contenders like Savannah and self-hosting possibility with Trac. The team behind the forge has decided
+When the forge was built, the market was different. The main code hosting sites were SourceForge and Google Code. There 
+were other contenders like Savannah and self-hosting possibility with Trac. The team behind the forge decided
 to use FusiongForge, which was an open-source fork of the SourceForge code base. It was a great platform, offering most
 of what was needed.  
 
