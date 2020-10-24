@@ -4,7 +4,7 @@
 
 # Setting up an OCaml project with OASIS
 
-[OASIS](http://oasis.forge.ocamlcore.org/) allows to give a high level description of your project and will generate a build system and packaging information for you. It allows to set up a project in a quick and simple way. The goal of this tutorial is not to explain all the details of OASIS, but to provide the necessary information to setup a project.
+[OASIS](https://github.com/ocaml/oasis) allows to give a high level description of your project and will generate a build system and packaging information for you. It allows to set up a project in a quick and simple way. The goal of this tutorial is not to explain all the details of OASIS, but to provide the necessary information to setup a project.
 
 ## Getting started
 
@@ -20,7 +20,7 @@ You can also install it under debian-based system.
 sudo apt-get install oasis
 ```
 
-Finally, a tarball is available on [OASIS's main page](http://oasis.forge.ocamlcore.org/).
+Finally, installation instructions are available on [OASIS's main page](https://github.com/ocaml/oasis).
 
 ### What is your project ?
 
@@ -39,7 +39,7 @@ Homepage: http://foobar.org
 
 This description might seem unnecessary at first, but will be mandatory if you want to package and distribute your library later on. It's also a nice source of information for the interested user.
 
-Only the first set of field is mandatory. You can find a list of all the available licenses [here](http://oasis.forge.ocamlcore.org/MANUAL.html#license).
+Only the first set of field is mandatory. You can find a list of all the available licenses [here](https://github.com/ocaml/oasis/blob/master/doc/MANUAL.mkdl#license).
 
 ### A little bit of OASIS boilerplate
 
@@ -118,19 +118,25 @@ Library "bar"
   BuildDepends: foo, unix
 ```
 
-As you can see, `BuildDepends` is also used for intra-project dependencies: the bar library is dependent on the foo library.
-`Modules` and `InternalModules` are comma separated list of modules. They should contain only capitalized name with no file extensions. They can include module provided by any type of file, being `.ml`, `.mli`, `.mll` or `.mly` (for [ocamllex, ocamlyacc](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/lexyacc.html) and [menhir](http://cristal.inria.fr/~fpottier/menhir/)).
-`InternalModules` is used to list modules that are part of the library but should be kept hidden and not be part of the public interface of the library.
+As you can see, `BuildDepends` is also used for intra-project dependencies: the bar library is dependent on the foo
+library. `Modules` and `InternalModules` are comma separated list of modules. They should contain only capitalized name
+with no file extensions. They can include module provided by any type of file, being `.ml`, `.mli`, `.mll` or `.mly`
+(for [ocamllex, ocamlyacc](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/lexyacc.html) and
+[menhir](http://cristal.inria.fr/~fpottier/menhir/)). `InternalModules` is used to list modules that are part of the
+library but should be kept hidden and not be part of the public interface of the library.
 
 `make` builds the various libraries and `make install` installs them. OASIS handles the installation using ocamlfind.
 
 ### Other optional sections
 
-Executable and Library are enough to create a basic project. The following sections allow to provide more information and build extra things to distribute your project.
+Executable and Library are enough to create a basic project. The following sections allow to provide more information
+and build extra things to distribute your project.
 
 #### Documentation
 
-Documentation is a very important part of a library. OASIS allows to build an [ocamldoc](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/ocamldoc.html)-powered HTML documentation for the complete project quite easily.
+Documentation is a very important part of a library. OASIS allows to build an
+[ocamldoc](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/ocamldoc.html)-powered HTML documentation for the
+complete project quite easily.
 
 ```oasis
 AlphaFeatures: ocamlbuild_more_args
@@ -145,9 +151,9 @@ Document "foobar_api"
   XOCamlbuildLibraries: foo, bar
 ```
 
-The important part is the `XOCamlbuildLibraries` field, which is a list of ocamlfind libraries defined in the `_oasis` file.
-`XOCamlbuildExtraArgs` allows to give some ocamldoc command line flags. Those presented here are considered essential.
-Running `make doc` will create a folder `foobar_api.docdir` which contains the documentation as HTML files.
+The important part is the `XOCamlbuildLibraries` field, which is a list of ocamlfind libraries defined in the `_oasis`
+file. `XOCamlbuildExtraArgs` allows to give some ocamldoc command line flags. Those presented here are considered
+essential. Running `make doc` will create a folder `foobar_api.docdir` which contains the documentation as HTML files.
 
 #### SourceRepository and `.gitignore`
 
@@ -161,7 +167,8 @@ SourceRepository master
   Browser: https://my_git_host.org/foobar
 ```
 
-While we are on the subject of version control system, here is an example of `.gitignore` file that will ignore just the right file for your project using OASIS.
+While we are on the subject of version control system, here is an example of `.gitignore` file that will ignore just the
+right file for your project using OASIS.
 
 ```.gitignore
 _build
@@ -176,7 +183,9 @@ setup.log
 ## Going further
 
 You now should be able to build simple projects with OASIS.
-You should also know enough to browse the [The official OASIS documentation](http://oasis.forge.ocamlcore.org/MANUAL.html) and look at [some examples](#Examples) to find out the various fields you can put in an `_oasis` file.
+You should also know enough to browse the
+[The official OASIS documentation](https://github.com/ocaml/oasis/blob/master/doc/MANUAL.mkd) and look at
+[some examples](#Examples) to find out the various fields you can put in an `_oasis` file.
 
 However, OASIS has more features!
 
@@ -234,7 +243,7 @@ Library "bar_with_baz"
 ```
 
 Notice the `$:` which is specific for boolean fields.
-Conditional values are explained in details [here](http://oasis.forge.ocamlcore.org/MANUAL.html#conditional-value).
+Conditional values are explained in details [here](https://github.com/ocaml/oasis/blob/master/doc/MANUAL.mkd#conditional-value).
 
 ### Tests
 
@@ -249,7 +258,8 @@ Test "test_foo"
 `TestTools` allows to give the dependency.
 To enable and run the tests, run `configure --enable-tests` and `make test`. Tests are disabled by default.
 
-For unit testing, we can declare an executable only for tests, using the [oUnit](http://ounit.forge.ocamlcore.org/) testing framework for example, and a test using it. For this, we use the predefined flag `tests`.
+For unit testing, we can declare an executable only for tests, using the [oUnit](https://github.com/gildor478/ounit)
+testing framework for example, and a test using it. For this, we use the predefined flag `tests`.
 
 ```oasis
 Executable "test_bar_and_baz"
@@ -329,7 +339,10 @@ For details about C bindings, you can consult [this tutorial](calling_c_librarie
 Earlier, we generated the build system with the command line `oasis setup -setup-update dynamic`. This `dynamic` feature means that OASIS will be called to regenerate the build system when the `_oasis` file changes. It also produces very few and small files. This means that it's very convenient for the developer. However, it makes the build system dependent on OASIS, which is not acceptable for releases.
 In order to generate an OASIS independent build system, you can simply run `oasis setup`. You can learn more about this [here](#Setupoptions).
 
-The OASIS description file can be used to generate packages. Two tools are available for that: [oasis2opam](https://github.com/ocaml/oasis2opam) will generate an opam descriptions and [oasis2debian](http://oasis.forge.ocamlcore.org/oasis2debian.html) for `.deb` packages. Of course, don't forget to use the _non dynamic_ setup before packaging, as describe earlier, or the package will need OASIS to be build.
+The OASIS description file can be used to generate packages. Two tools are available for that:
+[oasis2opam](https://github.com/ocaml/oasis2opam) will generate an opam descriptions and
+[oasis2debian](https://github.com/ocaml/oasis2debian) for `.deb` packages. Of course, don't forget to use the
+_non dynamic_ setup before packaging, as describe earlier, or the package will need OASIS to be build.
 
 In order to ease the deployment, small scripts can be used. For example, [tyxml](https://github.com/ocsigen/tyxml) uses a [`Makefile.dist`](https://github.com/ocsigen/tyxml/blob/master/Makefile.dist) and [lwt](https://github.com/ocsigen/lwt) a [`dist.sh`](https://github.com/ocsigen/lwt/blob/master/dist.sh).
 
@@ -343,7 +356,7 @@ However, nothing is better than real world examples:
 - [lwt](https://github.com/ocsigen/lwt/blob/master/_oasis)'s `_oasis` is very complete and will probably cover all your needs.
 - [cohttp](https://github.com/mirage/ocaml-cohttp/blob/master/_oasis#L17) shows how to avoid dependencies to syntax packages with `XMETARequires`.
 - [batteries](https://github.com/ocaml-batteries-team/batteries-included) uses OASIS for meta-data only and handles the build system separately using the `XCustom` fields.
-- [Some other examples](http://oasis.forge.ocamlcore.org/alreadyusing.html).
+- [Some other examples](https://github.com/ocaml/oasis/tree/master/examples).
 
 
 ## Under the hood
@@ -411,12 +424,12 @@ This allows to push only the minimum amount of generated file in the repository 
 
 We used during this tutorial some plugins without explaining exactly what they do. We will give here a brief description of each of these plugins, plus some other potentially useful ones.
 
-- [Plugins](http://oasis.forge.ocamlcore.org/MANUAL.html#plugins) (the `Plugins` field):
+- [Plugins](https://github.com/ocaml/oasis/blob/master/doc/MANUAL.mkd#plugins) (the `Plugins` field):
  - `META` makes OASIS generates the `META` file used by ocamlfind.
  - `DevFiles` makes OASIS generates `configure` and `Makefile`.
  - `StdFiles` makes OASIS generates `README.txt`, `INSTALL.txt` and `AUTHORS.txt` using the metadatas contained in `_oasis`.
 
-- [Features](http://oasis.forge.ocamlcore.org/MANUAL.html#features) (`AlphaFeatures` and `BetaFeatures` fields) are various recent additions to OASIS that are not completely battle-tested.
+- [Features](https://github.com/ocaml/oasis/blob/master/doc/MANUAL.mkd#features) (`AlphaFeatures` and `BetaFeatures` fields) are various recent additions to OASIS that are not completely battle-tested.
 We give here only those that are stable enough to be used.
 Note that they will be integrated into OASIS properly in a short to mid term.
  - `ocamlbuild_more_args` (alpha) enables the `XOCamlbuildExtraArgs` field that allows to provide arguments to Ocamlbuild directly. It's a way to internalize in `_oasis` some information that would be in `_tags` otherwise.

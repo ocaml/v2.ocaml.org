@@ -32,16 +32,11 @@ account.
 - [Xmlm, Uuidm, React and Rtime](http://erratique.ch/software)
 - [ocamlunix.forge.ocamlcore.org/](http://ocamlunix.forge.ocamlcore.org/)
   is an introductory course on Unix system programming in Objective Caml
-- [OASIS](http://oasis.forge.ocamlcore.org/) Architecture for building
+- [OASIS](https://github.com/ocaml/oasis) Architecture for building
   OCaml libraries and applications.
-- [ocaml-data-notation](https://forge.ocamlcore.org/projects/odn/) to
- ddump OCaml data structure using OCaml data notation.
-- [OCamlify](https://forge.ocamlcore.org/projects/ocamlify/) allow to
+- [OCamlify](https://github.com/gildor478/ocamlify) allows to
  create OCaml source code by including whole file into OCaml string
  or string list.
-- [ocaml-process-monitor](https://forge.ocamlcore.org/projects/process-monitor/),
- designed in the same spirit as UNIX "top" but only track and sum
- resource usage of a process and its children.
 - [HeVeA](http://hevea.inria.fr/), a quite complete and fast LaTeX to
  HTML translator.
 - [diy](http://diy.inria.fr/), a testing tool for weak memory models,
