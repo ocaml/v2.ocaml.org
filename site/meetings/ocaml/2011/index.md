@@ -69,7 +69,7 @@ install it using only 2 commands.
 
 Sylvain Le Gall is an OCaml consultant working at OCamlCore SARL.
 
-[Website](http://oasis.forge.ocamlcore.org/)
+[Website](https://github.com/ocaml/oasis)
 | [Slides](slide/OCamlMeeting2011_OASIS_Slides.pdf)
 | [Video](https://youtu.be/njkP5EZ8uAo)
 
