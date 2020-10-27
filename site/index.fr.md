@@ -7,7 +7,7 @@
             <h1 class="span9">OCaml est un langage de programmation de niveau industriel supportant les styles fonctionnel, impératif et orienté-objet</h1>
             <div class="span3">
                 <div>
-                    <a class="btn" href="/docs/install.fr.html">Installer OCaml</a>
+                    <a class="btn" href="/learn/success.fr.html">Quelques succès</a>
                 </div>
             </div>
         </div>
