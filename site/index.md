@@ -7,7 +7,7 @@
             <h1 class="span9">OCaml is an industrial-strength programming language supporting functional, imperative and object-oriented styles</h1>
             <div class="span3">
                 <div>
-                    <a class="btn" href="/docs/install.html">Install OCaml</a>
+                    <a class="btn" href="/learn/success.html">Success Stories</a>
                 </div>
             </div>
         </div>
