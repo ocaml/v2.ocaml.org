@@ -173,16 +173,13 @@ pkg_add opam
 
 Sous Windows, les solutions suivantes sont disponibles pour installer OCaml:
 
-* [Distribution OCaml officielle](http://protz.github.io/ocaml-installer/).
-  Un auto-installeur avec une version préliminaire d'OPAM pour Windows.
+* [OCaml pour Windows](https://fdopen.github.io/opam-repository-mingw/)
+  fournit une version expérimentale des dépôts d'OPAM et d'OPAM pour Windows.
 
 * [OCPWin](http://www.typerex.org/ocpwin.html) est un fichier binaire contenant la
   distribution d'OCaml pour Windows. Quelques fonctionnalités supplémentaires
   ont été ajoutés à OCaml pour mieux supporter Windows, telles que l'auto-détection
   de MSVC et le support de MSVC 9.0, 10.0, 11.0, 12.0 and 14.0 (VS2015).
-
-* [OCaml pour Windows](https://fdopen.github.io/opam-repository-mingw/)
-  fournit une version expérimentale des dépôts d'OPAM et d'OPAM pour Windows.
 
 Voici quelques alternatives :
 
