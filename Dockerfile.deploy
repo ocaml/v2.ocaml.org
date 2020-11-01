@@ -10,4 +10,4 @@ COPY --chown=opam . /home/opam/src
 RUN opam exec -- make production
 FROM caddy:2-alpine
 COPY --from=build /home/opam/src/ocaml.org /usr/share/caddy
-ENTRYPOINT ["caddy", "file-server", "--domain", "www2.ocaml.org"]
+ENTRYPOINT ["caddy", "file-server"]
