@@ -358,7 +358,7 @@ let average a b =
 ```ocaml
 average : float -> float -> float
 ```
-类型推导不仅适用于短程序，也适用于大规模的程序。它是一个主要的节省时间的特性，因为它消除了一系列在其他语言中常见的造成 segfault ，`NullPointerException`和`ClassCastException`的错误（或者是如Perl中，一些很重要但是经常被忽略的运行时警告）。
+类型推导不仅适用于短程序，也适用于大规模的程序。它是一个主要的节省时间的特性，因为它消除了一系列在其他语言中常见的造成 segfault ，`NullPointerException` 和 `ClassCastException` 的错误（或者是如Perl中，一些很重要但是经常被忽略的运行时警告）。
 
 
 [utop]: https://github.com/diml/utop
