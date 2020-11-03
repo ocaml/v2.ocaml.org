@@ -95,7 +95,7 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .keyword, .ocaml .kw, .ocaml .k, .planet .Keyword { color: #575bf4 }
 .keywordsign { color: #886643; }
 .constructor, .ocaml .dt, .ocaml .nc {
-  color: #829f1c;
+  color: #008000;
   font-weight: normal;
 }
 .superscript { font-size : 80% }
@@ -107,11 +107,11 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
   font-style: italic;
   font-weight: normal;
 }
-.type { color: #c746cc }
+.type { color: #b03bb5 }
 .string, .string .keyword, .string .keywordsign, .string .constructor,
 .string .governing,
 .ocaml .st {
-  color: rgb(176, 88, 119);
+  color: #a95472;
   font-weight: normal;  
 }
 .warning { color : Red ; font-weight : bold }
@@ -127,14 +127,14 @@ li p {
 
 .ocaml-prompt { color: #8d8d8d }
 .ocaml-function { color: #0606ee }
-.ocaml-variable, .planet .Identifier { color: #b8860b }
+.ocaml-variable, .planet .Identifier { color: #c54512 }
 .ocaml-module, .planet .Include {
-  color: #829f1c; /* same as "constructor" */
+  color: #008000; /* same as "constructor" */
 }
 .planet .Operator { color: #93827c }
 
 .ocaml-output { color: #696969 }
-.ocaml-stdout { color: #0d89dd }
+.ocaml-stdout { color: #0c6fb3 }
 .ocaml-stderr { font-style: italic }
 .ocaml-error { font-style: italic;  color: #d32121 }
 .ocaml-error-loc { border-bottom: solid 2px #d32121; }
