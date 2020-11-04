@@ -436,6 +436,17 @@ ul.translations:after { content: "]"; }
   text-shadow: 0 1px 0 #ffffff;
 }
 
+/* Accessibility Helpers */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 /* Two columns mode
  ***********************************************************************/
 .begin_two_columns {
