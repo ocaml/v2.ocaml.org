@@ -8,9 +8,6 @@ RUN opam depext ocamlorg
 RUN opam install -y --deps-only ocamlorg
 COPY --chown=opam . /home/opam/src
 RUN opam exec -- make local
-FROM ocurrent/opam:debian-10-ocaml-4.10
-RUN sudo apt-get install -y dumb-init
-RUN opam depext -i cohttp-lwt-unix
-COPY --from=build /home/opam/src/ocaml.org /home/opam/src
-WORKDIR /home/opam/src
-ENTRYPOINT ["dumb-init", "/home/opam/.opam/4.10/bin/cohttp-server-lwt"]
+FROM caddy:2-alpine
+COPY --from=build /home/opam/src/ocaml.org /usr/share/caddy
+ENTRYPOINT ["caddy", "file-server"]
