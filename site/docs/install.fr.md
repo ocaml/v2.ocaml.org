@@ -173,27 +173,20 @@ pkg_add opam
 
 Sous Windows, les solutions suivantes sont disponibles pour installer OCaml:
 
-* [Distribution OCaml officielle](http://protz.github.io/ocaml-installer/).
-  Un auto-installeur avec une version préliminaire d'OPAM pour Windows.
-
-* [OCPWin](http://www.typerex.org/ocpwin.html) est un fichier binaire contenant la
-  distribution d'OCaml pour Windows. Quelques fonctionnalités supplémentaires
-  ont été ajoutés à OCaml pour mieux supporter Windows, telles que l'auto-détection
-  de MSVC et le support de MSVC 9.0, 10.0, 11.0, 12.0 and 14.0 (VS2015).
-
 * [OCaml pour Windows](https://fdopen.github.io/opam-repository-mingw/)
   fournit une version expérimentale des dépôts d'OPAM et d'OPAM pour Windows.
 
 Voici quelques alternatives :
 
+* Utiliser [« le Sous-système Windows pour Linux »](https://docs.microsoft.com/fr-fr/windows/wsl/about) et installer OCaml comme sur Ubuntu.
+  Les principales versions d'OCaml et d'OPAM fonctionnent.
+  L'inconvénient de cette méthode est que vous ne créez pas des fichiers
+  binaires natifs pour Windows mais des fichiers binaires pour Linux.
+
 * Les sources d'OCaml supportent directement Windows. Vous devrez compilez
   [les source](#Installation depuis les sources). Voir le fichier
   [README.win32](https://github.com/ocaml/ocaml/blob/trunk/README.win32.adoc) (en anglais)
   dans la distribution pour plus de détails.
-
-* Utiliser « Bash on Windows » et installer OCaml comme sur Ubuntu.
-  L'inconvénient de cette méthode est que vous ne créez pas
-   des fichiers binaires natifs pour Windows mais des fichiers binaires pour Linux.
 
 * [Cygwin](http://cygwin.com/) Avec Cygwin, vous pouvez l'installer avec l'outil `setup`.
    Les compileurs génèrent des exécutables qui requièrent Cygwin (`cygwin1.dll`).
