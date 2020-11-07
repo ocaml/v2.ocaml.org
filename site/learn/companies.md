@@ -88,7 +88,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.amnh.org/our-research/computational-sciences">American Museum of Natural History</a>, United States</h2>
-        <p>The Computational Sciences Department at the AMNH has been using OCaml for almost a decade in their software package <a href="http://www.amnh.org/our-research/computational-sciences/research/projects/systematic-biology/poy">POY</a> for phylogenetic inference. See <a href="https://github.com/AMNH">AMNH's GitHub page</a> for more projects.</p>
+        <p>The Computational Sciences Department at the AMNH has been using OCaml for almost a decade in their software package <a href="https://github.com/amnh/poy5">POY</a> for phylogenetic inference. See <a href="https://github.com/AMNH">AMNH's GitHub page</a> for more projects.</p>
     </dd>
 </dl>
 <dl class="row">
