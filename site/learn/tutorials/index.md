@@ -4,7 +4,7 @@
 # OCaml tutorials
 
 #### Your Help is Needed
-Some of the tutorials above need updating and tutorials on new topics are
+Some of these tutorials need updating and tutorials on new topics are
 needed. You can contribute by visiting this project's repo on
 [GitHub](https://github.com/ocaml/ocaml.org); you may use the issue tracker
 there to request or offer new tutorials.
