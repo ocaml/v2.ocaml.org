@@ -6,18 +6,18 @@
 
 This page will help you install OCaml, the Dune build system, and support for
 your favourite text editor or IDE. These instructions work on Windows, Unix
-systems like Linux, and MacOS.
+systems like Linux, and macOS.
 
 ## Installing OCaml
 
 There are two procedures: one for Unix-like systems, and one for Windows.
 
-### For Linux and MacOS
+### For Linux and macOS
 
 We will install OCaml using opam, the OCaml package manager.  We will also use
 opam when we wish to install third-party OCaml libraries.
 
-**For MacOS**
+**For macOS**
 
 ```
 # Homebrew
@@ -54,7 +54,7 @@ $ ocaml -version
 The OCaml toplevel, version 4.11.1
 ```
 
-**For either Linux or MacOS** as an alternative, a binary distribution of opam is
+**For either Linux or macOS** as an alternative, a binary distribution of opam is
 available:
 
 ```
