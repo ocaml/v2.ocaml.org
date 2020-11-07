@@ -14,8 +14,8 @@ There are two procedures: one for Unix-like systems, and one for Windows.
 
 ### For Linux and MacOS
 
-We will install OCaml using OPAM, the OCaml package manager.  OPAM will also be
-used when we wish to install third-party OCaml libraries.
+We will install OCaml using opam, the OCaml package manager.  We will also use
+opam when we wish to install third-party OCaml libraries.
 
 **For MacOS**
 
@@ -54,7 +54,7 @@ $ ocaml -version
 The OCaml toplevel, version 4.11.1
 ```
 
-**For either Linux or MacOS** as an alternative, a binary distribution of OPAM is
+**For either Linux or MacOS** as an alternative, a binary distribution of opam is
 available:
 
 ```
@@ -65,7 +65,7 @@ sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.
 
 We use the [OCaml for Windows](https://fdopen.github.io/opam-repository-mingw/)
 installer which comes in 32bit and 64bit versions. This installer gives you
-OPAM and OCaml installations all in one go. It is used from within a Cygwin
+opam and OCaml installations all in one go. It is used from within a Cygwin
 environment, but the executables produced have no dependency on Cygwin at all.
 
 ## The OCaml top level
@@ -102,7 +102,7 @@ There are two ways to improve your experience with the OCaml top level: you can
 install the popular [`rlwrap`](https://github.com/hanslub42/rlwrap) on your
 system and invoke `rlwrap ocaml` instead of `ocaml` to get line-editing
 facilities inside the OCaml top level, or you can install the alternative top
-level `utop` using OPAM:
+level `utop` using opam:
 
 ```
 $ opam install utop
@@ -114,7 +114,7 @@ We run it by typing `utop` instead of `ocaml`. You can read more about
 ## Installing the Dune build system
 
 Dune is a build system for OCaml. It takes care of all the low level details of
-OCaml compilation. We install it with OPAM:
+OCaml compilation. We install it with opam:
 
 ```
 $ opam install dune
@@ -186,10 +186,9 @@ file.
 ## Editor support for OCaml
 
 For **Visual Studio Code**, and other editors support the Language Server
-Protocol, the OCaml language server can by installed with OPAM:
+Protocol, the OCaml language server can by installed with opam:
 
 ```
-$ opam pin add ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git
 $ opam install ocaml-lsp-server
 ```
 
@@ -211,7 +210,7 @@ $ /cygdrive/c/Users/Frank\ Smith/AppData/Local/Programs/Microsoft\ VS\ Code/Code
 ```
 
 **For Vim and Emacs**, install the [Merlin](https://github.com/ocaml/merlin)
-system using OPAM:
+system using opam:
 
 ```
 $ opam install merlin
