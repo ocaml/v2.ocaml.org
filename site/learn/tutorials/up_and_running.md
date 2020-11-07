@@ -21,7 +21,6 @@ opam when we wish to install third-party OCaml libraries.
 
 ```
 # Homebrew
-brew install gpatch
 brew install opam
 
 # MacPort
