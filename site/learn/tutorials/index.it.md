@@ -22,7 +22,6 @@
 * Introduzione a Gtk — [en](introduction_to_gtk.html)
 * Chiamate a librerie C — [en](calling_c_libraries.html)
 * Messaggi di errore comuni — [en](common_error_messages.html)
-* OCaml e il Web — [en](ocaml_and_the_web.html)
 * Stile di programmazione — [en](guidelines.html)
 * Esempi di librerie standard (en) :
   * [Hashtbl](hashtbl.html "Hashtbl")

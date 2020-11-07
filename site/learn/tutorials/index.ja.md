@@ -105,15 +105,16 @@
  computation](http://www.southampton.ac.uk/~fangohr/software/ocamltutorial/)
  (by Thomas Fischbacher), covers a broad sample of OCaml, from the
  basics to the C API.
+* [OCaml for Haskellers](http://blog.ezyang.com/2010/10/ocaml-for-haskellers/)
+  Some notes on the differences between OCaml and Haskell.
 
 ###  WikiBooks on OCaml
 
+Both in french:
 * [fr.wikibooks.org/wiki/OCaml](http://fr.wikibooks.org/wiki/OCaml)
- (in French):
- Introduction on functional programming using OCaml.
+  Introduction on functional programming using OCaml.
 * [fr.wikiversity.org/wiki/Premiers_pas_en_OCaml](http://fr.wikiversity.org/wiki/Premiers_pas_en_OCaml)
- (in French):
- The basics of the OCaml language.
+  The basics of the OCaml language.
 
 ###  Tutorials on Tools
 
@@ -123,27 +124,5 @@ tools and libraries.
 * [Camlp5](camlp5.html)
 * [A Guide to Extension Points in OCaml](http://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/)
   (by whitequark), on using PPX, the syntax extensions API that superseded camlp4.
-
-###  Coming From Another Language
-
-These tutorials help learn OCaml from the perspective of being familiar
-with another language.
-
-* [OCaml for Haskellers](http://blog.ezyang.com/2010/10/ocaml-for-haskellers/)
-
-###  Advanced Tutorials & Articles
-
-* [Manual](/releases/latest/manual.html)
 * [Detecting use cases for GADTs in OCaml](http://mads-hartmann.com/ocaml/2015/01/05/gadt-ocaml.html),
   (by Mads Hartmann), on using generalized algebraic data types in writing interpreters.
-
-### チュートリアルのアーカイブ
-
-これらのチュートリアルは、廃止されたかあるいは、廃止された技術について記述されている。
-これらは、まだ誰かの役に立つかもしれないので、念の為ここに保存されている。
-
-* [OCamlでWebプログラミング](ocaml_and_the_web.ja.html)
-* Mega Crash course on OCaml ecosystem + code - [en](get_up_and_running.html)
-* Streams - [en](streams.html)
-
-
