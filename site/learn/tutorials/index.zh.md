@@ -37,7 +37,6 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 * 性能和分析（Profiling） — [en](performance_and_profiling.html)
 * 调用C库 — [en](calling_c_libraries.html)
 * 调用Fortran库 — [en](calling_fortran_libraries.html)
-* OCaml和Web — [en](ocaml_and_the_web.html)
 * 标准库示例:
   - [哈希表](hashtbl.zh.html "Hashtbl")
   - [集合](set.zh.html "Set")
@@ -50,8 +49,6 @@ OCaml是一种快速、简洁、而强大的应用程序开发语言－－我想
 * [命令行参数](command-line_arguments.zh.html)
 * [文件操作](file_manipulation.zh.html)
 * [文件名和后缀](filenames.zh.html)
-* 流 - [en](streams.html)
-* 流表达式 - [en](stream_expressions.html)
 * _感谢_ - [en](../../contributors.html#Oldercontributorstothetutorials)
 
 ((! get end_two_columns !))

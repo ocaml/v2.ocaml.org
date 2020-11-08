@@ -40,16 +40,10 @@
 
 ### En Europe
 
-* 2011: [Paris](ocaml/2011/),
- [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=292)
-* 2010: [Paris](http://lambda-the-ultimate.org/node/3826),
- [Videos](http://www.youtube.com/playlist?list=PLbU5HH3lhSGYrfbHSwC7X5ZzDHddXHMM7),
- [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=171)
-* 2009: [Grenoble](ocaml/2009/),
- [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=84)
-* 2008: [Paris](ocaml/2008/),
- [Videos](http://www.youtube.com/playlist?list=PLbU5HH3lhSGZ2WoueuOr8LuVZThBYvoHX),
- [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=170)
+* 2011: [Paris](ocaml/2011/)
+* 2010: [Paris](ocaml/2010/)
+* 2009: [Grenoble](ocaml/2009/)
+* 2008: [Paris](ocaml/2008/)
 
 ### Au Japon
 
