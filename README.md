@@ -64,15 +64,35 @@ DIRECTORY STRUCTURE
 
 `script` — Scripts used to build the site.
 
+MAINTAINERS
+===========
+
+For maintainers of the site, the following notes describe how the site
+is built and deployed:
+
+**Deploy:** The site is currently deployed automatically using
+[ocurrent-deployer](https://deploy.ocamllabs.io), which listens on the `master`
+and `staging` branches.  The site is built using the Dockerfiles in
+`Dockerfile.deploy` and `Dockerfile.staging` for each version of the site, and
+pushed to https://ocaml.org and https://staging.ocaml.org/
+
+**Testing:** If you wish to test a PR to see what it would look like live,
+simply push the branch to the `staging` branch of ocaml/ocaml.org.git and it
+will rebuild.  There is a web interface showing the status of the builds for
+[ocurrent-deployer](https://deploy.ocamllabs.io).
+
+The source code for the deployer can be found at
+<https://github.com/ocurrent/ocurrent-deployer> in the `src/pipeline.ml`.
 
 CONTACTS
 ========
+
 For general discussion about the site's implementation, you can post
-to the [infrastructure](http://lists.ocaml.org/listinfo/infrastructure)
-mailing list.
+to the [OCaml discussion forum](http://discuss.ocaml.org/).
 
 For a specific bug report, content suggestion, or feature request,
 please create an issue on
 [GitHub](https://github.com/ocaml/ocaml.org). Or best of all, fork the
 repo, make changes to your copy, and submit pull requests. It's that
 easy!
+
