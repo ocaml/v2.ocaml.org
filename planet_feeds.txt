@@ -44,8 +44,6 @@ MirageOS|https://mirage.io/blog/atom.xml
 OCaml Book|http://ocaml-book.com/blog?format=rss
 OCaml Labs|http://ocamllabs.io/feed.xml
 OCaml Labs compiler hacking|http://ocamllabs.io/compiler-hacking/rss.xml
-OCamlCore Forge News|http://forge.ocamlcore.org/export/rss20_news.php
-OCamlCore Forge Projects|http://forge.ocamlcore.org/export/rss20_projects.php
 OCamlCore.com|http://www.ocamlcore.com/wp/feed/?amp;language=en&language=en
 OCamlPro|https://www.ocamlpro.com/feed/
 ODNS project|http://odns.tuxfamily.org/feed/
@@ -63,7 +61,6 @@ Rudi Grinberg|http://rgrinberg.com/blog/atom.xml
 Sebastien Mondet|https://seb.mondet.org/b/OCaml.rss
 Shayne Fletcher|http://blog.shaynefletcher.org/feeds/posts/default/-/OCaml
 Stefano Zacchiroli|https://upsilon.cc/~zack/tags/ocaml/index.rss
-Sylvain Le Gall|http://le-gall.net/sylvain+violaine/blog/index.php?feed/tag/ocaml/atom
 Thomas Leonard|http://roscidus.com/blog/blog/categories/ocaml/atom.xml
 Till Varoquaux|http://www.blogger.com/feeds/6115529230232389198/posts/default
 Yan Shvartzshnaider|http://yansnotes.blogspot.com/feeds/posts/default/-/ocaml

@@ -21,7 +21,7 @@ This short talk will present what has been done during the last year
 on OCamlCore.org. It will also give some possible direction on what
 this platform can offer to the OCaml community in the next year.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/33/OCamlCore.org%20presentation.pdf) | [Website](http://www.ocamlcore.org/)
+[Slides](slides/OCamlCore.orgPresentation.pdf) | [Website](http://www.ocamlcore.org/)
 
 
 ### OCaml Batteries Included by David Teller
@@ -42,7 +42,7 @@ this talk, we will show the current status of OCaml Batteries Included
 and how it may be useful for you and for newbies — and we'll try to
 convince you to switch to this foundation library.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/36/batteries-included.pdf) | [Website](http://batteries.forge.ocamlcore.org/)
+[Slides](slides/batteries-included.pdf) | [Website](http://batteries.forge.ocamlcore.org/)
 
 
 ### Cameleon/Chamo by Maxence Guesdon
@@ -58,7 +58,7 @@ If people are interested, there can be a talk to introduce Chamo:
 - internal architecture,
 - how to customize it and add more features.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/32/cameleon_chamo.pdf) | [Website](http://home.gna.org/cameleon/chamo.en.html)
+[Slides](slides/cameleon_chamo.pdf) | [Website](http://home.gna.org/cameleon/chamo.en.html)
 
 
 ### Delimited overloading by Christophe Troestler
@@ -74,7 +74,7 @@ overloading, explain some of the problems and solutions that we found
 while developing it, and show how you can use it for your own
 purposes.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/35/pa-do.pdf) | [Website](http://pa-do.forge.ocamlcore.org/)
+[Slides](slides/pa-do.pdf) | [Website](http://pa-do.forge.ocamlcore.org/)
 
 
 ### OCaml as fast as C! by Sylvain Le Gall
@@ -87,7 +87,7 @@ full project to achieving a high level of performance for it.
 It will show how mixing functional and imperative style in an
 application is one of the important feature of OCaml.
 
-[Slides](http://forge.ocamlcore.org/docman/view.php/77/37/OCaml%20as%20fast%20as%20C.pdf)
+[Slides](slides/OCamlAsFastAsC.pdf)
 
 
 ### VHDL symbolic simulation in OCaml by Florent Ouchet
@@ -104,7 +104,7 @@ The author of the application will:
 - outlines application structure and provides evaluations of the efficiency of some language features;
 - gives constructive feedback about the issues that were raised during this development.
 
-[Slides](http://forge.ocamlcore.org/docman/view.php/77/34/VSYML-ocaml-meeting-2009.pdf)
+[Slides](slides/VSYML-ocaml-meeting-2009.pdf)
 
 
 ### Parsing technology for OCaml: from stream matching to dypgen by Christophe Raffalli
@@ -128,20 +128,9 @@ and a demonstration of the OCaml cross-compiler.
 
 ## Participants
 
-Participant should sign up directly using the subscription form
-below. The subscription fees cover lunch and coffee pause. The
-subscription will be closed on 25th January 2009.
-
-As of 27th January 2009, the subscription is closed.
-
-People, who wish to join at the restaurant, should add (R) just after
-their name in the list. Organization team will use this list to book
-the restaurant on Ferburay 3rd. You can update your entry until
-February 2nd.
-
-- Balat Vincent (R)
+- Balat Vincent
 - Bonichon Richard
-- Canou Benjamin (R)
+- Canou Benjamin
 - Chambart Pierre 
 - Clement François
 - Clerc Xavier
@@ -149,40 +138,40 @@ February 2nd.
 - Doligez Damien
 - Dubuguet Matthieu
 - Fiorino Hulbert
-- Gazagnaire Thomas (R)
+- Gazagnaire Thomas
 - Glondu Stéphane 
-- Gross Vincent (R)
+- Gross Vincent
 - Guesdon Maxence
-- Henry Grégoire (R)
+- Henry Grégoire
 - Hirschowitz Tom
 - Hyvernat Pierre
 - Jambon Martin 
 - Jammes Fabrice
-- Jones Richard (R)
-- Koeck Jean-Denis (R)
-- Le Gall Sylvain (R)
+- Jones Richard
+- Koeck Jean-Denis
+- Le Gall Sylvain
 - Leblanc Serge
 - Leroy Xavier
-- Letouzey Pierre (R)
+- Letouzey Pierre
 - Levy Michel
 - Loddo Jean-Vincent
-- Maingaud Séverine (R)
+- Maingaud Séverine
 - Monat Christophe
-- Ouchet Florent (R)
-- Pouillard Nicolas (R)
+- Ouchet Florent
+- Pouillard Nicolas
 - Puydt Julien
 - Raffalli Christophe
-- Ravet Vivien (R)
+- Ravet Vivien
 - Saiu Luca
 - Schmitt Alan 
-- Shinwell Mark (R)
-- Signoles Julien (R)
+- Shinwell Mark
+- Signoles Julien
 - Smeding Gideon 
 - Stentzel Cécile 
 - Teller David
 - Theyssier Guillaume
-- Troestler Christophe (R)
-- Wang Philippe (R)
+- Troestler Christophe
+- Wang Philippe
 - Weis Pierre
 - Yziquel Guillaume 
 - Zacchiroli Stefano
@@ -197,8 +186,6 @@ February 2nd.
 
 ## Organization team
 
-- Sylvain Le Gall, main contact (gildor @nospam@ ocamlcore.org, tel: +33 (0) 6 87 82 40 93)
-- Alan Schmitt, local organizer (alan.schmitt @nospam@ polytechnique.org)
-- Serge Leblanc, local volunteer (serge.leblanc @nospam@ wanadoo.fr)
-
-[Organization details](http://mirror.ocamlcore.org/wiki.cocan.org/events/europe/ocamlmeetinggrenoble2009/organization.html)
+- Sylvain Le Gall
+- Alan Schmitt
+- Serge Leblanc

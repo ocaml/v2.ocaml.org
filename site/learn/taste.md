@@ -20,7 +20,6 @@ More code examples are available on the following sites:
 - [Pleac](http://pleac.sourceforge.net/pleac_ocaml/)
 - [99 Problems (solved)](tutorials/99problems.html)
 - [Rosetta](http://rosettacode.org/wiki/Category:OCaml)
-- [code codex](http://www.codecodex.com/wiki/Category:Objective_Caml)
 
 ## Elementary functions
 
