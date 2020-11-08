@@ -1,7 +1,5 @@
-Amir Chaudhry|http://amirchaudhry.com/tags/ocaml-atom.xml
 Andrej Bauer|http://math.andrej.com/feed.xml
 Andy Ray|http://www.ujamjar.com/ocaml.xml
-Anil Madhavapeddy|http://anil.recoil.org/feeds/atom.xml
 Ashish Agarwal|http://ashishagarwal.org/tag/ocaml/feed/
 CUFP|http://cufp.org/blog/all.rss.xml
 Cameleon news|http://www.blogger.com/feeds/7617521785419311079/posts/default
@@ -20,7 +18,6 @@ Eray Özkural|https://examachine.net/blog/category/ocaml/feed/
 Erik de Castro Lopo|http://www.mega-nerd.com/erikd/Blog/index.rss20
 Etienne Millon|http://blog.emillon.org/feeds/ocaml.xml
 Frama-C|http://frama-c.com/rss.xml
-Functional Jobs|http://functionaljobs.com/jobs/search/?q=ocaml&format=rss
 GaGallium|http://gallium.inria.fr/blog/index.rss
 Gaius Hammond|https://gaius.tech/category/ocaml/feed/
 Gemma Gordon (OCaml Labs)|http://reynard.io/feed.xml
@@ -42,7 +39,6 @@ Mike Lin|http://www.blogger.com/feeds/3693082774051755513/posts/default/-/OCaml
 Mike McClurg|https://mcclurmc.wordpress.com/feed/
 MirageOS|https://mirage.io/blog/atom.xml
 OCaml Book|http://ocaml-book.com/blog?format=rss
-OCaml Labs|http://ocamllabs.io/feed.xml
 OCaml Labs compiler hacking|http://ocamllabs.io/compiler-hacking/rss.xml
 OCamlCore.com|http://www.ocamlcore.com/wp/feed/?amp;language=en&language=en
 OCamlPro|https://www.ocamlpro.com/feed/
