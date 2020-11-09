@@ -494,7 +494,7 @@ ul.translations:after { content: "]"; }
 @media (max-width: 480px) {
   #footer .column {
     width: 98%;
-    padding-left: 20%;
+    margin-right: 0px;
   }
 }
 #footer .entry {

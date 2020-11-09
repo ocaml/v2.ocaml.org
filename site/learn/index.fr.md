@@ -66,7 +66,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
         <section class="span4 condensed">
           <h1 class="ruled"><a href="/community/media.html">Présentations &amp; Videos</a></h1>
 		  <p class="documentation-video" style="margin-bottom:0">
-<iframe src="//www.slideshare.net/slideshow/embed_code/43836300" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe title="Un exposé de Xavier Leroy présentant OCaml 4.02" src="//www.slideshare.net/slideshow/embed_code/43836300" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
           </p>
 
          <p>Un exposé de Xavier Leroy présentant les dernières
@@ -81,7 +81,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 		 </p>
 	  <p class="documentation-video video16-9"
 	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
-	    <iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933"
+	    <iframe title="Yaron Minsky explique en anglais comment programmer efficacement en ML" src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933"
 		    frameborder="0" webkitallowfullscreen
 		    mozallowfullscreen allowfullscreen></iframe>
 	  </p>
