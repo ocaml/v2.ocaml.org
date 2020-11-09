@@ -7,6 +7,7 @@
 
 ((! get begin_two_columns !))
 
+* [Mit OCaml in Betrieb](up_and_running.html)
 * [Die Grundlagen](basics.de.html) Sollten Sie ein Anfänger in OCaml oder
 funktionaler Programmierung sein, lesen Sie bitte dieses Kapitel
 zuerst.

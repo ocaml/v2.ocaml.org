@@ -13,6 +13,7 @@ there to request or offer new tutorials.
 
 ### Getting Started
 
+* [Up and Running](up_and_running.html)
 * [Basics](basics.html)
 * [Structure of OCaml Programs](structure_of_ocaml_programs.html)
 * [Modules](modules.html)
