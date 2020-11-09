@@ -4,73 +4,51 @@
 <div class="container">
     <h1>The OCaml Platform</h1>
     <div class="row">
-        <div id="platform-logo" class="span2">
-            <img src="/img/colour-icon-170x148.png" alt="OCaml">
+        <div id="platform-logo" class="span6">
+            <iframe title="State of the OCaml Platform 2020" width="100%" height="315" src="https://www.youtube-nocookie.com/embed/E8T_4zqWmq8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <section id="platform-leader" class="span7">
+        <section id="platform-leader" class="span6">
             <p>The <strong>OCaml Platform</strong> represents the best way for developers, both new and old, to write software in OCaml. It combines the core OCaml compiler with a coherent set of tools, documentation, libraries and testing resources. It’s a project led by the <a href="/community/support.html">OCaml Labs</a> group in Cambridge, working closely with <a href="/community/support.html">OCaml-Pro</a> in France, and the requirements of the Platform are being guided by the industrial OCaml Consortium.</p>
-            <p>Creating and maintaining the Platform is an ambitious, long-term project. The v0.1 is not taking arbitrary decisions about which packages are included. Instead, we are first placing the industrial contributors on a common tool-chain and workflow so that it's easier to work together and share code. We expect a standard set of libraries to emerge from consensus over time as this workflow rises in adoption.</p>
+            <p>Each element of the platform lives at a different point in the lifecycle of being a Platform tool:</p>
+            <ol>
+                <li><em>Incubation</em>: New tools that fill a gap in the ecosystem but are not quite ready for wide-scale release and adoption.</li>
+                <li><em>Active</em>: The work-horse tools that are used daily with strong backwards compatibility guarentees from the community.</li>
+                <li><em>Sustain</em>: Tools that will not likely see any major feature added but can be used reliably even if not being actively developed.</li>
+                <li><em>Deprecate</em>: Tools that are gradually being phased out of use with clear paths to better workflows.</li>
+            </ol>
         </section>
-        <div id="platform-download" class="span3">
-            <p><a href="/docs/install.html" class="btn">Install</a></p>
-            <p>
-                <!-- <a href="#">Other systems</a> |
-                <a href="#">What's new?</a> -->
-            </p>
-        </div>
     </div>
     <div class="row">
         <section class="span4 condensed">
-            <h1 class="ruled">Solid foundation</h1>
-            <p>The core of the platform is the OCaml compiler, which has been developed for more than 20 years at Inria by a group of leading researchers.  OCaml supports functional, imperative and object-oriented styles of programming which ease the development of flexible and reliable software.  It benefits from one of the most powerful type systems, equipped with parametric polymorphism and type inference.  Also, in addition to its bytecode compiler, OCaml offers a compiler that produces efficient machine code for many architectures, which is extremely useful for creating software that can run in multiple environments.</p>
+            <h1 class="ruled">Incubate</h1>
+            <ol>
+                <li><em>Mdx</em>: executable code blocks in your markdown</li>
+                <li><em>Lsp-Server</em>: an OCaml implementation of the Language Server Protocol (LSP)</li>
+                <li><em>OCamlformat</em>: enforcing formatting styles to an OCaml project</li>
+                <li><em>Dune-release</em>: a CLI tool for easier packaging and publishing.</li>
+                <li><em>Bun</em>: a CLI tool for helping fuzz testing commands.</li>
+                <li><em>Dune-release</em>: a CLI tool for easier packaging and publishing.</li>
+            </ol>
         </section>
         <section class="span4 condensed">
-            <h1 class="ruled">Advanced tools</h1>
-            <p>A platform is more than just the compiler and packages. The OCaml Platform combines the compiler with a set of tools and resources that make writing OCaml more productive and fun.  OPAM, the OCaml Package Manager, provides a robust way to obtain packages, manage dependencies, and different versions of the compiler.  OCamlot provides a distributed, continuous testing service for OPAM package quality and compatibility.  This ensures that, before being merged, patches submitted to the OPAM repository are thoroughly tested on the variety of supported configurations, architectures, and systems. The resulting improved build and metadata quality in turn speeds up development for all OCaml developers through earlier error feed- back.</p>
+            <h1 class="ruled">Active</h1>
+            <ol>
+                <li><em>Dune</em>: a build tool that has been widely adopted in the OCaml world</li>
+                <li><em>Ppxlib</em>: a collection of useful tools for writing PPX libraries</li>
+                <li><em>UTOP</em>: OCaml's Universal Toplevel.</li>
+                <li><em>Opam-publish</em>: a tool for publishing packages to the opam repository</li>
+                <li><em>Merlin</em>: brining IDE features to editors like Vim and Emacs.</li>
+                <li><em>Dune-release</em>: a CLI tool for easier packaging and publishing.</li>
+            </ol>
         </section>
         <section class="span4 condensed">
-            <h1 class="ruled">Essential packages</h1>
-    <ul class="news-feed">
-                <li>
-                    <article>
-                        <h1><a href="/pkg/TBD">TBD</a></h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur</p>
-                        <a href="/pkg/TBD">
-                            <img src="/img/news.png" alt="News">
-                        </a>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <h1><a href="/pkg/TBD">TBD</a></h1>
-                        <p>Sed ut perspiciatis unde omnis iste natus</p>
-                        <a href="/pkg/TBD">
-                            <img src="/img/news.png" alt="News">
-                        </a>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <h1><a href="/pkg/TBD">TBD</a></h1>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation</p>
-                        <a href="/pkg/TBD">
-                            <img src="/img/news.png" alt="News">
-                        </a>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <h1><a href="/pkg/TBD">TBD</a></h1>
-                        <p>Laboris nisi ut aliquip ex ea commodo consequat</p>
-                        <a href="/pkg/TBD">
-                            <img src="/img/news.png" alt="News">
-                        </a>
-                    </article>
-                </li>
-            </ul>
-            <footer>
-                <p><a href="#">See full list</a></p>
-            </footer>
+            <h1 class="ruled">Sustain</h1>
+            <ol>
+                <li><em>Ocp-indent</em>:  an indentation tool for OCaml</li>
+                <li><em>Omp</em>: a conversion tool for OCaml parsetrees between major versions</li>
+                <li><em>OCamlbuild</em>: a build tool for OCaml programs</li>
+                <li><em>OCamlfind</em>: a library manager for OCaml packages</li>
+            </ol>
         </section>
     </div>
     <div class="row">
