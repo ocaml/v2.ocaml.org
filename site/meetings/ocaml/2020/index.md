@@ -74,7 +74,7 @@ Program Committee
 - Greta Yorsh, Jane Street, USA
 - Sarah Zennou, Airbus, France
 
-Orgranizing Comittee
+Organizing Comittee
 --------------------
 
 - Ivan Gotovchits    (chair)
