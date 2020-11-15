@@ -19,8 +19,6 @@
       <li><a href="http://caml.inria.fr/pub/docs/manual-ocaml/">{{! cmd script/translate ((! get filename !)) "Manual" !}}</a></li>
       <li><a href="https://opam.ocaml.org/packages/">{{! cmd script/translate ((! get filename !)) "Packages" !}}</a></li>
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/releases/index.html" !}}">{{! cmd script/translate ((! get filename !)) "Compiler Releases" !}}</a></li>
-      <li><a href="{{! cmd script/link_of_lang ((! get filename !)) /docs/logos.html !}}"
-	     >{{! cmd script/translate ((! get filename !)) "Logos" !}}</a></li>
     </ul>
   </div>
 </div>
@@ -49,9 +47,6 @@
       <li><a href="https://github.com/ocaml/ocaml.org/issues"
 	     target="_blank" >{{! cmd script/translate ((! get filename !)) "Website Issues" !}}</a></li>
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/about.html" !}}" >{{! cmd script/translate ((! get filename !)) "About This Site" !}}</a></li>
-    <li><a href="https://github.com/ocaml/ocaml.org/"
-	   target="_blank" >{{! cmd script/translate ((! get filename !)) "Find Us on GitHub" !}}</a></li>
-      <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/contributors.html" !}}" >{{! cmd script/translate ((! get filename !)) "Credits" !}}</a></li>
     </ul>
   </div>
 </div>
