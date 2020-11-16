@@ -7,6 +7,7 @@
 
 ((! get begin_two_columns !))
 
+* [Mit OCaml in Betrieb](up_and_running.html)
 * [Die Grundlagen](basics.de.html) Sollten Sie ein Anfänger in OCaml oder
 funktionaler Programmierung sein, lesen Sie bitte dieses Kapitel
 zuerst.
@@ -27,7 +28,6 @@ zuerst.
 * Aufrufen von C-Bibliotheken — [en](calling_c_libraries.html)
 * Aufrufen von Fortran-Bibliotheken — [en](calling_fortran_libraries.html)
 * Häufig auftauchende Fehlermeldungen — [en](common_error_messages.html)
-* OCaml und das Internet — [en](ocaml_and_the_web.html)
 * Beispiele zur Standardbibliothek (en) :
   * [Hashtbl](hashtbl.html "Hashtbl")
   * [Set](set.html "Set")

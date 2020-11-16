@@ -28,16 +28,15 @@
             ((! input template/learn_code_snippet.html !))
             <footer>
               <p>See more <a href="taste.html">Code Examples</a>,
-		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >Pleac</a>,
+		<a href="http://pleac.sourceforge.net/pleac_ocaml/" >Pleac</a>, and
 		<a href="http://rosettacode.org/wiki/Category:OCaml"
-		   >Rosetta</a>,
-		<a href="http://langref.org/ocaml" >langref.org</a>, or
-                <a href="http://www.codecodex.com/wiki/Category:Objective_Caml">code codex</a>.</p>
+		   >Rosetta</a>.</p>
             </footer>
         </section>
         <section class="span4 condensed">
             <h1 class="ruled"><a href="tutorials/">Tutorials</a> &amp; <a href="faq.html">FAQ</a></h1>
             <ul>
+                <li><a href="tutorials/up_and_running.html">Up and Running</a></li>
                 <li><a href="tutorials/basics.html">Basics</a></li>
                 <li><a href="tutorials/structure_of_ocaml_programs.html">Structure of OCaml Programs</a></li>
                 <li><a href="tutorials/modules.html">Modules</a></li>
@@ -62,7 +61,7 @@
                 src="/img/OCaml_from_beginning.png" width="48%"
 				alt="OCaml from the very beginning"></a>
 				<p style="clear:both">There are a number of excellent
-				books, with two new titles published in 2013.
+				books, with two new titles published in recent years.
 		</p>
 		<footer>
                   <p><a href="books.html">See full list</a></p>
@@ -73,12 +72,12 @@
         <section class="span4 condensed">
           <h1 class="ruled"><a href="/community/media.html">Online Courses, Slides &amp; Videos</a></h1>
 
-<iframe frameborder="0" width="380" height="220" src="//www.dailymotion.com/embed/video/x2ymo3x" allowfullscreen></iframe><br /><a href="//www.dailymotion.com/video/x2ymo3x_fun-mooc-introduction-to-functional-programming-in-ocaml_school" target="_blank"> A massive open online course (MOOC) entirely centered around OCaml</a> <i>is now available, and runs once a year!</i>
+<iframe title="A massive open online course on OCaml" frameborder="0" width="380" height="220" src="//www.dailymotion.com/embed/video/x2ymo3x" style="max-width: 100%;" allowfullscreen></iframe><br /><a href="//www.dailymotion.com/video/x2ymo3x_fun-mooc-introduction-to-functional-programming-in-ocaml_school" target="_blank"> A massive open online course (MOOC) entirely centered around OCaml</a> <i>is now available, and runs once a year!</i>
 	  <p>
           Learn more, and <a href="https://www.fun-mooc.fr/courses/course-v1:parisdiderot+56002+session03/about">register now on the FUN platform!</a>
 	  </p>
 		  <p class="documentation-video" style="margin-bottom:0">
-<iframe src="//www.slideshare.net/slideshow/embed_code/43836300" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe title="Xavier Leroy presents the state of OCaml 4.02" src="//www.slideshare.net/slideshow/embed_code/43836300" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
           </p>
 
           <p>An invited talk by Xavier Leroy explaining the current state
@@ -92,7 +91,7 @@
 			</p>
 	  <p class="documentation-video video16-9"
 	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
-	    <iframe src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933"
+	    <iframe title="Yaron Minsky explains how to program effectively in ML" src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933"
 		    frameborder="0" webkitallowfullscreen
 		    mozallowfullscreen allowfullscreen></iframe>
 	  </p>
@@ -181,7 +180,7 @@
 	    <a href="http://www.fftw.org/pldi99.ps.gz"
 	       >“discovered” algorithms that were previously unknown</a>.
 	    It was awarded the
-	    <a href="http://www.mcs.anl.gov/about-us/j-h-wilkinson-prize-numerical-software"
+	    <a href="https://en.wikipedia.org/wiki/J._H._Wilkinson_Prize_for_Numerical_Software"
 	       >J. H. Wilkinson Prize for Numerical Software</a>
 	    that rewards software that "best addresses all phases of
 	    the preparation of high quality numerical software."

@@ -43,7 +43,7 @@
                 Visant tous les utilisateurs, cette liste a pour but de permettre le partage d'expérience, d'échanger les idées et le code, et de discuter des applications du langage.</p>
             </section>
             <section class="span4 condensed">
-                <p><strong><a href="http://yquem.inria.fr/cgi-bin/mailman/listinfo/caml-announce">caml-announce@inria.fr</a></strong><br />
+                <p><strong><a href="https://sympa.inria.fr/sympa/info/caml-announce">caml-announce@inria.fr</a></strong><br />
                 <strong><em>Liste d'annonces</em></strong><br />
                 Cette liste permet de recevoir les annonces des nouvelles version d'OCaml et des autres logiciels en OCaml. C'est une liste modérée avec un faible traffic.</p>
                 <p><strong><a href="http://lists.ocaml.org">lists.ocaml.org</a></strong><br />
@@ -168,6 +168,7 @@
                     <li><a href="http://www.slideshare.net/search/slideshow/?q=ocaml&qf=qf2&ud=any&ft=all&lang=**&sort=relevance"><img src="/img/slideshare-icon.png" title="OCaml mentions on SlideShare"></a></li>
                     <li><a href="http://www.meetup.com/find/?keywords=ocaml&radius=Infinity"><img src="/img/meetup-logo.gif" title="OCaml groups on Meetup"></a></li>
                     <li><a href="irc://irc.freenode.net/#ocaml"><img src="/img/irc-graphic.png" title="#ocaml on freenode"></a></li>
+                    <li><a href="https://dev.to/t/ocaml"><img src="/img/devto-graphic.png" title="#ocaml on dev.to"></a></li>
                 </ul>
         </section>
     </div>

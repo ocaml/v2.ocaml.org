@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.23  Binding operators</title>
+</head>
+<body>
+<a href="generalizedopens.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<hr>
+<h2 class="section" id="s:binding-operators"><a class="section-anchor" href="#s:binding-operators" aria-hidden="true">﻿</a>8.23  Binding operators</h2>
+<ul>
+<li><a href="bindingops.html#ss%3Aletops-rationale">8.23.1  Rationale</a>
+</li></ul>
+<p>
+(Introduced in 4.08.0)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" id="let-operator"><span class="c010">let-operator</span></a></td><td class="c015">::=</td><td class="c017">
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">let</span> (<a class="syntax" href="lex.html#core-operator-char"><span class="c010">core-operator-char</span></a> ∣  <span class="c004">&lt;</span>) { <a class="syntax" href="indexops.html#dot-operator-char"><span class="c010">dot-operator-char</span></a> }
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" id="and-operator"><span class="c010">and-operator</span></a></td><td class="c015">::=</td><td class="c017">
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">and</span> (<a class="syntax" href="lex.html#core-operator-char"><span class="c010">core-operator-char</span></a> ∣  <span class="c004">&lt;</span>) { <a class="syntax" href="indexops.html#dot-operator-char"><span class="c010">dot-operator-char</span></a> }
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<span class="c010">operator-name</span> </td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#let-operator"><span class="c010">let-operator</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#and-operator"><span class="c010">and-operator</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+<tr><td class="c018">
+<a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="#let-operator"><span class="c010">let-operator</span></a>  <a class="syntax" href="expr.html#let-binding"><span class="c010">let-binding</span></a>  { <a class="syntax" href="#and-operator"><span class="c010">and-operator</span></a>  <a class="syntax" href="expr.html#let-binding"><span class="c010">let-binding</span></a> }  <span class="c010">in</span>  <a class="syntax" href="expr.html#expr"><span class="c010">expr</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>Users can define <em>let operators</em>:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> ( <span class="ocamlkeyword">let</span>* ) o f =
+   <span class="ocamlkeyword">match</span> o <span class="ocamlkeyword">with</span>
+   | None -&gt; None
+   | Some x -&gt; f x
+
+ <span class="ocamlkeyword">let</span> return x = Some x</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> ( <span class="ocamlkeyword">let</span>* ) : 'a option -&gt; ('a -&gt; 'b option) -&gt; 'b option = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> return : 'a -&gt; 'a option = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>and then apply them using this convenient syntax:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> find_and_sum tbl k1 k2 =
+   <span class="ocamlkeyword">let</span>* x1 = Hashtbl.find_opt tbl k1 <span class="ocamlkeyword">in</span>
+   <span class="ocamlkeyword">let</span>* x2 = Hashtbl.find_opt tbl k2 <span class="ocamlkeyword">in</span>
+     return (x1 + x2)</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> find_and_sum : ('a, int) Hashtbl.t -&gt; 'a -&gt; 'a -&gt; int option = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>which is equivalent to this expanded form:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> find_and_sum tbl k1 k2 =
+   ( <span class="ocamlkeyword">let</span>* ) (Hashtbl.find_opt tbl k1)
+     (<span class="ocamlkeyword">fun</span> x1 -&gt;
+        ( <span class="ocamlkeyword">let</span>* ) (Hashtbl.find_opt tbl k2)
+          (<span class="ocamlkeyword">fun</span> x2 -&gt; return (x1 + x2)))</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> find_and_sum : ('a, int) Hashtbl.t -&gt; 'a -&gt; 'a -&gt; int option = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>Users can also define <em>and operators</em>:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> ZipSeq = <span class="ocamlkeyword">struct</span>
+
+   <span class="ocamlkeyword">type</span> 'a t = 'a Seq.t
+
+   <span class="ocamlkeyword">open</span> Seq
+
+   <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> return x =
+     <span class="ocamlkeyword">fun</span> () -&gt; Cons(x, return x)
+
+   <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> prod a b =
+     <span class="ocamlkeyword">fun</span> () -&gt;
+       <span class="ocamlkeyword">match</span> a (), b () <span class="ocamlkeyword">with</span>
+       | Nil, _ | _, Nil -&gt; Nil
+       | Cons(x, a), Cons(y, b) -&gt; Cons((x, y), prod a b)
+
+   <span class="ocamlkeyword">let</span> ( <span class="ocamlkeyword">let</span>+ ) f s = map s f
+   <span class="ocamlkeyword">let</span> ( <span class="ocamlkeyword">and</span>+ ) a b = prod a b
+
+ <span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> ZipSeq :
+  <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> 'a t = 'a Seq.t
+    <span class="ocamlkeyword">val</span> return : 'a -&gt; 'a Seq.t
+    <span class="ocamlkeyword">val</span> prod : 'a Seq.t -&gt; 'b Seq.t -&gt; ('a * 'b) Seq.t
+    <span class="ocamlkeyword">val</span> ( <span class="ocamlkeyword">let</span>+ ) : 'a Seq.t -&gt; ('a -&gt; 'b) -&gt; 'b Seq.t
+    <span class="ocamlkeyword">val</span> ( <span class="ocamlkeyword">and</span>+ ) : 'a Seq.t -&gt; 'b Seq.t -&gt; ('a * 'b) Seq.t
+  <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>to support the syntax:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">open</span> ZipSeq
+ <span class="ocamlkeyword">let</span> sum3 z1 z2 z3 =
+   <span class="ocamlkeyword">let</span>+ x1 = z1
+   <span class="ocamlkeyword">and</span>+ x2 = z2
+   <span class="ocamlkeyword">and</span>+ x3 = z3 <span class="ocamlkeyword">in</span>
+     x1 + x2 + x3</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> sum3 : int Seq.t -&gt; int Seq.t -&gt; int Seq.t -&gt; int Seq.t = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>which is equivalent to this expanded form:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">open</span> ZipSeq
+ <span class="ocamlkeyword">let</span> sum3 z1 z2 z3 =
+   ( <span class="ocamlkeyword">let</span>+ ) (( <span class="ocamlkeyword">and</span>+ ) (( <span class="ocamlkeyword">and</span>+ ) z1 z2) z3)
+     (<span class="ocamlkeyword">fun</span> ((x1, x2), x3) -&gt; x1 + x2 + x3)</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> sum3 : int Seq.t -&gt; int Seq.t -&gt; int Seq.t -&gt; int Seq.t = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div>
+<h3 class="subsection" id="ss:letops-rationale"><a class="section-anchor" href="#ss:letops-rationale" aria-hidden="true">﻿</a>8.23.1  Rationale</h3>
+<p>This extension is intended to provide a convenient syntax for working
+with monads and applicatives.</p><p>An applicative should provide a module implementing the following
+interface:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> Applicative_syntax = <span class="ocamlkeyword">sig</span>
+   <span class="ocamlkeyword">type</span> 'a t
+   <span class="ocamlkeyword">val</span> ( <span class="ocamlkeyword">let</span>+ ) : 'a t -&gt; ('a -&gt; 'b) -&gt; 'b t
+   <span class="ocamlkeyword">val</span> ( <span class="ocamlkeyword">and</span>+ ): 'a t -&gt; 'b t -&gt; ('a * 'b) t
+ <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>where <span class="c003">(let+)</span> is bound to the <span class="c003">map</span> operation and <span class="c003">(and+)</span> is bound to
+the monoidal product operation.</p><p>A monad should provide a module implementing the following interface:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> Monad_syntax = <span class="ocamlkeyword">sig</span>
+   <span class="ocamlkeyword">include</span> Applicative_syntax
+   <span class="ocamlkeyword">val</span> ( <span class="ocamlkeyword">let</span>* ) : 'a t -&gt; ('a -&gt; 'b t) -&gt; 'b t
+   <span class="ocamlkeyword">val</span> ( <span class="ocamlkeyword">and</span>* ): 'a t -&gt; 'b t -&gt; ('a * 'b) t
+ <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>where <span class="c003">(let*)</span> is bound to the <span class="c003">bind</span> operation, and <span class="c003">(and*)</span> is also
+bound to the monoidal product operation.</p><hr>
+<a href="generalizedopens.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+</body>
+</html>

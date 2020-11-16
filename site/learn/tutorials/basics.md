@@ -360,7 +360,7 @@ let positive_sum a b =
 This redefinition hides the previous "bindings" of `a` and `b` from the
 function definition. In some situations coders prefer this pattern to
 using a new variable name (`let a_pos = max a 0`) as it makes the old
-binding inaccessible, so that only the latest values of a and b are
+binding inaccessible, so that only the latest values of `a` and `b` are
 accessible.
 
 There is no performance difference between functions defined using `let`

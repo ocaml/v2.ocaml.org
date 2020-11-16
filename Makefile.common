@@ -1,9 +1,11 @@
 # -*- mode: Makefile-gmake -*-
 
-LATEST_OCAML_VERSION=$(shell opam list -V ocaml-base-compiler --no-switch -s --columns version | tail -n 1)
-LATEST_OCAML_MAJOR=$(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 1)
-LATEST_OCAML_MINOR=$(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 2)
-LATEST_OCAML_VERSION_MAIN=$(LATEST_OCAML_MAJOR).$(LATEST_OCAML_MINOR)
+ifeq ($(LATEST_OCAML_VERSION),)
+	export LATEST_OCAML_VERSION := $(shell opam list -V ocaml-base-compiler --no-switch -s --columns version | tail -n 1)
+	export LATEST_OCAML_MAJOR := $(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 1)
+	export LATEST_OCAML_MINOR := $(shell echo $(LATEST_OCAML_VERSION) | cut -d . -f 2)
+	export LATEST_OCAML_VERSION_MAIN := $(LATEST_OCAML_MAJOR).$(LATEST_OCAML_MINOR)
+endif
 
 MPP_OPTIONS = -so '((!' -sc '!))' -son '{{!' -scn '!}}' -soc '' -scc '' -sec '' -sos '{{<' -scs '>}}' -its -set "LATEST_OCAML_VERSION=$(LATEST_OCAML_VERSION)" -set "LATEST_OCAML_VERSION_MAIN=$(LATEST_OCAML_VERSION_MAIN)" $(SET_STAGING)
 MPP = mpp ${MPP_OPTIONS}
@@ -67,13 +69,13 @@ script/breadcrumb: script/breadcrumb.ml $(UTILS_DEP)
 
 script/rss2html: script/rss2html.ml script/http.ml $(UTILS_DEP)
 	cd script && \
-	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient,syndic \
-	  -linkpkg utils.cmx http.ml rss2html.ml -o ../"$@"
+	$(OCAMLOPT) -package cohttp-lwt-unix,netstring,syndic \
+	  -thread -linkpkg utils.cmx http.ml rss2html.ml -o ../"$@"
 
 script/weekly_news: script/weekly_news.ml script/http.ml $(UTILS_DEP)
 	cd script && \
-	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient,syndic \
-	  -linkpkg utils.cmx http.ml weekly_news.ml -o ../"$@"
+	$(OCAMLOPT) -package cohttp-lwt-unix,netstring,syndic \
+	  -thread -linkpkg utils.cmx http.ml weekly_news.ml -o ../"$@"
 
 script/ocamltohtml:script/lexer.ml script/ocamltohtml.ml
 	cd script && \
@@ -111,27 +113,14 @@ script/translations: script/translations.ml $(UTILS_DEP)
 	  utils.cmx translations.ml
 
 script/%.cmx: script/%.ml script/%.cmi
-	$(OCAMLOPT) -package netstring,nettls-gnutls,netclient,syndic \
+	$(OCAMLOPT) -package netstring,syndic \
 	  -c $< -o $@
 script/%.cmi script/%.cmo: script/%.ml
-	$(OCAMLC) -package netstring,nettls-gnutls,netclient,syndic -c $< -o $@
+	$(OCAMLC) -package netstring,syndic -c $< -o $@
 
 TRASH += template/front_code_snippet.html opam_update_list \
   $(addprefix script/, generate_opam_update_list lang_of_filename translate \
   link_of_lang breadcrumb rss2html ocamltohtml md_preprocess \
   code_top relative_urls translations )
-
-# Camlp4 tutorials
-CAMLP4_TUT_DIR = learn/tutorials/camlp4_3.10
-CAMLP4_TUT_SOURCES = \
-  $(addprefix site/$(CAMLP4_TUT_DIR)/pa_foreach, .ml 2.ml 3.ml)
-ocaml.org/$(CAMLP4_TUT_DIR)/foreach_tutorial.html: \
-  $(CAMLP4_TUT_SOURCES:.ml=.cmo)
-
-site/$(CAMLP4_TUT_DIR)/%.cmo: site/$(CAMLP4_TUT_DIR)/%.ml
-	$(OCAMLC) -I +camlp4 camlp4lib.cma -pp camlp4orf -c $< -o $@
-
-TRASH += $(CAMLP4_TUT_SOURCES:.ml=.cmi) $(CAMLP4_TUT_SOURCES:.ml=.cmo) \
-  $(CAMLP4_TUT_SOURCES:.ml=.annot)
 
 .PHONY: pre-build

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.6  Recovering the type of a module</title>
+</head>
+<body>
+<a href="firstclassmodules.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="signaturesubstitution.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:module-type-of"><a class="section-anchor" href="#s:module-type-of" aria-hidden="true">﻿</a>8.6  Recovering the type of a module</h2>
+<p><a id="hevea_manual.kwd216"></a>
+<a id="hevea_manual.kwd217"></a>
+<a id="hevea_manual.kwd218"></a>
+<a id="hevea_manual.kwd219"></a></p><p>(Introduced in OCaml 3.12)</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<a class="syntax" href="modtypes.html#module-type"><span class="c010">module-type</span></a></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <span class="c004">module</span> <span class="c004">type</span> <span class="c004">of</span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>
+</td></tr>
+</table></td></tr>
+</table></div><p>The construction <span class="c002"><span class="c003">module</span> <span class="c003">type</span> <span class="c003">of</span></span> <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a> expands to the module type
+(signature or functor type) inferred for the module expression <a class="syntax" href="modules.html#module-expr"><span class="c010">module-expr</span></a>.
+To make this module type reusable in many situations, it is
+intentionally not strengthened: abstract types and datatypes are not
+explicitly related with the types of the original module.
+For the same reason, module aliases in the inferred type are expanded.</p><p>A typical use, in conjunction with the signature-level <span class="c004">include</span>
+construct, is to extend the signature of an existing structure.
+In that case, one wants to keep the types equal to types in the
+original module. This can done using the following idiom.
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> MYHASH = <span class="ocamlkeyword">sig</span>
+   <span class="ocamlkeyword">include</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> <span class="ocamlkeyword">of</span> <span class="ocamlkeyword">struct</span> <span class="ocamlkeyword">include</span> Hashtbl <span class="ocamlkeyword">end</span>
+   <span class="ocamlkeyword">val</span> replace: ('a, 'b) t -&gt; 'a -&gt; 'b -&gt; unit
+ <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+
+The signature <span class="c003">MYHASH</span> then contains all the fields of the signature
+of the module <span class="c003">Hashtbl</span> (with strengthened type definitions), plus the
+new field <span class="c003">replace</span>. An implementation of this signature can be
+obtained easily by using the <span class="c004">include</span> construct again, but this
+time at the structure level:
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> MyHash : MYHASH = <span class="ocamlkeyword">struct</span>
+   <span class="ocamlkeyword">include</span> Hashtbl
+   <span class="ocamlkeyword">let</span> replace t k v = remove t k; add t k v
+ <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>Another application where the absence of strengthening comes handy, is
+to provide an alternative implementation for an existing module.
+
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">module</span> MySet : <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> <span class="ocamlkeyword">of</span> Set = <span class="ocamlkeyword">struct</span>
+   …
+ <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+
+This idiom guarantees that <span class="c003">Myset</span> is compatible with Set, but allows
+it to represent sets internally in a different way.</p>
+<hr>
+<a href="firstclassmodules.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="signaturesubstitution.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

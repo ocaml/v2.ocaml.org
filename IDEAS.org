@@ -75,7 +75,6 @@
    - Encourage community to add to wiki, especially content already
      available in other forms elsewhere. Examples:
      - [[http://brion.inria.fr/gallium/index.php/Ocamlbuild][ocamlbuild documentation]]
-     - [[http://ambassadortothecomputers.blogspot.com/p/reading-camlp4.html][Jake Donham's blog posts on camlp4]]
 
 * List of Libraries
   - something like [[http://hackage.haskell.org/packages/hackage.html][hackage]]

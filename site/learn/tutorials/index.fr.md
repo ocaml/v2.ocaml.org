@@ -5,6 +5,7 @@
 
 ((! get begin_two_columns !))
 
+* [Opérationnel avec OCaml](up_and_running.html)
 * [Notions de base](basics.fr.html)
   — Si vous débutez OCaml ou la programmation fonctionnelle, lisez
   ceci d'abord.
@@ -29,8 +30,8 @@
   ([OCaml Programming Guidelines](guidelines.html))
 * Exemples d'utilisation de la bibliothèque standard:
   * [Hashtbl](hashtbl.html "Hashtbl");
-  * [Set](set.html "Set"),
-  * [Map](map.html "Map").
+  * [Set](set.fr.html "Set"),
+  * [Map](map.fr.html "Map").
   Voir aussi la [comparaison des conteneurs standards](comparison_of_standard_containers.html "Comparaison des conteneurs standards")
 * Compiler des projets OCaml
   ([Compiling OCaml projects](compiling_ocaml_projects.html))

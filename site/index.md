@@ -4,10 +4,10 @@
 <header id="home-header">
     <div class="container">
         <div class="row">
-            <h1 class="span9">OCaml is an industrial strength programming language supporting functional, imperative and object-oriented styles</h1>
+            <h1 class="span9">OCaml is an industrial-strength programming language supporting functional, imperative and object-oriented styles</h1>
             <div class="span3">
                 <div>
-                    <a class="btn" href="/docs/install.html">Install OCaml</a>
+                    <a class="btn" href="/learn/tutorials/up_and_running.html">Install OCaml</a>
                 </div>
             </div>
         </div>
@@ -118,7 +118,7 @@
 			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
 				   >Release of OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
-			   <p>June 14, 2019</p>
+			   <p>August 31, 2020</p>
 			   <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
 			    <img alt="" src="/img/announcement.svg" class="svg" />

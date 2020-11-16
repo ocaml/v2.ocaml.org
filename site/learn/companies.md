@@ -88,7 +88,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.amnh.org/our-research/computational-sciences">American Museum of Natural History</a>, United States</h2>
-        <p>The Computational Sciences Department at the AMNH has been using OCaml for almost a decade in their software package <a href="http://www.amnh.org/our-research/computational-sciences/research/projects/systematic-biology/poy">POY</a> for phylogenetic inference. See <a href="https://github.com/AMNH">AMNH's GitHub page</a> for more projects.</p>
+        <p>The Computational Sciences Department at the AMNH has been using OCaml for almost a decade in their software package <a href="https://github.com/amnh/poy5">POY</a> for phylogenetic inference. See <a href="https://github.com/AMNH">AMNH's GitHub page</a> for more projects.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -251,7 +251,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://incubaid.com">Incubaid</a>, Belgium</h2>
-        <p>Incubaid has developed <a href="http://arakoon.org">Arakoon</a>, a distributed key-value store that guarantees consistency above anything else. We created Arakoon due to a lack of existing solutions fitting our requirements, and is available as Open Source software.</p>
+        <p>Incubaid has developed <a href="https://github.com/Incubaid/arakoon">Arakoon</a>, a distributed key-value store that guarantees consistency above anything else. We created Arakoon due to a lack of existing solutions fitting our requirements, and is available as Open Source software.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -286,8 +286,8 @@
         <img src="/img/users/mashape.png" alt="Mashape">
     </dt>
     <dd class="span5">
-        <h2><a href="https://www.mashape.com/">Mashape</a>, USA</h2>
-        <p>Mashape makes it easy to distribute, monetize, manage and consume cloud APIs. Mashape is building a world-class marketplace for cloud APIs driven by a passionate community of developers from all over the world as well as enterprise API management and analytics products. We use OCaml in our <a href="http://apianalytics.com">APIAnalytics</a> product — as part of a mission-critical, lightweight HTTP proxy.</p>
+        <h2><a href="https://konghq.com">Kong</a>, USA</h2>
+        <p>Kong makes it easy to distribute, monetize, manage and consume cloud APIs. Mashape is building a world-class marketplace for cloud APIs driven by a passionate community of developers from all over the world as well as enterprise API management and analytics products. We use OCaml in our <a href="http://apianalytics.com">APIAnalytics</a> product — as part of a mission-critical, lightweight HTTP proxy.</p>
     </dd>
 </dl>
 
@@ -296,7 +296,7 @@
         <img src="/img/users/wolfram-mathcore.gif" alt="Wolfram MathCore">
     </dt>
     <dd class="span5">
-        <h2><a href="https://www.mathcore.com/">Wolfram MathCore</a>, Sweden</h2>
+        <h2><a href="https://www.wolframmathcore.com">Wolfram MathCore</a>, Sweden</h2>
         <p>Wolfram MathCore uses OCaml to implement its SystemModeler kernel. The kernel's main function is to translate models defined in the Modelica language into executable simulation code. This involves parsing and transforming Modelica code, mathematical processing of equations, code generation of C/C++ simulation code, and numerical runtime computations.</p>
     </dd>
 </dl>
@@ -317,7 +317,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.medit-pharma.com/">MEDIT</a>, France</h2>
-        <p>MEDIT develops <a href="http://mjambon.com/phd.html">SuMo, an advanced bioinformatic system</a> for the analysis of protein 3D structures and the identification of drug-design targets. SuMo is written entirely in OCaml and provides interfaces to several commercial molecular-modelling packages.</p>
+        <p>MEDIT develops <a href="http://mjambon.com/">SuMo, an advanced bioinformatic system</a> for the analysis of protein 3D structures and the identification of drug-design targets. SuMo is written entirely in OCaml and provides interfaces to several commercial molecular-modelling packages.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -363,6 +363,32 @@
         <p>Narrow Gate Logic is a company using the OCaml language in business and non-business applications.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/nomadic-labs.png" alt="Nomadic Labs">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://www.nomadic-labs.com">Paris</a>, France</h2>
+        <p>
+
+Nomadic Labs houses a team focused on Research and Development. Our
+core competencies are in programming language theory and practice,
+distributed systems, and formal verification. Nomadic Labs focuses on
+contributing to the development of the Tezos core software, including
+the smart-contract language, Michelson.
+
+Tezos infrastructure is entirely implemented in OCaml. It strongly
+relies on OCaml efficiency and expressivity. For instance, Michelson
+smart contracts are represented using OCaml GADTs to prevent many
+runtime errors from happening. Safety and correctness are critical for a
+blockchain and we are glad that the OCaml type system allows for a
+form of lightweight formal method that can be used on a daily basis.
+
+</p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/ocamlpro.png" alt="OCamlPro">
@@ -461,7 +487,7 @@
            be synced when needed; and
        (3) OCaml development tools (build system, code linters, documentation generators, etc),
            to make us more efficient.
-       Tarides was founded in early 2018 and is mainly based at <a href="https://stationf.co/">Station F</a>, in Paris.
+       Tarides was founded in early 2018 and is mainly based in Paris, France (remote work is possible).
         </p>
     </dd>
 </dl>

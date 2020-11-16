@@ -220,7 +220,7 @@ body {
   background-color: #ffffff;
 }
 a {
-  color: #c45641;
+  color: #c15540;
   text-decoration: none;
 }
 a:hover,
@@ -2728,8 +2728,8 @@ button.close {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background: #8eaf20;
-  border: 1px solid #8eaf20;
+  background: #008000;
+  border: 1px solid #008000;
   *border: 0;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -4153,7 +4153,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .nav .active > a:hover,
 .navbar-inverse .nav .active > a:focus {
   color: #ffffff;
-  background-color: #c87a27;
+  background-color: #b15b01;
 }
 .navbar-inverse .navbar-link {
   color: #ffffff;

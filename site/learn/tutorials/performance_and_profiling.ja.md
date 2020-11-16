@@ -891,41 +891,15 @@ let () =
 ネイティブコードのプロファイルについては、 使っている OS
 のプロファイラにネイティブ対応している。 Linux の場合 `gprof` を使う。
 
-ネイティブコードのプロファイルの実例を示すにあたり、
-エラトステネスの篩([元コード](https://web.archive.org/web/20020611073618/http://www.bagley.org/~doug/ocaml/Notes/lazy.shtml "http://www.bagley.org/~doug/ocaml/Notes/lazy.shtml"))
-で最初の3000個の素数を求める。
-このプログラムはチュートリアルの範囲外のテクニックである stream と
-camlp4 を使っている。
-
-```ocaml
-let rec filter p = parser
-  [< 'n; s >] -> if p n then [< 'n; filter p s >] else [< filter p s >]
-  
-let naturals =
-  let rec gen n = [< 'n; gen (succ n) >] in gen 2
-  
-let primes =
-  let rec sieve = parser
-    [< 'n; s >] -> [< 'n; sieve (filter (fun m -> m mod n <> 0) s) >] in
-  sieve naturals
-  
-let () =
-  for i = 1 to 3000 do
-    ignore (Stream.next primes)
-  done
-```
 
 コンパイラに対して `gprof` のプロファイル情報を含めるよう、
 コンパイル時に `ocamlopt` に `-p` オプションを積む。
 
-```shell
-ocamlopt -p -pp "camlp4o pa_extend.cmo" -I +camlp4 sieve.ml -o sieve
-```
 
 普通にプログラムを走らせると、 プロファイル情報が `gmon.out` という
 `gprof` 用のファイルに出力される。
 
-    $ gprof ./sieve
+    $ gprof ./a.out
     Flat profile:
 
     Each sample counts as 0.01 seconds.
@@ -954,11 +928,6 @@ ocamlopt -p -pp "camlp4o pa_extend.cmo" -I +camlp4 sieve.ml -o sieve
       1.14      5.12     0.06     1112     0.00     0.00  do_local_roots
 
     [ etc. ]
-
-このプログラムではガベージコレクタが時間を多く消費していることがわかる。
-(驚くなかれ、このプログラムはエレガントだが最適化はしていない。
-配列やループを使った方がはるかに速く動作するだろう)
-
 
 まとめ
 ------

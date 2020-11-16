@@ -6,7 +6,6 @@
 ## Documentation
 
 + [User manual](https://github.com/ocaml/ocamlbuild/blob/master/manual/manual.adoc)
-+ [Old user manual](http://gallium.inria.fr/~pouillar/ocamlbuild/ocamlbuild-user-guide.html)
 + List and usage of [special files](Special_files.html).
 + List and usage of [built-in `tags`](Tags.html).
 + The [solver mechanism](Solver_mechanism.html): what are rules
@@ -15,8 +14,6 @@
   ocamlbuild](Using_ocamlfind_with_ocamlbuild.html) (integrated
   since OCaml 3.12, plugin for earlier versions).
 + [Making plugins](Making_plugins.html).
-+ The [plugin API
-  documentation](http://gallium.inria.fr/~pouillar/ocamlbuild/html/Signatures.PLUGIN.html).
 
 
 ## Plugin examples

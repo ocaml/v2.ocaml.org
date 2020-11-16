@@ -59,9 +59,9 @@ apt install ocaml
 Other Debian packages related to OCaml are
 [listed here](http://packages.debian.org/search?keywords=ocaml&searchon=all&suite=testing&section=all).
 They are made available through
-[The Debian OCaml Packaging Policy](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html).
+[The Debian OCaml Taskforce](https://wiki.debian.org/Teams/OCamlTaskForce/).
 
-### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 19.10](https://repology.org/badge/version-only-for-repo/ubuntu_19_10/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 20.04](https://repology.org/badge/version-only-for-repo/ubuntu_20_04/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 ```bash
@@ -72,7 +72,7 @@ apt install ocaml
 Other Ubuntu packages related to OCaml are
 [listed here](http://packages.ubuntu.com/search?keywords=ocaml).
 
-### [Fedora](https://getfedora.org/) [![Fedora 31](https://repology.org/badge/version-only-for-repo/fedora_31/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Fedora](https://getfedora.org/) [![Fedora 32](https://repology.org/badge/version-only-for-repo/fedora_32/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 
 ```bash
@@ -85,7 +85,7 @@ OCaml packages are packaged according to this
 There is an
 [OCaml Special Interest Group](http://fedoraproject.org/wiki/SIGs/OCaml)
 and a
-[mailing list](https://lists.fedoraproject.org/mailman/listinfo/Ocaml-devel)
+[mailing list](https://lists.fedoraproject.org/archives/list/ocaml-devel@lists.fedoraproject.org/)
 for people interested in OCaml on Fedora or Red Hat Enterprise Linux.
 
 

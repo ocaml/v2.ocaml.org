@@ -9,6 +9,7 @@
 
 ((! get begin_two_columns !))
 
+* [Up and Running](up_and_running.html)
 * [기본사항](basics.ko.html) 
 * [OCaml 프로그램의 구조](structure_of_ocaml_programs.ko.html)
 * 모듈(Modules) - [en](modules.html)
@@ -33,7 +34,6 @@
 * C 라이브러리 호출하기 — [en](calling_c_libraries.html)
 * 포트란 라이브러리 호출하기 — [en](calling_fortran_libraries.html)
 * 일반 오류 메시지 — [en](common_error_messages.html)
-* OCaml과 웹 — [en](ocaml_and_the_web.html)
 * 프로그래밍 스타일 — [en](guidelines.html)
 * 표준 라이브러리 예제 (en):
   * [Hashtbl](hashtbl.html "Hashtbl")

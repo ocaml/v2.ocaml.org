@@ -1,11 +1,10 @@
 <!-- ((! set title 2011 !)) -->
-<!-- https://forge.ocamlcore.org/plugins/mediawiki/wiki/ocaml-meeting/index.php/OCamlMeeting2011 -->
 
 *Table of contents*
 
 # OCaml Users Meeting 2011
 
-Date: Friday 15th April 2011__
+__Date: Friday 15th April 2011__
 Location: Telecom ParisTech, Paris, France
 
 This event will take place in Paris. The venue is in Telecom ParisTech
@@ -17,42 +16,32 @@ natural languages in OCaml. Most of the topics focus on practical
 OCaml subjects (libraries or applications) but broadening the field is
 allowed.
 
-The registration is now closed.
+The meeting is kindly sponsored by the
+[CAML consortium](/consortium/), so the lunch and
+the coffee breaks are free.
 
 ## Schedule
 
-Sylvain Le Gall will arrive early (~08:00). So there should be someone
-starting at 8AM.
+[Video Playlist](https://www.youtube.com/playlist?list=PLbU5HH3lhSGa0GLMqynyZmrixpO9gU_go)
 
-- 09:00–09:30: *Participant arrival with coffee*
 - 09:30–09:45: OCamlCore.org news and projects by Sylvain Le Gall
 - 09:45–10:15: `js_of_ocaml`: Compiling Ocaml bytecode to Javascript, by Jérôme Vouillon
 - 10:15–10:45: OCAPIC: programming PIC microcontrollers with Objective Caml
 - 10:45–11:15: Developing Frama-C Plug-ins in OCaml, by Julien Signoles
-- 11:15–11:30: *Break*
 - 11:30–12:00: Client/server Web applications with Eliom, by Vincent Balat
 - 12:00–12:30: MirageOS, by Anil Madhavapeddy
 - 12:30–13:00: Using OCaml to generate 198,278 lines of C, by Richard Jones
-- 13:00–13:05: *Meeting photo*
-- 13:00–14:00: *Lunch*
-- 14:00–14:30: *Coffee break*
 - 14:30–15:30: OCaml annual report by Xavier Leroy
 - 15:30–16:00: JoCaml, by Luc Maranget
-- 16:00–16:30: *Break*
 - 16:30–17:00: The Eternal Solution for Memoisation: Ephemerons, by François Bobot
 - 17:00–17:30: OASIS-DB: a CPAN for OCaml, by Sylvain Le Gall
 - 17:30–18:00: Ideas for a Modern OCaml Web Portal by Ashish Agarwal
 - 18:00–19:00: *Demonstration and discussion time*
 
+### Intro (bits from OCamlCore.org)
 
-##  Talks
-
-Each talk should take between 20 and 25 minutes, plus 10 to 5 minutes
-of questions. Feel free to submit your talks directly to the organizer
-(gildor @nospam@ ocamlcore.org) so that we can discuss it and add it
-the list below. Before the meeting, you should send a copy of your
-slides to be linked on this page. The deadline for talks submission is
-**6th April**.
+[Slides](slides/OCamlCore.org_presentation_2011.pdf)
+| [Video](https://www.youtube.com/watch?v=6eOE1KP-4ao)
 
 ### The core Caml system: status report and challenges, by Xavier Leroy
 
@@ -63,7 +52,7 @@ This talk will briefly review ongoing work on the core Caml system and
 discuss some medium to long-term challenges, both technical and
 organizational.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/142/xleroy-cug2011-2.pdf)
+[Slides](slides/xleroy-cug2011-2.pdf) | [Video](https://youtu.be/lnyaI275erg)
 
 ### OASIS-DB: a CPAN for OCaml, by Sylvain Le Gall
 
@@ -80,8 +69,9 @@ install it using only 2 commands.
 
 Sylvain Le Gall is an OCaml consultant working at OCamlCore SARL.
 
-[Website](http://oasis.forge.ocamlcore.org/)
-| [Slides](https://forge.ocamlcore.org/docman/view.php/77/137/OCamlMeeting2011_OASIS_Slides.pdf)
+[Website](https://github.com/ocaml/oasis)
+| [Slides](slide/OCamlMeeting2011_OASIS_Slides.pdf)
+| [Video](https://youtu.be/njkP5EZ8uAo)
 
 ### js_of_ocaml: Compiling Ocaml bytecode to Javascript, by Jérôme Vouillon
 
@@ -101,6 +91,8 @@ In this talk we will show you the main features and some examples.
 Jérôme Vouillon is a computer science researcher at
 [PPS](http://www.pps.jussieu.fr/) and [IRILL](http://www.irill.org/)
 (CNRS), member of the [Ocsigen](http://ocsigen.org/) team.
+
+[Video](https://youtu.be/rJNCUFZokNI) 
 
 ### Client/server Web applications with Eliom, by Vincent Balat
 
@@ -125,6 +117,8 @@ Vincent Balat is a computer science researcher at
 (Université Paris Diderot/INRIA), member of the
 [Ocsigen](http://ocsigen.org/) team.
 
+[Video](https://youtu.be/yLh45IyAuZI)
+
 ### Using OCaml to generate 198,278 lines of C, by Richard Jones
 
 We use OCaml in the [libguestfs project](http://libguestfs.org/) to
@@ -132,6 +126,8 @@ generate large amounts of boilerplate C code. This short talk (10
 mins) will explain what the problem that existing projects such as
 [libvirt](http://libvirt.org/) suffered from and how we successfully
 solved it, and what difficulties remain.
+
+[Video](https://youtu.be/FbgRsFpfHJI)
 
 ### MirageOS, by Anil Madhavapeddy
 
@@ -145,7 +141,8 @@ extensions and libraries that are easy to use during development, and
 map directly into operating system constructs when being compiled for
 production deployment.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/135/mirage-ocaml-users-2011.ppt)
+[Slides](slides/mirage-ocaml-users-2011.ppt)
+| [Video](https://youtu.be/GEkxyA2FwW0)
 
 ### Developing Frama-C Plug-ins in OCaml, by Julien Signoles
 
@@ -156,7 +153,8 @@ new plug-in in order to add new analyzers or functionalities. This
 talk will give a survey of Frama-C and show how to implement a new
 plug-in in OCaml.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/132/framac2011.pdf)
+[Slides](slides/framac2011.pdf)
+| [Video](https://youtu.be/TgaWYzHW33s)
 
 ### JoCaml, by Luc Maranget
 
@@ -168,7 +166,8 @@ and machine heterogeneity, and the control of forked programs. I'll
 illustrate this new functionalities by the means of simple examples,
 where JoCaml acts as a coordination language.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/133/jocaml2011.pdf)
+[Slides](slides/jocaml2011.pdf)
+| [Video](https://youtu.be/dQl0BUE1WGw)
 
 ### The Eternal Solution for Memoisation: Ephemerons, by François Bobot
 
@@ -181,7 +180,8 @@ implemented with the current Ocaml runtime. We propose a modification
 to the Ocaml runtime which provides Hayes's ephemerons. It is then
 possible to implement perfect memoization tables.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/134/memoization2011.pdf)
+[Slides](slides/memoization2011.pdf)
+| [Video](https://youtu.be/i8U3Y7C6eIs)
 
 ### OCAPIC: programming PIC microcontrollers with Objective Caml, by Benoît Vaugon and Philippe Wang
 
@@ -195,7 +195,8 @@ eliminating dead code (works with any binary produced by compiler
 ocamlc).
 
 [OCAPIC's website](http://www.algo-prog.info/ocaml_for_pic/)
-| [Slides](https://forge.ocamlcore.org/docman/view.php/77/138/ocapic-ocamlmeeting-2011.pdf)
+| [Slides](slides/ocapic-ocamlmeeting-2011.pdf)
+| [Video](https://youtu.be/ZLTWLrTCd4s)
 
 ### Ideas for a Modern OCaml Web Portal by Ashish Agarwal
 
@@ -209,62 +210,8 @@ effort.
 Ashish Agarwal is a Research Scientist at New York University, where
 he uses OCaml to build bioinformatics software.
 
-[Slides](https://forge.ocamlcore.org/docman/view.php/77/140/ocaml-website-2011.pdf)
-
-
-
-## Location/Date
-
-The meeting will take place 2011/04/15 from 9am to 6pm at Telecom
-ParisTech site Barrault.
-
-To go to Telecom ParisTech, you can consult the access page.
-
-It is better to have an identity document (French ID card, passport),
-however it should not be mandatory to enter the building.
-
-The meeting entrance will be at 46 rue Barrault (main Telecom
-ParisTech entrance).
-
-## Lunch
-
-The meeting is kindly sponsored by the
-[CAML consortium](/consortium/), so the lunch and
-the coffee breaks are free.
-
-The lunch will take place inside Telecom ParisTech at the cafeteria. A
-plate with desert and entry will be ready at the Telecom ParisTech
-cafeteria, you will have to pick the main course in the cafeteria. You
-will also get a token for coffee. To be allowed to get a plate, you'll
-have to present a card that will be distributed during the meeting.
-
-## Hotels
-
-Telecom ParisTech has had a list of some place where you can book a room:
-
-- Ibis (**), 177 rue de Tolbiac 75013 Paris, tel. +33(0)1.45.80.16.60
-- Verlaine (**), 51 rue Bobillot 75013 Paris, tel. +33(0)1.45.89.56.14
-- Timhôtel (**), 22 rue Barrault 75013 Paris, tel. +33(0)1.45.80.67.67
-- Saint-Charles (***), 6 rue de l'Espérance 75013 Paris, tel. +33(0)1.43.59.12.12
-- Hotel de la Manufacture (***), 8 rue Philippe de Champagne 75013 Paris
-
-These addresses are from 2006, so they should have changed. It doesn't
-include breakfast.
-
-## Network/Laptop
-
-During the conference, you can use your laptop and internet through
-Telecom ParisTech network. In order to do this, you will have two to
-connect using an ethernet cable. Unfortunately, no wifi connection
-will be available. Since the number of ethernet plug is limited people
-are invited to come with some ethernet switches to be able to offer
-more plugs.
-
-Type E (French) Power plug will also be available, if your laptop
-doesn't have enough power to stay on battery a whole day. Just as for
-ethernet plug, people are invited to come with their national adapter
-for type E power plug and with power strip to be able to offer more
-plugs.
+[Slides](slides/ocaml-website-2011.pdf)
+| [Video](https://youtu.be/W7_wIjvg_is)
 
 ## List of participants
 
@@ -349,11 +296,7 @@ crans.org) which is kindly organizing this hacking day.
 
 Team list:
 
-- [Sylvain Le Gall](https://forge.ocamlcore.org/users/gildor-admin/),
-  main contact
+- Sylvain Le Gall
 - Dario Teixeira who has contributed a large part of the registration website
 - Pierre Chambart (chambart `AT` crans.org) for the hacking day
-- Paolo Herms who will handle the welcome stand
-- *If you wish to help, add your name to the list.*
-
-We need help for: video (camrecorder) and general guidance of people during the day (e.g. welcome stand) 
+- Paolo Herms who will handle the welcome stand 

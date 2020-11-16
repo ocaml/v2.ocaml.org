@@ -57,7 +57,7 @@ Les autres paquets Debian liés à OCaml sont
 Ils sont disponibles selon
 [la politique de construction des paquets pour OCaml](http://pkg-ocaml-maint.alioth.debian.org/ocaml_packaging_policy.html/index.html) (en anglais) de Debian.
 
-### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 19.10](https://repology.org/badge/version-only-for-repo/ubuntu_19_10/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Ubuntu](https://www.ubuntu.com/) [![Ubuntu 20.04](https://repology.org/badge/version-only-for-repo/ubuntu_20_04/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 apt install ocaml # Avec le support de X11 (donc le module Graphics)
@@ -68,7 +68,7 @@ apt install ocaml-nox # Plus léger, si vous ne voulez pas le support de X11
 Les autres paquets Unbuntu liés à OCaml sont
 [listés ici](http://packages.ubuntu.com/search?keywords=ocaml) (en anglais).
 
-### [Fedora](https://getfedora.org/) [![Fedora 31](https://repology.org/badge/version-only-for-repo/fedora_31/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Fedora](https://getfedora.org/) [![Fedora 32](https://repology.org/badge/version-only-for-repo/fedora_32/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 yum install ocaml
@@ -80,7 +80,7 @@ Les paquets OCaml sont construits selon cette
 Il y a un
 [Groupe d'intérêt spécial OCaml](http://fedoraproject.org/wiki/SIGs/OCaml) (en anglais)
 et une
-[mailing liste](https://lists.fedoraproject.org/mailman/listinfo/Ocaml-devel) (en anglais)
+[mailing liste](https://lists.fedoraproject.org/archives/list/ocaml-devel@lists.fedoraproject.org/) (en anglais)
 pour les individus intéressés par OCaml sur Fedora ou Red Hat Enterprise Linux.
 
 ### [Centos](https://www.centos.org/) / [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) [![CentOS 8](https://repology.org/badge/version-only-for-repo/centos_8/ocaml.svg)](https://repology.org/metapackage/ocaml)
@@ -173,27 +173,20 @@ pkg_add opam
 
 Sous Windows, les solutions suivantes sont disponibles pour installer OCaml:
 
-* [Distribution OCaml officielle](http://protz.github.io/ocaml-installer/).
-  Un auto-installeur avec une version préliminaire d'OPAM pour Windows.
-
-* [OCPWin](http://www.typerex.org/ocpwin.html) est un fichier binaire contenant la
-  distribution d'OCaml pour Windows. Quelques fonctionnalités supplémentaires
-  ont été ajoutés à OCaml pour mieux supporter Windows, telles que l'auto-détection
-  de MSVC et le support de MSVC 9.0, 10.0, 11.0, 12.0 and 14.0 (VS2015).
-
 * [OCaml pour Windows](https://fdopen.github.io/opam-repository-mingw/)
   fournit une version expérimentale des dépôts d'OPAM et d'OPAM pour Windows.
 
 Voici quelques alternatives :
 
+* Utiliser [« le Sous-système Windows pour Linux »](https://docs.microsoft.com/fr-fr/windows/wsl/about) et installer OCaml comme sur Ubuntu.
+  Les principales versions d'OCaml et d'OPAM fonctionnent.
+  L'inconvénient de cette méthode est que vous ne créez pas des fichiers
+  binaires natifs pour Windows mais des fichiers binaires pour Linux.
+
 * Les sources d'OCaml supportent directement Windows. Vous devrez compilez
   [les source](#Installation depuis les sources). Voir le fichier
   [README.win32](https://github.com/ocaml/ocaml/blob/trunk/README.win32.adoc) (en anglais)
   dans la distribution pour plus de détails.
-
-* Utiliser « Bash on Windows » et installer OCaml comme sur Ubuntu.
-  L'inconvénient de cette méthode est que vous ne créez pas
-   des fichiers binaires natifs pour Windows mais des fichiers binaires pour Linux.
 
 * [Cygwin](http://cygwin.com/) Avec Cygwin, vous pouvez l'installer avec l'outil `setup`.
    Les compileurs génèrent des exécutables qui requièrent Cygwin (`cygwin1.dll`).

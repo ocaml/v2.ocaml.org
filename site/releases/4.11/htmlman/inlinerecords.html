@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.32">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>8.17  Inline records</title>
+</head>
+<body>
+<a href="extensionsyntax.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="doccomments.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h2 class="section" id="s:inline-records"><a class="section-anchor" href="#s:inline-records" aria-hidden="true">﻿</a>8.17  Inline records</h2>
+<p>
+(Introduced in OCaml 4.03)
+</p><div class="syntax"><table class="display dcenter"><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tr><td class="c018">
+<span class="c010">constr-args</span></td><td class="c015">::=</td><td class="c017">
+...
+ </td></tr>
+<tr><td class="c018">&nbsp;</td><td class="c015">∣</td><td class="c017"> <a class="syntax" href="typedecl.html#record-decl"><span class="c010">record-decl</span></a>
+ </td></tr>
+<tr><td class="c018">&nbsp;</td></tr>
+</table></td></tr>
+</table></div><p>The arguments of sum-type constructors can now be defined using the
+same syntax as records. Mutable and polymorphic fields are allowed.
+GADT syntax is supported. Attributes can be specified on individual
+fields.</p><p>Syntactically, building or matching constructors with such an inline
+record argument is similar to working with a unary constructor whose
+unique argument is a declared record type. A pattern can bind
+the inline record as a pseudo-value, but the record cannot escape the
+scope of the binding and can only be used with the dot-notation to
+extract or modify fields or to build new constructor values.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">type</span> t =
+   | Point <span class="ocamlkeyword">of</span> {width: int; <span class="ocamlkeyword">mutable</span> x: float; <span class="ocamlkeyword">mutable</span> y: float}
+   | Other
+
+ <span class="ocamlkeyword">let</span> v = Point {width = 10; x = 0.; y = 0.}
+
+ <span class="ocamlkeyword">let</span> scale l = <span class="ocamlkeyword">function</span>
+   | Point p -&gt; Point {p <span class="ocamlkeyword">with</span> x = l *. p.x; y = l *. p.y}
+   | Other -&gt; Other
+
+ <span class="ocamlkeyword">let</span> print = <span class="ocamlkeyword">function</span>
+   | Point {x; y; _} -&gt; Printf.printf <span class="ocamlstring">"%f/%f"</span> x y
+   | Other -&gt; ()
+
+ <span class="ocamlkeyword">let</span> reset = <span class="ocamlkeyword">function</span>
+   | Point p -&gt; p.x &lt;- 0.; p.y &lt;- 0.
+   | Other -&gt; ()</div></div>
+
+</div><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"> <span class="ocamlkeyword">let</span> invalid = <span class="ocamlkeyword">function</span>
+   | Point p -&gt; <span class="ocamlhighlight">p</span></div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This form is not allowed as the type of the inlined record could escape.</div></div>
+
+</div>
+<hr>
+<a href="extensionsyntax.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="extn.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="doccomments.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

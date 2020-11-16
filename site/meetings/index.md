@@ -39,22 +39,16 @@ OCaml Meetings
  Party&quot;](http://www.meetup.com/ocaml-paris/events/99222322/), IRILL
  23, avenue d'Italie 75013 Paris. Organized by [OCaml Users in PariS
  (OUPS)](http://www.meetup.com/ocaml-paris/).
-* 2011: [Paris](ocaml/2011/),
- [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=292)
-* 2010: [Paris](http://lambda-the-ultimate.org/node/3826),
- [Videos](http://www.youtube.com/playlist?list=PLbU5HH3lhSGYrfbHSwC7X5ZzDHddXHMM7),
- [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=171)
-* 2009: [Grenoble](ocaml/2009/),
- [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=84)
-* 2008: [Paris](ocaml/2008/),
- [Videos](http://www.youtube.com/playlist?list=PLbU5HH3lhSGZ2WoueuOr8LuVZThBYvoHX),
- [Slides](http://forge.ocamlcore.org/docman/?group_id=77&view=listfile&dirid=170)
+* 2011: [Paris](ocaml/2011/)
+* 2010: [Paris](ocaml/2010/)
+* 2009: [Grenoble](ocaml/2009/)
+* 2008: [Paris](ocaml/2008/)
 
 ## In Japan
 
 * 2013: [Nagoya](http://ocaml.jp/um2013)
 * 2010: [Nagoya](http://ocaml.jp/um2010)
-* 2009: [Tokyo](http://atnd.org/events/738)
+* 2009: Tokyo
 
 ## In the US
 * 2012–present: [NYC OCaml Meetup](http://www.meetup.com/NYC-OCaml/)
