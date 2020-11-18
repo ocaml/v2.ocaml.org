@@ -38,7 +38,7 @@
 
     <section class="span6 condensed">
       <h1 class="ruled">L'API OCaml</h1>
-      <p>Incontournable! Continent la documentation pour l'ensemble
+      <p>Incontournable! Contient la documentation pour l'ensemble
 	des modules inclus dans toute distribution OCaml. Ces
 	modules forment ce qu'on appelle la
 	<a id="stdlib" href="/releases/4.10/htmlman/stdlib.html">Standard
@@ -95,7 +95,7 @@
 
     <section class="span6 condensed">
       <h1 class="ruled">Le Manuel OCaml</h1>
-      <p>L'ensemble de la documentation est regroupée dans un important
+      <p>L'ensemble de la documentation est regroupé dans un important
 	<a id="manual" href="/releases/4.10/htmlman/index.html">
 	  Manuel OCaml</a>.  Le manuel est également disponible aux formats
 	<a id="refman-pdf"

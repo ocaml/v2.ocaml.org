@@ -38,7 +38,7 @@
     <section class="span6 condensed">
       <h1 class="ruled">The OCaml API</h1>
       <p>This is the place you'll end up most often!  You'll find the
-	documentation for all modules that ship with any ocaml
+	documentation for all modules that ship with any OCaml
 	distribution. These modules form what is called
 	the <a id="stdlib" href="/releases/4.11/htmlman/stdlib.html">Standard
 	Library</a>. In addition, a special
@@ -74,7 +74,7 @@
     <section class="span6 condensed">
       <h1 class="ruled">The Language Extensions</h1>
 
-      <p>Don't forget to regulary check the
+      <p>Don't forget to regularly check the
 	<a id="extref"
 	   href="/releases/4.11/htmlman/extn.html">Language Extensions</a>,
 	they will keep you up-to-date with useful new OCaml idioms
