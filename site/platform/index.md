@@ -66,6 +66,12 @@
             <ul class="news-feed">
                 <li>
                     <article>
+                        <h1><a href="https://github.com/ocaml/odoc"target="_blank">Odoc</a></h1>
+                        <p>Documentation generator for OCaml</p>
+                    </article>
+                </li>   
+                <li>
+                    <article>
                         <h1><a href="https://github.com/realworldocaml/mdx"target="_blank">Mdx</a></h1>
                         <p>Executable code blocks in your markdown</p>
                     </article>
@@ -139,7 +145,7 @@
                 <li>
                     <article>
                         <h1><a href="https://github.com/ocaml-ppx/ocaml-migrate-parsetree"target="_blank">Camlp4</a></h1>
-                        <p>A tool for writing extensible parsers/p>
+                        <p>A tool for writing extensible parsers</p>
                     </article>
                 </li>
             </ul>
