@@ -7,7 +7,6 @@
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/learn/tutorials/" !}}">{{! cmd script/translate ((! get filename !)) "Tutorials" !}}</a></li>
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/learn/books.html" !}}" >{{! cmd script/translate ((! get filename !)) "Books" !}}</a></li>
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/learn/success.html" !}}">{{! cmd script/translate ((! get filename !)) "Success Stories" !}}</a></li>
-      <li><a href="."></a></li>
     </ul>
   </div>
 </div>
