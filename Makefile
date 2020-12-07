@@ -43,7 +43,7 @@ opam.ocaml.org_template:
 
 # List of files to build, sorted according to their source format
 MD_FILES = $(patsubst site/%, ocaml.org/%, $(patsubst %.md, %.html, \
-  $(shell find site -type f -name '*.md' -print)))
+  $(shell find site \( -type f -o -type l \) -name '*.md' -print)))
 
 HTML_FILES = $(patsubst site/%, ocaml.org/%, \
   $(shell find site -type d -wholename '$(MANUAL_DIRS)' -prune \
