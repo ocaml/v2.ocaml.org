@@ -472,8 +472,9 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img e =
     else match get_alternate_link e with
          | Some l -> Uri.to_string l
          | None -> "" in
+  let title = string_of_text_construct e.Atom.title in
   let html_icon =
-    [Element("a", ["href", link],
+    [Element("a", ["href", link; "title", title],
              [Element("img", ["src", img ^ ".svg"; "class", "svg";
                               "alt", img_alt], []);
               Element("img", ["src", img ^ ".png"; "class", "png";
@@ -490,7 +491,6 @@ let headline_of_post ?(planet=false) ?(img_alt="") ~l9n ~img e =
          else
            Netdate.format ~fmt:"%e %B %Y" d ~l9n in
        Element("p", [], [Data d]) :: html_icon in
-  let title = string_of_text_construct e.Atom.title in
   let html_title =
     Element("h1", [],
             if link = "" then [Data title]

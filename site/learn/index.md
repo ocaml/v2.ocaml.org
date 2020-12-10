@@ -105,7 +105,7 @@
           <h1 class="ruled"><a href="companies.html">Industrial
           Users</a></h1> <p><a href="http://janestreet.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
-          src="/img/users/jane-street.jpg"></a>Jane Street is a quantitative
+          src="/img/users/jane-street.jpg" alt="Jane Street logo"></a>Jane Street is a quantitative
           proprietary trading firm with a unique focus on technology
           and collaborative problem solving.  Almost all of our
           systems are written in OCaml: from statistical research code
@@ -117,7 +117,7 @@
           <p><a href="https://www.facebook.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
           src="/img/users/facebook.png"
-						     ></a>To
+          alt="Facebook Logo"></a>To
             handle their huge PHP codebase, Facebook developed
             <a href="https://github.com/facebook/pfff/wiki/Main"
 			 >pfff</a>,
