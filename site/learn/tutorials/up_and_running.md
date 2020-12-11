@@ -129,7 +129,7 @@ downloaded
 Done.
 ```
 
-## A first project
+### A first project with Dune
 
 Let's begin the simplest project with Dune and OCaml. We create a new directory
 and ask `dune` to initialise a new project:
@@ -181,6 +181,81 @@ file.
 (executable
  (name helloworld))
 ```
+
+## Installing the drom Project Manager
+
+`drom` is a [Project Manager](https://ocamlpro.github.io/drom), that
+helps you create full OCaml projects in one command, and manage them
+over time. It uses `opam` and `dune` in background, but often provides
+a simpler interface.
+
+To install drom, use the following commands:
+```
+opam install drom
+opam exec -- drom opam-plugin
+```
+
+Ideally, you can then copy `$HOME/.opam/plugins/bin/opam-drom` as
+`drom` in your `$PATH` so that it can be used from any switch.
+
+### Using `opam-bin` with `drom`
+
+`drom` creates local `opam` switches for all your projects by
+default. If you don't want to spend too much time building these
+switches, you may want to install `opam-bin`, that will create and
+re-use binary packages, enormously speeding up local switch creation.
+
+To install `opam-bin`, you just need to use the three following
+commands:
+
+```
+opam install opam-bin
+opam exec -- opam-bin install
+opam bin config --enable-share
+```
+
+Now, `opam-bin` will be used everytime you create a switch, binary
+packages will be used when possible, and files will be shared between
+switches, reducing disk usage.
+
+### A first project with `drom`
+
+To create a complete OCaml project, use the following command:
+
+```
+drom new hello --skeleton program
+```
+
+This command creates a directory `hello/` the most common files that
+you need in an OCaml project:
+
+* `dune` files to build the project
+* `opam` files to publish the project
+* Generic documentation using `odoc` and `sphinx`
+* Configuration for `ocamlformat` and `ocp-indent`
+* Test directories, for inline tests, expect tests and output tests
+* Configuration to publish the project on Github, using Github Actions for CI,
+  and Github Pages for the project site and documentation
+
+You can then build and run the project with:
+
+```
+cd hello/
+make build-deps
+make
+./hello
+```
+
+You can then either decide to keep using `drom` to manage your project
+(you will edit files in TOML syntax to manage deps, licenses,
+descriptions, etc.), or you can stop using it and manage generated
+files yourself.
+
+To know more about `drom`, check its
+[documentation](https://ocamlpro.github.io/drom/sphinx/).
+
+`drom` supports multiple skeletons of projects, check the list in
+`drom` [documentation with the generated files](https://ocamlpro.github.io/drom/sphinx/reference.html#project-skeletons).
 
 ## Editor support for OCaml
 
