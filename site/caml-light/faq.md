@@ -1,3 +1,5 @@
+<!-- ((! set title Caml Light - FAQ !)) -->
+
 # Caml Light — FAQ
 
 #### Is it possible to get error message in my own language?
