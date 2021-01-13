@@ -185,7 +185,7 @@ file.
 ## Editor support for OCaml
 
 For **Visual Studio Code**, and other editors support the Language Server
-Protocol, the OCaml language server can by installed with opam:
+Protocol, the OCaml language server can be installed with opam:
 
 ```
 $ opam install ocaml-lsp-server
