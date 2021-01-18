@@ -11,6 +11,7 @@ platform specific package managers.
 
 * OCaml [4.11.1](4.11.1.html), released Aug 31, 2020.
 * OCaml [4.11.0](4.11.0.html), released Aug 19, 2020.
+* OCaml [4.10.2](4.10.2.html), released Dec 8, 2020.
 * OCaml [4.10.1](4.10.1.html), released Aug 20, 2020.
 * OCaml [4.10.0](4.10.0.html), released Feb 21, 2020.
 * OCaml [4.09.1](4.09.1.html), released Mar 18, 2020.
