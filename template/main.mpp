@@ -42,7 +42,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <button type="button" class="btn btn-navbar"
+          <button aria-label="menu" type="button" class="btn btn-navbar"
 		  onclick="toggleVisibilityMenu('menu-items')">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
