@@ -2,7 +2,9 @@
 
 // This variable should be manually modified when a new version appears.
 // TODO: do this automatically.
-var ALL_VERSIONS = [ "4.11", "4.10", "4.09", "4.08", "4.07", "4.06",
+
+var LAST_VERSION="4.12"
+var ALL_VERSIONS = [ "latest", "4.12", "4.11", "4.10", "4.09", "4.08", "4.07", "4.06",
 		     "4.05", "4.04", "4.03", "4.02", "4.01" ];
 
 
@@ -18,6 +20,8 @@ if ( CURRENT_VERSION_INDEX == null ) {
 // fact, it will probably be unnecessary, since we can directly link
 // to the first file of Part III.
 var tools_sec = {
+    "latest": 286,
+    "4.12" : 286,
     "4.11" : 286,
     "4.10" : 286,
     "4.09" : 285,
@@ -30,10 +34,34 @@ var tools_sec = {
     "4.02" : 248,
     "4.01" : 240 };
 
-function changeLink(version, right, id) {
-    let ref = '/releases/' + version + right;
+function changeLink(version, latest_dir, dir, right, id) {
     let link = document.getElementById(id);
+// We patch the existing links to preserve the local version of the manual
+    let initialHref = link.dataset.initialHref;
+    if (initialHref==undefined) {
+        initialHref=link.getAttribute("href");
+        link.dataset.initialHref=initialHref
+    };
+    let fragments = initialHref.split('/');
+    let offset = (latest_dir.match(/\//g)||[]).length;
+    let prefix = fragments.slice(0,fragments.length-1-offset).join('/');
+    if (version=="latest") {
+        ref = prefix+'/'+latest_dir+ right;
+    }
+    else {
+        ref = prefix + '/releases/' + version + '/' + dir + right;
+    };
     link.setAttribute("href", ref);
+}
+
+function libref(version) {
+    if (version >= "4.12") {
+        return("api/");
+    }
+    else {
+        return ("htmlman/libref/");
+    }
+
 }
 
 function setVersion(version) {
@@ -41,23 +69,26 @@ function setVersion(version) {
     for (let item of list) {
 	item.value = version;
     }
-    
-    changeLink(version, '/htmlman/extn.html', "extref");
-    changeLink(version, '/htmlman/extn.html', "extref_b");
-    changeLink(version, '/htmlman/index.html', "manual");
-    changeLink(version, '/htmlman/core.html', "corref");
-    changeLink(version, '/htmlman/index.html#sec' + tools_sec[version],
+
+    changeLink(version, 'manual/', 'htmlman/', 'extn.html', "extref");
+    changeLink(version, 'manual/', 'htmlman/', 'extn.html', "extref_b");
+    changeLink(version, 'manual/', 'htmlman/', 'index.html', "manual");
+    changeLink(version, 'manual/', 'htmlman/', 'core.html', "corref");
+    changeLink(version, 'manual/', 'htmlman/', 'index.html#sec' + tools_sec[version],
 	       "toolref");
-    changeLink(version, '/htmlman/index.html#sec' + tools_sec[version],
+    changeLink(version, 'manual/', 'htmlman/', 'index.html#sec' + tools_sec[version],
 	       "toolref_b");
-    changeLink(version, '/htmlman/index.html#sec6', "tutref");
-    changeLink(version, '/htmlman/index.html#sec6', "tutref_b");
-    changeLink(version, '/htmlman/stdlib.html', "stdlib");
-    changeLink(version, '/htmlman/libref/index.html', "api_b");
-    changeLink(version, '/ocaml-' + version + '-refman.pdf', "refman-pdf");
-    changeLink(version, '/ocaml-' + version + '-refman.txt', "refman-txt");
-    changeLink(version, '/ocaml-' + version + '-refman-html.tar.gz', "refman-html");
-    changeLink(version, '/ocaml-' + version + '-refman.info.tar.gz', "refman-info");
+    changeLink(version, 'manual/', 'htmlman/', 'index.html#sec6', "tutref");
+    changeLink(version, 'manual/', 'htmlman/', 'index.html#sec6', "tutref_b");
+    changeLink(version, 'manual/', 'htmlman/', 'stdlib.html', "stdlib");
+    changeLink(version, 'api/', libref(version), 'index.html', "api_b");
+    let expanded_version = version;
+    if (version == "latest") { expanded_version=LAST_VERSION };
+    let latest_release = 'releases/' + LAST_VERSION + '/';
+    changeLink(version, latest_release, '', 'ocaml-' + expanded_version + '-refman.pdf', "refman-pdf");
+    changeLink(version, latest_release, '', 'ocaml-' + expanded_version + '-refman.txt', "refman-txt");
+    changeLink(version, latest_release, '',  'ocaml-' + expanded_version + '-refman-html.tar.gz', "refman-html");
+    changeLink(version ,latest_release, '' , 'ocaml-' + expanded_version + '-refman.info.tar.gz', "refman-info");
 
     let stdlib = "Stdlib";
     if (parseFloat(version) < 4.08) { stdlib = "Pervasives"; }

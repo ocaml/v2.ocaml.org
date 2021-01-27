@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.35">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Chapter ‍7 The OCaml language</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">Chapter ‍7 The OCaml language</a></li><li><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec73">Chapter ‍7 The OCaml language</h1>
+<p> <a id="c:refman"></a>
+</p><h3 class="subsection" id="ss:foreword"><a class="section-anchor" href="#ss:foreword" aria-hidden="true"></a>Foreword</h3>
+<p>This document is intended as a reference manual for the OCaml
+language. It lists the language constructs, and gives their precise
+syntax and informal semantics. It is by no means a tutorial
+introduction to the language: there is not a single example. A good
+working knowledge of OCaml is assumed.</p><p>No attempt has been made at mathematical rigor: words are employed
+with their intuitive meaning, without further definition. As a
+consequence, the typing rules have been left out, by lack of the
+mathematical framework required to express them, while they are
+definitely part of a full formal definition of the language.</p><h3 class="subsection" id="ss:notations"><a class="section-anchor" href="#ss:notations" aria-hidden="true">﻿</a>Notations</h3>
+<p>The syntax of the language is given in BNF-like notation. Terminal
+symbols are set in typewriter font (<span class="c003"><span class="c004">like</span> <span class="c004">this</span></span>).
+Non-terminal symbols are set in italic font (<span class="c011">like</span>  <span class="c011">that</span>).
+Square brackets […] denote optional components. Curly brackets
+{…} denotes zero, one or several repetitions of the enclosed
+components. Curly brackets with a trailing plus sign {…}<sup>+</sup>
+denote one or several repetitions of the enclosed components.
+Parentheses (…) denote grouping.</p><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍7 The OCaml language</a></li>
+<li><a href="lex.html">7.1 Lexical conventions</a>
+</li><li><a href="values.html">7.2 Values</a>
+</li><li><a href="names.html">7.3 Names</a>
+</li><li><a href="types.html">7.4 Type expressions</a>
+</li><li><a href="const.html">7.5 Constants</a>
+</li><li><a href="patterns.html">7.6 Patterns</a>
+</li><li><a href="expr.html">7.7 Expressions</a>
+</li><li><a href="typedecl.html">7.8 Type and exception definitions</a>
+</li><li><a href="classes.html">7.9 Classes</a>
+</li><li><a href="modtypes.html">7.10 Module types (module specifications)</a>
+</li><li><a href="modules.html">7.11 Module expressions (module implementations)</a>
+</li><li><a href="compunit.html">7.12 Compilation units</a>
+</li></ul></nav></header><ul class="ul-content">
+<li><a href="lex.html">7.1 Lexical conventions</a>
+</li><li><a href="values.html">7.2 Values</a>
+</li><li><a href="names.html">7.3 Names</a>
+</li><li><a href="types.html">7.4 Type expressions</a>
+</li><li><a href="const.html">7.5 Constants</a>
+</li><li><a href="patterns.html">7.6 Patterns</a>
+</li><li><a href="expr.html">7.7 Expressions</a>
+</li><li><a href="typedecl.html">7.8 Type and exception definitions</a>
+</li><li><a href="classes.html">7.9 Classes</a>
+</li><li><a href="modtypes.html">7.10 Module types (module specifications)</a>
+</li><li><a href="modules.html">7.11 Module expressions (module implementations)</a>
+</li><li><a href="compunit.html">7.12 Compilation units</a>
+</li></ul>
+
+<hr>
+<div class="bottom-navigation"><a class="previous" href="advexamples.html">« Chapter ‍6 Advanced examples with classes and modules</a><a class="next" href="extn.html">Chapter ‍8 Language extensions »</a></div>
+
+
+
+
+<div class="copyright">Copyright © 2021 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>
