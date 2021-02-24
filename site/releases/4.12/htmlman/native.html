@@ -74,14 +74,21 @@ referenced anywhere in the program, then it is not linked in.</li><li class="li-
 a <span class="c004">.o</span>/<span class="c004">.obj</span> object file. This object file is linked with the program.</li><li class="li-itemize">Arguments ending in <span class="c004">.o</span>, <span class="c004">.a</span> or <span class="c004">.so</span> (<span class="c004">.obj</span>, <span class="c004">.lib</span> and <span class="c004">.dll</span>
 under Windows) are assumed to be C object files and
 libraries. They are linked with the program.</li></ul><p>The output of the linking phase is a regular Unix or Windows
-executable file. It does not need <span class="c004">ocamlrun</span> to run.</p><p>The compiler is able to emit some information on its internal stages.
-It can output <span class="c004">.cmt</span> files for the implementation of the compilation unit
+executable file. It does not need <span class="c004">ocamlrun</span> to run.</p><p>The compiler is able to emit some information on its internal stages:</p><ul class="itemize"><li class="li-itemize">
+<span class="c004">.cmt</span> files for the implementation of the compilation unit
 and <span class="c004">.cmti</span> for signatures if the option <span class="c004">-bin-annot</span> is passed to it (see the
 description of <span class="c004">-bin-annot</span> below).
 Each such file contains a typed abstract syntax tree (AST), that is produced
 during the type checking procedure. This tree contains all available information
 about the location and the specific type of each term in the source file.
-The AST is partial if type checking was unsuccessful.</p><p>These <span class="c004">.cmt</span> and <span class="c004">.cmti</span> files are typically useful for code inspection tools.</p>
+The AST is partial if type checking was unsuccessful.<p>These <span class="c004">.cmt</span> and <span class="c004">.cmti</span> files are typically useful for code inspection tools.</p></li><li class="li-itemize"><span class="c004">.cmir-linear</span> files for the implementation of the compilation unit
+if the option <span class="c004">-save-ir-after scheduling</span> is passed to it.
+Each such file contains a low-level intermediate representation,
+produced by the instruction scheduling pass.<p>An external tool can perform low-level optimisations,
+such as code layout, by transforming a <span class="c004">.cmir-linear</span> file.
+To continue compilation, the compiler can be invoked with (a possibly modified)
+<span class="c004">.cmir-linear</span> file as an argument, instead of the corresponding source file.
+</p></li></ul>
 <h2 class="section" id="s:native-options"><a class="section-anchor" href="#s:native-options" aria-hidden="true">﻿</a>12.2 Options</h2>
 <p>The following command-line options are recognized by <span class="c004">ocamlopt</span>.
 The options <span class="c004">-pack</span>, <span class="c004">-a</span>, <span class="c004">-shared</span>, <span class="c004">-c</span> and <span class="c004">-output-obj</span> are mutually
@@ -380,8 +387,19 @@ runtime, which is useful for debugging pointer problems in low-level
 code such as C stubs.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">-stop-after</span> <span class="c010">pass</span></span></dt><dd class="dd-description">
 Stop compilation after the given compilation pass. The currently
-supported passes are: <span class="c004">parsing</span>, <span class="c004">typing</span>.
-</dd><dt class="dt-description"><span class="c007">-S</span></dt><dd class="dd-description">
+supported passes are:
+<span class="c004">parsing</span>, <span class="c004">typing</span>, <span class="c004">scheduling</span>, <span class="c004">emit</span>.
+</dd><dt class="dt-description"><span class="c014"><span class="c004">-save-ir-after</span> <span class="c010">pass</span></span></dt><dd class="dd-description">
+Save intermediate representation after the given compilation pass
+to a file.
+The currently supported passes and the corresponding file extensions are:
+<span class="c004">scheduling</span> (<span class="c004">.cmir-linear</span>).<p>This experimental feature enables external tools to inspect and manipulate
+compiler’s intermediate representation of the program
+using <span class="c004">compiler-libs</span> library (see
+chapter ‍<a href="parsing.html#c%3Aparsinglib">24</a> and
+<a href="../api/compilerlibref/Compiler_libs.html"> <span class="c004">Compiler_libs</span> </a>
+).
+</p></dd><dt class="dt-description"><span class="c007">-S</span></dt><dd class="dd-description">
 Keep the assembly code produced during the compilation. The assembly
 code for the source file <span class="c010">x</span><span class="c004">.ml</span> is saved in the file <span class="c010">x</span><span class="c004">.s</span>.
 </dd><dt class="dt-description"><span class="c007">-shared</span></dt><dd class="dd-description">
