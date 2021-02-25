@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.35">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Chapter ‍8 Language extensions</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li><a href="language.html">Chapter ‍7 The OCaml language</a></li><li class="active"><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec238">Chapter ‍8 Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍8 Language extensions</a></li>
+<li><a href="letrecvalues.html#start-section">8.1 Recursive definitions of values</a>
+</li><li><a href="manual024.html#start-section">8.2 Recursive modules</a>
+</li><li><a href="privatetypes.html#start-section">8.3 Private types</a>
+</li><li><a href="locallyabstract.html#start-section">8.4 Locally abstract types</a>
+</li><li><a href="firstclassmodules.html#start-section">8.5 First-class modules</a>
+</li><li><a href="moduletypeof.html#start-section">8.6 Recovering the type of a module</a>
+</li><li><a href="signaturesubstitution.html#start-section">8.7 Substituting inside a signature</a>
+</li><li><a href="modulealias.html#start-section">8.8 Type-level module aliases</a>
+</li><li><a href="overridingopen.html#start-section">8.9 Overriding in open statements</a>
+</li><li><a href="gadts.html#start-section">8.10 Generalized algebraic datatypes</a>
+</li><li><a href="bigarray.html#start-section">8.11 Syntax for Bigarray access</a>
+</li><li><a href="attributes.html#start-section">8.12 Attributes</a>
+</li><li><a href="extensionnodes.html#start-section">8.13 Extension nodes</a>
+</li><li><a href="extensiblevariants.html#start-section">8.14 Extensible variant types</a>
+</li><li><a href="generativefunctors.html#start-section">8.15 Generative functors</a>
+</li><li><a href="extensionsyntax.html#start-section">8.16 Extension-only syntax</a>
+</li><li><a href="inlinerecords.html#start-section">8.17 Inline records</a>
+</li><li><a href="doccomments.html#start-section">8.18 Documentation comments</a>
+</li><li><a href="indexops.html#start-section">8.19 Extended indexing operators </a>
+</li><li><a href="emptyvariants.html#start-section">8.20 Empty variant types</a>
+</li><li><a href="alerts.html#start-section">8.21 Alerts</a>
+</li><li><a href="generalizedopens.html#start-section">8.22 Generalized open statements</a>
+</li><li><a href="bindingops.html#start-section">8.23 Binding operators</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:generative-functors"><a class="section-anchor" href="#s:generative-functors" aria-hidden="true"></a>8.15 Generative functors</h2>
+<p>(Introduced in OCaml 4.02)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
+<a class="syntax" href="modules.html#module-expr"><span class="c011">module-expr</span></a></td><td class="c016">::=</td><td class="c018">
+...
+ </td></tr>
+<tr><td class="c019">&nbsp;</td><td class="c016">∣</td><td class="c018"> <span class="c005">functor</span> <span class="c005">()</span> <span class="c005">-&gt;</span> <a class="syntax" href="modules.html#module-expr"><span class="c011">module-expr</span></a>
+ </td></tr>
+<tr><td class="c019">&nbsp;</td><td class="c016">∣</td><td class="c018"> <a class="syntax" href="modules.html#module-expr"><span class="c011">module-expr</span></a> <span class="c005">()</span>
+ </td></tr>
+<tr><td class="c019">&nbsp;</td></tr>
+<tr><td class="c019">
+<a class="syntax" href="modules.html#definition"><span class="c011">definition</span></a></td><td class="c016">::=</td><td class="c018">
+...
+ </td></tr>
+<tr><td class="c019">&nbsp;</td><td class="c016">∣</td><td class="c018"> <span class="c005">module</span> <a class="syntax" href="names.html#module-name"><span class="c011">module-name</span></a>  { <span class="c005">(</span> <a class="syntax" href="names.html#module-name"><span class="c011">module-name</span></a> <span class="c005">:</span>  <a class="syntax" href="modtypes.html#module-type"><span class="c011">module-type</span></a> <span class="c005">)</span> ∣  <span class="c005">()</span> }
+[ <span class="c005">:</span> <a class="syntax" href="modtypes.html#module-type"><span class="c011">module-type</span></a> ]  <span class="c005">=</span>  <a class="syntax" href="modules.html#module-expr"><span class="c011">module-expr</span></a>
+ </td></tr>
+<tr><td class="c019">&nbsp;</td></tr>
+<tr><td class="c019">
+<a class="syntax" href="modtypes.html#module-type"><span class="c011">module-type</span></a></td><td class="c016">::=</td><td class="c018">
+...
+ </td></tr>
+<tr><td class="c019">&nbsp;</td><td class="c016">∣</td><td class="c018"> <span class="c005">functor</span> <span class="c005">()</span> <span class="c005">-&gt;</span> <a class="syntax" href="modtypes.html#module-type"><span class="c011">module-type</span></a>
+ </td></tr>
+<tr><td class="c019">&nbsp;</td></tr>
+<tr><td class="c019">
+<a class="syntax" href="modtypes.html#specification"><span class="c011">specification</span></a></td><td class="c016">::=</td><td class="c018">
+...
+ </td></tr>
+<tr><td class="c019">&nbsp;</td><td class="c016">∣</td><td class="c018"> <span class="c005">module</span> <a class="syntax" href="names.html#module-name"><span class="c011">module-name</span></a>  { <span class="c005">(</span> <a class="syntax" href="names.html#module-name"><span class="c011">module-name</span></a> <span class="c005">:</span>  <a class="syntax" href="modtypes.html#module-type"><span class="c011">module-type</span></a> <span class="c005">)</span> ∣  <span class="c005">()</span> }
+<span class="c005">:</span> <a class="syntax" href="modtypes.html#module-type"><span class="c011">module-type</span></a>
+ </td></tr>
+<tr><td class="c019">&nbsp;</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>A generative functor takes a unit <span class="c004">()</span> argument.
+In order to use it, one must necessarily apply it to this unit argument,
+ensuring that all type components in the result of the functor behave
+in a generative way, <em>i.e.</em> they are different from types obtained
+by other applications of the same functor.
+This is equivalent to taking an argument of signature <span class="c004">sig end</span>, and always
+applying to <span class="c004">struct end</span>, but not to some defined module (in the
+latter case, applying twice to the same module would return identical
+types).</p><p>As a side-effect of this generativity, one is allowed to unpack
+first-class modules in the body of generative functors.</p>
+
+<div class="bottom-navigation"><a class="previous" href="extensiblevariants.html">« 8.14 Extensible variant types</a><a class="next" href="extensionsyntax.html">8.16 Extension-only syntax »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2021 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

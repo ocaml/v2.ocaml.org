@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.35">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Chapter ‍29 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍IV The OCaml library</nav><ul id="part-menu"><li><a href="core.html">Chapter ‍22 The core library</a></li><li><a href="stdlib.html">Chapter ‍23 The standard library</a></li><li><a href="parsing.html">Chapter ‍24 The compiler front-end</a></li><li><a href="libunix.html">Chapter ‍25 The unix library: Unix system calls</a></li><li><a href="libstr.html">Chapter ‍26 The str library: regular expressions and string processing</a></li><li><a href="libthreads.html">Chapter ‍27 The threads library</a></li><li><a href="libdynlink.html">Chapter ‍28 The dynlink library: dynamic loading and linking of object files</a></li><li class="active"><a href="old.html">Chapter ‍29 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec574">Chapter ‍29 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍29 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a></li>
+<li><a href="old.html#s%3Agraphics-removed">29.1 The Graphics Library</a>
+</li><li><a href="old.html#s%3Abigarray-moved">29.2 The Bigarray Library</a>
+</li><li><a href="old.html#sec577">29.3 The Num Library</a>
+</li><li><a href="old.html#s%3Alabltk-removed">29.4 The Labltk Library and OCamlBrowser</a>
+</li></ul></nav></header>
+<p>This chapter describes three libraries which were formerly part of the OCaml
+distribution (Graphics, Num, and LablTk), and a library which has now become
+part of OCaml’s standard library, and is documented there (Bigarray).</p>
+<h2 class="section" id="s:graphics-removed"><a class="section-anchor" href="#s:graphics-removed" aria-hidden="true"></a>29.1 The Graphics Library</h2>
+<p>Since OCaml 4.09, the <span class="c004">graphics</span> library is distributed as an external
+package. Its new home is:</p><p><a href="https://github.com/ocaml/graphics"><span class="c004">https://github.com/ocaml/graphics</span></a></p><p>If you are using the opam package manager, you should install the
+corresponding <span class="c004">graphics</span> package:</p><pre>        opam install graphics
+</pre><p>Before OCaml 4.09, this package simply ensures that the <span class="c004">graphics</span>
+library was installed by the compiler, and starting from OCaml 4.09
+this package effectively provides the <span class="c004">graphics</span> library.</p>
+<h2 class="section" id="s:bigarray-moved"><a class="section-anchor" href="#s:bigarray-moved" aria-hidden="true">﻿</a>29.2 The Bigarray Library</h2>
+<p>As of OCaml 4.07, the <span class="c004">bigarray</span> library has been integrated into OCaml’s
+standard library.</p><p>The <span class="c004">bigarray</span> functionality may now be found in the standard library
+<a href="../api/Bigarray.html"><span class="c004">Bigarray</span> module</a>,
+except for the <span class="c004">map_file</span> function which is now
+part of the <a href="libunix.html#c%3Aunix">Unix library</a>. The documentation has
+been integrated into the documentation for the standard library.</p><p>The legacy <span class="c004">bigarray</span> library bundled with the compiler is a
+compatibility library with exactly the same interface as before,
+i.e. with <span class="c004">map_file</span> included.</p><p>We strongly recommend that you port your code to use the standard
+library version instead, as the changes required are minimal.</p><p>If you choose to use the compatibility library, you must link your
+programs as follows:
+</p><pre>        ocamlc <span class="c010">other options</span> bigarray.cma <span class="c010">other files</span>
+        ocamlopt <span class="c010">other options</span> bigarray.cmxa <span class="c010">other files</span>
+</pre><p>
+For interactive use of the <span class="c004">bigarray</span> compatibility library, do:
+</p><pre>        ocamlmktop -o mytop bigarray.cma
+        ./mytop
+</pre><p>
+or (if dynamic linking of C libraries is supported on your platform),
+start <span class="c004">ocaml</span> and type <span class="c004">#load "bigarray.cma";;</span>.</p>
+<h2 class="section" id="sec577"><a class="section-anchor" href="#sec577" aria-hidden="true">﻿</a>29.3 The Num Library</h2>
+<p>The <span class="c004">num</span> library implements integer arithmetic and rational
+arithmetic in arbitrary precision. It was split off the core
+OCaml distribution starting with the 4.06.0 release, and can now be found
+at <a href="https://github.com/ocaml/num"><span class="c004">https://github.com/ocaml/num</span></a>.</p><p>New applications that need arbitrary-precision arithmetic should use the
+<span class="c004">Zarith</span> library (<a href="https://github.com/ocaml/Zarith"><span class="c004">https://github.com/ocaml/Zarith</span></a>) instead of the <span class="c004">Num</span>
+library, and older applications that already use <span class="c004">Num</span> are encouraged to
+switch to <span class="c004">Zarith</span>. <span class="c004">Zarith</span> delivers much better performance than <span class="c004">Num</span>
+and has a nicer API.</p>
+<h2 class="section" id="s:labltk-removed"><a class="section-anchor" href="#s:labltk-removed" aria-hidden="true">﻿</a>29.4 The Labltk Library and OCamlBrowser</h2>
+<p>Since OCaml version 4.02, the OCamlBrowser tool and the Labltk library
+are distributed separately from the OCaml compiler. The project is now
+hosted at <a href="https://github.com/garrigue/labltk"><span class="c004">https://github.com/garrigue/labltk</span></a>.
+</p>
+<hr>
+<div class="bottom-navigation"><a class="previous" href="libdynlink.html">« Chapter ‍28 The dynlink library: dynamic loading and linking of object files</a><a class="next" href="manual067.html">manual067.html</a></div>
+
+
+
+
+<div class="copyright">Copyright © 2021 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

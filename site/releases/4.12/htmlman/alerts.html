@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.35">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Chapter ‍8 Language extensions</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li><a href="language.html">Chapter ‍7 The OCaml language</a></li><li class="active"><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec238">Chapter ‍8 Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍8 Language extensions</a></li>
+<li><a href="letrecvalues.html#start-section">8.1 Recursive definitions of values</a>
+</li><li><a href="manual024.html#start-section">8.2 Recursive modules</a>
+</li><li><a href="privatetypes.html#start-section">8.3 Private types</a>
+</li><li><a href="locallyabstract.html#start-section">8.4 Locally abstract types</a>
+</li><li><a href="firstclassmodules.html#start-section">8.5 First-class modules</a>
+</li><li><a href="moduletypeof.html#start-section">8.6 Recovering the type of a module</a>
+</li><li><a href="signaturesubstitution.html#start-section">8.7 Substituting inside a signature</a>
+</li><li><a href="modulealias.html#start-section">8.8 Type-level module aliases</a>
+</li><li><a href="overridingopen.html#start-section">8.9 Overriding in open statements</a>
+</li><li><a href="gadts.html#start-section">8.10 Generalized algebraic datatypes</a>
+</li><li><a href="bigarray.html#start-section">8.11 Syntax for Bigarray access</a>
+</li><li><a href="attributes.html#start-section">8.12 Attributes</a>
+</li><li><a href="extensionnodes.html#start-section">8.13 Extension nodes</a>
+</li><li><a href="extensiblevariants.html#start-section">8.14 Extensible variant types</a>
+</li><li><a href="generativefunctors.html#start-section">8.15 Generative functors</a>
+</li><li><a href="extensionsyntax.html#start-section">8.16 Extension-only syntax</a>
+</li><li><a href="inlinerecords.html#start-section">8.17 Inline records</a>
+</li><li><a href="doccomments.html#start-section">8.18 Documentation comments</a>
+</li><li><a href="indexops.html#start-section">8.19 Extended indexing operators </a>
+</li><li><a href="emptyvariants.html#start-section">8.20 Empty variant types</a>
+</li><li><a href="alerts.html#start-section">8.21 Alerts</a>
+</li><li><a href="generalizedopens.html#start-section">8.22 Generalized open statements</a>
+</li><li><a href="bindingops.html#start-section">8.23 Binding operators</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:alerts"><a class="section-anchor" href="#s:alerts" aria-hidden="true"></a>8.21 Alerts</h2>
+<p>
+(Introduced in 4.08)</p><p>Since OCaml 4.08, it is possible to mark components (such as value or
+type declarations) in signatures with “alerts” that will be reported
+when those components are referenced. This generalizes the notion of
+“deprecated” components which were previously reported as warning 3.
+Those alerts can be used for instance to report usage of unsafe
+features, or of features which are only available on some platforms,
+etc.</p><p>Alert categories are identified by a symbolic identifier (a lowercase
+identifier, following the usual lexical rules) and an optional
+message. The identifier is used to control which alerts are enabled,
+and which ones are turned into fatal errors. The message is reported
+to the user when the alert is triggered (i.e. when the marked
+component is referenced).</p><p>The <span class="c004">ocaml.alert</span> or <span class="c004">alert</span> attribute serves two purposes: (i) to
+mark component with an alert to be triggered when the component is
+referenced, and (ii) to control which alert names are enabled. In the
+first form, the attribute takes an identifier possibly
+followed by a message. Here is an example of a value declaration marked
+with an alert:</p><pre>module U: sig
+  val fork: unit -&gt; bool
+    [@@alert unix "This function is only available under Unix."]
+end
+</pre><p>
+Here <span class="c004">unix</span> is the identifier for the alert. If this alert category
+is enabled, any reference to <span class="c004">U.fork</span> will produce a message at
+compile time, which can be turned or not into a fatal error.</p><p>And here is another example as a floating attribute on top
+of an “.mli” file (i.e. before any other non-attribute item)
+or on top of an “.ml” file without a corresponding interface file,
+so that any reference to that unit will trigger the alert:</p><pre>[@@@alert unsafe "This module is unsafe!"]
+</pre><p>Controlling which alerts are enabled and whether they are turned into
+fatal errors is done either through the compiler’s command-line option
+<span class="c004">-alert &lt;spec&gt;</span> or locally in the code through the <span class="c004">alert</span> or
+<span class="c004">ocaml.alert</span> attribute taking a single string payload <span class="c004">&lt;spec&gt;</span>. In
+both cases, the syntax for <span class="c004">&lt;spec&gt;</span> is a concatenation of items of the
+form:</p><ul class="itemize"><li class="li-itemize">
+<span class="c004">+id</span> enables alert <span class="c004">id</span>.
+</li><li class="li-itemize"><span class="c004">-id</span> disables alert <span class="c004">id</span>.
+</li><li class="li-itemize"><span class="c004">++id</span> turns alert <span class="c004">id</span> into a fatal error.
+</li><li class="li-itemize"><span class="c004">--id</span> turns alert <span class="c004">id</span> into non-fatal mode.
+</li><li class="li-itemize"><span class="c004">@id</span> equivalent to <span class="c004">++id+id</span> (enables <span class="c004">id</span> and turns it into a fatal-error)
+</li></ul><p>As a special case, if <span class="c004">id</span> is <span class="c004">all</span>, it stands for all alerts.</p><p>Here are some examples:</p><pre>(* Disable all alerts, reenables just unix (as a soft alert) and window
+   (as a fatal-error), for the rest of the current structure *)
+
+[@@@alert "-all--all+unix@window"]
+ ...
+
+let x =
+  (* Locally disable the window alert *)
+  begin[@alert "-window"]
+      ...
+  end
+</pre><p>
+Before OCaml 4.08, there was support for a single kind of deprecation
+alert. It is now known as the <span class="c004">deprecated</span> alert, but legacy
+attributes to trigger it and the legacy ways to control it as warning
+3 are still supported. For instance, passing <span class="c004">-w +3</span> on the
+command-line is equivant to <span class="c004">-alert +deprecated</span>, and:</p><pre>val x: int
+  [@@@ocaml.deprecated "Please do something else"]
+</pre><p>
+is equivalent to:</p><pre>val x: int
+  [@@@ocaml.alert deprecated "Please do something else"]
+</pre>
+
+<div class="bottom-navigation"><a class="previous" href="emptyvariants.html">« 8.20 Empty variant types</a><a class="next" href="generalizedopens.html">8.22 Generalized open statements »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2021 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.35">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Chapter ‍25 The unix library: Unix system calls</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍IV The OCaml library</nav><ul id="part-menu"><li><a href="core.html">Chapter ‍22 The core library</a></li><li><a href="stdlib.html">Chapter ‍23 The standard library</a></li><li><a href="parsing.html">Chapter ‍24 The compiler front-end</a></li><li class="active"><a href="libunix.html">Chapter ‍25 The unix library: Unix system calls</a></li><li><a href="libstr.html">Chapter ‍26 The str library: regular expressions and string processing</a></li><li><a href="libthreads.html">Chapter ‍27 The threads library</a></li><li><a href="libdynlink.html">Chapter ‍28 The dynlink library: dynamic loading and linking of object files</a></li><li><a href="old.html">Chapter ‍29 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a></li></ul><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div></nav></header>
+
+
+
+
+<h1 class="chapter" id="sec570">Chapter ‍25 The unix library: Unix system calls</h1>
+<p>
+<a id="c:unix"></a></p><p>The <span class="c004">unix</span> library makes many Unix
+system calls and system-related library functions available to
+OCaml programs. This chapter describes briefly the functions
+provided. Refer to sections 2 ‍and ‍3 of the Unix manual for more
+details on the behavior of these functions.</p><ul class="ftoc2"><li class="li-links">
+<a href="../api/Unix.html">Module <span class="c004">Unix</span>: Unix system calls</a>
+</li><li class="li-links"><a href="../api/UnixLabels.html">Module <span class="c004">UnixLabels</span>: Labeled
+Unix system calls</a>
+</li></ul><p>Not all functions are provided by all Unix variants. If some functions
+are not available, they will raise <span class="c004">Invalid_arg</span> when called.</p><p>Programs that use the <span class="c004">unix</span> library must be linked as follows:
+</p><pre>        ocamlc <span class="c010">other options</span> unix.cma <span class="c010">other files</span>
+        ocamlopt <span class="c010">other options</span> unix.cmxa <span class="c010">other files</span>
+</pre><p>
+For interactive use of the <span class="c004">unix</span> library, do:
+</p><pre>        ocamlmktop -o mytop unix.cma
+        ./mytop
+</pre><p>
+or (if dynamic linking of C libraries is supported on your platform),
+start <span class="c004">ocaml</span> and type <span class="c004">#load "unix.cma";;</span>.</p><blockquote class="quote"><span class="c008">Windows:</span> 
+The Cygwin port of OCaml fully implements all functions from
+the Unix module. The native Win32 ports implement a subset of them.
+Below is a list of the functions that are not implemented, or only
+partially implemented, by the Win32 ports. Functions not mentioned are
+fully implemented and behave as described previously in this chapter.
+</blockquote><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c015"><span class="c014">Functions</span></td><td class="c015"><span class="c014">Comment</span> </td></tr>
+<tr><td class="c023">
+<span class="c004">fork</span></td><td class="c022">not implemented, use <span class="c004">create_process</span> or threads </td></tr>
+<tr><td class="c023"><span class="c004">wait</span></td><td class="c022">not implemented, use <span class="c004">waitpid</span> </td></tr>
+<tr><td class="c023"><span class="c004">waitpid</span></td><td class="c022">can only wait for a given PID, not any child process </td></tr>
+<tr><td class="c023"><span class="c004">getppid</span></td><td class="c022">not implemented (meaningless under Windows) </td></tr>
+<tr><td class="c023"><span class="c004">nice</span></td><td class="c022">not implemented </td></tr>
+<tr><td class="c023"><span class="c004">truncate</span>, <span class="c004">ftruncate</span></td><td class="c022">implemented (since 4.10.0) </td></tr>
+<tr><td class="c023"><span class="c004">link</span></td><td class="c022">implemented (since 3.02) </td></tr>
+<tr><td class="c023"><span class="c004">fchmod</span></td><td class="c022">not implemented </td></tr>
+<tr><td class="c023"><span class="c004">chown</span>, <span class="c004">fchown</span></td><td class="c022">not implemented (make no sense on a DOS
+file system) </td></tr>
+<tr><td class="c023"><span class="c004">umask</span></td><td class="c022">not implemented </td></tr>
+<tr><td class="c023"><span class="c004">access</span></td><td class="c022">execute permission <span class="c004">X_OK</span> cannot be tested,
+it just tests for read permission instead </td></tr>
+<tr><td class="c023"><span class="c004">chroot</span></td><td class="c022">not implemented </td></tr>
+<tr><td class="c023"><span class="c004">mkfifo</span></td><td class="c022">not implemented </td></tr>
+<tr><td class="c023"><span class="c004">symlink</span>, <span class="c004">readlink</span></td><td class="c022">implemented (since 4.03.0) </td></tr>
+<tr><td class="c023"><span class="c004">kill</span></td><td class="c022">partially implemented (since 4.00.0): only the <span class="c004">sigkill</span> signal
+is implemented </td></tr>
+<tr><td class="c023"><span class="c004">sigprocmask</span>, <span class="c004">sigpending</span>, <span class="c004">sigsuspend</span></td><td class="c022">not implemented (no inter-process signals on Windows </td></tr>
+<tr><td class="c023"><span class="c004">pause</span></td><td class="c022">not implemented (no inter-process signals in Windows) </td></tr>
+<tr><td class="c023"><span class="c004">alarm</span></td><td class="c022">not implemented </td></tr>
+<tr><td class="c023"><span class="c004">times</span></td><td class="c022">partially implemented, will not report timings for child
+processes </td></tr>
+<tr><td class="c023"><span class="c004">getitimer</span>, <span class="c004">setitimer</span></td><td class="c022">not implemented </td></tr>
+<tr><td class="c023"><span class="c004">getuid</span>, <span class="c004">geteuid</span>, <span class="c004">getgid</span>, <span class="c004">getegid</span></td><td class="c022">always return 1 </td></tr>
+<tr><td class="c023"><span class="c004">setuid</span>, <span class="c004">setgid</span>, <span class="c004">setgroups</span>, <span class="c004">initgroups</span></td><td class="c022">not implemented </td></tr>
+<tr><td class="c023"><span class="c004">getgroups</span></td><td class="c022">always returns <span class="c004">[|1|]</span> (since 2.00) </td></tr>
+<tr><td class="c023"><span class="c004">getpwnam</span>, <span class="c004">getpwuid</span></td><td class="c022">always raise <span class="c004">Not_found</span> </td></tr>
+<tr><td class="c023"><span class="c004">getgrnam</span>, <span class="c004">getgrgid</span></td><td class="c022">always raise <span class="c004">Not_found</span> </td></tr>
+<tr><td class="c023">type <span class="c004">socket_domain</span></td><td class="c022"><span class="c004">PF_INET</span> is fully supported;
+<span class="c004">PF_INET6</span> is fully supported (since 4.01.0); <span class="c004">PF_UNIX</span> is not supported  </td></tr>
+<tr><td class="c023"><span class="c004">establish_server</span></td><td class="c022">not implemented; use threads </td></tr>
+<tr><td class="c023">terminal functions (<span class="c004">tc*</span>)</td><td class="c022">not implemented </td></tr>
+<tr><td class="c023"><span class="c004">setsid</span></td><td class="c022">not implemented </td></tr>
+</tbody></table></div></div>
+<hr>
+<div class="bottom-navigation"><a class="previous" href="parsing.html">« Chapter ‍24 The compiler front-end</a><a class="next" href="libstr.html">Chapter ‍26 The str library: regular expressions and string processing »</a></div>
+
+
+
+
+<div class="copyright">Copyright © 2021 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>
