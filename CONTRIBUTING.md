@@ -1,13 +1,13 @@
 Contributing to OCaml.org
 =========================
 
-Welcome to OCaml.org and thank you for taking the time to read our contributing guide. This guide is aimed towards first-time contributors and even people who are new to OCaml language. If you already known some concepts then feel free to skip to a section that interests you. 
+Welcome to OCaml.org and thank you for taking the time to read our contributing guide. This guide is aimed towards first-time contributors and even people who are new to OCaml language. If you already know some concepts then feel free to skip to a section that interests you. 
 
 ## General Contributing Advice
 
 For the most part, if you want to contribute then looking at the [open issues](https://github.com/ocaml/ocaml.org/issues) is a good place to start. Some of these are very old and probably should be closed so we recommend looking at the latest ones. For new contributors the [`good-first-issue`](https://github.com/ocaml/ocaml.org/issues?q=is%3Aissue+is%3Aopen+label%3Agood-first-issue) tag might be useful.
 
-In general issues aren't assigned to anyone, but it makes sense that if you are working on something to say so in the issue so nobody is duplicating any work that may be going on elsewhere.
+In general issues aren't assigned to anyone, but it makes sense that if you are working on something to say so in the issue so nobody is duplicating any work that may be going on elsewhere. There are lots of experienced OCaml developers still active on here and are more than willing to offer you a hand if you ask on an issue or PR. 
 
 ## Setting up OCaml
 
@@ -33,7 +33,7 @@ You should now have everything you need to build the site :tada:.
 The README contains a brief description of the site structure, here we'll look at it a little more closely. 
 
  - `script`: This directory contains the OCaml code which builds the website. This include quite a few different jobs including building the breadcrumbs you see at the tops of pages, converting markdown to HTML, generating pages from RSS feeds etc. 
- - `template`: A lot of the pages in OCaml have a similar structure. For example the navigation bar, the footer etc. This directory contains these more generic templates which can be reused by multiple pages only populated with different data.
+ - `template`: A lot of the pages in OCaml have a similar structure. For example the navigation bar, the footer etc. This directory contains the more generic templates which can be reused by multiple pages only populated with different data.
  - `site`: The main content of the website lives in this directory. This is mostly in the form of markdown files, but even these contain raw HTML in order to define more custom structure and layout. 
  - `site/css`: The stylesheets for customising the look of the website. Most of the OCaml.org website stylings are modifications built on top of [bootstrap css](https://getbootstrap.com/), although it is a much older version that is vendored directly in this directory.
 
@@ -43,14 +43,14 @@ The README contains a brief description of the site structure, here we'll look a
 
 This site is built using a Makefile. This is a way of organising commands to build large code-bases. Most users shouldn't have to worry too much about the inner mechanisms of these files but the main commands you want are: 
 
- - `make local`: this is the default target (i.e. if you run `make` it will be doing `make local`) the main difference here is that an extra step is run the "relativises" the URLs. Instead of links being `/learn` they could be `../../learn` depending on which page you are in. This means you can just open the `index.html` page in your browser without having to run any server. 
- - `make production`: This make target builds the production website, this won't relative the URLs. If you want to test this site you will have to run a web-server on your machine, of which there are plenty of options. One of the dependencies of this site is `cohttp-lwt-unix` which actually provides just this functionality. You can build the site as production, then run `cohttp-server-lwt ./ocaml.org` and navigate to http://localhost:8080/ to see the site live.
+ - `make local`: this is the default target (i.e. if you run `make` it will be doing `make local`) the main difference between this command and the one used for production is that an extra step is run that "relativises" the URLs. Instead of links being `/learn` they could be `../../learn` depending on which page you are in. This means you can just open the `index.html` page in your browser without having to run any server. 
+ - `make production`: This make target builds the production website, this won't "relativise" the URLs. If you want to test this site you will have to run a web-server on your machine, of which there are plenty of options. One of the dependencies of this site is `cohttp-lwt-unix` which actually provides just this functionality. You can build the site as production, then run `cohttp-server-lwt ./ocaml.org` and navigate to http://localhost:8080/ to see the site live.
  - `make deps`: We've already encountered this target, it ensures you have all of the correct dependencies to build the site.
  - `make clean`: This will completely remove all of the build artifacts, this can be useful but also it removes the cached blog feeds so rebuilding can take a lot longer. 
 
 ### Development Process
 
-This site was built quite a while ago so it doesn't have the more modern features of hot-reloading and the like. Instead development is done by tweaking things and re-running `make`. Some things can be done more easily. If you want to see a CSS change quickly you can modify one in the build directory (`/ocaml.org`) to see it in the browser (just be sure to copy the change back to the source CSS directory!). 
+This site was built quite a while ago so it doesn't have the modern features of hot-reloading and the like. Instead development is done by tweaking things and re-running `make`. Some things can be done more easily. If you want to see a CSS change quickly you can modify one in the build directory (`./ocaml.org/css`) to see it in the browser (just be sure to copy the change back to the source CSS directory!). 
 
 Other nice tools you can use include: 
 
