@@ -68,13 +68,13 @@ Please add yours if you don't see it listed!
 1. [Aix-Marseille University](http://assert-false.net/callcc/Guyslain/Teaching/ProgFonc/index) - Functional Programming
 1. [Epita](http://epita.fr/) - Introduction to Algorithms (Year 1 & 2)
 1. [ISAE/Supaéro](http://supaero.isae.fr/en) - Functional programming and introduction to type systems
-1. [Universidade da Beira Interior](http://www.di.ubi.pt/~desousa/TC/tcomp.html) - Computation Theory
-1. [Universidade da Beira Interior](http://www.di.ubi.pt/~desousa/LC/lc.html) - Computational Logic
+1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/PC/pc.html) - Certified Programming
+1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/TC/tcomp.html) - Computation Theory
+1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/LC/lc.html) - Computational Logic
 1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/PF/pf.html) - Funcional Programming, Algorithms and Data-structures
-1. [Universidade da Beira Interior](http://www.di.ubi.pt/~desousa/DLPC/dlpc.html) - Programming Languages and Compilers Design
-1. [Universidade da Beira Interior](http://www.di.ubi.pt/~desousa/PC/pc.html) - Certified Programming
-1. [Universidade da Beira Interior](http://www.di.ubi.pt/~desousa/TPP/tpp.html) - Proof and Programming Theory
-1. [Universidade da Beira Interior](http://www.di.ubi.pt/~desousa/CF/confia.html) - Software Reliability and Security
+1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/DLPC/dlpc.html) - Programming Languages and Compilers Design
+1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/TPP/tpp.html) - Proof and Programming Theory
+1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/CF/confia.html) - Software Reliability and Security
 1. [University Pierre & Marie Curie](http://www-apr.lip6.fr/~chaillou/Public/enseignement/2014-2015/tas/) - Types and static analysis (5I555)
 1. [University Pierre & Marie Curie](http://www-licence.ufr-info-p6.jussieu.fr/lmd/licence/2014/ue/LI332-2014oct/) - Models of programming and languages interoperability (LI332)
 1. [University of Birmingham](https://sites.google.com/site/focs1112/) - Foundations of Computer Science (FOCS1112)
