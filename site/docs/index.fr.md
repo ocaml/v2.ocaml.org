@@ -32,12 +32,12 @@
         langage, sont le meilleur point de départ. Ils constituent une
         introduction complète à la programmation OCaml, avec le système des
         modules, les objets, le polymorphisme, etc.
-
+      </p>
+      <p style="display: flex; justify-content: flex-end">
         <a id="tutref_b" href="/manual/index.html#sec6">
           <input
             type="button"
             class="btn btn-default"
-            style="float: right"
             name="button-tut"
             value="Lire les tutoriels"
         /></a>
@@ -88,7 +88,6 @@
 
     <section class="span6 condensed">
       <h1 class="ruled">Les Extensions du langage</h1>
-
       <p>
         N'oubliez pas de vérifier régulièrement les
         <a id="extref" href="/manual/extn.html">Extensions du langage</a>, afin

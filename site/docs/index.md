@@ -32,11 +32,12 @@
         language, are the best place to start. They form a complete introduction
         to programming in OCaml, including the module system, objects,
         polymorphism, etc.
+      </p>
+      <p style="display: flex; justify-content: flex-end">
         <a id="tutref_b" href="/manual/index.html#sec6">
           <input
             type="button"
             class="btn btn-default"
-            style="float: right"
             name="button-tut"
             value="Read the tutorials"
         /></a>
