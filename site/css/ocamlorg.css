@@ -142,7 +142,13 @@ li p {
 h1 img.rss {
   height: 1.3ex;
 }
-
+.documentation-video iframe{
+  border: 0;
+}
+.documentation-form{
+  display: flex;
+  justify-content: flex-end;
+}
 .syndication img {
   height: 1.5ex;
   margin-left: 0.3ex;
