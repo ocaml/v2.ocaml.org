@@ -29,11 +29,10 @@
 	module system, objects, polymorphism, etc.
       
    </p>
-   <form id="tutref_b" action="/manual/index.html#sec6" class="documentation-form">
-	    <input type="submit" class="btn btn-default"
-		  name="button-tut"
-		 value="Read the tutorials">
-	</form>
+   <p class="doc-link-wrapper">
+	<a id="tutref_b" href="/manual/index.html#sec6" class="btn btn-default">
+		Read the tutorials</a>
+  </p>
     </section>
 
     <section class="span6 condensed">
@@ -47,11 +46,11 @@
 	the <a id="corref" href="/manual/core.html">core
 	library</a>, and is always open.
    </p>
-    <form id="api_b" action="/api/index.html" class="documentation-form">
-	    <input type="submit" class="btn btn-default"
-		name="button-api"
-		value="OCaml API">
-	 </form>
+   <p class="doc-link-wrapper">
+	<a id="api_b"
+	href="/api/index.html" class="btn btn-default">
+	OCaml API</a>
+  </p>
     </section>
 
     <section class="span6 condensed">
@@ -63,11 +62,11 @@
 	`toplevel'), the documentation generator, lexers, the
 	debugger, profiling tools, etc.
     </p>
-	  <form id="toolref_b" action="/manual/index.html#sec286" class="documentation-form">
-	    <input type="submit" class="btn btn-default"
-		name="button-api"
-		value="OCaml Tools">
-	 </form>
+	<p class="doc-link-wrapper">
+		<a id="toolref_b"
+		href="/manual/index.html#sec286" class="btn btn-default">
+	   OCaml Tools</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -79,11 +78,11 @@
 	they will keep you up-to-date with useful new OCaml idioms
 	and constructions.<br>
       </p>
-	  <form id="extref_b" action="/manual/extn.html" class="documentation-form">
-	    <input type="submit" class="btn btn-default"
-		name="button-ext"
-		value="OCaml Extensions">
-	 </form>
+	  <p class="doc-link-wrapper">
+		<a id="extref_b"
+		href="/manual/extn.html" class="btn btn-default" >
+	   OCaml Extensions</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">

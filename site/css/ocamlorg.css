@@ -145,7 +145,7 @@ h1 img.rss {
 .documentation-video iframe{
   border: 0;
 }
-.documentation-form{
+.doc-link-wrapper{
   display: flex;
   justify-content: flex-end;
 }

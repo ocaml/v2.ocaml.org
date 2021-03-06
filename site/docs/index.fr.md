@@ -29,11 +29,10 @@
 	programmation OCaml, avec le système des modules, les
 	objets, le polymorphisme, etc.
     </p>
-	  <form id="tutref_b" action="/manual/index.html#sec6" class="documentation-form">
-	    <input type="submit" class="btn btn-default"
-		  name="button-tut"
-		  value="Lire les tutoriels">
-	</form>
+	<p class="doc-link-wrapper">
+        <a id="tutref_b" href="/manual/index.html#sec6" class="btn btn-default">
+			Lire les tutoriels</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -47,11 +46,11 @@
 	la <a id="corref" href="/manual/core.html">"core
 	  library"</a>, et est toujours ouvert.
       </p>
-	  <form id="api_b" action="/api/index.html" class="documentation-form">
-	    <input type="submit" class="btn btn-default"
-		name="button-api"
-		value="API OCaml">
-	 </form>
+	  <p class="doc-link-wrapper">
+		<a id="api_b"
+		href="/api/index.html" class="btn btn-default">
+		API OCaml</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -65,11 +64,11 @@
 	générateur de documentation, le lexer, le débogueur,
 	les outils de profilage, etc.
       </p>
-	  <form id="toolref_b" action="/manual/index.html#sec286" class="documentation-form">
-	    <input type="submit" class="btn btn-default"
-		name="button-api"
-		value="Outils OCaml">
-	 </form>
+	  <p class="doc-link-wrapper">
+		<a id="toolref_b"
+		href="/manual/index.html#sec286" class="btn btn-default">
+		Outils OCaml</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -83,11 +82,11 @@
 	<br>
     </p>
 	  
-	<form id="extref_b" action="/manual/extn.html" class="documentation-form">
-	    <input type="submit" class="btn btn-default"
-		name="button-ext"
-		value="Extensions OCaml">
-	 </form>
+	<p class="doc-link-wrapper">
+		<a id="extref_b"
+		href="/manual/extn.html" class="btn btn-default" >
+		Extensions OCaml</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
