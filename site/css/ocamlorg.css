@@ -267,7 +267,10 @@ a.edit-this-page:hover {
 html.svg a.edit-this-page:hover {
   background-image: url(../img/edit-hover.svg);
 }
-
+.doc-link-wrapper{
+  display: flex;
+  justify-content: flex-end;
+}
 /* When the navigation bar has reduced size */
 @media (max-height: 600px) and (min-width: 980px) {
   a.edit-this-page {

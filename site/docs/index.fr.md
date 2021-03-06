@@ -28,12 +28,11 @@
 	départ. Ils constituent une introduction complète à la
 	programmation OCaml, avec le système des modules, les
 	objets, le polymorphisme, etc.
-
-	<a id="tutref_b" href="/manual/index.html#sec6">
-	  <input type="button" class="btn btn-default"
-		 style="float:right;" name="button-tut"
-		 value="Lire les tutoriels"></a>
       </p>
+	  <p class="doc-link-wrapper">
+        <a id="tutref_b" href="/manual/index.html#sec6" class="btn btn-default">
+			Lire les tutoriels</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -46,13 +45,12 @@
 	<code id="stdlib_name">Stdlib</code> contient
 	la <a id="corref" href="/manual/core.html">"core
 	  library"</a>, et est toujours ouvert.
-
-	<a id="api_b"
-	   href="/api/index.html">
-	  <input type="button" class="btn btn-default"
-		 style="float:right;" name="button-api"
-		 value="API OCaml"></a>
       </p>
+	  <p class="doc-link-wrapper">
+		<a id="api_b"
+		href="/api/index.html" class="btn btn-default">
+		API OCaml</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -65,13 +63,12 @@
 	l'interpréteur interactif (REPL ou `toplevel'), le
 	générateur de documentation, le lexer, le débogueur,
 	les outils de profilage, etc.
-
-	<a id="toolref_b"
-	   href="/manual/index.html#sec286">
-	  <input type="button" class="btn btn-default"
-		 style="float:right;" name="button-api"
-		 value="Outils OCaml"></a>
       </p>
+	  <p class="doc-link-wrapper">
+		<a id="toolref_b"
+		href="/manual/index.html#sec286" class="btn btn-default">
+		Outils OCaml</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -82,15 +79,12 @@
 	   href="/manual/extn.html">Extensions du langage</a>,
 	afin de rester à jour avec les nouvelles constructions
 	qui vont vous simplifier la vie.
-	<br>
-
-	<a id="extref_b"
-	   href="/manual/extn.html">
-	  <input type="button" class="btn btn-default"
-		 style="float:right;" name="button-ext"
-		 value="Extensions OCaml"></a>
-
       </p>
+	  <p class="doc-link-wrapper">
+		<a id="extref_b"
+		href="/manual/extn.html" class="btn btn-default" >
+		Extensions OCaml</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -168,7 +162,7 @@
       <div class="row">
         <div class="span4">
           <p class="documentation-video">
-	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+	       <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="Dans cet exposé, Mark Shinwell explique comment trouver des bugs difficiles dans les programmes OCaml" frameborder="0" allowfullscreen></iframe>
           </p>
           <p>Dans cet exposé, Mark Shinwell explique comment
 	    trouver des bugs difficiles dans les programmes OCaml.
@@ -179,7 +173,7 @@
         </div>
         <div class="span4">
           <p class="documentation-video">
-            <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" title="Exposé de Yaron Minsky à CMU présentant le retour d'expérience de Jane Street sur l'utilisation d'OCaml comme principal langage de développement" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </p>
           <p>Exposé de Yaron Minsky à CMU présentant
 	    le retour d'expérience de Jane Street sur l'utilisation d'OCaml comme
@@ -187,7 +181,7 @@
         </div>
         <div class="span4">
           <p class="documentation-video">
-            <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" title="Rapport d'expérience: OCaml utilisé pour une plateforme d'analyse statique de niveau industriel, par Pascal Cuoq et Julien Signoles du CEA LIST, à ICFP'2009" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </p>
           <p>Rapport d'expérience: OCaml utilisé pour une
 	    plateforme d'analyse statique de niveau industriel, par

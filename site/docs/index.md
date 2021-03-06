@@ -27,12 +27,11 @@
 	the language, are the best place to start. They form a
 	complete introduction to programming in OCaml, including the
 	module system, objects, polymorphism, etc.
-
-	<a id="tutref_b" href="/manual/index.html#sec6">
-	  <input type="button" class="btn btn-default"
-		 style="float:right;" name="button-tut"
-		 value="Read the tutorials"></a>
       </p>
+	  <p class="doc-link-wrapper">
+        <a id="tutref_b" href="/manual/index.html#sec6" class="btn btn-default">
+			Read the tutorials</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -45,13 +44,12 @@
 	module <code id="stdlib_name">Stdlib</code> contains
 	the <a id="corref" href="/manual/core.html">core
 	library</a>, and is always open.
-
-	<a id="api_b"
-	   href="/api/index.html">
-	  <input type="button" class="btn btn-default"
-		 style="float:right;" name="button-api"
-		 value="OCaml API"></a>
       </p>
+	  <p class="doc-link-wrapper">
+		<a id="api_b"
+		href="/api/index.html" class="btn btn-default">
+		OCaml API</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -62,13 +60,12 @@
 	are bundled with the OCaml language. Among them, the REPL (or
 	`toplevel'), the documentation generator, lexers, the
 	debugger, profiling tools, etc.
-
-	<a id="toolref_b"
-	   href="/manual/index.html#sec286">
-	  <input type="button" class="btn btn-default"
-		 style="float:right;" name="button-api"
-		 value="OCaml Tools"></a>
       </p>
+	  <p class="doc-link-wrapper">
+		<a id="toolref_b"
+		href="/manual/index.html#sec286" class="btn btn-default">
+	   OCaml Tools</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -79,14 +76,12 @@
 	   href="/manual/extn.html">Language Extensions</a>,
 	they will keep you up-to-date with useful new OCaml idioms
 	and constructions.<br>
-
-	<a id="extref_b"
-	   href="/manual/extn.html">
-	  <input type="button" class="btn btn-default"
-		 style="float:right;" name="button-ext"
-		 value="OCaml Extensions"></a>
-
       </p>
+	  <p class="doc-link-wrapper">
+		<a id="extref_b"
+		href="/manual/extn.html" class="btn btn-default" >
+	   OCaml Extensions</a>
+	  </p>
     </section>
 
     <section class="span6 condensed">
@@ -174,7 +169,7 @@
       <div class="row">
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="In this talk, Mark Shinwell explains how to track down hard-to-find bugs in OCaml programs" frameborder="0" allowfullscreen></iframe>
 	  </p>
 	  <p>In this talk, Mark Shinwell explains how to
 	    track down hard-to-find bugs in OCaml programs.
@@ -185,13 +180,13 @@
 	</div>
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	    <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" title="Talk at CMU describing the experiences that Jane Street has had using OCaml as its primary development language" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 	  </p>
 	  <p>Talk at CMU describing the experiences that Jane Street has had using OCaml as its primary development language.</p>
 	</div>
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	    <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" title="Experience Report: OCaml for an Industrial-strength Static Analysis Framework Pascal Cuoq and Julien Signoles; CEA LIST International Conference on Functional Programming (ICFP) Edinburgh 2009" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 	  </p>
 	  <p>Experience Report: OCaml for an Industrial-strength Static Analysis Framework
 	    Pascal Cuoq and Julien Signoles; CEA LIST
