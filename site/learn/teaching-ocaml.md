@@ -71,7 +71,7 @@ Please add yours if you don't see it listed!
 1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/PC/pc.html) - Certified Programming
 1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/TC/tcomp.html) - Computation Theory
 1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/LC/lc.html) - Computational Logic
-1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/PF/pf.html) - Funcional Programming, Algorithms and Data-structures
+1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/PF/pf.html) - Functional Programming, Algorithms and Data-structures
 1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/DLPC/dlpc.html) - Programming Languages and Compilers Design
 1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/TPP/tpp.html) - Proof and Programming Theory
 1. [Universidade da Beira Interior](https://www.di.ubi.pt/~desousa/CF/confia.html) - Software Reliability and Security
@@ -170,4 +170,3 @@ delays and provide a consistent environment.
 1. [CSE 130: Programming Languages Course at UCSA](http://cseweb.ucsd.edu/classes/wi11/cse130/). Click on [Lectures](http://cseweb.ucsd.edu/classes/wi11/cse130/) and [Discussion Notes](http://cseweb.ucsd.edu/classes/wi11/cse130/). Have a look at Lec 7 (a pp presentation by Zach) for an inspiring introduction into map and fold.
 1. [CS 3110 Fall 2013 :: Data Structures and Functional Programming at Cornell](http://www.cs.cornell.edu/courses/cs3110/2013fa/lecture_notes.php). The lecturing materials explain OCaml on the basis of the fundamental concepts of functional programming languages.
 1. [CIS 500: Software Foundations at UPenn](http://www.seas.upenn.edu/~cis500/cis500-f05/index.html). A Software Fundations course with strong emphasis on Types. The [OCaml Tutorial](http://www.seas.upenn.edu/~cis500/cis500-f05/resources/seas-ocaml.html) includes a gentle introduction to the OCaml interactive top-level system and compilation in OCaml.
-
