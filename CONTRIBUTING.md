@@ -1,7 +1,7 @@
 Contributing to OCaml.org
 =========================
 
-Welcome to OCaml.org and thank you for taking the time to read our contributing guide. This guide is aimed towards first-time contributors and even people who are new to OCaml language. If you already know some concepts then feel free to skip to a section that interests you. 
+Welcome to OCaml.org and thank you for taking the time to read our contributing guide. This guide is aimed towards first-time contributors and even people who are new to the OCaml language. If you already know some concepts then feel free to skip to a section that interests you. 
 
 ## General Contributing Advice
 
