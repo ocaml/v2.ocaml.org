@@ -11,6 +11,7 @@ compilation des sources, comme par exemple le gestionnaire de paquets
 OPAM et les gestionnaire de paquets spécifiques à une plateforme.
 
 * OCaml [4.12.0](4.12.0.html), publiée le 24 février 2021.
+* OCaml [4.11.2](4.11.2.html), publiée le 24 février 2021.
 * OCaml [4.11.1](4.11.1.html), publiée le 31 août 2020.
 * OCaml [4.11.0](4.11.0.html), publiée le 19 août 2020.
 * OCaml [4.10.2](4.10.2.html), publiée le 8 décembre 2020.
