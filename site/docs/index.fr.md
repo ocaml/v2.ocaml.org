@@ -19,7 +19,7 @@
 
   <div class="row">
     <section class="span6 condensed">
-      <h1 class="ruled">Les Tutoriels OCaml</h1>
+      <h2 class="ruled">Les Tutoriels OCaml</h2>
       <p>Les
 	<a id="tutref"
 	   href="/manual/index.html#sec6">tutoriels OCaml</a>
@@ -28,15 +28,15 @@
 	départ. Ils constituent une introduction complète à la
 	programmation OCaml, avec le système des modules, les
 	objets, le polymorphisme, etc.
-      </p>
-	  <p class="doc-link-wrapper">
+    </p>
+	<p class="doc-link-wrapper">
         <a id="tutref_b" href="/manual/index.html#sec6" class="btn btn-default">
 			Lire les tutoriels</a>
 	  </p>
     </section>
 
     <section class="span6 condensed">
-      <h1 class="ruled">L'API OCaml</h1>
+      <h2 class="ruled">L'API OCaml</h2>
       <p>Incontournable! Contient la documentation pour l'ensemble
 	des modules inclus dans toute distribution OCaml. Ces
 	modules forment ce qu'on appelle la
@@ -54,7 +54,7 @@
     </section>
 
     <section class="span6 condensed">
-      <h1 class="ruled">Les outils</h1>
+      <h2 class="ruled">Les outils</h2>
       <p>
 	De nombreux
 	<a id="toolref"
@@ -72,15 +72,17 @@
     </section>
 
     <section class="span6 condensed">
-      <h1 class="ruled">Les Extensions du langage</h1>
+      <h2 class="ruled">Les Extensions du langage</h2>
 
       <p>N'oubliez pas de vérifier régulièrement les
 	<a id="extref"
 	   href="/manual/extn.html">Extensions du langage</a>,
 	afin de rester à jour avec les nouvelles constructions
 	qui vont vous simplifier la vie.
-      </p>
-	  <p class="doc-link-wrapper">
+	<br>
+    </p>
+	  
+	<p class="doc-link-wrapper">
 		<a id="extref_b"
 		href="/manual/extn.html" class="btn btn-default" >
 		Extensions OCaml</a>
@@ -88,7 +90,7 @@
     </section>
 
     <section class="span6 condensed">
-      <h1 class="ruled">Le Manuel OCaml</h1>
+      <h2 class="ruled">Le Manuel OCaml</h2>
       <p>L'ensemble de la documentation est regroupé dans un important
 	<a id="manual" href="/manual/index.html">
 	  Manuel OCaml</a>.  Le manuel est également disponible aux formats
@@ -106,7 +108,7 @@
 
 
     <section class="span6 condensed">
-      <h1 class="ruled">Autres documents</h1>
+      <h2 class="ruled">Autres documents</h2>
       <div class="row">
 	<a href="license.html" class="span3 documentation-highlight">
 	  <img src="/img/license.svg" alt="" class="svg">
@@ -127,12 +129,12 @@
 
   <div class="row">
     <section class="span6 condensed">
-      <h1 class="ruled">Documentation d'OPAM</h1>
+      <h2 class="ruled">Documentation d'OPAM</h2>
       <p>(<a href="https://opam.ocaml.org">OPAM</a>) permet de gérer l'installation de paquets sources en OCaml. Il permet l'installation de plusieurs versions du compilateur, tolère des contraintes complexes de dépendances entre les paquets et repose sur des mises à jour via un dépôt Github. La documentation sur l'utilisation d'OPAM pour installer des paquets ou créer vos propres paquets, <a href="https://opam.ocaml.org/doc/Install.html">lire ici</a>. Les paquets sont automatiquement testés lors de leur soumission et un rapport est envoyé au mainteneur. Si vous soumettez un paquet, cela vous permettra de recevoir régulièrement les résultats de tests de non-régression sur une multitude de systèmes d'exploitation et de plateformes.</p>
       <p>OPAM a été créé et est maintenu par OCamlPro, tandis qu'OCaml Labs gère le dépôt de paquets. Les rapports de bugs et suggestions pour l'outil doivent être déposés sur le <a href="https://github.com/OCaml/opam/issues">bug tracker d'OPAM</a>. Les problèmes concernant les paquets doivent être soumis sur le <a href="https://github.com/OCaml/opam-repository/issues">bug tracker du dépôt principal</a>. Les questions générales sur l'outil et les paquets peuvent être envoyées sur <a href="http://lists.ocaml.org/listinfo/platform">la liste de la plateforme OCaml</a> et les détails ou l'évolution d'OPAM peuvent être discutés sur <a href="http://lists.ocaml.org/listinfo/opam-devel">la liste OPAM-devel</a>.</p>
     </section>
     <section class="span6 condensed">
-      <h1 class="ruled"><a href="/learn/books.html">Livres</a> et <a href="/docs/papers.html">articles</a></h1>
+      <h2 class="ruled"><a href="/learn/books.html">Livres</a> et <a href="/docs/papers.html">articles</a></h2>
       <div class="row">
 	<div class="span2 documentation-book">
 	  <a href="https://realworldocaml.org">
@@ -158,11 +160,11 @@
   </div>
   <div class="row">
     <section class="span12 condensed">
-      <h1 class="ruled"><a href="/community/media.html">Vidéos</a></h1>
+      <h2 class="ruled"><a href="/community/media.html">Vidéos</a></h2>
       <div class="row">
         <div class="span4">
           <p class="documentation-video">
-	       <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="Dans cet exposé, Mark Shinwell explique comment trouver des bugs difficiles dans les programmes OCaml" frameborder="0" allowfullscreen></iframe>
+	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" allowfullscreen></iframe>
           </p>
           <p>Dans cet exposé, Mark Shinwell explique comment
 	    trouver des bugs difficiles dans les programmes OCaml.
@@ -173,7 +175,7 @@
         </div>
         <div class="span4">
           <p class="documentation-video">
-            <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" title="Exposé de Yaron Minsky à CMU présentant le retour d'expérience de Jane Street sur l'utilisation d'OCaml comme principal langage de développement" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" allowfullscreen></iframe>
           </p>
           <p>Exposé de Yaron Minsky à CMU présentant
 	    le retour d'expérience de Jane Street sur l'utilisation d'OCaml comme
@@ -181,7 +183,7 @@
         </div>
         <div class="span4">
           <p class="documentation-video">
-            <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" title="Rapport d'expérience: OCaml utilisé pour une plateforme d'analyse statique de niveau industriel, par Pascal Cuoq et Julien Signoles du CEA LIST, à ICFP'2009" width="310" height="233" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" allowfullscreen></iframe>
           </p>
           <p>Rapport d'expérience: OCaml utilisé pour une
 	    plateforme d'analyse statique de niveau industriel, par

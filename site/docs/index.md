@@ -19,7 +19,7 @@
 
   <div class="row">
     <section class="span6 condensed">
-      <h1 class="ruled">The OCaml Tutorials</h1>
+      <h2 class="ruled">The OCaml Tutorials</h2>
       <p>The official
 	<a id="tutref"
 	   href="/manual/index.html#sec6">OCaml tutorials</a>
@@ -27,15 +27,16 @@
 	the language, are the best place to start. They form a
 	complete introduction to programming in OCaml, including the
 	module system, objects, polymorphism, etc.
-      </p>
-	  <p class="doc-link-wrapper">
-        <a id="tutref_b" href="/manual/index.html#sec6" class="btn btn-default">
-			Read the tutorials</a>
-	  </p>
+      
+   </p>
+   <p class="doc-link-wrapper">
+	<a id="tutref_b" href="/manual/index.html#sec6" class="btn btn-default">
+		Read the tutorials</a>
+  </p>
     </section>
 
     <section class="span6 condensed">
-      <h1 class="ruled">The OCaml API</h1>
+      <h2 class="ruled">The OCaml API</h2>
       <p>This is the place you'll end up most often!  You'll find the
 	documentation for all modules that ship with any OCaml
 	distribution. These modules form what is called
@@ -44,24 +45,24 @@
 	module <code id="stdlib_name">Stdlib</code> contains
 	the <a id="corref" href="/manual/core.html">core
 	library</a>, and is always open.
-      </p>
-	  <p class="doc-link-wrapper">
-		<a id="api_b"
-		href="/api/index.html" class="btn btn-default">
-		OCaml API</a>
-	  </p>
+   </p>
+   <p class="doc-link-wrapper">
+	<a id="api_b"
+	href="/api/index.html" class="btn btn-default">
+	OCaml API</a>
+  </p>
     </section>
 
     <section class="span6 condensed">
-      <h1 class="ruled">The Tools</h1>
+      <h2 class="ruled">The Tools</h2>
       <p>
 	Many <a id="toolref"
 		    href="/manual/index.html#sec286">tools</a>
 	are bundled with the OCaml language. Among them, the REPL (or
 	`toplevel'), the documentation generator, lexers, the
 	debugger, profiling tools, etc.
-      </p>
-	  <p class="doc-link-wrapper">
+    </p>
+	<p class="doc-link-wrapper"
 		<a id="toolref_b"
 		href="/manual/index.html#sec286" class="btn btn-default">
 	   OCaml Tools</a>
@@ -69,7 +70,7 @@
     </section>
 
     <section class="span6 condensed">
-      <h1 class="ruled">The Language Extensions</h1>
+      <h2 class="ruled">The Language Extensions</h2>
 
       <p>Don't forget to regularly check the
 	<a id="extref"
@@ -85,7 +86,7 @@
     </section>
 
     <section class="span6 condensed">
-      <h1 class="ruled">The OCaml Manual</h1>
+      <h2 class="ruled">The OCaml Manual</h2>
       <p>The complete documentation is bundled as a
 	large <a id="manual" href="/manual/index.html">
 	OCaml Manual</a>.  This manual is also available in
@@ -105,7 +106,7 @@
 
 
     <section class="span6 condensed">
-      <h1 class="ruled">Other docs</h1>
+      <h2 class="ruled">Other docs</h2>
       <div class="row">
 	<a href="license.html" class="span3 documentation-highlight">
 	  <img src="/img/license.svg" alt="" class="svg">
@@ -125,7 +126,7 @@
 
   <div class="row">
     <section class="span6 condensed">
-      <h1 class="ruled">OPAM and package documentation</h1>
+      <h2 class="ruled">OPAM and package documentation</h2>
       <p>OPAM is the source-based package manager for OCaml.
 	It allows you to install OCaml and packages.
 	See the <a href="install.html">installation
@@ -140,7 +141,7 @@
       </p>
     </section>
     <section class="span6 condensed">
-      <h1 class="ruled"><a href="/learn/books.html">Books</a> and <a href="/docs/papers.html">Papers</a></h1>
+      <h2 class="ruled"><a href="/learn/books.html">Books</a> and <a href="/docs/papers.html">Papers</a></h2>
       <div class="row">
 	<div class="span2 documentation-book">
 	  <a href="https://realworldocaml.org">
@@ -165,11 +166,11 @@
   </div>
   <div class="row">
     <section class="span12 condensed">
-      <h1 class="ruled"><a href="/community/media.html">Videos</a></h1>
+      <h2 class="ruled"><a href="/community/media.html">Videos</a></h2>
       <div class="row">
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="In this talk, Mark Shinwell explains how to track down hard-to-find bugs in OCaml programs" frameborder="0" allowfullscreen></iframe>
+	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" allowfullscreen></iframe>
 	  </p>
 	  <p>In this talk, Mark Shinwell explains how to
 	    track down hard-to-find bugs in OCaml programs.
@@ -180,13 +181,13 @@
 	</div>
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" title="Talk at CMU describing the experiences that Jane Street has had using OCaml as its primary development language" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	    <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" allowfullscreen></iframe>
 	  </p>
 	  <p>Talk at CMU describing the experiences that Jane Street has had using OCaml as its primary development language.</p>
 	</div>
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" title="Experience Report: OCaml for an Industrial-strength Static Analysis Framework Pascal Cuoq and Julien Signoles; CEA LIST International Conference on Functional Programming (ICFP) Edinburgh 2009" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	    <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" allowfullscreen></iframe>
 	  </p>
 	  <p>Experience Report: OCaml for an Industrial-strength Static Analysis Framework
 	    Pascal Cuoq and Julien Signoles; CEA LIST
