@@ -106,7 +106,7 @@ interface. This is our `amodule.mli` file:
 val hello : unit -> unit
 (** Displays a greeting message. *)
 ```
-(note the double asterisk at the beginning of the commont - it is a good habit to document .mli files using the format
+(note the double asterisk at the beginning of the comment - it is a good habit to document .mli files using the format
 supported by
 [ocamldoc](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/ocamldoc.html))
 
