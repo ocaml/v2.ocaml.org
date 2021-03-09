@@ -62,7 +62,7 @@
 	`toplevel'), the documentation generator, lexers, the
 	debugger, profiling tools, etc.
     </p>
-	<p class="doc-link-wrapper"
+	<p class="doc-link-wrapper">
 		<a id="toolref_b"
 		href="/manual/index.html#sec286" class="btn btn-default">
 	   OCaml Tools</a>
