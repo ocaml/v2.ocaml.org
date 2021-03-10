@@ -57,7 +57,7 @@ OCaml comments are delimited by `(*` and `*)`, like this:
 ```
 In other words, the commenting convention is very similar to original C
 (`/* ... */`). There is no single-line comment syntax (like
-`# ...` in Perl/Python or `// ...` in C99/C++/Java).
+`# ...` in Python or `// ...` in C99/C++/Java).
 
 OCaml counts nested `(* ... *)` blocks, and this allows you to comment
 out regions of code very easily:
@@ -190,8 +190,7 @@ asking:
 OK, let's get some answers.
 
 * OCaml is a strongly *statically typed* language (in other words,
- there's nothing dynamic going on between int, float and string, as
- in Perl).
+ there's nothing dynamic going on between int, float and string).
 * OCaml uses *type inference* to work out the types, so you don't have
  to.  If you use the OCaml interactive toplevel as above, then OCaml
  will tell you
@@ -456,7 +455,7 @@ Type inference is obviously easy for such a short program, but it works
 even for large programs, and it's a major time-saving feature because it
 removes a whole class of errors which cause segfaults,
 `NullPointerException`s and `ClassCastException`s in other languages (or
-important but often ignored runtime warnings, as in Perl).
+important but often ignored runtime warnings).
 
 
 [utop]: https://github.com/diml/utop

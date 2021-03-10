@@ -235,7 +235,7 @@ If we want to use the functions in `Graphics` there are two ways we can
 do it. Either at the start of our program we have the `open Graphics;;`
 declaration. Or we prefix all calls to the functions like this:
 `Graphics.open_graph`. `open` is a little bit like Java's `import`
-statement, and much more like Perl's `use` statement.
+statement.
 
 To use `Graphics` in the [interactive toplevel](basics.html), you must
 first load the
@@ -379,12 +379,12 @@ code, how they used local and global named expressions.
 
 * `?foo` and `~foo` is OCaml's way of doing optional and named
  arguments to functions. There is no real parallel to this in
- C-derived languages, but Perl, Python and Smalltalk all have this
+ C-derived languages, but Python and Smalltalk all have this
  concept that you can name the arguments in a function call, omit
  some of them, and supply the others in any order you like.
 * `foo#bar` is a method invocation (calling a method called `bar` on
- an object called `foo`). It's similar to `foo->bar` or `foo.bar` or
- `$foo->bar` in C++, Java or Perl respectively.
+ an object called `foo`). It's similar to `foo->bar` or `foo.bar` in
+ C++ or Java respectively.
 
 First snippet: The programmer opens a couple of standard libraries.
 They then create a function called `file_dialog`. Inside
