@@ -1,120 +1,10 @@
-<!-- ((! set title Labels !)) ((! set learn !)) -->
+<!-- ((! set title Labels and Polymorphic Variants !)) ((! set learn !)) -->
 
-# Labels
+# Labels and Polymorphic Variants
 
 *Table of contents*
 
-## Exceptions and hash tables
-*(unfinished)*
-
-## Mutually recursive functions
-Suppose I want to define two functions which call each other. This is
-actually not a very common thing to do, but it can be useful sometimes.
-Here's a contrived example (thanks to Ryan Tarpine): The number 0 is
-even. Other numbers greater than 0 are even if their predecessor is odd.
-Hence:
-
-```ocamltop
-let rec even n =
-  match n with
-  | 0 -> true
-  | x -> odd (x-1)
-```
-
-The code above doesn't compile because we haven't defined the function
-`odd` yet! That's easy though. Zero is not odd, and other numbers
-greater than 0 are odd if their predecessor is even. So to make this
-complete we need that function too:
-
-```ocamltop
-let rec even n =
-  match n with
-  | 0 -> true
-  | x -> odd (x-1)
-  
-let rec odd n =
-  match n with
-  | 0 -> false
-  | x -> even (x-1)
-```
-
-The only problem is... this program doesn't compile. In order to compile
-the `even` function, we already need the definition of `odd`, and to
-compile `odd` we need the definition of `even`. So swapping the two
-definitions around won't help either.
-
-There are no "forward prototypes" (as seen in languages descended
-from C) in OCaml but there is a special syntax
-for defining a set of two or more mutually recursive functions, like
-`odd` and `even`:
-
-```ocamltop
-let rec even n =
-  match n with
-  | 0 -> true
-  | x -> odd (x-1)
-and odd n =
-  match n with
-  | 0 -> false
-  | x -> even (x-1)
-```
-You can also
-use similar syntax for writing mutually recursive class definitions and
-modules.
-
-## Aliases for function names and arguments
-Recall that we talked about [partial function
-application](functional_programming.html#Partialfunctionapplicationsandcurrying).
-It's
-possible to use this as a neat trick to save typing: aliasing function
-names, and function arguments.
-
-Although we haven't looked at object-oriented programming (that's the
-subject for the ["Objects" section](objects.html)),
-here's an example from OCamlNet of an
-aliased function call. All you need to know is that
-`cgi # output # output_string "string"` is a method call, similar to
-`cgi.output().output_string ("string")` in Java.
-
-```ocaml
-let begin_page cgi title =
-  let out = cgi # output # output_string in
-  out "<html>\n";
-  out "<head>\n";
-  out ("<title>" ^ text title ^ "</title>\n");
-  out ("<style type=\"text/css\">\n");
-  out "body { background: white; color: black; }\n";
-  out "</style>\n";
-  out "</head>\n";
-  out "<body>\n";
-  out ("<h1>" ^ text title ^ "</h1>\n")
-```
-The `let out = ... ` is a partial function application for that method
-call (partial, because the string parameter hasn't been applied). `out`
-is therefore a function, which takes a string parameter.
-
-```ocaml
-out "<html>\n";
-```
-is equivalent to:
-
-```ocaml
-cgi # output # output_string "<html>\n";
-```
-We saved ourselves a lot of typing there.
-
-We can also add arguments. This alternative definition of `print_string`
-can be thought of as a kind of alias for a function name plus arguments:
-
-```ocaml
-let print_string = output_string stdout
-```
-`output_string` takes two arguments (a channel and a string), but since
-we have only supplied one, it is partially applied. So `print_string` is
-a function, expecting one string argument.
-
 ## Labelled and optional arguments to functions
-###  Labelled arguments
 
 Python has a nice syntax for writing arguments to functions. Here's
 an example (from the Python tutorial, since I'm not a Python
@@ -136,22 +26,6 @@ Notice that in Python we are allowed to name arguments when we call
 them, or use the usual function call syntax, and we can have optional
 arguments with default values.
 
-You can do something similar in Perl:
-
-```perl
-sub ask_ok
-{
-  my %params = @_;
-  
-  my $prompt = $params{prompt};
-  my $retries = exists $params{retries} ? $params{retries} : 4;
-  
-  # ... etc.
-}
-  
-ask_ok (prompt => "Are you sure?", retries => 2);
-```
-
 OCaml also has a way to label arguments and have optional arguments with
 default values.
 
@@ -160,7 +34,7 @@ The basic syntax is:
 ```ocamltop
 let rec range ~first:a ~last:b =
   if a > b then []
-  else a :: range ~first:(a+1) ~last:b
+  else a :: range ~first:(a + 1) ~last:b
 ```
 (Notice that both `to` and `end` are reserved words in OCaml, so they
 cannot be used as labels. So you cannot have `~from/~to` or
@@ -187,15 +61,13 @@ range ~first:1 ~last:10;;
 range ~last:10 ~first:1;;
 ```
 There is also a shorthand way to name the arguments, so that the label
-is the same as the variable in the function definition. Here is a
-function defined in `lablgtk/gaux.ml` (a library of useful oddities used
-in lablgtk):
+is the same as the variable in the function definition:
 
 ```ocamltop
 let may ~f x =
   match x with
   | None -> ()
-  | Some x -> ignore(f x)
+  | Some x -> ignore (f x)
 ```
 It's worth spending some time working out exactly what this function
 does, and also working out by hand its type signature. There's a lot
@@ -242,7 +114,7 @@ of `~` in front of them. Here is an example:
 ```ocamltop
 let rec range ?(step=1) a b =
   if a > b then []
-  else a :: range ~step (a+step) b
+  else a :: range ~step (a + step) b
 ```
 Note the somewhat confusing syntax, switching between `?` and `~`. We'll
 talk about that in the next section. Here is how you call this function:
@@ -257,12 +129,13 @@ value and just have an optional argument. This example is modified from
 lablgtk:
 
 ```ocamltop
-type window = { mutable title: string;
-                mutable width: int;
-                mutable height: int }
+type window =
+  {mutable title: string;
+   mutable width: int;
+   mutable height: int}
   
 let create_window () =
-  { title = "none"; width = 640; height = 480; }
+  {title = "none"; width = 640; height = 480;}
   
 let set_title window title =
   window.title <- title
@@ -278,7 +151,7 @@ let open_window ?title ?width ?height () =
   may ~f:(set_title window) title;
   may ~f:(set_width window) width;
   may ~f:(set_height window) height;
-  window
+  window;;
 ```
 
 This example is significantly complex and quite subtle, but the pattern
@@ -370,7 +243,7 @@ we have a function `plus` defined as:
 
 ```ocamltop
 let plus x y =
-  x + y
+  x + y;;
 ```
 We can partially apply this, for example as `plus 2` which is "the
 function that adds 2 to things":
@@ -429,7 +302,7 @@ shorthand as possible for the labels:
 ```ocamltop
 let rec range ~first ~last =
   if first > last then []
-  else first :: range ~first:(first+1) ~last
+  else first :: range ~first:(first + 1) ~last
 ```
 Recall that `~foo` on its own is short for `~foo:foo`. This applies also
 when calling functions as well as declaring the arguments to functions,
@@ -527,13 +400,6 @@ The `pack_return` function actually takes mandatory labelled arguments
 called `~packing` and `~show`, each of type `'a option`. In other words,
 `pack_return` explicitly unwraps the `option` wrapper.
 
-###  Addendum
-If you think labels and optional arguments are complicated, that's
-because they are! Luckily, however, this is a relatively new feature in
-OCaml, and it's not yet widely used. In fact if you're not hacking on
-lablgtk, it's unlikely you'll see labels and optional arguments used at
-all (at the moment).
-
 ## More variants (“polymorphic variants”)
 Try compiling the following C code:
 
@@ -589,7 +455,7 @@ Here is some OCaml code, which actually *does* compile:
 
 ```ocamltop
 type lock = Open | Close
-type door = Open | Close
+type door = Open | Close;;
 ```
 After running those two statements, what is the type of `Open`? We can
 find out easily enough in the toplevel:
@@ -649,7 +515,7 @@ let print_lock st =
 ```
 Take a careful look at the type of that function. Type inference has
 worked out that the `st` argument has type `` [< `Close | `Open] ``. The
-“<” (less than) sign means that this is a __closed class__. In
+`<` (less than) sign means that this is a __closed class__. In
 other words, this function will only work on `` `Close`` or `` `Open``
 and not on anything else.
 
@@ -666,5 +532,3 @@ reduction in type safety, it is recommended that you don't use these in
 your code. You will, however, see them in advanced OCaml code quite a
 lot precisely because advanced programmers will sometimes want to weaken
 the type system to write advanced idioms.
-
-

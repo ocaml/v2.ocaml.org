@@ -38,11 +38,8 @@ special SQL `NULL` value. SQL ignores this automatically when you ask it
 to compute averages and so on.
 
 Programming languages also support nulls, although they may be easier to
-use in some than in others. In Perl, any scalar (ie. number or string)
-can be `undef` (Perl's way of saying null). This is a cause of many
-warnings which are often ignored by inexperienced programmers, even
-though they probably represent serious errors. In Java, any reference to
-an object can also be null, so it might make sense in Java to store the
+use in some than in others. In Java, any reference to
+an object can be null, so it might make sense in Java to store the
 age as an `Integer` and allow references to the age to be `null`. In C
 pointers can, of course, be null, but if you wanted a simple integer to
 be null, you'd have to first box it up into an object allocated by
@@ -59,27 +56,20 @@ A "null pointer" is written `None`. The type of age in our example above
 `int list` and `int binary_tree`).
 
 ```ocamltop
-Some 3
+Some 3;;
 ```
 What about a list of optional ints?
 
 ```ocamltop
-[ None; Some 3; Some 6; None ]
+[None; Some 3; Some 6; None];;
 ```
 And what about an optional list of ints?
 
 ```ocamltop
-Some [1; 2; 3]
+Some [1; 2; 3];;
 ```
 ## Assert, warnings, fatal errors, and printing to stderr
-One great feature of Perl is the rich set of commands for debugging
-programs and handling unexpected errors, including the ability to print
-stack traces, throw and catch exceptions and the like. OCaml doesn't
-have quite such a rich set of debugging commands - better than Java,
-about the same as C, not nearly as good as Perl. (We'll talk about
-exceptions in more detail later on.)
-
-First of all, `assert` takes an expression as an argument and throws an
+The built-in `assert` takes an expression as an argument and throws an
 exception *if* the provided expression evaluates to `false`. 
 Assuming that you don't catch this exception (it's probably
 unwise to catch this exception, particularly for beginners), this
@@ -110,8 +100,7 @@ Note a couple of extra pattern matching features in this example too. A
 so-called "range pattern" is used to match either `"Unix"` or
 `"Cygwin"`, and the special `_` pattern which matches "anything else".
 
-If you want to debug your program, but, like me, you have an aversion to
-debuggers which aren't gdb, then you'll probably want to print out a
+If you want to debug your program, then you'll probably want to print out a
 warning some way through your function. Here's an example:
 
 ```ocaml
@@ -133,13 +122,12 @@ instead:
 
 ```ocaml
 open Graphics
-open Printf
   
 let () =
   open_graph " 640x480";
   for i = 12 downto 1 do
     let radius = i * 20 in
-    eprintf "radius is %d\n" radius;
+    Printf.eprintf "radius is %d\n" radius;
     set_color (if i mod 2 = 0 then red else yellow);
     fill_circle 320 240 radius
   done;
