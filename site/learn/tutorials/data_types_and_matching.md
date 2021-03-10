@@ -242,8 +242,8 @@ tuple           int * string                   (3, "hello")
 record          type pair =                    {a = 3; b = "hello"}
                   {a: int; b: string}
 variant         type foo =
-                      | Int of int             Int 3
-                      | Pair of int * string   Pair (3, "three")
+                  | Int of int                 Int 3
+                  | Pair of int * string       Pair (3, "three")
 variant         type sign =
                   | Positive                   Positive
                   | Zero                       Zero

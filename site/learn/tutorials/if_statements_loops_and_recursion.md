@@ -767,12 +767,12 @@ Let's now code those rules above up, to get a working function:
 ```ocamltop
 let rec list_max xs =
   match xs with
-  | [] ->   (* empty list: fail *)
-         failwith "list_max called on empty list"
+  | [] -> (* empty list: fail *)
+      failwith "list_max called on empty list"
   | [x] -> (* single element list: return the element *)
-         x
+      x
   | x :: remainder -> (* multiple element list: recursive case *)
-         max x (list_max remainder);;
+      max x (list_max remainder);;
 ```
 I've added comments so you can see how the rules / special cases we
 decided upon above really correspond to lines of code.

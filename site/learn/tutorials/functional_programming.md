@@ -322,7 +322,7 @@ lazy expressions. Here's an example. First we create a lazy expression
 for `1/0`:
 
 ```ocamltop
-let lazy_expr = lazy (1/0);;
+let lazy_expr = lazy (1 / 0);;
 ```
 Notice the type of this lazy expression is `int lazy_t`.
 
