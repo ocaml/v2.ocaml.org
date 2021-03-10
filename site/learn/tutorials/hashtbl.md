@@ -16,9 +16,9 @@ into the hash table. The hash table can grow if you under-estimate the
 size so don't worry about it too much. The type of my_hash is:
 
 ```ocaml
-val my_hash : ('_a, '_b) Hashtbl.t
+val my_hash : ('_weak1, '_weak2) Hashtbl.t
 ```
-The `'_a` and `'_b` correspond to the key and value types, respectively.
+The `'_weak1` and `'_weak2` correspond to the key and value types, respectively.
 There are no concrete types (e.g., `int` or `float * string`) filled in in
 those slots because the type of the key and value are not yet
 determined. The underscore indicates that the key and data types, once
