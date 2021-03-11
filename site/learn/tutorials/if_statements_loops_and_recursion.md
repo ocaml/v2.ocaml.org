@@ -848,7 +848,7 @@ very last thing. In fact the last thing to happen is the `::` (cons)
 operation. As a result, the compiler doesn't turn the recursion into a
 while loop, and the function is not efficient in its use of stack space.
 
-The use of an accumluting argument or `accumulator` allows one to write
+The use of an accumulating argument or `accumulator` allows one to write
 functions such as `range` above in a tail-recursive manner, which means they
 will be efficient and work properly on large inputs. Let's plan our rewritten
 `range` function which will use an accumulator argument to store the "result so
