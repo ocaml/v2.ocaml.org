@@ -46,7 +46,7 @@ be null, you'd have to first box it up into an object allocated by
 `malloc` on the heap.
 
 OCaml has an elegant solution to the problem of nulls, using a simple
-polymorphic variant type defined (in `Pervasives`) as:
+polymorphic variant type defined (in `Stdlib`) as:
 
 ```ocaml
 type 'a option = None | Some of 'a

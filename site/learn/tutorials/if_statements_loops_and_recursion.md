@@ -90,7 +90,7 @@ let f x y =
 Clue: add brackets around the whole of the if expression. It clips `y`
 like an [electronic diode](https://en.wikipedia.org/wiki/Diode#Current.E2.80.93voltage_characteristic).
 
-The `abs` (absolute value) function is defined in `Pervasives` as:
+The `abs` (absolute value) function is defined in `Stdlib` as:
 
 ```ocamltop
 let abs x =
@@ -973,7 +973,7 @@ n.name <- "John Smith";;
 ```
 References, with which we should be familiar by now, are implemented
 using records with a mutable `contents` field. Check out the definition
-in `Pervasives`:
+in `Stdlib`:
 
 ```ocamltop
 type 'a ref = {mutable contents : 'a}
