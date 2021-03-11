@@ -378,7 +378,7 @@ int_of_char : char -> int
 ```
 If a function returns nothing (`void` for C and Java programmers), then
 we write that it returns the `unit` type. Here, for instance, is the
-OCaml equivalent of C's `fputc`:
+OCaml equivalent of C's _[fputc(3)](https://pubs.opengroup.org/onlinepubs/009695399/functions/fputc.html)_:
 
 ```ocaml
 output_char : out_channel -> char -> unit
