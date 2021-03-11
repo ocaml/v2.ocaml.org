@@ -239,8 +239,7 @@ floating point numbers.
 
 OCaml provides a `char` type which is used for characters, written `'x'`
 for example. Unfortunately the `char` type does not support Unicode or
-UTF-8, There are [comprehensive Unicode
-libraries](https://github.com/yoriyuki/Camomile "https://github.com/yoriyuki/Camomile")
+UTF-8, There are [comprehensive Unicode libraries](https://github.com/yoriyuki/Camomile)
 which provide this functionality.
 
 Strings are not just lists of characters. They have their own, more
