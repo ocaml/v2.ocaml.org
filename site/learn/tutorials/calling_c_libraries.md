@@ -300,7 +300,7 @@ type. The macros look like this:
 <dl> <dt>`String_val (val)`</dt> <dd> Convert from a `value`
 which is known to be a string to a C string (ie. `char *`). </dd>
 <dt>`Val_unit`</dt> <dd> The OCaml unit `()` as a `value`. </dd>
-<dt>`Int_val (val)`</dt> boolean <dd> Convert from a `value` which
+<dt>`Int_val (val)`</dt> <dd> Convert from a `value` which
 is known to be an integer to a C `int`. </dd>
 <dt>`Val_int (i)`</dt> <dd> Convert from a C integer `i` into an
 integer `value`. </dd> <dt>`Bool_val (val)`</dt> <dd> Convert
