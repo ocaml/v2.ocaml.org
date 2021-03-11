@@ -948,7 +948,6 @@ let print_name name =
   print_endline ("The name is " ^ name.name);
   name.access_count <- name.access_count + 1
 ```
-
 Notice a strange, and very non-functional feature of `print_name`: it modifies
 its `access_count` parameter. This function is not "pure". OCaml is a
 functional language, but not to the extent that it forces functional
@@ -1054,7 +1053,6 @@ let () =
     done;
     mmult size size m1 m2 m3;
     Printf.printf "%d %d %d %d\n" m3.(0).(0) m3.(2).(3) m3.(3).(2) m3.(4).(4)
-
 ```
 
 ## Mutually recursive functions
