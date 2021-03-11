@@ -9,13 +9,13 @@ Nicollet](https://github.com/VictorNicollet/99-Problems-OCaml). Please
 
 # 99 Problems (solved) in OCaml
 This section is inspired by [Ninety-Nine Lisp
-Problems](http://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html)
+Problems](https://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html)
 which in turn was based on “[Prolog problem
 list](https://sites.google.com/site/prologsite/prolog-problems/)”. For
 each of these questions, some simple tests are shown—they may also serve
 to make the question clearer if needed. To work on these problems, we
 recommend you first [install OCaml](/docs/install.html) or use it [inside
-your browser](http://try.ocamlpro.com/). The source of the following
+your browser](https://try.ocamlpro.com/). The source of the following
 problems is available on
 [GitHub](https://github.com/VictorNicollet/99-Problems-OCaml).
 
@@ -33,7 +33,7 @@ SOLUTION
 > ```
 
 ```ocamltop
-last [ "a" ; "b" ; "c" ; "d" ];;
+last ["a" ; "b" ; "c" ; "d"];;
 last [];;
 ```
 
@@ -44,36 +44,36 @@ SOLUTION
 > ```ocamltop
 > let rec last_two = function
 >   | [] | [_] -> None
->   | [x;y] -> Some (x,y)
->   | _::t -> last_two t;;
+>   | [x; y] -> Some (x,y)
+>   | _ :: t -> last_two t;;
 > ```
 
 ```ocamltop
-last_two [ "a" ; "b" ; "c" ; "d" ];;
-last_two [ "a" ];;
+last_two ["a" ; "b" ; "c" ; "d"];;
+last_two ["a"];;
 ```
 
-#### 3. Find the `k`'th element of a list. (*easy*)
+#### 3. Find the K'th element of a list. (*easy*)
 
 SOLUTION
 
 > ```ocamltop
 > let rec at k = function
 >   | [] -> None
->   | h :: t -> if k = 1 then Some h else at (k-1) t;;
+>   | h :: t -> if k = 1 then Some h else at (k - 1) t;;
 > ```
 
 ```ocamltop
-at 3 [ "a" ; "b"; "c"; "d"; "e" ];;
-at 3 [ "a" ];;
+at 3 ["a" ; "b"; "c"; "d"; "e"];;
+at 3 ["a"];;
 ```
 
 REMARK: OCaml has `List.nth` which numbers elements from `0` and
 raises an exception if the index is out of bounds.
 
 ```ocamltop
-List.nth [ "a" ; "b"; "c"; "d"; "e" ] 2;;
-List.nth [ "a" ] 2;;
+List.nth ["a"; "b"; "c"; "d"; "e"] 2;;
+List.nth ["a"] 2;;
 ```
 
 
@@ -91,12 +91,12 @@ SOLUTION
 > let length list =
 >   let rec aux n = function
 >     | [] -> n
->     | _::t -> aux (n+1) t
+>     | _ :: t -> aux (n + 1) t
 >   in aux 0 list;;
 > ```
 
 ```ocamltop
-length [ "a" ; "b" ; "c"];;
+length ["a" ; "b" ; "c"];;
 length [];;
 ```
 
@@ -111,12 +111,12 @@ SOLUTION
 > let rev list =
 >   let rec aux acc = function
 >     | [] -> acc
->     | h::t -> aux (h::acc) t in
+>     | h :: t -> aux (h :: acc) t in
 >   aux [] list;;
 > ```
 
 ```ocamltop
-rev ["a" ; "b" ; "c"];;
+rev ["a"; "b"; "c"];;
 ```
 
 #### 6. Find out whether a list is a palindrome. (*easy*)
@@ -133,8 +133,8 @@ SOLUTION
 > ```
 
 ```ocamltop
-is_palindrome [ "x" ; "a" ; "m" ; "a" ; "x" ];;
-not (is_palindrome [ "a" ; "b" ]);;
+is_palindrome ["x"; "a"; "m"; "a"; "x"];;
+not (is_palindrome ["a" ; "b"]);;
 ```
 
 #### 7. Flatten a nested list structure. (*medium*)
@@ -164,7 +164,7 @@ SOLUTION
 > ```
 
 ```ocamltop
-flatten [ One "a" ; Many [ One "b" ; Many [ One "c" ; One "d" ] ; One "e" ] ];;
+flatten [One "a"; Many [One "b"; Many [One "c" ;One "d"]; One "e"]];;
 ```
 
 #### 8. Eliminate consecutive duplicates of list elements. (*medium*)
@@ -178,7 +178,7 @@ SOLUTION
 > ```
 
 ```ocamltop
-compress ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"];;
+compress ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e"];;
 ```
 
 #### 9. Pack consecutive duplicates of list elements into sublists. (*medium*)
@@ -197,7 +197,7 @@ SOLUTION
 > ```
 
 ```ocamltop
-pack ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"d";"e";"e";"e";"e"];;
+pack ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "d"; "e"; "e"; "e"; "e"];;
 ```
 
 
@@ -212,9 +212,9 @@ SOLUTION
 > let encode list =
 >   let rec aux count acc = function
 >     | [] -> [] (* Can only be reached if original list is empty *)
->     | [x] -> (count+1, x) :: acc
+>     | [x] -> (count + 1, x) :: acc
 >     | a :: (b :: _ as t) -> if a = b then aux (count + 1) acc t
->                             else aux 0 ((count+1,a) :: acc) t in
+>                             else aux 0 ((count + 1, a) :: acc) t in
 >   List.rev (aux 0 [] list);;
 > ```
 > An alternative solution, which is shorter but requires more memory, is to use
@@ -228,7 +228,7 @@ SOLUTION
 Here is an example:
 
 ```ocamltop
-encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"];;
+encode ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e"];;
 ```
 
 #### 11. Modified run-length encoding. (*easy*)
@@ -255,7 +255,7 @@ SOLUTION
 >     else Many (cnt, elem) in
 >   let rec aux count acc = function
 >     | [] -> []
->     | [x] -> (create_tuple (count+1) x) :: acc
+>     | [x] -> (create_tuple (count + 1) x) :: acc
 >     | hd :: (snd :: _ as tl) ->
 >         if hd = snd then aux (count + 1) acc tl
 >         else aux 0 ((create_tuple (count + 1) hd) :: acc) tl in
@@ -263,7 +263,7 @@ SOLUTION
 > ```
 
 ```ocamltop
-encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"];;
+encode ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e"];;
 ```
 
 #### 12. Decode a run-length encoded list. (*medium*)
@@ -276,16 +276,18 @@ SOLUTION
 > ```ocamltop
 > let decode list =
 >   let rec many acc n x =
->     if n = 0 then acc else many (x :: acc) (n-1) x in
+>     if n = 0 then acc else many (x :: acc) (n - 1) x
+>   in
 >   let rec aux acc = function
 >     | [] -> acc
 >     | One x :: t -> aux (x :: acc) t
->     | Many (n,x) :: t -> aux (many acc n x) t  in
->   aux [] (List.rev list);;
+>     | Many (n, x) :: t -> aux (many acc n x) t
+>   in
+>     aux [] (List.rev list);;
 > ```
 
 ```ocamltop
- decode [Many (4,"a"); One "b"; Many (2,"c"); Many (2,"a"); One "d"; Many (4,"e")];;
+ decode [Many (4, "a"); One "b"; Many (2, "c"); Many (2, "a"); One "d"; Many (4, "e")];;
 ```
 
 #### 13. Run-length encoding of a list (direct solution). (*medium*)
@@ -304,8 +306,9 @@ SOLUTION
 >     | [] -> [] (* Can only be reached if original list is empty *)
 >     | [x] -> rle count x :: acc
 >     | a :: (b :: _ as t) -> if a = b then aux (count + 1) acc t
->                             else aux 0 (rle count a :: acc) t  in
->   List.rev (aux 0 [] list);;
+>                             else aux 0 (rle count a :: acc) t
+>   in
+>     List.rev (aux 0 [] list);;
 > ```
 
 ```ocamltop
@@ -325,7 +328,7 @@ SOLUTION
 > it becomes so?
 
 ```ocamltop
-duplicate ["a";"b";"c";"c";"d"];;
+duplicate ["a"; "b"; "c"; "c"; "d"];;
 ```
 
 
@@ -339,7 +342,7 @@ SOLUTION
 >     if n = 0 then acc else prepend (n-1) (x :: acc) x in
 >   let rec aux acc = function
 >     | [] -> acc
->     | h :: t -> aux (prepend n acc h) t  in
+>     | h :: t -> aux (prepend n acc h) t in
 >   (* This could also be written as:
 >      List.fold_left (prepend n) [] (List.rev list) *)
 >   aux [] (List.rev list);;
@@ -348,7 +351,7 @@ SOLUTION
 > [tail recursive](http://en.wikipedia.org/wiki/Tail_call).
 
 ```ocamltop
-replicate ["a";"b";"c"] 3;;
+replicate ["a"; "b"; "c"] 3;;
 ```
 
 #### 16. Drop every N'th element from a list. (*medium*)
@@ -359,12 +362,12 @@ SOLUTION
 > let drop list n =
 >   let rec aux i = function
 >     | [] -> []
->     | h :: t -> if i = n then aux 1 t else h :: aux (i+1) t  in
+>     | h :: t -> if i = n then aux 1 t else h :: aux (i + 1) t  in
 >   aux 1 list;;
 > ```
 
 ```ocamltop
-drop ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 3;;
+drop ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j"] 3;;
 ```
 
 #### 17. Split a list into two parts; the length of the first part is given. (*easy*)
@@ -379,13 +382,14 @@ SOLUTION
 >   let rec aux i acc = function
 >     | [] -> List.rev acc, []
 >     | h :: t as l -> if i = 0 then List.rev acc, l
->                      else aux (i-1) (h :: acc) t  in
->   aux n [] list
+>                      else aux (i - 1) (h :: acc) t 
+>   in
+>     aux n [] list
 > ```
 
 ```ocamltop
-split ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 3;;
-split ["a";"b";"c";"d"] 5;;
+split ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j"] 3;;
+split ["a"; "b"; "c"; "d"] 5;;
 ```
 
 
@@ -402,11 +406,11 @@ SOLUTION
 > let slice list i k =
 >   let rec take n = function
 >     | [] -> []
->     | h :: t -> if n = 0 then [] else h :: take (n-1) t
+>     | h :: t -> if n = 0 then [] else h :: take (n - 1) t
 >   in
 >   let rec drop n = function
 >     | [] -> []
->     | h :: t as l -> if n = 0 then l else drop (n-1) t
+>     | h :: t as l -> if n = 0 then l else drop (n - 1) t
 >   in
 >   take (k - i + 1) (drop i list);;
 > ```
@@ -421,7 +425,7 @@ SOLUTION
 > let rec fold_until f acc n = function
 >   | [] -> (acc, [])
 >   | h :: t as l -> if n = 0 then (acc, l)
->                    else fold_until f (f acc h) (n-1) t
+>                    else fold_until f (f acc h) (n - 1) t
 >
 > let slice list i k =
 >   let _, list = fold_until (fun _ _ -> []) [] i list in
@@ -430,7 +434,7 @@ SOLUTION
 > ```
 
 ```ocamltop
-slice ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"] 2 6;;
+slice ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j"] 2 6;;
 ```
 
 
@@ -443,12 +447,12 @@ SOLUTION
 >   let rec aux i acc = function
 >     | [] -> List.rev acc, []
 >     | h :: t as l -> if i = 0 then List.rev acc, l
->                      else aux (i-1) (h :: acc) t  in
+>                      else aux (i - 1) (h :: acc) t  in
 >   aux n [] list
 > 
 > let rotate list n =
 >   let len = List.length list in
->   (* Compute a rotation value between 0 and len-1 *)
+>   (* Compute a rotation value between 0 and len - 1 *)
 >   let n = if len = 0 then 0 else (n mod len + len) mod len in
 >   if n = 0 then list
 >   else let a, b = split list n in b @ a;;
@@ -469,11 +473,11 @@ SOLUTION
 > ```ocamltop
 > let rec remove_at n = function
 >   | [] -> []
->   | h :: t -> if n = 0 then t else h :: remove_at (n-1) t;;
+>   | h :: t -> if n = 0 then t else h :: remove_at (n - 1) t;;
 > ```
 
 ```ocamltop
-remove_at 1 ["a";"b";"c";"d"];;
+remove_at 1 ["a"; "b"; "c"; "d"];;
 ```
 
 
@@ -488,13 +492,13 @@ SOLUTION
 > ```ocamltop
 > let rec insert_at x n = function
 >   | [] -> [x]
->   | h :: t as l -> if n = 0 then x :: l else h :: insert_at x (n-1) t;;
+>   | h :: t as l -> if n = 0 then x :: l else h :: insert_at x (n - 1) t;;
 > ```
 
 ```ocamltop
-insert_at "alfa" 1 ["a";"b";"c";"d"];;
-insert_at "alfa" 3 ["a";"b";"c";"d"];;
-insert_at "alfa" 4 ["a";"b";"c";"d"];;
+insert_at "alfa" 1 ["a"; "b"; "c"; "d"];;
+insert_at "alfa" 3 ["a"; "b"; "c"; "d"];;
+insert_at "alfa" 4 ["a"; "b"; "c"; "d"];;
 ```
 
 
@@ -508,8 +512,9 @@ SOLUTION
 > ```ocamltop
 > let range a b =
 >   let rec aux a b =
->     if a > b then [] else a :: aux (a+1) b  in
->   if a > b then List.rev (aux b a) else aux a b;;
+>     if a > b then [] else a :: aux (a + 1) b
+>   in
+>     if a > b then List.rev (aux b a) else aux a b;;
 > ```
 >
 > A tail recursive implementation:
@@ -518,9 +523,10 @@ SOLUTION
 > let range a b =
 >   let rec aux acc high low =
 >     if high >= low then
->       aux (high::acc) (high - 1) low
+>       aux (high :: acc) (high - 1) low
 >     else acc
->   in if a < b then aux [] b a else List.rev (aux [] a b)
+>   in
+>     if a < b then aux [] b a else List.rev (aux [] a b)
 > ```
 
 ```ocamltop
@@ -541,7 +547,7 @@ SOLUTION
 > let rand_select list n =
 >   let rec extract acc n = function
 >     | [] -> raise Not_found
->     | h :: t -> if n = 0 then (h, acc @ t) else extract (h::acc) (n-1) t
+>     | h :: t -> if n = 0 then (h, acc @ t) else extract (h :: acc) (n - 1) t
 >   in
 >   let extract_rand list len =
 >     extract [] (Random.int len) list
@@ -549,14 +555,14 @@ SOLUTION
 >   let rec aux n acc list len =
 >     if n = 0 then acc else
 >       let picked, rest = extract_rand list len in
->       aux (n-1) (picked :: acc) rest (len-1)
+>       aux (n - 1) (picked :: acc) rest (len - 1)
 >   in
 >   let len = List.length list in
->   aux (min n len) [] list len;;
+>     aux (min n len) [] list len;;
 > ```
 
 ```ocamltop
-rand_select ["a";"b";"c";"d";"e";"f";"g";"h"] 3;;
+rand_select ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"] 3;;
 ```
 
 
@@ -584,7 +590,7 @@ SOLUTION
 > let rec permutation list =
 >   let rec extract acc n = function
 >     | [] -> raise Not_found
->     | h :: t -> if n = 0 then (h, acc @ t) else extract (h::acc) (n-1) t
+>     | h :: t -> if n = 0 then (h, acc @ t) else extract (h :: acc) (n - 1) t
 >   in
 >   let extract_rand list len =
 >     extract [] (Random.int len) list
@@ -592,7 +598,7 @@ SOLUTION
 >   let rec aux acc list len =
 >     if len = 0 then acc else
 >       let picked, rest = extract_rand list len in
->       aux (picked :: acc) rest (len-1)
+>       aux (picked :: acc) rest (len - 1)
 >   in
 >   aux [] list (List.length list);;
 > ```
@@ -614,17 +620,17 @@ SOLUTION
 
 > ```ocamltop
 > let rec extract k list =
->   if k <= 0 then [ [] ]
+>   if k <= 0 then [[]]
 >   else match list with
 >        | [] -> []
 >        | h :: tl ->
->           let with_h = List.map (fun l -> h :: l) (extract (k-1) tl) in
+>           let with_h = List.map (fun l -> h :: l) (extract (k - 1) tl) in
 >           let without_h = extract k tl in
 >           with_h @ without_h
 > ```
 
 ```ocamltop
-extract 2 ["a";"b";"c";"d"];;
+extract 2 ["a"; "b"; "c"; "d"];;
 ```
 
 #### 27. Group the elements of a set into disjoint subsets. (*medium*)
@@ -658,26 +664,26 @@ SOLUTION
 >     let emit l acc = l :: acc in
 >     let rec aux emit acc = function
 >       | [] -> emit [] acc
->       | (n,l) as h :: t ->
->          let acc = if n > 0 then emit ((n-1, p::l) :: t) acc
+>       | (n, l) as h :: t ->
+>          let acc = if n > 0 then emit ((n - 1, p :: l) :: t) acc
 >                    else acc in
 >          aux (fun l acc -> emit (h :: l) acc) acc t
 >     in
 >     aux emit [] list
 >   in
 >   let rec aux = function
->     | [] -> [ initial ]
+>     | [] -> [initial]
 >     | h :: t -> List.concat (List.map (prepend h) (aux t))
 >   in
 >   let all = aux list in
 >   (* Don't forget to eliminate all group sets that have non-full
 >      groups *)
->   let complete = List.filter (List.for_all (fun (x,_) -> x = 0)) all in
->   List.map (List.map snd) complete
+>   let complete = List.filter (List.for_all (fun (x, _) -> x = 0)) all in
+>     List.map (List.map snd) complete
 > ```
 
 ```ocamltop
-group ["a";"b";"c";"d"] [2;1]
+group ["a"; "b"; "c"; "d"] [2; 1]
 ```
 
 #### 28. Sorting a list of lists according to length of sublists. (*medium*)
@@ -736,10 +742,10 @@ SOLUTION
 > ```
 
 ```ocamltop
-length_sort [ ["a";"b";"c"]; ["d";"e"]; ["f";"g";"h"]; ["d";"e"];
-              ["i";"j";"k";"l"]; ["m";"n"]; ["o"] ];;
-frequency_sort [ ["a";"b";"c"]; ["d";"e"]; ["f";"g";"h"]; ["d";"e"];
-                 ["i";"j";"k";"l"]; ["m";"n"]; ["o"] ];;
+length_sort [["a"; "b"; "c"]; ["d"; "e"]; ["f"; "g"; "h"]; ["d"; "e"];
+             ["i"; "j"; "k"; "l"]; ["m"; "n"]; ["o"]];;
+frequency_sort [["a"; "b"; "c"]; ["d"; "e"]; ["f"; "g"; "h"]; ["d"; "e"];
+                ["i"; "j"; "k"; "l"]; ["m"; "n"]; ["o"]];;
 ```
 
 
@@ -760,14 +766,14 @@ SOLUTION
 > let is_prime n =
 >   let n = abs n in
 >   let rec is_not_divisor d =
->     d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
+>     d * d > n || (n mod d <> 0 && is_not_divisor (d + 1)) in
 >   n <> 1 && is_not_divisor 2
 > ```
 
 ```ocamltop
-not(is_prime 1);;
+not (is_prime 1);;
 is_prime 7;;
-not (is_prime 12)
+not (is_prime 12);;
 ```
 
 #### 32. Determine the greatest common divisor of two positive integer numbers. (*medium*)
@@ -824,7 +830,7 @@ SOLUTION
 >       count_coprime (if coprime n d then acc + 1 else acc) (d + 1)
 >     else acc
 >   in
->   if n = 1 then 1 else count_coprime 0 1
+>     if n = 1 then 1 else count_coprime 0 1
 > ```
 
 ```ocamltop
@@ -844,9 +850,9 @@ SOLUTION
 > let factors n =
 >   let rec aux d n =
 >     if n = 1 then [] else
->       if n mod d = 0 then d :: aux d (n / d) else aux (d+1) n
+>       if n mod d = 0 then d :: aux d (n / d) else aux (d + 1) n
 >   in
->   aux 2 n
+>     aux 2 n
 > ```
 
 ```ocamltop
@@ -868,11 +874,11 @@ SOLUTION
 >     if n = 1 then [] else
 >       if n mod d = 0 then
 >         match aux d (n / d) with
->         | (h,n) :: t when h = d -> (h,n+1) :: t
->         | l -> (d,1) :: l
->       else aux (d+1) n
+>         | (h, n) :: t when h = d -> (h, n + 1) :: t
+>         | l -> (d, 1) :: l
+>       else aux (d + 1) n
 >   in
->   aux 2 n
+>     aux 2 n
 > ```
 
 ```ocamltop
@@ -899,13 +905,14 @@ SOLUTION
 
 > ```ocamltop
 > (* Naive power function. *)
-> let rec pow n p = if p < 1 then 1 else n * pow n (p-1) ;;
+> let rec pow n p = if p < 1 then 1 else n * pow n (p - 1);;
 > (* [factors] is defined in the previous question. *)
 > let phi_improved n =
 >   let rec aux acc = function
 >     | [] -> acc
->     | (p,m) :: t -> aux ((p - 1) * pow p (m - 1) * acc) t in
->   aux 1 (factors n)
+>     | (p, m) :: t -> aux ((p - 1) * pow p (m - 1) * acc) t
+>   in
+>     aux 1 (factors n)
 > ```
 
 ```ocamltop
@@ -929,9 +936,9 @@ SOLUTION
 > (* Naive [timeit] function.  It requires the [Unix] module to be loaded. *)
 > let timeit f a =
 >   let t0 = Unix.gettimeofday() in
->   ignore(f a);
+>     ignore (f a);
 >   let t1 = Unix.gettimeofday() in
->   t1 -. t0
+>     t1 -. t0
 > ```
 
 ```ocamltop
@@ -951,8 +958,9 @@ SOLUTION
 > let is_prime n =
 >   let n = max n (-n) in
 >   let rec is_not_divisor d =
->     d * d > n || (n mod d <> 0 && is_not_divisor (d+1)) in
->   is_not_divisor 2
+>     d * d > n || (n mod d <> 0 && is_not_divisor (d + 1))
+>   in
+>     is_not_divisor 2
 > 
 > let rec all_primes a b =
 >   if a > b then [] else
@@ -980,9 +988,10 @@ SOLUTION
 > (* [is_prime] is defined in the previous solution *)
 > let goldbach n =
 >   let rec aux d =
->     if is_prime d && is_prime (n - d) then (d, n-d)
->     else aux (d+1) in
->   aux 2
+>     if is_prime d && is_prime (n - d) then (d, n - d)
+>     else aux (d + 1)
+>   in
+>     aux 2
 > ```
 
 ```ocamltop
@@ -1006,11 +1015,11 @@ SOLUTION
 > (* [goldbach] is defined in the previous question. *)
 > let rec goldbach_list a b =
 >   if a > b then [] else
->     if a mod 2 = 1 then goldbach_list (a+1) b
->     else (a, goldbach a) :: goldbach_list (a+2) b
+>     if a mod 2 = 1 then goldbach_list (a + 1) b
+>     else (a, goldbach a) :: goldbach_list (a + 2) b
 > 
 > let goldbach_limit a b lim =
->   List.filter (fun (_,(a,b)) -> a > lim && b > lim) (goldbach_list a b)
+>   List.filter (fun (_, (a, b)) -> a > lim && b > lim) (goldbach_list a b)
 > ```
 
 ```ocamltop
@@ -1037,7 +1046,7 @@ A logical expression in two variables can then be written in prefix
 notation.  For example, `(a ∨ b) ∧ (a ∧ b)` is written:
 
 ```ocamltop
-And(Or(Var "a", Var "b"), And(Var "a", Var "b"))
+And (Or (Var "a", Var "b"), And (Var "a", Var "b"))
 ```
 
 #### 46 & 47. Truth tables for logical expressions (2 variables). (*medium*)
@@ -1045,7 +1054,7 @@ And(Or(Var "a", Var "b"), And(Var "a", Var "b"))
 Define a function, `table2` which returns the truth table of a given
 logical expression in two variables (specified as arguments). The return
 value must be a list of triples containing
-`(value_of_a, value_of_b,     value_of_expr)`.
+`(value_of_a, value_of_b, value_of_expr)`.
 
 SOLUTION
 
@@ -1054,18 +1063,18 @@ SOLUTION
 >   | Var x -> if x = a then val_a
 >              else if x = b then val_b
 >              else failwith "The expression contains an invalid variable"
->   | Not e -> not(eval2 a val_a b val_b e)
+>   | Not e -> not (eval2 a val_a b val_b e)
 >   | And(e1, e2) -> eval2 a val_a b val_b e1 && eval2 a val_a b val_b e2
 >   | Or(e1, e2) -> eval2 a val_a b val_b e1 || eval2 a val_a b val_b e2
 > let table2 a b expr =
 >   [(true,  true,  eval2 a true  b true  expr);
 >    (true,  false, eval2 a true  b false expr);
 >    (false, true,  eval2 a false b true  expr);
->    (false, false, eval2 a false b false expr) ]
+>    (false, false, eval2 a false b false expr)]
 > ```
 
 ```ocamltop
-table2 "a" "b" (And(Var "a", Or(Var "a", Var "b")));;
+table2 "a" "b" (And (Var "a", Or (Var "a", Var "b")));;
 ```
 
 
@@ -1086,7 +1095,7 @@ SOLUTION
 > 
 > let rec eval val_vars = function
 >   | Var x -> List.assoc x val_vars
->   | Not e -> not(eval val_vars e)
+>   | Not e -> not (eval val_vars e)
 >   | And(e1, e2) -> eval val_vars e1 && eval val_vars e2
 >   | Or(e1, e2) -> eval val_vars e1 || eval val_vars e2
 > 
@@ -1096,16 +1105,16 @@ SOLUTION
 >   match vars with
 >   | [] -> [(List.rev val_vars, eval val_vars expr)]
 >   | v :: tl ->
->      table_make ((v, true) :: val_vars) tl expr
+>        table_make ((v, true) :: val_vars) tl expr
 >      @ table_make ((v, false) :: val_vars) tl expr
 > 
 > let table vars expr = table_make [] vars expr
 > ```
 
 ```ocamltop
-table ["a"; "b"] (And(Var "a", Or(Var "a", Var "b")));;
+table ["a"; "b"] (And (Var "a", Or (Var "a", Var "b")));;
 let a = Var "a" and b = Var "b" and c = Var "c" in
-table ["a"; "b"; "c"] (Or(And(a, Or(b,c)), Or(And(a,b), And(a,c))));;
+table ["a"; "b"; "c"] (Or (And (a, Or (b,c)), Or (And (a,b), And (a,c))));;
 ```
 
 
@@ -1115,9 +1124,9 @@ An n-bit Gray code is a sequence of n-bit strings constructed according
 to certain rules. For example,
 
 ```text
-n = 1: C(1) = ['0','1'].
-n = 2: C(2) = ['00','01','11','10'].
-n = 3: C(3) = ['000','001','011','010',´110´,´111´,´101´,´100´].
+n = 1: C(1) = ['0', '1'].
+n = 2: C(2) = ['00', '01', '11', '10'].
+n = 3: C(3) = ['000', '001', '011', '010', ´110´, ´111´, ´101´, ´100´].
 ```
 Find out the construction rules and write a function with the following
 specification: `gray n` returns the `n`-bit Gray code.
@@ -1127,22 +1136,22 @@ SOLUTION
 > ```ocamltop
 >   let gray n =
 >     let rec gray_next_level k l =
->       if k<n then
+>       if k < n then
 >         (* This is the core part of the Gray code construction.
 >          * first_half is reversed and has a "0" attached to every element.
 >          * Second part is reversed (it must be reversed for correct gray code).
 >          * Every element has "1" attached to the front.*)
 >         let (first_half,second_half) =
 >           List.fold_left (fun (acc1,acc2) x ->
->               (("0"^x)::acc1, ("1"^x)::acc2 )) ([],[]) l
+>               (("0" ^ x) :: acc1, ("1" ^ x) :: acc2)) ([], []) l
 >         in
 >         (* List.rev_append turns first_half around and attaches it to second_half.
 >          * The result is the modified first_half in correct order attached to
 >          * the second_half modified in reversed order.*)
->         gray_next_level (k+1) (List.rev_append first_half second_half)
+>         gray_next_level (k + 1) (List.rev_append first_half second_half)
 >       else l
 >     in
->     gray_next_level 1 ["0"; "1"];;
+>       gray_next_level 1 ["0"; "1"];;
 > ```
 
 ```ocamltop
@@ -1164,8 +1173,8 @@ For example, if the alphabet is `"a"`,..., `"f"`
 respective frequencies are 45, 13, 12, 16, 9, 5:
 
 ```ocamltop
-let fs = [ ("a", 45); ("b", 13); ("c", 12); ("d", 16);
-           ("e", 9); ("f", 5) ]
+let fs = [("a", 45); ("b", 13); ("c", 12); ("d", 16);
+          ("e", 9); ("f", 5) ]
 ```
 
 Our objective is to construct the
@@ -1173,7 +1182,7 @@ Huffman code `c` word for all symbols `s`. In our example, the result could
 be
 `hs = [("a", "0"); ("b", "101"); ("c", "100"); ("d", "111");
 ("e", "1101"); ("f", "1100")]`
-(or `hs = [ ("a", "1");...]`). The task shall be performed by the function
+(or `hs = [("a", "1");...]`). The task shall be performed by the function
 `huffman` defined as follows: `huffman(fs)` returns the Huffman code
 table for the frequency table `fs`
 
@@ -1183,15 +1192,14 @@ SOLUTION
 > (* Simple priority queue where the priorities are integers 0..100.
 >    The node with the lowest probability comes first. *)
 > module Pq = struct
->   type 'a t = { data: 'a list array;  mutable first: int }
->   let make() = { data = Array.make 101 [];  first = 101 }
+>   type 'a t = {data: 'a list array; mutable first: int}
+>   let make() = {data = Array.make 101 []; first = 101}
 >
 >   let add q p x =
 >     q.data.(p) <- x :: q.data.(p);  q.first <- min p q.first
 >
 >   let get_min q =
->     if q.first = 101 then None
->     else
+>     if q.first = 101 then None else
 >       match q.data.(q.first) with
 >       | [] -> assert false
 >       | x :: tl ->
@@ -1210,27 +1218,27 @@ SOLUTION
 > let rec huffman_tree q =
 >   match Pq.get_min q, Pq.get_min q with
 >   | Some(p1, t1), Some(p2, t2) -> Pq.add q (p1 + p2) (Node(t1, t2));
->                                  huffman_tree q
+>                                   huffman_tree q
 >   | Some(_, t), None | None, Some(_, t) -> t
 >   | None, None -> assert false
 >
 > (* Build the prefix-free binary code from the tree *)
 > let rec prefixes_of_tree prefix = function
 >   | Leaf s -> [(s, prefix)]
->   | Node(t0, t1) -> prefixes_of_tree (prefix ^ "0") t0
+>   | Node(t0, t1) ->  prefixes_of_tree (prefix ^ "0") t0
 >                    @ prefixes_of_tree (prefix ^ "1") t1
 >
 > let huffman fs =
->   if List.fold_left (fun s (_,p) -> s + p) 0 fs <> 100 then
+>   if List.fold_left (fun s (_, p) -> s + p) 0 fs <> 100 then
 >     failwith "huffman: sum of weights must be 100";
->   let q = Pq.make() in
->   List.iter (fun (s,f) -> Pq.add q f (Leaf s)) fs;
+>   let q = Pq.make () in
+>   List.iter (fun (s, f) -> Pq.add q f (Leaf s)) fs;
 >   prefixes_of_tree "" (huffman_tree q)
 > ```
 
 ```ocamltop
 huffman fs;;
-huffman ["a", 10;  "b", 15;  "c", 30;  "d", 16;  "e", 29];;
+huffman [("a", 10); ("b", 15); ("c", 30); ("d", 16); ("e", 29)];;
 ```
 
 <img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/binary-tree.gif" title="Binary Tree"></img>
@@ -1255,11 +1263,11 @@ An example of tree carrying `char` data is:
 
 ```ocamltop
 let example_tree =
-  Node('a', Node('b', Node('d', Empty, Empty), Node('e', Empty, Empty)),
-       Node('c', Empty, Node('f', Node('g', Empty, Empty), Empty)));;
+  Node ('a', Node ('b', Node ('d', Empty, Empty), Node ('e', Empty, Empty)),
+       Node ('c', Empty, Node ('f', Node ('g', Empty, Empty), Empty)));;
 let example_int_tree =
-  Node(1, Node(2, Node(4, Empty, Empty), Node(5, Empty, Empty)),
-       Node(3, Empty, Node(6, Node(7, Empty, Empty), Empty)))
+  Node (1, Node (2, Node (4, Empty, Empty), Node (5, Empty, Empty)),
+       Node (3, Empty, Node (6, Node (7, Empty, Empty), Empty)))
 ```
 
 In OCaml, the strict type discipline *guarantees* that, if you get a
@@ -1284,7 +1292,7 @@ SOLUTION
 > (* Build all trees with given [left] and [right] subtrees. *)
 > let add_trees_with left right all =
 >   let add_right_tree all l =
->     List.fold_left (fun a r -> Node('x', l, r) :: a) all right in
+>     List.fold_left (fun a r -> Node ('x', l, r) :: a) all right in
 >   List.fold_left add_right_tree all left
 > 
 > let rec cbal_tree n =
@@ -1300,7 +1308,7 @@ SOLUTION
 
 ```ocamltop
 cbal_tree 4;;
-List.length(cbal_tree 40)
+List.length (cbal_tree 40)
 ```
 
 
@@ -1341,23 +1349,23 @@ SOLUTION
 
 > ```ocamltop
 > let rec insert tree x = match tree with
->   | Empty -> Node(x, Empty, Empty)
->   | Node(y, l, r) ->
+>   | Empty -> Node (x, Empty, Empty)
+>   | Node (y, l, r) ->
 >      if x = y then tree
->      else if x < y then Node(y, insert l x, r)
->      else Node(y, l, insert r x)
+>      else if x < y then Node (y, insert l x, r)
+>      else Node (y, l, insert r x)
 > let construct l = List.fold_left insert Empty l;;
 > ```
 
 ```ocamltop
-construct [3;2;5;7;1];;
+construct [3; 2; 5; 7; 1];;
 ```
 
 Then use this function to test the solution of the previous problem.
 
 ```ocamltop
-is_symmetric(construct [5;3;18;1;4;12;21]);;
-not(is_symmetric(construct [3;2;5;7;4]))
+is_symmetric (construct [5; 3; 18; 1; 4; 12; 21]);;
+not (is_symmetric (construct [3; 2; 5; 7; 4]))
 ```
 
 
@@ -1406,7 +1414,7 @@ SOLUTION
 > ```ocamltop
 > let rec hbal_tree n =
 >   if n = 0 then [Empty]
->   else if n = 1 then [Node('x', Empty, Empty)]
+>   else if n = 1 then [Node ('x', Empty, Empty)]
 >   else
 >   (* [add_trees_with left right trees] is defined in a question above. *)
 >     let t1 = hbal_tree (n - 1)
@@ -1418,10 +1426,10 @@ SOLUTION
 ```ocamltop
 let t = hbal_tree 3;;
 let x = 'x';;
-List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
-               Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)))) t;;
-List.mem (Node(x, Node(x, Node(x, Empty, Empty), Node(x, Empty, Empty)),
-               Node(x, Node(x, Empty, Empty), Empty))) t;;
+List.mem (Node (x, Node (x, Node (x, Empty, Empty), Node (x, Empty, Empty)),
+               Node (x, Node (x, Empty, Empty), Node (x, Empty, Empty)))) t;;
+List.mem (Node (x, Node (x, Node (x, Empty, Empty), Node (x, Empty, Empty)),
+               Node (x, Node (x, Empty, Empty), Empty))) t;;
 List.length t;;
 ```
 
@@ -1479,7 +1487,7 @@ SOLUTION
 > implemented:
 >
 > ```ocamltop
-> let min_height n = int_of_float(ceil(log(float(n + 1)) /. log 2.))
+> let min_height n = int_of_float (ceil (log (float(n + 1)) /. log 2.))
 > ```
 >
 > Let us give a proof that the formula for Hₘᵢₙ is valid.  First, if h
@@ -1520,7 +1528,7 @@ SOLUTION
 >
 > ```ocamltop
 > let rec max_height_search h n =
->  if min_nodes h <= n then max_height_search (h+1) n else h-1
+>   if min_nodes h <= n then max_height_search (h + 1) n else h - 1
 > let max_height n = max_height_search 0 n
 > ```
 >
@@ -1530,7 +1538,7 @@ SOLUTION
 >
 > ```ocamltop
 > let rec max_height_search h m_h m_h1 n =
->   if m_h <= n then max_height_search (h+1) m_h1 (m_h1 + m_h + 1) n else h-1
+>   if m_h <= n then max_height_search (h + 1) m_h1 (m_h1 + m_h + 1) n else h - 1
 >
 > let max_height n = max_height_search 0 0 1 n
 > ```
@@ -1560,7 +1568,7 @@ SOLUTION
 > ```ocamltop
 > let rec add_swap_left_right trees =
 >   List.fold_left (fun a n -> match n with
->                              | Node(v, t1, t2) -> Node(v, t2, t1) :: a
+>                              | Node (v, t1, t2) -> Node (v, t2, t1) :: a
 >                              | Empty -> a) trees trees
 > ```
 >
@@ -1573,9 +1581,9 @@ SOLUTION
 >   assert(min_nodes h <= n && n <= max_nodes h);
 >   if h = 0 then [Empty]
 >   else
->     let acc = add_hbal_tree_node [] (h-1) (h-2) n in
+>     let acc = add_hbal_tree_node [] (h - 1) (h - 2) n in
 >     let acc = add_swap_left_right acc in
->     add_hbal_tree_node acc (h-1) (h-1) n
+>     add_hbal_tree_node acc (h - 1) (h - 1) n
 > and add_hbal_tree_node l h1 h2 n =
 >   let min_n1 = max (min_nodes h1) (n - 1 - max_nodes h2) in
 >   let max_n1 = min (max_nodes h1) (n - 1 - min_nodes h2) in
@@ -1583,7 +1591,7 @@ SOLUTION
 >       let t1 = hbal_tree_nodes_height h1 n1 in
 >       let t2 = hbal_tree_nodes_height h2 (n - 1 - n1) in
 >       List.fold_left (fun l t1 ->
->           List.fold_left (fun l t2 -> Node('x', t1, t2) :: l) l t2) l t1
+>           List.fold_left (fun l t2 -> Node ('x', t1, t2) :: l) l t2) l t1
 >     )
 >
 > let hbal_tree_nodes n =
@@ -1609,8 +1617,8 @@ SOLUTION
 > ```ocamltop
 > let rec count_leaves = function
 >   | Empty -> 0
->   | Node(_, Empty, Empty) -> 1
->   | Node(_, l, r) -> count_leaves l + count_leaves r
+>   | Node (_, Empty, Empty) -> 1
+>   | Node (_, l, r) -> count_leaves l + count_leaves r
 > ```
 
 ```ocamltop
@@ -1634,8 +1642,8 @@ SOLUTION
 > let leaves t = 
 >   let rec leaves_aux t acc = match t with
 >     | Empty -> acc
->     | Node(x, Empty, Empty) -> x::acc
->     | Node(x, l, r) -> leaves_aux l (leaves_aux r acc)
+>     | Node (x, Empty, Empty) -> x::acc
+>     | Node (x, l, r) -> leaves_aux l (leaves_aux r acc)
 >   in
 >   leaves_aux t [];;
 > ```
@@ -1661,14 +1669,14 @@ SOLUTION
 > let internals t = 
 >   let rec internals_aux t acc = match t with
 >     | Empty -> acc
->     | Node(x, Empty, Empty ) -> acc
->     | Node(x, l, r) -> internals_aux l (x::(internals_aux r acc))
+>     | Node (x, Empty, Empty) -> acc
+>     | Node (x, l, r) -> internals_aux l (x :: internals_aux r acc)
 >   in
 >   internals_aux t [];;
 > ```
 
 ```ocamltop
-internals (Node('a', Empty, Empty));;
+internals (Node ('a', Empty, Empty));;
 internals example_tree;;
 ```
 
@@ -1690,13 +1698,13 @@ SOLUTION
 > let at_level t level =
 >   let rec at_level_aux t acc counter = match t with
 >     | Empty -> acc
->     | Node(x, l, r) ->
+>     | Node (x, l, r) ->
 >       if counter=level then
->         x::acc
+>         x :: acc
 >       else
->         at_level_aux l (at_level_aux r acc (counter+1)) (counter+1)
+>         at_level_aux l (at_level_aux r acc (counter + 1)) (counter + 1)
 >   in
->   at_level_aux t [] 1;;
+>     at_level_aux t [] 1;;
 > ```
 
 ```ocamltop
@@ -1738,13 +1746,13 @@ SOLUTION
 > let rec split_n lst acc n = match (n, lst) with
 >   | (0, _) -> (List.rev acc, lst)
 >   | (_, []) -> (List.rev acc, [])
->   | (_, h::t) -> split_n t (h::acc) (n-1)
+>   | (_, h :: t) -> split_n t (h :: acc) (n-1)
 > 
 > let rec myflatten p c = 
 >   match (p, c) with
 >   | (p, []) -> List.map (fun x -> Node (x, Empty, Empty)) p
->   | (x::t, [y]) -> Node (x, y, Empty)::myflatten t []
->   | (ph::pt, x::y::t) -> (Node (ph, x, y))::(myflatten pt t)
+>   | (x :: t, [y]) -> Node (x, y, Empty) :: myflatten t []
+>   | (ph :: pt, x :: y :: t) -> (Node (ph, x, y)) :: myflatten pt t
 >   | _ -> invalid_arg "myflatten"
 > 
 > let complete_binary_tree = function
@@ -1753,12 +1761,13 @@ SOLUTION
 >      let rec aux l = function
 >        | [] -> []
 >        | lst -> let p, c = split_n lst [] (1 lsl l) in
->                 myflatten p (aux (l+1) c) in
->      List.hd (aux 0 lst)
+>                 myflatten p (aux (l + 1) c)
+>      in
+>        List.hd (aux 0 lst)
 > ```
 
 ```ocamltop
-complete_binary_tree [1;2;3;4;5;6];;
+complete_binary_tree [1; 2; 3; 4; 5; 6];;
 ```
 
 
@@ -1784,10 +1793,10 @@ The tree pictured above is
 ```ocamltop
 let example_layout_tree =
   let leaf x = Node (x, Empty, Empty) in
-  Node('n', Node('k', Node('c', leaf 'a',
-                           Node('h', Node('g', leaf 'e',Empty), Empty)),
+  Node ('n', Node ('k', Node ('c', leaf 'a',
+                           Node ('h', Node ('g', leaf 'e', Empty), Empty)),
                  leaf 'm'),
-       Node('u', Node('p', Empty, Node('s', leaf 'q', Empty)), Empty))
+       Node ('u', Node ('p', Empty, Node ('s', leaf 'q', Empty)), Empty))
 ```
 SOLUTION
 
@@ -1798,14 +1807,15 @@ SOLUTION
 >      * free x location *)
 >     | Empty -> (Empty, x_left)
 >     | Node (v,l,r) ->
->        let (l',l_x_max) = layout (depth + 1) x_left l in
->        let (r',r_x_max) = layout (depth + 1) (l_x_max + 1) r in
->        (Node ((v, l_x_max, depth), l',r'), r_x_max)
->   in fst (layout 1 1 t)
+>        let (l', l_x_max) = layout (depth + 1) x_left l in
+>        let (r', r_x_max) = layout (depth + 1) (l_x_max + 1) r in
+>          (Node ((v, l_x_max, depth), l', r'), r_x_max)
+>   in
+>     fst (layout 1 1 t)
 > ```
 
 ```ocamltop
-layout_binary_tree_1 example_layout_tree ;;
+layout_binary_tree_1 example_layout_tree;;
 ```
 
 #### 65. Layout a binary tree (2). (*medium*)
@@ -1821,11 +1831,11 @@ nodes is constant.
 The tree shown is 
 ```ocamltop
 let example_layout_tree =
-  let leaf x = Node (x,Empty,Empty) in
-  Node('n', Node('k', Node('c', leaf 'a',
-                           Node('e', leaf 'd', leaf 'g')),
+  let leaf x = Node (x, Empty, Empty) in
+  Node ('n', Node ('k', Node ('c', leaf 'a',
+                           Node ('e', leaf 'd', leaf 'g')),
                  leaf 'm'),
-       Node('u', Node('p', Empty, leaf 'q'), Empty))
+       Node ('u', Node ('p', Empty, leaf 'q'), Empty))
 ```
 
 SOLUTION
@@ -1834,29 +1844,29 @@ SOLUTION
 > let layout_binary_tree_2 t =
 >   let rec height = function
 >     | Empty -> 0
->     | Node (_,l,r) -> 1 + max (height l) (height r) in
+>     | Node (_, l, r) -> 1 + max (height l) (height r) in
 >   let tree_height = height t in
 >   let rec find_missing_left depth = function
 >     | Empty -> tree_height - depth
->     | Node (_,l,_) -> find_missing_left (depth + 1) l in
+>     | Node (_, l, _) -> find_missing_left (depth + 1) l in
 >   let translate_dst = 1 lsl (find_missing_left 0 t) - 1 in
 >                       (* remember than 1 lsl a = 2ᵃ *)
 >   let rec layout depth x_root = function
 >     | Empty -> Empty
->     | Node (x,l,r) ->
+>     | Node (x, l, r) ->
 >        let spacing = 1 lsl (tree_height - depth - 1) in
 >        let l' = layout (depth + 1) (x_root - spacing) l
 >        and r' = layout (depth + 1) (x_root + spacing) r in
->        Node((x, x_root, depth), l',r') in
+>          Node((x, x_root, depth), l',r') in
 >   layout 1 ((1 lsl (tree_height - 1)) - translate_dst) t
 > ```
 
 ```ocamltop
 layout_binary_tree_2 example_layout_tree ;;
 let example2_layout_tree =
-  let leaf x = Node (x,Empty,Empty) in
-  Node('n', Empty,
-       Node('u', Node('p', Empty, leaf 'q'), Empty));;
+  let leaf x = Node (x, Empty, Empty) in
+  Node ('n', Empty,
+       Node ('u', Node ('p', Empty, leaf 'q'), Empty));;
 layout_binary_tree_2 example2_layout_tree ;;
 ```
 
@@ -1886,8 +1896,8 @@ SOLUTION
 > let layout_binary_tree_3 =
 >   let rec translate_x d = function
 >     | Empty -> Empty
->     | Node((v, x, y), l, r) ->
->        Node((v, x + d, y), translate_x d l, translate_x d r) in
+>     | Node ((v, x, y), l, r) ->
+>        Node ((v, x + d, y), translate_x d l, translate_x d r) in
 >   (* Distance between a left subtree given by its right profile [lr]
 >      and a right subtree given by its left profile [rl]. *)
 >   let rec dist lr rl = match lr, rl with
@@ -1899,7 +1909,7 @@ SOLUTION
 >     | _, [] -> p1 in
 >   let rec layout depth = function
 >     | Empty -> ([], Empty, [])
->     | Node(v, l, r) ->
+>     | Node (v, l, r) ->
 >        let (ll, l', lr) = layout (depth + 1) l in
 >        let (rl, r', rr) = layout (depth + 1) r in
 >        let d = 1 + dist lr rl / 2 in
@@ -1918,8 +1928,8 @@ SOLUTION
 ```ocamltop
 layout_binary_tree_3 example_layout_tree ;;
 let example3_layout_tree =
-  Node('a', Node('b', Empty, Node('e', Empty, Node('f', Empty, Empty))),
-       Node('c', Empty, Node('d', Node('g', Empty, Empty), Empty)));;
+  Node ('a', Node ('b', Empty, Node ('e', Empty, Node ('f', Empty, Empty))),
+       Node ('c', Empty, Node ('d', Node ('g', Empty, Empty), Empty)));;
 layout_binary_tree_3 example3_layout_tree;;
 ```
 
@@ -1967,7 +1977,7 @@ SOLUTION
 > ```ocamltop
 > let rec buffer_add_tree buf = function
 >   | Empty -> ()
->   | Node(data, l, r) ->
+>   | Node (data, l, r) ->
 >      Buffer.add_char buf data;
 >      match l, r with
 >      | Empty, Empty -> ()
@@ -1979,8 +1989,8 @@ SOLUTION
 >
 > let string_of_tree t =
 >   let buf = Buffer.create 128 in
->   buffer_add_tree buf t;
->   Buffer.contents buf
+>     buffer_add_tree buf t;
+>     Buffer.contents buf
 > ```
 >
 > For the reverse conversion, we assume that the string is well formed
@@ -1990,23 +2000,24 @@ SOLUTION
 > let tree_of_string =
 >   let rec make ofs s =
 >     if ofs >= String.length s || s.[ofs] = ',' || s.[ofs] = ')' then
->       Empty, ofs
+>       (Empty, ofs)
 >     else
 >       let v = s.[ofs] in
 >       if ofs + 1 < String.length s && s.[ofs + 1] = '(' then
 >         let l, ofs = make (ofs + 2) s in (* skip "v(" *)
 >         let r, ofs = make (ofs + 1) s in (* skip "," *)
->         Node(v, l, r), ofs + 1 (* skip ")" *)
->       else Node(v, Empty, Empty), ofs + 1 in
->   fun s -> fst(make 0 s)
+>           (Node (v, l, r), ofs + 1) (* skip ")" *)
+>       else (Node (v, Empty, Empty), ofs + 1)
+>   in
+>     fun s -> fst (make 0 s)
 > ```
 
 
 ```ocamltop
 let example_layout_tree =
   let leaf x = Node (x, Empty, Empty) in
-  Node('a', Node('b', leaf 'd', leaf 'e'),
-  Node('c', Empty, Node('f', leaf 'g', Empty)));;
+    (Node ('a', Node ('b', leaf 'd', leaf 'e'),
+     Node ('c', Empty, Node ('f', leaf 'g', Empty))));;
 string_of_tree example_layout_tree;;
 tree_of_string "a(b(d,e),c(,f(g,)))" = example_layout_tree;;
 tree_of_string "";;
@@ -2057,19 +2068,19 @@ SOLUTION
 >
 > let rec split_pre_in p i x accp acci = match (p, i) with
 >   | [], [] -> (List.rev accp, List.rev acci), ([], [])
->   | h1::t1, h2::t2 ->
->      if x=h2 then
->        (List.tl (List.rev (h1::accp)), t1),
->        (List.rev (List.tl (h2::acci)), t2)
+>   | h1 :: t1, h2 :: t2 ->
+>      if x = h2 then
+>        (List.tl (List.rev (h1 :: accp)), t1),
+>        (List.rev (List.tl (h2 :: acci)), t2)
 >      else
->        split_pre_in t1 t2 x (h1::accp) (h2::acci)
+>        split_pre_in t1 t2 x (h1 :: accp) (h2 :: acci)
 >   | _ -> assert false
 >
 > let rec pre_in_tree p i = match (p, i) with
 >   | [], [] -> Empty
->   | (h1::t1), (h2::t2) ->
+>   | (h1 :: t1), (h2 :: t2) ->
 >      let (lp, rp), (li, ri) = split_pre_in p i h1 [] [] in
->      Node (h1, pre_in_tree lp li, pre_in_tree rp ri)
+>        Node (h1, pre_in_tree lp li, pre_in_tree rp ri)
 >   | _ -> invalid_arg "pre_in_tree"
 > ```
 
@@ -2129,7 +2140,7 @@ The example tree depicted opposite is therefore represented by the
 following OCaml expression:
 
 ```ocamltop
-T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])])
+T ('a', [T ('f', [T ('g', [])]); T ('c', []); T ('b', [T ('d', []); T ('e', [])])])
 ```
 
 
@@ -2138,12 +2149,12 @@ T('a', [T('f',[T('g',[])]); T('c',[]); T('b',[T('d',[]); T('e',[])])])
 SOLUTION
 
 > ```ocamltop
-> let rec count_nodes (T(_, sub)) =
+> let rec count_nodes (T (_, sub)) =
 >   List.fold_left (fun n t -> n + count_nodes t) 1 sub
 > ```
 
 ```ocamltop
-count_nodes (T('a', [T('f',[]) ]))
+count_nodes (T ('a', [T ('f', []) ]))
 ```
 
 
@@ -2169,7 +2180,7 @@ SOLUTION
 > (* We could build the final string by string concatenation but
 >    this is expensive due to the number of operations.  We use a
 >    buffer instead. *)
-> let rec add_string_of_tree buf (T(c, sub)) =
+> let rec add_string_of_tree buf (T (c, sub)) =
 >   Buffer.add_char buf c;
 >   List.iter (add_string_of_tree buf) sub;
 >   Buffer.add_char buf '^'
@@ -2180,8 +2191,8 @@ SOLUTION
 > let rec tree_of_substring t s i len =
 >   if i >= len || s.[i] = '^' then List.rev t, i + 1
 >   else
->     let sub, j = tree_of_substring [] s (i+1) len in
->     tree_of_substring (T(s.[i], sub) ::t) s j len
+>     let sub, j = tree_of_substring [] s (i + 1) len in
+>     tree_of_substring (T (s.[i], sub) :: t) s j len
 > let tree_of_string s =
 >   match tree_of_substring [] s 0 (String.length s) with
 >   | [t], _ -> t
@@ -2189,8 +2200,8 @@ SOLUTION
 > ```
 
 ```ocamltop
-let t = T('a', [T('f',[T('g',[])]); T('c',[]);
-          T('b',[T('d',[]); T('e',[])])]);;
+let t = T ('a', [T ('f', [T ('g', [])]); T ('c', []);
+          T ('b', [T ('d', []); T ('e', [])])]);;
 string_of_tree t;;
 tree_of_string "afg^^c^bd^e^^^";;
 ```
@@ -2227,13 +2238,13 @@ of the nodes of the multiway tree `t`.
 SOLUTION
 
 > ```ocamltop
-> let rec prepend_bottom_up (T(c, sub)) l =
+> let rec prepend_bottom_up (T (c, sub)) l =
 >   List.fold_right (fun t l -> prepend_bottom_up t l) sub (c :: l)
 > let bottom_up t = prepend_bottom_up t []
 > ```
 
 ```ocamltop
-bottom_up (T('a', [T('b', [])]));;
+bottom_up (T ('a', [T ('b', [])]));;
 bottom_up t;;
 ```
 
@@ -2271,8 +2282,8 @@ SOLUTION
 > ```
 
 ```ocamltop
-lispy (T('a', []));;
-lispy (T('a', [T('b', [])]));;
+lispy (T ('a', []));;
+lispy (T ('a', [T ('b', [])]));;
 lispy t;;
 ```
 
@@ -2289,7 +2300,7 @@ There are several ways to represent graphs in OCaml.
  following expression:
 
 ```ocamltop
-['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b']
+[('h', 'g'); ('k', 'f'); ('f', 'b'); ('f', 'c'); ('c', 'b')]
 ```
 
 We call this **edge-clause form**. Obviously, isolated nodes cannot
@@ -2301,21 +2312,21 @@ be represented.
  (nodes and edges), we may use the following OCaml type:
 
 ```ocamltop
-type 'a graph_term = { nodes : 'a list;  edges : ('a * 'a) list }
+type 'a graph_term = {nodes : 'a list;  edges : ('a * 'a) list}
 ```
 
 Then, the above example graph is represented by:
 
 ```ocamltop
 let example_graph =
-  { nodes = ['b'; 'c'; 'd'; 'f'; 'g'; 'h'; 'k'];
-    edges = ['h', 'g';  'k', 'f';  'f', 'b';  'f', 'c';  'c', 'b'] }
+  {nodes = ['b'; 'c'; 'd'; 'f'; 'g'; 'h'; 'k'];
+   edges = [('h', 'g'); ('k', 'f'); ('f', 'b'); ('f', 'c'); ('c', 'b')]}
 ```
 
 We call this **graph-term form**. Note, that the lists are kept
 sorted, they are really sets, without duplicated elements. Each edge
 appears only once in the edge list; i.e. an edge from a node x to
-another node y is represented as `(x,y)`, the couple `(y,x)` is not
+another node y is represented as `(x, y)`, the couple `(y, x)` is not
 present. The **graph-term form is our default representation.** You
 may want to define a similar type using sets instead of lists.
 
@@ -2373,17 +2384,17 @@ SOLUTION
 >    but allow for a straightforward implementation. *)
 > (* Returns all neighbors satisfying the condition. *)
 > let neighbors g a cond =
->   let edge l (b,c) = if b = a && cond c then c :: l
->                      else if c = a && cond b then b :: l
->                      else l in
+>   let edge l (b, c) = if b = a && cond c then c :: l
+>                       else if c = a && cond b then b :: l
+>                       else l in
 >   List.fold_left edge [] g.edges
 > let rec list_path g a to_b = match to_b with
 >   | [] -> assert false (* [to_b] contains the path to [b]. *)
 >   | a' :: _ ->
 >      if a' = a then [to_b]
 >      else
->        let n = neighbors g a' (fun c -> not(List.mem c to_b)) in
->        List.concat(List.map (fun c -> list_path g a (c :: to_b)) n)
+>        let n = neighbors g a' (fun c -> not (List.mem c to_b)) in
+>          List.concat(List.map (fun c -> list_path g a (c :: to_b)) n)
 > 
 > let paths g a b =
 >   assert(a <> b);
@@ -2406,7 +2417,7 @@ SOLUTION
 > ```ocamltop
 > let cycles g a =
 >   let n = neighbors g a (fun _ -> true) in
->   let p = List.concat(List.map (fun c -> list_path g a [c]) n) in
+>   let p = List.concat (List.map (fun c -> list_path g a [c]) n) in
 >   List.map (fun p -> p @ [a]) p
 > ```
 
@@ -2433,10 +2444,10 @@ and `is_connected Graph`. Both are five-minutes tasks!
 ```
 
 ```ocamltop
-let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
-          edges = [('a', 'b'); ('a', 'd'); ('b', 'c'); ('b', 'e');
-                   ('c', 'e'); ('d', 'e'); ('d', 'f'); ('d', 'g');
-                   ('e', 'h'); ('f', 'g'); ('g', 'h')] }
+let g = {nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
+         edges = [('a', 'b'); ('a', 'd'); ('b', 'c'); ('b', 'e');
+                  ('c', 'e'); ('d', 'e'); ('d', 'f'); ('d', 'g');
+                  ('e', 'h'); ('f', 'g'); ('g', 'h')]}
 ```
 
 
@@ -2448,8 +2459,8 @@ of a given labelled graph. A labelled graph will be represented as
 follows:
 
 ```ocamltop
-type ('a, 'b) labeled_graph = { nodes : 'a list;
-                                labeled_edges : ('a * 'a * 'b) list }
+type ('a, 'b) labeled_graph = {nodes : 'a list;
+                               labeled_edges : ('a * 'a * 'b) list}
 ```
 
 (Beware that from now on `nodes` and `edges` mask the previous fields of
@@ -2466,11 +2477,11 @@ example graph to the right can be found below.
 ```
 
 ```ocamltop
-let g = { nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
-          labeled_edges = [('a', 'b', 5); ('a', 'd', 3); ('b', 'c', 2);
-		                   ('b', 'e', 4); ('c', 'e', 6); ('d', 'e', 7);
-				           ('d', 'f', 4); ('d', 'g', 3); ('e', 'h', 5);
-				           ('f', 'g', 4); ('g', 'h', 1)] }
+let g = {nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
+         labeled_edges = [('a', 'b', 5); ('a', 'd', 3); ('b', 'c', 2);
+                          ('b', 'e', 4); ('c', 'e', 6); ('d', 'e', 7);
+                          ('d', 'f', 4); ('d', 'g', 3); ('e', 'h', 5);
+                          ('f', 'g', 4); ('g', 'h', 1)]}
 ```
 
 
@@ -2490,13 +2501,13 @@ Hint: Use an open-ended list to represent the function f.
 ```
 
 ```ocamltop
-let g = { nodes = [1; 2; 3; 4; 5; 6; 7; 8];
-          edges = [(1,5); (1,6); (1,7); (2,5); (2,6); (2,8); (3,5);
-                   (3,7); (3,8); (4,6); (4,7); (4,8)] };;
-let h = { nodes = [1; 2; 3; 4; 5; 6; 7; 8];
-          edges = [(1,2); (1,4); (1,5); (6,2); (6,5); (6,7); (8,4);
-                   (8,5); (8,7); (3,2); (3,4); (3,7)] };;
-iso g h
+let g = {nodes = [1; 2; 3; 4; 5; 6; 7; 8];
+         edges = [(1, 5); (1, 6); (1, 7); (2, 5); (2, 6); (2, 8); (3, 5);
+                  (3, 7); (3, 8); (4, 6); (4, 7); (4, 8)]};;
+let h = {nodes = [1; 2; 3; 4; 5; 6; 7; 8];
+         edges = [(1, 2); (1, 4); (1, 5); (6, 2); (6, 5); (6, 7); (8, 4);
+                  (8, 5); (8, 7); (3, 2); (3, 4); (3, 7)]};;
+(* iso g h *)
 ```
 
 
@@ -2579,40 +2590,40 @@ SOLUTION
 >   type colors = White|Gray|Black
 > 
 >   type 'a state = {
->     d : int Char_map.t ; (*discovery time*)
->     f : int Char_map.t ; (*finishing time*)
->     pred : char Char_map.t ; (*predecessor*)
->     color : colors Char_map.t ; (*vertex colors*)
->     acc : 'a ; (*user specified type used by 'fold'*)
+>     d : int Char_map.t; (*discovery time*)
+>     f : int Char_map.t; (*finishing time*)
+>     pred : char Char_map.t; (*predecessor*)
+>     color : colors Char_map.t; (*vertex colors*)
+>     acc : 'a; (*user specified type used by 'fold'*)
 >   }
 > 
 >   let dfs_fold g c fn acc =
 >     let rec dfs_visit t u {d; f; pred; color; acc} =
 >       let edge (t, state) v =
 >         if Char_map.find v state.color = White then
->           dfs_visit t v {state with pred=Char_map.add v u state.pred;}
+>           dfs_visit t v {state with pred = Char_map.add v u state.pred}
 >         else  (t, state)
 >       in
 >       let t, {d; f; pred; color; acc} =
 >         let t = t + 1 in
 >         List.fold_left edge
->           (t, {d=Char_map.add u t d; f;
->                pred; color=Char_map.add u Gray color; acc = fn acc u})
+>           (t, {d = Char_map.add u t d; f;
+>                pred; color = Char_map.add u Gray color; acc = fn acc u})
 >           (Char_map.find u g)
 >       in
 >       let t = t + 1 in
->       t , {d; f=(Char_map.add u t f); pred;
->            color=Char_map.add u Black color; acc}
+>       t , {d; f = Char_map.add u t f; pred;
+>            color = Char_map.add u Black color; acc}
 >     in
 >     let v = List.fold_left (fun k (x, _) -> x :: k) []
 >                            (Char_map.bindings g) in
 >     let initial_state= 
->       {d=Char_map.empty;
->        f=Char_map.empty;
->        pred=Char_map.empty;
->        color=List.fold_right (fun x->Char_map.add x White)
->                              v Char_map.empty;
->        acc=acc}
+>       {d = Char_map.empty;
+>        f = Char_map.empty;
+>        pred = Char_map.empty;
+>        color = List.fold_right (fun x -> Char_map.add x White)
+>                                v Char_map.empty;
+>        acc}
 >     in
 >     (snd (dfs_visit 0 c initial_state)).acc
 > end
@@ -2680,7 +2691,7 @@ each other; i.e., no two queens are in the same row, the same column, or
 on the same diagonal.
 
 Hint: Represent the positions of the queens as a list of numbers 1..N.
-Example: `[4;2;7;3;6;8;5;1]` means that the queen in the first column is
+Example: `[4; 2; 7; 3; 6; 8; 5; 1]` means that the queen in the first column is
 in row 4, the queen in the second column is in row 2, etc. Use the
 generate-and-test paradigm.
 
@@ -2721,7 +2732,7 @@ chessboard in such a way that it visits every square exactly once?
 
 Hints: Represent the squares by pairs of their coordinates `(x,y)`,
 where both `x` and `y` are integers between 1 and N. Define the function
-`jump n       (x,y)` that returns all coordinates `(u,v)` to which a
+`jump n (x,y)` that returns all coordinates `(u,v)` to which a
 knight can jump from `(x,y)` to on a `n`×`n` chessboard. And finally,
 represent the solution of our problem as a list knight positions (the
 knight's tour).
@@ -2768,8 +2779,8 @@ What is the solution for the larger tree pictured here?
 
 Given a list of integer numbers, find a correct way of inserting
 arithmetic signs (operators) such that the result is a correct equation.
-Example: With the list of numbers `[2;3;5;7;11]` we can form the
-equations 2-3+5+7 = 11 or 2 = (3*5+7)/11 (and ten others!).
+Example: With the list of numbers `[2; 3; 5; 7; 11]` we can form the
+equations 2 - 3 + 5 + 7 = 11 or 2 = (3 * 5 + 7) / 11 (and ten others!).
 
 <!-- SOLUTION -->
 
@@ -2789,12 +2800,12 @@ SOLUTION
 > ```ocamltop
 > let full_words =
 >   let digit = [|"zero"; "one"; "two"; "three"; "four"; "five"; "six";
->                 "seven"; "eight"; "nine" |] in
+>                 "seven"; "eight"; "nine"|] in
 >   let rec words w n =
 >     if n = 0 then (match w with [] -> [digit.(0)] | _ -> w)
->     else words (digit.(n mod 10) :: w) (n / 10) in
->   fun n ->
->   String.concat "-" (words [] n)
+>     else words (digit.(n mod 10) :: w) (n / 10)
+>   in
+>   fun n -> String.concat "-" (words [] n)
 > ```
 
 ```ocamltop
@@ -2889,13 +2900,13 @@ SOLUTION
 > 
 >   let is_valid c = c >= 1
 > 
->   let get (b: t) (x, y) = b.(x + y * 9)
+>   let get (b : t) (x, y) = b.(x + y * 9)
 > 
->   let get_as_string (b: t) pos =
+>   let get_as_string (b : t) pos =
 >     let i = get b pos in
 >     if is_valid i then string_of_int i else "."
 > 
->   let with_val (b: t) (x, y) v =
+>   let with_val (b : t) (x, y) v =
 >     let b = Array.copy b in
 >     b.(x + y * 9) <- v;
 >     b
@@ -2934,10 +2945,10 @@ SOLUTION
 >     for i = 1 (* not 0 *) to 9 do if avail.(i) then av := i :: !av done;
 >     !av
 > 
->   let next (x,y) = if x < 8 then (x+1, y) else (0, y+1)
+>   let next (x,y) = if x < 8 then (x + 1, y) else (0, y + 1)
 > 
 >   (** Try to fill the undecided entries. *)
->   let rec fill b ((x,y) as pos) =
+>   let rec fill b ((x, y) as pos) =
 >     if y > 8 then Some b (* filled all entries *)
 >     else if is_valid(get b pos) then fill b (next pos)
 >     else match available b pos with
@@ -2951,7 +2962,7 @@ SOLUTION
 >     | [] -> None
 > end
 > 
-> let sudoku b = match Board.fill b (0,0) with
+> let sudoku b = match Board.fill b (0, 0) with
 >   | Some b -> b
 >   | None -> failwith "sudoku: no solution"
 > ```
@@ -3004,8 +3015,8 @@ must complete the bitmap given only these lengths.
 ```
 
 For the example above, the problem can be stated as the two lists
-`[[3];[2;1];[3;2];[2;2];[6];[1;5];[6];[1];[2]]` and
-`[[1;2];[3;1];[1;5];[7;1];[5];[3];[4];[3]]` which give the "solid"
+`[[3]; [2; 1]; [3; 2]; [2; 2]; [6]; [1; 5]; [6]; [1]; [2]]` and
+`[[1; 2]; [3; 1]; [1; 5]; [7; 1]; [5]; [3]; [4]; [3]]` which give the "solid"
 lengths of the rows and columns, top-to-bottom and left-to-right,
 respectively. Published puzzles are larger than this example, e.g.
 25×20, and apparently always have unique solutions.
@@ -3052,7 +3063,7 @@ SOLUTION
 >   row0 >= Array.length table
 >   || (match patts_row with
 >      | patt_row :: tl -> check_row table.(row0) 0 patt_row
->                         && check_rows table (row0 + 1) tl
+>                          && check_rows table (row0 + 1) tl
 >      | [] -> assert false)
 >
 > let char_of_element = function
@@ -3062,7 +3073,7 @@ SOLUTION
 > let print_tbl table =
 >   let print_row r =
 >     Array.iter (fun e -> print_char '|';
->                        print_char(char_of_element e)) r;
+>                          print_char (char_of_element e)) r;
 >     print_string "|\n" in
 >   Array.iter print_row table
 >
@@ -3104,18 +3115,18 @@ SOLUTION
 > and implement them so you can solve the following within reasonable time:
 >
 > ```ocaml
-> solve [[14]; [1;1]; [7;1]; [3;3]; [2;3;2];
->        [2;3;2]; [1;3;6;1;1]; [1;8;2;1]; [1;4;6;1]; [1;3;2;5;1;1];
->        [1;5;1]; [2;2]; [2;1;1;1;2]; [6;5;3]; [12] ]
->       [[7]; [2;2]; [2;2]; [2;1;1;1;1]; [1;2;4;2];
->        [1;1;4;2]; [1;1;2;3]; [1;1;3;2]; [1;1;1;2;2;1]; [1;1;5;1;2];
->        [1;1;7;2]; [1;6;3]; [1;1;3;2]; [1;4;3]; [1;3;1];
->        [1;2;2]; [2;1;1;1;1]; [2;2]; [2;2]; [7] ]
+> solve [[14]; [1; 1]; [7; 1]; [3; 3]; [2; 3; 2];
+>        [2; 3; 2]; [1; 3; 6; 1; 1]; [1; 8; 2; 1]; [1; 4; 6; 1]; [1; 3; 2; 5; 1; 1];
+>        [1; 5; 1]; [2; 2]; [2; 1; 1; 1; 2]; [6; 5; 3]; [12]]
+>       [[7]; [2; 2]; [2; 2]; [2; 1; 1; 1; 1]; [1; 2; 4; 2];
+>        [1; 1; 4; 2]; [1; 1; 2; 3]; [1; 1; 3; 2]; [1; 1; 1; 2; 2; 1]; [1; 1; 5; 1; 2];
+>        [1; 1; 7; 2]; [1; 6; 3]; [1; 1; 3; 2]; [1; 4; 3]; [1; 3; 1];
+>        [1; 2; 2]; [2; 1; 1; 1; 1]; [2; 2]; [2; 2]; [7]]
 > ```
 
 ```ocamltop
-solve [[3];[2;1];[3;2];[2;2];[6];[1;5];[6];[1];[2]]
-      [[1;2];[3;1];[1;5];[7;1];[5];[3];[4];[3]];;
+solve [[3]; [2; 1]; [3; 2]; [2; 2]; [6]; [1; 5]; [6]; [1]; [2]]
+      [[1; 2]; [3; 1]; [1; 5]; [7; 1]; [5]; [3]; [4]; [3]];;
 ```
 
 
@@ -3159,5 +3170,3 @@ way of placing words onto sites.
 ```ocaml
 (* example pending *);;
 ```
-
-

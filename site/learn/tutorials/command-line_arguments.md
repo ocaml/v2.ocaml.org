@@ -19,11 +19,9 @@ The following program displays the arguments with their position in
 `Sys.argv`:
 
 ```ocaml
-open Printf
-  
 let () =
   for i = 0 to Array.length Sys.argv - 1 do
-    printf "[%i] %s\n" i Sys.argv.(i)
+    Printf.printf "[%i] %s\n" i Sys.argv.(i)
   done
 ```
 If you save the program above as `args.ml`, and run
@@ -45,14 +43,10 @@ program using `ocamlopt -o args args.ml`, and then run
     [3] arg3
 
 ## Tools for parsing command-line options
-A few libraries exist that let you process command-line arguments
+There are libraries that let you process command-line arguments
 without having to scan the `Sys.argv` array yourself:
 
 * `Arg` is a module of the standard library.
-* [Getopt](http://www.eleves.ens.fr/home/frisch/soft.html#Getopt)
+* [Getopt](https://opam.ocaml.org/packages/getopt/)
   for OCaml is similar to [GNU
   getopt](http://www.gnu.org/software/libc/manual/html_node/Getopt.html).
-* The
-  [Pa_arg](http://www-personal.umich.edu/~ebreck/code/pa_arg/)
-  library offers a convenient syntax for defining and reading options.
-
