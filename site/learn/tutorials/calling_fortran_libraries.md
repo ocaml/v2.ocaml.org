@@ -4,7 +4,7 @@
 
 # Calling Fortran libraries
 
-Fortran isn't a language the many people write new codes in but it still
+Fortran isn't a language the many people write new code in but it still
 is in extensive use in the scientific communities. Many, many libraries
 exist for doing numerical calculation that will never be written in C or
 C++. It is quite possible though to call Fortran routines from OCaml as
@@ -143,5 +143,3 @@ let some else help out (or wait until I learn how to do it).
 prompt> ocamlc -c gtd6.ml prompt> ocamlc -o test gtd6.cmo wrapper.so
 ```
 And voila, we've called the fortran function from OCaml.
-
-
