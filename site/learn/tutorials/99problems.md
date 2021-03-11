@@ -49,7 +49,7 @@ SOLUTION
 > ```
 
 ```ocamltop
-last_two ["a" ; "b" ; "c" ; "d"];;
+last_two ["a"; "b"; "c"; "d"];;
 last_two ["a"];;
 ```
 
@@ -64,7 +64,7 @@ SOLUTION
 > ```
 
 ```ocamltop
-at 3 ["a" ; "b"; "c"; "d"; "e"];;
+at 3 ["a"; "b"; "c"; "d"; "e"];;
 at 3 ["a"];;
 ```
 
@@ -96,7 +96,7 @@ SOLUTION
 > ```
 
 ```ocamltop
-length ["a" ; "b" ; "c"];;
+length ["a"; "b"; "c"];;
 length [];;
 ```
 
@@ -134,7 +134,7 @@ SOLUTION
 
 ```ocamltop
 is_palindrome ["x"; "a"; "m"; "a"; "x"];;
-not (is_palindrome ["a" ; "b"]);;
+not (is_palindrome ["a"; "b"]);;
 ```
 
 #### 7. Flatten a nested list structure. (*medium*)
@@ -1126,7 +1126,7 @@ to certain rules. For example,
 ```text
 n = 1: C(1) = ['0', '1'].
 n = 2: C(2) = ['00', '01', '11', '10'].
-n = 3: C(3) = ['000', '001', '011', '010', ´110´, ´111´, ´101´, ´100´].
+n = 3: C(3) = ['000', '001', '011', '010', '110', '111', '101', '100'].
 ```
 Find out the construction rules and write a function with the following
 specification: `gray n` returns the `n`-bit Gray code.
@@ -1174,7 +1174,7 @@ respective frequencies are 45, 13, 12, 16, 9, 5:
 
 ```ocamltop
 let fs = [("a", 45); ("b", 13); ("c", 12); ("d", 16);
-          ("e", 9); ("f", 5) ]
+          ("e", 9); ("f", 5)]
 ```
 
 Our objective is to construct the
@@ -1642,7 +1642,7 @@ SOLUTION
 > let leaves t = 
 >   let rec leaves_aux t acc = match t with
 >     | Empty -> acc
->     | Node (x, Empty, Empty) -> x::acc
+>     | Node (x, Empty, Empty) -> x :: acc
 >     | Node (x, l, r) -> leaves_aux l (leaves_aux r acc)
 >   in
 >   leaves_aux t [];;
@@ -2394,7 +2394,7 @@ SOLUTION
 >      if a' = a then [to_b]
 >      else
 >        let n = neighbors g a' (fun c -> not (List.mem c to_b)) in
->          List.concat(List.map (fun c -> list_path g a (c :: to_b)) n)
+>          List.concat (List.map (fun c -> list_path g a (c :: to_b)) n)
 > 
 > let paths g a b =
 >   assert(a <> b);
@@ -2805,7 +2805,7 @@ SOLUTION
 >     if n = 0 then (match w with [] -> [digit.(0)] | _ -> w)
 >     else words (digit.(n mod 10) :: w) (n / 10)
 >   in
->   fun n -> String.concat "-" (words [] n)
+>     fun n -> String.concat "-" (words [] n)
 > ```
 
 ```ocamltop
