@@ -9,7 +9,8 @@
         </div>
         <section id="learn-leader" class="span7">
             <p><strong style="font-size: 110%">What is OCaml?</strong>
-			OCaml is a general purpose industrial-strength programming language with an emphasis on expressiveness and safety. It is the technology of choice in <a href="companies.html">companies</a> where a single mistake can cost millions and speed matters, and there is an <a href="/community/">active community</a> that has developed a <a href="https://opam.ocaml.org/packages/">rich set of libraries</a>. It's also a widely used <a href="teaching-ocaml.html">teaching language</a>. <small><em><a href="description.html">Read more</a></em></small>.</p>
+			OCaml is a general purpose industrial-strength programming language with an emphasis on expressiveness and safety. It is the technology of choice in <a href="companies.html">companies</a> where a single mistake can cost millions and speed matters, and there is an <a href="/community/">active community</a> that has developed a <a href="https://opam.ocaml.org/packages/">rich set of libraries</a>. It's also a widely used <a href="teaching-ocaml.html">teaching language</a>.</p>
+<em><a href="description.html" class="btn planet-toggle">Read more...</a></em>
         </section>
         <div id="platform-download" class="span3"
 		  style="padding-top:2ex">
