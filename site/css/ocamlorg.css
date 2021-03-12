@@ -142,7 +142,13 @@ li p {
 h1 img.rss {
   height: 1.3ex;
 }
-
+.documentation-video iframe{
+  border: 0;
+}
+.doc-link-wrapper{
+  display: flex;
+  justify-content: flex-end;
+}
 .syndication img {
   height: 1.5ex;
   margin-left: 0.3ex;
@@ -222,7 +228,6 @@ div.subscribers {
 }
 
 .subscribers .broken {
-  color: #dcc8c4;
   text-decoration: line-through;
 }
 
@@ -267,7 +272,10 @@ a.edit-this-page:hover {
 html.svg a.edit-this-page:hover {
   background-image: url(../img/edit-hover.svg);
 }
-
+.doc-link-wrapper{
+  display: flex;
+  justify-content: flex-end;
+}
 /* When the navigation bar has reduced size */
 @media (max-height: 600px) and (min-width: 980px) {
   a.edit-this-page {
@@ -485,6 +493,10 @@ ul.translations:after { content: "]"; }
   margin-right: 1em; /* To visually "compensate" for left alignment */
 }
 @media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
   #footer .column {
     text-align: left;
     padding-left: 10%;

@@ -30,6 +30,7 @@ syncotherfiles:
 
 deps:
 	opam pin add ocamlorg . --no-action --yes --kind=path
+	opam depext ocamlorg
 	opam install ocamlorg --deps-only
 
 # This target is PHONY (see end) because we don't want to enumerate
