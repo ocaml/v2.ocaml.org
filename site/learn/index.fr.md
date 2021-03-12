@@ -9,7 +9,8 @@
         </div>
         <section id="learn-leader" class="span7">
             <p><strong style="font-size: 110%">Qu'est-ce que OCaml ?</strong>
-OCaml est un langage générique de programmation, de puissance industrielle, qui met l'accent sur l'expressivité et la sûreté. C'est la technologie de choix pour les <a href="companies.html">entreprises</a> où la qualité du code, sa performance et sa maintenabilité sont critiques. La <a href="/community/">communauté</a> est très active, et a développé un <a href="https://opam.ocaml.org/packages/">riche écosystème de bibliothèques</a>. <small><em><a href="description.html">Lire plus</a></em></small>.</p>
+OCaml est un langage générique de programmation, de puissance industrielle, qui met l'accent sur l'expressivité et la sûreté. C'est la technologie de choix pour les <a href="companies.html">entreprises</a> où la qualité du code, sa performance et sa maintenabilité sont critiques. La <a href="/community/">communauté</a> est très active, et a développé un <a href="https://opam.ocaml.org/packages/">riche écosystème de bibliothèques</a>.</p>
+<em><a href="description.html" class="btn planet-toggle">Lire plus...</a></em>
         </section>
         <div id="platform-download" class="span3"
 		  style="padding-top:2ex">
