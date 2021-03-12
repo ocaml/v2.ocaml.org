@@ -882,7 +882,7 @@ your programs:
 
 ###  Further reading
 You can find out more about how OCaml represents different types by
-reading the ("Interfacing C with OCaml") in the OCaml manual and also
+reading the ("Interfacing C with OCaml") chapter in the OCaml manual and also
 looking at the `mlvalues.h` header file.
 
 <!--###  Java dynamic dispatch
