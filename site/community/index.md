@@ -157,16 +157,58 @@
         <section class="span12 condensed">
             <h1 class="ruled" id="ocaml-around-web">OCaml Around the Web</h1>
                 <ul class="inline">
-                    <li><a href="/community/mailing_lists.html"><img src="/img/mail.png" title="OCaml Mailing Lists"></a></li>
-                    <li><a href="https://github.com/trending?l=ocaml&since=monthly"><img src="/img/github-mark.png" title="OCaml repos on Github"></a></li>
-                    <li><a href="https://bitbucket.org/repo/all?name=ocaml"><img src="/img/bitbucket-logo.png" title="OCaml repos on BitBucket"></a></li>
-                    <li><a href="http://stackoverflow.com/questions/tagged/ocaml"><img src="/img/stackoverflow-logo.jpg" title="OCaml tag on StackOverflow"></a></li>
-                    <li><a href="http://www.reddit.com/r/ocaml/"><img src="/img/reddit-alien.png" title="OCaml subreddit on Reddit"></a></li>
-                    <li><a href="http://www.slideshare.net/search/slideshow/?q=ocaml&qf=qf2&ud=any&ft=all&lang=**&sort=relevance"><img src="/img/slideshare-icon.png" title="OCaml mentions on SlideShare"></a></li>
-                    <li><a href="http://www.meetup.com/find/?keywords=ocaml&radius=Infinity"><img src="/img/meetup-logo.gif" title="OCaml groups on Meetup"></a></li>
-                    <li><a href="irc://irc.freenode.net/#ocaml"><img src="/img/irc-graphic.png" title="#ocaml on freenode"></a></li>
-                    <li><a href="https://dev.to/t/ocaml"><img src="/img/devto-graphic.png" title="#ocaml on dev.to"></a></li>
-                </ul>
+			<div class="row1" style="display: flex;">
+				<li class="col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+					<a href="/community/mailing_lists.html">
+						<img src="/img/mail.png" title="OCaml Mailing Lists" style="height: 100px;width:100px;object-fit: contain;">
+					</a>
+				</li>
+                    		<li class="col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+					<a href="https://github.com/trending?l=ocaml&since=monthly">
+						<img src="/img/github-mark.png" title="OCaml repos on Github" style="height: 100px;width:100px;object-fit: contain;">
+					</a>
+				</li>
+                    		<li class="col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+					<a href="https://bitbucket.org/repo/all?name=ocaml">
+						<img src="/img/bitbucket-logo.png" title="OCaml repos on BitBucket" style="height: 100px;width:100px;object-fit: contain;">
+					</a>
+				</li>
+			</div>
+			<div class="row1" style="display: flex;">
+				<li class="col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+					<a href="http://stackoverflow.com/questions/tagged/ocaml">
+						<img src="/img/stackoverflow-logo.jpg" title="OCaml tag on StackOverflow" style="height: 100px;width:100px;object-fit: contain;">
+					</a>
+				</li>
+                    		<li class="col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+					<a href="http://www.reddit.com/r/ocaml/">
+						<img src="/img/reddit-alien.png" title="OCaml subreddit on Reddit" style="height: 100px;width:100px;object-fit: contain;">
+					</a>
+				</li>
+                   		<li class="col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+					<a href="http://www.slideshare.net/search/slideshow/?q=ocaml&qf=qf2&ud=any&ft=all&lang=**&sort=relevance">
+						<img src="/img/slideshare-icon.png" title="OCaml mentions on SlideShare" style="height: 100px;width:100px;object-fit: contain;">
+					</a>
+				</li>	
+			</div>
+			<div class="row1" style="display: flex;">
+				<li class="col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+					<a href="http://www.meetup.com/find/?keywords=ocaml&radius=Infinity">
+						<img src="/img/meetup-logo.gif" title="OCaml groups on Meetup" style="height: 100px;width:100px;object-fit: contain;">
+					</a>
+				</li>
+                    		<li class="col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+					<a href="irc://irc.freenode.net/#ocaml">
+						<img src="/img/irc-graphic.png" title="#ocaml on freenode" style="height: 100px;width:100px;object-fit: contain;">
+					</a>
+				</li>
+                    		<li class"col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+					<a href="https://dev.to/t/ocaml">
+						<img src="/img/devto-graphic.png" title="#ocaml on dev.to" style="height: 100px;width:100px;object-fit: contain;">
+					</a>
+				</li>
+			</div>
+		</ul>
         </section>
     </div>
 </div>
