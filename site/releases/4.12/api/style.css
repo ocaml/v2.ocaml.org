@@ -714,7 +714,10 @@ html {
     margin-right: 1em; }
   .api nav .api_search img {
     margin-right: 0; }
-
+.bottom-navigation {
+    margin-bottom: 1em; }
+.bottom-navigation a.next {
+      float: right; }
 #footer {
   margin-left: 26ex; }
 
