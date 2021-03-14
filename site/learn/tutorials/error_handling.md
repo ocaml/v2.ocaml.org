@@ -68,7 +68,7 @@ Functions that can raise exceptions should be documented like this:
 ```ocaml
 val foo : a -> b
 (** foo does this and that, here is how it works, etc.
-    @raise Invalid_argument if a doesn't satisfy ...
+    @raise Invalid_argument if [a] doesn't satisfy ...
     @raise Sys_error if filesystem is not happy *)
 ```
 
