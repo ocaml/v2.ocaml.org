@@ -202,7 +202,7 @@
 						<img src="/img/irc-graphic.png" title="#ocaml on freenode" style="height: 100px;width:100px;object-fit: contain;">
 					</a>
 				</li>
-                    		<li class"col1" style="flex:30%;padding: 3% 12% 3% 12%;">
+                    		<li class="col1" style="flex:30%;padding: 3% 12% 3% 12%;">
 					<a href="https://dev.to/t/ocaml">
 						<img src="/img/devto-graphic.png" title="#ocaml on dev.to" style="height: 100px;width:100px;object-fit: contain;">
 					</a>
