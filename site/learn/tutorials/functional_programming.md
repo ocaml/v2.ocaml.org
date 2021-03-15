@@ -42,12 +42,8 @@ result: a list with each number doubled.
 
 `map` is known as a **higher-order function** (HOF). Higher-order
 functions are just a fancy way of saying that the function takes a
-function as one of its arguments.
-
-So far so simple. If you're familiar with C/C++ then this looks like
-passing a function pointer around. Java has some sort of abomination
-called an anonymous class which is like a dumbed-down, slow and
-long-winded closure.
+function as one of its arguments. So far so simple. If you're familiar
+with C/C++ then this looks like passing a function pointer around.
 
 **Closures** are functions which carry around some of the "environment"
 in which they were defined. In particular, a closure can reference

@@ -40,7 +40,7 @@ to compute averages and so on.
 Programming languages also support nulls, although they may be easier to
 use in some than in others. In Java, any reference to
 an object can be null, so it might make sense in Java to store the
-age as an `Integer` and allow references to the age to be `null`. In C
+age as an `Integer` and allow references to the age to be null. In C
 pointers can, of course, be null, but if you wanted a simple integer to
 be null, you'd have to first box it up into an object allocated by
 `malloc` on the heap.
