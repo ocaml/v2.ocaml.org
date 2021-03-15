@@ -5,7 +5,7 @@
 "Feedback" -> "Suggestions"
 "About This Site" -> "À propos de ce site"
 "Find Us on GitHub" -> "Dépôt GitHub"
-"News" -> "Nouvelles"
+"News" -> "Actualités"
 "Code Examples" -> "Exemples de code"
 "Tutorials" -> "Tutoriels"
 "Books" -> "Livres"
