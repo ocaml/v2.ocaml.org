@@ -9,7 +9,7 @@ depends: [
   "ocaml" {>= "4.08.0"}
   "ocamlfind" {build}
   "base-bytes" {build}
-  "omd" {>= "1.2.1"}
+  "omd" {>= "1.2.1" & < "2.0.0~alpha1"}
   "ocamlnet" {>= "4.0.1"}
   "cohttp-lwt-unix"
   "lwt_ssl"
