@@ -11,7 +11,7 @@ The logo is available in
 [colors](https://github.com/ocaml/ocaml-logo).  Two versions are
 displayed below.  To include one of them on your web page, just copy
 and paste the associated HTML code and tweak it (e.g. adapt the `width`
-or change the part after `logo/` to match the one of the file you are
+or change the part after `logo/` to match the one of the file you
 want in the [repository](https://github.com/ocaml/ocaml-logo)).
 The OCaml logo is released under a
 [liberal license](https://github.com/ocaml/ocaml.org/blob/master/LICENSE.md).
@@ -49,12 +49,12 @@ The OCaml logo is released under a
 
 The following [SVG file](/img/OCaml_Sticker.svg) is suitable to
 [make stickers](https://twitter.com/ocamllabs/status/761191421680422912).
-Its is is released under the same
+It is released under the same
 [liberal license](https://github.com/ocaml/ocaml.org/blob/master/LICENSE.md) as
 the logo so do not hesitate to print your own stickers to promote
 OCaml!
 
 Before printing some stickers, it would be great if you
 [tweeted it](https://twitter.com/search?q=%23OCaml%20stickers&src=typd) with
-tags `#OCaml stickers` so that other interested people in you area can
+tags `#OCaml stickers` so that other interested people in your area can
 get in touch with you!
