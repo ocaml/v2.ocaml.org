@@ -78,50 +78,39 @@
         </section>
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/">Meetings</a></h1>
-            <ul class="news-feed">
-              <li class="announcement">
-                <article>
-			      <h1><a title="OCaml Users and Developers Workshop"
-			             href="/meetings/ocaml/2017/">OCaml 2017</a></h1>
-	              <p>September 8, 2017</p>
-    			  <a title="OCaml Users and Developers Workshop"
-    			     href="/meetings/ocaml/2017/">
-    			    <img alt="" src="/img/announcement.svg" class="svg" />
-    			    <img alt="" src="/img/announcement.png" class="png" />
-    			  </a>
-                </article>
-              </li>
-              <li>
-                <article>
-                  <h1><a href="http://www.meetup.com/NYC-OCaml/"
-				    target="_blank">NYC OCaml Meetup</a></h1>
-                  <a href="http://www.meetup.com/NYC-OCaml/">
-                    <img src="/img/news.svg" alt="News" class="svg" />
-                    <img src="/img/news.png" alt="News" class="png" />
-                  </a>
-                </article>
-              </li>
-              <li>
-                <article>
-                  <h1><a href="http://www.meetup.com/ocaml-paris/"
-				    target="_blank">OCaml Users in Paris</a></h1>
-                  <a href="http://www.meetup.com/ocaml-paris/">
-                    <img src="/img/news.svg" alt="News" class="svg" />
-                    <img src="/img/news.png" alt="News" class="png" />
-                  </a>
-                </article>
-              </li>
-              <li>
-                <article>
-                  <h1><a
-                  href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/"
-				    target="_blank">Cambridge NonDysFunctional Programmers</a></h1>
-                  <a href="http://www.meetup.com/Cambridge-NonDysFunctional-Programmers/">
-                    <img src="/img/news.svg" alt="News" class="svg" />
-                    <img src="/img/news.png" alt="News" class="png" />
-                  </a>
-                </article>
-              </li>
+            <ul class='news-feed'>          
+                <div class="new_row">
+                  <div class="new_col">
+                    <div class="new_card">
+                      <li class='announcement'>
+                        <article>
+                          <h1><a title='OCaml Users and Developers Workshop' href='/meetings/ocaml/2020/' target='_blank'>OCaml 2020</a></h1>
+                          <p>August 28, 2020</p>
+                        </article>
+                      </li>
+                    </div>
+                  </div>
+                  <div class="new_col">
+                    <div class="new_card">
+                      <li>
+                        <article>
+                          <h1><a href='/meetings/ocaml/2019/' target='_blank'>OCaml 2019</a></h1>
+                          <p>August 23, 2019</p>
+                        </article>
+                      </li>
+                    </div>
+                  </div>
+                  <div class="new_col">
+                    <div class="new_card">
+                      <li>
+                        <article>
+                          <h1><a href='/meetings/ocaml/2018' target='_blank'>OCaml 2018</a></h1>
+                          <p>September 27, 2018</p>
+                        </article>
+                      </li>
+                    </div>
+                  </div>
+                </div>
             </ul>
             <footer>
                 <p><a href="/meetings/">See full calendar</a></p>
