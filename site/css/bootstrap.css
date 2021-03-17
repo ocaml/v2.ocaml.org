@@ -5649,6 +5649,7 @@ body {
   margin-left: 48px;
   font-family: Lato, sans-serif;
   font-size: 14px;
+  font-weight:600;
   line-height: 1.2;
 }
 .news-feed li article h1 {
@@ -5660,6 +5661,33 @@ body {
   top: 0;
   left: 0;
 }
+/* MEETING CARDS KANAK */
+.new_col {
+  float: left;
+  width: 20%;
+  padding: 1% 1%;
+  border-radius: 10px;
+  border : 2% solid orange;
+}
+
+.new_row {margin: 0 -5px;}
+
+/* Responsive columns */
+@media screen and (min-width: 200px) {
+  .new_col {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+.new_card {
+  box-shadow: 0 4px 6px 0 rgba(193,85,64,1);
+  padding: 5px;
+  text-align: center;  
+}
+
+/* KANAK MEETING CARDS COMPLETED */ 
 .hll {
   background-color: #ffffcc;
 }
