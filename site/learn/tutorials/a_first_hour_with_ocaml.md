@@ -4,24 +4,28 @@
 
 # A First Hour with OCaml
 
-## Running OCaml code
+You may follow along with this tutorial with just a basic OCaml installation,
+as described in the [Up and Running](up_and_running.html) tutorial.
 
-The easiest way to get started is to run an interactive session in
-your browser thanks to [TryOCaml](http://try.ocamlpro.com).
+Alternatively, you may follow the first three-quarters by running OCaml in your
+browser, with no installation required, thanks to
+[TryOCaml](http://try.ocamlpro.com).
 
-To install OCaml on your computer, see the [Install](/docs/install.html) documentation.
+## Running OCaml programs
 
 To quickly try small OCaml expressions, you can use an interactive
 toplevel, or REPL (Read–Eval–Print Loop). The `ocaml` command provides
 a very basic toplevel (you should install `rlwrap` through your system
 package manager and run `rlwrap ocaml` to get history navigation).
 
-The recommended alternative REPL [utop](https://github.com/diml/utop) may be
-installed through [OPAM](/docs/install.html#OPAM) or your system package
-manager. It has the same basic interface but is much more convenient to use
-(history navigation, auto-completion, etc.).
+The alternative REPL [utop](https://github.com/diml/utop) may be installed
+through [OPAM](/docs/install.html#OPAM) or your system package manager. It has
+the same basic interface but is much more convenient to use (history
+navigation, auto-completion, etc.).
 
-Use `;;` to indicate that you've finished entering each expression and prompt OCaml to evaluate it. Here is what running `ocaml` looks like:
+Use `;;` to indicate that you've finished entering each expression and prompt
+OCaml to evaluate it. Here is what running `ocaml` looks like:
+
 ```console
 $ ocaml
         OCaml version {{! get LATEST_OCAML_VERSION !}}
@@ -44,35 +48,84 @@ utop # 1 + 1;;
 - : int = 2
 ```
 
-## Comments
-OCaml comments are delimited by `(*` and `*)`, like this:
+The in-browser [TryOCaml](http://try.ocamlpro.com) has a similar interface.
+
+//////////////////////////////BEGIN THUR/FRI SECTION
+
+## Expressions
+
+(* INSERT HERE CHAP 1 of OFTVB or equivalent content *)
+
+(* INSERT HERE CHAP 2 of OFTVB or equivalent content *)
+
+### Defining a function
+We all know how to define a function (or static method, in Java)
+in our existing languages. How do we do it in OCaml?
+
+The OCaml syntax is pleasantly concise. Here's a function which takes
+two floating point numbers and calculates the average:
 
 ```ocaml
-(* This is a single-line comment. *)
-
-(* This is a
-   multi-line
-   comment.
-*)
+let average a b =
+  (a +. b) /. 2.0
 ```
-In other words, the commenting convention is very similar to original C
-(`/* ... */`). There is no single-line comment syntax (like
-`# ...` in Python or `// ...` in C99/C++/Java).
+Type this into the OCaml interactive toplevel (on Unix, type the command `ocaml`
+from the shell) and you'll see this:
 
-OCaml counts nested `(* ... *)` blocks, and this allows you to comment
-out regions of code very easily:
-
-```ocaml
-(* This code is broken ...
-
-(* Primality test. *)
-let is_prime n =
-  (* note to self: ask about this on the mailing lists *) XXX;;
-
-*)
+```ocamltop
+let average a b =
+  (a +. b) /. 2.0;;
 ```
+If you look at the function definition closely, and also at what OCaml
+prints back at you, you'll have a number of questions:
 
-## Calling functions
+* What are those periods in `+.` and `/.` for?
+* What does `float -> float -> float` mean?
+
+I'll answer those questions in the next sections, but first I want to go
+and define the same function in C (the Java definition would be fairly
+similar to C), and hopefully that should raise even more questions.
+Here's our C version of `average`:
+
+```C
+double average (double a, double b)
+{
+  return (a + b) / 2;
+}
+```
+Now look at our much shorter OCaml definition above. Hopefully you'll be
+asking:
+
+* Why don't we have to define the types of `a` and `b` in the OCaml
+ version? How does OCaml know what the types are (indeed, *does*
+ OCaml know what the types are, or is OCaml completely dynamically
+ typed?).
+* In C, the `2` is implicitly converted into a `double`, can't OCaml
+ do the same thing?
+* What is the OCaml way to write `return`?
+
+OK, let's get some answers.
+
+* OCaml is a strongly *statically typed* language (in other words,
+ there's nothing dynamic going on between int, float and string).
+* OCaml uses *type inference* to work out the types, so you don't have
+ to.  If you use the OCaml interactive toplevel as above, then OCaml
+ will tell you
+ its inferred type for your function.
+* OCaml doesn't do any implicit casting. If you want a float, you have
+ to write `2.0` because `2` is an integer. OCaml does **no automatic
+ conversion** between int, float, string or any other type.
+* As a side-effect of type inference in OCaml, functions (including
+ operators) can't have overloaded definitions. OCaml defines `+` as
+ the *integer* addition function. To add floats, use `+.` (note the
+ trailing period). Similarly, use `-.`, `*.`, `/.` for other float
+ operations.
+* OCaml doesn't have a `return` keyword — the last expression in a
+ function becomes the result of the function automatically.
+
+We will present more details in the following sections and chapters.
+
+### Calling functions
 Let's say you've written a function — we'll call it `repeated` — which
 takes a string `s` and a number `n`, and returns a new string which
 contains original `s` repeated `n` times.
@@ -141,74 +194,97 @@ let repeated (s : string) (i : int) =
 repeated ("hello", 3)     (* OCaml will spot the mistake *)
 ```
 
-## Defining a function
-We all know how to define a function (or static method, in Java)
-in our existing languages. How do we do it in OCaml?
 
-The OCaml syntax is pleasantly concise. Here's a function which takes
-two floating point numbers and calculates the average:
-
-```ocaml
-let average a b =
-  (a +. b) /. 2.0
-```
-Type this into the OCaml interactive toplevel (on Unix, type the command `ocaml`
-from the shell) and you'll see this:
-
-```ocamltop
-let average a b =
-  (a +. b) /. 2.0;;
-```
-If you look at the function definition closely, and also at what OCaml
-prints back at you, you'll have a number of questions:
-
-* What are those periods in `+.` and `/.` for?
-* What does `float -> float -> float` mean?
-
-I'll answer those questions in the next sections, but first I want to go
-and define the same function in C (the Java definition would be fairly
-similar to C), and hopefully that should raise even more questions.
-Here's our C version of `average`:
+###  Local expressions
+Let's take the `average` function and add a local variable in C.
+(Compare it to the first definition we had above).
 
 ```C
 double average (double a, double b)
 {
-  return (a + b) / 2;
+  double sum = a + b;
+  return sum / 2;
 }
 ```
-Now look at our much shorter OCaml definition above. Hopefully you'll be
-asking:
+Now let's do the same to our OCaml version:
 
-* Why don't we have to define the types of `a` and `b` in the OCaml
- version? How does OCaml know what the types are (indeed, *does*
- OCaml know what the types are, or is OCaml completely dynamically
- typed?).
-* In C, the `2` is implicitly converted into a `double`, can't OCaml
- do the same thing?
-* What is the OCaml way to write `return`?
+```ocamltop
+let average a b =
+  let sum = a +. b in
+    sum /. 2.0;;
+```
+The standard phrase `let name = expression in` is used to define a named
+local expression, and `name` can then be used later on in the function
+instead of `expression`.
 
-OK, let's get some answers.
+Now comparing C local variables and these named local expressions is a
+sleight of hand. In fact they are somewhat different. The C variable
+`sum` has a slot allocated for it on the stack. You can assign to `sum`
+later in the function if you want, or even take the address of `sum`.
+This is NOT true for the OCaml version. In the OCaml version, `sum` is
+just a shorthand name for the expression `a +. b`. There is no way to
+assign to `sum` or change its value in any way. (We'll see how you can
+do variables whose value changes in a minute).
 
-* OCaml is a strongly *statically typed* language (in other words,
- there's nothing dynamic going on between int, float and string).
-* OCaml uses *type inference* to work out the types, so you don't have
- to.  If you use the OCaml interactive toplevel as above, then OCaml
- will tell you
- its inferred type for your function.
-* OCaml doesn't do any implicit casting. If you want a float, you have
- to write `2.0` because `2` is an integer. OCaml does **no automatic
- conversion** between int, float, string or any other type.
-* As a side-effect of type inference in OCaml, functions (including
- operators) can't have overloaded definitions. OCaml defines `+` as
- the *integer* addition function. To add floats, use `+.` (note the
- trailing period). Similarly, use `-.`, `*.`, `/.` for other float
- operations.
-* OCaml doesn't have a `return` keyword — the last expression in a
- function becomes the result of the function automatically.
+Here's another example to make this clearer. The following two code
+snippets should return the same value (namely (a + b) +
+(a + b)²):
 
-We will present more details in the following sections and chapters.
+```ocamltop
+let f a b =
+  (a +. b) +. (a +. b) ** 2.;;
+```
 
-## Basic types
+```ocamltop
+let f a b =
+  let x = a +. b in
+  x +. x ** 2.;;
+```
+
+The second version might be faster (but most compilers ought to be able
+to perform this step of "common subexpression elimination" for you), and
+it is certainly easier to read. `x` in the second example is just
+shorthand for `a +. b`.
+
+###  Global expressions
+You can also define global names for things at the top level, and as
+with our local "variables" above, these aren't really variable at all,
+just shorthand names for things. Here's a real (but cut-down) example:
+
+```ocaml
+let html =
+  let content = read_whole_file file in
+  GHtml.html_from_string content
+
+let menu_bold () =
+  match bold_button#active with
+  | true -> html#set_font_style ~enable:[`BOLD] ()
+  | false -> html#set_font_style ~disable:[`BOLD] ()
+
+let main () =
+  (* code omitted *)
+  factory#add_item "Cut" ~key:_X ~callback: html#cut
+```
+
+In this real piece of code, `html` is an HTML editing widget (an object
+from the lablgtk library) which is created once at the beginning of the
+program by the first `let html =` statement. It is then referred to in
+several later functions.
+
+Note that the `html` name in the code snippet above shouldn't really be
+compared to a real global variable as in C or other imperative
+languages. There is no space allocated to "store" the "`html` pointer".
+Nor is it possible to assign anything to `html`, for example to reassign
+it to point to a different widget. In the next section we'll talk about
+references, which are real variables.
+
+### Let bindings
+Any use of `let ...`, whether at the top level (globally) or within a
+function, is often called a **let-binding**.
+
+//////////////////////////////END THUR/FRI SECTION
+
+## Types
 The basic types in OCaml are:
 
 ```text
@@ -248,7 +324,7 @@ efficient internal representation. Strings are immutable.
 The `unit` type is sort of like `void` in C, but we'll talk about it
 more below.
 
-## Implicit vs. explicit casts
+### Implicit and explicit casts
 In C-derived languages ints get promoted to floats in certain
 circumstances. For example if you write `1 + 2.5` then the first
 argument (which is an integer) is promoted to a floating point number,
@@ -295,7 +371,6 @@ float i +. f
 (Note that it is perfectly valid in OCaml for a type and a
 function to have the same name.)
 
-###  Is implicit or explicit casting better?
 You might think that these explicit casts are ugly, time-consuming even,
 and you have a point, but there are at least two arguments in their
 favour. Firstly, OCaml needs this explicit casting to be able to do type
@@ -309,7 +384,9 @@ debugging. Thirdly, some casts (particularly int <-> float) are
 actually very expensive operations. You do yourself no favours by hiding
 them.
 
-## Ordinary functions and recursive functions
+(* RECURSIVE FUNCTIONS part of CH 2 can go here. *)
+
+## Recursive functions
 Unlike in C-derived languages, a function isn't recursive unless you
 explicitly say so by using `let rec` instead of just `let`. Here's an
 example of a recursive function:
@@ -383,6 +460,8 @@ OCaml equivalent of C's _[fputc(3)](https://pubs.opengroup.org/onlinepubs/009695
 output_char : out_channel -> char -> unit
 ```
 
+(* CHAPTER 4 / 5 LISTS GOES HERE so we can then discuss polymorphism *)
+
 ###  Polymorphic functions
 Now for something a bit stranger. What about a function which takes
 *anything* as an argument? Here's an odd function which takes an
@@ -406,7 +485,10 @@ It won't be clear yet why polymorphic functions are useful, but they are
 very useful and very common, and so we'll discuss them later on. (Hint:
 polymorphism is kind of like templates in C++ or generics in Java).
 
-## Type inference
+(* MENTION NESTED FUNCTIONS *)
+(* HIGHER ORDER FUNCTIONS *)
+
+### Type inference
 So the theme of this tutorial is that functional languages have many
 really cool features, and OCaml is a language which has all of these
 really cool features stuffed into it at once, thus making it a very
@@ -456,227 +538,11 @@ removes a whole class of errors which cause segfaults,
 `NullPointerException`s and `ClassCastException`s in other languages (or
 important but often ignored runtime warnings).
 
+(* FUN WITH TREES (Chap. 11) *)
 
-[utop]: https://github.com/diml/utop
 
 
-Now we're going to take some time out to take a high-level look at some
-real OCaml programs. I want to teach you about local and global
-definitions, modules, nested functions, and
-references. For this we're going to look at a lot of OCaml concepts
-which won't yet make sense because we haven't seen them before. Don't
-worry about the details for the moment. Concentrate instead on the
-overall shape of the programs and the features which I'll point out.
-
-##  Local "variables" (*really* local expressions)
-Let's take the `average` function and add a local variable in C.
-(Compare it to the first definition we had above).
-
-```C
-double average (double a, double b)
-{
-  double sum = a + b;
-  return sum / 2;
-}
-```
-Now let's do the same to our OCaml version:
-
-```ocamltop
-let average a b =
-  let sum = a +. b in
-    sum /. 2.0;;
-```
-The standard phrase `let name = expression in` is used to define a named
-local expression, and `name` can then be used later on in the function
-instead of `expression`.
-
-Now comparing C local variables and these named local expressions is a
-sleight of hand. In fact they are somewhat different. The C variable
-`sum` has a slot allocated for it on the stack. You can assign to `sum`
-later in the function if you want, or even take the address of `sum`.
-This is NOT true for the OCaml version. In the OCaml version, `sum` is
-just a shorthand name for the expression `a +. b`. There is no way to
-assign to `sum` or change its value in any way. (We'll see how you can
-do variables whose value changes in a minute).
-
-Here's another example to make this clearer. The following two code
-snippets should return the same value (namely (a + b) +
-(a + b)²):
-
-```ocamltop
-let f a b =
-  (a +. b) +. (a +. b) ** 2.;;
-```
-
-```ocamltop
-let f a b =
-  let x = a +. b in
-  x +. x ** 2.;;
-```
-
-The second version might be faster (but most compilers ought to be able
-to perform this step of "common subexpression elimination" for you), and
-it is certainly easier to read. `x` in the second example is just
-shorthand for `a +. b`.
-
-##  Global "variables" (*really* global expressions)
-You can also define global names for things at the top level, and as
-with our local "variables" above, these aren't really variable at all,
-just shorthand names for things. Here's a real (but cut-down) example:
-
-```ocaml
-let html =
-  let content = read_whole_file file in
-  GHtml.html_from_string content
-
-let menu_bold () =
-  match bold_button#active with
-  | true -> html#set_font_style ~enable:[`BOLD] ()
-  | false -> html#set_font_style ~disable:[`BOLD] ()
-
-let main () =
-  (* code omitted *)
-  factory#add_item "Cut" ~key:_X ~callback: html#cut
-```
-
-In this real piece of code, `html` is an HTML editing widget (an object
-from the lablgtk library) which is created once at the beginning of the
-program by the first `let html =` statement. It is then referred to in
-several later functions.
-
-Note that the `html` name in the code snippet above shouldn't really be
-compared to a real global variable as in C or other imperative
-languages. There is no space allocated to "store" the "`html` pointer".
-Nor is it possible to assign anything to `html`, for example to reassign
-it to point to a different widget. In the next section we'll talk about
-references, which are real variables.
-
-## Let-bindings
-Any use of `let ...`, whether at the top level (globally) or within a
-function, is often called a **let-binding**.
-
-## References: real variables
-What happens if you want a real variable that you can assign to and
-change throughout your program? You need to use a **reference**.
-References are very similar to pointers in C/C++. In Java, all variables
-which store objects are really references (pointers) to the objects.
-
-Here's how we create a reference to an `int` in OCaml:
-
-```ocamltop
-ref 0;;
-```
-Actually that statement wasn't really very useful. We created the
-reference and then, because we didn't name it, the garbage collector
-came along and collected it immediately afterwards! (actually, it was
-probably thrown away at compile-time.) Let's name the reference:
-
-```ocamltop
-let my_ref = ref 0;;
-```
-This reference is currently storing a zero integer. Let's put something
-else into it (assignment):
-
-```ocamltop
-my_ref := 100;;
-```
-And let's find out what the reference contains now:
-
-```ocamltop
-!my_ref;;
-```
-So the `:=` operator is used to assign to references, and the `!`
-operator dereferences to get out the contents. Here's a rough-and-ready
-comparison with C/C++:
-
-OCaml
-```ocamltop
-let my_ref = ref 0;;
-my_ref := 100;;
-!my_ref
-```
-
-C/C++
-```C
-int a = 0; int *my_ptr = &a;
-*my_ptr = 100;
-*my_ptr;
-```
-References have their place, but you may find that you don't use
-references very often. Much more often you'll be using
-`let name = expression in` to name local expressions in your function
-definitions.
-
-## Nested functions
-C doesn't really have a concept of nested functions. GCC supports nested
-functions for C programs but I don't know of any program which actually
-uses this extension. Anyway, here's what the gcc info page has to say
-about nested functions:
-
-A "nested function" is a function defined inside another function.
-(Nested functions are not supported for GNU C++.) The nested function's
-name is local to the block where it is defined. For example, here we
-define a nested function named 'square', and call it twice:
-
-```C
-foo (double a, double b)
-{
-  double square (double z) { return z * z; }
-
-  return square (a) + square (b);
-}
-```
-
-The nested function can access all the variables of the containing
-function that are visible at the point of its definition. This is called
-"lexical scoping". For example, here we show a nested function which
-uses an inherited variable named `offset`:
-
-```C
-bar (int *array, int offset, int size)
-{
-  int access (int *array, int index)
-    { return array[index + offset]; }
-  int i;
-  /* ... */
-  for (i = 0; i < size; i++)
-    /* ... */ access (array, i) /* ... */
-}
-```
-You get the idea. Nested functions are, however, very useful and very
-heavily used in OCaml. Here is an example of a nested function from some
-real code:
-
-```ocamltop
-let read_whole_channel chan =
-  let buf = Buffer.create 4096 in
-  let rec loop () =
-    let newline = input_line chan in
-      Buffer.add_string buf newline;
-      Buffer.add_char buf '\n';
-      loop ()
-  in
-    try
-      loop ()
-    with
-      End_of_file -> Buffer.contents buf;;
-```
-Don't worry about what this code does - it contains many concepts which
-haven't been discussed in this tutorial yet. Concentrate instead on the
-central nested function called `loop` which takes just a unit argument.
-You can call `loop ()` from within the function `read_whole_channel`,
-but it's not defined outside this function. The nested function can
-access variables defined in the main function (here `loop` accesses the
-local names `buf` and `chan`).
-
-The form for nested functions is the same as for local named
-expressions: `let name arguments = function-definition in`.
-
-You normally indent the function definition on a new line as in the
-example above, and remember to use `let rec` instead of `let` if your
-function is recursive (as it is in that example).
-
-## Modules and `open`
+## Modules
 OCaml comes with lots of fun and interesting modules (libraries of
 useful code). For example there are standard libraries for drawing
 graphics, interfacing with GUI widget sets, handling large numbers, data
@@ -755,12 +621,14 @@ about those later. Nevertheless you should look at these programs and
 try and find out (1) how they work, and (2) how type inference is
 helping you to eliminate bugs.
 
-## The `Stdlib` module
+(* USING THE STANDARD LIBRARY EXAMPLES *)
+
+### The `Stdlib` module
 There's one module that you never need to "`open`". That is the
 `Stdlib` module. All of the symbols from the `Stdlib` module are automatically
 imported into every OCaml program.
 
-## Renaming modules
+### Renaming modules
 What happens if you want to use symbols in the `Graphics` module, but
 you don't want to import all of them and you can't be bothered to type
 `Graphics` each time? Just rename it like this:
@@ -778,7 +646,59 @@ Actually this is really useful when you want to import a nested module
 (modules can be nested inside one another), but you don't want to type
 out the full path to the nested module name each time.
 
-## The sequence operator `;`
+## Imperative OCaml
+What happens if you want a real variable that you can assign to and
+change throughout your program? You need to use a **reference**.
+References are very similar to pointers in C/C++. In Java, all variables
+which store objects are really references (pointers) to the objects.
+
+Here's how we create a reference to an `int` in OCaml:
+
+```ocamltop
+ref 0;;
+```
+Actually that statement wasn't really very useful. We created the
+reference and then, because we didn't name it, the garbage collector
+came along and collected it immediately afterwards! (actually, it was
+probably thrown away at compile-time.) Let's name the reference:
+
+```ocamltop
+let my_ref = ref 0;;
+```
+This reference is currently storing a zero integer. Let's put something
+else into it (assignment):
+
+```ocamltop
+my_ref := 100;;
+```
+And let's find out what the reference contains now:
+
+```ocamltop
+!my_ref;;
+```
+So the `:=` operator is used to assign to references, and the `!`
+operator dereferences to get out the contents. Here's a rough-and-ready
+comparison with C/C++:
+
+OCaml
+```ocamltop
+let my_ref = ref 0;;
+my_ref := 100;;
+!my_ref
+```
+
+C/C++
+```C
+int a = 0; int *my_ptr = &a;
+*my_ptr = 100;
+*my_ptr;
+```
+References have their place, but you may find that you don't use
+references very often. Much more often you'll be using
+`let name = expression in` to name local expressions in your function
+definitions.
+
+### One thing after another
 
 The semi-colon `;` is an operator, just like `+` is. Well, not quite just like
 `+` is, but conceptually the same. The operator `+` has type `int -> int -> int` —
@@ -823,107 +743,88 @@ function, to sum a list of ints, like:
 let sum_list = List.fold_left ( + ) 0;;
 ```
 
-## Putting it all together: some real code
-In this section we're going to show some real code fragments from the
-lablgtk 1.2 library. (Lablgtk is the OCaml interface to the native Unix
-Gtk widget library). A word of warning: these fragments contain a lot of
-ideas which we haven't discussed yet. Don't look at the details, look
-instead at the overall shape of the code, where they used `open`, how they indented the
-code, how they used local and global named expressions.
+(* COMPILING OCAML LAST QUARTER GOES HERE *)
 
-... However, I'll give you some clues so you don't get totally lost!
+## Compiling OCaml programs
 
-* `?foo` and `~foo` is OCaml's way of doing optional and named
- arguments to functions. There is no real parallel to this in
- C-derived languages, but Python and Smalltalk all have this
- concept that you can name the arguments in a function call, omit
- some of them, and supply the others in any order you like.
-* `foo#bar` is a method invocation (calling a method called `bar` on
- an object called `foo`). It's similar to `foo->bar` or `foo.bar` in
- C++ or Java respectively.
+This is a reference to the standard **filenames** and extensions used by
+various parts of the OCaml build system.
 
-First snippet: The programmer opens a couple of standard libraries.
-They then create a function called `file_dialog`. Inside
-this function they define a named expression called `sel` using a
-two-line `let sel = ... in` statement. Then they call several methods on
-`sel`.
+### Source and object files
+The basic source, object and binary files, with comparisons to C
+programming:
 
-```ocaml
-(* First snippet *)
-open StdLabels
-open GMain
 
-let file_dialog ~title ~callback ?filename () =
-  let sel =
-    GWindow.file_selection ~title ~modal:true ?filename ()
-  in
-    sel#cancel_button#connect#clicked ~callback:sel#destroy;
-    sel#ok_button#connect#clicked ~callback:do_ok;
-    sel#show ()
+
+<table>
+<thead>
+<tr class="header">
+<th align="left">Purpose</th>
+<th align="left">C</th>
+<th align="left">Bytecode</th>
+<th align="left">Native code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Source code</td>
+<td align="left">*.c</td>
+<td align="left">*.ml</td>
+<td align="left">*.ml</td>
+</tr>
+<tr class="even">
+<td align="left">Header files<sup>1</sup></td>
+<td align="left">*.h</td>
+<td align="left">*.mli</td>
+<td align="left">*.mli</td>
+</tr>
+<tr class="odd">
+<td align="left">Object files</td>
+<td align="left">*.o</td>
+<td align="left">*.cmo</td>
+<td align="left">*.cmx<sup>2</sup></td>
+</tr>
+<tr class="even">
+<td align="left">Library files</td>
+<td align="left">*.a</td>
+<td align="left">*.cma</td>
+<td align="left">*.cmxa<sup>3</sup></td>
+</tr>
+<tr class="odd">
+<td align="left">Binary programs</td>
+<td align="left">prog</td>
+<td align="left">prog</td>
+<td align="left">prog.opt<sup>4</sup></td>
+</tr>
+</tbody>
+</table>
+
+
+Notes
+
+1. In C the header files describe the functions, etc., but only by
+ convention. In OCaml, the *.mli file is the exported signature of
+ the [module](modules.html "modules"), and the compiler strictly
+ enforces it.<br />
+ In most cases for a module called `Foo` you will find two files:
+ `foo.ml` and `foo.mli`. `foo.ml` is the implementation and `foo.mli`
+ is the interface or signature.<br />
+ Notice also that the first letter of the file is turned to
+ uppercase to get the module name. For example, Extlib contains a
+ file called `uTF8.mli` which is the signature of a module called
+ `UTF8`.
+1. There is also a corresponding *.o file which contains the actual
+ machine code, but you can usually ignore this file.
+1. There is also a corresponding *.a file which contains the actual
+ machine code, but you can usually ignore this file.
+1. This is the convention often used by OCaml programs, but in fact you
+ can name binary programs however you want.
+
+`*.cmi` files are intermediate files which are compiled forms of the
+`.mli` (interface or "header file").
+
+To produce them, just compile the `.mli` file:
+
 ```
-
-Second snippet: Just a long list of global names at the top level.
-Notice that the author elided every single one of the `;;` because of
-Rule #2.
-
-```ocaml
-(* Second snippet *)
-let window = GWindow.window ~width:500 ~height:300 ~title:"editor" ()
-let vbox = GPack.vbox ~packing:window#add ()
-
-let menubar = GMenu.menu_bar ~packing:vbox#pack ()
-let factory = new GMenu.factory menubar
-let accel_group = factory#accel_group
-let file_menu = factory#add_submenu "File"
-let edit_menu = factory#add_submenu "Edit"
-
-let hbox = GPack.hbox ~packing:vbox#add ()
-let editor = new editor ~packing:hbox#add ()
-let scrollbar = GRange.scrollbar `VERTICAL ~packing:hbox#pack ()
-```
-
-Third snippet: The author imports all the symbols from the `GdkKeysyms`
-module. Now we have an unusual let-binding. `let _ = expression` means
-"calculate the value of the expression (with all the side-effects that
-may entail), but throw away the result". In this case, "calculate the
-value of the expression" means to run `Main.main ()` which is Gtk's main
-loop, which has the side-effect of popping the window onto the screen
-and running the whole application. The "result" of `Main.main ()` is
-insignificant - probably a `unit` return value, but I haven't checked -
-and it doesn't get returned until the application finally exits.
-
-Notice in this snippet how we have a long series of essentially
-procedural commands. This is really a classic imperative program.
-
-```ocaml
-(* Third snippet *)
-open GdkKeysyms
-
-let _ =
-  window#connect#destroy ~callback:Main.quit;
-  let factory = new GMenu.factory file_menu ~accel_group in
-  factory#add_item "Open..." ~key:_O ~callback:editor#open_file;
-  factory#add_item "Save" ~key:_S ~callback:editor#save_file;
-  factory#add_item "Save as..." ~callback:editor#save_dialog;
-  factory#add_separator ();
-  factory#add_item "Quit" ~key:_Q ~callback:window#destroy;
-  let factory = new GMenu.factory edit_menu ~accel_group in
-  factory#add_item "Copy" ~key:_C ~callback:editor#text#copy_clipboard;
-  factory#add_item "Cut" ~key:_X ~callback:editor#text#cut_clipboard;
-  factory#add_item "Paste" ~key:_V ~callback:editor#text#paste_clipboard;
-  factory#add_separator ();
-  factory#add_check_item "Word wrap" ~active:false
-    ~callback:editor#text#set_word_wrap;
-  factory#add_check_item "Read only" ~active:false
-    ~callback:(fun b -> editor#text#set_editable (not b));
-  window#add_accel_group accel_group;
-  editor#text#event#connect#button_press
-    ~callback:(fun ev ->
-      let button = GdkEvent.Button.button ev in
-      if button = 3 then begin
-        file_menu#popup ~button ~time:(GdkEvent.Button.time ev); true
-      end else false);
-  editor#text#set_vadjustment scrollbar#adjustment;
-  window#show ();
-  Main.main ()
+ocamlc -c foo.mli
 ```
