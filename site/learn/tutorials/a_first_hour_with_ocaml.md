@@ -30,11 +30,11 @@ OCaml to evaluate it. Here is what running `ocaml` looks like:
 $ ocaml
         OCaml version {{! get LATEST_OCAML_VERSION !}}
 
-# 1 + 1;;
-- : int = 2
+# 50 * 50;;
+- : int = 2500
 ```
 
-This is how running the same code looks when using `utop`:
+This is how it looks when using `utop`:
 
 ```console
 ───────┬─────────────────────────────────────────────────────────────┬────
@@ -44,292 +44,82 @@ This is how running the same code looks when using `utop`:
 Type #utop_help for help about using utop.
 
 ─( 10:12:16 )─< command 0 >───────────────────────────────────────────────
-utop # 1 + 1;;
-- : int = 2
+utop # 50 * 50;;
+- : int = 2500
 ```
 
 The in-browser [TryOCaml](http://try.ocamlpro.com) has a similar interface.
 
-//////////////////////////////BEGIN THUR/FRI SECTION
-
 ## Expressions
 
-(* INSERT HERE CHAP 1 of OFTVB or equivalent content *)
-
-(* INSERT HERE CHAP 2 of OFTVB or equivalent content *)
-
-### Defining a function
-We all know how to define a function (or static method, in Java)
-in our existing languages. How do we do it in OCaml?
-
-The OCaml syntax is pleasantly concise. Here's a function which takes
-two floating point numbers and calculates the average:
-
-```ocaml
-let average a b =
-  (a +. b) /. 2.0
-```
-Type this into the OCaml interactive toplevel (on Unix, type the command `ocaml`
-from the shell) and you'll see this:
+Our phrase `50 * 50` was an expression, which evaluated to `2`. To avoid
+repetition, we can give a name to our number:
 
 ```ocamltop
-let average a b =
-  (a +. b) /. 2.0;;
-```
-If you look at the function definition closely, and also at what OCaml
-prints back at you, you'll have a number of questions:
-
-* What are those periods in `+.` and `/.` for?
-* What does `float -> float -> float` mean?
-
-I'll answer those questions in the next sections, but first I want to go
-and define the same function in C (the Java definition would be fairly
-similar to C), and hopefully that should raise even more questions.
-Here's our C version of `average`:
-
-```C
-double average (double a, double b)
-{
-  return (a + b) / 2;
-}
-```
-Now look at our much shorter OCaml definition above. Hopefully you'll be
-asking:
-
-* Why don't we have to define the types of `a` and `b` in the OCaml
- version? How does OCaml know what the types are (indeed, *does*
- OCaml know what the types are, or is OCaml completely dynamically
- typed?).
-* In C, the `2` is implicitly converted into a `double`, can't OCaml
- do the same thing?
-* What is the OCaml way to write `return`?
-
-OK, let's get some answers.
-
-* OCaml is a strongly *statically typed* language (in other words,
- there's nothing dynamic going on between int, float and string).
-* OCaml uses *type inference* to work out the types, so you don't have
- to.  If you use the OCaml interactive toplevel as above, then OCaml
- will tell you
- its inferred type for your function.
-* OCaml doesn't do any implicit casting. If you want a float, you have
- to write `2.0` because `2` is an integer. OCaml does **no automatic
- conversion** between int, float, string or any other type.
-* As a side-effect of type inference in OCaml, functions (including
- operators) can't have overloaded definitions. OCaml defines `+` as
- the *integer* addition function. To add floats, use `+.` (note the
- trailing period). Similarly, use `-.`, `*.`, `/.` for other float
- operations.
-* OCaml doesn't have a `return` keyword — the last expression in a
- function becomes the result of the function automatically.
-
-We will present more details in the following sections and chapters.
-
-### Calling functions
-Let's say you've written a function — we'll call it `repeated` — which
-takes a string `s` and a number `n`, and returns a new string which
-contains original `s` repeated `n` times.
-
-In most C-derived languages a call to this function will look like this:
-
-```C
-repeated ("hello", 3)  /* this is C code */
-```
-This means "call the function `repeated` with two arguments, first
-argument the string hello and second argument the number 3".
-
-OCaml, in common with other functional languages, writes and brackets
-function calls differently, and this is the cause of many mistakes. Here
-is the same function call in OCaml:
-
-```ocaml
-repeated "hello" 3  (* this is OCaml code *)
-```
-Note — **no** brackets, and **no** comma between the arguments.
-
-The syntax `repeated ("hello", 3)` **is** meaningful in OCaml. It means
-"call the function `repeated` with ONE argument, that argument being a
-'pair' structure of two elements". Of course that would be a mistake,
-because the `repeated` function is expecting two arguments, not one, and
-the first argument should be a string, not a pair. But let's not worry
-about pairs ("tuples") just yet. Instead, just remember that it's a
-mistake to put the brackets and commas in around function call
-arguments.
-
-Let's have another function — `prompt_string` — which takes a string to
-prompt and returns the string entered by the user. We want to pass this
-string into `repeated`. Here are the C and OCaml versions:
-
-```C
-/* C code: */
-repeated (prompt_string ("Name please: "), 3)
+let x = 50;;
+x * x;;
 ```
 
-```ocaml
-(* OCaml code: *)
-repeated (prompt_string "Name please: ") 3
+Note that this is not a variable as in languages like C and Python. Its value
+cannot be changed. We can write it all in one go using `let`...`in`:
+
+```ocamltop
+let x = 50 in x * x
 ```
-Take a careful look at the bracketing and the missing comma. In the
-OCaml version, the brackets enclose the first argument of repeated
-because that argument is the result of another function call. In general
-the rule is: "bracket around the whole function call — don't put
-brackets around the arguments to a function call". Here are some more
-examples:
+
+```ocamltop
+let a = 1 in
+let b = 2 in
+  a + b
+```
+
+We can define a function to do the job for any number:
+
+```ocamltop
+let square x = x * x;;
+
+square 50;;
+```
+
+This says that `square` is a function with one argument, namely `x`, and that
+the result of the function is the result of evaluating the expression `x * x`
+with the given value assigned to `x`. Here is another function, this time using
+the comparison operator `=` to test for even-ness:
+
+```ocamltop
+let square_is_even x =
+  square x mod 2 = 0
+```
+
+A function may take multiple arguments. Unlike in imperative languages, they
+are written without parentheses and commas. We shall explain why later.
+
+```ocamltop
+let ordered a b c =
+  a <= b && b <= c;;
+```
+
+In general the rule is: "bracket around the whole function call — don't put
+brackets around the arguments to a function call". Here are some more examples:
 
 ```ocaml
 f 5 (g "hello") 3    (* f has three arguments, g has one argument *)
 f (g 3 4)            (* f has one argument, g has two arguments *)
 ```
 
-<div media:type="text/omd" style="display: none">
-
-```ocamltop
-let repeated (s : string) (i : int) =
-  failwith "implementation not given"
-```
-
-</div>
-
-```ocamltop
-repeated ("hello", 3)     (* OCaml will spot the mistake *)
-```
-
-
-###  Local expressions
-Let's take the `average` function and add a local variable in C.
-(Compare it to the first definition we had above).
-
-```C
-double average (double a, double b)
-{
-  double sum = a + b;
-  return sum / 2;
-}
-```
-Now let's do the same to our OCaml version:
+We can work with floating-point numbers too, but we must write `+.`, for
+example, instead of just `+`:
 
 ```ocamltop
 let average a b =
-  let sum = a +. b in
-    sum /. 2.0;;
-```
-The standard phrase `let name = expression in` is used to define a named
-local expression, and `name` can then be used later on in the function
-instead of `expression`.
-
-Now comparing C local variables and these named local expressions is a
-sleight of hand. In fact they are somewhat different. The C variable
-`sum` has a slot allocated for it on the stack. You can assign to `sum`
-later in the function if you want, or even take the address of `sum`.
-This is NOT true for the OCaml version. In the OCaml version, `sum` is
-just a shorthand name for the expression `a +. b`. There is no way to
-assign to `sum` or change its value in any way. (We'll see how you can
-do variables whose value changes in a minute).
-
-Here's another example to make this clearer. The following two code
-snippets should return the same value (namely (a + b) +
-(a + b)²):
-
-```ocamltop
-let f a b =
-  (a +. b) +. (a +. b) ** 2.;;
+  (a +. b) /. 2.0
 ```
 
-```ocamltop
-let f a b =
-  let x = a +. b in
-  x +. x ** 2.;;
-```
-
-The second version might be faster (but most compilers ought to be able
-to perform this step of "common subexpression elimination" for you), and
-it is certainly easier to read. `x` in the second example is just
-shorthand for `a +. b`.
-
-###  Global expressions
-You can also define global names for things at the top level, and as
-with our local "variables" above, these aren't really variable at all,
-just shorthand names for things. Here's a real (but cut-down) example:
-
-```ocaml
-let html =
-  let content = read_whole_file file in
-  GHtml.html_from_string content
-
-let menu_bold () =
-  match bold_button#active with
-  | true -> html#set_font_style ~enable:[`BOLD] ()
-  | false -> html#set_font_style ~disable:[`BOLD] ()
-
-let main () =
-  (* code omitted *)
-  factory#add_item "Cut" ~key:_X ~callback: html#cut
-```
-
-In this real piece of code, `html` is an HTML editing widget (an object
-from the lablgtk library) which is created once at the beginning of the
-program by the first `let html =` statement. It is then referred to in
-several later functions.
-
-Note that the `html` name in the code snippet above shouldn't really be
-compared to a real global variable as in C or other imperative
-languages. There is no space allocated to "store" the "`html` pointer".
-Nor is it possible to assign anything to `html`, for example to reassign
-it to point to a different widget. In the next section we'll talk about
-references, which are real variables.
-
-### Let bindings
-Any use of `let ...`, whether at the top level (globally) or within a
-function, is often called a **let-binding**.
-
-//////////////////////////////END THUR/FRI SECTION
-
-## Types
-The basic types in OCaml are:
-
-```text
-OCaml type  Range
-
-int         31-bit signed int (roughly +/- 1 billion) on 32-bit
-            processors, or 63-bit signed int on 64-bit processors
-float       IEEE double-precision floating point, equivalent to C's double
-bool        A boolean, written either 'true' or 'false'
-char        An 8-bit character
-string      A string
-unit        Written as ()
-```
-
-OCaml uses one of the bits in an `int` internally in order to be able to
-automatically manage the memory use (garbage collection). This is why
-the basic `int` is 31 bits, not 32 bits (63 bits if you're using a 64
-bit platform). In practice this isn't an issue except in a few
-specialised cases. For example if you're counting things in a loop, then
-OCaml limits you to counting up to 1 billion instead of 2 billion. However if you need to do things
-such as processing 32 bit types (eg. you're writing crypto code or a
-network stack), OCaml provides a `nativeint` type which matches the
-native integer type for your platform.
-
-OCaml doesn't have a basic unsigned integer type, but you can get the
-same effect using `nativeint`. OCaml doesn't have built-in single-precision 
-floating point numbers.
-
-OCaml provides a `char` type which is used for characters, written `'x'`
-for example. Unfortunately the `char` type does not support Unicode or
-UTF-8, There are [comprehensive Unicode libraries](https://github.com/yoriyuki/Camomile)
-which provide this functionality.
-
-Strings are not just lists of characters. They have their own, more
-efficient internal representation. Strings are immutable.
-
-The `unit` type is sort of like `void` in C, but we'll talk about it
-more below.
-
-### Implicit and explicit casts
-In C-derived languages ints get promoted to floats in certain
-circumstances. For example if you write `1 + 2.5` then the first
-argument (which is an integer) is promoted to a floating point number,
-and the result is also a floating point number. It's as if you had
-written `((double) 1) + 2.5`, but all done implicitly.
+This is rather unusual. In C-derived languages ints get promoted to floats in
+certain circumstances. For example if you write `1 + 2.5` then the first
+argument (which is an integer) is promoted to a floating point number, and the
+result is also a floating point number. It's as if you had written `((double)
+1) + 2.5`, but all done implicitly.
 
 OCaml never does implicit casts like this. In OCaml, `1 + 2.5` is a type
 error. The `+` operator in OCaml requires two ints as arguments, and
@@ -338,8 +128,6 @@ here we're giving it an int and a float, so it reports this error:
 ```ocamltop
 1 + 2.5;;
 ```
-To add two floats together you need to use a different operator, `+.`
-(note the trailing period).
 
 OCaml doesn't promote ints to floats automatically so this is also an
 error:
@@ -357,75 +145,79 @@ explicitly cast:
 float_of_int i +. f
 ```
 `float_of_int` is a function which takes an `int` and returns a `float`.
-There are a whole load of these functions, called such things as
-`int_of_float`, `char_of_int`, `int_of_char`, `string_of_int` and so on,
-and they mostly do what you expect.
 
-Since converting an `int` to a `float` is a particularly common
-operation, the `float_of_int` function has a shorter alias: the above
-example could simply have been written
-
-```ocaml
-float i +. f
-```
-(Note that it is perfectly valid in OCaml for a type and a
-function to have the same name.)
-
-You might think that these explicit casts are ugly, time-consuming even,
-and you have a point, but there are at least two arguments in their
-favour. Firstly, OCaml needs this explicit casting to be able to do type
-inference (see below), and type inference is such a wonderful
-time-saving feature that it easily offsets the extra keyboarding of
-explicit casts. Secondly, if you've spent time debugging C programs
-you'll know that (a) implicit casts cause errors which are hard to find,
-and (b) much of the time you're sitting there trying to work out where
-the implicit casts happen. Making the casts explicit helps you in
-debugging. Thirdly, some casts (particularly int <-> float) are
-actually very expensive operations. You do yourself no favours by hiding
-them.
-
-(* RECURSIVE FUNCTIONS part of CH 2 can go here. *)
+You might think that these explicit casts are ugly, time-consuming even, but
+there are several arguments in their favour. Firstly, OCaml needs this explicit
+casting to be able to do type inference (see below), and type inference is such
+a wonderful time-saving feature that it easily offsets the extra keyboarding of
+explicit casts. Secondly, if you've spent time debugging C programs you'll know
+that (a) implicit casts cause errors which are hard to find, and (b) much of
+the time you're sitting there trying to work out where the implicit casts
+happen. Making the casts explicit helps you in debugging.  Thirdly, some casts
+(particularly int <-> float) are actually very expensive operations. We do
+ourselves no favours by hiding them.
 
 ## Recursive functions
-Unlike in C-derived languages, a function isn't recursive unless you
-explicitly say so by using `let rec` instead of just `let`. Here's an
-example of a recursive function:
+
+An OCaml function isn't recursive unless you explicitly say so by using `let
+rec` instead of just `let`. Here's an example of a recursive function:
 
 ```ocamltop
 let rec range a b =
   if a > b then []
-  else a :: range (a + 1) b
+  else a :: range (a + 1) b;;
 ```
-Notice that `range` calls itself.
+
+We have used OCaml's `if` ... `then` ... `else` ... construct. Notice that,
+like everything else in OCaml, it is an expression not a statement. The result
+of evaluating the whole expression is either the result of evaluating the
+`then` part or the `else` part. 
 
 The only difference between `let` and `let rec` is in the scoping of the
 function name. If the above function had been defined with just `let`,
 then the call to `range` would have tried to look for an existing
 (previously defined) function called `range`, not the
-currently-being-defined function. Using `let` (without `rec`) allows you
-to re-define a value in terms of the previous definition. For example:
+currently-being-defined function.
+
+## Types
+The basic types in OCaml are:
+
+```text
+OCaml type  Range
+
+int         63-bit signed int 64-bit processors, or 31-bit signed int on
+            32-bit processors
+float       IEEE double-precision floating point, equivalent to C's double
+bool        A boolean, written either 'true' or 'false'
+char        An 8-bit character
+string      A string
+```
+
+OCaml provides a `char` type which is used for simple 8-bit characters, written
+`'x'` for example. There are [comprehensive Unicode
+libraries](https://github.com/yoriyuki/Camomile) which provide more extensive
+functionality for text management.
+
+Strings are not just lists of characters. They have their own, more
+efficient internal representation. Strings are immutable.
+
+When we type our expressions into the OCaml top level, OCaml prints the type:
 
 ```ocamltop
-let positive_sum a b = 
-  let a = max a 0
-  and b = max b 0 in
-    a + b
+1 + 2;;
+1.0 + 2.0;;
+false;;
+'c';;
+"Help me!";;
 ```
-This redefinition hides the previous "bindings" of `a` and `b` from the
-function definition. In some situations coders prefer this pattern to
-using a new variable name (`let a_pos = max a 0`) as it makes the old
-binding inaccessible, so that only the latest values of `a` and `b` are
-accessible.
 
-There is no performance difference between functions defined using `let`
-and functions defined using `let rec`, so if you prefer you could always
-use the `let rec` form and get the same semantics as C-like languages.
+Each expression has one and only one type.
 
 ## Types of functions
 Because of type inference you will rarely if ever need to explicitly
 write down the type of your functions. However, OCaml often prints out
-what it thinks are the types of your functions, so you need to know the
-syntax for this. For a function `f` which takes arguments `arg1`,
+what it infers are the types of your functions, so you need to know the
+syntax. For a function `f` which takes arguments `arg1`,
 `arg2`, ... `argn`, and returns type `rettype`, the compiler will print:
 
 ```ocaml
@@ -435,12 +227,6 @@ The arrow syntax looks strange now, but when we come to so-called
 "currying" later you'll see why it was chosen. For now I'll just give
 you some examples.
 
-Our function `repeated` which takes a string and an integer and returns
-a string has type:
-
-```ocaml
-repeated : string -> int -> string
-```
 Our function `average` which takes two floats and returns a float has
 type:
 
@@ -452,13 +238,23 @@ The OCaml standard `int_of_char` casting function:
 ```ocaml
 int_of_char : char -> int
 ```
-If a function returns nothing (`void` for C and Java programmers), then
-we write that it returns the `unit` type. Here, for instance, is the
-OCaml equivalent of C's _[fputc(3)](https://pubs.opengroup.org/onlinepubs/009695399/functions/fputc.html)_:
 
-```ocaml
-output_char : out_channel -> char -> unit
-```
+What does this tell us?
+
+- OCaml is a strongly statically typed language. This means each expression has a
+type, and only one type.
+
+- OCaml uses so-called type inference to work out (infer) the types, so you don't
+have to.  If you use the OCaml top level, then OCaml will tell you its inferred
+type for your function.
+
+- OCaml doesn't do any implicit casting. If you want a float, you have
+ to write `2.0` because `2` is an integer. OCaml does no automatic
+ conversion between int and floats or any other type.
+
+- As a side-effect of type inference in OCaml, functions (including
+ operators) can't have overloaded definitions.
+
 
 (* CHAPTER 4 / 5 LISTS GOES HERE so we can then discuss polymorphism *)
 
