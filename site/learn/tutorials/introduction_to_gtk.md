@@ -17,9 +17,9 @@ Topdirs.dir_directory (Sys.getenv "OCAML_TOPLEVEL_PATH");;
 
 ## Lablgtk and writing Gtk applications
 
-[Gtk+](http://www.gtk.org/ "http://www.gtk.org/") is a toolkit for
+[Gtk+](http://www.gtk.org/) is a toolkit for
 writing graphical applications, and
-[lablgtk](http://lablgtk.forge.ocamlcore.org/ "http://lablgtk.forge.ocamlcore.org/")
+[lablgtk](https://github.com/garrigue/lablgtk)
 is the OCaml interface for Gtk. Gtk and lablgtk are available for Unix
 and Windows platforms.
 
@@ -177,8 +177,7 @@ Main.main ()
 
 ##  Gtk tutorial
 
-Read [this Gtk
-tutorial](http://www.gtk.org/tutorial1.2/ "http://www.gtk.org/tutorial1.2/")
+Read [this Gtk tutorial](https://developer.gnome.org/gtk-tutorial/stable/)
 to find out more about Gtk. Lablgtk contains a pretty complete mapping
 of the Gtk+ API.
 
