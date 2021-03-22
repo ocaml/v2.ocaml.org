@@ -1,5 +1,3 @@
-[![Travis Build Status](https://travis-ci.org/ocaml/ocaml.org.svg?branch=master)](https://travis-ci.org/ocaml/ocaml.org)
-
 OCAML.ORG PROJECT
 =================
 This is the source code implementing the ocaml.org

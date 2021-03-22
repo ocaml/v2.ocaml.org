@@ -26,7 +26,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />
     <link href="/css/ocamlorg.css" rel="stylesheet" media="screen" />
-    <script src="/js/collapsed-menu.js" type="text/javascript"></script>
+    <script src="/js/collapsed-menu.js"></script>
     {{! ifdef advertise_rss
     <link rel="alternate" type="application/atom+xml" title="Atom feed"
 	  href="/feed.xml" />
@@ -63,7 +63,7 @@
 	       class="edit-this-page pull-right"
 	       ><!-- Image in CSS
 	      --><span>{{!t cmd script/translate ((! get filename !)) "Edit this page" t!}}</span></a>
-	    <script language="JavaScript">
+	    <script>
 	      // Preload the hover image
 	      Image1= new Image(33,33);
 	      Image1.src = '/img/edit-hover.svg';
@@ -96,10 +96,10 @@
     </footer>
     {{!j ifdef extra-js {{!i input ((! get extra-js !)) i!}} j!}}
     <!-- Load javascript from CDN -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 
     {{!S ifndef staging
-    <script type="text/javascript">
+    <script>
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-37808023-1']);
@@ -107,14 +107,14 @@
     _gaq.push(['_trackPageview']);
 
     (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        var ga = document.createElement('script'); ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 
     </script>
     <!-- Piwik -->
-    <script type="text/javascript">
+    <script>
       var _paq = _paq || [];
       _paq.push(['setCookieDomain', '*.ocaml.org']);
       _paq.push(['setDocumentTitle', '((! tryget title !))']);
@@ -129,7 +129,7 @@
         var u=(('https:' == document.location.protocol) ? 'https' : 'http') + '://ocaml.org/piwik/';
         _paq.push(['setTrackerUrl', u+'piwik.php']);
         _paq.push(['setSiteId', '1']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
         g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
       })();
     </script>

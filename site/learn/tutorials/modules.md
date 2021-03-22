@@ -7,7 +7,7 @@
 ## Basic usage
 In OCaml, every piece of code is wrapped into a module. Optionally, a
 module itself can be a submodule of another module, pretty much like
-directories in a file system-but we don't do this very often.
+directories in a file system - but we don't do this very often.
 
 When you write a program let's say using two files `amodule.ml` and
 `bmodule.ml`, each of these files automatically defines a module named
@@ -39,7 +39,7 @@ else that a given module can provide.
 
 Libraries, starting with the standard library, provide collections of
 modules. for example,
-[`List.iter`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/list.mli#L75)
+`List.iter`
 designates the `iter` function from
 the `List` module.
 
@@ -48,22 +48,16 @@ contents directly accessible. For this, we use the `open` directive. In
 our example, `bmodule.ml` could have been written:
 
 ```ocaml
-open Amodule;;
-hello ();;
-```
-As a side note, people tend to avoid the ugly ";;", so it more common to
-write it like:
-
-```ocaml
 open Amodule
-let () =
-  hello ()
+
+let () = hello ()
 ```
-Anyway, using `open` or not is a matter of personal taste. Some modules
+
+Using `open` or not is a matter of personal taste. Some modules
 provide names that are used in many other modules. This is the case of
 the `List` module for instance. Usually we don't do `open List`. Other
 modules like
-[`Printf`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/printf.mli#L14)
+`Printf`
 provide names that are normally not subject to
 conflicts, such as `printf`. In order to avoid writing `Printf.printf`
 all over the place, it often makes sense to place one `open Printf` at
@@ -75,8 +69,8 @@ mentioned:
 
 ```ocamltop
 open Printf
-let my_data = [ "a"; "beautiful"; "day" ]
-let () = List.iter (fun s -> printf "%s\n" s) my_data
+let my_data = ["a"; "beautiful"; "day"]
+let () = List.iter (printf "%s\n") my_data
 ```
 
 ## Interfaces and signatures
@@ -112,7 +106,7 @@ interface. This is our `amodule.mli` file:
 val hello : unit -> unit
 (** Displays a greeting message. *)
 ```
-(note that it is a good habit to document .mli files, using the format
+(note the double asterisk at the beginning of the comment - it is a good habit to document .mli files using the format
 supported by
 [ocamldoc](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/ocamldoc.html))
 
@@ -136,7 +130,7 @@ But modules often define new types. Let's define a simple record type
 that would represent a date:
 
 ```ocaml
-type date = { day : int;  month : int;  year : int }
+type date = {day : int; month : int; year : int}
 ```
 
 There are not two, but four options when it comes to writing the .mli
@@ -191,7 +185,9 @@ module Hello = struct
   let message = "Hello"
   let hello () = print_endline message
 end
+
 let goodbye () = print_endline "Goodbye"
+
 let hello_goodbye () =
   Hello.hello ();
   goodbye ()
@@ -279,10 +275,11 @@ the programmer makes a mistake.
 For example, if we want to use sets of ints, we would do this:
 
 ```ocamltop
-module Int_set = Set.Make (struct
-                             type t = int
-                             let compare = compare
-                           end)
+module Int_set =
+  Set.Make (struct
+              type t = int
+              let compare = compare
+            end)
 ```
 For sets of strings, it is even easier because the standard library
 provides a `String` module with a type `t` and a function `compare`. If

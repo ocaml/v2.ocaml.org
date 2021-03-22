@@ -169,9 +169,9 @@ $ ls
 _build		dune		helloworld.ml
 ```
 
-The `helloworld.exe` executable is stored inside the `_build` structure, so
+The `helloworld.exe` executable is stored inside the `_build/default` subdirectory, so
 it's easier to run with `dune exec`. To ship the executable, we can just copy
-it from inside `_build` to somewhere else.
+it from inside `_build/default` to somewhere else.
 
 Here is the contents of the automatically-generated `dune` file. When we want
 to add components to your project, such as third-party libraries, we edit this
