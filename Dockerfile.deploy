@@ -9,6 +9,7 @@ RUN opam install -y --deps-only ocamlorg
 COPY --chown=opam . /home/opam/src
 RUN opam exec -- make -j production
 RUN git clone --depth=1 https://github.com/ocaml/ocaml-logo /home/opam/src/ocaml.org/logo
+RUN git clone --depth=1 https://github.com/ocaml/ocaml.org-media /home/opam/src/media && cp -r /home/opam/src/media/* /home/opam/src/ocaml.org
 FROM caddy:2-alpine
 COPY --from=build /home/opam/src/ocaml.org /usr/share/caddy
 ENTRYPOINT ["caddy", "file-server"]
