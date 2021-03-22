@@ -213,7 +213,7 @@ false;;
 
 Each expression has one and only one type.
 
-## Types of functions
+### Types of functions
 Because of type inference you will rarely if ever need to explicitly
 write down the type of your functions. However, OCaml often prints out
 what it infers are the types of your functions, so you need to know the
@@ -255,36 +255,148 @@ type for your function.
 - As a side-effect of type inference in OCaml, functions (including
  operators) can't have overloaded definitions.
 
+## Pattern matching
+Instead of using one or more `if` ... `then` ... `else` to make choices in OCaml programs, we can use the `match` keyword to match on multiple possible values. Consider the factorial function:
 
-(* CHAPTER 4 / 5 LISTS GOES HERE so we can then discuss polymorphism *)
+```ocamltop
+let rec factorial x =
+  if x <= 1 then 1 else x * factorial (x - 1);;
+```
+
+We may write it using pattern matching instead:
+
+```ocamltop
+let rec factorial x =
+  match x with
+  | 0 | 1 -> 1
+  | n -> n * factorial (n - 1);;
+```
+
+Equally, we could use the pattern `_` which matches anything, and write:
+
+```ocamltop
+let rec factorial x =
+  match x with
+  | 0 | 1 -> 1
+  | _ -> x * factorial (x - 1);;
+```
+
+In fact, we may simplify further with the `function` keyword which introduces pattern-matching directly:
+
+```ocamltop
+let rec factorial = function
+  | 0 | 1 -> 1
+  | x -> x * factorial (x - 1);;
+```
+
+We will use pattern matching more extensively as we introduce more complicated data structures.
+
+## Lists
+
+Lists are a common compound data type in OCaml. They are ordered collections of
+elements of like type. Here are some lists:
+
+```ocamltop
+[];;
+[1; 2; 3];;
+[false, false, true];;
+[[1; 2]; [3; 4]; [5; 6]];;
+```
+
+Each list can have a head (its first element) and a tail (the list of the rest
+of its elements).  There are two built-in operators on lists. The `::` or cons
+operator, adds one element to the front of a list. The `@` or append operator
+combines two lists:
+
+```ocamltop
+1 :: [2; 3];;
+[1] @ [2; 3];;
+```
+
+We can write functions which operate over lists by pattern matching:
+
+```ocamltop
+let rec total l =
+  match l with
+  | [] -> 0
+  | h :: t -> h + total t;;
+
+total [1; 3; 5; 3; 1];;
+```
+
+You can see how the pattern `h :: t` is used to deconstruct the list, naming
+its head and tail.
 
 ###  Polymorphic functions
-Now for something a bit stranger. What about a function which takes
-*anything* as an argument? Here's an odd function which takes an
-argument, but just ignores it and always returns 3:
 
-```ocaml
-let give_me_a_three x = 3
+Consider a function to find the length of a list:
+
+```ocamltop
+let rec length l =
+  match l with
+  | [] -> 0
+  | _ :: t -> 1 + length t;;
 ```
-What is the type of this function? In OCaml we use a special placeholder
-to mean "any type you fancy". It's a single quote character followed by
-a letter. The type of the above function would normally be written:
 
-```ocaml
-give_me_a_three : 'a -> int
+This function operates not just on lists of integers like `total`, but on any
+kind of list, as indicated by the type, which allows its input to be `'a list`
+(pronounced alpha list).
+
+```ocamltop
+length [1; 2; 3];;
+length ["cow"; "sheep"; "cat"];;
+length [[]];;
 ```
-where `'a` (pronounced alpha) really does mean any type. You can, for example, call this
-function as `give_me_a_three "foo"` or `give_me_a_three 2.0` and both
-are quite valid expressions in OCaml.
 
-It won't be clear yet why polymorphic functions are useful, but they are
-very useful and very common, and so we'll discuss them later on. (Hint:
-polymorphism is kind of like templates in C++ or generics in Java).
+Why is this? Because in the pattern `_ :: t` the head of the list is not
+inspected, so its type cannot be relevant. Such a function is called
+polymorphic. Here is another polymorphic function, our own version of the `@`
+operator for appending:
 
-(* MENTION NESTED FUNCTIONS *)
-(* HIGHER ORDER FUNCTIONS *)
+```ocamltop
+let rec append a b =
+  match a with
+  | [] -> b
+  | h :: t -> h :: append t b;;
+```
 
-### Type inference
+Can you see how it works?
+
+### Higher-order functions
+
+We might wish to apply a function to each element in a list, yielding a new
+one. We shall write a function `map` which is given another function as its
+argument -- it is "higher-order":
+
+```ocamltop
+let rec map f l =
+  match l with
+  | [] -> []
+  | h :: t -> f h :: map f t;;
+```
+
+Notice the type of the function `f` in parentheses as part of the whole type.
+This `map` function, given a function of type `'a -> 'b` and a list of `'a`s,
+will build a list of `'b'`s. Sometimes `'a` and `'b` might be the same type, of
+course. Here are some examples of using `map`:
+
+```ocamltop
+map total [[1; 2]; [3; 4]; [5; 6]];;
+map (fun x -> x * 2) [1; 2; 3];;
+```
+
+(The syntax `fun` ... `->` ... is used to build a function without a name - one
+we will only use in one place in the program).
+
+### Other built-in types
+
+Other than lists, we have tuples, which are fixed length collections of elements of any type:
+
+```ocamltop
+let t = (1, "one", '1')
+```
+
+## Type inference
 So the theme of this tutorial is that functional languages have many
 really cool features, and OCaml is a language which has all of these
 really cool features stuffed into it at once, thus making it a very
@@ -334,113 +446,61 @@ removes a whole class of errors which cause segfaults,
 `NullPointerException`s and `ClassCastException`s in other languages (or
 important but often ignored runtime warnings).
 
-(* FUN WITH TREES (Chap. 11) *)
+## Our own data types
 
+We can define new data types in OCaml with the `type` keyword:
 
-
-## Modules
-OCaml comes with lots of fun and interesting modules (libraries of
-useful code). For example there are standard libraries for drawing
-graphics, interfacing with GUI widget sets, handling large numbers, data
-structures, and making POSIX system calls. These libraries are located
-in `/usr/lib/ocaml/` (on Unix anyway).
-
-For these examples we're going to use module called `Graphics` which can be
-installed with `opam install graphics` and the `ocamlfind` program installed
-with `opam install ocamlfind`.
-
-If we want to use the functions in `Graphics` there are two ways we can
-do it. Either at the start of our program we have the `open Graphics;;`
-declaration. Or we prefix all calls to the functions like this:
-`Graphics.open_graph`. `open` is a little bit like Java's `import`
-statement.
-
-To use `Graphics` in the [interactive toplevel](basics.html), you must
-first load the
-library with
-
-```ocaml
-# #use "topfind";;
-- : unit = ()
-Findlib has been successfully loaded. Additional directives:
-  #require "package";;      to load a package
-
-- : unit = ()
-# #require "graphics";;
-/Users/me/.opam/4.12.0/lib/graphics: added to search path
-/Users/me/.opam/4.12.0/lib/graphics/graphics.cma: loaded
+```ocamltop
+type colour = Red | Blue | Green | Yellow;;
+let l = [Red; Blue; Red];;
 ```
 
-A couple of examples should make this clear. (The two examples draw
-different things - try them out). Note the first example calls
-`open_graph` and the second one `Graphics.open_graph`.
+Each "type constructor" can optionally carry data along with it:
 
-```ocaml
-open Graphics
-
-open_graph " 640x480"
-
-for i = 12 downto 1 do
-  let radius = i * 20 in
-    set_color (if i mod 2 = 0 then red else yellow);
-    fill_circle 320 240 radius
-done;;
-
-read_line ()
+```ocamltop
+type colour =
+  | Red
+  | Blue
+  | Green
+  | Yellow
+  | RGB of int * int * int;;
+let l = [Red; Blue; RGB (30, 255, 154)];;
 ```
 
-```ocaml
-Random.self_init ()
+Data types may be polymorphic and recurive too. Here is an OCaml data type for a binary tree
+carrying any kind of data:
 
-Graphics.open_graph " 640x480"
-
-let rec iterate r x_init i =
-  if i = 1 then x_init else
-    let x = iterate r x_init (i - 1) in
-      r *. x *. (1.0 -. x)
-
-for x = 0 to 639 do
-  let r = 4.0 *. (float_of_int x) /. 640.0 in
-  for i = 0 to 39 do
-    let x_init = Random.float 1.0 in
-    let x_final = iterate r x_init 500 in
-    let y = int_of_float (x_final *. 480.) in
-      Graphics.plot x y
-  done
-done
-
-read_line ()
+```ocamltop
+type 'a tree = Lf | Br of 'a tree * 'a * 'a tree;;
+let t = Br (Br (Lf, 1, Lf), 2, Br (Br (Lf, 3, Lf), 4, Lf));;
 ```
-Both of these examples make use of some features we haven't talked about
-yet: imperative-style for-loops, if-then-else and recursion. We'll talk
-about those later. Nevertheless you should look at these programs and
-try and find out (1) how they work, and (2) how type inference is
-helping you to eliminate bugs.
 
-(* USING THE STANDARD LIBRARY EXAMPLES *)
+Now we can write recursive and polymorphic functions over these trees, by
+pattern matching on our new constructors:
 
-### The `Stdlib` module
-There's one module that you never need to "`open`". That is the
-`Stdlib` module. All of the symbols from the `Stdlib` module are automatically
-imported into every OCaml program.
+```ocamltop
+let rec total t =
+  match t with
+  | Lf -> 0
+  | Br (l, x, r) -> total l + x + total r;;
 
-### Renaming modules
-What happens if you want to use symbols in the `Graphics` module, but
-you don't want to import all of them and you can't be bothered to type
-`Graphics` each time? Just rename it like this:
-
-```ocaml
-module Gr = Graphics
-
-Gr.open_graph " 640x480"
-
-Gr.fill_circle 320 240 240
-
-read_line ()
+let rec flip t =
+  match t with
+  | Lf -> Lf
+  | Br (l, x, r) -> Br (flip r, x, flip l);;
 ```
-Actually this is really useful when you want to import a nested module
-(modules can be nested inside one another), but you don't want to type
-out the full path to the nested module name each time.
+
+Let's try our new functions out:
+
+```ocamltop
+let all = total t;;
+
+let flipped = flip t;;
+
+t = flip flipped;;
+```
+
+## Dealing with errors
 
 ## Imperative OCaml
 What happens if you want a real variable that you can assign to and
@@ -453,10 +513,9 @@ Here's how we create a reference to an `int` in OCaml:
 ```ocamltop
 ref 0;;
 ```
-Actually that statement wasn't really very useful. We created the
-reference and then, because we didn't name it, the garbage collector
-came along and collected it immediately afterwards! (actually, it was
-probably thrown away at compile-time.) Let's name the reference:
+Actually that statement wasn't really very useful. We created the reference and
+then, because we didn't name it, we could not access it. Let's name the
+reference:
 
 ```ocamltop
 let my_ref = ref 0;;
@@ -473,28 +532,11 @@ And let's find out what the reference contains now:
 !my_ref;;
 ```
 So the `:=` operator is used to assign to references, and the `!`
-operator dereferences to get out the contents. Here's a rough-and-ready
-comparison with C/C++:
+operator dereferences to get out the contents.
 
-OCaml
-```ocamltop
-let my_ref = ref 0;;
-my_ref := 100;;
-!my_ref
-```
-
-C/C++
-```C
-int a = 0; int *my_ptr = &a;
-*my_ptr = 100;
-*my_ptr;
-```
-References have their place, but you may find that you don't use
-references very often. Much more often you'll be using
-`let name = expression in` to name local expressions in your function
-definitions.
-
-### One thing after another
+References have their place, but you may find that you don't use references
+very often. Much more often you'll be using `let name = expression in` to name
+local expressions in your function definitions.
 
 The semi-colon `;` is an operator, just like `+` is. Well, not quite just like
 `+` is, but conceptually the same. The operator `+` has type `int -> int -> int` —
@@ -539,14 +581,11 @@ function, to sum a list of ints, like:
 let sum_list = List.fold_left ( + ) 0;;
 ```
 
-(* COMPILING OCAML LAST QUARTER GOES HERE *)
-
 ## Compiling OCaml programs
 
 This is a reference to the standard **filenames** and extensions used by
 various parts of the OCaml build system.
 
-### Source and object files
 The basic source, object and binary files, with comparisons to C
 programming:
 
@@ -624,3 +663,88 @@ To produce them, just compile the `.mli` file:
 ```
 ocamlc -c foo.mli
 ```
+
+## The Standard Library
+(* USING THE STANDARD LIBRARY EXAMPLES *)
+
+There's one module that you never need to "`open`". That is the
+`Stdlib` module. All of the symbols from the `Stdlib` module are automatically
+imported into every OCaml program.
+
+(* insert examples here *)
+
+## A module from OPAM
+OCaml comes with lots of fun and interesting modules (libraries of
+useful code). For example there are standard libraries for drawing
+graphics, interfacing with GUI widget sets, handling large numbers, data
+structures, and making POSIX system calls.
+
+For these examples we're going to use module called `Graphics` which can be
+installed with `opam install graphics` and the `ocamlfind` program installed
+with `opam install ocamlfind`.
+
+If we want to use the functions in `Graphics` there are two ways we can
+do it. Either at the start of our program we have the `open Graphics;;`
+declaration. Or we prefix all calls to the functions like this:
+`Graphics.open_graph`. `open` is a little bit like Java's `import`
+statement.
+
+To use `Graphics` in the top leve, you must first load the library with
+
+```ocaml
+# #use "topfind";;
+- : unit = ()
+Findlib has been successfully loaded. Additional directives:
+  #require "package";;      to load a package
+
+- : unit = ()
+# #require "graphics";;
+/Users/me/.opam/4.12.0/lib/graphics: added to search path
+/Users/me/.opam/4.12.0/lib/graphics/graphics.cma: loaded
+```
+
+A couple of examples should make this clear. (The two examples draw
+different things - try them out). Note the first example calls
+`open_graph` and the second one `Graphics.open_graph`.
+
+```ocaml
+open Graphics
+
+open_graph " 640x480"
+
+for i = 12 downto 1 do
+  let radius = i * 20 in
+    set_color (if i mod 2 = 0 then red else yellow);
+    fill_circle 320 240 radius
+done;;
+
+read_line ()
+```
+
+```ocaml
+Random.self_init ()
+
+Graphics.open_graph " 640x480"
+
+let rec iterate r x_init i =
+  if i = 1 then x_init else
+    let x = iterate r x_init (i - 1) in
+      r *. x *. (1.0 -. x)
+
+for x = 0 to 639 do
+  let r = 4.0 *. (float_of_int x) /. 640.0 in
+  for i = 0 to 39 do
+    let x_init = Random.float 1.0 in
+    let x_final = iterate r x_init 500 in
+    let y = int_of_float (x_final *. 480.) in
+      Graphics.plot x y
+  done
+done
+
+read_line ()
+```
+Both of these examples make use of some features we haven't talked about
+yet: imperative-style for-loops, if-then-else and recursion. We'll talk
+about those later. Nevertheless you should look at these programs and
+try and find out (1) how they work, and (2) how type inference is
+helping you to eliminate bugs.
