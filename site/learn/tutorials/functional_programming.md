@@ -33,7 +33,7 @@ example:
 
 ```ocamltop
 let double x = x * 2 in
-List.map double [ 1; 2; 3 ]
+  List.map double [1; 2; 3];;
 ```
 In this example, I've first defined a nested function called `double`
 which takes an argument `x` and returns `x * 2`. Then `map` calls
@@ -42,15 +42,8 @@ result: a list with each number doubled.
 
 `map` is known as a **higher-order function** (HOF). Higher-order
 functions are just a fancy way of saying that the function takes a
-function as one of its arguments.
-
-So far so simple. If you're familiar with C/C++ then this looks like
-passing a function pointer around. Java has some sort of abomination
-called an anonymous class which is like a dumbed-down, slow and
-long-winded closure. If you know Perl then you probably already know and
-use Perl's closures and Perl's `map` function, which is exactly what
-we're talking about. The fact is that Perl is actually quite a good
-functional language.
+function as one of its arguments. So far so simple. If you're familiar
+with C/C++ then this looks like passing a function pointer around.
 
 **Closures** are functions which carry around some of the "environment"
 in which they were defined. In particular, a closure can reference
@@ -60,9 +53,8 @@ integers and multiply each element by an arbitrary value `n`:
 
 ```ocamltop
 let multiply n list =
-  let f x =
-    n * x in
-  List.map f list
+  let f x = n * x in
+    List.map f list;;
 ```
 Hence:
 
@@ -79,7 +71,7 @@ function and hence available within this function.
 This might sound straightforward, but let's look a bit closer at that
 call to map: `List.map f list`.
 
-` map` is defined in the `List` module, far away from the current code.
+`map` is defined in the `List` module, far away from the current code.
 In other words, we're passing `f` into a module defined "a long time
 ago, in a galaxy far far away". For all we know that code might pass `f`
 to other modules, or save a reference to `f` somewhere and call it
@@ -97,8 +89,9 @@ class html_skel obj = object (self)
   method save_to_channel chan =
     let receiver_fn content =
       output_string chan content;
-      true in
-    save obj receiver_fn
+      true
+    in
+      save obj receiver_fn
   ...
 end
 ```
@@ -190,9 +183,8 @@ Remember our `double` and `multiply` functions from earlier on?
 
 ```ocamltop
 let multiply n list =
-  let f x =
-    n * x in
-  List.map f list
+  let f x = n * x in
+    List.map f list
 ```
 We can now define `double`, `triple` &amp;c functions very easily just like
 this:
@@ -326,7 +318,7 @@ lazy expressions. Here's an example. First we create a lazy expression
 for `1/0`:
 
 ```ocamltop
-let lazy_expr = lazy (1/0)
+let lazy_expr = lazy (1 / 0);;
 ```
 Notice the type of this lazy expression is `int lazy_t`.
 
@@ -334,12 +326,12 @@ Because `give_me_a_three` takes `'a` (any type) we can pass this lazy
 expression into the function:
 
 ```ocamltop
-give_me_a_three lazy_expr
+give_me_a_three lazy_expr;;
 ```
 To evaluate a lazy expression, you must use the `Lazy.force` function:
 
 ```ocamltop
-Lazy.force lazy_expr
+Lazy.force lazy_expr;;
 ```
 
 ##  Boxed vs. unboxed types
@@ -392,4 +384,50 @@ types of arrays above. In Java, you have two types, `int` which is
 unboxed and `Integer` which is boxed, and hence considerably less
 efficient. In OCaml, the basic types are all unboxed.
 
+## Aliases for function names and arguments
+It's possible to use this as a neat trick to save typing: aliasing function
+names, and function arguments.
 
+Although we haven't looked at object-oriented programming (that's the
+subject for the ["Objects" section](objects.html)),
+here's an example from OCamlNet of an
+aliased function call. All you need to know is that
+`cgi # output # output_string "string"` is a method call, similar to
+`cgi.output().output_string ("string")` in Java.
+
+```ocaml
+let begin_page cgi title =
+  let out = cgi # output # output_string in
+  out "<html>\n";
+  out "<head>\n";
+  out ("<title>" ^ text title ^ "</title>\n");
+  out ("<style type=\"text/css\">\n");
+  out "body { background: white; color: black; }\n";
+  out "</style>\n";
+  out "</head>\n";
+  out "<body>\n";
+  out ("<h1>" ^ text title ^ "</h1>\n")
+```
+The `let out = ... ` is a partial function application for that method
+call (partial, because the string parameter hasn't been applied). `out`
+is therefore a function, which takes a string parameter.
+
+```ocaml
+out "<html>\n";
+```
+is equivalent to:
+
+```ocaml
+cgi # output # output_string "<html>\n";
+```
+We saved ourselves a lot of typing there.
+
+We can also add arguments. This alternative definition of `print_string`
+can be thought of as a kind of alias for a function name plus arguments:
+
+```ocaml
+let print_string = output_string stdout
+```
+`output_string` takes two arguments (a channel and a string), but since
+we have only supplied one, it is partially applied. So `print_string` is
+a function, expecting one string argument.
