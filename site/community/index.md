@@ -74,7 +74,7 @@
             <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html#GivingSupport">Find out more</a>.</p>
             <p>Suggestions or bug reports about the OCaml language
             itself can be posted to <a
-            href="https://github.com/ocaml/ocaml/issues">Gihub issues</a>.</p>
+            href="https://github.com/ocaml/ocaml/issues">Github issues</a>.</p>
         </section>
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/">Meetings</a></h1>
