@@ -86,7 +86,7 @@ or:
 ```ocamltop
 let x = ref (None : string option)
 ```
-Data of type `'_a` may be allowed temporarily, for instance during a
+Data of type `'_weak<n>` may be allowed temporarily, for instance during a
 toplevel session. It means that the given object has an unknown type,
 but it cannot be any type: it is not polymorphic data. In the toplevel,
 our example gives these results:
@@ -105,8 +105,6 @@ Now `x` has a known type:
 ```ocamltop
 x;;
 ```
-More details are given in the [OCaml
-FAQ](http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles "http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html#variables_de_types_faibles").
 
 ## Pattern matching warnings and errors
 ###  This pattern is unused

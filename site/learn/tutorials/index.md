@@ -34,7 +34,7 @@ there to request or offer new tutorials.
 
 ### Data Structures
 
-* [Maps (Dictionaries)](map.html)
+* [Maps](map.html)
 * [Sets](set.html)
 * [Hash Tables](hashtbl.html)
 * [Comparison of Standard
@@ -53,7 +53,7 @@ there to request or offer new tutorials.
 * [99 Problems (solved) in OCaml](99problems.html)
 * [Introduction to Gtk](introduction_to_gtk.html)
 * [Command-Line Arguments](command-line_arguments.html)
-* [File manipulation](file_manipulation.html)
+* [File Manipulation](file_manipulation.html)
 
 ### Interoperability
 
