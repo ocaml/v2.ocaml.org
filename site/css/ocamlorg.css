@@ -301,6 +301,16 @@ html.svg a.edit-this-page:hover {
   display: flex;
   justify-content: flex-end;
 }
+dl{
+  padding: 1em;
+  background: #eee;
+}
+dl a{
+color: #a20505;
+}
+dl h2{
+font-weight: bold;
+}
 /* When the navigation bar has reduced size */
 @media (max-height: 600px) and (min-width: 980px) {
   a.edit-this-page {
