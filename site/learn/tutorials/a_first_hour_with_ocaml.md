@@ -256,7 +256,10 @@ type for your function.
  operators) can't have overloaded definitions.
 
 ## Pattern matching
-Instead of using one or more `if` ... `then` ... `else` to make choices in OCaml programs, we can use the `match` keyword to match on multiple possible values. Consider the factorial function:
+
+Instead of using one or more `if` ... `then` ... `else` to make choices in
+OCaml programs, we can use the `match` keyword to match on multiple possible
+values. Consider the factorial function:
 
 ```ocamltop
 let rec factorial x =
@@ -281,7 +284,8 @@ let rec factorial x =
   | _ -> x * factorial (x - 1);;
 ```
 
-In fact, we may simplify further with the `function` keyword which introduces pattern-matching directly:
+In fact, we may simplify further with the `function` keyword which introduces
+pattern-matching directly:
 
 ```ocamltop
 let rec factorial = function
@@ -289,7 +293,8 @@ let rec factorial = function
   | x -> x * factorial (x - 1);;
 ```
 
-We will use pattern matching more extensively as we introduce more complicated data structures.
+We will use pattern matching more extensively as we introduce more complicated
+data structures.
 
 ## Lists
 
@@ -390,7 +395,8 @@ we will only use in one place in the program).
 
 ### Other built-in types
 
-Other than lists, we have tuples, which are fixed length collections of elements of any type:
+Other than lists, we have tuples, which are fixed length collections of
+elements of any type:
 
 ```ocamltop
 let t = (1, "one", '1')
@@ -467,8 +473,8 @@ type colour =
 let l = [Red; Blue; RGB (30, 255, 154)];;
 ```
 
-Data types may be polymorphic and recurive too. Here is an OCaml data type for a binary tree
-carrying any kind of data:
+Data types may be polymorphic and recurive too. Here is an OCaml data type for
+a binary tree carrying any kind of data:
 
 ```ocamltop
 type 'a tree = Lf | Br of 'a tree * 'a * 'a tree;;
@@ -503,93 +509,102 @@ t = flip flipped;;
 ## Dealing with errors
 
 ## Imperative OCaml
-What happens if you want a real variable that you can assign to and
-change throughout your program? You need to use a **reference**.
-References are very similar to pointers in C/C++. In Java, all variables
-which store objects are really references (pointers) to the objects.
 
-Here's how we create a reference to an `int` in OCaml:
+OCaml is not just a functional language: it supports imperative programming
+too. OCaml programmers tend to use imperative features sparingly, but almost
+all OCaml programmers use them sometimes. What happens if you want a variable
+that you can assign to and change throughout your program? You need to use a
+*reference*.
+
+Here's how we create a reference to an integer in OCaml:
 
 ```ocamltop
 ref 0;;
 ```
-Actually that statement wasn't really very useful. We created the reference and
-then, because we didn't name it, we could not access it. Let's name the
-reference:
+Actually that wasn't really useful. We created the reference and then, because
+we didn't name it, we could not access it. Let's name the reference:
 
 ```ocamltop
-let my_ref = ref 0;;
+let r = ref 0;;
 ```
-This reference is currently storing a zero integer. Let's put something
+This reference is currently storing the integer zero. Let's put something
 else into it (assignment):
 
 ```ocamltop
-my_ref := 100;;
+r := 100;;
 ```
 And let's find out what the reference contains now:
 
 ```ocamltop
-!my_ref;;
+!r;;
 ```
 So the `:=` operator is used to assign to references, and the `!`
-operator dereferences to get out the contents.
+operator dereferences to get the contents.
 
 References have their place, but you may find that you don't use references
 very often. Much more often you'll be using `let name = expression in` to name
 local expressions in your function definitions.
 
-The semi-colon `;` is an operator, just like `+` is. Well, not quite just like
-`+` is, but conceptually the same. The operator `+` has type `int -> int -> int` —
-it takes two ints and returns an int (the sum). The semi-colon `;` may
-be seen as having type
-`unit -> 'b -> 'b` — it takes two values and simply returns the second
-one, the first expression is guaranteed to be evaluated before the
-second.  Rather like C's `,` (comma) operator. You can write
-`a; b; c; d` just as easily as you can write `a + b + c + d`.
-
-This is one of those "mental leaps" which is never spelled out very
-well — in OCaml, nearly everything is an expression. `if/then/else` is
-an expression. `a; b` is an expression. `match foo with ...` is an
-expression. The following code is perfectly legal (and all do the same
-thing):
-
- ```ocamltop
- let f x b y = if b then x + y else x + 0
- let f x b y = x + (if b then y else 0)
- let f x b y = x + (match b with true -> y | false -> 0)
- let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
- let f = fun x -> fun b -> fun y -> if b then x + y else x + 0
- let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
-```
-
-Note especially the last one — I'm using `;` as an operator to "join"
-two statements. All functions in OCaml can be expressed as:
-
-```ocaml
- let name [parameters] = expression
-```
-OCaml's definition of what is an expression is just a little wider
-than C's. In fact, C has the concept of "statements" — but all of C's
-statements are just expressions in OCaml of type `unit` (combined with the `;`
-operator).
-
-The one place that `;` is different from `+` is that I can refer to
-`+` just like a function. For instance, I can define a `sum_list`
-function, to sum a list of ints, like:
+We can combine multiple imperative operations with `;`. For example, here is a
+function to swap the contents of two references of like type:
 
 ```ocamltop
-let sum_list = List.fold_left ( + ) 0;;
+let swap a b =
+  let t = !a in
+    a := !b;
+    b := t;;
+```
+
+Notice the function return type is `unit`. There is exactly one thing of type
+unit, and it is written `()`. We use unit to call a function which needs no
+other argument, and is only used for its imperative side effect. For example:
+
+```ocamltop
+let print_number n =
+  print_string (string_of_int n);
+  print_newline ();;
+```
+
+We can look at the type of `print_newline` itself:
+
+```ocamltop
+print_newline;;
+```
+
+The usual imperative looping constructs are available. Here is a `for` loop:
+
+```ocamltop
+let table n =
+  for row = 1 to n do
+    for column = 1 to n do
+      print_string (string_of_int (row * column));
+      print_string " "
+    done;
+    print_newline ()
+  done;;
+
+let () = table 10;;
+```
+
+And here is a `while` loop, used to write a function to calculate the power of
+two larger or equal to a given number:
+
+```ocamltop
+let smallest_power_of_two x =
+  let t = ref 1 in
+    while !t < x do
+      t := !t * 2
+    done;
+    !t;;
 ```
 
 ## Compiling OCaml programs
 
-This is a reference to the standard **filenames** and extensions used by
+This is a reference to the standard file names and extensions used by
 various parts of the OCaml build system.
 
 The basic source, object and binary files, with comparisons to C
 programming:
-
-
 
 <table>
 <thead>
@@ -703,9 +718,10 @@ Findlib has been successfully loaded. Additional directives:
 /Users/me/.opam/4.12.0/lib/graphics/graphics.cma: loaded
 ```
 
-A couple of examples should make this clear. (The two examples draw
-different things - try them out). Note the first example calls
-`open_graph` and the second one `Graphics.open_graph`.
+A couple of examples should make this clear. (The two examples draw different
+things - try them out). Note the first example uses `open` then calls
+`open_graph` and the second one uses `Graphics.open_graph` directly.
+
 
 ```ocaml
 open Graphics
@@ -716,7 +732,7 @@ for i = 12 downto 1 do
   let radius = i * 20 in
     set_color (if i mod 2 = 0 then red else yellow);
     fill_circle 320 240 radius
-done;;
+done
 
 read_line ()
 ```
@@ -743,8 +759,3 @@ done
 
 read_line ()
 ```
-Both of these examples make use of some features we haven't talked about
-yet: imperative-style for-loops, if-then-else and recursion. We'll talk
-about those later. Nevertheless you should look at these programs and
-try and find out (1) how they work, and (2) how type inference is
-helping you to eliminate bugs.
