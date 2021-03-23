@@ -13,21 +13,18 @@
         d'<a href="../learn/companies.html">utilisateurs industriels</a>
         engagés qui contribuent régulièrement à la communauté.</p>
         </section>
-        <div class = "stickers">
-            <div class="span2">
-                <img src="/img/colour-transparent-icon.svg" alt="OCaml"
-                class="svg" />
-                <img src="/img/colour-icon-170x148.png" alt="OCaml" class="png" />
-                <p><a href="/docs/logos.html">Plus de logos</a></p>
-            </div>
-            <div class="span2">
-                <img src="/img/OCaml_Sticker.svg" alt="OCaml Sticker"
-                class="svg" />
-                <p><a href="/docs/logos.html#Stickers"
-                >Faites vos autocollants!</a></p>
-            </div>
+        <div class="stickers">
+          <div class="span2">
+              <img src="/img/colour-transparent-icon.svg" alt="OCaml" class="svg" />
+              <img src="/img/colour-icon-170x148.png" alt="OCaml" class="png" />
+              <p><a href="/docs/logos.html">More logos</a></p>
+          </div>
+          <div class="span2">
+              <img src="/img/OCaml_Sticker.svg" alt="OCaml Sticker" class="svg" />
+              <p><a href="/docs/logos.html#Stickers">Make/order stickers!</a></p>
+          </div>
         </div>
-    </div>
+      </div>
     <div class="row">
         <section class="span12 condensed">
             <h1 class="ruled"><a href="mailing_lists.fr.html">Listes de discussion</a></h1>

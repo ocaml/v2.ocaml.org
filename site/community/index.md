@@ -10,7 +10,7 @@
         <section id="community-leader" class="span6">
             <p>OCaml has a diverse, worldwide community and one of the main benefits is the ability to easily reach each other.  <a href="mailing_lists.html">Mailing lists and web forums</a> are the most common way people interact although you will always find users on IRC, around the web and at any of the <a href="/meetings/">meetings</a>.  OCaml also has a committed group of <a href="../learn/companies.html">industrial users</a> who regularly contribute to the community.</p>
         </section>
-        <div class = "stickers">
+        <div class="stickers">
           <div class="span2">
               <img src="/img/colour-transparent-icon.svg" alt="OCaml" class="svg" />
               <img src="/img/colour-icon-170x148.png" alt="OCaml" class="png" />
