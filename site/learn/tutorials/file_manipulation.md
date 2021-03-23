@@ -3,21 +3,14 @@
 *Table of contents*
 
 # File manipulation
-This is a guide to basic file manipulation in OCaml using only what the
-standard library provides.
+This is a guide to basic file manipulation in OCaml using only the
+standard library.
 
 Official documentation for the modules of interest:
 the [core library](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/core.html)
 including the initially opened module
-[Pervasives](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/libref/Stdlib.html),
+[Stdlib](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/libref/Stdlib.html),
 [Printf](/releases/{{! get LATEST_OCAML_VERSION_MAIN !}}/htmlman/libref/Printf.html).
-
-The standard library doesn't provide functions that directly read a file
-into a string or save a string into a file. Such functions can be found
-in third-party libraries such as
-[Extlib](https://github.com/ygrek/ocaml-extlib).
-See [Std.input_file and
-Std.output_file](http://ygrek.org.ua/p/extlib/doc/Std.html).
 
 ## Buffered channels
 The normal way of opening a file in OCaml returns a **channel**. There
@@ -30,7 +23,7 @@ are two kinds of channels:
 For writing into a file, you would do this:
 
 1. Open the file to obtain an `out_channel`
-1. Write stuff to the channel
+1. Write to the channel
 1. If you want to force writing to the physical device, you must flush
  the channel, otherwise writing will not take place immediately.
 1. When you are done, you can close the channel. This flushes the
@@ -79,37 +72,34 @@ channels that point to regular files, use `seek_in` or `seek_out`.
  `stdout` and `stderr`. Therefore if you do `open Unix`, you may get
  type errors. If you want to be sure that you are using the `stdout`
  channel and not the `stdout` file descriptor, you can prepend it
- with the module name where it comes from: `Pervasives.stdout`. *Note
+ with the module name where it comes from: `Stdlib.stdout`. *Note
  that most things that don't seem to belong to any module actually
- belong to the `Pervasives` module, which is automatically opened.*
+ belong to the `Stdlib` module, which is automatically opened.*
 * `open_out` and `open_out_bin` truncate the given file if it already
  exists! Use `open_out_gen` if you want an alternate behavior.
 
 ###  Example
 ```ocaml
-open Printf
-  
 let file = "example.dat"
 let message = "Hello!"
   
 let () =
   (* Write message to file *)
-  let oc = open_out file in    (* create or truncate file, return channel *)
-  fprintf oc "%s\n" message;   (* write something *)   
-  close_out oc;                (* flush and close the channel *)
+  let oc = open_out file in (* create or truncate file, return channel *)
+    Printf.fprintf oc "%s\n" message; (* write something *)   
+    close_out oc;                     (* flush and close the channel *)
   
   (* Read file and display the first line *)
   let ic = open_in file in
-  try 
-    let line = input_line ic in  (* read line from in_channel and discard \n *)
-    print_endline line;          (* write the result to stdout *)
-    flush stdout;                (* write on the underlying device now *)
-    close_in ic                  (* close the input channel *) 
-  
-  with e ->                      (* some unexpected exception occurs *)
-    close_in_noerr ic;           (* emergency closing *)
-    raise e                      (* exit with error: files are closed but
-                                    channels are not flushed *)
+    try 
+      let line = input_line ic in (* read line, discard \n *)
+        print_endline line;       (* write the result to stdout *)
+        flush stdout;             (* write on the underlying device now *)
+        close_in ic               (* close the input channel *) 
+    with e ->                     (* some unexpected exception occurs *)
+      close_in_noerr ic;          (* emergency closing *)
+      raise e                     (* exit with error: files are closed but
+                                     channels are not flushed *)
   
   (* normal exit: all channels are flushed and closed *)
 ```

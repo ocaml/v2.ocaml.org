@@ -6,7 +6,7 @@
 
 Now we're going to take some time out to take a high-level look at some
 real OCaml programs. I want to teach you about local and global
-definitions, when to use `;;` vs. `;`, modules, nested functions, and
+definitions, modules, nested functions, and
 references. For this we're going to look at a lot of OCaml concepts
 which won't yet make sense because we haven't seen them before. Don't
 worry about the details for the moment. Concentrate instead on the
@@ -28,13 +28,11 @@ Now let's do the same to our OCaml version:
 ```ocamltop
 let average a b =
   let sum = a +. b in
-  sum /. 2.0;;
+    sum /. 2.0;;
 ```
 The standard phrase `let name = expression in` is used to define a named
 local expression, and `name` can then be used later on in the function
-instead of `expression`, till a `;;` which ends the block of code.
-Notice that we don't indent after the `in`. Just think of `let ... in`
-as if it were a statement.
+instead of `expression`.
 
 Now comparing C local variables and these named local expressions is a
 sleight of hand. In fact they are somewhat different. The C variable
@@ -46,18 +44,18 @@ assign to `sum` or change its value in any way. (We'll see how you can
 do variables whose value changes in a minute).
 
 Here's another example to make this clearer. The following two code
-snippets should return the same value (namely (a+b) +
-(a+b)²):
+snippets should return the same value (namely (a + b) +
+(a + b)²):
 
 ```ocamltop
 let f a b =
-  (a +. b) +. (a +. b) ** 2.
-  ;;
+  (a +. b) +. (a +. b) ** 2.;;
+```
 
+```ocamltop
 let f a b =
   let x = a +. b in
-  x +. x ** 2.
-  ;;
+  x +. x ** 2.;;
 ```
 
 The second version might be faster (but most compilers ought to be able
@@ -74,18 +72,15 @@ just shorthand names for things. Here's a real (but cut-down) example:
 let html =
   let content = read_whole_file file in
   GHtml.html_from_string content
-  ;;
 
 let menu_bold () =
   match bold_button#active with
   | true -> html#set_font_style ~enable:[`BOLD] ()
   | false -> html#set_font_style ~disable:[`BOLD] ()
-  ;;
 
 let main () =
   (* code omitted *)
   factory#add_item "Cut" ~key:_X ~callback: html#cut
-  ;;
 ```
 
 In this real piece of code, `html` is an HTML editing widget (an object
@@ -108,8 +103,7 @@ function, is often called a **let-binding**.
 What happens if you want a real variable that you can assign to and
 change throughout your program? You need to use a **reference**.
 References are very similar to pointers in C/C++. In Java, all variables
-which store objects are really references (pointers) to the objects. In
-Perl, references are references - the same thing as in OCaml.
+which store objects are really references (pointers) to the objects.
 
 Here's how we create a reference to an `int` in OCaml:
 
@@ -122,18 +116,18 @@ came along and collected it immediately afterwards! (actually, it was
 probably thrown away at compile-time.) Let's name the reference:
 
 ```ocamltop
-let my_ref = ref 0
+let my_ref = ref 0;;
 ```
 This reference is currently storing a zero integer. Let's put something
 else into it (assignment):
 
 ```ocamltop
-my_ref := 100
+my_ref := 100;;
 ```
 And let's find out what the reference contains now:
 
 ```ocamltop
-!my_ref
+!my_ref;;
 ```
 So the `:=` operator is used to assign to references, and the `!`
 operator dereferences to get out the contents. Here's a rough-and-ready
@@ -202,14 +196,14 @@ let read_whole_channel chan =
   let buf = Buffer.create 4096 in
   let rec loop () =
     let newline = input_line chan in
-    Buffer.add_string buf newline;
-    Buffer.add_char buf '\n';
-    loop ()
+      Buffer.add_string buf newline;
+      Buffer.add_char buf '\n';
+      loop ()
   in
-  try
-    loop ()
-  with
-    End_of_file -> Buffer.contents buf;;
+    try
+      loop ()
+    with
+      End_of_file -> Buffer.contents buf;;
 ```
 Don't worry about what this code does - it contains many concepts which
 haven't been discussed in this tutorial yet. Concentrate instead on the
@@ -231,70 +225,61 @@ OCaml comes with lots of fun and interesting modules (libraries of
 useful code). For example there are standard libraries for drawing
 graphics, interfacing with GUI widget sets, handling large numbers, data
 structures, and making POSIX system calls. These libraries are located
-in `/usr/lib/ocaml/` (on Unix anyway). For these examples we're
-going to concentrate on one quite simple module called `Graphics`.
+in `/usr/lib/ocaml/` (on Unix anyway).
 
-The `Graphics` module is installed into 7 files (on my system):
-
-```
-/usr/lib/ocaml/graphics.a
-/usr/lib/ocaml/graphics.cma
-/usr/lib/ocaml/graphics.cmi
-/usr/lib/ocaml/graphics.cmx
-/usr/lib/ocaml/graphics.cmxa
-/usr/lib/ocaml/graphics.cmxs
-/usr/lib/ocaml/graphics.mli
-```
-For the moment let's just concentrate on the file `graphics.mli`. This
-is a text file, so you can read it now. Notice first of all that the
-name is `graphics.mli` and not `Graphics.mli`. OCaml always capitalizes
-the first letter of the file name to get the module name. This can be
-very confusing until you know about it!
+For these examples we're going to use module called `Graphics` which can be
+installed with `opam install graphics` and the `ocamlfind` program installed
+with `opam install ocamlfind`.
 
 If we want to use the functions in `Graphics` there are two ways we can
 do it. Either at the start of our program we have the `open Graphics;;`
 declaration. Or we prefix all calls to the functions like this:
 `Graphics.open_graph`. `open` is a little bit like Java's `import`
-statement, and much more like Perl's `use` statement.
+statement.
 
 To use `Graphics` in the [interactive toplevel](basics.html), you must
 first load the
 library with
 
 ```ocaml
-#require "graphics";;
+# #use "topfind";;
+- : unit = ()
+Findlib has been successfully loaded. Additional directives:
+  #require "package";;      to load a package
+
+- : unit = ()
+# #require "graphics";;
+/Users/me/.opam/4.12.0/lib/graphics: added to search path
+/Users/me/.opam/4.12.0/lib/graphics/graphics.cma: loaded
 ```
-Windows users: For this example to work interactively on Windows, you
-will need to create a custom toplevel. Issue the command `ocamlmktop
--o ocaml-graphics graphics.cma` from the command line.
-<!-- FIXME: is this last remark still true? -->
 
 A couple of examples should make this clear. (The two examples draw
 different things - try them out). Note the first example calls
 `open_graph` and the second one `Graphics.open_graph`.
 
 ```ocaml
-(* To compile this example: ocamlc graphics.cma grtest1.ml -o grtest1 *)
-open Graphics;;
+open Graphics
 
-open_graph " 640x480";;
+open_graph " 640x480"
+
 for i = 12 downto 1 do
   let radius = i * 20 in
-  set_color (if i mod 2 = 0 then red else yellow);
-  fill_circle 320 240 radius
+    set_color (if i mod 2 = 0 then red else yellow);
+    fill_circle 320 240 radius
 done;;
-read_line ();;
 
-(* To compile this example: ocamlc graphics.cma grtest2.ml -o grtest2 *)
+read_line ()
+```
 
-Random.self_init ();;
-Graphics.open_graph " 640x480";;
+```ocaml
+Random.self_init ()
+
+Graphics.open_graph " 640x480"
 
 let rec iterate r x_init i =
-  if i = 1 then x_init
-  else
-    let x = iterate r x_init (i-1) in
-    r *. x *. (1.0 -. x);;
+  if i = 1 then x_init else
+    let x = iterate r x_init (i - 1) in
+      r *. x *. (1.0 -. x)
 
 for x = 0 to 639 do
   let r = 4.0 *. (float_of_int x) /. 640.0 in
@@ -302,11 +287,11 @@ for x = 0 to 639 do
     let x_init = Random.float 1.0 in
     let x_final = iterate r x_init 500 in
     let y = int_of_float (x_final *. 480.) in
-    Graphics.plot x y
+      Graphics.plot x y
   done
-done;;
+done
 
-read_line ();;
+read_line ()
 ```
 Both of these examples make use of some features we haven't talked about
 yet: imperative-style for-loops, if-then-else and recursion. We'll talk
@@ -314,23 +299,24 @@ about those later. Nevertheless you should look at these programs and
 try and find out (1) how they work, and (2) how type inference is
 helping you to eliminate bugs.
 
-## The `Pervasives` module
+## The `Stdlib` module
 There's one module that you never need to "`open`". That is the
-`Pervasives` module (go and read `/usr/lib/ocaml/pervasives.mli`
-now). All of the symbols from the `Pervasives` module are automatically
+`Stdlib` module. All of the symbols from the `Stdlib` module are automatically
 imported into every OCaml program.
 
 ## Renaming modules
 What happens if you want to use symbols in the `Graphics` module, but
 you don't want to import all of them and you can't be bothered to type
-`Graphics` each time? Just rename it using this trick:
+`Graphics` each time? Just rename it like this:
 
 ```ocaml
-module Gr = Graphics;;
+module Gr = Graphics
 
-Gr.open_graph " 640x480";;
-Gr.fill_circle 320 240 240;;
-read_line ();;
+Gr.open_graph " 640x480"
+
+Gr.fill_circle 320 240 240
+
+read_line ()
 ```
 Actually this is really useful when you want to import a nested module
 (modules can be nested inside one another), but you don't want to type
@@ -354,11 +340,11 @@ expression. The following code is perfectly legal (and all do the same
 thing):
 
  ```ocamltop
- let f x b y = if b then x+y else x+0
+ let f x b y = if b then x + y else x + 0
  let f x b y = x + (if b then y else 0)
  let f x b y = x + (match b with true -> y | false -> 0)
  let f x b y = x + (let g z = function true -> z | false -> 0 in g y b)
- let f = fun x -> fun b -> fun y -> if b then x+y else x+0
+ let f = fun x -> fun b -> fun y -> if b then x + y else x + 0
  let f x b y = x + (let _ = y + 3 in (); if b then y else 0)
 ```
 
@@ -366,7 +352,7 @@ Note especially the last one — I'm using `;` as an operator to "join"
 two statements. All functions in OCaml can be expressed as:
 
 ```ocaml
- let name [parameters] = expression ;;
+ let name [parameters] = expression
 ```
 OCaml's definition of what is an expression is just a little wider
 than C's. In fact, C has the concept of "statements" — but all of C's
@@ -378,114 +364,30 @@ The one place that `;` is different from `+` is that I can refer to
 function, to sum a list of ints, like:
 
 ```ocamltop
-let sum_list = List.fold_left ( + ) 0 ;;
+let sum_list = List.fold_left ( + ) 0;;
 ```
-
-## The disappearance of `;;`
-
-Now we're going to look at a very important issue. All examples above
-ended with a double semi-colon `;;`. However, if you look at OCaml code
-outside of tutorials, you will find whole code bases that does not
-use `;;`, not even once.
-
-The truth is that `;;` is mostly used in the toplevel and tutorials to
-mark the end of an OCaml phrase and send this phrase to the toplevel
-in order to evaluate it.
-
-Outside of the toplevel, uses of `;;` are, at best, infrequent
-and are _never required_ for well written code.
-Briefly, double semi-colon `;;` can be used for three reasons:
-
-* For compatibility with the toplevel;
-* To split the code to ease debugging;
-* To introduce a toplevel expression.
-
-Inserting `;;` can be sometimes useful for beginners when debugging,
-since it stops any running definition. For instance, in the following
-example, the definition of `f` does not stop at line 1 due to the
-comma `,` operator. Consequently, the compiler raises an error at the
-end of the second line:
-
-```ocaml
-let f x = x,
-let g = x * x
-```
-
-Inserting a double semi-colon between `f` and `g` detangles
-the definition of `f` and `g`:
-
-```ocaml
-let f x = x,
-;;
-let g = x * x
-```
-
-Another use of `;;` is to introduce a new toplevel expression after
-some definitions:
-
-```ocaml
-let b = "This started with"
-let s = "a very nonsensical message.";;
-print_endline b; print_endline s
-open String
-let s = concat "" ["Fortunately"; ", "; "the"; "end"; "is"; "near"; "."];;
-print_endline s;;
-let s = "let end here" in print_endline s
-```
-
-In particular, in the above examples, all lines starting after `;;` are
-purely effectful and deleting them will only affect the effect of the code,
-not the following definitions.
-
-However, this use of `;;` can (should) always be replaced by either
-
-```ocaml
-let () = expression ()
-```
-
-if the result of the expression is `unit`, or
-
-```ocaml
-let _ = expression ()
-```
-otherwise. Note that the first form is safer, since it requires that
-the type of the returned expression is `unit`; preventing us, for instance,
-from forgetting an argument in
-
-```ocaml
-let () =
-  print_newline
-  (* here, we forgot () and the compiler will complain. *)
-```
-
-With this convention, there are no toplevel expressions anymore: any
-module can be written as a sequence of definitions. Consequently, some
-style guidelines consider that `;;` should never be used outside of the
-toplevel (see for instance these [style guidelines](guidelines.html)).
 
 ## Putting it all together: some real code
 In this section we're going to show some real code fragments from the
 lablgtk 1.2 library. (Lablgtk is the OCaml interface to the native Unix
 Gtk widget library). A word of warning: these fragments contain a lot of
 ideas which we haven't discussed yet. Don't look at the details, look
-instead at the overall shape of the code, where the authors used `;;`,
-where they used `;` and where they used `open`, how they indented the
+instead at the overall shape of the code, where they used `open`, how they indented the
 code, how they used local and global named expressions.
 
 ... However, I'll give you some clues so you don't get totally lost!
 
 * `?foo` and `~foo` is OCaml's way of doing optional and named
  arguments to functions. There is no real parallel to this in
- C-derived languages, but Perl, Python and Smalltalk all have this
+ C-derived languages, but Python and Smalltalk all have this
  concept that you can name the arguments in a function call, omit
  some of them, and supply the others in any order you like.
 * `foo#bar` is a method invocation (calling a method called `bar` on
- an object called `foo`). It's similar to `foo->bar` or `foo.bar` or
- `$foo->bar` in C++, Java or Perl respectively.
+ an object called `foo`). It's similar to `foo->bar` or `foo.bar` in
+ C++ or Java respectively.
 
-First snippet: The programmer opens a couple of standard libraries
-(eliding the `;;` because the next keyword is `open` and `let`
-respectively). They then create a function called `file_dialog`. Inside
+First snippet: The programmer opens a couple of standard libraries.
+They then create a function called `file_dialog`. Inside
 this function they define a named expression called `sel` using a
 two-line `let sel = ... in` statement. Then they call several methods on
 `sel`.
@@ -497,10 +399,11 @@ open GMain
 
 let file_dialog ~title ~callback ?filename () =
   let sel =
-    GWindow.file_selection ~title ~modal:true ?filename () in
-  sel#cancel_button#connect#clicked ~callback:sel#destroy;
-  sel#ok_button#connect#clicked ~callback:do_ok;
-  sel#show ()
+    GWindow.file_selection ~title ~modal:true ?filename ()
+  in
+    sel#cancel_button#connect#clicked ~callback:sel#destroy;
+    sel#ok_button#connect#clicked ~callback:do_ok;
+    sel#show ()
 ```
 
 Second snippet: Just a long list of global names at the top level.

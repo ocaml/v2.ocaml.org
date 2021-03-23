@@ -12,8 +12,9 @@ majority of pointers usages that are found in usual programming
 languages simply disappear in OCaml, or more exactly, those pointers are
 totally automatically handled by the compiler. Thus, the OCaml programmer
 can safely ignore the existence of pointers, focusing on the semantics of their
-program.<br />
- For instance, lists or trees are defined without explicit pointers using
+program.
+
+For instance, lists or trees are defined without explicit pointers using
 a concrete datatype definition. The underlying implementation uses
 pointers, but this is hidden from the programmer since pointer
 handling is done by the compiler.
@@ -55,12 +56,13 @@ We can translate this in OCaml, using a sum type definition, without
 pointers:
 
 ```ocamltop
-  type list = Nil | Cons of int * list
+type list = Nil | Cons of int * list;;
 ```
 Cell lists are thus represented as pairs, and the recursive structure of
 lists is evident, with the two alternatives, empty list (the
-`Nil`constructor) and non empty list (the `Cons` constructor).<br />
- Automatic management of pointers and automatic memory allocation shine
+`Nil`constructor) and non empty list (the `Cons` constructor).
+
+Automatic management of pointers and automatic memory allocation shine
 when allocating list values: one just writes `Cons (x, l)` to add `x` in
 front of the list `l`. In C, you need to write this function, to
 allocate a new cell and then fill its fields. For instance:
@@ -104,7 +106,7 @@ can be in place modified could be written:
 
 ```ocamltop
 type list = Nil | Cons of cell
-and cell = { mutable hd : int; tl : list }
+and cell = {mutable hd : int; tl : list};;
 ```
 If the structure of the list itself must also be modified (cells must be
 physically removed from the list), the `tl` field would also be declared
@@ -119,20 +121,14 @@ write `Cons {hd = 1; tl = l}` to add `1` to the list `l`. Physical
 assignments that remain in OCaml programs should be just those
 assignments that are mandatory to implement the algorithm at hand.
 
-###  Pointers and mutable fields or vectors
 Very often, pointers are used to implement physical modification of data
 structures. In OCaml programs this means using vectors or mutable fields
-in records. For this kind of use of pointers, the Pascal's instruction:
-`x^.label := val` (where `x` is a value of a record having a `label`
-field) corresponds to the OCaml construct `x.label <- val` (where `x` is
-a value of a record having a `label` mutable field). The Pascal's `^`
-symbol simply disappears, since dereferencing is automatically handled by
-the OCaml compiler.
+in records.
 
-**In conclusion:** You can use explicit pointers in OCaml, exactly as in
-Pascal or C, but this is not natural, since you get back the usual
-drawbacks and difficulties of explicit pointers manipulation of
-classical algorithmic languages. See a more complete example below.
+**In conclusion:** You can use explicit pointers in OCaml, exactly as in C, but
+this is not natural, since you get back the usual drawbacks and difficulties of
+explicit pointers manipulation of classical algorithmic languages. See a more
+complete example below.
 
 ## Defining pointers in OCaml
 The general pointer type can be defined using the definition of a
@@ -140,7 +136,7 @@ pointer: a pointer is either null, or a pointer to an assignable memory
 location:
 
 ```ocamltop
-type 'a pointer = Null | Pointer of 'a ref
+type 'a pointer = Null | Pointer of 'a ref;;
 ```
 Explicit dereferencing (or reading the pointer's designated value) and
 pointer assignment (or writing to the pointer's designated memory
@@ -175,7 +171,6 @@ Now we can define lists using explicit pointers as in usual imperative
 languages:
 
 ```ocamltop
-(* The list type ``à la Pascal'' *)
 type ilist = cell pointer
 and cell = {mutable hd : int; mutable tl : ilist}
 ```
@@ -233,17 +228,16 @@ This strange behaviour leads to a lot of difficulties when explicitly
 manipulating pointers. Try for instance, the seemingly harmless:
 
 ```ocamltop
-  append l1 l1;;
+append l1 l1;;
 ```
 Then evaluate `l1`:
 
 ```ocamltop
-  l1;;
+l1;;
 ```
 ## Polymorphic lists
-To go beyond Pascal type system, we define polymorphic lists using
-pointers; here is a simple implementation of those polymorphic mutable
-lists:
+We can define polymorphic lists using pointers; here is a simple implementation
+of those polymorphic mutable lists:
 
 ```ocamltop
 type 'a lists = 'a cell pointer

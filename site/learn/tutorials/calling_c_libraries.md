@@ -3,11 +3,6 @@
 
 # Calling C libraries
 
-## Note from Rich
-Chapters 12 and 13 really need to be rewritten from scratch.
-
-I've left them here — you can read them, but the formatting is screwy.
-
 ## MiniGtk
 While the structure of lablgtk outlined in [Introduction to
 Gtk](introduction_to_gtk.html "Introduction to Gtk") seems perhaps
@@ -22,7 +17,7 @@ had renewed respect for the author of lablgtk!
 
 MiniGtk is also a good tutorial for people who want to write OCaml
 bindings around their favorite C library. If you've ever tried to write
-bindings for Perl or Java, you'll find doing the same for OCaml is
+bindings for Python or Java, you'll find doing the same for OCaml is
 surprisingly easy, although you do have to worry a bit about the garbage
 collector.
 
@@ -305,7 +300,7 @@ type. The macros look like this:
 <dl> <dt>`String_val (val)`</dt> <dd> Convert from a `value`
 which is known to be a string to a C string (ie. `char *`). </dd>
 <dt>`Val_unit`</dt> <dd> The OCaml unit `()` as a `value`. </dd>
-<dt>`Int_val (val)`</dt> boolean <dd> Convert from a `value` which
+<dt>`Int_val (val)`</dt> <dd> Convert from a `value` which
 is known to be an integer to a C `int`. </dd>
 <dt>`Val_int (i)`</dt> <dd> Convert from a C integer `i` into an
 integer `value`. </dd> <dt>`Bool_val (val)`</dt> <dd> Convert
@@ -382,8 +377,6 @@ local `value` variable in this way would be that the garbage collector
 might treat that variable as unreachable memory and thus reclaim it
 while your function is running!
 
-`CAMLprim` is a Windows-only thing and so we won't talk about it ...
-
 Finally there is the mysterious `unwrap` macro. This is one I wrote
 myself, or rather, this is one I mostly copied from lablgtk. There are
 two related functions, called `wrap` and `unwrap` and as you might
@@ -402,5 +395,3 @@ In order for it to get passed to OCaml code at all, we must somehow
 convert it to a `value`. Luckily we can quite easily use the C API to
 create `value` blocks which the OCaml garbage collector *won't* examine
 too closely ......
-
-

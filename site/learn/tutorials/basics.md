@@ -14,28 +14,28 @@ To install OCaml on your computer, see the [Install](/docs/install.html) documen
 To quickly try small OCaml expressions, you can use an interactive
 toplevel, or REPL (Read–Eval–Print Loop). The `ocaml` command provides
 a very basic toplevel (you should install `rlwrap` through your system
-package manager and run `rlwrap ocaml` to get history navigation). If
-you can install it through [OPAM](/docs/install.html#OPAM) or your
-system package manager, we recommend the use of
-the [utop](https://github.com/diml/utop) toplevel instead, which has
-the same basic interface but is much more convenient to use (history
-navigation, auto-completion, etc.).
+package manager and run `rlwrap ocaml` to get history navigation).
 
-Use `;;` to indicate that you've finished entering each statement. Here is what is looks like running `ocaml`:
+The recommended alternative REPL [utop](https://github.com/diml/utop) may be
+installed through [OPAM](/docs/install.html#OPAM) or your system package
+manager. It has the same basic interface but is much more convenient to use
+(history navigation, auto-completion, etc.).
+
+Use `;;` to indicate that you've finished entering each expression and prompt OCaml to evaluate it. Here is what running `ocaml` looks like:
 ```console
 $ ocaml
         OCaml version {{! get LATEST_OCAML_VERSION !}}
 
-# 1+1;;
+# 1 + 1;;
 - : int = 2
 ```
 
-This is how running the same code looks like when using `utop`:
+This is how running the same code looks when using `utop`:
 
 ```console
-───────┬────────────────────────────────────────────────────────────┬─────
-       │ Welcome to utop version 1.18 (using OCaml version 4.02.3)! │     
-       └────────────────────────────────────────────────────────────┘     
+───────┬─────────────────────────────────────────────────────────────┬────
+       │ Welcome to utop version 2.7.0 (using OCaml version 4.12.0)! │     
+       └─────────────────────────────────────────────────────────────┘     
 
 Type #utop_help for help about using utop.
 
@@ -44,20 +44,6 @@ utop # 1 + 1;;
 - : int = 2
 ```
 
-To compile an OCaml program named `my_prog.ml` to a native executable, use `ocamlbuild my_prog.native`:
-
-```shell
-$ mkdir my_project
-$ cd my_project
-$ echo 'let () = print_endline "Hello, World!"' > my_prog.ml
-$ ocamlbuild my_prog.native
-Finished, 4 targets (0 cached) in 00:00:00.
-$ ./my_prog.native
-Hello, World!
-```
-
-See [Compiling OCaml projects](compiling_ocaml_projects.html) for more information.
-
 ## Comments
 OCaml comments are delimited by `(*` and `*)`, like this:
 
@@ -65,13 +51,13 @@ OCaml comments are delimited by `(*` and `*)`, like this:
 (* This is a single-line comment. *)
 
 (* This is a
- * multi-line
- * comment.
- *)
+   multi-line
+   comment.
+*)
 ```
 In other words, the commenting convention is very similar to original C
-(`/* ... */`). There is currently no single-line comment syntax (like
-`# ...` in Perl or `// ...` in C99/C++/Java).
+(`/* ... */`). There is no single-line comment syntax (like
+`# ...` in Python or `// ...` in C99/C++/Java).
 
 OCaml counts nested `(* ... *)` blocks, and this allows you to comment
 out regions of code very easily:
@@ -145,7 +131,7 @@ f (g 3 4)            (* f has one argument, g has two arguments *)
 <div media:type="text/omd" style="display: none">
 
 ```ocamltop
-let repeated (s: string) (i: int) =
+let repeated (s : string) (i : int) =
   failwith "implementation not given"
 ```
 
@@ -156,7 +142,7 @@ repeated ("hello", 3)     (* OCaml will spot the mistake *)
 ```
 
 ## Defining a function
-We all know how to define a function (or static method, for Java-heads)
+We all know how to define a function (or static method, in Java)
 in our existing languages. How do we do it in OCaml?
 
 The OCaml syntax is pleasantly concise. Here's a function which takes
@@ -164,7 +150,7 @@ two floating point numbers and calculates the average:
 
 ```ocaml
 let average a b =
-  (a +. b) /. 2.0;;
+  (a +. b) /. 2.0
 ```
 Type this into the OCaml interactive toplevel (on Unix, type the command `ocaml`
 from the shell) and you'll see this:
@@ -176,8 +162,8 @@ let average a b =
 If you look at the function definition closely, and also at what OCaml
 prints back at you, you'll have a number of questions:
 
-* What're all those extra periods doing there in the code?
-* What does all that stuff about `float -> float -> float` mean?
+* What are those periods in `+.` and `/.` for?
+* What does `float -> float -> float` mean?
 
 I'll answer those questions in the next sections, but first I want to go
 and define the same function in C (the Java definition would be fairly
@@ -204,8 +190,7 @@ asking:
 OK, let's get some answers.
 
 * OCaml is a strongly *statically typed* language (in other words,
- there's nothing dynamic going on between int, float and string, as
- in Perl).
+ there's nothing dynamic going on between int, float and string).
 * OCaml uses *type inference* to work out the types, so you don't have
  to.  If you use the OCaml interactive toplevel as above, then OCaml
  will tell you
@@ -232,7 +217,7 @@ OCaml type  Range
 int         31-bit signed int (roughly +/- 1 billion) on 32-bit
             processors, or 63-bit signed int on 64-bit processors
 float       IEEE double-precision floating point, equivalent to C's double
-bool        A boolean, written either true or false
+bool        A boolean, written either 'true' or 'false'
 char        An 8-bit character
 string      A string
 unit        Written as ()
@@ -243,27 +228,22 @@ automatically manage the memory use (garbage collection). This is why
 the basic `int` is 31 bits, not 32 bits (63 bits if you're using a 64
 bit platform). In practice this isn't an issue except in a few
 specialised cases. For example if you're counting things in a loop, then
-OCaml limits you to counting up to 1 billion instead of 2 billion. This
-isn't going to be a problem because if you're counting things close to
-this limit in any language, then you ought to be using bignums (the
-`Nat` and `Big_int` modules in OCaml). However if you need to do things
+OCaml limits you to counting up to 1 billion instead of 2 billion. However if you need to do things
 such as processing 32 bit types (eg. you're writing crypto code or a
 network stack), OCaml provides a `nativeint` type which matches the
 native integer type for your platform.
 
 OCaml doesn't have a basic unsigned integer type, but you can get the
-same effect using `nativeint`. OCaml doesn't have builtin single-precision 
+same effect using `nativeint`. OCaml doesn't have built-in single-precision 
 floating point numbers.
 
 OCaml provides a `char` type which is used for characters, written `'x'`
 for example. Unfortunately the `char` type does not support Unicode or
-UTF-8. This is a serious flaw in OCaml which should be fixed, but for
-the time being there are [comprehensive Unicode
-libraries](http://camomile.sourceforge.net/ "http://camomile.sourceforge.net/")
-which work around it.
+UTF-8, There are [comprehensive Unicode libraries](https://github.com/yoriyuki/Camomile)
+which provide this functionality.
 
 Strings are not just lists of characters. They have their own, more
-efficient internal representation.
+efficient internal representation. Strings are immutable.
 
 The `unit` type is sort of like `void` in C, but we'll talk about it
 more below.
@@ -282,9 +262,6 @@ here we're giving it an int and a float, so it reports this error:
 ```ocamltop
 1 + 2.5;;
 ```
-(In the "translated from the French" language of OCaml error messages
-this means "you put a float here, but I was expecting an int").
-
 To add two floats together you need to use a different operator, `+.`
 (note the trailing period).
 
@@ -301,7 +278,7 @@ together? (Say they are stored as `i` and `f`). In OCaml you need to
 explicitly cast:
 
 ```ocaml
-(float_of_int i) +. f
+float_of_int i +. f
 ```
 `float_of_int` is a function which takes an `int` and returns a `float`.
 There are a whole load of these functions, called such things as
@@ -315,7 +292,7 @@ example could simply have been written
 ```ocaml
 float i +. f
 ```
-(Note that unlike C, it is perfectly valid in OCaml for a type and a
+(Note that it is perfectly valid in OCaml for a type and a
 function to have the same name.)
 
 ###  Is implicit or explicit casting better?
@@ -340,7 +317,7 @@ example of a recursive function:
 ```ocamltop
 let rec range a b =
   if a > b then []
-  else a :: range (a+1) b
+  else a :: range (a + 1) b
 ```
 Notice that `range` calls itself.
 
@@ -355,7 +332,7 @@ to re-define a value in terms of the previous definition. For example:
 let positive_sum a b = 
   let a = max a 0
   and b = max b 0 in
-  a + b
+    a + b
 ```
 This redefinition hides the previous "bindings" of `a` and `b` from the
 function definition. In some situations coders prefer this pattern to
@@ -400,7 +377,7 @@ int_of_char : char -> int
 ```
 If a function returns nothing (`void` for C and Java programmers), then
 we write that it returns the `unit` type. Here, for instance, is the
-OCaml equivalent of `fputc`:
+OCaml equivalent of C's _[fputc(3)](https://pubs.opengroup.org/onlinepubs/009695399/functions/fputc.html)_:
 
 ```ocaml
 output_char : out_channel -> char -> unit
@@ -421,13 +398,13 @@ a letter. The type of the above function would normally be written:
 ```ocaml
 give_me_a_three : 'a -> int
 ```
-where `'a` really does mean any type. You can, for example, call this
+where `'a` (pronounced alpha) really does mean any type. You can, for example, call this
 function as `give_me_a_three "foo"` or `give_me_a_three 2.0` and both
 are quite valid expressions in OCaml.
 
 It won't be clear yet why polymorphic functions are useful, but they are
 very useful and very common, and so we'll discuss them later on. (Hint:
-polymorphism is kind of like templates in C++ or generics in Java 1.5).
+polymorphism is kind of like templates in C++ or generics in Java).
 
 ## Type inference
 So the theme of this tutorial is that functional languages have many
@@ -458,8 +435,8 @@ interactive toplevel:
 let average a b =
   (a +. b) /. 2.0
 ```
-[Mirabile dictu!](http://en.wiktionary.org/wiki/mirabile_dictu) OCaml worked out all on its own that the function takes
-two `float` arguments and returns a `float`.
+OCaml worked out all on its own that the function takes
+two `float` arguments and returns a `float`!
 
 How did it do this? Firstly it looks at where `a` and `b` are used,
 namely in the expression `(a +. b)`. Now, `+.` is itself a function
@@ -477,7 +454,7 @@ Type inference is obviously easy for such a short program, but it works
 even for large programs, and it's a major time-saving feature because it
 removes a whole class of errors which cause segfaults,
 `NullPointerException`s and `ClassCastException`s in other languages (or
-important but often ignored runtime warnings, as in Perl).
+important but often ignored runtime warnings).
 
 
 [utop]: https://github.com/diml/utop

@@ -170,7 +170,7 @@
       <div class="row">
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" allowfullscreen></iframe>
+	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="In this talk, Mark Shinwell explains how to track down hard-to-find bugs in OCaml programs" allowfullscreen></iframe>
 	  </p>
 	  <p>In this talk, Mark Shinwell explains how to
 	    track down hard-to-find bugs in OCaml programs.
@@ -181,13 +181,13 @@
 	</div>
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" allowfullscreen></iframe>
+	    <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" title="Talk at CMU describing the experiences that Jane Street has had using OCaml as its primary development language" allowfullscreen></iframe>
 	  </p>
 	  <p>Talk at CMU describing the experiences that Jane Street has had using OCaml as its primary development language.</p>
 	</div>
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" allowfullscreen></iframe>
+	    <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" title="Experience Report: OCaml for an Industrial-strength Static Analysis Framework Pascal Cuoq and Julien Signoles; CEA LIST International Conference on Functional Programming (ICFP) Edinburgh 2009" allowfullscreen></iframe>
 	  </p>
 	  <p>Experience Report: OCaml for an Industrial-strength Static Analysis Framework
 	    Pascal Cuoq and Julien Signoles; CEA LIST

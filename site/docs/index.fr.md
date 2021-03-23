@@ -164,7 +164,7 @@
       <div class="row">
         <div class="span4">
           <p class="documentation-video">
-	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" allowfullscreen></iframe>
+	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="Dans cet exposé, Mark Shinwell explique comment trouver des bugs difficiles dans les programmes OCaml" allowfullscreen></iframe>
           </p>
           <p>Dans cet exposé, Mark Shinwell explique comment
 	    trouver des bugs difficiles dans les programmes OCaml.
@@ -175,7 +175,7 @@
         </div>
         <div class="span4">
           <p class="documentation-video">
-            <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" allowfullscreen></iframe>
+            <iframe src="//player.vimeo.com/video/14317442?portrait=0&amp;color=ff9933" width="310" height="233" title="Exposé de Yaron Minsky à CMU présentant le retour d'expérience de Jane Street sur l'utilisation d'OCaml comme principal langage de développement" allowfullscreen></iframe>
           </p>
           <p>Exposé de Yaron Minsky à CMU présentant
 	    le retour d'expérience de Jane Street sur l'utilisation d'OCaml comme
@@ -183,7 +183,7 @@
         </div>
         <div class="span4">
           <p class="documentation-video">
-            <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" allowfullscreen></iframe>
+            <iframe src="//player.vimeo.com/video/6652523?portrait=0&amp;color=ff9933" width="310" height="233" title="Rapport d'expérience: OCaml utilisé pour une plateforme d'analyse statique de niveau industriel, par Pascal Cuoq et Julien Signoles du CEA LIST, à ICFP'2009" allowfullscreen></iframe>
           </p>
           <p>Rapport d'expérience: OCaml utilisé pour une
 	    plateforme d'analyse statique de niveau industriel, par
