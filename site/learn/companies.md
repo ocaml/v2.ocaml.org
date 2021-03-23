@@ -36,7 +36,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.bloomberg.com/">Bloomberg L.P.</a>, United States </h2>
-        <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in a advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p> 
+        <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in an advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p> 
     </dd>
 </dl>
 
@@ -56,7 +56,7 @@
         <p>As of summer 2018, Citrix in Cambridge UK is hiring
         software engineers passionate about functional programming and
         OCaml in particular.</p>
-    </p> </dd> </dl>
+    </dd> </dl>
 
 <dl class="row">
     <dt class="span3">
@@ -116,7 +116,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://cacaoweb.org">CACAOWEB</a>, United Kingdom and Hong Kong</h2>
-        <p>Cacaoweb is a developing an application platform of a new
+        <p>Cacaoweb is developing an application platform of a new
         kind. It runs on top of our peer-to-peer network, which
         happens to be one of the largest in the world. The
         capabilities of the platform are diverse and range from
@@ -179,7 +179,7 @@
     <dd class="span5">
         <h2><a href="http://www.hostnet.com.br/">Digirati dba Hostnet</a>,
 		Brazil</h2>
-        <p>Digirati dba Hostnet is a web hosting company. We use OCaml mostly for internal systems programming and infrastructure services. We also have contributed with the community by releasing a few open source <a href="https://github.com/andrenth">OCaml libraries</a>.</p>
+        <p>Digirati dba Hostnet is a web hosting company. We use OCaml mostly for internal systems programming and infrastructure services. We have also contributed to the community by releasing a few open source <a href="https://github.com/andrenth">OCaml libraries</a>.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -497,7 +497,7 @@ form of lightweight formal method that can be used on a daily basis.
     </dt>
     <dd class="span5">
         <h2><a href="http://trust-in-soft.com">TrustInSoft</a>, France</h2>
-        <p>TrustInSoft is a company that changes the rules in cybersecurity. TrustInSoft is the software publisher of the software analysis <a href="http://frama-c.com">Frama-C</a> platform. Our only moto is simple: make the formal methods accessible to the majority of software developers.</p>
+        <p>TrustInSoft is a company that changes the rules in cybersecurity. TrustInSoft is the software publisher of the software analysis <a href="http://frama-c.com">Frama-C</a> platform. Our motto is simple: make the formal methods accessible to the majority of software developers.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -506,12 +506,12 @@ form of lightweight formal method that can be used on a daily basis.
     </dt>
     <dd class="span5">
         <h2><a href="https://zeo.org/">Zeo Agency</a>, London</h2>
-        <p>Zeo is a digital marketing company focus on helping companies to do better in SEO. Due to the nature of our business, we manage billions of lines in our database & create insights by using this data. To utilize our needs effectively, we use OCaml in our data crawling & processing part.</p>
+        <p>Zeo is a digital marketing company focused on helping companies to do better in SEO. Due to the nature of our business, we manage billions of lines in our database & create insights by using this data. To utilize our needs effectively, we use OCaml in our data crawling & processing part.</p>
     </dd>
 </dl>
 
 
-<h4>Disclaimer</h4>
+<h3>Disclaimer</h3>
 Appearance of a company's name here does not necessarily imply
 endorsement by that company of OCaml or of the descriptions provided
 here. Company representatives should <a href="https://github.com/ocaml/ocaml.org/issues/new">contact us</a> to have information about their company removed, modified, or added.
