@@ -245,6 +245,27 @@ h4.news img.rss {
   height: 1.5ex;
 }
 
+a.read-more {
+  float: right;
+  font-size: 90%;
+  padding: 5px 10px;
+  margin-bottom: 2ex;
+  color: #4b4b4b;
+  background: #e6e6e6;
+  border: 1px solid #dedede;
+}
+
+a.read-more:hover, a.read-more:focus {
+  color: #ffffff;
+  background: #c77a27;
+}
+@media (max-width: 768px) {
+a.read-more {
+  position: absolute;
+  margin-left: 150px;
+}
+}
+
 .condensed > h2.ruled {
   border-bottom: 1px #ACACAC solid;
 }
