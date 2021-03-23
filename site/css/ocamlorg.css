@@ -245,6 +245,10 @@ h4.news img.rss {
   height: 1.5ex;
 }
 
+.condensed > h2.ruled {
+  border-bottom: 1px #ACACAC solid;
+}
+
 /* Edit buttom, right of the navbar. */
 a.edit-this-page {
   margin-top: 22.5px;

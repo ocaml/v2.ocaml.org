@@ -5,7 +5,7 @@
 # Data Types and Matching
 
 ## Linked lists
-As with Perl, OCaml has support for lists built into the language. All
+OCaml has support for lists built into the language. All
 elements of a list in OCaml must be the same type. To write a list, use:
 
 ```ocamltop
@@ -77,13 +77,13 @@ the order in which they appear. Here is the equivalent record for our C
 struct above:
 
 ```ocamltop
-type pair_of_ints = { a : int; b : int };;
+type pair_of_ints = {a : int; b : int};;
 ```
 That defines the type, and here is how we actually *create* objects of
 this type:
 
 ```ocamltop
-{ a=3; b=5 }
+{a = 3; b = 5};;
 ```
 Note that we use ":" in the type definition and "=" when creating
 objects of this type.
@@ -92,9 +92,9 @@ Here are some examples of this typed into the
 [interactive toplevel](basics.html):
 
 ```ocamltop
-type pair_of_ints = { a : int; b : int };;
-{a=3; b=5};;
-{a=3};;
+type pair_of_ints = {a : int; b : int};;
+{a = 3; b = 5};;
+{a = 3};;
 ```
 So OCaml won't let you leave some fields in your structure undefined.
 
@@ -132,7 +132,7 @@ type foo =
   | Nothing
   | Int of int
   | Pair of int * int
-  | String of string
+  | String of string;;
 ```
 That's the type definition. First part of each `|` separated part is
 called the constructor. It can be called anything, as long as it starts
@@ -174,7 +174,7 @@ languages come into their own:
 ```ocamltop
 type binary_tree =
   | Leaf of int
-  | Tree of binary_tree * binary_tree
+  | Tree of binary_tree * binary_tree;;
 ```
 Here're some binary trees. For practice, try drawing them on paper.
 
@@ -194,7 +194,7 @@ parameterized (or polymorphic) variant, like this:
 ```ocamltop
 type 'a binary_tree =
   | Leaf of 'a
-  | Tree of 'a binary_tree * 'a binary_tree
+  | Tree of 'a binary_tree * 'a binary_tree;;
 ```
 This is a general type. The specific type which stores integers at each
 leaf is called `int binary_tree`. Similarly the specific type which
@@ -235,22 +235,22 @@ you may be able to see the reason for the formal definition.
 ## Lists, structures and variants — summary
 
 ```text
-OCaml name     Example type definition        Example usage
+OCaml name      Example type definition        Example usage
 
-list           int list                       [1; 2; 3]
-tuple          int * string                   (3, "hello")
-record         type pair =                    { a = 3; b = "hello" }
-                 { a: int; b: string }
-variant        type foo =
-	             | Int of int                 Int 3
-			     | Pair of int * string
-variant        type sign =
-                 | Positive                   Positive
-			     | Zero                       Zero
-                 | Negative
-parameterized  type 'a my_list =
-variant          | Empty                      Cons (1, Cons (2, Empty))
-                 | Cons of 'a * 'a my_list
+list            int list                       [1; 2; 3]
+tuple           int * string                   (3, "hello")
+record          type pair =                    {a = 3; b = "hello"}
+                  {a: int; b: string}
+variant         type foo =
+                  | Int of int                 Int 3
+                  | Pair of int * string       Pair (3, "three")
+variant         type sign =
+                  | Positive                   Positive
+                  | Zero                       Zero
+                  | Negative
+parameterized   type 'a my_list =
+variant           | Empty                      Cons (1, Cons (2, Empty))
+                  | Cons of 'a * 'a my_list
 ```
 
 ## Pattern matching (on datatypes)
@@ -308,14 +308,14 @@ let print_expr e =
 Here's the print function in action:
 
 ```ocamltop
-print_expr (Times (Value "n", Plus (Value "x", Value "y")))
+print_expr (Times (Value "n", Plus (Value "x", Value "y")));;
 ```
 The general form for pattern matching is:
 
 ```ocaml
 match value with
-| pattern    ->  result
-| pattern    ->  result
+| pattern -> result
+| pattern -> result
   ...
 ```
 The patterns on the left hand side can be simple, as in the `to_string`
@@ -340,12 +340,12 @@ let rec multiply_out e =
      Times (multiply_out left, multiply_out right)
   | Divide (left, right) ->
      Divide (multiply_out left, multiply_out right)
-  | Value v -> Value v
+  | Value v -> Value v;;
 ```
 Here it is in action:
 
 ```ocamltop
-print_expr(multiply_out(Times (Value "n", Plus (Value "x", Value "y"))))
+print_expr (multiply_out (Times (Value "n", Plus (Value "x", Value "y"))))
 ```
 How does the `multiply_out` function work? The key is in the first two
 patterns. The first pattern is `Times (e1, Plus (e2, e3))` which matches
@@ -378,7 +378,7 @@ let factorize e =
   | e -> e;;
 
 factorize (Plus (Times (Value "n", Value "x"),
-                 Times (Value "n", Value "y")))
+                 Times (Value "n", Value "y")));;
 ```
 
 The factorize function above introduces another couple of features. You
@@ -389,8 +389,8 @@ match only happens if the pattern matches *and* the condition in the
 
 ```ocaml
 match value with
-| pattern  [ when condition ] ->  result
-| pattern  [ when condition ] ->  result
+| pattern [ when condition ] -> result
+| pattern [ when condition ] -> result
   ...
 ```
 The second feature is the `=` operator which tests for "structural
@@ -407,7 +407,7 @@ type expr = Plus of expr * expr      (* means a + b *)
           | Times of expr * expr     (* means a * b *)
           | Divide of expr * expr    (* means a / b *)
           | Product of expr list     (* means a * b * c * ... *)
-          | Value of string          (* "x", "y", "n", etc. *)
+          | Value of string          (* "x", "y", "n", etc. *);;
 ```
 I then recompiled the `to_string` function without changing it. OCaml
 reported the following warning:

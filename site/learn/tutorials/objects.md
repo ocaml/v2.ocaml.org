@@ -23,16 +23,16 @@ implemented using a linked list.
 ```ocamltop
 class stack_of_ints =
   object (self)
-    val mutable the_list = ( [] : int list ) (* instance variable *)
-    method push x =                        (* push method *)
+    val mutable the_list = ([] : int list)     (* instance variable *)
+    method push x =                            (* push method *)
       the_list <- x :: the_list
-    method pop =                           (* pop method *)
+    method pop =                               (* pop method *)
       let result = List.hd the_list in
       the_list <- List.tl the_list;
       result
-    method peek =                          (* peek method *)
+    method peek =                              (* peek method *)
       List.hd the_list
-    method size =                          (* size method *)
+    method size =                              (* size method *)
       List.length the_list
   end
 ```
@@ -72,7 +72,7 @@ Let's write some code to test stacks of ints. First let's create a new
 object. We use the familiar `new` operator:
 
 ```ocamltop
-let s = new stack_of_ints
+let s = new stack_of_ints;;
 ```
 Now we'll push and pop some elements off the stack:
 
@@ -107,7 +107,7 @@ multiple stacks each storing objects of any single type). As with
 ```ocamltop
 class ['a] stack =
   object (self)
-    val mutable list = ( [] : 'a list )  (* instance variable *)
+    val mutable list = ([] : 'a list)    (* instance variable *)
     method push x =                      (* push method *)
       list <- x :: list
     method pop =                         (* pop method *)
@@ -132,10 +132,8 @@ s#push 1.0;;
 s;;
 ```
 This stack is now a `float stack`, and only floating point numbers may
-be pushed and popped from this stack. (For an explanation of the `'_a`
-notation, see the [OCaml expert
-FAQ](http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html "http://caml.inria.fr/pub/old_caml_site/FAQ/FAQ_EXPERT-eng.html")).
-Let's demonstrate the type-safety of our new `float stack`:
+be pushed and popped from this stack. Let's demonstrate the type-safety
+of our new `float stack`:
 
 ```ocamltop
 s#push 3.0;;
@@ -217,7 +215,7 @@ class virtual widget (name : string) =
     method get_name =
       name
     method virtual repaint : unit
-  end
+  end;;
 ```
 Now there are several new things going on in this code. Firstly the
 class contains an **initializer**. This is an argument to the class
@@ -264,7 +262,7 @@ widgets. Here is my simple implementation for `container`:
 class virtual container name =
   object (self)
     inherit widget name
-    val mutable widgets = ( [] : widget list )
+    val mutable widgets = ([] : widget list)
     method add w =
       widgets <- w :: widgets
     method get_widgets =
@@ -297,13 +295,12 @@ Notes:
     x :: list
     ```
 
-	Would this modify the private internal representation of my `container`
+Would this modify the private internal representation of my `container`
 class, by prepending `x` to the list of widgets? No it wouldn't. The
 private variable `widgets` would be unaffected by this or any other
 change attempted by the outside code. This means, for example, that you
 could change the internal representation to use an array at some later
 date, and no code outside the class would need to be changed.
-
 
 Last, but not least, we have implemented the previously virtual
 `repaint` function so that `container#repaint` will repaint all of the
@@ -404,7 +401,7 @@ class name =
 I didn't explain the reference to `self`. In fact this names the object,
 allowing you to call methods in the same class or pass the object to
 functions outside the class. In other words, it's exactly the same as
-`this` in C++/Java and `$self` in Perl. You may completely omit the
+`this` in C++/Java. You may completely omit the
 `(self)` part if you don't need to refer to yourself - indeed in all the
 examples above we could have done exactly that. However, I would advise
 you to leave it in there because you never know when you might modify
@@ -451,33 +448,6 @@ Is it possible to coerce from a superclass (eg. `widget`) to a subclass
 this direction is *unsafe*. You might try to coerce a `widget` which is
 in fact a `label`, not a `button`.
 
-The problem of coercing from a superclass to a subclass will be familiar
-to Java programmers. In Java the container types contain `Object`s, and
-when you extract an object from a container you must cast it back to its
-original type. This can cause runtime `ClassCastException`s. OCaml's
-strong type system has the specific goal of eliminating runtime type
-errors, and this is why this sort of coercion is not permitted.
-
-Polymorphism and functional programming should remove most of the need
-to coerce from superclasses to subclasses. Java's container classes
-store `Object`s because Java (at time of writing) lacks generics
-("templates" in C++ or polymorphism in OCaml). This is a fault in the
-Java language - a pretty fundamental fault in fact - which will
-hopefully be fixed in Java 1.5. In OCaml it's so simple to define
-polymorphic types like `'a list` or `'a stack` that Java-like
-programming just wouldn't be required. Having said that, if you do
-extensive OO programming in OCaml then I'm pretty sure you'll come up
-with a case where this type of coercion would actually be darned useful.
-Perhaps for this reason it's enough to say that you might try
-implementing solutions functionally first, and in an OO style only in
-the few problem domains where it really makes sense.
-
-[Yamagata Yoriyuki writes that type-safe downcasts are possible.
-Advanced users should see:
-[http://caml.inria.fr/pub/ml-archives/caml-list/2002/05/a6520926c4eac029206a31d6aa22f967.fr.html](http://caml.inria.fr/pub/ml-archives/caml-list/2002/05/a6520926c4eac029206a31d6aa22f967.fr.html)
-, that leads to
-[hweak](http://remi.vanicat.free.fr/ocaml/hweak/ "http://remi.vanicat.free.fr/ocaml/hweak/")]
-
 ###  The `Oo` module and comparing objects
 The `Oo` module contains a few useful functions for OO programming.
 
@@ -512,7 +482,7 @@ let o =
     val mutable n = 0
     method incr = n <- n + 1
     method get = n
-  end
+  end;;
 ```
 This object has a type, which is defined by its public methods only.
 Values are not visible and neither are private methods (not shown).
@@ -520,21 +490,22 @@ Unlike records, such a type does not need to be predefined explicitly,
 but doing so can make things clearer. We can do it like this:
 
 ```ocamltop
-type counter = < get : int;  incr : unit >
+type counter = <get : int; incr : unit>
 ```
 Compare with an equivalent record type definition:
 
 ```ocamltop
-type counter_r = { get : unit -> int;
-                   incr : unit -> unit }
+type counter_r =
+  {get : unit -> int;
+   incr : unit -> unit}
 ```
 The implementation of a record working like our object would be:
 
 ```ocamltop
 let r =
   let n = ref 0 in
-  { get = (fun () -> !n);
-    incr = (fun () -> incr n) }
+    {get = (fun () -> !n);
+     incr = (fun () -> incr n)}
 ```
 In terms of functionality, both the object and the record are similar,
 but each solution has its own advantages:
@@ -565,7 +536,7 @@ class t =
   object
     val x = 0
     method get = x
-  end
+  end;;
 ```
 `object val x : int method get : int end` is a class type.
 
@@ -576,7 +547,7 @@ type:
 
 ```ocamltop
 let x = object method get = 123 end;;
-let l = [ new t; x ];;
+let l = [new t; x];;
 ```
 Mixing objects that share a common subtype can be done, but requires
 explicit type coercion using the `:>` operator:
@@ -584,23 +555,6 @@ explicit type coercion using the `:>` operator:
 ```ocamltop
 let x = object method get = 123 end;;
 let y = object method get = 80 method special = "hello" end;;
-let l = [ x; y ];;
-let l = [ x; (y :> t) ];;
+let l = [x; y];;
+let l = [x; (y :> t)];;
 ```
-
-## More objects
-The OCaml manual, chapter 3, contains the canonical reference for
-objects and classes. Amongst the things which I have not covered here,
-but which are covered in the manual, are:
-
-* private methods
-* complex constructors
-* interfaces
-* multiple inheritance
-* polymorphic methods
-* more detail about coercions
-* functional objects
-* more detail about cloning objects
-* mutually recursive classes
-* binary methods
-* friends

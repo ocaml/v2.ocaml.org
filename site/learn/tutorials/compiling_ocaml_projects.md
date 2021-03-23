@@ -1,4 +1,4 @@
-<!-- ((! set title Compiling OCaml projects !)) ((! set learn !)) -->
+<!-- ((! set title Compiling OCaml Projects !)) ((! set learn !)) -->
 
 *Table of contents*
 
@@ -141,8 +141,7 @@ necessary. See next section.
 
 ## Automated build systems
 
-- [dune](https://dune.readthedocs.io/en/latest/quick-start.html)
-- [OCamlbuild](ocamlbuild/)
-- [GNU make](compiling_with_gnu_make.html)
-- [OMake](compiling_with_omake.html)
-- [Oasis](setting_up_with_oasis.html)
+- [dune](https://dune.readthedocs.io/en/latest/quick-start.html) Popular for new projects.
+- [OMake](https://github.com/ocaml-omake/omake) Another OCaml build system.
+- [GNU make](https://www.gnu.org/software/make/) GNU make can build anything, includind OCaml. May be used in conjunction with [OCamlmakefile](https://github.com/mmottl/ocaml-makefile)
+- [Oasis](https://github.com/ocaml/oasis) Generates configure, build, and install system using another build system.
