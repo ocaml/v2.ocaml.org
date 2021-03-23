@@ -680,29 +680,46 @@ ocamlc -c foo.mli
 ```
 
 ## The Standard Library
-(* USING THE STANDARD LIBRARY EXAMPLES *)
 
-There's one module that you never need to "`open`". That is the
-`Stdlib` module. All of the symbols from the `Stdlib` module are automatically
-imported into every OCaml program.
+OCaml comes with a library of useful modules (libraries of useful code) which
+are available anywhere OCaml is. For example there are standard libraries for
+data structures, and for making POSIX system calls. We use them by writing the
+module, followed by a full stop, followed by the name of the function. Here are
+some functions from the `List` module:
 
-(* insert examples here *)
+```ocamltop
+List.concat [[1; 2; 3]; [4; 5; 6]; [7; 8; 9]];;
+List.filter (Fun.flip ( < ) 10) [1; 4; 20; 10; 9; 2];;
+List.sort compare [1; 6; 2; 2; 3; 56; 3; 2];;
+```
+
+(We used the standard library function `Fun.flip` to reverse the order of
+arguments to the `<` operator).
+
+The `Printf` module provides type-safe printing facilities, so we know at
+compile-time that the printing will succeed:
+
+```ocamltop
+let print_length s =
+  Printf.printf "%s has %i characters\n" s (String.length s);;
+ 
+List.iter print_length ["one"; "two"; "three"];;
+
+```
+
+You can find the full list of standard library modules FIXME HERE.
 
 ## A module from OPAM
-OCaml comes with lots of fun and interesting modules (libraries of
-useful code). For example there are standard libraries for drawing
-graphics, interfacing with GUI widget sets, handling large numbers, data
-structures, and making POSIX system calls.
-
 For these examples we're going to use module called `Graphics` which can be
 installed with `opam install graphics` and the `ocamlfind` program installed
-with `opam install ocamlfind`.
+with `opam install ocamlfind`. The `Graphics` module is a very simple
+cross-platform Graphics system which was once part of OCaml itself. Now it's
+available separately through OPAM, the OCaml PAckage Manager.
 
 If we want to use the functions in `Graphics` there are two ways we can
-do it. Either at the start of our program we have the `open Graphics;;`
+do it. Either at the start of our program we have the `open Graphics`
 declaration. Or we prefix all calls to the functions like this:
-`Graphics.open_graph`. `open` is a little bit like Java's `import`
-statement.
+`Graphics.open_graph`.
 
 To use `Graphics` in the top leve, you must first load the library with
 
