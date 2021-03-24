@@ -630,10 +630,12 @@ ul.translations:after {
     margin-left: -20px;
     margin-right: -20px;
   }
+ 
   #footer .column {
     text-align: left;
     padding-right: 5%;
-  }
+  } 
+  
 }
 @media (max-width: 480px) {
   #footer .column {
