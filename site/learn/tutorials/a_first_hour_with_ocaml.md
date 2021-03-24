@@ -27,7 +27,6 @@ Use `;;` to indicate that you've finished entering each expression and prompt
 OCaml to evaluate it. Here is what running `ocaml` looks like:
 
 ```console
-$ ocaml
         OCaml version {{! get LATEST_OCAML_VERSION !}}
 
 # 50 * 50;;
@@ -49,6 +48,18 @@ utop # 50 * 50;;
 ```
 
 The in-browser [TryOCaml](http://try.ocamlpro.com) has a similar interface.
+
+The examples in this tutorial can be typed in by hand, or copied into `ocaml`
+or `utop` with copy and paste. Alternatively, we may type into a file, and load
+its contents directly:
+
+```console
+$ ocaml
+        OCaml version {{! get LATEST_OCAML_VERSION !}}
+
+# #use "program.ml"
+
+```
 
 ## Expressions
 
@@ -332,6 +343,18 @@ total [1; 3; 5; 3; 1];;
 You can see how the pattern `h :: t` is used to deconstruct the list, naming
 its head and tail.
 
+If we omit a case, OCaml will notice and warn us:
+
+```ocamltop
+let rec total l =
+  match l with
+  | h :: t -> h + total t;;
+
+total [1; 3; 5; 3; 1];;
+```
+We shall talk about the "exception" which was caused by our ignoring the warning later.
+
+
 ###  Polymorphic functions
 
 Consider a function to find the length of a list:
@@ -365,7 +388,8 @@ let rec append a b =
   | h :: t -> h :: append t b;;
 ```
 
-Can you see how it works?
+Can you see how it works? Notice that the memory for the second list is shared,
+but the first list is effectively copied.
 
 ### Higher-order functions
 
@@ -393,6 +417,30 @@ map (fun x -> x * 2) [1; 2; 3];;
 (The syntax `fun` ... `->` ... is used to build a function without a name - one
 we will only use in one place in the program).
 
+We need not give a function all its arguments at once. This is called partial
+application. For example:
+
+```ocamltop
+let add a b = a + b;;
+add;;
+let f = add 6;;
+f 7;;
+```
+
+Look at the types of `add` and `f` to see what is going on. We can use partial
+application to map over lists of lists:
+
+```ocamltop
+map (map (fun x -> x * 2)) [[1; 2]; [3; 4]; [5; 6]];;
+```
+
+In fact, we can turn `*` into an operator by surrounding it with parentheses
+and spaces:
+
+```ocamltop
+map (map (( * ) 2)) [[1; 2]; [3; 4]; [5; 6]];;
+```
+
 ### Other built-in types
 
 Other than lists, we have tuples, which are fixed length collections of
@@ -401,6 +449,24 @@ elements of any type:
 ```ocamltop
 let t = (1, "one", '1')
 ```
+
+Notice how the type is written. Record are like tuples, but they have named elements:
+
+```ocamltop
+type person =
+  {first_name : string;
+   surname : string;
+   age : int};;
+
+let frank =
+  {first_name = "Frank";
+   surname = "Smith";
+   age = 40};;
+
+let s = frank.surname;;
+```
+
+Pattern-matching works on tuples and records too, of course.
 
 ## Type inference
 So the theme of this tutorial is that functional languages have many
@@ -506,7 +572,56 @@ let flipped = flip t;;
 t = flip flipped;;
 ```
 
+Notice that we do not need to explicitly free memory when we no longer need it:
+OCaml is garbage-collected, and will free memory for data structures when they
+are no longer needed.
+
 ## Dealing with errors
+
+OCaml deals with exceptional situations in two ways. One is to use exceptions,
+which may be defined in the same way as types:
+
+```ocamltop
+exception E;;
+
+exception E2 of string;;
+```
+
+And raised like this:
+
+```ocamltop
+let f a b =
+  if b = 0 then raise (E2 "division by zero") else a / b;;
+```
+
+And handled like this:
+
+```ocamltop
+try f 10 0 with E2 _ -> 0;;
+```
+
+The other way OCaml deals with exceptional situations is to use the built-in
+`option` type, which is defined as:
+
+```ocaml
+type 'a option = None | Some of 'a
+```
+
+So we may write:
+
+```ocamltop
+let f a b =
+  if b = 0 then None else Some (a / b)
+```
+
+For our last example, we use exception-handling to build an option-style
+function from one which raises an exception, the built-in `List.find` function:
+
+```ocamltop
+let safe_list_find p l =
+  try Some (List.find p l) with
+    Not_found -> None;;
+```
 
 ## Imperative OCaml
 
@@ -598,94 +713,14 @@ let smallest_power_of_two x =
     !t;;
 ```
 
-## Compiling OCaml programs
-
-This is a reference to the standard file names and extensions used by
-various parts of the OCaml build system.
-
-The basic source, object and binary files, with comparisons to C
-programming:
-
-<table>
-<thead>
-<tr class="header">
-<th align="left">Purpose</th>
-<th align="left">C</th>
-<th align="left">Bytecode</th>
-<th align="left">Native code</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Source code</td>
-<td align="left">*.c</td>
-<td align="left">*.ml</td>
-<td align="left">*.ml</td>
-</tr>
-<tr class="even">
-<td align="left">Header files<sup>1</sup></td>
-<td align="left">*.h</td>
-<td align="left">*.mli</td>
-<td align="left">*.mli</td>
-</tr>
-<tr class="odd">
-<td align="left">Object files</td>
-<td align="left">*.o</td>
-<td align="left">*.cmo</td>
-<td align="left">*.cmx<sup>2</sup></td>
-</tr>
-<tr class="even">
-<td align="left">Library files</td>
-<td align="left">*.a</td>
-<td align="left">*.cma</td>
-<td align="left">*.cmxa<sup>3</sup></td>
-</tr>
-<tr class="odd">
-<td align="left">Binary programs</td>
-<td align="left">prog</td>
-<td align="left">prog</td>
-<td align="left">prog.opt<sup>4</sup></td>
-</tr>
-</tbody>
-</table>
-
-
-Notes
-
-1. In C the header files describe the functions, etc., but only by
- convention. In OCaml, the *.mli file is the exported signature of
- the [module](modules.html "modules"), and the compiler strictly
- enforces it.<br />
- In most cases for a module called `Foo` you will find two files:
- `foo.ml` and `foo.mli`. `foo.ml` is the implementation and `foo.mli`
- is the interface or signature.<br />
- Notice also that the first letter of the file is turned to
- uppercase to get the module name. For example, Extlib contains a
- file called `uTF8.mli` which is the signature of a module called
- `UTF8`.
-1. There is also a corresponding *.o file which contains the actual
- machine code, but you can usually ignore this file.
-1. There is also a corresponding *.a file which contains the actual
- machine code, but you can usually ignore this file.
-1. This is the convention often used by OCaml programs, but in fact you
- can name binary programs however you want.
-
-`*.cmi` files are intermediate files which are compiled forms of the
-`.mli` (interface or "header file").
-
-To produce them, just compile the `.mli` file:
-
-```
-ocamlc -c foo.mli
-```
-
 ## The Standard Library
 
 OCaml comes with a library of useful modules (libraries of useful code) which
 are available anywhere OCaml is. For example there are standard libraries for
-data structures, and for making POSIX system calls. We use them by writing the
-module, followed by a full stop, followed by the name of the function. Here are
-some functions from the `List` module:
+functional data structures (such as maps and sets) and imperative data
+structures (such as hash tables), and for making system calls. We use them by
+writing the module, followed by a full stop, followed by the name of the
+function. Here are some functions from the `List` module:
 
 ```ocamltop
 List.concat [[1; 2; 3]; [4; 5; 6]; [7; 8; 9]];;
@@ -694,7 +729,8 @@ List.sort compare [1; 6; 2; 2; 3; 56; 3; 2];;
 ```
 
 (We used the standard library function `Fun.flip` to reverse the order of
-arguments to the `<` operator).
+arguments to the `<` operator, which is treated as an ordinary function by
+surrounding it with parentheses).
 
 The `Printf` module provides type-safe printing facilities, so we know at
 compile-time that the printing will succeed:
@@ -776,3 +812,56 @@ done
 
 read_line ()
 ```
+
+## Compiling OCaml programs
+
+So far we have been using only the OCaml top level. Now we will compile OCaml
+programs into fast stand-alone executables. Consider the following program,
+saved as "helloworld.ml"
+
+```ocaml
+print_endline "Hello, World!"
+```
+
+(Notice there is no need to write `;;` since we are not using the top level).
+We may compile it like this:
+
+```ocaml
+ocamlopt -o helloworld helloworld.ml
+```
+
+Now our current directory has four more files. The files `helloworld.cmi`,
+`helloworld.cmo`, and `helloworld.o` are left over from the compilation
+process. The file `helloworld` (or `helloworld.exe` on Windows) is our
+executable:
+
+```ocaml
+$ ./helloworld
+Hello, World!
+$
+```
+
+If we have more than one file, we list them all. Here is an example, defined in
+its own file `data.ml` with a corresponding `data.mli` interface, and a main
+file `main.ml` which uses it.
+
+```ocaml
+let to_print = "Hello, World!"
+```
+
+```ocaml
+val to_print : string
+```
+
+```ocaml
+print_endline Data.to_print
+```
+
+We can compile it like this:
+
+```console
+ocamlopt -o main data.mli data.ml main.ml
+```
+
+Most users of OCaml do not call the compiler directly. They use one of the
+build systems to manage compilation for them.
