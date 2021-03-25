@@ -117,3 +117,7 @@ Both in french:
   on using PPX, the syntax extensions API.
 * [Detecting use cases for GADTs in OCaml](http://mads-hartmann.com/ocaml/2015/01/05/gadt-ocaml.html),
   on using generalized algebraic data types in writing interpreters.
+* [Ocaml Operator Lookup](https://www.craigfe.io/operator-lookup/),
+  for getting an explanation on behaviour of a operator or syntax element, along with usage examples.
+
+
