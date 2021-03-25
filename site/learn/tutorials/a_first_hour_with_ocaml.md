@@ -232,7 +232,6 @@ false;;
 
 Each expression has one and only one type.
 
-### Types of functions
 Because of type inference you will rarely if ever need to explicitly
 write down the type of your functions. However, OCaml often prints out
 what it infers are the types of your functions, so you need to know the
@@ -259,7 +258,8 @@ The OCaml standard `int_of_char` casting function:
 int_of_char : char -> int
 ```
 
-We can now list some of the properties which distinguish OCaml from other languages:
+We can now list some of the properties which distinguish OCaml from other
+languages:
 
 - OCaml is a strongly statically typed language. This means each expression has
   a type, and only one type.
@@ -364,12 +364,8 @@ let rec total l =
 total [1; 3; 5; 3; 1];;
 ```
 
-We shall talk about the "exception" which was caused by our ignoring the warning later.
-
-
-###  Polymorphic functions
-
-Consider a function to find the length of a list:
+We shall talk about the "exception" which was caused by our ignoring the
+warning later. Consider a function to find the length of a list:
 
 ```ocamltop
 let rec length l =
@@ -405,8 +401,6 @@ let rec append a b =
 Can you see how it works? Notice that the memory for the second list is shared,
 but the first list is effectively copied. Such sharing is common when we use
 immutable data types (ones whose values cannot be changed).
-
-### Higher-order functions
 
 We might wish to apply a function to each element in a list, yielding a new
 one. We shall write a function `map` which is given another function as its
@@ -456,7 +450,7 @@ surrounding it with parentheses and spaces:
 map (map (( * ) 2)) [[1; 2]; [3; 4]; [5; 6]];;
 ```
 
-### Other built-in types
+## Other built-in types
 
 We have seen basic data types like `int`, and our first compound data type, the
 list. There are two more ways compound data types of interest. First we have
@@ -683,6 +677,28 @@ let smallest_power_of_two x =
     !t;;
 ```
 
+In addition to references, the imperative part of OCaml has arrays of items of
+like type, whose elements can be accessed or updated in constant time:
+
+```ocamltop
+let arr = [|1; 2; 3|];;
+arr.(0);;
+arr.(0) <- 0;;
+arr;;
+```
+
+Records may have mutable fields too, which must be marked in the type:
+
+```ocamltop
+type person =
+  {first_name : string;
+   surname : string;
+   mutable age : int};;
+
+let birthday p =
+  p.age <- p.age + 1;;
+```
+
 ## The Standard Library
 
 OCaml comes with a library of useful modules which are available anywhere OCaml
@@ -837,3 +853,10 @@ ocamlopt -o main data.mli data.ml main.ml
 Most users of OCaml do not call the compiler directly. They use one of the
 [build systems](/learn/tutorials/compiling_ocaml_projects) to manage
 compilation for them.
+
+## Where next?
+
+This quick tour should have given you a little taste of OCaml and why you might
+like to explore it further. Elsewhere on [ocaml.org](/index.html) there are
+pointers to [books on OCaml](/learn/books.html) and [other
+tutorials](learn/tutorials/index.html).
