@@ -111,7 +111,9 @@ square_is_even 50;;
 square_is_even 3;;
 ```
 
-Notice the type OCaml infers for the function. A function may take multiple
+Notice the type OCaml infers for the function.
+
+A function may take multiple
 arguments. Unlike in imperative languages, they are written without parentheses
 and commas. We shall explain why later.
 
@@ -130,10 +132,10 @@ let average a b =
   (a +. b) /. 2.0;;
 ```
 
-This is rather unusual. In other languages integers get promoted to floats in
-certain circumstances. For example if you write `1 + 2.5` then the first
-argument (which is an integer) is promoted to a floating point number, and the
-result is also a floating point number.
+This is rather unusual. In other languages integers get promoted to floating
+point values in certain circumstances. For example if you write `1 + 2.5` then
+the first argument (which is an integer) is promoted to a floating point
+number, and the result is also a floating point number.
 
 OCaml never does implicit casts like this. In OCaml, `1 + 2.5` is a type error.
 The `+` operator in OCaml requires two integers as arguments, and here we're
@@ -605,12 +607,6 @@ that you can assign to and change throughout your program? You need to use a
 *reference*.
 
 Here's how we create a reference to an integer in OCaml:
-
-```ocamltop
-ref 0;;
-```
-Actually that wasn't really useful. We created the reference and then, because
-we didn't name it, we could not access it. Let's name the reference:
 
 ```ocamltop
 let r = ref 0;;
