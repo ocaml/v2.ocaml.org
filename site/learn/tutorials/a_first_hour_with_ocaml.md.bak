@@ -13,7 +13,7 @@ using [TryOCaml](http://try.ocamlpro.com), with no installation required.
 ## Running OCaml programs
 
 To try small OCaml expressions, you can use an interactive top level, or REPL
-(Read-Eval-Print Loop). The `ocaml` command provides a basic top level (you
+(Read–Eval–Print Loop). The `ocaml` command provides a basic top level (you
 should install `rlwrap` through your system package manager and run `rlwrap
 ocaml` instead to get history navigation.)
 
@@ -136,8 +136,8 @@ argument (which is an integer) is promoted to a floating point number, and the
 result is also a floating point number.
 
 OCaml never does implicit casts like this. In OCaml, `1 + 2.5` is a type error.
-The `+` operator in OCaml requires two integers as arguments, and here we're
-giving it an integer and a floating point number, so it reports this error:
+The `+` operator in OCaml requires two ints as arguments, and here we're giving
+it an integer and a floating point number, so it reports this error:
 
 ```ocamltop
 1 + 2.5;;
@@ -272,7 +272,7 @@ languages:
 
 ## Pattern matching
 
-Instead of using one or more `if` ... `then` ... `else` ... constructs to make
+Instead of using one or more `if` ... `then` ... `else` ... constucts to make
 choices in OCaml programs, we can use the `match` keyword to match on multiple
 possible values. Consider the factorial function:
 
