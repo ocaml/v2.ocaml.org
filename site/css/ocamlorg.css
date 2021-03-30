@@ -408,10 +408,13 @@ figure.code td.code {
 }
 
 /* Running header on the front page */
-
-header + .core-running-header {
-  margin-top: -27px;
-  margin-bottom: 12px;
+.core-running-header {
+  color: #ffffff;
+  width: fit-content !important;
+  position: absolute;
+  right: 20px;
+  top: 5%;
+  z-index: 21221;
 }
 
 /* Translations and breadcrumb */
@@ -437,8 +440,8 @@ ul.translations {
   padding: 0;
   margin: 0px 1ex 0px 2ex;
 }
-ul.translations:before { content: "["; }
-ul.translations:after { content: "]"; }
+ul.translations:before { content: "["; color: #ffffff; }
+ul.translations:after { content: "]"; color: #ffffff;}
 .translations > li  {
   display: inline-block;
   *display: inline;
@@ -447,7 +450,9 @@ ul.translations:after { content: "]"; }
   *zoom: 1;
   text-shadow: 0 1px 0 #ffffff;
 }
-
+.translations > .active {
+  color: #ffffff;
+}
 /* Accessibility Helpers */
 .visually-hidden {
   clip: rect(0 0 0 0);
@@ -511,6 +516,12 @@ ul.translations:after { content: "]"; }
   #footer .column {
     width: 98%;
     margin-right: 0px;
+  }
+}
+@media (min-width: 980px)and (max-width: 1058px) {
+  #searchform, #search {
+    margin-right: 1.8rem;
+    width: 125px !important;
   }
 }
 #footer .entry {
