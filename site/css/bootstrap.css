@@ -5594,7 +5594,7 @@ body {
   padding: 25px 0;
 }
 #home-learn a {
-  color: #404040;
+  text-decoration: underline;
 }
 #home-learn a:hover {
   text-decoration: none;
