@@ -132,10 +132,10 @@ let average a b =
   (a +. b) /. 2.0;;
 ```
 
-This is rather unusual. In other languages integers get promoted to floating
-point values in certain circumstances. For example if you write `1 + 2.5` then
-the first argument (which is an integer) is promoted to a floating point
-number, and the result is also a floating point number.
+This is rather unusual. In other languages (such as C) integers get promoted to
+floating point values in certain circumstances. For example if you write `1 +
+2.5` then the first argument (which is an integer) is promoted to a floating
+point number, and the result is also a floating point number.
 
 OCaml never does implicit casts like this. In OCaml, `1 + 2.5` is a type error.
 The `+` operator in OCaml requires two integers as arguments, and here we're
@@ -181,6 +181,8 @@ instead of just `let`. Here's an example of a recursive function:
 let rec range a b =
   if a > b then []
   else a :: range (a + 1) b;;
+
+let digits = range 0 9;;
 ```
 
 We have used OCaml's `if` ... `then` ... `else` ... construct to test a
@@ -205,7 +207,7 @@ int         63-bit signed int on 64-bit processors, or 31-bit signed int on
 float       IEEE double-precision floating point, equivalent to C's double
 bool        A boolean, written either 'true' or 'false'
 char        An 8-bit character
-string      An string (sequence of 8 bit chars)
+string      A string (sequence of 8 bit chars)
 ```
 
 OCaml provides a `char` type which is used for simple 8-bit characters, written
@@ -233,11 +235,11 @@ false;;
 
 Each expression has one and only one type.
 
-OCaml works out types automatically so you will rarely if ever need to
-explicitly write down the type of your functions. However, OCaml often prints
-out what it infers are the types of your functions, so you need to know the
-syntax. For a function `f` which takes arguments `arg1`, `arg2`, ... `argn`,
-and returns type `rettype`, the compiler will print:
+OCaml works out types automatically so you will rarely need to explicitly write
+down the type of your functions. However, OCaml often prints out what it infers
+are the types of your functions, so you need to know the syntax. For a function
+`f` which takes arguments `arg1`, `arg2`, ... `argn`, and returns type
+`rettype`, the compiler will print:
 
 ```ocaml
 f : arg1 -> arg2 -> ... -> argn -> rettype
@@ -279,26 +281,26 @@ choices in OCaml programs, we can use the `match` keyword to match on multiple
 possible values. Consider the factorial function:
 
 ```ocamltop
-let rec factorial x =
-  if x <= 1 then 1 else x * factorial (x - 1);;
+let rec factorial n =
+  if n <= 1 then 1 else n * factorial (n - 1);;
 ```
 
 We may write it using pattern matching instead:
 
 ```ocamltop
-let rec factorial x =
-  match x with
+let rec factorial n =
+  match n with
   | 0 | 1 -> 1
-  | n -> n * factorial (n - 1);;
+  | x -> x * factorial (x - 1);;
 ```
 
 Equally, we could use the pattern `_` which matches anything, and write:
 
 ```ocamltop
-let rec factorial x =
-  match x with
+let rec factorial n =
+  match n with
   | 0 | 1 -> 1
-  | _ -> x * factorial (x - 1);;
+  | _ -> n * factorial (n - 1);;
 ```
 
 In fact, we may simplify further with the `function` keyword which introduces
@@ -307,7 +309,7 @@ pattern-matching directly:
 ```ocamltop
 let rec factorial = function
   | 0 | 1 -> 1
-  | x -> x * factorial (x - 1);;
+  | n -> n * factorial (n - 1);;
 ```
 
 We will use pattern matching more extensively as we introduce more complicated
@@ -447,13 +449,6 @@ of lists:
 map (map (fun x -> x * 2)) [[1; 2]; [3; 4]; [5; 6]];;
 ```
 
-In fact, we can turn `*` or any other operator into an ordinary function by
-surrounding it with parentheses and spaces, to give the most concise version:
-
-```ocamltop
-map (map (( * ) 2)) [[1; 2]; [3; 4]; [5; 6]];;
-```
-
 ## Other built-in types
 
 We have seen basic data types like `int`, and our first compound data type, the
@@ -509,7 +504,10 @@ Data types may be polymorphic and recursive too. Here is an OCaml data type for
 a binary tree carrying any kind of data:
 
 ```ocamltop
-type 'a tree = Lf | Br of 'a tree * 'a * 'a tree;;
+type 'a tree =
+  | Lf
+  | Br of 'a tree * 'a * 'a tree;;
+
 let t = Br (Br (Lf, 1, Lf), 2, Br (Br (Lf, 3, Lf), 4, Lf));;
 ```
 
@@ -542,7 +540,10 @@ t = flip flipped;;
 
 Notice that we do not need to explicitly free memory for such data structures
 when we no longer need it: OCaml is a garbage-collected language, and will free
-memory for data structures when they are no longer needed.
+memory for data structures when they are no longer needed. In our example, once
+the boolean test `t = flip flipped` has been evaluated, the data structure
+`flip flipped` is not longer reachable by the rest of the program, and its
+memory may be reclaimed by the garbage collector.
 
 ## Dealing with errors
 
@@ -574,8 +575,9 @@ When an exception is not handled, it is printed at the top level:
 f 10 0;;
 ```
 
-The other way OCaml deals with exceptional situations is to use the built-in
-polymorphic `option` type, which is defined as:
+The other way to deal with exceptional situations in OCaml is by returning a
+value of a type which can represent either the correct result or an error, for
+example the built-in polymorphic `option` type, which is defined as:
 
 ```ocaml
 type 'a option = None | Some of 'a
@@ -596,6 +598,16 @@ element matching a given boolean test):
 let list_find_opt p l =
   try Some (List.find p l) with
     Not_found -> None;;
+```
+
+As an alternative, we can use an extended form of our usual `match` expression,
+to match both values and catch exceptions:
+
+```ocamltop
+let list_find_opt p l =
+  match List.find p l with
+  | v -> Some v
+  | exception Not_found -> None;;
 ```
 
 ## Imperative OCaml
@@ -652,7 +664,8 @@ let print_number n =
   print_newline ();;
 ```
 
-We can look at the type of the built-in function `print_newline`:
+We can look at the type of the built-in function `print_newline` by typing its
+name without applying the unit argument:
 
 ```ocamltop
 print_newline;;
@@ -774,28 +787,28 @@ module then calls `open_graph` and the second one uses `Graphics.open_graph`
 directly.
 
 ```ocaml
-open Graphics
+open Graphics;;
 
-open_graph " 640x480"
+open_graph " 640x480";;
 
 for i = 12 downto 1 do
   let radius = i * 20 in
     set_color (if i mod 2 = 0 then red else yellow);
     fill_circle 320 240 radius
-done
+done;;
 
-read_line ()
+read_line ();;
 ```
 
 ```ocaml
-Random.self_init ()
+Random.self_init ();;
 
-Graphics.open_graph " 640x480"
+Graphics.open_graph " 640x480";;
 
 let rec iterate r x_init i =
   if i = 1 then x_init else
     let x = iterate r x_init (i - 1) in
-      r *. x *. (1.0 -. x)
+      r *. x *. (1.0 -. x);;
 
 for x = 0 to 639 do
   let r = 4.0 *. (float_of_int x) /. 640.0 in
@@ -805,10 +818,13 @@ for x = 0 to 639 do
     let y = int_of_float (x_final *. 480.) in
       Graphics.plot x y
   done
-done
+done;;
 
-read_line ()
+read_line ();;
 ```
+
+You should copy and paste these examples into OCaml piece by piece, each piece
+being ended by a  `;;`.
 
 ## Compiling OCaml programs
 
