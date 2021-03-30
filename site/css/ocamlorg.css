@@ -438,6 +438,7 @@ figure.code td.code {
 }
 
 /* Running header on the front page */
+
 header + .core-running-header {
   margin-top: -27px;
   margin-bottom: 12px;
@@ -452,8 +453,8 @@ div.running-header {
 }
 ul.translations {
   float: right;
-  position: fixed;
-  z-index: 21221;
+  position: relative;
+  z-index: 10;
 
   padding: 8px 0;
   list-style: none;
@@ -461,16 +462,13 @@ ul.translations {
   font-family: Lato, sans-serif;
 
   font-weight: normal;
-  color: #ffffff;  /* current language name */
+  color: #6f6f6f; /* current language name */
   border: 0;
   padding: 0;
   margin: 0px 1ex 0px 2ex;
-  top: 1.5rem;
-  right: 20px;
-  width: fit-content !important;
 }
-ul.translations:before { content: "["; color: #ffffff; }
-ul.translations:after { content: "]"; color: #ffffff;}
+ul.translations:before { content: "["; }
+ul.translations:after { content: "]"; }
 .translations > li  {
   display: inline-block;
   *display: inline;
@@ -479,20 +477,7 @@ ul.translations:after { content: "]"; color: #ffffff;}
   *zoom: 1;
   text-shadow: 0 1px 0 #ffffff;
 }
-.translations > .active {
-  color: #ffffff;
-}
-@media (max-width: 980px) {
-  ul.translations {
-    position: absolute;
-    top: 1rem;
-  }
-}
-@media (max-height: 600px) {
-  ul.translations {
-    top: 0.5rem;
-  }
-}
+
 /* Accessibility Helpers */
 .visually-hidden {
   clip: rect(0 0 0 0);
@@ -555,12 +540,6 @@ ul.translations:after { content: "]"; color: #ffffff;}
   #footer .column {
     width: 98%;
     margin-right: 0px;
-  }
-}
-@media (min-width: 980px)and (max-width: 1058px) {
-  #searchform, #search {
-    margin-right: 1.8rem;
-    width: 125px !important;
   }
 }
 #footer .entry {

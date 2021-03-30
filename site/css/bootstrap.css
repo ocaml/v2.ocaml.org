@@ -530,14 +530,6 @@ a:focus {
   margin-left: auto;
   *zoom: 1;
 }
-.navbar-inner > .container-fluid {
-  margin-right: 65px;
-}
-@media (max-width: 767px){
-  .navbar-inner > .container-fluid {
-    margin-right: 85px;
-  }
-}
 .container:before,
 .container:after {
   display: table;
