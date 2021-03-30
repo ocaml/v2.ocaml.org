@@ -127,7 +127,7 @@
             a set of tools and APIs to perform static analysis,
             dynamic analysis, code visualizations, code navigations,
             and style-preserving source-to-source transformations such
-            as refactorings on source code.  They also designed
+            as refactoring on source code.  They also designed
 	    <em>Hack</em>, a new statically typed
 	    programming language for HHVM, a fast PHP runtime.
 	    See Julien Verlaguet's
@@ -152,7 +152,7 @@
 	    file synchronizer stemming from the
 	       <a href="http://www.cis.upenn.edu/~bcpierce/papers/index.shtml#Synchronization"
 		  target="_blank"
-		  >latest research</a>.  It is resilent to failures
+		  >latest research</a>.  It is resilient to failures
 	       and  runs on Windows as well as most flavors of Unix,
 	       including MacOSX.
 	       OCaml helped the authors to
