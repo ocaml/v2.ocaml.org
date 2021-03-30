@@ -513,7 +513,6 @@ ul.translations:after { content: "]"; }
   }
   #footer .column {
     text-align: left;
-    padding-left: 10%;
     padding-right: 5%;
   }
 }
