@@ -125,7 +125,7 @@
                             ><img class="svg rss" src="/img/rss.svg" alt="RSS"
 						    /><img class="png" src="/img/rss.png" alt="RSS" /></a>
            </h1>
-		   <ul class="news-feed" style="margin-bottom: 0px">
+		   <ul class="news-feed">
    		    <li class="announcement"><article>
 			  <h1><a title="OCaml Weekly News"
 			       href="/community/cwn/" >OCaml Weekly News</a></h1>
