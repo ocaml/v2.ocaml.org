@@ -725,7 +725,7 @@ let birthday p =
 OCaml comes with a library of useful modules which are available anywhere OCaml
 is. For example there are standard libraries for functional data structures
 (such as maps and sets) and imperative data structures (such as hash tables),
-and for making system calls. We use them by writing the module, followed by a
+and for interacting with the operating system. We use them by writing the module, followed by a
 full stop, followed by the name of the function. Here are some functions from
 the `List` module:
 
