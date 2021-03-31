@@ -549,6 +549,22 @@ ul.translations:after { content: "]"; }
   color: #FFFFFF;
 }
 
+/* Community Page
+ ***********************************************************************/
+/* Community Page*/
+.stickers{
+  text-align: center;
+  display: flex;
+}
+.stickers img{
+  max-width: 100px;
+}
+@media (max-width: 768px){
+  .community-logo{
+    display: none;
+  }
+}
+
 /* SVG
  ***********************************************************************/
 /* Combined with the Javascript in main.mpp */
