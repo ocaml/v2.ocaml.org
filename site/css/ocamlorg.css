@@ -280,6 +280,42 @@ html.svg a.edit-this-page:hover {
   display: flex;
   justify-content: flex-end;
 }
+
+/* 
+This styling overrides bootstrap style which removes outline
+when an element is in focus
+*/
+a:focus{
+  outline: 0.2rem solid #c77a27;
+ 
+ }
+ .navbar .edit-this-page:focus{
+   background-color: #6e5437;
+   border-radius: 5px;
+ }
+ .navbar-inverse .navbar-search .search-query:focus{
+   box-shadow: 0 0 0 0.2rem #c77a27;
+ }
+ select.form-control:focus{
+   box-shadow: 0 0 0 0.2rem #c77a27;
+ }
+ a.btn:focus, button.btn:focus{
+   outline: none;
+   box-shadow: 0 0 0 0.2rem #c77a27;
+ }
+ #menu-items .nav a:focus{
+   background-color: #6e5437;
+ }
+ .brand:hover, .brand:focus{
+   background-color:#6e5437;
+ }
+ .navbar a:focus{
+   outline: none;
+ }
+ #footer a:focus{
+   outline: 3px solid #c77a27;
+ }
+
 dl{
   padding: 1em;
   background: #eee;
@@ -290,6 +326,7 @@ color: #a20505;
 dl h2{
 font-weight: bold;
 }
+
 /* When the navigation bar has reduced size */
 @media (max-height: 600px) and (min-width: 980px) {
   a.edit-this-page {
