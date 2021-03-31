@@ -751,7 +751,7 @@ You can find the full list of standard library modules in the
 ## A module from OPAM
 
 Apart from the standard library, a much wider range of modules are available
-through the OCaml Package Manager, OPAM. You must have OCaml on your computer
+through the OCaml Package Manager, opam. You must have OCaml on your computer
 to follow the tutorial from now on, not just TryOCaml.
 
 For these examples we're going to use module called `Graphics` which can be
