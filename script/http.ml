@@ -34,7 +34,7 @@ let rec http_get_and_follow ~max_redirects uri =
 and follow_redirect ~max_redirects request_uri (response, body) =
   let open Lwt in
   let status = Cohttp.Response.status response in
-  (* The uncosumed body would otherwise leak memory *)
+  (* The unconsumed body would otherwise leak memory *)
   if status <> `OK then Lwt.ignore_result (Cohttp_lwt.Body.drain_body body);
   match status with
   | `OK -> Lwt.return (response, body)
