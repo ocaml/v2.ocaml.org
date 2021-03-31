@@ -65,8 +65,8 @@ to the OCaml top level only.
 ## Expressions
 
 Our phrase `50 * 50` was an expression, which evaluated to `2500`. OCaml told
-us that the type was `int`, an integer. To avoid repetition, we can give a name
-to our number:
+us that the type was `int`, an integer (every expression in OCaml has a type).
+To avoid repetition, we can give a name to our number:
 
 ```ocamltop
 let x = 50;;
