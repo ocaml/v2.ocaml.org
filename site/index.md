@@ -73,7 +73,7 @@
             </div>
             <div id="home-learn">
 			     <a href="https://discuss.ocaml.org/"
-                   target="_blank"
+                   target="_blank" rel="noopener"
 			      ><img src="/img/chat.svg" alt="chat" class="svg"
                     style="width: 4ex;" />
                    <img src="/img/chat.png" alt="chat" class="png"

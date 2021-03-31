@@ -6,7 +6,7 @@
 <div style="float:right; width: 35%; padding-left: 2ex; text-decoration: none">
   <a
   href="https://www.infoq.com/presentations/ocaml-browser-iot?utm_source=twitter&utm_medium=link&utm_campaign=qcon"
-  target="_blank" ><img src="/img/QCon1805.png" />
+  target="_blank" rel="noopener"><img src="/img/QCon1805.png" />
   <br/>Fast, Flexible and Functional Programming with OCaml,
   Gemma Gordon and Anil Madhavapeddy
   </a>

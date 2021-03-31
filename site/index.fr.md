@@ -41,7 +41,7 @@
                     <p><a href="docs/install.fr.html" >Installer</a> OCaml,
 					trouver des <a href="https://opam.ocaml.org/packages/">docs de paquets</a>, accéder au
 					<a href="/releases/latest/manual.html"
-					target="_blank"
+					target="_blank" rel="noopener"
 					>Manuel</a>, obtenir <a href="/docs/cheat_sheets.html">des mémentos</a> et <a href="/docs/index.fr.html">bien plus</a>.</p>
                 </section>
             </div>
@@ -73,7 +73,7 @@
             </div>
             <div id="home-learn">
 			     <a href="https://discuss.ocaml.org/"
-                   target="_blank"
+                   target="_blank" rel="noopener"
 			      ><img src="/img/chat.svg" alt="chat" class="svg"
                     style="width: 4ex;" />
                    <img src="/img/chat.png" alt="chat" class="png"
