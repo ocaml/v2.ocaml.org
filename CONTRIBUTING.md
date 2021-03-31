@@ -28,6 +28,47 @@ opam install ocamlorg --deps-only
 
 You should now have everything you need to build the site :tada:. 
 
+## Errors faced while building the site using WSL
+
+ERROR WHILE RUNNING OPAM INIT:
+:the newer versions of opam are using bwrap for sandboxing, which is not supported by WSL. instead you can try `opam init --disable-sandboxing` to make it work.
+:opam init usually gives errors which says :
+`Do you want opam to modify ~/.profile? [N/y/f]
+(default is 'no', use 'f' to choose a different file)`
+this can be corrected by using `opam init --disable-sandboxing -a`. -a does auto-setup for opam init.
+:you can also face errors like :
+`make sure that ~/. profile is well sourced with in your ~/. bashrc.`
+to resolve this the easiest way is to run : `rm -rf /home/(your linux username)/.opam` and re-run `opam init`.
+
+ERRORS WHILE RUNNING MAKE DEPS:
+:make deps can usually give errors like :
+` The following actions failed
+│ λ build conf-gmp    3
+│ λ build conf-libssl 3`
+to resolve this , you can manually install libgmp-dev and libssl-dev using apt. like running `apt install libgmp-dev` and `apt install libssl-dev`. after this you can run make deps succesfully. then run make .
+if both make deps && make fails somehow , you can do make deps manually.
+
+ERRORS WHILE RUNNING make -j:
+: make usually gives errors like-
+` 1-This pattern matches values of type Omd.block_desc
+       but a pattern was expected which matches values of type Omd.block
+cd script && \
+ocamlfind ocamlopt -annot -g -safe-string -o ../"script/generate_opam_update_list" -package cow \
+  -linkpkg generate_opam_update_list.ml
+make[1]: *** [Makefile.common:86: script/md_preprocess] Error 2
+make[1]: *** Waiting for unfinished jobs....
+File "http.ml", line 38, characters 4-22:`
+to resolve this first error you can do:  `opam install omd.1.3.1`.
+
+:another common error includes :
+`tp.ml", line 38, characters 4-22:
+38 |   | Resume_incomplete (* actually 308 Permanent Redirect *)
+         ^^^^^^^^^^^^^^^^^^
+Error: This pattern matches values of type [? Resume_incomplete ]
+       but a pattern was expected which matches values of type
+         Cohttp__.Code.status_code
+       The second variant type does not allow tag(s) Resume_incomplete` this error can be resolved in one go by running the command `opam install cohttp-lwt-unix.2.5.4.` This meant the version of cohttp-lwt-unix didn’t downgrade and you were stuck with the latest 4.0.0 version which right now we are not compatible with hence the compiler errors.
+       
 ## Site Structure
 
 The README contains a brief description of the site structure, here we'll look at it a little more closely. 
