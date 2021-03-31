@@ -280,6 +280,7 @@ html.svg a.edit-this-page:hover {
   display: flex;
   justify-content: flex-end;
 }
+
 /* 
 This styling overrides bootstrap style which removes outline
 when an element is in focus
@@ -314,6 +315,18 @@ a:focus{
  #footer a:focus{
    outline: 3px solid #c77a27;
  }
+
+dl{
+  padding: 1em;
+  background: #eee;
+}
+dl a{
+color: #a20505;
+}
+dl h2{
+font-weight: bold;
+}
+
 /* When the navigation bar has reduced size */
 @media (max-height: 600px) and (min-width: 980px) {
   a.edit-this-page {
@@ -537,7 +550,6 @@ ul.translations:after { content: "]"; }
   }
   #footer .column {
     text-align: left;
-    padding-left: 10%;
     padding-right: 5%;
   }
 }

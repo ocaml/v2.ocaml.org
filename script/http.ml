@@ -35,7 +35,7 @@ and follow_redirect ~max_redirects request_uri (response, body) =
   let open Lwt in
   match Cohttp.Response.status response with
   | `OK -> Lwt.return (response, body)
-  | `Resume_incomplete (* actually 308 Permanent Redirect *)
+  | `Permanent_redirect
   | `Moved_permanently ->
      handle_redirect ~permanent:true ~max_redirects request_uri response
   | `Found
