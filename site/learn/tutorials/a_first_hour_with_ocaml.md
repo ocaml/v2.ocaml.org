@@ -17,7 +17,7 @@ To try small OCaml expressions, you can use an interactive top level, or REPL
 should install `rlwrap` through your system package manager and run `rlwrap
 ocaml` instead to get history navigation.)
 
-The alternative REPL [utop](https://github.com/diml/utop) may be installed
+The alternative REPL [utop](https://github.com/ocaml-community/utop) may be installed
 through [OPAM](/docs/install.html#OPAM) or your system package manager. It has
 the same basic interface but is much more convenient to use (history
 navigation, auto-completion, etc).
