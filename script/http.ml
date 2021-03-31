@@ -93,7 +93,7 @@ let get ?(cache_secs=cache_secs) url =
   let fn = Filename.concat (Filename.get_temp_dir_name ()) ("ocamlorg-" ^ md5) in
   eprintf "Downloading %s ... %!" url;
   let get_from_cache () =
-    let fh = open_in fn in
+    let fh = open_in_bin fn in
     let data = input_value fh in
     close_in fh;
     eprintf "done.\n  (using cache %s, updated %s ago).\n%!"
@@ -104,7 +104,7 @@ let get ?(cache_secs=cache_secs) url =
     try
       let data = http_get url in
       eprintf "done %!";
-      let fh = open_out fn in
+      let fh = open_out_bin fn in
       output_value fh data;
       close_out fh;
       eprintf "(cached).\n%!";
