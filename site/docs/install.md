@@ -34,10 +34,10 @@ Example using the Bash shell and opam-2.0:
 ```
 # environment setup
 opam init
-eval `opam env`
+eval $(opam env)
 # install given version of the compiler
 opam switch create {{! get LATEST_OCAML_VERSION !}}
-eval `opam env`
+eval $(opam env)
 # check you got what you want
 which ocaml
 ocaml -version
@@ -233,6 +233,4 @@ instructions included therein.
 Here is the list of available versions across different Linux and UNIX distributions:
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/ocaml.svg)](https://repology.org/metapackage/ocaml)
-
-
 
