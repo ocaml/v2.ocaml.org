@@ -75,9 +75,9 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
          >réunion annuelle des développeurs OCaml 2014</a>
          à Gothenburg, Suède
 		 (<a href="/meetings/ocaml/2014/OCaml2014-Leroy-slides.pdf"
-		 target="_blank">en PDF</a>,
+		 target="_blank" rel="noopener">en PDF</a>,
          <a href="https://www.youtube.com/watch?v=DMzZy1bqj6Q&list=UUP9g4dLR7xt6KzCYntNqYcw"
-         target="_blank">Vidéo</a>).
+         target="_blank" rel="noopener">Vidéo</a>).
 		 </p>
 	  <p class="documentation-video video16-9"
 	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
@@ -141,7 +141,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
 	       >Unison</a> est un synchroniseur de fichiers innovant, basé
 	       sur
 	       <a href="http://www.cis.upenn.edu/~bcpierce/papers/index.shtml#Synchronization"
-		  target="_blank"
+		  target="_blank" rel="noopener"
 		  >la plus récente recherche</a>. Il tolère les pannes
 	       et fonctionne aussi bien sous Windows que sous la plupart
 	       des variantes d'Unix, en incluant MacOSX.
