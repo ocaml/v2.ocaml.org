@@ -54,7 +54,7 @@ if both make deps && make fails somehow , you can do make deps manually.
 for any further difficulties you can follow the following guides (these include multiple errors and their solutions)
      1-https://github.com/janestreet/install-ocaml
      2-https://discuss.ocaml.org/t/error-while-setting-up-ocaml-project-using-wsl/7466/10
-     3-https://www.cs.umd.edu/class/spring2018/cmsc330/ocamlInstallationGuide.pdf (this guide is a bit older , but contains detailed description of actually how steps work. you can cross check this in case you get stuck in between somewhere.)
+     3-https://www.cs.umd.edu/class/spring2018/cmsc330/ocamlInstallationGuide.pdf (this guide is a bit older , but contains detailed description of actually how steps work. you can cross check this in case you get stuck in between somewhere)
 ## Site Structure
 
 The README contains a brief description of the site structure, here we'll look at it a little more closely. 
