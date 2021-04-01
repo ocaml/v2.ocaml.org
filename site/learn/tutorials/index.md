@@ -24,6 +24,7 @@ there to request or offer new tutorials.
 * [Functional Programming](functional_programming.html)
 * [If Statements, Loops, and
  Recursion](if_statements_loops_and_recursion.html)
+* [Modules](modules.html)
 * [Labels](labels.html)
 * [Pointers in OCaml](pointers.html)
 * [Null Pointers, Asserts, and
