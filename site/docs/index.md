@@ -38,13 +38,14 @@
     <section class="span6 condensed">
       <h2 class="ruled">The OCaml API</h2>
       <p>This is the place you'll end up most often!  You'll find the
-	documentation for all modules that ship with any OCaml
-	distribution. These modules form what is called
-	the <a id="stdlib" href="/manual/stdlib.html">Standard
-	Library</a>. In addition, a special
-	module <code id="stdlib_name">Stdlib</code> contains
-	the <a id="corref" href="/manual/core.html">core
-	library</a>, and is always open.
+    documentation for all modules that ship with any OCaml
+    distribution. These modules form what is called
+    the <a id="stdlib" href="/manual/stdlib.html">Standard
+    Library</a>. In addition, a special
+    module <code id="stdlib_name">Stdlib</code> contains
+    the <a id="corref" href="/manual/core.html">core
+    library</a>, and is always open.
+
    </p>
    <p class="doc-link-wrapper">
 	<a id="api_b"
@@ -56,51 +57,51 @@
     <section class="span6 condensed">
       <h2 class="ruled">The Tools</h2>
       <p>
-	Many <a id="toolref"
-		    href="/manual/index.html#sec286">tools</a>
-	are bundled with the OCaml language. Among them, the REPL (or
-	`toplevel'), the documentation generator, lexers, the
-	debugger, profiling tools, etc.
+    Many <a id="toolref"
+    	    href="/manual/index.html#sec286">tools</a>
+    are bundled with the OCaml language. Among them, the REPL (or
+    `toplevel'), the documentation generator, lexers, the
+    debugger, profiling tools, etc.
     </p>
-	<p class="doc-link-wrapper">
-		<a id="toolref_b"
-		href="/manual/index.html#sec286" class="btn btn-default">
-	   OCaml Tools</a>
-	  </p>
+    <p class="doc-link-wrapper">
+    	<a id="toolref_b"
+    	href="/manual/index.html#sec286" class="btn btn-default">
+       OCaml Tools</a>
+      </p>
     </section>
 
     <section class="span6 condensed">
       <h2 class="ruled">The Language Extensions</h2>
 
       <p>Don't forget to regularly check the
-	<a id="extref"
-	   href="/manual/extn.html">Language Extensions</a>,
-	they will keep you up-to-date with useful new OCaml idioms
-	and constructions.<br>
+    <a id="extref"
+       href="/manual/extn.html">Language Extensions</a>,
+    they will keep you up-to-date with useful new OCaml idioms
+    and constructions.<br>
       </p>
-	  <p class="doc-link-wrapper">
-		<a id="extref_b"
-		href="/manual/extn.html" class="btn btn-default" >
-	   OCaml Extensions</a>
-	  </p>
+      <p class="doc-link-wrapper">
+    	<a id="extref_b"
+    	href="/manual/extn.html" class="btn btn-default" >
+       OCaml Extensions</a>
+      </p>
     </section>
 
     <section class="span6 condensed">
       <h2 class="ruled">The OCaml Manual</h2>
       <p>The complete documentation is bundled as a
-	large <a id="manual" href="/manual/index.html">
-	OCaml Manual</a>.  This manual is also available in
-	<a id="refman-pdf"
-	   href="/releases/4.12/ocaml-4.12-refman.pdf">PDF</a>,
-	<a id="refman-txt"
-	   href="/releases/4.12/ocaml-4.12-refman.txt">plain text</a>,
-	as a
-	<a id="refman-html"
-	   href="/releases/4.12/ocaml-4.12-refman-html.tar.gz">bundle of
-	  HTML files</a>, and as a
-	<a id="refman-info"
-	   href="/releases/4.12/ocaml-4.12-refman.info.tar.gz">bundle of
-	  Emacs Info files</a>.
+    large <a id="manual" href="/manual/index.html">
+    OCaml Manual</a>.  This manual is also available in
+    <a id="refman-pdf"
+       href="/releases/4.12/ocaml-4.12-refman.pdf">PDF</a>,
+    <a id="refman-txt"
+       href="/releases/4.12/ocaml-4.12-refman.txt">plain text</a>,
+    as a
+    <a id="refman-html"
+       href="/releases/4.12/ocaml-4.12-refman-html.tar.gz">bundle of
+      HTML files</a>, and as a
+    <a id="refman-info"
+       href="/releases/4.12/ocaml-4.12-refman.info.tar.gz">bundle of
+      Emacs Info files</a>.
       </p>
     </section>
 
@@ -108,21 +109,21 @@
     <section class="span6 condensed">
       <h2 class="ruled">Other docs</h2>
       <div class="row">
-	<a href="license.html" class="span3 documentation-highlight">
-	  <img src="/img/license.svg" alt="" class="svg">
-	  <img src="/img/license.png" alt="" class="png">
-	  OCaml License
-	</a>
-	<a href="cheat_sheets.html"
-	   class="span3 documentation-highlight">
-	  <img src="/img/cheat.svg" alt="" class="svg" />
-	  <img src="/img/cheat.png" alt="" class="png" />
-	  Cheat Sheets
-	</a>
+    <a href="license.html" class="span3 documentation-highlight">
+      <img src="/img/license.svg" alt="" class="svg">
+      <img src="/img/license.png" alt="" class="png">
+      OCaml License
+    </a>
+    <a href="cheat_sheets.html"
+       class="span3 documentation-highlight">
+      <img src="/img/cheat.svg" alt="" class="svg" />
+      <img src="/img/cheat.png" alt="" class="png" />
+      Cheat Sheets
+    </a>
       </div>
     </section>
-  </div>
 
+  </div>
 
   <div class="row">
     <section class="span6 condensed">
@@ -145,17 +146,17 @@
       <div class="row">
 	<div class="span2 documentation-book">
 	  <a href="https://realworldocaml.org">
-	    <img src="/img/real-world-ocaml.jpg" alt="Real Worl OCaml book">
+	    <img class="book-img" src="/img/real-world-ocaml.jpg" alt="Real Worl OCaml book">
 	  </a>
 	</div>
 	<div class="span2 documentation-book">
 	  <a href="http://ocaml-book.com">
-	    <img src="/img/OCaml_from_beginning.png" alt="OCaml from the very beginning">
+	    <img class="book-img" src="/img/OCaml_from_beginning.png" alt="OCaml from the very beginning">
 	  </a>
 	</div>
 	<div class="span2 documentation-book">
 	  <a href="http://ocaml-book.com/more-ocaml-algorithms-methods-diversions/">
-	    <img src="/img/more-ocaml-300-376.png" alt="More OCaml: Algorithms, Methods &amp; Diversions">
+	    <img class="book-img" src="/img/more-ocaml-300-376.png" alt="More OCaml: Algorithms, Methods &amp; Diversions">
 	  </a>
 	</div>
       </div>
