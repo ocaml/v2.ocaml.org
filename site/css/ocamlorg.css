@@ -484,7 +484,7 @@ ul.translations:after { content: "]"; }
  ***********************************************************************/
 /* Footer */
 #footer {
-  font-size: 95%;
+  font-size: 104%;
   margin-top: 4ex;
   margin-bottom: 0;
   height: auto;
@@ -503,8 +503,8 @@ ul.translations:after { content: "]"; }
   }
   #footer .column {
     text-align: left;
-    padding-left: 10%;
     padding-right: 5%;
+    width: 41%;
   }
 }
 @media (max-width: 480px) {
@@ -519,7 +519,7 @@ ul.translations:after { content: "]"; }
 }
 
 #footer h1 {
-  font-size: 109%;
+  font-size: 31px;
   font-weight: bold;
   margin-bottom: 0;
 }
