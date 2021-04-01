@@ -13,7 +13,7 @@ Il y a plusieurs moyens pour installer OCaml :
 
 * Utiliser [OPAM](#Installation-via-OPAM), un gestionnaire de paquet spécialisé pour OCaml
 * Utiliser le gestionnaire de paquet de votre plateforme ([FreeBSD](#FreeBSD),
-  [Linux](#Linux), [macOS](#macOS), [OpenBSD](#OpenBSD), [Windows](#Windows))
+  [Linux](#Linux), [macOS](#macOS), [OpenBSD](#OpenBSD), [Windows](#Windows), [Mobile](#Mobile))
 * Installer depuis [les sources](#Installation-depuis-les-sources)
 
 Pour trouver ou installer des bibliothèques OCaml, voir [la page
@@ -191,6 +191,9 @@ Voici quelques alternatives :
 * [Cygwin](http://cygwin.com/) Avec Cygwin, vous pouvez l'installer avec l'outil `setup`.
    Les compileurs génèrent des exécutables qui requièrent Cygwin (`cygwin1.dll`).
 
+## Mobile
+
+* [OCaml: Learn & Code](https://apps.apple.com/app/ocaml-learn-code/id1547506826) met à disposition un éditeur et une console interactive pour iOS, iPadOS et macOS, avec une section d'apprentissage en pleine croissance.
 
 ## Installation depuis les sources
 
