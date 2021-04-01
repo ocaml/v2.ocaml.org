@@ -4,11 +4,6 @@
 
 # Performance and Profiling
 
-## ObQuote...
-*"One serious obstacle to the adoption of good programming languages is
-the notion that everything has to be sacrificed for speed. In computer
-languages as in life, speed kills." — Mike Vanier*
-
 ## Speed
 Why is OCaml fast? Indeed, step back and ask *is OCaml fast?* How can we
 make programs faster? In this chapter we'll look at what actually
@@ -176,10 +171,6 @@ like this:
 the string:    h e l l o , SP w o r l d \n
 padding:       \0 \0 \002
 ```
-The format is unusual. It's documented in [this posting on the OCaml
-mailing
-list](http://caml.inria.fr/pub/ml-archives/caml-list/2002/08/e109df224ff0150b302033e2002dbf87.en.html).
-\<!-- (old: http://caml.inria.fr/archives/200208/msg00463.html) --\>
 
 Firstly the padding brings the total length of the string up to a whole
 number of words (4 words, 16 bytes in this example). The padding is
@@ -662,7 +653,7 @@ How does OCaml compile functions which are only partially applied? Let's
 compile this code:
 
 ```ocaml
-Array.map ((+) 2) [| 1; 2; 3; 4; 5 |]
+Array.map ((+) 2) [|1; 2; 3; 4; 5|]
 ```
 If you recall the syntax, `[| ... |]` declares an array (in this case an
 `int array`), and `((+) 2)` is a closure - "the function which adds 2 to
@@ -891,11 +882,10 @@ your programs:
 
 ###  Further reading
 You can find out more about how OCaml represents different types by
-reading chapter 18 of the manual ("Interfacing C with OCaml") and also
+reading the ("Interfacing C with OCaml") chapter in the OCaml manual and also
 looking at the `mlvalues.h` header file.
 
-## Discussion On This Page
-###  Java dynamic dispatch
+<!--###  Java dynamic dispatch
 **There are some serious mistakes in the last paragraph:**
 
 * Dynamic method dispatch itself is seldom a performance problem. In
@@ -908,5 +898,4 @@ looking at the `mlvalues.h` header file.
  and this hits the performance.
 
 * In Java is a dynamic type check (aka cast) much more expensive than
- a dynamic method dispatch.
-
+ a dynamic method dispatch. -->

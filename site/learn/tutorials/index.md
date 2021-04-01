@@ -19,6 +19,7 @@ there to request or offer new tutorials.
 * [Modules](modules.html)
 * [Filenames and Extensions](filenames.html)
 * [OCaml Programming Guidelines](guidelines.html)
+* [Compiling OCaml Projects](compiling_ocaml_projects.html)
 
 ### Language Features
 
@@ -32,20 +33,20 @@ there to request or offer new tutorials.
  Warnings](null_pointers_asserts_and_warnings.html)
 * [Objects](objects.html)
 
-### Data Structures
-
-* [Maps (Dictionaries)](map.html)
-* [Sets](set.html)
-* [Hash Tables](hashtbl.html)
-* [Comparison of Standard
- Containers](comparison_of_standard_containers.html)
-
-((! get second_of_two_columns !))
-
 ### Errors
 
 * [Error handling](error_handling.html)
 * [Common Error Messages](common_error_messages.html)
+
+((! get second_of_two_columns !))
+
+### Data Structures
+
+* [Maps](map.html)
+* [Sets](set.html)
+* [Hash Tables](hashtbl.html)
+* [Comparison of Standard
+ Containers](comparison_of_standard_containers.html)
 
 ### Common Tasks
 
@@ -53,18 +54,12 @@ there to request or offer new tutorials.
 * [99 Problems (solved) in OCaml](99problems.html)
 * [Introduction to Gtk](introduction_to_gtk.html)
 * [Command-Line Arguments](command-line_arguments.html)
-* [File manipulation](file_manipulation.html)
+* [File Manipulation](file_manipulation.html)
 
 ### Interoperability
 
 * [Calling C libraries](calling_c_libraries.html)
 * [Calling Fortran libraries](calling_fortran_libraries.html)
-
-### Other Build Systems
-
-* [Compiling OCaml projects](compiling_ocaml_projects.html)
-* [OCamlbuild](ocamlbuild/)
-* [Setting up OCaml projects with OASIS](setting_up_with_oasis.html)
 
 ### Advanced Topics
 
@@ -122,3 +117,7 @@ Both in french:
   on using PPX, the syntax extensions API.
 * [Detecting use cases for GADTs in OCaml](http://mads-hartmann.com/ocaml/2015/01/05/gadt-ocaml.html),
   on using generalized algebraic data types in writing interpreters.
+* [OCaml Operator Lookup](https://www.craigfe.io/operator-lookup/),
+  for getting an explanation on the behaviour of an operator or syntax element, along with usage examples.
+
+

@@ -12,12 +12,10 @@ standard library relies heavily upon them.
 Exceptions belong to the type `exn` (an extensible sum type):
 
 ```ocaml
-
 exception Foo of string
 
 let i_will_fail () =
-  raise (Foo "ohnoes!")
-
+  raise (Foo "Oh no!")
 ```
 
 Here, we add a variant `Foo` to the type `exn`, and create a function
@@ -26,29 +24,28 @@ The construct is `try ... with ...`:
 
 ```ocaml
 let safe_inverse n =
-  try Some (1/n)
-  with Division_by_zero -> None
+  try Some (1 / n) with
+    Division_by_zero -> None
 
 let safe_list_find p l =
-  try Some (List.find p l)
-  with Not_found -> None
+  try Some (List.find p l) with
+    Not_found -> None
 ```
 
 We can try those functions:
 
 ```ocaml
-# 1/0;;
+# 1 / 0;;
 Exception: Division_by_zero.
 # safe_inverse 2;;
 - : int option = Some 0
 # safe_inverse 0;;
 - : int option = None
-
-# List.find (fun x->x mod 2 =0)  [1;3;5]
+# List.find (fun x -> x mod 2 = 0)  [1;3;5]
 Exception: Not_found.
-# safe_find (fun x->x mod 2 =0)  [1;3;4;5]
+# safe_find (fun x -> x mod 2 = 0)  [1;3;4;5]
 - : int option = Some 4
-# safe_find (fun x->x mod 2 =0)  [1;3;5]
+# safe_find (fun x -> x mod 2 = 0)  [1;3;5]
 - : int option = None
 ```
 
@@ -71,7 +68,7 @@ Functions that can raise exceptions should be documented like this:
 ```ocaml
 val foo : a -> b
 (** foo does this and that, here is how it works, etc.
-    @raise Invalid_argument if a doesn't satisfy blabla
+    @raise Invalid_argument if [a] doesn't satisfy ...
     @raise Sys_error if filesystem is not happy *)
 ```
 
@@ -82,11 +79,11 @@ need to compile the program in "debug" mode (with `-g` when calling
 `ocamlc`, or `-tag 'debug'` when calling `ocamlbuild`).
 Then:
 
-    OCAMLRUNPARAM=b ./myprogram [args]
+```
+OCAMLRUNPARAM=b ./myprogram [args]
+```
 
-And you will get a stacktrace.
-
-Alternatively, you can call, from within the program,
+And you will get a stacktrace. Alternatively, you can call, from within the program,
 
 ```ocaml
 let () = Printexc.record_backtrace true
@@ -101,15 +98,14 @@ If stacktraces are enabled, this function will also display it.
 
 ```ocaml
 let notify_user f =
-  try f()
-  with e ->
+  try f () with e ->
     let msg = Printexc.to_string e
     and stack = Printexc.get_backtrace () in
-    Printf.eprintf "there was an error: %s%s\n" msg stack;
-    raise e
+      Printf.eprintf "there was an error: %s%s\n" msg stack;
+      raise e
 ```
 
-OCaml knows how to print its builtin exception, but you can also tell it
+OCaml knows how to print its built-in exception, but you can also tell it
 how to print your own exceptions:
 
 ```ocaml
@@ -129,9 +125,7 @@ do the job!).
 
 ## Result type
 
-Since OCaml 4.03, the stdlib contains the following type
-(can also be found in the retrocompatibility package `result`, on
-opam):
+The Stdlib module contains the following type:
 
 ```ocaml
 type ('a, 'b) result =
@@ -146,21 +140,17 @@ other sum type. The advantage here is that a function `a -> b` that
 fails can be modified so its type is `a -> (b, error) result`,
 which makes the failure explicit.
 The error case `e` in `Error e` can be of any type
-( the `'b` type variable), but a few possible choices
+(the `'b` type variable), but a few possible choices
 are:
 
 - `exn`, in which case the result type just makes exceptions explicit.
 - `string`, where the error case is a message that indicates what failed.
-- `string lazy_t` or `Sexplib.Sexp.t lazy_t` (used in JaneStreet's Core
-  library), a more elaborate form of error message that is only evaluated
+- `string lazy_t`, a more elaborate form of error message that is only evaluated
   if printing is required.
 - some polymorphic variant, with one case per
   possible error. This is very accurate (each error can be dealt with
   explicitly and occurs in the type) but the use of polymorphic variants
   sometimes make error messages hard to read.
 
-
-For easy combination of functions that can fail, many libraries
-(`rresult`, `containers`, `core`, `batteries`, etc.) provide lots of
-useful combinators on the `result` type: `map`, `>>=`, etc.
-
+For easy combination of functions that can fail, many alternative standard
+libraries provide useful combinators on the `result` type: `map`, `>>=`, etc.

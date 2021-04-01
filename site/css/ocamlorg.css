@@ -245,6 +245,10 @@ h4.news img.rss {
   height: 1.5ex;
 }
 
+.condensed > h2.ruled {
+  border-bottom: 1px #ACACAC solid;
+}
+
 /* Edit buttom, right of the navbar. */
 a.edit-this-page {
   margin-top: 22.5px;
@@ -276,6 +280,53 @@ html.svg a.edit-this-page:hover {
   display: flex;
   justify-content: flex-end;
 }
+
+/* 
+This styling overrides bootstrap style which removes outline
+when an element is in focus
+*/
+a:focus{
+  outline: 0.2rem solid #c77a27;
+ 
+ }
+ .navbar .edit-this-page:focus{
+   background-color: #6e5437;
+   border-radius: 5px;
+ }
+ .navbar-inverse .navbar-search .search-query:focus{
+   box-shadow: 0 0 0 0.2rem #c77a27;
+ }
+ select.form-control:focus{
+   box-shadow: 0 0 0 0.2rem #c77a27;
+ }
+ a.btn:focus, button.btn:focus{
+   outline: none;
+   box-shadow: 0 0 0 0.2rem #c77a27;
+ }
+ #menu-items .nav a:focus{
+   background-color: #6e5437;
+ }
+ .brand:hover, .brand:focus{
+   background-color:#6e5437;
+ }
+ .navbar a:focus{
+   outline: none;
+ }
+ #footer a:focus{
+   outline: 3px solid #c77a27;
+ }
+
+dl{
+  padding: 1em;
+  background: #eee;
+}
+dl a{
+color: #a20505;
+}
+dl h2{
+font-weight: bold;
+}
+
 /* When the navigation bar has reduced size */
 @media (max-height: 600px) and (min-width: 980px) {
   a.edit-this-page {
@@ -499,7 +550,6 @@ ul.translations:after { content: "]"; }
   }
   #footer .column {
     text-align: left;
-    padding-left: 10%;
     padding-right: 5%;
   }
 }
@@ -534,6 +584,22 @@ ul.translations:after { content: "]"; }
 }
 #footer li a:hover {
   color: #FFFFFF;
+}
+
+/* Community Page
+ ***********************************************************************/
+/* Community Page*/
+.stickers{
+  text-align: center;
+  display: flex;
+}
+.stickers img{
+  max-width: 100px;
+}
+@media (max-width: 768px){
+  .community-logo{
+    display: none;
+  }
 }
 
 /* SVG

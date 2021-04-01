@@ -8,20 +8,8 @@
 As with all modern languages, OCaml provides a garbage collector so that
 you don't need to explicitly allocate and free memory as in C/C++.
 
-As JWZ writes in his [&quot;Java sucks&quot;
-rant](http://www.jwz.org/doc/java.html "http://www.jwz.org/doc/java.html"):
-
-> First the good stuff: Java doesn't have `free()`. I have to admit right
-> off that, after that, all else is gravy. That one point makes me able to
-> forgive just about anything else, no matter how egregious. Given this
-> one point, everything else in this document fades nearly to
-> insignificance. **But...**
-
 The OCaml garbage collector is a modern hybrid generational/incremental
-collector which outperforms hand-allocation in most cases. Unlike the
-Java GC, which gives GCs a bad name, the OCaml GC doesn't allocate huge
-amounts of memory at start-up, nor does it appear to have arbitrary
-fixed limits that need to be overridden by hand.
+collector which outperforms hand-allocation in most cases.
 
 Why would garbage collection be faster than explicit memory allocation
 as in C? It's often assumed that calling `free` costs nothing. In fact
@@ -53,8 +41,8 @@ The OCaml GC is synchronous. It doesn't run in a separate thread, and it
 can only get called during an allocation request.
 
 ###  GC vs. reference counting
-Perl has a form of garbage collection, but it uses a simple scheme
-called **reference counting**. Simply put, each Perl object keeps a
+Python has a form of garbage collection, but it uses a simple scheme
+called **reference counting**. Simply put, each Python object keeps a
 count of the number of other objects pointing (referencing) itself. When
 the count falls to zero, nothing is pointing at this object, and so the
 object can be freed.
@@ -62,23 +50,7 @@ object can be freed.
 Reference counting is not considered as serious garbage collection by
 computer scientists, yet it has one big practical advantage over full
 garbage collectors. With reference counting, you can avoid many explicit
-calls to `close`/`closedir` in code. For example:
-
-```perl
-foreach (@files)
-{
-  my $io = new IO::File "< $_" or die;
-  # read from $io
-}
-```
-This Perl code iterates over a list of `@files`, opening and reading
-each one. There is no need to close the `$io` file handle at the end of
-the loop. Because Perl uses reference counting, as soon as we reach the
-end of the loop, the `$io` variable goes out of scope, so the reference
-count on the file object goes to zero, and it is immediately freed (ie.
-closed).
-
-Consider the equivalent OCaml code:
+calls to `close`/`closedir` in code. Whereas in OCaml
 
 ```ocaml
 let read_file filename =
@@ -109,8 +81,7 @@ disadvantages of reference counting schemes:
 * They cannot collect so-called circular, or self-referential
  structures. I've programmed in many languages in many years and
  can't recall ever having created one of these.
-* Graph algorithms, of course, violate the previous assumption. Don't
- try to implement the TSP in Perl!
+* Graph algorithms, of course, violate the previous assumption.
 
 ## The Gc module
 The `Gc` module contains some useful functions for querying and calling
@@ -173,7 +144,7 @@ several events happen (eg. on every major collection). Try adding the
 following code to the example above near the beginning:
 
 ```ocaml
-Gc.set { (Gc.get ()) with Gc.verbose = 0x01 }
+Gc.set {(Gc.get ()) with Gc.verbose = 0x01}
 ```
 (We haven't seen the `{ expression with field = value }` form before,
 but it should be mostly obvious what it does). The above code anyway
@@ -207,7 +178,7 @@ The *public* interface to our "in-memory object database cache" is going
 to be just two functions:
 
 ```ocaml
-type record = { mutable name : string; mutable address : string }
+type record = {mutable name : string; mutable address : string}
 val get_record : int -> record
 val sync_records : unit -> unit
 ```
@@ -246,7 +217,7 @@ release the lock. Here is some code to define the on-disk format and
 some low-level functions to read, write, lock and unlock records:
 
 ```ocaml
-type record = { mutable name : string; mutable address : string }
+type record = {mutable name : string; mutable address : string}
   
 (* On-disk format. *)
 let record_size = 256
@@ -255,17 +226,17 @@ let addr_size = 192
   
 (* Low-level load/save records to file. *)
 let seek_record n fd =
-  ignore(Unix.lseek fd (n * record_size) Unix.SEEK_SET)
+  ignore (Unix.lseek fd (n * record_size) Unix.SEEK_SET)
   
 let write_record record n fd =
   seek_record n fd;
-  ignore(Unix.write fd record.name 0 name_size);
-  ignore(Unix.write fd record.address 0 addr_size)
+  ignore (Unix.write fd record.name 0 name_size);
+  ignore (Unix.write fd record.address 0 addr_size)
   
 let read_record record n fd =
   seek_record n fd;
-  ignore(Unix.read fd record.name 0 name_size);
-  ignore(Unix.read fd record.address 0 addr_size)
+  ignore (Unix.read fd record.name 0 name_size);
+  ignore (Unix.read fd record.address 0 addr_size)
   
 (* Lock/unlock the nth record in a file. *)
 let lock_record n fd =
@@ -282,8 +253,8 @@ We also need a function to create new, empty in-memory `record` objects:
 ```ocaml
 (* Create a new, empty record. *)
 let new_record () =
-  { name = String.make name_size ' ';
-    address = String.make addr_size ' ' }
+  {name = String.make name_size ' ';
+   address = String.make addr_size ' '}
 ```
 Because this is a really simple program, we're going to fix the number
 of records in advance:
@@ -294,7 +265,7 @@ let nr_records = 10000
   
 (* On-disk file. *)
 let diskfile =
-  Unix.openfile "users.bin" [ Unix.O_RDWR; Unix.O_CREAT ] 0o666
+  Unix.openfile "users.bin" [Unix.O_RDWR; Unix.O_CREAT] 0o666
 ```
 Download [users.bin.gz](users.bin.gz) and decompress it before
 running the program.
@@ -378,4 +349,3 @@ increasing order of difficulty:
 1. Make the underlying file representation a **DBM-style hash**.
 1. Provide a general-purpose cache fronting a "users" table in your
  choice of **relational database** (with locking).
-

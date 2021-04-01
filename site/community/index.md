@@ -3,26 +3,25 @@
 <div class="container">
     <h1>Community</h1>
     <div class="row">
-        <div class="span2">
+        <div class="community-logo span2">
             <img src="/img/community-large.svg" alt="Community" class="svg" />
             <img src="/img/community-large.png" alt="Community" class="png" />
         </div>
         <section id="community-leader" class="span6">
             <p>OCaml has a diverse, worldwide community and one of the main benefits is the ability to easily reach each other.  <a href="mailing_lists.html">Mailing lists and web forums</a> are the most common way people interact although you will always find users on IRC, around the web and at any of the <a href="/meetings/">meetings</a>.  OCaml also has a committed group of <a href="../learn/companies.html">industrial users</a> who regularly contribute to the community.</p>
         </section>
-        <div class="span2">
-            <img src="/img/colour-transparent-icon.svg" alt="OCaml"
-			 class="svg" />
-            <img src="/img/colour-icon-170x148.png" alt="OCaml" class="png" />
-            <p><a href="/docs/logos.html">More logos</a></p>
-		</div>
-        <div class="span2">
-            <img src="/img/OCaml_Sticker.svg" alt="OCaml Sticker"
-			 class="svg" />
-            <p><a href="/docs/logos.html#Stickers"
-			>Make/order stickers!</a></p>
+        <div class="stickers">
+          <div class="span2">
+              <img src="/img/colour-transparent-icon.svg" alt="OCaml" class="svg" />
+              <img src="/img/colour-icon-170x148.png" alt="OCaml" class="png" />
+              <p><a href="/docs/logos.html">More logos</a></p>
+          </div>
+          <div class="span2">
+              <img src="/img/OCaml_Sticker.svg" alt="OCaml Sticker" class="svg" />
+              <p><a href="/docs/logos.html#Stickers">Make/order stickers!</a></p>
+          </div>
         </div>
-    </div>
+      </div>
     <div class="row">
         <section class="span12 condensed">
             <h1 class="ruled"><a href="mailing_lists.html">Mailing Lists and Web Forums</a></h1>
@@ -74,7 +73,7 @@
             <p>If you would like to give support to OCaml, you can join the Consortium or support the work of OCaml Labs. <a href="/community/support.html#GivingSupport">Find out more</a>.</p>
             <p>Suggestions or bug reports about the OCaml language
             itself can be posted to <a
-            href="https://github.com/ocaml/ocaml/issues">Gihub issues</a>.</p>
+            href="https://github.com/ocaml/ocaml/issues">GitHub issues</a>.</p>
         </section>
         <section class="span4 condensed">
            <h1 class="ruled"><a href="/meetings/">Meetings</a></h1>
@@ -136,7 +135,7 @@
                             ><img class="svg rss" src="/img/rss.svg" alt="RSS"
 						    /><img class="png" src="/img/rss.png" alt="RSS" /></a>
            </h1>
-		   <ul class="news-feed" style="margin-bottom: 0px">
+		   <ul class="news-feed">
    		    <li class="announcement"><article>
 			  <h1><a title="OCaml Weekly News"
 			       href="/community/cwn/" >OCaml Weekly News</a></h1>
