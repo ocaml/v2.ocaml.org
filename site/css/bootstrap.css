@@ -5526,6 +5526,9 @@ body {
   }
 }
 @media (max-width: 767px) {
+  .book-img {
+    width: 330px;
+  }
   #home-header {
     margin-left: -20px;
     margin-right: -20px;
