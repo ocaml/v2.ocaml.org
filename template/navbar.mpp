@@ -1,7 +1,7 @@
             <ul class="nav">
-              <li ((! ifdef learn class="active" !))><a alt=" Beginner's guide to OCaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/learn/" !}}">{{! cmd script/translate ((! get filename !)) Learn !}}</a></li>
-              <li ((! ifdef documentation class="active" !))><a alt="Official Documentation for Ocaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/docs/" !}}">{{! cmd script/translate ((! get filename !)) Documentation !}}</a></li>
-              <li ((! ifdef packages class="active" !))><a alt="Documentation for OCaml Packages" href="https://opam.ocaml.org/">{{! cmd script/translate ((! get filename !)) Packages !}}</a></li>
-              <li ((! ifdef community class="active" !))><a alt="To Contribute to OCaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/community/" !}}">{{! cmd script/translate ((! get filename !)) Community !}}</a></li>
-              <li ((! ifdef news class="active" !))><a alt="Blogs and News" href="{{! cmd script/link_of_lang ((! get filename !)) "/community/planet/" !}}">{{! cmd script/translate ((! get filename !)) News !}}</a></li>
+              <li ((! ifdef learn class="active" !))><a title=" Beginner's guide to OCaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/learn/" !}}">{{! cmd script/translate ((! get filename !)) Learn !}}</a></li>
+              <li ((! ifdef documentation class="active" !))><a title="Official Documentation for Ocaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/docs/" !}}">{{! cmd script/translate ((! get filename !)) Documentation !}}</a></li>
+              <li ((! ifdef packages class="active" !))><a title="Documentation for OCaml Packages" href="https://opam.ocaml.org/">{{! cmd script/translate ((! get filename !)) Packages !}}</a></li>
+              <li ((! ifdef community class="active" !))><a title="To Contribute to OCaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/community/" !}}">{{! cmd script/translate ((! get filename !)) Community !}}</a></li>
+              <li ((! ifdef news class="active" !))><a title="Blogs and News" href="{{! cmd script/link_of_lang ((! get filename !)) "/community/planet/" !}}">{{! cmd script/translate ((! get filename !)) News !}}</a></li>
             </ul>
