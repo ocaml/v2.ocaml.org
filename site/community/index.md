@@ -166,6 +166,7 @@
                     <li><a href="http://www.meetup.com/find/?keywords=ocaml&radius=Infinity"><img src="/img/meetup-logo.gif" title="OCaml groups on Meetup"></a></li>
                     <li><a href="irc://irc.freenode.net/#ocaml"><img src="/img/irc-graphic.png" title="#ocaml on freenode"></a></li>
                     <li><a href="https://dev.to/t/ocaml"><img src="/img/devto-graphic.png" title="#ocaml on dev.to"></a></li>
+                    <li><a href="https://discuss.ocaml.org/"><img src="/img/discourse.png" title="Ocaml discourse"></a></li>
                 </ul>
         </section>
     </div>
