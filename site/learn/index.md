@@ -88,7 +88,7 @@
             <a href="https://www.youtube.com/watch?v=DMzZy1bqj6Q&list=UUP9g4dLR7xt6KzCYntNqYcw"
             target="_blank">Video</a>).
 	</p>
-	  <p style="margin-bottom:0; margin-top: 6px"><!-- Adjust => avoid horiz bars -->
+	  <p style="margin-bottom:0; margin-top:6px"><!-- Adjust => avoid horiz bars -->
 	    <iframe title="Yaron Minsky explains how to program effectively in ML" src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen width="380" height="220" style="max-width: 100%;" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 	 </p>
 	<p>A guest lecture given by Yaron Minsky of Jane Street about how to program effectively in ML. The talk was given as part of the intro computer science class at Harvard, CS51, where the students had spent much of the semester programming in OCaml.</p>
