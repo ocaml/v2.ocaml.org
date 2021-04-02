@@ -382,9 +382,7 @@ let html_of_post e =
                      "title", "Go to the original post"] in
        let post =
          Netencoding.Url.encode (planet_full_url ^ "#" ^ title_anchor) in
-       let google = ["href", "https://plus.google.com/share?url="
-                             ^ (Netencoding.Url.encode url_orig);
-                     "target", "_blank"; "title", "Share on Google+"] in
+
        let fb = ["href", "https://www.facebook.com/share.php?u=" ^ post
                          ^ "&amp;t=" ^ (Netencoding.Url.encode title);
                  "target", "_blank"; "title", "Share on Facebook"] in
@@ -407,9 +405,7 @@ let html_of_post e =
                 Element("a", a_args,
                         [Element("img", ["src", "/img/chain-link-icon.png";
                                          "alt", ""], []) ])
-                :: Element("a", ("class", "googleplus") :: google,
-                           [Element("img", ["src", "/img/googleplus.png";
-                                            "alt", "Google+"], []) ])
+
                 :: Element("a", ("class", "facebook") :: fb,
                            [Element("img", ["src", "/img/facebook.png";
                                             "alt", "FB"], []) ])
