@@ -72,7 +72,7 @@
         <section class="span4 condensed">
           <h1 class="ruled"><a href="/community/media.html">Online Courses, Slides &amp; Videos</a></h1>
 
-<iframe title="A massive open online course on OCaml" frameborder="0" width="380" height="220" src="//www.dailymotion.com/embed/video/x2ymo3x" style="max-width: 100%;" allowfullscreen></iframe><br /><a href="//www.dailymotion.com/video/x2ymo3x_fun-mooc-introduction-to-functional-programming-in-ocaml_school" target="_blank"> A massive open online course (MOOC) entirely centered around OCaml</a> <i>is now available, and runs once a year!</i>
+<iframe title="A massive open online course on OCaml" frameborder="0" width="380" height="220" src="//www.dailymotion.com/embed/video/x2ymo3x" style="max-width: 100%;" allowfullscreen></iframe><br /><a href="//www.dailymotion.com/video/x2ymo3x_fun-mooc-introduction-to-functional-programming-in-ocaml_school" target="_blank" rel="noopener"> A massive open online course (MOOC) entirely centered around OCaml</a> <i>is now available, and runs once a year!</i>
 	  <p>
           Learn more, and <a href="https://www.fun-mooc.fr/courses/course-v1:parisdiderot+56002+session03/about">register now on the FUN platform!</a>
 	  </p>
@@ -85,9 +85,9 @@
 		  <a href="/meetings/ocaml/2014/" >OCaml Users and Developers
 		  Workshop 2014</a> in Gothenburg, Sweden
 			(<a href="/meetings/ocaml/2014/OCaml2014-Leroy-slides.pdf"
-			target="_blank">PDF slides</a>,
+			target="_blank" rel="noopener">PDF slides</a>,
             <a href="https://www.youtube.com/watch?v=DMzZy1bqj6Q&list=UUP9g4dLR7xt6KzCYntNqYcw"
-            target="_blank">Video</a>).
+            target="_blank" rel="noopener">Video</a>).
 			</p>
 	  <p class="documentation-video video16-9"
 	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
@@ -148,7 +148,7 @@
 	       >Unison</a> is an innovative <em>two-way</em>
 	    file synchronizer stemming from the
 	       <a href="http://www.cis.upenn.edu/~bcpierce/papers/index.shtml#Synchronization"
-		  target="_blank"
+		  target="_blank" rel="noopener"
 		  >latest research</a>.  It is resilient to failures
 	       and  runs on Windows as well as most flavors of Unix,
 	       including MacOSX.

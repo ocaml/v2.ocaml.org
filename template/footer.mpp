@@ -32,7 +32,7 @@
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/community/planet/" !}}" >{{! cmd script/translate ((! get filename !)) "News" !}}</a></li>
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/community/support.html" !}}">{{! cmd script/translate ((! get filename !)) "Support" !}}</a></li>
       <li><a href="http://caml.inria.fr/mantis/my_view_page.php"
-	     target="_blank" >{{! cmd script/translate ((! get filename !)) "Bug Tracker" !}}</a></li>
+	     target="_blank" rel="noopener">{{! cmd script/translate ((! get filename !)) "Bug Tracker" !}}</a></li>
     </ul>
   </div>
 </div>
@@ -40,16 +40,15 @@
 {{!c else <div
      class="column">
   <div class="entry">
-    <h1>{{! cmd script/translate ((! get filename !)) Website !}}</h1>
+    <h1><a href="{{! cmd script/link_of_lang ((! get filename !)) "/" !}}">{{! cmd script/translate ((! get filename !)) Website !}}</a></h1>
     <ul>
       <li><a href="https://github.com/ocaml/ocaml.org/tree/master/((! tryget filename !))"
-	     target="_blank"
-	     >{{! cmd script/translate ((! get filename !)) "Edit this page" !}}</a></li>
+	     target="_blank" rel="noopener">{{! cmd script/translate ((! get filename !)) "Edit this page" !}}</a></li>
       <li><a href="https://github.com/ocaml/ocaml.org/issues"
-	     target="_blank" >{{! cmd script/translate ((! get filename !)) "Website Issues" !}}</a></li>
+	     target="_blank" rel="noopener">{{! cmd script/translate ((! get filename !)) "Website Issues" !}}</a></li>
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/about.html" !}}" >{{! cmd script/translate ((! get filename !)) "About This Site" !}}</a></li>
     <li><a href="https://github.com/ocaml/ocaml.org/"
-	   target="_blank" >{{! cmd script/translate ((! get filename !)) "Find Us on GitHub" !}}</a></li>
+	   target="_blank" rel="noopener">{{! cmd script/translate ((! get filename !)) "Find Us on GitHub" !}}</a></li>
       <li><a href="{{! cmd script/link_of_lang ((! get filename !)) "/contributors.html" !}}" >{{! cmd script/translate ((! get filename !)) "Credits" !}}</a></li>
     </ul>
   </div>
