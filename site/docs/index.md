@@ -145,7 +145,7 @@
       <div class="row">
 	<div class="span2 documentation-book">
 	  <a href="https://realworldocaml.org">
-	    <img class="book-img" src="/img/real-world-ocaml.jpg" alt="Real Worl OCaml book">
+	    <img class="book-img" src="/img/real-world-ocaml.jpeg" alt="Real Worl OCaml book">
 	  </a>
 	</div>
 	<div class="span2 documentation-book">
