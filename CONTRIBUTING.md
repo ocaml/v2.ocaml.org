@@ -60,37 +60,39 @@ Other nice tools you can use include:
  
  ### WSL and some common errors while building the site in WSL
    Windows subsystem for linux(WSL) is an optional feature of Windows 10 that allows Linux programs to run natively on Windows. It also allows you to run Linux command-line tools and apps alongside your Windows command-line, and to access your Windows files from within Linux.
-   to install WSL succesfully, you can use this guide : https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10 
+   To install WSL succesfully, you can use this guide : https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10 
    
    Here are some common errors while building the site on WSL:
  #### Errors while running opam init:
-1. The newer versions of opam are using bwrap for sandboxing, which is not supported by WSL. instead you can try `opam init --disable-sandboxing` to make it work.
+1. The newer versions of opam are using bwrap for sandboxing, which is not supported by WSL. Instead you can try `opam init --disable-sandboxing` to make it work.
 2. `opam init` might ask you a question which says:
 ```
 Do you want opam to modify ~/.profile? [N/y/f]
 (default is 'no', use 'f' to choose a different file)
 ```
 This can be corrected by using `opam init --disable-sandboxing -a`. `-a` does auto-setup for `opam init` .
+
 3.  You can also face errors like:
 ```
 make sure that ~/. profile is well sourced with in your ~/. bashrc.
 ```
-To resolve this the easiest way is to run : `rm -rf /home/(your linux username)/.opam` and re-run `opam init`. after this you'll be good to go :)
+To resolve this the easiest way is to run : `rm -rf /home/(your linux username)/.opam` and re-run `opam init`. After this you'll be good to go :)
 
  #### Errors while running make deps :
-1. `make deps` can usually give errors like:
+ `make deps` can usually give errors like:
 ```
 The following actions failed
 │ λ build conf-gmp    3
 │ λ build conf-libssl 3
 ```
-To resolve this , you can manually install libgmp-dev and libssl-dev using apt. like running `apt install libgmp-dev` and `apt install libssl-dev`. after this you can run make deps succesfully. then run make .
+To resolve this , you can manually install libgmp-dev and libssl-dev using apt. Like running `apt install libgmp-dev` and `apt install libssl-dev`. After this you can run `make deps` succesfully followed by `make` .
 If both `make deps` && `make` fails somehow , you can do make deps manually.
 
-For any further difficulties you can follow the following guides (these include multiple errors and their solutions)
-     1. https://github.com/janestreet/install-ocaml
-     2. https://discuss.ocaml.org/t/error-while-setting-up-ocaml-project-using-wsl/7466/10
-     3. https://www.cs.umd.edu/class/spring2018/cmsc330/ocamlInstallationGuide.pdf (This guide is a bit older , but contains detailed description of actually how steps work. You can cross check this in case you get stuck in between somewhere.)
+For any further difficulties you can follow the following guides (these include multiple errors and their solutions):
+
+  1. https://github.com/janestreet/install-ocaml
+  2. https://discuss.ocaml.org/t/error-while-setting-up-ocaml-project-using-wsl/7466/10
+  3. https://www.cs.umd.edu/class/spring2018/cmsc330/ocamlInstallationGuide.pdf (This guide is a bit older , but contains detailed description of actually how steps work. You can cross check this in case you get stuck in between somewhere.)
 
 ## Deployment and Checks
 
