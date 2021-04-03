@@ -81,7 +81,7 @@ their skills, and to experienced programmers eager to explore functional
 languages such as OCaml. It is hoped that each reader will find something new,
 or see an old thing in a new light. For the more casual reader, or those who are
 used to a different functional language, a summary of basic OCaml is provided at
-the front of the book. 
+the front of the book.
 
 [Book Website](http://ocaml-book.com/more-ocaml-algorithms-methods-diversions/) |
 [Amazon](http://www.amazon.com/gp/product/0957671113)
@@ -552,6 +552,9 @@ last chapter a comprehensive description of the language kernel.
 
 [Emacs Org source](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.org) | [HTML](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.html) | [PDF](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.pdf)
 
+<br />
+<br />
+<br />
 ****
 
 ###  Introduzione alla programmazione funzionale
