@@ -570,7 +570,9 @@ ul.translations:after { content: "]"; }
   display: inline-block;
   text-align: left;
 }
-
+footer div.navbar-inner{
+  padding-top: 20px;
+}
 #footer h1 {
   font-size: 130%;
   font-weight: bold;
