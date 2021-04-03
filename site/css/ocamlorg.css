@@ -23,7 +23,6 @@
   border-width: 0.1ex;
   width: 100%;
 }
-
 #opamdoc-contents table, #opamdoc-contents td, #opamdoc-contents tr,
 #opamdoc-contents pre,  #opamdoc-contents code {
     margin:0;
@@ -120,7 +119,9 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .code { color : #465F91 ; }
 .typetable { border-style : hidden }
 .paramstable { border-style : hidden ; padding: 5pt 5pt}
-
+ul{
+  font-size: 1.2rem;
+}
 li p {
   margin-bottom: 8px;
 }
@@ -396,6 +397,9 @@ div.lstlisting { /* = <pre><code> */
   /* code */
   background-color: #f7f7f9;
   border: 1px solid #e1e1e8;
+}
+p{
+  font-size:1.2rem;
 }
 p + div.lstlisting {
   margin-top: -14px;
