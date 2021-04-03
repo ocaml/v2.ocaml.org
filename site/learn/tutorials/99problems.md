@@ -1241,7 +1241,7 @@ huffman fs;;
 huffman [("a", 10); ("b", 15); ("c", 30); ("d", 16); ("e", 29)];;
 ```
 
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/binary-tree.gif" title="Binary Tree"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/binary-tree.gif" title="Binary Tree"></img>
 
 <!-- No problems 51–54 -->
 
@@ -1777,7 +1777,7 @@ As a preparation for drawing the tree, a layout algorithm is required to
 determine the position of each node in a rectangular grid. Several
 layout methods are conceivable, one of them is shown in the illustration.
 
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/tree-layout1.gif" title="Binary Tree Grid"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/tree-layout1.gif" title="Binary Tree Grid"></img>
 
 In this layout strategy, the position of a node v is obtained by the
 following two rules:
@@ -1820,7 +1820,7 @@ layout_binary_tree_1 example_layout_tree;;
 
 #### 65. Layout a binary tree (2). (*medium*)
 
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/tree-layout2.gif" title="Binary Tree Grid"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/tree-layout2.gif" title="Binary Tree Grid"></img>
 
 An alternative layout method is depicted in this illustration. Find
 out the rules and write the corresponding OCaml function.
@@ -1873,7 +1873,7 @@ layout_binary_tree_2 example2_layout_tree ;;
 
 #### 66. Layout a binary tree (3). (*hard*)
 
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/tree-layout3.gif" title="Binary Tree Grid"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/tree-layout3.gif" title="Binary Tree Grid"></img>
 
 Yet another layout strategy is shown in the above illustration. The
 method yields a very compact layout while maintaining a certain symmetry
@@ -1938,7 +1938,7 @@ Which layout do you like most?
 
 #### 67. A string representation of binary trees. (*medium*)
 
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/binary-tree.gif" title="Binary Tree"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/binary-tree.gif" title="Binary Tree"></img>
 
 Somebody represents binary trees as strings of the following type (see
 example): `"a(b(d,e),c(,f(g,)))"`.
@@ -2122,7 +2122,7 @@ conversion in both directions. Use difference lists.
 ```
 
 ## Multiway Trees
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/multiway-tree.gif" title="Multiway Tree"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/multiway-tree.gif" title="Multiway Tree"></img>
 
 *A multiway tree is composed of a root element and a (possibly empty)
 set of successors which are multiway trees themselves. A multiway tree
@@ -2159,7 +2159,7 @@ count_nodes (T ('a', [T ('f', []) ]))
 
 
 #### 70. Tree construction from a node string. (*medium*)
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/multiway-tree.gif" title="Multiway Tree"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/multiway-tree.gif" title="Multiway Tree"></img>
 
 We suppose that the nodes of a multiway tree contain single characters.
 In the depth-first order sequence of its nodes, a special character `^`
@@ -2254,7 +2254,7 @@ bottom_up t;;
 There is a particular notation for multiway trees in Lisp. The
 picture shows how multiway tree structures are represented in Lisp.
 
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/lisp-like-tree.png" title="Lisp representation of multiway
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/lisp-like-tree.png" title="Lisp representation of multiway
 trees"></img>
 
 Note that in the "lispy" notation a node with successors (children) in
@@ -2288,7 +2288,7 @@ lispy t;;
 ```
 
 ## Graphs
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/graph1.gif" title="A graph"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/graph1.gif" title="A graph"></img>
 
 *A graph is defined as a set of nodes and a set of edges, where each
 edge is a pair of different nodes.*
@@ -2427,7 +2427,7 @@ cycles example_graph 'f'
 
 
 #### 83. Construct all spanning trees. (*medium*)
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/spanning-tree-graph1.gif" title="Spanning tree graph"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/spanning-tree-graph1.gif" title="Spanning tree graph"></img>
 
 Write a function `s_tree g` to construct (by backtracking) all [spanning
 trees](http://en.wikipedia.org/wiki/Spanning_tree) of a given graph `g`.
@@ -2452,7 +2452,7 @@ let g = {nodes = ['a'; 'b'; 'c'; 'd'; 'e'; 'f'; 'g'; 'h'];
 
 
 #### 84. Construct the minimal spanning tree. (*medium*)
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/spanning-tree-graph2.gif" title="Spanning tree graph"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/spanning-tree-graph2.gif" title="Spanning tree graph"></img>
 
 Write a function `ms_tree graph` to construct the minimal spanning tree
 of a given labelled graph. A labelled graph will be represented as
@@ -2750,7 +2750,7 @@ Several years ago I met a mathematician who was intrigued by a problem
 for which he didn't know a solution. His name was Von Koch, and I don't
 know whether the problem has been solved since.
 
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/von-koch1.gif" title="Tree numbering"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/von-koch1.gif" title="Tree numbering"></img>
 
 Anyway, the puzzle goes like this: Given a tree with N nodes (and hence
 N-1 edges). Find a way to enumerate the nodes from 1 to N and,
@@ -2763,7 +2763,7 @@ larger trees, and 14 is already very large, it is extremely difficult to
 find a solution. And remember, we don't know for sure whether there is
 always a solution!
 
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/von-koch2.gif" title="Larger tree"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/von-koch2.gif" title="Larger tree"></img>
 
 Write a function that calculates a numbering scheme for a given tree.
 What is the solution for the larger tree pictured here?
@@ -2816,7 +2816,7 @@ full_words 0;;
 
 
 #### 96. Syntax checker. (*medium*)
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/syntax-graph.gif" title="Syntax graph"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/syntax-graph.gif" title="Syntax graph"></img>
 
 In a certain programming language (Ada) identifiers are defined by the
 syntax diagram (railroad chart) opposite. Transform the syntax diagram
@@ -3131,7 +3131,7 @@ solve [[3]; [2; 1]; [3; 2]; [2; 2]; [6]; [1; 5]; [6]; [1]; [2]]
 
 
 #### 99. Crossword puzzle. (*hard*)
-<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/img/crossword.gif" title="Crossword"></img>
+<img style="float: right; margin-left: 15px; margin-bottom: 15px;" src="/site/img/crossword.gif" title="Crossword"></img>
 
 Given an empty (or almost empty) framework of a crossword puzzle and a
 set of words. The problem is to place the words into the framework.
