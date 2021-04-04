@@ -5,16 +5,16 @@
 
 ## Jane Street
 [<img src='/img/users/jane-street.jpg' alt='Jane Street'
-style='float: left; margin-right: 10px' />](http://janestreet.com/technology/)
+style='clear: left; margin-right: 10px' />](http://janestreet.com/technology/)
 
 Jane Street is a proprietary trading firm that uses OCaml as its primary
 development platform.  Our operation runs at a large scale,
-generating billions of dollars of transactions every day from our offices 
+generating billions of dollars of transactions every day from our offices
 in Hong Kong, London and New York, with strategies that span many asset classes,
 time-zones and regulatory regimes.
 
 Almost all of of our software is written in OCaml, from statistical
-research code to systems-administration tools to our real-time trading 
+research code to systems-administration tools to our real-time trading
 infrastructure.  OCaml’s type system acts as a rich and
 well-integrated set of static analysis tools that help improve the
 quality of our code, catching bugs at the earliest possible stage.
@@ -23,15 +23,15 @@ so getting it right matters.  At the same time, OCaml is highly productive,
 helping us quickly adapt to changing market conditions.
 
 Jane Street has been contributing open-source libraries back to the wider
-community for many years, including Core, our alternative standard 
+community for many years, including Core, our alternative standard
 library, Async, a cooperative concurrency library,
 and several syntax extensions like binprot and sexplib.  All of these can
-be found at <http://janestreet.github.io>.  All in, we've open-sourced 
+be found at <http://janestreet.github.io>.  All in, we've open-sourced
 more than 200k lines of code.
 
 ## The Unison File Synchronizer
 [<img src='/img/unison-thumb.jpg'
-style='float: left; margin-right: 10px'
+style='clear: left; margin-right: 10px'
 alt='Screenshot'  title='Screenshot of Unison&#39;s main window' />](/img/unison.png)
 
 [Unison](http://www.cis.upenn.edu/%7Ebcpierce/unison/) is a popular
@@ -61,7 +61,7 @@ its development. Moving to OCaml was like a breath of fresh air.”
 
 ## The MLdonkey peer-to-peer client
 [<img src='/img/mldonkey-thumb.jpg'
-style='float: left; margin-right: 10px'
+style='clear: left; margin-right: 10px'
 alt='Screenshot'  title='Screenshot of one of MLdonkey&#39;s windows' />](/img/mldonkey.jpg)
 
 [MLdonkey](http://mldonkey.sourceforge.net/Main_Page) is a
@@ -86,7 +86,7 @@ and telnet.”
 
 ## LexiFi's Modeling Language for Finance
 [<img src='/img/lexifi-thumb.jpg'
-style='float: left; margin-right: 10px'
+style='clear: left; margin-right: 10px'
 alt='Screenshot'  title='A report produced by LexiFi software'
 />](/img/lexifi.jpg)
 
@@ -122,7 +122,7 @@ spread the use of OCaml in the financial services industry.
 
 ## The Coq Proof Assistant
 [<img src='/img/coq-thumb.jpg'
-style='float: left; margin-right: 10px'
+style='clear: left; margin-right: 10px'
 alt='Screenshot'  title='Screenshot of Coq&#39;s integrated development environment' />](/img/coq.jpg)
 
 *[Jean-Christophe Filliâtre](https://www.lri.fr/~filliatr/) (CNRS), a
@@ -145,7 +145,7 @@ precisely rigor.”
 
 ## The ASTRÉE Static Analyzer
 [<img src='/img/astree.gif' alt='A340'
-style='float: left; margin-right: 10px'
+style='clear: left; margin-right: 10px'
 title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](http://www.airbus.com/)
 
 *[David Monniaux](http://www-verimag.imag.fr/~monniaux/) (CNRS), member
@@ -198,7 +198,7 @@ robustness of its implementation provided a great productivity boost.”
 
 ## FFTW
 <img src='/img/fftw-thumb.png' alt='FFTW'
-style='float: left; margin-right: 10px' />
+style='clear: left; margin-right: 10px' />
 
 [FFTW](http://www.fftw.org/) is a [very fast](http://www.fftw.org/benchfft/) C
 library for computing Discrete Fourier Transforms (DFT). It uses a powerful
