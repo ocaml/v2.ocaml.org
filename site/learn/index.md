@@ -79,8 +79,7 @@
 <iframe title="Xavier Leroy presents the state of OCaml 4.02" src="//www.slideshare.net/slideshow/embed_code/43836300" width="380" height="220" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
           </p>
 
-          <p>An invited talk by Xavier Leroy explaining the current state
-		  of OCaml at the
+<p>An invited talk by Xavier Leroy explaining the current state of OCaml at the
 		  <a href="/meetings/ocaml/2014/" >OCaml Users and Developers
 		  Workshop 2014</a> in Gothenburg, Sweden
 			(<a href="/meetings/ocaml/2014/OCaml2014-Leroy-slides.pdf"
