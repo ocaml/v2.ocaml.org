@@ -101,6 +101,7 @@
 				><img class="svg rss" src="/img/rss.svg" alt="RSS"
 				/><img class="png" src="/img/rss.png" alt="RSS" /></a>
             </h1>
+            <div id='news-scroll'>
 			<ul class="news-feed" style="margin-bottom: 0px">
 
             <!-- Commented out between workshops -->
@@ -138,6 +139,7 @@
 	        </ul>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <p><a href="community/planet/">More...</a></p>
+            </div>
         </section>
     </div>
     <div class="row">

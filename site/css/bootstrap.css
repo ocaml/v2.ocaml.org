@@ -5624,6 +5624,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+#news-scroll{
+  max-height: 408px;
+  overflow-y: scroll;
+}
+
 .news-feed li {
   height: 33px;
   padding: 15px 30px 15px 10px;
