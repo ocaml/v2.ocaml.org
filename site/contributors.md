@@ -43,7 +43,7 @@ Contributors
 The contributors to this site, extracted from the
 [Git log](https://github.com/ocaml/ocaml.org/commits/master), are:
 
-<ul>
+<ul id="contributors_list">
 ((! cmd git log --format="%aN" | sort | uniq | awk '{print "<li>"$1,$2,$3"</li>"}' !))
 </ul>
 
@@ -54,55 +54,59 @@ Older contributors to the tutorials
 Many of tutorials on this site originate from `ocaml-tutorial.org`.  Here are
 the people who contributed to them:
 
-* Doug Bagley
-* Daniel Bünzli
-* Nicolas Cannasse
-* Eric C. Cooper
-* Richard Donkin
-* Jim Farrand
-* Fabrice Le Fessant
-* Jacques Garrigue
-* Stephen Gilmore
-* Flavio Grossi
-* Damien Guichard
-* Brian Hurt
-* Richard Jones
-* Neel Krishnaswami
-* Michel Levy
-* Sven Luther
-* John Gerard Malecki
-* Luc Maranget
-* Jean-Francois Monin
-* Markus Mottl
-* Thomas Mraz
-* Wolfgang Mueller
-* Lars Nilsson
-* Jose Manuel Nunes
-* Frederic van der Plancke
-* Paul Steckler
-* Fabian Sturm
-* Ryan Tarpine
-* Rémi Vanicat
-* Yamagata Yoriyuki
-* Stefano Zacchiroli
-
+<ul id="contributors_list">
+<li>Doug Bagley</li>
+<li>Daniel Bünzli</li>
+<li>Nicolas Cannasse</li>
+<li>Eric C. Cooper</li>
+<li>Richard Donkin</li>
+<li>Jim Farrand</li>
+<li>Fabrice Le Fessant</li>
+<li>Jacques Garrigue</li>
+<li>Stephen Gilmore</li>
+<li>Flavio Grossi</li>
+<li>Damien Guichard</li>
+<li>Brian Hurt</li>
+<li>Richard Jones</li>
+<li>Neel Krishnaswami</li>
+<li>Michel Levy</li>
+<li>Sven Luther</li>
+<li>John Gerard Malecki</li>
+<li>Luc Maranget</li>
+<li>Jean-Francois Monin</li>
+<li>Markus Mottl</li>
+<li>Thomas Mraz</li>
+<li>Wolfgang Mueller</li>
+<li>Lars Nilsson</li>
+<li>Jose Manuel Nunes</li>
+<li>Frederic van der Plancke</li>
+<li>Paul Steckler</li>
+<li>Fabian Sturm</li>
+<li>Ryan Tarpine</li>
+<li>Rémi Vanicat</li>
+<li>Yamagata Yoriyuki</li>
+<li>Stefano Zacchiroli</li>
+</ul>
 The ocamlbuild documentation was imported from a former wiki at
 Inria. The contributors to that wiki were:
 
-* Aravantv
-* Romain Bardou
-* Berke Durak
-* Bruno de Fraine
-* ChriS
-* Cstork
-* Daniel Weil
-* Daniel Buenzli
-* Maxence Guesdon
-* Martin Jambon
-* Mwipliez
-* Na (Dana) Xu
-* Alexandre Pilkiewicz
-* Nicolas Pouillard
-* Hendrik Tews
-* Thelema
-* Xavier Clerc
+<ul id="contributors_list">
+<li>Aravantv</li>
+<li>Romain Bardou</li>
+<li>Berke Durak</li>
+<li>Bruno de Fraine</li>
+<li>ChriS</li>
+<li>Cstork</li>
+<li>Daniel Weil</li>
+<li>Daniel Buenzli</li>
+<li>Maxence Guesdon</li>
+<li>Martin Jambon</li>
+<li>Mwipliez</li>
+<li>Na (Dana) Xu</li>
+<li>Alexandre Pilkiewicz</li>
+<li>Nicolas Pouillard</li>
+<li>Hendrik Tews</li>
+<li>Thelema</li>
+<li>Xavier Clerc</li>
+</ul>
+
