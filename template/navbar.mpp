@@ -1,5 +1,5 @@
             <ul class="nav">
-              <li ((! ifdef learn class="active" !))><a title=" Beginner's guide to OCaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/learn/" !}}">{{! cmd script/translate ((! get filename !)) Learn !}}</a></li>
+              <li ((! ifdef learn class="active" !))><a title="Beginner's guide to OCaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/learn/" !}}">{{! cmd script/translate ((! get filename !)) Learn !}}</a></li>
               <li ((! ifdef documentation class="active" !))><a title="Official Documentation for Ocaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/docs/" !}}">{{! cmd script/translate ((! get filename !)) Documentation !}}</a></li>
               <li ((! ifdef packages class="active" !))><a title="Documentation for OCaml Packages" href="https://opam.ocaml.org/">{{! cmd script/translate ((! get filename !)) Packages !}}</a></li>
               <li ((! ifdef community class="active" !))><a title="To Contribute to OCaml" href="{{! cmd script/link_of_lang ((! get filename !)) "/community/" !}}">{{! cmd script/translate ((! get filename !)) Community !}}</a></li>
