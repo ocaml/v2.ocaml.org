@@ -31,10 +31,11 @@ there to request or offer new tutorials.
  Warnings](null_pointers_asserts_and_warnings.html)
 * [Objects](objects.html)
 
-### Errors
+### Errors and Debugging
 
 * [Error handling](error_handling.html)
 * [Common Error Messages](common_error_messages.html)
+* [Debugging](debug.html)
 
 ((! get second_of_two_columns !))
 
