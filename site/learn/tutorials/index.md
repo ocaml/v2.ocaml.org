@@ -29,6 +29,7 @@ there to request or offer new tutorials.
 * [Pointers in OCaml](pointers.html)
 * [Null Pointers, Asserts, and
  Warnings](null_pointers_asserts_and_warnings.html)
+* [Functors](functors.html)
 * [Objects](objects.html)
 
 ### Errors and Debugging
