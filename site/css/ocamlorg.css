@@ -458,6 +458,12 @@ ul.translations:after { content: "]"; }
   text-shadow: 0 1px 0 #ffffff;
 }
 
+.translations > li:not(:last-child):after {
+  display: inline-block;
+  content: "\00a0|\00a0";
+  font-weight: 600;
+}
+
 /* Accessibility Helpers */
 .visually-hidden {
   clip: rect(0 0 0 0);
