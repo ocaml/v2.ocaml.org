@@ -76,7 +76,7 @@ there to request or offer new tutorials.
 * [Try OCaml Online](http://try.ocamlpro.com/) allows
  you to immediately start learning OCaml in your browser, without
  installing it. Compiled as a single Javascript page, it gives you
- the full power of OCaml, even when your are disconnected from the
+ the full power of OCaml, even when you are disconnected from the
  network.
 * [PLEAC-OCaml](http://pleac.sourceforge.net/pleac_ocaml/) provides
  OCaml solutions to the complete set of problems originally posed in
@@ -97,7 +97,7 @@ there to request or offer new tutorials.
   computation](http://www.southampton.ac.uk/~fangohr/software/ocamltutorial/)
   covers a broad sample of OCaml, from the basics to the C API.
 * [OCaml for Haskellers](http://blog.ezyang.com/2010/10/ocaml-for-haskellers/)
-  Some notes on the differences between OCaml and Haskell.
+  provides some notes on the differences between OCaml and Haskell.
 
 ### WikiBooks on OCaml
 
