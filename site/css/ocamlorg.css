@@ -484,6 +484,11 @@ ul.translations {
   padding: 0;
   margin: 0px 1ex 0px 2ex;
 }
+@media  (max-width: 979px) {
+ul.translations{
+   margin: 15px 1ex 0px 2ex;
+}
+}
 ul.translations:before { content: "["; }
 ul.translations:after { content: "]"; }
 .translations > li  {
