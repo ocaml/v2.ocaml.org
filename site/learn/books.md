@@ -24,7 +24,7 @@ Tarball](http://caml.inria.fr/distrib/ocaml-{{! get LATEST_OCAML_VERSION_MAIN !}
 ****
 
 ###  Real World OCaml
-<img src="/img/real-world-ocaml.jpg" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/real-world-ocaml.jpeg" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
 *Jason Hickey, Anil Madhavapeddy, and Yaron Minsky. Published 25th November 2013*
 
