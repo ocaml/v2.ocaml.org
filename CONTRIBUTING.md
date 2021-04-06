@@ -59,7 +59,8 @@ Other nice tools you can use include:
  - [Google Lighthouse](https://developers.google.com/web/tools/lighthouse/), [WAVE](https://wave.webaim.org/) and [Pa11y](https://github.com/pa11y/pa11y): these are all tools for checking accessibility standards.
  
  ### WSL and some common errors while building the site in WSL
-   Windows subsystem for linux(WSL) is an optional feature of Windows 10 that allows Linux programs to run natively on Windows. It also allows you to run Linux command-line tools and apps alongside your Windows command-line, and to access your Windows files from within Linux.
+
+Windows Subsystem for Linux (WSL) is an optional feature of Windows 10 that allows Linux programs to run natively on Windows. It also allows you to run Linux command-line tools and apps alongside your Windows command-line, and to access your Windows files from within Linux.
    To install WSL succesfully, you can use this guide : https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10 
    
    Here are some common errors while building the site on WSL:
@@ -72,20 +73,17 @@ Do you want opam to modify ~/.profile? [N/y/f]
 ```
 This can be corrected by using `opam init --disable-sandboxing -a`. `-a` does auto-setup for `opam init` .
 
-3.  You can also face errors like:
-```
-make sure that ~/. profile is well sourced with in your ~/. bashrc.
-```
-To resolve this the easiest way is to run : `rm -rf /home/(your linux username)/.opam` and re-run `opam init`. After this you'll be good to go :)
 
  #### Errors while running make deps :
- `make deps` can usually give errors like:
+
+`make deps` can occasionally give errors such as:
 ```
 The following actions failed
 │ λ build conf-gmp    3
 │ λ build conf-libssl 3
 ```
-To resolve this , you can manually install libgmp-dev and libssl-dev using apt. Like running `apt install libgmp-dev` and `apt install libssl-dev`. After this you can run `make deps` succesfully followed by `make` .
+
+To resolve this on Debian, you can manually install libgmp-dev and libssl-dev using apt; for example by running `apt-get install libgmp-dev libssl-dev`. After this you can re-run `make deps` followed by `make` .
 If both `make deps` && `make` fails somehow , you can do make deps manually.
 
 For any further difficulties you can follow the following guides (these include multiple errors and their solutions):
