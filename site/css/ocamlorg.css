@@ -543,6 +543,30 @@ ul.translations:after { content: "]"; }
   min-width: 22%;
   margin-right: 1em; /* To visually "compensate" for left alignment */
 }
+@media (min-width: 501px) and (max-width: 767px) {
+  .subscribers {
+    float: none !important;
+    margin-left: 0 !important;;
+  }
+  .subscribers ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    padding: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .subscribers {
+    float: none !important;
+    margin-left: 0 !important;;
+  }
+  .subscribers ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 10px;
+  }
+}
 @media screen and (max-width: 767px) and (min-width: 480px) {
   #footer .column{
     min-width: 40%;

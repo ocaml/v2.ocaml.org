@@ -55,7 +55,7 @@ let () = hello ()
 
 Using `open` or not is a matter of personal taste. Some modules
 provide names that are used in many other modules. This is the case of
-the `List` module for instance. Usually we don't do `open List`. Other
+the `List` module for instance. Usually, we don't do `open List`. Other
 modules like
 `Printf`
 provide names that are normally not subject to
@@ -77,15 +77,15 @@ let () = List.iter (printf "%s\n") my_data
 A module can provide a certain number of things (functions, types,
 submodules, ...) to the rest of the program that is using it. If nothing
 special is done, everything which is defined in a module will be
-accessible from outside. That's often fine in small personal programs,
+accessible from the outside. That's often fine in small personal programs,
 but there are many situations where it is better that a module only
 provides what it is meant to provide, not any of the auxiliary
 functions and types that are used internally.
 
-For this we have to define a module interface, which will act as a mask
+For this, we have to define a module interface, which will act as a mask
 over the module's implementation. Just like a module derives from a .ml
 file, the corresponding module interface or signature derives from a
-.mli file. It contains a list of values with their type, and more. Let's
+.mli file. It contains a list of values with their type and more. Let's
 rewrite our `amodule.ml` file:
 
 ```ocamltop
@@ -223,7 +223,7 @@ let hello_goodbye () =
 
 The definition of the `Hello` module above is the equivalent of a
 `hello.mli`/`hello.ml` pair of files. Writing all of that in one block
-of code is not elegant, so in general we prefer to define the module
+of code is not elegant, so in general, we prefer to define the module
 signature separately:
 
 ```ocaml
@@ -254,7 +254,7 @@ A functor is a module that is parametrized by another module, just like
 a function is a value which is parametrized by other values, the
 arguments.
 
-Basically, it allows to parametrize a type by a value, which is not
+Basically, it allows parameterizing a type by a value, which is not
 possible directly in OCaml. For example, we can define a functor that
 takes an int n and returns a collection of array operations that work
 exclusively on arrays of length n. If by mistake the programmer passes a
@@ -299,7 +299,7 @@ module F (X : X_type) = struct
   ...
 end
 ```
-where `X` is the module that will be passed as argument, and `X_type` is
+where `X` is the module that will be passed as an argument, and `X_type` is
 its signature, which is mandatory.
 
 The signature of the returned module itself can be constrained, using
@@ -323,8 +323,7 @@ look at the source files
 of the standard library.
 
 Final remark: functors are made to help programmers write correct
-programs, not to improve performance. There is even a runtime penalty,
-unless you use a defunctorizer such as ocamldefun, which requires access
+programs, not to improve performance. There is even a runtime penalty unless you use a defunctorizer such as ocamldefun, which requires access
 to the source code of the functor.
 
 ## Practical manipulation of modules
@@ -336,7 +335,7 @@ module, such as `List`:
 ```ocamltop
 #show List;;
 ```
-Otherwise, there is online documentation for most libraries or you can
+Otherwise, there is the online documentation for most libraries or you can
 use `ocamlbrowser` which comes with labltk (Tk graphical user interface
 for OCaml).
 
