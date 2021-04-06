@@ -170,7 +170,7 @@
       <div class="row">
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="In this talk, Mark Shinwell explains how to track down hard-to-find bugs in OCaml programs" allowfullscreen></iframe>
+	    <iframe width="310" height="233" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="In this talk, Mark Shinwell explains how to track down hard-to-find bugs in OCaml programs" allowfullscreen></iframe>
 	  </p>
 	  <p>In this talk, Mark Shinwell explains how to
 	    track down hard-to-find bugs in OCaml programs.

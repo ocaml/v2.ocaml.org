@@ -76,7 +76,7 @@
           Learn more, and <a href="https://www.fun-mooc.fr/courses/course-v1:parisdiderot+56002+session03/about">register now on the FUN platform!</a>
 	  </p>
 		  <p class="documentation-video" style="margin-bottom:0">
-<iframe title="Xavier Leroy presents the state of OCaml 4.02" src="//www.slideshare.net/slideshow/embed_code/43836300" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe title="Xavier Leroy presents the state of OCaml 4.02" src="//www.slideshare.net/slideshow/embed_code/43836300" width="380" height="220" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
           </p>
 
           <p>An invited talk by Xavier Leroy explaining the current state
@@ -88,11 +88,10 @@
             <a href="https://www.youtube.com/watch?v=DMzZy1bqj6Q&list=UUP9g4dLR7xt6KzCYntNqYcw"
             target="_blank" rel="noopener">Video</a>).
 			</p>
-	  <p class="documentation-video video16-9"
-	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
+	  <p style="margin-bottom:0; margin-top: 6px"><!-- Adjust => avoid horiz bars -->
 	    <iframe title="Yaron Minsky explains how to program effectively in ML" src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933"
 		    frameborder="0" webkitallowfullscreen
-		    mozallowfullscreen allowfullscreen></iframe>
+		    mozallowfullscreen allowfullscreen width="380" height="220" style="max-width: 100%;" marginwidth="0" marginheight="0" scrolling="no" ></iframe>
 	  </p>
 			<p>A guest lecture given by Yaron Minsky of Jane Street about how to program effectively in ML. The talk was given as part of the intro computer science class at Harvard, CS51, where the students had spent much of the semester programming in OCaml.</p>
           <footer>
