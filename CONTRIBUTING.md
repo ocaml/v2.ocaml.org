@@ -17,8 +17,8 @@ might be a good place to start your contribution from.
 
 In general, issues aren't assigned to anyone as such but, if you are working on
 something in an issue then it would make sense to tell us by commenting under
-that issue in order to avoid duplication of any work that may be going on
-elsewhere. There are lots of experienced OCaml developers still active on here
+that issue to avoid duplication of any work that may be going on elsewhere.
+There are lots of experienced OCaml developers still active on here
 and are more than willing to offer you a hand if you ask on an issue or PR. 
 
 ## Issue, Feature And PR Template
@@ -57,7 +57,7 @@ and are more than willing to offer you a hand if you ask on an issue or PR.
 ## Setting up OCaml
 
 This website is built using OCaml. Most of that code lives in the `script`
-directory. In order to build the site you will need to install OCaml along with
+directory. To build the site you will need to install OCaml along with
 the dependencies that are required.
 
 The best way to manage OCaml and the dependencies is to install `opam`, the
@@ -97,7 +97,7 @@ at it a little more closely.
   data.
 - `site`: The main content of the website lives in this directory. It is mostly
   in the form of Markdown files, but even these contain raw HTML in order to
-  define more custom structure and layout. 
+  define a more custom structure and layout. 
 - `site/css`: The stylesheets for customising the look of the website. Most of
   the OCaml.org website stylings are modifications built on top of [bootstrap css](https://getbootstrap.com/),
   although it is a much older version that is vendored directly in this directory.
@@ -128,7 +128,7 @@ at it a little more closely.
 ### Development Process — The Build Folder (`./ocaml.org`).
 
 This site was built quite a while ago so it doesn't have the modern features of
-hot-reloading and the like. Instead development is done by tweaking things and
+hot-reloading and the like. Instead, development is done by tweaking things and
 re-running `make`. After the build through the `make` command, you will want to
 move to the `/ocaml.org/` to tweak and see HTML and CSS change quickly while
 making any modification to the files in the build directory (`./ocaml.org/css`)
@@ -141,8 +141,6 @@ Other nice tools that you can use include:
 - [Chrome Dev Tools](https://developers.google.com/web/tools/chrome-devtools) or [Firefox Dev Tools](https://developer.mozilla.org/en-US/docs/Tools): both sets of tools make it much easier to inspect HTML, CSS and Javascript in a running website. 
 - [Google Lighthouse](https://developers.google.com/web/tools/lighthouse/), [WAVE](https://wave.webaim.org/) and [Pa11y](https://github.com/pa11y/pa11y): these are all tools for checking accessibility standards.
 - [Live Server](https://www.npmjs.com/package/live-server), [http-server](https://www.npmjs.com/package/http-server) and its [alternatives](https://nodejs.libhunt.com/live-server-alternatives): these are all tools for development server with live reload capability. Use it to serve your HTML/JavaScript/CSS files to the browser to view changes as they are made.
-
-## Deployment and Checks
 
 Whenever you raise a PR you will notice there is a check called
 *deployability*. This is checking to see if the code you have contributed
