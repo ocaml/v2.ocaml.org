@@ -7015,4 +7015,9 @@ body {
   */
 
 }
-
+a.success-links:focus {
+  outline: none;
+}
+a.success-links:focus img{
+  outline: 0.2rem solid #c77a27;
+}

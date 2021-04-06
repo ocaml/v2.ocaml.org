@@ -4,8 +4,12 @@
 *Table of contents*
 
 ## Jane Street
-[<img src='/img/users/jane-street.jpg' alt='Jane Street'
-style='float: left; margin-right: 10px' />](http://janestreet.com/technology/)
+<a href="http://janestreet.com/technology/" class="success-links"
+    ><img
+      src="../img/users/jane-street.jpg"
+      alt="Jane Street"
+      style="float: left; margin-right: 10px"
+/></a>
 
 Jane Street is a proprietary trading firm that uses OCaml as its primary
 development platform.  Our operation runs at a large scale,
@@ -30,9 +34,13 @@ be found at <http://janestreet.github.io>.  All in, we've open-sourced
 more than 200k lines of code.
 
 ## The Unison File Synchronizer
-[<img src='/img/unison-thumb.jpg'
-style='float: left; margin-right: 10px'
-alt='Screenshot'  title='Screenshot of Unison&#39;s main window' />](/img/unison.png)
+<a href="../img/unison.png" class="success-links"
+    ><img
+      src="../img/unison-thumb.jpg"
+      style="float: left; margin-right: 10px"
+      alt="Screenshot"
+      title="Screenshot of Unison&#39;s main window"
+/></a>
 
 [Unison](http://www.cis.upenn.edu/%7Ebcpierce/unison/) is a popular
 file-synchronization tool for Windows and most flavors of Unix. It
@@ -60,9 +68,13 @@ projects in having been *translated* from Java to OCaml midway through
 its development. Moving to OCaml was like a breath of fresh air.”
 
 ## The MLdonkey peer-to-peer client
-[<img src='/img/mldonkey-thumb.jpg'
-style='float: left; margin-right: 10px'
-alt='Screenshot'  title='Screenshot of one of MLdonkey&#39;s windows' />](/img/mldonkey.jpg)
+<a href="../img/mldonkey.jpg" class="success-links"
+    ><img
+      src="../img/mldonkey-thumb.jpg"
+      style="float: left; margin-right: 10px"
+      alt="Screenshot"
+      title="Screenshot of one of MLdonkey&#39;s windows"
+/></a>
 
 [MLdonkey](http://mldonkey.sourceforge.net/Main_Page) is a
 multi-platform multi-networks peer-to-peer client. It was the first
@@ -85,10 +97,13 @@ remotely using a choice of three different kinds of interfaces: GTK, web
 and telnet.”
 
 ## LexiFi's Modeling Language for Finance
-[<img src='/img/lexifi-thumb.jpg'
-style='float: left; margin-right: 10px'
-alt='Screenshot'  title='A report produced by LexiFi software'
-/>](/img/lexifi.jpg)
+<a href="../img/lexifi.jpg" class="success-links"
+    ><img
+      src="../img/lexifi-thumb.jpg"
+      style="float: left; margin-right: 10px"
+      alt="Screenshot"
+      title="A report produced by LexiFi software"
+/></a>
 
 Developed by the company [LexiFi](http://www.lexifi.com/), the Modeling
 Language for Finance (MLFi) is the first formal language that accurately
@@ -121,9 +136,13 @@ are gaining growing acceptance throughout Europe and are contributing to
 spread the use of OCaml in the financial services industry.
 
 ## The Coq Proof Assistant
-[<img src='/img/coq-thumb.jpg'
-style='float: left; margin-right: 10px'
-alt='Screenshot'  title='Screenshot of Coq&#39;s integrated development environment' />](/img/coq.jpg)
+<a href="../img/coq.jpg" class="success-links"
+    ><img
+      src="../img/coq-thumb.jpg"
+      style="float: left; margin-right: 10px"
+      alt="Screenshot"
+      title="Screenshot of Coq&#39;s integrated development environment"
+/></a>
 
 *[Jean-Christophe Filliâtre](https://www.lri.fr/~filliatr/) (CNRS), a
 Coq developer, says:* “The [Coq](http://coq.inria.fr/) tool is a system
@@ -144,9 +163,13 @@ execution, which is indispensable for a tool whose primary goal is
 precisely rigor.”
 
 ## The ASTRÉE Static Analyzer
-[<img src='/img/astree.gif' alt='A340'
-style='float: left; margin-right: 10px'
-title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](http://www.airbus.com/)
+<a href="http://www.airbus.com/" class="success-links"
+    ><img
+      src="../img/astree.gif"
+      alt="A340"
+      style="float: left; margin-right: 10px"
+      title="ASTRÉE has been used to certify the Airbus A340 flight control software"
+/></a>
 
 *[David Monniaux](http://www-verimag.imag.fr/~monniaux/) (CNRS), member
 of the ASTRÉE project, says:* “[ASTRÉE](http://www.astree.ens.fr/) is a
@@ -197,8 +220,13 @@ functional programming language. The expressiveness of this language and
 robustness of its implementation provided a great productivity boost.”
 
 ## FFTW
-<img src='/img/fftw-thumb.png' alt='FFTW'
-style='float: left; margin-right: 10px' />
+<a href="http://www.fftw.org/" class="success-links">
+  <img
+    src="../img/fftw-thumb.png"
+    alt="FFTW"
+    style="float: left; margin-right: 10px"
+  />
+</a>
 
 [FFTW](http://www.fftw.org/) is a [very fast](http://www.fftw.org/benchfft/) C
 library for computing Discrete Fourier Transforms (DFT). It uses a powerful
