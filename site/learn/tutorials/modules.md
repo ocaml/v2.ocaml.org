@@ -254,7 +254,7 @@ A functor is a module that is parametrized by another module, just like
 a function is a value which is parametrized by other values, the
 arguments.
 
-Basically, it allows parametizing a type by a value, which is not
+Basically, it allows parameterizing a type by a value, which is not
 possible directly in OCaml. For example, we can define a functor that
 takes an int n and returns a collection of array operations that work
 exclusively on arrays of length n. If by mistake the programmer passes a
