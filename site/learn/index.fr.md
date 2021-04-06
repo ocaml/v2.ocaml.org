@@ -45,7 +45,7 @@ OCaml est un langage générique de programmation, de puissance industrielle, qu
             </footer>
         </section>
         <section class="span4 condensed">
-            <h1 class="ruled"><a href="books.html">Livres anglais et français</a></h1>
+            <h1 class="ruled"><a href="books.html">Livres</a></h1>
                 <a href="https://realworldocaml.org"><img style="float:
                 left; margin-right: 2px; margin-bottom: 10px"
                 src="/img/real-world-ocaml.jpg" width="48%"
