@@ -37,8 +37,7 @@
             <h1 class="ruled"><a href="tutorials/">Tutorials</a> &amp; <a href="faq.html">FAQ</a></h1>
             <ul>
                 <li><a href="tutorials/up_and_running.html">Up and Running</a></li>
-                <li><a href="tutorials/basics.html">Basics</a></li>
-                <li><a href="tutorials/structure_of_ocaml_programs.html">Structure of OCaml Programs</a></li>
+                <li><a href="tutorials/a_first_hour_with_ocaml.html">A First Hour with OCaml</a></li>
                 <li><a href="tutorials/modules.html">Modules</a></li>
                 <li><a href="tutorials/map.html">Maps (Dictionaries)</a></li>
                 <li><a href="tutorials/set.html">Sets</a></li>

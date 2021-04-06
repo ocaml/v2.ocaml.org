@@ -14,10 +14,7 @@ there to request or offer new tutorials.
 ### Getting Started
 
 * [Up and Running](up_and_running.html)
-* [Basics](basics.html)
-* [Structure of OCaml Programs](structure_of_ocaml_programs.html)
-* [Modules](modules.html)
-* [Filenames and Extensions](filenames.html)
+* [A First Hour with OCaml](a_first_hour_with_ocaml.html)
 * [OCaml Programming Guidelines](guidelines.html)
 * [Compiling OCaml Projects](compiling_ocaml_projects.html)
 
@@ -27,6 +24,7 @@ there to request or offer new tutorials.
 * [Functional Programming](functional_programming.html)
 * [If Statements, Loops, and
  Recursion](if_statements_loops_and_recursion.html)
+* [Modules](modules.html)
 * [Labels](labels.html)
 * [Pointers in OCaml](pointers.html)
 * [Null Pointers, Asserts, and
