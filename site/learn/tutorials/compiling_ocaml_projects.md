@@ -143,5 +143,5 @@ necessary. See next section.
 
 - [dune](https://dune.readthedocs.io/en/latest/quick-start.html) Popular for new projects.
 - [OMake](https://github.com/ocaml-omake/omake) Another OCaml build system.
-- [GNU make](https://www.gnu.org/software/make/) GNU make can build anything, includind OCaml. May be used in conjunction with [OCamlmakefile](https://github.com/mmottl/ocaml-makefile)
+- [GNU make](https://www.gnu.org/software/make/) GNU make can build anything, including OCaml. May be used in conjunction with [OCamlmakefile](https://github.com/mmottl/ocaml-makefile)
 - [Oasis](https://github.com/ocaml/oasis) Generates configure, build, and install system using another build system.
