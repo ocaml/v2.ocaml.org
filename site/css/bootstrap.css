@@ -6364,6 +6364,7 @@ body {
   .row {
     margin-left: -20px;
     *zoom: 1;
+    margin-top: 30px;
   }
   .row:before,
   .row:after {
@@ -6732,6 +6733,7 @@ body {
   .row,
   .thumbnails {
     margin-left: 0;
+    margin-top: 30px;
   }
   .thumbnails > li {
     float: none;
@@ -6865,6 +6867,11 @@ body {
   .navbar-fixed-top .navbar-inner,
   .navbar-fixed-bottom .navbar-inner {
     padding: 5px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+
   }
   .navbar .container {
     width: auto;
