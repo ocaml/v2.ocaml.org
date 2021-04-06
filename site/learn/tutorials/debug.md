@@ -7,13 +7,13 @@
 This tutorial presents two techniques for debugging OCaml programs:
 
 * [Tracing functions calls](#Tracingfunctionscallsinthetoplevel),
-  which works in the interactive top level.
+  which works in the interactive toplevel.
 * The [OCaml debugger](#The-OCaml-debugger), which allows analysing programs
   compiled with `ocamlc`.
 
-## Tracing functions calls in the top level
+## Tracing functions calls in the toplevel
 
-The simplest way to debug programs in the top level is to follow the function
+The simplest way to debug programs in the toplevel is to follow the function
 calls, by “tracing” the faulty function:
 
 ```ocamltop
