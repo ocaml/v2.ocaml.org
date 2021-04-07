@@ -427,6 +427,8 @@ header + .core-running-header {
 /* Translations and breadcrumb */
 div.running-header {
   margin-top: -10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .breadcrumb {
   display: inline;
