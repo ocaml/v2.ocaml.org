@@ -5,24 +5,24 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍11 The runtime system (ocamlrun)</title>
+<title>OCaml - The runtime system (ocamlrun)</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li class="active"><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li class="active"><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec305">Chapter ‍11 The runtime system (ocamlrun)</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍11 The runtime system (ocamlrun)</a></li>
-<li><a href="runtime.html#s%3Aocamlrun-overview">11.1 Overview</a>
-</li><li><a href="runtime.html#s%3Aocamlrun-options">11.2 Options</a>
-</li><li><a href="runtime.html#s%3Aocamlrun-dllpath">11.3 Dynamic loading of shared libraries</a>
-</li><li><a href="runtime.html#s%3Aocamlrun-common-errors">11.4 Common errors</a>
+<h1 class="chapter" id="sec305"><span class="number">Chapter 11</span>The runtime system (ocamlrun)</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The runtime system (ocamlrun)</a></li>
+<li><a href="runtime.html#s%3Aocamlrun-overview"><span class="number">1</span>Overview</a>
+</li><li><a href="runtime.html#s%3Aocamlrun-options"><span class="number">2</span>Options</a>
+</li><li><a href="runtime.html#s%3Aocamlrun-dllpath"><span class="number">3</span>Dynamic loading of shared libraries</a>
+</li><li><a href="runtime.html#s%3Aocamlrun-common-errors"><span class="number">4</span>Common errors</a>
 </li></ul></nav></header>
 <p> <a id="c:runtime"></a>
 </p><p>The <span class="c004">ocamlrun</span> command executes bytecode files produced by the
 linking phase of the <span class="c004">ocamlc</span> command.</p>
-<h2 class="section" id="s:ocamlrun-overview"><a class="section-anchor" href="#s:ocamlrun-overview" aria-hidden="true"></a>11.1 Overview</h2>
+<h2 class="section" id="s:ocamlrun-overview"><a class="section-anchor" href="#s:ocamlrun-overview" aria-hidden="true"></a><span class="number">1</span>Overview</h2>
 <p>The <span class="c004">ocamlrun</span> command comprises three main parts: the bytecode
 interpreter, that actually executes bytecode files; the memory
 allocator and garbage collector; and a set of C functions that
@@ -35,7 +35,7 @@ executable path as well as in the current directory.) The remaining
 arguments are passed to the OCaml program, in the string array
 <span class="c004">Sys.argv</span>. Element 0 of this array is the name of the
 bytecode executable file; elements 1 to <span class="c010">n</span> are the remaining
-arguments <span class="c010">arg</span><sub>1</sub> to <span class="c010">arg</span><sub><span class="c010">n</span></sub>.</p><p>As mentioned in chapter ‍<a href="comp.html#c%3Acamlc">9</a>, the bytecode executable files
+arguments <span class="c010">arg</span><sub>1</sub> to <span class="c010">arg</span><sub><span class="c010">n</span></sub>.</p><p>As mentioned in chapter&nbsp;<a href="comp.html#c%3Acamlc">9</a>, the bytecode executable files
 produced by the <span class="c004">ocamlc</span> command are self-executable, and manage to
 launch the <span class="c004">ocamlrun</span> command on themselves automatically. That is,
 assuming <span class="c004">a.out</span> is a bytecode executable file,
@@ -51,7 +51,7 @@ self-executable only if their name ends in <span class="c004">.exe</span>. It is
 to always give <span class="c004">.exe</span> names to bytecode executables, e.g. compile
 with <span class="c004">ocamlc -o myprog.exe ...</span> rather than <span class="c004">ocamlc -o myprog ...</span>.
 </blockquote>
-<h2 class="section" id="s:ocamlrun-options"><a class="section-anchor" href="#s:ocamlrun-options" aria-hidden="true">﻿</a>11.2 Options</h2>
+<h2 class="section" id="s:ocamlrun-options"><a class="section-anchor" href="#s:ocamlrun-options" aria-hidden="true">﻿</a><span class="number">2</span>Options</h2>
 <p>
 The following command-line options are recognized by <span class="c004">ocamlrun</span>.</p><dl class="description"><dt class="dt-description"><span class="c007">-b</span></dt><dd class="dd-description">
 When the program aborts due to an uncaught exception, print a detailed
@@ -64,7 +64,7 @@ in the <span class="c004">OCAMLRUNPARAM</span> environment variable (see below).
 </dd><dt class="dt-description"><span class="c014"><span class="c004">-I</span> <span class="c010">dir</span></span></dt><dd class="dd-description">
 Search the directory <span class="c010">dir</span> for dynamically-loaded libraries,
 in addition to the standard search path (see
-section ‍<a href="#s%3Aocamlrun-dllpath">11.3</a>).
+section&nbsp;<a href="#s%3Aocamlrun-dllpath">11.3</a>).
 </dd><dt class="dt-description"><span class="c007">-m</span></dt><dd class="dd-description">
 Print the magic number of the bytecode executable given as argument
 and exit.
@@ -82,10 +82,10 @@ Print version string and exit.
 </dd><dt class="dt-description"><span class="c007">-vnum</span></dt><dd class="dd-description">
 Print short version number and exit.</dd></dl><p>The following environment variables are also consulted:</p><dl class="description"><dt class="dt-description">
 <span class="c007">CAML_LD_LIBRARY_PATH</span></dt><dd class="dd-description"> Additional directories to search for
-dynamically-loaded libraries (see section ‍<a href="#s%3Aocamlrun-dllpath">11.3</a>).</dd><dt class="dt-description"><span class="c007">OCAMLLIB</span></dt><dd class="dd-description"> The directory containing the OCaml standard
+dynamically-loaded libraries (see section&nbsp;<a href="#s%3Aocamlrun-dllpath">11.3</a>).</dd><dt class="dt-description"><span class="c007">OCAMLLIB</span></dt><dd class="dd-description"> The directory containing the OCaml standard
 library. (If <span class="c004">OCAMLLIB</span> is not set, <span class="c004">CAMLLIB</span> will be used instead.)
 Used to locate the <span class="c004">ld.conf</span> configuration file for
-dynamic loading (see section ‍<a href="#s%3Aocamlrun-dllpath">11.3</a>). If not set,
+dynamic loading (see section&nbsp;<a href="#s%3Aocamlrun-dllpath">11.3</a>). If not set,
 default to the library directory specified when compiling OCaml.</dd><dt class="dt-description"><span class="c007">OCAMLRUNPARAM</span></dt><dd class="dd-description"> Set the runtime system options
 and garbage collection parameters.
 (If <span class="c004">OCAMLRUNPARAM</span> is not set, <span class="c004">CAMLRUNPARAM</span> will be used instead.)
@@ -149,7 +149,7 @@ executable file, resolving shared libraries).
 </dd><dt class="dt-description"><span class="c014">1024 (= 0x400)</span></dt><dd class="dd-description"> Output GC statistics at program exit.
 </dd></dl>
 </dd><dt class="dt-description"><span class="c014">c</span></dt><dd class="dd-description"> (<span class="c004">cleanup_on_exit</span>) Shut the runtime down gracefully on exit (see
-<span class="c004">caml_shutdown</span> in section ‍<a href="intfc.html#ss%3Ac-embedded-code">18.7.5</a>). The option also enables
+<span class="c004">caml_shutdown</span> in section&nbsp;<a href="intfc.html#ss%3Ac-embedded-code">18.7.5</a>). The option also enables
 pooling (as in <span class="c004">caml_startup_pooled</span>). This mode can be used to detect
 leaks with a third-party memory debugger.
 </dd><dt class="dt-description"><span class="c014">M</span></dt><dd class="dd-description"> (<span class="c004">custom_major_ratio</span>) Target ratio of floating garbage to
@@ -180,19 +180,19 @@ if the equal sign or the number is missing, the value is taken as 1;
 if the multiplier is not recognized, it is ignored.</p><p>For example, on a 32-bit machine, under <span class="c004">bash</span> the command
 </p><pre>        export OCAMLRUNPARAM='b,s=256k,v=0x015'
 </pre><p> tells a subsequent <span class="c004">ocamlrun</span> to print backtraces for uncaught exceptions,
-set its initial minor heap size to 1 ‍megabyte and
+set its initial minor heap size to 1&nbsp;megabyte and
 print a message at the start of each major GC cycle, when the heap
 size changes, and when compaction is triggered.</p></dd><dt class="dt-description"><span class="c007">CAMLRUNPARAM</span></dt><dd class="dd-description"> If <span class="c004">OCAMLRUNPARAM</span> is not found in the
 environment, then <span class="c004">CAMLRUNPARAM</span> will be used instead. If
 <span class="c004">CAMLRUNPARAM</span> is also not found, then the default values will be used.</dd><dt class="dt-description"><span class="c007">PATH</span></dt><dd class="dd-description"> List of directories searched to find the bytecode
 executable file.
 </dd></dl>
-<h2 class="section" id="s:ocamlrun-dllpath"><a class="section-anchor" href="#s:ocamlrun-dllpath" aria-hidden="true">﻿</a>11.3 Dynamic loading of shared libraries</h2>
+<h2 class="section" id="s:ocamlrun-dllpath"><a class="section-anchor" href="#s:ocamlrun-dllpath" aria-hidden="true">﻿</a><span class="number">3</span>Dynamic loading of shared libraries</h2>
 <p>On platforms that support dynamic loading, <span class="c004">ocamlrun</span> can link
 dynamically with C shared libraries (DLLs) providing additional C primitives
 beyond those provided by the standard runtime system. The names for
 these libraries are provided at link time as described in
-section ‍<a href="intfc.html#ss%3Adynlink-c-code">18.1.4</a>), and recorded in the bytecode executable
+section&nbsp;<a href="intfc.html#ss%3Adynlink-c-code">18.1.4</a>), and recorded in the bytecode executable
 file; <span class="c004">ocamlrun</span>, then, locates these libraries and resolves references
 to their primitives when the bytecode executable program starts.</p><p>The <span class="c004">ocamlrun</span> command searches shared libraries in the following
 directories, in the order indicated:
@@ -220,7 +220,7 @@ variable <span class="c004">LD_LIBRARY_PATH</span>. Under Windows, these include
 system directories, plus the directories listed in the <span class="c004">PATH</span>
 environment variable.
 </li></ol>
-<h2 class="section" id="s:ocamlrun-common-errors"><a class="section-anchor" href="#s:ocamlrun-common-errors" aria-hidden="true">﻿</a>11.4 Common errors</h2>
+<h2 class="section" id="s:ocamlrun-common-errors"><a class="section-anchor" href="#s:ocamlrun-common-errors" aria-hidden="true">﻿</a><span class="number">4</span>Common errors</h2>
 <p>This section describes and explains the most frequently encountered
 error messages.</p><dl class="description"><dt class="dt-description"><span class="c014"><span class="c010">filename</span><span class="c004">: no such file or directory</span></span></dt><dd class="dd-description">
 If <span class="c010">filename</span> is the name of a self-executable bytecode file, this
@@ -245,7 +245,7 @@ integer arguments
 (arguments of more complex types are not correctly printed).
 To locate the context of the uncaught exception, compile the program
 with the <span class="c004">-g</span> option and either run it again under the <span class="c004">ocamldebug</span>
-debugger (see chapter ‍<a href="debugger.html#c%3Adebugger">16</a>), or run it with <span class="c004">ocamlrun -b</span>
+debugger (see chapter&nbsp;<a href="debugger.html#c%3Adebugger">16</a>), or run it with <span class="c004">ocamlrun -b</span>
 or with the <span class="c004">OCAMLRUNPARAM</span> environment variable set to <span class="c004">b=1</span>.</dd><dt class="dt-description"><span class="c007">Out of memory</span></dt><dd class="dd-description">
 The program being executed requires more memory than available. Either
 the program builds excessively large data structures; or the program
@@ -266,7 +266,7 @@ structure with too many (infinitely many?) cells. If it displays few
 heap size, this is probably an attempt to build an excessively large
 array, string or byte sequence.</p></dd></dl>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="toplevel.html">« Chapter ‍10 The toplevel system or REPL (ocaml)</a><a class="next" href="native.html">Chapter ‍12 Native-code compilation (ocamlopt) »</a></div>
+<div class="bottom-navigation"><a class="previous" href="toplevel.html">« The toplevel system or REPL (ocaml)</a><a class="next" href="native.html">Native-code compilation (ocamlopt) »</a></div>
 
 
 

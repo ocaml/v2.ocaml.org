@@ -5,32 +5,32 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍7 The OCaml language</title>
+<title>OCaml - The OCaml language</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">Chapter ‍7 The OCaml language</a></li><li><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec73">Chapter ‍7 The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍7 The OCaml language</a></li>
-<li><a href="lex.html#start-section">7.1 Lexical conventions</a>
-</li><li><a href="values.html#start-section">7.2 Values</a>
-</li><li><a href="names.html#start-section">7.3 Names</a>
-</li><li><a href="types.html#start-section">7.4 Type expressions</a>
-</li><li><a href="const.html#start-section">7.5 Constants</a>
-</li><li><a href="patterns.html#start-section">7.6 Patterns</a>
-</li><li><a href="expr.html#start-section">7.7 Expressions</a>
-</li><li><a href="typedecl.html#start-section">7.8 Type and exception definitions</a>
-</li><li><a href="classes.html#start-section">7.9 Classes</a>
-</li><li><a href="modtypes.html#start-section">7.10 Module types (module specifications)</a>
-</li><li><a href="modules.html#start-section">7.11 Module expressions (module implementations)</a>
-</li><li><a href="compunit.html#start-section">7.12 Compilation units</a>
+<h1 class="chapter" id="sec73"><span class="number">Chapter 7</span>The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span>Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span>Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span>Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span>Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span>Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span>Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span>Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span>Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span>Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span>Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span>Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span>Compilation units</a>
 </li></ul></nav></header><a id="start-section"></a><section id="section">
 
 
 
 
-<h2 class="section" id="s:patterns"><a class="section-anchor" href="#s:patterns" aria-hidden="true"></a>7.6 Patterns</h2>
+<h2 class="section" id="s:patterns"><a class="section-anchor" href="#s:patterns" aria-hidden="true"></a><span class="number">6</span>Patterns</h2>
 <p>
 <a id="hevea_manual.kwd15"></a>
 </p><div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
@@ -92,7 +92,7 @@ higher precedences come first.
 <div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c015"><span class="c014">Operator</span></td><td class="c015"><span class="c014">Associativity</span> </td></tr>
 <tr><td class="c017">
 <span class="c004">..</span></td><td class="c017">– </td></tr>
-<tr><td class="c017"><span class="c004">lazy</span> (see section ‍<a href="#sss%3Apat-lazy">7.6</a>)</td><td class="c017">– </td></tr>
+<tr><td class="c017"><span class="c004">lazy</span> (see section&nbsp;<a href="#sss%3Apat-lazy">7.6</a>)</td><td class="c017">– </td></tr>
 <tr><td class="c017">Constructor application, Tag application</td><td class="c017">right </td></tr>
 <tr><td class="c017"><span class="c004">::</span></td><td class="c017">right </td></tr>
 <tr><td class="c017"><span class="c004">,</span></td><td class="c017">– </td></tr>
@@ -129,9 +129,9 @@ the two patterns <a class="syntax" href="#pattern"><span class="c011">pattern</s
 must bind exactly the same identifiers to values having the same types.
 Matching is performed from left to right.
 More precisely,
-in case some value ‍<span class="c010">v</span> matches <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub>1</sub> <span class="c005">|</span>  <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub>2</sub>, the bindings
+in case some value&nbsp;<span class="c010">v</span> matches <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub>1</sub> <span class="c005">|</span>  <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub>2</sub>, the bindings
 performed are those of <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub>1</sub> when <span class="c010">v</span> matches <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub>1</sub>.
-Otherwise, value ‍<span class="c010">v</span> matches <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub>2</sub> whose bindings are performed.</p><h4 class="subsubsection" id="sss:pat-variant"><a class="section-anchor" href="#sss:pat-variant" aria-hidden="true">﻿</a>Variant patterns</h4>
+Otherwise, value&nbsp;<span class="c010">v</span> matches <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub>2</sub> whose bindings are performed.</p><h4 class="subsubsection" id="sss:pat-variant"><a class="section-anchor" href="#sss:pat-variant" aria-hidden="true">﻿</a>Variant patterns</h4>
 <p>The pattern <a class="syntax" href="names.html#constr"><span class="c011">constr</span></a> <span class="c005">(</span>  <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub>1</sub> <span class="c005">,</span> … <span class="c005">,</span>  <a class="syntax" href="#pattern"><span class="c011">pattern</span></a><sub><span class="c010">n</span></sub> <span class="c005">)</span> matches
 all variants whose
 constructor is equal to <a class="syntax" href="names.html#constr"><span class="c011">constr</span></a>, and whose arguments match
@@ -225,7 +225,7 @@ equivalent to <a class="syntax" href="names.html#module-path"><span class="c011"
 
 </p>
 
-<div class="bottom-navigation"><a class="previous" href="const.html">« 7.5 Constants</a><a class="next" href="expr.html">7.7 Expressions »</a></div>
+<div class="bottom-navigation"><a class="previous" href="const.html">« Constants</a><a class="next" href="expr.html">Expressions »</a></div>
 
 
 

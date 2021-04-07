@@ -5,43 +5,43 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍7 The OCaml language</title>
+<title>OCaml - The OCaml language</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">Chapter ‍7 The OCaml language</a></li><li><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec73">Chapter ‍7 The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍7 The OCaml language</a></li>
-<li><a href="lex.html#start-section">7.1 Lexical conventions</a>
-</li><li><a href="values.html#start-section">7.2 Values</a>
-</li><li><a href="names.html#start-section">7.3 Names</a>
-</li><li><a href="types.html#start-section">7.4 Type expressions</a>
-</li><li><a href="const.html#start-section">7.5 Constants</a>
-</li><li><a href="patterns.html#start-section">7.6 Patterns</a>
-</li><li><a href="expr.html#start-section">7.7 Expressions</a>
-</li><li><a href="typedecl.html#start-section">7.8 Type and exception definitions</a>
-</li><li><a href="classes.html#start-section">7.9 Classes</a>
-</li><li><a href="modtypes.html#start-section">7.10 Module types (module specifications)</a>
-</li><li><a href="modules.html#start-section">7.11 Module expressions (module implementations)</a>
-</li><li><a href="compunit.html#start-section">7.12 Compilation units</a>
+<h1 class="chapter" id="sec73"><span class="number">Chapter 7</span>The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span>Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span>Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span>Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span>Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span>Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span>Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span>Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span>Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span>Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span>Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span>Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span>Compilation units</a>
 </li></ul></nav></header><a id="start-section"></a><section id="section">
 
 
 
 
-<h2 class="section" id="s:classes"><a class="section-anchor" href="#s:classes" aria-hidden="true"></a>7.9 Classes</h2>
+<h2 class="section" id="s:classes"><a class="section-anchor" href="#s:classes" aria-hidden="true"></a><span class="number">9</span>Classes</h2>
 <ul>
-<li><a href="classes.html#ss%3Aclasses%3Aclass-types">7.9.1 Class types</a>
-</li><li><a href="classes.html#ss%3Aclass-expr">7.9.2 Class expressions</a>
-</li><li><a href="classes.html#ss%3Aclass-def">7.9.3 Class definitions</a>
-</li><li><a href="classes.html#ss%3Aclass-spec">7.9.4 Class specifications</a>
-</li><li><a href="classes.html#ss%3Aclasstype">7.9.5 Class type definitions</a>
+<li><a href="classes.html#ss%3Aclasses%3Aclass-types"><span class="number">9.1</span>Class types</a>
+</li><li><a href="classes.html#ss%3Aclass-expr"><span class="number">9.2</span>Class expressions</a>
+</li><li><a href="classes.html#ss%3Aclass-def"><span class="number">9.3</span>Class definitions</a>
+</li><li><a href="classes.html#ss%3Aclass-spec"><span class="number">9.4</span>Class specifications</a>
+</li><li><a href="classes.html#ss%3Aclasstype"><span class="number">9.5</span>Class type definitions</a>
 </li></ul>
 <p>
 Classes are defined using a small language, similar to the module
 language.</p>
-<h3 class="subsection" id="ss:classes:class-types"><a class="section-anchor" href="#ss:classes:class-types" aria-hidden="true">﻿</a>7.9.1 Class types</h3>
+<h3 class="subsection" id="ss:classes:class-types"><a class="section-anchor" href="#ss:classes:class-types" aria-hidden="true">﻿</a><span class="number">9.1</span>Class types</h3>
 <p>Class types are the class-level equivalent of type expressions: they
 specify the general shape and type properties of classes.</p><p><a id="hevea_manual.kwd101"></a>
 <a id="hevea_manual.kwd102"></a>
@@ -144,7 +144,7 @@ name of the method and <a class="syntax" href="types.html#poly-typexpr"><span cl
 type expressions to be equal. This is typically used to specify type
 parameters: in this way, they can be bound to specific type
 expressions.</p>
-<h3 class="subsection" id="ss:class-expr"><a class="section-anchor" href="#ss:class-expr" aria-hidden="true">﻿</a>7.9.2 Class expressions</h3>
+<h3 class="subsection" id="ss:class-expr"><a class="section-anchor" href="#ss:class-expr" aria-hidden="true">﻿</a><span class="number">9.2</span>Class expressions</h3>
 <p>Class expressions are the class-level equivalent of value expressions:
 they evaluate to classes, thus providing implementations for the
 specifications expressed in class types.</p><p><a id="hevea_manual.kwd118"></a>
@@ -353,9 +353,9 @@ overriding. Namely, <span class="c005">method!</span> requires <a class="syntax"
 defined in this class, <span class="c005">val!</span> requires <a class="syntax" href="names.html#inst-var-name"><span class="c011">inst-var-name</span></a> to be already
 defined in this class, and <span class="c005">inherit!</span> requires <a class="syntax" href="#class-expr"><span class="c011">class-expr</span></a> to
 override some definitions. If no such overriding occurs, an error is
-signaled.</p><p>As a side-effect, these 3 keywords avoid the warnings ‍7
-(method override) and ‍13 (instance variable override).
-Note that warning ‍7 is disabled by default.</p><h4 class="subsubsection" id="sss:class-type-constraints"><a class="section-anchor" href="#sss:class-type-constraints" aria-hidden="true">﻿</a>Constraints on type parameters</h4>
+signaled.</p><p>As a side-effect, these 3 keywords avoid the warnings&nbsp;7
+(method override) and&nbsp;13 (instance variable override).
+Note that warning&nbsp;7 is disabled by default.</p><h4 class="subsubsection" id="sss:class-type-constraints"><a class="section-anchor" href="#sss:class-type-constraints" aria-hidden="true">﻿</a>Constraints on type parameters</h4>
 <p><a id="hevea_manual.kwd141"></a>
 The construct <span class="c005">constraint</span> <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a><sub>1</sub> <span class="c005">=</span>  <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a><sub>2</sub> forces the two
 type expressions to be equals. This is typically used to specify type
@@ -364,7 +364,7 @@ expressions.</p><h4 class="subsubsection" id="sss:class-initializers"><a class="
 <p><a id="hevea_manual.kwd142"></a></p><p>A class initializer <span class="c005">initializer</span> <a class="syntax" href="expr.html#expr"><span class="c011">expr</span></a> specifies an expression that
 will be evaluated whenever an object is created from the class, once
 all its instance variables have been initialized.</p>
-<h3 class="subsection" id="ss:class-def"><a class="section-anchor" href="#ss:class-def" aria-hidden="true">﻿</a>7.9.3 Class definitions</h3>
+<h3 class="subsection" id="ss:class-def"><a class="section-anchor" href="#ss:class-def" aria-hidden="true">﻿</a><span class="number">9.3</span>Class definitions</h3>
 <p>
 <a id="s:classdef"></a></p><p><a id="hevea_manual.kwd143"></a>
 <a id="hevea_manual.kwd144"></a></p><div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
@@ -392,7 +392,7 @@ the type of the class, and defines two type abbreviations :
 <a class="syntax" href="names.html#class-name"><span class="c011">class-name</span></a> and <span class="c005">#</span> <a class="syntax" href="names.html#class-name"><span class="c011">class-name</span></a>. The first one is the type of
 objects of this class, while the second is more general as it unifies
 with the type of any object belonging to a subclass (see
-section ‍<a href="types.html#sss%3Atypexpr-sharp-types">7.4</a>).</p><h4 class="subsubsection" id="sss:class-virtual"><a class="section-anchor" href="#sss:class-virtual" aria-hidden="true">﻿</a>Virtual class</h4>
+section&nbsp;<a href="types.html#sss%3Atypexpr-sharp-types">7.4</a>).</p><h4 class="subsubsection" id="sss:class-virtual"><a class="section-anchor" href="#sss:class-virtual" aria-hidden="true">﻿</a>Virtual class</h4>
 <p>A class must be flagged virtual if one of its methods is virtual (that
 is, appears in the class type, but is not actually defined).
 Objects cannot be created from a virtual class.</p><h4 class="subsubsection" id="sss:class-type-params"><a class="section-anchor" href="#sss:class-type-params" aria-hidden="true">﻿</a>Type parameters</h4>
@@ -402,7 +402,7 @@ be bound to actual types in the class definition using type
 constraints. So that the abbreviations are well-formed, type
 variables of the inferred type of the class must either be type
 parameters or be bound in the constraint clause.</p>
-<h3 class="subsection" id="ss:class-spec"><a class="section-anchor" href="#ss:class-spec" aria-hidden="true">﻿</a>7.9.4 Class specifications</h3>
+<h3 class="subsection" id="ss:class-spec"><a class="section-anchor" href="#ss:class-spec" aria-hidden="true">﻿</a><span class="number">9.4</span>Class specifications</h3>
 <p><a id="hevea_manual.kwd145"></a>
 <a id="hevea_manual.kwd146"></a></p><div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
 <a class="syntax" id="class-specification"><span class="c011">class-specification</span></a></td><td class="c016">::=</td><td class="c018">
@@ -418,7 +418,7 @@ parameters or be bound in the constraint clause.</p>
 </tbody></table></div><p>This is the counterpart in signatures of class definitions.
 A class specification matches a class definition if they have the same
 type parameters and their types match.</p>
-<h3 class="subsection" id="ss:classtype"><a class="section-anchor" href="#ss:classtype" aria-hidden="true">﻿</a>7.9.5 Class type definitions</h3>
+<h3 class="subsection" id="ss:classtype"><a class="section-anchor" href="#ss:classtype" aria-hidden="true">﻿</a><span class="number">9.5</span>Class type definitions</h3>
 <p><a id="hevea_manual.kwd147"></a>
 <a id="hevea_manual.kwd148"></a>
 <a id="hevea_manual.kwd149"></a></p><div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
@@ -442,7 +442,7 @@ and they expand to matching types.
 
 </p>
 
-<div class="bottom-navigation"><a class="previous" href="typedecl.html">« 7.8 Type and exception definitions</a><a class="next" href="modtypes.html">7.10 Module types (module specifications) »</a></div>
+<div class="bottom-navigation"><a class="previous" href="typedecl.html">« Type and exception definitions</a><a class="next" href="modtypes.html">Module types (module specifications) »</a></div>
 
 
 

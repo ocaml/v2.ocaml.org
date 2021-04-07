@@ -5,17 +5,17 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍14 Dependency generator (ocamldep)</title>
+<title>OCaml - Dependency generator (ocamldep)</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li class="active"><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li class="active"><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec341">Chapter ‍14 Dependency generator (ocamldep)</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍14 Dependency generator (ocamldep)</a></li>
-<li><a href="depend.html#s%3Aocamldep-options">14.1 Options</a>
-</li><li><a href="depend.html#s%3Aocamldep-makefile">14.2 A typical Makefile</a>
+<h1 class="chapter" id="sec341"><span class="number">Chapter 14</span>Dependency generator (ocamldep)</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Dependency generator (ocamldep)</a></li>
+<li><a href="depend.html#s%3Aocamldep-options"><span class="number">1</span>Options</a>
+</li><li><a href="depend.html#s%3Aocamldep-makefile"><span class="number">2</span>A typical Makefile</a>
 </li></ul></nav></header>
 <p> <a id="c:camldep"></a>
 </p><p>The <span class="c004">ocamldep</span> command scans a set of OCaml source files
@@ -30,7 +30,7 @@ where <span class="c004">*.mli *.ml</span> expands to all source files in the cu
 directory and <span class="c004">.depend</span> is the file that should contain the
 dependencies. (See below for a typical <span class="c004">Makefile</span>.)</p><p>Dependencies are generated both for compiling with the bytecode
 compiler <span class="c004">ocamlc</span> and with the native-code compiler <span class="c004">ocamlopt</span>.</p>
-<h2 class="section" id="s:ocamldep-options"><a class="section-anchor" href="#s:ocamldep-options" aria-hidden="true"></a>14.1 Options</h2>
+<h2 class="section" id="s:ocamldep-options"><a class="section-anchor" href="#s:ocamldep-options" aria-hidden="true"></a><span class="number">1</span>Options</h2>
 <p>The following command-line options are recognized by <span class="c004">ocamldep</span>.</p><dl class="description"><dt class="dt-description"><span class="c007">-absname</span></dt><dd class="dd-description">
 Show absolute filenames in error messages.</dd><dt class="dt-description"><span class="c007">-all</span></dt><dd class="dd-description">
 Generate dependencies on all required files, rather than assuming
@@ -95,7 +95,7 @@ Print version string and exit.</dd><dt class="dt-description"><span class="c007"
 Print short version number and exit.</dd><dt class="dt-description"><span class="c014"><span class="c004">-help</span> or <span class="c004">--help</span></span></dt><dd class="dd-description">
 Display a short usage summary and exit.
 </dd></dl>
-<h2 class="section" id="s:ocamldep-makefile"><a class="section-anchor" href="#s:ocamldep-makefile" aria-hidden="true">﻿</a>14.2 A typical Makefile</h2>
+<h2 class="section" id="s:ocamldep-makefile"><a class="section-anchor" href="#s:ocamldep-makefile" aria-hidden="true">﻿</a><span class="number">2</span>A typical Makefile</h2>
 <p>Here is a template <span class="c004">Makefile</span> for a OCaml program.</p><pre>OCAMLC=ocamlc
 OCAMLOPT=ocamlopt
 OCAMLDEP=ocamldep
@@ -162,7 +162,7 @@ If <span class="c004">mylib.mli</span> itself has dependencies, you should compu
 
 </p>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="lexyacc.html">« Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a><a class="next" href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc) »</a></div>
+<div class="bottom-navigation"><a class="previous" href="lexyacc.html">« Lexer and parser generators (ocamllex, ocamlyacc)</a><a class="next" href="ocamldoc.html">The documentation generator (ocamldoc) »</a></div>
 
 
 

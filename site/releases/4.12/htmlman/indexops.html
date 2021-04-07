@@ -5,45 +5,45 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍8 Language extensions</title>
+<title>OCaml - Language extensions</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li><a href="language.html">Chapter ‍7 The OCaml language</a></li><li class="active"><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="extn.html">Language extensions</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec238">Chapter ‍8 Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍8 Language extensions</a></li>
-<li><a href="letrecvalues.html#start-section">8.1 Recursive definitions of values</a>
-</li><li><a href="manual024.html#start-section">8.2 Recursive modules</a>
-</li><li><a href="privatetypes.html#start-section">8.3 Private types</a>
-</li><li><a href="locallyabstract.html#start-section">8.4 Locally abstract types</a>
-</li><li><a href="firstclassmodules.html#start-section">8.5 First-class modules</a>
-</li><li><a href="moduletypeof.html#start-section">8.6 Recovering the type of a module</a>
-</li><li><a href="signaturesubstitution.html#start-section">8.7 Substituting inside a signature</a>
-</li><li><a href="modulealias.html#start-section">8.8 Type-level module aliases</a>
-</li><li><a href="overridingopen.html#start-section">8.9 Overriding in open statements</a>
-</li><li><a href="gadts.html#start-section">8.10 Generalized algebraic datatypes</a>
-</li><li><a href="bigarray.html#start-section">8.11 Syntax for Bigarray access</a>
-</li><li><a href="attributes.html#start-section">8.12 Attributes</a>
-</li><li><a href="extensionnodes.html#start-section">8.13 Extension nodes</a>
-</li><li><a href="extensiblevariants.html#start-section">8.14 Extensible variant types</a>
-</li><li><a href="generativefunctors.html#start-section">8.15 Generative functors</a>
-</li><li><a href="extensionsyntax.html#start-section">8.16 Extension-only syntax</a>
-</li><li><a href="inlinerecords.html#start-section">8.17 Inline records</a>
-</li><li><a href="doccomments.html#start-section">8.18 Documentation comments</a>
-</li><li><a href="indexops.html#start-section">8.19 Extended indexing operators </a>
-</li><li><a href="emptyvariants.html#start-section">8.20 Empty variant types</a>
-</li><li><a href="alerts.html#start-section">8.21 Alerts</a>
-</li><li><a href="generalizedopens.html#start-section">8.22 Generalized open statements</a>
-</li><li><a href="bindingops.html#start-section">8.23 Binding operators</a>
+<h1 class="chapter" id="sec238"><span class="number">Chapter 8</span>Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
+<li><a href="letrecvalues.html#start-section"><span class="number">1</span>Recursive definitions of values</a>
+</li><li><a href="manual024.html#start-section"><span class="number">2</span>Recursive modules</a>
+</li><li><a href="privatetypes.html#start-section"><span class="number">3</span>Private types</a>
+</li><li><a href="locallyabstract.html#start-section"><span class="number">4</span>Locally abstract types</a>
+</li><li><a href="firstclassmodules.html#start-section"><span class="number">5</span>First-class modules</a>
+</li><li><a href="moduletypeof.html#start-section"><span class="number">6</span>Recovering the type of a module</a>
+</li><li><a href="signaturesubstitution.html#start-section"><span class="number">7</span>Substituting inside a signature</a>
+</li><li><a href="modulealias.html#start-section"><span class="number">8</span>Type-level module aliases</a>
+</li><li><a href="overridingopen.html#start-section"><span class="number">9</span>Overriding in open statements</a>
+</li><li><a href="gadts.html#start-section"><span class="number">10</span>Generalized algebraic datatypes</a>
+</li><li><a href="bigarray.html#start-section"><span class="number">11</span>Syntax for Bigarray access</a>
+</li><li><a href="attributes.html#start-section"><span class="number">12</span>Attributes</a>
+</li><li><a href="extensionnodes.html#start-section"><span class="number">13</span>Extension nodes</a>
+</li><li><a href="extensiblevariants.html#start-section"><span class="number">14</span>Extensible variant types</a>
+</li><li><a href="generativefunctors.html#start-section"><span class="number">15</span>Generative functors</a>
+</li><li><a href="extensionsyntax.html#start-section"><span class="number">16</span>Extension-only syntax</a>
+</li><li><a href="inlinerecords.html#start-section"><span class="number">17</span>Inline records</a>
+</li><li><a href="doccomments.html#start-section"><span class="number">18</span>Documentation comments</a>
+</li><li><a href="indexops.html#start-section"><span class="number">19</span>Extended indexing operators </a>
+</li><li><a href="emptyvariants.html#start-section"><span class="number">20</span>Empty variant types</a>
+</li><li><a href="alerts.html#start-section"><span class="number">21</span>Alerts</a>
+</li><li><a href="generalizedopens.html#start-section"><span class="number">22</span>Generalized open statements</a>
+</li><li><a href="bindingops.html#start-section"><span class="number">23</span>Binding operators</a>
 </li></ul></nav></header><a id="start-section"></a><section id="section">
 
 
 
 
-<h2 class="section" id="s:index-operators"><a class="section-anchor" href="#s:index-operators" aria-hidden="true"></a>8.19 Extended indexing operators </h2>
+<h2 class="section" id="s:index-operators"><a class="section-anchor" href="#s:index-operators" aria-hidden="true"></a><span class="number">19</span>Extended indexing operators </h2>
 <ul>
-<li><a href="indexops.html#ss%3Amultiindexing">8.19.1 Multi-index notation</a>
+<li><a href="indexops.html#ss%3Amultiindexing"><span class="number">19.1</span>Multi-index notation</a>
 </li></ul>
 <p>
 (Introduced in 4.06)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019"><a class="syntax" id="dot-ext"><span class="c011">dot-ext</span></a></td><td class="c016">::=</td><td class="c018">
@@ -116,7 +116,7 @@ dictionaries with
 <div class="pre caml-output ok">- : int = 2</div></div>
 
 </div>
-<h3 class="subsection" id="ss:multiindexing"><a class="section-anchor" href="#ss:multiindexing" aria-hidden="true">﻿</a>8.19.1 Multi-index notation</h3>
+<h3 class="subsection" id="ss:multiindexing"><a class="section-anchor" href="#ss:multiindexing" aria-hidden="true">﻿</a><span class="number">19.1</span>Multi-index notation</h3>
 <div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
 <a class="syntax" href="expr.html#expr"><span class="c011">expr</span></a></td><td class="c016">::=</td><td class="c018">
 ...
@@ -219,7 +219,7 @@ to define conjointly a single index variant
 
 to handle both cases uniformly.</p>
 
-<div class="bottom-navigation"><a class="previous" href="doccomments.html">« 8.18 Documentation comments</a><a class="next" href="emptyvariants.html">8.20 Empty variant types »</a></div>
+<div class="bottom-navigation"><a class="previous" href="doccomments.html">« Documentation comments</a><a class="next" href="emptyvariants.html">Empty variant types »</a></div>
 
 
 
