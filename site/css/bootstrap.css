@@ -1728,19 +1728,37 @@ table {
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
+  /* Added these */
+  border: 1px solid #ddd;
 }
 .table {
   width: 100%;
   margin-bottom: 24px;
   font-family: Lato, sans-serif;
 }
-.table th,
+/* .table th,
 .table td {
   padding: 8px;
   line-height: 24px;
   text-align: center;
   vertical-align: center;
+} */
+
+/* Added these */
+th, td {
+  text-align: left;
+  padding: 8px;
 }
+/* Added these too */
+tr:nth-child(even){
+  background-color: #f2f2f2
+}
+
+/* Also added these */
+th{
+  background-color: #f2f2f2
+}
+
 .table td {
   border-top: 1px transparent solid;
   border-bottom: 1px transparent solid;
