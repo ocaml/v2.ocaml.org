@@ -7,7 +7,7 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
-.build-breaker {
+ .build-breaker {
   /*
       This is a blank LESS mixin that can be added to LESS files that
       should not be included in the final build. This mixin
@@ -543,6 +543,14 @@ a:focus {
   padding-right: 20px;
   padding-left: 20px;
   *zoom: 1;
+}
+.navbar-inner > .container-fluid {
+  margin-right: 65px;
+}
+@media (max-width: 767px){
+  .navbar-inner > .container-fluid {
+    margin-right: 85px;
+  }
 }
 .container-fluid:before,
 .container-fluid:after {
@@ -5526,9 +5534,6 @@ body {
   }
 }
 @media (max-width: 767px) {
-  .book-img {
-    width: 250px;
-  }
   #home-header {
     margin-left: -20px;
     margin-right: -20px;
