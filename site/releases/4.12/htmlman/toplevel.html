@@ -5,21 +5,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍10 The toplevel system or REPL (ocaml)</title>
+<title>OCaml - The toplevel system or REPL (ocaml)</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li class="active"><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li class="active"><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec297">Chapter ‍10 The toplevel system or REPL (ocaml)</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li>
-<li><a href="toplevel.html#s%3Atoplevel-options">10.1 Options</a>
-</li><li><a href="toplevel.html#s%3Atoplevel-directives">10.2 Toplevel directives</a>
-</li><li><a href="toplevel.html#s%3Atoplevel-modules">10.3 The toplevel and the module system</a>
-</li><li><a href="toplevel.html#s%3Atoplevel-common-errors">10.4 Common errors</a>
-</li><li><a href="toplevel.html#s%3Acustom-toplevel">10.5 Building custom toplevel systems: <span class="c004">ocamlmktop</span></a>
-</li><li><a href="toplevel.html#s%3Aocamlnat">10.6 The native toplevel: <span class="c004">ocamlnat</span> (experimental)</a>
+<h1 class="chapter" id="sec297"><span class="number">Chapter 10</span>The toplevel system or REPL (ocaml)</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The toplevel system or REPL (ocaml)</a></li>
+<li><a href="toplevel.html#s%3Atoplevel-options"><span class="number">1</span>Options</a>
+</li><li><a href="toplevel.html#s%3Atoplevel-directives"><span class="number">2</span>Toplevel directives</a>
+</li><li><a href="toplevel.html#s%3Atoplevel-modules"><span class="number">3</span>The toplevel and the module system</a>
+</li><li><a href="toplevel.html#s%3Atoplevel-common-errors"><span class="number">4</span>Common errors</a>
+</li><li><a href="toplevel.html#s%3Acustom-toplevel"><span class="number">5</span>Building custom toplevel systems: <span class="c004">ocamlmktop</span></a>
+</li><li><a href="toplevel.html#s%3Aocamlnat"><span class="number">6</span>The native toplevel: <span class="c004">ocamlnat</span> (experimental)</a>
 </li></ul></nav></header>
 <p> <a id="c:camllight"></a>
 </p><p>This chapter describes the toplevel system for OCaml, that permits
@@ -56,12 +56,12 @@ module expressions. The definition can bind value names, type names,
 an exception, a module name, or a module type name. The toplevel
 system performs the bindings, then prints the types and values (if
 any) for the names thus defined.</p><p>A phrase may also consist in a value expression
-(section ‍<a href="expr.html#s%3Avalue-expr">7.7</a>). It is simply evaluated
+(section&nbsp;<a href="expr.html#s%3Avalue-expr">7.7</a>). It is simply evaluated
 without performing any bindings, and its value is
 printed.</p><p>Finally, a phrase can also consist in a toplevel directive,
 starting with <span class="c005">#</span> (the sharp sign). These directives control the
 behavior of the toplevel; they are listed below in
-section ‍<a href="#s%3Atoplevel-directives">10.2</a>.</p><blockquote class="quote"><span class="c008">Unix:</span> 
+section&nbsp;<a href="#s%3Atoplevel-directives">10.2</a>.</p><blockquote class="quote"><span class="c008">Unix:</span> 
 The toplevel system is started by the command <span class="c004">ocaml</span>, as follows:
 <pre>        ocaml <span class="c010">options objects</span>                # interactive mode
         ocaml <span class="c010">options objects scriptfile</span>        # script mode
@@ -73,11 +73,11 @@ loaded into the interpreter immediately after <span class="c010">options</span> 
 enters interactive mode: phrases are read on standard input, results
 are printed on standard output, errors on standard error. End-of-file
 on standard input terminates <span class="c004">ocaml</span> (see also the <span class="c004">#quit</span> directive
-in section ‍<a href="#s%3Atoplevel-directives">10.2</a>).</p><p>On start-up (before the first phrase is read), if the file
+in section&nbsp;<a href="#s%3Atoplevel-directives">10.2</a>).</p><p>On start-up (before the first phrase is read), if the file
 <span class="c004">.ocamlinit</span> exists in the current directory,
 its contents are read as a sequence of OCaml phrases
 and executed as per the <span class="c004">#use</span> directive
-described in section ‍<a href="#s%3Atoplevel-directives">10.2</a>.
+described in section&nbsp;<a href="#s%3Atoplevel-directives">10.2</a>.
 The evaluation outcode for each phrase are not displayed.
 If the current directory does not contain an <span class="c004">.ocamlinit</span> file,
 the file <span class="c004">XDG_CONFIG_HOME/ocaml/init.ml</span> is looked up according
@@ -94,7 +94,7 @@ by sending the <span class="c004">INTR</span> signal to the <span class="c004">o
 then immediately returns to the <span class="c004">#</span> prompt.</p><p>If <span class="c010">scriptfile</span> is given on the command-line to <span class="c004">ocaml</span>, the toplevel
 system enters script mode: the contents of the file are read as a
 sequence of OCaml phrases and executed, as per the <span class="c004">#use</span>
-directive (section ‍<a href="#s%3Atoplevel-directives">10.2</a>). The outcome of the
+directive (section&nbsp;<a href="#s%3Atoplevel-directives">10.2</a>). The outcome of the
 evaluation is not printed. On reaching the end of file, the <span class="c004">ocaml</span>
 command exits immediately. No commands are read from standard input.
 <span class="c004">Sys.argv</span> is transformed, ignoring all OCaml parameters, and
@@ -108,7 +108,7 @@ scripts. A better solution is to put the following as the first line
 of the script:
 </p><pre>        #!/usr/local/bin/ocamlrun /usr/local/bin/ocaml
 </pre></blockquote>
-<h2 class="section" id="s:toplevel-options"><a class="section-anchor" href="#s:toplevel-options" aria-hidden="true"></a>10.1 Options</h2>
+<h2 class="section" id="s:toplevel-options"><a class="section-anchor" href="#s:toplevel-options" aria-hidden="true"></a><span class="number">1</span>Options</h2>
 <p>The following command-line options are recognized by the <span class="c004">ocaml</span> command.
 </p><dl class="description"><dt class="dt-description">
 <span class="c007">-absname</span></dt><dd class="dd-description">
@@ -131,7 +131,7 @@ but before the standard library directory. See also option <span class="c004">-n
 standard library directory. For instance, <span class="c004">-I +unix</span> adds the
 subdirectory <span class="c004">unix</span> of the standard library to the search path.</p><p>Directories can also be added to the list once
 the toplevel is running with the <span class="c004">#directory</span> directive
-(section ‍<a href="#s%3Atoplevel-directives">10.2</a>).
+(section&nbsp;<a href="#s%3Atoplevel-directives">10.2</a>).
 </p></dd><dt class="dt-description"><span class="c014"><span class="c004">-init</span> <span class="c010">file</span></span></dt><dd class="dd-description">
 Load the given file instead of the default initialization file.
 The default file is <span class="c004">.ocamlinit</span> in the current directory if it
@@ -160,7 +160,7 @@ directories searched for source and compiled files.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">-ppx</span> <span class="c010">command</span></span></dt><dd class="dd-description">
 After parsing, pipe the abstract syntax tree through the preprocessor
 <span class="c010">command</span>. The module <span class="c004">Ast_mapper</span>, described in
-chapter ‍<a href="parsing.html#c%3Aparsinglib">24</a>:
+chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">24</a>:
 <a href="../api/compilerlibref/Ast_mapper.html"> <span class="c004">Ast_mapper</span> </a>
 ,
 implements the external interface of a preprocessor.</dd><dt class="dt-description"><span class="c007">-principal</span></dt><dd class="dd-description">
@@ -374,7 +374,7 @@ and look up its capabilities in the terminal database.</dd><dt class="dt-descrip
 <span class="c004">.ocamlinit</span> lookup procedure (see above).
 </dd></dl>
 </blockquote>
-<h2 class="section" id="s:toplevel-directives"><a class="section-anchor" href="#s:toplevel-directives" aria-hidden="true">﻿</a>10.2 Toplevel directives</h2>
+<h2 class="section" id="s:toplevel-directives"><a class="section-anchor" href="#s:toplevel-directives" aria-hidden="true">﻿</a><span class="number">2</span>Toplevel directives</h2>
 <p>The following directives control the toplevel behavior, load files in
 memory, and trace program execution.</p><p><span class="c014">Note:</span> all directives start with a <span class="c004">#</span> (sharp) symbol. This <span class="c004">#</span>
 must be typed before the directive, and must not be confused with the
@@ -480,11 +480,11 @@ unsoundness of the type system.</dd><dt class="dt-description"><span class="c014
 Treat as errors the warnings enabled by the argument and as normal
 warnings the warnings disabled by the argument.</dd><dt class="dt-description"><span class="c014"><span class="c004">#warnings "</span><span class="c010">warning-list</span><span class="c004">";;</span></span></dt><dd class="dd-description">
 Enable or disable warnings according to the argument.</dd></dl></dd></dl>
-<h2 class="section" id="s:toplevel-modules"><a class="section-anchor" href="#s:toplevel-modules" aria-hidden="true">﻿</a>10.3 The toplevel and the module system</h2>
+<h2 class="section" id="s:toplevel-modules"><a class="section-anchor" href="#s:toplevel-modules" aria-hidden="true">﻿</a><span class="number">3</span>The toplevel and the module system</h2>
 <p>Toplevel phrases can refer to identifiers defined in compilation units
 with the same mechanisms as for separately compiled units: either by
 using qualified names (<span class="c004">Modulename.localname</span>), or by using
-the <span class="c004">open</span> construct and unqualified names (see section ‍<a href="names.html#s%3Anames">7.3</a>).</p><p>However, before referencing another compilation unit, an
+the <span class="c004">open</span> construct and unqualified names (see section&nbsp;<a href="names.html#s%3Anames">7.3</a>).</p><p>However, before referencing another compilation unit, an
 implementation of that unit must be present in memory.
 At start-up, the toplevel system contains implementations for all the
 modules in the the standard library. Implementations for user modules
@@ -496,7 +496,7 @@ implementation of <span class="c010">Mod</span>, and does not cause any error if
 implementation of <span class="c010">Mod</span> has been loaded. The error
 “reference to undefined global <span class="c010">Mod</span>” will occur only when
 executing a value or module definition that refers to <span class="c010">Mod</span>.</p>
-<h2 class="section" id="s:toplevel-common-errors"><a class="section-anchor" href="#s:toplevel-common-errors" aria-hidden="true">﻿</a>10.4 Common errors</h2>
+<h2 class="section" id="s:toplevel-common-errors"><a class="section-anchor" href="#s:toplevel-common-errors" aria-hidden="true">﻿</a><span class="number">4</span>Common errors</h2>
 <p>This section describes and explains the most frequently encountered
 error messages.</p><dl class="description"><dt class="dt-description"><span class="c014">Cannot find file <span class="c010">filename</span></span></dt><dd class="dd-description">
 The named file could not be found in the current directory, nor in the
@@ -509,10 +509,10 @@ does not exist yet. Fix: compile <span class="c010">mod</span><span class="c004"
 because you haven’t specified the directories to look into. Fix: use
 the <span class="c004">#directory</span> directive to add the correct directories to the
 search path.</p></dd><dt class="dt-description"><span class="c014">This expression has type </span><span class="c010">t</span><sub>1</sub><span class="c014">, but is used with type </span><span class="c010">t</span><sub>2</sub></dt><dd class="dd-description">
-See section ‍<a href="comp.html#s%3Acomp-errors">9.4</a>.</dd><dt class="dt-description"><span class="c014">Reference to undefined global <span class="c010">mod</span></span></dt><dd class="dd-description">
+See section&nbsp;<a href="comp.html#s%3Acomp-errors">9.4</a>.</dd><dt class="dt-description"><span class="c014">Reference to undefined global <span class="c010">mod</span></span></dt><dd class="dd-description">
 You have neglected to load in memory an implementation for a module
-with <span class="c004">#load</span>. See section ‍<a href="#s%3Atoplevel-modules">10.3</a> above.</dd></dl>
-<h2 class="section" id="s:custom-toplevel"><a class="section-anchor" href="#s:custom-toplevel" aria-hidden="true">﻿</a>10.5 Building custom toplevel systems: <span class="c004">ocamlmktop</span></h2>
+with <span class="c004">#load</span>. See section&nbsp;<a href="#s%3Atoplevel-modules">10.3</a> above.</dd></dl>
+<h2 class="section" id="s:custom-toplevel"><a class="section-anchor" href="#s:custom-toplevel" aria-hidden="true">﻿</a><span class="number">5</span>Building custom toplevel systems: <span class="c004">ocamlmktop</span></h2>
 <p>The <span class="c004">ocamlmktop</span> command builds OCaml toplevels that
 contain user code preloaded at start-up.</p><p>The <span class="c004">ocamlmktop</span> command takes as argument a set of <span class="c004">.cmo</span> and <span class="c004">.cma</span>
 files, and links them with the object files that implement the OCaml toplevel.
@@ -532,21 +532,21 @@ if you had typed:
 not opened, though; you still have to do
 </p><pre>        open Foo;;
 </pre><p>yourself, if this is what you wish.</p>
-<h3 class="subsection" id="ss:ocamlmktop-options"><a class="section-anchor" href="#ss:ocamlmktop-options" aria-hidden="true">﻿</a>10.5.1 Options</h3>
+<h3 class="subsection" id="ss:ocamlmktop-options"><a class="section-anchor" href="#ss:ocamlmktop-options" aria-hidden="true">﻿</a><span class="number">5.1</span>Options</h3>
 <p>The following command-line options are recognized by <span class="c004">ocamlmktop</span>.</p><dl class="description"><dt class="dt-description"><span class="c014"><span class="c004">-cclib</span> <span class="c010">libname</span></span></dt><dd class="dd-description">
 Pass the <span class="c004">-l</span><span class="c010">libname</span> option to the C linker when linking in
 “custom runtime” mode. See the corresponding option for
-<span class="c004">ocamlc</span>, in chapter ‍<a href="comp.html#c%3Acamlc">9</a>.</dd><dt class="dt-description"><span class="c014"><span class="c004">-ccopt</span> <span class="c010">option</span></span></dt><dd class="dd-description">
+<span class="c004">ocamlc</span>, in chapter&nbsp;<a href="comp.html#c%3Acamlc">9</a>.</dd><dt class="dt-description"><span class="c014"><span class="c004">-ccopt</span> <span class="c010">option</span></span></dt><dd class="dd-description">
 Pass the given option to the C compiler and linker, when linking in
 “custom runtime” mode. See the corresponding option for
-<span class="c004">ocamlc</span>, in chapter ‍<a href="comp.html#c%3Acamlc">9</a>.</dd><dt class="dt-description"><span class="c007">-custom</span></dt><dd class="dd-description">
+<span class="c004">ocamlc</span>, in chapter&nbsp;<a href="comp.html#c%3Acamlc">9</a>.</dd><dt class="dt-description"><span class="c007">-custom</span></dt><dd class="dd-description">
 Link in “custom runtime” mode. See the corresponding option for
-<span class="c004">ocamlc</span>, in chapter ‍<a href="comp.html#c%3Acamlc">9</a>.</dd><dt class="dt-description"><span class="c014"><span class="c004">-I</span> <span class="c010">directory</span></span></dt><dd class="dd-description">
+<span class="c004">ocamlc</span>, in chapter&nbsp;<a href="comp.html#c%3Acamlc">9</a>.</dd><dt class="dt-description"><span class="c014"><span class="c004">-I</span> <span class="c010">directory</span></span></dt><dd class="dd-description">
 Add the given directory to the list of directories searched for
 compiled object code files (<span class="c004">.cmo</span> and <span class="c004">.cma</span>).</dd><dt class="dt-description"><span class="c014"><span class="c004">-o</span> <span class="c010">exec-file</span></span></dt><dd class="dd-description">
 Specify the name of the toplevel file produced by the linker.
 The default is <span class="c004">a.out</span>.</dd></dl>
-<h2 class="section" id="s:ocamlnat"><a class="section-anchor" href="#s:ocamlnat" aria-hidden="true">﻿</a>10.6 The native toplevel: <span class="c004">ocamlnat</span> (experimental)</h2>
+<h2 class="section" id="s:ocamlnat"><a class="section-anchor" href="#s:ocamlnat" aria-hidden="true">﻿</a><span class="number">6</span>The native toplevel: <span class="c004">ocamlnat</span> (experimental)</h2>
 <p><span class="c014">This section describes a tool that is not yet officially supported but may be found useful.</span></p><p>OCaml code executing in the traditional toplevel system uses the bytecode
 interpreter. When increased performance is required, or for testing
 programs that will only execute correctly when compiled to native code,
@@ -562,7 +562,7 @@ installation directory) may be invoked directly rather than using
 
 </p>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="comp.html">« Chapter ‍9 Batch compilation (ocamlc)</a><a class="next" href="runtime.html">Chapter ‍11 The runtime system (ocamlrun) »</a></div>
+<div class="bottom-navigation"><a class="previous" href="comp.html">« Batch compilation (ocamlc)</a><a class="next" href="runtime.html">The runtime system (ocamlrun) »</a></div>
 
 
 

@@ -5,20 +5,20 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍9 Batch compilation (ocamlc)</title>
+<title>OCaml - Batch compilation (ocamlc)</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li class="active"><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li class="active"><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec287">Chapter ‍9 Batch compilation (ocamlc)</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍9 Batch compilation (ocamlc)</a></li>
-<li><a href="comp.html#s%3Acomp-overview">9.1 Overview of the compiler</a>
-</li><li><a href="comp.html#s%3Acomp-options">9.2 Options</a>
-</li><li><a href="comp.html#s%3Amodules-file-system">9.3 Modules and the file system</a>
-</li><li><a href="comp.html#s%3Acomp-errors">9.4 Common errors</a>
-</li><li><a href="comp.html#s%3Acomp-warnings">9.5 Warning reference</a>
+<h1 class="chapter" id="sec287"><span class="number">Chapter 9</span>Batch compilation (ocamlc)</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Batch compilation (ocamlc)</a></li>
+<li><a href="comp.html#s%3Acomp-overview"><span class="number">1</span>Overview of the compiler</a>
+</li><li><a href="comp.html#s%3Acomp-options"><span class="number">2</span>Options</a>
+</li><li><a href="comp.html#s%3Amodules-file-system"><span class="number">3</span>Modules and the file system</a>
+</li><li><a href="comp.html#s%3Acomp-errors"><span class="number">4</span>Common errors</a>
+</li><li><a href="comp.html#s%3Acomp-warnings"><span class="number">5</span>Warning reference</a>
 </li></ul></nav></header>
 <p> <a id="c:camlc"></a>
 </p><p>This chapter describes the OCaml batch compiler <span class="c004">ocamlc</span>,
@@ -26,7 +26,7 @@ which compiles OCaml source files to bytecode object files and links
 these object files to produce standalone bytecode executable files.
 These executable files are then run by the bytecode interpreter
 <span class="c004">ocamlrun</span>.</p>
-<h2 class="section" id="s:comp-overview"><a class="section-anchor" href="#s:comp-overview" aria-hidden="true"></a>9.1 Overview of the compiler</h2>
+<h2 class="section" id="s:comp-overview"><a class="section-anchor" href="#s:comp-overview" aria-hidden="true"></a><span class="number">1</span>Overview of the compiler</h2>
 <p>The <span class="c004">ocamlc</span> command has a command-line interface similar to the one of
 most C compilers. It accepts several types of arguments and processes them
 sequentially, after all options have been processed:</p><ul class="itemize"><li class="li-itemize">
@@ -80,7 +80,7 @@ produced by the linking phase, the command
 </pre><p>
 executes the compiled code contained in <span class="c004">a.out</span>, passing it as
 arguments the character strings <span class="c010">arg</span><sub>1</sub> to <span class="c010">arg</span><sub><span class="c010">n</span></sub>.
-(See chapter ‍<a href="runtime.html#c%3Aruntime">11</a> for more details.)</p><p>On most systems, the file produced by the linking
+(See chapter&nbsp;<a href="runtime.html#c%3Aruntime">11</a> for more details.)</p><p>On most systems, the file produced by the linking
 phase can be run directly, as in:
 </p><pre>        ./a.out <span class="c010">arg</span><sub>1</sub> <span class="c010">arg</span><sub>2</sub> … <span class="c010">arg</span><sub><span class="c010">n</span></sub>
 </pre><p>
@@ -93,7 +93,7 @@ Each such file contains a typed abstract syntax tree (AST), that is produced
 during the type checking procedure. This tree contains all available information
 about the location and the specific type of each term in the source file.
 The AST is partial if type checking was unsuccessful.</p><p>These <span class="c004">.cmt</span> and <span class="c004">.cmti</span> files are typically useful for code inspection tools.</p>
-<h2 class="section" id="s:comp-options"><a class="section-anchor" href="#s:comp-options" aria-hidden="true">﻿</a>9.2 Options</h2>
+<h2 class="section" id="s:comp-options"><a class="section-anchor" href="#s:comp-options" aria-hidden="true">﻿</a><span class="number">2</span>Options</h2>
 <p>The following command-line options are recognized by <span class="c004">ocamlc</span>.
 The options <span class="c004">-pack</span>, <span class="c004">-a</span>, <span class="c004">-c</span> and <span class="c004">-output-obj</span> are mutually exclusive.
 </p><dl class="description"><dt class="dt-description">
@@ -184,7 +184,7 @@ and the bytecode for the program. The resulting file is larger, but it
 can be executed directly, even if the <span class="c004">ocamlrun</span> command is not
 installed. Moreover, the “custom runtime” mode enables static
 linking of OCaml code with user-defined C functions, as described in
-chapter ‍<a href="intfc.html#c%3Aintf-c">18</a>.
+chapter&nbsp;<a href="intfc.html#c%3Aintf-c">18</a>.
 <blockquote class="quote"><span class="c008">Unix:</span> 
 Never use the <span class="c004">strip</span> command on executables produced by <span class="c004">ocamlc -custom</span>,
 this would remove the bytecode part of the executable.
@@ -206,7 +206,7 @@ C libraries. At link-time, shared libraries are searched in the
 standard search path (the one corresponding to the <span class="c004">-I</span> option).
 The <span class="c004">-dllpath</span> option simply stores <span class="c010">dir</span> in the produced
 executable file, where <span class="c004">ocamlrun</span> can find it and use it as
-described in section ‍<a href="runtime.html#s%3Aocamlrun-dllpath">11.3</a>.
+described in section&nbsp;<a href="runtime.html#s%3Aocamlrun-dllpath">11.3</a>.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">-for-pack</span> <span class="c010">module-path</span></span></dt><dd class="dd-description">
 Generate an object file (<span class="c004">.cmo</span>)
 that can later be included
@@ -221,9 +221,9 @@ names.
 </dd><dt class="dt-description"><span class="c007">-g</span></dt><dd class="dd-description">
 Add debugging information while compiling and linking. This option is
 required in order to be able to debug the program with <span class="c004">ocamldebug</span>
-(see chapter ‍<a href="debugger.html#c%3Adebugger">16</a>), and to produce stack backtraces when
+(see chapter&nbsp;<a href="debugger.html#c%3Adebugger">16</a>), and to produce stack backtraces when
 the program terminates on an uncaught exception (see
-section ‍<a href="runtime.html#s%3Aocamlrun-options">11.2</a>).
+section&nbsp;<a href="runtime.html#s%3Aocamlrun-options">11.2</a>).
 </dd><dt class="dt-description"><span class="c007">-i</span></dt><dd class="dd-description">
 Cause the compiler to print all defined names (with their inferred
 types or their definitions) when compiling an implementation (<span class="c004">.ml</span>
@@ -269,7 +269,7 @@ incorporating the C object files and libraries given on the command
 line. This custom runtime system can be used later to execute
 bytecode executables produced with the
 <span class="c004">ocamlc -use-runtime</span> <span class="c010">runtime-name</span> option.
-See section ‍<a href="intfc.html#ss%3Acustom-runtime">18.1.6</a> for more information.
+See section&nbsp;<a href="intfc.html#ss%3Acustom-runtime">18.1.6</a> for more information.
 </dd><dt class="dt-description"><span class="c007">-match-context-rows</span></dt><dd class="dd-description">
 Set the number of rows of context used for optimization during
 pattern matching compilation. The default value is 32. Lower values
@@ -278,7 +278,7 @@ option is meant for use in the event that a pattern-match-heavy
 program leads to significant increases in compilation time.
 </dd><dt class="dt-description"><span class="c007">-no-alias-deps</span></dt><dd class="dd-description">
 Do not record dependencies for module aliases. See
-section ‍<a href="modulealias.html#s%3Amodule-alias">8.8</a> for more information.
+section&nbsp;<a href="modulealias.html#s%3Amodule-alias">8.8</a> for more information.
 </dd><dt class="dt-description"><span class="c007">-no-app-funct</span></dt><dd class="dd-description">
 Deactivates the applicative behaviour of functors. With this option,
 each functor application generates new types in its result and
@@ -345,8 +345,8 @@ were added at the top of each file.
 Cause the linker to produce a C object file instead of
 a bytecode executable file.
 This is useful to wrap OCaml code as a C library,
-callable from any C program. See chapter ‍<a href="intfc.html#c%3Aintf-c">18</a>,
-section ‍<a href="intfc.html#ss%3Ac-embedded-code">18.7.5</a>. The name of the output object file
+callable from any C program. See chapter&nbsp;<a href="intfc.html#c%3Aintf-c">18</a>,
+section&nbsp;<a href="intfc.html#ss%3Ac-embedded-code">18.7.5</a>. The name of the output object file
 must be set with the <span class="c004">-o</span> option.
 This option can also be used to produce a C source file (<span class="c004">.c</span> extension)
 or a compiled shared/dynamic library (<span class="c004">.so</span> extension, <span class="c004">.dll</span> under Windows).
@@ -376,7 +376,7 @@ errors, the intermediate file is deleted afterwards.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">-ppx</span> <span class="c010">command</span></span></dt><dd class="dd-description">
 After parsing, pipe the abstract syntax tree through the preprocessor
 <span class="c010">command</span>. The module <span class="c004">Ast_mapper</span>, described in
-chapter ‍<a href="parsing.html#c%3Aparsinglib">24</a>:
+chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">24</a>:
 <a href="../api/compilerlibref/Ast_mapper.html"> <span class="c004">Ast_mapper</span> </a>
 ,
 implements the external interface of a preprocessor.</dd><dt class="dt-description"><span class="c007">-principal</span></dt><dd class="dd-description">
@@ -437,7 +437,7 @@ be used with new software.</dd><dt class="dt-description"><span class="c014"><sp
 Generate a bytecode executable file that can be executed on the custom
 runtime system <span class="c010">runtime-name</span>, built earlier with
 <span class="c004">ocamlc -make-runtime</span> <span class="c010">runtime-name</span>.
-See section ‍<a href="intfc.html#ss%3Acustom-runtime">18.1.6</a> for more information.
+See section&nbsp;<a href="intfc.html#ss%3Acustom-runtime">18.1.6</a> for more information.
 </dd><dt class="dt-description"><span class="c007">-v</span></dt><dd class="dd-description">
 Print the version number of the compiler and the location of the
 standard library directory, then exit.</dd><dt class="dt-description"><span class="c007">-verbose</span></dt><dd class="dd-description">
@@ -628,7 +628,7 @@ Alternative executable to use on native
 Windows for <span class="c004">flexlink</span> instead of the
 configured value. Primarily used for bootstrapping.
 </dd></dl>
-<h2 class="section" id="s:modules-file-system"><a class="section-anchor" href="#s:modules-file-system" aria-hidden="true">﻿</a>9.3 Modules and the file system</h2>
+<h2 class="section" id="s:modules-file-system"><a class="section-anchor" href="#s:modules-file-system" aria-hidden="true">﻿</a><span class="number">3</span>Modules and the file system</h2>
 <p>This short section is intended to clarify the relationship between the
 names of the modules corresponding to compilation units and the names
 of the files that contain their compiled interface and compiled
@@ -658,7 +658,7 @@ freely renamed once created. That’s because the linker never attempts
 to find by itself the <span class="c004">.cmo</span> file that implements a module with a
 given name: it relies instead on the user providing the list of <span class="c004">.cmo</span>
 files by hand.</p>
-<h2 class="section" id="s:comp-errors"><a class="section-anchor" href="#s:comp-errors" aria-hidden="true">﻿</a>9.4 Common errors</h2>
+<h2 class="section" id="s:comp-errors"><a class="section-anchor" href="#s:comp-errors" aria-hidden="true">﻿</a><span class="number">4</span>Common errors</h2>
 <p>This section describes and explains the most frequently encountered
 error messages.</p><dl class="description"><dt class="dt-description"><span class="c014">Cannot find file <span class="c010">filename</span></span></dt><dd class="dd-description">
 The named file could not be found in the current directory, nor in the
@@ -775,14 +775,14 @@ mod2.ml:    let g y = ... Mod1.f ...
 </pre></li></ul></dd><dt class="dt-description"><span class="c014">The external function <span class="c010">f</span> is not available</span></dt><dd class="dd-description">
 This error appears when trying to link code that calls external
 functions written in C. As explained in
-chapter ‍<a href="intfc.html#c%3Aintf-c">18</a>, such code must be linked with C libraries that
+chapter&nbsp;<a href="intfc.html#c%3Aintf-c">18</a>, such code must be linked with C libraries that
 implement the required <span class="c010">f</span> C function. If the C libraries in
 question are not shared libraries (DLLs), the code must be linked in
 “custom runtime” mode. Fix: add the required C libraries to the
 command line, and possibly the <span class="c004">-custom</span> option.</dd></dl>
-<h2 class="section" id="s:comp-warnings"><a class="section-anchor" href="#s:comp-warnings" aria-hidden="true">﻿</a>9.5 Warning reference</h2>
+<h2 class="section" id="s:comp-warnings"><a class="section-anchor" href="#s:comp-warnings" aria-hidden="true">﻿</a><span class="number">5</span>Warning reference</h2>
 <p>This section describes and explains in detail some warnings:</p>
-<h3 class="subsection" id="ss:warn9"><a class="section-anchor" href="#ss:warn9" aria-hidden="true">﻿</a>9.5.1 Warning 9: missing fields in a record pattern</h3>
+<h3 class="subsection" id="ss:warn9"><a class="section-anchor" href="#ss:warn9" aria-hidden="true">﻿</a><span class="number">5.1</span>Warning 9: missing fields in a record pattern</h3>
 <p>When pattern matching on records, it can be useful to match only few
 fields of a record. Eliding fields can be done either implicitly
 or explicitly by ending the record pattern with <span class="c004">; _</span>.
@@ -796,7 +796,7 @@ after the addition of new fields to a record type.</p><pre>type 'a point = {x : 
 let dx { x } = x (* implicit field elision: trigger warning 9 *)
 let dy { y; _ } = y (* explicit field elision: do not trigger warning 9 *)
 </pre>
-<h3 class="subsection" id="ss:warn52"><a class="section-anchor" href="#ss:warn52" aria-hidden="true">﻿</a>9.5.2 Warning 52: fragile constant pattern</h3>
+<h3 class="subsection" id="ss:warn52"><a class="section-anchor" href="#ss:warn52" aria-hidden="true">﻿</a><span class="number">5.2</span>Warning 52: fragile constant pattern</h3>
 <p>Some constructors, such as the exception constructors <span class="c004">Failure</span> and
 <span class="c004">Invalid_argument</span>, take as parameter a <span class="c004">string</span> value holding
 a text message intended for the user.</p><p>These text messages are usually not stable over time: call sites
@@ -857,7 +857,7 @@ those several cases.</p><p>For example,
   | Failure "int_of_string" -&gt; (0, true)
   | Failure "bool_of_string" -&gt; (-1, false)
 </pre><p> should be rewritten into more atomic tests. For example,
-using the <span class="c004">exception</span> patterns documented in Section ‍<a href="patterns.html#sss%3Aexception-match">7.6</a>,
+using the <span class="c004">exception</span> patterns documented in Section&nbsp;<a href="patterns.html#sss%3Aexception-match">7.6</a>,
 one can write:
 </p><pre>match int_of_string count_str with
   | exception (Failure _) -&gt; (0, true)
@@ -873,7 +873,7 @@ but different string values. In this case, you will have to check for
 specific string values. This is dangerous API design and it should be
 discouraged: it’s better to define more precise exception constructors
 than store useful information in strings.</p>
-<h3 class="subsection" id="ss:warn57"><a class="section-anchor" href="#ss:warn57" aria-hidden="true">﻿</a>9.5.3 Warning 57: Ambiguous or-pattern variables under guard</h3>
+<h3 class="subsection" id="ss:warn57"><a class="section-anchor" href="#ss:warn57" aria-hidden="true">﻿</a><span class="number">5.3</span>Warning 57: Ambiguous or-pattern variables under guard</h3>
 <p>The semantics of or-patterns in OCaml is specified with
 a left-to-right bias: a value <span class="c010">v</span> matches the pattern <span class="c010">p</span> <span class="c004">|</span> <span class="c010">q</span>
 if it matches <span class="c010">p</span> or <span class="c010">q</span>, but if it matches both,
@@ -881,18 +881,18 @@ the environment captured by the match is the environment captured by
 <span class="c010">p</span>, never the one captured by <span class="c010">q</span>.</p><p>While this property is generally intuitive, there is at least one specific
 case where a different semantics might be expected.
 Consider a pattern followed by a when-guard:
-<span class="c004">|</span> ‍<span class="c010">p</span> ‍<span class="c004">when</span> ‍<span class="c010">g</span> ‍<span class="c004">-&gt;</span> ‍<span class="c010">e</span>, for example:
+<span class="c004">|</span>&nbsp;<span class="c010">p</span>&nbsp;<span class="c004">when</span>&nbsp;<span class="c010">g</span>&nbsp;<span class="c004">-&gt;</span>&nbsp;<span class="c010">e</span>, for example:
 </p><pre>     | ((Const x, _) | (_, Const x)) when is_neutral x -&gt; branch
 </pre><p> The semantics is clear:
 match the scrutinee against the pattern, if it matches, test the guard,
 and if the guard passes, take the branch.
-In particular, consider the input <span class="c004">(Const</span> ‍<span class="c010">a</span><span class="c004">, Const</span> ‍<span class="c010">b</span><span class="c004">)</span>, where
-<span class="c010">a</span> fails the test <span class="c004">is_neutral</span> ‍<span class="c010">a</span>, while <span class="c010">b</span> passes the test
-<span class="c004">is_neutral</span> ‍<span class="c010">b</span>. With the left-to-right semantics, the clause above is
-<em>not</em> taken by its input: matching <span class="c004">(Const</span> ‍<span class="c010">a</span><span class="c004">, Const</span> ‍<span class="c010">b</span><span class="c004">)</span>
+In particular, consider the input <span class="c004">(Const</span>&nbsp;<span class="c010">a</span><span class="c004">, Const</span>&nbsp;<span class="c010">b</span><span class="c004">)</span>, where
+<span class="c010">a</span> fails the test <span class="c004">is_neutral</span>&nbsp;<span class="c010">a</span>, while <span class="c010">b</span> passes the test
+<span class="c004">is_neutral</span>&nbsp;<span class="c010">b</span>. With the left-to-right semantics, the clause above is
+<em>not</em> taken by its input: matching <span class="c004">(Const</span>&nbsp;<span class="c010">a</span><span class="c004">, Const</span>&nbsp;<span class="c010">b</span><span class="c004">)</span>
 against the or-pattern succeeds in the left branch, it returns the
-environment <span class="c010">x</span> ‍<span class="c004">-&gt;</span> ‍<span class="c010">a</span>, and then the guard
-<span class="c004">is_neutral</span> ‍<span class="c010">a</span> is tested and fails, the branch is not taken.</p><p>However, another semantics may be considered more natural here:
+environment <span class="c010">x</span>&nbsp;<span class="c004">-&gt;</span>&nbsp;<span class="c010">a</span>, and then the guard
+<span class="c004">is_neutral</span>&nbsp;<span class="c010">a</span> is tested and fails, the branch is not taken.</p><p>However, another semantics may be considered more natural here:
 any pair that has one side passing the test will take the branch. With this
 semantics the previous code fragment would be equivalent to
 </p><pre>     | (Const x, _) when is_neutral x -&gt; branch
@@ -905,7 +905,7 @@ to different parts of the scrutinees by different sides of a or-pattern.
 
 </p>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="extn.html">« Chapter ‍8 Language extensions</a><a class="next" href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml) »</a></div>
+<div class="bottom-navigation"><a class="previous" href="extn.html">« Language extensions</a><a class="next" href="toplevel.html">The toplevel system or REPL (ocaml) »</a></div>
 
 
 

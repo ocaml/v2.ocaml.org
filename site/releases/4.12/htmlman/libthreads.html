@@ -5,14 +5,14 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍27 The threads library</title>
+<title>OCaml - The threads library</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍IV The OCaml library</nav><ul id="part-menu"><li><a href="core.html">Chapter ‍22 The core library</a></li><li><a href="stdlib.html">Chapter ‍23 The standard library</a></li><li><a href="parsing.html">Chapter ‍24 The compiler front-end</a></li><li><a href="libunix.html">Chapter ‍25 The unix library: Unix system calls</a></li><li><a href="libstr.html">Chapter ‍26 The str library: regular expressions and string processing</a></li><li class="active"><a href="libthreads.html">Chapter ‍27 The threads library</a></li><li><a href="libdynlink.html">Chapter ‍28 The dynlink library: dynamic loading and linking of object files</a></li><li><a href="old.html">Chapter ‍29 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a></li></ul><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div></nav></header>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml library</nav><ul id="part-menu"><li><a href="core.html">The core library</a></li><li><a href="stdlib.html">The standard library</a></li><li><a href="parsing.html">The compiler front-end</a></li><li><a href="libunix.html">The unix library: Unix system calls</a></li><li><a href="libstr.html">The str library: regular expressions and string processing</a></li><li class="active"><a href="libthreads.html">The threads library</a></li><li><a href="libdynlink.html">The dynlink library: dynamic loading and linking of object files</a></li><li><a href="old.html">Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a></li></ul><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div></nav></header>
 
 
 
 
-<h1 class="chapter" id="sec572">Chapter ‍27 The threads library</h1>
+<h1 class="chapter" id="sec572"><span class="number">Chapter 27</span>The threads library</h1>
 <p>
 <a id="c:threads"></a></p><p>The <span class="c004">threads</span> library allows concurrent programming in OCaml.
 It provides multiple threads of control (also called lightweight
@@ -31,7 +31,7 @@ overlapping I/O operations.</p><p>Programs that use threads must be linked as fo
         ocamlopt -I +threads <span class="c010">other options</span> unix.cmxa threads.cmxa <span class="c010">other files</span>
 </pre><p>
 Compilation units that use the <span class="c004">threads</span> library must also be compiled with
-the <span class="c004">-I +threads</span> option (see chapter ‍<a href="comp.html#c%3Acamlc">9</a>).</p><ul class="ftoc2"><li class="li-links">
+the <span class="c004">-I +threads</span> option (see chapter&nbsp;<a href="comp.html#c%3Acamlc">9</a>).</p><ul class="ftoc2"><li class="li-links">
 <a href="../api/Thread.html">Module <span class="c004">Thread</span>: lightweight threads</a>
 </li><li class="li-links"><a href="../api/Mutex.html">Module <span class="c004">Mutex</span>: locks for mutual exclusion</a>
 </li><li class="li-links"><a href="../api/Condition.html">Module <span class="c004">Condition</span>: condition variables to synchronize between threads</a>
@@ -39,7 +39,7 @@ the <span class="c004">-I +threads</span> option (see chapter ‍<a href="comp
 </li><li class="li-links"><a href="../api/Event.html">Module <span class="c004">Event</span>: first-class synchronous communication</a>
 </li></ul>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="libstr.html">« Chapter ‍26 The str library: regular expressions and string processing</a><a class="next" href="libdynlink.html">Chapter ‍28 The dynlink library: dynamic loading and linking of object files »</a></div>
+<div class="bottom-navigation"><a class="previous" href="libstr.html">« The str library: regular expressions and string processing</a><a class="next" href="libdynlink.html">The dynlink library: dynamic loading and linking of object files »</a></div>
 
 
 

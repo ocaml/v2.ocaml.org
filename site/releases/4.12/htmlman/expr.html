@@ -5,41 +5,41 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍7 The OCaml language</title>
+<title>OCaml - The OCaml language</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">Chapter ‍7 The OCaml language</a></li><li><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec73">Chapter ‍7 The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍7 The OCaml language</a></li>
-<li><a href="lex.html#start-section">7.1 Lexical conventions</a>
-</li><li><a href="values.html#start-section">7.2 Values</a>
-</li><li><a href="names.html#start-section">7.3 Names</a>
-</li><li><a href="types.html#start-section">7.4 Type expressions</a>
-</li><li><a href="const.html#start-section">7.5 Constants</a>
-</li><li><a href="patterns.html#start-section">7.6 Patterns</a>
-</li><li><a href="expr.html#start-section">7.7 Expressions</a>
-</li><li><a href="typedecl.html#start-section">7.8 Type and exception definitions</a>
-</li><li><a href="classes.html#start-section">7.9 Classes</a>
-</li><li><a href="modtypes.html#start-section">7.10 Module types (module specifications)</a>
-</li><li><a href="modules.html#start-section">7.11 Module expressions (module implementations)</a>
-</li><li><a href="compunit.html#start-section">7.12 Compilation units</a>
+<h1 class="chapter" id="sec73"><span class="number">Chapter 7</span>The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span>Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span>Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span>Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span>Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span>Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span>Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span>Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span>Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span>Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span>Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span>Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span>Compilation units</a>
 </li></ul></nav></header><a id="start-section"></a><section id="section">
 
 
 
 
-<h2 class="section" id="s:value-expr"><a class="section-anchor" href="#s:value-expr" aria-hidden="true"></a>7.7 Expressions</h2>
+<h2 class="section" id="s:value-expr"><a class="section-anchor" href="#s:value-expr" aria-hidden="true"></a><span class="number">7</span>Expressions</h2>
 <ul>
-<li><a href="expr.html#ss%3Aprecedence-and-associativity">7.7.1 Precedence and associativity</a>
-</li><li><a href="expr.html#ss%3Aexpr-basic">7.7.2 Basic expressions</a>
-</li><li><a href="expr.html#ss%3Aexpr-control">7.7.3 Control structures</a>
-</li><li><a href="expr.html#ss%3Aexpr-ops-on-data">7.7.4 Operations on data structures</a>
-</li><li><a href="expr.html#ss%3Aexpr-operators">7.7.5 Operators</a>
-</li><li><a href="expr.html#ss%3Aexpr-obj">7.7.6 Objects</a>
-</li><li><a href="expr.html#ss%3Aexpr-coercions">7.7.7 Coercions</a>
-</li><li><a href="expr.html#ss%3Aexpr-other">7.7.8 Other</a>
+<li><a href="expr.html#ss%3Aprecedence-and-associativity"><span class="number">7.1</span>Precedence and associativity</a>
+</li><li><a href="expr.html#ss%3Aexpr-basic"><span class="number">7.2</span>Basic expressions</a>
+</li><li><a href="expr.html#ss%3Aexpr-control"><span class="number">7.3</span>Control structures</a>
+</li><li><a href="expr.html#ss%3Aexpr-ops-on-data"><span class="number">7.4</span>Operations on data structures</a>
+</li><li><a href="expr.html#ss%3Aexpr-operators"><span class="number">7.5</span>Operators</a>
+</li><li><a href="expr.html#ss%3Aexpr-obj"><span class="number">7.6</span>Objects</a>
+</li><li><a href="expr.html#ss%3Aexpr-coercions"><span class="number">7.7</span>Coercions</a>
+</li><li><a href="expr.html#ss%3Aexpr-other"><span class="number">7.8</span>Other</a>
 </li></ul>
 <p>
 <a id="hevea_manual.kwd20"></a>
@@ -238,7 +238,7 @@ See also the following language extensions:
 <a href="attributes.html#s%3Aattributes">attributes</a>,
 <a href="extensionnodes.html#s%3Aextension-nodes">extension nodes</a> and
 <a href="indexops.html#s%3Aindex-operators">extended indexing operators</a>.</p>
-<h3 class="subsection" id="ss:precedence-and-associativity"><a class="section-anchor" href="#ss:precedence-and-associativity" aria-hidden="true">﻿</a>7.7.1 Precedence and associativity</h3>
+<h3 class="subsection" id="ss:precedence-and-associativity"><a class="section-anchor" href="#ss:precedence-and-associativity" aria-hidden="true">﻿</a><span class="number">7.1</span>Precedence and associativity</h3>
 <p>
 The table below shows the relative precedences and associativity of
 operators and non-closed constructions. The constructions with higher
@@ -255,7 +255,7 @@ precedence come first. For infix and prefix symbols, we write
 <div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c015"><span class="c014">Construction or operator</span></td><td class="c015"><span class="c014">Associativity</span> </td></tr>
 <tr><td class="c017">
 prefix-symbol</td><td class="c017">– </td></tr>
-<tr><td class="c017"><span class="c004">.   .(   .[   .{</span> (see section ‍<a href="bigarray.html#s%3Abigarray-access">8.11</a>)</td><td class="c017">– </td></tr>
+<tr><td class="c017"><span class="c004">.   .(   .[   .{</span> (see section&nbsp;<a href="bigarray.html#s%3Abigarray-access">8.11</a>)</td><td class="c017">– </td></tr>
 <tr><td class="c017"><span class="c004">#</span>…</td><td class="c017">left </td></tr>
 <tr><td class="c017">function application, constructor application, tag
 application, <span class="c004">assert</span>,
@@ -275,7 +275,7 @@ application, <span class="c004">assert</span>,
 <tr><td class="c017"><span class="c004">;</span></td><td class="c017">right </td></tr>
 <tr><td class="c017"><span class="c004">let  match  fun  function  try</span></td><td class="c017">– </td></tr>
 </tbody></table></div></div>
-<h3 class="subsection" id="ss:expr-basic"><a class="section-anchor" href="#ss:expr-basic" aria-hidden="true">﻿</a>7.7.2 Basic expressions</h3>
+<h3 class="subsection" id="ss:expr-basic"><a class="section-anchor" href="#ss:expr-basic" aria-hidden="true">﻿</a><span class="number">7.2</span>Basic expressions</h3>
 <h4 class="subsubsection" id="sss:expr-constants"><a class="section-anchor" href="#sss:expr-constants" aria-hidden="true">﻿</a>Constants</h4>
 <p>An expression consisting in a constant evaluates to this constant.</p><h4 class="subsubsection" id="sss:expr-var"><a class="section-anchor" href="#sss:expr-var" aria-hidden="true">﻿</a>Value paths</h4>
 <p>An expression consisting in an access path evaluates to the value bound to
@@ -292,7 +292,7 @@ and <span class="c005">(</span> … <span class="c005">)</span> for the other gr
 <a class="syntax" href="#expr"><span class="c011">expr</span></a> <span class="c005">:</span>  <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a> <span class="c005">)</span>. This constraint forces the type of <a class="syntax" href="#expr"><span class="c011">expr</span></a> to be
 compatible with <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a>.</p><p>Parenthesized expressions can also contain coercions
 <span class="c005">(</span> <a class="syntax" href="#expr"><span class="c011">expr</span></a>  [<span class="c005">:</span> <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a>] <span class="c005">:&gt;</span>  <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a><span class="c005">)</span> (see
-subsection ‍<a href="#ss%3Aexpr-coercions">7.7.7</a> below).</p><h4 class="subsubsection" id="sss:expr-functions-application"><a class="section-anchor" href="#sss:expr-functions-application" aria-hidden="true">﻿</a>Function application</h4>
+subsection&nbsp;<a href="#ss%3Aexpr-coercions">7.7.7</a> below).</p><h4 class="subsubsection" id="sss:expr-functions-application"><a class="section-anchor" href="#sss:expr-functions-application" aria-hidden="true">﻿</a>Function application</h4>
 <p>Function application is denoted by juxtaposition of (possibly labeled)
 expressions. The expression <a class="syntax" href="#expr"><span class="c011">expr</span></a>  <a class="syntax" href="#argument"><span class="c011">argument</span></a><sub>1</sub> …  <a class="syntax" href="#argument"><span class="c011">argument</span></a><sub><span class="c010">n</span></sub>
 evaluates the expression <a class="syntax" href="#expr"><span class="c011">expr</span></a> and those appearing in <a class="syntax" href="#argument"><span class="c011">argument</span></a><sub>1</sub>
@@ -455,7 +455,7 @@ This defines <span class="c011">name</span><sub>1</sub> …  <span class="c011
 local to <a class="syntax" href="#expr"><span class="c011">expr</span></a>.</p><p>The behavior of other forms of <span class="c003"><span class="c004">let</span> <span class="c004">rec</span></span> definitions is
 implementation-dependent. The current implementation also supports
 a certain class of recursive definitions of non-functional values,
-as explained in section ‍<a href="letrecvalues.html#s%3Aletrecvalues">8.1</a>.
+as explained in section&nbsp;<a href="letrecvalues.html#s%3Aletrecvalues">8.1</a>.
 </p>
 <h4 class="subsubsection" id="sss:expr-explicit-polytype"><a class="section-anchor" href="#sss:expr-explicit-polytype" aria-hidden="true">﻿</a>Explicit polymorphic type annotations</h4>
 <p>
@@ -476,7 +476,7 @@ true:
 </p><pre>  let gen () = let exception A in A
   let () = assert(gen () &lt;&gt; gen ())
 </pre>
-<h3 class="subsection" id="ss:expr-control"><a class="section-anchor" href="#ss:expr-control" aria-hidden="true">﻿</a>7.7.3 Control structures</h3>
+<h3 class="subsection" id="ss:expr-control"><a class="section-anchor" href="#ss:expr-control" aria-hidden="true">﻿</a><span class="number">7.3</span>Control structures</h3>
 <h4 class="subsubsection" id="sss:expr-sequence"><a class="section-anchor" href="#sss:expr-sequence" aria-hidden="true">﻿</a>Sequence</h4>
 <p>The expression <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>1</sub> <span class="c005">;</span>  <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>2</sub> evaluates <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>1</sub> first, then
 <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>2</sub>, and returns the value of <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>2</sub>.</p><h4 class="subsubsection" id="sss:expr-conditional"><a class="section-anchor" href="#sss:expr-conditional" aria-hidden="true">﻿</a>Conditional</h4>
@@ -543,7 +543,7 @@ The loop body is never evaluated if <span class="c010">n</span> &lt; <span class
 value <span class="c005">()</span>.</p><h4 class="subsubsection" id="sss:expr-exception-handling"><a class="section-anchor" href="#sss:expr-exception-handling" aria-hidden="true">﻿</a>Exception handling</h4>
 <p>
 <a id="hevea_manual.kwd69"></a></p><p>The expression
-</p><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019"><span class="c005">try ‍</span></td><td class="c018"><span class="c013">expr</span> </td></tr>
+</p><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019"><span class="c005">try&nbsp;</span></td><td class="c018"><span class="c013">expr</span> </td></tr>
 <tr><td class="c019"><span class="c005">with</span></td><td class="c018"><span class="c013">pattern</span><sub>1</sub></td><td class="c018"><span class="c005">-&gt;</span></td><td class="c018"><span class="c013">expr</span><sub>1</sub> </td></tr>
 <tr><td class="c019"><span class="c005">|</span></td><td class="c018">… </td></tr>
 <tr><td class="c019"><span class="c005">|</span></td><td class="c018"><span class="c013">pattern</span><sub><span class="c010">n</span></sub></td><td class="c018"><span class="c005">-&gt;</span></td><td class="c018"><span class="c013">expr</span><sub><span class="c010">n</span></sub>
@@ -562,7 +562,7 @@ bindings performed during matching. If several patterns match the value of
 selected. If none of the patterns matches the value of <a class="syntax" href="#expr"><span class="c011">expr</span></a>, the
 exception value is raised again, thereby transparently “passing
 through” the <span class="c005">try</span> construct.</p>
-<h3 class="subsection" id="ss:expr-ops-on-data"><a class="section-anchor" href="#ss:expr-ops-on-data" aria-hidden="true">﻿</a>7.7.4 Operations on data structures</h3>
+<h3 class="subsection" id="ss:expr-ops-on-data"><a class="section-anchor" href="#ss:expr-ops-on-data" aria-hidden="true">﻿</a><span class="number">7.4</span>Operations on data structures</h3>
 <h4 class="subsubsection" id="sss:expr-products"><a class="section-anchor" href="#sss:expr-products" aria-hidden="true">﻿</a>Products</h4>
 <p>The expression <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>1</sub> <span class="c005">,</span> … <span class="c005">,</span>  <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub><span class="c010">n</span></sub> evaluates to the
 <span class="c010">n</span>-tuple of the values of expressions <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>1</sub> to <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub><span class="c010">n</span></sub>. The
@@ -640,7 +640,7 @@ the access is out of bounds. The value of the whole expression is <span class="c
 compatibility with older versions of OCaml and will be removed in a
 future version. New code should use byte sequences and the <span class="c004">Bytes.set</span>
 function.</p>
-<h3 class="subsection" id="ss:expr-operators"><a class="section-anchor" href="#ss:expr-operators" aria-hidden="true">﻿</a>7.7.5 Operators</h3>
+<h3 class="subsection" id="ss:expr-operators"><a class="section-anchor" href="#ss:expr-operators" aria-hidden="true">﻿</a><span class="number">7.5</span>Operators</h3>
 <p>
 <a id="hevea_manual.kwd70"></a>
 <a id="hevea_manual.kwd71"></a>
@@ -661,7 +661,7 @@ interpreted as the application <span class="c005">(</span> <a class="syntax" hre
  <a class="syntax" href="#expr"><span class="c011">expr</span></a>. Similarly, the expression <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>1</sub>  <a class="syntax" href="lex.html#infix-symbol"><span class="c011">infix-symbol</span></a>  <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>2</sub> is
 interpreted as the application <span class="c005">(</span> <a class="syntax" href="lex.html#infix-symbol"><span class="c011">infix-symbol</span></a> <span class="c005">)</span>  <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>1</sub>  <a class="syntax" href="#expr"><span class="c011">expr</span></a><sub>2</sub>.</p><p>The table below lists the symbols defined in the initial environment
 and their initial meaning. (See the description of the core
-library module <span class="c004">Stdlib</span> in chapter ‍<a href="core.html#c%3Acorelib">22</a> for more
+library module <span class="c004">Stdlib</span> in chapter&nbsp;<a href="core.html#c%3Acorelib">22</a> for more
 details). Their meaning may be changed at any time using
 <span class="c003"><span class="c004">let</span> <span class="c004">(</span></span> <a class="syntax" href="names.html#infix-op"><span class="c011">infix-op</span></a> <span class="c005">)</span>  <span class="c011">name</span><sub>1</sub>  <span class="c011">name</span><sub>2</sub> <span class="c005">=</span> …</p><p>Note: the operators <span class="c005">&amp;&amp;</span>, <span class="c005">||</span>, and <span class="c005">~-</span> are handled specially
 and it is not advisable to change their meaning.</p><p>The keywords <span class="c005">-</span> and <span class="c005">-.</span> can appear both as infix and
@@ -707,7 +707,7 @@ argument). </td></tr>
 <tr><td class="c023"><span class="c004">&amp;&amp;   &amp;</span></td><td class="c022">Boolean conjunction. </td></tr>
 <tr><td class="c023"><span class="c004">||   or</span></td><td class="c022">Boolean disjunction. </td></tr>
 </tbody></table></div></div>
-<h3 class="subsection" id="ss:expr-obj"><a class="section-anchor" href="#ss:expr-obj" aria-hidden="true">﻿</a>7.7.6 Objects</h3>
+<h3 class="subsection" id="ss:expr-obj"><a class="section-anchor" href="#ss:expr-obj" aria-hidden="true">﻿</a><span class="number">7.6</span>Objects</h3>
 <p> <a id="s:objects"></a></p><h4 class="subsubsection" id="sss:expr-obj-creation"><a class="section-anchor" href="#sss:expr-obj-creation" aria-hidden="true">﻿</a>Object creation</h4>
 <p><a id="hevea_manual.kwd84"></a></p><p>When <a class="syntax" href="names.html#class-path"><span class="c011">class-path</span></a> evaluates to a class body, <span class="c005">new</span> <a class="syntax" href="names.html#class-path"><span class="c011">class-path</span></a>
 evaluates to a new object containing the instance variables and
@@ -743,7 +743,7 @@ returns a copy of self with the given instance variables replaced by
 the values of the associated expressions. A single instance variable
 name <span class="c011">id</span> stands for <span class="c011">id</span> <span class="c005">=</span>  <span class="c011">id</span>. Other instance variables have the same
 value in the returned object as in self.</p>
-<h3 class="subsection" id="ss:expr-coercions"><a class="section-anchor" href="#ss:expr-coercions" aria-hidden="true">﻿</a>7.7.7 Coercions</h3>
+<h3 class="subsection" id="ss:expr-coercions"><a class="section-anchor" href="#ss:expr-coercions" aria-hidden="true">﻿</a><span class="number">7.7</span>Coercions</h3>
 <p>Expressions whose type contains object or polymorphic variant types
 can be explicitly coerced (weakened) to a supertype.
 The expression <span class="c005">(</span><a class="syntax" href="#expr"><span class="c011">expr</span></a> <span class="c005">:&gt;</span>  <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a><span class="c005">)</span> coerces the expression <a class="syntax" href="#expr"><span class="c011">expr</span></a>
@@ -780,7 +780,7 @@ is a supertype of
 </p><div class="center">
  <span class="c005">&lt;</span> <a class="syntax" href="names.html#method-name"><span class="c011">met</span></a><sub>1</sub> <span class="c005">:</span>  <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>1</sub> <span class="c005">;</span> … <span class="c005">;</span> <a class="syntax" href="names.html#method-name"><span class="c011">met</span></a><sub><span class="c010">n</span></sub> <span class="c005">:</span>  <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub><span class="c010">n</span></sub> <span class="c005">;</span>
 <a class="syntax" href="names.html#method-name"><span class="c011">met</span></a><sub><span class="c010">n</span>+1</sub> <span class="c005">:</span> <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub><span class="c010">n</span>+1</sub> <span class="c005">;</span> … <span class="c005">;</span> <a class="syntax" href="names.html#method-name"><span class="c011">met</span></a><sub><span class="c010">n</span>+<span class="c010">m</span></sub> <span class="c005">:</span> <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub><span class="c010">n</span>+<span class="c010">m</span></sub>
- ‍[<span class="c003"><span class="c004">;</span> <span class="c004">..</span></span>] <span class="c005">&gt;</span> 
+&nbsp;[<span class="c003"><span class="c004">;</span> <span class="c004">..</span></span>] <span class="c005">&gt;</span> 
 </div><p>
 which may contain an ellipsis <span class="c004">..</span> if every <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a><sub><span class="c010">i</span></sub> is a supertype of
 the corresponding <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub><span class="c010">i</span></sub>.</p><p>A monomorphic method type can be a supertype of a polymorphic method
@@ -812,7 +812,7 @@ subtyping of their arguments. For instance, <a class="syntax" href="types.html#t
 subtype of <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>1</sub> <span class="c005">*</span> <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>2</sub> when <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a><sub>1</sub> and <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a><sub>2</sub> are
 respectively subtypes of <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>1</sub> and <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>2</sub>.
 For function types, the relation is more subtle:
-<a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a><sub>1</sub> <span class="c005">-&gt;</span>  <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a><sub>2</sub> is a subtype of <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>1</sub> ‍<span class="c005">-&gt;</span> <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>2</sub>
+<a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a><sub>1</sub> <span class="c005">-&gt;</span>  <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a><sub>2</sub> is a subtype of <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>1</sub>&nbsp;<span class="c005">-&gt;</span> <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>2</sub>
 if <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a><sub>1</sub> is a supertype of <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>1</sub> and <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a><sub>2</sub> is a
 subtype of <a class="syntax" href="types.html#typexpr"><span class="c011">typ</span></a>′<sub>2</sub>. For this reason, function types are covariant in
 their second argument (like tuples), but contravariant in their first
@@ -825,10 +825,10 @@ variance-free if it has no occurrences, and nonvariant otherwise.
 A variance-free parameter may change freely through subtyping, it does
 not have to be a subtype or a supertype.
 For abstract and private types, the variance must be given explicitly
-(see section ‍<a href="typedecl.html#ss%3Atypedefs">7.8.1</a>),
+(see section&nbsp;<a href="typedecl.html#ss%3Atypedefs">7.8.1</a>),
 otherwise the default is nonvariant. This is also the case for
 constrained arguments in type definitions.</p>
-<h3 class="subsection" id="ss:expr-other"><a class="section-anchor" href="#ss:expr-other" aria-hidden="true">﻿</a>7.7.8 Other</h3>
+<h3 class="subsection" id="ss:expr-other"><a class="section-anchor" href="#ss:expr-other" aria-hidden="true">﻿</a><span class="number">7.8</span>Other</h3>
 <h4 class="subsubsection" id="sss:expr-assertion"><a class="section-anchor" href="#sss:expr-assertion" aria-hidden="true">﻿</a>Assertion checking</h4>
 <p><a id="hevea_manual.kwd86"></a></p><p>OCaml supports the <span class="c005">assert</span> construct to check debugging assertions.
 The expression <span class="c005">assert</span> <a class="syntax" href="#expr"><span class="c011">expr</span></a> evaluates the expression <a class="syntax" href="#expr"><span class="c011">expr</span></a> and
@@ -851,7 +851,7 @@ evaluated at this point in the program. Instead, its evaluation will
 be performed the first time the function <span class="c004">Lazy.force</span> is applied to the value
 <span class="c010">v</span>, returning the actual value of <a class="syntax" href="#expr"><span class="c011">expr</span></a>. Subsequent applications
 of <span class="c004">Lazy.force</span> to <span class="c010">v</span> do not evaluate <a class="syntax" href="#expr"><span class="c011">expr</span></a> again. Applications
-of <span class="c004">Lazy.force</span> may be implicit through pattern matching (see ‍<a href="patterns.html#sss%3Apat-lazy">7.6</a>).</p><h4 class="subsubsection" id="sss:expr-local-modules"><a class="section-anchor" href="#sss:expr-local-modules" aria-hidden="true">﻿</a>Local modules</h4>
+of <span class="c004">Lazy.force</span> may be implicit through pattern matching (see&nbsp;<a href="patterns.html#sss%3Apat-lazy">7.6</a>).</p><h4 class="subsubsection" id="sss:expr-local-modules"><a class="section-anchor" href="#sss:expr-local-modules" aria-hidden="true">﻿</a>Local modules</h4>
 <p>
 <a id="hevea_manual.kwd88"></a>
 <a id="hevea_manual.kwd89"></a></p><p>The expression
@@ -891,7 +891,7 @@ For example, <a class="syntax" href="names.html#module-path"><span class="c011">
 <a class="syntax" href="names.html#module-path"><span class="c011">module-path</span></a><span class="c005">.([</span> <a class="syntax" href="#expr"><span class="c011">expr</span></a><span class="c005">])</span>, and <a class="syntax" href="names.html#module-path"><span class="c011">module-path</span></a><span class="c005">.[|</span>  <a class="syntax" href="#expr"><span class="c011">expr</span></a> <span class="c005">|]</span> is
 equivalent to <a class="syntax" href="names.html#module-path"><span class="c011">module-path</span></a><span class="c005">.([|</span>  <a class="syntax" href="#expr"><span class="c011">expr</span></a> <span class="c005">|])</span>.</p>
 
-<div class="bottom-navigation"><a class="previous" href="patterns.html">« 7.6 Patterns</a><a class="next" href="typedecl.html">7.8 Type and exception definitions »</a></div>
+<div class="bottom-navigation"><a class="previous" href="patterns.html">« Patterns</a><a class="next" href="typedecl.html">Type and exception definitions »</a></div>
 
 
 
