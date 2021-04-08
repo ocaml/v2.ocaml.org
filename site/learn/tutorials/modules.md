@@ -38,7 +38,6 @@ ocamlopt -c amodule.ml
 ocamlopt -c bmodule.ml
 ocamlopt -o hello amodule.cmx bmodule.cmx
 ```
-
 Now we have a wonderful executable that prints "Hello". As you can see,
 if you want to access anything from a given module, use the name of the
 module (always starting with a capital) followed by a dot and the thing
@@ -126,7 +125,6 @@ using `ocamlopt`:
 ocamlc -c amodule.mli
 ocamlopt -c amodule.ml
 ...
-
 ```
 ## Abstract types
 What about type definitions? We saw that values such as functions can be
