@@ -59,36 +59,41 @@ to graphics. You must understand the following:
  systematically (try: `ocamlc -where`). You don't have to worry much
  about it.
 
-1. The other libraries that ship with the OCaml distribution (Str, Unix, etc.)
+1. The other libraries that ship with the OCaml distribution (str, unix, etc.)
  are installed in the same directory as the standard library.
 
 1. Third-party libraries may be installed in various places, and even a
  given library can be installed in different places from one system
  to another.
 
-If your program uses only the Unix library (provides system calls not
-only for Unix systems), the command line would be:
+If your program uses the unix library, for example, the command line would be:
 
 ```shell
 ocamlopt -o program unix.cmxa module1.ml module2.ml
 ```
 
-`.cmxa` is the extension of native code libraries, while `.cma` is the
-extension of bytecode libraries. The file `unix.cmxa` is found because
-it is always installed at the same place as the standard library, and
-this directory is in the library search path.
+Note that `.cmxa` is the extension of native code libraries, while `.cma` is
+the extension of bytecode libraries. The file `unix.cmxa` is found because it
+is always installed at the same place as the standard library, and this
+directory is in the library search path.
 
-If, for example, your program is a video game that uses openGL with SDL, you
-will need to tell the compiler which library files must be used, and where to
-find them. It means you will be using lablGL and OCamlSDL, the OCaml interfaces
-to your local implementation of openGL and SDL. LablGL provides one OCaml
-library file `lablgl.cmxa`, while OCamlSDL provides one core library file
-`sdl.cmxa`, and 3 optional files `sdlloader.cmxa`, `sdlmixer.cmxa` and
-`sdlttf.cmxa`. If you want to use those files, you must pass them on the
+We can use another tool `ocamlmktop` to make an interactive toplevel with
+libraries accessible:
+
+```shell
+ocamlmktop -o toplevel unix.cma module1.ml module2.ml
+```
+
+We run `toplevel` and get an OCaml toplevel with modules `Unix`, `Module1`, and
+`Module2` all available, allowing us to experiment interactively with our
+program.
+
+If your program depends upon third-party libraries, you must pass them on the
 command line. You must also indicate the libraries on which these libraries
 depend. You must also pass the -I option to `ocamlopt` for each directory where
-they may be found. Since this information is installation-dependent, we will
-use `ocamlfind` instead.
+they may be found. This becomes complicated, and this information is
+installation-dependent. So we will use `ocamlfind` instead, which does these
+jobs for us.
 
 ###  Using the ocamlfind front-end
 
@@ -109,37 +114,33 @@ ocamlfind list
 This shows the list of package names, with their version ID. Note that most
 opam packages install software using ocamlfind, so your list of ocamlfind
 libraries will be somewhat similar to your list of installed opam packages
-listed by `opam list`.
+obtained by `opam list`.
 
-For our example using LablGL and OCamlSDL, we are going to use the
-following packages: lablGL, sdl, sdl.sdlimage, sdl.sdlmixer, sdl.sdlttf.
-
-The command for compiling our program will be:
+The command for compiling our program using package `package` will be:
 
 ```shell
-ocamlfind ocamlopt -o program -linkpkg \
-  -package lablGL,sdl,sdl.sdlimage,sdl.sdlmixer,sdl.sdlttf \
-  module1.ml module2.ml
+ocamlfind ocamlopt -o program -linkpkg -package package module1.ml module2.ml
 ```
 
-And it will work regardless of the location of the libraries, as long as
-they are known by `ocamlfind`.
+Multiple packages can be specified using commas e.g `package1,package2`. This
+command will work regardless of the location of the libraries, as long as they
+are known by `ocamlfind`.
 
-Note that you can compile the files separately. This is mostly useful if
+Let's use `ocamlfind` with `ocamlmktop` to make our custom toplevel:
+
+```shell
+ocamlfind ocamlmktop -o toplevel unix.cma -package package module1.ml module2.ml
+```
+
+Note that you can compile the files separately. This is useful if
 you want to recompile only some parts of the programs. Here are the
 equivalent commands that perform a separate compilation of the source
 files and link them together in a final step:
 
 ```shell
-ocamlfind ocamlopt -c \
-  -package lablGL,sdl,sdl.sdlimage,sdl.sdlmixer,sdl.sdlttf \
-  module1.ml
-ocamlfind ocamlopt -c \
-  -package lablGL,sdl,sdl.sdlimage,sdl.sdlmixer,sdl.sdlttf \
-  module2.ml
-ocamlfind ocamlopt -o program -linkpkg \
-  -package lablGL,sdl,sdl.sdlimage,sdl.sdlmixer,sdl.sdlttf \
-  module1.cmx module2.cmx
+ocamlfind ocamlopt -c -package package module1.ml
+ocamlfind ocamlopt -c -package package module2.ml
+ocamlfind ocamlopt -o program -linkpkg -package package module1.cmx module2.cmx
 ```
 
 Separate compilation (one command for `module1.ml`, another for `module2.ml`
@@ -155,4 +156,4 @@ only what it necessary.
 
 - [OMake](https://github.com/ocaml-omake/omake) Another OCaml build system.
 - [GNU make](https://www.gnu.org/software/make/) GNU make can build anything, including OCaml. May be used in conjunction with [OCamlmakefile](https://github.com/mmottl/ocaml-makefile)
-- [Oasis](https://github.com/ocaml/oasis) Generates configure, build, and install system using another build system.
+- [Oasis](https://github.com/ocaml/oasis) Generates a configure, build, and install system from a specification.
