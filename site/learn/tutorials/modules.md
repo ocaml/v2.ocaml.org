@@ -24,13 +24,21 @@ And here is what we have in `bmodule.ml`:
 ```ocaml
 Amodule.hello ()
 ```
-Usually files are compiled one by one, let's do it:
+
+We can compile the files in one command:
+
+```shell
+ocamlopt -o hello amodule.ml bmodule.ml
+```
+
+Or, as a build system might do, one by one:
 
 ```shell
 ocamlopt -c amodule.ml
 ocamlopt -c bmodule.ml
 ocamlopt -o hello amodule.cmx bmodule.cmx
 ```
+
 Now we have a wonderful executable that prints "Hello". As you can see,
 if you want to access anything from a given module, use the name of the
 module (always starting with a capital) followed by a dot and the thing
@@ -118,6 +126,7 @@ using `ocamlopt`:
 ocamlc -c amodule.mli
 ocamlopt -c amodule.ml
 ...
+
 ```
 ## Abstract types
 What about type definitions? We saw that values such as functions can be

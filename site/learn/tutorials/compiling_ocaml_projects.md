@@ -153,7 +153,15 @@ only what it necessary.
 The most popular modern system for building OCaml projects is
 [dune](https://dune.readthedocs.io/en/latest/quick-start.html). The quick-start
 guide shows you how to control the building of OCaml projects from a simple
-description file. This includes support for packages.
+description file. This includes support for packages. For example, the dune
+file for our project might look like this:
+
+```shell
+;; our example project
+(executable
+  (name program)
+  (libraries unix package))
+```
 
 ## Other build systems
 
