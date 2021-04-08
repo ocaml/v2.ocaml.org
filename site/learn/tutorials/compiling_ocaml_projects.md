@@ -150,7 +150,10 @@ only what it necessary.
 
 ## Dune: an automated build system
 
-- [dune](https://dune.readthedocs.io/en/latest/quick-start.html) Popular for new projects.
+The most popular modern system for building OCaml projects is
+[dune](https://dune.readthedocs.io/en/latest/quick-start.html). The quick-start
+guide shows you how to control the building of OCaml projects from a simple
+description file. This includes support for packages.
 
 ## Other build systems
 
