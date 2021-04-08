@@ -48,23 +48,23 @@
     background-color:lightgray;
 }
 
-#opamdoc-contents .expander {
-  width:1.5em;
-  height:1.5em;
-  border-radius:0.3em;
-  font-weight: bold;
-  font-family:Sans;
-  line-height:16px;
+#opamdoc-contents .expander { 
+  width:1.5em; 
+  height:1.5em; 
+  border-radius:0.3em; 
+  font-weight: bold; 
+  font-family:Sans; 
+  line-height:16px; 
 }
 #opamdoc-contents .expanding_sig { border-spacing: 5px 1px }
 #opamdoc-contents .expanding_sig td { vertical-align: text-top }
-#opamdoc-contents .expanding_include_0 td { vertical-align: text-top }
-#opamdoc-contents .expanding_include_1 td { vertical-align: text-top }
-#opamdoc-contents .expanding_include_2 td { vertical-align: text-top }
-#opamdoc-contents .expanding_include_3 td { vertical-align: text-top }
-#opamdoc-contents .expanding_include_4 td { vertical-align: text-top }
-#opamdoc-contents .expanding_include_5 td { vertical-align: text-top }
-#opamdoc-contents .expanding_include_6 td { vertical-align: text-top }
+#opamdoc-contents .expanding_include_0 td { vertical-align: text-top } 
+#opamdoc-contents .expanding_include_1 td { vertical-align: text-top } 
+#opamdoc-contents .expanding_include_2 td { vertical-align: text-top } 
+#opamdoc-contents .expanding_include_3 td { vertical-align: text-top } 
+#opamdoc-contents .expanding_include_4 td { vertical-align: text-top } 
+#opamdoc-contents .expanding_include_5 td { vertical-align: text-top } 
+#opamdoc-contents .expanding_include_6 td { vertical-align: text-top } 
 #opamdoc-contents table.expanding_include_0, table.expanding_include_1, table.expanding_include_2, table.expanding_include_3,
 table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 {
   border-top: thin dashed;
@@ -72,12 +72,12 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
   border-collapse: collapse;
 }
 #opamdoc-contents table.expanding_include_0 { background-color: #FFF5F5; }
-#opamdoc-contents table.expanding_include_1 { background-color: #F5F5FF; }
-#opamdoc-contents table.expanding_include_2 { background-color: #F5FFF5; }
-#opamdoc-contents table.expanding_include_3 { background-color: #FFF5FF; }
-#opamdoc-contents table.expanding_include_4 { background-color: #FFFFF5; }
-#opamdoc-contents table.expanding_include_5 { background-color: #F5FFFF; }
-#opamdoc-contents table.expanding_include_6 { background-color: #FFF5EB; }
+#opamdoc-contents table.expanding_include_1 { background-color: #F5F5FF; } 
+#opamdoc-contents table.expanding_include_2 { background-color: #F5FFF5; } 
+#opamdoc-contents table.expanding_include_3 { background-color: #FFF5FF; } 
+#opamdoc-contents table.expanding_include_4 { background-color: #FFFFF5; } 
+#opamdoc-contents table.expanding_include_5 { background-color: #F5FFFF; } 
+#opamdoc-contents table.expanding_include_6 { background-color: #FFF5EB; } 
 #opamdoc-contents td.edge_column { border-right: 3px solid lightgrey }
 
 /* end of section for opam-doc */
@@ -112,7 +112,7 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .string .governing,
 .ocaml .st {
   color: #a95472;
-  font-weight: normal;
+  font-weight: normal;  
 }
 .warning { color : Red ; font-weight : bold }
 .info { margin-left : 3em; margin-right: 3em }
@@ -281,13 +281,13 @@ html.svg a.edit-this-page:hover {
   justify-content: flex-end;
 }
 
-/*
+/* 
 This styling overrides bootstrap style which removes outline
 when an element is in focus
 */
 a:focus{
   outline: 0.2rem solid #c77a27;
-
+ 
  }
  .navbar .edit-this-page:focus{
    background-color: #6e5437;
