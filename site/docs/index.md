@@ -145,17 +145,17 @@
       <div class="row">
 	<div class="span2 documentation-book">
 	  <a href="https://realworldocaml.org">
-	    <img src="/img/real-world-ocaml.jpg" alt="Real Worl OCaml book">
+	    <img class="book-img" src="/img/real-world-ocaml.jpg" alt="Real World OCaml book">
 	  </a>
 	</div>
 	<div class="span2 documentation-book">
 	  <a href="http://ocaml-book.com">
-	    <img src="/img/OCaml_from_beginning.png" alt="OCaml from the very beginning">
+	    <img class="book-img" src="/img/OCaml_from_beginning.png" alt="OCaml from the very beginning">
 	  </a>
 	</div>
 	<div class="span2 documentation-book">
 	  <a href="http://ocaml-book.com/more-ocaml-algorithms-methods-diversions/">
-	    <img src="/img/more-ocaml-300-376.png" alt="More OCaml: Algorithms, Methods &amp; Diversions">
+	    <img class="book-img" src="/img/more-ocaml-300-376.png" alt="More OCaml: Algorithms, Methods &amp; Diversions">
 	  </a>
 	</div>
       </div>
