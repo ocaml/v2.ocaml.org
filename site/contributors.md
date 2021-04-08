@@ -16,21 +16,21 @@ Hosting
   </div>
   <div style="padding: 24px 0px" class="row">
     <div class="span6">
-      <p style="text-align: center;"><img width="150" src="/img/aws_300x180.png" alt="Amazon Web Services"></p>
+      <p style="text-align: center;"><img width="200" height="300" src="/img/aws_300x180.png" alt="Amazon Web Services"></p>
       <h2 class="lead"style="text-align: center;">AWS: arm64 VM hosting</h2>
     </div>
     <div class="span6">
-      <p style="text-align: center;"><img width="300" height="100" src="/img/uni-of-cam-computer-lab_488x169.png" alt="University of Cambridge Computer Laboratory"></p>
+      <p style="text-align: center;"><img width="350" src="/img/uni-of-cam-computer-lab_488x169.png" alt="University of Cambridge Computer Laboratory"></p>
       <h2 class="lead"style="text-align: center;">University of Cambridge: machine hosting</h2>
     </div>
   </div>
   <div style="padding: 24px 0px" class="row">
     <div class="span6">
-      <p style="text-align: center;"><img width="275" src="/img/ibm_390x186.jpg" alt="IBM"></p>
+      <p style="text-align: center;"><img width="250" src="/img/ibm_390x186.jpg" alt="IBM"></p>
       <h2 class="lead"style="text-align: center;">IBM: PowerPC (POWER8/9) machines</h2>
     </div>
     <div class="span6">
-      <p style="text-align: center;"><img width="300" height="100" src="/img/rackspace_300x109.jpg" alt="Rackspace"></p>
+      <p style="text-align: center;"><img width="329" src="/img/rackspace_300x109.jpg" alt="Rackspace"></p>
       <h2 class="lead"style="text-align: center;">Provided hosting from 2012 to 2020</h2>
     </div>
   </div>
