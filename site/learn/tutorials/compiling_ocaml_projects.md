@@ -4,20 +4,14 @@
 
 # Compiling OCaml projects
 
-This tutorial describes the compilation commands provided with
-OCaml. It is useful to learn these commands to understand OCaml's
-compilation model. However, eventually you will want to use a build tool
-that automatically calls these commands internally. See [Compilation
-Tools](dev_tools.html#compilation-tools) for more information on the
-available options.
-
-The core OCaml distribution provides the `ocamlc` and `ocamlopt`
-compilers. Using them directly is fine, but if you are using third party
-libraries, you should use the `ocamlfind` front-end, since it saves you
-from worrying about where libraries have been installed on your
-particular system. You can even skip to the next section "Automated
-build systems", where you will find how to do things even more
-automatically.
+This tutorial describes the compilation commands provided with OCaml. It is
+useful to learn these commands to understand OCaml's compilation model. The
+core OCaml distribution provides the `ocamlc` and `ocamlopt` compilers. Using
+them directly is fine, but if you are using third party libraries, you should
+use the `ocamlfind` front-end, since it saves you from worrying about where
+libraries have been installed on your particular system.  However, eventually
+you will want to use a build tool that automatically calls these commands
+internally. Such tools are listed at the bottom of this page.
 
 ## Compilation basics
 
@@ -33,7 +27,7 @@ OCaml comes with two compilers: `ocamlc` is the bytecode compiler, and
 `ocamlopt` is the native code compiler. If you don't know which one to use, use
 `ocamlopt` since it provides executables that are faster than bytecode.
 
-Let's assume that your program `program` has two source files,
+Let's assume that our program `program` has two source files,
 `module1.ml` and `module2.ml`. We will compile them to native code,
 using `ocamlopt`. For now, we also assume that they do not use any other
 library than the standard library, which is automatically loaded. You
@@ -44,8 +38,7 @@ ocamlopt -o program module1.ml module2.ml
 ```
 
 That's it. The compiler produced an executable named `program` or
-`program.exe`. If you are wondering how to write a program in multiple
-files, see our [Modules](modules.html "Modules") tutorial. Don't forget
+`program.exe`. Don't forget
 that the order of the source files matters, and that `module1.ml` cannot
 depend on things that are defined in `module2.ml`.
 
@@ -97,21 +90,20 @@ jobs for us.
 
 ###  Using the ocamlfind front-end
 
-Using `ocamlfind` is highly recommended for compiling any program or
-library that uses third-party OCaml libraries. Library authors
-themselves should make their library installable with `ocamlfind` as
-well. Let's assume that all
-the libraries you want to use have been installed properly with
-ocamlfind.
+Using `ocamlfind` is highly recommended for compiling any program or library
+that uses third-party OCaml libraries. Library authors themselves should make
+their library installable with `ocamlfind` as well. Let's assume that all the
+libraries you want to use have been installed properly with ocamlfind (you can
+install `ocamlfind` using the opam package manager, by typing `opam install
+ocamlfind`).
 
-You can see which libraries are available in your system
-by typing:
+You can see which libraries are available in your system by typing:
 
 ```shell
 ocamlfind list
 ```
 
-This shows the list of package names, with their version ID. Note that most
+This shows the list of package names, with their versions. Note that most
 opam packages install software using ocamlfind, so your list of ocamlfind
 libraries will be somewhat similar to your list of installed opam packages
 obtained by `opam list`.
