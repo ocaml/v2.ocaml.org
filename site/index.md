@@ -137,9 +137,9 @@
 			</article></li>
 
 	        </ul>
+            </div>
             {{! cmd script/rss2html -n 4 --headlines http://planet.ocaml.org/rss20.xml !}}
             <p><a href="community/planet/">More...</a></p>
-            </div>
         </section>
     </div>
     <div class="row">
