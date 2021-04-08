@@ -4,7 +4,7 @@
 *Table of contents*
 
 ## Jane Street
-<a href="http://janestreet.com/technology/" class="success-links"
+<a href="http://janestreet.com/technology/" style="float: left"
     ><img
       src="../img/users/jane-street.jpg"
       alt="Jane Street"
@@ -34,7 +34,7 @@ be found at <http://janestreet.github.io>.  All in, we've open-sourced
 more than 200k lines of code.
 
 ## The Unison File Synchronizer
-<a href="../img/unison.png" class="success-links"
+<a href="../img/unison.png" style="float: left"
     ><img
       src="../img/unison-thumb.jpg"
       style="float: left; margin-right: 10px"
@@ -68,7 +68,7 @@ projects in having been *translated* from Java to OCaml midway through
 its development. Moving to OCaml was like a breath of fresh air.”
 
 ## The MLdonkey peer-to-peer client
-<a href="../img/mldonkey.jpg" class="success-links"
+<a href="../img/mldonkey.jpg" style="float: left"
     ><img
       src="../img/mldonkey-thumb.jpg"
       style="float: left; margin-right: 10px"
@@ -97,7 +97,7 @@ remotely using a choice of three different kinds of interfaces: GTK, web
 and telnet.”
 
 ## LexiFi's Modeling Language for Finance
-<a href="../img/lexifi.jpg" class="success-links"
+<a href="../img/lexifi.jpg" style="float: left"
     ><img
       src="../img/lexifi-thumb.jpg"
       style="float: left; margin-right: 10px"
@@ -136,7 +136,7 @@ are gaining growing acceptance throughout Europe and are contributing to
 spread the use of OCaml in the financial services industry.
 
 ## The Coq Proof Assistant
-<a href="../img/coq.jpg" class="success-links"
+<a href="../img/coq.jpg" style="float: left"
     ><img
       src="../img/coq-thumb.jpg"
       style="float: left; margin-right: 10px"
@@ -163,7 +163,7 @@ execution, which is indispensable for a tool whose primary goal is
 precisely rigor.”
 
 ## The ASTRÉE Static Analyzer
-<a href="http://www.airbus.com/" class="success-links"
+<a href="http://www.airbus.com/" style="float: left"
     ><img
       src="../img/astree.gif"
       alt="A340"
@@ -220,7 +220,7 @@ functional programming language. The expressiveness of this language and
 robustness of its implementation provided a great productivity boost.”
 
 ## FFTW
-<a href="http://www.fftw.org/" class="success-links">
+<a href="http://www.fftw.org/" style="float: left">
   <img
     src="../img/fftw-thumb.png"
     alt="FFTW"
