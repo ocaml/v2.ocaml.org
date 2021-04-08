@@ -1,10 +1,6 @@
 # Contributing to OCaml.org
 
-Welcome to OCaml.org and thank you for taking the time to read our contributing
-guide. This guide is aimed towards first-time contributors and even people who
-are new to the OCaml language. Carefully read through all the sections but if
-you already know some concepts then feel free to skip to a section that
-interests you.
+Welcome to OCaml.org! Thank you for taking the time to read our Contributing Guide. This guide is aimed towards first-time contributors and even people who are new to the OCaml language. Carefully read through all the sections but if you already know some concepts then feel free to skip to a section that interests you. 
 
 ## General Contributing Advice
 
@@ -20,6 +16,16 @@ something in an issue then it would make sense to tell us by commenting under
 that issue to avoid duplication of any work that may be going on elsewhere.
 There are lots of experienced OCaml developers still active on here
 and are more than willing to offer you a hand if you ask on an issue or PR. 
+
+## Setting up OCaml
+
+This website is built using OCaml. Most of the code lives in the `script` directory. In order to build the site, you will need to install OCaml along with the dependencies that are required. 
+
+Welcome to OCaml.org and thank you for taking the time to read our contributing
+guide. This guide is aimed towards first-time contributors and even people who
+are new to the OCaml language. Carefully read through all the sections but if
+you already know some concepts then feel free to skip to a section that
+interests you.
 
 ## Issue, Feature And PR Template
 
@@ -207,6 +213,7 @@ multiple errors and their solutions):
    how steps work. You can cross check this in case you get stuck in between
    somewhere.)
 
+
 # Skills Required And Experience Level
 
 The `ocaml.org` project is written with specific tools and languages. These includes:
@@ -219,3 +226,4 @@ The `ocaml.org` project is written with specific tools and languages. These incl
 
 All level of knowledge and experiences working with these tools and languages
 is always welcome to the community.
+
