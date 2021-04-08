@@ -99,7 +99,7 @@ _(Tip: Click on the relevant layer (e.g., US,EU), search for your
 University, click on the marker and click on "Add to map", fill in the
 info fields and you are done!)_
 
-<iframe src="https://www.google.com/maps/d/embed?mid=zk8_K4G_usic.kkzYvEvqV44Q" width="640" height="480"></iframe>
+<iframe src="https://www.google.com/maps/d/embed?mid=zk8_K4G_usic.kkzYvEvqV44Q" width="100%" height="480" top="0" left="0" position="relative"></iframe>
 
 
 # Resources
