@@ -6993,6 +6993,8 @@ body {
   .nav-collapse.collapse {
     overflow: hidden;
     height: 0;
+    position: relative;
+    right: 1000px;
   }
   .navbar .btn-navbar {
     display: block;
