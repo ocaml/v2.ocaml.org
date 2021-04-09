@@ -49,8 +49,6 @@
 ### ビルドシステム
 
 * [OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)
-* OCamlbuild — [en](ocamlbuild/)
-* OASISを使ったOCamlプロジェクトのセットアップ — [en](setting_up_with_oasis.html)
 
 ### 高度なトピックス
 
