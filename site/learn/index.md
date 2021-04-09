@@ -38,11 +38,11 @@
             <ul>
                 <li><a href="tutorials/up_and_running.html">Up and Running</a></li>
                 <li><a href="tutorials/a_first_hour_with_ocaml.html">A First Hour with OCaml</a></li>
+                <li><a href="tutorials/data_types_and_matching.html">Data Types and Matching</a></li>
                 <li><a href="tutorials/modules.html">Modules</a></li>
-                <li><a href="tutorials/map.html">Maps (Dictionaries)</a></li>
-                <li><a href="tutorials/set.html">Sets</a></li>
-                <li><a href="tutorials/hashtbl.html">Hash Tables</a></li>
-                <li><a href="tutorials/comparison_of_standard_containers.html">Comparison of Standard Containers</a></li>
+                <li><a href="tutorials/error_handling.html">Error Handling</a></li>
+                <li><a href="tutorials/debug.html">Debugging</a></li>
+                <li><a href="tutorials/99problems.html">99 Problems (solved) in OCaml</a></li>
                 <li><a href="faq.html">Frequently Asked Questions</a></li>
             </ul>
             <footer>
