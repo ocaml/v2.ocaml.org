@@ -5,21 +5,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍6 Advanced examples with classes and modules</title>
+<title>OCaml - Advanced examples with classes and modules</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍I An introduction to OCaml</nav><ul id="part-menu"><li><a href="coreexamples.html">Chapter ‍1 The core language</a></li><li><a href="moduleexamples.html">Chapter ‍2 The module system</a></li><li><a href="objectexamples.html">Chapter ‍3 Objects in OCaml</a></li><li><a href="lablexamples.html">Chapter ‍4 Labels and variants</a></li><li><a href="polymorphism.html">Chapter ‍5 Polymorphism and its limitations</a></li><li class="active"><a href="advexamples.html">Chapter ‍6 Advanced examples with classes and modules</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>An introduction to OCaml</nav><ul id="part-menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li class="active"><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec64">Chapter ‍6 Advanced examples with classes and modules</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍6 Advanced examples with classes and modules</a></li>
-<li><a href="advexamples.html#s%3Aextended-bank-accounts">6.1 Extended example: bank accounts</a>
-</li><li><a href="advexamples.html#s%3Amodules-as-classes">6.2 Simple modules as classes</a>
-</li><li><a href="advexamples.html#s%3Asubject-observer">6.3 The subject/observer pattern</a>
+<h1 class="chapter" id="sec64"><span class="number">Chapter 6</span>Advanced examples with classes and modules</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Advanced examples with classes and modules</a></li>
+<li><a href="advexamples.html#s%3Aextended-bank-accounts"><span class="number">1</span>Extended example: bank accounts</a>
+</li><li><a href="advexamples.html#s%3Amodules-as-classes"><span class="number">2</span>Simple modules as classes</a>
+</li><li><a href="advexamples.html#s%3Asubject-observer"><span class="number">3</span>The subject/observer pattern</a>
 </li></ul></nav></header>
 <p>
-<a id="c:advexamples"></a></p><p><span class="c010">(Chapter written by Didier Rémy)</span></p><p><br>
+<a id="c:advexamples"></a></p><p></p><p><br>
 <br>
 </p><p>In this chapter, we show some larger examples using objects, classes
 and modules. We review many of the object features simultaneously on
@@ -27,11 +27,11 @@ the example of a bank account. We show how modules taken from the
 standard library can be expressed as classes. Lastly, we describe a
 programming pattern known as <em>virtual types</em> through the example
 of window managers.</p>
-<h2 class="section" id="s:extended-bank-accounts"><a class="section-anchor" href="#s:extended-bank-accounts" aria-hidden="true"></a>6.1 Extended example: bank accounts</h2>
+<h2 class="section" id="s:extended-bank-accounts"><a class="section-anchor" href="#s:extended-bank-accounts" aria-hidden="true"></a><span class="number">1</span>Extended example: bank accounts</h2>
 <p>In this section, we illustrate most aspects of Object and inheritance
 by refining, debugging, and specializing the following
 initial naive definition of a simple bank account. (We reuse the
-module <span class="c004">Euro</span> defined at the end of chapter ‍<a href="objectexamples.html#c%3Aobjectexamples">3</a>.)
+module <span class="c004">Euro</span> defined at the end of chapter&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a>.)
 
 </p><div class="caml-example toplevel">
 
@@ -497,13 +497,13 @@ account can be given to the client.
     <span class="ocamlkeyword">end</span>;;</div></div>
 
 </div>
-<h2 class="section" id="s:modules-as-classes"><a class="section-anchor" href="#s:modules-as-classes" aria-hidden="true">﻿</a>6.2 Simple modules as classes</h2>
+<h2 class="section" id="s:modules-as-classes"><a class="section-anchor" href="#s:modules-as-classes" aria-hidden="true">﻿</a><span class="number">2</span>Simple modules as classes</h2>
 <p>One may wonder whether it is possible to treat primitive types such as
 integers and strings as objects. Although this is usually uninteresting
 for integers or strings, there may be some situations where
 this is desirable. The class <span class="c004">money</span> above is such an example.
 We show here how to do it for strings.</p>
-<h3 class="subsection" id="ss:string-as-class"><a class="section-anchor" href="#ss:string-as-class" aria-hidden="true">﻿</a>6.2.1 Strings</h3>
+<h3 class="subsection" id="ss:string-as-class"><a class="section-anchor" href="#ss:string-as-class" aria-hidden="true">﻿</a><span class="number">2.1</span>Strings</h3>
 <p>A naive definition of strings as objects could be:
 
 </p><div class="caml-example toplevel">
@@ -561,7 +561,7 @@ class.
 
 </div><p>
 
-As seen in section ‍<a href="objectexamples.html#s%3Abinary-methods">3.16</a>, the solution is to use
+As seen in section&nbsp;<a href="objectexamples.html#s%3Abinary-methods">3.16</a>, the solution is to use
 functional update instead. We need to create an instance variable
 containing the representation <span class="c004">s</span> of the string.
 
@@ -653,7 +653,7 @@ string of a given length:
 
 Here, exposing the representation of strings is probably harmless. We do
 could also hide the representation of strings as we hid the currency in the
-class <span class="c004">money</span> of section ‍<a href="objectexamples.html#s%3Afriends">3.17</a>.</p>
+class <span class="c004">money</span> of section&nbsp;<a href="objectexamples.html#s%3Afriends">3.17</a>.</p>
 <h4 class="subsubsection" id="sss:stack-as-class"><a class="section-anchor" href="#sss:stack-as-class" aria-hidden="true">﻿</a>Stacks</h4>
 <p>There is sometimes an alternative between using modules or classes for
 parametric data types.
@@ -799,7 +799,7 @@ the type checker cannot infer the polymorphic type by itself.
   <span class="ocamlkeyword">end</span></div></div>
 
 </div>
-<h3 class="subsection" id="ss:hashtbl-as-class"><a class="section-anchor" href="#ss:hashtbl-as-class" aria-hidden="true">﻿</a>6.2.2 Hashtbl</h3>
+<h3 class="subsection" id="ss:hashtbl-as-class"><a class="section-anchor" href="#ss:hashtbl-as-class" aria-hidden="true">﻿</a><span class="number">2.2</span>Hashtbl</h3>
 <p>A simplified version of object-oriented hash tables should have the
 following class type.
 
@@ -867,11 +867,11 @@ true hash table… whose elements are small hash tables!
 <div class="pre caml-output ok"><span class="ocamlkeyword">class</span> ['a, 'b] hashtbl : int -&gt; ['a, 'b] hash_table</div></div>
 
 </div>
-<h3 class="subsection" id="ss:set-as-class"><a class="section-anchor" href="#ss:set-as-class" aria-hidden="true">﻿</a>6.2.3 Sets</h3>
+<h3 class="subsection" id="ss:set-as-class"><a class="section-anchor" href="#ss:set-as-class" aria-hidden="true">﻿</a><span class="number">2.3</span>Sets</h3>
 <p>Implementing sets leads to another difficulty. Indeed, the method
 <span class="c004">union</span> needs to be able to access the internal representation of
 another object of the same class.</p><p>This is another instance of friend functions as seen in
-section ‍<a href="objectexamples.html#s%3Afriends">3.17</a>. Indeed, this is the same mechanism used in the module
+section&nbsp;<a href="objectexamples.html#s%3Afriends">3.17</a>. Indeed, this is the same mechanism used in the module
 <span class="c004">Set</span> in the absence of objects.</p><p>In the object-oriented version of sets, we only need to add an additional
 method <span class="c004">tag</span> to return the representation of a set. Since sets are
 parametric in the type of elements, the method <span class="c004">tag</span> has a parametric type
@@ -929,7 +929,7 @@ of the same type will share the same representation.
     <span class="ocamlkeyword">end</span>;;</div></div>
 
 </div>
-<h2 class="section" id="s:subject-observer"><a class="section-anchor" href="#s:subject-observer" aria-hidden="true">﻿</a>6.3 The subject/observer pattern</h2>
+<h2 class="section" id="s:subject-observer"><a class="section-anchor" href="#s:subject-observer" aria-hidden="true">﻿</a><span class="number">3</span>The subject/observer pattern</h2>
 <p>The following example, known as the subject/observer pattern, is often
 presented in the literature as a difficult inheritance problem with
 inter-connected classes.
@@ -1252,10 +1252,10 @@ and attach several observers to the same object:
 
 </div>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="polymorphism.html">« Chapter ‍5 Polymorphism and its limitations</a><a class="next" href="language.html">Chapter ‍7 The OCaml language »</a></div>
+<div class="bottom-navigation"><a class="previous" href="polymorphism.html">« Polymorphism and its limitations</a><a class="next" href="language.html">The OCaml language »</a></div>
 
 
 
 
-<div class="copyright">Copyright © 2021 Institut National de
+<span class="authors c010">(Chapter written by Didier Rémy)</span><div class="copyright">Copyright © 2021 Institut National de
 Recherche en Informatique et en Automatique</div></div></body></html>

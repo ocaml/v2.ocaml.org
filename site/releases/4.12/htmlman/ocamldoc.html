@@ -5,19 +5,19 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍15 The documentation generator (ocamldoc)</title>
+<title>OCaml - The documentation generator (ocamldoc)</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li class="active"><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li class="active"><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec344">Chapter ‍15 The documentation generator (ocamldoc)</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍15 The documentation generator (ocamldoc)</a></li>
-<li><a href="ocamldoc.html#s%3Aocamldoc-usage">15.1 Usage</a>
-</li><li><a href="ocamldoc.html#s%3Aocamldoc-comments">15.2 Syntax of documentation comments</a>
-</li><li><a href="ocamldoc.html#s%3Aocamldoc-custom-generators">15.3 Custom generators</a>
-</li><li><a href="ocamldoc.html#s%3Aocamldoc-adding-flags">15.4 Adding command line options</a>
+<h1 class="chapter" id="sec344"><span class="number">Chapter 15</span>The documentation generator (ocamldoc)</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The documentation generator (ocamldoc)</a></li>
+<li><a href="ocamldoc.html#s%3Aocamldoc-usage"><span class="number">1</span>Usage</a>
+</li><li><a href="ocamldoc.html#s%3Aocamldoc-comments"><span class="number">2</span>Syntax of documentation comments</a>
+</li><li><a href="ocamldoc.html#s%3Aocamldoc-custom-generators"><span class="number">3</span>Custom generators</a>
+</li><li><a href="ocamldoc.html#s%3Aocamldoc-adding-flags"><span class="number">4</span>Adding command line options</a>
 </li></ul></nav></header>
 <p> <a id="c:ocamldoc"></a>
 </p><p>This chapter describes OCamldoc, a tool that generates documentation from
@@ -31,8 +31,8 @@ following parts of an OCaml source file: a type declaration, a value,
 a module, an exception, a module type, a type constructor, a record
 field, a class, a class type, a class method, a class value or a class
 inheritance clause.</p>
-<h2 class="section" id="s:ocamldoc-usage"><a class="section-anchor" href="#s:ocamldoc-usage" aria-hidden="true"></a>15.1 Usage</h2>
-<h3 class="subsection" id="ss:ocamldoc-invocation"><a class="section-anchor" href="#ss:ocamldoc-invocation" aria-hidden="true">﻿</a>15.1.1 Invocation</h3>
+<h2 class="section" id="s:ocamldoc-usage"><a class="section-anchor" href="#s:ocamldoc-usage" aria-hidden="true"></a><span class="number">1</span>Usage</h2>
+<h3 class="subsection" id="ss:ocamldoc-invocation"><a class="section-anchor" href="#ss:ocamldoc-invocation" aria-hidden="true">﻿</a><span class="number">1.1</span>Invocation</h3>
 <p>OCamldoc is invoked via the command <span class="c004">ocamldoc</span>, as follows:
 </p><pre>        ocamldoc <span class="c010">options sourcefiles</span>
 </pre><h4 class="subsubsection" id="sss:ocamldoc-output"><a class="section-anchor" href="#sss:ocamldoc-output" aria-hidden="true">﻿</a>Options for choosing the output format</h4>
@@ -213,7 +213,7 @@ types, instead of pages for all elements.</dd><dt class="dt-description"><span c
 Set the suffix used for generated man filenames. Default is ’<span class="c004">3o</span>’,
 as in <span class="c004">List.3o</span>.</dd><dt class="dt-description"><span class="c014"><span class="c004">-man-section</span> <span class="c010">section</span></span></dt><dd class="dd-description">
 Set the section number used for generated man filenames. Default is ’<span class="c004">3</span>’.</dd></dl>
-<h3 class="subsection" id="ss:ocamldoc-merge"><a class="section-anchor" href="#ss:ocamldoc-merge" aria-hidden="true">﻿</a>15.1.2 Merging of module information</h3>
+<h3 class="subsection" id="ss:ocamldoc-merge"><a class="section-anchor" href="#ss:ocamldoc-merge" aria-hidden="true">﻿</a><span class="number">1.2</span>Merging of module information</h3>
 <p>Information on a module can be extracted either from the <span class="c004">.mli</span> or <span class="c004">.ml</span>
 file, or both, depending on the files given on the command line.
 When both <span class="c004">.mli</span> and <span class="c004">.ml</span> files are given for the same module,
@@ -232,7 +232,7 @@ If a description is present in the <span class="c004">.ml</span> file and not in
 <span class="c004">.mli</span> file, the <span class="c004">.ml</span> description is kept.
 In either case, all the information given in the <span class="c004">.mli</span> file is kept.
 </li></ul>
-<h3 class="subsection" id="ss:ocamldoc-rules"><a class="section-anchor" href="#ss:ocamldoc-rules" aria-hidden="true">﻿</a>15.1.3 Coding rules</h3>
+<h3 class="subsection" id="ss:ocamldoc-rules"><a class="section-anchor" href="#ss:ocamldoc-rules" aria-hidden="true">﻿</a><span class="number">1.3</span>Coding rules</h3>
 <p>
 The following rules must be respected in order to avoid name clashes
 resulting in cross-reference errors:
@@ -271,12 +271,12 @@ In this case, OCamldoc will associate <span class="c004">Bar.x</span> to the <sp
 <span class="c004">Foo</span> defined just above, instead of to the <span class="c004">Bar.x</span> defined in the
 opened module <span class="c004">Foo</span>.
 </li></ul>
-<h2 class="section" id="s:ocamldoc-comments"><a class="section-anchor" href="#s:ocamldoc-comments" aria-hidden="true">﻿</a>15.2 Syntax of documentation comments</h2>
+<h2 class="section" id="s:ocamldoc-comments"><a class="section-anchor" href="#s:ocamldoc-comments" aria-hidden="true">﻿</a><span class="number">2</span>Syntax of documentation comments</h2>
 <p>Comments containing documentation material are called <em>special
 comments</em> and are written between <span class="c004">(**</span> and <span class="c004">*)</span>. Special comments
 must start exactly with <span class="c004">(**</span>. Comments beginning with <span class="c004">(</span> and more
 than two <span class="c004">*</span> are ignored.</p>
-<h3 class="subsection" id="ss:ocamldoc-placement"><a class="section-anchor" href="#ss:ocamldoc-placement" aria-hidden="true">﻿</a>15.2.1 Placement of documentation comments</h3>
+<h3 class="subsection" id="ss:ocamldoc-placement"><a class="section-anchor" href="#ss:ocamldoc-placement" aria-hidden="true">﻿</a><span class="number">2.1</span>Placement of documentation comments</h3>
 <p>
 OCamldoc can associate comments to some elements of the language
 encountered in the source files. The association is made according to
@@ -286,7 +286,7 @@ locations of comments in <span class="c004">.mli</span> and <span class="c004">.
 <p>
 A special comment is associated to an element if it is placed before or
 after the element.<br>
-A special comment before an element is associated to this element if ‍:
+A special comment before an element is associated to this element if&nbsp;:
 </p><ul class="itemize"><li class="li-itemize">
 There is no blank line or another special comment between the special
 comment and the element. However, a regular comment can occur between
@@ -499,7 +499,7 @@ in a <span class="c004">.ml</span> file.</p><div class="caml-example verbatim">
   <span class="ocamlkeyword">end</span></div></div>
 
 </div>
-<h3 class="subsection" id="ss:ocamldoc-stop"><a class="section-anchor" href="#ss:ocamldoc-stop" aria-hidden="true">﻿</a>15.2.2 The Stop special comment</h3>
+<h3 class="subsection" id="ss:ocamldoc-stop"><a class="section-anchor" href="#ss:ocamldoc-stop" aria-hidden="true">﻿</a><span class="number">2.2</span>The Stop special comment</h3>
 <p>
 The special comment <span class="c004">(**/**)</span> tells OCamldoc to discard
 elements placed after this comment, up to the end of the current
@@ -538,7 +538,7 @@ toggled off the "no documentation mode". *)</span>
 
 </div><p>The <span class="c007">-no-stop</span> option to <span class="c004">ocamldoc</span> causes the Stop special
 comments to be ignored.</p>
-<h3 class="subsection" id="ss:ocamldoc-syntax"><a class="section-anchor" href="#ss:ocamldoc-syntax" aria-hidden="true">﻿</a>15.2.3 Syntax of documentation comments</h3>
+<h3 class="subsection" id="ss:ocamldoc-syntax"><a class="section-anchor" href="#ss:ocamldoc-syntax" aria-hidden="true">﻿</a><span class="number">2.3</span>Syntax of documentation comments</h3>
 <p>The inside of documentation comments <span class="c004">(**</span>…<span class="c004">*)</span> consists of
 free-form text with optional formatting annotations, followed by
 optional <em>tags</em> giving more specific information about parameters,
@@ -555,7 +555,7 @@ relevant to the documented element are simply ignored. For instance,
 all tags are ignored when documenting type constructors, record
 fields, and class inheritance clauses. Similarly, a <span class="c004">@param</span> tag on a
 class instance variable is ignored.</p><p>At last, <span class="c004">(**)</span> is the empty documentation comment.</p>
-<h3 class="subsection" id="ss:ocamldoc-formatting"><a class="section-anchor" href="#ss:ocamldoc-formatting" aria-hidden="true">﻿</a>15.2.4 Text formatting</h3>
+<h3 class="subsection" id="ss:ocamldoc-formatting"><a class="section-anchor" href="#ss:ocamldoc-formatting" aria-hidden="true">﻿</a><span class="number">2.4</span>Text formatting</h3>
 <p>Here is the BNF grammar for the simple markup language used to format
 text descriptions.</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
 <a class="syntax" id="text"><span class="c011">text</span></a></td><td class="c016">::=</td><td class="c018"> {<a class="syntax" href="#text-element"><span class="c011">text-element</span></a>}<sup>+</sup>
@@ -602,7 +602,7 @@ must be	escaped by a ’<span class="c004">\</span>’</td></tr>
 </tbody></table><p> <br>
 
 </p>
-<h4 class="subsubsection" id="sss:ocamldoc-list"><a class="section-anchor" href="#sss:ocamldoc-list" aria-hidden="true">﻿</a>15.2.4.1 List formatting</h4>
+<h4 class="subsubsection" id="sss:ocamldoc-list"><a class="section-anchor" href="#sss:ocamldoc-list" aria-hidden="true">﻿</a>15.<span class="number">4.1</span>List formatting</h4>
 <div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
 <a class="syntax" id="list"><span class="c011">list</span></a></td><td class="c016">::=</td><td class="c018">
  </td></tr>
@@ -628,7 +628,7 @@ The list is ended by the blank line.*)
 The same shortcut is available for enumerated lists, using ’<span class="c004">+</span>’
 instead of ’<span class="c004">-</span>’.
 Note that only one list can be defined by this shortcut in nested lists.</p>
-<h4 class="subsubsection" id="sss:ocamldoc-crossref"><a class="section-anchor" href="#sss:ocamldoc-crossref" aria-hidden="true">﻿</a>15.2.4.2 Cross-reference formatting</h4>
+<h4 class="subsubsection" id="sss:ocamldoc-crossref"><a class="section-anchor" href="#sss:ocamldoc-crossref" aria-hidden="true">﻿</a>15.<span class="number">4.2</span>Cross-reference formatting</h4>
 <p>Cross-references are fully qualified element names, as in the example
 <span class="c004">{!Foo.Bar.t}</span>. This is an ambiguous reference as it may designate
 a type name, a value name, a class name, etc. It is possible to make
@@ -657,7 +657,7 @@ to avoid the ambiguity of several types having the same constructor
 names. For example, the constructor <span class="c004">Node</span> of the type <span class="c004">tree</span> will be
 referenced as <span class="c004">{!tree.Node}</span> or <span class="c004">{!const:tree.Node}</span>, or possibly
 <span class="c004">{!Mod1.Mod2.tree.Node}</span> from outside the module.</p>
-<h4 class="subsubsection" id="sss:ocamldoc-preamble"><a class="section-anchor" href="#sss:ocamldoc-preamble" aria-hidden="true">﻿</a>15.2.4.3 First sentence</h4>
+<h4 class="subsubsection" id="sss:ocamldoc-preamble"><a class="section-anchor" href="#sss:ocamldoc-preamble" aria-hidden="true">﻿</a>15.<span class="number">4.3</span>First sentence</h4>
 <p>In the description of a value, type, exception, module, module type, class
 or class type, the <em>first sentence</em> is sometimes used in indexes, or
 when just a part of the description is needed. The first sentence
@@ -676,13 +676,13 @@ outside of the following text formatting :
  <span class="c003"><span class="c004">{!</span> <span class="c011">string</span> <span class="c004">}</span></span> ,
  <span class="c005">{^</span> <a class="syntax" href="#text"><span class="c011">text</span></a> <span class="c005">}</span> ,
  <span class="c005">{_</span> <a class="syntax" href="#text"><span class="c011">text</span></a> <span class="c005">}</span> .</p>
-<h4 class="subsubsection" id="sss:ocamldoc-target-specific-syntax"><a class="section-anchor" href="#sss:ocamldoc-target-specific-syntax" aria-hidden="true">﻿</a>15.2.4.4 Target-specific formatting</h4>
+<h4 class="subsubsection" id="sss:ocamldoc-target-specific-syntax"><a class="section-anchor" href="#sss:ocamldoc-target-specific-syntax" aria-hidden="true">﻿</a>15.<span class="number">4.4</span>Target-specific formatting</h4>
 <p>The content inside <span class="c004">{%foo: ... %}</span> is target-specific and will only be
 interpreted by the backend <span class="c004">foo</span>, and ignored by the others. The
 backends of the distribution are <span class="c004">latex</span>, <span class="c004">html</span>, <span class="c004">texi</span> and <span class="c004">man</span>. If
 no target is specified (syntax <span class="c004">{% ... %}</span>), <span class="c004">latex</span> is chosen by
 default. Custom generators may support their own target prefix.</p>
-<h4 class="subsubsection" id="sss:ocamldoc-html-tags"><a class="section-anchor" href="#sss:ocamldoc-html-tags" aria-hidden="true">﻿</a>15.2.4.5 Recognized HTML tags</h4>
+<h4 class="subsubsection" id="sss:ocamldoc-html-tags"><a class="section-anchor" href="#sss:ocamldoc-html-tags" aria-hidden="true">﻿</a>15.<span class="number">4.5</span>Recognized HTML tags</h4>
 <p>
 The HTML tags <span class="c004">&lt;b&gt;..&lt;/b&gt;</span>,
 <span class="c004">&lt;code&gt;..&lt;/code&gt;</span>,
@@ -700,7 +700,7 @@ The HTML tags <span class="c004">&lt;b&gt;..&lt;/b&gt;</span>,
  <span class="c005">{li ..}</span> ,
  <span class="c005">{C ..}</span>  and
 <span class="c004">{[0-9] ..}</span>.</p>
-<h3 class="subsection" id="ss:ocamldoc-tags"><a class="section-anchor" href="#ss:ocamldoc-tags" aria-hidden="true">﻿</a>15.2.5 Documentation tags (@-tags)</h3>
+<h3 class="subsection" id="ss:ocamldoc-tags"><a class="section-anchor" href="#ss:ocamldoc-tags" aria-hidden="true">﻿</a><span class="number">2.5</span>Documentation tags (@-tags)</h3>
 <h4 class="subsubsection" id="sss:ocamldoc-builtin-tags"><a class="section-anchor" href="#sss:ocamldoc-builtin-tags" aria-hidden="true">﻿</a>Predefined tags</h4>
 <p>
 The following table gives the list of predefined @-tags, with their
@@ -754,7 +754,7 @@ comment, as in:
 </pre><p>
 To handle custom tags, you need to define a custom generator,
 as explained in section <a href="#ss%3Aocamldoc-handling-custom-tags">15.3.2</a>.</p>
-<h2 class="section" id="s:ocamldoc-custom-generators"><a class="section-anchor" href="#s:ocamldoc-custom-generators" aria-hidden="true">﻿</a>15.3 Custom generators</h2>
+<h2 class="section" id="s:ocamldoc-custom-generators"><a class="section-anchor" href="#s:ocamldoc-custom-generators" aria-hidden="true">﻿</a><span class="number">3</span>Custom generators</h2>
 <p>OCamldoc operates in two steps:
 </p><ol class="enumerate" type="1"><li class="li-enumerate">
 analysis of the source files;
@@ -768,23 +768,23 @@ the <span class="c004">Odoc_info</span> module, which gives access to all the ty
 representing the elements found in the given modules, with their associated
 description.</p><p>The files you can use to define custom generators are installed in the
 <span class="c004">ocamldoc</span> sub-directory of the OCaml standard library.</p>
-<h3 class="subsection" id="ss:ocamldoc-generators"><a class="section-anchor" href="#ss:ocamldoc-generators" aria-hidden="true">﻿</a>15.3.1 The generator modules</h3>
+<h3 class="subsection" id="ss:ocamldoc-generators"><a class="section-anchor" href="#ss:ocamldoc-generators" aria-hidden="true">﻿</a><span class="number">3.1</span>The generator modules</h3>
 <p>
 The type of a generator module depends on the kind of generated documentation.
 Here is the list of generator module types, with the name of the generator
-class in the module ‍:
+class in the module&nbsp;:
 </p><ul class="itemize"><li class="li-itemize">
-for HTML ‍: <span class="c004">Odoc_html.Html_generator</span> (class <span class="c004">html</span>),
-</li><li class="li-itemize">for L<sup>A</sup>T<sub>E</sub>X ‍: <span class="c004">Odoc_latex.Latex_generator</span> (class <span class="c004">latex</span>),
-</li><li class="li-itemize">for TeXinfo ‍: <span class="c004">Odoc_texi.Texi_generator</span> (class <span class="c004">texi</span>),
-</li><li class="li-itemize">for man pages ‍: <span class="c004">Odoc_man.Man_generator</span> (class <span class="c004">man</span>),
-</li><li class="li-itemize">for graphviz (dot) ‍: <span class="c004">Odoc_dot.Dot_generator</span> (class <span class="c004">dot</span>),
-</li><li class="li-itemize">for other kinds ‍: <span class="c004">Odoc_gen.Base</span> (class <span class="c004">generator</span>).
+for HTML&nbsp;: <span class="c004">Odoc_html.Html_generator</span> (class <span class="c004">html</span>),
+</li><li class="li-itemize">for L<sup>A</sup>T<sub>E</sub>X&nbsp;: <span class="c004">Odoc_latex.Latex_generator</span> (class <span class="c004">latex</span>),
+</li><li class="li-itemize">for TeXinfo&nbsp;: <span class="c004">Odoc_texi.Texi_generator</span> (class <span class="c004">texi</span>),
+</li><li class="li-itemize">for man pages&nbsp;: <span class="c004">Odoc_man.Man_generator</span> (class <span class="c004">man</span>),
+</li><li class="li-itemize">for graphviz (dot)&nbsp;: <span class="c004">Odoc_dot.Dot_generator</span> (class <span class="c004">dot</span>),
+</li><li class="li-itemize">for other kinds&nbsp;: <span class="c004">Odoc_gen.Base</span> (class <span class="c004">generator</span>).
 </li></ul><p>
 That is, to define a new generator, one must implement a module with
 the expected signature, and with the given generator class, providing
 the <span class="c004">generate</span> method as entry point to make the generator generates
-documentation for a given list of modules ‍:</p><pre>        method generate : Odoc_info.Module.t_module list -&gt; unit
+documentation for a given list of modules&nbsp;:</p><pre>        method generate : Odoc_info.Module.t_module list -&gt; unit
 </pre><p>
 This method will be called with the list of analysed and possibly
 merged <span class="c004">Odoc_info.t_module</span> structures.</p><p>It is recommended to inherit from the current generator of the same
@@ -792,7 +792,7 @@ kind as the one you want to define. Doing so, it is possible to
 load various custom generators to combine improvements brought by each one.</p><p>This is done using first class modules (see chapter <a href="firstclassmodules.html#s%3Afirst-class-modules">8.5</a>).</p><p>The easiest way to define a custom generator is the following this example,
 here extending the current HTML generator. We don’t have to know if this is
 the original HTML generator defined in ocamldoc or if it has been extended
-already by a previously loaded custom generator ‍:</p><pre>module Generator (G : Odoc_html.Html_generator) =
+already by a previously loaded custom generator&nbsp;:</p><pre>module Generator (G : Odoc_html.Html_generator) =
 struct
   class html =
     object(self)
@@ -811,16 +811,16 @@ let _ = Odoc_args.extend_html_generator (module Generator : Odoc_gen.Html_functo
 </pre><p>
 To know which methods to override and/or which methods are available,
 have a look at the different base implementations, depending on the
-kind of generator you are extending ‍:
+kind of generator you are extending&nbsp;:
 
 </p><ul class="itemize"><li class="li-itemize">
-for HTML ‍: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_html.ml"><span class="c004">odoc_html.ml</span></a>,
-</li><li class="li-itemize">for L<sup>A</sup>T<sub>E</sub>X ‍: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_latex.ml"><span class="c004">odoc_latex.ml</span></a>,
-</li><li class="li-itemize">for TeXinfo ‍: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_texi.ml"><span class="c004">odoc_texi.ml</span></a>,
-</li><li class="li-itemize">for man pages ‍: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_man.ml"><span class="c004">odoc_man.ml</span></a>,
-</li><li class="li-itemize">for graphviz (dot) ‍: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_dot.ml"><span class="c004">odoc_dot.ml</span></a>.
+for HTML&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_html.ml"><span class="c004">odoc_html.ml</span></a>,
+</li><li class="li-itemize">for L<sup>A</sup>T<sub>E</sub>X&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_latex.ml"><span class="c004">odoc_latex.ml</span></a>,
+</li><li class="li-itemize">for TeXinfo&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_texi.ml"><span class="c004">odoc_texi.ml</span></a>,
+</li><li class="li-itemize">for man pages&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_man.ml"><span class="c004">odoc_man.ml</span></a>,
+</li><li class="li-itemize">for graphviz (dot)&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/4.12/ocamldoc/odoc_dot.ml"><span class="c004">odoc_dot.ml</span></a>.
 </li></ul>
-<h3 class="subsection" id="ss:ocamldoc-handling-custom-tags"><a class="section-anchor" href="#ss:ocamldoc-handling-custom-tags" aria-hidden="true">﻿</a>15.3.2 Handling custom tags</h3>
+<h3 class="subsection" id="ss:ocamldoc-handling-custom-tags"><a class="section-anchor" href="#ss:ocamldoc-handling-custom-tags" aria-hidden="true">﻿</a><span class="number">3.2</span>Handling custom tags</h3>
 <p>Making a custom generator handle custom tags (see
 <a href="#sss%3Aocamldoc-custom-tags">15.2.5</a>) is very simple.</p><h4 class="subsubsection" id="sss:ocamldoc-html-generator"><a class="section-anchor" href="#sss:ocamldoc-html-generator" aria-hidden="true">﻿</a>For HTML</h4>
 <p>
@@ -852,7 +852,7 @@ prints a warning message on <span class="c004">stderr</span>.</p>
 <h4 class="subsubsection" id="sss:ocamldoc-other-generators"><a class="section-anchor" href="#sss:ocamldoc-other-generators" aria-hidden="true">﻿</a>For other generators</h4>
 <p>
 You can act the same way for other kinds of generators.</p>
-<h2 class="section" id="s:ocamldoc-adding-flags"><a class="section-anchor" href="#s:ocamldoc-adding-flags" aria-hidden="true">﻿</a>15.4 Adding command line options</h2>
+<h2 class="section" id="s:ocamldoc-adding-flags"><a class="section-anchor" href="#s:ocamldoc-adding-flags" aria-hidden="true">﻿</a><span class="number">4</span>Adding command line options</h2>
 <p>
 The command line analysis is performed after loading the module containing the
 documentation generator, thus allowing command line options to be added to the
@@ -860,14 +860,14 @@ list of existing ones. Adding an option can be done with the function
 </p><pre>        Odoc_args.add_option : string * Arg.spec * string -&gt; unit
 </pre><p>Note: Existing command line options can be redefined using
 this function.</p>
-<h3 class="subsection" id="ss:ocamldoc-compilation-and-usage"><a class="section-anchor" href="#ss:ocamldoc-compilation-and-usage" aria-hidden="true">﻿</a>15.4.1 Compilation and usage</h3>
+<h3 class="subsection" id="ss:ocamldoc-compilation-and-usage"><a class="section-anchor" href="#ss:ocamldoc-compilation-and-usage" aria-hidden="true">﻿</a><span class="number">4.1</span>Compilation and usage</h3>
 <h4 class="subsubsection" id="sss:ocamldoc-generator-class"><a class="section-anchor" href="#sss:ocamldoc-generator-class" aria-hidden="true">﻿</a>Defining a custom generator class in one file</h4>
 <p>
 Let <span class="c004">custom.ml</span> be the file defining a new generator class.
-Compilation of <span class="c004">custom.ml</span> can be performed by the following command ‍:
+Compilation of <span class="c004">custom.ml</span> can be performed by the following command&nbsp;:
 </p><pre>        ocamlc -I +ocamldoc -c custom.ml
 </pre><p>
-The file <span class="c004">custom.cmo</span> is created and can be used this way ‍:
+The file <span class="c004">custom.cmo</span> is created and can be used this way&nbsp;:
 </p><pre>        ocamldoc -g custom.cmo <span class="c010">other-options source-files</span>
 </pre><p>
 Options selecting a built-in generator to <span class="c004">ocamldoc</span>, such as
@@ -880,7 +880,7 @@ It is possible to define a generator class in several modules, which
 are defined in several files <span class="c010">file</span><sub>1</sub><span class="c004">.ml</span>[<span class="c004">i</span>],
 <span class="c010">file</span><sub>2</sub><span class="c004">.ml</span>[<span class="c004">i</span>], ..., <span class="c010">file</span><sub><span class="c010">n</span></sub><span class="c004">.ml</span>[<span class="c004">i</span>]. A <span class="c004">.cma</span>
 library file must be created, including all these files.</p><p>The following commands create the <span class="c004">custom.cma</span> file from files
-<span class="c010">file</span><sub>1</sub><span class="c004">.ml</span>[<span class="c004">i</span>], ..., <span class="c010">file</span><sub><span class="c010">n</span></sub><span class="c004">.ml</span>[<span class="c004">i</span>] ‍:
+<span class="c010">file</span><sub>1</sub><span class="c004">.ml</span>[<span class="c004">i</span>], ..., <span class="c010">file</span><sub><span class="c010">n</span></sub><span class="c004">.ml</span>[<span class="c004">i</span>]&nbsp;:
 </p><pre>ocamlc -I +ocamldoc -c <span class="c010">file</span><sub>1</sub>.ml[i]
 ocamlc -I +ocamldoc -c <span class="c010">file</span><sub>2</sub>.ml[i]
 ...
@@ -891,7 +891,7 @@ Then, the following command uses <span class="c004">custom.cma</span> as custom 
 </p><pre>        ocamldoc -g custom.cma <span class="c010">other-options source-files</span>
 </pre>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="depend.html">« Chapter ‍14 Dependency generator (ocamldep)</a><a class="next" href="debugger.html">Chapter ‍16 The debugger (ocamldebug) »</a></div>
+<div class="bottom-navigation"><a class="previous" href="depend.html">« Dependency generator (ocamldep)</a><a class="next" href="debugger.html">The debugger (ocamldebug) »</a></div>
 
 
 
