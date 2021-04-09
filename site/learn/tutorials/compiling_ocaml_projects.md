@@ -5,7 +5,7 @@
 # Compiling OCaml projects
 
 This tutorial explains how to compile your OCaml programs into executable form.
-It addresses:
+It addresses, in turn:
 
 1. The compilation commands `ocamlc` and `ocamlopt` provided with OCaml. It is
    useful to learn these commands to understand OCaml's compilation model.
@@ -14,9 +14,10 @@ It addresses:
    about where libraries have been installed on your particular system. 
 
 1. Automatic build systems for OCaml, such as `dune`, which release us from
-   details of compiler command invocation.
+   details of compiler command invocation, so we never touch `ocamlc`,
+   `ocamlopt`, or even `ocamlfind`.
 
-In our [up and running tutorial](up_and_running.html) we jumped straight using
+In our [up and running tutorial](up_and_running.html) we jumped straight to using
 the automated build system `dune`. Now we shall look under the hood.
 
 ## Compilation basics
@@ -43,15 +44,14 @@ can compile the program in one single step:
 ocamlopt -o program module1.ml module2.ml
 ```
 
-That's it. The compiler produces an executable named `program` or
-`program.exe`. The order of the source files matters, and that `module1.ml`
-cannot depend on things that are defined in `module2.ml`.
+The compiler produces an executable named `program` or `program.exe`. The order
+of the source files matters, and so `module1.ml` cannot depend upon things that
+are defined in `module2.ml`.
 
-Let's use a library other than the standard library. The OCaml
-distribution is shipped with the standard library, plus several other
-libraries that you can use as well. There is also a large number of
-third-party libraries, for a wide range of applications, from networking
-to graphics. You must understand the following:
+The OCaml distribution is shipped with the standard library, plus several other
+libraries. There are also a large number of third-party libraries, for a wide
+range of applications, from networking to graphics. You should understand the
+following:
 
 1. The OCaml compilers know where the standard library is and use it
    systematically (try: `ocamlc -where`). You don't have to worry much about
@@ -75,25 +75,23 @@ the extension of bytecode libraries. The file `unix.cmxa` is found because it
 is always installed at the same place as the standard library, and this
 directory is in the library search path.
 
-
-
 If your program depends upon third-party libraries, you must pass them on the
 command line. You must also indicate the libraries on which these libraries
 depend. You must also pass the -I option to `ocamlopt` for each directory where
 they may be found. This becomes complicated, and this information is
-installation-dependent. So we will use `ocamlfind` instead, which does these
+installation dependent. So we will use `ocamlfind` instead, which does these
 jobs for us.
 
 ###  Using the ocamlfind front-end
 
-Using `ocamlfind` is highly recommended for compiling any program or library
-that uses third-party OCaml libraries. Library authors themselves should make
-their library installable with `ocamlfind` as well. Let's assume that all the
-libraries you want to use have been installed properly with ocamlfind (you can
-install `ocamlfind` using the opam package manager, by typing `opam install
-ocamlfind`).
+Using `ocamlfind` is often used for compiling any program or library that uses
+third-party OCaml libraries. Library authors themselves make their library
+installable with `ocamlfind` as well. You can install `ocamlfind` using the
+opam package manager, by typing `opam install ocamlfind`.
 
-You can see which libraries are available in your system by typing:
+Let's assume that all the libraries you want to use have been installed
+properly with ocamlfind. You can see which libraries are available in your
+system by typing:
 
 ```shell
 ocamlfind list
@@ -113,7 +111,6 @@ ocamlfind ocamlopt -o program -linkpkg -package package module1.ml module2.ml
 Multiple packages can be specified using commas e.g `package1,package2`. This
 command will work regardless of the location of the libraries, as long as they
 are known by `ocamlfind`.
-
 
 Note that you can compile the files separately. This is useful if
 you want to recompile only some parts of the programs. Here are the
@@ -154,8 +151,9 @@ ocamlfind ocamlmktop -o toplevel unix.cma -package package module1.ml module2.ml
 
 The most popular modern system for building OCaml projects is
 [dune](https://dune.readthedocs.io/en/stable/) which may be installed with
-`opam install dune`. It includes support for packages. For example, the dune
-file for our project might look like this:
+`opam install dune`. It allows one to build OCaml projects from a simple
+description of their elements. For example, the dune file for our project might
+look like this:
 
 ```shell
 ;; our example project
