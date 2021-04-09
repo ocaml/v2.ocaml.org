@@ -1,7 +1,9 @@
 <!-- ((! set title OCaml Tutorials !)) ((! set learn !)) -->
 <!-- {{! input template/macros.mpp !}} -->
 
-# OCaml tutorials
+*Table of contents*
+
+## OCaml tutorials
 
 #### Your Help is Needed
 Some of these tutorials need updating and tutorials on new topics are
