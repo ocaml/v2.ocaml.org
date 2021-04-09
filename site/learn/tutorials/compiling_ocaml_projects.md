@@ -4,14 +4,20 @@
 
 # Compiling OCaml projects
 
-This tutorial describes the compilation commands provided with OCaml. It is
-useful to learn these commands to understand OCaml's compilation model. The
-core OCaml distribution provides the `ocamlc` and `ocamlopt` compilers. Using
-them directly is fine, but if you are using third party libraries, you should
-use the `ocamlfind` front-end, since it saves you from worrying about where
-libraries have been installed on your particular system.  However, eventually
-you will want to use a build tool that automatically calls these commands
-internally. Such tools are listed at the bottom of this page.
+This tutorial explains how to compile your OCaml programs into executable form.
+It addresses:
+
+1. The compilation commands `ocamlc` and `ocamlopt` provided with OCaml. It is
+   useful to learn these commands to understand OCaml's compilation model.
+
+1. The `ocamlfind` front-end to the compiler, which saves you from worrying
+   about where libraries have been installed on your particular system. 
+
+1. Automatic build systems for OCaml, such as `dune`, which release us from
+   details of compiler command invocation.
+
+In our [up and running tutorial](up_and_running.html) we jumped straight using
+the automated build system `dune`. Now we shall look under the hood.
 
 ## Compilation basics
 
@@ -37,10 +43,9 @@ can compile the program in one single step:
 ocamlopt -o program module1.ml module2.ml
 ```
 
-That's it. The compiler produced an executable named `program` or
-`program.exe`. Don't forget
-that the order of the source files matters, and that `module1.ml` cannot
-depend on things that are defined in `module2.ml`.
+That's it. The compiler produces an executable named `program` or
+`program.exe`. The order of the source files matters, and that `module1.ml`
+cannot depend on things that are defined in `module2.ml`.
 
 Let's use a library other than the standard library. The OCaml
 distribution is shipped with the standard library, plus several other
@@ -48,18 +53,18 @@ libraries that you can use as well. There is also a large number of
 third-party libraries, for a wide range of applications, from networking
 to graphics. You must understand the following:
 
-1. The OCaml compilers know where the standard library is and uses it
- systematically (try: `ocamlc -where`). You don't have to worry much
- about it.
+1. The OCaml compilers know where the standard library is and use it
+   systematically (try: `ocamlc -where`). You don't have to worry much about
+   it.
 
 1. The other libraries that ship with the OCaml distribution (str, unix, etc.)
- are installed in the same directory as the standard library.
+   are installed in the same directory as the standard library.
 
-1. Third-party libraries may be installed in various places, and even a
- given library can be installed in different places from one system
- to another.
+1. Third-party libraries may be installed in various places, and even a given
+   library can be installed in different places from one system to another.
 
-If your program uses the unix library, for example, the command line would be:
+If your program uses the unix library in addition to the standard library, for
+example, the command line would be:
 
 ```shell
 ocamlopt -o program unix.cmxa module1.ml module2.ml
@@ -70,16 +75,7 @@ the extension of bytecode libraries. The file `unix.cmxa` is found because it
 is always installed at the same place as the standard library, and this
 directory is in the library search path.
 
-We can use another tool `ocamlmktop` to make an interactive toplevel with
-libraries accessible:
 
-```shell
-ocamlmktop -o toplevel unix.cma module1.ml module2.ml
-```
-
-We run `toplevel` and get an OCaml toplevel with modules `Unix`, `Module1`, and
-`Module2` all available, allowing us to experiment interactively with our
-program.
 
 If your program depends upon third-party libraries, you must pass them on the
 command line. You must also indicate the libraries on which these libraries
@@ -118,11 +114,6 @@ Multiple packages can be specified using commas e.g `package1,package2`. This
 command will work regardless of the location of the libraries, as long as they
 are known by `ocamlfind`.
 
-Let's use `ocamlfind` with `ocamlmktop` to make our custom toplevel:
-
-```shell
-ocamlfind ocamlmktop -o toplevel unix.cma -package package module1.ml module2.ml
-```
 
 Note that you can compile the files separately. This is useful if
 you want to recompile only some parts of the programs. Here are the
@@ -140,12 +131,30 @@ and another to link the final output) is usually not performed manually but
 only when using an automated build system that will take care of recompiling
 only what it necessary.
 
+## Interlude: making a custom toplevel
+
+OCaml provides another tool `ocamlmktop` to make an interactive toplevel with
+libraries accessible. For example:
+
+```shell
+ocamlmktop -o toplevel unix.cma module1.ml module2.ml
+```
+
+We run `toplevel` and get an OCaml toplevel with modules `Unix`, `Module1`, and
+`Module2` all available, allowing us to experiment interactively with our
+program.
+
+OCamlfind also supports `ocamlmktop`:
+
+```shell
+ocamlfind ocamlmktop -o toplevel unix.cma -package package module1.ml module2.ml
+```
+
 ## Dune: an automated build system
 
 The most popular modern system for building OCaml projects is
-[dune](https://dune.readthedocs.io/en/latest/quick-start.html). The quick-start
-guide shows you how to control the building of OCaml projects from a simple
-description file. This includes support for packages. For example, the dune
+[dune](https://dune.readthedocs.io/en/stable/) which may be installed with
+`opam install dune`. It includes support for packages. For example, the dune
 file for our project might look like this:
 
 ```shell
@@ -154,6 +163,11 @@ file for our project might look like this:
   (name program)
   (libraries unix package))
 ```
+
+The dune [quick-start
+guide](https://dune.readthedocs.io/en/latest/quick-start.html) shows you how to
+write such description files for more complicated situations, and how to
+structure, build, and run dune projects. 
 
 ## Other build systems
 
