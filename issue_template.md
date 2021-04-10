@@ -1,6 +1,7 @@
 ## Context
 
 Provide an introduction to the issue and why it is relevant
+Also add a link to the page with the issue
 
 ## Process
 
