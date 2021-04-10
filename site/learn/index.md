@@ -33,7 +33,7 @@
 		   >Rosetta</a>.</p>
             </footer>
         </section>
-        <section class="span4 condensed">
+        <section class="learn-section condensed">
             <h1 class="ruled"><a href="tutorials/">Tutorials</a> &amp; <a href="faq.html">FAQ</a></h1>
             <ul>
                 <li><a href="tutorials/up_and_running.html">Up and Running</a></li>
@@ -49,7 +49,7 @@
                 <p><a href="tutorials/">See full list</a></p>
             </footer>
         </section>
-        <section class="span4 condensed">
+        <section class="learn-section condensed">
             <h1 class="ruled"><a href="books.html">Books</a></h1>
                 <a href="https://realworldocaml.org"><img style="float:
                 left; margin-right: 2px; margin-bottom: 10px"
@@ -68,7 +68,7 @@
         </section>
     </div>
     <div class="row">
-        <section class="span4 condensed">
+        <section class="learn-section condensed">
           <h1 class="ruled"><a href="/community/media.html">Online Courses, Slides &amp; Videos</a></h1>
 
 <iframe title="A massive open online course on OCaml" frameborder="0" width="380" height="220" src="//www.dailymotion.com/embed/video/x2ymo3x" style="max-width: 100%;" allowfullscreen></iframe><br /><a href="//www.dailymotion.com/video/x2ymo3x_fun-mooc-introduction-to-functional-programming-in-ocaml_school" target="_blank" rel="noopener"> A massive open online course (MOOC) entirely centered around OCaml</a> <i>is now available, and runs once a year!</i>
@@ -99,7 +99,7 @@
               <a href="/community/media.html">See more slides and videos</a></p>
           </footer>
         </section>
-        <section class="span4 condensed">
+        <section class="learn-section condensed" id="success-story">
           <h1 class="ruled"><a href="companies.html">Industrial
           Users</a></h1> <p><a href="http://janestreet.com"><img style="float:
           left; margin-right: 10px; margin-bottom: 10px"
