@@ -137,6 +137,6 @@
 		      style="border:0;" alt="" /></p></noscript>
     <!-- End Piwik Code -->
     S!}} <!-- ifndef staging -->
-
+    <script language='javascript' type='text/javascript' src="js/improved-news-feed.js"></script>
   </body>
 </html>

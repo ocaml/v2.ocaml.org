@@ -636,3 +636,19 @@ html.svg img.svg { display: inline; }
 html.svg img.png { display: none; }
 
 .brand img.svg { width: 131px;  height: 36px; }
+
+/* improved-news-feed.js */
+
+.news-feed li {
+  cursor: pointer;
+}
+
+.news-feed li:hover {
+  border-bottom: 1px solid #df533b;
+  color:#df533b;
+}
+
+.is-hovered {
+  color:#df533b;
+  text-decoration: underline;
+}

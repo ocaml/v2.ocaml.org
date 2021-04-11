@@ -108,19 +108,18 @@
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2020/">OCaml 2020</a></h1>
 			  <p>August 28, 2020</p>
-			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2020/">
+              <a title="OCaml Users and Developers Workshop"
+		     href="/meetings/ocaml/2020/">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
-			  </a>
+                </a>
 			</article></li>
 			<li class="announcement"><article>
 			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
-			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
-				   >Release of OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
+			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">Release of OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
 			   <p>February 24, 2021</p>
-			   <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
-			      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
+               <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
+		      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
@@ -129,7 +128,7 @@
 			  <h1><a title="OCaml Weekly News"
 			       href="/community/cwn/" >OCaml Weekly News</a></h1>
 			   <p>{{! cmd script/weekly_news --date !}}</p>
-			   <a title="OCaml Weekly News" href="/community/cwn/">
+               <a title="OCaml Weekly News" href="/community/cwn/">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
