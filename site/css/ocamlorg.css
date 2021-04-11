@@ -464,6 +464,8 @@ header + .core-running-header {
 /* Translations and breadcrumb */
 div.running-header {
   margin-top: -10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .breadcrumb {
   display: inline;
@@ -493,12 +495,6 @@ ul.translations:after { content: "]"; }
 
   *zoom: 1;
   text-shadow: 0 1px 0 #ffffff;
-}
-
-.translations > li:not(:last-child):after {
-  display: inline-block;
-  content: "\00a0|\00a0";
-  font-weight: 600;
 }
 
 /* Accessibility Helpers */

@@ -1,45 +1,42 @@
 <!--								-*-html-*- -->
 <div class="container">
   <div class="row">
+    ((! input template/running-header.mpp !))
     {{!x ifdef toc
-    <div class="span4"></div>
-    <div class="span8">
-      ((! input template/running-header.mpp !))
-    </div>
-    <div class="span4">
-      <nav id="nav-secondary">
-        <ul class="nav nav-list">
-          <li class="nav-header"><a href="#">{{! cmd script/translate ((! get filename !)) "Contents" !}}</a></li>
-          {{! cat ((! get toc !)) !}}
-        </ul>
-      </nav>
-    </div>
-    <div id="content-primary" class="span8">
-      {{! cat template/tryocaml.html !}}
-      <div id='main-contents' class="content">
-        {{! get contents !}}
+      <div class="span4">
+        <nav id="nav-secondary">
+          <ul class="nav nav-list">
+            <li class="nav-header"><a href="#">{{! cmd script/translate ((! get filename !)) "Contents" !}}</a></li>
+            {{! cat ((! get toc !)) !}}
+          </ul>
+        </nav>
       </div>
-    </div>
+      <div id="content-primary" class="span8">
+        {{! cat template/tryocaml.html !}}
+        <div id='main-contents' class="content">
+          {{! get contents !}}
+        </div>
+      </div>
     x!}}
+
     {{!x ifdef center
-    <div class="span1"></div>
-    <div id="content-primary" class="span10">
-      {{! cat template/tryocaml.html !}}
-      ((! input template/running-header.mpp !))
-      <div id='main-contents' class="content">
-        {{! get contents !}}
+      <div class="span1"></div>
+      <div id="content-primary" class="span10">
+        {{! cat template/tryocaml.html !}}
+        <div id='main-contents' class="content">
+          {{! get contents !}}
+        </div>
       </div>
-    </div>
     x!}}
+
     {{!x ifndef toc
     {{!y ifndef center
-    <div id="content-primary" class="span12">
-      {{! cat template/tryocaml.html !}}
-      ((! input template/running-header.mpp !))
-      <div id='main-contents' class="content">
-        {{! get contents !}}
+      <div id="content-primary" class="span12">
+        {{! cat template/tryocaml.html !}}
+        <div id='main-contents' class="content">
+          {{! get contents !}}
+        </div>
       </div>
-    </div>
     y!}}
     x!}}
   </div>
