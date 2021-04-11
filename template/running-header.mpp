@@ -1,18 +1,23 @@
 <!--								-*-html-*- -->
-<div class="running-header">
-  {{!z ifndef nobreadcrumb
-  <div class="row">
-    <ol class="breadcrumb">
-      {{! cmd script/breadcrumb "((! get filename !))" !}}
-    </ol>
+
+<div class="row">
+  <div class="running-header">
+    {{!z ifndef nobreadcrumb
+    <div class="span7">
+     <ol class="breadcrumb">
+        {{! cmd script/breadcrumb "((! get filename !))" !}}
+      </ol>
+    </div>
+    <div class="span5">
+      <ul class="translations">
+        {{! cmd script/translations "((! get filename !))" !}}
+      </ul>
+    </div>
+    z!}}
+    {{!z ifdef nobreadcrumb
     <ul class="translations">
       {{! cmd script/translations "((! get filename !))" !}}
     </ul>
+    z!}}
   </div>
-  z!}}
-  {{!z ifdef nobreadcrumb
-  <ul class="translations">
-    {{! cmd script/translations "((! get filename !))" !}}
-  </ul>
-  z!}}
 </div>
