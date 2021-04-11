@@ -5,25 +5,25 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍16 The debugger (ocamldebug)</title>
+<title>OCaml - The debugger (ocamldebug)</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li class="active"><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li class="active"><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec381">Chapter ‍16 The debugger (ocamldebug)</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍16 The debugger (ocamldebug)</a></li>
-<li><a href="debugger.html#s%3Adebugger-compilation">16.1 Compiling for debugging</a>
-</li><li><a href="debugger.html#s%3Adebugger-invocation">16.2 Invocation</a>
-</li><li><a href="debugger.html#s%3Adebugger-commands">16.3 Commands</a>
-</li><li><a href="debugger.html#s%3Adebugger-execution">16.4 Executing a program</a>
-</li><li><a href="debugger.html#s%3Abreakpoints">16.5 Breakpoints</a>
-</li><li><a href="debugger.html#s%3Adebugger-callstack">16.6 The call stack</a>
-</li><li><a href="debugger.html#s%3Adebugger-examining-values">16.7 Examining variable values</a>
-</li><li><a href="debugger.html#s%3Adebugger-control">16.8 Controlling the debugger</a>
-</li><li><a href="debugger.html#s%3Adebugger-misc-cmds">16.9 Miscellaneous commands</a>
-</li><li><a href="debugger.html#s%3Ainf-debugger">16.10 Running the debugger under Emacs</a>
+<h1 class="chapter" id="sec381"><span class="number">Chapter 16</span>The debugger (ocamldebug)</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The debugger (ocamldebug)</a></li>
+<li><a href="debugger.html#s%3Adebugger-compilation"><span class="number">1</span>Compiling for debugging</a>
+</li><li><a href="debugger.html#s%3Adebugger-invocation"><span class="number">2</span>Invocation</a>
+</li><li><a href="debugger.html#s%3Adebugger-commands"><span class="number">3</span>Commands</a>
+</li><li><a href="debugger.html#s%3Adebugger-execution"><span class="number">4</span>Executing a program</a>
+</li><li><a href="debugger.html#s%3Abreakpoints"><span class="number">5</span>Breakpoints</a>
+</li><li><a href="debugger.html#s%3Adebugger-callstack"><span class="number">6</span>The call stack</a>
+</li><li><a href="debugger.html#s%3Adebugger-examining-values"><span class="number">7</span>Examining variable values</a>
+</li><li><a href="debugger.html#s%3Adebugger-control"><span class="number">8</span>Controlling the debugger</a>
+</li><li><a href="debugger.html#s%3Adebugger-misc-cmds"><span class="number">9</span>Miscellaneous commands</a>
+</li><li><a href="debugger.html#s%3Ainf-debugger"><span class="number">10</span>Running the debugger under Emacs</a>
 </li></ul></nav></header>
 <p> <a id="c:debugger"></a>
 </p><p>This chapter describes the OCaml source-level replay debugger
@@ -32,7 +32,7 @@ BSD sockets.
 </blockquote><blockquote class="quote"><span class="c008">Windows:</span>  The debugger is available under the Cygwin port of
 OCaml, but not under the native Win32 ports.
 </blockquote>
-<h2 class="section" id="s:debugger-compilation"><a class="section-anchor" href="#s:debugger-compilation" aria-hidden="true"></a>16.1 Compiling for debugging</h2>
+<h2 class="section" id="s:debugger-compilation"><a class="section-anchor" href="#s:debugger-compilation" aria-hidden="true"></a><span class="number">1</span>Compiling for debugging</h2>
 <p>Before the debugger can be used, the program must be compiled and
 linked with the <span class="c004">-g</span> option: all <span class="c004">.cmo</span> and <span class="c004">.cma</span> files that are part
 of the program should have been created with <span class="c004">ocamlc -g</span>, and they
@@ -40,8 +40,8 @@ must be linked together with <span class="c004">ocamlc -g</span>.</p><p>Compilin
 programs: object files and bytecode executable files are bigger and
 take longer to produce, but the executable files run at
 exactly the same speed as if they had been compiled without <span class="c004">-g</span>.</p>
-<h2 class="section" id="s:debugger-invocation"><a class="section-anchor" href="#s:debugger-invocation" aria-hidden="true">﻿</a>16.2 Invocation</h2>
-<h3 class="subsection" id="ss:debugger-start"><a class="section-anchor" href="#ss:debugger-start" aria-hidden="true">﻿</a>16.2.1 Starting the debugger</h3>
+<h2 class="section" id="s:debugger-invocation"><a class="section-anchor" href="#s:debugger-invocation" aria-hidden="true">﻿</a><span class="number">2</span>Invocation</h2>
+<h3 class="subsection" id="ss:debugger-start"><a class="section-anchor" href="#ss:debugger-start" aria-hidden="true">﻿</a><span class="number">2.1</span>Starting the debugger</h3>
 <p>The OCaml debugger is invoked by running the program
 <span class="c004">ocamldebug</span> with the name of the bytecode executable file as first
 argument:
@@ -56,28 +56,28 @@ Set the maximum number of simultaneously live checkpoints to <span class="c010">
 Run the debugger program from the working directory <span class="c010">dir</span>,
 instead of the current directory. (See also the <span class="c004">cd</span> command.)</dd><dt class="dt-description"><span class="c007">-emacs</span></dt><dd class="dd-description">
 Tell the debugger it is executed under Emacs. (See
-section ‍<a href="#s%3Ainf-debugger">16.10</a> for information on how to run the
+section&nbsp;<a href="#s%3Ainf-debugger">16.10</a> for information on how to run the
 debugger under Emacs.)</dd><dt class="dt-description"><span class="c014"><span class="c004">-I </span><span class="c010">directory</span></span></dt><dd class="dd-description">
 Add <span class="c010">directory</span> to the list of directories searched for source
 files and compiled files. (See also the <span class="c004">directory</span> command.)</dd><dt class="dt-description"><span class="c014"><span class="c004">-s </span><span class="c010">socket</span></span></dt><dd class="dd-description">
 Use <span class="c010">socket</span> for communicating with the debugged program. See the
-description of the command <span class="c004">set socket</span> (section ‍<a href="#ss%3Adebugger-communication">16.8.8</a>)
+description of the command <span class="c004">set socket</span> (section&nbsp;<a href="#ss%3Adebugger-communication">16.8.8</a>)
 for the format of <span class="c010">socket</span>.</dd><dt class="dt-description"><span class="c007">-version</span></dt><dd class="dd-description">
 Print version string and exit.</dd><dt class="dt-description"><span class="c007">-vnum</span></dt><dd class="dd-description">
 Print short version number and exit.</dd><dt class="dt-description"><span class="c014"><span class="c004">-help</span> or <span class="c004">--help</span></span></dt><dd class="dd-description">
 Display a short usage summary and exit.
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-init-file"><a class="section-anchor" href="#ss:debugger-init-file" aria-hidden="true">﻿</a>16.2.2 Initialization file</h3>
+<h3 class="subsection" id="ss:debugger-init-file"><a class="section-anchor" href="#ss:debugger-init-file" aria-hidden="true">﻿</a><span class="number">2.2</span>Initialization file</h3>
 <p>On start-up, the debugger will read commands from an initialization
 file before giving control to the user. The default file is
 <span class="c004">.ocamldebug</span> in the current directory if it exists, otherwise
 <span class="c004">.ocamldebug</span> in the user’s home directory.</p>
-<h3 class="subsection" id="ss:debugger-exut"><a class="section-anchor" href="#ss:debugger-exut" aria-hidden="true">﻿</a>16.2.3 Exiting the debugger</h3>
+<h3 class="subsection" id="ss:debugger-exut"><a class="section-anchor" href="#ss:debugger-exut" aria-hidden="true">﻿</a><span class="number">2.3</span>Exiting the debugger</h3>
 <p>The command <span class="c004">quit</span> exits the debugger. You can also exit the debugger
 by typing an end-of-file character (usually <span class="c004">ctrl-D</span>).</p><p>Typing an interrupt character (usually <span class="c004">ctrl-C</span>) will not exit the
 debugger, but will terminate the action of any debugger command that is in
 progress and return to the debugger command level.</p>
-<h2 class="section" id="s:debugger-commands"><a class="section-anchor" href="#s:debugger-commands" aria-hidden="true">﻿</a>16.3 Commands</h2>
+<h2 class="section" id="s:debugger-commands"><a class="section-anchor" href="#s:debugger-commands" aria-hidden="true">﻿</a><span class="number">3</span>Commands</h2>
 <p>A debugger command is a single line of input. It starts with a command
 name, which is followed by arguments depending on this name. Examples:
 </p><pre>        run
@@ -91,7 +91,7 @@ used commands, ambiguous abbreviations are allowed. For instance, <span class="c
 stands for <span class="c004">run</span> even though there are others commands starting with
 <span class="c004">r</span>. You can test the validity of an abbreviation using the <span class="c004">help</span> command.</p><p>If the previous command has been successful, a blank line (typing just
 <span class="c004">RET</span>) will repeat it.</p>
-<h3 class="subsection" id="ss:debugger-help"><a class="section-anchor" href="#ss:debugger-help" aria-hidden="true">﻿</a>16.3.1 Getting help</h3>
+<h3 class="subsection" id="ss:debugger-help"><a class="section-anchor" href="#ss:debugger-help" aria-hidden="true">﻿</a><span class="number">3.1</span>Getting help</h3>
 <p>The OCaml debugger has a simple on-line help system, which gives
 a brief description of each command and variable.</p><dl class="description"><dt class="dt-description">
 <span class="c007">help</span></dt><dd class="dd-description">
@@ -101,7 +101,7 @@ Give help about the variable <span class="c010">variable</span>. The list of all
 variables can be obtained with <span class="c004">help set</span>.</dd><dt class="dt-description"><span class="c014"><span class="c004">help info </span><span class="c010">topic</span></span></dt><dd class="dd-description">
 Give help about <span class="c010">topic</span>. Use <span class="c004">help info</span> to get a list of known topics.
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-state"><a class="section-anchor" href="#ss:debugger-state" aria-hidden="true">﻿</a>16.3.2 Accessing the debugger state</h3>
+<h3 class="subsection" id="ss:debugger-state"><a class="section-anchor" href="#ss:debugger-state" aria-hidden="true">﻿</a><span class="number">3.2</span>Accessing the debugger state</h3>
 <dl class="description"><dt class="dt-description">
 <span class="c014"><span class="c004">set </span><span class="c010">variable value</span></span></dt><dd class="dd-description">
 Set the debugger variable <span class="c010">variable</span> to the value <span class="c010">value</span>.</dd><dt class="dt-description"><span class="c014"><span class="c004">show </span><span class="c010">variable</span></span></dt><dd class="dd-description">
@@ -109,8 +109,8 @@ Print the value of the debugger variable <span class="c010">variable</span>.</dd
 Give information about the given subject.
 For instance, <span class="c004">info breakpoints</span> will print the list of all breakpoints.
 </dd></dl>
-<h2 class="section" id="s:debugger-execution"><a class="section-anchor" href="#s:debugger-execution" aria-hidden="true">﻿</a>16.4 Executing a program</h2>
-<h3 class="subsection" id="ss:debugger-events"><a class="section-anchor" href="#ss:debugger-events" aria-hidden="true">﻿</a>16.4.1 Events</h3>
+<h2 class="section" id="s:debugger-execution"><a class="section-anchor" href="#s:debugger-execution" aria-hidden="true">﻿</a><span class="number">4</span>Executing a program</h2>
+<h3 class="subsection" id="ss:debugger-events"><a class="section-anchor" href="#ss:debugger-events" aria-hidden="true">﻿</a><span class="number">4.1</span>Events</h3>
 <p>Events are “interesting” locations in the source code, corresponding
 to the beginning or end of evaluation of “interesting”
 sub-expressions. Events are the unit of single-stepping (stepping goes
@@ -119,37 +119,37 @@ Also, breakpoints can only be set at events. Thus, events play the
 role of line numbers in debuggers for conventional languages.</p><p>During program execution, a counter is incremented at each event
 encountered. The value of this counter is referred as the <em>current
 time</em>. Thanks to reverse execution, it is possible to jump back and
-forth to any time of the execution.</p><p>Here is where the debugger events (written ǧ) are located in
+forth to any time of the execution.</p><p>Here is where the debugger events (written ⋈) are located in
 the source code:
 </p><ul class="itemize"><li class="li-itemize">
 Following a function application:
-<pre>(f arg)ǧ
+<pre>(f arg)⋈
 </pre>
 </li><li class="li-itemize">On entrance to a function:
-<pre>fun x y z -&gt; ǧ ...
+<pre>fun x y z -&gt; ⋈ ...
 </pre>
 </li><li class="li-itemize">On each case of a pattern-matching definition (function,
 <span class="c004">match</span>…<span class="c004">with</span> construct, <span class="c004">try</span>…<span class="c004">with</span> construct):
-<pre>function pat1 -&gt; ǧ expr1
+<pre>function pat1 -&gt; ⋈ expr1
        | ...
-       | patN -&gt; ǧ exprN
+       | patN -&gt; ⋈ exprN
 </pre>
 </li><li class="li-itemize">Between subexpressions of a sequence:
-<pre>expr1; ǧ expr2; ǧ ...; ǧ exprN
+<pre>expr1; ⋈ expr2; ⋈ ...; ⋈ exprN
 </pre>
 </li><li class="li-itemize">In the two branches of a conditional expression:
-<pre>if cond then ǧ expr1 else ǧ expr2
+<pre>if cond then ⋈ expr1 else ⋈ expr2
 </pre>
 </li><li class="li-itemize">At the beginning of each iteration of a loop:
-<pre>while cond do ǧ body done
-for i = a to b do ǧ body done
+<pre>while cond do ⋈ body done
+for i = a to b do ⋈ body done
 </pre>
 </li></ul><p>
 Exceptions: A function application followed by a function return is replaced
 by the compiler by a jump (tail-call optimization). In this case, no
 event is put after the function application.
 </p>
-<h3 class="subsection" id="ss:debugger-starting-program"><a class="section-anchor" href="#ss:debugger-starting-program" aria-hidden="true">﻿</a>16.4.2 Starting the debugged program</h3>
+<h3 class="subsection" id="ss:debugger-starting-program"><a class="section-anchor" href="#ss:debugger-starting-program" aria-hidden="true">﻿</a><span class="number">4.2</span>Starting the debugged program</h3>
 <p>The debugger starts executing the debugged program only when needed.
 This allows setting breakpoints or assigning debugger variables before
 execution starts. There are several ways to start execution:
@@ -160,7 +160,7 @@ terminates.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">goto </span><span class="c010">time</span></span></dt><dd class="dd-description"> Load the program and execute it until the
 given time. Useful when you already know approximately at what time
 the problem appears. Also useful to set breakpoints on function values
-that have not been computed at time 0 (see section ‍<a href="#s%3Abreakpoints">16.5</a>).
+that have not been computed at time 0 (see section&nbsp;<a href="#s%3Abreakpoints">16.5</a>).
 </dd></dl><p>The execution of a program is affected by certain information it
 receives when the debugger starts it, such as the command-line
 arguments to the program and its working directory. The debugger
@@ -168,7 +168,7 @@ provides commands to specify this information (<span class="c004">set arguments<
 These commands must be used before program execution starts. If you try
 to change the arguments or the working directory after starting your
 program, the debugger will kill the program (after asking for confirmation).</p>
-<h3 class="subsection" id="ss:debugger-running"><a class="section-anchor" href="#ss:debugger-running" aria-hidden="true">﻿</a>16.4.3 Running the program</h3>
+<h3 class="subsection" id="ss:debugger-running"><a class="section-anchor" href="#ss:debugger-running" aria-hidden="true">﻿</a><span class="number">4.3</span>Running the program</h3>
 <p>The following commands execute the program forward or backward,
 starting at the current time. The execution will stop either when
 specified by the command or when a breakpoint is encountered.</p><dl class="description"><dt class="dt-description">
@@ -192,7 +192,7 @@ it <span class="c010">count</span> times.
 </dd><dt class="dt-description"><span class="c007">start</span></dt><dd class="dd-description"> Run the program backward and stop at the first event
 before the current function invocation.
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-time-travel"><a class="section-anchor" href="#ss:debugger-time-travel" aria-hidden="true">﻿</a>16.4.4 Time travel</h3>
+<h3 class="subsection" id="ss:debugger-time-travel"><a class="section-anchor" href="#ss:debugger-time-travel" aria-hidden="true">﻿</a><span class="number">4.4</span>Time travel</h3>
 <p>You can jump directly to a given time, without stopping on
 breakpoints, using the <span class="c004">goto</span> command.</p><p>As you move through the program, the debugger maintains an history of
 the successive times you stop at. The <span class="c004">last</span> command can be used to
@@ -207,17 +207,17 @@ argument, do it <span class="c010">count</span> times.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">set history </span><span class="c010">size</span></span></dt><dd class="dd-description">
 Set the size of the execution history.
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-kill"><a class="section-anchor" href="#ss:debugger-kill" aria-hidden="true">﻿</a>16.4.5 Killing the program</h3>
+<h3 class="subsection" id="ss:debugger-kill"><a class="section-anchor" href="#ss:debugger-kill" aria-hidden="true">﻿</a><span class="number">4.5</span>Killing the program</h3>
 <dl class="description"><dt class="dt-description">
 <span class="c007">kill</span></dt><dd class="dd-description"> Kill the program being executed. This command is mainly
 useful if you wish to recompile the program without leaving the debugger.
 </dd></dl>
-<h2 class="section" id="s:breakpoints"><a class="section-anchor" href="#s:breakpoints" aria-hidden="true">﻿</a>16.5 Breakpoints</h2>
+<h2 class="section" id="s:breakpoints"><a class="section-anchor" href="#s:breakpoints" aria-hidden="true">﻿</a><span class="number">5</span>Breakpoints</h2>
 <p>A breakpoint causes the program to stop whenever a certain point in
 the program is reached. It can be set in several ways using the
 <span class="c004">break</span> command. Breakpoints are assigned numbers when set, for
 further reference. The most comfortable way to set breakpoints is
-through the Emacs interface (see section ‍<a href="#s%3Ainf-debugger">16.10</a>).</p><dl class="description"><dt class="dt-description">
+through the Emacs interface (see section&nbsp;<a href="#s%3Ainf-debugger">16.10</a>).</p><dl class="description"><dt class="dt-description">
 <span class="c007">break</span></dt><dd class="dd-description">
 Set a breakpoint at the current position in the program execution. The
 current position must be on an event (i.e., neither at the beginning,
@@ -244,7 +244,7 @@ the code fragment of the program loaded initially.</dd><dt class="dt-description
 Delete the specified breakpoints. Without argument, all breakpoints
 are deleted (after asking for confirmation).</dd><dt class="dt-description"><span class="c007">info breakpoints</span></dt><dd class="dd-description"> Print the list of all breakpoints.
 </dd></dl>
-<h2 class="section" id="s:debugger-callstack"><a class="section-anchor" href="#s:debugger-callstack" aria-hidden="true">﻿</a>16.6 The call stack</h2>
+<h2 class="section" id="s:debugger-callstack"><a class="section-anchor" href="#s:debugger-callstack" aria-hidden="true">﻿</a><span class="number">6</span>The call stack</h2>
 <p>Each time the program performs a function application, it saves the
 location of the application (the return address) in a block of data
 called a stack frame. The frame also contains the local variables of
@@ -273,7 +273,7 @@ Select and display the stack frame just “below” the selected frame,
 that is, the frame that was called by the selected frame. An argument
 says how many frames to go down.
 </dd></dl>
-<h2 class="section" id="s:debugger-examining-values"><a class="section-anchor" href="#s:debugger-examining-values" aria-hidden="true">﻿</a>16.7 Examining variable values</h2>
+<h2 class="section" id="s:debugger-examining-values"><a class="section-anchor" href="#s:debugger-examining-values" aria-hidden="true">﻿</a><span class="number">7</span>Examining variable values</h2>
 <p>The debugger can print the current value of simple expressions. The
 expressions can involve program variables: all the identifiers that
 are in scope at the selected program point can be accessed.</p><p>Expressions that can be printed are a subset of OCaml
@@ -328,8 +328,8 @@ Limit the printing of values to a maximal depth of <span class="c010">d</span>.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">set print_length</span> <span class="c010">l</span></span></dt><dd class="dd-description">
 Limit the printing of values to at most <span class="c010">l</span> nodes printed.
 </dd></dl>
-<h2 class="section" id="s:debugger-control"><a class="section-anchor" href="#s:debugger-control" aria-hidden="true">﻿</a>16.8 Controlling the debugger</h2>
-<h3 class="subsection" id="ss:debugger-name-and-arguments"><a class="section-anchor" href="#ss:debugger-name-and-arguments" aria-hidden="true">﻿</a>16.8.1 Setting the program name and arguments</h3>
+<h2 class="section" id="s:debugger-control"><a class="section-anchor" href="#s:debugger-control" aria-hidden="true">﻿</a><span class="number">8</span>Controlling the debugger</h2>
+<h3 class="subsection" id="ss:debugger-name-and-arguments"><a class="section-anchor" href="#ss:debugger-name-and-arguments" aria-hidden="true">﻿</a><span class="number">8.1</span>Setting the program name and arguments</h3>
 <dl class="description"><dt class="dt-description">
 <span class="c014"><span class="c004">set program</span> <span class="c010">file</span></span></dt><dd class="dd-description">
 Set the program name to <span class="c010">file</span>.
@@ -342,7 +342,7 @@ recommended to redirect their input from a file (using
 <span class="c004">set arguments &lt; input-file</span>), otherwise input to the program and
 input to the debugger are not properly separated, and inputs are not
 properly replayed when running the program backwards.</p>
-<h3 class="subsection" id="ss:debugger-loading"><a class="section-anchor" href="#ss:debugger-loading" aria-hidden="true">﻿</a>16.8.2 How programs are loaded</h3>
+<h3 class="subsection" id="ss:debugger-loading"><a class="section-anchor" href="#ss:debugger-loading" aria-hidden="true">﻿</a><span class="number">8.2</span>How programs are loaded</h3>
 <p>The <span class="c004">loadingmode</span> variable controls how the program is executed.</p><dl class="description"><dt class="dt-description">
 <span class="c007">set loadingmode direct</span></dt><dd class="dd-description">
 The program is run directly by the debugger. This is the default mode.
@@ -352,9 +352,9 @@ Rarely useful; moreover it prevents the debugging of programs compiled
 in “custom runtime” mode.
 </dd><dt class="dt-description"><span class="c007">set loadingmode manual</span></dt><dd class="dd-description">
 The user starts manually the program, when asked by the debugger.
-Allows remote debugging (see section ‍<a href="#ss%3Adebugger-communication">16.8.8</a>).
+Allows remote debugging (see section&nbsp;<a href="#ss%3Adebugger-communication">16.8.8</a>).
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-search-path"><a class="section-anchor" href="#ss:debugger-search-path" aria-hidden="true">﻿</a>16.8.3 Search path for files</h3>
+<h3 class="subsection" id="ss:debugger-search-path"><a class="section-anchor" href="#ss:debugger-search-path" aria-hidden="true">﻿</a><span class="number">8.3</span>Search path for files</h3>
 <p>The debugger searches for source files and compiled interface files in
 a list of directories, the search path. The search path initially
 contains the current directory <span class="c004">.</span> and the standard library directory.
@@ -368,7 +368,7 @@ searched only when looking for the source file of a module that has
 been packed into <span class="c010">modulename</span>.</dd><dt class="dt-description"><span class="c007">directory</span></dt><dd class="dd-description">
 Reset the search path. This requires confirmation.
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-working-dir"><a class="section-anchor" href="#ss:debugger-working-dir" aria-hidden="true">﻿</a>16.8.4 Working directory</h3>
+<h3 class="subsection" id="ss:debugger-working-dir"><a class="section-anchor" href="#ss:debugger-working-dir" aria-hidden="true">﻿</a><span class="number">8.4</span>Working directory</h3>
 <p>Each time a program is started in the debugger, it inherits its working
 directory from the current working directory of the debugger. This
 working directory is initially whatever it inherited from its parent
@@ -379,7 +379,7 @@ command-line option.</p><dl class="description"><dt class="dt-description">
 Set the working directory for <span class="c004">ocamldebug</span> to <span class="c010">directory</span>.</dd><dt class="dt-description"><span class="c007">pwd</span></dt><dd class="dd-description">
 Print the working directory for <span class="c004">ocamldebug</span>.
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-reverse-execution"><a class="section-anchor" href="#ss:debugger-reverse-execution" aria-hidden="true">﻿</a>16.8.5 Turning reverse execution on and off</h3>
+<h3 class="subsection" id="ss:debugger-reverse-execution"><a class="section-anchor" href="#ss:debugger-reverse-execution" aria-hidden="true">﻿</a><span class="number">8.5</span>Turning reverse execution on and off</h3>
 <p>In some cases, you may want to turn reverse execution off. This speeds
 up the program execution, and is also sometimes useful for interactive
 programs.</p><p>Normally, the debugger takes checkpoints of the program state from
@@ -390,7 +390,7 @@ checkpoints.</p><dl class="description"><dt class="dt-description">
 <span class="c014"><span class="c004">set checkpoints</span> <span class="c010">on/off</span></span></dt><dd class="dd-description">
 Select whether the debugger makes checkpoints or not.
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-fork"><a class="section-anchor" href="#ss:debugger-fork" aria-hidden="true">﻿</a>16.8.6 Behavior of the debugger with respect to <span class="c004">fork</span></h3>
+<h3 class="subsection" id="ss:debugger-fork"><a class="section-anchor" href="#ss:debugger-fork" aria-hidden="true">﻿</a><span class="number">8.6</span>Behavior of the debugger with respect to <span class="c004">fork</span></h3>
 <p>When the program issues a call to <span class="c004">fork</span>, the debugger can either
 follow the child or the parent. By default, the debugger follows the
 parent process. The variable <span class="c010">follow_fork_mode</span> controls this
@@ -399,7 +399,7 @@ behavior:</p><dl class="description"><dt class="dt-description">
 Select whether to follow the child or the parent in case of a call to
 <span class="c004">fork</span>.
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-stop-at-new-load"><a class="section-anchor" href="#ss:debugger-stop-at-new-load" aria-hidden="true">﻿</a>16.8.7 Stopping execution when new code is loaded</h3>
+<h3 class="subsection" id="ss:debugger-stop-at-new-load"><a class="section-anchor" href="#ss:debugger-stop-at-new-load" aria-hidden="true">﻿</a><span class="number">8.7</span>Stopping execution when new code is loaded</h3>
 <p>The debugger is compatible with the <span class="c004">Dynlink</span> module. However, when an
 external module is not yet loaded, it is impossible to set a
 breakpoint in its code. In order to facilitate setting breakpoints in
@@ -409,7 +409,7 @@ modules are loaded. This behavior can be disabled using the
 <span class="c014"><span class="c004">set break_on_load</span> <span class="c010">on/off</span></span></dt><dd class="dd-description">
 Select whether to stop after loading new code.
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-communication"><a class="section-anchor" href="#ss:debugger-communication" aria-hidden="true">﻿</a>16.8.8 Communication between the debugger and the program</h3>
+<h3 class="subsection" id="ss:debugger-communication"><a class="section-anchor" href="#ss:debugger-communication" aria-hidden="true">﻿</a><span class="number">8.8</span>Communication between the debugger and the program</h3>
 <p>The debugger communicate with the program being debugged through a
 Unix socket. You may need to change the socket name, for example if
 you need to run the debugger on a machine and your program on another.</p><dl class="description"><dt class="dt-description">
@@ -420,7 +420,7 @@ either a file name, or an Internet port specification
 address in dot notation, and <span class="c010">port</span> is a port number on the host.
 </dd></dl><p>On the debugged program side, the socket name is passed through the
 <span class="c004">CAML_DEBUG_SOCKET</span> environment variable.</p>
-<h3 class="subsection" id="ss:debugger-fine-tuning"><a class="section-anchor" href="#ss:debugger-fine-tuning" aria-hidden="true">﻿</a>16.8.9 Fine-tuning the debugger</h3>
+<h3 class="subsection" id="ss:debugger-fine-tuning"><a class="section-anchor" href="#ss:debugger-fine-tuning" aria-hidden="true">﻿</a><span class="number">8.9</span>Fine-tuning the debugger</h3>
 <p>Several variables enables to fine-tune the debugger. Reasonable
 defaults are provided, and you should normally not have to change them.</p><dl class="description"><dt class="dt-description">
 <span class="c014"><span class="c004">set processcount</span> <span class="c010">count</span></span></dt><dd class="dd-description">
@@ -447,8 +447,8 @@ Print a list of checkpoints.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">info events</span> [<span class="c010">module</span>]</span></dt><dd class="dd-description">
 Print the list of events in the given module (the current module, by default).
 </dd></dl>
-<h3 class="subsection" id="ss:debugger-printers"><a class="section-anchor" href="#ss:debugger-printers" aria-hidden="true">﻿</a>16.8.10 User-defined printers</h3>
-<p>Just as in the toplevel system (section ‍<a href="toplevel.html#s%3Atoplevel-directives">10.2</a>),
+<h3 class="subsection" id="ss:debugger-printers"><a class="section-anchor" href="#ss:debugger-printers" aria-hidden="true">﻿</a><span class="number">8.10</span>User-defined printers</h3>
+<p>Just as in the toplevel system (section&nbsp;<a href="toplevel.html#s%3Atoplevel-directives">10.2</a>),
 the user can register functions for printing values of certain types.
 For technical reasons, the debugger cannot call printing functions
 that reside in the program being debugged. The code for the printing
@@ -472,7 +472,7 @@ defined by the object files loaded using <span class="c004">load_printer</span>.
 reference the functions of the program being debugged.</p></dd><dt class="dt-description"><span class="c014"><span class="c004">remove_printer </span><span class="c010">printer-name</span></span></dt><dd class="dd-description">
 Remove the named function from the table of value printers.
 </dd></dl>
-<h2 class="section" id="s:debugger-misc-cmds"><a class="section-anchor" href="#s:debugger-misc-cmds" aria-hidden="true">﻿</a>16.9 Miscellaneous commands</h2>
+<h2 class="section" id="s:debugger-misc-cmds"><a class="section-anchor" href="#s:debugger-misc-cmds" aria-hidden="true">﻿</a><span class="number">9</span>Miscellaneous commands</h2>
 <dl class="description"><dt class="dt-description">
 <span class="c014"><span class="c004">list</span> [<span class="c010">module</span>] [<span class="c010">beginning</span>] [<span class="c010">end</span>]</span></dt><dd class="dd-description">
 List the source of module <span class="c010">module</span>, from line number
@@ -482,7 +482,7 @@ position.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">source</span> <span class="c010">filename</span></span></dt><dd class="dd-description">
 Read debugger commands from the script <span class="c010">filename</span>.
 </dd></dl>
-<h2 class="section" id="s:inf-debugger"><a class="section-anchor" href="#s:inf-debugger" aria-hidden="true">﻿</a>16.10 Running the debugger under Emacs</h2>
+<h2 class="section" id="s:inf-debugger"><a class="section-anchor" href="#s:inf-debugger" aria-hidden="true">﻿</a><span class="number">10</span>Running the debugger under Emacs</h2>
 <p>The most user-friendly way to use the debugger is to run it under Emacs with
 the OCaml mode available through MELPA and also at
 <a href="https://github.com/ocaml/caml-mode"><span class="c004">https://github.com/ocaml/caml-mode</span></a>.</p><p>The OCaml debugger is started under Emacs by the command <span class="c004">M-x camldebug</span>, with argument the name of the executable file
@@ -523,7 +523,7 @@ to point
 </dd><dt class="dt-description"><span class="c007">C-x C-a C-d</span></dt><dd class="dd-description"> (command <span class="c004">display</span>): display value of identifier at point
 </dd></dl>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="ocamldoc.html">« Chapter ‍15 The documentation generator (ocamldoc)</a><a class="next" href="profil.html">Chapter ‍17 Profiling (ocamlprof) »</a></div>
+<div class="bottom-navigation"><a class="previous" href="ocamldoc.html">« The documentation generator (ocamldoc)</a><a class="next" href="profil.html">Profiling (ocamlprof) »</a></div>
 
 
 

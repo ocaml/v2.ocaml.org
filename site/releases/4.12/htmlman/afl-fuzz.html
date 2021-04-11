@@ -5,21 +5,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍20 Fuzzing with afl-fuzz</title>
+<title>OCaml - Fuzzing with afl-fuzz</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li class="active"><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li class="active"><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec546">Chapter ‍20 Fuzzing with afl-fuzz</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍20 Fuzzing with afl-fuzz</a></li>
-<li><a href="afl-fuzz.html#s%3Aafl-overview">20.1 Overview</a>
-</li><li><a href="afl-fuzz.html#s%3Aafl-generate">20.2 Generating instrumentation</a>
-</li><li><a href="afl-fuzz.html#s%3Aafl-example">20.3 Example</a>
+<h1 class="chapter" id="sec546"><span class="number">Chapter 20</span>Fuzzing with afl-fuzz</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Fuzzing with afl-fuzz</a></li>
+<li><a href="afl-fuzz.html#s%3Aafl-overview"><span class="number">1</span>Overview</a>
+</li><li><a href="afl-fuzz.html#s%3Aafl-generate"><span class="number">2</span>Generating instrumentation</a>
+</li><li><a href="afl-fuzz.html#s%3Aafl-example"><span class="number">3</span>Example</a>
 </li></ul></nav></header>
 
-<h2 class="section" id="s:afl-overview"><a class="section-anchor" href="#s:afl-overview" aria-hidden="true"></a>20.1 Overview</h2>
+<h2 class="section" id="s:afl-overview"><a class="section-anchor" href="#s:afl-overview" aria-hidden="true"></a><span class="number">1</span>Overview</h2>
 <p>American fuzzy lop (“afl-fuzz”) is a <em>fuzzer</em>, a tool for
 testing software by providing randomly-generated inputs, searching for
 those inputs which cause the program to crash.</p><p>Unlike most fuzzers, afl-fuzz observes the internal behaviour of the
@@ -32,17 +32,17 @@ generate such instrumentation, allowing afl-fuzz to be used against
 programs written in OCaml.</p><p>For more information on afl-fuzz, see the website at
 <a href="http://lcamtuf.coredump.cx/afl/">http://lcamtuf.coredump.cx/afl/</a>.
 </p>
-<h2 class="section" id="s:afl-generate"><a class="section-anchor" href="#s:afl-generate" aria-hidden="true">﻿</a>20.2 Generating instrumentation</h2>
+<h2 class="section" id="s:afl-generate"><a class="section-anchor" href="#s:afl-generate" aria-hidden="true">﻿</a><span class="number">2</span>Generating instrumentation</h2>
 <p>The instrumentation that afl-fuzz requires is not generated by
 default, and must be explicitly enabled, by passing the <span class="c004">-afl-instrument</span> option to <span class="c004">ocamlopt</span>.</p><p>To fuzz a large system without modifying build tools, OCaml’s <span class="c004">configure</span> script also accepts the <span class="c004">afl-instrument</span> option. If
 OCaml is configured with <span class="c004">afl-instrument</span>, then all programs
 compiled by <span class="c004">ocamlopt</span> will be instrumented.</p>
-<h3 class="subsection" id="ss:afl-advanced"><a class="section-anchor" href="#ss:afl-advanced" aria-hidden="true">﻿</a>20.2.1 Advanced options</h3>
+<h3 class="subsection" id="ss:afl-advanced"><a class="section-anchor" href="#ss:afl-advanced" aria-hidden="true">﻿</a><span class="number">2.1</span>Advanced options</h3>
 <p>In rare cases, it is useful to control the amount of instrumentation
 generated. By passing the <span class="c004">-afl-inst-ratio N</span> argument to <span class="c004">ocamlopt</span> with <span class="c004">N</span> less than 100, instrumentation can be
 generated for only N% of branches. (See the afl-fuzz documentation on
 the parameter <span class="c004">AFL_INST_RATIO</span> for the precise effect of this).</p>
-<h2 class="section" id="s:afl-example"><a class="section-anchor" href="#s:afl-example" aria-hidden="true">﻿</a>20.3 Example</h2>
+<h2 class="section" id="s:afl-example"><a class="section-anchor" href="#s:afl-example" aria-hidden="true">﻿</a><span class="number">3</span>Example</h2>
 <p>As an example, we fuzz-test the following program, <span class="c004">readline.ml</span>:</p><pre>let _ =
   let s = read_line () in
   match Array.to_list (Array.init (String.length s) (String.get s)) with
@@ -61,7 +61,7 @@ afl-fuzz -i input -o output ./readline
 
 </p>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="flambda.html">« Chapter ‍19 Optimisation with Flambda</a><a class="next" href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime »</a></div>
+<div class="bottom-navigation"><a class="previous" href="flambda.html">« Optimisation with Flambda</a><a class="next" href="instrumented-runtime.html">Runtime tracing with the instrumented runtime »</a></div>
 
 
 

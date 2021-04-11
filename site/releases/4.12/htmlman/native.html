@@ -5,20 +5,20 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍12 Native-code compilation (ocamlopt)</title>
+<title>OCaml - Native-code compilation (ocamlopt)</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li class="active"><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li class="active"><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec310">Chapter ‍12 Native-code compilation (ocamlopt)</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍12 Native-code compilation (ocamlopt)</a></li>
-<li><a href="native.html#s%3Anative-overview">12.1 Overview of the compiler</a>
-</li><li><a href="native.html#s%3Anative-options">12.2 Options</a>
-</li><li><a href="native.html#s%3Anative-common-errors">12.3 Common errors</a>
-</li><li><a href="native.html#s%3Anative%3Arunning-executable">12.4 Running executables produced by ocamlopt</a>
-</li><li><a href="native.html#s%3Acompat-native-bytecode">12.5 Compatibility with the bytecode compiler</a>
+<h1 class="chapter" id="sec310"><span class="number">Chapter 12</span>Native-code compilation (ocamlopt)</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Native-code compilation (ocamlopt)</a></li>
+<li><a href="native.html#s%3Anative-overview"><span class="number">1</span>Overview of the compiler</a>
+</li><li><a href="native.html#s%3Anative-options"><span class="number">2</span>Options</a>
+</li><li><a href="native.html#s%3Anative-common-errors"><span class="number">3</span>Common errors</a>
+</li><li><a href="native.html#s%3Anative%3Arunning-executable"><span class="number">4</span>Running executables produced by ocamlopt</a>
+</li><li><a href="native.html#s%3Acompat-native-bytecode"><span class="number">5</span>Compatibility with the bytecode compiler</a>
 </li></ul></nav></header>
 <p> <a id="c:nativecomp"></a>
 </p><p>This chapter describes the OCaml high-performance
@@ -34,7 +34,7 @@ with bytecode object files produced by <span class="c004">ocamlc</span>: a progr
 compiled entirely with <span class="c004">ocamlopt</span> or entirely with <span class="c004">ocamlc</span>. Native-code
 object files produced by <span class="c004">ocamlopt</span> cannot be loaded in the toplevel
 system <span class="c004">ocaml</span>.</p>
-<h2 class="section" id="s:native-overview"><a class="section-anchor" href="#s:native-overview" aria-hidden="true"></a>12.1 Overview of the compiler</h2>
+<h2 class="section" id="s:native-overview"><a class="section-anchor" href="#s:native-overview" aria-hidden="true"></a><span class="number">1</span>Overview of the compiler</h2>
 <p>The <span class="c004">ocamlopt</span> command has a command-line interface very close to that
 of <span class="c004">ocamlc</span>. It accepts the same types of arguments, and processes them
 sequentially, after all options have been processed:</p><ul class="itemize"><li class="li-itemize">
@@ -55,7 +55,7 @@ should always be referred to under the name <span class="c010">x</span><span cla
 a <span class="c004">.o</span> or <span class="c004">.obj</span> file, <span class="c004">ocamlopt</span> assumes that it contains code compiled from C,
 not from OCaml).<p>The implementation is checked against the interface file <span class="c010">x</span><span class="c004">.mli</span>
 (if it exists) as described in the manual for <span class="c004">ocamlc</span>
-(chapter ‍<a href="comp.html#c%3Acamlc">9</a>).</p></li><li class="li-itemize">Arguments ending in <span class="c004">.cmx</span> are taken to be compiled object code. These
+(chapter&nbsp;<a href="comp.html#c%3Acamlc">9</a>).</p></li><li class="li-itemize">Arguments ending in <span class="c004">.cmx</span> are taken to be compiled object code. These
 files are linked together, along with the object files obtained
 by compiling <span class="c004">.ml</span> arguments (if any), and the OCaml standard
 library, to produce a native-code executable program. The order in
@@ -89,7 +89,7 @@ such as code layout, by transforming a <span class="c004">.cmir-linear</span> fi
 To continue compilation, the compiler can be invoked with (a possibly modified)
 <span class="c004">.cmir-linear</span> file as an argument, instead of the corresponding source file.
 </p></li></ul>
-<h2 class="section" id="s:native-options"><a class="section-anchor" href="#s:native-options" aria-hidden="true">﻿</a>12.2 Options</h2>
+<h2 class="section" id="s:native-options"><a class="section-anchor" href="#s:native-options" aria-hidden="true">﻿</a><span class="number">2</span>Options</h2>
 <p>The following command-line options are recognized by <span class="c004">ocamlopt</span>.
 The options <span class="c004">-pack</span>, <span class="c004">-a</span>, <span class="c004">-shared</span>, <span class="c004">-c</span> and <span class="c004">-output-obj</span> are mutually
 exclusive.</p><dl class="description"><dt class="dt-description">
@@ -189,7 +189,7 @@ names.
 Add debugging information while compiling and linking. This option is
 required in order to  produce stack backtraces when
 the program terminates on an uncaught exception (see
-section ‍<a href="runtime.html#s%3Aocamlrun-options">11.2</a>).
+section&nbsp;<a href="runtime.html#s%3Aocamlrun-options">11.2</a>).
 </dd><dt class="dt-description"><span class="c007">-i</span></dt><dd class="dd-description">
 Cause the compiler to print all defined names (with their inferred
 types or their definitions) when compiling an implementation (<span class="c004">.ml</span>
@@ -251,7 +251,7 @@ option is meant for use in the event that a pattern-match-heavy
 program leads to significant increases in compilation time.
 </dd><dt class="dt-description"><span class="c007">-no-alias-deps</span></dt><dd class="dd-description">
 Do not record dependencies for module aliases. See
-section ‍<a href="modulealias.html#s%3Amodule-alias">8.8</a> for more information.
+section&nbsp;<a href="modulealias.html#s%3Amodule-alias">8.8</a> for more information.
 </dd><dt class="dt-description"><span class="c007">-no-app-funct</span></dt><dd class="dd-description">
 Deactivates the applicative behaviour of functors. With this option,
 each functor application generates new types in its result and
@@ -328,8 +328,8 @@ were added at the top of each file.
 Cause the linker to produce a C object file instead of
 an executable file.
 This is useful to wrap OCaml code as a C library,
-callable from any C program. See chapter ‍<a href="intfc.html#c%3Aintf-c">18</a>,
-section ‍<a href="intfc.html#ss%3Ac-embedded-code">18.7.5</a>. The name of the output object file
+callable from any C program. See chapter&nbsp;<a href="intfc.html#c%3Aintf-c">18</a>,
+section&nbsp;<a href="intfc.html#ss%3Ac-embedded-code">18.7.5</a>. The name of the output object file
 must be set with the <span class="c004">-o</span> option.
 This option can also be used to produce a  compiled shared/dynamic library (<span class="c004">.so</span> extension, <span class="c004">.dll</span> under Windows).
 </dd><dt class="dt-description"><span class="c007">-pack</span></dt><dd class="dd-description">
@@ -362,7 +362,7 @@ errors, the intermediate file is deleted afterwards.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">-ppx</span> <span class="c010">command</span></span></dt><dd class="dd-description">
 After parsing, pipe the abstract syntax tree through the preprocessor
 <span class="c010">command</span>. The module <span class="c004">Ast_mapper</span>, described in
-chapter ‍<a href="parsing.html#c%3Aparsinglib">24</a>:
+chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">24</a>:
 <a href="../api/compilerlibref/Ast_mapper.html"> <span class="c004">Ast_mapper</span> </a>
 ,
 implements the external interface of a preprocessor.</dd><dt class="dt-description"><span class="c007">-principal</span></dt><dd class="dd-description">
@@ -396,7 +396,7 @@ The currently supported passes and the corresponding file extensions are:
 <span class="c004">scheduling</span> (<span class="c004">.cmir-linear</span>).<p>This experimental feature enables external tools to inspect and manipulate
 compiler’s intermediate representation of the program
 using <span class="c004">compiler-libs</span> library (see
-chapter ‍<a href="parsing.html#c%3Aparsinglib">24</a> and
+chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">24</a> and
 <a href="../api/compilerlibref/Compiler_libs.html"> <span class="c004">Compiler_libs</span> </a>
 ).
 </p></dd><dt class="dt-description"><span class="c007">-S</span></dt><dd class="dd-description">
@@ -664,10 +664,10 @@ Alternative executable to use on native
 Windows for <span class="c004">flexlink</span> instead of the
 configured value. Primarily used for bootstrapping.
 </dd></dl>
-<h2 class="section" id="s:native-common-errors"><a class="section-anchor" href="#s:native-common-errors" aria-hidden="true">﻿</a>12.3 Common errors</h2>
+<h2 class="section" id="s:native-common-errors"><a class="section-anchor" href="#s:native-common-errors" aria-hidden="true">﻿</a><span class="number">3</span>Common errors</h2>
 <p>The error messages are almost identical to those of <span class="c004">ocamlc</span>.
-See section ‍<a href="comp.html#s%3Acomp-errors">9.4</a>.</p>
-<h2 class="section" id="s:native:running-executable"><a class="section-anchor" href="#s:native:running-executable" aria-hidden="true">﻿</a>12.4 Running executables produced by ocamlopt</h2>
+See section&nbsp;<a href="comp.html#s%3Acomp-errors">9.4</a>.</p>
+<h2 class="section" id="s:native:running-executable"><a class="section-anchor" href="#s:native:running-executable" aria-hidden="true">﻿</a><span class="number">4</span>Running executables produced by ocamlopt</h2>
 <p>Executables generated by <span class="c004">ocamlopt</span> are native, stand-alone executable
 files that can be invoked directly. They do
 not depend on the <span class="c004">ocamlrun</span> bytecode runtime system nor on
@@ -675,14 +675,14 @@ dynamically-loaded C/OCaml stub libraries.</p><p>During execution of an <span cl
 the following environment variables are also consulted:
 </p><dl class="description"><dt class="dt-description">
 <span class="c007">OCAMLRUNPARAM</span></dt><dd class="dd-description"> Same usage as in <span class="c004">ocamlrun</span>
-(see section ‍<a href="runtime.html#s%3Aocamlrun-options">11.2</a>), except that option <span class="c004">l</span>
+(see section&nbsp;<a href="runtime.html#s%3Aocamlrun-options">11.2</a>), except that option <span class="c004">l</span>
 is ignored (the operating system’s stack size limit
 is used instead).
 </dd><dt class="dt-description"><span class="c007">CAMLRUNPARAM</span></dt><dd class="dd-description"> If <span class="c004">OCAMLRUNPARAM</span> is not found in the
 environment, then <span class="c004">CAMLRUNPARAM</span> will be used instead. If
 <span class="c004">CAMLRUNPARAM</span> is not found, then the default values will be used.
 </dd></dl>
-<h2 class="section" id="s:compat-native-bytecode"><a class="section-anchor" href="#s:compat-native-bytecode" aria-hidden="true">﻿</a>12.5 Compatibility with the bytecode compiler</h2>
+<h2 class="section" id="s:compat-native-bytecode"><a class="section-anchor" href="#s:compat-native-bytecode" aria-hidden="true">﻿</a><span class="number">5</span>Compatibility with the bytecode compiler</h2>
 <p>This section lists the known incompatibilities between the bytecode
 compiler and the native-code compiler. Except on those points, the two
 compilers should generate code that behave identically.</p><ul class="itemize"><li class="li-itemize">Signals are detected only when the program performs an
@@ -718,7 +718,7 @@ a best effort to trap stack overflows and raise the <span class="c004">Stack_ove
 exception, but sometimes it fails and a “segmentation fault” or
 another system fault occurs instead.</li></ul>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="runtime.html">« Chapter ‍11 The runtime system (ocamlrun)</a><a class="next" href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc) »</a></div>
+<div class="bottom-navigation"><a class="previous" href="runtime.html">« The runtime system (ocamlrun)</a><a class="next" href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc) »</a></div>
 
 
 

@@ -5,34 +5,34 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍19 Optimisation with Flambda</title>
+<title>OCaml - Optimisation with Flambda</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li class="active"><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li class="active"><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec495">Chapter ‍19 Optimisation with Flambda</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍19 Optimisation with Flambda</a></li>
-<li><a href="flambda.html#s%3Aflambda-overview">19.1 Overview</a>
-</li><li><a href="flambda.html#s%3Aflambda-cli">19.2 Command-line flags</a>
-</li><li><a href="flambda.html#s%3Aflambda-inlining">19.3 Inlining</a>
-</li><li><a href="flambda.html#s%3Aflambda-specialisation">19.4 Specialisation</a>
-</li><li><a href="flambda.html#s%3Aflambda-defaults">19.5 Default settings of parameters</a>
-</li><li><a href="flambda.html#s%3Aflambda-manual-control">19.6 Manual control of inlining and specialisation</a>
-</li><li><a href="flambda.html#s%3Aflambda-simplification">19.7 Simplification</a>
-</li><li><a href="flambda.html#s%3Aflambda-other-transfs">19.8 Other code motion transformations</a>
-</li><li><a href="flambda.html#s%3Aflambda-unboxing">19.9 Unboxing transformations</a>
-</li><li><a href="flambda.html#s%3Aflambda-remove-unused">19.10 Removal of unused code and values</a>
-</li><li><a href="flambda.html#s%3Aflambda-other">19.11 Other code transformations</a>
-</li><li><a href="flambda.html#s%3Aflambda-effects">19.12 Treatment of effects</a>
-</li><li><a href="flambda.html#s%3Aflambda-static-modules">19.13 Compilation of statically-allocated modules</a>
-</li><li><a href="flambda.html#s%3Aflambda-inhibition">19.14 Inhibition of optimisation</a>
-</li><li><a href="flambda.html#s%3Aflambda-unsafe">19.15 Use of unsafe operations</a>
-</li><li><a href="flambda.html#s%3Aflambda-glossary">19.16 Glossary</a>
+<h1 class="chapter" id="sec495"><span class="number">Chapter 19</span>Optimisation with Flambda</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Optimisation with Flambda</a></li>
+<li><a href="flambda.html#s%3Aflambda-overview"><span class="number">1</span>Overview</a>
+</li><li><a href="flambda.html#s%3Aflambda-cli"><span class="number">2</span>Command-line flags</a>
+</li><li><a href="flambda.html#s%3Aflambda-inlining"><span class="number">3</span>Inlining</a>
+</li><li><a href="flambda.html#s%3Aflambda-specialisation"><span class="number">4</span>Specialisation</a>
+</li><li><a href="flambda.html#s%3Aflambda-defaults"><span class="number">5</span>Default settings of parameters</a>
+</li><li><a href="flambda.html#s%3Aflambda-manual-control"><span class="number">6</span>Manual control of inlining and specialisation</a>
+</li><li><a href="flambda.html#s%3Aflambda-simplification"><span class="number">7</span>Simplification</a>
+</li><li><a href="flambda.html#s%3Aflambda-other-transfs"><span class="number">8</span>Other code motion transformations</a>
+</li><li><a href="flambda.html#s%3Aflambda-unboxing"><span class="number">9</span>Unboxing transformations</a>
+</li><li><a href="flambda.html#s%3Aflambda-remove-unused"><span class="number">10</span>Removal of unused code and values</a>
+</li><li><a href="flambda.html#s%3Aflambda-other"><span class="number">11</span>Other code transformations</a>
+</li><li><a href="flambda.html#s%3Aflambda-effects"><span class="number">12</span>Treatment of effects</a>
+</li><li><a href="flambda.html#s%3Aflambda-static-modules"><span class="number">13</span>Compilation of statically-allocated modules</a>
+</li><li><a href="flambda.html#s%3Aflambda-inhibition"><span class="number">14</span>Inhibition of optimisation</a>
+</li><li><a href="flambda.html#s%3Aflambda-unsafe"><span class="number">15</span>Use of unsafe operations</a>
+</li><li><a href="flambda.html#s%3Aflambda-glossary"><span class="number">16</span>Glossary</a>
 </li></ul></nav></header>
 
-<h2 class="section" id="s:flambda-overview"><a class="section-anchor" href="#s:flambda-overview" aria-hidden="true"></a>19.1 Overview</h2>
+<h2 class="section" id="s:flambda-overview"><a class="section-anchor" href="#s:flambda-overview" aria-hidden="true"></a><span class="number">1</span>Overview</h2>
 <p><em>Flambda</em> is the term used to describe a series of optimisation passes
 provided by the native code compilers as of OCaml 4.03.</p><p>Flambda aims to make it easier to write idiomatic OCaml code without
 incurring performance penalties.</p><p>To use the Flambda optimisers it is necessary to pass the <span class="c004">-flambda</span>
@@ -56,7 +56,7 @@ behaviour of code using unsafe operations (see section <a href="#s%3Aflambda-uns
 does it take hints for optimisation from any assertions written by the
 user in the code.</p><p>Consult the <em>Glossary</em> at the end of this chapter for definitions of
 technical terms used below.</p>
-<h2 class="section" id="s:flambda-cli"><a class="section-anchor" href="#s:flambda-cli" aria-hidden="true">﻿</a>19.2 Command-line flags</h2>
+<h2 class="section" id="s:flambda-cli"><a class="section-anchor" href="#s:flambda-cli" aria-hidden="true">﻿</a><span class="number">2</span>Command-line flags</h2>
 <p>The Flambda optimisers provide a variety of command-line flags that may
 be used to control their behaviour. Detailed descriptions of each flag
 are given in the referenced sections. Those sections also describe any
@@ -157,7 +157,7 @@ in effect.
 </li><li class="li-itemize">Some of the Flambda flags may be subject to change in future
 releases.
 </li></ul>
-<h3 class="subsection" id="ss:flambda-rounds"><a class="section-anchor" href="#ss:flambda-rounds" aria-hidden="true">﻿</a>19.2.1 Specification of optimisation parameters by round</h3>
+<h3 class="subsection" id="ss:flambda-rounds"><a class="section-anchor" href="#ss:flambda-rounds" aria-hidden="true">﻿</a><span class="number">2.1</span>Specification of optimisation parameters by round</h3>
 <p>Flambda operates in <em>rounds</em>: one round consists of a certain sequence
 of transformations that may then be repeated in order to achieve more
 satisfactory results. The number of rounds can be set manually using the
@@ -176,7 +176,7 @@ values which are to be used only for those rounds.
 other flags, meaning that certain parameters may be overridden without
 having to specify every parameter usually invoked by the given optimisation
 level.</p>
-<h2 class="section" id="s:flambda-inlining"><a class="section-anchor" href="#s:flambda-inlining" aria-hidden="true">﻿</a>19.3 Inlining</h2>
+<h2 class="section" id="s:flambda-inlining"><a class="section-anchor" href="#s:flambda-inlining" aria-hidden="true">﻿</a><span class="number">3</span>Inlining</h2>
 <p><em>Inlining</em> refers to the copying of the code of a function to a
 place where the function is called.
 The code of the function will be surrounded by bindings of its parameters
@@ -231,7 +231,7 @@ known. Similarly,
 it becomes more straightforward to control which variables end up
 in which closures, helping to avoid closure bloat.
 </li></ul>
-<h3 class="subsection" id="ss:flambda-classic"><a class="section-anchor" href="#ss:flambda-classic" aria-hidden="true">﻿</a>19.3.1 Classic inlining heuristic</h3>
+<h3 class="subsection" id="ss:flambda-classic"><a class="section-anchor" href="#ss:flambda-classic" aria-hidden="true">﻿</a><span class="number">3.1</span>Classic inlining heuristic</h3>
 <p>In <span class="c004">-Oclassic</span> mode the behaviour of the Flambda inliner
 mimics previous versions
 of the compiler. (Code may still be subject to further optimisations not
@@ -269,7 +269,7 @@ the inlining decision is made at the <span class="c014">call site</span>; and
 below).
 </li></ul><p>
 The Flambda mode is described in the next section.</p>
-<h3 class="subsection" id="ss:flambda-inlining-overview"><a class="section-anchor" href="#ss:flambda-inlining-overview" aria-hidden="true">﻿</a>19.3.2 Overview of “Flambda” inlining heuristics</h3>
+<h3 class="subsection" id="ss:flambda-inlining-overview"><a class="section-anchor" href="#ss:flambda-inlining-overview" aria-hidden="true">﻿</a><span class="number">3.2</span>Overview of “Flambda” inlining heuristics</h3>
 <p>The Flambda inlining heuristics, used whenever the compiler is configured
 for Flambda and <span class="c004">-Oclassic</span> was not specified, make inlining decisions
 at call sites. This helps in situations where the context is important.
@@ -316,7 +316,7 @@ not unrolled to excess. (Unrolling is only enabled
 if <span class="c004">-O3</span> optimisation level is selected and/or the
 <span class="c004">-inline-max-unroll</span>
 flag is passed with an argument greater than zero.)</p>
-<h3 class="subsection" id="ss:flambda-by-constructs"><a class="section-anchor" href="#ss:flambda-by-constructs" aria-hidden="true">﻿</a>19.3.3 Handling of specific language constructs</h3>
+<h3 class="subsection" id="ss:flambda-by-constructs"><a class="section-anchor" href="#ss:flambda-by-constructs" aria-hidden="true">﻿</a><span class="number">3.3</span>Handling of specific language constructs</h3>
 <h4 class="subsubsection" id="sss:flambda-functors"><a class="section-anchor" href="#sss:flambda-functors" aria-hidden="true">﻿</a>Functors</h4>
 <p>There is nothing particular about functors that inhibits inlining compared
 to normal functions. To the inliner, these both look the same, except
@@ -332,7 +332,7 @@ The presence of the first-class module record that wraps the set of functions
 in the module does not per se inhibit inlining.</p>
 <h4 class="subsubsection" id="sss:flambda-objects"><a class="section-anchor" href="#sss:flambda-objects" aria-hidden="true">﻿</a>Objects</h4>
 <p>Method calls to objects are not at present inlined by Flambda.</p>
-<h3 class="subsection" id="ss:flambda-inlining-reports"><a class="section-anchor" href="#ss:flambda-inlining-reports" aria-hidden="true">﻿</a>19.3.4 Inlining reports</h3>
+<h3 class="subsection" id="ss:flambda-inlining-reports"><a class="section-anchor" href="#ss:flambda-inlining-reports" aria-hidden="true">﻿</a><span class="number">3.4</span>Inlining reports</h3>
 <p>If the <span class="c004">-inlining-report</span> option is provided to the compiler then a file
 will be emitted corresponding to each round of optimisation. For the
 OCaml source file <em>basename</em><span class="c004">.ml</span> the files
@@ -340,7 +340,7 @@ are named <em>basename</em><span class="c004">.</span><em>round</em><span class=
 with <em>round</em> a
 zero-based integer. Inside the files, which are formatted as “org mode”,
 will be found English prose describing the decisions that the inliner took.</p>
-<h3 class="subsection" id="ss:flambda-assessment-inlining"><a class="section-anchor" href="#ss:flambda-assessment-inlining" aria-hidden="true">﻿</a>19.3.5 Assessment of inlining benefit</h3>
+<h3 class="subsection" id="ss:flambda-assessment-inlining"><a class="section-anchor" href="#ss:flambda-assessment-inlining" aria-hidden="true">﻿</a><span class="number">3.5</span>Assessment of inlining benefit</h3>
 <p>Inlining typically
 results in an increase in code size, which if left unchecked, may not only
 lead to grossly large executables and excessive compilation times but also
@@ -393,7 +393,7 @@ inlined.</p><p>Applications of functors at toplevel will be given
 an additional benefit (which may be controlled by the
 <span class="c004">-inline-lifting-benefit</span> flag) to bias inlining in such situations
 towards keeping the inlined version.</p>
-<h3 class="subsection" id="ss:flambda-speculation"><a class="section-anchor" href="#ss:flambda-speculation" aria-hidden="true">﻿</a>19.3.6 Control of speculation</h3>
+<h3 class="subsection" id="ss:flambda-speculation"><a class="section-anchor" href="#ss:flambda-speculation" aria-hidden="true">﻿</a><span class="number">3.6</span>Control of speculation</h3>
 <p>As described above, there are three parameters that restrict the search
 for inlining opportunities during speculation:
 </p><ul class="itemize"><li class="li-itemize">
@@ -430,7 +430,7 @@ group of functions. Each time an inlining of such a call is performed
 the depth is incremented by one when examining the resulting body. If the
 depth reaches the limit set by <span class="c004">-inline-max-unroll</span> then speculation
 stops.</p>
-<h2 class="section" id="s:flambda-specialisation"><a class="section-anchor" href="#s:flambda-specialisation" aria-hidden="true">﻿</a>19.4 Specialisation</h2>
+<h2 class="section" id="s:flambda-specialisation"><a class="section-anchor" href="#s:flambda-specialisation" aria-hidden="true">﻿</a><span class="number">4</span>Specialisation</h2>
 <p>The inliner may discover a call site to a recursive function where
 something is known about the arguments: for example, they may be equal to
 some other variables currently in scope. In this situation it may be
@@ -526,14 +526,14 @@ detect invariance in cases such as the following.
     f h;
     iter_swap f g t
 </pre>
-<h3 class="subsection" id="ss:flambda-assessment-specialisation"><a class="section-anchor" href="#ss:flambda-assessment-specialisation" aria-hidden="true">﻿</a>19.4.1 Assessment of specialisation benefit</h3>
+<h3 class="subsection" id="ss:flambda-assessment-specialisation"><a class="section-anchor" href="#ss:flambda-assessment-specialisation" aria-hidden="true">﻿</a><span class="number">4.1</span>Assessment of specialisation benefit</h3>
 <p>The benefit of specialisation is assessed in a similar way as for inlining.
 Specialised argument information may mean that the body of the function
 being specialised can be simplified: the removed operations are accumulated
 into a benefit. This, together with the size of the duplicated (specialised)
 function declaration, is then assessed against the size of the call to the
 original function.</p>
-<h2 class="section" id="s:flambda-defaults"><a class="section-anchor" href="#s:flambda-defaults" aria-hidden="true">﻿</a>19.5 Default settings of parameters</h2>
+<h2 class="section" id="s:flambda-defaults"><a class="section-anchor" href="#s:flambda-defaults" aria-hidden="true">﻿</a><span class="number">5</span>Default settings of parameters</h2>
 <p>The default settings (when not using <span class="c004">-Oclassic</span>) are for one
 round of optimisation using the following parameters.
 </p><div class="tableau">
@@ -552,7 +552,7 @@ round of optimisation using the following parameters.
 <tr><td class="c017"><span class="c004">-inline-max-unroll</span></td><td class="c017">0 </td></tr>
 <tr><td class="c017"><span class="c004">-unbox-closures-factor</span></td><td class="c017">10 </td></tr>
 </tbody></table></div></div>
-<h3 class="subsection" id="ss:flambda-o2"><a class="section-anchor" href="#ss:flambda-o2" aria-hidden="true">﻿</a>19.5.1 Settings at -O2 optimisation level</h3>
+<h3 class="subsection" id="ss:flambda-o2"><a class="section-anchor" href="#ss:flambda-o2" aria-hidden="true">﻿</a><span class="number">5.1</span>Settings at -O2 optimisation level</h3>
 <p>When <span class="c004">-O2</span> is specified two rounds of optimisation are performed.
 The first round uses the default parameters (see above). The second uses
 the following parameters.</p><div class="tableau">
@@ -571,7 +571,7 @@ the following parameters.</p><div class="tableau">
 <tr><td class="c017"><span class="c004">-inline-max-unroll</span></td><td class="c017">Same as default </td></tr>
 <tr><td class="c017"><span class="c004">-unbox-closures-factor</span></td><td class="c017">Same as default </td></tr>
 </tbody></table></div></div>
-<h3 class="subsection" id="ss:flambda-o3"><a class="section-anchor" href="#ss:flambda-o3" aria-hidden="true">﻿</a>19.5.2 Settings at -O3 optimisation level</h3>
+<h3 class="subsection" id="ss:flambda-o3"><a class="section-anchor" href="#ss:flambda-o3" aria-hidden="true">﻿</a><span class="number">5.2</span>Settings at -O3 optimisation level</h3>
 <p>When <span class="c004">-O3</span> is specified three rounds of optimisation are performed.
 The first two rounds are as for <span class="c004">-O2</span>. The third round uses
 the following parameters.</p><div class="tableau">
@@ -590,7 +590,7 @@ the following parameters.</p><div class="tableau">
 <tr><td class="c017"><span class="c004">-inline-max-unroll</span></td><td class="c017">1 </td></tr>
 <tr><td class="c017"><span class="c004">-unbox-closures-factor</span></td><td class="c017">Same as default </td></tr>
 </tbody></table></div></div>
-<h2 class="section" id="s:flambda-manual-control"><a class="section-anchor" href="#s:flambda-manual-control" aria-hidden="true">﻿</a>19.6 Manual control of inlining and specialisation</h2>
+<h2 class="section" id="s:flambda-manual-control"><a class="section-anchor" href="#s:flambda-manual-control" aria-hidden="true">﻿</a><span class="number">6</span>Manual control of inlining and specialisation</h2>
 <p>Should the inliner prove recalcitrant and refuse to inline a particular
 function, or if the observed inlining decisions are not to the programmer’s
 satisfaction for some other reason, inlining behaviour can be dictated by the
@@ -661,7 +661,7 @@ end [@@inline never]
 
 module X = F [@inlined] (struct type t = int end)
 </pre>
-<h2 class="section" id="s:flambda-simplification"><a class="section-anchor" href="#s:flambda-simplification" aria-hidden="true">﻿</a>19.7 Simplification</h2>
+<h2 class="section" id="s:flambda-simplification"><a class="section-anchor" href="#s:flambda-simplification" aria-hidden="true">﻿</a><span class="number">7</span>Simplification</h2>
 <p>Simplification, which is run in conjunction with inlining,
 propagates information (known as <em>approximations</em>) about which
 variables hold what values at runtime. Certain relationships between
@@ -681,8 +681,8 @@ the transformation of such call sites into direct call sites, which makes
 them eligible for an inlining transformation.</p><p>Note that no information is propagated about the contents of strings,
 even in <span class="c004">safe-string</span> mode, because it cannot yet be guaranteed
 that they are immutable throughout a given program.</p>
-<h2 class="section" id="s:flambda-other-transfs"><a class="section-anchor" href="#s:flambda-other-transfs" aria-hidden="true">﻿</a>19.8 Other code motion transformations</h2>
-<h3 class="subsection" id="ss:flambda-lift-const"><a class="section-anchor" href="#ss:flambda-lift-const" aria-hidden="true">﻿</a>19.8.1 Lifting of constants</h3>
+<h2 class="section" id="s:flambda-other-transfs"><a class="section-anchor" href="#s:flambda-other-transfs" aria-hidden="true">﻿</a><span class="number">8</span>Other code motion transformations</h2>
+<h3 class="subsection" id="ss:flambda-lift-const"><a class="section-anchor" href="#ss:flambda-lift-const" aria-hidden="true">﻿</a><span class="number">8.1</span>Lifting of constants</h3>
 <p>Expressions found to be constant will be lifted to symbol
 bindings—that is to say, they will be statically allocated in the
 object file—when
@@ -715,7 +715,7 @@ creation of the array consists of bulk copying the initialising array
 into a fresh value on the OCaml heap.
 </li></ul>
 </li></ul>
-<h3 class="subsection" id="ss:flambda-lift-toplevel-let"><a class="section-anchor" href="#ss:flambda-lift-toplevel-let" aria-hidden="true">﻿</a>19.8.2 Lifting of toplevel let bindings</h3>
+<h3 class="subsection" id="ss:flambda-lift-toplevel-let"><a class="section-anchor" href="#ss:flambda-lift-toplevel-let" aria-hidden="true">﻿</a><span class="number">8.2</span>Lifting of toplevel let bindings</h3>
 <p>Toplevel <span class="c004">let</span>-expressions may be lifted to symbol bindings to ensure
 that the corresponding bound variables are not captured by closures. If the
 defining expression of a given binding is found to be constant, it is bound
@@ -736,12 +736,12 @@ with the application point of that function (perhaps at toplevel)—or
 indeed the function declaration itself—marked
 as to never be inlined. This technique prevents lifting of the definition
 of the value in question (assuming of course that it is not constant).</p>
-<h2 class="section" id="s:flambda-unboxing"><a class="section-anchor" href="#s:flambda-unboxing" aria-hidden="true">﻿</a>19.9 Unboxing transformations</h2>
+<h2 class="section" id="s:flambda-unboxing"><a class="section-anchor" href="#s:flambda-unboxing" aria-hidden="true">﻿</a><span class="number">9</span>Unboxing transformations</h2>
 <p>The transformations in this section relate to the splitting apart of
 <em>boxed</em> (that is to say, non-immediate) values. They are largely
 intended to reduce allocation, which tends to result in a runtime
 performance profile with lower variance and smaller tails.</p>
-<h3 class="subsection" id="ss:flambda-unbox-fvs"><a class="section-anchor" href="#ss:flambda-unbox-fvs" aria-hidden="true">﻿</a>19.9.1 Unboxing of closure variables</h3>
+<h3 class="subsection" id="ss:flambda-unbox-fvs"><a class="section-anchor" href="#ss:flambda-unbox-fvs" aria-hidden="true">﻿</a><span class="number">9.1</span>Unboxing of closure variables</h3>
 <p>This transformation is enabled unless
 <span class="c004">-no-unbox-free-vars-of-closures</span> is provided.</p><p>Variables that appear in closure environments may themselves be boxed
 values. As such, they may be split into further closure variables, each
@@ -775,7 +775,7 @@ the closure returned from the function <span class="c004">f</span> contains a va
     x0 + x1 + y
 </pre><p>The allocation of the pair has been eliminated.</p><p>This transformation does not operate if it would cause the closure to
 contain more than twice as many closure variables as it did beforehand.</p>
-<h3 class="subsection" id="ss:flambda-unbox-spec-args"><a class="section-anchor" href="#ss:flambda-unbox-spec-args" aria-hidden="true">﻿</a>19.9.2 Unboxing of specialised arguments</h3>
+<h3 class="subsection" id="ss:flambda-unbox-spec-args"><a class="section-anchor" href="#ss:flambda-unbox-spec-args" aria-hidden="true">﻿</a><span class="number">9.2</span>Unboxing of specialised arguments</h3>
 <p>This transformation is enabled unless
 <span class="c004">-no-unbox-specialised-args</span> is provided.</p><p>It may become the case during compilation that one or more invariant arguments
 to a function become specialised to a particular value. When such values are
@@ -836,7 +836,7 @@ arguments; in this case there may be indirect calls and these will incur
 a small penalty owing to having to bounce through the wrapper. The technique
 of <em>direct call surrogates</em> used for <span class="c004">-unbox-closures</span> is not
 used by the transformation to unbox specialised arguments.)</p>
-<h3 class="subsection" id="ss:flambda-unbox-closures"><a class="section-anchor" href="#ss:flambda-unbox-closures" aria-hidden="true">﻿</a>19.9.3 Unboxing of closures</h3>
+<h3 class="subsection" id="ss:flambda-unbox-closures"><a class="section-anchor" href="#ss:flambda-unbox-closures" aria-hidden="true">﻿</a><span class="number">9.3</span>Unboxing of closures</h3>
 <p>This transformation is <em>not</em> enabled by default. It may be enabled
 using the <span class="c004">-unbox-closures</span> flag.</p><p>The transformation replaces closure variables by specialised arguments.
 The aim is to cause more closures to become closed. It is particularly
@@ -909,17 +909,17 @@ too large to inline.
 passes the free variables via function arguments in
 order to eliminate all closure allocation in this example (aside from any
 that might be performed inside <span class="c004">printf</span>).</p>
-<h2 class="section" id="s:flambda-remove-unused"><a class="section-anchor" href="#s:flambda-remove-unused" aria-hidden="true">﻿</a>19.10 Removal of unused code and values</h2>
-<h3 class="subsection" id="ss:flambda-redundant-let"><a class="section-anchor" href="#ss:flambda-redundant-let" aria-hidden="true">﻿</a>19.10.1 Removal of redundant let expressions</h3>
+<h2 class="section" id="s:flambda-remove-unused"><a class="section-anchor" href="#s:flambda-remove-unused" aria-hidden="true">﻿</a><span class="number">10</span>Removal of unused code and values</h2>
+<h3 class="subsection" id="ss:flambda-redundant-let"><a class="section-anchor" href="#ss:flambda-redundant-let" aria-hidden="true">﻿</a><span class="number">10.1</span>Removal of redundant let expressions</h3>
 <p>The simplification pass removes unused <span class="c004">let</span> bindings so long as
 their corresponding defining expressions have “no effects”. See
 the section “Treatment of effects” below for the precise definition of
 this term.</p>
-<h3 class="subsection" id="ss:flambda-redundant"><a class="section-anchor" href="#ss:flambda-redundant" aria-hidden="true">﻿</a>19.10.2 Removal of redundant program constructs</h3>
+<h3 class="subsection" id="ss:flambda-redundant"><a class="section-anchor" href="#ss:flambda-redundant" aria-hidden="true">﻿</a><span class="number">10.2</span>Removal of redundant program constructs</h3>
 <p>This transformation is analogous to the removal of <span class="c004">let</span>-expressions
 whose defining expressions have no effects. It operates instead on symbol
 bindings, removing those that have no effects.</p>
-<h3 class="subsection" id="ss:flambda-remove-unused-args"><a class="section-anchor" href="#ss:flambda-remove-unused-args" aria-hidden="true">﻿</a>19.10.3 Removal of unused arguments</h3>
+<h3 class="subsection" id="ss:flambda-remove-unused-args"><a class="section-anchor" href="#ss:flambda-remove-unused-args" aria-hidden="true">﻿</a><span class="number">10.3</span>Removal of unused arguments</h3>
 <p>This transformation is only enabled by default for specialised arguments.
 It may be enabled for all arguments using the <span class="c004">-remove-unused-arguments</span>
 flag.</p><p>The pass analyses functions to determine which arguments are unused.
@@ -931,26 +931,26 @@ function is usually indirectly called, since such calls will now bounce
 through the wrapper. (The technique of <em>direct call surrogates</em> used
 to reduce this penalty during unboxing of closure variables (see above)
 does not yet apply to the pass that removes unused arguments.)</p>
-<h3 class="subsection" id="ss:flambda-removal-closure-vars"><a class="section-anchor" href="#ss:flambda-removal-closure-vars" aria-hidden="true">﻿</a>19.10.4 Removal of unused closure variables</h3>
+<h3 class="subsection" id="ss:flambda-removal-closure-vars"><a class="section-anchor" href="#ss:flambda-removal-closure-vars" aria-hidden="true">﻿</a><span class="number">10.4</span>Removal of unused closure variables</h3>
 <p>This transformation performs an analysis across
 the whole compilation unit to determine whether there exist closure variables
 that are never used. Such closure variables are then eliminated. (Note that
 this has to be a whole-unit analysis because a projection of a closure
 variable from some particular closure may have propagated to an arbitrary
 location within the code due to inlining.)</p>
-<h2 class="section" id="s:flambda-other"><a class="section-anchor" href="#s:flambda-other" aria-hidden="true">﻿</a>19.11 Other code transformations</h2>
-<h3 class="subsection" id="ss:flambda-non-escaping-refs"><a class="section-anchor" href="#ss:flambda-non-escaping-refs" aria-hidden="true">﻿</a>19.11.1 Transformation of non-escaping references into mutable variables</h3>
+<h2 class="section" id="s:flambda-other"><a class="section-anchor" href="#s:flambda-other" aria-hidden="true">﻿</a><span class="number">11</span>Other code transformations</h2>
+<h3 class="subsection" id="ss:flambda-non-escaping-refs"><a class="section-anchor" href="#ss:flambda-non-escaping-refs" aria-hidden="true">﻿</a><span class="number">11.1</span>Transformation of non-escaping references into mutable variables</h3>
 <p>Flambda performs a simple analysis analogous to that performed elsewhere
 in the compiler that can transform <span class="c004">ref</span>s into mutable variables
 that may then be held in registers (or on the stack as appropriate) rather
 than being allocated on the OCaml heap. This only happens so long as the
 reference concerned can be shown to not escape from its defining scope.</p>
-<h3 class="subsection" id="ss:flambda-subst-closure-vars"><a class="section-anchor" href="#ss:flambda-subst-closure-vars" aria-hidden="true">﻿</a>19.11.2 Substitution of closure variables for specialised arguments</h3>
+<h3 class="subsection" id="ss:flambda-subst-closure-vars"><a class="section-anchor" href="#ss:flambda-subst-closure-vars" aria-hidden="true">﻿</a><span class="number">11.2</span>Substitution of closure variables for specialised arguments</h3>
 <p>This transformation discovers closure variables that are known to be
 equal to specialised arguments. Such closure variables are replaced by
 the specialised arguments; the closure variables may then be removed by
 the “removal of unused closure variables” pass (see below).</p>
-<h2 class="section" id="s:flambda-effects"><a class="section-anchor" href="#s:flambda-effects" aria-hidden="true">﻿</a>19.12 Treatment of effects</h2>
+<h2 class="section" id="s:flambda-effects"><a class="section-anchor" href="#s:flambda-effects" aria-hidden="true">﻿</a><span class="number">12</span>Treatment of effects</h2>
 <p>The Flambda optimisers classify expressions in order to determine whether
 an expression:
 </p><ul class="itemize"><li class="li-itemize">
@@ -996,7 +996,7 @@ read from any mutable storage or call arbitrary external functions.
 </dd></dl><p>It is assumed in the compiler that, subject to data dependencies,
 expressions with neither effects nor coeffects may be reordered with
 respect to other expressions.</p>
-<h2 class="section" id="s:flambda-static-modules"><a class="section-anchor" href="#s:flambda-static-modules" aria-hidden="true">﻿</a>19.13 Compilation of statically-allocated modules</h2>
+<h2 class="section" id="s:flambda-static-modules"><a class="section-anchor" href="#s:flambda-static-modules" aria-hidden="true">﻿</a><span class="number">13</span>Compilation of statically-allocated modules</h2>
 <p>Compilation of modules that are able to be statically allocated (for example,
 the module corresponding to an entire compilation unit, as opposed to a first
 class module dependent on values computed at runtime) initially follows the
@@ -1004,14 +1004,14 @@ strategy used for bytecode. A sequence of <span class="c004">let</span>-bindings
 interspersed with arbitrary effects, surrounds a record creation that becomes
 the module block. The Flambda-specific transformation follows: these bindings
 are lifted to toplevel symbols, as described above.</p>
-<h2 class="section" id="s:flambda-inhibition"><a class="section-anchor" href="#s:flambda-inhibition" aria-hidden="true">﻿</a>19.14 Inhibition of optimisation</h2>
+<h2 class="section" id="s:flambda-inhibition"><a class="section-anchor" href="#s:flambda-inhibition" aria-hidden="true">﻿</a><span class="number">14</span>Inhibition of optimisation</h2>
 <p>Especially when writing benchmarking suites that run non-side-effecting
 algorithms in loops, it may be found that the optimiser entirely
 elides the code being benchmarked. This behaviour can be prevented by
 using the <span class="c004">Sys.opaque_identity</span> function (which indeed behaves as a
 normal OCaml function and does not possess any “magic” semantics). The
 documentation of the <span class="c004">Sys</span> module should be consulted for further details.</p>
-<h2 class="section" id="s:flambda-unsafe"><a class="section-anchor" href="#s:flambda-unsafe" aria-hidden="true">﻿</a>19.15 Use of unsafe operations</h2>
+<h2 class="section" id="s:flambda-unsafe"><a class="section-anchor" href="#s:flambda-unsafe" aria-hidden="true">﻿</a><span class="number">15</span>Use of unsafe operations</h2>
 <p>The behaviour of the Flambda simplification pass means that certain unsafe
 operations, which may without Flambda or when using previous versions of
 the compiler be safe, must not be used. This specifically refers to
@@ -1050,7 +1050,7 @@ thought previously to be correct. Take care, for example, not
 to add type annotations that claim some mutable value is always immediate
 if it might be possible for an unsafe operation to update it to a boxed
 value.</p>
-<h2 class="section" id="s:flambda-glossary"><a class="section-anchor" href="#s:flambda-glossary" aria-hidden="true">﻿</a>19.16 Glossary</h2>
+<h2 class="section" id="s:flambda-glossary"><a class="section-anchor" href="#s:flambda-glossary" aria-hidden="true">﻿</a><span class="number">16</span>Glossary</h2>
 <p>The following terminology is used in this chapter of the manual.</p><dl class="description"><dt class="dt-description">
 <span class="c014">Call site</span></dt><dd class="dd-description"> See <em>direct call site</em> and <em>indirect call site</em> below.
 </dd><dt class="dt-description"><span class="c014">Closed function</span></dt><dd class="dd-description"> A function whose body has no free variables
@@ -1101,7 +1101,7 @@ enclosed within any function declaration.
 <span class="c004">let</span> expression, pattern-matching construction, or similar.
 </dd></dl>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="intfc.html">« Chapter ‍18 Interfacing C with OCaml</a><a class="next" href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz »</a></div>
+<div class="bottom-navigation"><a class="previous" href="intfc.html">« Interfacing C with OCaml</a><a class="next" href="afl-fuzz.html">Fuzzing with afl-fuzz »</a></div>
 
 
 

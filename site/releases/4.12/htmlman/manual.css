@@ -99,11 +99,13 @@ html {
   .content ul {
     list-style: none; }
   .content ul.itemize li::before {
-    content: "▶";
+    content: "●";
     color: #ec6a0d;
-    font-size: smaller;
     margin-right: 4px;
-    margin-left: -1em; }
+    margin-left: -1em;
+    font-family: "Fira Sans",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    vertical-align: 1px; }
   .content .bottom-navigation {
     margin-bottom: 1em; }
     .content .bottom-navigation a.next {
@@ -125,11 +127,14 @@ html {
       .index ul li span.c003 {
         color: #564233; }
   .index ul.ul-content li::before {
-    content: "▶";
+    content: "●";
     color: #ec6a0d;
-    font-size: smaller;
     margin-right: 4px;
-    margin-left: -1em; }
+    margin-left: -1em;
+    font-family: "Fira Sans",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    vertical-align: 1px;
+    margin-left: 0; }
   .index ul.toc ul.toc ul.toc {
     font-size: smaller; }
   .index section > ul > li > a {
@@ -396,11 +401,13 @@ blockquote.quote {
 #part-menu li.active a {
   color: #000; }
   #part-menu li.active a::before {
-    content: "▶";
+    content: "◆";
     color: #ec6a0d;
-    font-size: smaller;
     margin-right: 4px;
-    margin-left: -1em; }
+    margin-left: -1em;
+    font-family: "Fira Sans",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    vertical-align: 1px; }
 
 span.c003 {
   color: #564233;
@@ -410,10 +417,14 @@ span.c003 {
 
 div.caml-example.toplevel code.caml-input::before,
 div.caml-example.toplevel div.caml-input::before {
-  content: "#";
+  /* content:"#"; */
+  /* pre-4.11 */
   color: #888; }
 
-span.c004 {
+span.number {
+  padding-right: 1ex; }
+
+span.c004, span.c002 {
   color: #888; }
 
 span.c006 {
@@ -426,7 +437,8 @@ span.c009 {
   background-color: #f3ece6;
   border-radius: 6px; }
 
-span.authors.c009 {
+span.authors {
+  font-style: italic;
   background-color: inherit; }
 
 span.c013 {

@@ -37,8 +37,7 @@
             <h1 class="ruled"><a href="tutorials/">Tutorials</a> &amp; <a href="faq.html">FAQ</a></h1>
             <ul>
                 <li><a href="tutorials/up_and_running.html">Up and Running</a></li>
-                <li><a href="tutorials/basics.html">Basics</a></li>
-                <li><a href="tutorials/structure_of_ocaml_programs.html">Structure of OCaml Programs</a></li>
+                <li><a href="tutorials/a_first_hour_with_ocaml.html">A First Hour with OCaml</a></li>
                 <li><a href="tutorials/modules.html">Modules</a></li>
                 <li><a href="tutorials/map.html">Maps (Dictionaries)</a></li>
                 <li><a href="tutorials/set.html">Sets</a></li>
@@ -72,12 +71,12 @@
         <section class="span4 condensed">
           <h1 class="ruled"><a href="/community/media.html">Online Courses, Slides &amp; Videos</a></h1>
 
-<iframe title="A massive open online course on OCaml" frameborder="0" width="380" height="220" src="//www.dailymotion.com/embed/video/x2ymo3x" style="max-width: 100%;" allowfullscreen></iframe><br /><a href="//www.dailymotion.com/video/x2ymo3x_fun-mooc-introduction-to-functional-programming-in-ocaml_school" target="_blank"> A massive open online course (MOOC) entirely centered around OCaml</a> <i>is now available, and runs once a year!</i>
+<iframe title="A massive open online course on OCaml" frameborder="0" width="380" height="220" src="//www.dailymotion.com/embed/video/x2ymo3x" style="max-width: 100%;" allowfullscreen></iframe><br /><a href="//www.dailymotion.com/video/x2ymo3x_fun-mooc-introduction-to-functional-programming-in-ocaml_school" target="_blank" rel="noopener"> A massive open online course (MOOC) entirely centered around OCaml</a> <i>is now available, and runs once a year!</i>
 	  <p>
           Learn more, and <a href="https://www.fun-mooc.fr/courses/course-v1:parisdiderot+56002+session03/about">register now on the FUN platform!</a>
 	  </p>
 		  <p class="documentation-video" style="margin-bottom:0">
-<iframe title="Xavier Leroy presents the state of OCaml 4.02" src="//www.slideshare.net/slideshow/embed_code/43836300" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe title="Xavier Leroy presents the state of OCaml 4.02" src="//www.slideshare.net/slideshow/embed_code/43836300" width="380" height="220" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
           </p>
 
           <p>An invited talk by Xavier Leroy explaining the current state
@@ -85,15 +84,14 @@
 		  <a href="/meetings/ocaml/2014/" >OCaml Users and Developers
 		  Workshop 2014</a> in Gothenburg, Sweden
 			(<a href="/meetings/ocaml/2014/OCaml2014-Leroy-slides.pdf"
-			target="_blank">PDF slides</a>,
+			target="_blank" rel="noopener">PDF slides</a>,
             <a href="https://www.youtube.com/watch?v=DMzZy1bqj6Q&list=UUP9g4dLR7xt6KzCYntNqYcw"
-            target="_blank">Video</a>).
+            target="_blank" rel="noopener">Video</a>).
 			</p>
-	  <p class="documentation-video video16-9"
-	     style="padding-bottom: 50%"><!-- Adjust => avoid horiz bars -->
+	  <p style="margin-bottom:0; margin-top: 6px"><!-- Adjust => avoid horiz bars -->
 	    <iframe title="Yaron Minsky explains how to program effectively in ML" src="//player.vimeo.com/video/14313378?portrait=0&amp;color=ff9933"
 		    frameborder="0" webkitallowfullscreen
-		    mozallowfullscreen allowfullscreen></iframe>
+		    mozallowfullscreen allowfullscreen width="380" height="220" style="max-width: 100%;" marginwidth="0" marginheight="0" scrolling="no" ></iframe>
 	  </p>
 			<p>A guest lecture given by Yaron Minsky of Jane Street about how to program effectively in ML. The talk was given as part of the intro computer science class at Harvard, CS51, where the students had spent much of the semester programming in OCaml.</p>
           <footer>
@@ -148,7 +146,7 @@
 	       >Unison</a> is an innovative <em>two-way</em>
 	    file synchronizer stemming from the
 	       <a href="http://www.cis.upenn.edu/~bcpierce/papers/index.shtml#Synchronization"
-		  target="_blank"
+		  target="_blank" rel="noopener"
 		  >latest research</a>.  It is resilient to failures
 	       and  runs on Windows as well as most flavors of Unix,
 	       including MacOSX.

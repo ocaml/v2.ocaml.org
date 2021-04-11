@@ -145,17 +145,17 @@
       <div class="row">
 	<div class="span2 documentation-book">
 	  <a href="https://realworldocaml.org">
-	    <img src="/img/real-world-ocaml.jpg" alt="Real Worl OCaml book">
+	    <img class="book-img" src="/img/real-world-ocaml.jpg" alt="Real World OCaml book">
 	  </a>
 	</div>
 	<div class="span2 documentation-book">
 	  <a href="http://ocaml-book.com">
-	    <img src="/img/OCaml_from_beginning.png" alt="OCaml from the very beginning">
+	    <img class="book-img" src="/img/OCaml_from_beginning.png" alt="OCaml from the very beginning">
 	  </a>
 	</div>
 	<div class="span2 documentation-book">
 	  <a href="http://ocaml-book.com/more-ocaml-algorithms-methods-diversions/">
-	    <img src="/img/more-ocaml-300-376.png" alt="More OCaml: Algorithms, Methods &amp; Diversions">
+	    <img class="book-img" src="/img/more-ocaml-300-376.png" alt="More OCaml: Algorithms, Methods &amp; Diversions">
 	  </a>
 	</div>
       </div>
@@ -170,7 +170,7 @@
       <div class="row">
 	<div class="span4">
 	  <p class="documentation-video">
-	    <iframe width="310" height="175" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="In this talk, Mark Shinwell explains how to track down hard-to-find bugs in OCaml programs" allowfullscreen></iframe>
+	    <iframe width="310" height="233" src="//www.youtube.com/embed/NF2WpWnB-nk?feature=player_detailpage" title="In this talk, Mark Shinwell explains how to track down hard-to-find bugs in OCaml programs" allowfullscreen></iframe>
 	  </p>
 	  <p>In this talk, Mark Shinwell explains how to
 	    track down hard-to-find bugs in OCaml programs.

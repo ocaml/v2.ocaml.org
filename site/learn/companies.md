@@ -221,7 +221,7 @@
         started with Linux. Our mission with Linux is to test all
         programs in current distributions, such as Debian, Ubuntu, and
         Red Hat. With time, we will cover other platforms, such as
-        Mac, Windows, and mobile. In the mean time, we promise to do
+        Mac, Windows, and mobile. In the meantime, we promise to do
         one thing well.</p>
     </dd>
 </dl>
@@ -269,7 +269,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://janestreet.com/">Jane Street</a>, United States, United Kingdom, Hong Kong</h2>
-        <p>Jane Street is a quantitative trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. They're the largest commercial user of OCaml, using it for everything from research tools to trading systems to systems infrastructure to accounting systems. Jane Street has over 400 OCaml programmers and over 15 million lines of OCaml, powering a technology platform that trades billions of dollars every day. Half a million lines of their code is released <a href="http://opensource.janestreet.com">open source</a>, and they've created key parts of the open-source OCaml ecosystem, like <a href="http://dune.build">Dune</a>. You can learn more by checking out their <a href="http://blog.janestreet.com">tech blog</a>.</p>
+        <p>Jane Street is a quantitative trading firm that operates around the clock and around the globe. They bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. They're the largest commercial user of OCaml, using it for everything from research tools to trading systems to systems infrastructure to accounting systems. Jane Street has over 400 OCaml programmers and over 15 million lines of OCaml, powering a technology platform that trades billions of dollars every day. Half a million lines of their code are released <a href="http://opensource.janestreet.com">open source</a>, and they've created key parts of the open-source OCaml ecosystem, like <a href="http://dune.build">Dune</a>. You can learn more by checking out their <a href="http://blog.janestreet.com">tech blog</a>.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -307,7 +307,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.matrixlead.com/">Matrix Lead</a>, France and China</h2>
-        <p>Matrix Lead provides professionals and companies with leading technologies and solutions of spreadsheets. We create a range of software to help users better build, verify, optimize and manage their spreadsheets. Our flagship product <a href="https://www.10studio.tech">10 Studio</a> is a Microsoft Excel add-in that combines our several advanced tools, such as formula editor and spreadsheet verificator. The kernel of our tools is an analyzer that analyzes different properties of spreadsheets (including formulas and VBA macros) especially by abstract interpretation based static analysis. It was initially developed in the Antiques team of Inria and written in OCaml. Then, we wrap web or .NET languages around the analyzer to make ready-to-use tools.</p>
+        <p>Matrix Lead provides professionals and companies with leading technologies and solutions for spreadsheets. We create a range of software to help users better build, verify, optimize and manage their spreadsheets. Our flagship product <a href="https://www.10studio.tech">10 Studio</a> is a Microsoft Excel add-in that combines our several advanced tools, such as formula editor and spreadsheet verificator. The kernel of our tools is an analyzer that analyzes different properties of spreadsheets (including formulas and VBA macros) especially by abstract interpretation-based static analysis. It was initially developed in the Antiques team of Inria and written in OCaml. Then, we wrap web or .NET languages around the analyzer to make ready-to-use tools.</p>
     </dd>
 </dl>
 
@@ -317,7 +317,7 @@
     </dt>
     <dd class="span5">
         <h2><a href="http://www.medit-pharma.com/">MEDIT</a>, France</h2>
-        <p>MEDIT develops <a href="http://mjambon.com/">SuMo, an advanced bioinformatic system</a> for the analysis of protein 3D structures and the identification of drug-design targets. SuMo is written entirely in OCaml and provides interfaces to several commercial molecular-modelling packages.</p>
+        <p>MEDIT develops <a href="http://mjambon.com/">SuMo, an advanced bioinformatic system</a> for the analysis of protein 3D structures and the identification of drug-design targets. SuMo is written entirely in OCaml and provides interfaces to several commercial molecular-modeling packages.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -341,7 +341,7 @@
         developed the Mr. Number app for call blocking,
         later <a href="http://allthingsd.com/20130601/whitepages-scoops-up-mr-number-an-android-app-for-blocking-unwanted-calls/">acquired
         by WhitePages</a>.
-        OCaml is used on the server side as the glue between the
+        OCaml is used on the server-side as the glue between the
         various third-party components and services.</p>
     </dd>
 </dl>
@@ -383,7 +383,7 @@ relies on OCaml efficiency and expressivity. For instance, Michelson
 smart contracts are represented using OCaml GADTs to prevent many
 runtime errors from happening. Safety and correctness are critical for a
 blockchain and we are glad that the OCaml type system allows for a
-form of lightweight formal method that can be used on a daily basis.
+form of a lightweight formal method that can be used on a daily basis.
 
 </p>
     </dd>
@@ -395,7 +395,7 @@ form of lightweight formal method that can be used on a daily basis.
     </dt>
     <dd class="span5">
         <h2><a href="http://www.ocamlpro.com">OCamlPro</a>, France</h2>
-        <p>OCamlPro develops and maintains a development environment for the OCaml language. They provide services for companies deciding to use OCaml. Among these services: trainings, necessary expertises, tools and libraries long-term support, and specific developments to their applicative domains.</p>
+        <p>OCamlPro develops and maintains a development environment for the OCaml language. They provide services for companies deciding to use OCaml. Among these services: trainings, necessary expertise, tools and libraries long-term support, and specific developments to their applicative domains.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -413,7 +413,7 @@ form of lightweight formal method that can be used on a daily basis.
     </dt>
     <dd class="span5">
         <h2><a href="http://www.prudentconsulting.com/">PRUDENT Technologies and Consulting, Inc.</a>, United States</h2>
-        <p>Prudent Consulting offers IT solutions to large and mid-sized organizations by combining industry experience and technology expertise to help our customers achieve business goals with speed, agility and great impact.</p>
+        <p>Prudent Consulting offers IT solutions to large and mid-sized organizations by combining industry experience and technology expertise to help our customers achieve business goals with speed, agility, and great impact.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -431,7 +431,7 @@ form of lightweight formal method that can be used on a daily basis.
     </dt>
     <dd class="span5">
         <h2><a href="http://www.seaiq.com/">Sakhalin</a>, United States</h2>
-        <p>Sakhalin develops marine charting apps for Apple iPads and iPhones. The full featured apps display marine charts, GPS and onboard sensor data, Automatic Identification System, weather data, anchor monitoring, etc. The apps have a wide range of users, from occasional recreational boaters to professional river/harbor pilots that board large freighters. They are free to download and try (with a paid upgrade to enable all features). They are written almost entirely in Ocaml with a minor amount of glue to interface with IOS API's. Ocaml was chosen because it (1) enables the rapid development of extremely reliable and high performance software, (2) is a mature stable platform, and (3) has a wide range of libraries. It was made possible by the great work done by Psellos in porting OCaml to the Apple iOS platform. Feel free to contact Sakhalin if you have any questions about using OCaml on iOS.</p>
+        <p>Sakhalin develops marine charting apps for Apple iPads and iPhones. The full-featured apps display marine charts, GPS and onboard sensor data, Automatic Identification System, weather data, anchor monitoring, etc. The apps have a wide range of users, from occasional recreational boaters to professional river/harbor pilots that board large freighters. They are free to download and try (with a paid upgrade to enable all features). They are written almost entirely in Ocaml with a minor amount of glue to interface with IOS APIs. Ocaml was chosen because it (1) enables the rapid development of extremely reliable and high-performance software, (2) is a mature stable platform, and (3) has a wide range of libraries. It was made possible by the great work done by Psellos in porting OCaml to the Apple iOS platform. Feel free to contact Sakhalin if you have any questions about using OCaml on iOS.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -449,7 +449,7 @@ form of lightweight formal method that can be used on a daily basis.
     </dt>
     <dd class="span5">
         <h2><a href="http://www.sleekersoft.com">Sleekersoft P/L</a>, Australia</h2>
-        <p>Specialises in functional programming software development, consultation and training.</p>
+        <p>Specialises in functional programming software development, consultation, and training.</p>
     </dd>
 </dl>
 
@@ -482,7 +482,7 @@ form of lightweight formal method that can be used on a daily basis.
             where we build sandboxes, network and storage protocol implementations as libraries,
             so we can link them to our applications to run them without the need of an underlying
             operating system;
-       (2) <a href="https://irmin.io">Irmin</a>, a Git-like datastore, which allows us
+       (2) <a href="https://irmin.org">Irmin</a>, a Git-like datastore, which allows us
            to create fully auditable distributed systems which can work offline and
            be synced when needed; and
        (3) OCaml development tools (build system, code linters, documentation generators, etc),
@@ -512,7 +512,7 @@ form of lightweight formal method that can be used on a daily basis.
 
 
 <h3>Disclaimer</h3>
-Appearance of a company's name here does not necessarily imply
+The appearance of a company's name here does not necessarily imply
 endorsement by that company of OCaml or of the descriptions provided
 here. Company representatives should <a href="https://github.com/ocaml/ocaml.org/issues/new">contact us</a> to have information about their company removed, modified, or added.
 

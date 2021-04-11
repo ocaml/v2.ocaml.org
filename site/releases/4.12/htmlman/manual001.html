@@ -11,7 +11,7 @@
 <body><div class="index content manual"><div id="sidebar-button"><span>☰</span></div><ul id="part-menu"></ul>
 
 
-<div class="maintitle"><h1><span>The OCaml system</span> &nbsp;release 4.12 </h1><h3>February ‍24, 2021</h3></div><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Select another version</a></div><ul><li class="top"><a href="#">The OCaml Manual</a></li>
+<div class="maintitle"><h1><span>The OCaml system</span> &nbsp;release 4.12 </h1><h3>April&nbsp;7, 2021</h3></div><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Select another version</a></div><ul><li class="top"><a href="#">The OCaml Manual</a></li>
 <li><a href="manual001.html#start-section">Contents</a>
 </li><li><a href="foreword.html#start-section">Foreword</a>
 </li><li><a href="manual067.html#start-section">Index of keywords</a></li><li><a href="../api/index.html">OCaml API</a></li><li><a href="../api/compilerlibref/index.html">OCaml Compiler API</a></li></ul></nav></header><a id="start-section"></a><section id="section">
@@ -20,552 +20,552 @@
 
 <h1 class="chapter" id="sec1">Contents</h1>
 <ul class="toc"><li class="li-toc">
-<a href="index.html#sec6">Part ‍I An introduction to OCaml</a>
+<a href="index.html#sec6">Part&nbsp;I An introduction to OCaml</a>
 <ul class="toc"><li class="li-toc">
-<a href="coreexamples.html#sec7">Chapter ‍1 The core language</a>
+<a href="coreexamples.html#sec7"><span class="number">Chapter 1</span>The core language</a>
 <ul class="toc"><li class="li-toc">
-<a href="coreexamples.html#s%3Abasics">1.1 Basics</a>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Adatatypes">1.2 Data types</a>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Afunctions-as-values">1.3 Functions as values</a>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Atut-recvariants">1.4 Records and variants</a>
+<a href="coreexamples.html#s%3Abasics"><span class="number">1</span>Basics</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Adatatypes"><span class="number">2</span>Data types</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Afunctions-as-values"><span class="number">3</span>Functions as values</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Atut-recvariants"><span class="number">4</span>Records and variants</a>
 <ul class="toc"><li class="li-toc">
-<a href="coreexamples.html#ss%3Arecord-and-variant-disambiguation">1.4.1 Record and variant disambiguation</a>
+<a href="coreexamples.html#ss%3Arecord-and-variant-disambiguation"><span class="number">4.1</span>Record and variant disambiguation</a>
 </li></ul>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Aimperative-features">1.5 Imperative features</a>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Aexceptions">1.6 Exceptions</a>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Alazy-expr">1.7 Lazy expressions</a>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Asymb-expr">1.8 Symbolic processing of expressions</a>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Apretty-printing">1.9 Pretty-printing</a>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Aprintf">1.10 Printf formats</a>
-</li><li class="li-toc"><a href="coreexamples.html#s%3Astandalone-programs">1.11 Standalone OCaml programs</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Aimperative-features"><span class="number">5</span>Imperative features</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Aexceptions"><span class="number">6</span>Exceptions</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Alazy-expr"><span class="number">7</span>Lazy expressions</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Asymb-expr"><span class="number">8</span>Symbolic processing of expressions</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Apretty-printing"><span class="number">9</span>Pretty-printing</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Aprintf"><span class="number">10</span>Printf formats</a>
+</li><li class="li-toc"><a href="coreexamples.html#s%3Astandalone-programs"><span class="number">11</span>Standalone OCaml programs</a>
 </li></ul>
-</li><li class="li-toc"><a href="moduleexamples.html#sec20">Chapter ‍2 The module system</a>
+</li><li class="li-toc"><a href="moduleexamples.html#sec20"><span class="number">Chapter 2</span>The module system</a>
 <ul class="toc"><li class="li-toc">
-<a href="moduleexamples.html#s%3Amodule%3Astructures">2.1 Structures</a>
-</li><li class="li-toc"><a href="moduleexamples.html#s%3Asignature">2.2 Signatures</a>
-</li><li class="li-toc"><a href="moduleexamples.html#s%3Afunctors">2.3 Functors</a>
-</li><li class="li-toc"><a href="moduleexamples.html#s%3Afunctors-and-abstraction">2.4 Functors and type abstraction</a>
-</li><li class="li-toc"><a href="moduleexamples.html#s%3Aseparate-compilation">2.5 Modules and separate compilation</a>
+<a href="moduleexamples.html#s%3Amodule%3Astructures"><span class="number">1</span>Structures</a>
+</li><li class="li-toc"><a href="moduleexamples.html#s%3Asignature"><span class="number">2</span>Signatures</a>
+</li><li class="li-toc"><a href="moduleexamples.html#s%3Afunctors"><span class="number">3</span>Functors</a>
+</li><li class="li-toc"><a href="moduleexamples.html#s%3Afunctors-and-abstraction"><span class="number">4</span>Functors and type abstraction</a>
+</li><li class="li-toc"><a href="moduleexamples.html#s%3Aseparate-compilation"><span class="number">5</span>Modules and separate compilation</a>
 </li></ul>
-</li><li class="li-toc"><a href="objectexamples.html#sec26">Chapter ‍3 Objects in OCaml</a>
+</li><li class="li-toc"><a href="objectexamples.html#sec26"><span class="number">Chapter 3</span>Objects in OCaml</a>
 <ul class="toc"><li class="li-toc">
-<a href="objectexamples.html#s%3Aclasses-and-objects">3.1 Classes and objects</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Aimmediate-objects">3.2 Immediate objects</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Areference-to-self">3.3 Reference to self</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Ainitializers">3.4 Initializers</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Avirtual-methods">3.5 Virtual methods</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Aprivate-methods">3.6 Private methods</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Aclass-interfaces">3.7 Class interfaces</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Ainheritance">3.8 Inheritance</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Amultiple-inheritance">3.9 Multiple inheritance</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Aparameterized-classes">3.10 Parameterized classes</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Apolymorphic-methods">3.11 Polymorphic methods</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Ausing-coercions">3.12 Using coercions</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Afunctional-objects">3.13 Functional objects</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Acloning-objects">3.14 Cloning objects</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Arecursive-classes">3.15 Recursive classes</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Abinary-methods">3.16 Binary methods</a>
-</li><li class="li-toc"><a href="objectexamples.html#s%3Afriends">3.17 Friends</a>
+<a href="objectexamples.html#s%3Aclasses-and-objects"><span class="number">1</span>Classes and objects</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Aimmediate-objects"><span class="number">2</span>Immediate objects</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Areference-to-self"><span class="number">3</span>Reference to self</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Ainitializers"><span class="number">4</span>Initializers</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Avirtual-methods"><span class="number">5</span>Virtual methods</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Aprivate-methods"><span class="number">6</span>Private methods</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Aclass-interfaces"><span class="number">7</span>Class interfaces</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Ainheritance"><span class="number">8</span>Inheritance</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Amultiple-inheritance"><span class="number">9</span>Multiple inheritance</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Aparameterized-classes"><span class="number">10</span>Parameterized classes</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Apolymorphic-methods"><span class="number">11</span>Polymorphic methods</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Ausing-coercions"><span class="number">12</span>Using coercions</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Afunctional-objects"><span class="number">13</span>Functional objects</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Acloning-objects"><span class="number">14</span>Cloning objects</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Arecursive-classes"><span class="number">15</span>Recursive classes</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Abinary-methods"><span class="number">16</span>Binary methods</a>
+</li><li class="li-toc"><a href="objectexamples.html#s%3Afriends"><span class="number">17</span>Friends</a>
 </li></ul>
-</li><li class="li-toc"><a href="lablexamples.html#sec44">Chapter ‍4 Labels and variants</a>
+</li><li class="li-toc"><a href="lablexamples.html#sec44"><span class="number">Chapter 4</span>Labels and variants</a>
 <ul class="toc"><li class="li-toc">
-<a href="lablexamples.html#s%3Alabels">4.1 Labels</a>
+<a href="lablexamples.html#s%3Alabels"><span class="number">1</span>Labels</a>
 <ul class="toc"><li class="li-toc">
-<a href="lablexamples.html#ss%3Aoptional-arguments">4.1.1 Optional arguments</a>
-</li><li class="li-toc"><a href="lablexamples.html#ss%3Alabel-inference">4.1.2 Labels and type inference</a>
-</li><li class="li-toc"><a href="lablexamples.html#ss%3Alabel-suggestions">4.1.3 Suggestions for labeling</a>
+<a href="lablexamples.html#ss%3Aoptional-arguments"><span class="number">1.1</span>Optional arguments</a>
+</li><li class="li-toc"><a href="lablexamples.html#ss%3Alabel-inference"><span class="number">1.2</span>Labels and type inference</a>
+</li><li class="li-toc"><a href="lablexamples.html#ss%3Alabel-suggestions"><span class="number">1.3</span>Suggestions for labeling</a>
 </li></ul>
-</li><li class="li-toc"><a href="lablexamples.html#s%3Apolymorphic-variants">4.2 Polymorphic variants</a>
+</li><li class="li-toc"><a href="lablexamples.html#s%3Apolymorphic-variants"><span class="number">2</span>Polymorphic variants</a>
 <ul class="toc"><li class="li-toc">
-<a href="lablexamples.html#ss%3Apolyvariant-weaknesses">4.2.1 Weaknesses of polymorphic variants</a>
+<a href="lablexamples.html#ss%3Apolyvariant-weaknesses"><span class="number">2.1</span>Weaknesses of polymorphic variants</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="polymorphism.html#sec53">Chapter ‍5 Polymorphism and its limitations</a>
+</li><li class="li-toc"><a href="polymorphism.html#sec53"><span class="number">Chapter 5</span>Polymorphism and its limitations</a>
 <ul class="toc"><li class="li-toc">
-<a href="polymorphism.html#s%3Aweak-polymorphism">5.1 Weak polymorphism and mutation</a>
+<a href="polymorphism.html#s%3Aweak-polymorphism"><span class="number">1</span>Weak polymorphism and mutation</a>
 <ul class="toc"><li class="li-toc">
-<a href="polymorphism.html#ss%3Aweak-types">5.1.1 Weakly polymorphic types</a>
-</li><li class="li-toc"><a href="polymorphism.html#ss%3Avaluerestriction">5.1.2 The value restriction</a>
-</li><li class="li-toc"><a href="polymorphism.html#ss%3Arelaxed-value-restriction">5.1.3 The relaxed value restriction</a>
-</li><li class="li-toc"><a href="polymorphism.html#ss%3Avariance-and-value-restriction">5.1.4 Variance and value restriction</a>
-</li><li class="li-toc"><a href="polymorphism.html#ss%3Avariance%3Aabstract-data-types">5.1.5 Abstract data types</a>
+<a href="polymorphism.html#ss%3Aweak-types"><span class="number">1.1</span>Weakly polymorphic types</a>
+</li><li class="li-toc"><a href="polymorphism.html#ss%3Avaluerestriction"><span class="number">1.2</span>The value restriction</a>
+</li><li class="li-toc"><a href="polymorphism.html#ss%3Arelaxed-value-restriction"><span class="number">1.3</span>The relaxed value restriction</a>
+</li><li class="li-toc"><a href="polymorphism.html#ss%3Avariance-and-value-restriction"><span class="number">1.4</span>Variance and value restriction</a>
+</li><li class="li-toc"><a href="polymorphism.html#ss%3Avariance%3Aabstract-data-types"><span class="number">1.5</span>Abstract data types</a>
 </li></ul>
-</li><li class="li-toc"><a href="polymorphism.html#s%3Apolymorphic-recursion">5.2 Polymorphic recursion</a>
+</li><li class="li-toc"><a href="polymorphism.html#s%3Apolymorphic-recursion"><span class="number">2</span>Polymorphic recursion</a>
 <ul class="toc"><li class="li-toc">
-<a href="polymorphism.html#ss%3Aexplicit-polymorphism">5.2.1 Explicitly polymorphic annotations</a>
-</li><li class="li-toc"><a href="polymorphism.html#ss%3Arecursive-poly-examples">5.2.2 More examples</a>
+<a href="polymorphism.html#ss%3Aexplicit-polymorphism"><span class="number">2.1</span>Explicitly polymorphic annotations</a>
+</li><li class="li-toc"><a href="polymorphism.html#ss%3Arecursive-poly-examples"><span class="number">2.2</span>More examples</a>
 </li></ul>
-</li><li class="li-toc"><a href="polymorphism.html#s%3Ahigher-rank-poly">5.3 Higher-rank polymorphic functions</a>
+</li><li class="li-toc"><a href="polymorphism.html#s%3Ahigher-rank-poly"><span class="number">3</span>Higher-rank polymorphic functions</a>
 </li></ul>
-</li><li class="li-toc"><a href="advexamples.html#sec64">Chapter ‍6 Advanced examples with classes and modules</a>
+</li><li class="li-toc"><a href="advexamples.html#sec64"><span class="number">Chapter 6</span>Advanced examples with classes and modules</a>
 <ul class="toc"><li class="li-toc">
-<a href="advexamples.html#s%3Aextended-bank-accounts">6.1 Extended example: bank accounts</a>
-</li><li class="li-toc"><a href="advexamples.html#s%3Amodules-as-classes">6.2 Simple modules as classes</a>
+<a href="advexamples.html#s%3Aextended-bank-accounts"><span class="number">1</span>Extended example: bank accounts</a>
+</li><li class="li-toc"><a href="advexamples.html#s%3Amodules-as-classes"><span class="number">2</span>Simple modules as classes</a>
 <ul class="toc"><li class="li-toc">
-<a href="advexamples.html#ss%3Astring-as-class">6.2.1 Strings</a>
-</li><li class="li-toc"><a href="advexamples.html#ss%3Ahashtbl-as-class">6.2.2 Hashtbl</a>
-</li><li class="li-toc"><a href="advexamples.html#ss%3Aset-as-class">6.2.3 Sets</a>
+<a href="advexamples.html#ss%3Astring-as-class"><span class="number">2.1</span>Strings</a>
+</li><li class="li-toc"><a href="advexamples.html#ss%3Ahashtbl-as-class"><span class="number">2.2</span>Hashtbl</a>
+</li><li class="li-toc"><a href="advexamples.html#ss%3Aset-as-class"><span class="number">2.3</span>Sets</a>
 </li></ul>
-</li><li class="li-toc"><a href="advexamples.html#s%3Asubject-observer">6.3 The subject/observer pattern</a>
+</li><li class="li-toc"><a href="advexamples.html#s%3Asubject-observer"><span class="number">3</span>The subject/observer pattern</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="index.html#sec72">Part ‍II The OCaml language</a>
+</li><li class="li-toc"><a href="index.html#sec72">Part&nbsp;II The OCaml language</a>
 <ul class="toc"><li class="li-toc">
-<a href="language.html#sec73">Chapter ‍7 The OCaml language</a>
+<a href="language.html#sec73"><span class="number">Chapter 7</span>The OCaml language</a>
 <ul class="toc"><li class="li-toc">
-<a href="lex.html#s%3Alexical-conventions">7.1 Lexical conventions</a>
-</li><li class="li-toc"><a href="values.html#s%3Avalues">7.2 Values</a>
+<a href="lex.html#s%3Alexical-conventions"><span class="number">1</span>Lexical conventions</a>
+</li><li class="li-toc"><a href="values.html#s%3Avalues"><span class="number">2</span>Values</a>
 <ul class="toc"><li class="li-toc">
-<a href="values.html#ss%3Avalues%3Abase">7.2.1 Base values</a>
-</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Atuple">7.2.2 Tuples</a>
-</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Arecords">7.2.3 Records</a>
-</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Aarray">7.2.4 Arrays</a>
-</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Avariant">7.2.5 Variant values</a>
-</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Apolyvars">7.2.6 Polymorphic variants</a>
-</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Afun">7.2.7 Functions</a>
-</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Aobj">7.2.8 Objects</a>
+<a href="values.html#ss%3Avalues%3Abase"><span class="number">2.1</span>Base values</a>
+</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Atuple"><span class="number">2.2</span>Tuples</a>
+</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Arecords"><span class="number">2.3</span>Records</a>
+</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Aarray"><span class="number">2.4</span>Arrays</a>
+</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Avariant"><span class="number">2.5</span>Variant values</a>
+</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Apolyvars"><span class="number">2.6</span>Polymorphic variants</a>
+</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Afun"><span class="number">2.7</span>Functions</a>
+</li><li class="li-toc"><a href="values.html#ss%3Avalues%3Aobj"><span class="number">2.8</span>Objects</a>
 </li></ul>
-</li><li class="li-toc"><a href="names.html#s%3Anames">7.3 Names</a>
-</li><li class="li-toc"><a href="types.html#s%3Atypexpr">7.4 Type expressions</a>
-</li><li class="li-toc"><a href="const.html#s%3Aconst">7.5 Constants</a>
-</li><li class="li-toc"><a href="patterns.html#s%3Apatterns">7.6 Patterns</a>
-</li><li class="li-toc"><a href="expr.html#s%3Avalue-expr">7.7 Expressions</a>
+</li><li class="li-toc"><a href="names.html#s%3Anames"><span class="number">3</span>Names</a>
+</li><li class="li-toc"><a href="types.html#s%3Atypexpr"><span class="number">4</span>Type expressions</a>
+</li><li class="li-toc"><a href="const.html#s%3Aconst"><span class="number">5</span>Constants</a>
+</li><li class="li-toc"><a href="patterns.html#s%3Apatterns"><span class="number">6</span>Patterns</a>
+</li><li class="li-toc"><a href="expr.html#s%3Avalue-expr"><span class="number">7</span>Expressions</a>
 <ul class="toc"><li class="li-toc">
-<a href="expr.html#ss%3Aprecedence-and-associativity">7.7.1 Precedence and associativity</a>
-</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-basic">7.7.2 Basic expressions</a>
-</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-control">7.7.3 Control structures</a>
-</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-ops-on-data">7.7.4 Operations on data structures</a>
-</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-operators">7.7.5 Operators</a>
-</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-obj">7.7.6 Objects</a>
-</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-coercions">7.7.7 Coercions</a>
-</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-other">7.7.8 Other</a>
+<a href="expr.html#ss%3Aprecedence-and-associativity"><span class="number">7.1</span>Precedence and associativity</a>
+</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-basic"><span class="number">7.2</span>Basic expressions</a>
+</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-control"><span class="number">7.3</span>Control structures</a>
+</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-ops-on-data"><span class="number">7.4</span>Operations on data structures</a>
+</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-operators"><span class="number">7.5</span>Operators</a>
+</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-obj"><span class="number">7.6</span>Objects</a>
+</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-coercions"><span class="number">7.7</span>Coercions</a>
+</li><li class="li-toc"><a href="expr.html#ss%3Aexpr-other"><span class="number">7.8</span>Other</a>
 </li></ul>
-</li><li class="li-toc"><a href="typedecl.html#s%3Atydef">7.8 Type and exception definitions</a>
+</li><li class="li-toc"><a href="typedecl.html#s%3Atydef"><span class="number">8</span>Type and exception definitions</a>
 <ul class="toc"><li class="li-toc">
-<a href="typedecl.html#ss%3Atypedefs">7.8.1 Type definitions</a>
-</li><li class="li-toc"><a href="typedecl.html#ss%3Aexndef">7.8.2 Exception definitions</a>
+<a href="typedecl.html#ss%3Atypedefs"><span class="number">8.1</span>Type definitions</a>
+</li><li class="li-toc"><a href="typedecl.html#ss%3Aexndef"><span class="number">8.2</span>Exception definitions</a>
 </li></ul>
-</li><li class="li-toc"><a href="classes.html#s%3Aclasses">7.9 Classes</a>
+</li><li class="li-toc"><a href="classes.html#s%3Aclasses"><span class="number">9</span>Classes</a>
 <ul class="toc"><li class="li-toc">
-<a href="classes.html#ss%3Aclasses%3Aclass-types">7.9.1 Class types</a>
-</li><li class="li-toc"><a href="classes.html#ss%3Aclass-expr">7.9.2 Class expressions</a>
-</li><li class="li-toc"><a href="classes.html#ss%3Aclass-def">7.9.3 Class definitions</a>
-</li><li class="li-toc"><a href="classes.html#ss%3Aclass-spec">7.9.4 Class specifications</a>
-</li><li class="li-toc"><a href="classes.html#ss%3Aclasstype">7.9.5 Class type definitions</a>
+<a href="classes.html#ss%3Aclasses%3Aclass-types"><span class="number">9.1</span>Class types</a>
+</li><li class="li-toc"><a href="classes.html#ss%3Aclass-expr"><span class="number">9.2</span>Class expressions</a>
+</li><li class="li-toc"><a href="classes.html#ss%3Aclass-def"><span class="number">9.3</span>Class definitions</a>
+</li><li class="li-toc"><a href="classes.html#ss%3Aclass-spec"><span class="number">9.4</span>Class specifications</a>
+</li><li class="li-toc"><a href="classes.html#ss%3Aclasstype"><span class="number">9.5</span>Class type definitions</a>
 </li></ul>
-</li><li class="li-toc"><a href="modtypes.html#s%3Amodtypes">7.10 Module types (module specifications)</a>
+</li><li class="li-toc"><a href="modtypes.html#s%3Amodtypes"><span class="number">10</span>Module types (module specifications)</a>
 <ul class="toc"><li class="li-toc">
-<a href="modtypes.html#ss%3Amty-simple">7.10.1 Simple module types</a>
-</li><li class="li-toc"><a href="modtypes.html#ss%3Amty-signatures">7.10.2 Signatures</a>
-</li><li class="li-toc"><a href="modtypes.html#ss%3Amty-functors">7.10.3 Functor types</a>
-</li><li class="li-toc"><a href="modtypes.html#ss%3Amty-with">7.10.4 The <span class="c004">with</span> operator</a>
+<a href="modtypes.html#ss%3Amty-simple"><span class="number">10.1</span>Simple module types</a>
+</li><li class="li-toc"><a href="modtypes.html#ss%3Amty-signatures"><span class="number">10.2</span>Signatures</a>
+</li><li class="li-toc"><a href="modtypes.html#ss%3Amty-functors"><span class="number">10.3</span>Functor types</a>
+</li><li class="li-toc"><a href="modtypes.html#ss%3Amty-with"><span class="number">10.4</span>The <span class="c004">with</span> operator</a>
 </li></ul>
-</li><li class="li-toc"><a href="modules.html#s%3Amodule-expr">7.11 Module expressions (module implementations)</a>
+</li><li class="li-toc"><a href="modules.html#s%3Amodule-expr"><span class="number">11</span>Module expressions (module implementations)</a>
 <ul class="toc"><li class="li-toc">
-<a href="modules.html#ss%3Amexpr-simple">7.11.1 Simple module expressions</a>
-</li><li class="li-toc"><a href="modules.html#ss%3Amexpr-structures">7.11.2 Structures</a>
-</li><li class="li-toc"><a href="modules.html#ss%3Amexpr-functors">7.11.3 Functors</a>
+<a href="modules.html#ss%3Amexpr-simple"><span class="number">11.1</span>Simple module expressions</a>
+</li><li class="li-toc"><a href="modules.html#ss%3Amexpr-structures"><span class="number">11.2</span>Structures</a>
+</li><li class="li-toc"><a href="modules.html#ss%3Amexpr-functors"><span class="number">11.3</span>Functors</a>
 </li></ul>
-</li><li class="li-toc"><a href="compunit.html#s%3Acompilation-units">7.12 Compilation units</a>
+</li><li class="li-toc"><a href="compunit.html#s%3Acompilation-units"><span class="number">12</span>Compilation units</a>
 </li></ul>
-</li><li class="li-toc"><a href="extn.html#sec238">Chapter ‍8 Language extensions</a>
+</li><li class="li-toc"><a href="extn.html#sec238"><span class="number">Chapter 8</span>Language extensions</a>
 <ul class="toc"><li class="li-toc">
-<a href="letrecvalues.html#s%3Aletrecvalues">8.1 Recursive definitions of values</a>
-</li><li class="li-toc"><a href="manual024.html#s%3Arecursive-modules">8.2 Recursive modules</a>
-</li><li class="li-toc"><a href="privatetypes.html#s%3Aprivate-types">8.3 Private types</a>
+<a href="letrecvalues.html#s%3Aletrecvalues"><span class="number">1</span>Recursive definitions of values</a>
+</li><li class="li-toc"><a href="manual024.html#s%3Arecursive-modules"><span class="number">2</span>Recursive modules</a>
+</li><li class="li-toc"><a href="privatetypes.html#s%3Aprivate-types"><span class="number">3</span>Private types</a>
 <ul class="toc"><li class="li-toc">
-<a href="privatetypes.html#ss%3Aprivate-types-variant">8.3.1 Private variant and record types</a>
-</li><li class="li-toc"><a href="privatetypes.html#ss%3Aprivate-types-abbrev">8.3.2 Private type abbreviations</a>
-</li><li class="li-toc"><a href="privatetypes.html#ss%3Aprivate-rows">8.3.3 Private row types</a>
+<a href="privatetypes.html#ss%3Aprivate-types-variant"><span class="number">3.1</span>Private variant and record types</a>
+</li><li class="li-toc"><a href="privatetypes.html#ss%3Aprivate-types-abbrev"><span class="number">3.2</span>Private type abbreviations</a>
+</li><li class="li-toc"><a href="privatetypes.html#ss%3Aprivate-rows"><span class="number">3.3</span>Private row types</a>
 </li></ul>
-</li><li class="li-toc"><a href="locallyabstract.html#s%3Alocally-abstract">8.4 Locally abstract types</a>
-</li><li class="li-toc"><a href="firstclassmodules.html#s%3Afirst-class-modules">8.5 First-class modules</a>
-</li><li class="li-toc"><a href="moduletypeof.html#s%3Amodule-type-of">8.6 Recovering the type of a module</a>
-</li><li class="li-toc"><a href="signaturesubstitution.html#s%3Asignature-substitution">8.7 Substituting inside a signature</a>
+</li><li class="li-toc"><a href="locallyabstract.html#s%3Alocally-abstract"><span class="number">4</span>Locally abstract types</a>
+</li><li class="li-toc"><a href="firstclassmodules.html#s%3Afirst-class-modules"><span class="number">5</span>First-class modules</a>
+</li><li class="li-toc"><a href="moduletypeof.html#s%3Amodule-type-of"><span class="number">6</span>Recovering the type of a module</a>
+</li><li class="li-toc"><a href="signaturesubstitution.html#s%3Asignature-substitution"><span class="number">7</span>Substituting inside a signature</a>
 <ul class="toc"><li class="li-toc">
-<a href="signaturesubstitution.html#ss%3Adestructive-substitution">8.7.1 Destructive substitutions</a>
-</li><li class="li-toc"><a href="signaturesubstitution.html#ss%3Alocal-substitution">8.7.2 Local substitution declarations</a>
+<a href="signaturesubstitution.html#ss%3Adestructive-substitution"><span class="number">7.1</span>Destructive substitutions</a>
+</li><li class="li-toc"><a href="signaturesubstitution.html#ss%3Alocal-substitution"><span class="number">7.2</span>Local substitution declarations</a>
 </li></ul>
-</li><li class="li-toc"><a href="modulealias.html#s%3Amodule-alias">8.8 Type-level module aliases</a>
-</li><li class="li-toc"><a href="overridingopen.html#s%3Aexplicit-overriding-open">8.9 Overriding in open statements</a>
-</li><li class="li-toc"><a href="gadts.html#s%3Agadts">8.10 Generalized algebraic datatypes</a>
-</li><li class="li-toc"><a href="bigarray.html#s%3Abigarray-access">8.11 Syntax for Bigarray access</a>
-</li><li class="li-toc"><a href="attributes.html#s%3Aattributes">8.12 Attributes</a>
+</li><li class="li-toc"><a href="modulealias.html#s%3Amodule-alias"><span class="number">8</span>Type-level module aliases</a>
+</li><li class="li-toc"><a href="overridingopen.html#s%3Aexplicit-overriding-open"><span class="number">9</span>Overriding in open statements</a>
+</li><li class="li-toc"><a href="gadts.html#s%3Agadts"><span class="number">10</span>Generalized algebraic datatypes</a>
+</li><li class="li-toc"><a href="bigarray.html#s%3Abigarray-access"><span class="number">11</span>Syntax for Bigarray access</a>
+</li><li class="li-toc"><a href="attributes.html#s%3Aattributes"><span class="number">12</span>Attributes</a>
 <ul class="toc"><li class="li-toc">
-<a href="attributes.html#ss%3Abuiltin-attributes">8.12.1 Built-in attributes</a>
+<a href="attributes.html#ss%3Abuiltin-attributes"><span class="number">12.1</span>Built-in attributes</a>
 </li></ul>
-</li><li class="li-toc"><a href="extensionnodes.html#s%3Aextension-nodes">8.13 Extension nodes</a>
+</li><li class="li-toc"><a href="extensionnodes.html#s%3Aextension-nodes"><span class="number">13</span>Extension nodes</a>
 <ul class="toc"><li class="li-toc">
-<a href="extensionnodes.html#ss%3Abuiltin-extension-nodes">8.13.1 Built-in extension nodes</a>
+<a href="extensionnodes.html#ss%3Abuiltin-extension-nodes"><span class="number">13.1</span>Built-in extension nodes</a>
 </li></ul>
-</li><li class="li-toc"><a href="extensiblevariants.html#s%3Aextensible-variants">8.14 Extensible variant types</a>
+</li><li class="li-toc"><a href="extensiblevariants.html#s%3Aextensible-variants"><span class="number">14</span>Extensible variant types</a>
 <ul class="toc"><li class="li-toc">
-<a href="extensiblevariants.html#ss%3Aprivate-extensible">8.14.1 Private extensible variant types</a>
+<a href="extensiblevariants.html#ss%3Aprivate-extensible"><span class="number">14.1</span>Private extensible variant types</a>
 </li></ul>
-</li><li class="li-toc"><a href="generativefunctors.html#s%3Agenerative-functors">8.15 Generative functors</a>
-</li><li class="li-toc"><a href="extensionsyntax.html#s%3Aextension-syntax">8.16 Extension-only syntax</a>
+</li><li class="li-toc"><a href="generativefunctors.html#s%3Agenerative-functors"><span class="number">15</span>Generative functors</a>
+</li><li class="li-toc"><a href="extensionsyntax.html#s%3Aextension-syntax"><span class="number">16</span>Extension-only syntax</a>
 <ul class="toc"><li class="li-toc">
-<a href="extensionsyntax.html#ss%3Aextension-operators">8.16.1 Extension operators</a>
-</li><li class="li-toc"><a href="extensionsyntax.html#ss%3Aextension-literals">8.16.2 Extension literals</a>
+<a href="extensionsyntax.html#ss%3Aextension-operators"><span class="number">16.1</span>Extension operators</a>
+</li><li class="li-toc"><a href="extensionsyntax.html#ss%3Aextension-literals"><span class="number">16.2</span>Extension literals</a>
 </li></ul>
-</li><li class="li-toc"><a href="inlinerecords.html#s%3Ainline-records">8.17 Inline records</a>
-</li><li class="li-toc"><a href="doccomments.html#s%3Adoc-comments">8.18 Documentation comments</a>
+</li><li class="li-toc"><a href="inlinerecords.html#s%3Ainline-records"><span class="number">17</span>Inline records</a>
+</li><li class="li-toc"><a href="doccomments.html#s%3Adoc-comments"><span class="number">18</span>Documentation comments</a>
 <ul class="toc"><li class="li-toc">
-<a href="doccomments.html#ss%3Afloating-comments">8.18.1 Floating comments</a>
-</li><li class="li-toc"><a href="doccomments.html#ss%3Aitem-comments">8.18.2 Item comments</a>
-</li><li class="li-toc"><a href="doccomments.html#ss%3Alabel-comments">8.18.3 Label comments</a>
+<a href="doccomments.html#ss%3Afloating-comments"><span class="number">18.1</span>Floating comments</a>
+</li><li class="li-toc"><a href="doccomments.html#ss%3Aitem-comments"><span class="number">18.2</span>Item comments</a>
+</li><li class="li-toc"><a href="doccomments.html#ss%3Alabel-comments"><span class="number">18.3</span>Label comments</a>
 </li></ul>
-</li><li class="li-toc"><a href="indexops.html#s%3Aindex-operators">8.19 Extended indexing operators </a>
+</li><li class="li-toc"><a href="indexops.html#s%3Aindex-operators"><span class="number">19</span>Extended indexing operators </a>
 <ul class="toc"><li class="li-toc">
-<a href="indexops.html#ss%3Amultiindexing">8.19.1 Multi-index notation</a>
+<a href="indexops.html#ss%3Amultiindexing"><span class="number">19.1</span>Multi-index notation</a>
 </li></ul>
-</li><li class="li-toc"><a href="emptyvariants.html#s%3Aempty-variants">8.20 Empty variant types</a>
-</li><li class="li-toc"><a href="alerts.html#s%3Aalerts">8.21 Alerts</a>
-</li><li class="li-toc"><a href="generalizedopens.html#s%3Ageneralized-open">8.22 Generalized open statements</a>
-</li><li class="li-toc"><a href="bindingops.html#s%3Abinding-operators">8.23 Binding operators</a>
+</li><li class="li-toc"><a href="emptyvariants.html#s%3Aempty-variants"><span class="number">20</span>Empty variant types</a>
+</li><li class="li-toc"><a href="alerts.html#s%3Aalerts"><span class="number">21</span>Alerts</a>
+</li><li class="li-toc"><a href="generalizedopens.html#s%3Ageneralized-open"><span class="number">22</span>Generalized open statements</a>
+</li><li class="li-toc"><a href="bindingops.html#s%3Abinding-operators"><span class="number">23</span>Binding operators</a>
 <ul class="toc"><li class="li-toc">
-<a href="bindingops.html#ss%3Aletops-rationale">8.23.1 Rationale</a>
+<a href="bindingops.html#ss%3Aletops-rationale"><span class="number">23.1</span>Rationale</a>
 </li></ul>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="index.html#sec286">Part ‍III The OCaml tools</a>
+</li><li class="li-toc"><a href="index.html#sec286">Part&nbsp;III The OCaml tools</a>
 <ul class="toc"><li class="li-toc">
-<a href="comp.html#sec287">Chapter ‍9 Batch compilation (ocamlc)</a>
+<a href="comp.html#sec287"><span class="number">Chapter 9</span>Batch compilation (ocamlc)</a>
 <ul class="toc"><li class="li-toc">
-<a href="comp.html#s%3Acomp-overview">9.1 Overview of the compiler</a>
-</li><li class="li-toc"><a href="comp.html#s%3Acomp-options">9.2 Options</a>
-</li><li class="li-toc"><a href="comp.html#s%3Amodules-file-system">9.3 Modules and the file system</a>
-</li><li class="li-toc"><a href="comp.html#s%3Acomp-errors">9.4 Common errors</a>
-</li><li class="li-toc"><a href="comp.html#s%3Acomp-warnings">9.5 Warning reference</a>
+<a href="comp.html#s%3Acomp-overview"><span class="number">1</span>Overview of the compiler</a>
+</li><li class="li-toc"><a href="comp.html#s%3Acomp-options"><span class="number">2</span>Options</a>
+</li><li class="li-toc"><a href="comp.html#s%3Amodules-file-system"><span class="number">3</span>Modules and the file system</a>
+</li><li class="li-toc"><a href="comp.html#s%3Acomp-errors"><span class="number">4</span>Common errors</a>
+</li><li class="li-toc"><a href="comp.html#s%3Acomp-warnings"><span class="number">5</span>Warning reference</a>
 <ul class="toc"><li class="li-toc">
-<a href="comp.html#ss%3Awarn9">9.5.1 Warning 9: missing fields in a record pattern</a>
-</li><li class="li-toc"><a href="comp.html#ss%3Awarn52">9.5.2 Warning 52: fragile constant pattern</a>
-</li><li class="li-toc"><a href="comp.html#ss%3Awarn57">9.5.3 Warning 57: Ambiguous or-pattern variables under guard</a>
+<a href="comp.html#ss%3Awarn9"><span class="number">5.1</span>Warning 9: missing fields in a record pattern</a>
+</li><li class="li-toc"><a href="comp.html#ss%3Awarn52"><span class="number">5.2</span>Warning 52: fragile constant pattern</a>
+</li><li class="li-toc"><a href="comp.html#ss%3Awarn57"><span class="number">5.3</span>Warning 57: Ambiguous or-pattern variables under guard</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="toplevel.html#sec297">Chapter ‍10 The toplevel system or REPL (ocaml)</a>
+</li><li class="li-toc"><a href="toplevel.html#sec297"><span class="number">Chapter 10</span>The toplevel system or REPL (ocaml)</a>
 <ul class="toc"><li class="li-toc">
-<a href="toplevel.html#s%3Atoplevel-options">10.1 Options</a>
-</li><li class="li-toc"><a href="toplevel.html#s%3Atoplevel-directives">10.2 Toplevel directives</a>
-</li><li class="li-toc"><a href="toplevel.html#s%3Atoplevel-modules">10.3 The toplevel and the module system</a>
-</li><li class="li-toc"><a href="toplevel.html#s%3Atoplevel-common-errors">10.4 Common errors</a>
-</li><li class="li-toc"><a href="toplevel.html#s%3Acustom-toplevel">10.5 Building custom toplevel systems: <span class="c004">ocamlmktop</span></a>
+<a href="toplevel.html#s%3Atoplevel-options"><span class="number">1</span>Options</a>
+</li><li class="li-toc"><a href="toplevel.html#s%3Atoplevel-directives"><span class="number">2</span>Toplevel directives</a>
+</li><li class="li-toc"><a href="toplevel.html#s%3Atoplevel-modules"><span class="number">3</span>The toplevel and the module system</a>
+</li><li class="li-toc"><a href="toplevel.html#s%3Atoplevel-common-errors"><span class="number">4</span>Common errors</a>
+</li><li class="li-toc"><a href="toplevel.html#s%3Acustom-toplevel"><span class="number">5</span>Building custom toplevel systems: <span class="c004">ocamlmktop</span></a>
 <ul class="toc"><li class="li-toc">
-<a href="toplevel.html#ss%3Aocamlmktop-options">10.5.1 Options</a>
+<a href="toplevel.html#ss%3Aocamlmktop-options"><span class="number">5.1</span>Options</a>
 </li></ul>
-</li><li class="li-toc"><a href="toplevel.html#s%3Aocamlnat">10.6 The native toplevel: <span class="c004">ocamlnat</span> (experimental)</a>
+</li><li class="li-toc"><a href="toplevel.html#s%3Aocamlnat"><span class="number">6</span>The native toplevel: <span class="c004">ocamlnat</span> (experimental)</a>
 </li></ul>
-</li><li class="li-toc"><a href="runtime.html#sec305">Chapter ‍11 The runtime system (ocamlrun)</a>
+</li><li class="li-toc"><a href="runtime.html#sec305"><span class="number">Chapter 11</span>The runtime system (ocamlrun)</a>
 <ul class="toc"><li class="li-toc">
-<a href="runtime.html#s%3Aocamlrun-overview">11.1 Overview</a>
-</li><li class="li-toc"><a href="runtime.html#s%3Aocamlrun-options">11.2 Options</a>
-</li><li class="li-toc"><a href="runtime.html#s%3Aocamlrun-dllpath">11.3 Dynamic loading of shared libraries</a>
-</li><li class="li-toc"><a href="runtime.html#s%3Aocamlrun-common-errors">11.4 Common errors</a>
+<a href="runtime.html#s%3Aocamlrun-overview"><span class="number">1</span>Overview</a>
+</li><li class="li-toc"><a href="runtime.html#s%3Aocamlrun-options"><span class="number">2</span>Options</a>
+</li><li class="li-toc"><a href="runtime.html#s%3Aocamlrun-dllpath"><span class="number">3</span>Dynamic loading of shared libraries</a>
+</li><li class="li-toc"><a href="runtime.html#s%3Aocamlrun-common-errors"><span class="number">4</span>Common errors</a>
 </li></ul>
-</li><li class="li-toc"><a href="native.html#sec310">Chapter ‍12 Native-code compilation (ocamlopt)</a>
+</li><li class="li-toc"><a href="native.html#sec310"><span class="number">Chapter 12</span>Native-code compilation (ocamlopt)</a>
 <ul class="toc"><li class="li-toc">
-<a href="native.html#s%3Anative-overview">12.1 Overview of the compiler</a>
-</li><li class="li-toc"><a href="native.html#s%3Anative-options">12.2 Options</a>
-</li><li class="li-toc"><a href="native.html#s%3Anative-common-errors">12.3 Common errors</a>
-</li><li class="li-toc"><a href="native.html#s%3Anative%3Arunning-executable">12.4 Running executables produced by ocamlopt</a>
-</li><li class="li-toc"><a href="native.html#s%3Acompat-native-bytecode">12.5 Compatibility with the bytecode compiler</a>
+<a href="native.html#s%3Anative-overview"><span class="number">1</span>Overview of the compiler</a>
+</li><li class="li-toc"><a href="native.html#s%3Anative-options"><span class="number">2</span>Options</a>
+</li><li class="li-toc"><a href="native.html#s%3Anative-common-errors"><span class="number">3</span>Common errors</a>
+</li><li class="li-toc"><a href="native.html#s%3Anative%3Arunning-executable"><span class="number">4</span>Running executables produced by ocamlopt</a>
+</li><li class="li-toc"><a href="native.html#s%3Acompat-native-bytecode"><span class="number">5</span>Compatibility with the bytecode compiler</a>
 </li></ul>
-</li><li class="li-toc"><a href="lexyacc.html#sec320">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a>
+</li><li class="li-toc"><a href="lexyacc.html#sec320"><span class="number">Chapter 13</span>Lexer and parser generators (ocamllex, ocamlyacc)</a>
 <ul class="toc"><li class="li-toc">
-<a href="lexyacc.html#s%3Aocamllex-overview">13.1 Overview of <span class="c004">ocamllex</span></a>
+<a href="lexyacc.html#s%3Aocamllex-overview"><span class="number">1</span>Overview of <span class="c004">ocamllex</span></a>
 <ul class="toc"><li class="li-toc">
-<a href="lexyacc.html#ss%3Aocamllex-options">13.1.1 Options</a>
+<a href="lexyacc.html#ss%3Aocamllex-options"><span class="number">1.1</span>Options</a>
 </li></ul>
-</li><li class="li-toc"><a href="lexyacc.html#s%3Aocamllex-syntax">13.2 Syntax of lexer definitions</a>
+</li><li class="li-toc"><a href="lexyacc.html#s%3Aocamllex-syntax"><span class="number">2</span>Syntax of lexer definitions</a>
 <ul class="toc"><li class="li-toc">
-<a href="lexyacc.html#ss%3Aocamllex-header-trailer">13.2.1 Header and trailer</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-named-regexp">13.2.2 Naming regular expressions</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-entry-points">13.2.3 Entry points</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-regexp">13.2.4 Regular expressions</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-actions">13.2.5 Actions</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-variables">13.2.6 Variables in regular expressions</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Arefill-handlers">13.2.7 Refill handlers</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-reserved-ident">13.2.8 Reserved identifiers</a>
+<a href="lexyacc.html#ss%3Aocamllex-header-trailer"><span class="number">2.1</span>Header and trailer</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-named-regexp"><span class="number">2.2</span>Naming regular expressions</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-entry-points"><span class="number">2.3</span>Entry points</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-regexp"><span class="number">2.4</span>Regular expressions</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-actions"><span class="number">2.5</span>Actions</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-variables"><span class="number">2.6</span>Variables in regular expressions</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Arefill-handlers"><span class="number">2.7</span>Refill handlers</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamllex-reserved-ident"><span class="number">2.8</span>Reserved identifiers</a>
 </li></ul>
-</li><li class="li-toc"><a href="lexyacc.html#s%3Aocamlyacc-overview">13.3 Overview of <span class="c004">ocamlyacc</span></a>
-</li><li class="li-toc"><a href="lexyacc.html#s%3Aocamlyacc-syntax">13.4 Syntax of grammar definitions</a>
+</li><li class="li-toc"><a href="lexyacc.html#s%3Aocamlyacc-overview"><span class="number">3</span>Overview of <span class="c004">ocamlyacc</span></a>
+</li><li class="li-toc"><a href="lexyacc.html#s%3Aocamlyacc-syntax"><span class="number">4</span>Syntax of grammar definitions</a>
 <ul class="toc"><li class="li-toc">
-<a href="lexyacc.html#ss%3Aocamlyacc-header-trailer">13.4.1 Header and trailer</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamlyacc-declarations">13.4.2 Declarations</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamlyacc-rules">13.4.3 Rules</a>
-</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamlyacc-error-handling">13.4.4 Error handling</a>
+<a href="lexyacc.html#ss%3Aocamlyacc-header-trailer"><span class="number">4.1</span>Header and trailer</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamlyacc-declarations"><span class="number">4.2</span>Declarations</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamlyacc-rules"><span class="number">4.3</span>Rules</a>
+</li><li class="li-toc"><a href="lexyacc.html#ss%3Aocamlyacc-error-handling"><span class="number">4.4</span>Error handling</a>
 </li></ul>
-</li><li class="li-toc"><a href="lexyacc.html#s%3Aocamlyacc-options">13.5 Options</a>
-</li><li class="li-toc"><a href="lexyacc.html#s%3Alexyacc-example">13.6 A complete example</a>
-</li><li class="li-toc"><a href="lexyacc.html#s%3Alexyacc-common-errors">13.7 Common errors</a>
+</li><li class="li-toc"><a href="lexyacc.html#s%3Aocamlyacc-options"><span class="number">5</span>Options</a>
+</li><li class="li-toc"><a href="lexyacc.html#s%3Alexyacc-example"><span class="number">6</span>A complete example</a>
+</li><li class="li-toc"><a href="lexyacc.html#s%3Alexyacc-common-errors"><span class="number">7</span>Common errors</a>
 </li></ul>
-</li><li class="li-toc"><a href="depend.html#sec341">Chapter ‍14 Dependency generator (ocamldep)</a>
+</li><li class="li-toc"><a href="depend.html#sec341"><span class="number">Chapter 14</span>Dependency generator (ocamldep)</a>
 <ul class="toc"><li class="li-toc">
-<a href="depend.html#s%3Aocamldep-options">14.1 Options</a>
-</li><li class="li-toc"><a href="depend.html#s%3Aocamldep-makefile">14.2 A typical Makefile</a>
+<a href="depend.html#s%3Aocamldep-options"><span class="number">1</span>Options</a>
+</li><li class="li-toc"><a href="depend.html#s%3Aocamldep-makefile"><span class="number">2</span>A typical Makefile</a>
 </li></ul>
-</li><li class="li-toc"><a href="ocamldoc.html#sec344">Chapter ‍15 The documentation generator (ocamldoc)</a>
+</li><li class="li-toc"><a href="ocamldoc.html#sec344"><span class="number">Chapter 15</span>The documentation generator (ocamldoc)</a>
 <ul class="toc"><li class="li-toc">
-<a href="ocamldoc.html#s%3Aocamldoc-usage">15.1 Usage</a>
+<a href="ocamldoc.html#s%3Aocamldoc-usage"><span class="number">1</span>Usage</a>
 <ul class="toc"><li class="li-toc">
-<a href="ocamldoc.html#ss%3Aocamldoc-invocation">15.1.1 Invocation</a>
-</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-merge">15.1.2 Merging of module information</a>
-</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-rules">15.1.3 Coding rules</a>
+<a href="ocamldoc.html#ss%3Aocamldoc-invocation"><span class="number">1.1</span>Invocation</a>
+</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-merge"><span class="number">1.2</span>Merging of module information</a>
+</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-rules"><span class="number">1.3</span>Coding rules</a>
 </li></ul>
-</li><li class="li-toc"><a href="ocamldoc.html#s%3Aocamldoc-comments">15.2 Syntax of documentation comments</a>
+</li><li class="li-toc"><a href="ocamldoc.html#s%3Aocamldoc-comments"><span class="number">2</span>Syntax of documentation comments</a>
 <ul class="toc"><li class="li-toc">
-<a href="ocamldoc.html#ss%3Aocamldoc-placement">15.2.1 Placement of documentation comments</a>
-</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-stop">15.2.2 The Stop special comment</a>
-</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-syntax">15.2.3 Syntax of documentation comments</a>
-</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-formatting">15.2.4 Text formatting</a>
-</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-tags">15.2.5 Documentation tags (@-tags)</a>
+<a href="ocamldoc.html#ss%3Aocamldoc-placement"><span class="number">2.1</span>Placement of documentation comments</a>
+</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-stop"><span class="number">2.2</span>The Stop special comment</a>
+</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-syntax"><span class="number">2.3</span>Syntax of documentation comments</a>
+</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-formatting"><span class="number">2.4</span>Text formatting</a>
+</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-tags"><span class="number">2.5</span>Documentation tags (@-tags)</a>
 </li></ul>
-</li><li class="li-toc"><a href="ocamldoc.html#s%3Aocamldoc-custom-generators">15.3 Custom generators</a>
+</li><li class="li-toc"><a href="ocamldoc.html#s%3Aocamldoc-custom-generators"><span class="number">3</span>Custom generators</a>
 <ul class="toc"><li class="li-toc">
-<a href="ocamldoc.html#ss%3Aocamldoc-generators">15.3.1 The generator modules</a>
-</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-handling-custom-tags">15.3.2 Handling custom tags</a>
+<a href="ocamldoc.html#ss%3Aocamldoc-generators"><span class="number">3.1</span>The generator modules</a>
+</li><li class="li-toc"><a href="ocamldoc.html#ss%3Aocamldoc-handling-custom-tags"><span class="number">3.2</span>Handling custom tags</a>
 </li></ul>
-</li><li class="li-toc"><a href="ocamldoc.html#s%3Aocamldoc-adding-flags">15.4 Adding command line options</a>
+</li><li class="li-toc"><a href="ocamldoc.html#s%3Aocamldoc-adding-flags"><span class="number">4</span>Adding command line options</a>
 <ul class="toc"><li class="li-toc">
-<a href="ocamldoc.html#ss%3Aocamldoc-compilation-and-usage">15.4.1 Compilation and usage</a>
+<a href="ocamldoc.html#ss%3Aocamldoc-compilation-and-usage"><span class="number">4.1</span>Compilation and usage</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="debugger.html#sec381">Chapter ‍16 The debugger (ocamldebug)</a>
+</li><li class="li-toc"><a href="debugger.html#sec381"><span class="number">Chapter 16</span>The debugger (ocamldebug)</a>
 <ul class="toc"><li class="li-toc">
-<a href="debugger.html#s%3Adebugger-compilation">16.1 Compiling for debugging</a>
-</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-invocation">16.2 Invocation</a>
+<a href="debugger.html#s%3Adebugger-compilation"><span class="number">1</span>Compiling for debugging</a>
+</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-invocation"><span class="number">2</span>Invocation</a>
 <ul class="toc"><li class="li-toc">
-<a href="debugger.html#ss%3Adebugger-start">16.2.1 Starting the debugger</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-init-file">16.2.2 Initialization file</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-exut">16.2.3 Exiting the debugger</a>
+<a href="debugger.html#ss%3Adebugger-start"><span class="number">2.1</span>Starting the debugger</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-init-file"><span class="number">2.2</span>Initialization file</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-exut"><span class="number">2.3</span>Exiting the debugger</a>
 </li></ul>
-</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-commands">16.3 Commands</a>
+</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-commands"><span class="number">3</span>Commands</a>
 <ul class="toc"><li class="li-toc">
-<a href="debugger.html#ss%3Adebugger-help">16.3.1 Getting help</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-state">16.3.2 Accessing the debugger state</a>
+<a href="debugger.html#ss%3Adebugger-help"><span class="number">3.1</span>Getting help</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-state"><span class="number">3.2</span>Accessing the debugger state</a>
 </li></ul>
-</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-execution">16.4 Executing a program</a>
+</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-execution"><span class="number">4</span>Executing a program</a>
 <ul class="toc"><li class="li-toc">
-<a href="debugger.html#ss%3Adebugger-events">16.4.1 Events</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-starting-program">16.4.2 Starting the debugged program</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-running">16.4.3 Running the program</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-time-travel">16.4.4 Time travel</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-kill">16.4.5 Killing the program</a>
+<a href="debugger.html#ss%3Adebugger-events"><span class="number">4.1</span>Events</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-starting-program"><span class="number">4.2</span>Starting the debugged program</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-running"><span class="number">4.3</span>Running the program</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-time-travel"><span class="number">4.4</span>Time travel</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-kill"><span class="number">4.5</span>Killing the program</a>
 </li></ul>
-</li><li class="li-toc"><a href="debugger.html#s%3Abreakpoints">16.5 Breakpoints</a>
-</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-callstack">16.6 The call stack</a>
-</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-examining-values">16.7 Examining variable values</a>
-</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-control">16.8 Controlling the debugger</a>
+</li><li class="li-toc"><a href="debugger.html#s%3Abreakpoints"><span class="number">5</span>Breakpoints</a>
+</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-callstack"><span class="number">6</span>The call stack</a>
+</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-examining-values"><span class="number">7</span>Examining variable values</a>
+</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-control"><span class="number">8</span>Controlling the debugger</a>
 <ul class="toc"><li class="li-toc">
-<a href="debugger.html#ss%3Adebugger-name-and-arguments">16.8.1 Setting the program name and arguments</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-loading">16.8.2 How programs are loaded</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-search-path">16.8.3 Search path for files</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-working-dir">16.8.4 Working directory</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-reverse-execution">16.8.5 Turning reverse execution on and off</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-fork">16.8.6 Behavior of the debugger with respect to <span class="c004">fork</span></a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-stop-at-new-load">16.8.7 Stopping execution when new code is loaded</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-communication">16.8.8 Communication between the debugger and the program</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-fine-tuning">16.8.9 Fine-tuning the debugger</a>
-</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-printers">16.8.10 User-defined printers</a>
+<a href="debugger.html#ss%3Adebugger-name-and-arguments"><span class="number">8.1</span>Setting the program name and arguments</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-loading"><span class="number">8.2</span>How programs are loaded</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-search-path"><span class="number">8.3</span>Search path for files</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-working-dir"><span class="number">8.4</span>Working directory</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-reverse-execution"><span class="number">8.5</span>Turning reverse execution on and off</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-fork"><span class="number">8.6</span>Behavior of the debugger with respect to <span class="c004">fork</span></a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-stop-at-new-load"><span class="number">8.7</span>Stopping execution when new code is loaded</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-communication"><span class="number">8.8</span>Communication between the debugger and the program</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-fine-tuning"><span class="number">8.9</span>Fine-tuning the debugger</a>
+</li><li class="li-toc"><a href="debugger.html#ss%3Adebugger-printers"><span class="number">8.10</span>User-defined printers</a>
 </li></ul>
-</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-misc-cmds">16.9 Miscellaneous commands</a>
-</li><li class="li-toc"><a href="debugger.html#s%3Ainf-debugger">16.10 Running the debugger under Emacs</a>
+</li><li class="li-toc"><a href="debugger.html#s%3Adebugger-misc-cmds"><span class="number">9</span>Miscellaneous commands</a>
+</li><li class="li-toc"><a href="debugger.html#s%3Ainf-debugger"><span class="number">10</span>Running the debugger under Emacs</a>
 </li></ul>
-</li><li class="li-toc"><a href="profil.html#sec412">Chapter ‍17 Profiling (ocamlprof)</a>
+</li><li class="li-toc"><a href="profil.html#sec412"><span class="number">Chapter 17</span>Profiling (ocamlprof)</a>
 <ul class="toc"><li class="li-toc">
-<a href="profil.html#s%3Aocamlprof-compiling">17.1 Compiling for profiling</a>
-</li><li class="li-toc"><a href="profil.html#s%3Aocamlprof-profiling">17.2 Profiling an execution</a>
-</li><li class="li-toc"><a href="profil.html#s%3Aocamlprof-printing">17.3 Printing profiling information</a>
-</li><li class="li-toc"><a href="profil.html#s%3Aocamlprof-time-profiling">17.4 Time profiling</a>
+<a href="profil.html#s%3Aocamlprof-compiling"><span class="number">1</span>Compiling for profiling</a>
+</li><li class="li-toc"><a href="profil.html#s%3Aocamlprof-profiling"><span class="number">2</span>Profiling an execution</a>
+</li><li class="li-toc"><a href="profil.html#s%3Aocamlprof-printing"><span class="number">3</span>Printing profiling information</a>
+</li><li class="li-toc"><a href="profil.html#s%3Aocamlprof-time-profiling"><span class="number">4</span>Time profiling</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#c%3Aintf-c">Chapter ‍18 Interfacing C with OCaml</a>
+</li><li class="li-toc"><a href="intfc.html#c%3Aintf-c"><span class="number">Chapter 18</span>Interfacing C with OCaml</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#s%3Ac-overview">18.1 Overview and compilation information</a>
+<a href="intfc.html#s%3Ac-overview"><span class="number">1</span>Overview and compilation information</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-prim-decl">18.1.1 Declaring primitives</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-prim-impl">18.1.2 Implementing primitives</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Astaticlink-c-code">18.1.3 Statically linking C code with OCaml code</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Adynlink-c-code">18.1.4 Dynamically linking C code with OCaml code</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-static-vs-dynamic">18.1.5 Choosing between static linking and dynamic linking</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Acustom-runtime">18.1.6 Building standalone custom runtime systems</a>
+<a href="intfc.html#ss%3Ac-prim-decl"><span class="number">1.1</span>Declaring primitives</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-prim-impl"><span class="number">1.2</span>Implementing primitives</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Astaticlink-c-code"><span class="number">1.3</span>Statically linking C code with OCaml code</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Adynlink-c-code"><span class="number">1.4</span>Dynamically linking C code with OCaml code</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-static-vs-dynamic"><span class="number">1.5</span>Choosing between static linking and dynamic linking</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Acustom-runtime"><span class="number">1.6</span>Building standalone custom runtime systems</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3Ac-value">18.2 The <span class="c004">value</span> type</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ac-value"><span class="number">2</span>The <span class="c004">value</span> type</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-int">18.2.1 Integer values</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-blocks">18.2.2 Blocks</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-outside-head">18.2.3 Pointers outside the heap</a>
+<a href="intfc.html#ss%3Ac-int"><span class="number">2.1</span>Integer values</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-blocks"><span class="number">2.2</span>Blocks</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-outside-head"><span class="number">2.3</span>Pointers outside the heap</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3Ac-ocaml-datatype-repr">18.3 Representation of OCaml data types</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ac-ocaml-datatype-repr"><span class="number">3</span>Representation of OCaml data types</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-atomic">18.3.1 Atomic types</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-tuples-and-records">18.3.2 Tuples and records</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-arrays">18.3.3 Arrays</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-concrete-datatypes">18.3.4 Concrete data types</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-objects">18.3.5 Objects</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-polyvar">18.3.6 Polymorphic variants</a>
+<a href="intfc.html#ss%3Ac-atomic"><span class="number">3.1</span>Atomic types</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-tuples-and-records"><span class="number">3.2</span>Tuples and records</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-arrays"><span class="number">3.3</span>Arrays</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-concrete-datatypes"><span class="number">3.4</span>Concrete data types</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-objects"><span class="number">3.5</span>Objects</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-polyvar"><span class="number">3.6</span>Polymorphic variants</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3Ac-ops-on-values">18.4 Operations on values</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ac-ops-on-values"><span class="number">4</span>Operations on values</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-kind-tests">18.4.1 Kind tests</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-int-ops">18.4.2 Operations on integers</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-block-access">18.4.3 Accessing blocks</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-block-allocation">18.4.4 Allocating blocks</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-exceptions">18.4.5 Raising exceptions</a>
+<a href="intfc.html#ss%3Ac-kind-tests"><span class="number">4.1</span>Kind tests</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-int-ops"><span class="number">4.2</span>Operations on integers</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-block-access"><span class="number">4.3</span>Accessing blocks</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-block-allocation"><span class="number">4.4</span>Allocating blocks</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-exceptions"><span class="number">4.5</span>Raising exceptions</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3Ac-gc-harmony">18.5 Living in harmony with the garbage collector</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ac-gc-harmony"><span class="number">5</span>Living in harmony with the garbage collector</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-simple-gc-harmony">18.5.1 Simple interface</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-low-level-gc-harmony">18.5.2 Low-level interface</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-process-pending-actions">18.5.3 Pending actions and asynchronous exceptions</a>
+<a href="intfc.html#ss%3Ac-simple-gc-harmony"><span class="number">5.1</span>Simple interface</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-low-level-gc-harmony"><span class="number">5.2</span>Low-level interface</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-process-pending-actions"><span class="number">5.3</span>Pending actions and asynchronous exceptions</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3Ac-intf-example">18.6 A complete example</a>
-</li><li class="li-toc"><a href="intfc.html#s%3Ac-callback">18.7 Advanced topic: callbacks from C to OCaml</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ac-intf-example"><span class="number">6</span>A complete example</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ac-callback"><span class="number">7</span>Advanced topic: callbacks from C to OCaml</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-callbacks">18.7.1 Applying OCaml closures from C</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-closures">18.7.2 Obtaining or registering OCaml closures for use in C functions</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-register-exn">18.7.3 Registering OCaml exceptions for use in C functions</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Amain-c">18.7.4 Main program in C</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-embedded-code">18.7.5 Embedding the OCaml code in the C code</a>
+<a href="intfc.html#ss%3Ac-callbacks"><span class="number">7.1</span>Applying OCaml closures from C</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-closures"><span class="number">7.2</span>Obtaining or registering OCaml closures for use in C functions</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-register-exn"><span class="number">7.3</span>Registering OCaml exceptions for use in C functions</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Amain-c"><span class="number">7.4</span>Main program in C</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-embedded-code"><span class="number">7.5</span>Embedding the OCaml code in the C code</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3Ac-advexample">18.8 Advanced example with callbacks</a>
-</li><li class="li-toc"><a href="intfc.html#s%3Ac-custom">18.9 Advanced topic: custom blocks</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ac-advexample"><span class="number">8</span>Advanced example with callbacks</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ac-custom"><span class="number">9</span>Advanced topic: custom blocks</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-custom-ops">18.9.1 The <span class="c004">struct custom_operations</span></a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-custom-alloc">18.9.2 Allocating custom blocks</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-custom-access">18.9.3 Accessing custom blocks</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-custom-serialization">18.9.4 Writing custom serialization and deserialization functions</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-custom-idents">18.9.5 Choosing identifiers</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-finalized">18.9.6 Finalized blocks</a>
+<a href="intfc.html#ss%3Ac-custom-ops"><span class="number">9.1</span>The <span class="c004">struct custom_operations</span></a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-custom-alloc"><span class="number">9.2</span>Allocating custom blocks</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-custom-access"><span class="number">9.3</span>Accessing custom blocks</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-custom-serialization"><span class="number">9.4</span>Writing custom serialization and deserialization functions</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-custom-idents"><span class="number">9.5</span>Choosing identifiers</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-finalized"><span class="number">9.6</span>Finalized blocks</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3AC-Bigarrays">18.10 Advanced topic: Bigarrays and the OCaml-C interface</a>
+</li><li class="li-toc"><a href="intfc.html#s%3AC-Bigarrays"><span class="number">10</span>Advanced topic: Bigarrays and the OCaml-C interface</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3AC-Bigarrays-include">18.10.1 Include file</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3AC-Bigarrays-access">18.10.2 Accessing an OCaml bigarray from C or Fortran</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3AC-Bigarrays-wrap">18.10.3 Wrapping a C or Fortran array as an OCaml Bigarray</a>
+<a href="intfc.html#ss%3AC-Bigarrays-include"><span class="number">10.1</span>Include file</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3AC-Bigarrays-access"><span class="number">10.2</span>Accessing an OCaml bigarray from C or Fortran</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3AC-Bigarrays-wrap"><span class="number">10.3</span>Wrapping a C or Fortran array as an OCaml Bigarray</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3AC-cheaper-call">18.11 Advanced topic: cheaper C call</a>
+</li><li class="li-toc"><a href="intfc.html#s%3AC-cheaper-call"><span class="number">11</span>Advanced topic: cheaper C call</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-unboxed">18.11.1 Passing unboxed values</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-direct-call">18.11.2 Direct C call</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-direct-call-example">18.11.3 Example: calling C library functions without indirection</a>
+<a href="intfc.html#ss%3Ac-unboxed"><span class="number">11.1</span>Passing unboxed values</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-direct-call"><span class="number">11.2</span>Direct C call</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-direct-call-example"><span class="number">11.3</span>Example: calling C library functions without indirection</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3AC-multithreading">18.12 Advanced topic: multithreading</a>
+</li><li class="li-toc"><a href="intfc.html#s%3AC-multithreading"><span class="number">12</span>Advanced topic: multithreading</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-thread-register">18.12.1 Registering threads created from C</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Aparallel-execution-long-running-c-code">18.12.2 Parallel execution of long-running C code</a>
+<a href="intfc.html#ss%3Ac-thread-register"><span class="number">12.1</span>Registering threads created from C</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Aparallel-execution-long-running-c-code"><span class="number">12.2</span>Parallel execution of long-running C code</a>
 </li></ul>
-</li><li class="li-toc"><a href="intfc.html#s%3Ainterfacing-windows-unicode-apis">18.13 Advanced topic: interfacing with Windows Unicode APIs</a>
-</li><li class="li-toc"><a href="intfc.html#s%3Aocamlmklib">18.14 Building mixed C/OCaml libraries: <span class="c004">ocamlmklib</span></a>
-</li><li class="li-toc"><a href="intfc.html#s%3Ac-internal-guidelines">18.15 Cautionary words: the internal runtime API</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ainterfacing-windows-unicode-apis"><span class="number">13</span>Advanced topic: interfacing with Windows Unicode APIs</a>
+</li><li class="li-toc"><a href="intfc.html#s%3Aocamlmklib"><span class="number">14</span>Building mixed C/OCaml libraries: <span class="c004">ocamlmklib</span></a>
+</li><li class="li-toc"><a href="intfc.html#s%3Ac-internal-guidelines"><span class="number">15</span>Cautionary words: the internal runtime API</a>
 <ul class="toc"><li class="li-toc">
-<a href="intfc.html#ss%3Ac-internals">18.15.1 Internal variables and CAML_INTERNALS</a>
-</li><li class="li-toc"><a href="intfc.html#ss%3Ac-internal-macros">18.15.2 OCaml version macros</a>
+<a href="intfc.html#ss%3Ac-internals"><span class="number">15.1</span>Internal variables and CAML_INTERNALS</a>
+</li><li class="li-toc"><a href="intfc.html#ss%3Ac-internal-macros"><span class="number">15.2</span>OCaml version macros</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="flambda.html#sec495">Chapter ‍19 Optimisation with Flambda</a>
+</li><li class="li-toc"><a href="flambda.html#sec495"><span class="number">Chapter 19</span>Optimisation with Flambda</a>
 <ul class="toc"><li class="li-toc">
-<a href="flambda.html#s%3Aflambda-overview">19.1 Overview</a>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-cli">19.2 Command-line flags</a>
+<a href="flambda.html#s%3Aflambda-overview"><span class="number">1</span>Overview</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-cli"><span class="number">2</span>Command-line flags</a>
 <ul class="toc"><li class="li-toc">
-<a href="flambda.html#ss%3Aflambda-rounds">19.2.1 Specification of optimisation parameters by round</a>
+<a href="flambda.html#ss%3Aflambda-rounds"><span class="number">2.1</span>Specification of optimisation parameters by round</a>
 </li></ul>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-inlining">19.3 Inlining</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-inlining"><span class="number">3</span>Inlining</a>
 <ul class="toc"><li class="li-toc">
-<a href="flambda.html#ss%3Aflambda-classic">19.3.1 Classic inlining heuristic</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-inlining-overview">19.3.2 Overview of “Flambda” inlining heuristics</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-by-constructs">19.3.3 Handling of specific language constructs</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-inlining-reports">19.3.4 Inlining reports</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-assessment-inlining">19.3.5 Assessment of inlining benefit</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-speculation">19.3.6 Control of speculation</a>
+<a href="flambda.html#ss%3Aflambda-classic"><span class="number">3.1</span>Classic inlining heuristic</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-inlining-overview"><span class="number">3.2</span>Overview of “Flambda” inlining heuristics</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-by-constructs"><span class="number">3.3</span>Handling of specific language constructs</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-inlining-reports"><span class="number">3.4</span>Inlining reports</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-assessment-inlining"><span class="number">3.5</span>Assessment of inlining benefit</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-speculation"><span class="number">3.6</span>Control of speculation</a>
 </li></ul>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-specialisation">19.4 Specialisation</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-specialisation"><span class="number">4</span>Specialisation</a>
 <ul class="toc"><li class="li-toc">
-<a href="flambda.html#ss%3Aflambda-assessment-specialisation">19.4.1 Assessment of specialisation benefit</a>
+<a href="flambda.html#ss%3Aflambda-assessment-specialisation"><span class="number">4.1</span>Assessment of specialisation benefit</a>
 </li></ul>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-defaults">19.5 Default settings of parameters</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-defaults"><span class="number">5</span>Default settings of parameters</a>
 <ul class="toc"><li class="li-toc">
-<a href="flambda.html#ss%3Aflambda-o2">19.5.1 Settings at -O2 optimisation level</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-o3">19.5.2 Settings at -O3 optimisation level</a>
+<a href="flambda.html#ss%3Aflambda-o2"><span class="number">5.1</span>Settings at -O2 optimisation level</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-o3"><span class="number">5.2</span>Settings at -O3 optimisation level</a>
 </li></ul>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-manual-control">19.6 Manual control of inlining and specialisation</a>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-simplification">19.7 Simplification</a>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-other-transfs">19.8 Other code motion transformations</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-manual-control"><span class="number">6</span>Manual control of inlining and specialisation</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-simplification"><span class="number">7</span>Simplification</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-other-transfs"><span class="number">8</span>Other code motion transformations</a>
 <ul class="toc"><li class="li-toc">
-<a href="flambda.html#ss%3Aflambda-lift-const">19.8.1 Lifting of constants</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-lift-toplevel-let">19.8.2 Lifting of toplevel let bindings</a>
+<a href="flambda.html#ss%3Aflambda-lift-const"><span class="number">8.1</span>Lifting of constants</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-lift-toplevel-let"><span class="number">8.2</span>Lifting of toplevel let bindings</a>
 </li></ul>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-unboxing">19.9 Unboxing transformations</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-unboxing"><span class="number">9</span>Unboxing transformations</a>
 <ul class="toc"><li class="li-toc">
-<a href="flambda.html#ss%3Aflambda-unbox-fvs">19.9.1 Unboxing of closure variables</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-unbox-spec-args">19.9.2 Unboxing of specialised arguments</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-unbox-closures">19.9.3 Unboxing of closures</a>
+<a href="flambda.html#ss%3Aflambda-unbox-fvs"><span class="number">9.1</span>Unboxing of closure variables</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-unbox-spec-args"><span class="number">9.2</span>Unboxing of specialised arguments</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-unbox-closures"><span class="number">9.3</span>Unboxing of closures</a>
 </li></ul>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-remove-unused">19.10 Removal of unused code and values</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-remove-unused"><span class="number">10</span>Removal of unused code and values</a>
 <ul class="toc"><li class="li-toc">
-<a href="flambda.html#ss%3Aflambda-redundant-let">19.10.1 Removal of redundant let expressions</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-redundant">19.10.2 Removal of redundant program constructs</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-remove-unused-args">19.10.3 Removal of unused arguments</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-removal-closure-vars">19.10.4 Removal of unused closure variables</a>
+<a href="flambda.html#ss%3Aflambda-redundant-let"><span class="number">10.1</span>Removal of redundant let expressions</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-redundant"><span class="number">10.2</span>Removal of redundant program constructs</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-remove-unused-args"><span class="number">10.3</span>Removal of unused arguments</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-removal-closure-vars"><span class="number">10.4</span>Removal of unused closure variables</a>
 </li></ul>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-other">19.11 Other code transformations</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-other"><span class="number">11</span>Other code transformations</a>
 <ul class="toc"><li class="li-toc">
-<a href="flambda.html#ss%3Aflambda-non-escaping-refs">19.11.1 Transformation of non-escaping references into mutable variables</a>
-</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-subst-closure-vars">19.11.2 Substitution of closure variables for specialised arguments</a>
+<a href="flambda.html#ss%3Aflambda-non-escaping-refs"><span class="number">11.1</span>Transformation of non-escaping references into mutable variables</a>
+</li><li class="li-toc"><a href="flambda.html#ss%3Aflambda-subst-closure-vars"><span class="number">11.2</span>Substitution of closure variables for specialised arguments</a>
 </li></ul>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-effects">19.12 Treatment of effects</a>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-static-modules">19.13 Compilation of statically-allocated modules</a>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-inhibition">19.14 Inhibition of optimisation</a>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-unsafe">19.15 Use of unsafe operations</a>
-</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-glossary">19.16 Glossary</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-effects"><span class="number">12</span>Treatment of effects</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-static-modules"><span class="number">13</span>Compilation of statically-allocated modules</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-inhibition"><span class="number">14</span>Inhibition of optimisation</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-unsafe"><span class="number">15</span>Use of unsafe operations</a>
+</li><li class="li-toc"><a href="flambda.html#s%3Aflambda-glossary"><span class="number">16</span>Glossary</a>
 </li></ul>
-</li><li class="li-toc"><a href="afl-fuzz.html#sec546">Chapter ‍20 Fuzzing with afl-fuzz</a>
+</li><li class="li-toc"><a href="afl-fuzz.html#sec546"><span class="number">Chapter 20</span>Fuzzing with afl-fuzz</a>
 <ul class="toc"><li class="li-toc">
-<a href="afl-fuzz.html#s%3Aafl-overview">20.1 Overview</a>
-</li><li class="li-toc"><a href="afl-fuzz.html#s%3Aafl-generate">20.2 Generating instrumentation</a>
+<a href="afl-fuzz.html#s%3Aafl-overview"><span class="number">1</span>Overview</a>
+</li><li class="li-toc"><a href="afl-fuzz.html#s%3Aafl-generate"><span class="number">2</span>Generating instrumentation</a>
 <ul class="toc"><li class="li-toc">
-<a href="afl-fuzz.html#ss%3Aafl-advanced">20.2.1 Advanced options</a>
+<a href="afl-fuzz.html#ss%3Aafl-advanced"><span class="number">2.1</span>Advanced options</a>
 </li></ul>
-</li><li class="li-toc"><a href="afl-fuzz.html#s%3Aafl-example">20.3 Example</a>
+</li><li class="li-toc"><a href="afl-fuzz.html#s%3Aafl-example"><span class="number">3</span>Example</a>
 </li></ul>
-</li><li class="li-toc"><a href="instrumented-runtime.html#sec551">Chapter ‍21 Runtime tracing with the instrumented runtime</a>
+</li><li class="li-toc"><a href="instrumented-runtime.html#sec551"><span class="number">Chapter 21</span>Runtime tracing with the instrumented runtime</a>
 <ul class="toc"><li class="li-toc">
-<a href="instrumented-runtime.html#s%3Ainstr-runtime-overview">21.1 Overview</a>
-</li><li class="li-toc"><a href="instrumented-runtime.html#s%3Ainstr-runtime-enabling">21.2 Enabling runtime instrumentation</a>
-</li><li class="li-toc"><a href="instrumented-runtime.html#s%3Ainstr-runtime-read">21.3 Reading traces</a>
+<a href="instrumented-runtime.html#s%3Ainstr-runtime-overview"><span class="number">1</span>Overview</a>
+</li><li class="li-toc"><a href="instrumented-runtime.html#s%3Ainstr-runtime-enabling"><span class="number">2</span>Enabling runtime instrumentation</a>
+</li><li class="li-toc"><a href="instrumented-runtime.html#s%3Ainstr-runtime-read"><span class="number">3</span>Reading traces</a>
 <ul class="toc"><li class="li-toc">
-<a href="instrumented-runtime.html#ss%3Ainstr-runtime-tools">21.3.1 eventlog-tools</a>
-</li><li class="li-toc"><a href="instrumented-runtime.html#ss%3Ainstr-runtime-babeltrace">21.3.2 babeltrace</a>
+<a href="instrumented-runtime.html#ss%3Ainstr-runtime-tools"><span class="number">3.1</span>eventlog-tools</a>
+</li><li class="li-toc"><a href="instrumented-runtime.html#ss%3Ainstr-runtime-babeltrace"><span class="number">3.2</span>babeltrace</a>
 </li></ul>
-</li><li class="li-toc"><a href="instrumented-runtime.html#s%3Ainstr-runtime-more">21.4 Controlling instrumentation and limitations</a>
+</li><li class="li-toc"><a href="instrumented-runtime.html#s%3Ainstr-runtime-more"><span class="number">4</span>Controlling instrumentation and limitations</a>
 <ul class="toc"><li class="li-toc">
-<a href="instrumented-runtime.html#ss%3Ainstr-runtime-prefix">21.4.1 Trace filename</a>
-</li><li class="li-toc"><a href="instrumented-runtime.html#ss%3Ainstr-runtime-pause">21.4.2 Pausing and resuming tracing</a>
-</li><li class="li-toc"><a href="instrumented-runtime.html#ss%3Ainstr-runtime-limitations">21.4.3 Limitations</a>
+<a href="instrumented-runtime.html#ss%3Ainstr-runtime-prefix"><span class="number">4.1</span>Trace filename</a>
+</li><li class="li-toc"><a href="instrumented-runtime.html#ss%3Ainstr-runtime-pause"><span class="number">4.2</span>Pausing and resuming tracing</a>
+</li><li class="li-toc"><a href="instrumented-runtime.html#ss%3Ainstr-runtime-limitations"><span class="number">4.3</span>Limitations</a>
 </li></ul>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="index.html#sec562">Part ‍IV The OCaml library</a>
+</li><li class="li-toc"><a href="index.html#sec562">Part&nbsp;IV The OCaml library</a>
 <ul class="toc"><li class="li-toc">
-<a href="core.html#sec563">Chapter ‍22 The core library</a>
+<a href="core.html#sec563"><span class="number">Chapter 22</span>The core library</a>
 <ul class="toc"><li class="li-toc">
-<a href="core.html#s%3Acore-builtins">22.1 Built-in types and predefined exceptions</a>
-</li><li class="li-toc"><a href="core.html#s%3Astdlib-module">22.2 Module <span class="c004">Stdlib</span>: the initially opened module</a>
+<a href="core.html#s%3Acore-builtins"><span class="number">1</span>Built-in types and predefined exceptions</a>
+</li><li class="li-toc"><a href="core.html#s%3Astdlib-module"><span class="number">2</span>Module <span class="c004">Stdlib</span>: the initially opened module</a>
 </li></ul>
-</li><li class="li-toc"><a href="stdlib.html#sec568">Chapter ‍23 The standard library</a>
-</li><li class="li-toc"><a href="parsing.html#sec569">Chapter ‍24 The compiler front-end</a>
-</li><li class="li-toc"><a href="libunix.html#sec570">Chapter ‍25 The unix library: Unix system calls</a>
-</li><li class="li-toc"><a href="libstr.html#sec571">Chapter ‍26 The str library: regular expressions and string processing</a>
-</li><li class="li-toc"><a href="libthreads.html#sec572">Chapter ‍27 The threads library</a>
-</li><li class="li-toc"><a href="libdynlink.html#sec573">Chapter ‍28 The dynlink library: dynamic loading and linking of object files</a>
-</li><li class="li-toc"><a href="old.html#sec574">Chapter ‍29 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a>
+</li><li class="li-toc"><a href="stdlib.html#sec568"><span class="number">Chapter 23</span>The standard library</a>
+</li><li class="li-toc"><a href="parsing.html#sec569"><span class="number">Chapter 24</span>The compiler front-end</a>
+</li><li class="li-toc"><a href="libunix.html#sec570"><span class="number">Chapter 25</span>The unix library: Unix system calls</a>
+</li><li class="li-toc"><a href="libstr.html#sec571"><span class="number">Chapter 26</span>The str library: regular expressions and string processing</a>
+</li><li class="li-toc"><a href="libthreads.html#sec572"><span class="number">Chapter 27</span>The threads library</a>
+</li><li class="li-toc"><a href="libdynlink.html#sec573"><span class="number">Chapter 28</span>The dynlink library: dynamic loading and linking of object files</a>
+</li><li class="li-toc"><a href="old.html#sec574"><span class="number">Chapter 29</span>Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a>
 <ul class="toc"><li class="li-toc">
-<a href="old.html#s%3Agraphics-removed">29.1 The Graphics Library</a>
-</li><li class="li-toc"><a href="old.html#s%3Abigarray-moved">29.2 The Bigarray Library</a>
-</li><li class="li-toc"><a href="old.html#sec577">29.3 The Num Library</a>
-</li><li class="li-toc"><a href="old.html#s%3Alabltk-removed">29.4 The Labltk Library and OCamlBrowser</a>
+<a href="old.html#s%3Agraphics-removed"><span class="number">1</span>The Graphics Library</a>
+</li><li class="li-toc"><a href="old.html#s%3Abigarray-moved"><span class="number">2</span>The Bigarray Library</a>
+</li><li class="li-toc"><a href="old.html#sec577"><span class="number">3</span>The Num Library</a>
+</li><li class="li-toc"><a href="old.html#s%3Alabltk-removed"><span class="number">4</span>The Labltk Library and OCamlBrowser</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="index.html#sec579">Part ‍V Indexes</a>
+</li><li class="li-toc"><a href="index.html#sec579">Part&nbsp;V Indexes</a>
 </li></ul>
 <div class="bottom-navigation"><a class="previous up" href="index.html">Home</a><a class="next" href="foreword.html">Foreword »</a></div>
 

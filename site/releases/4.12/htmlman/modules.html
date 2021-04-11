@@ -5,36 +5,36 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍7 The OCaml language</title>
+<title>OCaml - The OCaml language</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">Chapter ‍7 The OCaml language</a></li><li><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec73">Chapter ‍7 The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍7 The OCaml language</a></li>
-<li><a href="lex.html#start-section">7.1 Lexical conventions</a>
-</li><li><a href="values.html#start-section">7.2 Values</a>
-</li><li><a href="names.html#start-section">7.3 Names</a>
-</li><li><a href="types.html#start-section">7.4 Type expressions</a>
-</li><li><a href="const.html#start-section">7.5 Constants</a>
-</li><li><a href="patterns.html#start-section">7.6 Patterns</a>
-</li><li><a href="expr.html#start-section">7.7 Expressions</a>
-</li><li><a href="typedecl.html#start-section">7.8 Type and exception definitions</a>
-</li><li><a href="classes.html#start-section">7.9 Classes</a>
-</li><li><a href="modtypes.html#start-section">7.10 Module types (module specifications)</a>
-</li><li><a href="modules.html#start-section">7.11 Module expressions (module implementations)</a>
-</li><li><a href="compunit.html#start-section">7.12 Compilation units</a>
+<h1 class="chapter" id="sec73"><span class="number">Chapter 7</span>The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span>Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span>Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span>Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span>Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span>Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span>Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span>Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span>Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span>Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span>Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span>Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span>Compilation units</a>
 </li></ul></nav></header><a id="start-section"></a><section id="section">
 
 
 
 
-<h2 class="section" id="s:module-expr"><a class="section-anchor" href="#s:module-expr" aria-hidden="true"></a>7.11 Module expressions (module implementations)</h2>
+<h2 class="section" id="s:module-expr"><a class="section-anchor" href="#s:module-expr" aria-hidden="true"></a><span class="number">11</span>Module expressions (module implementations)</h2>
 <ul>
-<li><a href="modules.html#ss%3Amexpr-simple">7.11.1 Simple module expressions</a>
-</li><li><a href="modules.html#ss%3Amexpr-structures">7.11.2 Structures</a>
-</li><li><a href="modules.html#ss%3Amexpr-functors">7.11.3 Functors</a>
+<li><a href="modules.html#ss%3Amexpr-simple"><span class="number">11.1</span>Simple module expressions</a>
+</li><li><a href="modules.html#ss%3Amexpr-structures"><span class="number">11.2</span>Structures</a>
+</li><li><a href="modules.html#ss%3Amexpr-functors"><span class="number">11.3</span>Functors</a>
 </li></ul>
 <p>Module expressions are the module-level equivalent of value
 expressions: they evaluate to modules, thus providing implementations
@@ -101,7 +101,7 @@ See also the following language extensions:
 <a href="attributes.html#s%3Aattributes">attributes</a>,
 <a href="extensionnodes.html#s%3Aextension-nodes">extension nodes</a> and
 <a href="generativefunctors.html#s%3Agenerative-functors">generative functors</a>.</p>
-<h3 class="subsection" id="ss:mexpr-simple"><a class="section-anchor" href="#ss:mexpr-simple" aria-hidden="true">﻿</a>7.11.1 Simple module expressions</h3>
+<h3 class="subsection" id="ss:mexpr-simple"><a class="section-anchor" href="#ss:mexpr-simple" aria-hidden="true">﻿</a><span class="number">11.1</span>Simple module expressions</h3>
 <p>The expression <a class="syntax" href="names.html#module-path"><span class="c011">module-path</span></a> evaluates to the module bound to the name
 <a class="syntax" href="names.html#module-path"><span class="c011">module-path</span></a>.</p><p>The expression <span class="c005">(</span> <a class="syntax" href="#module-expr"><span class="c011">module-expr</span></a> <span class="c005">)</span> evaluates to the same module as
 <a class="syntax" href="#module-expr"><span class="c011">module-expr</span></a>.</p><p>The expression <span class="c005">(</span> <a class="syntax" href="#module-expr"><span class="c011">module-expr</span></a> <span class="c005">:</span>  <a class="syntax" href="modtypes.html#module-type"><span class="c011">module-type</span></a> <span class="c005">)</span> checks that the
@@ -113,7 +113,7 @@ in <a class="syntax" href="modtypes.html#module-type"><span class="c011">module-
 expression evaluates to the same module as <a class="syntax" href="#module-expr"><span class="c011">module-expr</span></a>, except that
 all components not specified in <a class="syntax" href="modtypes.html#module-type"><span class="c011">module-type</span></a> are hidden and can no
 longer be accessed.</p>
-<h3 class="subsection" id="ss:mexpr-structures"><a class="section-anchor" href="#ss:mexpr-structures" aria-hidden="true">﻿</a>7.11.2 Structures</h3>
+<h3 class="subsection" id="ss:mexpr-structures"><a class="section-anchor" href="#ss:mexpr-structures" aria-hidden="true">﻿</a><span class="number">11.2</span>Structures</h3>
 <p><a id="hevea_manual.kwd191"></a>
 <a id="hevea_manual.kwd192"></a></p><p>Structures <span class="c005">struct</span> … <span class="c005">end</span> are collections of definitions for
 value names, type names, exceptions, module names and module type
@@ -121,7 +121,7 @@ names. The definitions are evaluated in the order in which they appear
 in the structure. The scopes of the bindings performed by the
 definitions extend to the end of the structure. As a consequence, a
 definition may refer to names bound by earlier definitions in the same
-structure.</p><p>For compatibility with toplevel phrases (chapter ‍<a href="toplevel.html#c%3Acamllight">10</a>),
+structure.</p><p>For compatibility with toplevel phrases (chapter&nbsp;<a href="toplevel.html#c%3Acamllight">10</a>),
 optional <span class="c005">;;</span> are allowed after and before each definition in a structure. These
 <span class="c005">;;</span> have no semantic meanings. Similarly, an <a class="syntax" href="expr.html#expr"><span class="c011">expr</span></a> preceded by <span class="c004">;;</span> is allowed as
 a component of a structure. It is equivalent to <span class="c003"><span class="c004">let</span> <span class="c004">_</span> <span class="c004">=</span></span> <a class="syntax" href="expr.html#expr"><span class="c011">expr</span></a>, i.e. <a class="syntax" href="expr.html#expr"><span class="c011">expr</span></a> is
@@ -129,11 +129,11 @@ evaluated for its side-effects but is not bound to any identifier. If <a class="
 the first component of a structure, the preceding <span class="c004">;;</span> can be omitted.</p><h4 class="subsubsection" id="sss:mexpr-value-defs"><a class="section-anchor" href="#sss:mexpr-value-defs" aria-hidden="true">﻿</a>Value definitions</h4>
 <p><a id="hevea_manual.kwd193"></a></p><p>A value definition <span class="c005">let</span> [<span class="c005">rec</span>] <a class="syntax" href="expr.html#let-binding"><span class="c011">let-binding</span></a>  { <span class="c005">and</span> <a class="syntax" href="expr.html#let-binding"><span class="c011">let-binding</span></a> }
 bind value names in the same way as a <span class="c005">let</span> … <span class="c005">in</span> … expression
-(see section ‍<a href="expr.html#sss%3Aexpr-localdef">7.7.2</a>). The value names appearing in the
+(see section&nbsp;<a href="expr.html#sss%3Aexpr-localdef">7.7.2</a>). The value names appearing in the
 left-hand sides of the bindings are bound to the corresponding values
 in the right-hand sides.</p><p><a id="hevea_manual.kwd194"></a></p><p>A value definition <span class="c005">external</span> <a class="syntax" href="names.html#value-name"><span class="c011">value-name</span></a> <span class="c005">:</span>  <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a> <span class="c005">=</span>  <a class="syntax" href="intfc.html#external-declaration"><span class="c011">external-declaration</span></a>
 implements <a class="syntax" href="names.html#value-name"><span class="c011">value-name</span></a> as the external function specified in
-<a class="syntax" href="intfc.html#external-declaration"><span class="c011">external-declaration</span></a> (see chapter ‍<a href="intfc.html#c%3Aintf-c">18</a>).</p><h4 class="subsubsection" id="sss:mexpr-type-defs"><a class="section-anchor" href="#sss:mexpr-type-defs" aria-hidden="true">﻿</a>Type definitions</h4>
+<a class="syntax" href="intfc.html#external-declaration"><span class="c011">external-declaration</span></a> (see chapter&nbsp;<a href="intfc.html#c%3Aintf-c">18</a>).</p><h4 class="subsubsection" id="sss:mexpr-type-defs"><a class="section-anchor" href="#sss:mexpr-type-defs" aria-hidden="true">﻿</a>Type definitions</h4>
 <p><a id="hevea_manual.kwd195"></a></p><p>A definition of one or several type components is written
 <span class="c005">type</span> <a class="syntax" href="typedecl.html#typedef"><span class="c011">typedef</span></a>  { <span class="c005">and</span> <a class="syntax" href="typedecl.html#typedef"><span class="c011">typedef</span></a> } and consists of a sequence
 of mutually recursive definitions of type names.</p><h4 class="subsubsection" id="sss:mexpr-exn-defs"><a class="section-anchor" href="#sss:mexpr-exn-defs" aria-hidden="true">﻿</a>Exception definitions</h4>
@@ -142,13 +142,13 @@ or <span class="c005">exception</span> <a class="syntax" href="names.html#constr
 <p><a id="hevea_manual.kwd197"></a></p><p>A definition of one or several classes is written <span class="c005">class</span>
 <a class="syntax" href="classes.html#class-binding"><span class="c011">class-binding</span></a>  { <span class="c005">and</span> <a class="syntax" href="classes.html#class-binding"><span class="c011">class-binding</span></a> } and consists of a sequence of
 mutually recursive definitions of class names. Class definitions are
-described more precisely in section ‍<a href="classes.html#ss%3Aclass-def">7.9.3</a>.</p><h4 class="subsubsection" id="sss:mexpr-classtype-defs"><a class="section-anchor" href="#sss:mexpr-classtype-defs" aria-hidden="true">﻿</a>Class type definitions</h4>
+described more precisely in section&nbsp;<a href="classes.html#ss%3Aclass-def">7.9.3</a>.</p><h4 class="subsubsection" id="sss:mexpr-classtype-defs"><a class="section-anchor" href="#sss:mexpr-classtype-defs" aria-hidden="true">﻿</a>Class type definitions</h4>
 <p><a id="hevea_manual.kwd198"></a>
 <a id="hevea_manual.kwd199"></a></p><p>A definition of one or several classes is written
 <span class="c003"><span class="c004">class</span> <span class="c004">type</span></span> <a class="syntax" href="classes.html#classtype-def"><span class="c011">classtype-def</span></a>  { <span class="c005">and</span> <a class="syntax" href="classes.html#classtype-def"><span class="c011">classtype-def</span></a> } and consists of
 a sequence of mutually recursive definitions of class type names.
 Class type definitions are described more precisely in
-section ‍<a href="classes.html#ss%3Aclasstype">7.9.5</a>.</p><h4 class="subsubsection" id="sss:mexpr-module-defs"><a class="section-anchor" href="#sss:mexpr-module-defs" aria-hidden="true">﻿</a>Module definitions</h4>
+section&nbsp;<a href="classes.html#ss%3Aclasstype">7.9.5</a>.</p><h4 class="subsubsection" id="sss:mexpr-module-defs"><a class="section-anchor" href="#sss:mexpr-module-defs" aria-hidden="true">﻿</a>Module definitions</h4>
 <p><a id="hevea_manual.kwd200"></a></p><p>The basic form for defining a module component is
 <span class="c005">module</span> <a class="syntax" href="names.html#module-name"><span class="c011">module-name</span></a> <span class="c005">=</span>  <a class="syntax" href="#module-expr"><span class="c011">module-expr</span></a>, which evaluates <a class="syntax" href="#module-expr"><span class="c011">module-expr</span></a> and binds
 the result to the name <a class="syntax" href="names.html#module-name"><span class="c011">module-name</span></a>.</p><p>One can write
@@ -224,7 +224,7 @@ simply provides short names for the components of the opened
 structure, without defining any components of the current structure,
 while <span class="c005">include</span> also adds definitions for the components of the
 included structure.</p>
-<h3 class="subsection" id="ss:mexpr-functors"><a class="section-anchor" href="#ss:mexpr-functors" aria-hidden="true">﻿</a>7.11.3 Functors</h3>
+<h3 class="subsection" id="ss:mexpr-functors"><a class="section-anchor" href="#ss:mexpr-functors" aria-hidden="true">﻿</a><span class="number">11.3</span>Functors</h3>
 <h4 class="subsubsection" id="sss:mexpr-functor-defs"><a class="section-anchor" href="#sss:mexpr-functor-defs" aria-hidden="true">﻿</a>Functor definition</h4>
 <p><a id="hevea_manual.kwd205"></a></p><p>The expression <span class="c003"><span class="c004">functor</span> <span class="c004">(</span></span> <a class="syntax" href="names.html#module-name"><span class="c011">module-name</span></a> <span class="c005">:</span>  <a class="syntax" href="modtypes.html#module-type"><span class="c011">module-type</span></a> <span class="c003"><span class="c004">)</span> <span class="c004">-&gt;</span></span>
  <a class="syntax" href="#module-expr"><span class="c011">module-expr</span></a> evaluates to a functor that takes as argument modules of
@@ -238,7 +238,7 @@ argument (“higher-order” functor).</p><h4 class="subsubsection" id="sss:mexp
 applies the former to the latter. The type of <a class="syntax" href="#module-expr"><span class="c011">module-expr</span></a><sub>2</sub> must
 match the type expected for the arguments of the functor <a class="syntax" href="#module-expr"><span class="c011">module-expr</span></a><sub>1</sub>.</p>
 
-<div class="bottom-navigation"><a class="previous" href="modtypes.html">« 7.10 Module types (module specifications)</a><a class="next" href="compunit.html">7.12 Compilation units »</a></div>
+<div class="bottom-navigation"><a class="previous" href="modtypes.html">« Module types (module specifications)</a><a class="next" href="compunit.html">Compilation units »</a></div>
 
 
 

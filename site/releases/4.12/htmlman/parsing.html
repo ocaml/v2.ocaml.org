@@ -5,20 +5,20 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍24 The compiler front-end</title>
+<title>OCaml - The compiler front-end</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍IV The OCaml library</nav><ul id="part-menu"><li><a href="core.html">Chapter ‍22 The core library</a></li><li><a href="stdlib.html">Chapter ‍23 The standard library</a></li><li class="active"><a href="parsing.html">Chapter ‍24 The compiler front-end</a></li><li><a href="libunix.html">Chapter ‍25 The unix library: Unix system calls</a></li><li><a href="libstr.html">Chapter ‍26 The str library: regular expressions and string processing</a></li><li><a href="libthreads.html">Chapter ‍27 The threads library</a></li><li><a href="libdynlink.html">Chapter ‍28 The dynlink library: dynamic loading and linking of object files</a></li><li><a href="old.html">Chapter ‍29 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a></li></ul><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div></nav></header>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml library</nav><ul id="part-menu"><li><a href="core.html">The core library</a></li><li><a href="stdlib.html">The standard library</a></li><li class="active"><a href="parsing.html">The compiler front-end</a></li><li><a href="libunix.html">The unix library: Unix system calls</a></li><li><a href="libstr.html">The str library: regular expressions and string processing</a></li><li><a href="libthreads.html">The threads library</a></li><li><a href="libdynlink.html">The dynlink library: dynamic loading and linking of object files</a></li><li><a href="old.html">Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a></li></ul><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div></nav></header>
 
 
 
 
-<h1 class="chapter" id="sec569">Chapter ‍24 The compiler front-end</h1>
+<h1 class="chapter" id="sec569"><span class="number">Chapter 24</span>The compiler front-end</h1>
 <p> <a id="c:parsinglib"></a></p><p>
 <a id="Compiler-underscorelibs"></a> </p><p>This chapter describes the OCaml front-end, which declares the abstract
 syntax tree used by the compiler, provides a way to parse, print
 and pretty-print OCaml code, and ultimately allows one to write abstract
-syntax tree preprocessors invoked via the <span class="c004">-ppx</span> flag (see chapters ‍<a href="comp.html#c%3Acamlc">9</a>
-and ‍<a href="native.html#c%3Anativecomp">12</a>).</p><p>It is important to note that the exported front-end interface follows the evolution of the OCaml language and implementation, and thus does not provide <span class="c014">any</span> backwards compatibility guarantees.</p><p>The front-end is a part of <span class="c004">compiler-libs</span> library.
+syntax tree preprocessors invoked via the <span class="c004">-ppx</span> flag (see chapters&nbsp;<a href="comp.html#c%3Acamlc">9</a>
+and&nbsp;<a href="native.html#c%3Anativecomp">12</a>).</p><p>It is important to note that the exported front-end interface follows the evolution of the OCaml language and implementation, and thus does not provide <span class="c014">any</span> backwards compatibility guarantees.</p><p>The front-end is a part of <span class="c004">compiler-libs</span> library.
 Programs that use the <span class="c004">compiler-libs</span> library should be built as follows:
 </p><pre>        ocamlfind ocamlc <span class="c010">other options</span> -package compiler-libs.common <span class="c010">other files</span>
         ocamlfind ocamlopt <span class="c010">other options</span> -package compiler-libs.common <span class="c010">other files</span>
@@ -40,7 +40,7 @@ type<br>
 </li><li class="li-links"><a href="../api/compilerlibref/Pprintast.html">Module <span class="c004">Pprintast</span>: OCaml syntax printing</a>
 </li></ul>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="stdlib.html">« Chapter ‍23 The standard library</a><a class="next" href="libunix.html">Chapter ‍25 The unix library: Unix system calls »</a></div>
+<div class="bottom-navigation"><a class="previous" href="stdlib.html">« The standard library</a><a class="next" href="libunix.html">The unix library: Unix system calls »</a></div>
 
 
 

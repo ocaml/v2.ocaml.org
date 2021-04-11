@@ -5,25 +5,25 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍4 Labels and variants</title>
+<title>OCaml - Labels and variants</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍I An introduction to OCaml</nav><ul id="part-menu"><li><a href="coreexamples.html">Chapter ‍1 The core language</a></li><li><a href="moduleexamples.html">Chapter ‍2 The module system</a></li><li><a href="objectexamples.html">Chapter ‍3 Objects in OCaml</a></li><li class="active"><a href="lablexamples.html">Chapter ‍4 Labels and variants</a></li><li><a href="polymorphism.html">Chapter ‍5 Polymorphism and its limitations</a></li><li><a href="advexamples.html">Chapter ‍6 Advanced examples with classes and modules</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>An introduction to OCaml</nav><ul id="part-menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li class="active"><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec44">Chapter ‍4 Labels and variants</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍4 Labels and variants</a></li>
-<li><a href="lablexamples.html#s%3Alabels">4.1 Labels</a>
-</li><li><a href="lablexamples.html#s%3Apolymorphic-variants">4.2 Polymorphic variants</a>
+<h1 class="chapter" id="sec44"><span class="number">Chapter 4</span>Labels and variants</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Labels and variants</a></li>
+<li><a href="lablexamples.html#s%3Alabels"><span class="number">1</span>Labels</a>
+</li><li><a href="lablexamples.html#s%3Apolymorphic-variants"><span class="number">2</span>Polymorphic variants</a>
 </li></ul></nav></header>
 <p> <a id="c:labl-examples"></a>
 </p><p>
-<span class="c010">(Chapter written by Jacques Garrigue)</span></p><p><br>
+</p><p><br>
 <br>
 </p><p>This chapter gives an overview of the new features in
 OCaml 3: labels, and polymorphic variants.</p>
-<h2 class="section" id="s:labels"><a class="section-anchor" href="#s:labels" aria-hidden="true"></a>4.1 Labels</h2>
+<h2 class="section" id="s:labels"><a class="section-anchor" href="#s:labels" aria-hidden="true"></a><span class="number">1</span>Labels</h2>
 <p>If you have a look at modules ending in <span class="c004">Labels</span> in the standard
 library, you will see that function types have annotations you did not
 have in the functions you defined yourself.</p><div class="caml-example toplevel">
@@ -270,7 +270,7 @@ pattern, but you must prefix it with the label.
 <div class="pre caml-output ok">- : int = 3</div></div>
 
 </div>
-<h3 class="subsection" id="ss:optional-arguments"><a class="section-anchor" href="#ss:optional-arguments" aria-hidden="true">﻿</a>4.1.1 Optional arguments</h3>
+<h3 class="subsection" id="ss:optional-arguments"><a class="section-anchor" href="#ss:optional-arguments" aria-hidden="true">﻿</a><span class="number">1.1</span>Optional arguments</h3>
 <p>An interesting feature of labeled arguments is that they can be made
 optional. For optional parameters, the question mark <span class="c004">?</span> replaces the
 tilde <span class="c004">~</span> of non-optional ones, and the label is also prefixed by <span class="c004">?</span>
@@ -426,7 +426,7 @@ argument in an option type.</p><div class="caml-example toplevel">
 <div class="pre caml-output ok">- : ?y:int -&gt; unit -&gt; int * int * int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
 
 </div>
-<h3 class="subsection" id="ss:label-inference"><a class="section-anchor" href="#ss:label-inference" aria-hidden="true">﻿</a>4.1.2 Labels and type inference</h3>
+<h3 class="subsection" id="ss:label-inference"><a class="section-anchor" href="#ss:label-inference" aria-hidden="true">﻿</a><span class="number">1.2</span>Labels and type inference</h3>
 <p>While they provide an increased comfort for writing function
 applications, labels and optional arguments have the pitfall that they
 cannot be inferred as completely as the rest of the language.</p><p>You can see it in the following two examples.
@@ -551,7 +551,7 @@ parameters.</p><div class="caml-example toplevel">
 including side-effects. That is, if the application of optional
 parameters shall produce side-effects, these are delayed until the
 received function is really applied to an argument.</p>
-<h3 class="subsection" id="ss:label-suggestions"><a class="section-anchor" href="#ss:label-suggestions" aria-hidden="true">﻿</a>4.1.3 Suggestions for labeling</h3>
+<h3 class="subsection" id="ss:label-suggestions"><a class="section-anchor" href="#ss:label-suggestions" aria-hidden="true">﻿</a><span class="number">1.3</span>Suggestions for labeling</h3>
 <p>Like for names, choosing labels for functions is not an easy task. A
 good labeling is a labeling which</p><ul class="itemize"><li class="li-itemize">
 makes programs more readable,
@@ -603,8 +603,8 @@ make the program harder to maintain.</p><p>In the ideal, the right function name
 enough to understand the function’s meaning. Since one can get this
 information with OCamlBrowser or the <span class="c004">ocaml</span> toplevel, the documentation
 is only used when a more detailed specification is needed.</p>
-<h2 class="section" id="s:polymorphic-variants"><a class="section-anchor" href="#s:polymorphic-variants" aria-hidden="true">﻿</a>4.2 Polymorphic variants</h2>
-<p>Variants as presented in section ‍<a href="coreexamples.html#s%3Atut-recvariants">1.4</a> are a
+<h2 class="section" id="s:polymorphic-variants"><a class="section-anchor" href="#s:polymorphic-variants" aria-hidden="true">﻿</a><span class="number">2</span>Polymorphic variants</h2>
+<p>Variants as presented in section&nbsp;<a href="coreexamples.html#s%3Atut-recvariants">1.4</a> are a
 powerful tool to build data structures and algorithms. However they
 sometimes lack flexibility when used in modular programming. This is
 due to the fact that every constructor is assigned to a unique type
@@ -906,7 +906,7 @@ or combined with with aliases.
 <div class="pre caml-output ok"><span class="ocamlkeyword">val</span> g : [&lt; `Tag1 <span class="ocamlkeyword">of</span> int | `Tag2 <span class="ocamlkeyword">of</span> bool | `Tag3 ] -&gt; string = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
 
 </div>
-<h3 class="subsection" id="ss:polyvariant-weaknesses"><a class="section-anchor" href="#ss:polyvariant-weaknesses" aria-hidden="true">﻿</a>4.2.1 Weaknesses of polymorphic variants</h3>
+<h3 class="subsection" id="ss:polyvariant-weaknesses"><a class="section-anchor" href="#ss:polyvariant-weaknesses" aria-hidden="true">﻿</a><span class="number">2.1</span>Weaknesses of polymorphic variants</h3>
 <p>After seeing the power of polymorphic variants, one may wonder why
 they were added to core language variants, rather than replacing them.</p><p>The answer is twofold. One first aspect is that while being pretty
 efficient, the lack of static type information allows for less
@@ -983,10 +983,10 @@ of Objective Caml 3.00 through 3.02, with some additional flexibility
 on total applications. The so-called classic mode (<span class="c004">-nolabels</span>
 options) is now deprecated for normal use.</div></dd></dl>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="objectexamples.html">« Chapter ‍3 Objects in OCaml</a><a class="next" href="polymorphism.html">Chapter ‍5 Polymorphism and its limitations »</a></div>
+<div class="bottom-navigation"><a class="previous" href="objectexamples.html">« Objects in OCaml</a><a class="next" href="polymorphism.html">Polymorphism and its limitations »</a></div>
 
 
 
 
-<div class="copyright">Copyright © 2021 Institut National de
+<span class="authors c010">(Chapter written by Jacques Garrigue)</span><div class="copyright">Copyright © 2021 Institut National de
 Recherche en Informatique et en Automatique</div></div></body></html>

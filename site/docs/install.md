@@ -15,6 +15,7 @@ The OCaml compiler and libraries can be installed in several ways:
   ([Linux](#Linux), [macOS](#macOS), [FreeBSD](#FreeBSD),
    [OpenBSD](#OpenBSD), [NetBSD](#NetBSD), [Windows](#Windows))
 * In your [browser](#Browser).
+* On your [mobile device](#Mobile).
 * By compiling [the source](#From-Source).
 
 For finding and installing OCaml libraries, see the
@@ -34,10 +35,10 @@ Example using the Bash shell and opam-2.0:
 ```
 # environment setup
 opam init
-eval `opam env`
+eval $(opam env)
 # install given version of the compiler
 opam switch create {{! get LATEST_OCAML_VERSION !}}
-eval `opam env`
+eval $(opam env)
 # check you got what you want
 which ocaml
 ocaml -version
@@ -208,6 +209,10 @@ Here are a few other alternatives:
 * [Cygwin](http://cygwin.com/)-based port. Requires Cygwin, you can
   install them using the `setup` tool. The compilers generate executables
   that do require Cygwin (`cygwin1.dll`).
+  
+## Mobile
+
+* [OCaml: Learn & Code](https://apps.apple.com/app/ocaml-learn-code/id1547506826) provides an editor and an interactive toplevel for iOS, iPadOS and macOS, with a growing learn section.
 
 ## Browser
 
@@ -233,6 +238,4 @@ instructions included therein.
 Here is the list of available versions across different Linux and UNIX distributions:
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/ocaml.svg)](https://repology.org/metapackage/ocaml)
-
-
 

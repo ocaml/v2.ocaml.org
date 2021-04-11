@@ -5,45 +5,45 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍7 The OCaml language</title>
+<title>OCaml - The OCaml language</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">Chapter ‍7 The OCaml language</a></li><li><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec73">Chapter ‍7 The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍7 The OCaml language</a></li>
-<li><a href="lex.html#start-section">7.1 Lexical conventions</a>
-</li><li><a href="values.html#start-section">7.2 Values</a>
-</li><li><a href="names.html#start-section">7.3 Names</a>
-</li><li><a href="types.html#start-section">7.4 Type expressions</a>
-</li><li><a href="const.html#start-section">7.5 Constants</a>
-</li><li><a href="patterns.html#start-section">7.6 Patterns</a>
-</li><li><a href="expr.html#start-section">7.7 Expressions</a>
-</li><li><a href="typedecl.html#start-section">7.8 Type and exception definitions</a>
-</li><li><a href="classes.html#start-section">7.9 Classes</a>
-</li><li><a href="modtypes.html#start-section">7.10 Module types (module specifications)</a>
-</li><li><a href="modules.html#start-section">7.11 Module expressions (module implementations)</a>
-</li><li><a href="compunit.html#start-section">7.12 Compilation units</a>
+<h1 class="chapter" id="sec73"><span class="number">Chapter 7</span>The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span>Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span>Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span>Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span>Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span>Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span>Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span>Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span>Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span>Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span>Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span>Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span>Compilation units</a>
 </li></ul></nav></header><a id="start-section"></a><section id="section">
 
 
 
 
-<h2 class="section" id="s:values"><a class="section-anchor" href="#s:values" aria-hidden="true"></a>7.2 Values</h2>
+<h2 class="section" id="s:values"><a class="section-anchor" href="#s:values" aria-hidden="true"></a><span class="number">2</span>Values</h2>
 <ul>
-<li><a href="values.html#ss%3Avalues%3Abase">7.2.1 Base values</a>
-</li><li><a href="values.html#ss%3Avalues%3Atuple">7.2.2 Tuples</a>
-</li><li><a href="values.html#ss%3Avalues%3Arecords">7.2.3 Records</a>
-</li><li><a href="values.html#ss%3Avalues%3Aarray">7.2.4 Arrays</a>
-</li><li><a href="values.html#ss%3Avalues%3Avariant">7.2.5 Variant values</a>
-</li><li><a href="values.html#ss%3Avalues%3Apolyvars">7.2.6 Polymorphic variants</a>
-</li><li><a href="values.html#ss%3Avalues%3Afun">7.2.7 Functions</a>
-</li><li><a href="values.html#ss%3Avalues%3Aobj">7.2.8 Objects</a>
+<li><a href="values.html#ss%3Avalues%3Abase"><span class="number">2.1</span>Base values</a>
+</li><li><a href="values.html#ss%3Avalues%3Atuple"><span class="number">2.2</span>Tuples</a>
+</li><li><a href="values.html#ss%3Avalues%3Arecords"><span class="number">2.3</span>Records</a>
+</li><li><a href="values.html#ss%3Avalues%3Aarray"><span class="number">2.4</span>Arrays</a>
+</li><li><a href="values.html#ss%3Avalues%3Avariant"><span class="number">2.5</span>Variant values</a>
+</li><li><a href="values.html#ss%3Avalues%3Apolyvars"><span class="number">2.6</span>Polymorphic variants</a>
+</li><li><a href="values.html#ss%3Avalues%3Afun"><span class="number">2.7</span>Functions</a>
+</li><li><a href="values.html#ss%3Avalues%3Aobj"><span class="number">2.8</span>Objects</a>
 </li></ul>
 <p>This section describes the kinds of values that are manipulated by
 OCaml programs.</p>
-<h3 class="subsection" id="ss:values:base"><a class="section-anchor" href="#ss:values:base" aria-hidden="true">﻿</a>7.2.1 Base values</h3>
+<h3 class="subsection" id="ss:values:base"><a class="section-anchor" href="#ss:values:base" aria-hidden="true">﻿</a><span class="number">2.1</span>Base values</h3>
 <h4 class="subsubsection" id="sss:values:integer"><a class="section-anchor" href="#sss:values:integer" aria-hidden="true">﻿</a>Integer numbers</h4>
 <p>Integer values are integer numbers from −2<sup>30</sup> to 2<sup>30</sup>−1, that
 is −1073741824 to 1073741823. The implementation may support a
@@ -61,23 +61,23 @@ between 128 and 255 following the ISO 8859-1 standard.</p><h4 class="subsubsecti
 implementation supports strings containing up to 2<sup>24</sup> − 5
 characters (16777211 characters); on 64-bit platforms, the limit is
 2<sup>57</sup> − 9.</p>
-<h3 class="subsection" id="ss:values:tuple"><a class="section-anchor" href="#ss:values:tuple" aria-hidden="true">﻿</a>7.2.2 Tuples</h3>
+<h3 class="subsection" id="ss:values:tuple"><a class="section-anchor" href="#ss:values:tuple" aria-hidden="true">﻿</a><span class="number">2.2</span>Tuples</h3>
 <p>Tuples of values are written <span class="c005">(</span><span class="c011">v</span><sub>1</sub><span class="c005">,</span> …<span class="c005">,</span> <span class="c011">v</span><sub><span class="c010">n</span></sub><span class="c005">)</span>, standing for the
 <span class="c010">n</span>-tuple of values <span class="c011">v</span><sub>1</sub> to <span class="c011">v</span><sub><span class="c010">n</span></sub>. The current implementation
 supports tuple of up to 2<sup>22</sup> − 1 elements (4194303 elements).</p>
-<h3 class="subsection" id="ss:values:records"><a class="section-anchor" href="#ss:values:records" aria-hidden="true">﻿</a>7.2.3 Records</h3>
+<h3 class="subsection" id="ss:values:records"><a class="section-anchor" href="#ss:values:records" aria-hidden="true">﻿</a><span class="number">2.3</span>Records</h3>
 <p>Record values are labeled tuples of values. The record value written
 <span class="c005">{</span> <a class="syntax" href="names.html#field"><span class="c011">field</span></a><sub>1</sub> <span class="c005">=</span> <span class="c011">v</span><sub>1</sub><span class="c005">;</span> …<span class="c005">;</span>  <a class="syntax" href="names.html#field"><span class="c011">field</span></a><sub><span class="c010">n</span></sub> <span class="c005">=</span> <span class="c011">v</span><sub><span class="c010">n</span></sub> <span class="c005">}</span> associates the value
 <span class="c011">v</span><sub><span class="c010">i</span></sub> to the record field <a class="syntax" href="names.html#field"><span class="c011">field</span></a><sub><span class="c010">i</span></sub>, for <span class="c010">i</span> = 1 … <span class="c010">n</span>. The current
 implementation supports records with up to 2<sup>22</sup> − 1 fields
 (4194303 fields).</p>
-<h3 class="subsection" id="ss:values:array"><a class="section-anchor" href="#ss:values:array" aria-hidden="true">﻿</a>7.2.4 Arrays</h3>
+<h3 class="subsection" id="ss:values:array"><a class="section-anchor" href="#ss:values:array" aria-hidden="true">﻿</a><span class="number">2.4</span>Arrays</h3>
 <p>Arrays are finite, variable-sized sequences of values of the same
 type. The current implementation supports arrays containing up to
 2<sup>22</sup> − 1 elements (4194303 elements) unless the elements are
 floating-point numbers (2097151 elements in this case); on 64-bit
 platforms, the limit is 2<sup>54</sup> − 1 for all arrays.</p>
-<h3 class="subsection" id="ss:values:variant"><a class="section-anchor" href="#ss:values:variant" aria-hidden="true">﻿</a>7.2.5 Variant values</h3>
+<h3 class="subsection" id="ss:values:variant"><a class="section-anchor" href="#ss:values:variant" aria-hidden="true">﻿</a><span class="number">2.5</span>Variant values</h3>
 <p>Variant values are either a constant constructor, or a non-constant
 constructor applied to a number of values. The former case is written
 <a class="syntax" href="names.html#constr"><span class="c011">constr</span></a>; the latter case is written <a class="syntax" href="names.html#constr"><span class="c011">constr</span></a> <span class="c005">(</span><span class="c011">v</span><sub>1</sub><span class="c005">,</span> ... <span class="c005">,</span> <span class="c011">v</span><sub><span class="c010">n</span></sub>
@@ -94,14 +94,14 @@ constructors:
 <tr><td class="c017"><span class="c004">[]</span></td><td class="c017">the empty list </td></tr>
 </tbody></table></div></div><p>The current implementation limits each variant type to have at most
 246 non-constant constructors and 2<sup>30</sup>−1 constant constructors.</p>
-<h3 class="subsection" id="ss:values:polyvars"><a class="section-anchor" href="#ss:values:polyvars" aria-hidden="true">﻿</a>7.2.6 Polymorphic variants</h3>
+<h3 class="subsection" id="ss:values:polyvars"><a class="section-anchor" href="#ss:values:polyvars" aria-hidden="true">﻿</a><span class="number">2.6</span>Polymorphic variants</h3>
 <p>Polymorphic variants are an alternate form of variant values, not
 belonging explicitly to a predefined variant type, and following
 specific typing rules. They can be either constant, written
 <span class="c005">`</span><a class="syntax" href="names.html#tag-name"><span class="c011">tag-name</span></a>, or non-constant, written <span class="c005">`</span><a class="syntax" href="names.html#tag-name"><span class="c011">tag-name</span></a><span class="c003"><span class="c004">(</span><span class="c011">v</span><span class="c004">)</span></span>.</p>
-<h3 class="subsection" id="ss:values:fun"><a class="section-anchor" href="#ss:values:fun" aria-hidden="true">﻿</a>7.2.7 Functions</h3>
+<h3 class="subsection" id="ss:values:fun"><a class="section-anchor" href="#ss:values:fun" aria-hidden="true">﻿</a><span class="number">2.7</span>Functions</h3>
 <p>Functional values are mappings from values to values.</p>
-<h3 class="subsection" id="ss:values:obj"><a class="section-anchor" href="#ss:values:obj" aria-hidden="true">﻿</a>7.2.8 Objects</h3>
+<h3 class="subsection" id="ss:values:obj"><a class="section-anchor" href="#ss:values:obj" aria-hidden="true">﻿</a><span class="number">2.8</span>Objects</h3>
 <p>Objects are composed of a hidden internal state which is a
 record of instance variables, and a set of methods for accessing and
 modifying these variables. The structure of an object is described by
@@ -109,7 +109,7 @@ the toplevel class that created it.
 
 </p>
 
-<div class="bottom-navigation"><a class="previous" href="lex.html">« 7.1 Lexical conventions</a><a class="next" href="names.html">7.3 Names »</a></div>
+<div class="bottom-navigation"><a class="previous" href="lex.html">« Lexical conventions</a><a class="next" href="names.html">Names »</a></div>
 
 
 
