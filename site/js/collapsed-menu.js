@@ -3,13 +3,12 @@
 
 function toggleVisibilityMenu(id) {
     var e = document.getElementById(id);
-    if (e.style.height == "auto") {
-	e.style.height = "0";
+    if (e.style.display == "block") {
     e.style.right = "1000px";
-
+    e.style.display = "none";
     }
     else {
-	e.style.height = "auto";
+	e.style.display = "block";
     e.style.right = "0";
     }
 }
