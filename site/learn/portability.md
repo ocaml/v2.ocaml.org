@@ -14,53 +14,53 @@ processor/operating system combinations:
 
 
 
-<table>
+<table class="table table-bordered">
 <thead>
 <tr class="header">
-<th align="left">Processors</th>
-<th align="left">Operating systems</th>
+<th align="left" style="text-align: left">Processors</th>
+<th align="left" style="text-align: left">Operating systems</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Tier 1 platforms<br /> (actively used and maintained by the core Caml team):</td>
+<td align="left" class="table-subheading" colspan="2">Tier 1 platforms<br /> (actively used and maintained by the core Caml team):</td>
 </tr>
 <tr class="even">
-<td align="left">AMD64 (Intel and AMD x86 processors in 64-bit mode)</td>
-<td align="left">Linux, MacOS X</td>
+<td align="left" style="text-align: left">AMD64 (Intel and AMD x86 processors in 64-bit mode)</td>
+<td align="left" style="text-align: left">Linux, MacOS X</td>
 </tr>
 <tr class="odd">
-<td align="left">IA32 (Intel and AMD x86 processors in 32-bit mode)</td>
-<td align="left">Linux, FreeBSD, MacOS X, Microsoft Windows</td>
+<td align="left" style="text-align: left">IA32 (Intel and AMD x86 processors in 32-bit mode)</td>
+<td align="left" style="text-align: left">Linux, FreeBSD, MacOS X, Microsoft Windows</td>
 </tr>
 <tr class="even">
-<td align="left">Power PC</td>
-<td align="left">Linux, Mac OS X</td>
+<td align="left" style="text-align: left">Power PC</td>
+<td align="left" style="text-align: left">Linux, Mac OS X</td>
 </tr>
 <tr class="odd">
-<td align="left">ARM</td>
-<td align="left">Linux</td>
+<td align="left" style="text-align: left">ARM</td>
+<td align="left" style="text-align: left">Linux</td>
 </tr>
 <tr class="even">
-<td align="left">Tier 2 platforms<br /> (maintained but less actively, with help from users):</td>
+<td align="left" class="table-subheading" colspan="2">Tier 2 platforms<br /> (maintained but less actively, with help from users):</td>
 </tr>
 <tr class="odd">
-<td align="left">AMD64</td>
-<td align="left">Microsoft Windows, FreeBSD, OpenBSD</td>
+<td align="left" style="text-align: left">AMD64</td>
+<td align="left" style="text-align: left">Microsoft Windows, FreeBSD, OpenBSD</td>
 </tr>
 <tr class="even">
-<td align="left">IA32</td>
-<td align="left">NetBSD, OpenBSD, Solaris 9</td>
+<td align="left" style="text-align: left">IA32</td>
+<td align="left" style="text-align: left">NetBSD, OpenBSD, Solaris 9</td>
 </tr>
 <tr class="odd">
-<td align="left">PowerPC</td>
-<td align="left">NetBSD</td>
+<td align="left" style="text-align: left">PowerPC</td>
+<td align="left" style="text-align: left">NetBSD</td>
 </tr>
 <tr class="even">
-<td align="left">SPARC
+<td align="left" style="text-align: left">SPARC
   (<a href="https://github.com/ocaml/ocaml/pull/659">discontinued
   since 2017</a>)</td>
-<td align="left">Solaris 9, Linux, NetBSD</td>
+<td align="left" style="text-align: left">Solaris 9, Linux, NetBSD</td>
 </tr>
 </tbody>
 </table>
@@ -87,51 +87,51 @@ Each of these ports exists for either Win32 or Win64 platforms.
 
 Here is a summary of the main differences between these ports:
 
-<table width="100%">
+<table class="table table-striped table-bordered" width="100%">
 <thead>
 <tr class="header">
-<th align="left"></th>
-<th align="left">Native MSVC</th>
-<th align="left">MinGW Cygwin</th>
-<th align="left">Cygwin</th>
-<th align="left"><a href="http://www.typerex.org/ocpwin.html">OCPWin</a></th>
+<th align="left" style="text-align: left"></th>
+<th align="left" style="text-align: left">Native MSVC</th>
+<th align="left" style="text-align: left">MinGW Cygwin</th>
+<th align="left" style="text-align: left">Cygwin</th>
+<th align="left" style="text-align: left"><a href="http://www.typerex.org/ocpwin.html">OCPWin</a></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Third-party software required<br /> - for base bytecode system<br /> - for <code>ocamlc -custom</code><br /> - for native-code generation</td>
-<td align="left"><br /> none<br /> Windows SDK<br /> Windows SDK</td>
-<td align="left"><br /> none<br /> Cygwin<br /> Cygwin</td>
-<td align="left"><br /> Cygwin<br /> Cygwin<br /> Cygwin</td>
-<td align="left"><br /> none<br /> none<br /> none</td>
+<td align="left" style="text-align: left">Third-party software required<br /> - for base bytecode system<br /> - for <code>ocamlc -custom</code><br /> - for native-code generation</td>
+<td align="left" style="text-align: left"><br /> none<br /> Windows SDK<br /> Windows SDK</td>
+<td align="left" style="text-align: left"><br /> none<br /> Cygwin<br /> Cygwin</td>
+<td align="left" style="text-align: left"><br /> Cygwin<br /> Cygwin<br /> Cygwin</td>
+<td align="left" style="text-align: left"><br /> none<br /> none<br /> none</td>
 </tr>
 <tr class="even">
-<td align="left">Speed of bytecode interpreter</td>
-<td align="left">70 %</td>
-<td align="left">100 %</td>
-<td align="left">100 %</td>
-<td align="left">100 %</td>
+<td align="left" style="text-align: left">Speed of bytecode interpreter</td>
+<td align="left" style="text-align: left">70 %</td>
+<td align="left" style="text-align: left">100 %</td>
+<td align="left" style="text-align: left">100 %</td>
+<td align="left" style="text-align: left">100 %</td>
 </tr>
 <tr class="odd">
-<td align="left">Debugger</td>
-<td align="left">partial</td>
-<td align="left">partial</td>
-<td align="left">full</td>
-<td align="left"></td>
+<td align="left" style="text-align: left">Debugger</td>
+<td align="left" style="text-align: left">partial</td>
+<td align="left" style="text-align: left">partial</td>
+<td align="left" style="text-align: left">full</td>
+<td align="left" style="text-align: left"></td>
 </tr>
 <tr class="even">
-<td align="left">Libraries<br /> - Unix<br /> - Threads<br /> - Graphics</td>
-<td align="left"><br /> partial<br /> yes<br /> yes</td>
-<td align="left"><br /> partial<br /> yes<br /> yes</td>
-<td align="left"><br /> full<br /> yes<br /> no</td>
-<td align="left"><br /> partial<br /> yes<br /> yes</td>
+<td align="left" style="text-align: left">Libraries<br /> - Unix<br /> - Threads<br /> - Graphics</td>
+<td align="left" style="text-align: left"><br /> partial<br /> yes<br /> yes</td>
+<td align="left" style="text-align: left"><br /> partial<br /> yes<br /> yes</td>
+<td align="left" style="text-align: left"><br /> full<br /> yes<br /> no</td>
+<td align="left" style="text-align: left"><br /> partial<br /> yes<br /> yes</td>
 </tr>
 <tr class="odd">
-<td align="left">Restrictions on generated executables</td>
-<td align="left">none</td>
-<td align="left">none</td>
-<td align="left">yes*</td>
-<td align="left">yes*</td>
+<td align="left" style="text-align: left">Restrictions on generated executables</td>
+<td align="left" style="text-align: left">none</td>
+<td align="left" style="text-align: left">none</td>
+<td align="left" style="text-align: left">yes*</td>
+<td align="left" style="text-align: left">yes*</td>
 </tr>
 </tbody>
 </table>
