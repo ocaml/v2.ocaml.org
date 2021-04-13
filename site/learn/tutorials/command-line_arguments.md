@@ -48,6 +48,117 @@ will get:
 
 ## Using the Arg module
 
+The OCaml standard library has a module for writing command line interfaces, so
+we do not have to use `Sys.argv` directly. We shall consider the example from
+the OCaml documentation, a program for appending files.
+
+First, we set up the usage message to be printed in the case of a malformed
+command line, or when help is requested:
+
+```ocaml
+let usage_msg = "append [-verbose] <file1> [<file2>] ... -o <output>"
+```
+
+Now, we create some references to hold the information gathered from the
+command line. The `Arg` module will fill these in for us as the command line is
+read.
+
+```ocaml
+let verbose = ref false
+
+let input_files = ref []
+
+let output_file = ref ""
+```
+
+We have a boolean reference for the `-verbose` flag with a default value of
+`false`. Then we have a reference to a list which will hold the names of all
+the input files. Finally, we have a string reference into which the single
+output file name specified by `-o` will be placed.
+
+We will need a function to handle the anonymous inputs, that is to say the ones
+with no flag before them. In this case these are our input file names. Our
+function simply adds the file name to the reference defined earlier.
+
+```ocaml
+let anon_fun filename =
+  input_files := filename :: !input_files
+```
+
+Finally we build the list of command line flag specifcations. Each is a tuple
+of the flag name, the action to be taken when it is encountered, and the help
+string.
+
+```ocaml
+let speclist =
+  [("-verbose", Arg.Set verbose, "Output debug information");
+   ("-o", Arg.Set_string output_file, "Set output file name")]
+```
+
+We have two kinds of action here: the `Arg.Set` action which sets a boolean
+reference, and the `Arg.Set_string` action which sets a string reference. Our
+`input_files` reference will of course be updated by the `anon_fun` function
+already defined.
+
+We can now call `Arg.parse`, giving it our specification list, anonymous
+function, and usage message. Once it returns, the references will be filled
+with all the information required to append our files.
+
+```ocaml
+let () =
+  Arg.parse speclist anon_fun usage_msg;
+  (* Main functionality here *)
+```
+
+Let's save our program as `append.ml` and compile it with `ocamlopt -o append
+append.ml` and try it out:
+
+```shell
+$./append -verbose one.txt two.txt -o three.txt
+
+$./append one.txt two.txt
+
+$./append -quiet
+./append: unknown option '-quiet'.
+append [-verbose] <file1> [<file2>] ... -o <output>
+  -verbose Output debug information
+  -o Set output file name
+  -help  Display this list of options
+  --help  Display this list of options
+
+$./append -help
+append [-verbose] <file1> [<file2>] ... -o <output>
+  -verbose Output debug information
+  -o Set output file name
+  -help  Display this list of options
+  --help  Display this list of options
+```
+
+Here is the whole program:
+
+```ocaml
+let usage_msg = "append [-verbose] <file1> [<file2>] ... -o <output>"
+
+let verbose = ref false
+
+let input_files = ref []
+
+let output_file = ref ""
+
+let anon_fun filename =
+  input_files := filename :: !input_files
+
+let speclist =
+  [("-verbose", Arg.Set verbose, "Output debug information");
+   ("-o", Arg.Set_string output_file, "Set output file name")]
+
+let () =
+  Arg.parse speclist anon_fun usage_msg;
+  (* Main functionality here *)
+```
+
+The `Arg` module has many more actions than just `Set` and `Set_string`, and
+some lower-level function for parsing more complicated command lines.
 
 ## Other tools for parsing command-line options
 
