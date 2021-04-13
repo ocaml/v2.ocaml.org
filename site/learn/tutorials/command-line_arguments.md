@@ -50,3 +50,7 @@ without having to scan the `Sys.argv` array yourself:
 * [Getopt](https://opam.ocaml.org/packages/getopt/)
   for OCaml is similar to [GNU
   getopt](http://www.gnu.org/software/libc/manual/html_node/Getopt.html).
+
+<div class="bottom-navigation">
+<a href = "introduction_to_gtk.html" class="previous">« Introduction to Gtk</a><a href="file_manipulation.html" class="next">File Manipulation »</a>
+</div>

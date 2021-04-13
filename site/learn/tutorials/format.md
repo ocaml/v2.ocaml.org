@@ -416,3 +416,7 @@ or `stderr` is just a matter of partial application:
 let print_lambda = pr_lambda std_formatter
 let eprint_lambda = pr_lambda err_formatter
 ```
+
+<div class="bottom-navigation">
+<a href = "comparison_of_standard_containers.html" class="previous">« Comparison of Standard Containers</a><a href="99problems.html" class="next">99 Problems(solved) in OCaml »</a>
+</div>

@@ -663,3 +663,7 @@ List.map (fun w -> m#find w) c#children;;
 * Lablgtk provides two ways to perform downcasting, but this doesn't
  change the fact that downcasting is unsafe and can throw exceptions
  at runtime.
+
+<div class="bottom-navigation">
+<a href = "99problems.html" class="previous">« 99 Problems(solved) in OCaml</a><a href="command-line_arguments.html" class="next">Command-Line Arguments »</a>
+</div>

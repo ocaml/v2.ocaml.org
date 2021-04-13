@@ -87,3 +87,7 @@ the source files
 [`set.ml`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/set.ml) or
 [`map.ml`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/map.ml) of the
 standard library.
+
+<div class="bottom-navigation">
+<a href = "null_pointers_asserts_and_warnings.html" class="previous">« Null Pointers, Asserts, and Warnings</a><a href="objects.html" class="next">Objects »</a>
+</div>

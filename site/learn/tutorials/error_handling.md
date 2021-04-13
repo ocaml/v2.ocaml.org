@@ -154,3 +154,7 @@ are:
 
 For easy combination of functions that can fail, many alternative standard
 libraries provide useful combinators on the `result` type: `map`, `>>=`, etc.
+
+<div class="bottom-navigation">
+<a href = "objects.html" class="previous">« Objects</a><a href="common_error_messages.html" class="next">Common Error Messages »</a>
+</div>

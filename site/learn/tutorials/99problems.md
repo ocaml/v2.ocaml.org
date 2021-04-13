@@ -3170,3 +3170,7 @@ way of placing words onto sites.
 ```ocaml
 (* example pending *);;
 ```
+
+<div class="bottom-navigation">
+<a href = "format.html" class="previous">« Formatting and Wrapping Text</a><a href="introduction_to_gtk.html" class="next">Introduction to Gtk »</a>
+</div>

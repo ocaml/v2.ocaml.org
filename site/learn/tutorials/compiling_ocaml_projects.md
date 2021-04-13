@@ -145,3 +145,7 @@ necessary. See next section.
 - [OMake](https://github.com/ocaml-omake/omake) Another OCaml build system.
 - [GNU make](https://www.gnu.org/software/make/) GNU make can build anything, including OCaml. May be used in conjunction with [OCamlmakefile](https://github.com/mmottl/ocaml-makefile)
 - [Oasis](https://github.com/ocaml/oasis) Generates configure, build, and install system using another build system.
+
+<div class="bottom-navigation">
+<a href = "guidelines.html" class="previous">« OCaml Programming Guidelines</a><a href="data_types_and_matching.html" class="next">Data Types and Matching »</a>
+</div>

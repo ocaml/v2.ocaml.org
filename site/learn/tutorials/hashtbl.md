@@ -89,3 +89,7 @@ entry in `my_hash` for a letter we would do:
 ```ocamltop
 Hashtbl.mem my_hash "h"
 ```
+
+<div class="bottom-navigation">
+<a href = "set.html" class="previous">« Sets</a><a href="comparison_of_standard_containers.html" class="next">Comparison of Standard Containers »</a>
+</div>

@@ -226,3 +226,7 @@ Vim:
 ```
 let $PATH .= ";".substitute(system('opam config var bin'),'\n$','','''')
 ```
+
+<div class="bottom-navigation">
+<a href = "index.html" class="previous">« OCaml Tutorials</a><a href="a_first_hour_with_ocaml.html" class="next">A First Hour With OCaml »</a>
+</div>

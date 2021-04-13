@@ -885,6 +885,10 @@ You can find out more about how OCaml represents different types by
 reading the ("Interfacing C with OCaml") chapter in the OCaml manual and also
 looking at the `mlvalues.h` header file.
 
+<div class="bottom-navigation">
+<a href = "garbage_collection.html" class="previous">« Garbage Collection</a><a href ="index.html" class="next">OCaml Tutorials</a>
+</div>
+
 <!--###  Java dynamic dispatch
 **There are some serious mistakes in the last paragraph:**
 

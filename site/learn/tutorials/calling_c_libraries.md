@@ -395,3 +395,7 @@ In order for it to get passed to OCaml code at all, we must somehow
 convert it to a `value`. Luckily we can quite easily use the C API to
 create `value` blocks which the OCaml garbage collector *won't* examine
 too closely ......
+
+<div class="bottom-navigation">
+<a href = "file_manipulation.html" class="previous">« File Manipulation</a><a href="calling_fortran_libraries.html" class="next">Calling Fortran Libraries »</a>
+</div>

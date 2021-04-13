@@ -1109,3 +1109,7 @@ and odd n =
 You can also
 use similar syntax for writing mutually recursive class definitions and
 modules.
+
+<div class="bottom-navigation">
+<a href = "functional_programming.html" class="previous">« Functional Programming</a><a href="modules.html" class="next">Modules »</a>
+</div>

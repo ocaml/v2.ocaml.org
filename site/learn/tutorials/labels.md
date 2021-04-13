@@ -532,3 +532,7 @@ reduction in type safety, it is recommended that you don't use these in
 your code. You will, however, see them in advanced OCaml code quite a
 lot precisely because advanced programmers will sometimes want to weaken
 the type system to write advanced idioms.
+
+<div class="bottom-navigation">
+<a href = "modules.html" class="previous">« Modules</a><a href="pointers.html" class="next">Pointers in OCaml »</a>
+</div>

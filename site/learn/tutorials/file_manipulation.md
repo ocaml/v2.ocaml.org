@@ -103,3 +103,7 @@ let () =
   
   (* normal exit: all channels are flushed and closed *)
 ```
+
+<div class="bottom-navigation">
+<a href = "command-line_arguments.html" class="previous">« Command-Line Arguments</a><a href="calling_c_libraries.html" class="next">Calling C Libraries »</a>
+</div>

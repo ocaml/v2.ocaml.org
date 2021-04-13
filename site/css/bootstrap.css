@@ -271,6 +271,12 @@ a:focus {
 .navbar-fixed-bottom .container {
   width: 940px;
 }
+.bottom-navigation .previous {
+  float: left;
+}
+.bottom-navigation .next {
+  float: right;
+}
 .span12 {
   width: 940px;
 }
