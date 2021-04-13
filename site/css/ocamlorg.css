@@ -567,13 +567,19 @@ ul.translations:after { content: "]"; }
     padding: 10px;
   }
 }
+@media screen and (max-width: 767px) and (min-width: 480px) {
+  #footer .column{
+    min-width: 40%;
+    text-align: center;
+  }
+}
 @media (max-width: 767px) {
   #footer {
     margin-left: -20px;
     margin-right: -20px;
   }
   #footer .column {
-    text-align: left;
+    text-align: center;
     padding-right: 5%;
   }
   .books-span a img{
@@ -590,6 +596,7 @@ ul.translations:after { content: "]"; }
   #footer .column {
     width: 98%;
     margin-right: 0px;
+    text-align: left;
   }
   .books-span a img{
     width: 100%;
@@ -599,9 +606,11 @@ ul.translations:after { content: "]"; }
   display: inline-block;
   text-align: left;
 }
-
+#footer div.navbar-inner{
+  padding-top: 20px;
+}
 #footer h1 {
-  font-size: 109%;
+  font-size: 130%;
   font-weight: bold;
   margin-bottom: 0;
 }
