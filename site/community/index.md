@@ -44,7 +44,7 @@
                 <strong><em>Community lists and working groups</em></strong><br />
                 User-interest lists and working groups convened with specific goals.</p>
                 <footer>
-                  <p><a href="/community/mailing_lists.html">See more lists</a></p>
+                  <button class="com-button" type="button"><a href="/community/mailing_lists.html">See more lists</a></button>
                 </footer>
             </section>
             <section class="span4 condensed">
@@ -60,7 +60,7 @@
                 </h4>
                 {{! cmd script/rss2html -n 4 --emails 'https://sympa.inria.fr/sympa/rss/latest_arc/caml-list?count=40' !}}
             <footer>
-                <p><a href="https://sympa.inria.fr/sympa/arc/caml-list/">See archives</a></p>
+                <button class="com-button" type="button"><a href="https://sympa.inria.fr/sympa/arc/caml-list/">See archives</a></button>
             </footer>
             </section>
       </div>
@@ -123,7 +123,7 @@
               </li>
             </ul>
             <footer>
-                <p><a href="/meetings/">See full calendar</a></p>
+                <button class="com-button" type="button"><a href="/meetings/">See full calendar</a></button>
             </footer>
         </section>
         <section class="span4 condensed">
@@ -148,7 +148,7 @@
 		   </ul>
            {{! cmd script/rss2html -n 3 --headlines http://planet.ocaml.org/rss20.xml !}}
             <footer>
-                <p><a href="planet/">See full list</a></p>
+                <button class="com-button" type="button"><a href="planet/">See full list</a></button>
             </footer>
         </section>
     </div>
