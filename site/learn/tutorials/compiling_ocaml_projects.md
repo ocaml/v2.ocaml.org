@@ -84,7 +84,7 @@ jobs for us.
 
 ###  Using the ocamlfind front-end
 
-Using `ocamlfind` is often used for compiling any program or library that uses
+The `ocamlfind` front-end is often used for compiling programs that use
 third-party OCaml libraries. Library authors themselves make their library
 installable with `ocamlfind` as well. You can install `ocamlfind` using the
 opam package manager, by typing `opam install ocamlfind`.
@@ -102,15 +102,17 @@ opam packages install software using ocamlfind, so your list of ocamlfind
 libraries will be somewhat similar to your list of installed opam packages
 obtained by `opam list`.
 
-The command for compiling our program using package `package` will be:
+The command for compiling our program using package `pkg` will be:
 
 ```shell
-ocamlfind ocamlopt -o program -linkpkg -package package module1.ml module2.ml
+ocamlfind ocamlopt -o program -linkpkg -package pkg module1.ml module2.ml
 ```
 
-Multiple packages can be specified using commas e.g `package1,package2`. This
-command will work regardless of the location of the libraries, as long as they
-are known by `ocamlfind`.
+Multiple packages may be specified using commas e.g `pkg1,pkg2`. Ocamlfind
+knows how to find any files `ocamlopt` may need from the package, for example
+`.cmxa` implementation files or `.cmi` interface files, because they have been
+packaged together and installed at a known location by ocamlfind. We need only
+the name `pkg` to refer to them all - ocamlfind does the rest.
 
 Note that you can compile the files separately. This is useful if
 you want to recompile only some parts of the programs. Here are the
@@ -118,9 +120,9 @@ equivalent commands that perform a separate compilation of the source
 files and link them together in a final step:
 
 ```shell
-ocamlfind ocamlopt -c -package package module1.ml
-ocamlfind ocamlopt -c -package package module2.ml
-ocamlfind ocamlopt -o program -linkpkg -package package module1.cmx module2.cmx
+ocamlfind ocamlopt -c -package pkg module1.ml
+ocamlfind ocamlopt -c -package pkg module2.ml
+ocamlfind ocamlopt -o program -linkpkg -package pkg module1.cmx module2.cmx
 ```
 
 Separate compilation (one command for `module1.ml`, another for `module2.ml`
@@ -144,7 +146,7 @@ program.
 OCamlfind also supports `ocamlmktop`:
 
 ```shell
-ocamlfind ocamlmktop -o toplevel unix.cma -package package module1.ml module2.ml
+ocamlfind ocamlmktop -o toplevel unix.cma -package pkg module1.ml module2.ml
 ```
 
 ## Dune: an automated build system
@@ -155,11 +157,11 @@ The most popular modern system for building OCaml projects is
 description of their elements. For example, the dune file for our project might
 look like this:
 
-```shell
+```scheme
 ;; our example project
 (executable
   (name program)
-  (libraries unix package))
+  (libraries unix pkg))
 ```
 
 The dune [quick-start
