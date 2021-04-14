@@ -3,6 +3,29 @@
 # Quelques succès
 *Contenu*
 
+## Jane Street
+[<img src='/img/users/jane-street.jpg' alt='Jane Street'
+style='clear: left; margin-right: 10px' />](http://janestreet.com/technology/)
+
+Jane Street est une société commerciale propriétaire qui utilise OCaml comme 
+plateforme de développement principale. Notre opération se déroule à grande échelle, 
+générant des milliards de dollars de transactions chaque jour depuis nos bureaux de Hong Kong, Londres et New York, avec des stratégies qui couvrent de nombreuses classes
+d'actifs, fuseaux horaires et régimes réglementaires.
+
+Presque tous nos logiciels sont écrits en OCaml, du code de recherche statistique 
+aux outils d'administration de systèmes en passant par notre infrastructure de trading 
+en temps réel. Le système de types d'OCaml agit comme un ensemble riche et bien intégré 
+d'outils d'analyse statique qui aident à améliorer la qualité de notre code, 
+en détectant les bogues le plus tôt possible. Des milliards de dollars de transactions 
+transitent chaque jour par nos systèmes, il est donc important de bien faire les choses.
+En même temps, OCaml est très productif, ce qui nous aide à nous adapter rapidement 
+aux conditions changeantes du marché.
+
+Jane Street contribue depuis de nombreuses années à des bibliothèques open source 
+à la communauté au sens large, notamment Core, notre bibliothèque standard alternative,
+Async, une bibliothèque de simultanéité coopérative et plusieurs extensions de syntaxe 
+comme binprot et sexplib. Tous ces éléments peuvent être trouvés sur <http://janestreet.github.io>. Au total, nous avons ouvert plus de 200 000 lignes de code.
+
 ## Le synchroniseur de fichiers Unison
 [<img src='/img/unison-thumb.jpg' alt='Screenshot'  title='Screenshot of Unison&#39;s main window' />](/img/unison.png)
 
@@ -61,8 +84,11 @@ tâche de fond et sans surveillance humaine, et peut être contrôlé à
 l'aide d'une interface au choix parmi trois : GTK, web et telnet. »
 
 ## Le Langage de Modélisation Financière de LexiFi
-[<img src='/img/lexifi-thumb.jpg alt='Screenshot'
-title='A report produced by LexiFi software' />](/img/lexifi.jpg)
+
+[<img src='/img/lexifi-thumb.jpg'
+style='clear: left; margin-right: 10px'
+alt='Screenshot'  title='A report produced by LexiFi software'
+/>](/img/lexifi.jpg)
 
 Développé par la société [LexiFi](http://www.lexifi.com/), le Langage de
 Modélisation Financière (MLFi) est le premier langage formel capable de
@@ -197,6 +223,9 @@ language and robustness of its implementation provided a great
 productivity boost.”
 
 ## FFTW
+<img src='/img/fftw-thumb.png' alt='FFTW'
+style='clear: left; margin-right: 10px' />
+
 [FFTW](http://www.fftw.org/) est une librairie C [très
 rapide](http://www.fftw.org/benchfft/) permettant d'effectuer des
 Transformées de Fourier Discrètes (DFT). Elle emploie un puissant
@@ -214,5 +243,30 @@ différence de ce code propriétaire, cependant, les performances de FFTW
 sont portables : un même programme donnera de bons résultats sur la
 plupart des architectures sans modification. D'où le nom « FFTW, » qui
 signifie « Fastest Fourier Transform in the West. »
+
+## LiquidSoap
+
+[Liquidsoap](http://liquidsoap.fm/) est clairement bien implanté dans 
+l'industrie de la radio (Internet). Liquidsoap est bien connu comme un outil aux 
+capacités uniques et compte de nombreux utilisateurs, y compris de gros utilisateurs 
+commerciaux. Il n'est pas développé en tant qu'entreprise, mais les entreprises 
+développent des services ou des logiciels en plus. Par exemple, Sourcefabric 
+développe et vend Airtime en plus de Liquidsoap.
+
+## Haxe
+
+[Haxe](http://haxe.org/) est une boîte à outils open source basée 
+sur un langage de programmation moderne, de haut niveau et strictement typé, 
+un compilateur croisé, une bibliothèque standard multiplateforme complète et 
+des moyens d'accéder aux capacités natives de chaque plate-forme. 
+Le compilateur Haxe a été entièrement écrit en OCaml.
+
+
+
+
+
+
+
+
 
 
