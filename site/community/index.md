@@ -123,7 +123,7 @@
               </li>
             </ul>
             <footer>
-                <button class="com-button" type="button"><a href="/meetings/">See full calendar</a></button>
+                <a href="/meetings/"><button class="com-button" type="button">See full calendar</button></a>
             </footer>
         </section>
         <section class="span4 condensed">
