@@ -5597,10 +5597,10 @@ body {
   padding: 25px 0;
 }
 #home-learn a {
-  color: #404040;
+  text-decoration: none;
 }
 #home-learn a:hover {
-  text-decoration: none;
+  text-decoration: underline;
   color: #c45641;
 }
 #home-learn img {
