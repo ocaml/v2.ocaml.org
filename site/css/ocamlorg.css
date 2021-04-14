@@ -652,13 +652,14 @@ ul.translations:after { content: "]"; }
 
 .com-button{
   background-color: #c45641;
-  padding: 5px;
+ 
   
 }
 
-.com-button, a {
+.button-link {
   color: #FFFFFF;
   text-decoration: none;
+  padding: 5px;
   
 }
 
