@@ -479,6 +479,16 @@ ul.translations:after { content: "]"; }
     height: 0px;
   }
 }
+.center{
+display: table;
+text-align: center;
+width: 100%;
+height:53vh;
+}
+.head{
+display: table-cell;
+vertical-align:middle;
+}
 
 /* Footer
  ***********************************************************************/
