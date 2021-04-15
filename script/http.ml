@@ -28,6 +28,7 @@ let make_uri request_uri uri =
   |> set_scheme
 
 let rec http_get_and_follow ~max_redirects uri =
+  let open Lwt in
   Cohttp_lwt_unix.Client.get uri >>= follow_redirect ~max_redirects uri
 
 and follow_redirect ~max_redirects request_uri (response, body) =
