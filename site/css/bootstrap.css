@@ -547,9 +547,14 @@ a:focus {
 .navbar-inner > .container-fluid {
   margin-right: 65px;
 }
+@media (max-width: 980px) {
+  .navbar-inner > .container-fluid {    
+    margin-right: 15.5px;
+  }
+}
 @media (max-width: 767px){
   .navbar-inner > .container-fluid {
-    margin-right: 85px;
+    margin-right: 10.5px;
   }
 }
 .container-fluid:before,
