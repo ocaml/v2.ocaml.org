@@ -5,32 +5,32 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍7 The OCaml language</title>
+<title>OCaml - The OCaml language</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">Chapter ‍7 The OCaml language</a></li><li><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec73">Chapter ‍7 The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍7 The OCaml language</a></li>
-<li><a href="lex.html#start-section">7.1 Lexical conventions</a>
-</li><li><a href="values.html#start-section">7.2 Values</a>
-</li><li><a href="names.html#start-section">7.3 Names</a>
-</li><li><a href="types.html#start-section">7.4 Type expressions</a>
-</li><li><a href="const.html#start-section">7.5 Constants</a>
-</li><li><a href="patterns.html#start-section">7.6 Patterns</a>
-</li><li><a href="expr.html#start-section">7.7 Expressions</a>
-</li><li><a href="typedecl.html#start-section">7.8 Type and exception definitions</a>
-</li><li><a href="classes.html#start-section">7.9 Classes</a>
-</li><li><a href="modtypes.html#start-section">7.10 Module types (module specifications)</a>
-</li><li><a href="modules.html#start-section">7.11 Module expressions (module implementations)</a>
-</li><li><a href="compunit.html#start-section">7.12 Compilation units</a>
+<h1 class="chapter" id="sec73"><span class="number">Chapter 7</span>The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span>Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span>Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span>Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span>Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span>Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span>Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span>Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span>Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span>Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span>Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span>Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span>Compilation units</a>
 </li></ul></nav></header><a id="start-section"></a><section id="section">
 
 
 
 
-<h2 class="section" id="s:typexpr"><a class="section-anchor" href="#s:typexpr" aria-hidden="true"></a>7.4 Type expressions</h2>
+<h2 class="section" id="s:typexpr"><a class="section-anchor" href="#s:typexpr" aria-hidden="true"></a><span class="number">4</span>Type expressions</h2>
 <p>
 <a id="hevea_manual.kwd7"></a></p><div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
 <a class="syntax" id="typexpr"><span class="c011">typexpr</span></a></td><td class="c016">::=</td><td class="c018">
@@ -108,7 +108,7 @@ variables is restricted to the type expression where they appear:
 1) for universal (explicitly polymorphic) type variables;
 2) for type variables that only appear in public method specifications
 (as those variables will be made universal, as described in
-section ‍<a href="classes.html#sss%3Aclty-meth">7.9.1</a>);
+section&nbsp;<a href="classes.html#sss%3Aclty-meth">7.9.1</a>);
 3) for variables used as aliases, when the type they are aliased to
 would be invalid in the scope of the enclosing definition (<span class="c010">i.e.</span>
 when it contains free universal type variables, or locally
@@ -233,11 +233,11 @@ and <span class="c003"><span class="c004">#</span><span class="c011">t</span><sp
 <p>There are no type expressions describing (defined) variant types nor
 record types, since those are always named, i.e. defined before use
 and referred to by name. Type definitions are described in
-section ‍<a href="typedecl.html#ss%3Atypedefs">7.8.1</a>.
+section&nbsp;<a href="typedecl.html#ss%3Atypedefs">7.8.1</a>.
 
 </p>
 
-<div class="bottom-navigation"><a class="previous" href="names.html">« 7.3 Names</a><a class="next" href="const.html">7.5 Constants »</a></div>
+<div class="bottom-navigation"><a class="previous" href="names.html">« Names</a><a class="next" href="const.html">Constants »</a></div>
 
 
 

@@ -14,10 +14,7 @@ there to request or offer new tutorials.
 ### Getting Started
 
 * [Up and Running](up_and_running.html)
-* [Basics](basics.html)
-* [Structure of OCaml Programs](structure_of_ocaml_programs.html)
-* [Modules](modules.html)
-* [Filenames and Extensions](filenames.html)
+* [A First Hour with OCaml](a_first_hour_with_ocaml.html)
 * [OCaml Programming Guidelines](guidelines.html)
 * [Compiling OCaml Projects](compiling_ocaml_projects.html)
 
@@ -27,16 +24,19 @@ there to request or offer new tutorials.
 * [Functional Programming](functional_programming.html)
 * [If Statements, Loops, and
  Recursion](if_statements_loops_and_recursion.html)
+* [Modules](modules.html)
 * [Labels](labels.html)
 * [Pointers in OCaml](pointers.html)
 * [Null Pointers, Asserts, and
  Warnings](null_pointers_asserts_and_warnings.html)
+* [Functors](functors.html)
 * [Objects](objects.html)
 
-### Errors
+### Errors and Debugging
 
 * [Error handling](error_handling.html)
 * [Common Error Messages](common_error_messages.html)
+* [Debugging](debug.html)
 
 ((! get second_of_two_columns !))
 
@@ -78,7 +78,7 @@ there to request or offer new tutorials.
 * [Try OCaml Online](http://try.ocamlpro.com/) allows
  you to immediately start learning OCaml in your browser, without
  installing it. Compiled as a single Javascript page, it gives you
- the full power of OCaml, even when your are disconnected from the
+ the full power of OCaml, even when you are disconnected from the
  network.
 * [PLEAC-OCaml](http://pleac.sourceforge.net/pleac_ocaml/) provides
  OCaml solutions to the complete set of problems originally posed in
@@ -99,7 +99,7 @@ there to request or offer new tutorials.
   computation](http://www.southampton.ac.uk/~fangohr/software/ocamltutorial/)
   covers a broad sample of OCaml, from the basics to the C API.
 * [OCaml for Haskellers](http://blog.ezyang.com/2010/10/ocaml-for-haskellers/)
-  Some notes on the differences between OCaml and Haskell.
+  provides some notes on the differences between OCaml and Haskell.
 
 ### WikiBooks on OCaml
 

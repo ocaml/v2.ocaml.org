@@ -5,38 +5,38 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍7 The OCaml language</title>
+<title>OCaml - The OCaml language</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍II The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">Chapter ‍7 The OCaml language</a></li><li><a href="extn.html">Chapter ‍8 Language extensions</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec73">Chapter ‍7 The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍7 The OCaml language</a></li>
-<li><a href="lex.html#start-section">7.1 Lexical conventions</a>
-</li><li><a href="values.html#start-section">7.2 Values</a>
-</li><li><a href="names.html#start-section">7.3 Names</a>
-</li><li><a href="types.html#start-section">7.4 Type expressions</a>
-</li><li><a href="const.html#start-section">7.5 Constants</a>
-</li><li><a href="patterns.html#start-section">7.6 Patterns</a>
-</li><li><a href="expr.html#start-section">7.7 Expressions</a>
-</li><li><a href="typedecl.html#start-section">7.8 Type and exception definitions</a>
-</li><li><a href="classes.html#start-section">7.9 Classes</a>
-</li><li><a href="modtypes.html#start-section">7.10 Module types (module specifications)</a>
-</li><li><a href="modules.html#start-section">7.11 Module expressions (module implementations)</a>
-</li><li><a href="compunit.html#start-section">7.12 Compilation units</a>
+<h1 class="chapter" id="sec73"><span class="number">Chapter 7</span>The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span>Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span>Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span>Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span>Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span>Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span>Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span>Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span>Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span>Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span>Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span>Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span>Compilation units</a>
 </li></ul></nav></header><a id="start-section"></a><section id="section">
 
 
 
 
-<h2 class="section" id="s:tydef"><a class="section-anchor" href="#s:tydef" aria-hidden="true"></a>7.8 Type and exception definitions</h2>
+<h2 class="section" id="s:tydef"><a class="section-anchor" href="#s:tydef" aria-hidden="true"></a><span class="number">8</span>Type and exception definitions</h2>
 <ul>
-<li><a href="typedecl.html#ss%3Atypedefs">7.8.1 Type definitions</a>
-</li><li><a href="typedecl.html#ss%3Aexndef">7.8.2 Exception definitions</a>
+<li><a href="typedecl.html#ss%3Atypedefs"><span class="number">8.1</span>Type definitions</a>
+</li><li><a href="typedecl.html#ss%3Aexndef"><span class="number">8.2</span>Exception definitions</a>
 </li></ul>
 
-<h3 class="subsection" id="ss:typedefs"><a class="section-anchor" href="#ss:typedefs" aria-hidden="true">﻿</a>7.8.1 Type definitions</h3>
+<h3 class="subsection" id="ss:typedefs"><a class="section-anchor" href="#ss:typedefs" aria-hidden="true">﻿</a><span class="number">8.1</span>Type definitions</h3>
 <p>Type definitions bind type constructors to data types: either
 variant types, record types, type abbreviations, or abstract data
 types. They also bind the value constructors and record fields
@@ -199,17 +199,17 @@ a record value is created or modified. Extracted values may have their
 types instantiated.</p><p>The two components of a type definition, the optional equation and the
 optional representation, can be combined independently, giving
 rise to four typical situations:</p><dl class="description"><dt class="dt-description">
-<span class="c014">Abstract type: no equation, no representation.</span></dt><dd class="dd-description">  ‍<br>
+<span class="c014">Abstract type: no equation, no representation.</span></dt><dd class="dd-description"> &nbsp;<br>
 When appearing in a module signature, this definition specifies
 nothing on the type constructor, besides its number of parameters:
 its representation is hidden and it is assumed incompatible with any
-other type.</dd><dt class="dt-description"><span class="c014">Type abbreviation: an equation, no representation.</span></dt><dd class="dd-description">  ‍<br>
+other type.</dd><dt class="dt-description"><span class="c014">Type abbreviation: an equation, no representation.</span></dt><dd class="dd-description"> &nbsp;<br>
 This defines the type constructor as an abbreviation for the type
-expression on the right of the <span class="c005">=</span> sign.</dd><dt class="dt-description"><span class="c014">New variant type or record type: no equation, a representation.</span></dt><dd class="dd-description">  ‍<br>
+expression on the right of the <span class="c005">=</span> sign.</dd><dt class="dt-description"><span class="c014">New variant type or record type: no equation, a representation.</span></dt><dd class="dd-description"> &nbsp;<br>
 This generates a new type constructor and defines associated
 constructors or fields, through which values of that type can be
 directly built or inspected.</dd><dt class="dt-description"><span class="c014">Re-exported variant type or record type: an equation,
-a representation.</span></dt><dd class="dd-description">  ‍<br>
+a representation.</span></dt><dd class="dd-description"> &nbsp;<br>
 In this case, the type constructor is defined as an abbreviation for
 the type expression given in the equation, but in addition the
 constructors or fields given in the representation remain attached to
@@ -256,7 +256,7 @@ type parameters. Any actual type argument corresponding to the type
 parameter <a class="syntax" href="lex.html#ident"><span class="c011">ident</span></a> has to be an instance of <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a> (more precisely,
 <a class="syntax" href="lex.html#ident"><span class="c011">ident</span></a> and <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a> are unified). Type variables of <a class="syntax" href="types.html#typexpr"><span class="c011">typexpr</span></a> can
 appear in the type equation and the type declaration.</p>
-<h3 class="subsection" id="ss:exndef"><a class="section-anchor" href="#ss:exndef" aria-hidden="true">﻿</a>7.8.2 Exception definitions</h3>
+<h3 class="subsection" id="ss:exndef"><a class="section-anchor" href="#ss:exndef" aria-hidden="true">﻿</a><span class="number">8.2</span>Exception definitions</h3>
 <p>
 <a id="hevea_manual.kwd100"></a></p><div class="syntax"><table class="display dcenter"><tbody><tr class="c020"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c019">
 <a class="syntax" id="exception-definition"><span class="c011">exception-definition</span></a></td><td class="c016">::=</td><td class="c018">
@@ -274,7 +274,7 @@ gives an alternate name to an existing exception.
 
 </p>
 
-<div class="bottom-navigation"><a class="previous" href="expr.html">« 7.7 Expressions</a><a class="next" href="classes.html">7.9 Classes »</a></div>
+<div class="bottom-navigation"><a class="previous" href="expr.html">« Expressions</a><a class="next" href="classes.html">Classes »</a></div>
 
 
 

@@ -24,7 +24,7 @@ Tarball](http://caml.inria.fr/distrib/ocaml-{{! get LATEST_OCAML_VERSION_MAIN !}
 ****
 
 ###  Real World OCaml
-<img src="/img/real-world-ocaml.jpg" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/real-world-ocaml.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
 
 *Jason Hickey, Anil Madhavapeddy, and Yaron Minsky. Published 25th November 2013*
 
@@ -81,7 +81,7 @@ their skills, and to experienced programmers eager to explore functional
 languages such as OCaml. It is hoped that each reader will find something new,
 or see an old thing in a new light. For the more casual reader, or those who are
 used to a different functional language, a summary of basic OCaml is provided at
-the front of the book. 
+the front of the book.
 
 [Book Website](http://ocaml-book.com/more-ocaml-algorithms-methods-diversions/) |
 [Amazon](http://www.amazon.com/gp/product/0957671113)
@@ -546,7 +546,7 @@ last chapter a comprehensive description of the language kernel.
 ## Books in Italian
 
 ### Programmazione funzionale, una semplice introduzione
-<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/default.png" width="180"></img>
 
 *Massimo Maria Ghisalberti*
 

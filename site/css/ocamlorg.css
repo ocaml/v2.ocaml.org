@@ -48,23 +48,23 @@
     background-color:lightgray;
 }
 
-#opamdoc-contents .expander { 
-  width:1.5em; 
-  height:1.5em; 
-  border-radius:0.3em; 
-  font-weight: bold; 
-  font-family:Sans; 
-  line-height:16px; 
+#opamdoc-contents .expander {
+  width:1.5em;
+  height:1.5em;
+  border-radius:0.3em;
+  font-weight: bold;
+  font-family:Sans;
+  line-height:16px;
 }
 #opamdoc-contents .expanding_sig { border-spacing: 5px 1px }
 #opamdoc-contents .expanding_sig td { vertical-align: text-top }
-#opamdoc-contents .expanding_include_0 td { vertical-align: text-top } 
-#opamdoc-contents .expanding_include_1 td { vertical-align: text-top } 
-#opamdoc-contents .expanding_include_2 td { vertical-align: text-top } 
-#opamdoc-contents .expanding_include_3 td { vertical-align: text-top } 
-#opamdoc-contents .expanding_include_4 td { vertical-align: text-top } 
-#opamdoc-contents .expanding_include_5 td { vertical-align: text-top } 
-#opamdoc-contents .expanding_include_6 td { vertical-align: text-top } 
+#opamdoc-contents .expanding_include_0 td { vertical-align: text-top }
+#opamdoc-contents .expanding_include_1 td { vertical-align: text-top }
+#opamdoc-contents .expanding_include_2 td { vertical-align: text-top }
+#opamdoc-contents .expanding_include_3 td { vertical-align: text-top }
+#opamdoc-contents .expanding_include_4 td { vertical-align: text-top }
+#opamdoc-contents .expanding_include_5 td { vertical-align: text-top }
+#opamdoc-contents .expanding_include_6 td { vertical-align: text-top }
 #opamdoc-contents table.expanding_include_0, table.expanding_include_1, table.expanding_include_2, table.expanding_include_3,
 table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 {
   border-top: thin dashed;
@@ -72,12 +72,12 @@ table.expanding_include_4, table.expanding_include_5, table.expanding_include_6 
   border-collapse: collapse;
 }
 #opamdoc-contents table.expanding_include_0 { background-color: #FFF5F5; }
-#opamdoc-contents table.expanding_include_1 { background-color: #F5F5FF; } 
-#opamdoc-contents table.expanding_include_2 { background-color: #F5FFF5; } 
-#opamdoc-contents table.expanding_include_3 { background-color: #FFF5FF; } 
-#opamdoc-contents table.expanding_include_4 { background-color: #FFFFF5; } 
-#opamdoc-contents table.expanding_include_5 { background-color: #F5FFFF; } 
-#opamdoc-contents table.expanding_include_6 { background-color: #FFF5EB; } 
+#opamdoc-contents table.expanding_include_1 { background-color: #F5F5FF; }
+#opamdoc-contents table.expanding_include_2 { background-color: #F5FFF5; }
+#opamdoc-contents table.expanding_include_3 { background-color: #FFF5FF; }
+#opamdoc-contents table.expanding_include_4 { background-color: #FFFFF5; }
+#opamdoc-contents table.expanding_include_5 { background-color: #F5FFFF; }
+#opamdoc-contents table.expanding_include_6 { background-color: #FFF5EB; }
 #opamdoc-contents td.edge_column { border-right: 3px solid lightgrey }
 
 /* end of section for opam-doc */
@@ -112,7 +112,7 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 .string .governing,
 .ocaml .st {
   color: #a95472;
-  font-weight: normal;  
+  font-weight: normal;
 }
 .warning { color : Red ; font-weight : bold }
 .info { margin-left : 3em; margin-right: 3em }
@@ -281,13 +281,13 @@ html.svg a.edit-this-page:hover {
   justify-content: flex-end;
 }
 
-/* 
+/*
 This styling overrides bootstrap style which removes outline
 when an element is in focus
 */
 a:focus{
   outline: 0.2rem solid #c77a27;
- 
+
  }
  .navbar .edit-this-page:focus{
    background-color: #6e5437;
@@ -326,7 +326,17 @@ color: #a20505;
 dl h2{
 font-weight: bold;
 }
-
+/* Fixed list of contributors */
+#contributors_list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 85vw;
+}
+#contributors_list > li {
+  width: 12em;
+}
+/*  ||  */
 /* When the navigation bar has reduced size */
 @media (max-height: 600px) and (min-width: 980px) {
   a.edit-this-page {
@@ -464,6 +474,8 @@ header + .core-running-header {
 /* Translations and breadcrumb */
 div.running-header {
   margin-top: -10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .breadcrumb {
   display: inline;
@@ -484,6 +496,11 @@ ul.translations {
   padding: 0;
   margin: 0px 1ex 0px 2ex;
 }
+@media  (max-width: 979px) {
+ul.translations{
+   margin: 15px 1ex 0px 2ex;
+}
+}
 ul.translations:before { content: "["; }
 ul.translations:after { content: "]"; }
 .translations > li  {
@@ -493,6 +510,12 @@ ul.translations:after { content: "]"; }
 
   *zoom: 1;
   text-shadow: 0 1px 0 #ffffff;
+}
+
+.translations > li:not(:last-child):after {
+  display: inline-block;
+  content: "\00a0|\00a0";
+  font-weight: 600;
 }
 
 /* Accessibility Helpers */
@@ -543,13 +566,43 @@ ul.translations:after { content: "]"; }
   min-width: 22%;
   margin-right: 1em; /* To visually "compensate" for left alignment */
 }
+@media (min-width: 501px) and (max-width: 767px) {
+  .subscribers {
+    float: none !important;
+    margin-left: 0 !important;;
+  }
+  .subscribers ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    padding: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .subscribers {
+    float: none !important;
+    margin-left: 0 !important;;
+  }
+  .subscribers ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 767px) and (min-width: 480px) {
+  #footer .column{
+    min-width: 40%;
+    text-align: center;
+  }
+}
 @media (max-width: 767px) {
   #footer {
     margin-left: -20px;
     margin-right: -20px;
   }
   #footer .column {
-    text-align: left;
+    text-align: center;
     padding-right: 5%;
   }
 }
@@ -557,15 +610,18 @@ ul.translations:after { content: "]"; }
   #footer .column {
     width: 98%;
     margin-right: 0px;
+    text-align: left;
   }
 }
 #footer .entry {
   display: inline-block;
   text-align: left;
 }
-
+#footer div.navbar-inner{
+  padding-top: 20px;
+}
 #footer h1 {
-  font-size: 109%;
+  font-size: 130%;
   font-weight: bold;
   margin-bottom: 0;
 }

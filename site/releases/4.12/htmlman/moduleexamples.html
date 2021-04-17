@@ -5,24 +5,24 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍2 The module system</title>
+<title>OCaml - The module system</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍I An introduction to OCaml</nav><ul id="part-menu"><li><a href="coreexamples.html">Chapter ‍1 The core language</a></li><li class="active"><a href="moduleexamples.html">Chapter ‍2 The module system</a></li><li><a href="objectexamples.html">Chapter ‍3 Objects in OCaml</a></li><li><a href="lablexamples.html">Chapter ‍4 Labels and variants</a></li><li><a href="polymorphism.html">Chapter ‍5 Polymorphism and its limitations</a></li><li><a href="advexamples.html">Chapter ‍6 Advanced examples with classes and modules</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>An introduction to OCaml</nav><ul id="part-menu"><li><a href="coreexamples.html">The core language</a></li><li class="active"><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec20">Chapter ‍2 The module system</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍2 The module system</a></li>
-<li><a href="moduleexamples.html#s%3Amodule%3Astructures">2.1 Structures</a>
-</li><li><a href="moduleexamples.html#s%3Asignature">2.2 Signatures</a>
-</li><li><a href="moduleexamples.html#s%3Afunctors">2.3 Functors</a>
-</li><li><a href="moduleexamples.html#s%3Afunctors-and-abstraction">2.4 Functors and type abstraction</a>
-</li><li><a href="moduleexamples.html#s%3Aseparate-compilation">2.5 Modules and separate compilation</a>
+<h1 class="chapter" id="sec20"><span class="number">Chapter 2</span>The module system</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The module system</a></li>
+<li><a href="moduleexamples.html#s%3Amodule%3Astructures"><span class="number">1</span>Structures</a>
+</li><li><a href="moduleexamples.html#s%3Asignature"><span class="number">2</span>Signatures</a>
+</li><li><a href="moduleexamples.html#s%3Afunctors"><span class="number">3</span>Functors</a>
+</li><li><a href="moduleexamples.html#s%3Afunctors-and-abstraction"><span class="number">4</span>Functors and type abstraction</a>
+</li><li><a href="moduleexamples.html#s%3Aseparate-compilation"><span class="number">5</span>Modules and separate compilation</a>
 </li></ul></nav></header>
 <p> <a id="c:moduleexamples"></a>
 </p><p>This chapter introduces the module system of OCaml.</p>
-<h2 class="section" id="s:module:structures"><a class="section-anchor" href="#s:module:structures" aria-hidden="true"></a>2.1 Structures</h2>
+<h2 class="section" id="s:module:structures"><a class="section-anchor" href="#s:module:structures" aria-hidden="true"></a><span class="number">1</span>Structures</h2>
 <p>A primary motivation for modules is to package together related
 definitions (such as the definitions of a data type and associated
 operations over that type) and enforce a consistent naming scheme for
@@ -294,7 +294,7 @@ an exception when the priority queue is empty.
   <span class="ocamlkeyword">end</span></div></div>
 
 </div>
-<h2 class="section" id="s:signature"><a class="section-anchor" href="#s:signature" aria-hidden="true">﻿</a>2.2 Signatures</h2>
+<h2 class="section" id="s:signature"><a class="section-anchor" href="#s:signature" aria-hidden="true">﻿</a><span class="number">2</span>Signatures</h2>
 <p>Signatures are interfaces for structures. A signature specifies
 which components of a structure are accessible from the outside, and
 with which type. It can be used to hide some components of a structure
@@ -406,7 +406,7 @@ function:</p><div class="caml-example toplevel">
   <span class="ocamlkeyword">end</span></div></div>
 
 </div>
-<h2 class="section" id="s:functors"><a class="section-anchor" href="#s:functors" aria-hidden="true">﻿</a>2.3 Functors</h2>
+<h2 class="section" id="s:functors"><a class="section-anchor" href="#s:functors" aria-hidden="true">﻿</a><span class="number">3</span>Functors</h2>
 <p>Functors are “functions” from modules to modules. Functors let you create
 parameterized modules and then provide other modules as parameter(s) to get
 a specific implementation. For instance, a <span class="c004">Set</span> module implementing sets
@@ -523,7 +523,7 @@ type, we obtain set operations for this type:
 <div class="pre caml-output ok">- : bool = <span class="ocamlkeyword">false</span></div></div>
 
 </div>
-<h2 class="section" id="s:functors-and-abstraction"><a class="section-anchor" href="#s:functors-and-abstraction" aria-hidden="true">﻿</a>2.4 Functors and type abstraction</h2>
+<h2 class="section" id="s:functors-and-abstraction"><a class="section-anchor" href="#s:functors-and-abstraction" aria-hidden="true">﻿</a><span class="number">4</span>Functors and type abstraction</h2>
 <p>As in the <span class="c004">PrioQueue</span> example, it would be good style to hide the
 actual implementation of the type <span class="c004">set</span>, so that users of the
 structure will not rely on sets being lists, and we can switch later
@@ -763,7 +763,7 @@ standard ordering and for the case-insensitive ordering). Applying
 operations from <span class="c004">AbstractStringSet</span> to values of type
 <span class="c004">NoCaseStringSet.set</span> could give incorrect results, or build
 lists that violate the invariants of <span class="c004">NoCaseStringSet</span>.</p>
-<h2 class="section" id="s:separate-compilation"><a class="section-anchor" href="#s:separate-compilation" aria-hidden="true">﻿</a>2.5 Modules and separate compilation</h2>
+<h2 class="section" id="s:separate-compilation"><a class="section-anchor" href="#s:separate-compilation" aria-hidden="true">﻿</a><span class="number">5</span>Modules and separate compilation</h2>
 <p>All examples of modules so far have been given in the context of the
 interactive system. However, modules are most useful for large,
 batch-compiled programs. For these programs, it is a practical
@@ -820,7 +820,7 @@ inside a structure, which can then be mapped to a file.
 
 </p>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="coreexamples.html">« Chapter ‍1 The core language</a><a class="next" href="objectexamples.html">Chapter ‍3 Objects in OCaml »</a></div>
+<div class="bottom-navigation"><a class="previous" href="coreexamples.html">« The core language</a><a class="next" href="objectexamples.html">Objects in OCaml »</a></div>
 
 
 

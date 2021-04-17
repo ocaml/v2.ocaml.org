@@ -5,19 +5,19 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍21 Runtime tracing with the instrumented runtime</title>
+<title>OCaml - Runtime tracing with the instrumented runtime</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍III The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Chapter ‍9 Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">Chapter ‍10 The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">Chapter ‍11 The runtime system (ocamlrun)</a></li><li><a href="native.html">Chapter ‍12 Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Chapter ‍13 Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Chapter ‍14 Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">Chapter ‍15 The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">Chapter ‍16 The debugger (ocamldebug)</a></li><li><a href="profil.html">Chapter ‍17 Profiling (ocamlprof)</a></li><li><a href="intfc.html">Chapter ‍18 Interfacing C with OCaml</a></li><li><a href="flambda.html">Chapter ‍19 Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Chapter ‍20 Fuzzing with afl-fuzz</a></li><li class="active"><a href="instrumented-runtime.html">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li class="active"><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec551">Chapter ‍21 Runtime tracing with the instrumented runtime</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍21 Runtime tracing with the instrumented runtime</a></li>
-<li><a href="instrumented-runtime.html#s%3Ainstr-runtime-overview">21.1 Overview</a>
-</li><li><a href="instrumented-runtime.html#s%3Ainstr-runtime-enabling">21.2 Enabling runtime instrumentation</a>
-</li><li><a href="instrumented-runtime.html#s%3Ainstr-runtime-read">21.3 Reading traces</a>
-</li><li><a href="instrumented-runtime.html#s%3Ainstr-runtime-more">21.4 Controlling instrumentation and limitations</a>
+<h1 class="chapter" id="sec551"><span class="number">Chapter 21</span>Runtime tracing with the instrumented runtime</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Runtime tracing with the instrumented runtime</a></li>
+<li><a href="instrumented-runtime.html#s%3Ainstr-runtime-overview"><span class="number">1</span>Overview</a>
+</li><li><a href="instrumented-runtime.html#s%3Ainstr-runtime-enabling"><span class="number">2</span>Enabling runtime instrumentation</a>
+</li><li><a href="instrumented-runtime.html#s%3Ainstr-runtime-read"><span class="number">3</span>Reading traces</a>
+</li><li><a href="instrumented-runtime.html#s%3Ainstr-runtime-more"><span class="number">4</span>Controlling instrumentation and limitations</a>
 </li></ul></nav></header>
 <p>This chapter describes the OCaml instrumented runtime, a runtime variant
 allowing the collection of events and metrics.</p><p>Collected metrics include time spent executing the <em>garbage collector</em>.
@@ -26,7 +26,7 @@ down to the time spent in specific parts of the garbage collection.
 Insight is also given on memory allocation and motion by recording
 the size of allocated memory blocks, as well as value promotions from the
 <em>minor heap</em> to the <em>major heap</em>.</p>
-<h2 class="section" id="s:instr-runtime-overview"><a class="section-anchor" href="#s:instr-runtime-overview" aria-hidden="true"></a>21.1 Overview</h2>
+<h2 class="section" id="s:instr-runtime-overview"><a class="section-anchor" href="#s:instr-runtime-overview" aria-hidden="true"></a><span class="number">1</span>Overview</h2>
 <p>Once compiled and linked with the instrumented runtime, any OCaml program
 can generate <em>trace files</em> that can then be read
 and analyzed by users in order to understand specific runtime behaviors.</p><p>The generated trace files are stored using the <em>Common Trace Format</em>, which
@@ -38,7 +38,7 @@ a <em>metadata file</em>, part of the OCaml distribution
  in the program being traced.
 </li></ul><p>For more information on the <em>Common Trace Format</em>, see
 <a href="https://diamon.org/ctf/">https://diamon.org/ctf/</a>.</p>
-<h2 class="section" id="s:instr-runtime-enabling"><a class="section-anchor" href="#s:instr-runtime-enabling" aria-hidden="true">﻿</a>21.2 Enabling runtime instrumentation</h2>
+<h2 class="section" id="s:instr-runtime-enabling"><a class="section-anchor" href="#s:instr-runtime-enabling" aria-hidden="true">﻿</a><span class="number">2</span>Enabling runtime instrumentation</h2>
 <p>For the following examples, we will use the following example program:</p><div class="caml-example verbatim">
 
 <div class="ocaml">
@@ -82,19 +82,19 @@ This can be done by either using the
 bytecode through <span class="c004">ocamlruni</span>:</p><pre>       ocamlc program.ml -o program.byte
        OCAML_EVENTLOG_ENABLED=1 ocamlruni program.byte
 </pre><p>
-See chapter ‍<a href="comp.html#c%3Acamlc">9</a> and chapter ‍<a href="runtime.html#c%3Aruntime">11</a> for more information about
+See chapter&nbsp;<a href="comp.html#c%3Acamlc">9</a> and chapter&nbsp;<a href="runtime.html#c%3Aruntime">11</a> for more information about
 <span class="c004">ocamlc</span> and <span class="c004">ocamlrun</span>.</p>
-<h2 class="section" id="s:instr-runtime-read"><a class="section-anchor" href="#s:instr-runtime-read" aria-hidden="true">﻿</a>21.3 Reading traces</h2>
+<h2 class="section" id="s:instr-runtime-read"><a class="section-anchor" href="#s:instr-runtime-read" aria-hidden="true">﻿</a><span class="number">3</span>Reading traces</h2>
 <p>Traces generated by the instrumented runtime can be analyzed with tooling
 available outside of the OCaml distribution.</p><p>A complete trace consists of a <em>metadata file</em> and a <em>trace file</em>.
 Two simple ways to work with the traces are the <em>eventlog-tools</em> and
 <em>babeltrace</em> libraries.</p>
-<h3 class="subsection" id="ss:instr-runtime-tools"><a class="section-anchor" href="#ss:instr-runtime-tools" aria-hidden="true">﻿</a>21.3.1 eventlog-tools</h3>
+<h3 class="subsection" id="ss:instr-runtime-tools"><a class="section-anchor" href="#ss:instr-runtime-tools" aria-hidden="true">﻿</a><span class="number">3.1</span>eventlog-tools</h3>
 <p>
 <em>eventlog-tools</em> is a library implementing a parser, as well as a
 a set of tools that allows to perform basic format conversions and analysis.</p><p>For more information about <em>eventlog-tools</em>, refer to the project’s
 main page: <a href="https://github.com/ocaml-multicore/eventlog-tools">https://github.com/ocaml-multicore/eventlog-tools</a></p>
-<h3 class="subsection" id="ss:instr-runtime-babeltrace"><a class="section-anchor" href="#ss:instr-runtime-babeltrace" aria-hidden="true">﻿</a>21.3.2 babeltrace</h3>
+<h3 class="subsection" id="ss:instr-runtime-babeltrace"><a class="section-anchor" href="#ss:instr-runtime-babeltrace" aria-hidden="true">﻿</a><span class="number">3.2</span>babeltrace</h3>
 <p><em>babeltrace</em> is a C library, as well as a Python binding and set of tools
 that serve as the reference implementation for the <em>Common Trace Format</em>.
 The <em>babeltrace</em> command line utility allows for a basic rendering
@@ -159,8 +159,8 @@ This script expect to receive as an argument the directory containing the
 trace file. It will then copy the <em>CTF</em> metadata file to the trace’s
 directory, and then decode the trace, printing each event in the process.</p><p>For more information on <em>babeltrace</em>, see the website at:
 <a href="https://babeltrace.org/">https://babeltrace.org/</a></p>
-<h2 class="section" id="s:instr-runtime-more"><a class="section-anchor" href="#s:instr-runtime-more" aria-hidden="true">﻿</a>21.4 Controlling instrumentation and limitations</h2>
-<h3 class="subsection" id="ss:instr-runtime-prefix"><a class="section-anchor" href="#ss:instr-runtime-prefix" aria-hidden="true">﻿</a>21.4.1 Trace filename</h3>
+<h2 class="section" id="s:instr-runtime-more"><a class="section-anchor" href="#s:instr-runtime-more" aria-hidden="true">﻿</a><span class="number">4</span>Controlling instrumentation and limitations</h2>
+<h3 class="subsection" id="ss:instr-runtime-prefix"><a class="section-anchor" href="#ss:instr-runtime-prefix" aria-hidden="true">﻿</a><span class="number">4.1</span>Trace filename</h3>
 <p>The default trace filename is <span class="c004">caml-{PID}.eventlog</span>, where <span class="c004">{PID}</span>
 is the process identifier of the traced program.</p><p>This filename can also be specified using the
 <span class="c004">OCAML_EVENTLOG_PREFIX</span> environment variable.
@@ -177,7 +177,7 @@ the generated files.</p><p>Note as well that parent directories in the given pat
 when opening the trace. The runtime assumes the path is
 accessible for creating and writing the trace. The program will
 fail to start if this requirement isn’t met.</p>
-<h3 class="subsection" id="ss:instr-runtime-pause"><a class="section-anchor" href="#ss:instr-runtime-pause" aria-hidden="true">﻿</a>21.4.2 Pausing and resuming tracing</h3>
+<h3 class="subsection" id="ss:instr-runtime-pause"><a class="section-anchor" href="#ss:instr-runtime-pause" aria-hidden="true">﻿</a><span class="number">4.2</span>Pausing and resuming tracing</h3>
 <p>
 Mechanisms are available to control event collection at runtime.</p><p><span class="c004">OCAML_EVENTLOG_ENABLED</span> can be set to the <span class="c004">p</span> flag in order
 to start the program with event collection paused.</p><pre>        OCAML_EVENTLOG_ENABLED=p ./program
@@ -222,7 +222,7 @@ the program’s execution:</p><pre>        $ ocaml-eventlog-report caml-{PID}.ev
         total flush time: 938.1us
         flush count: 5
 </pre>
-<h3 class="subsection" id="ss:instr-runtime-limitations"><a class="section-anchor" href="#ss:instr-runtime-limitations" aria-hidden="true">﻿</a>21.4.3 Limitations</h3>
+<h3 class="subsection" id="ss:instr-runtime-limitations"><a class="section-anchor" href="#ss:instr-runtime-limitations" aria-hidden="true">﻿</a><span class="number">4.3</span>Limitations</h3>
 <p>The instrumented runtime does not support the <span class="c004">fork</span> system call.
 A child process forked from an instrumented program will not be traced.</p><p>The instrumented runtime aims to provide insight into the runtime’s execution
 while maintaining a low overhead.
@@ -239,7 +239,7 @@ small sample of events is required, using the <em>eventlog_resume</em> and
 tracing induced performance impact.
 </p>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="afl-fuzz.html">« Chapter ‍20 Fuzzing with afl-fuzz</a><a class="next" href="core.html">Chapter ‍22 The core library »</a></div>
+<div class="bottom-navigation"><a class="previous" href="afl-fuzz.html">« Fuzzing with afl-fuzz</a><a class="next" href="core.html">The core library »</a></div>
 
 
 

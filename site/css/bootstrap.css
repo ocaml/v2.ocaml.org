@@ -120,19 +120,21 @@ textarea {
   vertical-align: middle;
 }
 
-@-moz-document url-prefix() {
-  select.form-control {
-      padding-right: 20px;
-      padding-top: 0px;
-      background-image: url("data:image/svg+xml,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='10px' height='10px' viewBox='0 0 1200 1000' fill='rgb(51,51,51)'> <path d='M1100 411l-198 -199l-353 353l-353 -353l-197 199l551 551z'/> </svg>");
-      background-repeat: no-repeat;
-      background-position: calc(100% - 7px) 50%;
-      -moz-appearance: none;
-      appearance: none;
-      width: 50px;
-  }
+
+select{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  background-size: .6em;
+  background-position: calc(100% - 7px) 64%;
+  background-repeat: no-repeat;
 }
 
+
+select::-ms-expand {
+  display: none;
+}
 
 
 button,
@@ -1744,7 +1746,6 @@ table {
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid #ddd;
 }
 .table {
   width: 100%;
@@ -1756,14 +1757,6 @@ th, td {
   padding: 8px;
 }
 
-tr:nth-child(even){
-  background-color: #f2f2f2
-}
-
-
-th{
-  background-color: #f2f2f2
-}
 
 .table td {
   border-top: 1px transparent solid;
@@ -5550,6 +5543,9 @@ body {
   }
 }
 @media (max-width: 767px) {
+  .book-img {
+    width: 250px;
+  }
   #home-header {
     margin-left: -20px;
     margin-right: -20px;
@@ -5618,10 +5614,10 @@ body {
   padding: 25px 0;
 }
 #home-learn a {
-  color: #404040;
+  text-decoration: none;
 }
 #home-learn a:hover {
-  text-decoration: none;
+  text-decoration: underline;
   color: #c45641;
 }
 #home-learn img {
@@ -6388,6 +6384,7 @@ body {
   .row {
     margin-left: -20px;
     *zoom: 1;
+    margin-top: 30px;
   }
   .row:before,
   .row:after {
@@ -6756,6 +6753,7 @@ body {
   .row,
   .thumbnails {
     margin-left: 0;
+    margin-top: 30px;
   }
   .thumbnails > li {
     float: none;
@@ -6889,6 +6887,11 @@ body {
   .navbar-fixed-top .navbar-inner,
   .navbar-fixed-bottom .navbar-inner {
     padding: 5px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+
   }
   .navbar .container {
     width: auto;

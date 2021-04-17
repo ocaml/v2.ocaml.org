@@ -24,7 +24,7 @@ processor/operating system combinations:
 <tbody>
 <tr class="odd">
 <td align="left">Tier 1 platforms<br /> (actively used and maintained by the core Caml team):</td>
-<td></td>
+
 </tr>
 <tr class="even">
 <td align="left">AMD64 (Intel and AMD x86 processors in 64-bit mode)</td>
@@ -44,7 +44,7 @@ processor/operating system combinations:
 </tr>
 <tr class="even">
 <td align="left">Tier 2 platforms<br /> (maintained but less actively, with help from users):</td>
-<td></td>
+
 </tr>
 <tr class="odd">
 <td align="left">AMD64</td>
@@ -89,7 +89,7 @@ Each of these ports exists for either Win32 or Win64 platforms.
 
 Here is a summary of the main differences between these ports:
 
-<div style="overflow-x:auto;">
+
 <table width="100%">
 <thead>
 <tr class="header">
@@ -138,7 +138,6 @@ Here is a summary of the main differences between these ports:
 </tr>
 </tbody>
 </table>
-</div>
 <br/>
 
 Note (*): Cygwin-generated `.exe` files refer to a DLL that is distributed

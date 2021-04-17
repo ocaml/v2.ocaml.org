@@ -5,38 +5,38 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>OCaml - Chapter ‍1 The core language</title>
+<title>OCaml - The core language</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>Part ‍I An introduction to OCaml</nav><ul id="part-menu"><li class="active"><a href="coreexamples.html">Chapter ‍1 The core language</a></li><li><a href="moduleexamples.html">Chapter ‍2 The module system</a></li><li><a href="objectexamples.html">Chapter ‍3 Objects in OCaml</a></li><li><a href="lablexamples.html">Chapter ‍4 Labels and variants</a></li><li><a href="polymorphism.html">Chapter ‍5 Polymorphism and its limitations</a></li><li><a href="advexamples.html">Chapter ‍6 Advanced examples with classes and modules</a></li></ul>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>An introduction to OCaml</nav><ul id="part-menu"><li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
 
 
 
-<h1 class="chapter" id="sec7">Chapter ‍1 The core language</h1>
-<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Chapter ‍1 The core language</a></li>
-<li><a href="coreexamples.html#s%3Abasics">1.1 Basics</a>
-</li><li><a href="coreexamples.html#s%3Adatatypes">1.2 Data types</a>
-</li><li><a href="coreexamples.html#s%3Afunctions-as-values">1.3 Functions as values</a>
-</li><li><a href="coreexamples.html#s%3Atut-recvariants">1.4 Records and variants</a>
-</li><li><a href="coreexamples.html#s%3Aimperative-features">1.5 Imperative features</a>
-</li><li><a href="coreexamples.html#s%3Aexceptions">1.6 Exceptions</a>
-</li><li><a href="coreexamples.html#s%3Alazy-expr">1.7 Lazy expressions</a>
-</li><li><a href="coreexamples.html#s%3Asymb-expr">1.8 Symbolic processing of expressions</a>
-</li><li><a href="coreexamples.html#s%3Apretty-printing">1.9 Pretty-printing</a>
-</li><li><a href="coreexamples.html#s%3Aprintf">1.10 Printf formats</a>
-</li><li><a href="coreexamples.html#s%3Astandalone-programs">1.11 Standalone OCaml programs</a>
+<h1 class="chapter" id="sec7"><span class="number">Chapter 1</span>The core language</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The core language</a></li>
+<li><a href="coreexamples.html#s%3Abasics"><span class="number">1</span>Basics</a>
+</li><li><a href="coreexamples.html#s%3Adatatypes"><span class="number">2</span>Data types</a>
+</li><li><a href="coreexamples.html#s%3Afunctions-as-values"><span class="number">3</span>Functions as values</a>
+</li><li><a href="coreexamples.html#s%3Atut-recvariants"><span class="number">4</span>Records and variants</a>
+</li><li><a href="coreexamples.html#s%3Aimperative-features"><span class="number">5</span>Imperative features</a>
+</li><li><a href="coreexamples.html#s%3Aexceptions"><span class="number">6</span>Exceptions</a>
+</li><li><a href="coreexamples.html#s%3Alazy-expr"><span class="number">7</span>Lazy expressions</a>
+</li><li><a href="coreexamples.html#s%3Asymb-expr"><span class="number">8</span>Symbolic processing of expressions</a>
+</li><li><a href="coreexamples.html#s%3Apretty-printing"><span class="number">9</span>Pretty-printing</a>
+</li><li><a href="coreexamples.html#s%3Aprintf"><span class="number">10</span>Printf formats</a>
+</li><li><a href="coreexamples.html#s%3Astandalone-programs"><span class="number">11</span>Standalone OCaml programs</a>
 </li></ul></nav></header>
 <p> <a id="c:core-xamples"></a>
 </p><p>This part of the manual is a tutorial introduction to the OCaml language. A
 good familiarity with programming in a conventional languages (say, C or Java)
 is assumed, but no prior exposure to functional languages is required. The
-present chapter introduces the core language. Chapter ‍<a href="moduleexamples.html#c%3Amoduleexamples">2</a>
-deals with the module system, chapter ‍<a href="objectexamples.html#c%3Aobjectexamples">3</a> with the
-object-oriented features, chapter ‍<a href="lablexamples.html#c%3Alabl-examples">4</a> with extensions to the
+present chapter introduces the core language. Chapter&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a>
+deals with the module system, chapter&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a> with the
+object-oriented features, chapter&nbsp;<a href="lablexamples.html#c%3Alabl-examples">4</a> with extensions to the
 core language (labeled arguments and polymorphic variants),
-chapter ‍<a href="polymorphism.html#c%3Apolymorphism">5</a> with the limitations of polymorphism, and
-chapter ‍<a href="advexamples.html#c%3Aadvexamples">6</a> gives some advanced examples.</p>
-<h2 class="section" id="s:basics"><a class="section-anchor" href="#s:basics" aria-hidden="true"></a>1.1 Basics</h2>
+chapter&nbsp;<a href="polymorphism.html#c%3Apolymorphism">5</a> with the limitations of polymorphism, and
+chapter&nbsp;<a href="advexamples.html#c%3Aadvexamples">6</a> gives some advanced examples.</p>
+<h2 class="section" id="s:basics"><a class="section-anchor" href="#s:basics" aria-hidden="true"></a><span class="number">1</span>Basics</h2>
 <p>For this overview of OCaml, we use the interactive system, which is started by
 running <span class="c004">ocaml</span> from the Unix shell or Windows command prompt. This tutorial is
 presented as the transcript of a session with the interactive system: lines
@@ -133,7 +133,7 @@ integers, but <span class="c004">+.</span> and <span class="c004">*.</span> oper
 <div class="pre caml-output ok">- : int = 55</div></div>
 
 </div>
-<h2 class="section" id="s:datatypes"><a class="section-anchor" href="#s:datatypes" aria-hidden="true">﻿</a>1.2 Data types</h2>
+<h2 class="section" id="s:datatypes"><a class="section-anchor" href="#s:datatypes" aria-hidden="true">﻿</a><span class="number">2</span>Data types</h2>
 <p>In addition to integers and floating-point numbers, OCaml offers the
 usual basic data types:
 </p><ul class="itemize"><li class="li-itemize">booleans
@@ -342,7 +342,7 @@ the type inferred for <span class="c004">insert</span>, <span class="c004">'a -&
 takes two arguments, an element of any type <span class="c004">'a</span> and a list with elements of
 the same type <span class="c004">'a</span> and returns a list of the same type.
 </p>
-<h2 class="section" id="s:functions-as-values"><a class="section-anchor" href="#s:functions-as-values" aria-hidden="true">﻿</a>1.3 Functions as values</h2>
+<h2 class="section" id="s:functions-as-values"><a class="section-anchor" href="#s:functions-as-values" aria-hidden="true">﻿</a><span class="number">3</span>Functions as values</h2>
 <p>OCaml is a functional language: functions in the full mathematical
 sense are supported and can be passed around freely just as any other
 piece of data. For instance, here is a <span class="c004">deriv</span> function that takes any
@@ -445,7 +445,7 @@ nothing magic with it: it can easily be defined as follows.
 <div class="pre caml-output ok"><span class="ocamlkeyword">val</span> map : ('a -&gt; 'b) -&gt; 'a list -&gt; 'b list = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
 
 </div>
-<h2 class="section" id="s:tut-recvariants"><a class="section-anchor" href="#s:tut-recvariants" aria-hidden="true">﻿</a>1.4 Records and variants</h2>
+<h2 class="section" id="s:tut-recvariants"><a class="section-anchor" href="#s:tut-recvariants" aria-hidden="true">﻿</a><span class="number">4</span>Records and variants</h2>
 <p>User-defined data structures include records and variants. Both are
 defined with the <span class="c004">type</span> declaration. Here, we declare a record type to
 represent rational numbers.
@@ -776,7 +776,7 @@ ordered binary trees (elements increase from left to right):
 <div class="pre caml-output ok"><span class="ocamlkeyword">val</span> insert : 'a -&gt; 'a btree -&gt; 'a btree = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
 
 </div>
-<h3 class="subsection" id="ss:record-and-variant-disambiguation"><a class="section-anchor" href="#ss:record-and-variant-disambiguation" aria-hidden="true">﻿</a>1.4.1 Record and variant disambiguation</h3>
+<h3 class="subsection" id="ss:record-and-variant-disambiguation"><a class="section-anchor" href="#ss:record-and-variant-disambiguation" aria-hidden="true">﻿</a><span class="number">4.1</span>Record and variant disambiguation</h3>
 <p>
 ( This subsection can be skipped on the first reading )</p><p>Astute readers may have wondered what happens when two or more record
 fields or constructors share the same name</p><div class="caml-example toplevel">
@@ -916,7 +916,7 @@ may change surreptitiously after adding or moving around a type
 definition, or after opening a module (see chapter <a href="moduleexamples.html#c%3Amoduleexamples">2</a>).
 Consequently, adding explicit type annotations to guide disambiguation is
 more robust than relying on the last defined type disambiguation.</p>
-<h2 class="section" id="s:imperative-features"><a class="section-anchor" href="#s:imperative-features" aria-hidden="true">﻿</a>1.5 Imperative features</h2>
+<h2 class="section" id="s:imperative-features"><a class="section-anchor" href="#s:imperative-features" aria-hidden="true">﻿</a><span class="number">5</span>Imperative features</h2>
 <p>Though all examples so far were written in purely applicative style,
 OCaml is also equipped with full imperative features. This includes the
 usual <span class="c004">while</span> and <span class="c004">for</span> loops, as well as mutable data structures such
@@ -1152,7 +1152,7 @@ called id
 - : int * bool = (1, <span class="ocamlkeyword">true</span>)</div></div>
 
 </div>
-<h2 class="section" id="s:exceptions"><a class="section-anchor" href="#s:exceptions" aria-hidden="true">﻿</a>1.6 Exceptions</h2>
+<h2 class="section" id="s:exceptions"><a class="section-anchor" href="#s:exceptions" aria-hidden="true">﻿</a><span class="number">6</span>Exceptions</h2>
 <p>OCaml provides exceptions for signalling and handling exceptional
 conditions. Exceptions can also be used as a general-purpose non-local
 control structure, although this should not be overused since it can
@@ -1392,7 +1392,7 @@ For instance, with
 
 the function <span class="c004">f</span> cannot raise a <span class="c004">Done</span> exception, which removes an
 entire class of misbehaving functions.</p>
-<h2 class="section" id="s:lazy-expr"><a class="section-anchor" href="#s:lazy-expr" aria-hidden="true">﻿</a>1.7 Lazy expressions</h2>
+<h2 class="section" id="s:lazy-expr"><a class="section-anchor" href="#s:lazy-expr" aria-hidden="true">﻿</a><span class="number">7</span>Lazy expressions</h2>
 <p>OCaml allows us to defer some computation until later when we need the result of
 that computation. </p><p>We use <span class="c004">lazy (expr)</span> to delay the evaluation of some expression <span class="c004">expr</span>. For 
 example, we can defer the computation of <span class="c004">1+1</span> until we need the result of that
@@ -1496,7 +1496,7 @@ not printed. The result of the initial computation is simply returned. </p><p>La
 <span class="c004">true</span> once computed. Indeed, a simple wildcard pattern (not lazy) never forces 
 the lazy expression’s evaluation. However, a pattern with keyword <span class="c004">lazy</span>, even 
 if it is wildcard, always forces the evaluation of the deferred computation.</p>
-<h2 class="section" id="s:symb-expr"><a class="section-anchor" href="#s:symb-expr" aria-hidden="true">﻿</a>1.8 Symbolic processing of expressions</h2>
+<h2 class="section" id="s:symb-expr"><a class="section-anchor" href="#s:symb-expr" aria-hidden="true">﻿</a><span class="number">8</span>Symbolic processing of expressions</h2>
 <p>We finish this introduction with a more complete example
 representative of the use of OCaml for symbolic processing: formal
 manipulations of arithmetic expressions containing variables. The
@@ -1605,7 +1605,7 @@ Quot (Diff (Prod (Const 0., Var <span class="ocamlstring">"x"</span>), Prod (Con
  Prod (Var <span class="ocamlstring">"x"</span>, Var <span class="ocamlstring">"x"</span>))</div></div>
 
 </div>
-<h2 class="section" id="s:pretty-printing"><a class="section-anchor" href="#s:pretty-printing" aria-hidden="true">﻿</a>1.9 Pretty-printing</h2>
+<h2 class="section" id="s:pretty-printing"><a class="section-anchor" href="#s:pretty-printing" aria-hidden="true">﻿</a><span class="number">9</span>Pretty-printing</h2>
 <p>As shown in the examples above, the internal representation (also
 called <em>abstract syntax</em>) of expressions quickly becomes hard to
 read and write as the expressions get larger. We need a printer and a
@@ -1684,9 +1684,9 @@ less than the current precedence.
 - : unit = ()</div></div>
 
 </div>
-<h2 class="section" id="s:printf"><a class="section-anchor" href="#s:printf" aria-hidden="true">﻿</a>1.10 Printf formats</h2>
+<h2 class="section" id="s:printf"><a class="section-anchor" href="#s:printf" aria-hidden="true">﻿</a><span class="number">10</span>Printf formats</h2>
 <p>There is a <span class="c004">printf</span> function in the <a href="../api/Printf.html"><span class="c004">Printf</span></a> module
-(see chapter ‍<a href="moduleexamples.html#c%3Amoduleexamples">2</a>) that allows you to make formatted
+(see chapter&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a>) that allows you to make formatted
 output more concisely.
 It follows the behavior of the <span class="c004">printf</span> function from the C standard library.
 The <span class="c004">printf</span> function takes a format string that describes the desired output
@@ -1881,7 +1881,7 @@ an explicit type annotation:
 - : unit = ()</div></div>
 
 </div>
-<h2 class="section" id="s:standalone-programs"><a class="section-anchor" href="#s:standalone-programs" aria-hidden="true">﻿</a>1.11 Standalone OCaml programs</h2>
+<h2 class="section" id="s:standalone-programs"><a class="section-anchor" href="#s:standalone-programs" aria-hidden="true">﻿</a><span class="number">11</span>Standalone OCaml programs</h2>
 <p>All examples given so far were executed under the interactive system.
 OCaml code can also be compiled separately and executed
 non-interactively using the batch compilers <span class="c004">ocamlc</span> and <span class="c004">ocamlopt</span>.
@@ -1920,14 +1920,14 @@ $ ./gcd 7 11
 </pre><p>
 More complex standalone OCaml programs are typically composed of
 multiple source files, and can link with precompiled libraries.
-Chapters ‍<a href="comp.html#c%3Acamlc">9</a> and ‍<a href="native.html#c%3Anativecomp">12</a> explain how to use the
+Chapters&nbsp;<a href="comp.html#c%3Acamlc">9</a> and&nbsp;<a href="native.html#c%3Anativecomp">12</a> explain how to use the
 batch compilers <span class="c004">ocamlc</span> and <span class="c004">ocamlopt</span>. Recompilation of
 multi-file OCaml projects can be automated using third-party
 build systems, such as <a href="https://github.com/ocaml/dune">dune</a>.
 
 </p>
 <hr>
-<div class="bottom-navigation"><a class="previous" href="foreword.html">« Foreword</a><a class="next" href="moduleexamples.html">Chapter ‍2 The module system »</a></div>
+<div class="bottom-navigation"><a class="previous" href="foreword.html">« Foreword</a><a class="next" href="moduleexamples.html">The module system »</a></div>
 
 
 
