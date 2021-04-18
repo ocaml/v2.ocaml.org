@@ -303,12 +303,13 @@ let toggle ?(anchor="") html1 html2 =
   in
   let id1 = new_id() and id2 = new_id() in
   [Element("div", ["id", id1],
-           html1 @ [button id1 id2  "Read more"]);
-            Element("div", ["class","arrow-down"],[]);
+           html1 @ [button id1 id2  "Read more"] @ [ Element("div", ["class","arrow-down"],[])]);
+           
      
    Element("div", ["id", id2; "style", "display: none"],
-           html2 @ [button id2 id1 "Hide"] );
-            Element("div", ["class","arrow-up"],[])]
+        html2 @ [button id2 id1 "Hide"] @ [Element("div",["class","arrow-up"],[])])
+           
+            ]
 
 let toggle_script =
   let script =
