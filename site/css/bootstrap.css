@@ -7003,7 +7003,10 @@ body {
   .nav-collapse,
   .nav-collapse.collapse {
     overflow: hidden;
-    height: 0;
+    height: auto;
+    position: relative;
+    right: 1000px;
+    display: none;
   }
   .navbar .btn-navbar {
     display: block;
