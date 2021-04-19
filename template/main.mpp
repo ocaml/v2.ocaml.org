@@ -26,7 +26,9 @@
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />
     <link href="/css/ocamlorg.css" rel="stylesheet" media="screen" />
-    <script src="/js/collapsed-menu.js"></script>
+    <link href="/css/light.css" rel="stylesheet" id="switcher-id2" media="screen" disabled/>
+    <link href="/css/dark.css" rel="stylesheet" id="switcher-id1" media="screen" disabled/>
+    <script src="/js/collapsed-menu.js"></script> 
     {{! ifdef advertise_rss
     <link rel="alternate" type="application/atom+xml" title="Atom feed"
 	  href="/feed.xml" />
@@ -47,6 +49,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
           </button>
           <a class="brand"
 	     href="{{! cmd script/link_of_lang ((! get filename !)) "/" !}}"
@@ -81,6 +84,18 @@
 		     name="q" type="text" />
             </form>
             c!}}
+            
+            <div class="navbar-search pull-right" id="searchform" style="padding-right:10px;">
+            <div class="theme-switches">
+            <input type="checkbox" id="switch" 
+                    class="checkbox" />
+
+            <label  for="switch" class="toggle" id="theme-toggle">
+                <span style="visibility:hidden">
+                   theme-changer </span>
+           </label>
+           </div>
+           </div>
           </div>
         </div>
       </div>
@@ -137,6 +152,6 @@
 		      style="border:0;" alt="" /></p></noscript>
     <!-- End Piwik Code -->
     S!}} <!-- ifndef staging -->
-
+ <script src="/js/Theme-switcher.js"></script>
   </body>
 </html>
