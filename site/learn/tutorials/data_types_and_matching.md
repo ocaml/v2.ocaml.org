@@ -1,58 +1,35 @@
-<!-- ((! set title Data Types and Matching !)) ((! set learn !)) -->
+<!-- ((! set title Custom Data Types !)) ((! set learn !)) -->
 
 *Table of contents*
 
-# Data Types and Matching
+# Custom Data Types
 
-## Linked lists
-OCaml has support for lists built into the language. All
-elements of a list in OCaml must be the same type. To write a list, use:
+tuples
 
-```ocamltop
-[1; 2; 3]
-```
-(Note semicolons, NOT commas).
+records
 
-`[]` is the empty list.
+enumerations
 
-A list has a **head** (the first element) and a **tail** (the rest of
-the elements). The head is an element, and the tail is a list, so in the
-above example, the head is the integer `1` while the tail is the *list*
-`[2; 3]`.
+our own lists example
 
-An alternative way to write a list is to use the **cons** operator
-`head :: tail`. So the following ways to write a list are exactly the
-same:
+tree example
 
-```ocaml
-[1; 2; 3]
-1 :: [2; 3]
-1 :: 2 :: [3]
-1 :: 2 :: 3 :: []
-```
-Why do I mention the cons operator? Well, it's useful when we start
-doing *pattern matching* on lists, which I'll talk about below.
+data kept along with it
 
-###  The type of a linked list
-The type of a linked list of integers is `int list`, and in general the
-type of a linked list of `foo`s is `foo list`.
+pattern matching on them
 
-This implies that all the elements of a linked list must have the same
-type. But the type can be polymorphic (ie. `'a list`), which is really
-useful if you want to write generic functions which operate on "lists of
-anything". (But note: `'a list` doesn't mean that each individual
-element has a different type - you still can't use this to construct a
-list containing, say, a mixture of ints and strings. It means that the
-type of the elements is anything, but all the same type of anything.)
+difference between a * b and (a * b)
 
-The `length` function defined as part of the OCaml `List` module is a
-good example of this. It doesn't matter if the list contains ints or
-strings or objects or small furry animals, the `List.length` function
-can still be called on it. The type of `List.length` is therefore:
+standard type: option
 
-```ocaml
-List.length : 'a list -> int
-```
+incomplete pattern matching
+
+'as' in pattern matching
+
+records in our own data types
+
+mathematical expression example is salvageable
+
 ## Structures
 C and C++ have the concept of a simple `struct`, short for structure.
 Java has classes which can be used to similar effect, albeit much more
