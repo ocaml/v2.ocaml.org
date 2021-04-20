@@ -448,7 +448,7 @@ ul.translations {
   padding: 0;
   margin: 0px 1ex 0px 2ex;
   top: 1.5rem;
-  right: 13px;
+  right: 7px;
 }
 .translations > li  {
   display: inline-block;
@@ -475,8 +475,10 @@ ul.translations:hover{
   align-items: center;
   border-radius: 0.1rem;
 }
+
 .translations > .active {
   color: #ffffff;
+  font-size: medium;transform: scale(1);
 }
 ul.translations:hover > .active {
 color: #404040;
@@ -502,7 +504,6 @@ ul.translations:after {
     position: absolute;
     top: 0.9rem;
     right: 105.5px;
-
   }
 }
 @media (max-width: 767px){
@@ -514,6 +515,10 @@ ul.translations:after {
   ul.translations {
     top: 0.8rem;
   }
+}
+.translations > li:not(:last-child):after {
+  display: inline-block;
+  font-weight: 600;
 }
 
 /* Accessibility Helpers */
