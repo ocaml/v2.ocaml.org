@@ -1,12 +1,5 @@
 /*Js file to control theme-switch toggle button*/
-let style = localStorage.getItem('style'); //storing current theme
 
-//default
-if (style == null) {
-  setTheme('light');
-} else {
-  setTheme(style);
-}
 
 //function to load toggle button current state
 function load(){    

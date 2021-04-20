@@ -5597,6 +5597,7 @@ body {
 .home-feature > a {
   float: left;
 }
+
 .home-feature h1 {
   font-size: 24px;
   line-height: 36px;
@@ -5633,7 +5634,13 @@ body {
   padding: 25px 0;
 }
 
-
+#home-learn a {
+  text-decoration: none;
+}
+#home-learn a:hover {
+  text-decoration: underline;
+  color: #c45641;
+}
 #home-learn img {
   vertical-align: middle;
   margin-right: 10px;

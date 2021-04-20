@@ -29,6 +29,36 @@
     <link href="/css/light.css" rel="stylesheet" id="switcher-id2" media="screen" disabled/>
     <link href="/css/dark.css" rel="stylesheet" id="switcher-id1" media="screen" disabled/>
     <script src="/js/collapsed-menu.js"></script> 
+    <script>
+    let style = localStorage.getItem('style'); //storing current theme
+
+    //default
+    if (style == null) {
+    setTheme('light');
+    } else {
+     setTheme(style);
+    }
+
+    //function to set theme
+    function setTheme(theme) {
+    if (theme == 'light') {
+   
+    
+    document.querySelector("#switcher-id1").setAttribute('disabled','disabled');
+    document.querySelector("#switcher-id2").removeAttribute('disabled');
+    
+    
+    } else if (theme == 'dark') {
+    
+    document.querySelector("#switcher-id2").setAttribute('disabled','disabled');
+    document.querySelector("#switcher-id1").removeAttribute('disabled');
+    
+  
+     }
+     localStorage.setItem('style', theme);
+    }
+
+     </script>
     {{! ifdef advertise_rss
     <link rel="alternate" type="application/atom+xml" title="Atom feed"
 	  href="/feed.xml" />
