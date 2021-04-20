@@ -143,3 +143,7 @@ let some else help out (or wait until I learn how to do it).
 prompt> ocamlc -c gtd6.ml prompt> ocamlc -o test gtd6.cmo wrapper.so
 ```
 And voila, we've called the fortran function from OCaml.
+
+<div class="bottom-navigation">
+<a href = "calling_c_libraries.html" class="previous">« Calling C Libraries</a><a href="garbage_collection.html" class="next">Garbage Collection »</a>
+</div>

@@ -70,4 +70,8 @@ MyUsers.find "fred" m;;
 ```
 This should quickly and efficiently return Fred's password: "sugarplums".
 
+<div class="bottom-navigation">
+<a href = "debug.html" class="previous">« Debugging</a><a href="set.html" class="next">Sets »</a>
+</div>
+
 

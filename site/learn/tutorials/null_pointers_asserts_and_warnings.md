@@ -133,3 +133,7 @@ let () =
   done;
   ignore(read_line ())
 ```
+
+<div class="bottom-navigation">
+<a href = "pointers.html" class="previous">« Pointers</a><a href="functors.html" class="next">Functors »</a>
+</div>

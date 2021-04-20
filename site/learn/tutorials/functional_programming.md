@@ -431,3 +431,7 @@ let print_string = output_string stdout
 `output_string` takes two arguments (a channel and a string), but since
 we have only supplied one, it is partially applied. So `print_string` is
 a function, expecting one string argument.
+
+<div class="bottom-navigation">
+<a href = "data_types_and_matching.html" class="previous">« Data Types and Matching</a><a href="if_statements_loops_and_recursion.html" class="next">If Statements, Loops, and Recursion »</a>
+</div>

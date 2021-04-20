@@ -1721,4 +1721,7 @@ as the imperative program with the additional clarity and natural
 look of an algorithm that performs pattern matching and recursive
 calls to handle an argument that belongs to a recursive sum data type.
 
+<div class="bottom-navigation">
+<a href = "a_first_hour_with_ocaml.html" class="previous">« A First Hour with OCaml</a><a href="compiling_ocaml_projects.html" class="next">Compiling OCaml Projects »</a>
+</div>
 

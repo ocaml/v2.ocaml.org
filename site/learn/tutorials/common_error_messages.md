@@ -188,3 +188,7 @@ option.
 "\e\n" (* bad practice *);;
 "\\e\n" (* good practice *);;
 ```
+
+<div class="bottom-navigation">
+<a href = "error_handling.html" class="previous">« Error Handling</a><a href="debug.html" class="next">Debugging »</a>
+</div>

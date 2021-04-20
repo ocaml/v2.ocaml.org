@@ -349,3 +349,7 @@ increasing order of difficulty:
 1. Make the underlying file representation a **DBM-style hash**.
 1. Provide a general-purpose cache fronting a "users" table in your
  choice of **relational database** (with locking).
+
+<div class="bottom-navigation">
+<a href = "calling_fortran_libraries.html" class="previous">« Calling Fortran Libraries</a><a href="performance_and_profiling.html" class="next">Performance and Profiling »</a>
+</div>

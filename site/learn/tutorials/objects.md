@@ -558,3 +558,7 @@ let y = object method get = 80 method special = "hello" end;;
 let l = [x; y];;
 let l = [x; (y :> t)];;
 ```
+
+<div class="bottom-navigation">
+<a href = "functors.html" class="previous">« Functors</a><a href="error_handling.html" class="next">Error Handling »</a>
+</div>

@@ -891,3 +891,7 @@ This quick tour should have given you a little taste of OCaml and why you might
 like to explore it further. Elsewhere on [ocaml.org](/index.html) there are
 pointers to [books on OCaml](/learn/books.html) and
 [other tutorials](/learn/tutorials/index.html).
+
+<div class="bottom-navigation">
+<a href = "up_and_running.html" class="previous">« Up and Running</a><a href="guidelines.html" class="next">OCaml Programming Guidelines »</a>
+</div>

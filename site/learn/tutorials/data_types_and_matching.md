@@ -431,3 +431,7 @@ was not handled.
 
 Exercise: Extend the pattern matching with a `Product` case so
 `to_string` compiles without warning.
+
+<div class="bottom-navigation">
+<a href = "compiling_ocaml_projects.html" class="previous">« Compiling OCaml Projects</a><a href="functional_programming.html" class="next">Functional Programming »</a>
+</div>

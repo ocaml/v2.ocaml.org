@@ -96,3 +96,7 @@ element doesn't create a new stack but simply adds it to the stack.
 * adding an element: O(1)
 * taking an element: O(1)
 * length: O(1)
+
+<div class="bottom-navigation">
+<a href = "hashtbl.html" class="previous">« Hash Tables</a><a href="format.html" class="next">Formatting and Wrapping Text »</a>
+</div>

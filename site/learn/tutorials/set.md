@@ -73,4 +73,6 @@ removing an element from a set does not alter that set but, rather,
 returns a new set that is very similar to (and shares much of its
 internals with) the original set.
 
-
+<div class="bottom-navigation">
+<a href = "map.html" class="previous">« Maps</a><a href="hashtbl.html" class="next">Hash Tables »</a>
+</div>
