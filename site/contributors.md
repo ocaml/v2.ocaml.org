@@ -44,7 +44,7 @@ The contributors to this site, extracted from the
 [Git log](https://github.com/ocaml/ocaml.org/commits/master), are:
 
 <ul id="contributors_list">
-((! cmd git log --format="%aN" | sort | uniq | awk '{print "<li>"$1,$2,$3"</li>"}' !))
+((! cmd git log --format="%aE %aN" | sort | uniq | awk '{print "<li>"$2,"</li>"}' !))
 </ul>
 
 

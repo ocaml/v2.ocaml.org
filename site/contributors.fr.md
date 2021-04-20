@@ -42,7 +42,7 @@ Contributeurs
 
 Les contributeurs à ce site :
 <ul id="contributors_list">
-((! cmd git log --format="%aN" | sort | uniq | awk '{print "<li>"$1,$2,$3"</li>"}' !))
+((! cmd git log --format="%aE %aN" | sort | uniq | awk '{print "<li>"$2,"</li>"}' !))
 </ul>
 
 Cette liste est obtenue depuis [le log GIT](https://github.com/ocaml/ocaml.org/commits/master), pensez à vérifier que votre
