@@ -544,6 +544,19 @@ a:focus {
   padding-left: 20px;
   *zoom: 1;
 }
+.navbar-inner > .container-fluid {
+  margin-right: 65px;
+}
+@media (max-width: 980px) {
+  .navbar-inner > .container-fluid {    
+    margin-right: 15.5px;
+  }
+}
+@media (max-width: 767px){
+  .navbar-inner > .container-fluid {
+    margin-right: 10.5px;
+  }
+}
 .container-fluid:before,
 .container-fluid:after {
   display: table;

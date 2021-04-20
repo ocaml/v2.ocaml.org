@@ -253,6 +253,7 @@ h4.news img.rss {
 a.edit-this-page {
   margin-top: 22.5px;
   margin-left: 15px;
+  margin-right: 7px;
   width: 33px;
   height: 33px;
   display: block;
@@ -470,8 +471,8 @@ div.running-header {
 }
 ul.translations {
   float: right;
-  position: relative;
-  z-index: 10;
+  position: fixed;
+  z-index: 21221;
 
   padding: 8px 0;
   list-style: none;
@@ -479,13 +480,13 @@ ul.translations {
   font-family: Lato, sans-serif;
 
   font-weight: normal;
-  color: #6f6f6f; /* current language name */
+  color: #ffffff;  /* current language name */
   border: 0;
   padding: 0;
   margin: 0px 1ex 0px 2ex;
+  top: 1.5rem;
+  right: 7px;
 }
-ul.translations:before { content: "["; }
-ul.translations:after { content: "]"; }
 .translations > li  {
   display: inline-block;
   *display: inline;
@@ -493,6 +494,68 @@ ul.translations:after { content: "]"; }
 
   *zoom: 1;
   text-shadow: 0 1px 0 #ffffff;
+}
+
+/* control the dropdown of languages to select */
+ul.translations > :not(.active){
+  display: none;
+}
+ul.translations:hover > li{
+  display: block;
+  margin: 0.2rem 0.5rem;
+}
+ul.translations:hover{
+  background-color:  #f7f7f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.1rem;
+}
+
+.translations > .active {
+  color: #ffffff;
+  font-size: medium;transform: scale(1);
+}
+ul.translations:hover > .active {
+color: #404040;
+}
+
+ul.translations:before { 
+  content: url(../img/translate.svg);
+  width: 17px;
+  height:17px;
+  padding:0rem 0.4rem;
+}
+ul.translations:after { 
+  content: ":";
+  color: #ffffff;
+  position: absolute;
+  left: 29px;
+  font-size: medium;
+  font-weight: 800;
+}
+
+@media (max-width: 980px) {
+  ul.translations {
+    position: absolute;
+    top: 0.9rem;
+    right: 105.5px;
+  }
+}
+@media (max-width: 767px){
+  ul.translations {
+    right: 75.5px;
+  }
+}
+@media (max-height: 600px) {
+  ul.translations {
+    top: 0.8rem;
+  }
+}
+.translations > li:not(:last-child):after {
+  display: inline-block;
+  font-weight: 600;
 }
 
 /* Accessibility Helpers */
@@ -581,6 +644,12 @@ ul.translations:after { content: "]"; }
   #footer .column {
     width: 98%;
     margin-right: 0px;
+  }
+}
+@media (min-width: 980px)and (max-width: 1065px) {
+  #searchform, #search {
+    margin-right: 1.8rem;
+    width: 120px !important;
   }
 }
 #footer .entry {
