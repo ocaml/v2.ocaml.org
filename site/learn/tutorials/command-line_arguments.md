@@ -169,5 +169,11 @@ built-in `Arg` module:
   interface for command line processing, which also generates UNIX man pages
   automatically.
 
+* [Clap](https://opam.ocaml.org/packages/clap/) is an imperative command line
+  parser.
+
+* [Minicli](https://opam.ocaml.org/packages/minicli/) has good support for
+  rejecting malformed command lines which others might sliently accept.
+
 * [Getopt](https://opam.ocaml.org/packages/getopt/) for OCaml is similar to
   [GNU getopt](http://www.gnu.org/software/libc/manual/html_node/Getopt.html).
