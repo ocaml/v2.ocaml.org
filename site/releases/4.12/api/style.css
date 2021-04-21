@@ -924,9 +924,10 @@ html .footnotetext {
 }
 .api input#api_search {
   font-family: inherit;
-  width: 26rem;
+  width: 28rem;
   border: none;
   outline: none;
+  padding: 1rem;
 }
 .api #search_results ul {
   list-style: none;
@@ -949,14 +950,14 @@ html .footnotetext {
   vertical-align: bottom;
 }
 .api #api_search_container {
-  width: 28rem;
+  width: 30rem;
   border: 1px solid;
   border-radius: 3px;
 }
 .api .search_comment .search_help {
   height: 0;
   opacity: 0;
-  font-size: 10px;
+  font-size: 16px;
   overflow: hidden;
   transition: all 0.5s;
 }
