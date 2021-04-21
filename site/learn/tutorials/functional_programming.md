@@ -431,3 +431,5 @@ let print_string = output_string stdout
 `output_string` takes two arguments (a channel and a string), but since
 we have only supplied one, it is partially applied. So `print_string` is
 a function, expecting one string argument.
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

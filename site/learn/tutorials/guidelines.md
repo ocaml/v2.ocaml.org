@@ -1721,4 +1721,6 @@ as the imperative program with the additional clarity and natural
 look of an algorithm that performs pattern matching and recursive
 calls to handle an argument that belongs to a recursive sum data type.
 
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)
+
 

@@ -1109,3 +1109,5 @@ and odd n =
 You can also
 use similar syntax for writing mutually recursive class definitions and
 modules.
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

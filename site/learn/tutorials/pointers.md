@@ -259,3 +259,5 @@ let append (l1 : 'a lists) (l2 : 'a lists) =
   done;
   !^ !temp.tl <- l2;;
 ```
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

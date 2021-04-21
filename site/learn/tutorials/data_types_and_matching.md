@@ -431,3 +431,5 @@ was not handled.
 
 Exercise: Extend the pattern matching with a `Product` case so
 `to_string` compiles without warning.
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

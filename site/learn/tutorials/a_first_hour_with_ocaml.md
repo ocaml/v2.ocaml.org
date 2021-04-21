@@ -891,3 +891,5 @@ This quick tour should have given you a little taste of OCaml and why you might
 like to explore it further. Elsewhere on [ocaml.org](/index.html) there are
 pointers to [books on OCaml](/learn/books.html) and
 [other tutorials](/learn/tutorials/index.html).
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

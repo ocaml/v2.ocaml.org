@@ -22,3 +22,5 @@ There are some serious mistakes in the last paragraph:
 
 - In Java is a dynamic type check (aka cast) much more expensive than
   a dynamic method dispatch.
+
+  [Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

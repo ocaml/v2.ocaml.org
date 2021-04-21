@@ -143,3 +143,5 @@ let some else help out (or wait until I learn how to do it).
 prompt> ocamlc -c gtd6.ml prompt> ocamlc -o test gtd6.cmo wrapper.so
 ```
 And voila, we've called the fortran function from OCaml.
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

@@ -96,3 +96,5 @@ element doesn't create a new stack but simply adds it to the stack.
 * adding an element: O(1)
 * taking an element: O(1)
 * length: O(1)
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

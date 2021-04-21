@@ -188,3 +188,5 @@ option.
 "\e\n" (* bad practice *);;
 "\\e\n" (* good practice *);;
 ```
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

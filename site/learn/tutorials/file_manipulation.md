@@ -103,3 +103,5 @@ let () =
   
   (* normal exit: all channels are flushed and closed *)
 ```
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

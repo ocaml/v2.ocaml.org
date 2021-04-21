@@ -349,3 +349,5 @@ increasing order of difficulty:
 1. Make the underlying file representation a **DBM-style hash**.
 1. Provide a general-purpose cache fronting a "users" table in your
  choice of **relational database** (with locking).
+
+ [Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)
