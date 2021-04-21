@@ -2746,6 +2746,7 @@ button.close {
 .btn:hover,
 .btn:focus {
   color: #ffffff;
+  background: #004900;
   text-decoration: none;
   background-position: 0 -15px;
   -webkit-transition: background-position 0.1s linear;
@@ -6999,7 +7000,10 @@ body {
   .nav-collapse,
   .nav-collapse.collapse {
     overflow: hidden;
-    height: 0;
+    height: auto;
+    position: relative;
+    right: 1000px;
+    display: none;
   }
   .navbar .btn-navbar {
     display: block;
