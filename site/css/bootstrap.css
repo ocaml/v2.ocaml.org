@@ -5556,7 +5556,7 @@ body {
   margin-bottom: 24px;
   overflow: hidden;
 }
-.home-feature > a {
+.home-feature > a,span {
   float: left;
 }
 .home-feature h1 {
@@ -5579,7 +5579,7 @@ body {
   margin-bottom: 0;
 }
 @media (min-width: 768px) and (max-width: 979px) {
-  .home-feature > a {
+  .home-feature > a,span {
     margin-bottom: 6px;
   }
   .home-feature h1,
@@ -5658,7 +5658,7 @@ body {
   position: relative;
   top: -1px;
 }
-.news-feed li article > a {
+.news-feed li article > a,span{
   position: absolute;
   top: 0;
   left: 0;

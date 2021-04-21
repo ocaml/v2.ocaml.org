@@ -21,49 +21,49 @@
         <div class="span8">
             <div class="row">
                 <section class="span4 home-feature">
-                    <a href="/learn/index.fr.html">
+                    <span>
                         <img src="/img/learn-large.svg" alt="Apprendre"
 						 class="svg">
                         <img src="/img/learn-large.png" alt="Apprendre"
 						 class="png">
-                    </a>
+                    </span>
                     <h1><a href="/learn/index.fr.html">Apprendre</a></h1>
-                    <p>Une <a href="/learn/description.html">description d'OCaml</a>, ses <a href="/learn/success.fr.html">utilisateurs</a>, des <a href="learn/taste.fr.html">exemples de code</a>, des <a href="/learn/tutorials/">tutoriaux à lire</a> et <a href="/learn/index.fr.html">bien plus</a>.</p>
+                    <p>Une <a href="/learn/description.html">description d'OCaml</a>, ses <a href="/learn/success.fr.html">utilisateurs</a>, des <a href="learn/taste.fr.html">exemples de code</a>, des <a href="/learn/tutorials/">tutoriaux à lire</a> et bien plus.</p>
                 </section>
                 <section class="span4 home-feature">
-                    <a href="/docs/index.fr.html">
+                    <span>
                         <img src="/img/documentation-large.svg"
 						 alt="Documentation" class="svg">
                         <img src="/img/documentation-large.png"
 						 alt="Documentation" class="png">
-                    </a>
+                    </span>
                     <h1><a href="/docs/index.fr.html">Documentation</a></h1>
                     <p><a href="docs/install.fr.html" >Installer</a> OCaml,
 					trouver des <a href="https://opam.ocaml.org/packages/">docs de paquets</a>, accéder au
 					<a href="/releases/latest/manual.html"
 					target="_blank" rel="noopener"
-					>Manuel</a>, obtenir <a href="/docs/cheat_sheets.html">des mémentos</a> et <a href="/docs/index.fr.html">bien plus</a>.</p>
+					>Manuel</a>, obtenir <a href="/docs/cheat_sheets.html">des mémentos</a> et bien plus.</p>
                 </section>
             </div>
             <div class="row">
                 <section class="span4 home-feature">
-                    <a href="https://opam.ocaml.org">
+                    <span>
                         <img src="/img/platform-large.svg"
 						 alt="Contributions" class="svg">
                         <img src="/img/platform-large.png"
 						 alt="Contributions" class="png">
-					</a>
+					</span>
                     <h1><a href="https://opam.ocaml.org">Contributions</a></h1>
-                    <p>Le gestionnaire de paquets <a href="https://opam.ocaml.org">OPAM</a> vous donne accès aux multiples versions de
+                    <p>Le gestionnaire de paquets OPAM vous donne accès aux multiples versions de
 					<a href="https://opam.ocaml.org/packages/">centaines de paquets</a>.</p>
                 </section>
                 <section class="span4 home-feature">
-                    <a href="/community/index.fr.html">
+                    <span>
                         <img src="/img/community-large.svg"
 						 alt="Communauté" class="svg">
                         <img src="/img/community-large.png"
 						 alt="Communauté" class="png">
-                    </a>
+                    </span>
                     <h1><a href="/community/index.fr.html">Communauté</a></h1>
                     <p>Lire <a href="/community/planet/">les fils de news</a>,  <a href="/community/mailing_lists.fr.html">discuter et échanger</a>, obtenir <a href="/community/support.fr.html">du support</a>,
                     <a href="/meetings/index.fr.html" >rencontrer</a>
@@ -106,31 +106,29 @@
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2020/">OCaml 2020</a></h1>
 			  <p>28 août, 2020</p>
-			  <a title="OCaml Users and Developers Workshop"
-			     href="/meetings/ocaml/2020/">
+			  <span>
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
-			  </a>
+			  </span>
 			</article></li>
 			<li class="announcement"><article>
 			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
 				   >Parution d'OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
 			   <p>24 février 2021</p>
-			   <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
-			      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
+			   <span>
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
-			  </a>
+			  </span>
 			</article></li>
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Weekly News"
 			       href="/community/cwn/" >OCaml Weekly News</a></h1>
 			   <p>{{! cmd script/weekly_news --date !}}</p>
-			   <a title="OCaml Weekly News" href="/community/cwn/">
+			   <span>
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
-			  </a>
+			  </span>
 			</article></li>
 	        </ul>
             {{! cmd script/rss2html -n 5 --locale fr_FR.utf8 --headlines http://planet.ocaml.org/rss20.xml !}}

@@ -21,8 +21,7 @@
     <section class="span6 condensed">
       <h2 class="ruled">The OCaml Tutorials</h2>
       <p>The official
-	<a id="tutref"
-	   href="/manual/index.html#sec6">OCaml tutorials</a>
+	OCaml tutorials
 	(chapters 1 to 6 of the manual), written by the creators of
 	the language, are the best place to start. They form a
 	complete introduction to programming in OCaml, including the
@@ -56,8 +55,7 @@
     <section class="span6 condensed">
       <h2 class="ruled">The Tools</h2>
       <p>
-	Many <a id="toolref"
-		    href="/manual/index.html#sec286">tools</a>
+	Many tools
 	are bundled with the OCaml language. Among them, the REPL (or
 	`toplevel'), the documentation generator, lexers, the
 	debugger, profiling tools, etc.
@@ -73,8 +71,7 @@
       <h2 class="ruled">The Language Extensions</h2>
 
       <p>Don't forget to regularly check the
-	<a id="extref"
-	   href="/manual/extn.html">Language Extensions</a>,
+	Language Extensions,
 	they will keep you up-to-date with useful new OCaml idioms
 	and constructions.<br>
       </p>

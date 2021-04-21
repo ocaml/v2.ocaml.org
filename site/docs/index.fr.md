@@ -21,8 +21,7 @@
     <section class="span6 condensed">
       <h2 class="ruled">Les Tutoriels OCaml</h2>
       <p>Les
-	<a id="tutref"
-	   href="/manual/index.html#sec6">tutoriels OCaml</a>
+	tutoriels OCaml
 	officiels (chapitres 1 à 6 du manuel), écrits par les
 	inventeurs du langage, sont le meilleur point de
 	départ. Ils constituent une introduction complète à la
@@ -57,8 +56,7 @@
       <h2 class="ruled">Les outils</h2>
       <p>
 	De nombreux
-	<a id="toolref"
-	   href="/manual/index.html#sec286">outils</a>
+	outils
 	sont distribués avec le langage OCaml. Parmi eux,
 	l'interpréteur interactif (REPL ou `toplevel'), le
 	générateur de documentation, le lexer, le débogueur,
@@ -75,8 +73,7 @@
       <h2 class="ruled">Les Extensions du langage</h2>
 
       <p>N'oubliez pas de vérifier régulièrement les
-	<a id="extref"
-	   href="/manual/extn.html">Extensions du langage</a>,
+	Extensions du langage,
 	afin de rester à jour avec les nouvelles constructions
 	qui vont vous simplifier la vie.
 	<br>
