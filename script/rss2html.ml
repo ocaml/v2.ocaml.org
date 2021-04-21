@@ -188,9 +188,8 @@ let get_opml () =
                                "OCaml Planet" in
   (* Broken feeds will be marked with [is_comment = true]. *)
   let opml = Opml1.of_atom ~head feeds in
-  (* Sort by name.  (FIXME: one may want to ignore spaces.) *)
-  let trimm str = String.trim str in
-  let by_name o1 o2 = String.compare (trimm o1.Opml1.text) (trimm o2.Opml1.text) in
+  (* Sort by name. *)
+  let by_name o1 o2 = String.compare (String.trim o1.Opml1.text) (String.trim o2.Opml1.text) in
   { opml with Opml1.body = List.sort by_name opml.Opml1.body }
 
 let opml fname =
