@@ -2746,6 +2746,7 @@ button.close {
 .btn:hover,
 .btn:focus {
   color: #ffffff;
+  background: #004900;
   text-decoration: none;
   background-position: 0 -15px;
   -webkit-transition: background-position 0.1s linear;
