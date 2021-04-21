@@ -1,72 +1,72 @@
-Andrej Bauer|http://math.andrej.com/feed.xml
-Andy Ray|http://www.ujamjar.com/ocaml.xml
-Ashish Agarwal|http://ashishagarwal.org/tag/ocaml/feed/
-CUFP|http://cufp.org/blog/all.rss.xml
-Cameleon news|http://www.blogger.com/feeds/7617521785419311079/posts/default
-Caml INRIA|http://caml.inria.fr/news.en.rss
-Caml Spotting|http://camlspotter.blogspot.com/feeds/posts/default?alt=rss
-Coherent Graphics|https://coherentpdf.com/blog/?tag=ocaml&feed=rss2
-Coq|https://coq.inria.fr/rss.xml
-Cranial Burnout|http://www.blogger.com/feeds/9108979482982930820/posts/default/-/OCaml
-Daniel Bünzli|https://erratique.ch/feeds/news.atom
-Daniel Bünzli (log)|https://erratique.ch/log/feed.atom
+Andrej Bauer|http://math.andrej.com/
+Andy Ray|http://www.ujamjar.com
+Ashish Agarwal|http://ashishagarwal.org
+CUFP|http://cufp.org/2017/
+Cameleon news|http://ocameleon.blogspot.com/
+Caml INRIA|http://caml.inria.fr/
+Caml Spotting|http://camlspotter.blogspot.com/
+Coherent Graphics|https://coherentpdf.com/blog
+Coq|https://coq.inria.fr
+Cranial Burnout|http://cranialburnout.blogspot.com/search/label/OCaml
+Daniel Bünzli|https://erratique.ch/
+Daniel Bünzli (log)|https://erratique.ch/log
 Dario Teixeira|http://nleyten.com/feed/tag/ocaml/atom
-David Baelde|http://www.blogger.com/feeds/17133288/posts/default/-/ocaml
-David Mentré|http://blog.bentobako.org/index.php?feed/tag/ocaml/atom
-David Teller|https://dutherenverseauborddelatable.wordpress.com/category/ocaml/feed/
+David Baelde|http://misterpingouin.blogspot.com/search/label/ocaml
+David Mentré|http://blog.bentobako.org/index.php?
+David Teller|https://dutherenverseauborddelatable.wordpress.com
 Eray Özkural|https://examachine.net/blog/category/ocaml/feed/
-Erik de Castro Lopo|http://www.mega-nerd.com/erikd/Blog/index.rss20
-Etienne Millon|http://blog.emillon.org/feeds/ocaml.xml
-Frama-C|http://frama-c.com/rss.xml
-GaGallium|http://gallium.inria.fr/blog/index.rss
-Gaius Hammond|https://gaius.tech/category/ocaml/feed/
-Gemma Gordon (OCaml Labs)|http://reynard.io/feed.xml
-Gerd Stolpmann|http://blog.camlcity.org/blog/rss
-GitHub Jobs|https://jobs.github.com/positions.atom?description=ocaml
-Grant Rettke|https://www.wisdomandwonder.com/tag/OCaml/feed
-Hannes Mehnert|https://hannes.nqsb.io/atom
-Hong bo Zhang|https://hongboz.wordpress.com/feed/
-Jake Donham|http://ambassadortothecomputers.blogspot.com/feeds/posts/default?alt=rss
-Jane Street|https://blog.janestreet.com/feed.xml
-KC Sivaramakrishnan|https://kcsrk.info/atom-ocaml.xml
-Leo White|http://lpw25.net/rss.xml
-Magnus Skjegstad|http://www.skjegstad.com/feeds/ocaml.tag.atom.xml
-Marc Simpson|https://blog.0branch.com/rss.xml
-Matthias Puech|https://syntaxexclamation.wordpress.com/tag/ocaml/feed/
-Matías Giovannini|http://www.blogger.com/feeds/5888658295182480819/posts/default
+Erik de Castro Lopo|http://www.mega-nerd.com/erikd/Blog
+Etienne Millon|http://blog.emillon.org
+Frama-C|https://frama-c.com
+GaGallium|http://gallium.inria.fr/blog
+Gaius Hammond|https://gaius.tech
+Gemma Gordon (OCaml Labs)|http://reynard.io/
+Gerd Stolpmann|http://blog.camlcity.org
+GitHub Jobs|https://jobs.github.com
+Grant Rettke|https://www.wisdomandwonder.com
+Hannes Mehnert|Posts/NGI
+Hong bo Zhang|https://hongboz.wordpress.com
+Jake Donham|http://ambassadortothecomputers.blogspot.com/
+Jane Street|https://blog.janestreet.com
+KC Sivaramakrishnan|https://kcsrk.info
+Leo White|http://lpw25.net/
+Magnus Skjegstad|http://www.skjegstad.com/
+Marc Simpson|http://blog.0branch.com
+Matthias Puech|https://syntaxexclamation.wordpress.com
+Matías Giovannini|http://alaska-kamtchatka.blogspot.com/
 Mindy Preston|https://www.somerandomidiot.com/blog/categories/ocaml/atom.xml
-Mike Lin|http://www.blogger.com/feeds/3693082774051755513/posts/default/-/OCaml
-Mike McClurg|https://mcclurmc.wordpress.com/feed/
-MirageOS|https://mirage.io/blog/atom.xml
-OCaml Book|http://ocaml-book.com/blog?format=rss
-OCaml Labs compiler hacking|http://ocamllabs.io/compiler-hacking/rss.xml
-OCamlCore.com|http://www.ocamlcore.com/wp/feed/?amp;language=en&language=en
-OCamlPro|https://www.ocamlpro.com/feed/
-ODNS project|http://odns.tuxfamily.org/feed/
-Ocaml XMPP project|http://ox.tuxfamily.org/feed/
-Ocsigen project|https://ocsigen.org/feed.xml
-Opa|http://www.blogger.com/feeds/2073503406800427577/posts/default
-Orbitz|http://functional-orbitz.blogspot.com/feeds/posts/default/-/planetocaml?alt=rss
-Paolo Donadeo|http://www.donadeo.net/facets/programming-languages/objective-caml/feed/
+Mike Lin|http://blog.mlin.net/search/label/OCaml
+Mike McClurg|https://mcclurmc.wordpress.com
+MirageOS|https://mirage.io/blog/
+OCaml Book|http://ocaml-book.com/blog/
+OCaml Labs compiler hacking|http://ocamllabs.github.com/compiler-hacking/
+OCamlCore.com|http://www.ocamlcore.com/wp/feed/?amp%3Blanguage=en&language=en
+OCamlPro|https://www.ocamlpro.com
+ODNS project|http://odns.tuxfamily.org
+Ocaml XMPP project|http://ox.tuxfamily.org
+Ocsigen project|https://ocsigen.github.io
+Opa|http://blog.opalang.org/
+Orbitz|http://functional-orbitz.blogspot.com/search/label/planetocaml
+Paolo Donadeo|http://www.donadeo.net
 Perpetually Curious|http://lambdafoo.com/blog/categories/ocaml/atom.xml
-Peter Zotov|https://whitequark.org/blog/categories/ocaml/atom.xml
-Psellos|http://psellos.com/atom.xml
-Richard Jones|https://rwmj.wordpress.com/tag/ocaml/feed/
+Peter Zotov|http://whitequark.org/blog/
+Psellos|http://psellos.com
+Richard Jones|https://rwmj.wordpress.com
 Rudenoise|http://rudenoise.uk/ocaml.rss
-Rudi Grinberg|http://rgrinberg.com/blog/atom.xml
-Sebastien Mondet|https://seb.mondet.org/b/OCaml.rss
-Shayne Fletcher|http://blog.shaynefletcher.org/feeds/posts/default/-/OCaml
-Stefano Zacchiroli|https://upsilon.cc/~zack/tags/ocaml/index.rss
-Thomas Leonard|http://roscidus.com/blog/blog/categories/ocaml/atom.xml
-Till Varoquaux|http://www.blogger.com/feeds/6115529230232389198/posts/default
-Yan Shvartzshnaider|http://yansnotes.blogspot.com/feeds/posts/default/-/ocaml
-OCaml-Java|http://www.ocamljava.org/feed.xml
-OCaml Platform|http://opam.ocaml.org/blog/feed.xml
-Xinuo Chen|http://typeocaml.com/rss/
-Cryptosense|https://cryptosense.com/blog/tag/ocaml/feed/
-Gabriel Radanne|http://drup.github.io/feed-ocaml.xml
-The BAP Blog|https://binaryanalysisplatform.github.io/feed.xml
-Tarides|https://tarides.com/feed.xml
-Ahrefs|https://medium.com/feed/ahrefs/tagged/ocaml
-Reason Documentation Blog|https://rescript-lang.org/blog/feed.xml
-Daniil Baturin|https://baturin.org/blog/atom-ocaml.xml
+Rudi Grinberg|http://rgrinberg.com
+Sebastien Mondet|https://seb.mondet.org/b/
+Shayne Fletcher|http://blog.shaynefletcher.org/search/label/OCaml
+Stefano Zacchiroli|http://upsilon.cc/~zack/tags/ocaml/
+Thomas Leonard|https://roscidus.com/blog/
+Till Varoquaux|http://till-varoquaux.blogspot.com/
+Yan Shvartzshnaider|http://yansnotes.blogspot.com/search/label/ocaml
+OCaml-Java|http://www.ocamljava.org/
+OCaml Platform|https://opam.ocaml.org/blog/feed.xml
+Xinuo Chen|http://typeocaml.com/
+Cryptosense|https://cryptosense.com/blog
+Gabriel Radanne|https://drup.github.io/
+The BAP Blog|http://binaryanalysisplatform.github.io/
+Tarides|https://tarides.com
+Ahrefs|https://tech.ahrefs.com/tagged/ocaml
+Reason Documentation Blog|https://rescript-lang.org
+Daniil Baturin|https://www.baturin.org/blog/
