@@ -25,7 +25,7 @@ let max a b =
   if a > b then a else b;;
 ```
 As a short aside, if you type this into the OCaml
-[interactive toplevel](basics.html) (as above), you'll
+interactive toplevel (as above), you'll
 notice that OCaml decides that this function is polymorphic, with the
 following type:
 

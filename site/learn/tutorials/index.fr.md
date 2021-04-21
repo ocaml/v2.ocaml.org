@@ -6,9 +6,7 @@
 ((! get begin_two_columns !))
 
 * [Opérationnel avec OCaml](up_and_running.html)
-* [Notions de base](basics.fr.html)
-  — Si vous débutez OCaml ou la programmation fonctionnelle, lisez
-  ceci d'abord.
+* [Une première heure avec OCaml](a_first_hour_with_ocaml.html)
 * [Structure des programmes OCaml](structure_of_ocaml_programs.fr.html)
 * [Types de données et matching](data_types_and_matching.fr.html)
 * [Pointeurs nuls, asserts et warnings](null_pointers_asserts_and_warnings.fr.html)
