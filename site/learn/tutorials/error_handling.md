@@ -154,3 +154,5 @@ are:
 
 For easy combination of functions that can fail, many alternative standard
 libraries provide useful combinators on the `result` type: `map`, `>>=`, etc.
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

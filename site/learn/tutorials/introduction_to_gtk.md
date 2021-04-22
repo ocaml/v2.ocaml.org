@@ -663,3 +663,5 @@ List.map (fun w -> m#find w) c#children;;
 * Lablgtk provides two ways to perform downcasting, but this doesn't
  change the fact that downcasting is unsafe and can throw exceptions
  at runtime.
+
+ [Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

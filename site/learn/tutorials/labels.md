@@ -532,3 +532,5 @@ reduction in type safety, it is recommended that you don't use these in
 your code. You will, however, see them in advanced OCaml code quite a
 lot precisely because advanced programmers will sometimes want to weaken
 the type system to write advanced idioms.
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

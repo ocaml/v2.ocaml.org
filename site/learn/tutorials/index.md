@@ -121,3 +121,8 @@ Both in french:
   for getting an explanation on the behaviour of an operator or syntax element, along with usage examples.
 
 
+### Discussion Forums
+
+* [Discussion threads](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677), help you better understand a tutorial, ask questions and share ideas.
+
+

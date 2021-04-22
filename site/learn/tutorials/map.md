@@ -70,4 +70,4 @@ MyUsers.find "fred" m;;
 ```
 This should quickly and efficiently return Fred's password: "sugarplums".
 
-
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

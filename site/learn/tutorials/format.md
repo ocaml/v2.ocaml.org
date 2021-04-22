@@ -416,3 +416,5 @@ or `stderr` is just a matter of partial application:
 let print_lambda = pr_lambda std_formatter
 let eprint_lambda = pr_lambda err_formatter
 ```
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

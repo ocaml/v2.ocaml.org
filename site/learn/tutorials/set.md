@@ -73,4 +73,5 @@ removing an element from a set does not alter that set but, rather,
 returns a new set that is very similar to (and shares much of its
 internals with) the original set.
 
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)
 

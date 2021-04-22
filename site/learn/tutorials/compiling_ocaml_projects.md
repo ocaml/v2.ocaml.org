@@ -173,4 +173,6 @@ structure, build, and run dune projects.
 
 - [OMake](https://github.com/ocaml-omake/omake) Another OCaml build system.
 - [GNU make](https://www.gnu.org/software/make/) GNU make can build anything, including OCaml. May be used in conjunction with [OCamlmakefile](https://github.com/mmottl/ocaml-makefile)
-- [Oasis](https://github.com/ocaml/oasis) Generates a configure, build, and install system from a specification.
+- [Oasis](https://github.com/ocaml/oasis) Generates configure, build, and install system using another build system.
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

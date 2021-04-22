@@ -558,3 +558,5 @@ let y = object method get = 80 method special = "hello" end;;
 let l = [x; y];;
 let l = [x; (y :> t)];;
 ```
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

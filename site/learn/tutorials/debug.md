@@ -276,3 +276,5 @@ Under Emacs you call the debugger using `ESC-x` `ocamldebug a.out`. Then Emacs
 will send you directly to the file and character reported by the debugger, and
 you can step back and forth using `ESC-b` and `ESC-s`, you can set up break
 points using `CTRL-X space`, and so on...
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

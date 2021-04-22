@@ -89,3 +89,5 @@ entry in `my_hash` for a letter we would do:
 ```ocamltop
 Hashtbl.mem my_hash "h"
 ```
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

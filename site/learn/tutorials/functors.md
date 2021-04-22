@@ -87,3 +87,5 @@ the source files
 [`set.ml`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/set.ml) or
 [`map.ml`](https://github.com/ocaml/ocaml/blob/trunk/stdlib/map.ml) of the
 standard library.
+
+[Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)

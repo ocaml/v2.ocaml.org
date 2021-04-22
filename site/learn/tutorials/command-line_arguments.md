@@ -50,3 +50,5 @@ without having to scan the `Sys.argv` array yourself:
 * [Getopt](https://opam.ocaml.org/packages/getopt/)
   for OCaml is similar to [GNU
   getopt](http://www.gnu.org/software/libc/manual/html_node/Getopt.html).
+
+  [Discuss](https://discuss.ocaml.org/t/creating-a-discuss-thread-for-tutorials-on-ocaml-org/7677)
