@@ -7,12 +7,22 @@
 <link rel="stylesheet" type="text/css" href="manual.css">
 <title>OCaml - Batch compilation (ocamlc)</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li class="active"><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
-
-
-
-
-<h1 class="chapter" id="sec287"><span class="number">Chapter 9</span>Batch compilation (ocamlc)</h1>
+<body>
+  <div style="width:100%;position:fixed;" class="content manual" >
+  <nav><div id="part-title" style="width:95%; background-color: white; position: fixed; top: 0; padding-bottom: 20px;">
+  <span>☰</span>
+  The OCaml tools
+  </div>
+  <div id="sidebar-button" style="width:5%; background-color: white; position: fixed; top: 0; padding-bottom: 100px;"><span>☰</span></div>
+  </nav>
+  </div>
+  <br/><br/>
+  <div class="right-div" style="position:fixed;">
+  <ul id="part-menu">
+  <li class="active"><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></br></ul>
+  </div>
+  <br/><br/>
+  <div class="content manual" ><h1 class="chapter" id="sec287"><span class="number">Chapter 9</span>Batch compilation (ocamlc)</h1>
 <header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Batch compilation (ocamlc)</a></li>
 <li><a href="comp.html#s%3Acomp-overview"><span class="number">1</span>Overview of the compiler</a>
 </li><li><a href="comp.html#s%3Acomp-options"><span class="number">2</span>Options</a>
@@ -103,7 +113,7 @@ with the object files ( <span class="c004">.cmo</span> files)
 given on the command line, instead of linking them into an executable file.
 The name of the library must be set with the <span class="c004">-o</span> option.<p>If <span class="c004">-custom</span>, <span class="c004">-cclib</span> or <span class="c004">-ccopt</span> options are passed on the command
 line, these options are stored in the resulting <span class="c004">.cma</span>library. Then,
-linking with this library automatically adds back the <span class="c004">-custom</span>, 
+linking with this library automatically adds back the <span class="c004">-custom</span>,
 <span class="c004">-cclib</span> and <span class="c004">-ccopt</span> options as if they had been provided on the
 command line, unless the <span class="c004">-noautolink</span> option is given.
 </p></dd><dt class="dt-description"><span class="c007">-absname</span></dt><dd class="dd-description">
@@ -129,7 +139,7 @@ compilation. Source code files are turned into compiled files, but no
 executable file is produced. This option is useful to
 compile modules separately.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">-cc</span> <span class="c010">ccomp</span></span></dt><dd class="dd-description">
-Use <span class="c010">ccomp</span> as the C linker 
+Use <span class="c010">ccomp</span> as the C linker
 when linking in “custom runtime” mode (see the <span class="c004">-custom</span> option)
 and as the C compiler for compiling <span class="c004">.c</span> source files.
 </dd><dt class="dt-description"><span class="c014"><span class="c004">-cclib</span> <span class="c004">-l</span><span class="c010">libname</span></span></dt><dd class="dd-description">
