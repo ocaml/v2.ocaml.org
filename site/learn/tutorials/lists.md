@@ -321,45 +321,94 @@ List.sort
   [(1, 3); (1, 2); (2, 3); (2, 2)];;
 ```
 
-### Two special functions: fold_left and fold_right
+### Folds
 
-1. Introduce them, and how they work, and their types
+There are two interestingly-named functions in the List module, `fold_left` and
+`fold_right`. Their job is to combine the elements of a list together, using a
+given function, accumulating an answer which is then returned. The answer
+returned depends upon the function given, the elements of the list, and the
+initial value of the accumulator supplied. So you can imagine these are very
+general functions. Let's explore `fold_left` first.
 
-2. Some little examples, expained. Bad concat example warning
-
-3. Here are some more. Can you work them out?
+In our first example, we supply the addition function and an initial accumulator value of 0:
 
 ```ocamltop
 List.fold_left ( + ) 0 [1; 2; 3];;
+```
 
+The result is the sum of the elements in the list. Now let's use OCaml's
+built-in `max` function which returns the larger of two given integers. We use
+`min_int`, the smallest possible integer, as our initial acumulator
+
+```ocamltop
 List.fold_left max min_int [2; 4; 6; 0; 1];;
+```
+
+The largest number in the list is found. Let's look at the type of the
+`fold_left` function:
+
+```ocamltop
+List.fold_left;;
+```
+
+The function is of type `'a -> 'b -> 'a` where `'a` is the accumulator and `'b`
+is the type of each element of the list. The next argument is the initial
+accumulator, which must be of type `'a`, and then finally the input list of
+type `'b list`. The result is the final value of the accumulator, so it must
+have type `'a`. Of course, in both of our examples, `'a` and `'b` are the same
+as one another. But this is not always so. 
+
+Consider the following definition of `append` which uses `List.fold_right`
+(`fold_left` considers the elements from the left, `fold_right` from the
+right):
+
+```ocamltop
+let append x y =
+  List.fold_right (fun e a -> e :: a) x y;;
+```
+
+In this example, the initial accumulator is the second list, and each element
+of the first is consed to it in turn. You can see the order of arguments to
+fold right is a little different:
+
+```ocamltop
+List.fold_right;;
+```
+
+We can use `fold_right` to define our usual `map` function too:
+
+```ocamltop
+let map f l =
+  List.fold_right (fun e a -> f e :: a) l [];;
+```
+
+But care is needed. If we try that with `List.concat`, which turns a list of lists into a list by concatenating the lists together, we get this:
+
+```ocamltop
+let concat l = List.fold_left ( @ ) [] l;;
+```
+
+Unfortunately, the order of evalution here is such that larger and larger items
+are passed to the `@` operator as its first argument, and so the function has a
+worse running time than `List.concat`.
+
+Here are some more redefintions of familiar functions in terms of `fold_left`
+or `fold_right`. Can you work out how they operate?
+
+```ocamltop
+let length l =
+  List.fold_left (fun a _ -> a + 1) 0 l;;
+
+let rev l =
+  List.fold_left (fun a e -> e :: a) [] l;;
 
 let setify l =
    List.fold_left
      (fun a e -> if List.mem e a then a else e :: a) [] l;;
-
-let all l = List.fold_left ( && ) true l;;
-
-let any l = List.fold_left ( || ) false l;;
-
-let map f l =
-  List.fold_right (fun e a -> f e :: a) l [];;
-
-let append x y =
-  List.fold_right (fun e a -> e :: a) x y;;
 
 let split l =
   List.fold_right
     (fun (x, y) (xs, ys) -> (x :: xs, y :: ys))
     l
     ([], []);;
-
-let concat l =
-  List.fold_left ( @ ) [] l (* BAD *);;
-
-let length l =
-  List.fold_left (fun a _ -> a + 1) 0 l;;
-
-let rev l =
-  List.fold_left (fun a e -> e :: a) [] l;;
 ```
