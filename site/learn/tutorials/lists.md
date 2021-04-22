@@ -178,11 +178,36 @@ the exception kind.
 
 ### Maps and iterators on one and two lists
 
-map, iter
-
-map2 etc.
+We have already written a `map` function from scratch, and it is no surprise
+that one is included in the `List` module. There is also a variant for two
+lists:
 
 ```ocamltop
+List.map2 ( + ) [1; 2; 3] [4; 5; 6]
+```
+
+In addition, we have an imperative analog to `map`, called `iter`. It takes an
+imperative function of type `'a -> unit` and an `'a list` and applies the
+function to each element in turn. A suitable function might be `print_endline`,
+for which `'a` is `string`:
+
+```ocamltop
+List.iter print_endline ["frank"; "james"; "mary"];;
+```
+
+There is a variant of `iter` for two lists too:
+
+```ocamltop
+List.iter2
+  (fun a b -> print_endline (a ^ " " ^ b))
+  ["frank"; "james"; "mary"]
+  ["carter"; "lee"; "jones"];;
+```
+
+Notice that `map2` and `iter2` will fail if the lists are of unequal length:
+
+```ocamltop
+List.map2 ( + ) [1; 2; 3] [4; 5]
 ```
 
 ### List scanning
@@ -201,8 +226,10 @@ write functions to go over each element of the list, keeping a boolean check,
 or use `mem` and other functions already known to us:
 
 ```ocamltop
-let all = not (List.mem false (List.map (fun x -> x mod 2 = 0) [2; 4; 6; 8]));;
-let any = List.mem true (List.map (fun x -> x mod 2 = 0) [1; 2; 3]);;
+let all =
+  not (List.mem false (List.map (fun x -> x mod 2 = 0) [2; 4; 6; 8]));;
+let any =
+  List.mem true (List.map (fun x -> x mod 2 = 0) [1; 2; 3]);;
 ```
 
 This is rather clumsy, though. The standard library provides two useful
@@ -220,10 +247,34 @@ standalone functions.
 
 ### List searching
 
-find / filter / partition
+The function `List.find` returns the first element of a list matching a given
+predicate (a predicate is a testing function which returns either true or false
+when given an element). It raises an exception if such an element is not found:
+
 
 ```ocamltop
+List.find (fun x -> x mod 2 = 0) [1; 2; 3; 4; 5];;
+List.find (fun x -> x mod 2 = 0) [1; 3; 5];;
 ```
+
+The `filter` function again takes a predicate and tests it against each element
+in the list, but this time returns the list of all elements which test true:
+
+```ocamltop
+List.filter (fun x -> x mod 2 = 0) [1; 2; 3; 4; 5];;
+```
+
+If we wish to know also which elements did not test true, we can use
+`partition` which returns a pair of lists: the first being the list of elements
+for which the predicate is true, the second those for which it is false.
+
+```ocamltop
+List.partition (fun x -> x mod 2 = 0) [1; 2; 3; 4; 5];;
+```
+
+Note that the documentation for `filter` and `partition` tells us that the
+order of the inputs is preserved in the outputs. Where this is not stated it
+the documentation, it cannot be assumed.
 
 ### Association lists
 
@@ -241,11 +292,13 @@ List.assoc 4 [(3, "three"); (1, "one"); (4, "four")];;
 List.mem_assoc 4 [(3, "three"); (1, "one"); (4, "four")];;
 ```
 
-### Lists of pairs
-
-split / combine
+When using association lists, and for other purposes, it is sometimes useful to
+be able to make a list of pairs from a pair of lists and vice versa. The `List`
+module provides the functions `split` and `combine` for this purpose: 
 
 ```ocamltop
+List.split [(3, "three"); (1, "one"); (4, "four")];;
+List.combine [3; 1; 4] ["three"; "one"; "four"];;
 ```
 
 ### Sorting lists
@@ -266,4 +319,47 @@ List.sort compare [(1, 3); (1, 2); (2, 3); (2, 2)];;
 List.sort
   (fun a b -> compare (fst a) (fst b))
   [(1, 3); (1, 2); (2, 3); (2, 2)];;
+```
+
+### Two special functions: fold_left and fold_right
+
+1. Introduce them, and how they work, and their types
+
+2. Some little examples, expained. Bad concat example warning
+
+3. Here are some more. Can you work them out?
+
+```ocamltop
+List.fold_left ( + ) 0 [1; 2; 3];;
+
+List.fold_left max min_int [2; 4; 6; 0; 1];;
+
+let setify l =
+   List.fold_left
+     (fun a e -> if List.mem e a then a else e :: a) [] l;;
+
+let all l = List.fold_left ( && ) true l;;
+
+let any l = List.fold_left ( || ) false l;;
+
+let map f l =
+  List.fold_right (fun e a -> f e :: a) l [];;
+
+let append x y =
+  List.fold_right (fun e a -> e :: a) x y;;
+
+let split l =
+  List.fold_right
+    (fun (x, y) (xs, ys) -> (x :: xs, y :: ys))
+    l
+    ([], []);;
+
+let concat l =
+  List.fold_left ( @ ) [] l (* BAD *);;
+
+let length l =
+  List.fold_left (fun a _ -> a + 1) 0 l;;
+
+let rev l =
+  List.fold_left (fun a e -> e :: a) [] l;;
 ```
