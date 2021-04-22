@@ -88,8 +88,7 @@ this type:
 Note that we use ":" in the type definition and "=" when creating
 objects of this type.
 
-Here are some examples of this typed into the
-[interactive toplevel](basics.html):
+Here are some examples of this typed into the interactive toplevel:
 
 ```ocamltop
 type pair_of_ints = {a : int; b : int};;

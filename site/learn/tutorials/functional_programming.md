@@ -129,8 +129,7 @@ write its value and type like this:
 5 : int
 ```
 But what about question 3? It looks like `plus 2` is a mistake, a bug.
-In fact, however, it isn't. If we type this into the OCaml
-[interactive toplevel](basics.html), it
+In fact, however, it isn't. If we type this into the OCaml toplevel, it
 tells us:
 
 ```ocamltop
