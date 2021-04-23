@@ -2,11 +2,11 @@
 
 *Table of contents*
 
-# Lists
+#Lists
 
-A list is an ordered sequence of elements. All elements of a list in OCaml
-must be the same type. Lists are built into the language, and have a special
-syntax. Here is a list of three integers:
+A list is an ordered sequence of elements. All elements of a list in OCaml must
+be the same type. Lists are built into the language, and have a special syntax.
+Here is a list of three integers:
 
 ```ocamltop
 [1; 2; 3]
@@ -15,10 +15,11 @@ syntax. Here is a list of three integers:
 Note semicolons separate the element, not commas. The empty list is written
 `[]`. The type of this list of integers is `int list`.
 
-A list has a *head* (the first element) and a *tail* (the list consisting of
-the rest of the elements). The head is an element, and the tail is a list, so
-in the above example, the head is the integer `1` while the tail is the *list*
-`[2; 3]`. An empty list has neither a head nor a tail. Here are some more lists:
+A list, if it is not empty, has a *head* (the first element) and a *tail* (the
+list consisting of the rest of the elements). The head is an element, and the
+tail is a list, so in the above example, the head is the integer `1` while the
+tail is the *list* `[2; 3]`. An empty list has neither a head nor a tail. Here
+are some more lists:
 
 ```ocamltop
 [];;
@@ -43,7 +44,7 @@ element to the front of a list. The `@` or append operator combines two lists:
 [1] @ [2; 3];;
 ```
 
-## Functions on lists
+##Functions on lists
 
 We can write functions which operate over lists by pattern matching:
 
@@ -67,8 +68,7 @@ let rec total l =
 total [1; 3; 5; 3; 1];;
 ```
 
-We shall talk about the "exception" which was caused by our ignoring the
-warning later. Consider now a function to find the length of a list:
+Consider now a function to find the length of a list:
 
 ```ocamltop
 let rec length l =
@@ -105,11 +105,69 @@ Can you see how it works? Notice that the memory for the second list is shared,
 but the first list is effectively copied. Such sharing is common when we use
 immutable data types (ones whose values cannot be changed).
 
-## Tail Recursion with Lists
+##Lists and tail recursion
 
-length / sum rev by accum
+Our length function builds up an intermediate expression of a size proportional
+to its input list:
 
-## Higher order functions on lists
+```
+   length [1; 2; 3]
+=> 1 + length [2; 3]
+=> 1 + (1 + length [3])
+=> 1 + (1 + (1 + length []))
+=> 1 + (1 + (1 + 0))
+=> 1 + (1 + 1)
+=> 1 + 2
+=> 3
+```
+
+For long lists, this may overflow the stack. The solution is to write our
+function with an accumulator, like this:
+
+```ocamltop
+let rec length acc l =
+  match l with
+  | [] -> acc
+  | _ :: t -> length (acc + 1) t;;
+
+let l = length 0 [1; 2; 3];;
+```
+
+This function now uses a constant amount of space on the stack:
+
+```
+   length 0 [1; 2; 3]
+=> length 1 [2; 3]
+=> length 2 [3]
+=> length 3 []
+=> 3
+```
+
+We may write a wrapper function so that the initial accumulator value is
+supplied automatically:
+
+```ocamltop
+let rec length_inner acc l =
+  match l with
+  | [] -> acc
+  | _ :: t -> length_inner (acc + 1) t;;
+
+let length l = length_inner 0 l;;
+```
+
+Or, all in one function:
+
+```ocamltop
+let length l =
+  let rec length_inner acc l =
+    match l with
+    | [] -> acc
+    | _ :: t -> length_inner (acc + 1) t
+  in
+    length_inner 0 l;;
+```
+
+##Higher order functions on lists
 
 We might wish to apply a function to each element in a list, yielding a new
 one. We shall write a function `map` which is given another function as its
@@ -159,12 +217,7 @@ of lists:
 map (map (fun x -> x * 2)) [[1; 2]; [3; 4]; [5; 6]];;
 ```
 
-add left fold, right fold
-
-## List complexity (time and space) and hd/tl not complete problems
-
-
-## A tour of the standard library List module
+##A tour of the standard library List module
 
 The standard library [List](https://ocaml.org/api/List.html) module contains a
 wide range of useful utility functions, including pre-written versions of many
@@ -174,9 +227,11 @@ labeled functions is available as part of
 
 In the List module documenation, non tail-recursive functions are marked
 specially. As always, functions which can raise an exception are marked with
-the exception kind.
+the exception kind. Such exceptions are usually the result of lists which are
+empty (and therefore have neither a head nor a tail) or lists of mismatched
+length.
 
-### Maps and iterators on one and two lists
+###Maps and iterators on one and two lists
 
 We have already written a `map` function from scratch, and it is no surprise
 that one is included in the `List` module. There is also a variant for two
@@ -210,7 +265,7 @@ Notice that `map2` and `iter2` will fail if the lists are of unequal length:
 List.map2 ( + ) [1; 2; 3] [4; 5]
 ```
 
-### List scanning
+###List scanning
 
 The useful function [`mem`](https://ocaml.org/api/List.html#VALmem) checks
 whether a given element is a member of a list by scanning its contents:
@@ -245,7 +300,7 @@ So you can see how the standard library has evolved into its present state:
 useful pieces of frequently-rewritten code are chosen, and made into useful
 standalone functions.
 
-### List searching
+###List searching
 
 The function `List.find` returns the first element of a list matching a given
 predicate (a predicate is a testing function which returns either true or false
@@ -276,7 +331,7 @@ Note that the documentation for `filter` and `partition` tells us that the
 order of the inputs is preserved in the outputs. Where this is not stated it
 the documentation, it cannot be assumed.
 
-### Association lists
+###Association lists
 
 Association lists are a simple (and simplistic) way of implementing the
 dictionary data structure: that is to say, a group of keys each with an
@@ -301,7 +356,7 @@ List.split [(3, "three"); (1, "one"); (4, "four")];;
 List.combine [3; 1; 4] ["three"; "one"; "four"];;
 ```
 
-### Sorting lists
+###Sorting lists
 
 The function [`List.sort`](https://ocaml.org/api/List.html#VALsort), given a
 comparison function of type `'a -> 'a -> int` (zero if equal, negative if first
@@ -321,7 +376,7 @@ List.sort
   [(1, 3); (1, 2); (2, 3); (2, 2)];;
 ```
 
-### Folds
+###Folds
 
 There are two interestingly-named functions in the List module, `fold_left` and
 `fold_right`. Their job is to combine the elements of a list together, using a
@@ -330,7 +385,8 @@ returned depends upon the function given, the elements of the list, and the
 initial value of the accumulator supplied. So you can imagine these are very
 general functions. Let's explore `fold_left` first.
 
-In our first example, we supply the addition function and an initial accumulator value of 0:
+In our first example, we supply the addition function and an initial
+accumulator value of 0:
 
 ```ocamltop
 List.fold_left ( + ) 0 [1; 2; 3];;
@@ -382,7 +438,8 @@ let map f l =
   List.fold_right (fun e a -> f e :: a) l [];;
 ```
 
-But care is needed. If we try that with `List.concat`, which turns a list of lists into a list by concatenating the lists together, we get this:
+But care is needed. If we try that with `List.concat`, which turns a list of
+lists into a list by concatenating the lists together, we get this:
 
 ```ocamltop
 let concat l = List.fold_left ( @ ) [] l;;
