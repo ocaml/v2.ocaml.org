@@ -32,10 +32,12 @@ let rec http_get_and_follow ~max_redirects uri =
   Cohttp_lwt_unix.Client.get uri >>= follow_redirect ~max_redirects uri
 
 and follow_redirect ~max_redirects request_uri (response, body) =
-  let open Lwt in
+  let open Lwt.Syntax in
   let status = Cohttp.Response.status response in
   (* The unconsumed body would otherwise leak memory *)
-  if status <> `OK then Lwt.ignore_result (Cohttp_lwt.Body.drain_body body);
+  let* () =
+    if status <> `OK then Cohttp_lwt.Body.drain_body body else Lwt.return_unit
+  in
   match status with
   | `OK -> Lwt.return (response, body)
   | `Permanent_redirect

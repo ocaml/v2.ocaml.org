@@ -27,7 +27,13 @@ And here is what we have in `bmodule.ml`:
 Amodule.hello ()
 ```
 
-Usually files are compiled one by one, let's do it:
+We can compile the files in one command:
+
+```shell
+ocamlopt -o hello amodule.ml bmodule.ml
+```
+
+Or, as a build system might do, one by one:
 
 ```shell
 ocamlopt -c amodule.ml
