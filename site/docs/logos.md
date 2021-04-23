@@ -45,7 +45,7 @@ The OCaml logo is released under a
 
 <img src="/img/OCaml_Sticker.svg"
 	alt="OCaml"
-	style="width: 150px; float: right" ></img>
+	style="width: 150px; float: right; margin-left: 20px" ></img>
 
 The following [SVG file](/img/OCaml_Sticker.svg) is suitable to
 [make stickers](https://twitter.com/ocamllabs/status/761191421680422912).

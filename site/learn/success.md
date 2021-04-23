@@ -13,7 +13,7 @@ generating billions of dollars of transactions every day from our offices
 in Hong Kong, London and New York, with strategies that span many asset classes,
 time-zones and regulatory regimes.
 
-Almost all of of our software is written in OCaml, from statistical
+Almost all of our software is written in OCaml, from statistical
 research code to systems-administration tools to our real-time trading
 infrastructure.  OCaml’s type system acts as a rich and
 well-integrated set of static analysis tools that help improve the
@@ -207,7 +207,7 @@ optimized C code to compute DFTs of size N. FFTW was awarded the 1999
 [Wilkinson prize](https://en.wikipedia.org/wiki/J._H._Wilkinson_Prize_for_Numerical_Software)
 for numerical software.
 
-Benchmarks, performed on on a variety of platforms, show that FFTW's
+Benchmarks, performed on a variety of platforms, show that FFTW's
 performance is typically superior to that of other publicly available
 DFT software, and is even competitive with vendor-tuned codes. In
 contrast to vendor-tuned codes, however, FFTW's performance is portable:
