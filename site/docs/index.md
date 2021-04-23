@@ -102,6 +102,11 @@
 	   href="/releases/4.12/ocaml-4.12-refman.info.tar.gz">bundle of
 	  Emacs Info files</a>.
       </p>
+	  <p class="doc-link-wrapper">
+		<a id="manual"
+		href="/manual/index.html" class="btn btn-default" >
+	   OCaml Manual</a>
+	  </p
     </section>
 
 
