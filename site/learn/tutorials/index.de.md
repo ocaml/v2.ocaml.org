@@ -8,9 +8,7 @@
 ((! get begin_two_columns !))
 
 * [Mit OCaml in Betrieb](up_and_running.html)
-* [Die Grundlagen](basics.de.html) Sollten Sie ein Anfänger in OCaml oder
-funktionaler Programmierung sein, lesen Sie bitte dieses Kapitel
-zuerst.
+* Eine erste Stunde mit OCaml - [en](a_first_hour_with_ocaml.html)
 * Die Struktur eines OCaml-Programms — [en](structure_of_ocaml_programs.html)
 * Datentypen und Matching — [en](data_types_and_matching.html)
 * Nullpointer, Asserts und Warnungen — [en](null_pointers_asserts_and_warnings.html)

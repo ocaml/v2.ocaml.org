@@ -150,7 +150,6 @@ ocamlfind ocamlopt -o progprog -linkpkg \
 ビルドの自動化システム
 ---------------------
 
-- OCamlbuild — [en](ocamlbuild/)
-- [GNU make でのコンパイル](compiling_with_gnu_make.ja.html "GNU make でのコンパイル")
-- [OMakeでのコンパイル](compiling_with_omake.ja.html "OMake でのコンパイル")
-- Oasis — [en](setting_up_with_oasis.html)
+- [GNU make でのコンパイル](https://www.gnu.org/software/make/ "GNU make でのコンパイル")
+- [OMakeでのコンパイル](https://github.com/ocaml-omake/omake "OMake でのコンパイル")
+- Oasis — [en](https://github.com/ocaml/oasis)
