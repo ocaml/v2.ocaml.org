@@ -589,7 +589,11 @@ let delete_author title =
 (* Remove the "[Caml-list]" and possible "Re:". *)
 let caml_list_re =
   Str.regexp_case_fold "^\\(Re: *\\)*\\(\\[[a-zA-Z0-9-]+\\] *\\)*"
-let unsubscribe_email_re= Str.regexp_case_fold ".*unsubscribe.*"
+
+  (*Remove the unsubscribe emails*)
+let unsubscribe_email_re =
+  Str.regexp_case_fold ".*unsubscribe.*"
+
 (** [email_threads] does basically the same as [headlines] but filter
     the posts to have repeated subjects.  It also presents the subject
     better. *)
@@ -603,7 +607,7 @@ let email_threads ?n ~l9n url =
     let title = delete_author title in
     { e with Atom.title = Atom.Text title } in
   let posts = List.map normalize_title posts in
-  (* Keep only the more recent post of redundant subjects. *)
+  (* Keep only the more recent post of redundant subjects filter out the unsubscribe emails *)
   let module S = Set.Make(String) in
   let seen = ref S.empty in
   let must_keep (e: Atom.entry) =
