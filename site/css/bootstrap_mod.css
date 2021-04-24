@@ -144,3 +144,15 @@ html.svg .news-feed li {
 html.svg .news-feed li.announcement {
   background-image: url(../img/announcement-go.svg);
 }
+
+/* OCaml around the web : Community Page */
+
+.community-web{
+  height:130px;
+  width: 130px;
+  }
+.community-web img{
+  height:auto;
+  width:auto;
+  object-fit: contain;
+}
