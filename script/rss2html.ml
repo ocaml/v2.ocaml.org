@@ -607,7 +607,7 @@ let email_threads ?n ~l9n url =
     let title = delete_author title in
     { e with Atom.title = Atom.Text title } in
   let posts = List.map normalize_title posts in
-  (* Keep only the more recent post of redundant subjects filter out the unsubscribe emails *)
+  (* Keep only the more recent post of redundant subjects and filter out the unsubscribe emails *)
   let module S = Set.Make(String) in
   let seen = ref S.empty in
   let must_keep (e: Atom.entry) =
