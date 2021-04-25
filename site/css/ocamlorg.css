@@ -226,6 +226,9 @@ div.subscribers {
 .subscribers li {
   line-height: 100%;
 }
+.subscribers li .share a{
+  margin-left : 5px;
+}
 
 .subscribers .broken {
   text-decoration: line-through;
