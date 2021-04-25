@@ -49,21 +49,20 @@
                 <p><a href="tutorials/">See full list</a></p>
             </footer>
         </section>
-        <section class="span4 condensed">
+        <section class="span4 condensed books-span">
             <h1 class="ruled"><a href="books.html">Books</a></h1>
-                <a href="https://realworldocaml.org"><img style="float:
-                left; margin-right: 2px; margin-bottom: 10px"
-                src="/img/real-world-ocaml.jpg" width="48%"
-				alt="Real World OCaml book"></a><a
-				href="http://ocaml-book.com"><img style="float:
-                right; margin-left: 2px; margin-bottom: 10px"
-                src="/img/OCaml_from_beginning.png" width="48%"
-				alt="OCaml from the very beginning"></a>
-				<p style="clear:both">There are a number of excellent
-				books, with two new titles published in recent years.
-		</p>
+                <div class="row books-row">
+                    <div class="span2">
+                        <a href="https://realworldocaml.org"><img src="/img/real-world-ocaml.jpg" alt="Real World OCaml book"></a>
+                    </div>
+                    <div class="span2">
+                        <a href="http://ocaml-book.com"><img src="/img/OCaml_from_beginning.png" alt="OCaml from the very beginning"></a>
+                    </div>
+                </div>
+                <p style="clear:both">There are a number of excellent
+                books, with two new titles published in recent years.</p>
 		<footer>
-                  <p><a href="books.html">See full list</a></p>
+            <p><a href="books.html">See full list</a></p>
 		</footer>
         </section>
     </div>
