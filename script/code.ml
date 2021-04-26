@@ -139,7 +139,7 @@ let highlight_ocaml =
                            phrase subst in
     (* Wrap the code in a <pre> block so no Omd.Paragraph are generated, etc. *)
     match Omd.of_string ("<pre>" ^ p ^ "</pre>") with
-    | Omd.[{ bl_desc = Html_block o; _ }] -> o
+    | [Omd.Html_block(_,_,o)] -> o
     | _ -> assert false
   )
 
