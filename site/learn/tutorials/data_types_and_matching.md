@@ -1,34 +1,8 @@
-<!-- ((! set title Custom Data Types !)) ((! set learn !)) -->
+<!-- ((! set title Data Types and Matching !)) ((! set learn !)) -->
 
 *Table of contents*
 
-# Custom Data Types
-
-tuples
-
-records
-
-enumerations
-
-our own lists example
-
-tree example
-
-data kept along with it
-
-pattern matching on them
-
-difference between a * b and (a * b)
-
-standard type: option
-
-incomplete pattern matching
-
-'as' in pattern matching
-
-records in our own data types
-
-mathematical expression example is salvageable
+# Data Types and Matching
 
 ## Structures
 C and C++ have the concept of a simple `struct`, short for structure.
