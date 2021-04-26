@@ -109,16 +109,16 @@ function fill_selector(){
 //This function adds the selected version from the version selector to all
 //the links that change when a particular version is selected.
 function getSelectedVersion() {
-    let arr = ['tutref','tutref_b','extref','extref_b','manual','corref','toolref','toolref_b','stdlib','api_b','refman-pdf','refman-txt','refman-html','refman-info'];
+    let arr = ['tutref_b','extref_b','toolref_b','api_b'];
     let selectedVersion = document.getElementById('version-selector');
 
     for(let i = 0; i < arr.length; i++){
           const newSpan = document.querySelector(`#${arr[i]} .varPrefix`);
         if (newSpan) {
-          newSpan.innerText = selectedVersion.value;
+          newSpan.innerText = `(${selectedVersion.value})`;
         } else {
           let newText = document.getElementById(arr[i]);
-          newText.innerHTML = "<span class='varPrefix'> " + selectedVersion.value + "</span> "+ newText.innerText;
+          newText.innerHTML = newText.innerText + ` <span class='varPrefix'>(${selectedVersion.value})</span>`;
         }
     }
 }
