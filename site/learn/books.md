@@ -5,7 +5,7 @@
 # Books
 ## Books in English
 ###  The OCaml System: Documentation and User's Manual
-<img src="/img/colour-icon-170x148.png" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/colour-icon-170x148.png" style="float: left; margin-right: 15px; margin-bottom: 40px; margin-top: 18px"></img>
 
 *Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy, and Jérôme
 Vouillon*
@@ -24,7 +24,7 @@ Tarball](http://caml.inria.fr/distrib/ocaml-{{! get LATEST_OCAML_VERSION_MAIN !}
 ****
 
 ###  Real World OCaml
-<img src="/img/real-world-ocaml.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/real-world-ocaml.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 100px; margin-top: 20px"></img>
 
 *Jason Hickey, Anil Madhavapeddy, and Yaron Minsky. Published 25th November 2013*
 
@@ -47,7 +47,7 @@ readable code.
 ****
 
 ###  OCaml from the Very Beginning
-<img src="/img/OCaml_from_beginning.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/OCaml_from_beginning.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 100px; margin-top: 18px"></img>
 
 *John Whitington. Published June 7th, 2013*
 
@@ -66,7 +66,7 @@ and hints.
 ****
 
 ###  More OCaml: Algorithms, Methods & Diversions
-<img src="/img/more-ocaml-300-376.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/more-ocaml-300-376.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 135px; margin-top: 19px"></img>
 
 *John Whitington. Published 26th August 2014*
 
@@ -89,7 +89,7 @@ the front of the book.
 ****
 
 ###  Unix System Programming in OCaml
-<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 50px; margin-top: 6px"></img>
 
 *Xavier Leroy and Didier Rémy. Published May 2010*
 
@@ -105,7 +105,7 @@ Unix shell commands.
 ****
 
 ###  OCaml for Scientists
-<img src="/img/harrop-book.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/harrop-book.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 50px; margin-top: 18px"></img>
 
 *Jon D. Harrop<br />
  Flying Frog Consultancy Ltd, 2005.*
@@ -126,7 +126,7 @@ Information](http://www.ffconsultancy.com/products/ocaml_for_scientists/index.ht
 ****
 
 ###  Using, Understanding, and Unraveling OCaml
-<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 70px; margin-top: 3px"></img>
 
 *Didier Rémy. Published 20th September 2002*
 
@@ -140,7 +140,7 @@ OCaml it is addressed to a wide audience of people interested in modern programm
 ****
 
 ###  Developing Applications With OCaml
-<img src="/img/logocaml-oreilly.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/logocaml-oreilly.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 12px"></img>
 
 *Emmanuel Chailloux, Pascal Manoury, Bruno Pagano. Published 2002*
 
@@ -156,7 +156,7 @@ translation of a French book published by OReilly.
 ****
 
 ###  Introduction to OCaml
-<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 100px; margin-top: 2px"></img>
 
 *Jason Hickey. Published in 2008*
 
@@ -170,7 +170,7 @@ Abstract: *This book is an introduction to ML programming, specifically for the 
 ****
 
 ###  The Functional Approach to Programming
-<img src="/img/cousineau-mauny-en.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/cousineau-mauny-en.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 70px; margin-top: 17px"></img>
 
 *Guy Cousineau, Michel Mauny<br />
  Cambridge University Press, Cambridge, 1998, <br />
@@ -194,7 +194,7 @@ Amazon.com](http://www.amazon.com/exec/obidos/ASIN/0521571839/qid%3D911812711/sr
 ****
 
 ###  OCaml Book
-<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 2px"></img>
 
 *Hongbo Zhang. Published 2011*
 
@@ -207,7 +207,7 @@ runtime, interoperating with C, and pearls.
 ****
 
 ###  Think OCaml: How to Think Like a (Functional) Programmer
-<img src="http://greenteapress.com/thinkocaml/thinkocaml_cover_web.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="http://greenteapress.com/thinkocaml/thinkocaml_cover_web.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 17px"></img>
 
 *Nicholas Monje and Allen Downey. Published 2008*
 
@@ -221,12 +221,14 @@ want to learn OCaml.
 [Book Website](http://greenteapress.com/thinkocaml/index.html) |
 [PDF](http://greenteapress.com/thinkocaml/thinkocaml.pdf)
 
+<p>&nbsp;</p>
+
 ****
 
 ## Books in French
 
 ### Initiation à la programmation fonctionnelle en OCaml
-<img src="/img/Initiation_a_la_programmation_fonctionnelle_en_OCaml.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/Initiation_a_la_programmation_fonctionnelle_en_OCaml.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 170px; margin-top: 8px"></img>
 
 *Mohammed-Said Habet<br />
 édition: Edilivre, 2015. ISBN: 9782332978400*
@@ -252,7 +254,7 @@ l’initiative du lecteur.
 ****
 
 ###  Apprendre à programmer avec OCaml
-<img src="/img/apprendre_ocaml_cover.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/apprendre_ocaml_cover.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 350px; margin-top: 17px"></img>
 
 *Jean-Christophe Filliâtre and Sylvain Conchon<br />
  Éditions Eyrolles, Paris, 2014, ISBN 2-21213-678-1.*
@@ -285,7 +287,7 @@ online.
 ****
 
 ###  Développement d'applications avec Objective Caml
-<img src="/img/chailloux-manoury-pagano.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/chailloux-manoury-pagano.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 30px; margin-top: 17px"></img>
 
 *Emmanuel Chailloux, Pascal Manoury, and Bruno Pagano<br />
  Éditions O'Reilly, Paris, 2000, ISBN 2-84177-121-0.*
@@ -302,7 +304,7 @@ programming, and interoperability with C. <br />
 
 
 ###  Manuel de référence du langage Caml
-<img src="/img/leroy-weis.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/leroy-weis.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 70px; margin-top: 17px"></img>
 
 *Xavier Leroy and Pierre Weis<br />
  InterEditions, Paris, 1993, ISBN 2-7296-0492-8 (out of print).*
@@ -318,7 +320,7 @@ Intro: "Cet ouvrage contient le manuel de référence du langage Caml et la docu
 
 
 ###  Le langage Caml
-<img src="/img/weis-leroy.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/weis-leroy.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 50px; margin-top: 18px"></img>
 
 *Pierre Weis, Xavier Leroy<br />
  Second edition: Dunod, Paris, 1999, ISBN 2-10-004383-8.<br />
@@ -337,7 +339,7 @@ automata, etc.
 ****
 
 ###  Approche fonctionnelle de la programmation
-<img src="/img/cousineau-mauny-fr.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/cousineau-mauny-fr.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 70px; margin-top: 18px"></img>
 
 *Guy Cousineau, Michel Mauny<br />
  Ediscience (Collection Informatique), Paris, 1995, ISBN 2-84074-114-8.*
@@ -358,7 +360,7 @@ synthesis.
 ****
 
 ###  Seize problèmes d'informatique
-<img src="/img/petazzoni.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/petazzoni.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 50px; margin-top: 17px"></img>
 
 *Bruno Petazzoni<br />
  Éditions Springer, Paris, 2001 <br />
@@ -379,7 +381,7 @@ Page](http://www.springeronline.com/sgw/cda/frontpage/0,10735,5-102-22-2042496-0
 ****
 
 ###  Nouveaux exercices d'algorithmique
-<img src="/img/quercia.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/quercia.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 16px"></img>
 
 *Michel Quercia<br />
  Éditions Vuibert, Paris, 2000 <br />
@@ -397,7 +399,7 @@ languages, and automata.
 ****
 
 ###  Option informatique MPSI
-<img src="/img/monasse-1.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/monasse-1.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 17px"></img>
 
 *Denis Monasse<br />
  Éditions Vuibert (Enseignement supérieur &amp; Informatique), Paris, 1996 <br />
@@ -416,7 +418,7 @@ science.
 ****
 
 ###  Option informatique MP/MP*
-<img src="/img/monasse-2.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/monasse-2.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 17px"></img>
 
 *Denis Monasse<br />
  Éditions Vuibert (Enseignement supérieur &amp; Informatique), Paris 1997 <br />
@@ -429,10 +431,12 @@ contains more than 200 OCaml programs.
 
 [Order at Amazon.fr](http://www.amazon.fr/exec/obidos/ASIN/2711788393)
 
+<p>&nbsp;</p>
+
 ****
 
 ###  Cours et exercices d'informatique
-<img src="/img/albert.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/albert.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 17px"></img>
 
 *Luc Albert<br />
  Thomson Publishing International, Paris, 1997 <br />
@@ -445,10 +449,12 @@ cursus up to the masters level. It includes a tutorial of the OCaml
 language, a course on algorithms, data structures, automata theory, and
 formal logic, as well as 135 exercises with solutions.
 
+<p>&nbsp;</p>
+
 ****
 
 ###  Concepts et outils de programmation
-<img src="/img/hardin-donzeau-gouge.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/hardin-donzeau-gouge.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 50px; margin-top: 17px"></img>
 
 *Thérèse Accart Hardin, Véronique Donzeau-Gouge Viguié<br />
  InterEditions, ISBN 2 7296 0419 7.*
@@ -469,7 +475,7 @@ exercises with solutions.
 ****
 
 ###  Programmation en Caml
-<img src="/img/rouable.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/rouable.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 17px"></img>
 
 *Jacques Rouablé<br />
  Eyrolles, Paris 1997, ISBN 2-212-08944-9.*
@@ -487,7 +493,7 @@ connected to computer science, logic, automata and grammars.
 ****
 
 ###  Apprentissage de la programmation avec OCaml
-<img src="/img/dubois-menissier.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/dubois-menissier.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 50px; margin-top: 17px"></img>
 
 *Catherine Dubois and Valérie Ménissier Morain<br />
  Hermès Sciences, Paris 2004, ISBN 2-7462-0819-9.*
@@ -507,28 +513,31 @@ illustrated in OCaml easily transpose to other programming languages.
 ****
 
 ###  Programmation fonctionnelle, générique et objet: une introduction avec le langage OCaml
-<img src="/img/narbel.jpg" width="180"></img>
+<img src="/img/narbel.jpg" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 17px"></img>
+
 
 *Philippe Narbel<br />
  Vuibert, Paris 2005, ISBN 2-7117-4843-X.*
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 
 ****
 
 ###  Programmation de droite à gauche et vice-versa
-<img src="/img/manoury.png" width="180"></img>
+<img src="/img/manoury.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 17px" ></img>
 
 *Pascal Manoury<br />
  Éditions Paracamplus, Paris, 2011, ISBN 978-2-916466-05-7.*
 
 [Order Online from Paracamplus](http://paracamplus.com)
 
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 
 ****
 
 ## Books in German
 
 ###  Algorithmen, Datenstrukturen, Funktionale Programmierung: Eine praktische Einführung mit Caml Light
-<img src="/img/wolff.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/wolff.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 17px"></img>
 
 *Juergen Wolff von Gudenberg<br />
  Addison-Wesley, Bonn, 1996.*
@@ -541,21 +550,25 @@ in a concise and precise manner using Caml Light. The second part
 provides a tutorial introduction into the language Caml Light and in its
 last chapter a comprehensive description of the language kernel.
 
+<p>&nbsp;</p>
+
 ****
 
 ## Books in Italian
 
 ### Programmazione funzionale, una semplice introduzione
-<img src="/img/default.png" width="180"></img>
+<img src="/img/default.png" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 6px"></img>
 
 *Massimo Maria Ghisalberti*
 
 [Emacs Org source](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.org) | [HTML](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.html) | [PDF](http://minimalprocedure.pragmas.org/writings/programmazione_funzionale/programmazione_funzionale.pdf)
 
+<p>&nbsp;</p><p>&nbsp;</p>
+
 ****
 
 ###  Introduzione alla programmazione funzionale
-<img src="/img/limongelli-cialdea.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/limongelli-cialdea.gif" width="180" style="float: left; margin-right: 15px; margin-bottom: 15px; margin-top: 17px"></img>
 
 *Carla Limongelli and Marta Cialdea<br />
  Societa' Editrice Esculapio, 2002, ISBN 88-7488-031-6.*
@@ -566,7 +579,7 @@ last chapter a comprehensive description of the language kernel.
 ## Books in Portuguese
 
 ### OCaml: Programação Funcional na Prática
-<img src="/img/opfp.png" style="float: left; margin-right: 15px; margin-bottom: 15px;"></img>
+<img src="/img/opfp.png" style="float: left; margin-right: 15px; margin-bottom: 30px; margin-top: 17px"></img>
 
 *Andrei de Araújo Formiga<br />
  Casa do Código, 2015*
