@@ -20,6 +20,7 @@ there to request or offer new tutorials.
 
 ### Language Features
 
+* [Lists](lists.html)
 * [Data Types and Matching](data_types_and_matching.html)
 * [Functional Programming](functional_programming.html)
 * [If Statements, Loops, and
