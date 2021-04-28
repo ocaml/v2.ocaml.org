@@ -16,5 +16,5 @@ parsing, Makefile rules, etc.
 * [OCaml Standard Library](http://www.ocamlpro.com/wp-content/uploads/2019/09/ocaml-stdlib.pdf) (PDF, September 2019)  
 Overview of the standard library's most common modules.
 
-* [OCaml Emacs Mode (Tuareg)](http://www.ocamlpro.com/files/tuareg-mode.pdf) (PDF, June 2011)  
+* [OCaml Emacs Mode (Tuareg)](http://www.lsv.fr/~ledein/cheatsheet/tuareg.pdf) (PDF, June 2011)  
 Overview of the Emacs Tuareg mode keyboard shortcuts.
