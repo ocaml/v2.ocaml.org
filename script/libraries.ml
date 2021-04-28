@@ -87,7 +87,7 @@ let get_repo_links () =
   let json = Yojson.Basic.from_file "library_repos.json" in
   let open Yojson.Basic.Util in
   let links = json |> member "links" |> to_list in
-    let link = List.map (fun json -> member "link" json |> to_string) links in
+  let link = List.map (fun json -> member "link" json |> to_string) links in
   link
 
 let libraries () =
