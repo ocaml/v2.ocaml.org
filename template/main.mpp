@@ -22,6 +22,8 @@
 	  rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Droid+Sans+Mono"
 	  rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Only part of Bootstrap that we don't load from a CDN is our own customized CSS build. -->
     <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
     <link href="/css/bootstrap_mod.css" rel="stylesheet" media="screen" />

@@ -28,7 +28,7 @@ endif
 pre-build: template/main.mpp template/footer.mpp \
   template/front_code_snippet.html template/learn_code_snippet.html \
   script/breadcrumb script/translations \
-  script/code_top script/ocamltohtml script/rss2html script/weekly_news \
+  script/code_top script/ocamltohtml script/rss2html script/libraries script/weekly_news \
   script/lang_of_filename script/translate script/link_of_lang \
   opam_update_list $(OMD_PP)
 
@@ -71,6 +71,11 @@ script/rss2html: script/rss2html.ml script/http.ml $(UTILS_DEP)
 	cd script && \
 	$(OCAMLOPT) -package cohttp-lwt-unix,netstring,syndic \
 	  -thread -linkpkg utils.cmx http.ml rss2html.ml -o ../"$@"
+
+script/libraries: script/libraries.ml script/http.ml $(UTILS_DEP)
+	cd script && \
+	$(OCAMLOPT) -package cohttp-lwt-unix,netstring,yojson \
+	  -thread -linkpkg utils.cmx http.ml libraries.ml -o ../"$@"
 
 script/weekly_news: script/weekly_news.ml script/http.ml $(UTILS_DEP)
 	cd script && \
@@ -120,7 +125,7 @@ script/%.cmi script/%.cmo: script/%.ml
 
 TRASH += template/front_code_snippet.html opam_update_list \
   $(addprefix script/, generate_opam_update_list lang_of_filename translate \
-  link_of_lang breadcrumb rss2html ocamltohtml md_preprocess \
+  link_of_lang breadcrumb rss2html libraries ocamltohtml md_preprocess \
   code_top relative_urls translations )
 
 .PHONY: pre-build
