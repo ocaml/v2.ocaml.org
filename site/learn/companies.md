@@ -441,9 +441,10 @@ form of a lightweight formal method that can be used on a daily basis.
         <h2><a href="https://r2c.dev">r2c</a>, California, United States</h2>
         <p>
 R2c is a VC-funded security startup headquartered in San Francisco and
-distributed worldwide. The main product as of 2021 is Semgrep, an
-open-source, syntax-aware grep that supports many languages. OCaml is
-used extensively for parsing and analyzing source code.
+distributed worldwide. The main product as of 2021
+is <a href="https://semgrep.dev">Semgrep</a>, an open-source,
+syntax-aware grep that supports many languages. OCaml is used
+extensively for parsing and analyzing source code.
         </p>
     </dd>
 </dl>
