@@ -1,263 +1,130 @@
-<!-- ((! set title Data Types and Matching !)) ((! set learn !)) -->
+<!-- ((! set title Custom Data Types !)) ((! set learn !)) -->
 
 *Table of contents*
 
-# Data Types and Matching
+# Custom Data Types
 
-## Linked lists
-OCaml has support for lists built into the language. All
-elements of a list in OCaml must be the same type. To write a list, use:
+In this tutorial we learn how to build our own custom data types in OCaml, and
+how to write functions which process this new data.
 
-```ocamltop
-[1; 2; 3]
-```
-(Note semicolons, NOT commas).
+## Built-in compound types
 
-`[]` is the empty list.
-
-A list has a **head** (the first element) and a **tail** (the rest of
-the elements). The head is an element, and the tail is a list, so in the
-above example, the head is the integer `1` while the tail is the *list*
-`[2; 3]`.
-
-An alternative way to write a list is to use the **cons** operator
-`head :: tail`. So the following ways to write a list are exactly the
-same:
-
-```ocaml
-[1; 2; 3]
-1 :: [2; 3]
-1 :: 2 :: [3]
-1 :: 2 :: 3 :: []
-```
-Why do I mention the cons operator? Well, it's useful when we start
-doing *pattern matching* on lists, which I'll talk about below.
-
-###  The type of a linked list
-The type of a linked list of integers is `int list`, and in general the
-type of a linked list of `foo`s is `foo list`.
-
-This implies that all the elements of a linked list must have the same
-type. But the type can be polymorphic (ie. `'a list`), which is really
-useful if you want to write generic functions which operate on "lists of
-anything". (But note: `'a list` doesn't mean that each individual
-element has a different type - you still can't use this to construct a
-list containing, say, a mixture of ints and strings. It means that the
-type of the elements is anything, but all the same type of anything.)
-
-The `length` function defined as part of the OCaml `List` module is a
-good example of this. It doesn't matter if the list contains ints or
-strings or objects or small furry animals, the `List.length` function
-can still be called on it. The type of `List.length` is therefore:
-
-```ocaml
-List.length : 'a list -> int
-```
-## Structures
-C and C++ have the concept of a simple `struct`, short for structure.
-Java has classes which can be used to similar effect, albeit much more
-laboriously.
-
-Consider this simple C structure:
-
-```C
-struct pair_of_ints {
-  int a, b;
-};
-```
-The simplest equivalent to this in OCaml is a **tuple** such as `(3, 4)`
-which has the type `int * int`. Unlike lists, tuples can contain
-elements of different types, so for example `(3, "hello", 'x')` has type
-`int * string * char`.
-
-A slightly more complex alternative way of writing a C struct is to use
-a **record**. Records, like C structs, allow you to name the elements.
-Tuples don't let you name the elements, but instead you have to remember
-the order in which they appear. Here is the equivalent record for our C
-struct above:
+We have already seen the atomic data types such as `int`, `float`, `string`,
+`bool` and so on. Let's recap the built-in compound data types we can use in
+OCaml to combine such values. First, we have lists which are ordered
+collections of any nuumber of elements of like type:
 
 ```ocamltop
-type pair_of_ints = {a : int; b : int};;
+[];;
+[1; 2; 3];;
+[[1; 2]; [3; 4]; [5; 6]];;
+[false; true; false];;
+[1; false];;
 ```
-That defines the type, and here is how we actually *create* objects of
-this type:
+
+Next, we have tuples, which collect a fixed number of elements together:
 
 ```ocamltop
-{a = 3; b = 5};;
+(5.0, 6.5);;
+(true, 0.0, 0.45, 0.73, "french blue");;
 ```
-Note that we use ":" in the type definition and "=" when creating
-objects of this type.
 
-Here are some examples of this typed into the interactive toplevel:
+We have records, which are like labeled tuples. They are defined by writing a
+type definition giving a name for the record, and names for each of its fields,
+and their types:
 
 ```ocamltop
-type pair_of_ints = {a : int; b : int};;
-{a = 3; b = 5};;
-{a = 3};;
+type point = {x : float; y : float};;
+let a = {x = 5.0; y = 6.5};;
+type colour = {websafe : bool; r : float; g : float; b : float; name : string};;
+let b = {websafe = true; r = 0.0; g = 0.45; b = 0.73; name = "french blue"};;
+let c = {name = "puce"};;
 ```
-So OCaml won't let you leave some fields in your structure undefined.
 
-## Variants (qualified unions and enums)
-A "qualified union" doesn't really exist in C, although there is support
-in the gcc compiler for it. Here is the pattern which one commonly uses
-for a qualified union in C:
-
-```C
-struct foo {
-  int type;
-#define TYPE_INT 1
-#define TYPE_PAIR_OF_INTS 2
-#define TYPE_STRING 3
-  union {
-    int i;        // If type == TYPE_INT.
-    int pair[2];  // If type == TYPE_PAIR_OF_INTS.
-    char *str;    // If type == TYPE_STRING.
-  } u;
-};
-```
-We've all seen this I should think, and it's not a pretty sight. For a
-start it's not safe: the programmer might make a mistake and
-accidentally use, say, the `u.i` field when in fact a string was stored
-in the structure. Also the compiler can't easily check if all possible
-types have been examined in a switch statement (you can use an `enum`
-type instead to solve this particular problem). The programmer might
-forget to set the `type` field, which would result in all sorts of fun
-and games. Furthermore, it's cumbersome.
-
-Here is the elegant and concise equivalent in OCaml:
+Records may be mutable:
 
 ```ocamltop
-type foo =
-  | Nothing
-  | Int of int
-  | Pair of int * int
-  | String of string;;
-```
-That's the type definition. First part of each `|` separated part is
-called the constructor. It can be called anything, as long as it starts
-with a capital letter. If the constructor can be used to define a value,
-it's followed by the `of type` part, where type always starts with a
-lowercase letter. In the above example, Nothing is used as a constant
-and the other constructors are used with values.
+type person =
+  {first_name : string;
+   surname : string;
+   mutable age : int};;
 
-To actually *create* things of this type you would write:
-
-```ocaml
-Nothing
-Int 3
-Pair (4, 5)
-String "hello"
-...
-```
-Each of these expressions has type `foo`.
-
-Note that you use `of` when writing the type definition, but NOT when
-writing elements of the type.
-
-By extension, a simple C `enum` defined as:
-
-```C
-enum sign { positive, zero, negative };
-```
-can be written in OCaml as:
-
-```ocaml
-type sign = Positive | Zero | Negative
+let birthday p =
+  p.age <- p.age + 1;;
 ```
 
-###  Recursive variants (used for trees)
-Variants can be recursive, and one common use for this is to define tree
-structures. This is where the expressive power of functional
-languages come into their own:
+Another mutable compound data type is the fixed-length array, which like a list
+must contain elements of like type. However, its elements may be accessed in
+constant time:
 
 ```ocamltop
-type binary_tree =
-  | Leaf of int
-  | Tree of binary_tree * binary_tree;;
-```
-Here're some binary trees. For practice, try drawing them on paper.
-
-```ocaml
-Leaf 3
-Tree (Leaf 3, Leaf 4)
-Tree (Tree (Leaf 3, Leaf 4), Leaf 5)
-Tree (Tree (Leaf 3, Leaf 4), Tree (Tree (Leaf 3, Leaf 4), Leaf 5))
+let arr = [|1; 2; 3|];;
+arr.(0);;
+arr.(0) <- 0;;
+arr;;
 ```
 
-###  Parameterized variants
-The binary tree in the previous section has integers at each leaf, but
-what if we wanted to describe the *shape* of a binary tree, but decide
-exactly what to store at each leaf node later? We can do this by using a
-parameterized (or polymorphic) variant, like this:
+In this tutorial, we will define our own custom compound data types, using some
+of these structures as building blocks.
+
+## Enumerations
+
+The simplest custom data type is an enumeration - we are simply creating some
+new names to represent values:
 
 ```ocamltop
-type 'a binary_tree =
-  | Leaf of 'a
-  | Tree of 'a binary_tree * 'a binary_tree;;
+type colour = Red | Green | Blue | Yellow
 ```
-This is a general type. The specific type which stores integers at each
-leaf is called `int binary_tree`. Similarly the specific type which
-stores strings at each leaf is called `string binary_tree`. In the next
-example we type some instances into the top-level and allow the type
-inference system to show the types for us:
+
+Our new type is called `sign`, and has three constructors, `Positive`, `Zero`
+and `Negative`. The name of the type must begin with a lower case letter, and
+the names of the constructors with upper case letters. We can use our new type
+anywhere a built-in type could be used:
 
 ```ocamltop
-Leaf "hello";;
-Leaf 3.0;;
-```
-Notice how the type name is backwards. Compare this to the type names
-for lists, eg. `int list` etc.
+let primaries = [Red; Green; Blue];;
 
-In fact it is no coincidence that `'a list` is written "backwards" in
-the same way. Lists are simply parameterized variant types with the
-following slightly strange definition:
-
-```ocaml
-type 'a list = [] | :: of 'a * 'a list   (* not real OCaml code *)
+let palette = (Red, Yellow, Blue);;
 ```
-Actually the definition above doesn't quite compile. Here's a
-pretty-much equivalent definition:
+
+We can pattern match on our new type, just like any built-in type:
 
 ```ocamltop
-type 'a equiv_list =
-  | Nil
-  | Cons of 'a * 'a equiv_list;;
-Nil;;
-Cons(1, Nil);;
-Cons(1, Cons(2, Nil));;
-```
-Recall earlier that we said lists could be written two ways, either with
-the simple syntactic sugar of `[1; 2; 3]` or more formally as
-`1 :: 2 :: 3 :: []`. If you look at the definition for `'a list` above,
-you may be able to see the reason for the formal definition.
-
-## Lists, structures and variants — summary
-
-```text
-OCaml name      Example type definition        Example usage
-
-list            int list                       [1; 2; 3]
-tuple           int * string                   (3, "hello")
-record          type pair =                    {a = 3; b = "hello"}
-                  {a: int; b: string}
-variant         type foo =
-                  | Int of int                 Int 3
-                  | Pair of int * string       Pair (3, "three")
-variant         type sign =
-                  | Positive                   Positive
-                  | Zero                       Zero
-                  | Negative
-parameterized   type 'a my_list =
-variant           | Empty                      Cons (1, Cons (2, Empty))
-                  | Cons of 'a * 'a my_list
+let example c =
+  match c with
+  | Red -> "rose"
+  | Green -> "grass"
+  | Blue -> "sky"
+  | Yellow -> "banana";;
 ```
 
-## Pattern matching (on datatypes)
-So one Really Cool Feature of functional languages is the ability to
-break apart data structures and do pattern matching on the data. This is
-again not really a "functional" feature - you could imagine some
-variation of C appearing which would let you do this, but it's a Cool
-Feature nonetheless.
+Notice the type of the function includes the name of our new type `colour`. We
+can make the function shorter and elide its parameter `c` by using the
+alternative `function` keyword which allows direct matching:
+
+```ocamltop
+let example = function
+  | Red -> "rose"
+  | Green -> "grass"
+  | Blue -> "sky"
+  | Yellow -> "banana";;
+```
+
+## An example with data along with some or all of the constructors
+
+difference between a * b and (a * b)
+
+records in our own data type
+
+## tree example (from up and running, but extended). Fixed types vs paramerarized
+
+##incomplete pattern matching
+
+##'as' in pattern matching
+
+## | or in pattern matching
+
+## mathematical expression example is salvageable
 
 Let's start with a real program requirement: I wish to represent simple
 mathematical expressions like `n * (x + y)` and multiply them out
@@ -309,7 +176,8 @@ Here's the print function in action:
 ```ocamltop
 print_expr (Times (Value "n", Plus (Value "x", Value "y")));;
 ```
-The general form for pattern matching is:
+
+The general form of pattern matching is:
 
 ```ocaml
 match value with
@@ -317,6 +185,7 @@ match value with
 | pattern -> result
   ...
 ```
+
 The patterns on the left hand side can be simple, as in the `to_string`
 function above, or complex and nested. The next example is our function
 to multiply out expressions of the form `n * (x + y)` or `(x + y) * n`
@@ -428,5 +297,9 @@ let rec to_string e =
 As you see, the compiler tells you that the new `Product` constructor
 was not handled.
 
-Exercise: Extend the pattern matching with a `Product` case so
-`to_string` compiles without warning.
+##mutually recursive data types
+
+example of a record and a t/t' pair
+
+##putting a type and its operations into a module - calling it t by default
+
