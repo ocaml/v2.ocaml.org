@@ -2746,6 +2746,7 @@ button.close {
 .btn:hover,
 .btn:focus {
   color: #ffffff;
+  background: #004900;
   text-decoration: none;
   background-position: 0 -15px;
   -webkit-transition: background-position 0.1s linear;
@@ -5597,10 +5598,10 @@ body {
   padding: 25px 0;
 }
 #home-learn a {
-  color: #404040;
+  text-decoration: none;
 }
 #home-learn a:hover {
-  text-decoration: none;
+  text-decoration: underline;
   color: #c45641;
 }
 #home-learn img {
@@ -6367,6 +6368,7 @@ body {
   .row {
     margin-left: -20px;
     *zoom: 1;
+    margin-top: 30px;
   }
   .row:before,
   .row:after {
@@ -6735,6 +6737,7 @@ body {
   .row,
   .thumbnails {
     margin-left: 0;
+    margin-top: 30px;
   }
   .thumbnails > li {
     float: none;
@@ -6868,6 +6871,11 @@ body {
   .navbar-fixed-top .navbar-inner,
   .navbar-fixed-bottom .navbar-inner {
     padding: 5px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+
   }
   .navbar .container {
     width: auto;
@@ -6992,7 +7000,10 @@ body {
   .nav-collapse,
   .nav-collapse.collapse {
     overflow: hidden;
-    height: 0;
+    height: auto;
+    position: relative;
+    right: 1000px;
+    display: none;
   }
   .navbar .btn-navbar {
     display: block;
