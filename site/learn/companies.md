@@ -432,6 +432,22 @@ form of a lightweight formal method that can be used on a daily basis.
         <p>Psellos is a small group of computer scientists who became intrigued by the idea of coding iOS apps in OCaml. It has worked out better than we expected (you can buy our apps in the iTunes App Store), and at least one other company sells apps built with our tools. Our most recent iOS cross compiler is derived from OCaml 4.00.0.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/r2c.png" alt="r2c">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://r2c.dev">r2c</a>, California, United States</h2>
+        <p>
+R2c is a VC-funded security startup headquartered in San Francisco and
+distributed worldwide. The main product as of 2021 is Semgrep, an
+open-source, syntax-aware grep that supports many languages. OCaml is
+used extensively for parsing and analyzing source code.
+        </p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/default.png" alt="Sakhalin">
