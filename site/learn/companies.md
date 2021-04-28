@@ -1,6 +1,6 @@
 <!-- ((! set title Companies using OCaml !)) ((! set learn !)) -->
 
-# Companies using OCaml
+# Companies using OCaml<!-- sorted alphabetically -->
 
 <div class="row">
 <div class="span8">
@@ -11,52 +11,6 @@
 </blockquote>
 </div>
 </div>
-
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/facebook.png" alt="Facebook">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.facebook.com/">Facebook</a>, United States</h2>
-        <p>Facebook has built a number of major development tools using OCaml.  <a href="http://hacklang.org">Hack</a> is a compiler for a variant of PHP that aims to reconcile the fast development cycle of PHP with the discipline provided by static typing.  <a href="http://flowtype.org">Flow</a> is a similar project that provides static type checking for Javascript.  Both systems are highly responsive, parallel programs that can incorporate source code changes in real time. <a href="https://github.com/facebook/pfff/wiki/Main">Pfff</a> is a set of tools for code analysis, visualizations, and style-preserving source transformations, written in OCaml, but supporting many languages.</p>
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/docker.png" alt="Docker, Inc.">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.docker.com">Docker</a>, United States </h2>
-        <p>Docker provides an integrated technology suite that enables development and IT operations teams to build, ship, and run distributed applications anywhere. Their native <a href="https://blog.docker.com/2016/03/docker-for-mac-windows-beta/">applications for Mac and Windows</a>, use OCaml code taken from the <a href="https://mirage.io">MirageOS</a> library operating system project.</p> 
-    </dd>
-</dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/bloomberg.jpg" alt="Bloomberg L.P.">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.bloomberg.com/">Bloomberg L.P.</a>, United States </h2>
-        <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in an advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p> 
-    </dd>
-</dl>
-
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/citrix.png" alt="Citrix">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
-        <p>Citrix uses OCaml in XenServer, a world-class
-        server virtualization system. Most components of XenServer are
-        released as open source. The open-source XenServer toolstack
-        components implemented in OCaml are bundled in the <a
-        href="https://github.com/xapi-project/xs-opam">XS-Opam</a>
-        repository on GitHub.</p>
-
-        <p>As of summer 2018, Citrix in Cambridge UK is hiring
-        software engineers passionate about functional programming and
-        OCaml in particular.</p>
-    </dd> </dl>
 
 <dl class="row">
     <dt class="span3">
@@ -91,6 +45,7 @@
         <p>The Computational Sciences Department at the AMNH has been using OCaml for almost a decade in their software package <a href="https://github.com/amnh/poy5">POY</a> for phylogenetic inference. See <a href="https://github.com/AMNH">AMNH's GitHub page</a> for more projects.</p>
     </dd>
 </dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/anssi.png" alt="ANSSI">
@@ -100,6 +55,17 @@
         <p>The ANSSI core missions are: to detect and react to cyber attacks, to prevent threats, to provide advice and support to governmental entities and operators of critical infrastructure, and to keep companies and the general public informed about information security threats. See <a href="https://github.com/anssi-fr">ANSII's GitHub page</a> for some of its OCaml software.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/arena.jpg" alt="Arena">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.arena.io">Arena</a>, United States</h2>
+        <p>Arena helps organizations hire the right people. We do that by applying big data and predictive analytics to the hiring process. This results in less turnover for our clients and less discrimination for individuals. We use OCaml for all of our backend development.</p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/besport.png" alt="Be Sport">
@@ -110,6 +76,17 @@
            Be Sport is a 100% <a href='//ocaml.org/'>OCaml</a> and <a href='http://ocsigen.org'>OCsigen</a> project, leveraged as the only building blocks to develop the platform.</p> 
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/bloomberg.jpg" alt="Bloomberg L.P.">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.bloomberg.com/">Bloomberg L.P.</a>, United States </h2>
+        <p>Bloomberg, the global business and financial information and news leader, gives influential decision makers a critical edge by connecting them to a dynamic network of information, people and ideas. Bloomberg employs OCaml in an advanced financial derivatives risk management application delivered through its Bloomberg Professional service.</p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/cacaoweb.png" alt="cacaoweb">
@@ -136,6 +113,26 @@
         <p>CEA is a French state company, member of the OCaml Consortium. It uses OCaml mainly to develop a platform dedicated to source-code analysis of C software, called <a href="http://frama-c.com">Frama-C</a>.</p>
     </dd>
 </dl>
+
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/citrix.png" alt="Citrix">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.citrix.com">Citrix</a>, United Kingdom</h2>
+        <p>Citrix uses OCaml in XenServer, a world-class
+        server virtualization system. Most components of XenServer are
+        released as open source. The open-source XenServer toolstack
+        components implemented in OCaml are bundled in the <a
+        href="https://github.com/xapi-project/xs-opam">XS-Opam</a>
+        repository on GitHub.</p>
+
+        <p>As of summer 2018, Citrix in Cambridge UK is hiring
+        software engineers passionate about functional programming and
+        OCaml in particular.</p>
+    </dd>
+</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/coherent.png" alt="Coherent Graphics">
@@ -184,11 +181,29 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/docker.png" alt="Docker, Inc.">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.docker.com">Docker</a>, United States </h2>
+        <p>Docker provides an integrated technology suite that enables development and IT operations teams to build, ship, and run distributed applications anywhere. Their native <a href="https://blog.docker.com/2016/03/docker-for-mac-windows-beta/">applications for Mac and Windows</a>, use OCaml code taken from the <a href="https://mirage.io">MirageOS</a> library operating system project.</p> 
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/esterel.jpg" alt="Esterel Technologies">
     </dt>
     <dd class="span5">
         <h2><a href="http://www.esterel-technologies.com/">Esterel Technologies</a>, France</h2>
         <p>Esterel Technologies is a leading provider of critical systems and software development solutions for the aerospace, defense, rail transportation, nuclear, and industrial and automotive domains.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
+        <img src="/img/users/facebook.png" alt="Facebook">
+    </dt>
+    <dd class="span5">
+        <h2><a href="http://www.facebook.com/">Facebook</a>, United States</h2>
+        <p>Facebook has built a number of major development tools using OCaml.  <a href="http://hacklang.org">Hack</a> is a compiler for a variant of PHP that aims to reconcile the fast development cycle of PHP with the discipline provided by static typing.  <a href="http://flowtype.org">Flow</a> is a similar project that provides static type checking for Javascript.  Both systems are highly responsive, parallel programs that can incorporate source code changes in real time. <a href="https://github.com/facebook/pfff/wiki/Main">Pfff</a> is a set of tools for code analysis, visualizations, and style-preserving source transformations, written in OCaml, but supporting many languages.</p>
     </dd>
 </dl>
 <dl class="row">
@@ -369,7 +384,7 @@
         <img src="/img/users/nomadic-labs.png" alt="Nomadic Labs">
     </dt>
     <dd class="span5">
-        <h2><a href="https://www.nomadic-labs.com">Paris</a>, France</h2>
+        <h2><a href="https://www.nomadic-labs.com">Nomadic Labs</a>, Paris, France</h2>
         <p>
 
 Nomadic Labs houses a team focused on Research and Development. Our
@@ -398,15 +413,7 @@ form of a lightweight formal method that can be used on a daily basis.
         <p>OCamlPro develops and maintains a development environment for the OCaml language. They provide services for companies deciding to use OCaml. Among these services: trainings, necessary expertise, tools and libraries long-term support, and specific developments to their applicative domains.</p>
     </dd>
 </dl>
-<dl class="row">
-    <dt class="span3">
-        <img src="/img/users/arena.jpg" alt="Arena">
-    </dt>
-    <dd class="span5">
-        <h2><a href="http://www.arena.io">Arena</a>, United States</h2>
-        <p>Arena helps organizations hire the right people. We do that by applying big data and predictive analytics to the hiring process. This results in less turnover for our clients and less discrimination for individuals. We use OCaml for all of our backend development.</p>
-    </dd>
-</dl>
+
 <dl class="row">
     <dt class="span3">
         <img src="/img/users/prudent.jpg" alt="PRUDENT Technologies">
