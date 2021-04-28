@@ -706,7 +706,7 @@ html.svg img.png { display: none; }
 }
 .lib-stat span {
   display: block;
-  font-size: 1.8rem;
+  font-size: .8rem;
   font-weight: 700;
   color: #000;
   margin-top: 5px
@@ -778,6 +778,9 @@ html.svg img.png { display: none; }
     justify-content: space-between;
     align-items: flex-end;
   }
+  .lib-stat span {
+    font-size: 1.3rem;
+  }
 }
 @media (min-width: 980px) {
   .lib {
@@ -791,5 +794,8 @@ html.svg img.png { display: none; }
     justify-content: flex-end;
     align-items: flex-end;
     margin-top: 0;
+  }
+  .lib-stat span {
+    font-size: 1.8rem;
   }
 }
