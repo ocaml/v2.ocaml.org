@@ -8,22 +8,11 @@ let get_repo_data link =
   let res = Http.get(link) in
   res
 
-(* let pr_html res =
-  let json = Yojson.Basic.from_string res in
-  let open Yojson.Basic.Util in
-  let title = json |> member "title" |> to_string in
-  let html_url = json |> member "name" |> to_string in
-  let name = json |> member "name" |> to_string in
-  let updated_at = json |> member "updated_at" |> to_string in
-  let elem = Element("p", [], [Data title]); in
-  elem *)
-
 let library_html res =
   let json = Yojson.Basic.from_string res in
   let open Yojson.Basic.Util in
   let name = json |> member "name" |> to_string in
   let html_url = json |> member "html_url" |> to_string in
-  let url = json |> member "url" |> to_string in
   let updated_at = json |> member "updated_at" |> to_string in
   let description = json |> member "description" |> to_string in
   let stargazers_count = json |> member "stargazers_count" |> to_int in
@@ -33,12 +22,6 @@ let library_html res =
   let open_issues_count = json |> member "open_issues_count" |> to_int in
   let open_issues_count = string_of_int open_issues_count in
 
-  (* let pr_url = url ^ "/pulls" in
-  let pull_requests = get_repo_data pr_url in
-  let json = Yojson.Basic.from_string pull_requests in
-  let open Yojson.Basic.Util in
-  let jsn = json |> to_list |> filter_string in
-  let pr_html_data () = Element("div", [], List.map pr_html jsn) in *)
   let elem =
     [Data "\n";
       Element("section", ["class", "lib"],
@@ -76,12 +59,6 @@ let library_html res =
       );
     Data "\n"] in
     elem
-    (* Element("div", ["id", "pullRequestModal"; "class", "pullRequestModal"],
-      [Element("div", ["class", "modal"],
-        [Element("span", ["class", "closeModal"; "id", "closeModal"], [Data "x"]);
-        pr_html_data() ]
-      )]
-    )]; in *)
 
 let get_repo_links () =
   let json = Yojson.Basic.from_file "library_repos.json" in
@@ -95,25 +72,6 @@ let libraries () =
   let libraries = List.map (get_repo_data) links in
   let elem = [Element("div", ["class", "libraries"], List.concat(List.map library_html libraries))] in
   elem
-
-(* let modal_script =
-  let script =
-    "const openModalE = document.getElementById(openModal);
-    const closeModalE = document.getElementById(closeModal);
-    const pullRequestModalE = document.getElementById(pullRequestModal);
-    openModalE.addEventListener('click', () => {
-      pullRequestModalE.style.display = \"block\";
-    })
-    closeModalE.addEventListener('click', () => {
-      pullRequestModalE.style.display = \"none\";
-    })
-    window.addEventListener('click', () => {
-      if(event.target == pullRequestModalE) {
-        pullRequestModalE.style.display = \"none\";
-      }
-    })
-    \n" in
-  [Element("script", ["type", "text/javascript"], [Data script])]; *)
 
 let () =
   let action = ref `Libraries in
