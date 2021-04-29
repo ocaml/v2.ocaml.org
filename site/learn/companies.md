@@ -131,6 +131,7 @@
         software engineers passionate about functional programming and
         OCaml in particular.</p>
     </dd>
+
 </dl>
 
 <dl class="row">
@@ -240,7 +241,6 @@
         one thing well.</p>
     </dd>
 </dl>
-
 
 <dl class="row">
     <dt class="span3">
@@ -440,13 +440,12 @@ form of a lightweight formal method that can be used on a daily basis.
     <dd class="span5">
         <h2><a href="https://r2c.dev">r2c</a>, California, United States</h2>
         <p>
-R2c is a VC-funded security startup headquartered in San Francisco and
-distributed worldwide. The main product as of 2021
-is <a href="https://semgrep.dev">Semgrep</a>, an open-source,
-syntax-aware grep that supports many languages. OCaml is used
-extensively for parsing and analyzing source code.
+          r2c is a VC-funded security company headquartered in San Francisco and distributed worldwide. The main product as of 2021 is <a href="https://semgrep.dev/">Semgrep</a>, an open-source, syntax-aware grep that supports many languages. OCaml is used extensively for parsing and analyzing source code.<br />
+          <br />
+          Semgrep was originally open-sourced at Facebook and its roots lie in the Linux refactoring tool, <a href="https://coccinelle.gitlabpages.inria.fr/website/">Coccinelle</a>. r2c continues Semgrep’s development and is <a href="https://jobs.lever.co/returntocorp">hiring software engineers</a> who specialize in program analysis.
         </p>
     </dd>
+
 </dl>
 
 <dl class="row">
@@ -534,10 +533,7 @@ extensively for parsing and analyzing source code.
     </dd>
 </dl>
 
-
 <h3>Disclaimer</h3>
 The appearance of a company's name here does not necessarily imply
 endorsement by that company of OCaml or of the descriptions provided
 here. Company representatives should <a href="https://github.com/ocaml/ocaml.org/issues/new">contact us</a> to have information about their company removed, modified, or added.
-
-
