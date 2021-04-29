@@ -112,16 +112,80 @@ let example = function
 
 ## Constructors with data
 
+We can do more than just enumerations. 
+
+```ocamltop
+type colour2 =
+  | Red
+  | Green
+  | Blue
+  | Yellow
+  | RGB of float * float * float
+  | Mix of float * colour2 * colour2
+```
+
 difference between a * b and (a * b)
 
-records in our own data type
+recursive:
 
-incomplete pattern matching
+```ocamltop
+type colour2 =
+  | Red
+  | Green
+  | Blue
+  | Yellow
+  | RGB of float * float * float
+  | Mix of float * colour2 * colour2
+```
 
+incomplete pattern matching example - what function?
 _ in pattern matching - reminder of when appropriate
 
+function to get rgb from any
+function to get any from rgb (yellow?)
+
+records in our own data type (put labels on existing data type, effectively *)
 
 ## Example: trees
+
+Data types may be polymorphic and recursive too. Here is an OCaml data type for
+a binary tree carrying any kind of data:
+
+```ocamltop
+type 'a tree =
+  | Lf
+  | Br of 'a tree * 'a * 'a tree;;
+
+let t = Br (Br (Lf, 1, Lf), 2, Br (Br (Lf, 3, Lf), 4, Lf));;
+```
+
+A `Lf` leaf holds no information, just like an empty list. A `Br` branch holds
+a left tree, a value of type `'a` and a right tree. Now we can write recursive
+and polymorphic functions over these trees, by pattern matching on our new
+constructors:
+
+```ocamltop
+let rec total t =
+  match t with
+  | Lf -> 0
+  | Br (l, x, r) -> total l + x + total r;;
+
+let rec flip t =
+  match t with
+  | Lf -> Lf
+  | Br (l, x, r) -> Br (flip r, x, flip l);;
+```
+
+Let's try our new functions out:
+
+```ocamltop
+let all = total t;;
+
+let flipped = flip t;;
+
+t = flip flipped;;
+```
+
 
 Fixed types vs paramerarized
 
