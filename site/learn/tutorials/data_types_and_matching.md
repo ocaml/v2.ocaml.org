@@ -110,47 +110,50 @@ let example = function
   | Yellow -> "banana";;
 ```
 
-## An example with data along with some or all of the constructors
+## Constructors with data
 
 difference between a * b and (a * b)
 
 records in our own data type
 
-## tree example (from up and running, but extended). Fixed types vs paramerarized
+incomplete pattern matching
 
-##incomplete pattern matching
+_ in pattern matching - reminder of when appropriate
 
-##'as' in pattern matching
 
-## | or in pattern matching
+## Example: trees
 
-## mathematical expression example is salvageable
+Fixed types vs paramerarized
 
-Let's start with a real program requirement: I wish to represent simple
-mathematical expressions like `n * (x + y)` and multiply them out
-symbolically to get `n * x + n * y`.
+'as' in pattern matching
+
+| or in pattern matching
+
+
+## Example: mathematical expressions
+
+We wish to represent simple mathematical expressions like `n * (x + y)` and
+multiply them out symbolically to get `n * x + n * y`.
 
 Let's define a type for these expressions:
 
 ```ocamltop
 type expr =
-  | Plus of expr * expr        (* means a + b *)
-  | Minus of expr * expr       (* means a - b *)
-  | Times of expr * expr       (* means a * b *)
-  | Divide of expr * expr      (* means a / b *)
-  | Value of string            (* "x", "y", "n", etc. *)
+  | Plus of expr * expr        (* a + b *)
+  | Minus of expr * expr       (* a - b *)
+  | Times of expr * expr       (* a * b *)
+  | Divide of expr * expr      (* a / b *)
+  | Var of string              (* "x", "y", etc. *)
 ```
+
 The expression `n * (x + y)` would be written:
 
 ```ocamltop
-Times (Value "n", Plus (Value "x", Value "y"))
+Times (Var "n", Plus (Var "x", Var "y"))
 ```
-Let's write a function which prints out
-`Times (Value "n", Plus (Value "x", Value "y"))` as something more like
-`n * (x + y)`. Actually, I'm going to write two functions, one which
-converts the expression to a pretty string, and one which prints it out
-(the reason is that I might want to write the same string to a file and
-I wouldn't want to repeat the whole of the function just for that).
+
+Let's write a function which prints out `Times (Var "n", Plus (Var "x", Var
+"y"))` as something more like `n * (x + y)`.
 
 ```ocamltop
 let rec to_string e =
@@ -163,18 +166,17 @@ let rec to_string e =
 	 "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
   | Divide (left, right) ->
 	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
-  | Value v -> v ;;
+  | Var v -> v ;;
   
 let print_expr e =
   print_endline (to_string e);;
 ```
 
-(NB: The `^` operator concatenates strings.)
-
-Here's the print function in action:
+We separate the function into two so that our `to_string` function is usable in
+other contexts. Here's the `print_expr` function in action:
 
 ```ocamltop
-print_expr (Times (Value "n", Plus (Value "x", Value "y")));;
+print_expr (Times (Var "n", Plus (Var "x", Var "y")));;
 ```
 
 The general form of pattern matching is:
@@ -187,9 +189,9 @@ match value with
 ```
 
 The patterns on the left hand side can be simple, as in the `to_string`
-function above, or complex and nested. The next example is our function
-to multiply out expressions of the form `n * (x + y)` or `(x + y) * n`
-and for this we will use a nested pattern:
+function above, or complex and nested. The next example is our function to
+multiply out expressions of the form `n * (x + y)` or `(x + y) * n` and for
+this we will use a nested pattern:
 
 ```ocamltop
 let rec multiply_out e =
@@ -208,33 +210,34 @@ let rec multiply_out e =
      Times (multiply_out left, multiply_out right)
   | Divide (left, right) ->
      Divide (multiply_out left, multiply_out right)
-  | Value v -> Value v;;
+  | Var v -> Var v;;
 ```
+
 Here it is in action:
 
 ```ocamltop
-print_expr (multiply_out (Times (Value "n", Plus (Value "x", Value "y"))))
+print_expr (multiply_out (Times (Var "n", Plus (Var "x", Var "y"))))
 ```
+
 How does the `multiply_out` function work? The key is in the first two
 patterns. The first pattern is `Times (e1, Plus (e2, e3))` which matches
-expressions of the form `e1 * (e2 + e3)`. Now look at the right hand
-side of this first pattern match, and convince yourself that it is the
-equivalent of `(e1 * e2) + (e1 * e3)`.
-
-The second pattern does the same thing, except for expressions of the
-form `(e1 + e2) * e3`.
+expressions of the form `e1 * (e2 + e3)`. Now look at the right hand side of
+this first pattern match, and convince yourself that it is the equivalent of
+`(e1 * e2) + (e1 * e3)`. The second pattern does the same thing, except for
+expressions of the form `(e1
++ e2) * e3`.
 
 The remaining patterns don't change the form of the expression, but they
 crucially *do* call the `multiply_out` function recursively on their
-subexpressions. This ensures that all subexpressions within the
-expression get multiplied out too (if you only wanted to multiply out
-the very top level of an expression, then you could replace all the
-remaining patterns with a simple `e -> e` rule).
+subexpressions. This ensures that all subexpressions within the expression get
+multiplied out too (if you only wanted to multiply out the very top level of an
+expression, then you could replace all the remaining patterns with a simple `e
+-> e` rule).
 
-Can we do the reverse (ie. factorizing out common subexpressions)? We
-sure can! (But it's a bit more complicated). The following version only
-works for the top level expression. You could certainly extend it to
-cope with all levels of an expression and more complex cases:
+Can we do the reverse (ie. factorizing out common subexpressions)? We can! (But
+it's a bit more complicated). The following version only works for the top
+level expression. You could certainly extend it to cope with all levels of an
+expression and more complex cases:
 
 ```ocamltop
 let factorize e =
@@ -245,15 +248,14 @@ let factorize e =
      Times (Plus (e1, e3), e4)
   | e -> e;;
 
-factorize (Plus (Times (Value "n", Value "x"),
-                 Times (Value "n", Value "y")));;
+factorize (Plus (Times (Var "n", Var "x"),
+                 Times (Var "n", Var "y")));;
 ```
 
-The factorize function above introduces another couple of features. You
-can add what are known as **guards** to each pattern match. A guard is
-the conditional which follows the `when`, and it means that the pattern
-match only happens if the pattern matches *and* the condition in the
-`when`-clause is satisfied.
+The factorize function above introduces another couple of features. You can add
+what are known as *guards* to each pattern match. A guard is the conditional
+which follows the `when`, and it means that the pattern match only happens if
+the pattern matches *and* the condition in the `when`-clause is satisfied.
 
 ```ocaml
 match value with
@@ -261,45 +263,62 @@ match value with
 | pattern [ when condition ] -> result
   ...
 ```
+
 The second feature is the `=` operator which tests for "structural
 equality" between two expressions. That means it goes recursively into
 each expression checking they're exactly the same at all levels down.
 
-OCaml is able to check at compile time that you have covered all
-possibilities in your patterns. I changed the type definition of
-`type expr` above by adding a `Product` variant:
+## Mutually recursive data types
+
+Data types may be mutually-recursive when declared with `and`:
 
 ```ocamltop
-type expr = Plus of expr * expr      (* means a + b *)
-          | Minus of expr * expr     (* means a - b *)
-          | Times of expr * expr     (* means a * b *)
-          | Divide of expr * expr    (* means a / b *)
-          | Product of expr list     (* means a * b * c * ... *)
-          | Value of string          (* "x", "y", "n", etc. *);;
+type t = A | B of t' and t' = C | D of t;;
 ```
-I then recompiled the `to_string` function without changing it. OCaml
-reported the following warning:
+
+One common use of this is to *decorate* a tree, by adding information to each
+node using mutually-recursive types, one of which is a tuple or record. For
+example:
 
 ```ocamltop
-let rec to_string e =
-  match e with
-  | Plus (left, right) ->
-     "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
-  | Minus (left, right) ->
-     "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
-  | Times (left, right) ->
-	 "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
-  | Divide (left, right) ->
-	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
-  | Value v -> v ;;
+type t' = Int of int | Add of t * t
+
+and t = {annotation : string; data : t'}
 ```
 
-As you see, the compiler tells you that the new `Product` constructor
-was not handled.
+Values of such mutually-recursive data type are manipulated by accompanying
+mutually-recursive functions:
 
-##mutually recursive data types
+```ocamltop
+let rec sum_t' = function
+  | Int i -> i
+  | Add (i, i') -> sum_t i + sum_t i'
 
-example of a record and a t/t' pair
+and sum_t {annotation; data} =
+  if annotation <> "" then Printf.printf "Touching %s\n" annotation;
+  sum_t' data
+```
 
-##putting a type and its operations into a module - calling it t by default
+## Types and modules
 
+Often, a module will provide a single type and operations on that type. For
+example, a module for a file format like PNG might have the following `png.mli`
+interface:
+
+```ocaml
+type t
+
+val of_file : filename -> t
+
+val to_file : t -> filename -> unit
+
+val flip_vertical : t -> t
+
+val flip_horizontal : t -> t
+
+val rotate : float -> t -> t
+```
+
+Traditionally, we name the type `t`. In the program using this library, it
+would then be `Png.t` which is shorter, reads better than `Png.png`, and avoids
+confusion if the library also defines other types.
