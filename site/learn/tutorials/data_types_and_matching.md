@@ -82,9 +82,9 @@ the names of the constructors with upper case letters. We can use our new type
 anywhere a built-in type could be used:
 
 ```ocamltop
-let primaries = [Red; Green; Blue];;
+let additive_primaries = (Red, Green, Blue);;
 
-let palette = (Red, Yellow, Blue);;
+let pattern = [(1, Red); (3, Green); (1, Red); (2, Green)];;
 ```
 
 We can pattern match on our new type, just like any built-in type:
@@ -110,9 +110,19 @@ let example = function
   | Yellow -> "banana";;
 ```
 
+We can match on more than one case at a time:
+
+```ocamltop
+let rec is_primary = function
+  | Red | Green | Blue -> true
+  | _ -> false
+```
+
 ## Constructors with data
 
-We can do more than just enumerations. 
+In fact, each constructor in a data type can carry additional data. Let's
+extend our `colour` type to allow arbitrary RGB triples, each element begin a
+number from 0 (no colour) to 1 (full colour): 
 
 ```ocamltop
 type colour2 =
@@ -120,36 +130,56 @@ type colour2 =
   | Green
   | Blue
   | Yellow
-  | RGB of float * float * float
-  | Mix of float * colour2 * colour2
+  | RGB of float * float * float;;
+
+[Red; Blue; RGB (0.5, 0.65, 0.12)];;
 ```
 
-difference between a * b and (a * b)
-
-recursive:
+Types, just like functions, may be recursively-defined. We extend our data type to allow mixing of colours:
 
 ```ocamltop
-type colour2 =
+type colour3 =
   | Red
   | Green
   | Blue
   | Yellow
   | RGB of float * float * float
-  | Mix of float * colour2 * colour2
+  | Mix of float * colour3 * colour3;;
+
+Mix (0.5, Red, Mix (0.5, Blue, Green));; 
 ```
 
-incomplete pattern matching example - what function?
-_ in pattern matching - reminder of when appropriate
+Here is a function over our new `colour3` data type:
 
-function to get rgb from any
-function to get any from rgb (yellow?)
+```ocamltop
+let rec rgb_of_colour = function
+  | Red -> (1.0, 0.0, 0.0)
+  | Green -> (0.0, 1.0, 0.0)
+  | Blue -> (0.0, 0.0, 1.0)
+  | Yellow -> (1.0, 1.0, 0.0)
+  | RGB (r, g, b) -> (r, g, b) (* Note not RGB c -> c. See below. *)
+  | Mix (p, a, b) ->
+      let r1, g1, b1 = rgb_of_colour a in
+      let r2, g2, b2 = rgb_of_colour b in
+        (r1 +. r2 /. 2.0, g1 +. g2 /. 2.0, b1 +. b2 /. 2.0)
+```
 
-records in our own data type (put labels on existing data type, effectively *)
+We can use records directly in the data type instead to label our components:
+
+```ocamltop
+type colour4 =
+  | Red
+  | Green
+  | Blue
+  | Yellow
+  | RGB of {r : float; g : float; b : float}
+  | Mix of {proportion : float; c1 : colour4; c2 : colour4}
+```
 
 ## Example: trees
 
-Data types may be polymorphic and recursive too. Here is an OCaml data type for
-a binary tree carrying any kind of data:
+Data types may be polymorphic as well as recursive. Here is an OCaml data type
+for a binary tree carrying any kind of data:
 
 ```ocamltop
 type 'a tree =
@@ -159,10 +189,11 @@ type 'a tree =
 let t = Br (Br (Lf, 1, Lf), 2, Br (Br (Lf, 3, Lf), 4, Lf));;
 ```
 
-A `Lf` leaf holds no information, just like an empty list. A `Br` branch holds
-a left tree, a value of type `'a` and a right tree. Now we can write recursive
-and polymorphic functions over these trees, by pattern matching on our new
-constructors:
+Notice that we give the type parameter `'a` before the type name.  A `Lf` leaf
+holds no information, just like an empty list. A `Br` branch holds a left tree,
+a value of type `'a` and a right tree. In our example, we built an integer
+tree, but any type can be used. Now we can write recursive and polymorphic
+functions over these trees, by pattern matching on our new constructors:
 
 ```ocamltop
 let rec total t =
@@ -186,13 +217,7 @@ let flipped = flip t;;
 t = flip flipped;;
 ```
 
-
-Fixed types vs paramerarized
-
 'as' in pattern matching
-
-| or in pattern matching
-
 
 ## Example: mathematical expressions
 
@@ -361,6 +386,40 @@ let rec sum_t' = function
 and sum_t {annotation; data} =
   if annotation <> "" then Printf.printf "Touching %s\n" annotation;
   sum_t' data
+```
+
+## A note on tupled constructors
+
+Note that there is a difference between `RGB of float * float * float` and `RGB
+of (float * float * float)`. The first is a constructor with three pieces of
+data associated with it, the second is a constructor with one tuple associated
+with it. There are two ways this matters: the memory layout differs between the
+two (a tuple is an extra indirection), and the ability to create or match using
+a tuple:
+
+```ocamltop
+type t = T of int * int;;
+
+type t2 = T2 of (int * int);;
+
+let pair = (1, 2);;
+
+T2 pair;;
+
+T pair;;
+
+match T2 (1, 2) with T2 x -> fst x;;
+
+match T (1, 2) with T x -> fst x;;
+```
+
+Note, however, that OCaml allows us to use the always-match `_` in either
+version:
+
+```ocamltop
+match T2 (1, 2) with T2 _ -> 0;;
+
+match T (1, 2) with T _ -> 0;;
 ```
 
 ## Types and modules
