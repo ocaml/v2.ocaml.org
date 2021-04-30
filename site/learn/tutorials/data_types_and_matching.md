@@ -135,7 +135,8 @@ type colour2 =
 [Red; Blue; RGB (0.5, 0.65, 0.12)];;
 ```
 
-Types, just like functions, may be recursively-defined. We extend our data type to allow mixing of colours:
+Types, just like functions, may be recursively-defined. We extend our data type
+to allow mixing of colours:
 
 ```ocamltop
 type colour3 =
@@ -189,11 +190,12 @@ type 'a tree =
 let t = Br (Br (Lf, 1, Lf), 2, Br (Br (Lf, 3, Lf), 4, Lf));;
 ```
 
-Notice that we give the type parameter `'a` before the type name.  A `Lf` leaf
-holds no information, just like an empty list. A `Br` branch holds a left tree,
-a value of type `'a` and a right tree. In our example, we built an integer
-tree, but any type can be used. Now we can write recursive and polymorphic
-functions over these trees, by pattern matching on our new constructors:
+Notice that we give the type parameter `'a` before the type name (if there is
+more than one, we write `('a, 'b)` etc).  A `Lf` leaf holds no information,
+just like an empty list. A `Br` branch holds a left tree, a value of type `'a`
+and a right tree. In our example, we built an integer tree, but any type can be
+used. Now we can write recursive and polymorphic functions over these trees, by
+pattern matching on our new constructors:
 
 ```ocamltop
 let rec total t =
@@ -217,7 +219,22 @@ let flipped = flip t;;
 t = flip flipped;;
 ```
 
-'as' in pattern matching
+Instead of integers, we could build a tree of key-value pairs. Then, if we
+insist that the keys are unique and that a smaller key is always left of a
+larger key, we have a data structure for dictionaries which performs better
+than a simple list of pairs:
+
+```ocamltop
+let rec insert (k, v) = function
+  | Lf -> Br (Lf, (k, v), Lf)
+  | Br (l, (k', v'), r) ->
+      if k < k' then Br (insert (k, v) l, (k', v'), r) 
+      else if k > k' then Br (l, (k', v'), insert (k, v) r)
+      else Br (l, (k, v), r);;
+```
+
+Similar functions can be written to lookup values in a dictionary, to convert a
+list of pairs to or from a tree dictionary and so on.
 
 ## Example: mathematical expressions
 
@@ -357,6 +374,15 @@ The second feature is the `=` operator which tests for "structural
 equality" between two expressions. That means it goes recursively into
 each expression checking they're exactly the same at all levels down.
 
+The `as` keyword can be used to name part of an expression. We can use it to
+match on the inner part of a pattern:
+
+```ocaml
+Name ("/DeviceGray" | "/DeviceRGB" | "/DeviceCMYK") as n -> n
+
+Br (l, ((k, _) as pair), r) when k = k' -> Some pair
+```
+
 ## Mutually recursive data types
 
 Data types may be mutually-recursive when declared with `and`:
@@ -387,6 +413,9 @@ and sum_t {annotation; data} =
   if annotation <> "" then Printf.printf "Touching %s\n" annotation;
   sum_t' data
 ```
+
+
+
 
 ## A note on tupled constructors
 
