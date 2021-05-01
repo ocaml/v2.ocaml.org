@@ -4,22 +4,21 @@
 
 # Custom Data Types
 
-In this tutorial we learn how to build our own custom data types in OCaml, and
-how to write functions which process this new data.
+In this tutorial we learn how to build our own types in OCaml, and how to write
+functions which process this new data.
 
 ## Built-in compound types
 
-We have already seen the atomic data types such as `int`, `float`, `string`,
-`bool` and so on. Let's recap the built-in compound data types we can use in
-OCaml to combine such values. First, we have lists which are ordered
-collections of any nuumber of elements of like type:
+We have already seen simple data types such as `int`, `float`, `string`, and
+`bool`.  Let's recap the built-in compound data types we can use in OCaml to
+combine such values. First, we have lists which are ordered collections of any
+nuumber of elements of like type:
 
 ```ocamltop
 [];;
 [1; 2; 3];;
 [[1; 2]; [3; 4]; [5; 6]];;
 [false; true; false];;
-[1; false];;
 ```
 
 Next, we have tuples, which collect a fixed number of elements together:
@@ -64,22 +63,21 @@ arr.(0) <- 0;;
 arr;;
 ```
 
-In this tutorial, we will define our own custom compound data types, using some
-of these structures as building blocks.
+In this tutorial, we will define our own compound data types, using the `type`
+keyword, and some of these built-in structures as building blocks.
 
-## Enumerations
+## A simple type
 
-The simplest custom data type is an enumeration - we are simply creating some
-new names to represent values:
+We can define a new data type `colour` which can take one of four values.
 
 ```ocamltop
 type colour = Red | Green | Blue | Yellow
 ```
 
-Our new type is called `sign`, and has three constructors, `Positive`, `Zero`
-and `Negative`. The name of the type must begin with a lower case letter, and
-the names of the constructors with upper case letters. We can use our new type
-anywhere a built-in type could be used:
+Our new type is called `colour`, and has four *constructors* `Red`, `Green`,
+`Blue` and `Yellow`. The name of the type must begin with a lower case letter,
+and the names of the constructors with upper case letters. We can use our new
+type anywhere a built-in type could be used:
 
 ```ocamltop
 let additive_primaries = (Red, Green, Blue);;
@@ -87,7 +85,8 @@ let additive_primaries = (Red, Green, Blue);;
 let pattern = [(1, Red); (3, Green); (1, Red); (2, Green)];;
 ```
 
-We can pattern match on our new type, just like any built-in type:
+Notice the types inferred by OCaml for these expressions. We can pattern-match
+on our new type, just as with any built-in type:
 
 ```ocamltop
 let example c =
@@ -110,7 +109,7 @@ let example = function
   | Yellow -> "banana";;
 ```
 
-We can match on more than one case at a time:
+We can match on more than one case at a time too:
 
 ```ocamltop
 let rec is_primary = function
@@ -158,7 +157,7 @@ let rec rgb_of_colour = function
   | Green -> (0.0, 1.0, 0.0)
   | Blue -> (0.0, 0.0, 1.0)
   | Yellow -> (1.0, 1.0, 0.0)
-  | RGB (r, g, b) -> (r, g, b) (* Note not RGB c -> c. See below. *)
+  | RGB (r, g, b) -> (r, g, b)
   | Mix (p, a, b) ->
       let r1, g1, b1 = rgb_of_colour a in
       let r2, g2, b2 = rgb_of_colour b in
@@ -198,13 +197,11 @@ used. Now we can write recursive and polymorphic functions over these trees, by
 pattern matching on our new constructors:
 
 ```ocamltop
-let rec total t =
-  match t with
+let rec total = function
   | Lf -> 0
   | Br (l, x, r) -> total l + x + total r;;
 
-let rec flip t =
-  match t with
+let rec flip = function
   | Lf -> Lf
   | Br (l, x, r) -> Br (flip r, x, flip l);;
 ```
@@ -233,8 +230,8 @@ let rec insert (k, v) = function
       else Br (l, (k, v), r);;
 ```
 
-Similar functions can be written to lookup values in a dictionary, to convert a
-list of pairs to or from a tree dictionary and so on.
+Similar functions can be written to look up values in a dictionary, to convert
+a list of pairs to or from a tree dictionary and so on.
 
 ## Example: mathematical expressions
 
@@ -278,26 +275,16 @@ let print_expr e =
   print_endline (to_string e);;
 ```
 
-We separate the function into two so that our `to_string` function is usable in
-other contexts. Here's the `print_expr` function in action:
+(The `^` operator concatenates strings). We separate the function into two so
+that our `to_string` function is usable in other contexts. Here's the
+`print_expr` function in action:
 
 ```ocamltop
 print_expr (Times (Var "n", Plus (Var "x", Var "y")));;
 ```
 
-The general form of pattern matching is:
-
-```ocaml
-match value with
-| pattern -> result
-| pattern -> result
-  ...
-```
-
-The patterns on the left hand side can be simple, as in the `to_string`
-function above, or complex and nested. The next example is our function to
-multiply out expressions of the form `n * (x + y)` or `(x + y) * n` and for
-this we will use a nested pattern:
+We can write a function to multiply out expressions of the form `n * (x + y)`
+or `(x + y) * n` and for this we will use a nested pattern:
 
 ```ocamltop
 let rec multiply_out e =
@@ -330,8 +317,7 @@ patterns. The first pattern is `Times (e1, Plus (e2, e3))` which matches
 expressions of the form `e1 * (e2 + e3)`. Now look at the right hand side of
 this first pattern match, and convince yourself that it is the equivalent of
 `(e1 * e2) + (e1 * e3)`. The second pattern does the same thing, except for
-expressions of the form `(e1
-+ e2) * e3`.
+expressions of the form `(e1 + e2) * e3`.
 
 The remaining patterns don't change the form of the expression, but they
 crucially *do* call the `multiply_out` function recursively on their
@@ -370,12 +356,13 @@ match value with
   ...
 ```
 
-The second feature is the `=` operator which tests for "structural
-equality" between two expressions. That means it goes recursively into
-each expression checking they're exactly the same at all levels down.
+The second feature is the `=` operator which tests for "structural equality"
+between two expressions. That means it goes recursively into each expression
+checking they're exactly the same at all levels down.
 
-The `as` keyword can be used to name part of an expression. We can use it to
-match on the inner part of a pattern:
+Another feature which is useful when we build more complicated nested patterns
+is the `as` keyword, which can be used to name part of an expression. For
+example:
 
 ```ocaml
 Name ("/DeviceGray" | "/DeviceRGB" | "/DeviceCMYK") as n -> n
@@ -391,9 +378,9 @@ Data types may be mutually-recursive when declared with `and`:
 type t = A | B of t' and t' = C | D of t;;
 ```
 
-One common use of this is to *decorate* a tree, by adding information to each
-node using mutually-recursive types, one of which is a tuple or record. For
-example:
+One common use for mutally-recursive data types is to *decorate* a tree, by
+adding information to each node using mutually-recursive types, one of which is
+a tuple or record. For example:
 
 ```ocamltop
 type t' = Int of int | Add of t * t
@@ -414,17 +401,14 @@ and sum_t {annotation; data} =
   sum_t' data
 ```
 
-
-
-
 ## A note on tupled constructors
 
-Note that there is a difference between `RGB of float * float * float` and `RGB
-of (float * float * float)`. The first is a constructor with three pieces of
-data associated with it, the second is a constructor with one tuple associated
-with it. There are two ways this matters: the memory layout differs between the
-two (a tuple is an extra indirection), and the ability to create or match using
-a tuple:
+There is a difference between `RGB of float * float * float` and `RGB of (float
+* float * float)`. The first is a constructor with three pieces of data
+associated with it, the second is a constructor with one tuple associated with
+it. There are two ways this matters: the memory layout differs between the two
+(a tuple is an extra indirection), and the ability to create or match using a
+tuple:
 
 ```ocamltop
 type t = T of int * int;;
@@ -442,7 +426,7 @@ match T2 (1, 2) with T2 x -> fst x;;
 match T (1, 2) with T x -> fst x;;
 ```
 
-Note, however, that OCaml allows us to use the always-match `_` in either
+Note, however, that OCaml allows us to use the always-matching `_` in either
 version:
 
 ```ocamltop
