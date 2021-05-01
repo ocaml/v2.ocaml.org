@@ -90,67 +90,6 @@ let rec append a b =
 Notice that the memory for the second list is shared, but the first list is
 effectively copied.
 
-##Lists and tail recursion
-
-Our `length` function builds up an intermediate expression of a size
-proportional to its input list:
-
-```
-   length [1; 2; 3]
-=> 1 + length [2; 3]
-=> 1 + (1 + length [3])
-=> 1 + (1 + (1 + length []))
-=> 1 + (1 + (1 + 0))
-=> 1 + (1 + 1)
-=> 1 + 2
-=> 3
-```
-
-For long lists, this may overflow the stack. The solution is to write our
-function with an accumulating argument, like this:
-
-```ocamltop
-let rec length acc l =
-  match l with
-  | [] -> acc
-  | _ :: t -> length (acc + 1) t;;
-
-let l = length 0 [1; 2; 3];;
-```
-
-This function now uses a constant amount of space on the stack:
-
-```
-   length 0 [1; 2; 3]
-=> length 1 [2; 3]
-=> length 2 [3]
-=> length 3 []
-=> 3
-```
-
-We may write a wrapper function so that the initial accumulator value is
-supplied automatically:
-
-```ocamltop
-let rec length_inner acc l =
-  match l with
-  | [] -> acc
-  | _ :: t -> length_inner (acc + 1) t;;
-
-let length l = length_inner 0 l;;
-```
-
-Or, we can do it all in one function:
-
-```ocamltop
-let length l =
-  let rec length_inner acc l =
-    match l with
-    | [] -> acc
-    | _ :: t -> length_inner (acc + 1) t
-  in
-    length_inner 0 l;;
-```
 
 ##Higher order functions on lists
 
@@ -183,11 +122,10 @@ of the functions we have written in this tutorial. A version of the module with
 labeled functions is available as part of
 [StdLabels](https://ocaml.org/api/StdLabels.html).
 
-In the [List](https://ocaml.org/api/List.html) module documentation, non
-tail-recursive functions are marked specially. Functions which can raise an
-exception are marked too. Such exceptions are usually the result of lists which
-are empty (and therefore have neither a head nor a tail) or lists of mismatched
-length.
+In the [List](https://ocaml.org/api/List.html) module documentation, functions
+which can raise an exception are marked. Such exceptions are usually the result
+of lists which are empty (and therefore have neither a head nor a tail) or
+lists of mismatched length.
 
 ###Maps and iterators
 
@@ -429,7 +367,10 @@ let concat l = List.fold_left ( @ ) [] l;;
 Unfortunately, the order of evaluation here is such that larger and larger
 items are passed to the `@` operator as its first argument, and so the function
 has a worse running time than
-[`List.concat`](https://ocaml.org/api/List.html#VALconcat).
+[`List.concat`](https://ocaml.org/api/List.html#VALconcat). You can read more
+about the time and space efficiency of lists and other common OCaml data
+structures in the [comparison of standard
+containers](comparison_of_standard_containers.html).
 
 Here are some more redefinitions of familiar functions in terms of
 [`fold_left`](https://ocaml.org/api/List.html#VALfold_left) or
@@ -449,3 +390,70 @@ let split l =
     l
     ([], []);;
 ```
+
+##Lists and tail recursion
+
+Our `length` function builds up an intermediate expression of a size
+proportional to its input list:
+
+```
+   length [1; 2; 3]
+=> 1 + length [2; 3]
+=> 1 + (1 + length [3])
+=> 1 + (1 + (1 + length []))
+=> 1 + (1 + (1 + 0))
+=> 1 + (1 + 1)
+=> 1 + 2
+=> 3
+```
+
+For long lists, this may overflow the stack (be too large for the computer to
+handle). The solution is to write our function with an accumulating argument,
+like this:
+
+```ocamltop
+let rec length acc l =
+  match l with
+  | [] -> acc
+  | _ :: t -> length (acc + 1) t;;
+
+let l = length 0 [1; 2; 3];;
+```
+
+This function now uses a constant amount of space on the stack:
+
+```
+   length 0 [1; 2; 3]
+=> length 1 [2; 3]
+=> length 2 [3]
+=> length 3 []
+=> 3
+```
+
+We call such a function *tail-recursive*. We may write a wrapper function so
+that the initial accumulator value is supplied automatically:
+
+```ocamltop
+let rec length_inner acc l =
+  match l with
+  | [] -> acc
+  | _ :: t -> length_inner (acc + 1) t;;
+
+let length l = length_inner 0 l;;
+```
+
+Or, we can do it all in one function:
+
+```ocamltop
+let length l =
+  let rec length_inner acc l =
+    match l with
+    | [] -> acc
+    | _ :: t -> length_inner (acc + 1) t
+  in
+    length_inner 0 l;;
+```
+
+In the standard library documentation, functions which are not tail-recursive
+are marked.
+
