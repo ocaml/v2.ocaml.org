@@ -12,7 +12,7 @@ functions which process this new data.
 We have already seen simple data types such as `int`, `float`, `string`, and
 `bool`.  Let's recap the built-in compound data types we can use in OCaml to
 combine such values. First, we have lists which are ordered collections of any
-nuumber of elements of like type:
+number of elements of like type:
 
 ```ocamltop
 [];;
@@ -37,6 +37,11 @@ type point = {x : float; y : float};;
 let a = {x = 5.0; y = 6.5};;
 type colour = {websafe : bool; r : float; g : float; b : float; name : string};;
 let b = {websafe = true; r = 0.0; g = 0.45; b = 0.73; name = "french blue"};;
+```
+
+A record must contain all fields:
+
+```ocamltop
 let c = {name = "puce"};;
 ```
 
@@ -52,9 +57,9 @@ let birthday p =
   p.age <- p.age + 1;;
 ```
 
-Another mutable compound data type is the fixed-length array, which like a list
-must contain elements of like type. However, its elements may be accessed in
-constant time:
+Another mutable compound data type is the fixed-length array which, just as a
+list, must contain elements of like type. However, its elements may be accessed
+in constant time:
 
 ```ocamltop
 let arr = [|1; 2; 3|];;
@@ -66,7 +71,7 @@ arr;;
 In this tutorial, we will define our own compound data types, using the `type`
 keyword, and some of these built-in structures as building blocks.
 
-## A simple type
+## A simple custom type
 
 We can define a new data type `colour` which can take one of four values.
 
@@ -119,12 +124,12 @@ let rec is_primary = function
 
 ## Constructors with data
 
-In fact, each constructor in a data type can carry additional data. Let's
+Each constructor in a data type can carry additional information with it. Let's
 extend our `colour` type to allow arbitrary RGB triples, each element begin a
 number from 0 (no colour) to 1 (full colour): 
 
 ```ocamltop
-type colour2 =
+type colour =
   | Red
   | Green
   | Blue
@@ -138,18 +143,18 @@ Types, just like functions, may be recursively-defined. We extend our data type
 to allow mixing of colours:
 
 ```ocamltop
-type colour3 =
+type colour =
   | Red
   | Green
   | Blue
   | Yellow
   | RGB of float * float * float
-  | Mix of float * colour3 * colour3;;
+  | Mix of float * colour * colour;;
 
 Mix (0.5, Red, Mix (0.5, Blue, Green));; 
 ```
 
-Here is a function over our new `colour3` data type:
+Here is a function over our new `colour` data type:
 
 ```ocamltop
 let rec rgb_of_colour = function
@@ -167,13 +172,13 @@ let rec rgb_of_colour = function
 We can use records directly in the data type instead to label our components:
 
 ```ocamltop
-type colour4 =
+type colour =
   | Red
   | Green
   | Blue
   | Yellow
   | RGB of {r : float; g : float; b : float}
-  | Mix of {proportion : float; c1 : colour4; c2 : colour4}
+  | Mix of {proportion : float; c1 : colour; c2 : colour}
 ```
 
 ## Example: trees
@@ -206,7 +211,8 @@ let rec flip = function
   | Br (l, x, r) -> Br (flip r, x, flip l);;
 ```
 
-Let's try our new functions out:
+Here, `flip` is polymorphic while `total` operates only on trees of type `int
+tree`. Let's try our new functions out:
 
 ```ocamltop
 let all = total t;;
@@ -219,7 +225,7 @@ t = flip flipped;;
 Instead of integers, we could build a tree of key-value pairs. Then, if we
 insist that the keys are unique and that a smaller key is always left of a
 larger key, we have a data structure for dictionaries which performs better
-than a simple list of pairs:
+than a simple list of pairs. It is known as a *binary search tree*:
 
 ```ocamltop
 let rec insert (k, v) = function
@@ -326,8 +332,8 @@ multiplied out too (if you only wanted to multiply out the very top level of an
 expression, then you could replace all the remaining patterns with a simple `e
 -> e` rule).
 
-Can we do the reverse (ie. factorizing out common subexpressions)? We can! (But
-it's a bit more complicated). The following version only works for the top
+Can we do the reverse (i.e. factorizing out common subexpressions)? We can!
+(But it's a bit more complicated). The following version only works for the top
 level expression. You could certainly extend it to cope with all levels of an
 expression and more complex cases:
 
@@ -378,7 +384,7 @@ Data types may be mutually-recursive when declared with `and`:
 type t = A | B of t' and t' = C | D of t;;
 ```
 
-One common use for mutally-recursive data types is to *decorate* a tree, by
+One common use for mutually-recursive data types is to *decorate* a tree, by
 adding information to each node using mutually-recursive types, one of which is
 a tuple or record. For example:
 
