@@ -310,7 +310,7 @@ programming, and interoperability with C. <br />
 Written by two of the implementors of the Caml Light compiler, this
 comprehensive book describes all constructs of the programming language
 and provides a complete documentation for the Caml Light system. <br />
-Intro: "Cet ouvrage contient le manuel de référence du langage Caml et la documentation complète du système Caml Light, un environnement de programmation en Caml distribué́ee gratuitement. Il s’adresse á des programmeurs Caml exp ́ériment ́és, et non pas aux d ́ébutants. Il vient en compl ́ément du livre *Le langage Caml*, des mêmes auteurs chez le même é́editeur, qui fournit une introduction progressive au langage Caml et á l’é́ecriture de programmes dans ce langage."
+Intro: "Cet ouvrage contient le manuel de référence du langage Caml et la documentation complète du système Caml Light, un environnement de programmation en Caml distribué́ee gratuitement. Il s’adresse á des programmeurs Caml expérimentés, et non pas aux débutants. Il vient en complément du livre *Le langage Caml*, des mêmes auteurs chez le même éditeur, qui fournit une introduction progressive au langage Caml et á l’écriture de programmes dans ce langage."
 
 [PDF](http://caml.inria.fr/pub/distrib/books/manuel-cl.pdf)
 
