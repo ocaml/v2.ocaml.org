@@ -166,7 +166,8 @@ let rec rgb_of_colour = function
   | Mix (p, a, b) ->
       let r1, g1, b1 = rgb_of_colour a in
       let r2, g2, b2 = rgb_of_colour b in
-        (r1 +. r2 /. 2.0, g1 +. g2 /. 2.0, b1 +. b2 /. 2.0)
+      let mix x y = x *. p +. y *. (1.0 -. p) in
+        (mix r1 r2, mix g1 g2, mix b1 b2)
 ```
 
 We can use records directly in the data type instead to label our components:
