@@ -164,8 +164,8 @@ let rec rgb_of_colour = function
   | Yellow -> (1.0, 1.0, 0.0)
   | RGB (r, g, b) -> (r, g, b)
   | Mix (p, a, b) ->
-      let r1, g1, b1 = rgb_of_colour a in
-      let r2, g2, b2 = rgb_of_colour b in
+      let (r1, g1, b1) = rgb_of_colour a in
+      let (r2, g2, b2) = rgb_of_colour b in
       let mix x y = x *. p +. y *. (1.0 -. p) in
         (mix r1 r2, mix g1 g2, mix b1 b2)
 ```
@@ -189,27 +189,28 @@ for a binary tree carrying any kind of data:
 
 ```ocamltop
 type 'a tree =
-  | Lf
-  | Br of 'a tree * 'a * 'a tree;;
+  | Leaf
+  | Node of 'a tree * 'a * 'a tree;;
 
-let t = Br (Br (Lf, 1, Lf), 2, Br (Br (Lf, 3, Lf), 4, Lf));;
+let t =
+  Node (Node (Leaf, 1, Leaf), 2, Node (Node (Leaf, 3, Leaf), 4, Leaf));;
 ```
 
 Notice that we give the type parameter `'a` before the type name (if there is
-more than one, we write `('a, 'b)` etc).  A `Lf` leaf holds no information,
-just like an empty list. A `Br` branch holds a left tree, a value of type `'a`
+more than one, we write `('a, 'b)` etc).  A `Leaf` holds no information,
+just like an empty list. A `Node` holds a left tree, a value of type `'a`
 and a right tree. In our example, we built an integer tree, but any type can be
 used. Now we can write recursive and polymorphic functions over these trees, by
 pattern matching on our new constructors:
 
 ```ocamltop
 let rec total = function
-  | Lf -> 0
-  | Br (l, x, r) -> total l + x + total r;;
+  | Leaf -> 0
+  | Node (l, x, r) -> total l + x + total r;;
 
 let rec flip = function
-  | Lf -> Lf
-  | Br (l, x, r) -> Br (flip r, x, flip l);;
+  | Leaf -> Leaf
+  | Node (l, x, r) -> Node (flip r, x, flip l);;
 ```
 
 Here, `flip` is polymorphic while `total` operates only on trees of type `int
@@ -230,11 +231,11 @@ than a simple list of pairs. It is known as a *binary search tree*:
 
 ```ocamltop
 let rec insert (k, v) = function
-  | Lf -> Br (Lf, (k, v), Lf)
-  | Br (l, (k', v'), r) ->
-      if k < k' then Br (insert (k, v) l, (k', v'), r) 
-      else if k > k' then Br (l, (k', v'), insert (k, v) r)
-      else Br (l, (k, v), r);;
+  | Leaf -> Node (Leaf, (k, v), Leaf)
+  | Node (l, (k', v'), r) ->
+      if k < k' then Node (insert (k, v) l, (k', v'), r) 
+      else if k > k' then Node (l, (k', v'), insert (k, v) r)
+      else Node (l, (k, v), r);;
 ```
 
 Similar functions can be written to look up values in a dictionary, to convert
@@ -374,7 +375,7 @@ example:
 ```ocaml
 Name ("/DeviceGray" | "/DeviceRGB" | "/DeviceCMYK") as n -> n
 
-Br (l, ((k, _) as pair), r) when k = k' -> Some pair
+Node (l, ((k, _) as pair), r) when k = k' -> Some pair
 ```
 
 ## Mutually recursive data types
