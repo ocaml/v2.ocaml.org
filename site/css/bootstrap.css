@@ -1731,13 +1731,13 @@ table {
 }
 .table {
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   font-family: Lato, sans-serif;
 }
 .table th,
 .table td {
   padding: 8px;
-  line-height: 24px;
+  line-height: 23px;
   text-align: center;
   vertical-align: center;
 }
@@ -1745,6 +1745,13 @@ table {
   border-top: 1px transparent solid;
   border-bottom: 1px transparent solid;
 }
+@media (min-width: 768px) and (max-width: 1024px){
+  .table th,
+  .table td {
+    line-height: 27px;
+  }
+}
+
 .table th {
   font-weight: bold;
   background: #EBEBEB;
@@ -5425,9 +5432,10 @@ body {
   margin-top: -10px;
 }
 .condensed .table {
-  border-top: none;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
+  border-top: 1px solid #c5c5c5;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  margin-top: -10px;
 }
 #package-tools {
   position: absolute;

@@ -150,12 +150,11 @@ let broken_feed name url reason =
   (* See Syndic.Opml1.of_atom for the convention on the length. *)
   Atom.set_self_link feed url ~length:(-1)
 
-let feed_of_url ~name url=
+let feed_of_url ~name url =
   try
     let xml = `String(0, Http.get(Uri.to_string url)) in
     let feed =
       try Atom.parse ~self:url ~xmlbase:url (Xmlm.make_input xml)
-         
       with Atom.Error.Error _ ->
         Rss2.parse ~xmlbase:url (Xmlm.make_input xml)
         |> Rss2.to_atom ~self:url in
@@ -174,36 +173,11 @@ let planet_feeds =
     try
       let i = String.index line '|' in
       let name = String.sub line 0 i in
-      let blog_i = String.index_from line (i+1) '|' in
-      let url = String.sub line (i+1) (blog_i - i - 1) in
+      let url = String.sub line (i+1) (String.length line - i - 1) in
       feed_of_url ~name (Uri.of_string url) :: acc
-    
     with Not_found -> acc in
   lazy(List.fold_left add_feed [] (Utils.lines_of_file planet_feeds_file))
 
-  (* add actual blog_links next to each blog *)
-  let blog_feeds=
-    let add_feed acc line =
-      try
-      let i = String.index line '|' in
-      let name = String.sub line 0 i in
-      let blog_i = String.index_from line (i+1) '|' in
-      let blog_url = String.sub line (blog_i+1) (String.length line - blog_i - 1) in 
-      (name,blog_url):: acc
-    
-    with Not_found -> acc in
-  List.fold_left add_feed [] (Utils.lines_of_file planet_feeds_file)
-
-  let lexicographic_compare (x,y) (x',y') =
-    let compare_fst = String.compare x x' in
-    if compare_fst <> 0 then compare_fst
-    else String.compare y y' 
-
-  (*sort the blog_feed_url according to name*)
-  let blogs = List.sort lexicographic_compare blog_feeds
-  let blogs= List.map (fun (_,x)->("href",x)) blogs
-  (*let blog-url,name = List.split blog_feeds*)
-  
 let get_opml () =
   let feeds = Lazy.force planet_feeds in
   let date_modified =
@@ -214,17 +188,12 @@ let get_opml () =
                                "OCaml Planet" in
   (* Broken feeds will be marked with [is_comment = true]. *)
   let opml = Opml1.of_atom ~head feeds in
-  (* Sort by name.  (FIXME: one may want to ignore spaces.) *)
-  let by_name o1 o2 = String.compare o1.Opml1.text o2.Opml1.text in
+  (* Sort by name. *)
+  let by_name o1 o2 = String.compare (String.trim o1.Opml1.text) (String.trim o2.Opml1.text) in
   { opml with Opml1.body = List.sort by_name opml.Opml1.body }
 
-
- let opml fname =
+let opml fname =
   Opml1.write (get_opml()) fname
-
-  let i=ref 0 
-  let incr_i() = 
-      i := !i + 1
 
 let html_contributors () =
   let open Opml1 in
@@ -235,17 +204,7 @@ let html_contributors () =
                    :: List.map (fun ((_,n), v) -> (n,v)) o.attrs in
        let attrs = if o.is_comment then ("class", "broken") :: attrs
                    else attrs in
-       
-        let attrs_b= if !i< List.length blogs then List.nth blogs !i :: [] 
-                     else [] in
-        let j = incr_i() in
-                            
-        Element("li", [], [Element("a", attrs, [Data o.text]);
-                          Element("span", ["class", "share"],
-                                    [Element("a", attrs_b,
-                                        [Element("img", ["src", "/img/chain-link-icon.png";
-                                         "alt", ""], []) ] )] )] )
-
+       Element("li", [], [Element("a", attrs, [Data o.text])])
     | None -> Element("li", [], [Data o.text]) in
   [Element("ul", [], List.map contrib_html (get_opml()).body)]
 
@@ -408,7 +367,7 @@ let html_date_of_post e =
   | Some d ->
      let date =
        let open Syndic.Date in
-       sprintf "%s %02d, %d" (string_of_month(month d)) (day d) (year d) in
+       sprintf "%s %02d, %d" (string_of_month(month d)) (day d) (year d) in
      [Data date]
 
 (* Transform a post [p] (i.e. story) into HTML. *)
@@ -423,9 +382,7 @@ let html_of_post e =
                      "title", "Go to the original post"] in
        let post =
          Netencoding.Url.encode (planet_full_url ^ "#" ^ title_anchor) in
-       let google = ["href", "https://plus.google.com/share?url="
-                             ^ (Netencoding.Url.encode url_orig);
-                     "target", "_blank"; "title", "Share on Google+"] in
+
        let fb = ["href", "https://www.facebook.com/share.php?u=" ^ post
                          ^ "&amp;t=" ^ (Netencoding.Url.encode title);
                  "target", "_blank"; "title", "Share on Facebook"] in
@@ -448,9 +405,7 @@ let html_of_post e =
                 Element("a", a_args,
                         [Element("img", ["src", "/img/chain-link-icon.png";
                                          "alt", ""], []) ])
-                :: Element("a", ("class", "googleplus") :: google,
-                           [Element("img", ["src", "/img/googleplus.png";
-                                            "alt", "Google+"], []) ])
+
                 :: Element("a", ("class", "facebook") :: fb,
                            [Element("img", ["src", "/img/facebook.png";
                                             "alt", "FB"], []) ])
@@ -458,7 +413,7 @@ let html_of_post e =
                            [Element("img", ["src", "/img/twitter.png";
                                             "alt", "Twitter"], []) ])
                 :: rss) ] in
-  let sep = Data " — " in
+  let sep = Data " — " in
   let additional_info = match html_author_of_post e, html_date_of_post e with
     | [], [] -> []
     | html_author, [] -> sep :: html_author
@@ -481,7 +436,7 @@ let html_of_post e =
 
 
 let li_of_post (e: Atom.entry) =
-  let sep = Data " — " in
+  let sep = Data " — " in
   let title = string_of_text_construct e.Atom.title in
   let title = match get_alternate_link e with
     | None -> [Data title]
