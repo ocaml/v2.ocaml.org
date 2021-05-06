@@ -128,6 +128,10 @@ Les paquets d'Arch Linux pour OCaml sont
 
 Sur macOS OCaml et/ou OPAM peuvent êtres installés grâce aux systèmes de gestion de paquets tiers.
 
+### Pack tout-en-un (OCaml + éditeur)
+
+Si vous êtes un débutant et que vous recherchez une installation simple, vous pouvez télécharger [ce pack tout-en-un sur l'App Store](https://apps.apple.com/app/ocaml-learn-code/id1547506826). Il contient un éditeur côte à côté avec une console interactive, gratuit et [open source](https://github.com/GroupeMINASTE/OCaml-iOS).
+
 ### [Homebrew](http://brew.sh/) [![Homebrew](https://repology.org/badge/version-only-for-repo/homebrew/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
