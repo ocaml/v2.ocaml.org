@@ -27,7 +27,11 @@ brew install opam
 port install opam
 ```
 
-**For Linux** the preferred way is to use your system's package manager on
+If you are a beginner and want an easy installation, you can download [this All-in-one package on the App Store](https://apps.apple.com/app/ocaml-learn-code/id1547506826). It contains an editor side by side with an interactive top level, is free and [open source](https://github.com/GroupeMINASTE/OCaml-iOS).
+
+**For Linux**
+
+The preferred way is to use your system's package manager on
 Linux (e.g `apt-get install opam` or similar). [Details of all installation
 methods.](https://opam.ocaml.org/doc/Install.html)
 
