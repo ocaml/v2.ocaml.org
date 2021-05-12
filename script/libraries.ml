@@ -1,7 +1,8 @@
 open Nethtml
 open Ezjsonm
-
-type html = Nethtml.document list
+open Lwt
+open Cohttp
+open Cohttp_lwt_unix
 
 let get_string key l =
   match List.assoc key l with
@@ -9,39 +10,77 @@ let get_string key l =
   | _ ->
     raise Not_found
 
-let library_html (link) =
-  try
-    let repo_data = Http.get link in
-    let json = Ezjsonm.value_from_string repo_data in
-    match json with
-    | `O link ->
-      let name = Ezjsonm.get_string (find json ["name"]) in
-      let html_url = Ezjsonm.get_string (find json ["html_url"]) in
-      let updated_at = Ezjsonm.get_string (find json ["updated_at"]) in
-      let description = Ezjsonm.get_string (find json ["description"]) in
-      let stargazers_count = Ezjsonm.get_int (find json ["stargazers_count"]) in
-      let stargazers_count = string_of_int stargazers_count in
-      let forks_count = Ezjsonm.get_int (find json ["forks_count"]) in
-      let forks_count = string_of_int forks_count in
-      let open_issues_count = Ezjsonm.get_int (find json ["open_issues_count"]) in
-      let open_issues_count = string_of_int open_issues_count in
+let get_query (owner, name) = {|
+  query {
+    repository(owner: "|} ^ owner ^ {|" , name: "|} ^ name ^{|") {
+      name description url stargazerCount forkCount issues (states:OPEN){ totalCount } pullRequests(last: 5) { totalCount nodes {title url state updatedAt } }
+    }
+  }
+|}
+
+let pull_requests_html2 (title, url, state, updatedAt ) =
+  let elem =
+    Element("tr", [],
+      [Element("td", [],
+        [Element("a", ["href", url; "target", "_BLANK"], [Data title])]
+      );
+      Element("td", ["class", "pr_state"], [Data state]);
+      Element("td", [], [Data updatedAt])]
+    ) in
+  elem
+
+let pull_requests_html prs =
+  match prs with
+  | `A links ->
+    let add_link l = function
+      | `O link ->
+        let title = get_string "title" link in
+        let url = get_string "url" link in
+        let state = get_string "state" link in
+        let updatedAt = get_string "updatedAt" link in
+        (title, url, state, updatedAt) :: l
+      | _ -> l in
+    List.map pull_requests_html2 (List.rev(List.fold_left add_link [] links))
+  | _ -> []
+
+let get_repo_data query =
+  let open Lwt.Infix in
+  let headers =
+    Cohttp.Header.of_list [ "Content-Type", "application/json"; "Accept", "application/json"; "Authorization", "Bearer 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" ]
+  in
+  let uri = Uri.of_string("https://api.github.com/graphql") in
+  let body = `O [("query", `String query)] in
+  let serialized_body = Ezjsonm.to_string body in
+  Cohttp_lwt_unix.Client.post ~headers~body:(`String serialized_body) uri >>= fun (resp, body) ->
+  Cohttp_lwt.Body.to_string body >|= fun repo_data ->
+  let json = Ezjsonm.from_string repo_data in
+  let json = Ezjsonm.find json [ "data"; "repository" ] in
+    let name = Ezjsonm.get_string (find json [ "name" ]) in
+    let name = String.capitalize_ascii name in
+    let url = Ezjsonm.get_string (find json [ "url" ]) in
+    let description = Ezjsonm.get_string (find json [ "description" ]) in
+    let stargazers_count = Ezjsonm.get_int (find json [ "stargazerCount" ]) in
+    let stargazers_count = string_of_int stargazers_count in
+    let forks_count = Ezjsonm.get_int (find json [ "forkCount" ]) in
+    let forks_count = string_of_int forks_count in
+    let open_issues_count = Ezjsonm.get_int (find json [ "issues"; "totalCount" ]) in
+    let open_issues_count = string_of_int open_issues_count in
+    let pr_count = Ezjsonm.get_int (find json [ "pullRequests"; "totalCount" ]) in
+    let pr_count = (pr_count - 5) in
+    let pr_count = string_of_int pr_count in
+    let pr_count =  "More " ^ pr_count ^ " PRs" in
+    let pr_url = url ^ "/pulls" in
+
+    let pull_requests = Ezjsonm.find json [ "pullRequests"; "nodes" ] in
       let elem =
         [Data "\n";
-          Element("section", ["class", "lib"],
-            [Element("div", ["class", "lib-details"],
-              [Element("h2", [], [Data name]);
-              Element("p", [], [Data description]);
-              Element("div", ["class", "lib-details2"],
-                [Element("a", ["href", html_url; "target", "_BLANK"],
-                  [Element("i", ["class", "fa fa-github"], []);
-                  Element("span", [], [Data "Github"])]
-                );
-                Element("span", ["class", "last-updated"], [Data updated_at])]
-              )]
-            );
-
-            Element("div", ["class", "lib-data"],
-              [Element("div", ["class", "lib-stat"],
+          Element("section", ["class", "wrapper"],
+            [Element("div", ["class", "lib"],
+              [Element("div", ["class", "lib-details"],
+                [Element("h2", [], [Element("a", ["href", url; "target", "_BLANK"], [Data name])]);
+                Element("p", [], [Data description])]
+              );
+              Element("div", ["class", "lib-stat"],
                 [Element("i", ["class", "fa fa-star"],
                   [Element("span", [], [Data stargazers_count])]
                 );
@@ -51,61 +90,53 @@ let library_html (link) =
                 Element("i", ["class", "fa fa-code-fork"],
                   [Element("span", [], [Data forks_count])]
                 )]
-              );
-              Element("div", ["class", "active-prs"],
-                [Element("button", ["id", "openModal"],
-                  [Element("span", ["class", "view-prs"], [Data "View Active PRs"]);
-                  Element("i", ["class", "fa fa-expand"], [])]
+              )]
+            );
+
+            Element("ul", ["class", "nav pr nav-tabs"],
+              [Element("li", ["class", "pr active"],
+                [Element("a", ["href", pr_url; "target", "_BLANK"], [Data pr_count])]
+              )]
+            );
+
+            Element("table", ["class", "table table-bordered table-condensed table-hover"],
+              [Element("thead", [],
+                [Element("tr", [],
+                  [Element("th", [], [Data "Title"]);
+                  Element("th", [], [Data "Status"]);
+                  Element("th", [], [Data "Last Updated"])]
                 )]
-              )];
-            )];
+              );
+              Element("tbody", [],
+                (* [Data "prssss"] *)
+                pull_requests_html pull_requests
+              )]
+            )]
           );
         Data "\n"] in
       elem
-    | _ -> []
-  with
-    | Http.Error s ->
-      let elem2 = [Data "\n";
-      Element("h2", [], [Data s]);
-      Data "\n"] in
-      elem2
+
+let get_repo_data (owner, name) =
+  Lwt_main.run (get_repo_data (get_query (owner, name)))
 
 let get_repo_links =
-  let fh = open_in "library_repos.json" in
+  let fh = open_in "library_repos_gql.json" in
   let json = Ezjsonm.value_from_channel fh in
   close_in fh;
   match json with
   | `A links ->
     let add_link l = function
       | `O link ->
-        let link = get_string "link" link in
-        (link) :: l
+        let owner = get_string "libraryOwner" link in
+        let name = get_string "libraryName" link in
+        (owner, name) :: l
       | _ -> l in
     List.rev(List.fold_left add_link [] links)
   | _ -> []
 
 let libraries () =
-  let elem = [Element("div", ["class", "libraries"], List.concat(List.map library_html get_repo_links))] in
+  let elem = [Element("div", ["class", "libraries"], List.concat(List.map get_repo_data get_repo_links))] in
   elem
-
-(* let modal_script =
-  let script =
-    "const openModalE = document.getElementById(openModal);
-    const closeModalE = document.getElementById(closeModal);
-    const pullRequestModalE = document.getElementById(pullRequestModal);
-    openModalE.addEventListener('click', () => {
-      pullRequestModalE.style.display = \"block\";
-    })
-    closeModalE.addEventListener('click', () => {
-      pullRequestModalE.style.display = \"none\";
-    })
-    window.addEventListener('click', () => {
-      if(event.target == pullRequestModalE) {
-        pullRequestModalE.style.display = \"none\";
-      }
-    })
-    \n" in
-  [Element("script", ["type", "text/javascript"], [Data script])]; *)
 
 let () =
   let action = ref `Libraries in

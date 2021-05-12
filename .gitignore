@@ -30,4 +30,3 @@ opam_update_list
 *.bz2
 *.ai
 last10_updates.json
-library_repos_gql.json
