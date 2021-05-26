@@ -414,7 +414,7 @@ let rec map f l =
 
 Notice the type of the function `f` in parentheses as part of the whole type.
 This `map` function, given a function of type `'a -> 'b` and a list of `'a`s,
-will build a list of `'b'`s. Sometimes `'a` and `'b` might be the same type, of
+will build a list of `'b`s. Sometimes `'a` and `'b` might be the same type, of
 course. Here are some examples of using `map`:
 
 ```ocamltop
