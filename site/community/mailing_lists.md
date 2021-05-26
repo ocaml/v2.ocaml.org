@@ -70,10 +70,10 @@ This is a real-time communication channel, where you can ask for help.
 There are about a hundred users hanging around; don't ask if you can
 ask, just ask, and be patient: not everyone is in the same timezone.
 
-The IRC Channel was previously on freenode but moved to [Libera](https://libera.chat/).
-There is no web interface yet.
+The IRC Channel was previously on freenode but moved to [Libera chat](https://libera.chat/). There is no web interface yet.
+No official presence is retained on freenode, and the #ocaml channel there is not affiliated with the OCaml community.
 
-Public channel logs are available at <http://irclog.whitequark.org/ocaml/>
+Public channel logs are available at <https://libera.irclog.whitequark.org/ocaml/>
 
 ### Discord Server
 
