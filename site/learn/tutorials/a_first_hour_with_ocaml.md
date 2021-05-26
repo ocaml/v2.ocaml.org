@@ -356,11 +356,11 @@ You can see how the pattern `h :: t` is used to deconstruct the list, naming
 its head and tail. If we omit a case, OCaml will notice and warn us:
 
 ```ocamltop
-let rec total l =
+let rec total_wrong l =
   match l with
-  | h :: t -> h + total t;;
+  | h :: t -> h + total_wrong t;;
 
-total [1; 3; 5; 3; 1];;
+total_wrong [1; 3; 5; 3; 1];;
 ```
 
 We shall talk about the "exception" which was caused by our ignoring the
@@ -505,13 +505,14 @@ a binary tree carrying any kind of data:
 
 ```ocamltop
 type 'a tree =
-  | Lf
-  | Br of 'a tree * 'a * 'a tree;;
+  | Leaf
+  | Node of 'a tree * 'a * 'a tree;;
 
-let t = Br (Br (Lf, 1, Lf), 2, Br (Br (Lf, 3, Lf), 4, Lf));;
+let t =
+  Node (Node (Leaf, 1, Leaf), 2, Node (Node (Leaf, 3, Leaf), 4, Leaf));;
 ```
 
-A `Lf` leaf holds no information, just like an empty list. A `Br` branch holds
+A `Leaf` holds no information, just like an empty list. A `Node` holds
 a left tree, a value of type `'a` and a right tree. Now we can write recursive
 and polymorphic functions over these trees, by pattern matching on our new
 constructors:
@@ -519,13 +520,13 @@ constructors:
 ```ocamltop
 let rec total t =
   match t with
-  | Lf -> 0
-  | Br (l, x, r) -> total l + x + total r;;
+  | Leaf -> 0
+  | Node (l, x, r) -> total l + x + total r;;
 
 let rec flip t =
   match t with
-  | Lf -> Lf
-  | Br (l, x, r) -> Br (flip r, x, flip l);;
+  | Leaf -> Leaf
+  | Node (l, x, r) -> Node (flip r, x, flip l);;
 ```
 
 Let's try our new functions out:
