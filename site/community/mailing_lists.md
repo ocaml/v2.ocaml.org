@@ -65,18 +65,15 @@ releases and new OCaml-related software, libraries, documents, etc.
 ## Discussion Groups
 
 ### IRC Channel - English
-*irc.freenode.net #ocaml*
+*irc.libera.chat #ocaml*
 This is a real-time communication channel, where you can ask for help.
 There are about a hundred users hanging around; don't ask if you can
-ask, just ask, and be patient: not everyone is in the same timezone. The
-IRC Channel can be accessed through a web interface or any regular IRC
-client.
+ask, just ask, and be patient: not everyone is in the same timezone.
+
+The IRC Channel was previously on freenode but moved to [Libera](https://libera.chat/).
+There is no web interface yet.
 
 Public channel logs are available at <http://irclog.whitequark.org/ocaml/>
-
-If you wish to use a web-based IRC client, you can use Freenode's
-webchat <https://webchat.freenode.net/>.
-
 
 ### Discord Server
 
