@@ -216,7 +216,7 @@ modification. Hence the name, “FFTW,” which stands for the somewhat
 whimsical title of “Fastest Fourier Transform in the West.”
 
 ## Liquidsoap
-[Liquidsoap](http://liquidsoap.fm/) is clearly well established in the
+[Liquidsoap](https://www.liquidsoap.info/) is clearly well established in the
 (internet) radio industry. Liquidsoap is well known as a tool with
 unique abilities, and has lots of users including big commercial ones.
 It is not developed as a business, but companies develop services or

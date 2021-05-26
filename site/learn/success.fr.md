@@ -251,7 +251,7 @@ plupart des architectures sans modification. D'où le nom « FFTW, » qui
 signifie « Fastest Fourier Transform in the West. »
 
 ## Liquidsoap
-[Liquidsoap](http://liquidsoap.fm/) est clairement bien établie dans 
+[Liquidsoap](https://www.liquidsoap.info/) est clairement bien établie dans 
 l’industrie de la radio (internet).Liquidsoap est bien connu comme un 
 outil avec des capacités uniques, et a beaucoup d’utilisateurs, y compris 
 les grands commerciaux.Il n’est pas développé comme une entreprise, mais les 
