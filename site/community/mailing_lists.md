@@ -72,6 +72,7 @@ ask, just ask, and be patient: not everyone is in the same timezone.
 
 The IRC Channel was previously on freenode but moved to [Libera chat](https://libera.chat/). There is no web interface yet.
 No official presence is retained on freenode, and the #ocaml channel there is not affiliated with the OCaml community.
+A web client is [available](https://web.libera.chat/#ocaml).
 
 Public channel logs are available at <https://libera.irclog.whitequark.org/ocaml/>
 
@@ -84,7 +85,7 @@ ability to have multiple channels. One of the channels is called #IRC,
 and automatically connects to the main IRC channel.
 
 ### IRC Channel - French
-*irc.freenode.net #ocaml-fr*
+*irc.libera.chat #ocaml-fr*
 As above, but for French speakers.
 
 ### About ML

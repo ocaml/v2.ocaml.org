@@ -62,6 +62,11 @@ demandez pas si vous pouvez poser une question, posez la question
 directement ; faites preuve de patience : tout le monde ne vit pas dans
 le même fuseau horaire. Vous pouvez accéder au canal de discussion au
 travers de n'importe quel client IRC.
+Un client web est [disponible](https://web.libera.chat/#ocaml).
+
+### irc.libera.chat #ocaml-fr
+*irc.libera.chat #ocaml-fr*
+Similaire à #ocaml mais francophone.
 
 ##  Groupes de News
 
