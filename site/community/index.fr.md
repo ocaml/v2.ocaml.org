@@ -77,8 +77,8 @@
             <h1 class="ruled">Obtenir du support</h1>
             <p>En plus des <a href="/community/mailing_lists.fr.html">listes de discussion</a>, vous
             pouvez poser des questions sur les canaux IRC OCaml
-            (<a href="irc://irc.freenode.net/ocaml">en</a
-			>, <a href="irc://irc.freenode.net/ocaml-fr">fr</a>).</p>
+            (<a href="irc://irc.libera.chat/ocaml">en</a
+			>, <a href="irc://irc.libera.chat/ocaml-fr">fr</a>).</p>
 
             <p>ou voir la <a href="support.fr.html">liste des fournisseurs</a> de support professionnel.</p>
 
@@ -166,7 +166,7 @@
                     <li><a href="http://www.reddit.com/r/ocaml/"><img src="/img/reddit-alien.png" title="OCaml subreddit on Reddit"></a></li>
                     <li><a href="http://www.slideshare.net/search/slideshow/?q=ocaml&qf=qf2&ud=any&ft=all&lang=**&sort=relevance"><img src="/img/slideshare-icon.png" title="OCaml mentions on SlideShare"></a></li>
                     <li><a href="http://www.meetup.com/find/?keywords=ocaml&radius=Infinity"><img src="/img/meetup-logo.gif" title="OCaml groups on Meetup"></a></li>
-                    <li><a href="irc://irc.freenode.net/#ocaml"><img src="/img/irc-graphic.png" title="#ocaml on freenode"></a></li>
+                    <li><a href="irc://irc.libera.chat/#ocaml"><img src="/img/irc-graphic.png" title="#ocaml on libera.chat"></a></li>
                     <li><a href="https://dev.to/t/ocaml"><img src="/img/devto-graphic.png" title="#ocaml on dev.to"></a></li>
                 </ul>
         </section>

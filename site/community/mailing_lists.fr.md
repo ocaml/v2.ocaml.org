@@ -53,7 +53,7 @@ documents, etc. concernant OCaml.
 
 ##  Canaux IRC 
 
-### irc.freenode.net #ocaml
+### irc.libera.chat #ocaml
 
 IRC est un moyen de communication en temps réel, où il est possible de
 demander de l'aide dans un salon de discussion. Il y a en moyenne une
@@ -61,9 +61,12 @@ centaine d'utilisateurs présents dans ce canal de discussion ; ne
 demandez pas si vous pouvez poser une question, posez la question
 directement ; faites preuve de patience : tout le monde ne vit pas dans
 le même fuseau horaire. Vous pouvez accéder au canal de discussion au
-travers de l'[interface
-web](http://webchat.freenode.net/?channels=#ocaml) ou à l'aide de
-n'importe quel client IRC.
+travers de n'importe quel client IRC.
+Un client web est [disponible](https://web.libera.chat/#ocaml).
+
+### irc.libera.chat #ocaml-fr
+*irc.libera.chat #ocaml-fr*
+Similaire à #ocaml mais francophone.
 
 ##  Groupes de News
 
