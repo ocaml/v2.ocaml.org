@@ -180,7 +180,7 @@ Dune can do the work of generating opam descriptions for us. We edit the
 (source (github johnwhitington/roman))
 (license BSD-2-Clause)
 (authors "John Whitington")
-(maintainers "contact@coherentgraphics.co.uk")
+(maintainers "example@example.org")
 
 (package
    (name roman)
