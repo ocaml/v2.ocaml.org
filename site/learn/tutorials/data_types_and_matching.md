@@ -1,241 +1,270 @@
-<!-- ((! set title Data Types and Matching !)) ((! set learn !)) -->
+<!-- ((! set title Custom Data Types !)) ((! set learn !)) -->
 
 *Table of contents*
 
-# Data Types and Matching
+# Custom Data Types
 
-## Structures
-C and C++ have the concept of a simple `struct`, short for structure.
-Java has classes which can be used to similar effect, albeit much more
-laboriously.
+In this tutorial we learn how to build our own types in OCaml, and how to write
+functions which process this new data.
 
-Consider this simple C structure:
+## Built-in compound types
 
-```C
-struct pair_of_ints {
-  int a, b;
-};
-```
-The simplest equivalent to this in OCaml is a **tuple** such as `(3, 4)`
-which has the type `int * int`. Unlike lists, tuples can contain
-elements of different types, so for example `(3, "hello", 'x')` has type
-`int * string * char`.
-
-A slightly more complex alternative way of writing a C struct is to use
-a **record**. Records, like C structs, allow you to name the elements.
-Tuples don't let you name the elements, but instead you have to remember
-the order in which they appear. Here is the equivalent record for our C
-struct above:
+We have already seen simple data types such as `int`, `float`, `string`, and
+`bool`.  Let's recap the built-in compound data types we can use in OCaml to
+combine such values. First, we have lists which are ordered collections of any
+number of elements of like type:
 
 ```ocamltop
-type pair_of_ints = {a : int; b : int};;
+[];;
+[1; 2; 3];;
+[[1; 2]; [3; 4]; [5; 6]];;
+[false; true; false];;
 ```
-That defines the type, and here is how we actually *create* objects of
-this type:
+
+Next, we have tuples, which collect a fixed number of elements together:
 
 ```ocamltop
-{a = 3; b = 5};;
+(5.0, 6.5);;
+(true, 0.0, 0.45, 0.73, "french blue");;
 ```
-Note that we use ":" in the type definition and "=" when creating
-objects of this type.
 
-Here are some examples of this typed into the
-[interactive toplevel](basics.html):
+We have records, which are like labeled tuples. They are defined by writing a
+type definition giving a name for the record, and names for each of its fields,
+and their types:
 
 ```ocamltop
-type pair_of_ints = {a : int; b : int};;
-{a = 3; b = 5};;
-{a = 3};;
+type point = {x : float; y : float};;
+let a = {x = 5.0; y = 6.5};;
+type colour = {websafe : bool; r : float; g : float; b : float; name : string};;
+let b = {websafe = true; r = 0.0; g = 0.45; b = 0.73; name = "french blue"};;
 ```
-So OCaml won't let you leave some fields in your structure undefined.
 
-## Variants (qualified unions and enums)
-A "qualified union" doesn't really exist in C, although there is support
-in the gcc compiler for it. Here is the pattern which one commonly uses
-for a qualified union in C:
-
-```C
-struct foo {
-  int type;
-#define TYPE_INT 1
-#define TYPE_PAIR_OF_INTS 2
-#define TYPE_STRING 3
-  union {
-    int i;        // If type == TYPE_INT.
-    int pair[2];  // If type == TYPE_PAIR_OF_INTS.
-    char *str;    // If type == TYPE_STRING.
-  } u;
-};
-```
-We've all seen this I should think, and it's not a pretty sight. For a
-start it's not safe: the programmer might make a mistake and
-accidentally use, say, the `u.i` field when in fact a string was stored
-in the structure. Also the compiler can't easily check if all possible
-types have been examined in a switch statement (you can use an `enum`
-type instead to solve this particular problem). The programmer might
-forget to set the `type` field, which would result in all sorts of fun
-and games. Furthermore, it's cumbersome.
-
-Here is the elegant and concise equivalent in OCaml:
+A record must contain all fields:
 
 ```ocamltop
-type foo =
-  | Nothing
-  | Int of int
-  | Pair of int * int
-  | String of string;;
-```
-That's the type definition. First part of each `|` separated part is
-called the constructor. It can be called anything, as long as it starts
-with a capital letter. If the constructor can be used to define a value,
-it's followed by the `of type` part, where type always starts with a
-lowercase letter. In the above example, Nothing is used as a constant
-and the other constructors are used with values.
-
-To actually *create* things of this type you would write:
-
-```ocaml
-Nothing
-Int 3
-Pair (4, 5)
-String "hello"
-...
-```
-Each of these expressions has type `foo`.
-
-Note that you use `of` when writing the type definition, but NOT when
-writing elements of the type.
-
-By extension, a simple C `enum` defined as:
-
-```C
-enum sign { positive, zero, negative };
-```
-can be written in OCaml as:
-
-```ocaml
-type sign = Positive | Zero | Negative
+let c = {name = "puce"};;
 ```
 
-###  Recursive variants (used for trees)
-Variants can be recursive, and one common use for this is to define tree
-structures. This is where the expressive power of functional
-languages come into their own:
+Records may be mutable:
 
 ```ocamltop
-type binary_tree =
-  | Leaf of int
-  | Tree of binary_tree * binary_tree;;
-```
-Here're some binary trees. For practice, try drawing them on paper.
+type person =
+  {first_name : string;
+   surname : string;
+   mutable age : int};;
 
-```ocaml
-Leaf 3
-Tree (Leaf 3, Leaf 4)
-Tree (Tree (Leaf 3, Leaf 4), Leaf 5)
-Tree (Tree (Leaf 3, Leaf 4), Tree (Tree (Leaf 3, Leaf 4), Leaf 5))
+let birthday p =
+  p.age <- p.age + 1;;
 ```
 
-###  Parameterized variants
-The binary tree in the previous section has integers at each leaf, but
-what if we wanted to describe the *shape* of a binary tree, but decide
-exactly what to store at each leaf node later? We can do this by using a
-parameterized (or polymorphic) variant, like this:
+Another mutable compound data type is the fixed-length array which, just as a
+list, must contain elements of like type. However, its elements may be accessed
+in constant time:
 
 ```ocamltop
-type 'a binary_tree =
-  | Leaf of 'a
-  | Tree of 'a binary_tree * 'a binary_tree;;
+let arr = [|1; 2; 3|];;
+arr.(0);;
+arr.(0) <- 0;;
+arr;;
 ```
-This is a general type. The specific type which stores integers at each
-leaf is called `int binary_tree`. Similarly the specific type which
-stores strings at each leaf is called `string binary_tree`. In the next
-example we type some instances into the top-level and allow the type
-inference system to show the types for us:
+
+In this tutorial, we will define our own compound data types, using the `type`
+keyword, and some of these built-in structures as building blocks.
+
+## A simple custom type
+
+We can define a new data type `colour` which can take one of four values.
 
 ```ocamltop
-Leaf "hello";;
-Leaf 3.0;;
+type colour = Red | Green | Blue | Yellow
 ```
-Notice how the type name is backwards. Compare this to the type names
-for lists, eg. `int list` etc.
 
-In fact it is no coincidence that `'a list` is written "backwards" in
-the same way. Lists are simply parameterized variant types with the
-following slightly strange definition:
-
-```ocaml
-type 'a list = [] | :: of 'a * 'a list   (* not real OCaml code *)
-```
-Actually the definition above doesn't quite compile. Here's a
-pretty-much equivalent definition:
+Our new type is called `colour`, and has four *constructors* `Red`, `Green`,
+`Blue` and `Yellow`. The name of the type must begin with a lower case letter,
+and the names of the constructors with upper case letters. We can use our new
+type anywhere a built-in type could be used:
 
 ```ocamltop
-type 'a equiv_list =
-  | Nil
-  | Cons of 'a * 'a equiv_list;;
-Nil;;
-Cons(1, Nil);;
-Cons(1, Cons(2, Nil));;
-```
-Recall earlier that we said lists could be written two ways, either with
-the simple syntactic sugar of `[1; 2; 3]` or more formally as
-`1 :: 2 :: 3 :: []`. If you look at the definition for `'a list` above,
-you may be able to see the reason for the formal definition.
+let additive_primaries = (Red, Green, Blue);;
 
-## Lists, structures and variants — summary
-
-```text
-OCaml name      Example type definition        Example usage
-
-list            int list                       [1; 2; 3]
-tuple           int * string                   (3, "hello")
-record          type pair =                    {a = 3; b = "hello"}
-                  {a: int; b: string}
-variant         type foo =
-                  | Int of int                 Int 3
-                  | Pair of int * string       Pair (3, "three")
-variant         type sign =
-                  | Positive                   Positive
-                  | Zero                       Zero
-                  | Negative
-parameterized   type 'a my_list =
-variant           | Empty                      Cons (1, Cons (2, Empty))
-                  | Cons of 'a * 'a my_list
+let pattern = [(1, Red); (3, Green); (1, Red); (2, Green)];;
 ```
 
-## Pattern matching (on datatypes)
-So one Really Cool Feature of functional languages is the ability to
-break apart data structures and do pattern matching on the data. This is
-again not really a "functional" feature - you could imagine some
-variation of C appearing which would let you do this, but it's a Cool
-Feature nonetheless.
+Notice the types inferred by OCaml for these expressions. We can pattern-match
+on our new type, just as with any built-in type:
 
-Let's start with a real program requirement: I wish to represent simple
-mathematical expressions like `n * (x + y)` and multiply them out
-symbolically to get `n * x + n * y`.
+```ocamltop
+let example c =
+  match c with
+  | Red -> "rose"
+  | Green -> "grass"
+  | Blue -> "sky"
+  | Yellow -> "banana";;
+```
+
+Notice the type of the function includes the name of our new type `colour`. We
+can make the function shorter and elide its parameter `c` by using the
+alternative `function` keyword which allows direct matching:
+
+```ocamltop
+let example = function
+  | Red -> "rose"
+  | Green -> "grass"
+  | Blue -> "sky"
+  | Yellow -> "banana";;
+```
+
+We can match on more than one case at a time too:
+
+```ocamltop
+let rec is_primary = function
+  | Red | Green | Blue -> true
+  | _ -> false
+```
+
+## Constructors with data
+
+Each constructor in a data type can carry additional information with it. Let's
+extend our `colour` type to allow arbitrary RGB triples, each element begin a
+number from 0 (no colour) to 1 (full colour): 
+
+```ocamltop
+type colour =
+  | Red
+  | Green
+  | Blue
+  | Yellow
+  | RGB of float * float * float;;
+
+[Red; Blue; RGB (0.5, 0.65, 0.12)];;
+```
+
+Types, just like functions, may be recursively-defined. We extend our data type
+to allow mixing of colours:
+
+```ocamltop
+type colour =
+  | Red
+  | Green
+  | Blue
+  | Yellow
+  | RGB of float * float * float
+  | Mix of float * colour * colour;;
+
+Mix (0.5, Red, Mix (0.5, Blue, Green));; 
+```
+
+Here is a function over our new `colour` data type:
+
+```ocamltop
+let rec rgb_of_colour = function
+  | Red -> (1.0, 0.0, 0.0)
+  | Green -> (0.0, 1.0, 0.0)
+  | Blue -> (0.0, 0.0, 1.0)
+  | Yellow -> (1.0, 1.0, 0.0)
+  | RGB (r, g, b) -> (r, g, b)
+  | Mix (p, a, b) ->
+      let (r1, g1, b1) = rgb_of_colour a in
+      let (r2, g2, b2) = rgb_of_colour b in
+      let mix x y = x *. p +. y *. (1.0 -. p) in
+        (mix r1 r2, mix g1 g2, mix b1 b2)
+```
+
+We can use records directly in the data type instead to label our components:
+
+```ocamltop
+type colour =
+  | Red
+  | Green
+  | Blue
+  | Yellow
+  | RGB of {r : float; g : float; b : float}
+  | Mix of {proportion : float; c1 : colour; c2 : colour}
+```
+
+## Example: trees
+
+Data types may be polymorphic as well as recursive. Here is an OCaml data type
+for a binary tree carrying any kind of data:
+
+```ocamltop
+type 'a tree =
+  | Leaf
+  | Node of 'a tree * 'a * 'a tree;;
+
+let t =
+  Node (Node (Leaf, 1, Leaf), 2, Node (Node (Leaf, 3, Leaf), 4, Leaf));;
+```
+
+Notice that we give the type parameter `'a` before the type name (if there is
+more than one, we write `('a, 'b)` etc).  A `Leaf` holds no information,
+just like an empty list. A `Node` holds a left tree, a value of type `'a`
+and a right tree. In our example, we built an integer tree, but any type can be
+used. Now we can write recursive and polymorphic functions over these trees, by
+pattern matching on our new constructors:
+
+```ocamltop
+let rec total = function
+  | Leaf -> 0
+  | Node (l, x, r) -> total l + x + total r;;
+
+let rec flip = function
+  | Leaf -> Leaf
+  | Node (l, x, r) -> Node (flip r, x, flip l);;
+```
+
+Here, `flip` is polymorphic while `total` operates only on trees of type `int
+tree`. Let's try our new functions out:
+
+```ocamltop
+let all = total t;;
+
+let flipped = flip t;;
+
+t = flip flipped;;
+```
+
+Instead of integers, we could build a tree of key-value pairs. Then, if we
+insist that the keys are unique and that a smaller key is always left of a
+larger key, we have a data structure for dictionaries which performs better
+than a simple list of pairs. It is known as a *binary search tree*:
+
+```ocamltop
+let rec insert (k, v) = function
+  | Leaf -> Node (Leaf, (k, v), Leaf)
+  | Node (l, (k', v'), r) ->
+      if k < k' then Node (insert (k, v) l, (k', v'), r) 
+      else if k > k' then Node (l, (k', v'), insert (k, v) r)
+      else Node (l, (k, v), r);;
+```
+
+Similar functions can be written to look up values in a dictionary, to convert
+a list of pairs to or from a tree dictionary and so on.
+
+## Example: mathematical expressions
+
+We wish to represent simple mathematical expressions like `n * (x + y)` and
+multiply them out symbolically to get `n * x + n * y`.
 
 Let's define a type for these expressions:
 
 ```ocamltop
 type expr =
-  | Plus of expr * expr        (* means a + b *)
-  | Minus of expr * expr       (* means a - b *)
-  | Times of expr * expr       (* means a * b *)
-  | Divide of expr * expr      (* means a / b *)
-  | Value of string            (* "x", "y", "n", etc. *)
+  | Plus of expr * expr        (* a + b *)
+  | Minus of expr * expr       (* a - b *)
+  | Times of expr * expr       (* a * b *)
+  | Divide of expr * expr      (* a / b *)
+  | Var of string              (* "x", "y", etc. *)
 ```
+
 The expression `n * (x + y)` would be written:
 
 ```ocamltop
-Times (Value "n", Plus (Value "x", Value "y"))
+Times (Var "n", Plus (Var "x", Var "y"))
 ```
-Let's write a function which prints out
-`Times (Value "n", Plus (Value "x", Value "y"))` as something more like
-`n * (x + y)`. Actually, I'm going to write two functions, one which
-converts the expression to a pretty string, and one which prints it out
-(the reason is that I might want to write the same string to a file and
-I wouldn't want to repeat the whole of the function just for that).
+
+Let's write a function which prints out `Times (Var "n", Plus (Var "x", Var
+"y"))` as something more like `n * (x + y)`.
 
 ```ocamltop
 let rec to_string e =
@@ -248,31 +277,22 @@ let rec to_string e =
 	 "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
   | Divide (left, right) ->
 	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
-  | Value v -> v ;;
+  | Var v -> v ;;
   
 let print_expr e =
   print_endline (to_string e);;
 ```
 
-(NB: The `^` operator concatenates strings.)
-
-Here's the print function in action:
+(The `^` operator concatenates strings). We separate the function into two so
+that our `to_string` function is usable in other contexts. Here's the
+`print_expr` function in action:
 
 ```ocamltop
-print_expr (Times (Value "n", Plus (Value "x", Value "y")));;
+print_expr (Times (Var "n", Plus (Var "x", Var "y")));;
 ```
-The general form for pattern matching is:
 
-```ocaml
-match value with
-| pattern -> result
-| pattern -> result
-  ...
-```
-The patterns on the left hand side can be simple, as in the `to_string`
-function above, or complex and nested. The next example is our function
-to multiply out expressions of the form `n * (x + y)` or `(x + y) * n`
-and for this we will use a nested pattern:
+We can write a function to multiply out expressions of the form `n * (x + y)`
+or `(x + y) * n` and for this we will use a nested pattern:
 
 ```ocamltop
 let rec multiply_out e =
@@ -291,33 +311,33 @@ let rec multiply_out e =
      Times (multiply_out left, multiply_out right)
   | Divide (left, right) ->
      Divide (multiply_out left, multiply_out right)
-  | Value v -> Value v;;
+  | Var v -> Var v;;
 ```
+
 Here it is in action:
 
 ```ocamltop
-print_expr (multiply_out (Times (Value "n", Plus (Value "x", Value "y"))))
+print_expr (multiply_out (Times (Var "n", Plus (Var "x", Var "y"))))
 ```
+
 How does the `multiply_out` function work? The key is in the first two
 patterns. The first pattern is `Times (e1, Plus (e2, e3))` which matches
-expressions of the form `e1 * (e2 + e3)`. Now look at the right hand
-side of this first pattern match, and convince yourself that it is the
-equivalent of `(e1 * e2) + (e1 * e3)`.
-
-The second pattern does the same thing, except for expressions of the
-form `(e1 + e2) * e3`.
+expressions of the form `e1 * (e2 + e3)`. Now look at the right hand side of
+this first pattern match, and convince yourself that it is the equivalent of
+`(e1 * e2) + (e1 * e3)`. The second pattern does the same thing, except for
+expressions of the form `(e1 + e2) * e3`.
 
 The remaining patterns don't change the form of the expression, but they
 crucially *do* call the `multiply_out` function recursively on their
-subexpressions. This ensures that all subexpressions within the
-expression get multiplied out too (if you only wanted to multiply out
-the very top level of an expression, then you could replace all the
-remaining patterns with a simple `e -> e` rule).
+subexpressions. This ensures that all subexpressions within the expression get
+multiplied out too (if you only wanted to multiply out the very top level of an
+expression, then you could replace all the remaining patterns with a simple `e
+-> e` rule).
 
-Can we do the reverse (ie. factorizing out common subexpressions)? We
-sure can! (But it's a bit more complicated). The following version only
-works for the top level expression. You could certainly extend it to
-cope with all levels of an expression and more complex cases:
+Can we do the reverse (i.e. factorizing out common subexpressions)? We can!
+(But it's a bit more complicated). The following version only works for the top
+level expression. You could certainly extend it to cope with all levels of an
+expression and more complex cases:
 
 ```ocamltop
 let factorize e =
@@ -328,15 +348,14 @@ let factorize e =
      Times (Plus (e1, e3), e4)
   | e -> e;;
 
-factorize (Plus (Times (Value "n", Value "x"),
-                 Times (Value "n", Value "y")));;
+factorize (Plus (Times (Var "n", Var "x"),
+                 Times (Var "n", Var "y")));;
 ```
 
-The factorize function above introduces another couple of features. You
-can add what are known as **guards** to each pattern match. A guard is
-the conditional which follows the `when`, and it means that the pattern
-match only happens if the pattern matches *and* the condition in the
-`when`-clause is satisfied.
+The factorize function above introduces another couple of features. You can add
+what are known as *guards* to each pattern match. A guard is the conditional
+which follows the `when`, and it means that the pattern match only happens if
+the pattern matches *and* the condition in the `when`-clause is satisfied.
 
 ```ocaml
 match value with
@@ -344,41 +363,106 @@ match value with
 | pattern [ when condition ] -> result
   ...
 ```
-The second feature is the `=` operator which tests for "structural
-equality" between two expressions. That means it goes recursively into
-each expression checking they're exactly the same at all levels down.
 
-OCaml is able to check at compile time that you have covered all
-possibilities in your patterns. I changed the type definition of
-`type expr` above by adding a `Product` variant:
+The second feature is the `=` operator which tests for "structural equality"
+between two expressions. That means it goes recursively into each expression
+checking they're exactly the same at all levels down.
 
-```ocamltop
-type expr = Plus of expr * expr      (* means a + b *)
-          | Minus of expr * expr     (* means a - b *)
-          | Times of expr * expr     (* means a * b *)
-          | Divide of expr * expr    (* means a / b *)
-          | Product of expr list     (* means a * b * c * ... *)
-          | Value of string          (* "x", "y", "n", etc. *);;
-```
-I then recompiled the `to_string` function without changing it. OCaml
-reported the following warning:
+Another feature which is useful when we build more complicated nested patterns
+is the `as` keyword, which can be used to name part of an expression. For
+example:
 
-```ocamltop
-let rec to_string e =
-  match e with
-  | Plus (left, right) ->
-     "(" ^ to_string left ^ " + " ^ to_string right ^ ")"
-  | Minus (left, right) ->
-     "(" ^ to_string left ^ " - " ^ to_string right ^ ")"
-  | Times (left, right) ->
-	 "(" ^ to_string left ^ " * " ^ to_string right ^ ")"
-  | Divide (left, right) ->
-	 "(" ^ to_string left ^ " / " ^ to_string right ^ ")"
-  | Value v -> v ;;
+```ocaml
+Name ("/DeviceGray" | "/DeviceRGB" | "/DeviceCMYK") as n -> n
+
+Node (l, ((k, _) as pair), r) when k = k' -> Some pair
 ```
 
-As you see, the compiler tells you that the new `Product` constructor
-was not handled.
+## Mutually recursive data types
 
-Exercise: Extend the pattern matching with a `Product` case so
-`to_string` compiles without warning.
+Data types may be mutually-recursive when declared with `and`:
+
+```ocamltop
+type t = A | B of t' and t' = C | D of t;;
+```
+
+One common use for mutually-recursive data types is to *decorate* a tree, by
+adding information to each node using mutually-recursive types, one of which is
+a tuple or record. For example:
+
+```ocamltop
+type t' = Int of int | Add of t * t
+
+and t = {annotation : string; data : t'}
+```
+
+Values of such mutually-recursive data type are manipulated by accompanying
+mutually-recursive functions:
+
+```ocamltop
+let rec sum_t' = function
+  | Int i -> i
+  | Add (i, i') -> sum_t i + sum_t i'
+
+and sum_t {annotation; data} =
+  if annotation <> "" then Printf.printf "Touching %s\n" annotation;
+  sum_t' data
+```
+
+## A note on tupled constructors
+
+There is a difference between `RGB of float * float * float` and `RGB of (float
+* float * float)`. The first is a constructor with three pieces of data
+associated with it, the second is a constructor with one tuple associated with
+it. There are two ways this matters: the memory layout differs between the two
+(a tuple is an extra indirection), and the ability to create or match using a
+tuple:
+
+```ocamltop
+type t = T of int * int;;
+
+type t2 = T2 of (int * int);;
+
+let pair = (1, 2);;
+
+T2 pair;;
+
+T pair;;
+
+match T2 (1, 2) with T2 x -> fst x;;
+
+match T (1, 2) with T x -> fst x;;
+```
+
+Note, however, that OCaml allows us to use the always-matching `_` in either
+version:
+
+```ocamltop
+match T2 (1, 2) with T2 _ -> 0;;
+
+match T (1, 2) with T _ -> 0;;
+```
+
+## Types and modules
+
+Often, a module will provide a single type and operations on that type. For
+example, a module for a file format like PNG might have the following `png.mli`
+interface:
+
+```ocaml
+type t
+
+val of_file : filename -> t
+
+val to_file : t -> filename -> unit
+
+val flip_vertical : t -> t
+
+val flip_horizontal : t -> t
+
+val rotate : float -> t -> t
+```
+
+Traditionally, we name the type `t`. In the program using this library, it
+would then be `Png.t` which is shorter, reads better than `Png.png`, and avoids
+confusion if the library also defines other types.

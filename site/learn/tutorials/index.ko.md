@@ -10,8 +10,7 @@
 ((! get begin_two_columns !))
 
 * [Up and Running](up_and_running.html)
-* [기본사항](basics.ko.html) 
-* [OCaml 프로그램의 구조](structure_of_ocaml_programs.ko.html)
+* [기본사항](a_first_hour_with_ocaml.html) 
 * 모듈(Modules) - [en](modules.html)
 * 맵(Maps) (Dictionaries) - [en](map.html)
 * 셋(Sets) - [en](set.html)

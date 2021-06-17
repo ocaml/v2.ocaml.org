@@ -549,6 +549,16 @@ ul.translations:after { content: "]"; }
     height: 0px;
   }
 }
+.center{
+display: table;
+text-align: center;
+width: 100%;
+height:53vh;
+}
+.head{
+display: table-cell;
+vertical-align:middle;
+}
 
 /* Footer
  ***********************************************************************/
@@ -605,12 +615,24 @@ ul.translations:after { content: "]"; }
     text-align: center;
     padding-right: 5%;
   }
+  .books-span a img{
+    width: 100%;
+  }
+  .books-span{
+    margin: 5px;
+  }
+}
+.books-row{
+  display: flex;
 }
 @media (max-width: 480px) {
   #footer .column {
     width: 98%;
     margin-right: 0px;
     text-align: left;
+  }
+  .books-span a img{
+    width: 100%;
   }
 }
 #footer .entry {

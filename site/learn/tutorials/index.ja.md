@@ -12,8 +12,7 @@
 ### はじめに
 
 * [Up and Running](up_and_running.html)
-* [はじめの一歩](basics.ja.html) — 基本中の基本
-* [OCamlプログラムの構造](structure_of_ocaml_programs.ja.html)
+* [はじめの一歩](a_first_hour_with_ocaml.html) — 基本中の基本
 * [モジュール](modules.ja.html)
 * ファイル名と拡張子 - [en](filenames.html)
 * プログラミングのスタイル — [en](guidelines.html)
@@ -50,8 +49,6 @@
 ### ビルドシステム
 
 * [OCamlプログラムをコンパイルする](compiling_ocaml_projects.ja.html)
-* OCamlbuild — [en](ocamlbuild/)
-* OASISを使ったOCamlプロジェクトのセットアップ — [en](setting_up_with_oasis.html)
 
 ### 高度なトピックス
 

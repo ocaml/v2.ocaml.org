@@ -10,6 +10,8 @@ as described in [Up and Running](up_and_running.html).
 Alternatively, you may follow almost all of it by running OCaml in your browser
 using [TryOCaml](http://try.ocamlpro.com), with no installation required.
 
+On macOS/iOS/iPadOS, you can download this [all-in-one package on the App Store](https://apps.apple.com/app/ocaml-learn-code/id1547506826). It contains an editor side-by-side with an interactive top level, and is free and [open source](https://github.com/GroupeMINASTE/OCaml-iOS).
+
 ## Running OCaml programs
 
 To try small OCaml expressions, you can use an interactive top level, or REPL
@@ -356,11 +358,11 @@ You can see how the pattern `h :: t` is used to deconstruct the list, naming
 its head and tail. If we omit a case, OCaml will notice and warn us:
 
 ```ocamltop
-let rec total l =
+let rec total_wrong l =
   match l with
-  | h :: t -> h + total t;;
+  | h :: t -> h + total_wrong t;;
 
-total [1; 3; 5; 3; 1];;
+total_wrong [1; 3; 5; 3; 1];;
 ```
 
 We shall talk about the "exception" which was caused by our ignoring the
@@ -414,7 +416,7 @@ let rec map f l =
 
 Notice the type of the function `f` in parentheses as part of the whole type.
 This `map` function, given a function of type `'a -> 'b` and a list of `'a`s,
-will build a list of `'b'`s. Sometimes `'a` and `'b` might be the same type, of
+will build a list of `'b`s. Sometimes `'a` and `'b` might be the same type, of
 course. Here are some examples of using `map`:
 
 ```ocamltop
@@ -505,13 +507,14 @@ a binary tree carrying any kind of data:
 
 ```ocamltop
 type 'a tree =
-  | Lf
-  | Br of 'a tree * 'a * 'a tree;;
+  | Leaf
+  | Node of 'a tree * 'a * 'a tree;;
 
-let t = Br (Br (Lf, 1, Lf), 2, Br (Br (Lf, 3, Lf), 4, Lf));;
+let t =
+  Node (Node (Leaf, 1, Leaf), 2, Node (Node (Leaf, 3, Leaf), 4, Leaf));;
 ```
 
-A `Lf` leaf holds no information, just like an empty list. A `Br` branch holds
+A `Leaf` holds no information, just like an empty list. A `Node` holds
 a left tree, a value of type `'a` and a right tree. Now we can write recursive
 and polymorphic functions over these trees, by pattern matching on our new
 constructors:
@@ -519,13 +522,13 @@ constructors:
 ```ocamltop
 let rec total t =
   match t with
-  | Lf -> 0
-  | Br (l, x, r) -> total l + x + total r;;
+  | Leaf -> 0
+  | Node (l, x, r) -> total l + x + total r;;
 
 let rec flip t =
   match t with
-  | Lf -> Lf
-  | Br (l, x, r) -> Br (flip r, x, flip l);;
+  | Leaf -> Leaf
+  | Node (l, x, r) -> Node (flip r, x, flip l);;
 ```
 
 Let's try our new functions out:

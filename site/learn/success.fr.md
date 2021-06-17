@@ -1,10 +1,36 @@
 <!-- ((! set title Quelques succès !)) ((! set learn !)) -->
 
+*Table of contents*
 # Quelques succès
-*Contenu*
+
+## Jane Street
+[<img src='/img/users/jane-street.jpg' alt='Jane Street'
+style='clear: left; margin-right: 10px' />](http://janestreet.com/technology/)
+
+Jane Street est une société de négoce propriétaire qui utilise OCaml comme sa 
+plate-forme de développement primaire.Notre exploitation fonctionne à grande 
+échelle, générant des milliards de dollars de transactions chaque jour à partir 
+de nos bureaux de Hong Kong,Londres et New York, avec des stratégies qui couvrent 
+de nombreuses classes d’actifs, fuseaux horaires et régimes réglementaires.
+
+Presque tous nos logiciels sont écrits dans OCaml, du code de recherche statistique 
+aux outils d’administration des systèmes en retour de notre infrastructure de trading 
+en temps réel.Le système de type d’OCaml agit comme un ensemble riche et bien intégré 
+d’outils d’analyse statique qui aident à améliorer la qualité de notre code, en 
+attrapant les bogues le plus tôt possible.Chaque jour, des milliards de dollars de 
+transactions passent par nos systèmes, ce qui fait en sorte que les choses se passent 
+bien.Dans le même temps, OCaml est très productif, nous aidant à nous adapter rapidement 
+à l’évolution des conditions du marché.
+
+Jane Street contribue aux bibliothèques open-source à l’ensemble de la communauté depuis 
+de nombreuses années, y compris Core, notre bibliothèque standard alternative, Async, une 
+bibliothèque coopérative de concurrence, et plusieurs extensions syntaxiques comme binprot 
+et sexplib.Tous ces éléments peuvent être trouvés à <http://janestreet.github.io>.Au total, 
+nous avons ouvert plus de 200k lignes de code.
 
 ## Le synchroniseur de fichiers Unison
-[<img src='/img/unison-thumb.jpg' alt='Screenshot'  title='Screenshot of Unison&#39;s main window' />](/img/unison.png)
+[<img src='/img/unison-thumb.jpg' style='clear: left; margin-right: 10px'
+ alt='Screenshot'  title='Screenshot of Unison&#39;s main window' />](/img/unison.png)
 
 [Unison](http://www.cis.upenn.edu/%7Ebcpierce/unison/) est un outil de
 synchronisation de fichiers populaire, qui fonctionne sous Windows et
@@ -37,7 +63,9 @@ unique parmi les projets de grande taille écrits en OCaml, d'avoir été
 L'adoption d'OCaml a été comme une bouffée d'air pur. »
 
 ## Le client pair-à-pair MLdonkey
-[<img src='/img/mldonkey-thumb.jpg' alt='Screenshot'  title='Screenshot of one of MLdonkey&#39;s windows' />](/img/mldonkey.jpg)
+[<img src='/img/mldonkey-thumb.jpg'
+style='clear: left; margin-right: 10px'
+alt='Screenshot'  title='Screenshot of one of MLdonkey&#39;s windows' />](/img/mldonkey.jpg)
 
 [MLdonkey](http://mldonkey.sourceforge.net/Main_Page) est un client
 pair-à-pair multi-plateformes et multi-réseaux. Il a été le premier
@@ -61,8 +89,10 @@ tâche de fond et sans surveillance humaine, et peut être contrôlé à
 l'aide d'une interface au choix parmi trois : GTK, web et telnet. »
 
 ## Le Langage de Modélisation Financière de LexiFi
-[<img src='/img/lexifi-thumb.jpg alt='Screenshot'
-title='A report produced by LexiFi software' />](/img/lexifi.jpg)
+[<img src='/img/lexifi-thumb.jpg'
+style='clear: left; margin-right: 10px'
+alt='Screenshot'  title='A report produced by LexiFi software'
+/>](/img/lexifi.jpg)
 
 Développé par la société [LexiFi](http://www.lexifi.com/), le Langage de
 Modélisation Financière (MLFi) est le premier langage formel capable de
@@ -118,7 +148,8 @@ l'environnement d'exécution sont les principales raisons de notre
 intérêt pour OCaml. »
 
 ## L'assistant de preuve Coq
-[<img src='/img/coq-thumb.jpg' alt='Screenshot'  title='Screenshot of Coq&#39;s integrated development environment' />](/img/coq.jpg)
+[<img src='/img/coq-thumb.jpg' alt='Screenshot'  style='clear: left; margin-right: 10px'
+title='Screenshot of Coq&#39;s integrated development environment' />](/img/coq.jpg)
 
 *[Jean-Christophe Filliâtre](http://www.lri.fr/%7Efilliatr/) (CNRS), un
 des développeurs de Coq :* « L'outil [Coq](http://coq.inria.fr/) est un
@@ -139,7 +170,8 @@ fault »), ce qui est indispensable à un outil dont le but premier est
 justement la rigueur. »
 
 ## L'analyseur statique ASTRÉE
-[<img src='/img/astree.gif' alt='A340'  title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](https://www.airbus.com/aircraft/previous-generation-aircraft/a340-family.html)
+[<img src='/img/astree.gif' alt='A340' style='clear: left; margin-right: 10px'
+ title='ASTRÉE has been used to certify the Airbus A340 flight control software' />](https://www.airbus.com/aircraft/previous-generation-aircraft/a340-family.html)
 
 *[David Monniaux](http://www-verimag.imag.fr/~monniaux/) (CNRS), membre
 du projet ASTRÉE :* « [ASTRÉE](http://www.astree.ens.fr/) est un
@@ -197,6 +229,9 @@ language and robustness of its implementation provided a great
 productivity boost.”
 
 ## FFTW
+<img src='/img/fftw-thumb.png' alt='FFTW'
+style='clear: left; margin-right: 10px' />
+
 [FFTW](http://www.fftw.org/) est une librairie C [très
 rapide](http://www.fftw.org/benchfft/) permettant d'effectuer des
 Transformées de Fourier Discrètes (DFT). Elle emploie un puissant
@@ -215,4 +250,17 @@ sont portables : un même programme donnera de bons résultats sur la
 plupart des architectures sans modification. D'où le nom « FFTW, » qui
 signifie « Fastest Fourier Transform in the West. »
 
+## Liquidsoap
+[Liquidsoap](https://www.liquidsoap.info/) est clairement bien établie dans 
+l’industrie de la radio (internet).Liquidsoap est bien connu comme un 
+outil avec des capacités uniques, et a beaucoup d’utilisateurs, y compris 
+les grands commerciaux.Il n’est pas développé comme une entreprise, mais les 
+entreprises développent des services ou des logiciels sur le dessus de celui-ci.
+Par exemple, Sourcefabric développe et vend du temps d’antenne au-dessus de Liquidsoap.
 
+## Haxe
+[Haxe](http://haxe.org/)  est une boîte à outils open source basée sur un 
+langage de programmation moderne, de haut niveau, strictement typé, un 
+compilateur croisé, une bibliothèque standard multiplateforme complète et 
+des moyens d’accéder aux capacités natives de chaque plate-forme.Le compilateur 
+Haxe a été entièrement écrit dans OCaml.
