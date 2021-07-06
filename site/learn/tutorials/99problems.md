@@ -2335,7 +2335,15 @@ may want to define a similar type using sets instead of lists.
  **adjacency-list form**. In our example:
 
     ```ocaml
-    (* example pending *)
+   let example_graph = [
+               ('b', ['c';'f']);
+               ('c', ['f';'b']);
+               ('d', []);
+               ('f', ['k';'b';'c']);
+               ('g', ['h']);
+               ('h', ['g']);
+               ('k', ['f'])
+            ]
     ```
 
 * The representations we introduced so far well suited for automated
