@@ -1,0 +1,6 @@
+[
+  {"libraryOwner": "ocaml", "libraryName": "ocaml"},
+  {"libraryOwner": "ocaml", "libraryName": "merlin"},
+  {"libraryOwner": "ocaml", "libraryName": "dune"},
+  {"libraryOwner": "ocaml", "libraryName": "ocaml-lsp"}
+]

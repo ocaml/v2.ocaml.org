@@ -690,3 +690,108 @@ html.svg img.svg { display: inline; }
 html.svg img.png { display: none; }
 
 .brand img.svg { width: 131px;  height: 36px; }
+
+/* Libraries Page Styles
+ ***********************************************************************/
+/* Libraries Page Styles */
+.wrapper {
+  box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 3%), 0 6.7px 5.3px rgb(0 0 0 / 5%), 0 25px 50px -12px rgb(0 0 0 / 15%);
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+.lib {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  margin-bottom: 20px;
+}
+.lib-wrapper a {
+  text-decoration: none;
+  color: #000;
+}
+.lib-stat {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: center;
+}
+.lib-stat i {
+  display: block;
+  font-size: 2rem;
+  color: #b15b01;
+  box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 3%), 0 6.7px 5.3px rgb(0 0 0 / 5%), 0 25px 50px -12px rgb(0 0 0 / 15%);
+  margin: 0 15px;
+  padding: 10px 15px;
+  background-color: #fff;
+  width: 100%;
+}
+.lib-stat i:first-child {
+  margin-left: 0;
+}
+.lib-stat i:last-child {
+  margin-right: 0;
+}
+.lib-stat span {
+  display: block;
+  font-size: .8rem;
+  font-weight: 700;
+  color: #000;
+  margin-top: 5px
+}
+.lib-details h2 {
+  font-size: 2rem;
+  margin: 0;
+  margin-bottom: 20px;
+  color: #b15b01;
+  text-decoration: underline;
+}
+.lib-details p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  margin: 0;
+}
+.pr.nav,
+.pr.active {
+  margin-bottom: 0 !important;
+}
+.pr.active {
+  float: right;
+}
+.pr.active a {
+  margin-right: 0 !important;
+  cursor: pointer !important;
+}
+.pr.active a:hover,
+.pr.active a:focus {
+  color: #ccc;
+  text-decoration: underline;
+}
+.table-bordered td:first-child {
+  text-align: left;
+}
+
+@media (min-width: 600px) {
+  .lib-stat span {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 980px) {
+  .wrapper {
+    margin: 50px 0;
+  }
+  .lib {
+    grid-template-columns: 70% 28%;
+  }
+  .lib-stat,
+  .active-prs {
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 0;
+  }
+  .lib-stat span {
+    font-size: 1.8rem;
+  }
+}
