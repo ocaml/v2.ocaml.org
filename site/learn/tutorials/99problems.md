@@ -2785,7 +2785,87 @@ equations 2 - 3 + 5 + 7 = 11 or 2 = (3 * 5 + 7) / 11 (and ten others!).
 <!-- SOLUTION -->
 
 ```ocaml
-(* example pending *);;
+(* Simple bruteforce algorithm *)
+(* Produces duplicates sometimes *)
+type operand = Plus | Minus | Mult | Div;;
+type rat = (int * int);;
+type btree = Leaf of rat | Node of operand * btree * btree | Root of btree * btree;;
+
+let rat_add (a, b) (c, d) = (a*d+c*b, b*d);;
+let rat_sub a (c, d) = rat_add a (-c, d);;
+let rat_mul (a, b) (c, d) = (a*c, b*d);;
+let rat_div a (c, d) = rat_mul a (d, c);;
+let rat_eql (a, b) (c, d) = (a*d) == (c*b);;
+
+let rec convert_leafs arr = match arr with
+  | [] -> []
+  | a :: [] -> Leaf (a, 1) :: []
+  | a :: rest -> Leaf (a, 1) :: convert_leafs rest;;
+
+let rec windowing op pre arr = match arr with
+  | [] -> []
+  | a :: [] -> []
+  | a :: b :: rest -> (List.append pre (Node(op, a, b) :: rest)) :: (windowing op (List.append pre [a]) (b :: rest));;
+
+let all_ops_window arr = List.concat
+                           [windowing Plus [] arr;
+                            windowing Minus [] arr;
+                            windowing Mult [] arr;
+                            windowing Div [] arr];;
+
+let rec make_trees arr = match arr with
+  | [] -> []
+  | [a; b] :: rest -> [Root(a, b)] :: (make_trees rest)
+  | a :: rest -> List.append (all_ops_window a) (make_trees rest);;
+
+let rec exhaust_tree arr = match arr with
+  | [Root(a, b)] :: rest -> [Root(a, b)] :: rest
+  | a -> exhaust_tree (make_trees a);;
+
+let node_fun n = match n with
+  | Plus -> rat_add
+  | Minus -> rat_sub
+  | Mult -> rat_mul
+  | Div -> rat_div;;
+
+let rec calc_tree t = match t with
+  | Node(op, a, b) ->
+     Option.bind (calc_tree a) (fun ctaa ->
+     let ctb = calc_tree b in
+         (match ctb with
+         | None -> None
+         | Some (0, _) -> (match op with
+                     | Div -> None
+                     | _ -> Some ((node_fun op) ctaa (0, 1)))
+         | Some ctba -> Some ((node_fun op) ctaa ctba)))
+  | Leaf(a) -> Some a
+  | _ -> None;;
+
+let check_tree t = match t with
+  | Root(a, b) -> (match calc_tree a with
+                   | None -> false
+                   | Some x -> (match calc_tree b with
+                                | None -> false
+                                | Some y -> rat_eql x y))
+  | _ -> false;;
+
+let unpack_and_check tar = match tar with
+  | [t] -> check_tree t
+  | _ -> false;;
+
+let get_correct input = List.filter unpack_and_check (exhaust_tree [(convert_leafs input)]);;
+
+(* Some utility functions *)
+let op_to_text op = match op with
+  | Plus -> "+"
+  | Minus -> "-"
+  | Mult -> "*"
+  | Div -> "/";;
+
+let rec tree_to_text t = match t with
+  | Root(a, b) -> String.concat " " [tree_to_text a; "="; tree_to_text b]
+  | Node(op, a, b) -> String.concat " " ["("; tree_to_text a; op_to_text op; tree_to_text b; ")"]
+  | Leaf((a,b)) -> Float.to_string (Int.to_float a /. Int.to_float b);;
 ```
 
 #### 95. English number words. (*medium*)
