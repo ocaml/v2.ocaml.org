@@ -29,4 +29,5 @@ script/generate_opam_update_list
 opam_update_list
 *.bz2
 *.ai
-*.json
+last10_updates.json
+library_repos_gql.json
