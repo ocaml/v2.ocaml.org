@@ -103,7 +103,7 @@ that it's trying to save.
 Now look at the definition of `receiver_fn`. This function is a closure
 alright because it keeps a reference to `chan` from its environment.
 
-## Partial function applications and currying
+## Partial function applications
 Let's define a plus function which just adds two integers:
 
 ```ocamltop
@@ -168,14 +168,7 @@ rationale for the strange `->` arrow notation used for function types:
   plus 2 : int -> int
 plus 2 3 : int
 ```
-This process is called **currying** (or perhaps it's called
-**uncurrying**, I never was really sure which was which). It is called
-this after Haskell Curry who did some important stuff related to the
-lambda calculus. Since I'm trying to avoid entering into the mathematics
-behind OCaml because that makes for a very boring and irrelevant
-tutorial, I won't go any further on the subject. You can find much more
-information about currying if it interests you by [doing a search on
-Google](http://www.google.com/search?q=currying "http://www.google.com/search?q=currying").
+This process is called **partial application** of a function.
 
 Remember our `double` and `multiply` functions from earlier on?
 `multiply` was defined as this:
@@ -219,7 +212,7 @@ identical definition of the `plus` function as before:
 let plus = ( + );;
 plus 2 3;;
 ```
-Here's some more currying fun:
+Here's some more examples of partial application:
 
 ```ocamltop
 List.map (plus 2) [1; 2; 3];;
