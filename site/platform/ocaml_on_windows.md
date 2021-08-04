@@ -19,7 +19,7 @@ maintained by [@fdopen](https://fdopen.github.io/opam-repository-mingw/) along
 with [installers](https://fdopen.github.io/opam-repository-mingw/installation/)
 to create a custom Cygwin environment with opam and OCaml installed.
 
-As of August 2021, [the repository will no longer be updated]((https://fdopen.github.io/opam-repository-mingw/2021/02/26/repo-discontinued/)). It is still useful as an overlay to
+As of August 2021, [the repository will no longer be updated](https://fdopen.github.io/opam-repository-mingw/2021/02/26/repo-discontinued/). It is still useful as an overlay to
 the [default opam repository](https://github.com/ocaml/opam-repository). This
 means if a package exists in `opam-repository-mingw` the opam client will use
 that information, otherwise it will fall through to `opam-repository`. To add
