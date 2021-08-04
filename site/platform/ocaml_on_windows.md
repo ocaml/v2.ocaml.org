@@ -46,7 +46,7 @@ packages will need to support the `mingw64` and `msvc` variants.
 
 ## Docker Images
 
-The [`ocaml/opam`](https://hub.docker.com/r/ocaml/opam) docker hub repository
+The [`ocaml/opam`](https://hub.docker.com/r/ocaml/opam) Docker Hub repository
 now contains regularly updated Windows images. This includes images using
 `msvc` and `mingw`. If you are comfortable with docker, this might be an
 easier way to get a working Windows environment on your machine.
