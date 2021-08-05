@@ -62,10 +62,20 @@ sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.
 
 ### For Windows
 
-We use the [OCaml for Windows](https://fdopen.github.io/opam-repository-mingw/)
-installer which comes in 32bit and 64bit versions. This installer gives you
-opam and OCaml installations all in one go. It is used from within a Cygwin
-environment, but the executables produced have no dependency on Cygwin at all.
+OCaml on Windows is still a work in progress. In the meantime, if you only
+need to *run* OCaml programs on a Windows machine, then the simplest solution
+is to use the Windows Subsystem for Linux 2 (WSL2). WSL2 is a feature that
+allows Linux programs to run directly on Windows. WSL2 is substantially easier
+and faster to use than WSL1. Microsoft have comprehensive installation steps
+for [setting up WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+
+On the other hand, if you need Windows binaries then you will have to use the
+[OCaml for Windows](https://fdopen.github.io/opam-repository-mingw/) installer
+which comes in 32bit and 64bit versions. This installer gives you opam and
+OCaml installations all in one go. It is used from within a Cygwin environment,
+but the executables produced have no dependency on Cygwin at all. For a more
+comprehensive update on the state of OCaml on Windows, see the 
+[OCaml on Windows](/platform/ocaml_on_windows.html) page.
 
 ## The OCaml top level
 
@@ -199,6 +209,10 @@ toolchain in use: pick OCaml the version of OCaml you are using, e.g. 4.11.1
 from the list. Now, help is available by hovering over symbols in your program:
 
 ![Visual Studio Code](/img/vscode.png "")
+
+**On Windows using WSL2** you will remotely connect to your WSL2 instance from
+Visual Studio Code. Microsoft have a [useful blog post](https://code.visualstudio.com/blogs/2019/09/03/wsl2)
+covering getting WSL2 and Visual Studio Code connected.
 
 **On Windows**, we must launch Visual Studio Code from within the Cygwin window,
 rather than by clicking on its icon (otherwise, the language server will not be

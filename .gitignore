@@ -30,3 +30,4 @@ opam_update_list
 *.bz2
 *.ai
 *.json
+_opam
