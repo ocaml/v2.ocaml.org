@@ -525,6 +525,9 @@ a:focus {
 .row-fluid [class*="span"].pull-right {
   float: right;
 }
+.site-container {
+  min-height: 80vh;
+}
 .container {
   margin-right: auto;
   margin-left: auto;
