@@ -145,3 +145,13 @@ html.svg .news-feed li {
 html.svg .news-feed li.announcement {
   background-image: url(../img/announcement-go.svg);
 }
+
+/* for improved-news-feed.js - ozmos */
+.news-feed li {
+  cursor: pointer;
+}
+
+.news-feed li:hover, .news-feed li:focus {
+  border-bottom: 1px solid #df533b;
+  color:#df533b;
+}
