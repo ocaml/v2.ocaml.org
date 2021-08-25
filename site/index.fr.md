@@ -55,7 +55,7 @@
 					</a>
                     <h1><a href="https://opam.ocaml.org">Contributions</a></h1>
                     <p>Le gestionnaire de paquets <a href="https://opam.ocaml.org">OPAM</a> vous donne accès aux multiples versions de
-					<a href="https://opam.ocaml.org/packages/">de milliers de paquets</a>.</p>
+					<a href="https://opam.ocaml.org/packages/">milliers de paquets</a>.</p>
                 </section>
                 <section class="span4 home-feature">
                     <a href="/community/index.fr.html">
