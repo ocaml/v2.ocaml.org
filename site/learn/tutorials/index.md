@@ -56,6 +56,7 @@ there to request or offer new tutorials.
 * [Introduction to Gtk](introduction_to_gtk.html)
 * [Command-Line Arguments](command-line_arguments.html)
 * [File Manipulation](file_manipulation.html)
+* [Building and Publishing an OCaml Library](building_and_publishing.html)
 
 ### Interoperability
 
