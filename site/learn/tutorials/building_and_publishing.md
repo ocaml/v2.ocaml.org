@@ -278,4 +278,4 @@ git tag -a 0.2
 git push origin 0.2
 ```
 
-And run `opam-publish` again to make a PR for version 0.2 of our library.
+And run `opam publish` again to make a PR for version 0.2 of our library.
