@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.35">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Language extensions</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec245"><span class="number">Chapter 10</span>Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.13</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
+<li><a href="letrecvalues.html#start-section"><span class="number">1</span>Recursive definitions of values</a>
+</li><li><a href="recursivemodules.html#start-section"><span class="number">2</span>Recursive modules</a>
+</li><li><a href="privatetypes.html#start-section"><span class="number">3</span>Private types</a>
+</li><li><a href="locallyabstract.html#start-section"><span class="number">4</span>Locally abstract types</a>
+</li><li><a href="firstclassmodules.html#start-section"><span class="number">5</span>First-class modules</a>
+</li><li><a href="moduletypeof.html#start-section"><span class="number">6</span>Recovering the type of a module</a>
+</li><li><a href="signaturesubstitution.html#start-section"><span class="number">7</span>Substituting inside a signature</a>
+</li><li><a href="modulealias.html#start-section"><span class="number">8</span>Type-level module aliases</a>
+</li><li><a href="overridingopen.html#start-section"><span class="number">9</span>Overriding in open statements</a>
+</li><li><a href="gadts.html#start-section"><span class="number">10</span>Generalized algebraic datatypes</a>
+</li><li><a href="bigarray.html#start-section"><span class="number">11</span>Syntax for Bigarray access</a>
+</li><li><a href="attributes.html#start-section"><span class="number">12</span>Attributes</a>
+</li><li><a href="extensionnodes.html#start-section"><span class="number">13</span>Extension nodes</a>
+</li><li><a href="extensiblevariants.html#start-section"><span class="number">14</span>Extensible variant types</a>
+</li><li><a href="generativefunctors.html#start-section"><span class="number">15</span>Generative functors</a>
+</li><li><a href="extensionsyntax.html#start-section"><span class="number">16</span>Extension-only syntax</a>
+</li><li><a href="inlinerecords.html#start-section"><span class="number">17</span>Inline records</a>
+</li><li><a href="doccomments.html#start-section"><span class="number">18</span>Documentation comments</a>
+</li><li><a href="indexops.html#start-section"><span class="number">19</span>Extended indexing operators </a>
+</li><li><a href="emptyvariants.html#start-section"><span class="number">20</span>Empty variant types</a>
+</li><li><a href="alerts.html#start-section"><span class="number">21</span>Alerts</a>
+</li><li><a href="generalizedopens.html#start-section"><span class="number">22</span>Generalized open statements</a>
+</li><li><a href="bindingops.html#start-section"><span class="number">23</span>Binding operators</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:bigarray-access"><a class="section-anchor" href="#s:bigarray-access" aria-hidden="true"></a><span class="number">11</span>Syntax for Bigarray access</h2>
+<p>(Introduced in Objective Caml 3.00)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c007"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c006">
+<a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a></td><td class="c003">::=</td><td class="c005">
+...
+ </td></tr>
+<tr><td class="c006">&nbsp;</td><td class="c003">∣</td><td class="c005"> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">.{</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a>  { <span class="syntax-token">,</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> } <span class="syntax-token">}</span>
+ </td></tr>
+<tr><td class="c006">&nbsp;</td><td class="c003">∣</td><td class="c005"> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">.{</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a>  { <span class="syntax-token">,</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> } <span class="syntax-token">}</span> <span class="syntax-token">&lt;-</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>This extension provides syntactic sugar for getting and setting
+elements in the arrays provided by the <a href="../api/Bigarray.html"><span class="font-tt">Bigarray</span></a> module.</p><p>The short expressions are translated into calls to functions of the
+<span class="machine"><span class="font-tt">Bigarray</span></span> module as described in the following table.</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c002"><span class="font-bold">expression</span></td><td class="c002"><span class="font-bold">translation</span> </td></tr>
+<tr><td class="c004">
+<a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub><span class="syntax-token">.{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">}</span></td><td class="c004"><span class="machine"><span class="font-tt">Bigarray.Array1.get </span></span><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub> </td></tr>
+<tr><td class="c004"><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub><span class="syntax-token">.{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">}</span> <span class="syntax-token">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a></td><td class="c004"><span class="machine"><span class="font-tt">Bigarray.Array1.set </span></span><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> </td></tr>
+<tr><td class="c004"><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub><span class="syntax-token">.{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">,</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>2</sub><span class="syntax-token">}</span></td><td class="c004"><span class="machine"><span class="font-tt">Bigarray.Array2.get </span></span><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>2</sub> </td></tr>
+<tr><td class="c004"><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub><span class="syntax-token">.{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">,</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>2</sub><span class="syntax-token">}</span> <span class="syntax-token">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a></td><td class="c004"><span class="machine"><span class="font-tt">Bigarray.Array2.set </span></span><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>2</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> </td></tr>
+<tr><td class="c004"><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub><span class="syntax-token">.{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">,</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>2</sub><span class="syntax-token">,</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>3</sub><span class="syntax-token">}</span></td><td class="c004"><span class="machine"><span class="font-tt">Bigarray.Array3.get </span></span><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>2</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>3</sub> </td></tr>
+<tr><td class="c004"><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub><span class="syntax-token">.{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">,</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>2</sub><span class="syntax-token">,</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>3</sub><span class="syntax-token">}</span> <span class="syntax-token">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a></td><td class="c004"><span class="machine"><span class="font-tt">Bigarray.Array3.set </span></span><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>2</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>3</sub>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> </td></tr>
+<tr><td class="c004"><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub><span class="syntax-token">.{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">,</span> …<span class="syntax-token">,</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub><span class="font-it">n</span></sub><span class="syntax-token">}</span></td><td class="c004"><span class="machine"><span class="font-tt">Bigarray.Genarray.get </span></span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub> <span class="syntax-token">[|</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">,</span> … <span class="syntax-token">,</span>
+ <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">|]</span> </td></tr>
+<tr><td class="c004"><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub><span class="syntax-token">.{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">,</span> …<span class="syntax-token">,</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub><span class="font-it">n</span></sub><span class="syntax-token">}</span> <span class="syntax-token">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a></td><td class="c004"><span class="machine"><span class="font-tt">Bigarray.Genarray.set </span></span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub> <span class="syntax-token">[|</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">,</span> … <span class="syntax-token">,</span>
+ <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">|]</span>  <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> </td></tr>
+</tbody></table></div></div><p>The last two entries are valid for any <span class="font-it">n</span> &gt; 3.
+</p>
+
+<div class="bottom-navigation"><a class="previous" href="gadts.html">« Generalized algebraic datatypes</a><a class="next" href="attributes.html">Attributes »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2021 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>
