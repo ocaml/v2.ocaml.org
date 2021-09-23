@@ -235,14 +235,14 @@ variance information is used to decide subtyping relations when
 checking the validity of <span class="syntax-token">:&gt;</span> coercions
 (see section <a href="expr.html#ss%3Aexpr-coercions">9.7.7</a>).</p><p>For instance, <span class="machine"><span class="font-tt">type +'a t</span></span> declares <span class="machine"><span class="font-tt">t</span></span> as an abstract type that is
 covariant in its parameter; this means that if the type τ is a
-subtype of the type σ, then τ <span class="machine"><span class="font-tt"> <span class="font-it">t</span></span></span> is a subtype of σ
-<span class="machine"><span class="font-tt"> <span class="font-it">t</span></span></span>. Similarly, <span class="machine"><span class="font-tt">type -'a t</span></span> declares that the abstract type <span class="machine"><span class="font-tt">t</span></span> is
+subtype of the type σ, then τ<span class="machine"><span class="font-tt"> t</span></span> is a subtype of σ<span class="machine"><span class="font-tt"> t</span></span>.
+Similarly, <span class="machine"><span class="font-tt">type -'a t</span></span> declares that the abstract type <span class="machine"><span class="font-tt">t</span></span> is
 contravariant in its parameter: if τ is a subtype of σ, then
-σ <span class="machine"><span class="font-tt"> <span class="font-it">t</span></span></span> is a subtype of τ <span class="machine"><span class="font-tt"> <span class="font-it">t</span></span></span>. If no <span class="machine"><span class="font-tt">+</span></span> or <span class="machine"><span class="font-tt">-</span></span> variance
+σ<span class="machine"><span class="font-tt"> t</span></span> is a subtype of τ<span class="machine"><span class="font-tt"> t</span></span>. If no <span class="machine"><span class="font-tt">+</span></span> or <span class="machine"><span class="font-tt">-</span></span> variance
 annotation is given, the type constructor is assumed non-variant in the
 corresponding parameter. For instance, the abstract type declaration
-<span class="machine"><span class="font-tt">type 'a t</span></span> means that τ <span class="machine"><span class="font-tt"> <span class="font-it">t</span></span></span> is neither a subtype nor a
-supertype of σ <span class="machine"><span class="font-tt"> <span class="font-it">t</span></span></span> if τ is subtype of σ.</p><p>The variance indicated by the <span class="machine"><span class="font-tt">+</span></span> and <span class="machine"><span class="font-tt">-</span></span> annotations on parameters
+<span class="machine"><span class="font-tt">type 'a t</span></span> means that τ<span class="machine"><span class="font-tt"> t</span></span> is neither a subtype nor a
+supertype of σ<span class="machine"><span class="font-tt"> t</span></span> if τ is subtype of σ.</p><p>The variance indicated by the <span class="machine"><span class="font-tt">+</span></span> and <span class="machine"><span class="font-tt">-</span></span> annotations on parameters
 is enforced only for abstract and private types, or when there are
 type constraints.
 Otherwise, for abbreviations, variant and record types without type
