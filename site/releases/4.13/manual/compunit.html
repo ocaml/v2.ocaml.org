@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.35">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - The OCaml language</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec80"><span class="number">Chapter 9</span>The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.13</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span>Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span>Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span>Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span>Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span>Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span>Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span>Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span>Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span>Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span>Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span>Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span>Compilation units</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+<h2 class="section" id="s:compilation-units"><a class="section-anchor" href="#s:compilation-units" aria-hidden="true"></a><span class="number">12</span>Compilation units</h2>
+<div class="syntax"><table class="display dcenter"><tbody><tr class="c007"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c006">
+<a class="syntax" id="unit-interface"><span class="nonterminal">unit-interface</span></a></td><td class="c003">::=</td><td class="c005"> { <a class="syntax" href="modtypes.html#specification"><span class="nonterminal">specification</span></a>  [<span class="syntax-token">;;</span>] }
+ </td></tr>
+<tr><td class="c006">&nbsp;</td></tr>
+<tr><td class="c006">
+<a class="syntax" id="unit-implementation"><span class="nonterminal">unit-implementation</span></a></td><td class="c003">::=</td><td class="c005"> [ <a class="syntax" href="modules.html#module-items"><span class="nonterminal">module-items</span></a> ]
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Compilation units bridge the module system and the separate
+compilation system. A compilation unit is composed of two parts: an
+interface and an implementation. The interface contains a sequence of
+specifications, just as the inside of a <span class="syntax-token">sig</span> … <span class="syntax-token">end</span>
+signature expression. The implementation contains a sequence of
+definitions and expressions, just as the inside of a
+<span class="syntax-token">struct</span> … <span class="syntax-token">end</span> module
+expression. A compilation unit also has a name <span class="nonterminal">unit-name</span>, derived
+from the names of the files containing the interface and the
+implementation (see chapter ‍<a href="comp.html#c%3Acamlc">11</a> for more details). A
+compilation unit behaves roughly as the module definition
+</p><div class="center">
+<span class="syntax-token">module</span> <span class="nonterminal">unit-name</span> <span class="syntax-token">:</span> <span class="syntax-token">sig</span>  <a class="syntax" href="#unit-interface"><span class="nonterminal">unit-interface</span></a> <span class="syntax-token">end</span> <span class="syntax-token">=</span>
+<span class="syntax-token">struct</span>  <a class="syntax" href="#unit-implementation"><span class="nonterminal">unit-implementation</span></a> <span class="syntax-token">end</span>
+</div><p>A compilation unit can refer to other compilation units by their
+names, as if they were regular modules. For instance, if <span class="machine"><span class="font-tt">U</span></span> is a
+compilation unit that defines a type <span class="machine"><span class="font-tt">t</span></span>, other compilation units can
+refer to that type under the name <span class="machine"><span class="font-tt">U.t</span></span>; they can also refer to <span class="machine"><span class="font-tt">U</span></span> as
+a whole structure. Except for names of other compilation units, a unit
+interface or unit implementation must not have any other free variables.
+In other terms, the type-checking and compilation of an interface or
+implementation proceeds in the initial environment
+</p><div class="center">
+<span class="nonterminal">name</span><sub>1</sub> <span class="syntax-token">:</span> <span class="syntax-token">sig</span>  <a class="syntax" href="modtypes.html#specification"><span class="nonterminal">specification</span></a><sub>1</sub> <span class="syntax-token">end</span> …
+ <span class="nonterminal">name</span><sub><span class="font-it">n</span></sub> <span class="syntax-token">:</span> <span class="syntax-token">sig</span>  <a class="syntax" href="modtypes.html#specification"><span class="nonterminal">specification</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">end</span>
+</div><p>
+where <span class="nonterminal">name</span><sub>1</sub> …  <span class="nonterminal">name</span><sub><span class="font-it">n</span></sub> are the names of the other
+compilation units available in the search path (see
+chapter ‍<a href="comp.html#c%3Acamlc">11</a> for more details) and <a class="syntax" href="modtypes.html#specification"><span class="nonterminal">specification</span></a><sub>1</sub> …
+ <a class="syntax" href="modtypes.html#specification"><span class="nonterminal">specification</span></a><sub><span class="font-it">n</span></sub> are their respective interfaces.
+
+</p>
+<div class="bottom-navigation"><a class="previous" href="modules.html">« Module expressions (module implementations)</a><a class="next up" href="language.html">The OCaml language</a></div>
+
+
+
+</section><div class="copyright">Copyright © 2021 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

@@ -1,0 +1,808 @@
+@charset "UTF-8";
+/* If the above line does not say "SOURCE FILE", then do not edit. It */
+/* means this file is generated from [sass style.scss] */
+/* CSS file for the Ocaml API.  San Vu Ngoc 2019 */
+/* ocaml logo color */
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Fira+Mono:400,500);
+@import url(https://fonts.googleapis.com/css?family=Noticia+Text:400,400i,700);
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,500,500i,600,600i,700,700i);
+/* Reset */
+.pre, a, b, body, code, div, em, form, h1, h2, h3, h4, h5, h6, header, html, i, img, li, mark, menu, nav, object, output, p, pre, s, section, span, time, ul, td, var {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
+  text-align: inherit;
+  color: inherit;
+  background: 0 0; }
+
+*, :after, :before {
+  box-sizing: border-box; }
+
+html.smooth-scroll {
+  scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; } }
+body {
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  text-align: left;
+  color: #333;
+  background: #fff; }
+
+html {
+  font-size: 16px; }
+  html .dt-thefootnotes {
+    height: 1ex; }
+  html .footnotetext {
+    font-size: 13px; }
+
+#sidebar-button {
+  float: right;
+  cursor: context-menu;
+  display: none; }
+  #sidebar-button span {
+    font-size: 28px; }
+
+.content > header, .api > header {
+  margin-bottom: 30px; }
+  .content > header nav, .api > header nav {
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif; }
+
+/* Menu in the left bar */
+/* OCaml Logo */
+/* Header is used as a side-bar */
+/* Print adjustements. */
+/* This page can be nicely printed or saved to PDF (local version) */
+@media print {
+  body {
+    color: black;
+    background: white; }
+
+  body nav:first-child {
+    position: absolute;
+    background: transparent; }
+
+  .content, .api {
+    margin-left: 3em;
+    margin-right: 3em; }
+    .content nav.toc, .api nav.toc {
+      margin-right: 1em;
+      float: left;
+      position: initial;
+      background: #eee; } }
+.api > table {
+  word-break: break-word; }
+  .api > table td.module,
+  .api > table td:first-child {
+    width: 33%; }
+  .api > table td:nth-child(2) {
+    width: 65%; }
+  .api > table td[align="left"] {
+    word-break: normal; }
+  .api > table td[align="left"]:first-child {
+    width: 1%; }
+
+.api {
+  max-width: 90ex;
+  margin-left: calc(10vw + 20ex);
+  margin-right: 4ex;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-family: "Noticia Text", Georgia, serif;
+  line-height: 1.5;
+  /* Basic markup elements */
+  /* Text alignements, this should be forbidden. */
+  /* Links and anchors */
+  /* Linked highlight */
+  /* Section and document divisions.
+  Until at least 4.03 many of the modules of the stdlib start at .h7,
+  we restart the sequence there like h2  */
+  /* Preformatted and code */
+  /* Code blocks (e.g. Examples) */
+  /* Code lexemes */
+  /* Module member specification */
+  /* The elements other than heading should be wrapped in <aside> elements. */
+  /* heading, body>p, body>ul, body>ol, h3, h4, body>pre { */
+  /*   margin-bottom: 30px; */
+  /* } */
+  /* Collapsible inlined include and module */
+  /* FIXME: Does not work in Firefox. */
+  /* @ tags */
+  /* FIXME remove */
+  /* FIXME random other things to review. */
+  /* Odig package index */
+  /* Odig package page */
+  /* lists in the main text */
+  /* Sidebar and TOC */
+  /*.toc ul:before */
+  /* pour l'API */ }
+  .api table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    /* must be same as <pre>: */
+    background: linear-gradient(to left, white 0%, #ede8e5 100%);
+    width: 100%;
+    /* add some room at the end of the table */ }
+    .api table thead {
+      background: #e4d9d3; }
+    .api table td {
+      padding-left: 1ex;
+      padding-right: 1ex;
+      /*float: left;*/ }
+    .api table tr:last-child td {
+      padding-bottom: 7px; }
+  .api table.typetable {
+    width: 100%;
+    word-break: normal;
+    box-shadow: none; }
+    .api table.typetable td {
+      float: left; }
+    .api table.typetable td:nth-child(2) {
+      width: 37%; }
+      .api table.typetable td:nth-child(2) code {
+        white-space: pre-line; }
+    .api table.typetable td:last-child {
+      width: calc(100% - 1.3em); }
+    .api table.typetable td:first-child {
+      width: 1em; }
+    .api table.typetable td:nth-child(4).typefieldcomment {
+      /* this should be the column with the type */
+      width: 60%;
+      /* not optimal, see: Format.html#symbolic
+      but leaving it automatic is not always good either: see: Arg.html */ }
+  .api table.paramstable {
+    word-break: normal; }
+    .api table.paramstable td code {
+      white-space: pre-wrap; }
+    .api table.paramstable td:first-child, .api table.paramstable td:nth-child(2) {
+      width: 1em; }
+  .api .sig_block {
+    border-left: 4px solid #e69c7f;
+    padding-left: 1em;
+    background: linear-gradient(to left, white 0%, #ede8e5 100%); }
+    .api .sig_block pre {
+      margin-top: 0;
+      background: none;
+      border-left: 0; }
+  .api pre .sig_block {
+    margin-bottom: 0;
+    border-left: 0; }
+  .api *, .api *:before, .api *:after {
+    box-sizing: border-box; }
+  .api b, .api strong {
+    font-weight: 600; }
+  .api i, .api em {
+    font-style: italic; }
+  .api sup {
+    vertical-align: super; }
+  .api sub {
+    vertical-align: sub; }
+  .api sup, .api sub {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 0.2ex; }
+  .api pre {
+    margin-top: 0.8em;
+    margin-bottom: 0; }
+  .api p, .api ul, .api ol {
+    margin-top: 0.5em;
+    margin-bottom: 1em; }
+  .api ul, .api ol {
+    list-style-position: outside; }
+  .api ul > li {
+    margin-left: 22px; }
+  .api ol > li {
+    margin-left: 27.2px; }
+  .api li > *:first-child {
+    margin-top: 0; }
+  .api .left {
+    text-align: left; }
+  .api .right {
+    text-align: right; }
+  .api .center {
+    text-align: center; }
+  .api a {
+    text-decoration: none;
+    color: #92370A;
+    /* box-shadow: 0 1px 0 0 #d8b68b; */ }
+  .api a:hover {
+    box-shadow: 0 1px 0 0 #92370A; }
+  .api td a:hover {
+    background: white; }
+  .api *:target {
+    /*box-shadow: 0 0px 0 1px rgba(255, 215, 181, 0.8) !important;*/
+    border-radius: 1px;
+    /*border-bottom: 4px solid rgb(255, 215, 181);*/
+    box-shadow: 0 4px 0 0px #ffd7b5;
+    z-index: 0; }
+  .api h2:target {
+    /* background: linear-gradient(to bottom, rgb(253, 252, 252) 0%, rgba(255, 215, 181, 0.3) 100%) !important; */
+    /*	transition: 300ms; this prevents margin-top:-80 to work... */ }
+  .api *:hover > a.section-anchor {
+    visibility: visible; }
+  .api a.section-anchor:before {
+    content: "#"; }
+  .api a.section-anchor:hover {
+    box-shadow: none;
+    text-decoration: none;
+    color: #555; }
+  .api a.section-anchor {
+    visibility: hidden;
+    position: absolute;
+    /* top: 0px; */
+    /* margin-left: -3ex; */
+    margin-left: -1.3em;
+    font-weight: normal;
+    font-style: normal;
+    padding-right: 0.4em;
+    padding-left: 0.4em;
+    /* To remain selectable */
+    color: #d5d5d5; }
+  .api .spec > a.section-anchor {
+    margin-left: -2.3em;
+    padding-right: 0.9em; }
+  .api .xref-unresolved {
+    color: #92370A; }
+  .api .xref-unresolved:hover {
+    box-shadow: 0 1px 0 0 #CC6666; }
+  .api h1, .api h2, .api h3, .api h4, .api h5, .api h6, .api .h7, .api .h8, .api .h9, .api .h10 {
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin: 0.5em 0 0.5em 0;
+    padding-top: 0.1em;
+    line-height: 1.2;
+    overflow-wrap: break-word; }
+  .api h1 {
+    margin-top: 1.214em;
+    margin-bottom: 19px;
+    font-weight: 500;
+    font-size: 1.953em;
+    box-shadow: 0 1px 0 0 #ddd; }
+  .api h2 {
+    font-size: 1.563em;
+    margin: 1em 0 1em 0; }
+  .api h3 {
+    font-size: 1.25em; }
+  .api small, .api .font_small {
+    font-size: 0.8em; }
+  .api h1 code, .api h1 tt {
+    font-size: inherit;
+    font-weight: inherit; }
+  .api h2 code, .api h2 tt {
+    font-size: inherit;
+    font-weight: inherit; }
+  .api h3 code, .api h3 tt {
+    font-size: inherit;
+    font-weight: inherit; }
+  .api h3 code, .api h3 tt {
+    font-size: inherit;
+    font-weight: inherit; }
+  .api h4 {
+    font-size: 1.12em; }
+  .api tt, .api code, .api pre {
+    font-family: "Fira Mono", courier, monospace;
+    font-weight: 400; }
+  .api pre {
+    border-left: 4px solid #e69c7f;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding-left: 1ex; }
+  .api p code, .api li code {
+    /* useful ? */
+    background-color: #ebf2f9;
+    /*#f6f8fa;*/
+    color: #0d2b3e;
+    border-radius: 3px;
+    padding: 0 0.3ex;
+    white-space: pre-wrap; }
+  .api pre code {
+    background-color: inherit; }
+  .api p a > code {
+    color: #92370A; }
+  .api pre code.ocaml {
+    font-size: 0.893rem; }
+  .api .keyword {
+    font-weight: 500;
+    color: inherit; }
+  .api .spec:not(.include), .api .spec.include details summary {
+    background: linear-gradient(to left, #fdfcfc 0%, #eaf6fa 100%);
+    border-radius: 3px;
+    border-left: 4px solid #5c9cf5;
+    border-right: 5px solid transparent;
+    padding: 0.35em 0.5em; }
+  .api .spec.include details summary:hover {
+    background-color: #ebeff2; }
+  .api dl, .api div.spec, .api .doc, .api aside {
+    margin-bottom: 20px; }
+  .api dl > dd {
+    padding: 0.5em; }
+  .api dd > :first-child {
+    margin-top: 0; }
+  .api dd > p:first-child > code:first-child {
+    color: teal; }
+  .api dl:last-child, .api dd > :last-child, .api aside:last-child, .api article:last-child {
+    margin-bottom: 0; }
+  .api dt + dt {
+    margin-top: 15px; }
+  .api section + section, .api section > header + dl {
+    margin-top: 25px; }
+  .api .spec.type .variant {
+    margin-left: 2ch; }
+  .api .spec.type .variant p {
+    margin: 0;
+    font-style: italic; }
+  .api .spec.type .record {
+    margin-left: 2ch; }
+  .api .spec.type .record p {
+    margin: 0;
+    font-style: italic; }
+  .api div.def {
+    margin-top: 0;
+    text-indent: -2ex;
+    padding-left: 2ex; }
+  .api div.def + div.doc {
+    margin-left: 1ex;
+    margin-top: 2.5px; }
+  .api div.doc > *:first-child {
+    margin-top: 0; }
+  .api .spec.include details {
+    position: relative; }
+  .api .spec.include details:after {
+    z-index: -100;
+    display: block;
+    content: " ";
+    position: absolute;
+    border-radius: 0 1ex 1ex 0;
+    right: -20px;
+    top: 1px;
+    bottom: 1px;
+    width: 15px;
+    background: rgba(0, 4, 15, 0.05);
+    box-shadow: 0 0px 0 1px rgba(204, 204, 204, 0.53); }
+  .api .spec.include details summary {
+    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
+    outline: none; }
+  .api details summary::-webkit-details-marker {
+    color: #888;
+    transform: scaleX(-1);
+    position: absolute;
+    top: calc(50% - 5px);
+    height: 11px;
+    right: -29px; }
+  .api td.doc *:first-child {
+    margin-top: 0em; }
+  .api ul.at-tag {
+    list-style-type: none;
+    margin-left: 0;
+    padding: 0; }
+  .api ul.at-tag li {
+    margin-left: 0;
+    padding: 0; }
+  .api ul.at-tag li p:first-child {
+    margin-top: 0; }
+  .api span.at-tag {
+    font-weight: bold; }
+  .api span.warning,
+  .api .at-tag.deprecated {
+    font-weight: normal;
+    color: #8eaf20; }
+  .api span.warning {
+    margin-right: 1ex; }
+  .api .at-tag.raise {
+    font-weight: bold; }
+  .api .heading {
+    margin-top: 10px;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #DDD;
+    text-align: right;
+    font-weight: normal;
+    font-style: italic; }
+  .api .heading + .sig {
+    margin-top: -20px; }
+  .api .heading + .parameters {
+    margin-top: -20px; }
+  .api .by-name ol, .api .by-tag ol, .api .errors ol {
+    list-style-type: none;
+    margin-left: 0; }
+  .api .by-name ol ol, .api .by-tag ol ol {
+    margin-top: 0;
+    margin-bottom: 0; }
+  .api .by-name li, .api .by-tag li, .api .errors li {
+    margin-left: 0; }
+  .api .by-name .version {
+    font-size: 10px;
+    color: #AAA; }
+  .api .by-name nav {
+    margin-bottom: 10px; }
+  .api .by-name nav a {
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-right: 1ex;
+    color: #222;
+    display: inline-block; }
+  .api .by-tag nav a {
+    margin-right: 1ex;
+    color: #222;
+    display: inline-block; }
+  .api .by-tag > ol > li {
+    margin-top: 10px; }
+  .api .by-tag > ol > li > span, .api .by-tag > ol > li > ol, .api .by-tag > ol > li > ol > li {
+    display: inline-block;
+    margin-right: 1ex; }
+  .api .package nav {
+    display: inline;
+    font-size: 14px;
+    font-weight: normal; }
+  .api .package .version {
+    font-size: 14px; }
+  .api h1 + .modules, .api h1 + .sel {
+    margin-top: 10px; }
+  .api .sel {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 20px; }
+  .api .sel + .modules {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 1ex; }
+  .api .modules {
+    margin: 0; }
+  .api .modules .module {
+    min-width: 8ex;
+    padding-right: 2ex; }
+  .api .package.info {
+    margin: 0; }
+  .api .package.info td:first-child {
+    font-style: italic;
+    padding-right: 2ex; }
+  .api .package.info ul {
+    list-style-type: none;
+    display: inline;
+    margin: 0; }
+  .api .package.info li {
+    display: inline-block;
+    margin: 0;
+    margin-right: 1ex; }
+  .api #info-authors li, .api #info-maintainers li {
+    display: block; }
+  .api ul.itemize {
+    list-style: none; }
+  .api ul.itemize li::before {
+    content: "▶";
+    color: #ec6a0d;
+    margin-right: 4px;
+    margin-left: -1em; }
+  .api .toc_title {
+    display: block;
+    /*content: "Contents";*/
+    /* text-transform: uppercase; */
+    margin: 1.414em 0 0.5em; }
+  .api .toc_title a {
+    color: #777;
+    font-size: 1em;
+    line-height: 1.2;
+    font-weight: 500; }
+  .api .toc {
+    display: block;
+    padding-top: 10px;
+    position: fixed;
+    top: 67px;
+    bottom: 0;
+    left: 0;
+    max-width: 30ex;
+    min-width: 26ex;
+    width: 20%;
+    background: linear-gradient(to left, #ccc, transparent);
+    overflow: auto;
+    color: #1F2D3D;
+    padding-left: 2ex;
+    padding-right: 2ex; }
+    .api .toc .toc_version {
+      font-size: smaller;
+      text-align: right; }
+      .api .toc .toc_version a {
+        color: #888; }
+    .api .toc ul {
+      list-style-type: none; }
+      .api .toc ul li {
+        margin: 0; }
+        .api .toc ul li ul {
+          margin: 0; }
+        .api .toc ul li li {
+          border-left: 1px solid #ccc;
+          margin-left: 5px;
+          padding-left: 12px; }
+        .api .toc ul li a {
+          font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+          font-size: .95em;
+          color: #333;
+          font-weight: 400;
+          line-height: 1.6em;
+          display: block; }
+          .api .toc ul li a:hover {
+            box-shadow: none;
+            background-color: #edbf84; }
+        .api .toc ul li.top a {
+          color: #848484; }
+          .api .toc ul li.top a:hover {
+            background-color: unset;
+            text-decoration: underline; }
+    .api .toc > ul > li {
+      margin-bottom: .3em; }
+      .api .toc > ul > li > a {
+        /* First level titles */
+        font-weight: 500; }
+    .api .toc.brand {
+      top: 0;
+      height: 67px; }
+      .api .toc.brand img {
+        margin-top: 14px;
+        height: 36px; }
+  .api .toc input#api_search {
+    width: 85%;
+    font-family: inherit; }
+  .api .toc #search_results {
+    font-size: smaller; }
+    .api .toc #search_results ul li {
+      margin-bottom: 0; }
+    .api .toc #search_results ul a {
+      display: inline-block;
+      padding-left: 0; }
+  .api .ocaml {
+    background: linear-gradient(to left, white 0%, #f3f7f6 100%); }
+  .api span.arrow {
+    font-size: 20px;
+    line-height: 8pt;
+    font-family: "Fira Mono", courier, monospace; }
+  .api header dl dd, .api header dl dt {
+    display: inline-block; }
+  .api pre {
+    background: linear-gradient(to left, white 0%, #ede8e5 100%); }
+  .api #search_results li.match::before {
+    content: "▶";
+    font-size: smaller;
+    color: #ec6a0d;
+    float: left;
+    margin-left: -3ex; }
+  .api code.caml-example,
+  .api div.caml-example, .api div.toplevel {
+    /*    background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%); */ }
+  .api div.caml-output.ok,
+  .api code.caml-output.ok,
+  .api span.c006 {
+    color: #045804; }
+  .api code.caml-output.error,
+  .api div.caml-output.error {
+    color: orangered; }
+  .api .tutorial span {
+    color: #ec6a0d; }
+  .api ul.tutos_menu {
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+    text-align: right;
+    list-style: none; }
+  .api ul.tutos_menu li.active a {
+    color: black; }
+  .api span.c003 {
+    font-family: "Fira Mono", courier, monospace;
+    background-color: #f3ece6;
+    border-radius: 6px; }
+  .api div.caml-example.toplevel div.caml-input::before,
+  .api div.caml-example.toplevel code.caml-input::before {
+    content: "#";
+    color: #888; }
+  .api span.c004 {
+    color: #888; }
+  .api span.c009 {
+    font-style: italic; }
+  .api code span.keyword,
+  .api .caml-input span.kw {
+    font-weight: 500;
+    color: #444; }
+  .api code span.keywordsign {
+    color: #92370a; }
+  .api .caml-input span.kw1 {
+    font-weight: 500;
+    color: #777; }
+  .api code span.constructor,
+  .api .caml-input span.kw2 {
+    color: #8d543c; }
+  .api .caml-input span.numeric {
+    color: #0086b3; }
+  .api .caml-input span.id {
+    color: #523b74; }
+  .api code span.string,
+  .api .caml-input span.string {
+    color: #df5000; }
+  .api .caml-input span.comment {
+    color: #969896; }
+  .api .copyright {
+    margin-top: 1em;
+    font-size: smaller; }
+  .api .dt-thefootnotes {
+    float: left; }
+  .api ul.info-attributes {
+    margin-top: 0ex;
+    margin-bottom: 1.5em;
+    list-style: none; }
+  .api hr {
+    margin-bottom: 2em;
+    visibility: hidden; }
+  .api code.type {
+    color: #8d543c; }
+  .api td div.info p {
+    margin: 0;
+    box-shadow: 0 1px 0 0 #ddd; }
+  .api td div.info {
+    /* index page */
+    padding-left: 0; }
+  .api > #search_results {
+    margin-top: 2em; }
+  .api input#api_search {
+    font-family: inherit; }
+  .api #search_results ul {
+    list-style: none; }
+    .api #search_results ul li {
+      margin-bottom: 4px; }
+  .api #search_results li div.info {
+    /* index page */
+    display: block;
+    max-width: 70%;
+    padding-left: 4em;
+    margin-bottom: 1ex; }
+  .api #search_results li div.info p {
+    /* index page */
+    margin: 0; }
+  .api span.search_comment {
+    vertical-align: bottom; }
+  .api .search_comment .search_help {
+    height: 0;
+    opacity: 0;
+    font-size: 10px;
+    overflow: hidden;
+    transition: all 0.5s; }
+    .api .search_comment .search_help ul {
+      margin-top: 0; }
+  .api .search_comment:hover .search_help {
+    height: auto;
+    margin-top: -1px;
+    opacity: 0.8;
+    background: linear-gradient(to bottom, white 0%, #ede8e5 100%);
+    transition: all 0.5s; }
+  .api .search_comment .search_help:hover {
+    font-size: 14px; }
+  .api td div.info div.info-desc {
+    margin-bottom: 0; }
+  .api div.info div.info-desc {
+    margin-bottom: 2ex;
+    padding-left: 2em; }
+  .api div.info.top div.info-desc {
+    padding-left: 0;
+    padding-bottom: 1em;
+    box-shadow: 0 1px 0 0 #ddd; }
+  .api td div.info {
+    margin: 0; }
+  .api div.info-deprecated {
+    padding-top: 0.5em; }
+  .api .info-desc p {
+    margin-bottom: 0; }
+    .api .info-desc p code {
+      white-space: normal; }
+  .api td.typefieldcomment > code {
+    display: none;
+    /* this only applies to "(*" and "*)" */ }
+  .api td.typefieldcomment {
+    padding: 0; }
+  .api td.typefieldcomment p {
+    color: #776558; }
+  .api td.typefieldcomment:nth-child(3),
+  .api td.typefieldcomment:last-child {
+    display: none; }
+  .api .api_search img {
+    height: 1em;
+    vertical-align: middle;
+    margin-right: 1em; }
+  .api nav .api_search img {
+    margin-right: 0; }
+
+#footer {
+  margin-left: 26ex; }
+
+/* When the navigation bar is collapsed */
+@media only screen and (max-width: 979px) {
+  .api, .content {
+    margin: auto;
+    padding: 2em; }
+    .api h1, .content h1 {
+      margin-top: 0; }
+
+  .container, .api {
+    margin-left: auto;
+    margin-right: auto; }
+
+  #sidebar-button {
+    display: inline-block;
+    position: fixed;
+    top: 1.5em;
+    right: 1ex; }
+
+  header {
+    margin-bottom: 0;
+    position: fixed;
+    left: -10000px;
+    /* initially hidden */
+    background-color: #ffefe7;
+    transition: left 0.4s;
+    top: 0;
+    max-width: calc(100% - 2em);
+    max-height: 100%;
+    overflow-y: auto;
+    box-shadow: 0.4rem 0rem 0.8rem #bbb; }
+
+  .api > table {
+    box-shadow: 0px 3px 9px 3px #ddd;
+    margin-bottom: 1em;
+    padding-bottom: 2px; }
+    .api > table td:nth-child(2) {
+      width: 59%; }
+
+  .api *:target {
+    padding-top: 0px;
+    margin-top: 0px; }
+  .api .toc {
+    position: static;
+    width: auto;
+    min-width: unset;
+    border: none;
+    padding: .2em 1em;
+    border-radius: 5px 0; }
+    .api .toc.brand {
+      border-radius: 0 5px; }
+  .api table td {
+    padding-left: 2%; }
+  .api table td:first-child {
+    padding-right: 0; }
+  .api table.typetable {
+    box-shadow: none; }
+    .api table.typetable td:nth-child(2) {
+      white-space: normal;
+      /*width: 41%;*/
+      width: auto;
+      max-width: calc(100% - 3ex); }
+    .api table.typetable tr td:nth-child(4).typefieldcomment {
+      /*width: 50%;*/
+      width: auto;
+      margin-left: 3ex;
+      word-break: break-word;
+      float: right; }
+    .api table.typetable td:last-child {
+      width: auto; }
+    .api table.typetable tr td:first-child {
+      padding-right: 0;
+      width: auto; }
+  .api .info-desc p code {
+    word-break: break-word; }
+  .api td div.info div.info-desc {
+    padding-left: 0; }
+  .api span.search_comment {
+    display: block; }
+
+  .api > table td:first-child {
+    width: 40%; }
+
+  .api code {
+    word-break: break-word;
+    white-space: pre-wrap; }
+
+  #footer {
+    margin-left: auto; } }
+/* When the navigation bar has reduced size */
