@@ -253,6 +253,15 @@
 </dl>
 <dl class="row">
     <dt class="span3">
+        <img src="/img/users/functori.png" alt="Functori">
+    </dt>
+    <dd class="span5">
+        <h2><a href="https://www.functori.com">Functori</a>, France</h2>
+        <p>Functori is a R&D company created by experienced engineers in programming languages (particularly OCaml), formal verification (automated reasoning, model checking, ...), and blockchain technology (core, smart contracts and applications development). In addition to contributing tools and libraries in OCaml and for the OCaml community, we are participating in the development of the Tezos blockchain in various ways: (1) core development, (2) building open-source tooling and libraries for the community (like indexers/crawlers, libraries to interact with the Tezos blockchain, etc.), (3) participating in the development of innovative projects for our clients, (4) auditing code for our clients, (5) consulting and training. Functori was founded in 2021 and is based in Paris (France), with people working remotely all around the world.</p>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="span3">
         <img src="/img/users/galois.png" alt="Galois">
     </dt>
     <dd class="span5">
