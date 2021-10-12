@@ -103,7 +103,7 @@
             </h1>
 			<ul class="news-feed" style="margin-bottom: 0px">
 
-            <!-- Commented out between workshops -->
+            <!-- Commented out between workshops
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2020/">OCaml 2020</a></h1>
@@ -114,11 +114,12 @@
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
 			</article></li>
+             -->
 			<li class="announcement"><article>
 			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
 				   >Release of OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
-			   <p>February 24, 2021</p>
+			   <p>October 1, 2021</p>
 			   <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
