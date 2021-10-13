@@ -102,6 +102,7 @@
 				/><img class="png" src="/img/rss.png" alt="RSS" /></a>
             </h1>
 			<ul class="news-feed" style="margin-bottom: 0px">
+			<!-- Commented between workshop
 			<li class="announcement"><article>
 			  <h1><a title="OCaml Users and Developers Workshop"
 			       href="/meetings/ocaml/2020/">OCaml 2020</a></h1>
@@ -111,12 +112,12 @@
 			    <img alt="" src="/img/announcement.svg" class="svg" />
 			    <img alt="" src="/img/announcement.png" class="png" />
 			  </a>
-			</article></li>
+			</article></li> -->
 			<li class="announcement"><article>
 			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
 				   >Parution d'OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
-			   <p>24 février 2021</p>
+			   <p>1er octobre 2021</p>
 			   <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
 			    <img alt="" src="/img/announcement.svg" class="svg" />
