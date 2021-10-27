@@ -39,7 +39,7 @@ template/%_code_snippet.html:template/%_code_snippet.md $(OMD_PP)
 	cat "$<" | $(OMD_PP) | ${OMD} -o $@
 
 opam_update_list: script/generate_opam_update_list
-	curl -O http://opam.ocaml.org/json/last10_updates.json
+	curl -O https://opam.ocaml.org/json/last10_updates.json
 	script/generate_opam_update_list
 
 script/generate_opam_update_list: script/generate_opam_update_list.ml
