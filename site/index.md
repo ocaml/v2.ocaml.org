@@ -4,7 +4,7 @@
 <header id="home-header">
     <div class="container">
         <div class="row">
-            <h1 class="span9">OCaml is an industrial-strength programming language supporting functional, imperative and object-oriented styles</h1>
+            <h1 class="span9">OCaml is an Industrial-Strength Programming Language supporting Functional, Imperative and Object-Oriented Styles.</h1>
             <div class="span3">
                 <div>
                     <a class="btn" href="/learn/tutorials/up_and_running.html">Install OCaml</a>
@@ -53,7 +53,7 @@
 					</a>
                     <h1><a href="https://opam.ocaml.org">Packages</a></h1>
                     <p>The <a href="https://opam.ocaml.org">OCaml Package
-					Manager</a>, gives you access to multiple versions of
+					Manager</a> gives you access to multiple versions of
 					<a href="https://opam.ocaml.org/packages/">hundreds of
 					packages</a>.</p>
                 </section>
@@ -143,7 +143,7 @@
     </div>
     <div class="row">
         <section class="span6 condensed">
-            <h1><a href="learn/taste.html">A taste of OCaml</a></h1>
+            <h1><a href="learn/taste.html">A Taste of OCaml</a></h1>
             ((! cat template/tryocaml.html !))
             ((! input template/front_code_snippet.html !))
             <p>OCaml is a lot more powerful than this simple example shows. See <a href="/learn/taste.html">more examples</a>!</p>
