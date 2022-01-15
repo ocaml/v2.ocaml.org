@@ -31,7 +31,7 @@ port install opam
 Linux (e.g `apt-get install opam` or similar). [Details of all installation
 methods.](https://opam.ocaml.org/doc/Install.html)
 
-Then, we install an OCaml compiler:
+Then, we install an OCaml compiler and some basic dev tools:
 
 ```
 # environment setup
@@ -41,6 +41,8 @@ eval `opam env`
 # install given version of the compiler
 opam switch create 4.11.1
 eval `opam env`
+# install dev tools
+opam install dune utop ocaml-lsp-server
 ```
 
 Now, OCaml is up and running:
@@ -77,19 +79,32 @@ but the executables produced have no dependency on Cygwin at all. For a more
 comprehensive update on the state of OCaml on Windows, see the 
 [OCaml on Windows](/platform/ocaml_on_windows.html) page.
 
-## The OCaml top level
+## The OCaml top level (REPL)
 
 OCaml comes with two compilers: for native code, and for byte code. We shall
-use one of those in a moment. But first, let's use OCaml's top level (sometimes
-known as a REPL in other languages):
+use one of those in a moment. But first, let's use OCaml's top level (known as a
+REPL in other languages), which we installed above:
 
 ```
-$ ocaml
-        OCaml version 4.11.1
+$ utop
+────────────────────────────────┬─────────────────────────────────────────────────────────────────────┬─────────────────────────────────
+                                │ Welcome to utop version 2.8.0 (using OCaml version 4.11.1!          │                                 
+                                └─────────────────────────────────────────────────────────────────────┘                                 
+Findlib has been successfully loaded. Additional directives:
+  #require "package";;      to load a package
+  #list;;                   to list the available packages
+  #camlp4o;;                to load camlp4 (standard syntax)
+  #camlp4r;;                to load camlp4 (revised syntax)
+  #predicates "p,q,...";;   to set these predicates
+  Topfind.reset();;         to force that packages will be reloaded
+  #thread;;                 to enable threads
 
-# 1 + 2 * 3;;
+
+Type #utop_help for help about using utop.
+
+─( 12:12:45 )─< command 0 >──────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # 1 + 2 * 3;;
 - : int = 7
-
 ```
 
 We typed the phrase `1 + 2 * 3` and then signalled to OCaml that we had
@@ -98,46 +113,18 @@ result, `7` and its type `int` and showed them to us. We exit by running the
 built-in `exit` function with exit code 0:
 
 ```
-$ ocaml
-        OCaml version 4.11.1
-
-# 1 + 2 * 3;;
-- : int = 7
-# exit 0;;
+─( 12:12:45 )─< command 1 >──────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # exit 0;;
 $
 ```
 
-There are two ways to improve your experience with the OCaml top level: you can
-install the popular [`rlwrap`](https://github.com/hanslub42/rlwrap) on your
-system and invoke `rlwrap ocaml` instead of `ocaml` to get line-editing
-facilities inside the OCaml top level, or you can install the alternative top
-level `utop` using opam:
+Note that OCaml also has an older REPL, using the `ocaml` command. However, this
+REPL does not have history or tab-completion, so we recommend always using utop.
 
-```
-$ opam install utop
-```
+## Using the Dune build system
 
-We run it by typing `utop` instead of `ocaml`. You can read more about
-[utop](https://github.com/ocaml-community/utop).
-
-## Installing the Dune build system
-
-Dune is a build system for OCaml. It takes care of all the low level details of
-OCaml compilation. We install it with opam:
-
-```
-$ opam install dune
-The following actions will be performed:
-  - install dune 2.7.1
-
-<><> Gathering sources ><><><><><><><><><><><><><><><><><><><><><><><><>
-[default] https://opam.ocaml.org/2.0.7/archives/dune.2.7.1+opam.tar.gz
-downloaded
-
-<><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><>
--> installed dune.2.7.1
-Done.
-```
+Dune is a build system for OCaml. It takes care of all the low-level details of
+OCaml compilation. We installed it with opam, above.
 
 ## A first project
 
@@ -194,15 +181,12 @@ file.
 
 ## Editor support for OCaml
 
-For **Visual Studio Code**, and other editors support the Language Server
-Protocol, the OCaml language server can be installed with opam:
+We installed the OCaml Language Server above with opam. With this tool, we get
+editor support in **Visual Studio Code** and other editors which support the
+Language Server Protocol.
 
-```
-$ opam install ocaml-lsp-server
-```
-
-Now, we install the OCaml Platform Visual Studio Code extension from the Visual
-Studio Marketplace.
+Now, we will install the OCaml Platform Visual Studio Code extension from the
+Visual Studio Marketplace.
 
 Upon first loading an OCaml source file, you may be prompted to select the
 toolchain in use: pick OCaml the version of OCaml you are using, e.g. 4.11.1
