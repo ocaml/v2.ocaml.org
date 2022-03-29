@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Consistbl.html">
+<link rel="next" href="Diffing_with_keys.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel="Appendix" href="index_types.html">
+<link title="Index of extensions" rel="Appendix" href="index_extensions.html">
+<link title="Index of exceptions" rel="Appendix" href="index_exceptions.html">
+<link title="Index of values" rel="Appendix" href="index_values.html">
+<link title="Index of modules" rel="Appendix" href="index_modules.html">
+<link title="Index of module types" rel="Appendix" href="index_module_types.html">
+<link title="Compiler_libs" rel="Chapter" href="Compiler_libs.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="CamlinternalMenhirLib" rel="Chapter" href="CamlinternalMenhirLib.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Binutils" rel="Chapter" href="Binutils.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Diffing" rel="Chapter" href="Diffing.html">
+<link title="Diffing_with_keys" rel="Chapter" href="Diffing_with_keys.html">
+<link title="Domainstate" rel="Chapter" href="Domainstate.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int_replace_polymorphic_compare" rel="Chapter" href="Int_replace_polymorphic_compare.html">
+<link title="Lazy_backtrack" rel="Chapter" href="Lazy_backtrack.html">
+<link title="Load_path" rel="Chapter" href="Load_path.html">
+<link title="Local_store" rel="Chapter" href="Local_store.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html"><title>OCaml compiler library : Diffing</title>
+<script src="search.js"></script><script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="api"><div id="sidebar-button"><span>☰</span></div><header id="sidebar"><nav class="toc brand"><a class="brand" href="../../manual/index.html"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Compiler API Version 4.14</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" class="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="api_search svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="#top">OCaml compiler library : Diffing</a></div><ul></ul></nav></header>
+<h1>Module <a href="type_Diffing.html">Diffing</a></h1>
+
+<pre><span id="MODULEDiffing"><span class="keyword">module</span> Diffing</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Diffing.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Parametric diffing</p>
+
+<p>This module implements diffing over lists of arbitrary content.
+    It is parameterized by</p>
+<ul>
+<li>The content of the two lists</li>
+<li>The equality witness when an element is kept</li>
+<li>The diffing witness when an element is changed</li>
+</ul>
+<p>Diffing is extended to maintain state depending on the
+    computed changes while walking through the two lists.</p>
+
+<p>The underlying algorithm is a modified Wagner-Fischer algorithm
+    (see &lt;https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm&gt;).</p>
+
+<p>We provide the following guarantee:
+    Given two lists <code class="code">l</code> and <code class="code">r</code>, if different patches result in different
+    states, we say that the state diverges.</p>
+<ul>
+<li>We always return the optimal patch on prefixes of <code class="code">l</code> and <code class="code">r</code>
+      on which state does not diverge.</li>
+<li>Otherwise, we return a correct but non-optimal patch where subpatches
+      with no divergent states are optimal for the given initial state.</li>
+</ul>
+<p>More precisely, the optimality of Wagner-Fischer depends on the property
+    that the edit-distance between a k-prefix of the left input and a l-prefix
+    of the right input d(k,l) satisfies</p>
+
+<p>d(k,l) = min (
+     del_cost + d(k-1,l),
+     insert_cost + d(k,l-1),
+     change_cost + d(k-1,l-1)
+    )</p>
+
+<p>Under this hypothesis, it is optimal to choose greedily the state of the
+   minimal patch transforming the left k-prefix into the right l-prefix as a
+   representative of the states of all possible patches transforming the left
+   k-prefix into the right l-prefix.</p>
+
+<p>If this property is not satisfied, we can still choose greedily a
+   representative state. However, the computed patch is no more guaranteed to
+   be globally optimal.
+   Nevertheless, it is still a correct patch, which is even optimal among all
+   explored patches.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="MODULETYPEDefs"><span class="keyword">module type</span> <a href="Diffing.Defs.html">Defs</a></span> = <code class="code"><span class="keyword">sig</span></code> <a href="Diffing.Defs.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+<p>The core types of a diffing implementation</p>
+
+</div>
+
+<pre><code><span id="TYPEchange_kind"><span class="keyword">type</span> <code class="type"></code>change_kind</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange_kind.Deletion"><span class="constructor">Deletion</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange_kind.Insertion"><span class="constructor">Insertion</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange_kind.Modification"><span class="constructor">Modification</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange_kind.Preservation"><span class="constructor">Preservation</span></span></code></td>
+
+</tr></tbody></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>The kind of changes which is used to share printing and styling
+    across implementation</p>
+</div>
+</div>
+
+
+<pre><span id="VALprefix"><span class="keyword">val</span> prefix</span> : <code class="type">Format.formatter -&gt; int * <a href="Diffing.html#TYPEchange_kind">change_kind</a> -&gt; unit</code></pre>
+<pre><span id="VALstyle"><span class="keyword">val</span> style</span> : <code class="type"><a href="Diffing.html#TYPEchange_kind">change_kind</a> -&gt; <a href="Misc.Color.html#TYPEstyle">Misc.Color.style</a> list</code></pre>
+<pre><code><span id="TYPEchange"><span class="keyword">type</span> <code class="type">('left, 'right, 'eq, 'diff)</code> change</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange.Delete"><span class="constructor">Delete</span></span> <span class="keyword">of</span> <code class="type">'left</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange.Insert"><span class="constructor">Insert</span></span> <span class="keyword">of</span> <code class="type">'right</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange.Keep"><span class="constructor">Keep</span></span> <span class="keyword">of</span> <code class="type">'left * 'right * 'eq</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange.Change"><span class="constructor">Change</span></span> <span class="keyword">of</span> <code class="type">'left * 'right * 'diff</code></code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><span id="VALclassify"><span class="keyword">val</span> classify</span> : <code class="type">('a, 'b, 'c, 'd) <a href="Diffing.html#TYPEchange">change</a> -&gt; <a href="Diffing.html#TYPEchange_kind">change_kind</a></code></pre>
+<pre><span id="MODULEDefine"><span class="keyword">module</span> <a href="Diffing.Define.html">Define</a></span>: <div class="sig_block"><code class="code"><span class="keyword">functor</span>&nbsp;(</code><code class="code"><span class="constructor">D</span></code><code class="code">&nbsp;:&nbsp;</code><code class="type"><a href="Diffing.Defs.html">Defs</a></code><code class="code">)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;</code><code class="code"><span class="keyword">sig</span></code> <a href="Diffing.Define.html">..</a> <code class="code"><span class="keyword">end</span></code></div></pre><div class="info">
+<p><code class="code"><span class="constructor">Define</span>(<span class="constructor">Defs</span>)</code> creates the diffing types from the types
+    defined in <code class="code"><span class="constructor">Defs</span></code> and the functors that need to be instantatied
+    with the diffing algorithm parameters</p>
+
+</div>
+
+</div></body></html>

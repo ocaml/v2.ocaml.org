@@ -3,8 +3,8 @@
 // This variable should be manually modified when a new version appears.
 // TODO: do this automatically.
 
-var LAST_VERSION="4.13"
-var ALL_VERSIONS = [ "latest", "4.13", "4.12", "4.11", "4.10", "4.09", "4.08", "4.07", "4.06",
+var LAST_VERSION="4.14"
+var ALL_VERSIONS = [ "latest", "4.14", "4.13", "4.12", "4.11", "4.10", "4.09", "4.08", "4.07", "4.06",
 		     "4.05", "4.04", "4.03", "4.02", "4.01" ];
 
 
@@ -20,6 +20,7 @@ if ( CURRENT_VERSION_INDEX == null ) {
 // fact, it will probably be unnecessary, since we can directly link
 // to the first file of Part III.
 var tools_sec = {
+    "latest": 289,
     "latest": 289,
     "4.13" : 289,
     "4.12" : 286,

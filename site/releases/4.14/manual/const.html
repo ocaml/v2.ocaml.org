@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.35">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - The OCaml language</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec80"><span class="chapter-number">Chapter 9</span> The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.14</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span> Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span> Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span> Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span> Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span> Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span> Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span> Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span> Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span> Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span> Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span> Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span> Compilation units</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:const"><a class="section-anchor" href="#s:const" aria-hidden="true"></a><span class="number">5</span> Constants</h2>
+<p><a id="hevea_manual.kwd11"></a>
+<a id="hevea_manual.kwd12"></a>
+<a id="hevea_manual.kwd13"></a>
+<a id="hevea_manual.kwd14"></a></p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="constant"><span class="nonterminal">constant</span></a></td><td class="c005">::=</td><td class="c007">
+<a class="syntax" href="lex.html#integer-literal"><span class="nonterminal">integer-literal</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="lex.html#int32-literal"><span class="nonterminal">int32-literal</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="lex.html#int64-literal"><span class="nonterminal">int64-literal</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="lex.html#nativeint-literal"><span class="nonterminal">nativeint-literal</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="lex.html#float-literal"><span class="nonterminal">float-literal</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="lex.html#char-literal"><span class="nonterminal">char-literal</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="lex.html#string-literal"><span class="nonterminal">string-literal</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">false</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">true</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">()</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">begin</span> <span class="syntax-token">end</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">[]</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">[||]</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">`</span><a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>
+See also the following language extension:
+<a href="extensionsyntax.html#ss%3Aextension-literals">extension literals</a>.</p><p>The syntactic class of constants comprises literals from the four
+base types (integers, floating-point numbers, characters, character
+strings), the integer variants, and constant constructors
+from both normal and polymorphic variants, as well as the special
+constants <span class="syntax-token">false</span>, <span class="syntax-token">true</span>, <span class="syntax-token">()</span>,
+<span class="syntax-token">[]</span>, and <span class="syntax-token">[||]</span>, which behave like constant constructors, and
+<span class="syntax-token">begin</span> <span class="syntax-token">end</span>, which is equivalent to <span class="syntax-token">()</span>.
+
+</p>
+
+<div class="bottom-navigation"><a class="previous" href="types.html">« Type expressions</a><a class="next" href="patterns.html">Patterns »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2022 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

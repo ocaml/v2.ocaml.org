@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.35">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - The OCaml language</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec80"><span class="chapter-number">Chapter 9</span> The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.14</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span> Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span> Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span> Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span> Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span> Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span> Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span> Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span> Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span> Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span> Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span> Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span> Compilation units</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+<h2 class="section" id="s:lexical-conventions"><a class="section-anchor" href="#s:lexical-conventions" aria-hidden="true"></a><span class="number">1</span> Lexical conventions</h2>
+<h4 class="subsubsection" id="sss:lex:blanks"><a class="section-anchor" href="#sss:lex:blanks" aria-hidden="true">﻿</a>Blanks</h4>
+<p>The following characters are considered as blanks: space,
+horizontal tabulation, carriage return, line feed and form feed. Blanks are
+ignored, but they separate adjacent identifiers, literals and
+keywords that would otherwise be confused as one single identifier,
+literal or keyword.</p><h4 class="subsubsection" id="sss:lex:comments"><a class="section-anchor" href="#sss:lex:comments" aria-hidden="true">﻿</a>Comments</h4>
+<p>Comments are introduced by the two characters <span class="syntax-token">(*</span>, with no
+intervening blanks, and terminated by the characters <span class="syntax-token">*)</span>, with
+no intervening blanks. Comments are treated as blank characters.
+Comments do not occur inside string or character literals. Nested
+comments are handled correctly.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* single line comment *)</span>
+
+<span class="ocamlcomment">(* multiple line comment, commenting out part of a program, and containing a
+nested comment:
+let f = function
+  | 'A'..'Z' -&gt; "Uppercase"
+    (* Add other cases later... *)
+*)</span></div></div>
+
+</div><h4 class="subsubsection" id="sss:lex:identifiers"><a class="section-anchor" href="#sss:lex:identifiers" aria-hidden="true">﻿</a>Identifiers</h4>
+<div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="ident"><span class="nonterminal">ident</span></a></td><td class="c005">::=</td><td class="c007"> (<a class="syntax" href="#letter"><span class="nonterminal">letter</span></a> ∣ <span class="syntax-token">_</span>) { <a class="syntax" href="#letter"><span class="nonterminal">letter</span></a> ∣ <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">_</span> ∣ <span class="syntax-token">'</span> } </td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="capitalized-ident"><span class="nonterminal">capitalized-ident</span></a></td><td class="c005">::=</td><td class="c007"> (<span class="syntax-token">A</span>…<span class="syntax-token">Z</span>) { <a class="syntax" href="#letter"><span class="nonterminal">letter</span></a> ∣ <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">_</span> ∣ <span class="syntax-token">'</span> } </td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="lowercase-ident"><span class="nonterminal">lowercase-ident</span></a></td><td class="c005">::=</td><td class="c007">
+(<span class="syntax-token">a</span>…<span class="syntax-token">z</span> ∣ <span class="syntax-token">_</span>) { <a class="syntax" href="#letter"><span class="nonterminal">letter</span></a> ∣ <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">_</span> ∣ <span class="syntax-token">'</span> } </td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="letter"><span class="nonterminal">letter</span></a></td><td class="c005">::=</td><td class="c007"> <span class="syntax-token">A</span>…<span class="syntax-token">Z</span> ∣ <span class="syntax-token">a</span>…<span class="syntax-token">z</span>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Identifiers are sequences of letters, digits, <span class="machine"><span class="font-tt">_</span></span> (the underscore
+character), and <span class="machine"><span class="font-tt">'</span></span> (the single quote), starting with a
+letter or an underscore.
+Letters contain at least the 52 lowercase and uppercase
+letters from the ASCII set. The current implementation
+also recognizes as letters some characters from the ISO
+8859-1 set (characters 192–214 and 216–222 as uppercase letters;
+characters 223–246 and 248–255 as lowercase letters). This
+feature is deprecated and should be avoided for future compatibility.</p><p>All characters in an identifier are
+meaningful. The current implementation accepts identifiers up to
+16000000 characters in length.</p><p>In many places, OCaml makes a distinction between capitalized
+identifiers and identifiers that begin with a lowercase letter. The
+underscore character is considered a lowercase letter for this
+purpose.</p><h4 class="subsubsection" id="sss:integer-literals"><a class="section-anchor" href="#sss:integer-literals" aria-hidden="true">﻿</a>Integer literals</h4>
+<div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="integer-literal"><span class="nonterminal">integer-literal</span></a></td><td class="c005">::=</td><td class="c007">
+[<span class="syntax-token">-</span>] (<span class="syntax-token">0</span>…<span class="syntax-token">9</span>) { <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">_</span> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> [<span class="syntax-token">-</span>] (<span class="syntax-token">0x</span> ∣ <span class="syntax-token">0X</span>) (<span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">A</span>…<span class="syntax-token">F</span> ∣ <span class="syntax-token">a</span>…<span class="syntax-token">f</span>)
+{ <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">A</span>…<span class="syntax-token">F</span> ∣ <span class="syntax-token">a</span>…<span class="syntax-token">f</span> ∣ <span class="syntax-token">_</span> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> [<span class="syntax-token">-</span>] (<span class="syntax-token">0o</span> ∣ <span class="syntax-token">0O</span>) (<span class="syntax-token">0</span>…<span class="syntax-token">7</span>) { <span class="syntax-token">0</span>…<span class="syntax-token">7</span> ∣ <span class="syntax-token">_</span> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> [<span class="syntax-token">-</span>] (<span class="syntax-token">0b</span> ∣ <span class="syntax-token">0B</span>) (<span class="syntax-token">0</span>…<span class="syntax-token">1</span>) { <span class="syntax-token">0</span>…<span class="syntax-token">1</span> ∣ <span class="syntax-token">_</span> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="int32-literal"><span class="nonterminal">int32-literal</span></a></td><td class="c005">::=</td><td class="c007"> <a class="syntax" href="#integer-literal"><span class="nonterminal">integer-literal</span></a> <span class="syntax-token">l</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="int64-literal"><span class="nonterminal">int64-literal</span></a></td><td class="c005">::=</td><td class="c007"> <a class="syntax" href="#integer-literal"><span class="nonterminal">integer-literal</span></a> <span class="syntax-token">L</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="nativeint-literal"><span class="nonterminal">nativeint-literal</span></a></td><td class="c005">::=</td><td class="c007"> <a class="syntax" href="#integer-literal"><span class="nonterminal">integer-literal</span></a> <span class="syntax-token">n</span>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>An integer literal is a sequence of one or more digits, optionally
+preceded by a minus sign. By default, integer literals are in decimal
+(radix 10). The following prefixes select a different radix:
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c004"><span class="font-bold">Prefix</span></td><td class="c004"><span class="font-bold">Radix</span> </td></tr>
+<tr><td class="c006">
+<span class="machine"><span class="font-tt">0x</span></span>, <span class="machine"><span class="font-tt">0X</span></span></td><td class="c006">hexadecimal (radix 16) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">0o</span></span>, <span class="machine"><span class="font-tt">0O</span></span></td><td class="c006">octal (radix 8) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">0b</span></span>, <span class="machine"><span class="font-tt">0B</span></span></td><td class="c006">binary (radix 2) </td></tr>
+</tbody></table></div></div><p>
+(The initial <span class="syntax-token">0</span> is the digit zero; the <span class="syntax-token">O</span> for octal is the letter O.)
+An integer literal can be followed by one of the letters <span class="machine"><span class="font-tt">l</span></span>, <span class="machine"><span class="font-tt">L</span></span> or <span class="machine"><span class="font-tt">n</span></span>
+to indicate that this integer has type <span class="machine"><span class="font-tt">int32</span></span>, <span class="machine"><span class="font-tt">int64</span></span> or <span class="machine"><span class="font-tt">nativeint</span></span>
+respectively, instead of the default type <span class="machine"><span class="font-tt">int</span></span> for integer literals.
+The interpretation of integer literals that fall outside the range of
+representable integer values is undefined.</p><p>For convenience and readability, underscore characters (<span class="syntax-token">_</span>) are accepted
+(and ignored) within integer literals.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> house_number = 37
+  <span class="ocamlkeyword">let</span> million = 1_000_000
+  <span class="ocamlkeyword">let</span> copyright = 0x00A9
+  <span class="ocamlkeyword">let</span> counter64bit = <span class="ocamlkeyword">ref</span> 0L;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> house_number : int = 37
+<span class="ocamlkeyword">val</span> million : int = 1000000
+<span class="ocamlkeyword">val</span> copyright : int = 169
+<span class="ocamlkeyword">val</span> counter64bit : int64 <span class="ocamlkeyword">ref</span> = {contents = 0L}</div></div>
+
+</div><h4 class="subsubsection" id="sss:floating-point-literals"><a class="section-anchor" href="#sss:floating-point-literals" aria-hidden="true">﻿</a>Floating-point literals</h4>
+<div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="float-literal"><span class="nonterminal">float-literal</span></a></td><td class="c005">::=</td><td class="c007">
+[<span class="syntax-token">-</span>] (<span class="syntax-token">0</span>…<span class="syntax-token">9</span>) { <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">_</span> } [<span class="syntax-token">.</span> { <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">_</span> }]
+[(<span class="syntax-token">e</span> ∣ <span class="syntax-token">E</span>) [<span class="syntax-token">+</span> ∣ <span class="syntax-token">-</span>] (<span class="syntax-token">0</span>…<span class="syntax-token">9</span>) { <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">_</span> }]
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> [<span class="syntax-token">-</span>] (<span class="syntax-token">0x</span> ∣ <span class="syntax-token">0X</span>)
+(<span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">A</span>…<span class="syntax-token">F</span> ∣ <span class="syntax-token">a</span>…<span class="syntax-token">f</span>)
+{ <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">A</span>…<span class="syntax-token">F</span> ∣ <span class="syntax-token">a</span>…<span class="syntax-token">f</span> ∣ <span class="syntax-token">_</span> } 
+[<span class="syntax-token">.</span> { <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">A</span>…<span class="syntax-token">F</span> ∣ <span class="syntax-token">a</span>…<span class="syntax-token">f</span> ∣ <span class="syntax-token">_</span> }]
+[(<span class="syntax-token">p</span> ∣ <span class="syntax-token">P</span>) [<span class="syntax-token">+</span> ∣ <span class="syntax-token">-</span>] (<span class="syntax-token">0</span>…<span class="syntax-token">9</span>) { <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">_</span> }]
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Floating-point decimal literals consist in an integer part, a
+fractional part and
+an exponent part. The integer part is a sequence of one or more
+digits, optionally preceded by a minus sign. The fractional part is a
+decimal point followed by zero, one or more digits.
+The exponent part is the character <span class="syntax-token">e</span> or <span class="syntax-token">E</span> followed by an
+optional <span class="syntax-token">+</span> or <span class="syntax-token">-</span> sign, followed by one or more digits. It is
+interpreted as a power of 10.
+The fractional part or the exponent part can be omitted but not both, to
+avoid ambiguity with integer literals.
+The interpretation of floating-point literals that fall outside the
+range of representable floating-point values is undefined.</p><p>Floating-point hexadecimal literals are denoted with the <span class="syntax-token">0x</span> or <span class="syntax-token">0X</span>
+prefix. The syntax is similar to that of floating-point decimal
+literals, with the following differences.
+The integer part and the fractional part use hexadecimal
+digits. The exponent part starts with the character <span class="syntax-token">p</span> or <span class="syntax-token">P</span>.
+It is written in decimal and interpreted as a power of 2.</p><p>For convenience and readability, underscore characters (<span class="syntax-token">_</span>) are accepted
+(and ignored) within floating-point literals.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> pi = 3.141_592_653_589_793_12
+  <span class="ocamlkeyword">let</span> small_negative = -1e-5
+  <span class="ocamlkeyword">let</span> machine_epsilon = 0x1p-52;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> pi : float = 3.14159265358979312
+<span class="ocamlkeyword">val</span> small_negative : float = -1e-05
+<span class="ocamlkeyword">val</span> machine_epsilon : float = 2.22044604925031308e-16</div></div>
+
+</div><h4 class="subsubsection" id="sss:character-literals"><a class="section-anchor" href="#sss:character-literals" aria-hidden="true">﻿</a>Character literals</h4>
+<p>
+<a id="s:characterliteral"></a></p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="char-literal"><span class="nonterminal">char-literal</span></a></td><td class="c005">::=</td><td class="c007">
+<span class="syntax-token">'</span> <span class="nonterminal">regular-char</span> <span class="syntax-token">'</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">'</span> <a class="syntax" href="#escape-sequence"><span class="nonterminal">escape-sequence</span></a> <span class="syntax-token">'</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="escape-sequence"><span class="nonterminal">escape-sequence</span></a></td><td class="c005">::=</td><td class="c007">
+<span class="syntax-token">\</span> (<span class="syntax-token">\</span> ∣ <span class="syntax-token">"</span> ∣ <span class="syntax-token">'</span> ∣ <span class="syntax-token">n</span> ∣ <span class="syntax-token">t</span> ∣ <span class="syntax-token">b</span> ∣ <span class="syntax-token">r</span> ∣ <span class="nonterminal">space</span>)
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">\</span> (<span class="syntax-token">0</span>…<span class="syntax-token">9</span>) (<span class="syntax-token">0</span>…<span class="syntax-token">9</span>) (<span class="syntax-token">0</span>…<span class="syntax-token">9</span>)
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">\x</span> (<span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">A</span>…<span class="syntax-token">F</span> ∣ <span class="syntax-token">a</span>…<span class="syntax-token">f</span>)
+(<span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">A</span>…<span class="syntax-token">F</span> ∣ <span class="syntax-token">a</span>…<span class="syntax-token">f</span>)
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">\o</span> (<span class="syntax-token">0</span>…<span class="syntax-token">3</span>) (<span class="syntax-token">0</span>…<span class="syntax-token">7</span>) (<span class="syntax-token">0</span>…<span class="syntax-token">7</span>)
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Character literals are delimited by <span class="syntax-token">'</span> (single quote) characters.
+The two single quotes enclose either one character different from
+<span class="syntax-token">'</span> and <span class="syntax-token">\</span>, or one of the escape sequences below:
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c004"><span class="font-bold">Sequence</span></td><td class="c004"><span class="font-bold">Character denoted</span> </td></tr>
+<tr><td class="c006">
+<span class="machine"><span class="font-tt">\\</span></span></td><td class="c006">backslash (<span class="machine"><span class="font-tt">\</span></span>) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\"</span></span></td><td class="c006">double quote (<span class="machine"><span class="font-tt">"</span></span>) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\'</span></span></td><td class="c006">single quote (<span class="machine"><span class="font-tt">'</span></span>) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\n</span></span></td><td class="c006">linefeed (LF) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\r</span></span></td><td class="c006">carriage return (CR) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\t</span></span></td><td class="c006">horizontal tabulation (TAB) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\b</span></span></td><td class="c006">backspace (BS) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\</span></span><span class="font-it">space</span></td><td class="c006">space (SPC) </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\</span></span><span class="font-it">ddd</span></td><td class="c006">the character with ASCII code <span class="font-it">ddd</span> in decimal </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\x</span></span><span class="font-it">hh</span></td><td class="c006">the character with ASCII code <span class="font-it">hh</span> in hexadecimal </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">\o</span></span><span class="font-it">ooo</span></td><td class="c006">the character with ASCII code <span class="font-it">ooo</span> in octal </td></tr>
+</tbody></table></div></div><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> a = 'a'
+  <span class="ocamlkeyword">let</span> single_quote = '\''
+  <span class="ocamlkeyword">let</span> copyright = '\xA9';;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> a : char = 'a'
+<span class="ocamlkeyword">val</span> single_quote : char = '\''
+<span class="ocamlkeyword">val</span> copyright : char = '\169'</div></div>
+
+</div><h4 class="subsubsection" id="sss:stringliterals"><a class="section-anchor" href="#sss:stringliterals" aria-hidden="true">﻿</a>String literals</h4>
+<div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="string-literal"><span class="nonterminal">string-literal</span></a></td><td class="c005">::=</td><td class="c007">
+<span class="syntax-token">"</span> { <a class="syntax" href="#string-character"><span class="nonterminal">string-character</span></a> } <span class="syntax-token">"</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007">  <span class="syntax-token">{</span> <a class="syntax" href="#quoted-string-id"><span class="nonterminal">quoted-string-id</span></a> <span class="syntax-token">|</span> { <span class="nonterminal">any-char</span> } <span class="syntax-token">|</span> <a class="syntax" href="#quoted-string-id"><span class="nonterminal">quoted-string-id</span></a> <span class="syntax-token">}</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="quoted-string-id"><span class="nonterminal">quoted-string-id</span></a></td><td class="c005">::=</td><td class="c007">
+{ <span class="syntax-token">a</span>...<span class="syntax-token">z</span> ∣ <span class="syntax-token">_</span> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="string-character"><span class="nonterminal">string-character</span></a></td><td class="c005">::=</td><td class="c007">
+<span class="nonterminal">regular-string-char</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="#escape-sequence"><span class="nonterminal">escape-sequence</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">\u{</span> { <span class="syntax-token">0</span>…<span class="syntax-token">9</span> ∣ <span class="syntax-token">A</span>…<span class="syntax-token">F</span> ∣ <span class="syntax-token">a</span>…<span class="syntax-token">f</span> }<sup>+</sup> <span class="syntax-token">}</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">\</span> <span class="nonterminal">newline</span> { <span class="nonterminal">space</span> ∣ <span class="nonterminal">tab</span> }
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>String literals are delimited by <span class="syntax-token">"</span> (double quote) characters.
+The two double quotes enclose a sequence of either characters
+different from <span class="syntax-token">"</span> and <span class="syntax-token">\</span>, or escape sequences from the
+table given above for character literals, or a Unicode character
+escape sequence.</p><p>A Unicode character escape sequence is substituted by the UTF-8
+encoding of the specified Unicode scalar value. The Unicode scalar
+value, an integer in the ranges 0x0000...0xD7FF or 0xE000...0x10FFFF,
+is defined using 1 to 6 hexadecimal digits; leading zeros are allowed.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> greeting = <span class="ocamlstring">"Hello, World!\n"</span>
+  <span class="ocamlkeyword">let</span> superscript_plus = <span class="ocamlstring">"\u{207A}"</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> greeting : string = <span class="ocamlstring">"Hello, World!\n"</span>
+<span class="ocamlkeyword">val</span> superscript_plus : string = <span class="ocamlstring">"⁺"</span></div></div>
+
+</div><p>To allow splitting long string literals across lines, the sequence
+<span class="machine"><span class="font-tt">\</span></span><span class="font-it">newline</span>&nbsp;<span class="font-it">spaces-or-tabs</span> (a backslash at the end of a line
+followed by any number of spaces and horizontal tabulations at the
+beginning of the next line) is ignored inside string literals.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> longstr =
+    <span class="ocamlstring">"Call me Ishmael. Some years ago — never mind how long \
+    precisely — having little or no money in my purse, and \
+    nothing particular to interest me on shore, I thought I\
+    \ would sail about a little and see the watery part of t\
+    he world."</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> longstr : string =
+  <span class="ocamlstring">"Call me Ishmael. Some years ago — never mind how long precisely — having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world."</span></div></div>
+
+</div><p>Quoted string literals provide an alternative lexical syntax for
+string literals. They are useful to represent strings of arbitrary content
+without escaping. Quoted strings are delimited by a matching pair
+of <span class="syntax-token">{</span> <a class="syntax" href="#quoted-string-id"><span class="nonterminal">quoted-string-id</span></a> <span class="syntax-token">|</span> and <span class="syntax-token">|</span> <a class="syntax" href="#quoted-string-id"><span class="nonterminal">quoted-string-id</span></a> <span class="syntax-token">}</span> with
+the same <a class="syntax" href="#quoted-string-id"><span class="nonterminal">quoted-string-id</span></a> on both sides. Quoted strings do not interpret
+any character in a special way but requires that the
+sequence <span class="syntax-token">|</span> <a class="syntax" href="#quoted-string-id"><span class="nonterminal">quoted-string-id</span></a> <span class="syntax-token">}</span> does not occur in the string itself.
+The identifier <a class="syntax" href="#quoted-string-id"><span class="nonterminal">quoted-string-id</span></a> is a (possibly empty) sequence of
+lowercase letters and underscores that can be freely chosen to avoid
+such issue.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> quoted_greeting = <span class="ocamlstring">{|"Hello, World!"|}</span>
+  <span class="ocamlkeyword">let</span> nested = {ext|hello <span class="ocamlstring">{|world|}</span>|ext};;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> quoted_greeting : string = <span class="ocamlstring">"\"Hello, World!\""</span>
+<span class="ocamlkeyword">val</span> nested : string = <span class="ocamlstring">"hello {|world|}"</span></div></div>
+
+</div><p>The current implementation places practically no restrictions on the
+length of string literals.</p><h4 class="subsubsection" id="sss:labelname"><a class="section-anchor" href="#sss:labelname" aria-hidden="true">﻿</a>Naming labels</h4>
+<p>To avoid ambiguities, naming labels in expressions cannot just be defined
+syntactically as the sequence of the three tokens <span class="machine"><span class="font-tt">~</span></span>, <a class="syntax" href="#ident"><span class="nonterminal">ident</span></a> and
+<span class="machine"><span class="font-tt">:</span></span>, and have to be defined at the lexical level.</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="label-name"><span class="nonterminal">label-name</span></a></td><td class="c005">::=</td><td class="c007"> <a class="syntax" href="#lowercase-ident"><span class="nonterminal">lowercase-ident</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="label"><span class="nonterminal">label</span></a></td><td class="c005">::=</td><td class="c007"> <span class="syntax-token">~</span> <a class="syntax" href="#label-name"><span class="nonterminal">label-name</span></a> <span class="syntax-token">:</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="optlabel"><span class="nonterminal">optlabel</span></a></td><td class="c005">::=</td><td class="c007"> <span class="syntax-token">?</span> <a class="syntax" href="#label-name"><span class="nonterminal">label-name</span></a> <span class="syntax-token">:</span>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Naming labels come in two flavours: <a class="syntax" href="#label"><span class="nonterminal">label</span></a> for normal arguments and
+<a class="syntax" href="#optlabel"><span class="nonterminal">optlabel</span></a> for optional ones. They are simply distinguished by their
+first character, either <span class="machine"><span class="font-tt">~</span></span> or <span class="machine"><span class="font-tt">?</span></span>.</p><p>Despite <a class="syntax" href="#label"><span class="nonterminal">label</span></a> and <a class="syntax" href="#optlabel"><span class="nonterminal">optlabel</span></a> being lexical entities in expressions,
+their expansions <span class="syntax-token">~</span> <a class="syntax" href="#label-name"><span class="nonterminal">label-name</span></a> <span class="syntax-token">:</span> and <span class="syntax-token">?</span> <a class="syntax" href="#label-name"><span class="nonterminal">label-name</span></a> <span class="syntax-token">:</span> will be
+used in grammars, for the sake of readability. Note also that inside
+type expressions, this expansion can be taken literally, <em>i.e.</em>
+there are really 3 tokens, with optional blanks between them.</p><h4 class="subsubsection" id="sss:lex-ops-symbols"><a class="section-anchor" href="#sss:lex-ops-symbols" aria-hidden="true">﻿</a>Prefix and infix symbols</h4>
+<div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="infix-symbol"><span class="nonterminal">infix-symbol</span></a></td><td class="c005">::=</td><td class="c007">
+(<a class="syntax" href="#core-operator-char"><span class="nonterminal">core-operator-char</span></a> ∣ <span class="syntax-token">%</span> ∣ <span class="syntax-token">&lt;</span>) { <a class="syntax" href="#operator-char"><span class="nonterminal">operator-char</span></a> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">#</span> { <a class="syntax" href="#operator-char"><span class="nonterminal">operator-char</span></a> }<sup>+</sup>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="prefix-symbol"><span class="nonterminal">prefix-symbol</span></a></td><td class="c005">::=</td><td class="c007">
+<span class="syntax-token">!</span> { <a class="syntax" href="#operator-char"><span class="nonterminal">operator-char</span></a> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> (<span class="syntax-token">?</span> ∣ <span class="syntax-token">~</span>) { <a class="syntax" href="#operator-char"><span class="nonterminal">operator-char</span></a> }<sup>+</sup>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="operator-char"><span class="nonterminal">operator-char</span></a></td><td class="c005">::=</td><td class="c007">
+<span class="syntax-token">~</span> ∣ <span class="syntax-token">!</span> ∣ <span class="syntax-token">?</span> ∣ <a class="syntax" href="#core-operator-char"><span class="nonterminal">core-operator-char</span></a> ∣ <span class="syntax-token">%</span> ∣ <span class="syntax-token">&lt;</span> ∣ <span class="syntax-token">:</span> ∣ <span class="syntax-token">.</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="core-operator-char"><span class="nonterminal">core-operator-char</span></a></td><td class="c005">::=</td><td class="c007">
+<span class="syntax-token">$</span> ∣ <span class="syntax-token">&amp;</span> ∣ <span class="syntax-token">*</span> ∣ <span class="syntax-token">+</span> ∣ <span class="syntax-token">-</span> ∣ <span class="syntax-token">/</span> ∣ <span class="syntax-token">=</span> ∣ <span class="syntax-token">&gt;</span> ∣ <span class="syntax-token">@</span> ∣ <span class="syntax-token">^</span> ∣ <span class="syntax-token">|</span>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>
+See also the following language extensions:
+<a href="extensionsyntax.html#s%3Aext-ops">extension operators</a>,
+<a href="indexops.html#s%3Aindex-operators">extended indexing operators</a>,
+and <a href="bindingops.html#s%3Abinding-operators">binding operators</a>.</p><p>Sequences of “operator characters”, such as <span class="machine"><span class="font-tt">&lt;=&gt;</span></span> or <span class="machine"><span class="font-tt">!!</span></span>,
+are read as a single token from the <a class="syntax" href="#infix-symbol"><span class="nonterminal">infix-symbol</span></a> or <a class="syntax" href="#prefix-symbol"><span class="nonterminal">prefix-symbol</span></a>
+class. These symbols are parsed as prefix and infix operators inside
+expressions, but otherwise behave like normal identifiers.
+</p><h4 class="subsubsection" id="sss:keywords"><a class="section-anchor" href="#sss:keywords" aria-hidden="true">﻿</a>Keywords</h4>
+<p>The identifiers below are reserved as keywords, and cannot be employed
+otherwise:
+</p><pre>      and         as          assert      asr         begin       class
+      constraint  do          done        downto      else        end
+      exception   external    false       for         fun         function
+      functor     if          in          include     inherit     initializer
+      land        lazy        let         lor         lsl         lsr
+      lxor        match       method      mod         module      mutable
+      new         nonrec      object      of          open        or
+      private     rec         sig         struct      then        to
+      true        try         type        val         virtual     when
+      while       with
+</pre><p> <br>
+The following character sequences are also keywords:
+</p><pre><span class="machine"><span class="font-tt">    !=    #     &amp;     &amp;&amp;    '     (     )     *     +     ,     -</span></span>
+<span class="machine"><span class="font-tt">    -.    -&gt;    .     ..    .~    :     ::    :=    :&gt;    ;     ;;</span></span>
+<span class="machine"><span class="font-tt">    &lt;     &lt;-    =     &gt;     &gt;]    &gt;}    ?     [     [&lt;    [&gt;    [|</span></span>
+<span class="machine"><span class="font-tt">    ]     _     `     {     {&lt;    |     |]    ||    }     ~</span></span>
+</pre><p>
+Note that the following identifiers are keywords of the now unmaintained Camlp4
+system and should be avoided for backwards compatibility reasons.
+</p><pre>    parser    value    $     $$    $:    &lt;:    &lt;&lt;    &gt;&gt;    ??
+</pre><h4 class="subsubsection" id="sss:lex-ambiguities"><a class="section-anchor" href="#sss:lex-ambiguities" aria-hidden="true">﻿</a>Ambiguities</h4>
+<p>Lexical ambiguities are resolved according to the “longest match”
+rule: when a character sequence can be decomposed into two tokens in
+several different ways, the decomposition retained is the one with the
+longest first token.</p><h4 class="subsubsection" id="sss:lex-linedir"><a class="section-anchor" href="#sss:lex-linedir" aria-hidden="true">﻿</a>Line number directives</h4>
+<div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="linenum-directive"><span class="nonterminal">linenum-directive</span></a></td><td class="c005">::=</td><td class="c007">
+<span class="syntax-token">#</span> { <span class="syntax-token">0</span>…<span class="syntax-token">9</span> }<sup>+</sup> <span class="syntax-token">"</span> { <a class="syntax" href="#string-character"><span class="nonterminal">string-character</span></a> } <span class="syntax-token">"</span>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Preprocessors that generate OCaml source code can insert line number
+directives in their output so that error messages produced by the
+compiler contain line numbers and file names referring to the source
+file before preprocessing, instead of after preprocessing.
+A line number directive starts at the beginning of a line,
+is composed of a <span class="syntax-token">#</span> (sharp sign), followed by
+a positive integer (the source line number), followed by a
+character string (the source file name).
+Line number directives are treated as blanks during lexical
+analysis.</p>
+
+<div class="bottom-navigation"><a class="previous up" href="language.html">The OCaml language</a><a class="next" href="values.html">Values »</a></div>
+
+
+
+</section><div class="copyright">Copyright © 2022 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

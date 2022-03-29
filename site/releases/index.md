@@ -9,6 +9,7 @@ See also the [install](/docs/install.html) page for instructions on
 installing OCaml by other means, such as the OPAM package manager and
 platform specific package managers.
 
+* OCaml [4.14.0](4.14.0.html), [Download](https://github.com/ocaml/ocaml/archive/4.14.0.tar.gz), released Mar 28, 2022.
 * OCaml [4.13.1](4.13.1.html), [Download](https://github.com/ocaml/ocaml/archive/4.13.1.tar.gz), released Oct 1, 2021.
 * OCaml [4.13.0](4.13.0.html), [Download](https://github.com/ocaml/ocaml/archive/4.13.0.tar.gz), released Sep 24, 2021.
 * OCaml [4.12.1](4.12.1.html), [Download](https://github.com/ocaml/ocaml/archive/4.12.1.tar.gz), released Sep 24, 2021.

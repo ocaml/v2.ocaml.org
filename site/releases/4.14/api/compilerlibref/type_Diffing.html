@@ -1,0 +1,112 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel="Appendix" href="index_types.html">
+<link title="Index of extensions" rel="Appendix" href="index_extensions.html">
+<link title="Index of exceptions" rel="Appendix" href="index_exceptions.html">
+<link title="Index of values" rel="Appendix" href="index_values.html">
+<link title="Index of modules" rel="Appendix" href="index_modules.html">
+<link title="Index of module types" rel="Appendix" href="index_module_types.html">
+<link title="Compiler_libs" rel="Chapter" href="Compiler_libs.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="CamlinternalMenhirLib" rel="Chapter" href="CamlinternalMenhirLib.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Binutils" rel="Chapter" href="Binutils.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Diffing" rel="Chapter" href="Diffing.html">
+<link title="Diffing_with_keys" rel="Chapter" href="Diffing_with_keys.html">
+<link title="Domainstate" rel="Chapter" href="Domainstate.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int_replace_polymorphic_compare" rel="Chapter" href="Int_replace_polymorphic_compare.html">
+<link title="Lazy_backtrack" rel="Chapter" href="Lazy_backtrack.html">
+<link title="Load_path" rel="Chapter" href="Load_path.html">
+<link title="Local_store" rel="Chapter" href="Local_store.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html"><title>OCaml compiler library : Diffing</title>
+<script src="search.js"></script><script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="api"><div id="sidebar-button"><span>☰</span></div><header id="sidebar"><nav class="toc brand"><a class="brand" href="../../manual/index.html"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Compiler API Version 4.14</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" class="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="api_search svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="Diffing.html">OCaml compiler library : Diffing</a></div><ul></ul></nav></header>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="keyword">type</span>&nbsp;<span class="constructor">Defs</span>&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span>&nbsp;<span class="keyword">type</span>&nbsp;left&nbsp;<span class="keyword">type</span>&nbsp;right&nbsp;<span class="keyword">type</span>&nbsp;eq&nbsp;<span class="keyword">type</span>&nbsp;diff&nbsp;<span class="keyword">type</span>&nbsp;state&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;change_kind&nbsp;=&nbsp;<span class="constructor">Deletion</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Insertion</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Modification</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Preservation</span><br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;prefix&nbsp;:&nbsp;<span class="constructor">Stdlib</span>.<span class="constructor">Format</span>.formatter&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;*&nbsp;<span class="constructor">Diffing</span>.change_kind&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;style&nbsp;:&nbsp;<span class="constructor">Diffing</span>.change_kind&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Misc</span>.<span class="constructor">Color</span>.style&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;(<span class="keywordsign">'</span>left,&nbsp;<span class="keywordsign">'</span>right,&nbsp;<span class="keywordsign">'</span>eq,&nbsp;<span class="keywordsign">'</span>diff)&nbsp;change&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Delete</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="keywordsign">'</span>left<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Insert</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="keywordsign">'</span>right<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Keep</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="keywordsign">'</span>left&nbsp;*&nbsp;<span class="keywordsign">'</span>right&nbsp;*&nbsp;<span class="keywordsign">'</span>eq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Change</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="keywordsign">'</span>left&nbsp;*&nbsp;<span class="keywordsign">'</span>right&nbsp;*&nbsp;<span class="keywordsign">'</span>diff<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;classify&nbsp;:&nbsp;(<span class="keywordsign">'</span>a,&nbsp;<span class="keywordsign">'</span>b,&nbsp;<span class="keywordsign">'</span>c,&nbsp;<span class="keywordsign">'</span>d)&nbsp;<span class="constructor">Diffing</span>.change&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Diffing</span>.change_kind<br>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Define</span>&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">functor</span>&nbsp;(<span class="constructor">D</span>&nbsp;:&nbsp;<span class="constructor">Defs</span>)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;nonrec&nbsp;change&nbsp;=&nbsp;(<span class="constructor">D</span>.left,&nbsp;<span class="constructor">D</span>.right,&nbsp;<span class="constructor">D</span>.eq,&nbsp;<span class="constructor">D</span>.diff)&nbsp;<span class="constructor">Diffing</span>.change<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;patch&nbsp;=&nbsp;<span class="constructor">Diffing</span>.<span class="constructor">Define</span>.change&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="keyword">type</span>&nbsp;<span class="constructor">Parameters</span>&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;update_result<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;weight&nbsp;:&nbsp;<span class="constructor">Diffing</span>.<span class="constructor">Define</span>.change&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;test&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">D</span>.state&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.left&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.right&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="constructor">D</span>.eq,&nbsp;<span class="constructor">D</span>.diff)&nbsp;<span class="constructor">Stdlib</span>.result<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;update&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Diffing</span>.<span class="constructor">Define</span>.change&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">D</span>.state&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Diffing</span>.<span class="constructor">Define</span>.<span class="constructor">Parameters</span>.update_result<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="keyword">type</span>&nbsp;<span class="constructor">S</span>&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;diff&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">D</span>.state&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">D</span>.left&nbsp;array&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.right&nbsp;array&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Diffing</span>.<span class="constructor">Define</span>.patch<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Simple</span>&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;weight&nbsp;:&nbsp;change&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;test&nbsp;:&nbsp;<span class="constructor">D</span>.state&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.left&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.right&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="constructor">D</span>.eq,&nbsp;<span class="constructor">D</span>.diff)&nbsp;result<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;update&nbsp;:&nbsp;change&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.state&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.state<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">S</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Left_variadic</span>&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;weight&nbsp;:&nbsp;change&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;test&nbsp;:&nbsp;<span class="constructor">D</span>.state&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.left&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.right&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="constructor">D</span>.eq,&nbsp;<span class="constructor">D</span>.diff)&nbsp;result<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;update&nbsp;:&nbsp;change&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.state&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.state&nbsp;*&nbsp;<span class="constructor">D</span>.left&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">S</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Right_variadic</span>&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;weight&nbsp;:&nbsp;change&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;test&nbsp;:&nbsp;<span class="constructor">D</span>.state&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.left&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.right&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="constructor">D</span>.eq,&nbsp;<span class="constructor">D</span>.diff)&nbsp;result<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;update&nbsp;:&nbsp;change&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.state&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">D</span>.state&nbsp;*&nbsp;<span class="constructor">D</span>.right&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">S</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+<span class="keyword">end</span></code>
+</div></body></html>

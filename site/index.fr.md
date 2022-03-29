@@ -117,7 +117,7 @@
 			  <h1><a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			       href="/releases/{{! get LATEST_OCAML_VERSION !}}.html"
 				   >Parution d'OCaml {{! get LATEST_OCAML_VERSION !}}</a></h1>
-			   <p>1er octobre 2021</p>
+			   <p>28 mars 2022</p>
 			   <a title="Release of OCaml {{! get LATEST_OCAML_VERSION !}}"
 			      href="/releases/{{! get LATEST_OCAML_VERSION !}}.html">
 			    <img alt="" src="/img/announcement.svg" class="svg" />

@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Diffing.html">
+<link rel="next" href="Domainstate.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel="Appendix" href="index_types.html">
+<link title="Index of extensions" rel="Appendix" href="index_extensions.html">
+<link title="Index of exceptions" rel="Appendix" href="index_exceptions.html">
+<link title="Index of values" rel="Appendix" href="index_values.html">
+<link title="Index of modules" rel="Appendix" href="index_modules.html">
+<link title="Index of module types" rel="Appendix" href="index_module_types.html">
+<link title="Compiler_libs" rel="Chapter" href="Compiler_libs.html">
+<link title="Ast_helper" rel="Chapter" href="Ast_helper.html">
+<link title="Ast_invariants" rel="Chapter" href="Ast_invariants.html">
+<link title="Ast_iterator" rel="Chapter" href="Ast_iterator.html">
+<link title="Ast_mapper" rel="Chapter" href="Ast_mapper.html">
+<link title="Asttypes" rel="Chapter" href="Asttypes.html">
+<link title="Attr_helper" rel="Chapter" href="Attr_helper.html">
+<link title="Builtin_attributes" rel="Chapter" href="Builtin_attributes.html">
+<link title="CamlinternalMenhirLib" rel="Chapter" href="CamlinternalMenhirLib.html">
+<link title="Depend" rel="Chapter" href="Depend.html">
+<link title="Docstrings" rel="Chapter" href="Docstrings.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Location" rel="Chapter" href="Location.html">
+<link title="Longident" rel="Chapter" href="Longident.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Parser" rel="Chapter" href="Parser.html">
+<link title="Parsetree" rel="Chapter" href="Parsetree.html">
+<link title="Pprintast" rel="Chapter" href="Pprintast.html">
+<link title="Printast" rel="Chapter" href="Printast.html">
+<link title="Syntaxerr" rel="Chapter" href="Syntaxerr.html">
+<link title="Arg_helper" rel="Chapter" href="Arg_helper.html">
+<link title="Binutils" rel="Chapter" href="Binutils.html">
+<link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
+<link title="Ccomp" rel="Chapter" href="Ccomp.html">
+<link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Config" rel="Chapter" href="Config.html">
+<link title="Consistbl" rel="Chapter" href="Consistbl.html">
+<link title="Diffing" rel="Chapter" href="Diffing.html">
+<link title="Diffing_with_keys" rel="Chapter" href="Diffing_with_keys.html">
+<link title="Domainstate" rel="Chapter" href="Domainstate.html">
+<link title="Identifiable" rel="Chapter" href="Identifiable.html">
+<link title="Int_replace_polymorphic_compare" rel="Chapter" href="Int_replace_polymorphic_compare.html">
+<link title="Lazy_backtrack" rel="Chapter" href="Lazy_backtrack.html">
+<link title="Load_path" rel="Chapter" href="Load_path.html">
+<link title="Local_store" rel="Chapter" href="Local_store.html">
+<link title="Misc" rel="Chapter" href="Misc.html">
+<link title="Numbers" rel="Chapter" href="Numbers.html">
+<link title="Profile" rel="Chapter" href="Profile.html">
+<link title="Strongly_connected_components" rel="Chapter" href="Strongly_connected_components.html">
+<link title="Targetint" rel="Chapter" href="Targetint.html">
+<link title="Terminfo" rel="Chapter" href="Terminfo.html">
+<link title="Warnings" rel="Chapter" href="Warnings.html">
+<link title="Pparse" rel="Chapter" href="Pparse.html"><title>OCaml compiler library : Diffing_with_keys</title>
+<script src="search.js"></script><script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="api"><div id="sidebar-button"><span>☰</span></div><header id="sidebar"><nav class="toc brand"><a class="brand" href="../../manual/index.html"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Compiler API Version 4.14</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" class="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="api_search svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="#top">OCaml compiler library : Diffing_with_keys</a></div><ul></ul></nav></header>
+<h1>Module <a href="type_Diffing_with_keys.html">Diffing_with_keys</a></h1>
+
+<pre><span id="MODULEDiffing_with_keys"><span class="keyword">module</span> Diffing_with_keys</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Diffing_with_keys.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>When diffing lists where each element has a distinct key, we can refine
+   the diffing patch by introducing two composite edit moves: swaps and moves.</p>
+
+<p><code class="code"><span class="constructor">Swap</span></code>s exchange the position of two elements. <code class="code"><span class="constructor">Swap</span></code> cost is set to
+   <code class="code">2&nbsp;*&nbsp;change&nbsp;-&nbsp;epsilon</code>.
+   <code class="code"><span class="constructor">Move</span></code>s change the position of one element. <code class="code"><span class="constructor">Move</span></code> cost is set to
+   <code class="code">delete&nbsp;+&nbsp;addition&nbsp;-&nbsp;epsilon</code>.</p>
+
+<p>When the cost <code class="code">delete&nbsp;+&nbsp;addition</code> is greater than <code class="code">change</code> and with those
+   specific weights, the optimal patch with <code class="code"><span class="constructor">Swap</span></code>s and <code class="code"><span class="constructor">Move</span></code>s can be computed
+   directly and cheaply from the original optimal patch.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEwith_pos"><span class="keyword">type</span> <code class="type">'a</code> with_pos</span> = {</code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTwith_pos.pos">pos</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTwith_pos.data">data</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr></tbody></table>
+<code>}</code>
+
+
+
+<pre><span id="VALwith_pos"><span class="keyword">val</span> with_pos</span> : <code class="type">'a list -&gt; 'a <a href="Diffing_with_keys.html#TYPEwith_pos">with_pos</a> list</code></pre>
+<pre><code><span id="TYPEmismatch"><span class="keyword">type</span> <code class="type">('l, 'r, 'diff)</code> mismatch</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTmismatch.Name"><span class="constructor">Name</span></span> <span class="keyword">of</span> <code>{</code><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Name.pos">pos</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Name.got">got</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Name.expected">expected</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Name.types_match">types_match</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr></tbody></table>
+<code>}</code>
+</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTmismatch.Type"><span class="constructor">Type</span></span> <span class="keyword">of</span> <code>{</code><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Type.pos">pos</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Type.got">got</span>&nbsp;: <code class="type">'l</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Type.expected">expected</span>&nbsp;: <code class="type">'r</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Type.reason">reason</span>&nbsp;: <code class="type">'diff</code>;</code></td>
+
+</tr></tbody></table>
+<code>}</code>
+</code></td>
+
+</tr></tbody></table>
+
+
+
+<pre><code><span id="TYPEchange"><span class="keyword">type</span> <code class="type">('l, 'r, 'diff)</code> change</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange.Change"><span class="constructor">Change</span></span> <span class="keyword">of</span> <code class="type">('l, 'r, 'diff) <a href="Diffing_with_keys.html#TYPEmismatch">mismatch</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange.Swap"><span class="constructor">Swap</span></span> <span class="keyword">of</span> <code>{</code><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Swap.pos">pos</span>&nbsp;: <code class="type">int * int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Swap.first">first</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Swap.last">last</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr></tbody></table>
+<code>}</code>
+</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange.Move"><span class="constructor">Move</span></span> <span class="keyword">of</span> <code>{</code><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Move.name">name</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Move.got">got</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Move.expected">expected</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr></tbody></table>
+<code>}</code>
+</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange.Insert"><span class="constructor">Insert</span></span> <span class="keyword">of</span> <code>{</code><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Insert.pos">pos</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Insert.insert">insert</span>&nbsp;: <code class="type">'r</code>;</code></td>
+
+</tr></tbody></table>
+<code>}</code>
+</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTchange.Delete"><span class="constructor">Delete</span></span> <span class="keyword">of</span> <code>{</code><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Delete.pos">pos</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTDiffing_with_keys.Delete.delete">delete</span>&nbsp;: <code class="type">'l</code>;</code></td>
+
+</tr></tbody></table>
+<code>}</code>
+</code></td>
+
+</tr></tbody></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>This specialized version of changes introduces two composite
+    changes: <code class="code"><span class="constructor">Move</span></code> and <code class="code"><span class="constructor">Swap</span></code></p>
+</div>
+</div>
+
+
+<pre><span id="VALprefix"><span class="keyword">val</span> prefix</span> : <code class="type">Format.formatter -&gt; ('l, 'r, 'diff) <a href="Diffing_with_keys.html#TYPEchange">change</a> -&gt; unit</code></pre>
+<pre><span id="MODULEDefine"><span class="keyword">module</span> <a href="Diffing_with_keys.Define.html">Define</a></span>: <div class="sig_block"><code class="code"><span class="keyword">functor</span>&nbsp;(</code><code class="code"><span class="constructor">D</span></code><code class="code">&nbsp;:&nbsp;</code><code class="type"><a href="Diffing.Defs.html">Diffing.Defs</a></code><code class="type">  with type eq := unit</code><code class="code">)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;</code><code class="code"><span class="keyword">sig</span></code> <a href="Diffing_with_keys.Define.html">..</a> <code class="code"><span class="keyword">end</span></code></div></pre>
+</div></body></html>
