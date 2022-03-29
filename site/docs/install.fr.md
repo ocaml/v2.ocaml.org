@@ -68,7 +68,7 @@ apt install ocaml-nox # Plus léger, si vous ne voulez pas le support de X11
 Les autres paquets Unbuntu liés à OCaml sont
 [listés ici](http://packages.ubuntu.com/search?keywords=ocaml) (en anglais).
 
-### [Fedora](https://getfedora.org/) [![Fedora 32](https://repology.org/badge/version-only-for-repo/fedora_32/ocaml.svg)](https://repology.org/metapackage/ocaml)
+### [Fedora](https://getfedora.org/) [![Fedora 35](https://repology.org/badge/version-only-for-repo/fedora_35/ocaml.svg)](https://repology.org/metapackage/ocaml)
 
 ```bash
 yum install ocaml
