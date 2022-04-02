@@ -1,5 +1,5 @@
 FROM ocaml/opam:debian-10-ocaml-4.10
-RUN git -C /home/opam/opam-repository pull origin master && git -C /home/opam/opam-repository checkout 3606210eb2472a23e8ef7960ce143026e43e507d && opam update -u -y
+RUN git -C /home/opam/opam-repository pull origin master && git -C /home/opam/opam-repository checkout 08309af060417fac7143e968e41b9e67e80ba674 && opam update -u -y
 WORKDIR /home/opam/src
 RUN sudo chown opam /home/opam/src
 COPY --chown=opam *.opam /home/opam/src
