@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - The OCaml language</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec111"><span class="chapter-number">Chapter 11</span> The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span> Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span> Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span> Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span> Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span> Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span> Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span> Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span> Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span> Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span> Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span> Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span> Compilation units</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:patterns"><a class="section-anchor" href="#s:patterns" aria-hidden="true"></a><span class="number">6</span> Patterns</h2>
+<p>
+<a id="hevea_manual.kwd15"></a>
+</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="pattern"><span class="nonterminal">pattern</span></a></td><td class="c005">::=</td><td class="c007">
+<a class="syntax" href="names.html#value-name"><span class="nonterminal">value-name</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">_</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="const.html#constant"><span class="nonterminal">constant</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">as</span> <a class="syntax" href="names.html#value-name"><span class="nonterminal">value-name</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">(</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">)</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">(</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a> <span class="syntax-token">)</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">|</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">`</span><a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">#</span><a class="syntax" href="names.html#typeconstr"><span class="nonterminal">typeconstr</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> { <span class="syntax-token">,</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> }<sup>+</sup>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">{</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a> [<span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a>] [<span class="syntax-token">=</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a>]{ <span class="syntax-token">;</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a> [<span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a>] [<span class="syntax-token">=</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a>] } [<span class="syntax-token">;</span> <span class="syntax-token">_</span> ] [ <span class="syntax-token">;</span> ] <span class="syntax-token">}</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">[</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> { <span class="syntax-token">;</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> } [ <span class="syntax-token">;</span> ] <span class="syntax-token">]</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">::</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">[|</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> { <span class="syntax-token">;</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> } [ <span class="syntax-token">;</span> ] <span class="syntax-token">|]</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="lex.html#char-literal"><span class="nonterminal">char-literal</span></a> <span class="syntax-token">..</span> <a class="syntax" href="lex.html#char-literal"><span class="nonterminal">char-literal</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">lazy</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">exception</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.(</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">)</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.[</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">]</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.[|</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">|]</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.{</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">}</span>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>
+See also the following language extensions:
+<a href="firstclassmodules.html#s%3Afirst-class-modules">first-class modules</a>,
+<a href="attributes.html#s%3Aattributes">attributes</a> and
+<a href="extensionnodes.html#s%3Aextension-nodes">extension nodes</a>.</p><p>The table below shows the relative precedences and associativity of
+operators and non-closed pattern constructions. The constructions with
+higher precedences come first.
+<a id="hevea_manual.kwd16"></a>
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c004"><span class="font-bold">Operator</span></td><td class="c004"><span class="font-bold">Associativity</span> </td></tr>
+<tr><td class="c006">
+<span class="machine"><span class="font-tt">..</span></span></td><td class="c006">– </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">lazy</span></span> (see section&nbsp;<a href="#sss%3Apat-lazy">11.6</a>)</td><td class="c006">– </td></tr>
+<tr><td class="c006">Constructor application, Tag application</td><td class="c006">right </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">::</span></span></td><td class="c006">right </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">,</span></span></td><td class="c006">– </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">|</span></span></td><td class="c006">left </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">as</span></span></td><td class="c006">– </td></tr>
+</tbody></table></div></div><p>Patterns are templates that allow selecting data structures of a
+given shape, and binding identifiers to components of the data
+structure. This selection operation is called pattern matching; its
+outcome is either “this value does not match this pattern”, or
+“this value matches this pattern, resulting in the following bindings
+of names to values”.</p><h4 class="subsubsection" id="sss:pat-variable"><a class="section-anchor" href="#sss:pat-variable" aria-hidden="true">﻿</a>Variable patterns</h4>
+<p>A pattern that consists in a value name matches any value,
+binding the name to the value. The pattern <span class="syntax-token">_</span> also matches
+any value, but does not bind any name.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> is_empty = <span class="ocamlkeyword">function</span>
+    | [] -&gt; <span class="ocamlkeyword">true</span>
+    | _ :: _ -&gt; <span class="ocamlkeyword">false</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> is_empty : 'a list -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>Patterns are <em>linear</em>: a variable cannot be bound several times by
+a given pattern. In particular, there is no way to test for equality
+between two parts of a data structure using only a pattern:</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> pair_equal = <span class="ocamlkeyword">function</span>
+    | x, <span class="ocamlhighlight">x</span> -&gt; <span class="ocamlkeyword">true</span>
+    | x, y -&gt; <span class="ocamlkeyword">false</span>;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: Variable x is bound several times in this matching</div></div>
+
+</div><p>However, we can use a <span class="syntax-token">when</span> guard for this purpose:</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> pair_equal = <span class="ocamlkeyword">function</span>
+    | x, y <span class="ocamlkeyword">when</span> x = y -&gt; <span class="ocamlkeyword">true</span>
+    | _ -&gt; <span class="ocamlkeyword">false</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> pair_equal : 'a * 'a -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-const"><a class="section-anchor" href="#sss:pat-const" aria-hidden="true">﻿</a>Constant patterns</h4>
+<p>A pattern consisting in a constant matches the values that
+are equal to this constant.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> bool_of_string = <span class="ocamlkeyword">function</span>
+    | <span class="ocamlstring">"true"</span> -&gt; <span class="ocamlkeyword">true</span>
+    | <span class="ocamlstring">"false"</span> -&gt; <span class="ocamlkeyword">false</span>
+    | _ -&gt; raise (Invalid_argument <span class="ocamlstring">"bool_of_string"</span>);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> bool_of_string : string -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-alias"><a class="section-anchor" href="#sss:pat-alias" aria-hidden="true">﻿</a>Alias patterns</h4>
+<p>
+<a id="hevea_manual.kwd17"></a></p><p>The pattern <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">as</span> <a class="syntax" href="names.html#value-name"><span class="nonterminal">value-name</span></a> matches the same values as
+<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub>. If the matching against <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> is successful,
+the name <a class="syntax" href="names.html#value-name"><span class="nonterminal">value-name</span></a> is bound to the matched value, in addition to the
+bindings performed by the matching against <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> sort_pair ((x, y) <span class="ocamlkeyword">as</span> p) =
+    <span class="ocamlkeyword">if</span> x &lt;= y <span class="ocamlkeyword">then</span> p <span class="ocamlkeyword">else</span> (y, x);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> sort_pair : 'a * 'a -&gt; 'a * 'a = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-parenthesized"><a class="section-anchor" href="#sss:pat-parenthesized" aria-hidden="true">﻿</a>Parenthesized patterns</h4>
+<p>The pattern <span class="syntax-token">(</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">)</span> matches the same values as
+<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub>. A type constraint can appear in a
+parenthesized pattern, as in <span class="syntax-token">(</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a> <span class="syntax-token">)</span>. This
+constraint forces the type of <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> to be compatible with
+<a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> int_triple_is_ordered ((a, b, c) : int * int * int) =
+    a &lt;= b &amp;&amp; b &lt;= c;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> int_triple_is_ordered : int * int * int -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-or"><a class="section-anchor" href="#sss:pat-or" aria-hidden="true">﻿</a>“Or” patterns</h4>
+<p>The pattern <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">|</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>2</sub> represents the logical “or” of
+the two patterns <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> and <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>2</sub>. A value matches
+<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">|</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>2</sub> if it matches <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> or
+<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>2</sub>. The two sub-patterns <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> and <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>2</sub>
+must bind exactly the same identifiers to values having the same types.
+Matching is performed from left to right.
+More precisely,
+in case some value&nbsp;<span class="font-it">v</span> matches <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">|</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>2</sub>, the bindings
+performed are those of <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> when <span class="font-it">v</span> matches <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub>.
+Otherwise, value&nbsp;<span class="font-it">v</span> matches <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>2</sub> whose bindings are performed.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">type</span> shape = Square <span class="ocamlkeyword">of</span> float | Rect <span class="ocamlkeyword">of</span> (float * float) | Circle <span class="ocamlkeyword">of</span> float
+
+  <span class="ocamlkeyword">let</span> is_rectangular = <span class="ocamlkeyword">function</span>
+    | Square _ | Rect _ -&gt; <span class="ocamlkeyword">true</span>
+    | Circle _ -&gt; <span class="ocamlkeyword">false</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">type</span> shape = Square <span class="ocamlkeyword">of</span> float | Rect <span class="ocamlkeyword">of</span> (float * float) | Circle <span class="ocamlkeyword">of</span> float
+<span class="ocamlkeyword">val</span> is_rectangular : shape -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-variant"><a class="section-anchor" href="#sss:pat-variant" aria-hidden="true">﻿</a>Variant patterns</h4>
+<p>The pattern <a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a> <span class="syntax-token">(</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">,</span> … <span class="syntax-token">,</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">)</span> matches
+all variants whose
+constructor is equal to <a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a>, and whose arguments match
+<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> … <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub>. It is a type error if <span class="font-it">n</span> is not the
+number of arguments expected by the constructor.</p><p>The pattern <a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a> <span class="syntax-token">_</span> matches all variants whose constructor is
+<a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">type</span> 'a tree = Lf | Br <span class="ocamlkeyword">of</span> 'a tree * 'a * 'a tree
+
+  <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> total = <span class="ocamlkeyword">function</span>
+    | Br (l, x, r) -&gt; total l + x + total r
+    | Lf -&gt; 0;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">type</span> 'a tree = Lf | Br <span class="ocamlkeyword">of</span> 'a tree * 'a * 'a tree
+<span class="ocamlkeyword">val</span> total : int tree -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>The pattern <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">::</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>2</sub> matches non-empty lists whose
+heads match <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub>, and whose tails match <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>2</sub>.</p><p>The pattern <span class="syntax-token">[</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">;</span> … <span class="syntax-token">;</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">]</span> matches lists
+of length <span class="font-it">n</span> whose elements match <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> …<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub>,
+respectively. This pattern behaves like
+<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">::</span> … <span class="syntax-token">::</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">::</span> <span class="syntax-token">[]</span>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> destutter = <span class="ocamlkeyword">function</span>
+    | [] -&gt; []
+    | [a] -&gt; [a]
+    | a :: b :: t -&gt; <span class="ocamlkeyword">if</span> a = b <span class="ocamlkeyword">then</span> destutter (b :: t) <span class="ocamlkeyword">else</span> a :: destutter (b :: t);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> destutter : 'a list -&gt; 'a list = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-polyvar"><a class="section-anchor" href="#sss:pat-polyvar" aria-hidden="true">﻿</a>Polymorphic variant patterns</h4>
+<p>The pattern <span class="syntax-token">`</span><a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> matches all polymorphic variants
+whose tag is equal to <a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a>, and whose argument matches
+<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> split = <span class="ocamlkeyword">function</span>
+    | [] -&gt; ([], [])
+    | h :: t -&gt;
+        <span class="ocamlkeyword">let</span> ss, gs = split t <span class="ocamlkeyword">in</span>
+          <span class="ocamlkeyword">match</span> h <span class="ocamlkeyword">with</span>
+          | `Sheep _ <span class="ocamlkeyword">as</span> s -&gt; (s :: ss, gs)
+          | `Goat _ <span class="ocamlkeyword">as</span> g -&gt; (ss, g :: gs);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> split :
+  [&lt; `Goat <span class="ocamlkeyword">of</span> 'a | `Sheep <span class="ocamlkeyword">of</span> 'b ] list -&gt;
+  [&gt; `Sheep <span class="ocamlkeyword">of</span> 'b ] list * [&gt; `Goat <span class="ocamlkeyword">of</span> 'a ] list = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-polyvar-abbrev"><a class="section-anchor" href="#sss:pat-polyvar-abbrev" aria-hidden="true">﻿</a>Polymorphic variant abbreviation patterns</h4>
+<p>If the type [<span class="syntax-token">('a,'b,</span>…<span class="syntax-token">)</span>] <a class="syntax" href="names.html#typeconstr"><span class="nonterminal">typeconstr</span></a> = <span class="syntax-token">[</span> <span class="syntax-token">`</span><a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a><sub>1</sub> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><sub>1</sub> <span class="syntax-token">|</span>
+… <span class="syntax-token">|</span> <span class="syntax-token">`</span><a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a><sub><span class="font-it">n</span></sub> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><sub><span class="font-it">n</span></sub><span class="syntax-token">]</span> is defined, then the pattern <span class="syntax-token">#</span><a class="syntax" href="names.html#typeconstr"><span class="nonterminal">typeconstr</span></a>
+is a shorthand for the following or-pattern:
+<span class="syntax-token">(</span> <span class="syntax-token">`</span><a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a><sub>1</sub><span class="syntax-token">(_</span> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><sub>1</sub><span class="syntax-token">)</span> <span class="syntax-token">|</span> … <span class="syntax-token">|</span> <span class="syntax-token">`</span><a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a><sub><span class="font-it">n</span></sub><span class="syntax-token">(_</span>
+<span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><sub><span class="font-it">n</span></sub><span class="syntax-token">))</span>. It matches all values of type <span class="syntax-token">[&lt;</span> <a class="syntax" href="names.html#typeconstr"><span class="nonterminal">typeconstr</span></a> <span class="syntax-token">]</span>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">type</span> 'a rectangle = [`Square <span class="ocamlkeyword">of</span> 'a | `Rectangle <span class="ocamlkeyword">of</span> 'a * 'a]
+  <span class="ocamlkeyword">type</span> 'a shape = [`Circle <span class="ocamlkeyword">of</span> 'a | 'a rectangle]
+
+  <span class="ocamlkeyword">let</span> try_rectangle = <span class="ocamlkeyword">function</span>
+    | #rectangle <span class="ocamlkeyword">as</span> r -&gt; Some r
+    | `Circle _ -&gt; None;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">type</span> 'a rectangle = [ `Rectangle <span class="ocamlkeyword">of</span> 'a * 'a | `Square <span class="ocamlkeyword">of</span> 'a ]
+<span class="ocamlkeyword">type</span> 'a shape = [ `Circle <span class="ocamlkeyword">of</span> 'a | `Rectangle <span class="ocamlkeyword">of</span> 'a * 'a | `Square <span class="ocamlkeyword">of</span> 'a ]
+<span class="ocamlkeyword">val</span> try_rectangle :
+  [&lt; `Circle <span class="ocamlkeyword">of</span> 'a | `Rectangle <span class="ocamlkeyword">of</span> 'b * 'b | `Square <span class="ocamlkeyword">of</span> 'b ] -&gt;
+  [&gt; `Rectangle <span class="ocamlkeyword">of</span> 'b * 'b | `Square <span class="ocamlkeyword">of</span> 'b ] option = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-tuple"><a class="section-anchor" href="#sss:pat-tuple" aria-hidden="true">﻿</a>Tuple patterns</h4>
+<p>The pattern <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">,</span> … <span class="syntax-token">,</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub> matches <span class="font-it">n</span>-tuples
+whose components match the patterns <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> through <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub>. That
+is, the pattern matches the tuple values (<span class="font-it">v</span><sub>1</sub>, …, <span class="font-it">v</span><sub><span class="font-it">n</span></sub>) such that
+<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">i</span></sub> matches <span class="font-it">v</span><sub><span class="font-it">i</span></sub> for <span class="font-it">i</span> = 1,… , <span class="font-it">n</span>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> vector (x0, y0) (x1, y1) =
+    (x1 -. x0, y1 -. y0);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> vector : float * float -&gt; float * float -&gt; float * float = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-record"><a class="section-anchor" href="#sss:pat-record" aria-hidden="true">﻿</a>Record patterns</h4>
+<p>The pattern <span class="syntax-token">{</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub>1</sub> [<span class="syntax-token">=</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub>] <span class="syntax-token">;</span> … <span class="syntax-token">;</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">n</span></sub> [<span class="syntax-token">=</span>
+<a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub>] <span class="syntax-token">}</span> matches records that define at least the fields
+<a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub>1</sub> through <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">n</span></sub>, and such that the value associated to
+<a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">i</span></sub> matches the pattern <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">i</span></sub>, for <span class="font-it">i</span> = 1,… , <span class="font-it">n</span>.
+A single identifier <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">k</span></sub> stands for <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">k</span></sub> <span class="syntax-token">=</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">k</span></sub> ,
+and a single qualified identifier <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">k</span></sub> stands
+for <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">k</span></sub> <span class="syntax-token">=</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">k</span></sub> .
+The record value can define more fields than <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub>1</sub> …<a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">n</span></sub>; the values associated to these extra fields are not taken
+into account for matching. Optionally, a record pattern can be terminated
+by <span class="syntax-token">;</span> <span class="syntax-token">_</span> to convey the fact that not all fields of the record type are
+listed in the record pattern and that it is intentional.
+Optional type constraints can be added field by field with
+<span class="syntax-token">{</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub>1</sub> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><sub>1</sub> <span class="syntax-token">=</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">;</span>… <span class="syntax-token">;</span><a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">=</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">}</span> to force the type
+of <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">k</span></sub> to be compatible with <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><sub><span class="font-it">k</span></sub>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> bytes_allocated
+      {Gc.minor_words = minor;
+       Gc.major_words = major;
+       Gc.promoted_words = prom;
+       _}
+    =
+      (Sys.word_size / 4) * int_of_float (minor +. major -. prom);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> bytes_allocated : Gc.stat -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-array"><a class="section-anchor" href="#sss:pat-array" aria-hidden="true">﻿</a>Array patterns</h4>
+<p>The pattern <span class="syntax-token">[|</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub>1</sub> <span class="syntax-token">;</span> … <span class="syntax-token">;</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">|]</span>
+matches arrays of length <span class="font-it">n</span> such that the <span class="font-it">i</span>-th array element
+matches the pattern <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><sub><span class="font-it">i</span></sub>, for <span class="font-it">i</span> = 1,… , <span class="font-it">n</span>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> matrix3_is_symmetric = <span class="ocamlkeyword">function</span>
+    | [|[|_; b; c|];
+        [|d; _; f|];
+        [|g; h; _|]|] -&gt; b = d &amp;&amp; c = g &amp;&amp; f = h
+    | _ -&gt; failwith <span class="ocamlstring">"matrix3_is_symmetric: not a 3x3 matrix"</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> matrix3_is_symmetric : 'a array array -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-range"><a class="section-anchor" href="#sss:pat-range" aria-hidden="true">﻿</a>Range patterns</h4>
+<p>The pattern
+<span class="syntax-token">'</span> <span class="nonterminal">c</span> <span class="syntax-token">'</span> <span class="syntax-token">..</span> <span class="syntax-token">'</span> <span class="nonterminal">d</span> <span class="syntax-token">'</span> is a shorthand for the pattern
+</p><div class="center">
+<span class="syntax-token">'</span> <span class="nonterminal">c</span> <span class="syntax-token">'</span> <span class="syntax-token">|</span> <span class="syntax-token">'</span> <span class="nonterminal">c</span><sub>1</sub> <span class="syntax-token">'</span> <span class="syntax-token">|</span> <span class="syntax-token">'</span> <span class="nonterminal">c</span><sub>2</sub> <span class="syntax-token">'</span> <span class="syntax-token">|</span> …
+<span class="syntax-token">|</span> <span class="syntax-token">'</span> <span class="nonterminal">c</span><sub><span class="font-it">n</span></sub> <span class="syntax-token">'</span> <span class="syntax-token">|</span> <span class="syntax-token">'</span> <span class="nonterminal">d</span> <span class="syntax-token">'</span>
+</div><p>
+where <span class="font-it">c</span><sub>1</sub>, <span class="font-it">c</span><sub>2</sub>, …, <span class="font-it">c</span><sub><span class="font-it">n</span></sub> are the characters
+that occur between <span class="font-it">c</span> and <span class="font-it">d</span> in the ASCII character set. For
+instance, the pattern <span class="machine"><span class="font-tt">'0'</span></span><span class="syntax-token">..</span><span class="machine"><span class="font-tt">'9'</span></span> matches all characters that are digits.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">type</span> char_class = Uppercase | Lowercase | Digit | Other
+
+  <span class="ocamlkeyword">let</span> classify_char = <span class="ocamlkeyword">function</span>
+    | 'A'..'Z' -&gt; Uppercase
+    | 'a'..'z' -&gt; Lowercase
+    | '0'..'9' -&gt; Digit
+    | _ -&gt; Other;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">type</span> char_class = Uppercase | Lowercase | Digit | Other
+<span class="ocamlkeyword">val</span> classify_char : char -&gt; char_class = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div>
+<h4 class="subsubsection" id="sss:pat-lazy"><a class="section-anchor" href="#sss:pat-lazy" aria-hidden="true">﻿</a>Lazy patterns</h4>
+<p><a id="hevea_manual.kwd18"></a></p><p>(Introduced in Objective Caml 3.11)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a></td><td class="c005">::=</td><td class="c007"> ...
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>The pattern <span class="syntax-token">lazy</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> matches a value <span class="font-it">v</span> of type <span class="machine"><span class="font-tt">Lazy.t</span></span>,
+provided <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> matches the result of forcing <span class="font-it">v</span> with
+<span class="machine"><span class="font-tt">Lazy.force</span></span>. A successful match of a pattern containing <span class="syntax-token">lazy</span>
+sub-patterns forces the corresponding parts of the value being matched, even
+those that imply no test such as <span class="syntax-token">lazy</span> <a class="syntax" href="names.html#value-name"><span class="nonterminal">value-name</span></a> or <span class="syntax-token">lazy</span> <span class="syntax-token">_</span>.
+Matching a value with a <a class="syntax" href="expr.html#pattern-matching"><span class="nonterminal">pattern-matching</span></a> where some patterns
+contain <span class="syntax-token">lazy</span> sub-patterns may imply forcing parts of the value,
+even when the pattern selected in the end has no <span class="syntax-token">lazy</span> sub-pattern.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> force_opt = <span class="ocamlkeyword">function</span>
+    | Some (<span class="ocamlkeyword">lazy</span> n) -&gt; n
+    | None -&gt; 0;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> force_opt : int lazy_t option -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>For more information, see the description of module <span class="machine"><span class="font-tt">Lazy</span></span> in the
+standard library (module <a href="../api/Lazy.html"><span class="font-tt">Lazy</span></a>).
+<a id="hevea_manual0"></a><a id="hevea_manual1"></a></p><h4 class="subsubsection" id="sss:exception-match"><a class="section-anchor" href="#sss:exception-match" aria-hidden="true">﻿</a>Exception patterns</h4>
+<p>
+(Introduced in OCaml 4.02)</p><p>A new form of exception pattern,  <span class="syntax-token">exception</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> , is allowed
+only as a toplevel pattern or inside a toplevel or-pattern under
+a <span class="machine"><span class="font-tt">match</span></span>...<span class="machine"><span class="font-tt">with</span></span> pattern-matching
+(other occurrences are rejected by the type-checker).</p><p>Cases with such a toplevel pattern are called “exception cases”,
+as opposed to regular “value cases”. Exception cases are applied
+when the evaluation of the matched expression raises an exception.
+The exception value is then matched against all the exception cases
+and re-raised if none of them accept the exception (as with a
+<span class="machine"><span class="font-tt">try</span></span>...<span class="machine"><span class="font-tt">with</span></span> block). Since the bodies of all exception and value
+cases are outside the scope of the exception handler, they are all
+considered to be in tail-position: if the <span class="machine"><span class="font-tt">match</span></span>...<span class="machine"><span class="font-tt">with</span></span> block
+itself is in tail position in the current function, any function call
+in tail position in one of the case bodies results in an actual tail
+call.</p><p>A pattern match must contain at least one value case. It is an error if
+all cases are exceptions, because there would be no code to handle
+the return of a value.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> find_opt p l =
+    <span class="ocamlkeyword">match</span> List.find p l <span class="ocamlkeyword">with</span>
+    | <span class="ocamlkeyword">exception</span> Not_found -&gt; None
+    | x -&gt; Some x;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> find_opt : ('a -&gt; bool) -&gt; 'a list -&gt; 'a option = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><h4 class="subsubsection" id="sss:pat-open"><a class="section-anchor" href="#sss:pat-open" aria-hidden="true">﻿</a>Local opens for patterns</h4>
+<p>
+<a id="hevea_manual.kwd19"></a>
+(Introduced in OCaml 4.04)</p><p>For patterns, local opens are limited to the
+<a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a><span class="syntax-token">.(</span><a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><span class="syntax-token">)</span> construction. This
+construction locally opens the module referred to by the module path
+<a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> in the scope of the pattern <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a>.</p><p>When the body of a local open pattern is delimited by
+<span class="syntax-token">[</span> <span class="syntax-token">]</span>, <span class="syntax-token">[|</span> <span class="syntax-token">|]</span>, or <span class="syntax-token">{</span> <span class="syntax-token">}</span>, the parentheses can be omitted.
+For example, <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a><span class="syntax-token">.[</span><a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><span class="syntax-token">]</span> is equivalent to
+<a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a><span class="syntax-token">.([</span><a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a><span class="syntax-token">])</span>, and <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a><span class="syntax-token">.[|</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">|]</span> is
+equivalent to <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a><span class="syntax-token">.([|</span> <a class="syntax" href="#pattern"><span class="nonterminal">pattern</span></a> <span class="syntax-token">|])</span>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> bytes_allocated Gc.{minor_words; major_words; promoted_words; _} =
+      (Sys.word_size / 4)
+    * int_of_float (minor_words +. major_words -. promoted_words);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> bytes_allocated : Gc.stat -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div>
+
+<div class="bottom-navigation"><a class="previous" href="const.html">« Constants</a><a class="next" href="expr.html">Expressions »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2022 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

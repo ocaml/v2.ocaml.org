@@ -1,0 +1,681 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - The “Tail Modulo Constructor” program transformation</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="runtime-tracing.html">Runtime tracing with runtime events</a></li><li class="active"><a href="tail_mod_cons.html">The “Tail Modulo Constructor” program transformation</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec614"><span class="chapter-number">Chapter 26</span> The “Tail Modulo Constructor” program transformation</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The “Tail Modulo Constructor” program transformation</a></li>
+<li><a href="tail_mod_cons.html#sec%3Adisambiguation"><span class="number">1</span> Disambiguation</a>
+</li><li><a href="tail_mod_cons.html#sec%3Aout-of-tmc"><span class="number">2</span> Danger: getting out of tail-mod-cons</a>
+</li><li><a href="tail_mod_cons.html#sec%3Adetails"><span class="number">3</span> Details on the transformation</a>
+</li><li><a href="tail_mod_cons.html#sec%3Alimitations"><span class="number">4</span> Current limitations</a>
+</li></ul></nav></header>
+<p> <a id="c:tail_mod_cons"></a>
+</p><p>(Introduced in OCaml 4.14)</p><p>Note: this feature is considered experimental, and its interface may
+evolve, with user feedback, in the next few releases of the language.</p><p>Consider this natural implementation of the <span class="machine"><span class="font-tt">List.map</span></span> function:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> map f l =
+  <span class="ocamlkeyword">match</span> l <span class="ocamlkeyword">with</span>
+  | [] -&gt; []
+  | x :: xs -&gt;
+    <span class="ocamlkeyword">let</span> y = f x <span class="ocamlkeyword">in</span>
+    y :: map f xs</div></div>
+
+</div><p>A well-known limitation of this implementation is that the recursive
+call, <span class="machine"><span class="font-tt">map f xs</span></span>, is not in <em>tail</em> position. The runtime needs to
+remember to continue with <span class="machine"><span class="font-tt">y :: r</span></span> after the call returns a value <span class="machine"><span class="font-tt">r</span></span>,
+therefore this function consumes some amount of call-stack space on
+each recursive call. The stack usage of <span class="machine"><span class="font-tt">map f li</span></span> is proportional to
+the length of <span class="machine"><span class="font-tt">li</span></span>. This is a correctness issue for large lists on
+operating systems with limited stack space – the dreaded
+<span class="machine"><span class="font-tt">Stack_overflow</span></span> exception.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> List.length (map Fun.id (List.init 1_000_000 Fun.id));;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 1000000</div></div>
+
+</div><p>In this implementation of <span class="machine"><span class="font-tt">map</span></span>, the recursive call happens in
+a position that is not a <em>tail</em> position in the program, but
+within a datatype constructor application that is itself in
+<em>tail</em> position. We say that those positions, that are composed
+of tail positions and constructor applications, are <em>tail modulo
+constructor</em> (TMC) positions – we sometimes write <em>tail modulo
+cons</em> for brevity.</p><p>It is possible to rewrite programs such that tail modulo cons
+positions become tail positions; after this transformation, the
+implementation of <span class="machine"><span class="font-tt">map</span></span> above becomes <em>tail-recursive</em>, in the
+sense that it only consumes a constant amount of stack space. The
+OCaml compiler implements this transformation on demand, using the
+<span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span> or <span class="machine"><span class="font-tt">[@ocaml.tail_mod_cons]</span></span> attribute on the
+function to transform.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> map f l =
+  <span class="ocamlkeyword">match</span> l <span class="ocamlkeyword">with</span>
+  | [] -&gt; []
+  | x :: xs -&gt;
+    <span class="ocamlkeyword">let</span> y = f x <span class="ocamlkeyword">in</span>
+    y :: map f xs</div></div>
+
+</div><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> List.length (map Fun.id (List.init 1_000_000 Fun.id));;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 1000000</div></div>
+
+</div><p>This transformation only improves calls in tail-modulo-cons position,
+it does not improve recursive calls that do not fit in this fragment:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* does *not* work: addition is not a data constructor *)</span>
+<span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> length <span class="ocamlhighlight">l =
+  match l with
+  | [] -&gt; 0
+  | _ :: xs -&gt; 1 + length xs</span></div>
+
+
+
+<div class="pre caml-output warn"><span class="ocamlwarning">Warning</span> 71 [unused-tmc-attribute]: This function is marked @tail_mod_cons
+but is never applied in TMC position.</div></div>
+
+</div><p>It is of course possible to use the <span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span> transformation
+on functions that contain some recursive calls in tail-modulo-cons
+position, and some calls in other, arbitrary positions. Only the tail
+calls and tail-modulo-cons calls will happen in constant stack space.</p>
+<h5 class="paragraph" id="sec615"><a class="section-anchor" href="#sec615" aria-hidden="true"></a>General design</h5>
+<p> This feature is provided as an explicit
+program transformation, not an implicit optimization. It is
+annotation-driven: the user is expected to express their intent by
+adding annotations in the program using attributes, and will be asked
+to do so in any ambiguous situation.</p><p>We expect it to be used mostly by advanced OCaml users needing to get
+some guarantees on the stack-consumption behavior of their
+programs. Our recommendation is to use the <span class="machine"><span class="font-tt">[@tailcall]</span></span> annotation on
+all callsites that should not consume any stack
+space. <span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span> extends the set of functions on which calls
+can be annotated to be tail calls, helping establish stack-consumption
+guarantees in more cases.</p>
+<h5 class="paragraph" id="sec616"><a class="section-anchor" href="#sec616" aria-hidden="true">﻿</a>Performance</h5>
+<p> A standard approach to get a tail-recursive
+version of <span class="machine"><span class="font-tt">List.map</span></span> is to use an accumulator to collect output
+elements, and reverse it at the end of the traversal.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> map f l = map_aux f [] l
+<span class="ocamlkeyword">and</span> map_aux f acc l =
+  <span class="ocamlkeyword">match</span> l <span class="ocamlkeyword">with</span>
+  | [] -&gt; List.rev acc
+  | x :: xs -&gt;
+    <span class="ocamlkeyword">let</span> y = f x <span class="ocamlkeyword">in</span>
+    map_aux f (y :: acc) xs</div></div>
+
+</div><p>This version is tail-recursive, but it is measurably slower than the
+simple, non-tail-recursive version. In contrast, the tail-mod-cons
+transformation provides an implementation that has comparable
+performance to the original version, even on small inputs.</p>
+<h5 class="paragraph" id="sec617"><a class="section-anchor" href="#sec617" aria-hidden="true">﻿</a>Evaluation order</h5>
+<p> Beware that the tail-modulo-cons
+transformation has an effect on evaluation order: the constructor
+argument that is transformed into tail-position will always be
+evaluated last. Consider the following example:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">type</span> 'a two_headed_list =
+  | Nil
+  | Consnoc <span class="ocamlkeyword">of</span> 'a * 'a two_headed_list * 'a
+
+<span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> map f = <span class="ocamlkeyword">function</span>
+  | Nil -&gt; Nil
+  | Consnoc (front, body, rear) -&gt;
+    Consnoc (f front, map f body, f rear)</div></div>
+
+</div><p>Due to the <span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span> transformation, the calls to <span class="machine"><span class="font-tt">f front</span></span>
+and <span class="machine"><span class="font-tt">f rear</span></span> will be evaluated before <span class="machine"><span class="font-tt">map f body</span></span>. In particular,
+this is likely to be different from the evaluation order of the
+unannotated version. (The evaluation order of constructor arguments
+is unspecified in OCaml, but many implementations typically use
+left-to-right or right-to-left.)</p><p>This effect on evaluation order is one of the reasons why the
+tail-modulo-cons transformation has to be explicitly requested by the
+user, instead of being applied as an automatic optimization.</p>
+<h5 class="paragraph" id="sec618"><a class="section-anchor" href="#sec618" aria-hidden="true">﻿</a>Why tail-modulo-cons?</h5>
+<p> Other program transformations, in
+particular a transformation to continuation-passing style (CPS), can
+make all functions tail-recursive, instead of targeting only a small
+fragment. Some reasons to provide builtin support for the less-general
+tail-mod-cons are as follows:
+</p><ul class="itemize"><li class="li-itemize">The tail-mod-cons transformation preserves the performance of
+the original, non-tail-recursive version, while
+a continuation-passing-style transformation incurs a measurable
+constant-factor overhead.
+</li><li class="li-itemize">The tail-mod-cons transformation cannot be expressed as
+a source-to-source transformation of OCaml programs, as it relies on
+mutable state in type-unsafe ways. In contrast,
+continuation-passing-style versions can be written by hand, possibly
+using a convenient monadic notation.
+</li></ul>
+<h2 class="section" id="sec:disambiguation"><a class="section-anchor" href="#sec:disambiguation" aria-hidden="true">﻿</a><span class="number">1</span> Disambiguation</h2>
+<p>It may happen that several arguments of a constructor are recursive
+calls to a tail-modulo-cons function. The transformation can only turn
+one of these calls into a tail call. The compiler will not make an
+implicit choice, but ask the user to provide an explicit
+disambiguation.</p><p>Consider this type of syntactic expressions (assuming some
+pre-existing type <span class="machine"><span class="font-tt">var</span></span> of expression variables):
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">type</span> var <span class="ocamlcomment">(* some pre-existing type of variables *)</span>
+
+<span class="ocamlkeyword">type</span> exp =
+  | Var <span class="ocamlkeyword">of</span> var
+  | Let <span class="ocamlkeyword">of</span> binding * exp
+<span class="ocamlkeyword">and</span> binding = var * exp</div></div>
+
+</div><p>Consider a <span class="machine"><span class="font-tt">map</span></span> function on variables. The direct definition has two
+recursive calls inside arguments of the <span class="machine"><span class="font-tt">Let</span></span> constructor, so it gets
+rejected as ambiguous.
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> map_vars f exp =
+  <span class="ocamlkeyword">match</span> exp <span class="ocamlkeyword">with</span>
+  | Var v -&gt; Var (f v)
+  | Let ((v, def), body) -&gt;
+    <span class="ocamlhighlight">Let ((f v, map_vars f def), map_vars f body)</span></div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: [@tail_mod_cons]: this constructor application may be TMC-transformed
+       in several different ways. Please disambiguate by adding an explicit
+       [@tailcall] attribute to the call that should be made tail-recursive,
+       or a [@tailcall false] attribute on calls that should not be
+       transformed.
+  This call could be annotated.
+  This call could be annotated.</div></div>
+
+</div><p>To disambiguate, the user should add a <span class="machine"><span class="font-tt">[@tailcall]</span></span> attribute to the
+recursive call that should be transformed to tail position:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> map_vars f exp =
+  <span class="ocamlkeyword">match</span> exp <span class="ocamlkeyword">with</span>
+  | Var v -&gt; Var (f v)
+  | Let ((v, def), body) -&gt;
+    Let ((f v, map_vars f def), (map_vars[@tailcall]) f body)</div></div>
+
+</div><p>
+
+Be aware that the resulting function is <em>not</em> tail-recursive, the
+recursive call on <span class="machine"><span class="font-tt">def</span></span> will consume stack space. However, expression
+trees tend to be right-leaning (lots of <span class="machine"><span class="font-tt">Let</span></span> in sequence,
+rather than nested inside each other), so putting the call on <span class="machine"><span class="font-tt">body</span></span>
+in tail position is an interesting improvement over the naive
+definition: it gives bounded stack space consumption if we assume
+a bound on the nesting depth of <span class="machine"><span class="font-tt">Let</span></span> constructs.</p><p>One would also get an error when using conflicting annotations, asking
+for two of the constructor arguments to be put in tail position:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> map_vars f exp =
+  <span class="ocamlkeyword">match</span> exp <span class="ocamlkeyword">with</span>
+  | Var v -&gt; Var (f v)
+  | Let ((v, def), body) -&gt;
+    <span class="ocamlhighlight">Let ((f v, (map_vars[@tailcall]) f def), (map_vars[@tailcall]) f body)</span></div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: [@tail_mod_cons]: this constructor application may be TMC-transformed
+       in several different ways. Only one of the arguments may become a TMC
+       call, but several arguments contain calls that are explicitly marked
+       as tail-recursive. Please fix the conflict by reviewing and fixing the
+       conflicting annotations.
+  This call is explicitly annotated.
+  This call is explicitly annotated.</div></div>
+
+</div>
+<h2 class="section" id="sec:out-of-tmc"><a class="section-anchor" href="#sec:out-of-tmc" aria-hidden="true">﻿</a><span class="number">2</span> Danger: getting out of tail-mod-cons</h2>
+<p>Due to the nature of the tail-mod-cons transformation
+(see Section&nbsp;<a href="#sec%3Adetails">26.3</a> for a presentation of transformation):
+</p><ul class="itemize"><li class="li-itemize">Calls from a tail-mod-cons function to another tail-mod-cons
+function declared in the same recursive-binding group are
+transformed into tail calls, as soon as they occur in tail position
+or tail-modulo-cons position in the source function.
+</li><li class="li-itemize">Calls from a function <em>not</em> annotated tail-mod-cons to
+a tail-mod-cons function or, conversely, from a tail-mod-cons
+function to a non-tail-mod-cons function are transformed into
+<em>non</em>-tail calls, even if they syntactically appear in tail
+position in the source program.
+</li></ul><p>The fact that calls in tail position in the source program may become
+non-tail calls if they go from a tail-mod-cons to a non-tail-mod-cons
+function is surprising, and the transformation will warn about them.</p><p>For example:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> flatten = <span class="ocamlhighlight">function
+| [] -&gt; []
+| xs :: xss -&gt;
+    let rec append_flatten xs xss =
+      match xs with
+      | [] -&gt; flatten xss
+      | x :: xs -&gt; x :: append_flatten xs xss
+    in append_flatten xs xss</span></div>
+
+
+
+<div class="pre caml-output warn"><span class="ocamlwarning">Warning</span> 71 [unused-tmc-attribute]: This function is marked @tail_mod_cons
+but is never applied in TMC position.
+<span class="ocamlwarning">Warning</span> 72 [tmc-breaks-tailcall]: This call
+is in tail-modulo-cons positionin a TMC function,
+but the function called is not itself specialized for TMC,
+so the call will not be transformed into a tail call.
+Please either mark the called function with the [@tail_mod_cons]
+attribute, or mark this call with the [@tailcall false] attribute
+to make its non-tailness explicit.</div></div>
+
+</div><p>
+
+Here the <span class="machine"><span class="font-tt">append_flatten</span></span> helper is not annotated with
+<span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span>, so the calls <span class="machine"><span class="font-tt">append_flatten xs xss</span></span> and <span class="machine"><span class="font-tt">flatten xss</span></span> will <em>not</em> be tail calls. The correct fix here is to annotate
+<span class="machine"><span class="font-tt">append_flatten</span></span> to be tail-mod-cons.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> flatten = <span class="ocamlkeyword">function</span>
+| [] -&gt; []
+| xs :: xss -&gt;
+    <span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> append_flatten xs xss =
+      <span class="ocamlkeyword">match</span> xs <span class="ocamlkeyword">with</span>
+      | [] -&gt; flatten xss
+      | x :: xs -&gt; x :: append_flatten xs xss
+    <span class="ocamlkeyword">in</span> append_flatten xs xss</div></div>
+
+</div><p>The same warning occurs when <span class="machine"><span class="font-tt">append_flatten</span></span> is a non-tail-mod-cons
+function of the same recursive group; using the tail-mod-cons
+transformation is a property of individual functions, not whole
+recursive groups.
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> flatten = <span class="ocamlhighlight">function
+| [] -&gt; []
+| xs :: xss -&gt; append_flatten xs xss</span>
+
+<span class="ocamlkeyword">and</span> append_flatten xs xss =
+  <span class="ocamlkeyword">match</span> xs <span class="ocamlkeyword">with</span>
+  | [] -&gt; flatten xss
+  | x :: xs -&gt; x :: append_flatten xs xss</div>
+
+
+
+<div class="pre caml-output warn"><span class="ocamlwarning">Warning</span> 71 [unused-tmc-attribute]: This function is marked @tail_mod_cons
+but is never applied in TMC position.
+<span class="ocamlwarning">Warning</span> 72 [tmc-breaks-tailcall]: This call
+is in tail-modulo-cons positionin a TMC function,
+but the function called is not itself specialized for TMC,
+so the call will not be transformed into a tail call.
+Please either mark the called function with the [@tail_mod_cons]
+attribute, or mark this call with the [@tailcall false] attribute
+to make its non-tailness explicit.</div></div>
+
+</div><p>Again, the fix is to specialize <span class="machine"><span class="font-tt">append_flatten</span></span> as well:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> flatten = <span class="ocamlkeyword">function</span>
+| [] -&gt; []
+| xs :: xss -&gt; append_flatten xs xss
+
+<span class="ocamlkeyword">and</span>[@tail_mod_cons] append_flatten xs xss =
+  <span class="ocamlkeyword">match</span> xs <span class="ocamlkeyword">with</span>
+  | [] -&gt; flatten xss
+  | x :: xs -&gt; x :: append_flatten xs xss</div></div>
+
+</div><p>Non-recursive functions can also be annotated <span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span>; this is
+typically useful for local bindings to recursive functions.</p><p>Incorrect version:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> map_vars <span class="ocamlhighlight">f exp =
+  let self exp = map_vars f exp in
+  match exp with
+  | Var v -&gt; Var (f v)
+  | Let ((v, def), body) -&gt;
+    Let ((f v, self def), (self[@tailcall]) body)</span></div>
+
+
+
+<div class="pre caml-output warn"><span class="ocamlwarning">Warning</span> 51 [wrong-tailcall-expectation]: expected tailcall
+<span class="ocamlwarning">Warning</span> 51 [wrong-tailcall-expectation]: expected tailcall
+<span class="ocamlwarning">Warning</span> 71 [unused-tmc-attribute]: This function is marked @tail_mod_cons
+but is never applied in TMC position.</div></div>
+
+</div><p>Recommended fix:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> map_vars f exp =
+  <span class="ocamlkeyword">let</span>[@tail_mod_cons] self exp = map_vars f exp <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">match</span> exp <span class="ocamlkeyword">with</span>
+  | Var v -&gt; Var (f v)
+  | Let ((v, def), body) -&gt;
+    Let ((f v, self def), (self[@tailcall]) body)</div></div>
+
+</div><p>In other cases, there is either no benefit in making the called function
+tail-mod-cons, or it is not possible: for example, it is a function
+parameter (the transformation only works with direct calls to
+known functions).</p><p>For example, consider a substitution function on binary trees:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">type</span> 'a tree = Leaf <span class="ocamlkeyword">of</span> 'a | Node <span class="ocamlkeyword">of</span> 'a tree * 'a tree
+
+<span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> bind (f : 'a -&gt; 'a tree) (t : 'a tree) : 'a tree =
+  <span class="ocamlkeyword">match</span> t <span class="ocamlkeyword">with</span>
+  | Leaf v -&gt; <span class="ocamlhighlight">f v</span>
+  | Node (left, right) -&gt;
+    Node (bind f left, (bind[@tailcall]) f right)</div>
+
+
+
+<div class="pre caml-output warn"><span class="ocamlwarning">Warning</span> 72 [tmc-breaks-tailcall]: This call
+is in tail-modulo-cons positionin a TMC function,
+but the function called is not itself specialized for TMC,
+so the call will not be transformed into a tail call.
+Please either mark the called function with the [@tail_mod_cons]
+attribute, or mark this call with the [@tailcall false] attribute
+to make its non-tailness explicit.</div></div>
+
+</div><p>Here <span class="machine"><span class="font-tt">f</span></span> is a function parameter, not a direct call, and the current
+implementation is strictly first-order, it does not support
+tail-mod-cons arguments. In this case, the user should indicate that
+they realize this call to <span class="machine"><span class="font-tt">f v</span></span> is not, in fact, in tail position, by
+using <span class="machine"><span class="font-tt">(f[@tailcall false]) v</span></span>.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">type</span> 'a tree = Leaf <span class="ocamlkeyword">of</span> 'a | Node <span class="ocamlkeyword">of</span> 'a tree * 'a tree
+
+<span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> bind (f : 'a -&gt; 'a tree) (t : 'a tree) : 'a tree =
+  <span class="ocamlkeyword">match</span> t <span class="ocamlkeyword">with</span>
+  | Leaf v -&gt; (f[@tailcall <span class="ocamlkeyword">false</span>]) v
+  | Node (left, right) -&gt;
+    Node (bind f left, (bind[@tailcall]) f right)</div></div>
+
+</div>
+<h2 class="section" id="sec:details"><a class="section-anchor" href="#sec:details" aria-hidden="true">﻿</a><span class="number">3</span> Details on the transformation</h2>
+<p>To use this advanced feature, it helps to be aware that the function transformation produces a specialized function in destination-passing-style.</p><p>Recall our <span class="machine"><span class="font-tt">map</span></span> example:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> map f l =
+  <span class="ocamlkeyword">match</span> l <span class="ocamlkeyword">with</span>
+  | [] -&gt; []
+  | x :: xs -&gt;
+    <span class="ocamlkeyword">let</span> y = f x <span class="ocamlkeyword">in</span>
+    y :: map f xs</div></div>
+
+</div><p>Below is a description of the transformed program in pseudo-OCaml
+notation: some operations are not expressible in OCaml source code.
+(The transformation in fact happens on the Lambda intermediate
+representation of the OCaml compiler.)</p><pre>let rec map f l =
+  match l with
+  | [] -&gt; []
+  | x :: xs -&gt;
+    let y = f x in
+    let dst = y ::{mutable} Hole in
+    map_dps f xs dst 1;
+    dst
+
+and map_dps f l dst idx =
+  match l with
+  | [] -&gt; dst.idx &lt;- []
+  | x :: xs -&gt;
+    let y = f x in
+    let dst' = y ::{mutable} Hole in
+    dst.idx &lt;- dst';
+    map_dps f xs dst' 1
+</pre><p>
+The source version of <span class="machine"><span class="font-tt">map</span></span> gets transformed into two functions,
+a <em>direct-style</em> version that is also called <span class="machine"><span class="font-tt">map</span></span>, and
+a <em>destination-passing-style</em> version (DPS) called <span class="machine"><span class="font-tt">map_dps</span></span>. The
+destination-passing-style version does not return a result directly,
+instead it writes it into a memory location specified by two
+additional function parameters, <span class="machine"><span class="font-tt">dst</span></span> (a memory block) and <span class="machine"><span class="font-tt">i</span></span>
+(a position within the memory block).</p><p>The source call <span class="machine"><span class="font-tt">y :: map f xs</span></span> gets transformed into the creation of
+a mutable block <span class="machine"><span class="font-tt">y ::{mutable} Hole</span></span>, whose second parameter is an
+un-initialized <em>hole</em>. The block is then passed to <span class="machine"><span class="font-tt">map_dps</span></span> as
+a destination parameter (with offset <span class="machine"><span class="font-tt">1</span></span>).</p><p>Notice that <span class="machine"><span class="font-tt">map</span></span> does not call itself recursively, it calls
+<span class="machine"><span class="font-tt">map_dps</span></span>. Then, <span class="machine"><span class="font-tt">map_dps</span></span> calls itself recursively, in
+a tail-recursive way.</p><p>The call from <span class="machine"><span class="font-tt">map</span></span> to <span class="machine"><span class="font-tt">map_dps</span></span> is <em>not</em> a tail call (this is
+something that we could improve in the future); but this call happens
+only once when invoking <span class="machine"><span class="font-tt">map f l</span></span>, with all list elements after the
+first one processed in constant stack by <span class="machine"><span class="font-tt">map_dps</span></span>.</p><p>This explains the “getting out of tail-mod-cons”
+subtleties. Consider our previous example involving mutual recursion
+between <span class="machine"><span class="font-tt">flatten</span></span> and <span class="machine"><span class="font-tt">append_flatten</span></span>.
+</p><pre>let[@tail_mod_cons] rec flatten l =
+  match l with
+  | [] -&gt; []
+  | xs :: xss -&gt;
+    append_flatten xs xss
+</pre><p>
+The call to <span class="machine"><span class="font-tt">append_flatten</span></span>, which syntactically appears in tail
+position, gets transformed differently depending on whether the
+function has a destination-passing-style version available, that is,
+whether it is itself annotated <span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span>:
+</p><pre>(* if append_flatten_dps exists *)
+and flatten_dps l dst i =
+  match l with
+  | [] -&gt; dst.i &lt;- []
+  | xs :: xss -&gt;
+    append_flatten_dps xs xss dst i
+
+(* if append_flatten_dps does not exist *)
+and rec flatten_dps l dst i =
+  match l with
+  | [] -&gt; dst.i &lt;- []
+  | xs :: xss -&gt;
+    dst.i &lt;- append_flatten xs xss
+</pre><p>If <span class="machine"><span class="font-tt">append_flatten</span></span> does not have a destination-passing-style version,
+the call gets transformed to a non-tail call.</p>
+<h2 class="section" id="sec:limitations"><a class="section-anchor" href="#sec:limitations" aria-hidden="true">﻿</a><span class="number">4</span> Current limitations</h2>
+<h5 class="paragraph" id="sec623"><a class="section-anchor" href="#sec623" aria-hidden="true">﻿</a>Purely syntactic criterion</h5>
+<p> Just like tail calls in
+general, the notion of tail-modulo-constructor position is purely
+syntactic; some simple refactoring will move calls out of
+tail-modulo-constructor position.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* works as expected *)</span>
+<span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> map f li =
+  <span class="ocamlkeyword">match</span> li <span class="ocamlkeyword">with</span>
+  | [] -&gt; []
+  | x :: xs -&gt;
+    <span class="ocamlkeyword">let</span> y = f x <span class="ocamlkeyword">in</span>
+    y ::
+      <span class="ocamlcomment">(* this call is in TMC position *)</span>
+      map f xs</div></div>
+
+</div><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* not optimizable anymore *)</span>
+<span class="ocamlkeyword">let</span>[@tail_mod_cons] <span class="ocamlkeyword">rec</span> map <span class="ocamlhighlight">f li =
+  match li with
+  | [] -&gt; []
+  | x :: xs -&gt;
+    let y = f x in
+    let ys =
+      (* this call is not in TMC position anymore *)
+      map f xs in
+    y :: ys</span></div>
+
+
+
+<div class="pre caml-output warn"><span class="ocamlwarning">Warning</span> 71 [unused-tmc-attribute]: This function is marked @tail_mod_cons
+but is never applied in TMC position.</div></div>
+
+</div>
+<h5 class="paragraph" id="sec624"><a class="section-anchor" href="#sec624" aria-hidden="true">﻿</a>Local, first-order transformation</h5>
+<p> When a function gets
+transformed with tail-mod-cons, two definitions are generated, one
+providing a direct-style interface and one providing the
+destination-passing-style version. However, not all calls to this
+function in tail-modulo-cons position will use the
+destination-passing-style version and become tail calls:
+</p><ul class="itemize"><li class="li-itemize">The transformation is local: only tail-mod-cons calls to <span class="machine"><span class="font-tt">foo</span></span>
+within the same compilation unit as <span class="machine"><span class="font-tt">foo</span></span> become tail calls.
+</li><li class="li-itemize">The transformation is first-order: only direct calls to
+known tail-mod-cons functions become tail calls when in
+tail-mod-cons position, never calls to function parameters.
+</li></ul><p>Consider the call <span class="machine"><span class="font-tt">Option.map foo x</span></span> for example: even if <span class="machine"><span class="font-tt">foo</span></span> is
+called in tail-mod-cons position within the definition of
+<span class="machine"><span class="font-tt">Option.map</span></span>, that call will never become a tail call. (This would be the
+case even if the call to <span class="machine"><span class="font-tt">Option.map</span></span> was inside the <span class="machine"><span class="font-tt">Option</span></span>
+module.)</p><p>In general this limitation is not a problem for recursive functions:
+the first call from an outside module or a higher-order function will
+consume stack space, but further recursive calls in tail-mod-cons
+position will get optimized. For example, if <span class="machine"><span class="font-tt">List.map</span></span> is defined as
+a tail-mod-cons function, calls from outside the <span class="machine"><span class="font-tt">List</span></span> module will
+not become tail calls when in tail positions, but the recursive calls
+within the definition of <span class="machine"><span class="font-tt">List.map</span></span> are in tail-modulo-cons positions
+and do become tail calls: processing the first element of the list
+will consume stack space, but all further elements are handled in
+constant space.</p><p>These limitations may be an issue in more complex situations where
+mutual recursion happens between functions, with some functions not
+annotated tail-mod-cons, or defined across different modules, or called
+indirectly, for example through function parameters.</p>
+<h5 class="paragraph" id="sec625"><a class="section-anchor" href="#sec625" aria-hidden="true">﻿</a>Non-exact calls to tupled functions</h5>
+<p> OCaml performs an
+implicit optimization for “tupled” functions, which take a single
+parameter that is a tuple: <span class="machine"><span class="font-tt">let f (x, y, z) = ...</span></span>. Direct calls to
+these functions with a tuple literal argument (like <span class="machine"><span class="font-tt">f (a, b, c)</span></span>) will
+call the “tupled” function by passing the parameters directly, instead
+of building a tuple of them. Other calls, either indirect calls or calls
+passing a more complex tuple value (like <span class="machine"><span class="font-tt">let t = (a, b, c) in f t</span></span>) are
+compiled as “inexact” calls that go through a wrapper.</p><p>The <span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span> transformation supports tupled functions, but
+will only optimize “exact” calls in tail position; direct calls to
+something other than a tuple literal will not become tail calls. The
+user can manually unpack a tuple to force a call to be “exact”: <span class="machine"><span class="font-tt">let (x, y, z) = t in f (x, y, z)</span></span>. If there is any doubt as to whether a call
+can be tail-mod-cons-optimized or not, one can use the <span class="machine"><span class="font-tt">[@tailcall]</span></span>
+attribute on the called function, which will warn if the
+transformation is not possible.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> map (f, l) =
+  <span class="ocamlkeyword">match</span> l <span class="ocamlkeyword">with</span>
+  | [] -&gt; []
+  | x :: xs -&gt;
+    <span class="ocamlkeyword">let</span> y = f x <span class="ocamlkeyword">in</span>
+    <span class="ocamlkeyword">let</span> args = (f, xs) <span class="ocamlkeyword">in</span>
+    <span class="ocamlcomment">(* this inexact call cannot be tail-optimized, so a warning will be raised *)</span>
+    y :: <span class="ocamlhighlight">(map[@tailcall]) args</span></div>
+
+
+
+<div class="pre caml-output warn"><span class="ocamlwarning">Warning</span> 51 [wrong-tailcall-expectation]: expected tailcall</div></div>
+
+</div>
+<hr>
+<div class="bottom-navigation"><a class="previous" href="runtime-tracing.html">« Runtime tracing with runtime events</a><a class="next" href="core.html">The core library »</a></div>
+
+
+
+
+<div class="copyright">Copyright © 2022 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

@@ -1,0 +1,907 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Language extensions</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec277"><span class="chapter-number">Chapter 12</span> Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
+<li><a href="letrecvalues.html#start-section"><span class="number">1</span> Recursive definitions of values</a>
+</li><li><a href="recursivemodules.html#start-section"><span class="number">2</span> Recursive modules</a>
+</li><li><a href="privatetypes.html#start-section"><span class="number">3</span> Private types</a>
+</li><li><a href="locallyabstract.html#start-section"><span class="number">4</span> Locally abstract types</a>
+</li><li><a href="firstclassmodules.html#start-section"><span class="number">5</span> First-class modules</a>
+</li><li><a href="moduletypeof.html#start-section"><span class="number">6</span> Recovering the type of a module</a>
+</li><li><a href="signaturesubstitution.html#start-section"><span class="number">7</span> Substituting inside a signature</a>
+</li><li><a href="modulealias.html#start-section"><span class="number">8</span> Type-level module aliases</a>
+</li><li><a href="overridingopen.html#start-section"><span class="number">9</span> Overriding in open statements</a>
+</li><li><a href="gadts.html#start-section"><span class="number">10</span> Generalized algebraic datatypes</a>
+</li><li><a href="bigarray.html#start-section"><span class="number">11</span> Syntax for Bigarray access</a>
+</li><li><a href="attributes.html#start-section"><span class="number">12</span> Attributes</a>
+</li><li><a href="extensionnodes.html#start-section"><span class="number">13</span> Extension nodes</a>
+</li><li><a href="extensiblevariants.html#start-section"><span class="number">14</span> Extensible variant types</a>
+</li><li><a href="generativefunctors.html#start-section"><span class="number">15</span> Generative functors</a>
+</li><li><a href="extensionsyntax.html#start-section"><span class="number">16</span> Extension-only syntax</a>
+</li><li><a href="inlinerecords.html#start-section"><span class="number">17</span> Inline records</a>
+</li><li><a href="doccomments.html#start-section"><span class="number">18</span> Documentation comments</a>
+</li><li><a href="indexops.html#start-section"><span class="number">19</span> Extended indexing operators </a>
+</li><li><a href="emptyvariants.html#start-section"><span class="number">20</span> Empty variant types</a>
+</li><li><a href="alerts.html#start-section"><span class="number">21</span> Alerts</a>
+</li><li><a href="generalizedopens.html#start-section"><span class="number">22</span> Generalized open statements</a>
+</li><li><a href="bindingops.html#start-section"><span class="number">23</span> Binding operators</a>
+</li><li><a href="effects.html#start-section"><span class="number">24</span> Effect handlers</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+<h2 class="section" id="s:effect-handlers"><a class="section-anchor" href="#s:effect-handlers" aria-hidden="true"></a><span class="number">24</span> Effect handlers</h2>
+<ul>
+<li><a href="effects.html#s%3Aeffects-basics"><span class="number">24.1</span> Basics</a>
+</li><li><a href="effects.html#s%3Aeffects-concurrency"><span class="number">24.2</span> Concurrency</a>
+</li><li><a href="effects.html#s%3Aeffects-user-threads"><span class="number">24.3</span> User-level threads</a>
+</li><li><a href="effects.html#s%3Aeffects-sequence"><span class="number">24.4</span> Control inversion</a>
+</li><li><a href="effects.html#s%3Aeffects-semantics"><span class="number">24.5</span> Semantics</a>
+</li><li><a href="effects.html#s%3Aeffects-shallow"><span class="number">24.6</span> Shallow handlers</a>
+</li></ul>
+<p>(Introduced in 5.0)</p><p><span class="font-it">Note: Effect handlers in OCaml 5.0 should be considered experimental.
+Effect handlers are exposed in the standard library as a thin wrapper
+around their implementations in the runtime. They are not supported as a
+language feature with new syntax. You can rely on them to build non-local
+control-flow abstractions such as user-level threading that do not expose
+the effect handler primitives to the user. Expect breaking changes in the
+future.</span></p><p>Effect handlers are a mechanism for modular programming with user-defined
+effects. Effect handlers allow the programmers to describe
+<span class="font-it">computations</span> that <span class="font-it">perform</span> effectful <span class="font-it">operations</span>,
+whose meaning is described by <span class="font-it">handlers</span> that enclose the computations.
+Effect handlers are a generalization of exception handlers and enable non-local
+control-flow mechanisms such as resumable exceptions, lightweight threads,
+coroutines, generators and asynchronous I/O to be composably expressed. In this
+tutorial, we shall see how some of these mechanisms can be built using effect
+handlers.</p>
+<h3 class="subsection" id="s:effects-basics"><a class="section-anchor" href="#s:effects-basics" aria-hidden="true">﻿</a><span class="number">24.1</span> Basics</h3>
+<p>To understand the basics, let us define an effect (that is, an operation) that
+takes an integer argument and returns an integer result. We name this effect
+<span class="machine"><span class="font-tt">Xchg</span></span>.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">open</span> Effect
+<span class="ocamlkeyword">open</span> Effect.Deep
+
+<span class="ocamlkeyword">type</span> _ Effect.t += Xchg: int -&gt; int t
+<span class="ocamlkeyword">let</span> comp1 () = perform (Xchg 0) + perform (Xchg 1)</div></div>
+
+</div><p>We declare the exchange effect <span class="machine"><span class="font-tt">Xchg</span></span> by extending the pre-defined extensible
+variant type <span class="machine"><span class="font-tt">Effect.t</span></span> with a new constructor <span class="machine"><span class="font-tt">Xchg: int -&gt; int t</span></span>. The
+declaration may be intuitively read as “the <span class="machine"><span class="font-tt">Xchg</span></span> effect takes an integer
+parameter, and when this effect is performed, it returns an integer”. The
+computation <span class="machine"><span class="font-tt">comp1</span></span> performs the effect twice using the <span class="machine"><span class="font-tt">perform</span></span> primitive and
+returns their sum.</p><p>We can handle the <span class="machine"><span class="font-tt">Xchg</span></span> effect by implementing a handler that always returns
+the successor of the offered value:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">try_with comp1 ()
+{ effc = <span class="ocamlkeyword">fun</span> (<span class="ocamlkeyword">type</span> a) (eff: a t) -&gt;
+    <span class="ocamlkeyword">match</span> eff <span class="ocamlkeyword">with</span>
+    | Xchg n -&gt; Some (<span class="ocamlkeyword">fun</span> (k: (a, _) continuation) -&gt;
+        continue k (n+1))
+    | _ -&gt; None }</div>
+
+
+
+<div class="pre caml-output ok">- : int = 3</div></div>
+
+</div><p><span class="machine"><span class="font-tt">try_with</span></span> runs the computation <span class="machine"><span class="font-tt">comp1 ()</span></span> under an effect handler that handles
+the <span class="machine"><span class="font-tt">Xchg</span></span> effect. As mentioned earlier, effect handlers are a generalization
+of exception handlers. Similar to exception handlers, when the computation
+performs the <span class="machine"><span class="font-tt">Xchg</span></span> effect, the control jumps to the corresponding handler.
+However, unlike exception handlers, the handler is also provided with the
+delimited continuation <span class="machine"><span class="font-tt">k</span></span>, which represents the suspended computation between
+the point of <span class="machine"><span class="font-tt">perform</span></span> and this handler.</p><p>The handler uses the <span class="machine"><span class="font-tt">continue</span></span> primitive to resume the suspended computation
+with the successor of the offered value. In this example, the computation
+<span class="machine"><span class="font-tt">comp1</span></span> performs <span class="machine"><span class="font-tt">Xchg 0</span></span> and <span class="machine"><span class="font-tt">Xchg 1</span></span> and receives the values <span class="machine"><span class="font-tt">1</span></span> and <span class="machine"><span class="font-tt">2</span></span>
+from the handler respectively. Hence, the whole expression evaluates to <span class="machine"><span class="font-tt">3</span></span>.</p><p>It is useful to note that the we must use locally abstract type <span class="machine"><span class="font-tt">(type a)</span></span> in
+the effect handler. The type <span class="machine"><span class="font-tt">Effect.t</span></span> is a GADT, and the effect declarations
+may have different type parameters for different effects. The type parameter
+<span class="machine"><span class="font-tt">a</span></span> in the type <span class="machine"><span class="font-tt">a Effect.t</span></span> represents the type of the value returned when
+performing the effect. From the fact that <span class="machine"><span class="font-tt">eff</span></span> has type <span class="machine"><span class="font-tt">a Effect.t</span></span> and from
+the fact that <span class="machine"><span class="font-tt">Xchg n</span></span> has type <span class="machine"><span class="font-tt">int Effect.t</span></span>, the type-checker deduces that
+<span class="machine"><span class="font-tt">a</span></span> must be <span class="machine"><span class="font-tt">int</span></span>, which is why we are allowed to pass the integer value <span class="machine"><span class="font-tt">n+1</span></span>
+as an argument to <span class="machine"><span class="font-tt">continue k</span></span>.</p><p>Another point to note is that the catch-all case “<span class="machine"><span class="font-tt">| _ -&gt; None</span></span>” is necessary
+when handling effects. This case may be intuitively read as “forward the
+unhandled effects to the outer handler”.</p><p>In this example, we use the <em>deep</em> version of the effect handlers here as
+opposed to the <em>shallow</em> version. A deep handler monitors a computation
+until the computation terminates (either normally or via an exception), and
+handles all of the effects performed (in sequence) by the computation. In
+contrast, a shallow handler monitors a computation until either the computation
+terminates or the computation performs one effect, and it handles this single
+effect only. In situations where they are applicable, deep handlers are usually
+preferred. An example that utilises shallow handlers is discussed later
+in&nbsp;<a href="#s%3Aeffects-shallow">12.24.6</a>.</p>
+<h3 class="subsection" id="s:effects-concurrency"><a class="section-anchor" href="#s:effects-concurrency" aria-hidden="true">﻿</a><span class="number">24.2</span> Concurrency</h3>
+<p>The expressive power of effect handlers comes from the delimited continuation.
+While the previous example immediately resumed the computation, the computation
+may be resumed later, running some other computation in the interim. Let us
+extend the previous example and implement message-passing concurrency between
+two concurrent computations using the <span class="machine"><span class="font-tt">Xchg</span></span> effect. We call these concurrent
+computations <span class="font-it">tasks</span>.</p><p>A task either is in a suspended state or is completed. We represent the task
+status as follows:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">type</span> 'a status =
+  Complete <span class="ocamlkeyword">of</span> 'a
+| Suspended <span class="ocamlkeyword">of</span> {msg: int; cont: (int, 'a status) continuation}</div></div>
+
+</div><p>A task either is complete, with a result of type <span class="machine"><span class="font-tt">'a</span></span>, or is suspended with the
+message <span class="machine"><span class="font-tt">msg</span></span> to send and the continuation <span class="machine"><span class="font-tt">cont</span></span>. The type <span class="machine"><span class="font-tt">(int,'a status) continuation</span></span> says that the suspended computation expects an <span class="machine"><span class="font-tt">int</span></span> value to
+resume and returns a <span class="machine"><span class="font-tt">'a status</span></span> value when resumed.</p><p>Next, we define a <span class="machine"><span class="font-tt">step</span></span> function that executes one step of computation until
+it completes or suspends:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> step (f : unit -&gt; 'a) () : 'a status =
+  match_with f ()
+  { retc = (<span class="ocamlkeyword">fun</span> v -&gt; Complete v);
+    exnc = raise;
+    effc = <span class="ocamlkeyword">fun</span> (<span class="ocamlkeyword">type</span> a) (eff: a t) -&gt;
+      <span class="ocamlkeyword">match</span> eff <span class="ocamlkeyword">with</span>
+      | Xchg msg -&gt; Some (<span class="ocamlkeyword">fun</span> (cont: (a, _) continuation) -&gt;
+          Suspended {msg; cont})
+      | _ -&gt; None }</div></div>
+
+</div><p>The argument to the <span class="machine"><span class="font-tt">step</span></span> function, <span class="machine"><span class="font-tt">f</span></span>, is a computation that can perform an
+<span class="machine"><span class="font-tt">Xchg</span></span> effect and returns a result of type <span class="machine"><span class="font-tt">'a</span></span>. The <span class="machine"><span class="font-tt">step</span></span> function itself
+returns a <span class="machine"><span class="font-tt">'a status</span></span> value.</p><p>In the <span class="machine"><span class="font-tt">step</span></span> function, we use the <span class="machine"><span class="font-tt">match_with</span></span> primitive. Like <span class="machine"><span class="font-tt">try_with</span></span>,
+<span class="machine"><span class="font-tt">match_with</span></span> primitive installs an effect handler. However, unlike <span class="machine"><span class="font-tt">try_with</span></span>,
+where only the effect case <span class="machine"><span class="font-tt">effc</span></span> is provided, <span class="machine"><span class="font-tt">match_with</span></span> expects the
+handlers for the value (<span class="machine"><span class="font-tt">retc</span></span>) and exceptional (<span class="machine"><span class="font-tt">exnc</span></span>) return cases. In fact,
+<span class="machine"><span class="font-tt">try_with</span></span> can be defined using <span class="machine"><span class="font-tt">match_with</span></span> as follows: <span class="machine"><span class="font-tt">let try_with f v {effc} = match_with f v {retc = Fun.id; exnc = raise; effc}</span></span>.</p><p>In the <span class="machine"><span class="font-tt">step</span></span> function,</p><ul class="itemize"><li class="li-itemize">Case <span class="machine"><span class="font-tt">retc</span></span>: If the computation returns with a value <span class="machine"><span class="font-tt">v</span></span>, we return
+<span class="machine"><span class="font-tt">Complete v</span></span>.
+</li><li class="li-itemize">Case <span class="machine"><span class="font-tt">exnc</span></span>: If the computation raises an exception, then the handler
+raises the same exception.
+</li><li class="li-itemize">Case <span class="machine"><span class="font-tt">effc</span></span>: If the computation performs the effect <span class="machine"><span class="font-tt">Xchg msg</span></span> with the
+continuation <span class="machine"><span class="font-tt">cont</span></span>, then we return <span class="machine"><span class="font-tt">Suspended{msg;cont}</span></span>. Thus, in this
+case, the continuation cont is not immediately invoked by the handler;
+instead, it is stored in a data structure for later use.
+</li></ul><p>Since the <span class="machine"><span class="font-tt">step</span></span> function handles the <span class="machine"><span class="font-tt">Xchg</span></span> effect, <span class="machine"><span class="font-tt">step f</span></span> is a computation
+that does not perform the <span class="machine"><span class="font-tt">Xchg</span></span> effect. It may however perform other effects.
+Moreover, since we are using deep handlers, the continuation <span class="machine"><span class="font-tt">cont</span></span> stored in
+the status does not perform the <span class="machine"><span class="font-tt">Xchg</span></span> effect.</p><p>We can now write a simple scheduler that runs a pair of tasks to completion:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> run_both a b =
+  <span class="ocamlkeyword">match</span> a (), b () <span class="ocamlkeyword">with</span>
+  | Complete va, Complete vb -&gt; (va, vb)
+  | Suspended {msg = m1; cont = k1},
+    Suspended {msg = m2; cont = k2} -&gt;
+      run_both (<span class="ocamlkeyword">fun</span> () -&gt; continue k1 m2)
+               (<span class="ocamlkeyword">fun</span> () -&gt; continue k2 m1)
+  | _ -&gt; failwith <span class="ocamlstring">"Improper synchronization"</span></div></div>
+
+</div><p>Both of the tasks may run to completion, or both may offer to exchange a
+message. In the latter case, each computation receives the value offered by the
+other computation. The situation where one computation offers an exchange while
+the other computation terminates is regarded as a programmer error, and causes
+the handler to raise an exception</p><p>We can now define a second computation that also exchanges two messages:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> comp2 () = perform (Xchg 21) * perform (Xchg 21)</div></div>
+
+</div><p>Finally, we can run the two computations together:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">run_both (step comp1) (step comp2)</div>
+
+
+
+<div class="pre caml-output ok">- : int * int = (42, 0)</div></div>
+
+</div><p>The computation <span class="machine"><span class="font-tt">comp1</span></span> offers the values <span class="machine"><span class="font-tt">0</span></span> and <span class="machine"><span class="font-tt">1</span></span> and in exchange receives
+the values <span class="machine"><span class="font-tt">21</span></span> and <span class="machine"><span class="font-tt">21</span></span>, which it adds, producing <span class="machine"><span class="font-tt">42</span></span>. The computation
+<span class="machine"><span class="font-tt">comp2</span></span> offers the values <span class="machine"><span class="font-tt">21</span></span> and <span class="machine"><span class="font-tt">21</span></span> and in exchange receives the values <span class="machine"><span class="font-tt">0</span></span>
+and <span class="machine"><span class="font-tt">1</span></span>, which it multiplies, producing <span class="machine"><span class="font-tt">0</span></span>. The communication between the two
+computations is programmed entirely inside <span class="machine"><span class="font-tt">run_both</span></span>. Indeed, the definitions
+of <span class="machine"><span class="font-tt">comp1</span></span> and <span class="machine"><span class="font-tt">comp2</span></span>, alone, do not assign any meaning to the <span class="machine"><span class="font-tt">Xchg</span></span> effect.</p>
+<h3 class="subsection" id="s:effects-user-threads"><a class="section-anchor" href="#s:effects-user-threads" aria-hidden="true">﻿</a><span class="number">24.3</span> User-level threads</h3>
+<p>Let us extend the previous example for an arbitrary number of tasks. Many
+languages such as GHC Haskell and Go provide user-level threads as a primitive
+feature implemented in the runtime system. With effect handlers, user-level
+threads and their schedulers can be implemented in OCaml itself. Typically,
+user-level threading systems provide a <span class="machine"><span class="font-tt">fork</span></span> primitive to spawn off a new
+concurrent task and a <span class="machine"><span class="font-tt">yield</span></span> primitive to yield control to some other task.
+Correspondingly, we shall declare two effects as follows:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">type</span> _ Effect.t += Fork : (unit -&gt; unit) -&gt; unit t
+                 | Yield : unit t</div></div>
+
+</div><p>The <span class="machine"><span class="font-tt">Fork</span></span> effect takes a thunk (a suspended computation, represented as a
+function of type <span class="machine"><span class="font-tt">unit -&gt; unit</span></span>) and returns a unit to the performer. The
+<span class="machine"><span class="font-tt">Yield</span></span> effect is unparameterized and returns a unit when performed. Let us
+consider that a task performing an <span class="machine"><span class="font-tt">Xchg</span></span> effect may match with any other task
+also offering to exchange a value.</p><p>We shall also define helper functions that simply perform these effects:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> fork f = perform (Fork f)
+<span class="ocamlkeyword">let</span> yield () = perform Yield
+<span class="ocamlkeyword">let</span> xchg v = perform (Xchg v)</div></div>
+
+</div><p>A top-level <span class="machine"><span class="font-tt">run</span></span> function defines the scheduler:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* A concurrent round-robin scheduler *)</span>
+<span class="ocamlkeyword">let</span> run (main : unit -&gt; unit) : unit =
+  <span class="ocamlkeyword">let</span> exchanger = <span class="ocamlkeyword">ref</span> None <span class="ocamlkeyword">in</span> <span class="ocamlcomment">(* waiting exchanger *)</span>
+  <span class="ocamlkeyword">let</span> run_q = Queue.create () <span class="ocamlkeyword">in</span> <span class="ocamlcomment">(* scheduler queue *)</span>
+  <span class="ocamlkeyword">let</span> enqueue k v =
+    <span class="ocamlkeyword">let</span> task () = continue k v <span class="ocamlkeyword">in</span>
+    Queue.push task run_q
+  <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> dequeue () =
+    <span class="ocamlkeyword">if</span> Queue.is_empty run_q <span class="ocamlkeyword">then</span> () <span class="ocamlcomment">(* done *)</span>
+    <span class="ocamlkeyword">else</span> <span class="ocamlkeyword">begin</span>
+      <span class="ocamlkeyword">let</span> task = Queue.pop run_q <span class="ocamlkeyword">in</span>
+      task ()
+    <span class="ocamlkeyword">end</span>
+  <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> spawn (f : unit -&gt; unit) : unit =
+    match_with f () {
+      retc = dequeue;
+      exnc = (<span class="ocamlkeyword">fun</span> e -&gt;
+        print_endline (Printexc.to_string e);
+        dequeue ());
+      effc = <span class="ocamlkeyword">fun</span> (<span class="ocamlkeyword">type</span> a) (eff : a t) -&gt;
+        <span class="ocamlkeyword">match</span> eff <span class="ocamlkeyword">with</span>
+        | Yield -&gt; Some (<span class="ocamlkeyword">fun</span> (k : (a, unit) continuation) -&gt;
+            enqueue k (); dequeue ())
+        | Fork f -&gt; Some (<span class="ocamlkeyword">fun</span> (k : (a, unit) continuation) -&gt;
+            enqueue k (); spawn f)
+        | Xchg n -&gt; Some (<span class="ocamlkeyword">fun</span> (k : (int, unit) continuation) -&gt;
+            <span class="ocamlkeyword">begin</span> <span class="ocamlkeyword">match</span> !exchanger <span class="ocamlkeyword">with</span>
+            | Some (n', k') -&gt;
+                exchanger := None; enqueue k' n; continue k n'
+            | None -&gt; exchanger := Some (n, k); dequeue ()
+            <span class="ocamlkeyword">end</span>)
+        | _ -&gt; None
+    }
+  <span class="ocamlkeyword">in</span>
+  spawn main</div></div>
+
+</div><p>We use a mutable queue <span class="machine"><span class="font-tt">run_q</span></span> to hold the scheduler queue. The FIFO queue
+enables round-robin scheduling of tasks in the scheduler. <span class="machine"><span class="font-tt">enqueue</span></span> inserts
+tasks into the queue, and <span class="machine"><span class="font-tt">dequeue</span></span> extracts tasks from the queue and runs
+them. The reference cell <span class="machine"><span class="font-tt">exchanger</span></span> holds a (suspended) task offering to
+exchange a value. At any time, there is either zero or one suspended task that
+is offering an exchange.</p><p>The heavy lifting is done by the <span class="machine"><span class="font-tt">spawn</span></span> function. The <span class="machine"><span class="font-tt">spawn</span></span> function runs
+the given computation <span class="machine"><span class="font-tt">f</span></span> in an effect handler. If <span class="machine"><span class="font-tt">f</span></span> returns with a value
+(case <span class="machine"><span class="font-tt">retc</span></span>), we dequeue and run the next task from the scheduler queue. If
+the computation <span class="machine"><span class="font-tt">f</span></span> raises an exception (case <span class="machine"><span class="font-tt">exnc</span></span>), we print the exception
+and run the next task from the scheduler.</p><p>The computation <span class="machine"><span class="font-tt">f</span></span> may also perform effects. If <span class="machine"><span class="font-tt">f</span></span> performs the <span class="machine"><span class="font-tt">Yield</span></span>
+effect, the current task is suspended (inserted into the queue of ready tasks),
+and the next task from the scheduler queue is run. If the effect is <span class="machine"><span class="font-tt">Fork f</span></span>,
+then the current task is suspended, and the new task <span class="machine"><span class="font-tt">f</span></span> is executed
+immediately via a tail call to <span class="machine"><span class="font-tt">spawn f</span></span>. Note that this choice to run the new
+task first is arbitrary. We could very well have chosen instead to insert the
+task for <span class="machine"><span class="font-tt">f</span></span> into the ready queue and resumed <span class="machine"><span class="font-tt">k</span></span> immediately.</p><p>If the effect is <span class="machine"><span class="font-tt">Xchg</span></span>, then we first check whether there is a task waiting to
+exchange. If so, we enqueue the waiting task with the current value being
+offered and immediately resume the current task with the value being offered.
+If not, we make the current task the waiting exchanger, and run the next task
+from the scheduler queue.</p><p>Note that this scheduler code is not perfect – it can leak resources. We shall
+explain and fix this in the next section&nbsp;<a href="#s%3Aeffects-discontinue">12.24.3</a>.</p><p>Now we can write a concurrent program that utilises the newly defined
+operations:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">open</span> Printf
+
+<span class="ocamlkeyword">let</span> _ = run (<span class="ocamlkeyword">fun</span> _ -&gt;
+  fork (<span class="ocamlkeyword">fun</span> _ -&gt;
+    printf <span class="ocamlstring">"[t1] Sending 0\n"</span>;
+    <span class="ocamlkeyword">let</span> v = xchg 0 <span class="ocamlkeyword">in</span>
+    printf <span class="ocamlstring">"[t1] received %d\n"</span> v);
+  fork (<span class="ocamlkeyword">fun</span> _ -&gt;
+    printf <span class="ocamlstring">"[t2] Sending 1\n"</span>;
+    <span class="ocamlkeyword">let</span> v = xchg 1 <span class="ocamlkeyword">in</span>
+    printf <span class="ocamlstring">"[t2] received %d\n"</span> v))</div>
+
+
+
+<div class="pre caml-output ok">[t1] Sending 0
+[t2] Sending 1
+[t2] received 0
+[t1] received 1</div></div>
+
+</div><p>Observe that the messages from the two tasks are interleaved. Notice also that
+the snippet above makes no reference to the effect handlers and is in direct
+style (no monadic operations). This example illustrates that, with effect
+handlers, the user code in a concurrent program can remain in simple direct
+style, and the use of effect handlers can be fully contained within the
+concurrency library implementation.</p>
+<h4 class="subsubsection" id="s:effects-discontinue"><a class="section-anchor" href="#s:effects-discontinue" aria-hidden="true">﻿</a>Resuming with an exception</h4>
+<p>In addition to resuming a continuation with a value, effect handlers also
+permit resuming by raising an effect at the point of perform. This is done with
+the help of the <span class="machine"><span class="font-tt">discontinue</span></span> primitive. The <span class="machine"><span class="font-tt">discontinue</span></span> primitive helps
+ensure that resources are always eventually deallocated, even in the presence
+of effects.</p><p>For example, consider the dequeue operation in the previous example reproduced
+below:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">…
+<span class="ocamlkeyword">let</span> dequeue () =
+  <span class="ocamlkeyword">if</span> Queue.is_empty run_q <span class="ocamlkeyword">then</span> () <span class="ocamlcomment">(* done *)</span>
+  <span class="ocamlkeyword">else</span> (Queue.pop run_q) ()</div></div>
+
+</div><p>If the scheduler queue is empty, dequeue considers that the scheduler is done
+and returns to the caller. However, there may still be a task waiting to
+exchange a value (stored in the reference cell <span class="machine"><span class="font-tt">exchanger</span></span>), which remains
+blocked forever! If the blocked task holds onto resources, these resources are
+leaked. For example, consider the following task:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> leaky_task () =
+  fork (<span class="ocamlkeyword">fun</span> _ -&gt;
+    <span class="ocamlkeyword">let</span> oc = open_out <span class="ocamlstring">"secret.txt"</span> <span class="ocamlkeyword">in</span>
+    Fun.protect ~finally:(<span class="ocamlkeyword">fun</span> _ -&gt; close_out oc) (<span class="ocamlkeyword">fun</span> _ -&gt;
+      output_value oc (xchg 0)))</div></div>
+
+</div><p>The task writes the received message to the file <span class="machine"><span class="font-tt">secret.txt</span></span>. It uses
+<span class="machine"><span class="font-tt">Fun.protect</span></span> to ensure that the output channel <span class="machine"><span class="font-tt">oc</span></span> is closed on both normal
+and exceptional return cases. Unfortunately, this is not sufficient. If the
+exchange effect <span class="machine"><span class="font-tt">xchg 0</span></span> cannot be matched with an exchange effect performed by
+some other thread, then this task remains blocked forever. Thus, the output
+channel <span class="machine"><span class="font-tt">oc</span></span> is never closed.</p><p>To avoid this problem, one must adhere to a simple discipline:
+<em><span class="font-bold">every continuation must be eventually either continued or
+discontinued</span></em>. Here, we use <span class="machine"><span class="font-tt">discontinue</span></span> to ensure that the blocked task does
+not remain blocked forever. By discontinuing this task, we force it to
+terminate (with an exception):</p><div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">exception</span> Improper_synchronization
+
+<span class="ocamlkeyword">let</span> dequeue () =
+  <span class="ocamlkeyword">if</span> Queue.is_empty run_q <span class="ocamlkeyword">then</span> <span class="ocamlkeyword">begin</span>
+    <span class="ocamlkeyword">match</span> !exchanger <span class="ocamlkeyword">with</span>
+    | None -&gt; () <span class="ocamlcomment">(* done *)</span>
+    | Some (n, k) -&gt;
+        exchanger := None;
+        discontinue k Improper_synchronization
+  <span class="ocamlkeyword">end</span> <span class="ocamlkeyword">else</span> (Queue.pop run_q) ()</div></div><p>When the scheduler queue is empty and there is a blocked exchanger thread, the
+dequeue function discontinues the blocked thread with an
+<span class="machine"><span class="font-tt">Improper_synchronization</span></span> exception. This exception is raised at the blocked
+<span class="machine"><span class="font-tt">xchg</span></span> function call, which causes the <span class="machine"><span class="font-tt">finally</span></span> block to be run and closes the
+output channel <span class="machine"><span class="font-tt">oc</span></span>. From the point of view of the user, it seems as though the
+function call <span class="machine"><span class="font-tt">xchg 0</span></span> raises the exception <span class="machine"><span class="font-tt">Improper_synchronization</span></span>.</p>
+<h3 class="subsection" id="s:effects-sequence"><a class="section-anchor" href="#s:effects-sequence" aria-hidden="true">﻿</a><span class="number">24.4</span> Control inversion</h3>
+<p>When it comes to performing traversals on a data structure, there are two
+fundamental ways depending on whether the producer or the consumer has the
+control over the traversal. For example, in <span class="machine"><span class="font-tt">List.iter f l</span></span>, the producer
+<span class="machine"><span class="font-tt">List.iter</span></span> has the control and pushes the element to the consumer <span class="machine"><span class="font-tt">f</span></span> who
+processes them. On the other hand, the <a href="../api/Seq.html"><span class="font-tt">Seq</span></a> module provides a
+mechanism similar to delayed lists where the consumer controls the traversal.
+For example, <span class="machine"><span class="font-tt">Seq.forever Random.bool</span></span> returns an infinite sequence of random
+bits where every bit is produced (on demand) when queried by the consumer.</p><p>Naturally, producers such as <span class="machine"><span class="font-tt">List.iter</span></span> are easier to write in the former
+style. The latter style is ergonomically better for the consumer since it is
+preferable and more natural to be in control. To have the best of both worlds,
+we would like to write a producer in the former style and automatically convert
+it to the latter style. The conversion can be written <em>once and for all</em>
+as a library function, thanks to effect handlers. Let us name this function
+<span class="machine"><span class="font-tt">invert</span></span>. We will first look at how to use the <span class="machine"><span class="font-tt">invert</span></span> function before looking
+at its implementation details. The type of this function is given below:</p><div class="caml-example signature">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">val</span> invert : iter:(('a -&gt; unit) -&gt; unit) -&gt; 'a Seq.t</div></div>
+
+</div><p>The <span class="machine"><span class="font-tt">invert</span></span> function takes an <span class="machine"><span class="font-tt">iter</span></span> function (a producer that pushes elements
+to the consumer) and returns a sequence (where the consumer has the control).
+For example,</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> lst_iter = Fun.flip List.iter [1;2;3]</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> lst_iter : (int -&gt; unit) -&gt; unit = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>is an <span class="machine"><span class="font-tt">iter</span></span> function with type <span class="machine"><span class="font-tt">(int -&gt; unit) -&gt; unit</span></span>. The expression
+<span class="machine"><span class="font-tt">lst_iter f</span></span> pushes the elements 1, 2 and 3 to the consumer <span class="machine"><span class="font-tt">f</span></span>. For example,</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">lst_iter (<span class="ocamlkeyword">fun</span> i -&gt; Printf.printf <span class="ocamlstring">"%d\n"</span> i)</div>
+
+
+
+<div class="pre caml-output ok">1
+2
+3
+- : unit = ()</div></div>
+
+</div><p>The expression <span class="machine"><span class="font-tt">invert lst_iter</span></span> returns a sequence that allows the consumer to
+traverse the list on demand. For example,</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> s = invert ~iter:lst_iter
+<span class="ocamlkeyword">let</span> next = Seq.to_dispenser s;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> s : int Seq.t = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> next : unit -&gt; int option = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : int option = Some 1</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : int option = Some 2</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : int option = Some 3</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : int option = None</div></div>
+
+</div><p>We can use the same <span class="machine"><span class="font-tt">invert</span></span> function on any <span class="machine"><span class="font-tt">iter</span></span> function. For example,</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> s = invert ~iter:(Fun.flip String.iter <span class="ocamlstring">"OCaml"</span>)
+<span class="ocamlkeyword">let</span> next = Seq.to_dispenser s;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> s : char Seq.t = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> next : unit -&gt; char option = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : char option = Some 'O'</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : char option = Some 'C'</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : char option = Some 'a'</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : char option = Some 'm'</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : char option = Some 'l'</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">next();;</div>
+
+
+
+<div class="pre caml-output ok">- : char option = None</div></div>
+
+</div>
+<h4 class="subsubsection" id="s:effects-sequence-implementation"><a class="section-anchor" href="#s:effects-sequence-implementation" aria-hidden="true">﻿</a>Implementing control inversion</h4>
+<p>The implementation of the <span class="machine"><span class="font-tt">invert</span></span> function is given below:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> invert (<span class="ocamlkeyword">type</span> a) ~(iter : (a -&gt; unit) -&gt; unit) : a Seq.t =
+  <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">module</span> M = <span class="ocamlkeyword">struct</span>
+    <span class="ocamlkeyword">type</span> _ Effect.t += Yield : a -&gt; unit t
+  <span class="ocamlkeyword">end</span> <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> yield v = perform (M.Yield v) <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">fun</span> () -&gt; match_with iter yield
+  { retc = (<span class="ocamlkeyword">fun</span> _ -&gt; Seq.Nil);
+    exnc = raise;
+    effc = <span class="ocamlkeyword">fun</span> (<span class="ocamlkeyword">type</span> b) (eff : b Effect.t) -&gt;
+      <span class="ocamlkeyword">match</span> eff <span class="ocamlkeyword">with</span>
+      | M.Yield v -&gt; Some (<span class="ocamlkeyword">fun</span> (k: (b,_) continuation) -&gt;
+          Seq.Cons (v, continue k))
+      | _ -&gt; None }</div></div>
+
+</div><p>The <span class="machine"><span class="font-tt">invert</span></span> function declares an effect <span class="machine"><span class="font-tt">Yield</span></span> that takes the element to be
+yielded as a parameter. The <span class="machine"><span class="font-tt">yield</span></span> function performs the <span class="machine"><span class="font-tt">Yield</span></span> effect. The
+lambda abstraction <span class="machine"><span class="font-tt">fun () -&gt; ...</span></span> delays all action until the first element of
+the sequence is demanded. Once this happens, the computation <span class="machine"><span class="font-tt">iter yield</span></span> is
+executed under an effect handler. Every time the <span class="machine"><span class="font-tt">iter</span></span> function pushes an
+element to the <span class="machine"><span class="font-tt">yield</span></span> function, the computation is interrupted by the <span class="machine"><span class="font-tt">Yield</span></span>
+effect. The <span class="machine"><span class="font-tt">Yield</span></span> effect is handled by returning the value
+<span class="machine"><span class="font-tt">Seq.Cons(v,continue k)</span></span> to the consumer. The consumer gets the element <span class="machine"><span class="font-tt">v</span></span> as
+well as the suspended computation, which in the consumer’s eyes is just the
+tail of sequence.</p><p>When the consumer demands the next element from the sequence (by applying it to
+<span class="machine"><span class="font-tt">()</span></span>), the continuation <span class="machine"><span class="font-tt">k</span></span> is resumed. This allows the computation <span class="machine"><span class="font-tt">iter yield</span></span> to make progress, until it either yields another element or terminates
+normally. In the latter case, the value <span class="machine"><span class="font-tt">Seq.Nil</span></span> is returned, indicating to
+the consumer that the iteration is over.</p><p>It is important to note that the sequence returned by the <span class="machine"><span class="font-tt">invert</span></span> function is
+<em>ephemeral</em> (as defined by the <a href="../api/Seq.html"><span class="font-tt">Seq</span></a> module) i.e., the
+sequence must be used at most once. Additionally, the sequence must be fully
+consumed (i.e., used at least once) so as to ensure that the captured
+continuation is used linearly.</p>
+<h3 class="subsection" id="s:effects-semantics"><a class="section-anchor" href="#s:effects-semantics" aria-hidden="true">﻿</a><span class="number">24.5</span> Semantics</h3>
+<p>In this section, we shall see the semantics of effect handlers with the help of
+examples.</p>
+<h4 class="subsubsection" id="s:effects-nesting"><a class="section-anchor" href="#s:effects-nesting" aria-hidden="true">﻿</a>Nesting handlers</h4>
+<p>Like exception handlers, effect handlers can be nested.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">type</span> _ Effect.t += E : int t
+                 | F : string t
+
+<span class="ocamlkeyword">let</span> foo () = perform F
+
+<span class="ocamlkeyword">let</span> bar () =
+  try_with foo ()
+  { effc = <span class="ocamlkeyword">fun</span> (<span class="ocamlkeyword">type</span> a) (eff: a t) -&gt;
+      <span class="ocamlkeyword">match</span> eff <span class="ocamlkeyword">with</span>
+      | E -&gt; Some (<span class="ocamlkeyword">fun</span> (k: (a,_) continuation) -&gt;
+          failwith <span class="ocamlstring">"impossible"</span>)
+      | _ -&gt; None }
+
+<span class="ocamlkeyword">let</span> baz () =
+  try_with bar ()
+  { effc = <span class="ocamlkeyword">fun</span> (<span class="ocamlkeyword">type</span> a) (eff: a t) -&gt;
+      <span class="ocamlkeyword">match</span> eff <span class="ocamlkeyword">with</span>
+      | F -&gt; Some (<span class="ocamlkeyword">fun</span> (k: (a,_) continuation) -&gt;
+          continue k <span class="ocamlstring">"Hello, world!"</span>)
+      | _ -&gt; None }</div></div>
+
+</div><p>In this example, the computation <span class="machine"><span class="font-tt">foo</span></span> performs <span class="machine"><span class="font-tt">F</span></span>, the inner handler handles
+only <span class="machine"><span class="font-tt">E</span></span> and the outer handler handles <span class="machine"><span class="font-tt">F</span></span>. The call to <span class="machine"><span class="font-tt">baz</span></span> returns <span class="machine"><span class="font-tt">Hello, world!</span></span>.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">baz ()</div>
+
+
+
+<div class="pre caml-output ok">- : string = <span class="ocamlstring">"Hello, world!"</span></div></div>
+
+</div>
+<h4 class="subsubsection" id="s:effects-fibers"><a class="section-anchor" href="#s:effects-fibers" aria-hidden="true">﻿</a>Fibers</h4>
+<p>It is useful to know a little bit about the implementation of effect handlers
+to appreciate the design choices and their performance characteristics. Effect
+handlers are implemented with the help of runtime-managed, dynamically growing
+segments of stack called <span class="font-it">fibers</span>. The program stack in OCaml is a
+linked list of such fibers.</p><p>A new fiber is allocated for evaluating the computation enclosed by an effect
+handler. The fiber is freed when the computation returns to the caller either
+normally by returning a value or by raising an exception.</p><p>At the point of <span class="machine"><span class="font-tt">perform</span></span> in <span class="machine"><span class="font-tt">foo</span></span> in the previous example, the program stack
+looks like this:</p><div class="ocaml">
+
+
+
+<div class="pre caml-input">+-----+   +-----+   +-----+
+|     |   |     |   |     |
+| baz |&lt;--| bar |&lt;--| foo |
+|     |   |     |   |     |
+|     |   |     |   |     |
++-----+   +-----+   +-----+ &lt;- stack_pointer</div></div><p>The two links correspond to the two effect handlers in the program. When the
+effect <span class="machine"><span class="font-tt">F</span></span> is handled in <span class="machine"><span class="font-tt">baz</span></span>, the program state looks as follows:</p><div class="ocaml">
+
+
+
+<div class="pre caml-input">+-----+                   +-----+   +-----+
+|     |                   |     |   |     |   +-+
+| baz |                   | bar |&lt;--| foo |&lt;--|k|
+|     |                   |     |   |     |   +-+
++-----+ &lt;- stack_pointer  +-----+   +-----+</div></div><p>The delimited continuation <span class="machine"><span class="font-tt">k</span></span> is an object on the heap that refers to the
+segment of the stack that corresponds to the suspended computation. Capturing a
+continuation does not involve copying stack frames. When the continuation is
+resumed, the stack is restored to the previous state by linking together the
+segment pointed to by <span class="machine"><span class="font-tt">k</span></span> to the current stack. Since neither continuation
+capture nor resumption requires copying stack frames, suspending the execution
+using <span class="machine"><span class="font-tt">perform</span></span> and resuming it using either <span class="machine"><span class="font-tt">continue</span></span> or <span class="machine"><span class="font-tt">discontinue</span></span> are
+fast.</p>
+<h4 class="subsubsection" id="s:effects-unhandled"><a class="section-anchor" href="#s:effects-unhandled" aria-hidden="true">﻿</a>Unhandled effects</h4>
+<p>Unlike languages such as Eff and Koka, effect handlers in OCaml do not provide
+<span class="font-it">effect safety</span>; the compiler does not statically ensure that all the
+effects performed by the program are handled. If effects do not have a matching
+handler, then an <span class="machine"><span class="font-tt">Effect.Unhandled</span></span> exception is raised at the point of the
+corresponding <span class="machine"><span class="font-tt">perform</span></span>. For example, in the previous example, <span class="machine"><span class="font-tt">bar</span></span> does not
+handle the effect <span class="machine"><span class="font-tt">F</span></span>. Hence, we will get an <span class="machine"><span class="font-tt">Effect.Unhandled F</span></span> exception
+when we run <span class="machine"><span class="font-tt">bar</span></span>.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">try</span> bar () <span class="ocamlkeyword">with</span> Effect.Unhandled F -&gt; <span class="ocamlstring">"Saw Effect.Unhandled exception"</span></div>
+
+
+
+<div class="pre caml-output ok">- : string = <span class="ocamlstring">"Saw Effect.Unhandled exception"</span></div></div>
+
+</div>
+<h4 class="subsubsection" id="s:effects-linearity"><a class="section-anchor" href="#s:effects-linearity" aria-hidden="true">﻿</a>Linear continuations</h4>
+<p>As discussed earlier&nbsp;<a href="#s%3Aeffects-discontinue">12.24.3</a>, the delimited continuations
+in OCaml must be used linearly – <em><span class="font-bold">every captured continuation
+must be resumed either with a <span class="machine"><span class="font-tt">continue</span></span> or <span class="machine"><span class="font-tt">discontinue</span></span> exactly once</span></em>.
+Attempting to use a continuation more than once raises a
+<span class="machine"><span class="font-tt">Continuation_already_resumed</span></span> exception. For example:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">try_with perform (Xchg 0)
+{ effc = <span class="ocamlkeyword">fun</span> (<span class="ocamlkeyword">type</span> a) (eff : a t) -&gt;
+    <span class="ocamlkeyword">match</span> eff <span class="ocamlkeyword">with</span>
+    | Xchg n -&gt; Some (<span class="ocamlkeyword">fun</span> (k: (a, _) continuation) -&gt;
+        continue k 21 + continue k 21)
+    | _ -&gt; None }</div>
+
+
+
+<div class="pre caml-output ok">Exception: Stdlib.Effect.Continuation_already_resumed.</div></div>
+
+</div><p>The primary motivation for adding effect handlers to OCaml is to enable
+concurrent programming. One-shot continuations are sufficient for almost all
+concurrent programming needs. They are also much cheaper to implement
+compared to multi-shot continuations since they do not require stack frames to
+be copied. Moreover, OCaml programs may also manipulate linear resources such
+as sockets and file descriptors. The linearity discipline is easily broken if
+the continuations are allowed to resume more than once. It would be quite hard
+to debug such linearity violations on resources due to the lack of static
+checks for linearity and the non-local nature of control flow. Hence, OCaml
+does not support multi-shot continuations.</p><p>While the “at most once resumption” property of continuations is ensured with
+a dynamic check, there is no check to ensure that the continuations are resumed
+“at least once”. It is left to the user to ensure that the captured
+continuations are resumed at least once. Not resuming continuations will leak
+the memory allocated for the fibers as well as any resources that the suspended
+computation may hold.</p><p>One may install a finaliser on the captured continuation to ensure that the
+resources are freed:</p><div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">exception</span> Unwind
+Gc.finalise (<span class="ocamlkeyword">fun</span> k -&gt;
+  <span class="ocamlkeyword">try</span> ignore (discontinue k Unwind) <span class="ocamlkeyword">with</span> _ -&gt; ()) k</div></div><p>In this case, if <span class="machine"><span class="font-tt">k</span></span> becomes unreachable, then the finaliser ensures that the
+continuation stack is unwound by discontinuing with an <span class="machine"><span class="font-tt">Unwind</span></span> exception,
+allowing the computation to free up resources. However, the runtime cost of
+finalisers is much more than the cost of capturing a continuation. Hence, it is
+recommended that the user take care of resuming the continuation exactly once
+rather than relying on the finaliser.</p>
+<h3 class="subsection" id="s:effects-shallow"><a class="section-anchor" href="#s:effects-shallow" aria-hidden="true">﻿</a><span class="number">24.6</span> Shallow handlers</h3>
+<p>The examples that we have seen so far have used <span class="font-it">deep</span> handlers. A deep
+handler handles all the effects performed (in sequence) by the computation.
+Whenever a continuation is captured in a deep handler, the captured continuation
+also includes the handler. This means that, when the continuation is resumed,
+the effect handler is automatically re-installed, and will handle the effect(s)
+that the computation may perform in the future.</p><p>OCaml also provides <span class="font-it">shallow</span> handlers. Compared to deep handlers, a
+shallow handler handles only the first effect performed by the computation. The
+continuation captured in a shallow handler does not include the handler. This
+means that, when the continuation is resumed, the handler is no longer present.
+For this reason, when the continuation is resumed, the user is expected to
+provide a new effect handler (possibly a different one) to handle the next
+effect that the computation may perform.</p><p>Shallow handlers make it easier to express certain kinds of programs. Let us
+implement a shallow handler that enforces a particular sequence of effects (a
+protocol) on a computation. For this example, let us consider that the
+computation may perform the following effects:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">type</span> _ Effect.t += Send : int -&gt; unit Effect.t
+                 | Recv : int Effect.t</div></div>
+
+</div><p>Let us assume that we want to enforce a protocol that only permits an
+alternating sequence of <span class="machine"><span class="font-tt">Send</span></span> and <span class="machine"><span class="font-tt">Recv</span></span> effects that conform to the regular
+expression <span class="machine"><span class="font-tt">(Send;Recv)*;Send?</span></span>. Hence, the sequence of effects <span class="machine"><span class="font-tt">[]</span></span> (the empty
+sequence), <span class="machine"><span class="font-tt">[Send]</span></span>, <span class="machine"><span class="font-tt">[Send;Recv]</span></span>, <span class="machine"><span class="font-tt">[Send;Recv;Send]</span></span>, etc., are allowed, but
+not <span class="machine"><span class="font-tt">[Recv]</span></span>, <span class="machine"><span class="font-tt">[Send;Send]</span></span>, <span class="machine"><span class="font-tt">[Send;Recv;Recv]</span></span>, etc. The key observation here
+is that the set of effects handled evolves over time. We can enforce this
+protocol quite naturally using shallow handlers as shown below:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">open</span> Effect.Shallow
+
+<span class="ocamlkeyword">let</span> run (comp: unit -&gt; unit) : unit =
+  <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> loop_send : <span class="ocamlkeyword">type</span> a. (a,unit) continuation -&gt; a -&gt; unit = <span class="ocamlkeyword">fun</span> k v -&gt;
+    continue_with k v
+      { retc = Fun.id;
+        exnc = raise;
+        effc = <span class="ocamlkeyword">fun</span> (<span class="ocamlkeyword">type</span> b) (eff : b Effect.t) -&gt;
+          <span class="ocamlkeyword">match</span> eff <span class="ocamlkeyword">with</span>
+          | Send n -&gt; Some (<span class="ocamlkeyword">fun</span> (k: (b,_) continuation) -&gt;
+              loop_recv n k ())
+          | Recv -&gt; failwith <span class="ocamlstring">"protocol violation"</span>
+          | _ -&gt; None }
+  <span class="ocamlkeyword">and</span> loop_recv : <span class="ocamlkeyword">type</span> a. int -&gt; (a,unit) continuation -&gt; a -&gt; unit = <span class="ocamlkeyword">fun</span> n k v -&gt;
+    continue_with k v
+      { retc = Fun.id;
+        exnc = raise;
+        effc = <span class="ocamlkeyword">fun</span> (<span class="ocamlkeyword">type</span> b) (eff : b Effect.t) -&gt;
+          <span class="ocamlkeyword">match</span> eff <span class="ocamlkeyword">with</span>
+          | Recv -&gt; Some (<span class="ocamlkeyword">fun</span> (k: (b,_) continuation) -&gt;
+              loop_send k n)
+          | Send v -&gt; failwith <span class="ocamlstring">"protocol violation"</span>
+          | _ -&gt; None }
+  <span class="ocamlkeyword">in</span>
+  loop_send (fiber comp) ()</div></div>
+
+</div><p>The <span class="machine"><span class="font-tt">run</span></span> function executes the computation <span class="machine"><span class="font-tt">comp</span></span> ensuring that it can only
+perform an alternating sequence of <span class="machine"><span class="font-tt">Send</span></span> and <span class="machine"><span class="font-tt">Recv</span></span> effects. The shallow
+handler uses a different set of primitives compared to the deep handler. The
+primitive <span class="machine"><span class="font-tt">fiber</span></span> (on the last line) takes an <span class="machine"><span class="font-tt">'a -&gt; 'b</span></span> function and returns a
+<span class="machine"><span class="font-tt">('a,'b) Effects.Shallow.continuation</span></span>. The expression <span class="machine"><span class="font-tt">continue_with k v h</span></span>
+resumes the continuation <span class="machine"><span class="font-tt">k</span></span> with value <span class="machine"><span class="font-tt">v</span></span> under the handler <span class="machine"><span class="font-tt">h</span></span>.</p><p>The mutually recursive functions <span class="machine"><span class="font-tt">loop_send</span></span> and <span class="machine"><span class="font-tt">loop_recv</span></span> resume the given
+continuation <span class="machine"><span class="font-tt">k</span></span> with value <span class="machine"><span class="font-tt">v</span></span> under different handlers. The <span class="machine"><span class="font-tt">loop_send</span></span>
+function handles the <span class="machine"><span class="font-tt">Send</span></span> effect and tail calls the <span class="machine"><span class="font-tt">loop_recv</span></span> function. If
+the computation performs the <span class="machine"><span class="font-tt">Recv</span></span> effect, then <span class="machine"><span class="font-tt">loop_send</span></span> aborts the
+computation by raising an exception. Similarly, the <span class="machine"><span class="font-tt">loop_recv</span></span> function
+handles the <span class="machine"><span class="font-tt">Recv</span></span> effect and tail calls the <span class="machine"><span class="font-tt">loop_send</span></span> function. If the
+computation performs the <span class="machine"><span class="font-tt">Send</span></span> effect, then <span class="machine"><span class="font-tt">loop_recv</span></span> aborts the
+computation. Given that the continuation captured in the shallow handler do not
+include the handler, there is only ever one handler installed in the dynamic
+scope of the computation <span class="machine"><span class="font-tt">comp</span></span>.</p><p>The computation is initially executed by the <span class="machine"><span class="font-tt">loop_send</span></span> function (see last
+line in the code above) which ensures that the first effect that the
+computation is allowed to perform is the <span class="machine"><span class="font-tt">Send</span></span> effect. Note that the
+computation is free to perform effects other than <span class="machine"><span class="font-tt">Send</span></span> and <span class="machine"><span class="font-tt">Recv</span></span>, which may
+be handled by an outer handler.</p><p>We can see that the <span class="machine"><span class="font-tt">run</span></span> function will permit a computation that follows the
+protocol:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">run (<span class="ocamlkeyword">fun</span> () -&gt;
+  printf <span class="ocamlstring">"Send 42\n"</span>;
+  perform (Send 42);
+  printf <span class="ocamlstring">"Recv: %d\n"</span> (perform Recv);
+  printf <span class="ocamlstring">"Send 43\n"</span>;
+  perform (Send 43);
+  printf <span class="ocamlstring">"Recv: %d\n"</span> (perform Recv))</div>
+
+
+
+<div class="pre caml-output ok">Send 42
+Recv: 42
+Send 43
+Recv: 43
+- : unit = ()</div></div>
+
+</div><p>and aborts those that do not:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">run (<span class="ocamlkeyword">fun</span> () -&gt;
+  Printf.printf <span class="ocamlstring">"Send 0\n"</span>;
+  perform (Send 0);
+  Printf.printf <span class="ocamlstring">"Send 1\n"</span>;
+  perform (Send 1) <span class="ocamlcomment">(* protocol violation *)</span>)</div>
+
+
+
+<div class="pre caml-output ok">Send 0
+Send 1
+Exception: Failure <span class="ocamlstring">"protocol violation"</span>.</div></div>
+
+</div><p>We may implement the same example using deep handlers using reference cells
+(easy, but unsatisfying) or without them (harder). We leave this as an exercise
+to the reader.
+</p>
+<div class="bottom-navigation"><a class="previous" href="bindingops.html">« Binding operators</a><a class="next up" href="extn.html">Language extensions</a></div>
+
+
+
+</section><div class="copyright">Copyright © 2022 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

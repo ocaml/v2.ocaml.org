@@ -1,0 +1,699 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Parallel programming</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>An introduction to OCaml</nav><ul id="part-menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labeled arguments</a></li><li><a href="polyvariant.html">Polymorphic variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="gadts-tutorial.html">Generalized algebraic datatypes</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li><li class="active"><a href="parallelism.html">Parallel programming</a></li><li><a href="memorymodel.html">Memory model: The hard bits</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec79"><span class="chapter-number">Chapter 9</span> Parallel programming</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Parallel programming</a></li>
+<li><a href="parallelism.html#s%3Apar_domains"><span class="number">1</span> Domains</a>
+</li><li><a href="parallelism.html#s%3Apar_parfib"><span class="number">2</span> Domainslib: A library for nested-parallel programming</a>
+</li><li><a href="parallelism.html#s%3Apar_gc"><span class="number">3</span> Parallel garbage collection</a>
+</li><li><a href="parallelism.html#s%3Apar_mm_easy"><span class="number">4</span> Memory model: The easy bits</a>
+</li><li><a href="parallelism.html#s%3Apar_sync"><span class="number">5</span> Blocking synchronisation</a>
+</li><li><a href="parallelism.html#s%3Apar_atomics"><span class="number">6</span> Atomics</a>
+</li></ul></nav></header>
+<p>
+<a id="c:parallelism"></a></p><p>In this chapter, we shall look at the parallel programming facilities in OCaml.
+The OCaml standard library exposes low-level primitives for parallel
+programming. We recommend the users to utilise higher-level parallel
+programming libraries such as
+<a href="https://github.com/ocaml-multicore/domainslib">domainslib</a>. This
+tutorial will first cover the high-level parallel programming using domainslib
+followed by low-level primitives exposed by the compiler.</p><p>OCaml distinguishes concurrency and parallelism and provides distinct
+mechanisms for expressing them. Concurrency is overlapped execution of tasks
+(section <a href="effects.html#s%3Aeffects-concurrency">12.24.2</a>) whereas parallelism is simultaneous
+execution of tasks. In particular, parallel tasks overlap in time but
+concurrent tasks may or may not overlap in time. Tasks may execute concurrently
+by yielding control to each other. While concurrency is a program structuring
+mechanism, parallelism is a mechanism to make your programs run faster. If you
+are interested in the concurrent programming mechanisms in OCaml, please refer
+to the section <a href="effects.html#s%3Aeffect-handlers">12.24</a> on effect handlers and the chapter
+<a href="libthreads.html#c%3Athreads">33</a> on the threads library.</p>
+<h2 class="section" id="s:par_domains"><a class="section-anchor" href="#s:par_domains" aria-hidden="true"></a><span class="number">1</span> Domains</h2>
+<p>Domains are the units of parallelism in OCaml. The module <a href="../api/Domain.html"><span class="font-tt">Domain</span></a>
+provides the primitives to create and manage domains. New domains can be
+spawned using the <span class="machine"><span class="font-tt">spawn</span></span> function.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">Domain.spawn (<span class="ocamlkeyword">fun</span> _ -&gt; print_endline <span class="ocamlstring">"I ran in parallel"</span>)</div>
+
+
+
+<div class="pre caml-output ok">I ran <span class="ocamlkeyword">in</span> parallel
+- : unit Domain.t = &lt;abstr&gt;</div></div>
+
+</div><p>The <span class="machine"><span class="font-tt">spawn</span></span> function executes the given computation in parallel with
+the calling domain.</p><p>Domains are heavy-weight entities. Each domain maps 1:1 to an operating system
+thread. Each domain also has its own runtime state, which includes domain-local
+structures for allocating memory. Hence, they are relatively expensive to
+create and tear down.</p><p><em><span class="font-bold">It is recommended that the programs do not spawn more domains
+than cores available</span></em>.</p><p>In this tutorial, we shall be implementing, running and measuring the
+performance of parallel programs. The results observed are dependent on the
+number of cores available on the target machine. This tutorial is being written
+on a 2.3 GHz Quad-Core Intel Core i7 MacBook Pro with 4 cores and 8 hardware
+threads. It is reasonable to expect roughly 4x performance on 4 domains for
+parallel programs with little coordination between the domains, and when the
+machine is not under load. Beyond 4 domains, the speedup is likely to be less
+than linear. We shall also use the command-line benchmarking tool
+<a href="https://github.com/sharkdp/hyperfine">hyperfine</a> for benchmarking our
+programs.</p>
+<h3 class="subsection" id="s:par_join"><a class="section-anchor" href="#s:par_join" aria-hidden="true">﻿</a><span class="number">1.1</span> Joining domains</h3>
+<p>We shall use the program to compute the nth Fibonacci number using recursion as
+a running example. The sequential program for computing the nth Fibonacci
+number is given below.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* fib.ml *)</span>
+<span class="ocamlkeyword">let</span> n = <span class="ocamlkeyword">try</span> int_of_string Sys.argv.(1) <span class="ocamlkeyword">with</span> _ -&gt; 1
+
+<span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> fib n = <span class="ocamlkeyword">if</span> n &lt; 2 <span class="ocamlkeyword">then</span> 1 <span class="ocamlkeyword">else</span> fib (n - 1) + fib (n - 2)
+
+<span class="ocamlkeyword">let</span> main () =
+  <span class="ocamlkeyword">let</span> r = fib n <span class="ocamlkeyword">in</span>
+  Printf.printf <span class="ocamlstring">"fib(%d) = %d\n%!"</span> n r
+
+<span class="ocamlkeyword">let</span> _ = main ()</div></div>
+
+</div><p>The program can be compiled and benchmarked as follows.</p><pre>$ ocamlopt -o fib.exe fib.ml
+$ ./fib.exe 42
+fib(42) = 433494437
+$ hyperfine './fib.exe 42' # Benchmarking
+Benchmark 1: ./fib.exe 42
+  Time (mean ± sd):     1.193 s ±  0.006 s    [User: 1.186 s, System: 0.003 s]
+  Range (min … max):    1.181 s …  1.202 s    10 runs
+</pre><p>
+We see that it takes around 1.2 seconds to compute the 42nd Fibonacci number.</p><p>Spawned domains can be joined using the <span class="machine"><span class="font-tt">join</span></span> function to get their results.
+The <span class="machine"><span class="font-tt">join</span></span> function waits for target domain to terminate. The following program
+computes the nth Fibonacci number twice in parallel.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* fib_twice.ml *)</span>
+<span class="ocamlkeyword">let</span> n = int_of_string Sys.argv.(1)
+
+<span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> fib n = <span class="ocamlkeyword">if</span> n &lt; 2 <span class="ocamlkeyword">then</span> 1 <span class="ocamlkeyword">else</span> fib (n - 1) + fib (n - 2)
+
+<span class="ocamlkeyword">let</span> main () =
+  <span class="ocamlkeyword">let</span> d1 = Domain.spawn (<span class="ocamlkeyword">fun</span> _ -&gt; fib n) <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> d2 = Domain.spawn (<span class="ocamlkeyword">fun</span> _ -&gt; fib n) <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> r1 = Domain.join d1 <span class="ocamlkeyword">in</span>
+  Printf.printf <span class="ocamlstring">"fib(%d) = %d\n%!"</span> n r1;
+  <span class="ocamlkeyword">let</span> r2 = Domain.join d2 <span class="ocamlkeyword">in</span>
+  Printf.printf <span class="ocamlstring">"fib(%d) = %d\n%!"</span> n r2
+
+<span class="ocamlkeyword">let</span> _ = main ()</div></div>
+
+</div><p>The program spawns two domains which compute the nth Fibonacci number. The
+<span class="machine"><span class="font-tt">spawn</span></span> function returns a <span class="machine"><span class="font-tt">Domain.t</span></span> value which can be joined to get the
+result of the parallel computation. The <span class="machine"><span class="font-tt">join</span></span> function blocks until the
+computation runs to completion.</p><pre>$ ocamlopt -o fib_twice.exe fib_twice.ml
+$ ./fib_twice.exe 42
+fib(42) = 433494437
+fib(42) = 433494437
+$ hyperfine './fib_twice.exe 42'
+Benchmark 1: ./fib_twice.exe 42
+  Time (mean ± sd):     1.249 s ±  0.025 s    [User: 2.451 s, System: 0.012 s]
+  Range (min … max):    1.221 s …  1.290 s    10 runs
+</pre><p>
+As one can see that computing the nth Fibonacci number twice almost took the
+same time as computing it once thanks to parallelism.</p>
+<h2 class="section" id="s:par_parfib"><a class="section-anchor" href="#s:par_parfib" aria-hidden="true">﻿</a><span class="number">2</span> Domainslib: A library for nested-parallel programming</h2>
+<p>Let us attempt to parallelise the Fibonacci function. The two recursive calls
+may be executed in parallel. However, naively parallelising the recursive calls
+by spawning domains for each one will not work as it spawns too many domains.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* fib_par1.ml *)</span>
+<span class="ocamlkeyword">let</span> n = <span class="ocamlkeyword">try</span> int_of_string Sys.argv.(1) <span class="ocamlkeyword">with</span> _ -&gt; 1
+
+<span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> fib n =
+  <span class="ocamlkeyword">if</span> n &lt; 2 <span class="ocamlkeyword">then</span> 1 <span class="ocamlkeyword">else</span> <span class="ocamlkeyword">begin</span>
+    <span class="ocamlkeyword">let</span> d1 = Domain.spawn (<span class="ocamlkeyword">fun</span> _ -&gt; fib (n - 1)) <span class="ocamlkeyword">in</span>
+    <span class="ocamlkeyword">let</span> d2 = Domain.spawn (<span class="ocamlkeyword">fun</span> _ -&gt; fib (n - 2)) <span class="ocamlkeyword">in</span>
+    Domain.join d1 + Domain.join d2
+  <span class="ocamlkeyword">end</span>
+
+<span class="ocamlkeyword">let</span> main () =
+  <span class="ocamlkeyword">let</span> r = fib n <span class="ocamlkeyword">in</span>
+  Printf.printf <span class="ocamlstring">"fib(%d) = %d\n%!"</span> n r
+
+<span class="ocamlkeyword">let</span> _ = main ()</div>
+
+
+
+<div class="pre caml-output ok">fib(1) = 1
+<span class="ocamlkeyword">val</span> n : int = 1
+<span class="ocamlkeyword">val</span> fib : int -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> main : unit -&gt; unit = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><pre>$ ocamlopt -o fib_par1.exe fib_par1.ml
+$ ./fib_par1.exe 42
+Fatal error: exception Failure("failed to allocate domain")
+</pre><p>
+OCaml has a limit of 128 domains that can be active at the same time. An
+attempt to spawn more domains will raise an exception. How then can we
+parallelise the Fibonacci function?</p>
+<h3 class="subsection" id="s:par_parfib_domainslib"><a class="section-anchor" href="#s:par_parfib_domainslib" aria-hidden="true">﻿</a><span class="number">2.1</span> Parallelising Fibonacci using domainslib</h3>
+<p>The OCaml standard library provides only low-level primitives for concurrent
+and parallel programming, leaving high-level programming libraries to be
+developed and distributed outside the core compiler distribution.
+<a href="https://github.com/ocaml-multicore/domainslib">Domainslib</a> is such a
+library for nested-parallel programming, which is epitomised by the parallelism
+available in the recursive Fibonacci computation. Let us use domainslib to
+parallelise the recursive Fibonacci program. It is recommended that you install
+domainslib using the <a href="https://opam.ocaml.org/">opam</a> package manager. This
+tutorial uses domainslib version 0.4.2.</p><p>Domainslib provides an async/await mechanism for spawning parallel tasks and
+awaiting their results. On top of this mechanism, domainslib provides parallel
+iterators. At its core, domainslib has an efficient implementation of
+work-stealing queue in order to efficiently share tasks with other domains. A
+parallel implementation of the Fibonacci program is given below.</p><pre>(* fib_par2.ml *)
+let num_domains = int_of_string Sys.argv.(1)
+let n = int_of_string Sys.argv.(2)
+
+let rec fib n = if n &lt; 2 then 1 else fib (n - 1) + fib (n - 2)
+
+module T = Domainslib.Task
+
+let rec fib_par pool n =
+  if n &gt; 20 then begin
+    let a = T.async pool (fun _ -&gt; fib_par pool (n-1)) in
+    let b = T.async pool (fun _ -&gt; fib_par pool (n-2)) in
+    T.await pool a + T.await pool b
+  end else fib n
+
+let main () =
+  let pool = T.setup_pool ~num_additional_domains:(num_domains - 1) () in
+  let res = T.run pool (fun _ -&gt; fib_par pool n) in
+  T.teardown_pool pool;
+  Printf.printf "fib(%d) = %d\n" n res
+
+let _ = main ()
+</pre><p>
+The program takes the number of domains and the input to the Fibonacci function
+as the first and the second command-line arguments respectively.</p><p>Let us start with the main function. First, we set up a pool of domains on which
+the nested parallel tasks will run. The domain invoking the <span class="machine"><span class="font-tt">run</span></span> function will
+also participate in executing the tasks submitted to the pool. We invoke the
+parallel Fibonacci function <span class="machine"><span class="font-tt">fib_par</span></span> in the <span class="machine"><span class="font-tt">run</span></span> function. Finally, we tear
+down the pool and print the result.</p><p>For sufficiently large inputs (<span class="machine"><span class="font-tt">n &gt; 20</span></span>), the <span class="machine"><span class="font-tt">fib_par</span></span> function spawns the
+left and the right recursive calls asynchronously in the pool using the <span class="machine"><span class="font-tt">async</span></span>
+function. The <span class="machine"><span class="font-tt">async</span></span> function returns a promise for the result. The result of
+an asynchronous computation is obtained by awaiting the promise using the
+<span class="machine"><span class="font-tt">await</span></span> function. The <span class="machine"><span class="font-tt">await</span></span> function call blocks until the promise is
+resolved.</p><p>For small inputs, the <span class="machine"><span class="font-tt">fib_par</span></span> function simply calls the sequential Fibonacci
+function <span class="machine"><span class="font-tt">fib</span></span>. It is important to switch to sequential mode for small problem
+sizes. If not, the cost of parallelisation will outweigh the work available.</p><p>For simplicity, we use <span class="machine"><span class="font-tt">ocamlfind</span></span> to compile this program. It is recommended
+that the users use <a href="https://github.com/ocaml/dune">dune</a> to build their
+programs that utilise libraries installed through
+<a href="https://opam.ocaml.org/">opam</a>.</p><pre>$ ocamlfind ocamlopt -package domainslib -linkpkg -o fib_par2.exe fib_par2.ml
+$ ./fib_par2.exe 1 42
+fib(42) = 433494437
+$ hyperfine './fib.exe 42' './fib_par2.exe 2 42' \
+            './fib_par2.exe 4 42' './fib_par2.exe 8 42'
+Benchmark 1: ./fib.exe 42
+  Time (mean ± sd):     1.217 s ±  0.018 s    [User: 1.203 s, System: 0.004 s]
+  Range (min … max):    1.202 s …  1.261 s    10 runs
+
+Benchmark 2: ./fib_par2.exe 2 42
+  Time (mean ± sd):    628.2 ms ±   2.9 ms    [User: 1243.1 ms, System: 4.9 ms]
+  Range (min … max):   625.7 ms … 634.5 ms    10 runs
+
+Benchmark 3: ./fib_par2.exe 4 42
+  Time (mean ± sd):    337.6 ms ±  23.4 ms    [User: 1321.8 ms, System: 8.4 ms]
+  Range (min … max):   318.5 ms … 377.6 ms    10 runs
+
+Benchmark 4: ./fib_par2.exe 8 42
+  Time (mean ± sd):    250.0 ms ±   9.4 ms    [User: 1877.1 ms, System: 12.6 ms]
+  Range (min … max):   242.5 ms … 277.3 ms    11 runs
+
+Summary
+  './fib_par2.exe 8 42' ran
+    1.35 ± 0.11 times faster than './fib_par2.exe 4 42'
+    2.51 ± 0.10 times faster than './fib_par2.exe 2 42'
+    4.87 ± 0.20 times faster than './fib.exe 42'
+</pre><p>
+The results show that, with 8 domains, the parallel Fibonacci program runs 4.87
+times faster than the sequential version.</p>
+<h3 class="subsection" id="s:par_iterators"><a class="section-anchor" href="#s:par_iterators" aria-hidden="true">﻿</a><span class="number">2.2</span> Parallel iteration constructs</h3>
+<p>Many numerical algorithms use for-loops. The parallel-for primitive provides a
+straight-forward way to parallelise such code. Let us take the
+<a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/description/spectralnorm.html#spectralnorm">spectral-norm</a>
+benchmark from the computer language benchmarks game and parallelise it. The
+sequential version of the program is given below.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* spectralnorm.ml *)</span>
+<span class="ocamlkeyword">let</span> n = <span class="ocamlkeyword">try</span> int_of_string Sys.argv.(1) <span class="ocamlkeyword">with</span> _ -&gt; 32
+
+<span class="ocamlkeyword">let</span> eval_A i j = 1. /. float((i+j)*(i+j+1)/2+i+1)
+
+<span class="ocamlkeyword">let</span> eval_A_times_u u v =
+  <span class="ocamlkeyword">let</span> n = Array.length v - 1 <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">for</span> i = 0 <span class="ocamlkeyword">to</span>  n <span class="ocamlkeyword">do</span>
+    <span class="ocamlkeyword">let</span> vi = <span class="ocamlkeyword">ref</span> 0. <span class="ocamlkeyword">in</span>
+    <span class="ocamlkeyword">for</span> j = 0 <span class="ocamlkeyword">to</span> n <span class="ocamlkeyword">do</span> vi := !vi +. eval_A i j *. u.(j) <span class="ocamlkeyword">done</span>;
+    v.(i) &lt;- !vi
+  <span class="ocamlkeyword">done</span>
+
+<span class="ocamlkeyword">let</span> eval_At_times_u u v =
+  <span class="ocamlkeyword">let</span> n = Array.length v - 1 <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">for</span> i = 0 <span class="ocamlkeyword">to</span> n <span class="ocamlkeyword">do</span>
+    <span class="ocamlkeyword">let</span> vi = <span class="ocamlkeyword">ref</span> 0. <span class="ocamlkeyword">in</span>
+    <span class="ocamlkeyword">for</span> j = 0 <span class="ocamlkeyword">to</span> n <span class="ocamlkeyword">do</span> vi := !vi +. eval_A j i *. u.(j) <span class="ocamlkeyword">done</span>;
+    v.(i) &lt;- !vi
+  <span class="ocamlkeyword">done</span>
+
+<span class="ocamlkeyword">let</span> eval_AtA_times_u u v =
+  <span class="ocamlkeyword">let</span> w = Array.make (Array.length u) 0.0 <span class="ocamlkeyword">in</span>
+  eval_A_times_u u w; eval_At_times_u w v
+
+<span class="ocamlkeyword">let</span> () =
+  <span class="ocamlkeyword">let</span> u = Array.make n 1.0  <span class="ocamlkeyword">and</span>  v = Array.make n 0.0 <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">for</span> _i = 0 <span class="ocamlkeyword">to</span> 9 <span class="ocamlkeyword">do</span>
+    eval_AtA_times_u u v; eval_AtA_times_u v u
+  <span class="ocamlkeyword">done</span>;
+
+  <span class="ocamlkeyword">let</span> vv = <span class="ocamlkeyword">ref</span> 0.0  <span class="ocamlkeyword">and</span>  vBv = <span class="ocamlkeyword">ref</span> 0.0 <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">for</span> i=0 <span class="ocamlkeyword">to</span> n-1 <span class="ocamlkeyword">do</span>
+    vv := !vv +. v.(i) *. v.(i);
+    vBv := !vBv +. u.(i) *. v.(i)
+  <span class="ocamlkeyword">done</span>;
+  Printf.printf <span class="ocamlstring">"%0.9f\n"</span> (sqrt(!vBv /. !vv))</div></div>
+
+</div><p>Observe that the program has nested loops in <span class="machine"><span class="font-tt">eval_A_times_u</span></span> and
+<span class="machine"><span class="font-tt">eval_At_times_u</span></span>. Each iteration of the outer loop body reads from <span class="machine"><span class="font-tt">u</span></span> but
+writes to disjoint memory locations in <span class="machine"><span class="font-tt">v</span></span>. Hence, the iterations of the outer
+loop are not dependent on each other and can be executed in parallel.</p><p>The parallel version of spectral norm is shown below.</p><pre>(* spectralnorm_par.ml *)
+let num_domains = try int_of_string Sys.argv.(1) with _ -&gt; 1
+let n = try int_of_string Sys.argv.(2) with _ -&gt; 32
+
+let eval_A i j = 1. /. float((i+j)*(i+j+1)/2+i+1)
+
+module T = Domainslib.Task
+
+let eval_A_times_u pool u v =
+  let n = Array.length v - 1 in
+  T.parallel_for pool ~start:0 ~finish:n ~body:(fun i -&gt;
+    let vi = ref 0. in
+    for j = 0 to n do vi := !vi +. eval_A i j *. u.(j) done;
+    v.(i) &lt;- !vi
+  )
+
+let eval_At_times_u pool u v =
+  let n = Array.length v - 1 in
+  T.parallel_for pool ~start:0 ~finish:n ~body:(fun i -&gt;
+    let vi = ref 0. in
+    for j = 0 to n do vi := !vi +. eval_A j i *. u.(j) done;
+    v.(i) &lt;- !vi
+  )
+
+let eval_AtA_times_u pool u v =
+  let w = Array.make (Array.length u) 0.0 in
+  eval_A_times_u pool u w; eval_At_times_u pool w v
+
+let () =
+  let pool = T.setup_pool ~num_additional_domains:(num_domains - 1) () in
+  let u = Array.make n 1.0  and  v = Array.make n 0.0 in
+  T.run pool (fun _ -&gt;
+  for _i = 0 to 9 do
+    eval_AtA_times_u pool u v; eval_AtA_times_u pool v u
+  done);
+
+  let vv = ref 0.0  and  vBv = ref 0.0 in
+  for i=0 to n-1 do
+    vv := !vv +. v.(i) *. v.(i);
+    vBv := !vBv +. u.(i) *. v.(i)
+  done;
+  T.teardown_pool pool;
+  Printf.printf "%0.9f\n" (sqrt(!vBv /. !vv))
+</pre><p>
+Observe that the <span class="machine"><span class="font-tt">parallel_for</span></span> function is isomorphic to the for-loop in the
+sequential version. No other change is required except for the boiler plate
+code to set up and tear down the pools.</p><pre>$ ocamlopt -o spectralnorm.exe spectralnorm.ml
+$ ocamlfind ocamlopt -package domainslib -linkpkg -o spectralnorm_par.exe \
+  spectralnorm_par.ml
+$ hyperfine './spectralnorm.exe 4096' './spectralnorm_par.exe 2 4096' \
+            './spectralnorm_par.exe 4 4096' './spectralnorm_par.exe 8 4096'
+Benchmark 1: ./spectralnorm.exe 4096
+  Time (mean ± sd):     1.989 s ±  0.013 s    [User: 1.972 s, System: 0.007 s]
+  Range (min … max):    1.975 s …  2.018 s    10 runs
+
+Benchmark 2: ./spectralnorm_par.exe 2 4096
+  Time (mean ± sd):     1.083 s ±  0.015 s    [User: 2.140 s, System: 0.009 s]
+  Range (min … max):    1.064 s …  1.102 s    10 runs
+
+Benchmark 3: ./spectralnorm_par.exe 4 4096
+  Time (mean ± sd):    698.7 ms ±  10.3 ms    [User: 2730.8 ms, System: 18.3 ms]
+  Range (min … max):   680.9 ms … 721.7 ms    10 runs
+
+Benchmark 4: ./spectralnorm_par.exe 8 4096
+  Time (mean ± sd):    921.8 ms ±  52.1 ms    [User: 6711.6 ms, System: 51.0 ms]
+  Range (min … max):   838.6 ms … 989.2 ms    10 runs
+
+Summary
+  './spectralnorm_par.exe 4 4096' ran
+    1.32 ± 0.08 times faster than './spectralnorm_par.exe 8 4096'
+    1.55 ± 0.03 times faster than './spectralnorm_par.exe 2 4096'
+    2.85 ± 0.05 times faster than './spectralnorm.exe 4096'
+</pre><p>
+On the author’s machine, the program scales reasonably well up to 4 domains but
+performs worse with 8 domains. Recall that the machine only has 4 physical
+cores. Debugging and fixing this performance issue is beyond the scope of this
+tutorial.</p>
+<h2 class="section" id="s:par_gc"><a class="section-anchor" href="#s:par_gc" aria-hidden="true">﻿</a><span class="number">3</span> Parallel garbage collection</h2>
+<p>An important aspect of the scalability of parallel OCaml programs is the
+scalability of the garbage collector (GC). The OCaml GC is designed to have
+both low latency and good parallel scalability. OCaml has a generational
+garbage collector with a small minor heap and a large major heap. New objects
+(upto a certain size) are allocated in the minor heap. Each domain has its own
+domain-local minor heap arena into which new objects are allocated without
+synchronising with the other domains. When a domain exhausts its minor heap
+arena, it calls for a stop-the-world collection of the minor heaps. In the
+stop-the-world section, all the domains collect their minor heap arenas in
+parallel evacuating the survivors to the major heap.</p><p>For the major heap, each domain maintains domain-local, size-segmented pools of
+memory into which large objects and survivors from the minor collection are
+allocated. Having domain-local pools avoids synchronisation for most major heap
+allocations. The major heap is collected by a concurrent mark-and-sweep
+algorithm that involves a few short stop-the-world pauses for each major cycle.</p><p>Overall, the users should expect the garbage collector to scale well with
+increasing number of domains, with the latency remaining low. For more
+information on the design and evaluation of the garbage collector, please have
+a look at the ICFP 2020 paper on
+<a href="https://arxiv.org/abs/2004.11663"><span class="machine"><span class="font-tt">Retrofitting Parallelism onto OCaml</span></span></a>.</p>
+<h2 class="section" id="s:par_mm_easy"><a class="section-anchor" href="#s:par_mm_easy" aria-hidden="true">﻿</a><span class="number">4</span> Memory model: The easy bits</h2>
+<p>Modern processors and compilers aggressively optimise programs. These
+optimisations accelerate without otherwise affecting sequential programs, but
+cause surprising behaviours to be visible in parallel programs. To benefit from
+these optimisations, OCaml adopts a <span class="font-it">relaxed memory model</span> that precisely
+specifies which of these <em>relaxed behaviours</em> programs may observe. While
+these models are difficult to program against directly, the OCaml memory model
+provides recipes that retain the simplicity of sequential reasoning.</p><p>Firstly, immutable values may be freely shared between multiple domains and may
+be accessed in parallel. For mutable data structures such as reference cells,
+arrays and mutable record fields, programmers should avoid <em>data races</em>.
+Reference cells, arrays and mutable record fields are said to be
+<em>non-atomic</em> data structures. A data race is said to occur when two
+domains concurrently access a non-atomic memory location without
+<em>synchronisation</em> and at least one of the accesses is a write. OCaml
+provides a number of ways to introduce synchronisation including atomic
+variables (section <a href="#s%3Apar_atomics">9.6</a>) and mutexes (section <a href="#s%3Apar_sync">9.5</a>).</p><p>Importantly, <span class="font-bold">for data race free (DRF) programs, OCaml provides
+sequentially consistent (SC) semantics</span> – the observed behaviour of such
+programs can be explained by the interleaving of operations from different
+domains. This property is known as DRF-SC guarantee. Moreover, in OCaml, DRF-SC
+guarantee is modular – if a part of a program is data race free, then the
+OCaml memory model ensures that those parts have sequential consistency despite
+other parts of the program having data races. Even for programs with data
+races, OCaml provides strong guarantees. While the user may observe non
+sequentially consistent behaviours, there are no crashes.</p><p>For more details on the relaxed behaviours in the presence of data races,
+please have a look at the chapter on the hard bits of the memory model
+(chapter <a href="memorymodel.html#c%3Amemorymodel">10</a>).</p>
+<h2 class="section" id="s:par_sync"><a class="section-anchor" href="#s:par_sync" aria-hidden="true">﻿</a><span class="number">5</span> Blocking synchronisation</h2>
+<p>Domains may perform blocking synchronisation with the help of
+<a href="../api/Mutex.html"><span class="font-tt">Mutex</span></a>, <a href="../api/Condition.html"><span class="font-tt">Condition</span></a> and <a href="../api/Semaphore.html"><span class="font-tt">Semaphore</span></a>
+modules. These modules are the same as those used to synchronise threads
+created by the threads library (chapter <a href="libthreads.html#c%3Athreads">33</a>). For clarity, in the
+rest of this chapter, we shall call the threads created by the threads library
+as <em>systhreads</em>. The following program implements a concurrent stack using
+mutex and condition variables.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> Blocking_stack : <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> 'a t
+  <span class="ocamlkeyword">val</span> make : unit -&gt; 'a t
+  <span class="ocamlkeyword">val</span> push : 'a t -&gt; 'a -&gt; unit
+  <span class="ocamlkeyword">val</span> pop  : 'a t -&gt; 'a
+<span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span>
+  <span class="ocamlkeyword">type</span> 'a t = {
+    <span class="ocamlkeyword">mutable</span> contents: 'a list;
+    mutex : Mutex.t;
+    nonempty : Condition.t
+  }
+
+  <span class="ocamlkeyword">let</span> make () = {
+    contents = [];
+    mutex = Mutex.create ();
+    nonempty = Condition.create ()
+  }
+
+  <span class="ocamlkeyword">let</span> push r v =
+    Mutex.lock r.mutex;
+    r.contents &lt;- v::r.contents;
+    Condition.signal r.nonempty;
+    Mutex.unlock r.mutex
+
+  <span class="ocamlkeyword">let</span> pop r =
+    Mutex.lock r.mutex;
+    <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> loop () =
+      <span class="ocamlkeyword">match</span> r.contents <span class="ocamlkeyword">with</span>
+      | [] -&gt;
+          Condition.wait r.nonempty r.mutex;
+          loop ()
+      | x::xs -&gt; r.contents &lt;- xs; x
+    <span class="ocamlkeyword">in</span>
+    <span class="ocamlkeyword">let</span> res = loop () <span class="ocamlkeyword">in</span>
+    Mutex.unlock r.mutex;
+    res
+<span class="ocamlkeyword">end</span></div></div>
+
+</div><p>The concurrent stack is implemented using a record with three fields: a mutable
+field <span class="machine"><span class="font-tt">contents</span></span> which stores the elements in the stack, a <span class="machine"><span class="font-tt">mutex</span></span> to control
+access to the <span class="machine"><span class="font-tt">contents</span></span> field, and a condition variable <span class="machine"><span class="font-tt">nonempty</span></span>, which is
+used to signal blocked domains waiting for the stack to become non-empty.</p><p>The <span class="machine"><span class="font-tt">push</span></span> operation locks the mutex, updates the <span class="machine"><span class="font-tt">contents</span></span> field with a new
+list whose head is the element being pushed and the tail is the old list. The
+condition variable <span class="machine"><span class="font-tt">nonempty</span></span> is signalled while the lock is held in order to
+wake up any domains waiting on this condition. If there are waiting domains,
+one of the domains is woken up. If there are none, then the <span class="machine"><span class="font-tt">signal</span></span> operation
+has no effect.</p><p>The <span class="machine"><span class="font-tt">pop</span></span> operation locks the mutex and checks whether the stack is empty. If
+so, the calling domain waits on the condition variable <span class="machine"><span class="font-tt">nonempty</span></span> using the
+<span class="machine"><span class="font-tt">wait</span></span> primitive. The <span class="machine"><span class="font-tt">wait</span></span> call atomically suspends the execution of the
+current domain and unlocks the <span class="machine"><span class="font-tt">mutex</span></span>. When this domain is woken up again
+(when the <span class="machine"><span class="font-tt">wait</span></span> call returns), it holds the lock on <span class="machine"><span class="font-tt">mutex</span></span>. The domain tries
+to read the contents of the stack again. If the <span class="machine"><span class="font-tt">pop</span></span> operation sees that the
+stack is non-empty, it updates the <span class="machine"><span class="font-tt">contents</span></span> to the tail of the old list, and
+returns the head.</p><p>The use of <span class="machine"><span class="font-tt">mutex</span></span> to control access to the shared resource <span class="machine"><span class="font-tt">contents</span></span>
+introduces sufficient synchronisation between multiple domains using the stack.
+Hence, there are no data races when multiple domains use the stack in parallel.</p>
+<h3 class="subsection" id="s:par_systhread_interaction"><a class="section-anchor" href="#s:par_systhread_interaction" aria-hidden="true">﻿</a><span class="number">5.1</span> Interaction with systhreads</h3>
+<p>How do systhreads interact with domains? The systhreads created on a particular
+domain remain pinned to that domain. Only one systhread at a time is allowed to
+run OCaml code on a particular domain. However, systhreads belonging to a
+particular domain may run C library or system code in parallel. Systhreads
+belonging to different domains may execute in parallel.</p><p>When using systhreads, the thread created for executing the computation given
+to <span class="machine"><span class="font-tt">Domain.spawn</span></span> is also treated as a systhread. For example, the following
+program creates in total two domains (including the initial domain) with two
+systhreads each (including the initial systhread for each of the domains).</p><pre>(* dom_thr.ml *)
+let m = Mutex.create ()
+let r = ref None (* protected by m *)
+
+let task () =
+  let my_thr_id = Thread.(id (self ())) in
+  let my_dom_id :&gt; int = Domain.self () in
+  Mutex.lock m;
+  begin match !r with
+  | None -&gt;
+      Printf.printf "Thread %d running on domain %d saw initial write\n%!"
+        my_thr_id my_dom_id
+  | Some their_thr_id -&gt;
+      Printf.printf "Thread %d running on domain %d saw the write by thread %d\n%!"
+        my_thr_id my_dom_id their_thr_id;
+  end;
+  r := Some my_thr_id;
+  Mutex.unlock m
+
+let task' () =
+  let t = Thread.create task () in
+  task ();
+  Thread.join t
+
+let main () =
+  let d = Domain.spawn task' in
+  task' ();
+  Domain.join d
+
+let _ = main ()
+</pre><pre>$ ocamlopt -I +threads unix.cmxa threads.cmxa -o dom_thr.exe dom_thr.ml
+$ ./dom_thr.exe
+Thread 1 running on domain 1 saw initial write
+Thread 0 running on domain 0 saw the write by thread 1
+Thread 2 running on domain 1 saw the write by thread 0
+Thread 3 running on domain 0 saw the write by thread 2
+</pre><p>
+This program uses a shared reference cell protected by a mutex to communicate
+between the different systhreads running on two different domains. The
+systhread identifiers uniquely identify systhreads in the program. The initial
+domain gets the domain id and the thread id as 0. The newly spawned domain gets
+domain id as 1.</p>
+<h2 class="section" id="s:par_atomics"><a class="section-anchor" href="#s:par_atomics" aria-hidden="true">﻿</a><span class="number">6</span> Atomics</h2>
+<p>Mutex, condition variables and semaphores are used to implement blocking
+synchronisation between domains. For non-blocking synchronisation, OCaml
+provides <a href="../api/Atomic.html"><span class="font-tt">Atomic</span></a> variables. As the name suggests, non-blocking
+synchronisation does not provide mechanisms for suspending and waking up
+domains. On the other hand, primitives used in non-blocking synchronisation are
+often compiled to atomic read-modify-write primitives that the hardware
+provides. As an example, the following program increments a non-atomic counter
+and an atomic counter in parallel.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlcomment">(* incr.ml *)</span>
+<span class="ocamlkeyword">let</span> twice_in_parallel f =
+  <span class="ocamlkeyword">let</span> d1 = Domain.spawn f <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> d2 = Domain.spawn f <span class="ocamlkeyword">in</span>
+  Domain.join d1;
+  Domain.join d2
+
+<span class="ocamlkeyword">let</span> plain_ref n =
+  <span class="ocamlkeyword">let</span> r = <span class="ocamlkeyword">ref</span> 0 <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> f () = <span class="ocamlkeyword">for</span> _i=1 <span class="ocamlkeyword">to</span> n <span class="ocamlkeyword">do</span> incr r <span class="ocamlkeyword">done</span> <span class="ocamlkeyword">in</span>
+  twice_in_parallel f;
+  Printf.printf <span class="ocamlstring">"Non-atomic ref count: %d\n"</span> !r
+
+<span class="ocamlkeyword">let</span> atomic_ref n =
+  <span class="ocamlkeyword">let</span> r = Atomic.make 0 <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> f () = <span class="ocamlkeyword">for</span> _i=1 <span class="ocamlkeyword">to</span> n <span class="ocamlkeyword">do</span> Atomic.incr r <span class="ocamlkeyword">done</span> <span class="ocamlkeyword">in</span>
+  twice_in_parallel f;
+  Printf.printf <span class="ocamlstring">"Atomic ref count: %d\n"</span> (Atomic.get r)
+
+<span class="ocamlkeyword">let</span> main () =
+  <span class="ocamlkeyword">let</span> n = <span class="ocamlkeyword">try</span> int_of_string Sys.argv.(1) <span class="ocamlkeyword">with</span> _ -&gt; 1 <span class="ocamlkeyword">in</span>
+  plain_ref n;
+  atomic_ref n
+
+<span class="ocamlkeyword">let</span> _ = main ()</div></div>
+
+</div><pre>$ ocamlopt -o incr.exe incr.ml
+$ ./incr.exe 1_000_000
+Non-atomic ref count: 1187193
+Atomic ref count: 2000000
+</pre><p>
+Observe that the result from using the non-atomic counter is lower than what
+one would naively expect. This is because the non-atomic <span class="machine"><span class="font-tt">incr</span></span> function is
+equivalent to:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> incr r =
+  <span class="ocamlkeyword">let</span> curr = !r <span class="ocamlkeyword">in</span>
+        r := curr + 1</div></div>
+
+</div><p>Observe that the load and the store are two separate operations, and the
+increment operation as a whole is not performed atomically. When two domains
+execute this code in parallel, both of them may read the same value of the
+counter <span class="machine"><span class="font-tt">curr</span></span> and update it to <span class="machine"><span class="font-tt">curr + 1</span></span>. Hence, instead of two increments,
+the effect will be that of a single increment. On the other hand, the atomic
+counter performs the load and the store atomically with the help of hardware
+support for atomicity. The atomic counter returns the expected result.</p><p>The atomic variables can be used for low-level synchronisation between the
+domains. The following example uses an atomic variable to exchange a message
+between two domains.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> r = Atomic.make None
+
+<span class="ocamlkeyword">let</span> sender () = Atomic.set r (Some <span class="ocamlstring">"Hello"</span>)
+
+<span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> receiver () =
+  <span class="ocamlkeyword">match</span> Atomic.get r <span class="ocamlkeyword">with</span>
+  | None -&gt; Domain.cpu_relax (); receiver ()
+  | Some m -&gt; print_endline m
+
+<span class="ocamlkeyword">let</span> main () =
+  <span class="ocamlkeyword">let</span> s = Domain.spawn sender <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> d = Domain.spawn receiver <span class="ocamlkeyword">in</span>
+  Domain.join s;
+  Domain.join d
+
+<span class="ocamlkeyword">let</span> _ = main ()</div>
+
+
+
+<div class="pre caml-output ok">Hello
+<span class="ocamlkeyword">val</span> r : string option Atomic.t = &lt;abstr&gt;
+<span class="ocamlkeyword">val</span> sender : unit -&gt; unit = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> receiver : unit -&gt; unit = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> main : unit -&gt; unit = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>While the sender and the receiver compete to access <span class="machine"><span class="font-tt">r</span></span>, this is not a data
+race since <span class="machine"><span class="font-tt">r</span></span> is an atomic reference.</p>
+<h3 class="subsection" id="s:par_lockfree_stack"><a class="section-anchor" href="#s:par_lockfree_stack" aria-hidden="true">﻿</a><span class="number">6.1</span> Lock-free stack</h3>
+<p>The Atomic module is used to implement non-blocking, lock-free data structures.
+The following program implements a lock-free stack.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> Lockfree_stack : <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> 'a t
+  <span class="ocamlkeyword">val</span> make : unit -&gt; 'a t
+  <span class="ocamlkeyword">val</span> push : 'a t -&gt; 'a -&gt; unit
+  <span class="ocamlkeyword">val</span> pop  : 'a t -&gt; 'a option
+<span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span>
+  <span class="ocamlkeyword">type</span> 'a t = 'a list Atomic.t
+
+  <span class="ocamlkeyword">let</span> make () = Atomic.make []
+
+  <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> push r v =
+    <span class="ocamlkeyword">let</span> s = Atomic.get r <span class="ocamlkeyword">in</span>
+    <span class="ocamlkeyword">if</span> Atomic.compare_and_set r s (v::s) <span class="ocamlkeyword">then</span> ()
+    <span class="ocamlkeyword">else</span> (Domain.cpu_relax (); push r v)
+
+  <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> pop r =
+    <span class="ocamlkeyword">let</span> s = Atomic.get r <span class="ocamlkeyword">in</span>
+    <span class="ocamlkeyword">match</span> s <span class="ocamlkeyword">with</span>
+    | [] -&gt; None
+    | x::xs -&gt;
+        <span class="ocamlkeyword">if</span> Atomic.compare_and_set r s xs <span class="ocamlkeyword">then</span> Some x
+        <span class="ocamlkeyword">else</span> (Domain.cpu_relax (); pop r)
+<span class="ocamlkeyword">end</span></div></div>
+
+</div><p>The atomic stack is represented by an atomic reference that holds a list. The
+<span class="machine"><span class="font-tt">push</span></span> and <span class="machine"><span class="font-tt">pop</span></span> operations use the <span class="machine"><span class="font-tt">compare_and_set</span></span> primitive to attempt to
+atomically update the atomic reference. The expression <span class="machine"><span class="font-tt">compare_and_set r seen v</span></span> sets the value of <span class="machine"><span class="font-tt">r</span></span> to <span class="machine"><span class="font-tt">v</span></span> if and only if its current value is physically
+equal to <span class="machine"><span class="font-tt">seen</span></span>. Importantly, the comparison and the update occur atomically.
+The expression evaluates to <span class="machine"><span class="font-tt">true</span></span> if the comparison succeeded (and the update
+happened) and <span class="machine"><span class="font-tt">false</span></span> otherwise.</p><p>If the <span class="machine"><span class="font-tt">compare_and_set</span></span> fails, then some other domain is also attempting to
+update the atomic reference at the same time. In this case, the <span class="machine"><span class="font-tt">push</span></span> and
+<span class="machine"><span class="font-tt">pop</span></span> operations call <span class="machine"><span class="font-tt">Domain.cpu_relax</span></span> to back off for a short duration
+allowing competing domains to make progress before retrying the failed
+operation. This lock-free stack implementation is also known as Treiber
+stack.
+
+</p>
+<hr>
+<div class="bottom-navigation"><a class="previous" href="advexamples.html">« Advanced examples with classes and modules</a><a class="next" href="memorymodel.html">Memory model: The hard bits »</a></div>
+
+
+
+
+<div class="copyright">Copyright © 2022 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

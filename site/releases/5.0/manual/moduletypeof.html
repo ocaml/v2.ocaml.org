@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Language extensions</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec277"><span class="chapter-number">Chapter 12</span> Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
+<li><a href="letrecvalues.html#start-section"><span class="number">1</span> Recursive definitions of values</a>
+</li><li><a href="recursivemodules.html#start-section"><span class="number">2</span> Recursive modules</a>
+</li><li><a href="privatetypes.html#start-section"><span class="number">3</span> Private types</a>
+</li><li><a href="locallyabstract.html#start-section"><span class="number">4</span> Locally abstract types</a>
+</li><li><a href="firstclassmodules.html#start-section"><span class="number">5</span> First-class modules</a>
+</li><li><a href="moduletypeof.html#start-section"><span class="number">6</span> Recovering the type of a module</a>
+</li><li><a href="signaturesubstitution.html#start-section"><span class="number">7</span> Substituting inside a signature</a>
+</li><li><a href="modulealias.html#start-section"><span class="number">8</span> Type-level module aliases</a>
+</li><li><a href="overridingopen.html#start-section"><span class="number">9</span> Overriding in open statements</a>
+</li><li><a href="gadts.html#start-section"><span class="number">10</span> Generalized algebraic datatypes</a>
+</li><li><a href="bigarray.html#start-section"><span class="number">11</span> Syntax for Bigarray access</a>
+</li><li><a href="attributes.html#start-section"><span class="number">12</span> Attributes</a>
+</li><li><a href="extensionnodes.html#start-section"><span class="number">13</span> Extension nodes</a>
+</li><li><a href="extensiblevariants.html#start-section"><span class="number">14</span> Extensible variant types</a>
+</li><li><a href="generativefunctors.html#start-section"><span class="number">15</span> Generative functors</a>
+</li><li><a href="extensionsyntax.html#start-section"><span class="number">16</span> Extension-only syntax</a>
+</li><li><a href="inlinerecords.html#start-section"><span class="number">17</span> Inline records</a>
+</li><li><a href="doccomments.html#start-section"><span class="number">18</span> Documentation comments</a>
+</li><li><a href="indexops.html#start-section"><span class="number">19</span> Extended indexing operators </a>
+</li><li><a href="emptyvariants.html#start-section"><span class="number">20</span> Empty variant types</a>
+</li><li><a href="alerts.html#start-section"><span class="number">21</span> Alerts</a>
+</li><li><a href="generalizedopens.html#start-section"><span class="number">22</span> Generalized open statements</a>
+</li><li><a href="bindingops.html#start-section"><span class="number">23</span> Binding operators</a>
+</li><li><a href="effects.html#start-section"><span class="number">24</span> Effect handlers</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:module-type-of"><a class="section-anchor" href="#s:module-type-of" aria-hidden="true"></a><span class="number">6</span> Recovering the type of a module</h2>
+<p>
+<a id="hevea_manual.kwd216"></a>
+<a id="hevea_manual.kwd217"></a>
+<a id="hevea_manual.kwd218"></a>
+<a id="hevea_manual.kwd219"></a>
+</p><p>(Introduced in OCaml 3.12)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">module</span> <span class="syntax-token">type</span> <span class="syntax-token">of</span> <a class="syntax" href="modules.html#module-expr"><span class="nonterminal">module-expr</span></a>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>The construction <span class="syntax-token">module</span> <span class="syntax-token">type</span> <span class="syntax-token">of</span> <a class="syntax" href="modules.html#module-expr"><span class="nonterminal">module-expr</span></a> expands to the module type
+(signature or functor type) inferred for the module expression <a class="syntax" href="modules.html#module-expr"><span class="nonterminal">module-expr</span></a>.
+To make this module type reusable in many situations, it is
+intentionally not strengthened: abstract types and datatypes are not
+explicitly related with the types of the original module.
+For the same reason, module aliases in the inferred type are expanded.</p><p>A typical use, in conjunction with the signature-level <span class="syntax-token">include</span>
+construct, is to extend the signature of an existing structure.
+In that case, one wants to keep the types equal to types in the
+original module. This can done using the following idiom.
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> MYHASH = <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">include</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> <span class="ocamlkeyword">of</span> <span class="ocamlkeyword">struct</span> <span class="ocamlkeyword">include</span> Hashtbl <span class="ocamlkeyword">end</span>
+  <span class="ocamlkeyword">val</span> replace: ('a, 'b) t -&gt; 'a -&gt; 'b -&gt; unit
+<span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+The signature <span class="machine"><span class="font-tt">MYHASH</span></span> then contains all the fields of the signature
+of the module <span class="machine"><span class="font-tt">Hashtbl</span></span> (with strengthened type definitions), plus the
+new field <span class="machine"><span class="font-tt">replace</span></span>. An implementation of this signature can be
+obtained easily by using the <span class="syntax-token">include</span> construct again, but this
+time at the structure level:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> MyHash : MYHASH = <span class="ocamlkeyword">struct</span>
+  <span class="ocamlkeyword">include</span> Hashtbl
+  <span class="ocamlkeyword">let</span> replace t k v = remove t k; add t k v
+<span class="ocamlkeyword">end</span></div></div>
+
+</div><p>Another application where the absence of strengthening comes handy, is
+to provide an alternative implementation for an existing module.
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> MySet : <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> <span class="ocamlkeyword">of</span> Set = <span class="ocamlkeyword">struct</span>
+  …
+<span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+This idiom guarantees that <span class="machine"><span class="font-tt">Myset</span></span> is compatible with Set, but allows
+it to represent sets internally in a different way.
+</p>
+
+<div class="bottom-navigation"><a class="previous" href="firstclassmodules.html">« First-class modules</a><a class="next" href="signaturesubstitution.html">Substituting inside a signature »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2022 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>
