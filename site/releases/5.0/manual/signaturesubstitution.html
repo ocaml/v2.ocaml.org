@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Language extensions</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec277"><span class="chapter-number">Chapter 12</span> Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
+<li><a href="letrecvalues.html#start-section"><span class="number">1</span> Recursive definitions of values</a>
+</li><li><a href="recursivemodules.html#start-section"><span class="number">2</span> Recursive modules</a>
+</li><li><a href="privatetypes.html#start-section"><span class="number">3</span> Private types</a>
+</li><li><a href="locallyabstract.html#start-section"><span class="number">4</span> Locally abstract types</a>
+</li><li><a href="firstclassmodules.html#start-section"><span class="number">5</span> First-class modules</a>
+</li><li><a href="moduletypeof.html#start-section"><span class="number">6</span> Recovering the type of a module</a>
+</li><li><a href="signaturesubstitution.html#start-section"><span class="number">7</span> Substituting inside a signature</a>
+</li><li><a href="modulealias.html#start-section"><span class="number">8</span> Type-level module aliases</a>
+</li><li><a href="overridingopen.html#start-section"><span class="number">9</span> Overriding in open statements</a>
+</li><li><a href="gadts.html#start-section"><span class="number">10</span> Generalized algebraic datatypes</a>
+</li><li><a href="bigarray.html#start-section"><span class="number">11</span> Syntax for Bigarray access</a>
+</li><li><a href="attributes.html#start-section"><span class="number">12</span> Attributes</a>
+</li><li><a href="extensionnodes.html#start-section"><span class="number">13</span> Extension nodes</a>
+</li><li><a href="extensiblevariants.html#start-section"><span class="number">14</span> Extensible variant types</a>
+</li><li><a href="generativefunctors.html#start-section"><span class="number">15</span> Generative functors</a>
+</li><li><a href="extensionsyntax.html#start-section"><span class="number">16</span> Extension-only syntax</a>
+</li><li><a href="inlinerecords.html#start-section"><span class="number">17</span> Inline records</a>
+</li><li><a href="doccomments.html#start-section"><span class="number">18</span> Documentation comments</a>
+</li><li><a href="indexops.html#start-section"><span class="number">19</span> Extended indexing operators </a>
+</li><li><a href="emptyvariants.html#start-section"><span class="number">20</span> Empty variant types</a>
+</li><li><a href="alerts.html#start-section"><span class="number">21</span> Alerts</a>
+</li><li><a href="generalizedopens.html#start-section"><span class="number">22</span> Generalized open statements</a>
+</li><li><a href="bindingops.html#start-section"><span class="number">23</span> Binding operators</a>
+</li><li><a href="effects.html#start-section"><span class="number">24</span> Effect handlers</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:signature-substitution"><a class="section-anchor" href="#s:signature-substitution" aria-hidden="true"></a><span class="number">7</span> Substituting inside a signature</h2>
+<ul>
+<li><a href="signaturesubstitution.html#ss%3Adestructive-substitution"><span class="number">7.1</span> Destructive substitutions</a>
+</li><li><a href="signaturesubstitution.html#ss%3Alocal-substitution"><span class="number">7.2</span> Local substitution declarations</a>
+</li><li><a href="signaturesubstitution.html#ss%3Amodule-type-substitution"><span class="number">7.3</span> Module type substitutions</a>
+</li></ul>
+<p>
+<a id="hevea_manual.kwd220"></a>
+<a id="hevea_manual.kwd221"></a>
+<a id="hevea_manual.kwd222"></a>
+</p>
+<h3 class="subsection" id="ss:destructive-substitution"><a class="section-anchor" href="#ss:destructive-substitution" aria-hidden="true">﻿</a><span class="number">7.1</span> Destructive substitutions</h3>
+<p>(Introduced in OCaml 3.12, generalized in 4.06)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" href="modtypes.html#mod-constraint"><span class="nonterminal">mod-constraint</span></a></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">type</span> [<a class="syntax" href="typedecl.html#type-params"><span class="nonterminal">type-params</span></a>] <a class="syntax" href="names.html#typeconstr-name"><span class="nonterminal">typeconstr-name</span></a> <span class="syntax-token">:=</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">module</span> <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">:=</span> <a class="syntax" href="names.html#extended-module-path"><span class="nonterminal">extended-module-path</span></a>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>A “destructive” substitution (<span class="syntax-token">with</span> ... <span class="syntax-token">:=</span> ...) behaves essentially like
+normal signature constraints (<span class="syntax-token">with</span> ... <span class="syntax-token">=</span> ...), but it additionally removes
+the redefined type or module from the signature.</p><p>Prior to OCaml 4.06, there were a number of restrictions: one could only remove
+types and modules at the outermost level (not inside submodules), and in the
+case of <span class="syntax-token">with type</span> the definition had to be another type constructor with the
+same type parameters.</p><p>A natural application of destructive substitution is merging two
+signatures sharing a type name.
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> Printable = <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> t
+  <span class="ocamlkeyword">val</span> print : Format.formatter -&gt; t -&gt; unit
+<span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> Comparable = <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> t
+  <span class="ocamlkeyword">val</span> compare : t -&gt; t -&gt; int
+<span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> PrintableComparable = <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">include</span> Printable
+  <span class="ocamlkeyword">include</span> Comparable <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">type</span> t := t
+<span class="ocamlkeyword">end</span></div></div>
+
+</div><p>One can also use this to completely remove a field:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S = Comparable <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">type</span> t := int</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S = <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">val</span> compare : int -&gt; int -&gt; int <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+or to rename one:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S = <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> u
+  <span class="ocamlkeyword">include</span> Comparable <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">type</span> t := u
+<span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S = <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> u <span class="ocamlkeyword">val</span> compare : u -&gt; u -&gt; int <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>Note that you can also remove manifest types, by substituting with the
+same type.
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> ComparableInt = Comparable <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">type</span> t = int ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> ComparableInt = <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t = int <span class="ocamlkeyword">val</span> compare : t -&gt; t -&gt; int <span class="ocamlkeyword">end</span></div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> CompareInt = ComparableInt <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">type</span> t := int</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> CompareInt = <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">val</span> compare : int -&gt; int -&gt; int <span class="ocamlkeyword">end</span></div></div>
+
+</div>
+<h3 class="subsection" id="ss:local-substitution"><a class="section-anchor" href="#ss:local-substitution" aria-hidden="true">﻿</a><span class="number">7.2</span> Local substitution declarations</h3>
+<p>(Introduced in OCaml 4.08)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" href="modtypes.html#specification"><span class="nonterminal">specification</span></a></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">type</span> <a class="syntax" href="#type-subst"><span class="nonterminal">type-subst</span></a> { <span class="syntax-token">and</span> <a class="syntax" href="#type-subst"><span class="nonterminal">type-subst</span></a> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">module</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> <span class="syntax-token">:=</span> <a class="syntax" href="names.html#extended-module-path"><span class="nonterminal">extended-module-path</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">module</span> <span class="syntax-token">type</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> <span class="syntax-token">:=</span> <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a></td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008"><a class="syntax" id="type-subst"><span class="nonterminal">type-subst</span></a></td><td class="c005">::=</td><td class="c007">
+[<a class="syntax" href="typedecl.html#type-params"><span class="nonterminal">type-params</span></a>] <a class="syntax" href="names.html#typeconstr-name"><span class="nonterminal">typeconstr-name</span></a> <span class="syntax-token">:=</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a> { <a class="syntax" href="typedecl.html#type-constraint"><span class="nonterminal">type-constraint</span></a> }
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Local substitutions behave like destructive substitutions (<span class="syntax-token">with</span> ... <span class="syntax-token">:=</span> ...)
+but instead of being applied to a whole signature after the fact, they are
+introduced during the specification of the signature, and will apply to all the
+items that follow.</p><p>This provides a convenient way to introduce local names for types and modules
+when defining a signature:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S = <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> t
+  <span class="ocamlkeyword">module</span> Sub : <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> outer := t
+    <span class="ocamlkeyword">type</span> t
+    <span class="ocamlkeyword">val</span> to_outer : t -&gt; outer
+  <span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S =
+  <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t <span class="ocamlkeyword">module</span> Sub : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">type</span> t <span class="ocamlkeyword">val</span> to_outer : t/1 -&gt; t/2 <span class="ocamlkeyword">end</span> <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>Note that, unlike type declarations, type substitution declarations are not
+recursive, so substitutions like the following are rejected:</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S = <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> 'a poly_list := [ `Cons <span class="ocamlkeyword">of</span> 'a * 'a <span class="ocamlhighlight">poly_list</span> | `Nil ]
+  <span class="ocamlkeyword">end</span> ;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: Unbound type constructor poly_list</div></div>
+
+</div>
+<h3 class="subsection" id="ss:module-type-substitution"><a class="section-anchor" href="#ss:module-type-substitution" aria-hidden="true">﻿</a><span class="number">7.3</span> Module type substitutions</h3>
+<p>(Introduced in OCaml 4.13)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" href="modtypes.html#mod-constraint"><span class="nonterminal">mod-constraint</span></a></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">module</span> <span class="syntax-token">type</span> <a class="syntax" href="names.html#modtype-path"><span class="nonterminal">modtype-path</span></a> <span class="syntax-token">=</span> <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a>
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">module</span> <span class="syntax-token">type</span> <a class="syntax" href="names.html#modtype-path"><span class="nonterminal">modtype-path</span></a> <span class="syntax-token">:=</span> <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a>
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Module type substitution essentially behaves like type substitutions.
+They are useful to refine an abstract module type in a signature into
+a concrete module type,</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> ENDO = <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> T
+    <span class="ocamlkeyword">module</span> F: T -&gt; T
+  <span class="ocamlkeyword">end</span>
+  <span class="ocamlkeyword">module</span> Endo(X: <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> T <span class="ocamlkeyword">end</span>): ENDO <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> T = X.T =
+  <span class="ocamlkeyword">struct</span>
+      <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> T = X.T
+      <span class="ocamlkeyword">module</span> F(X:T) = X
+   <span class="ocamlkeyword">end</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> ENDO = <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> T <span class="ocamlkeyword">module</span> F : T -&gt; T <span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">module</span> Endo :
+  <span class="ocamlkeyword">functor</span> (X : <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> T <span class="ocamlkeyword">end</span>) -&gt;
+    <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> T = X.T <span class="ocamlkeyword">module</span> F : T -&gt; T <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>It is also possible to substitute a concrete module type with an
+equivalent module types.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> A = <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> x
+  <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> R = <span class="ocamlkeyword">sig</span>
+    <span class="ocamlkeyword">type</span> a = A <span class="ocamlkeyword">of</span> x
+    <span class="ocamlkeyword">type</span> b
+  <span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S = <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> a = A <span class="ocamlkeyword">of</span> int
+  <span class="ocamlkeyword">type</span> b
+<span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> B = A <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">type</span> x = int <span class="ocamlkeyword">and</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> R = S</div></div>
+
+</div><p>
+
+However, such substitutions are never necessary.</p><p>Destructive module type substitution removes the module type substitution
+from the signature
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> ENDO' = ENDO <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> T := ENDO;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> ENDO' = <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">module</span> F : ENDO -&gt; ENDO <span class="ocamlkeyword">end</span></div></div>
+
+</div><p>
+
+If the right hand side of the substitution is not a path, then the destructive
+substitution is only valid if the left-hand side of the substitution is never
+used as the type of a first-class module in the original module type.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> T = <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> S <span class="ocamlkeyword">val</span> x: (<span class="ocamlkeyword">module</span> S) <span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">module</span> <span class="ocamlkeyword">type</span> Error = <span class="ocamlhighlight">T with module type S := sig end</span></div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This `with' constraint S := sig end makes a packed module ill-formed.</div></div>
+
+</div>
+
+<div class="bottom-navigation"><a class="previous" href="moduletypeof.html">« Recovering the type of a module</a><a class="next" href="modulealias.html">Type-level module aliases »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2022 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

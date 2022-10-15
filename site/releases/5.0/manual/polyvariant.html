@@ -1,0 +1,405 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Polymorphic variants</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>An introduction to OCaml</nav><ul id="part-menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labeled arguments</a></li><li class="active"><a href="polyvariant.html">Polymorphic variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="gadts-tutorial.html">Generalized algebraic datatypes</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li><li><a href="parallelism.html">Parallel programming</a></li><li><a href="memorymodel.html">Memory model: The hard bits</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec48"><span class="chapter-number">Chapter 5</span> Polymorphic variants</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Polymorphic variants</a></li>
+<li><a href="polyvariant.html#s%3Apolyvariant%3Abasic-use"><span class="number">1</span> Basic use</a>
+</li><li><a href="polyvariant.html#s%3Apolyvariant-advanced"><span class="number">2</span> Advanced use</a>
+</li><li><a href="polyvariant.html#s%3Apolyvariant-weaknesses"><span class="number">3</span> Weaknesses of polymorphic variants</a>
+</li></ul></nav></header>
+<p> <a id="c:poly-variant"></a>
+</p><p>
+</p><p>Variants as presented in section&nbsp;<a href="coreexamples.html#s%3Atut-recvariants">1.4</a> are a
+powerful tool to build data structures and algorithms. However they
+sometimes lack flexibility when used in modular programming. This is
+due to the fact that every constructor is assigned to a unique type
+when defined and used. Even if the same name appears in the definition
+of multiple types, the constructor itself belongs to only one type.
+Therefore, one cannot decide that a given constructor belongs to
+multiple types, or consider a value of some type to belong to some
+other type with more constructors.</p><p>With polymorphic variants, this original assumption is removed. That
+is, a variant tag does not belong to any type in particular, the type
+system will just check that it is an admissible value according to its
+use. You need not define a type before using a variant tag. A variant
+type will be inferred independently for each of its uses.</p>
+<h2 class="section" id="s:polyvariant:basic-use"><a class="section-anchor" href="#s:polyvariant:basic-use" aria-hidden="true"></a><span class="number">1</span> Basic use</h2>
+<p>In programs, polymorphic variants work like usual ones. You just have
+to prefix their names with a backquote character <span class="machine"><span class="font-tt">`</span></span>.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> [`On; `Off];;</div>
+
+
+
+<div class="pre caml-output ok">- : [&gt; `Off | `On ] list = [`On; `Off]</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> `Number 1;;</div>
+
+
+
+<div class="pre caml-output ok">- : [&gt; `Number <span class="ocamlkeyword">of</span> int ] = `Number 1</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f = <span class="ocamlkeyword">function</span> `On -&gt; 1 | `Off -&gt; 0 | `Number n -&gt; n;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f : [&lt; `Number <span class="ocamlkeyword">of</span> int | `Off | `On ] -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> List.map f [`On; `Off];;</div>
+
+
+
+<div class="pre caml-output ok">- : int list = [1; 0]</div></div>
+
+</div><p>
+
+<span class="machine"><span class="font-tt">[&gt;`Off|`On] list</span></span> means that to match this list, you should at
+least be able to match <span class="machine"><span class="font-tt">`Off</span></span> and <span class="machine"><span class="font-tt">`On</span></span>, without argument.
+<span class="machine"><span class="font-tt">[&lt;`On|`Off|`Number of int]</span></span> means that <span class="machine"><span class="font-tt">f</span></span> may be applied to <span class="machine"><span class="font-tt">`Off</span></span>,
+<span class="machine"><span class="font-tt">`On</span></span> (both without argument), or <span class="machine"><span class="font-tt">`Number</span></span> <span class="font-it">n</span> where
+<span class="font-it">n</span> is an integer.
+The <span class="machine"><span class="font-tt">&gt;</span></span> and <span class="machine"><span class="font-tt">&lt;</span></span> inside the variant types show that they may still be
+refined, either by defining more tags or by allowing less. As such, they
+contain an implicit type variable. Because each of the variant types
+appears only once in the whole type, their implicit type variables are
+not shown.</p><p>The above variant types were polymorphic, allowing further refinement.
+When writing type annotations, one will most often describe fixed
+variant types, that is types that cannot be refined. This is
+also the case for type abbreviations. Such types do not contain <span class="machine"><span class="font-tt">&lt;</span></span> or
+<span class="machine"><span class="font-tt">&gt;</span></span>, but just an enumeration of the tags and their associated types,
+just like in a normal datatype definition.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">type</span> 'a vlist = [`Nil | `Cons <span class="ocamlkeyword">of</span> 'a * 'a vlist];;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">type</span> 'a vlist = [ `Cons <span class="ocamlkeyword">of</span> 'a * 'a vlist | `Nil ]</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> map f : 'a vlist -&gt; 'b vlist = <span class="ocamlkeyword">function</span>
+    | `Nil -&gt; `Nil
+    | `Cons(a, l) -&gt; `Cons(f a, map f l)
+  ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> map : ('a -&gt; 'b) -&gt; 'a vlist -&gt; 'b vlist = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div>
+<h2 class="section" id="s:polyvariant-advanced"><a class="section-anchor" href="#s:polyvariant-advanced" aria-hidden="true">﻿</a><span class="number">2</span> Advanced use</h2>
+<p>Type-checking polymorphic variants is a subtle thing, and some
+expressions may result in more complex type information.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f = <span class="ocamlkeyword">function</span> `A -&gt; `C | `B -&gt; `D | x -&gt; x;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f : ([&gt; `A | `B | `C | `D ] <span class="ocamlkeyword">as</span> 'a) -&gt; 'a = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> f `E;;</div>
+
+
+
+<div class="pre caml-output ok">- : [&gt; `A | `B | `C | `D | `E ] = `E</div></div>
+
+</div><p>
+
+Here we are seeing two phenomena. First, since this matching is open
+(the last case catches any tag), we obtain the type <span class="machine"><span class="font-tt">[&gt; `A | `B]</span></span>
+rather than <span class="machine"><span class="font-tt">[&lt; `A | `B]</span></span> in a closed matching. Then, since <span class="machine"><span class="font-tt">x</span></span> is
+returned as is, input and return types are identical. The notation <span class="machine"><span class="font-tt">as 'a</span></span> denotes such type sharing. If we apply <span class="machine"><span class="font-tt">f</span></span> to yet another tag
+<span class="machine"><span class="font-tt">`E</span></span>, it gets added to the list.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f1 = <span class="ocamlkeyword">function</span> `A x -&gt; x = 1 | `B -&gt; <span class="ocamlkeyword">true</span> | `C -&gt; <span class="ocamlkeyword">false</span>
+  <span class="ocamlkeyword">let</span> f2 = <span class="ocamlkeyword">function</span> `A x -&gt; x = <span class="ocamlstring">"a"</span> | `B -&gt; <span class="ocamlkeyword">true</span> ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f1 : [&lt; `A <span class="ocamlkeyword">of</span> int | `B | `C ] -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> f2 : [&lt; `A <span class="ocamlkeyword">of</span> string | `B ] -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f x = f1 x &amp;&amp; f2 x;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f : [&lt; `A <span class="ocamlkeyword">of</span> string &amp; int | `B ] -&gt; bool = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>
+
+Here <span class="machine"><span class="font-tt">f1</span></span> and <span class="machine"><span class="font-tt">f2</span></span> both accept the variant tags <span class="machine"><span class="font-tt">`A</span></span> and <span class="machine"><span class="font-tt">`B</span></span>, but the
+argument of <span class="machine"><span class="font-tt">`A</span></span> is <span class="machine"><span class="font-tt">int</span></span> for <span class="machine"><span class="font-tt">f1</span></span> and <span class="machine"><span class="font-tt">string</span></span> for <span class="machine"><span class="font-tt">f2</span></span>. In <span class="machine"><span class="font-tt">f</span></span>’s
+type <span class="machine"><span class="font-tt">`C</span></span>, only accepted by <span class="machine"><span class="font-tt">f1</span></span>, disappears, but both argument types
+appear for <span class="machine"><span class="font-tt">`A</span></span> as <span class="machine"><span class="font-tt">int &amp; string</span></span>. This means that if we
+pass the variant tag <span class="machine"><span class="font-tt">`A</span></span> to <span class="machine"><span class="font-tt">f</span></span>, its argument should be <em>both</em>
+<span class="machine"><span class="font-tt">int</span></span> and <span class="machine"><span class="font-tt">string</span></span>. Since there is no such value, <span class="machine"><span class="font-tt">f</span></span> cannot be
+applied to <span class="machine"><span class="font-tt">`A</span></span>, and <span class="machine"><span class="font-tt">`B</span></span> is the only accepted input.</p><p>Even if a value has a fixed variant type, one can still give it a
+larger type through coercions. Coercions are normally written with
+both the source type and the destination type, but in simple cases the
+source type may be omitted.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">type</span> 'a wlist = [`Nil | `Cons <span class="ocamlkeyword">of</span> 'a * 'a wlist | `Snoc <span class="ocamlkeyword">of</span> 'a wlist * 'a];;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">type</span> 'a wlist = [ `Cons <span class="ocamlkeyword">of</span> 'a * 'a wlist | `Nil | `Snoc <span class="ocamlkeyword">of</span> 'a wlist * 'a ]</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> wlist_of_vlist  l = (l : 'a vlist :&gt; 'a wlist);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> wlist_of_vlist : 'a vlist -&gt; 'a wlist = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> open_vlist l = (l : 'a vlist :&gt; [&gt; 'a vlist]);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> open_vlist : 'a vlist -&gt; [&gt; 'a vlist ] = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">fun</span> x -&gt; (x :&gt; [`A|`B|`C]);;</div>
+
+
+
+<div class="pre caml-output ok">- : [&lt; `A | `B | `C ] -&gt; [ `A | `B | `C ] = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>You may also selectively coerce values through pattern matching.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> split_cases = <span class="ocamlkeyword">function</span>
+    | `Nil | `Cons _ <span class="ocamlkeyword">as</span> x -&gt; `A x
+    | `Snoc _ <span class="ocamlkeyword">as</span> x -&gt; `B x
+  ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> split_cases :
+  [&lt; `Cons <span class="ocamlkeyword">of</span> 'a | `Nil | `Snoc <span class="ocamlkeyword">of</span> 'b ] -&gt;
+  [&gt; `A <span class="ocamlkeyword">of</span> [&gt; `Cons <span class="ocamlkeyword">of</span> 'a | `Nil ] | `B <span class="ocamlkeyword">of</span> [&gt; `Snoc <span class="ocamlkeyword">of</span> 'b ] ] = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>
+
+When an or-pattern composed of variant tags is wrapped inside an
+alias-pattern, the alias is given a type containing only the tags
+enumerated in the or-pattern. This allows for many useful idioms, like
+incremental definition of functions.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> num x = `Num x
+  <span class="ocamlkeyword">let</span> eval1 eval (`Num x) = x
+  <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> eval x = eval1 eval x ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> num : 'a -&gt; [&gt; `Num <span class="ocamlkeyword">of</span> 'a ] = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> eval1 : 'a -&gt; [&lt; `Num <span class="ocamlkeyword">of</span> 'b ] -&gt; 'b = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> eval : [&lt; `Num <span class="ocamlkeyword">of</span> 'a ] -&gt; 'a = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> plus x y = `Plus(x,y)
+  <span class="ocamlkeyword">let</span> eval2 eval = <span class="ocamlkeyword">function</span>
+    | `Plus(x,y) -&gt; eval x + eval y
+    | `Num _ <span class="ocamlkeyword">as</span> x -&gt; eval1 eval x
+  <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">rec</span> eval x = eval2 eval x ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> plus : 'a -&gt; 'b -&gt; [&gt; `Plus <span class="ocamlkeyword">of</span> 'a * 'b ] = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> eval2 : ('a -&gt; int) -&gt; [&lt; `Num <span class="ocamlkeyword">of</span> int | `Plus <span class="ocamlkeyword">of</span> 'a * 'a ] -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;
+<span class="ocamlkeyword">val</span> eval : ([&lt; `Num <span class="ocamlkeyword">of</span> int | `Plus <span class="ocamlkeyword">of</span> 'a * 'a ] <span class="ocamlkeyword">as</span> 'a) -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>To make this even more comfortable, you may use type definitions as
+abbreviations for or-patterns. That is, if you have defined <span class="machine"><span class="font-tt">type myvariant = [`Tag1 of int | `Tag2 of bool]</span></span>, then the pattern <span class="machine"><span class="font-tt">#myvariant</span></span> is
+equivalent to writing <span class="machine"><span class="font-tt">(`Tag1(_ : int) | `Tag2(_ : bool))</span></span>.</p><p>Such abbreviations may be used alone,
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f = <span class="ocamlkeyword">function</span>
+    | #myvariant -&gt; <span class="ocamlstring">"myvariant"</span>
+    | `Tag3 -&gt; <span class="ocamlstring">"Tag3"</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f : [&lt; `Tag1 <span class="ocamlkeyword">of</span> int | `Tag2 <span class="ocamlkeyword">of</span> bool | `Tag3 ] -&gt; string = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>
+
+or combined with with aliases.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> g1 = <span class="ocamlkeyword">function</span> `Tag1 _ -&gt; <span class="ocamlstring">"Tag1"</span> | `Tag2 _ -&gt; <span class="ocamlstring">"Tag2"</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> g1 : [&lt; `Tag1 <span class="ocamlkeyword">of</span> 'a | `Tag2 <span class="ocamlkeyword">of</span> 'b ] -&gt; string = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> g = <span class="ocamlkeyword">function</span>
+    | #myvariant <span class="ocamlkeyword">as</span> x -&gt; g1 x
+    | `Tag3 -&gt; <span class="ocamlstring">"Tag3"</span>;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> g : [&lt; `Tag1 <span class="ocamlkeyword">of</span> int | `Tag2 <span class="ocamlkeyword">of</span> bool | `Tag3 ] -&gt; string = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div>
+<h2 class="section" id="s:polyvariant-weaknesses"><a class="section-anchor" href="#s:polyvariant-weaknesses" aria-hidden="true">﻿</a><span class="number">3</span> Weaknesses of polymorphic variants</h2>
+<p>After seeing the power of polymorphic variants, one may wonder why
+they were added to core language variants, rather than replacing them.</p><p>The answer is twofold. The first aspect is that while being pretty
+efficient, the lack of static type information allows for less
+optimizations, and makes polymorphic variants slightly heavier than
+core language ones. However noticeable differences would only
+appear on huge data structures.</p><p>More important is the fact that polymorphic variants, while being
+type-safe, result in a weaker type discipline. That is, core language
+variants do actually much more than ensuring type-safety, they also
+check that you use only declared constructors, that all constructors
+present in a data-structure are compatible, and they enforce typing
+constraints to their parameters.</p><p>For this reason, you must be more careful about making types explicit
+when you use polymorphic variants. When you write a library, this is
+easy since you can describe exact types in interfaces, but for simple
+programs you are probably better off with core language variants.</p><p>Beware also that some idioms make trivial errors very hard to find.
+For instance, the following code is probably wrong but the compiler
+has no way to see it.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">type</span> abc = [`A | `B | `C] ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">type</span> abc = [ `A | `B | `C ]</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f = <span class="ocamlkeyword">function</span>
+    | `As -&gt; <span class="ocamlstring">"A"</span>
+    | #abc -&gt; <span class="ocamlstring">"other"</span> ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f : [&lt; `A | `As | `B | `C ] -&gt; string = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f : abc -&gt; string = f ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f : abc -&gt; string = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>
+
+You can avoid such risks by annotating the definition itself.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f : abc -&gt; string = <span class="ocamlkeyword">function</span>
+    | <span class="ocamlhighlight">`As</span> -&gt; <span class="ocamlstring">"A"</span>
+    | #abc -&gt; <span class="ocamlstring">"other"</span> ;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This pattern matches values of type [? `As ]
+       but a pattern was expected which matches values of type abc
+       The second variant type does not allow tag(s) `As</div></div>
+
+</div>
+<hr>
+<div class="bottom-navigation"><a class="previous" href="lablexamples.html">« Labeled arguments</a><a class="next" href="polymorphism.html">Polymorphism and its limitations »</a></div>
+
+
+
+
+<span class="authors font-it">(Chapter written by Jacques Garrigue)</span><div class="copyright">Copyright © 2022 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

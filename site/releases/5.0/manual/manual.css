@@ -1,0 +1,536 @@
+@charset "UTF-8";
+/* If the above line does not say "SOURCE FILE", then do not edit. It */
+/* means this file is generated from [sass manual.scss] */
+/* CSS file for the Ocaml manual */
+/* San Vu Ngoc, 2019-2020 */
+/* ocaml logo color */
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Fira+Mono:400,500);
+@import url(https://fonts.googleapis.com/css?family=Noticia+Text:400,400i,700);
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,500,500i,600,600i,700,700i);
+/* Reset */
+.pre, a, b, body, code, div, em, form, h1, h2, h3, h4, h5, h6, header, html, i, img, li, mark, menu, nav, object, output, p, pre, s, section, span, time, ul, td, var {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
+  text-align: inherit;
+  color: inherit;
+  background: 0 0; }
+
+*, :after, :before {
+  box-sizing: border-box; }
+
+html.smooth-scroll {
+  scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; } }
+body {
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  text-align: left;
+  color: #333;
+  background: #fff; }
+
+html {
+  font-size: 16px; }
+  html .dt-thefootnotes {
+    height: 1ex; }
+  html .footnotetext {
+    font-size: 13px; }
+
+#sidebar-button {
+  float: right;
+  cursor: context-menu;
+  display: none; }
+  #sidebar-button span {
+    font-size: 28px; }
+
+.content > header, .api > header {
+  margin-bottom: 30px; }
+  .content > header nav, .api > header nav {
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif; }
+
+/* Menu in the left bar */
+/* OCaml Logo */
+/* Header is used as a side-bar */
+/* Print adjustments. */
+/* This page can be nicely printed or saved to PDF (local version) */
+@media print {
+  body {
+    color: black;
+    background: white; }
+
+  body nav:first-child {
+    position: absolute;
+    background: transparent; }
+
+  .content, .api {
+    margin-left: 3em;
+    margin-right: 3em; }
+    .content nav.toc, .api nav.toc {
+      margin-right: 1em;
+      float: left;
+      position: initial;
+      background: #eee; } }
+.content {
+  max-width: 90ex;
+  margin-left: calc(10vw + 20ex);
+  margin-right: 4ex;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-family: "Noticia Text", Georgia, serif;
+  line-height: 1.5;
+  /* When the TOC is repeated in the main content */
+  /* navigation links at the bottom of page */ }
+  .content #part-title {
+    float: left;
+    color: #777;
+    cursor: context-menu;
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif; }
+    .content #part-title span {
+      /* menu icon */
+      font-size: 22px;
+      margin-right: 1ex; }
+  .content ul {
+    list-style: none; }
+  .content ul.itemize {
+    list-style-type: disc; }
+    .content ul.itemize li::marker {
+      color: #ec6a0d; }
+  .content .bottom-navigation {
+    margin-bottom: 1em; }
+    .content .bottom-navigation a.next {
+      float: right; }
+  .content .copyright {
+    font-size: smaller;
+    display: inline-block; }
+
+.index {
+  /* index.html */
+  /* only for Contents/Foreword in index.html: */
+  /* table of contents: (manual.001.html): */ }
+  .index ul {
+    list-style: none; }
+    .index ul li span {
+      color: #c88b5f; }
+    .index ul li span.syntax-token {
+      color: #564233; }
+  .index ul.ul-content {
+    list-style-type: disc; }
+    .index ul.ul-content li::marker {
+      color: #ec6a0d; }
+  .index ul.toc ul.toc ul.toc {
+    font-size: smaller; }
+  .index section > ul > li > a {
+    /* for Parts title */
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+    font-size: larger;
+    background: linear-gradient(to left, #fff 0, #ede8e5 100%); }
+  .index section > ul > li > ul > li:hover {
+    /* Chapters */
+    background: linear-gradient(to left, #fff 0, #ede8e5 100%); }
+  .index section > ul > li > ul > li {
+    transition: background 0.5s; }
+
+b {
+  font-weight: 500; }
+
+em, i {
+  font-style: italic; }
+
+.ocaml {
+  background: #f7f5f4; }
+
+.ocaml, pre {
+  margin-top: .8em;
+  margin-bottom: 1.2em; }
+
+.ocaml .pre {
+  white-space: pre; }
+
+p, ul {
+  margin-top: .5em;
+  margin-bottom: 1em; }
+
+ul {
+  list-style-position: outside; }
+
+ul > li {
+  margin-left: 22px; }
+
+li > :first-child {
+  margin-top: 0; }
+
+.left {
+  text-align: left; }
+
+.right {
+  text-align: right; }
+
+a {
+  text-decoration: none;
+  color: #92370a; }
+
+a:hover {
+  box-shadow: 0 1px 0 0 #92370a; }
+
+:target {
+  background-color: rgba(255, 215, 181, 0.3) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 215, 181, 0.8) !important; }
+
+:hover > a.section-anchor {
+  visibility: visible; }
+
+a.section-anchor:before {
+  content: "#"; }
+
+a.section-anchor:hover {
+  box-shadow: none;
+  text-decoration: none;
+  color: #555; }
+
+a.section-anchor {
+  visibility: hidden;
+  position: absolute;
+  margin-left: -1.3em;
+  font-weight: 400;
+  font-style: normal;
+  padding-right: .4em;
+  padding-left: .4em;
+  color: #d5d5d5; }
+
+.h10, .h7, .h8, .h9, h1, h2, h3, h4, h5, h6 {
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  margin: .5em 0 .5em 0;
+  padding-top: .1em;
+  line-height: 1.2;
+  overflow-wrap: break-word; }
+
+h1 {
+  font-weight: 500;
+  font-size: 2.441em;
+  margin-top: 1.214em; }
+
+h1 {
+  font-weight: 500;
+  font-size: 1.953em;
+  box-shadow: 0 1px 0 0 #ddd; }
+
+h2 {
+  font-size: 1.563em; }
+
+h3 {
+  font-size: 1.25em; }
+
+h1 code {
+  font-size: inherit;
+  font-weight: inherit; }
+
+h2 code {
+  font-size: inherit;
+  font-weight: inherit; }
+
+h3 code {
+  font-size: inherit;
+  font-weight: inherit; }
+
+h3 code {
+  font-size: inherit;
+  font-weight: inherit; }
+
+h4 {
+  font-size: 1.12em; }
+
+h2, h3, h4, h5 {
+  font-weight: 500; }
+
+.ocaml, .pre, code, pre, tt {
+  font-family: "Fira Mono", courier, monospace;
+  font-weight: 400; }
+
+.pre, pre {
+  border-left: 4px solid #e69c7f;
+  overflow-x: auto;
+  padding-left: 1ex; }
+
+.ocaml .pre {
+  overflow-x: initial; }
+
+.caml-example .ocaml {
+  overflow-x: auto; }
+
+li code, p code {
+  background-color: #f6f8fa;
+  color: #0d2b3e;
+  border-radius: 3px;
+  padding: 0 0.3ex; }
+
+.pre .code, .pre.code, pre code {
+  background-color: inherit; }
+
+p a > code {
+  color: #92370a; }
+
+.pre code.ocaml, .pre.code.ocaml, pre code.ocaml {
+  font-size: .893rem; }
+
+.keyword, .ocamlkeyword {
+  font-weight: 500; }
+
+section + section {
+  margin-top: 25px; }
+
+/* Table of Contents in the Left-hand sidebar */
+nav.toc {
+  display: block;
+  padding-top: 10px;
+  position: fixed;
+  top: 67px;
+  bottom: 0;
+  left: 0;
+  max-width: 30ex;
+  min-width: 26ex;
+  width: 20%;
+  background: linear-gradient(to left, #ccc, transparent);
+  overflow: auto;
+  color: #1F2D3D;
+  padding-left: 2ex;
+  padding-right: 2ex;
+  /* .toc_title a{ */
+  /*     color:#777; */
+  /*     font-size:1em; */
+  /*     line-height:1.2; */
+  /*     font-weight:500} */ }
+  nav.toc .toc_version {
+    font-size: smaller;
+    text-align: right; }
+    nav.toc .toc_version a {
+      color: #888; }
+  nav.toc ul {
+    list-style-type: none; }
+    nav.toc ul li {
+      margin: 0; }
+      nav.toc ul li ul {
+        margin: 0; }
+      nav.toc ul li li {
+        border-left: 1px solid #ccc;
+        margin-left: 5px;
+        padding-left: 12px; }
+      nav.toc ul li a {
+        font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+        font-size: .95em;
+        color: #333;
+        font-weight: 400;
+        line-height: 1.6em;
+        display: block; }
+        nav.toc ul li a:hover {
+          box-shadow: none;
+          background-color: #edbf84; }
+      nav.toc ul li.top a {
+        color: #848484; }
+        nav.toc ul li.top a:hover {
+          background-color: unset;
+          text-decoration: underline; }
+  nav.toc > ul > li {
+    margin-bottom: .3em; }
+    nav.toc > ul > li > a {
+      /* First level titles */
+      font-weight: 500; }
+  nav.toc.brand {
+    top: 0;
+    height: 67px; }
+    nav.toc.brand img {
+      margin-top: 14px;
+      height: 36px; }
+  nav.toc .toc_title {
+    display: block;
+    margin: .5em 0 1.414em; }
+
+.tableau table {
+  border-collapse: collapse; }
+.tableau td {
+  background: #f8f7f6;
+  border: 1px solid #ccc;
+  padding-left: 3px;
+  padding-right: 3px; }
+
+pre {
+  background: linear-gradient(to left, #fff 0, #ede8e5 100%); }
+
+code.caml-output.ok, div.caml-output.ok {
+  color: #045804; }
+
+code.caml-output.error, div.caml-output.error {
+  color: #ff4500; }
+
+.chapter span, .tutorial span, .maintitle h1 span {
+  color: #ec6a0d; }
+
+h1 span {
+  color: #d28853; }
+
+blockquote.quote {
+  /*font-size: smaller;*/ }
+  blockquote.quote hr {
+    display: none; }
+
+#part-menu {
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  text-align: right;
+  list-style: none;
+  overflow-y: hidden;
+  transition: height 0.3s; }
+
+#part-menu li.active a {
+  color: #000; }
+  #part-menu li.active a::before {
+    content: "◆";
+    color: #ec6a0d;
+    margin-right: 4px;
+    margin-left: -1em;
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    vertical-align: 1px; }
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; }
+
+.display {
+  margin: 0 auto; }
+
+.c001 {
+  border-spacing: 6px;
+  border-collapse: separate; }
+
+span.syntax-token {
+  color: #564233;
+  font-family: "Fira Mono", courier, monospace;
+  border-radius: 6px; }
+
+div.caml-example.toplevel code.caml-input::before,
+div.caml-example.toplevel div.caml-input::before {
+  /* content:"#"; */
+  /* pre-4.11 */
+  color: #888; }
+
+span.number, span.chapter-number {
+  padding-right: 0.5ex; }
+
+ul li .number {
+  width: 3.5ch;
+  display: inline-block;
+  text-align: right; }
+
+#sidebar .number {
+  width: 2.5ch; }
+
+span.syntax-token {
+  font-family: "Fira Mono", courier, monospace; }
+
+span.syntax-token {
+  color: rgba(91, 33, 6, 0.87); }
+
+span.ocamlprompt {
+  color: #888; }
+
+span.font-bold .machine {
+  font-weight: 700;
+  color: #564233; }
+
+.osvariant {
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif; }
+
+.font-it {
+  font-style: italic; }
+
+.font-tt {
+  font-family: "Fira Mono", courier, monospace; }
+
+span.authors {
+  font-style: italic;
+  background-color: inherit; }
+
+span.nonterminal {
+  font-style: oblique; }
+
+.font-sl {
+  font-style: oblique; }
+
+.center table {
+  margin-left: inherit;
+  margin-right: inherit; }
+
+td .font-bold {
+  font-weight: bold; }
+
+.c003 {
+  text-align: center; }
+
+.cellpadding1 tr td {
+  padding: 1px 4px; }
+
+.caml-input span.ocamlkeyword {
+  font-weight: 500;
+  color: #444; }
+.caml-input span.ocamlhighlight {
+  font-weight: 500;
+  text-decoration: underline; }
+.caml-input span.id {
+  color: #523b74; }
+.caml-input span.ocamlstring, .caml-input .caml-input span.string {
+  color: #df5000; }
+.caml-input span.comment, .caml-input .caml-input span.ocamlcomment {
+  color: #969896; }
+
+.ocaml span.ocamlerror {
+  font-weight: 500; }
+
+/* Mobile */
+@media only screen and (max-width: 95ex) {
+  .api, .content {
+    margin: auto;
+    padding: 2em; }
+    .api h1, .content h1 {
+      margin-top: 0; }
+
+  #sidebar-button {
+    display: inline-block;
+    position: fixed;
+    top: 1.5em;
+    right: 1ex; }
+
+  .content #part-menu {
+    display: inline-block;
+    height: 0;
+    width: 100%; }
+
+  nav.toc {
+    position: static;
+    width: auto;
+    min-width: unset;
+    border: none;
+    padding: .2em 1em;
+    border-radius: 5px 0; }
+    nav.toc.brand {
+      border-radius: 0 5px; }
+
+  header {
+    margin-bottom: 0;
+    position: fixed;
+    left: -10000px;
+    /* initially hidden */
+    background-color: #ffefe7;
+    transition: left 0.4s;
+    top: 0;
+    max-width: calc(100% - 2em);
+    max-height: 100%;
+    overflow-y: auto;
+    box-shadow: 0.4rem 0rem 0.8rem #bbb; } }
