@@ -16,7 +16,7 @@ staging: pre-build
 
 # Pattern for directories containing the reference manuals
 # and other release material
-MANUAL_DIRS=site/releases/[1-9].[0-9][0-9]
+MANUAL_DIRS=site/releases/[1-9].[0-9]*
 
 syncotherfiles:
 	rsync --exclude '*~' --exclude '*.md' --exclude '*.html' \
