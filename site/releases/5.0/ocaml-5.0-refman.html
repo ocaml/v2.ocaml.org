@@ -156,8 +156,10 @@ a.syntax:hover{color:black;text-decoration:none;background-color:#FF6060}
  release 5.0<br>
 <span style="font-size:x-large">Documentation and user’s manual <br>
 <span class="c003">Xavier Leroy, <br>
- Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy and Jérôme Vouillon <br>
- 12</span></span></span></span><sup><span class="c002"><span class="c003">th</span></span></sup><span class="c002"><span class="c003">October, 2022<br>
+ Damien Doligez, Alain Frisch, Jacques Garrigue, <br>
+ Didier Rémy, KC Sivaramakrishnan and Jérôme Vouillon <br>
+ 20</span></span></span></span><sup><span class="c002"><span class="c003">th</span></span></sup><span class="c002"><span class="c003">December
+, 2022<br>
   
 <span style="font-size:medium">Copyright © 2022 Institut National de
 Recherche en Informatique et en Automatique
@@ -269,11 +271,12 @@ and as a
 </li><li class="li-toc"><a href="#s%3Apar_sync">9.5 Blocking synchronisation</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Apar_systhread_interaction">9.5.1 Interaction with systhreads</a>
 </li></ul>
-</li><li class="li-toc"><a href="#s%3Apar_atomics">9.6 Atomics</a>
-<ul class="toc"><li class="li-toc"><a href="#s%3Apar_lockfree_stack">9.6.1 Lock-free stack</a>
+</li><li class="li-toc"><a href="#s%3Apar_c_bindings">9.6 Interaction with C bindings</a>
+</li><li class="li-toc"><a href="#s%3Apar_atomics">9.7 Atomics</a>
+<ul class="toc"><li class="li-toc"><a href="#s%3Apar_lockfree_stack">9.7.1 Lock-free stack</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="#sec91">Chapter 10 Memory model: The hard bits</a>
+</li><li class="li-toc"><a href="#sec92">Chapter 10 Memory model: The hard bits</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Awhy_relaxed_memory">10.1 Why weakly consistent memory?</a>
 <ul class="toc"><li class="li-toc"><a href="#ss%3Amm_comp_opt">10.1.1 Compiler optimisations</a>
 </li><li class="li-toc"><a href="#ss%3Amm_hw_opt">10.1.2 Hardware optimisations</a>
@@ -296,8 +299,8 @@ and as a
 </li><li class="li-toc"><a href="#s%3Amm_tearing">10.6 Non-compliant operations</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="#sec110">Part II The OCaml language</a>
-<ul class="toc"><li class="li-toc"><a href="#sec111">Chapter 11 The OCaml language</a>
+</li><li class="li-toc"><a href="#sec111">Part II The OCaml language</a>
+<ul class="toc"><li class="li-toc"><a href="#sec112">Chapter 11 The OCaml language</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Alexical-conventions">11.1 Lexical conventions</a>
 </li><li class="li-toc"><a href="#s%3Avalues">11.2 Values</a>
 <ul class="toc"><li class="li-toc"><a href="#ss%3Avalues%3Abase">11.2.1 Base values</a>
@@ -347,7 +350,7 @@ and as a
 </li></ul>
 </li><li class="li-toc"><a href="#s%3Acompilation-units">11.12 Compilation units</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec277">Chapter 12 Language extensions</a>
+</li><li class="li-toc"><a href="#sec278">Chapter 12 Language extensions</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aletrecvalues">12.1 Recursive definitions of values</a>
 </li><li class="li-toc"><a href="#s%3Arecursive-modules">12.2 Recursive modules</a>
 </li><li class="li-toc"><a href="#s%3Aprivate-types">12.3 Private types</a>
@@ -407,8 +410,8 @@ and as a
 </li></ul>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="#sec334">Part III The OCaml tools</a>
-<ul class="toc"><li class="li-toc"><a href="#sec335">Chapter 13 Batch compilation (ocamlc)</a>
+</li><li class="li-toc"><a href="#sec335">Part III The OCaml tools</a>
+<ul class="toc"><li class="li-toc"><a href="#sec336">Chapter 13 Batch compilation (ocamlc)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Acomp-overview">13.1 Overview of the compiler</a>
 </li><li class="li-toc"><a href="#s%3Acomp-options">13.2 Options</a>
 </li><li class="li-toc"><a href="#s%3Amodules-file-system">13.3 Modules and the file system</a>
@@ -420,7 +423,7 @@ and as a
 </li><li class="li-toc"><a href="#ss%3Awarn57">13.5.4 Warning 57: Ambiguous or-pattern variables under guard</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="#sec346">Chapter 14 The toplevel system or REPL (ocaml)</a>
+</li><li class="li-toc"><a href="#sec347">Chapter 14 The toplevel system or REPL (ocaml)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Atoplevel-options">14.1 Options</a>
 </li><li class="li-toc"><a href="#s%3Atoplevel-directives">14.2 Toplevel directives</a>
 </li><li class="li-toc"><a href="#s%3Atoplevel-modules">14.3 The toplevel and the module system</a>
@@ -430,20 +433,20 @@ and as a
 </li></ul>
 </li><li class="li-toc"><a href="#s%3Aocamlnat">14.6 The native toplevel: <span class="font-tt">ocamlnat</span> (experimental)</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec354">Chapter 15 The runtime system (ocamlrun)</a>
+</li><li class="li-toc"><a href="#sec355">Chapter 15 The runtime system (ocamlrun)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aocamlrun-overview">15.1 Overview</a>
 </li><li class="li-toc"><a href="#s%3Aocamlrun-options">15.2 Options</a>
 </li><li class="li-toc"><a href="#s%3Aocamlrun-dllpath">15.3 Dynamic loading of shared libraries</a>
 </li><li class="li-toc"><a href="#s%3Aocamlrun-common-errors">15.4 Common errors</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec359">Chapter 16 Native-code compilation (ocamlopt)</a>
+</li><li class="li-toc"><a href="#sec360">Chapter 16 Native-code compilation (ocamlopt)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Anative-overview">16.1 Overview of the compiler</a>
 </li><li class="li-toc"><a href="#s%3Anative-options">16.2 Options</a>
 </li><li class="li-toc"><a href="#s%3Anative-common-errors">16.3 Common errors</a>
 </li><li class="li-toc"><a href="#s%3Anative%3Arunning-executable">16.4 Running executables produced by ocamlopt</a>
 </li><li class="li-toc"><a href="#s%3Acompat-native-bytecode">16.5 Compatibility with the bytecode compiler</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec369">Chapter 17 Lexer and parser generators (ocamllex, ocamlyacc)</a>
+</li><li class="li-toc"><a href="#sec370">Chapter 17 Lexer and parser generators (ocamllex, ocamlyacc)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aocamllex-overview">17.1 Overview of <span class="font-tt">ocamllex</span></a>
 <ul class="toc"><li class="li-toc"><a href="#ss%3Aocamllex-options">17.1.1 Options</a>
 </li></ul>
@@ -468,11 +471,11 @@ and as a
 </li><li class="li-toc"><a href="#s%3Alexyacc-example">17.6 A complete example</a>
 </li><li class="li-toc"><a href="#s%3Alexyacc-common-errors">17.7 Common errors</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec390">Chapter 18 Dependency generator (ocamldep)</a>
+</li><li class="li-toc"><a href="#sec391">Chapter 18 Dependency generator (ocamldep)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aocamldep-options">18.1 Options</a>
 </li><li class="li-toc"><a href="#s%3Aocamldep-makefile">18.2 A typical Makefile</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec393">Chapter 19 The documentation generator (ocamldoc)</a>
+</li><li class="li-toc"><a href="#sec394">Chapter 19 The documentation generator (ocamldoc)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aocamldoc-usage">19.1 Usage</a>
 <ul class="toc"><li class="li-toc"><a href="#ss%3Aocamldoc-invocation">19.1.1 Invocation</a>
 </li><li class="li-toc"><a href="#ss%3Aocamldoc-merge">19.1.2 Merging of module information</a>
@@ -493,7 +496,7 @@ and as a
 <ul class="toc"><li class="li-toc"><a href="#ss%3Aocamldoc-compilation-and-usage">19.4.1 Compilation and usage</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="#sec430">Chapter 20 The debugger (ocamldebug)</a>
+</li><li class="li-toc"><a href="#sec431">Chapter 20 The debugger (ocamldebug)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Adebugger-compilation">20.1 Compiling for debugging</a>
 </li><li class="li-toc"><a href="#s%3Adebugger-invocation">20.2 Invocation</a>
 <ul class="toc"><li class="li-toc"><a href="#ss%3Adebugger-start">20.2.1 Starting the debugger</a>
@@ -529,7 +532,7 @@ and as a
 </li><li class="li-toc"><a href="#s%3Adebugger-misc-cmds">20.9 Miscellaneous commands</a>
 </li><li class="li-toc"><a href="#s%3Ainf-debugger">20.10 Running the debugger under Emacs</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec461">Chapter 21 Profiling (ocamlprof)</a>
+</li><li class="li-toc"><a href="#sec462">Chapter 21 Profiling (ocamlprof)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aocamlprof-compiling">21.1 Compiling for profiling</a>
 </li><li class="li-toc"><a href="#s%3Aocamlprof-profiling">21.2 Profiling an execution</a>
 </li><li class="li-toc"><a href="#s%3Aocamlprof-printing">21.3 Printing profiling information</a>
@@ -607,7 +610,7 @@ and as a
 </li><li class="li-toc"><a href="#ss%3Ac-internal-macros">22.15.2 OCaml version macros</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="#sec545">Chapter 23 Optimisation with Flambda</a>
+</li><li class="li-toc"><a href="#sec546">Chapter 23 Optimisation with Flambda</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aflambda-overview">23.1 Overview</a>
 </li><li class="li-toc"><a href="#s%3Aflambda-cli">23.2 Command-line flags</a>
 <ul class="toc"><li class="li-toc"><a href="#ss%3Aflambda-rounds">23.2.1 Specification of optimisation parameters by round</a>
@@ -654,14 +657,14 @@ and as a
 </li><li class="li-toc"><a href="#s%3Aflambda-unsafe">23.15 Use of unsafe operations</a>
 </li><li class="li-toc"><a href="#s%3Aflambda-glossary">23.16 Glossary</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec596">Chapter 24 Fuzzing with afl-fuzz</a>
+</li><li class="li-toc"><a href="#sec597">Chapter 24 Fuzzing with afl-fuzz</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aafl-overview">24.1 Overview</a>
 </li><li class="li-toc"><a href="#s%3Aafl-generate">24.2 Generating instrumentation</a>
 <ul class="toc"><li class="li-toc"><a href="#ss%3Aafl-advanced">24.2.1 Advanced options</a>
 </li></ul>
 </li><li class="li-toc"><a href="#s%3Aafl-example">24.3 Example</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec601">Chapter 25 Runtime tracing with runtime events</a>
+</li><li class="li-toc"><a href="#sec602">Chapter 25 Runtime tracing with runtime events</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aruntime-tracing-overview">25.1 Overview</a>
 </li><li class="li-toc"><a href="#s%3Aruntime-tracing-architecture">25.2 Architecture</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Aruntime-tracing-probes">25.2.1 Probes</a>
@@ -672,33 +675,33 @@ and as a
 </li><li class="li-toc"><a href="#s-runtime-tracing-tooling">25.3.2 With tooling</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="#sec614">Chapter 26 The “Tail Modulo Constructor” program transformation</a>
+</li><li class="li-toc"><a href="#sec615">Chapter 26 The “Tail Modulo Constructor” program transformation</a>
 <ul class="toc"><li class="li-toc"><a href="#sec%3Adisambiguation">26.1 Disambiguation</a>
 </li><li class="li-toc"><a href="#sec%3Aout-of-tmc">26.2 Danger: getting out of tail-mod-cons</a>
 </li><li class="li-toc"><a href="#sec%3Adetails">26.3 Details on the transformation</a>
 </li><li class="li-toc"><a href="#sec%3Alimitations">26.4 Current limitations</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="#sec626">Part IV The OCaml library</a>
-<ul class="toc"><li class="li-toc"><a href="#sec627">Chapter 27 The core library</a>
+</li><li class="li-toc"><a href="#sec627">Part IV The OCaml library</a>
+<ul class="toc"><li class="li-toc"><a href="#sec628">Chapter 27 The core library</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Acore-builtins">27.1 Built-in types and predefined exceptions</a>
 </li><li class="li-toc"><a href="#s%3Astdlib-module">27.2 Module <span class="font-tt">Stdlib</span>: the initially opened module</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec632">Chapter 28 The standard library</a>
-</li><li class="li-toc"><a href="#sec633">Chapter 29 The compiler front-end</a>
-</li><li class="li-toc"><a href="#sec634">Chapter 30 The unix library: Unix system calls</a>
-</li><li class="li-toc"><a href="#sec635">Chapter 31 The str library: regular expressions and string processing</a>
-</li><li class="li-toc"><a href="#sec636">Chapter 32 The runtime_events library</a>
-</li><li class="li-toc"><a href="#sec637">Chapter 33 The threads library</a>
-</li><li class="li-toc"><a href="#sec638">Chapter 34 The dynlink library: dynamic loading and linking of object files</a>
-</li><li class="li-toc"><a href="#sec639">Chapter 35 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a>
+</li><li class="li-toc"><a href="#sec633">Chapter 28 The standard library</a>
+</li><li class="li-toc"><a href="#sec634">Chapter 29 The compiler front-end</a>
+</li><li class="li-toc"><a href="#sec635">Chapter 30 The unix library: Unix system calls</a>
+</li><li class="li-toc"><a href="#sec636">Chapter 31 The str library: regular expressions and string processing</a>
+</li><li class="li-toc"><a href="#sec637">Chapter 32 The runtime_events library</a>
+</li><li class="li-toc"><a href="#sec638">Chapter 33 The threads library</a>
+</li><li class="li-toc"><a href="#sec639">Chapter 34 The dynlink library: dynamic loading and linking of object files</a>
+</li><li class="li-toc"><a href="#sec640">Chapter 35 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</a>
 <ul class="toc"><li class="li-toc"><a href="#s%3Agraphics-removed">35.1 The Graphics Library</a>
 </li><li class="li-toc"><a href="#s%3Abigarray-moved">35.2 The Bigarray Library</a>
-</li><li class="li-toc"><a href="#sec642">35.3 The Num Library</a>
+</li><li class="li-toc"><a href="#sec643">35.3 The Num Library</a>
 </li><li class="li-toc"><a href="#s%3Alabltk-removed">35.4 The Labltk Library and OCamlBrowser</a>
 </li></ul>
 </li></ul>
-</li><li class="li-toc"><a href="#sec644">Part V Indexes</a>
+</li><li class="li-toc"><a href="#sec645">Part V Indexes</a>
 </li></ul><!--TOC chapter id="sec2" Foreword-->
 <h1 class="chapter" id="sec2">Foreword</h1><!--SEC END --><!--NAME foreword.html-->
 <p>This manual documents the release 5.0 of the OCaml
@@ -10171,7 +10174,7 @@ Reference cells, arrays and mutable record fields are said to be
 domains concurrently access a non-atomic memory location without
 <em>synchronisation</em> and at least one of the accesses is a write. OCaml
 provides a number of ways to introduce synchronisation including atomic
-variables (section <a href="#s%3Apar_atomics">9.6</a>) and mutexes (section <a href="#s%3Apar_sync">9.5</a>).</p><p>Importantly, <span class="font-bold">for data race free (DRF) programs, OCaml provides
+variables (section <a href="#s%3Apar_atomics">9.7</a>) and mutexes (section <a href="#s%3Apar_sync">9.5</a>).</p><p>Importantly, <span class="font-bold">for data race free (DRF) programs, OCaml provides
 sequentially consistent (SC) semantics</span> – the observed behaviour of such
 programs can be explained by the interleaving of operations from different
 domains. This property is known as DRF-SC guarantee. Moreover, in OCaml, DRF-SC
@@ -10301,8 +10304,16 @@ between the different systhreads running on two different domains. The
 systhread identifiers uniquely identify systhreads in the program. The initial
 domain gets the domain id and the thread id as 0. The newly spawned domain gets
 domain id as 1.</p>
-<!--TOC section id="s:par_atomics" 9.6 Atomics-->
-<h2 class="section" id="s:par_atomics"><a class="section-anchor" href="#s:par_atomics" aria-hidden="true">﻿</a>9.6 Atomics</h2><!--SEC END --><p>Mutex, condition variables and semaphores are used to implement blocking
+<!--TOC section id="s:par_c_bindings" 9.6 Interaction with C bindings-->
+<h2 class="section" id="s:par_c_bindings"><a class="section-anchor" href="#s:par_c_bindings" aria-hidden="true">﻿</a>9.6 Interaction with C bindings</h2><!--SEC END --><p>During parallel execution with multiple domains, C code running on a domain may
+run in parallel with any C code running in other domains even if neither of
+them has released the “domain lock”. Prior to OCaml 5.0, C bindings may have
+assumed that if the OCaml runtime lock is not released, then it would be safe
+to manipulate global C state (e.g. initialise a function-local static value).
+This is no longer true in the presence of parallel execution with multiple
+domains.</p>
+<!--TOC section id="s:par_atomics" 9.7 Atomics-->
+<h2 class="section" id="s:par_atomics"><a class="section-anchor" href="#s:par_atomics" aria-hidden="true">﻿</a>9.7 Atomics</h2><!--SEC END --><p>Mutex, condition variables and semaphores are used to implement blocking
 synchronisation between domains. For non-blocking synchronisation, OCaml
 provides <a href="libref/Atomic.html"><span class="font-tt">Atomic</span></a> variables. As the name suggests, non-blocking
 synchronisation does not provide mechanisms for suspending and waking up
@@ -10399,8 +10410,8 @@ between two domains.</p><div class="caml-example verbatim">
 
 </div><p>While the sender and the receiver compete to access <span class="machine"><span class="font-tt">r</span></span>, this is not a data
 race since <span class="machine"><span class="font-tt">r</span></span> is an atomic reference.</p>
-<!--TOC subsection id="s:par_lockfree_stack" 9.6.1 Lock-free stack-->
-<h3 class="subsection" id="s:par_lockfree_stack"><a class="section-anchor" href="#s:par_lockfree_stack" aria-hidden="true">﻿</a>9.6.1 Lock-free stack</h3><!--SEC END --><p>The Atomic module is used to implement non-blocking, lock-free data structures.
+<!--TOC subsection id="s:par_lockfree_stack" 9.7.1 Lock-free stack-->
+<h3 class="subsection" id="s:par_lockfree_stack"><a class="section-anchor" href="#s:par_lockfree_stack" aria-hidden="true">﻿</a>9.7.1 Lock-free stack</h3><!--SEC END --><p>The Atomic module is used to implement non-blocking, lock-free data structures.
 The following program implements a lock-free stack.</p><div class="caml-example verbatim">
 
 <div class="ocaml">
@@ -10444,8 +10455,8 @@ operation. This lock-free stack implementation is also known as Treiber
 stack.
 
 </p>
-<!--TOC chapter id="sec91" Chapter 10 Memory model: The hard bits-->
-<h1 class="chapter" id="sec91">Chapter 10 Memory model: The hard bits</h1><!--SEC END --><!--NAME memorymodel.html-->
+<!--TOC chapter id="sec92" Chapter 10 Memory model: The hard bits-->
+<h1 class="chapter" id="sec92">Chapter 10 Memory model: The hard bits</h1><!--SEC END --><!--NAME memorymodel.html-->
 <p>
 <a id="c:memorymodel"></a></p><p>This chapter describes the details of OCaml relaxed memory model. The relaxed
 memory model describes what values an OCaml program is allowed to witness when
@@ -11064,14 +11075,14 @@ accesses. In the presence of data races, the user may observe tearing.
 where reads and writes may be of different sizes. Unsynchronized mixed-mode
 accesses lead to tearing.
 </li></ul>
-<!--TOC part id="sec110" Part II The OCaml language-->
-<table class="center"><tr><td><h1 class="part" id="sec110">Part II<br>
+<!--TOC part id="sec111" Part II The OCaml language-->
+<table class="center"><tr><td><h1 class="part" id="sec111">Part II<br>
 The OCaml language</h1></td></tr>
 </table><!--SEC END --><p>
 <a id="p:refman"></a>
 </p>
-<!--TOC chapter id="sec111" Chapter 11 The OCaml language-->
-<h1 class="chapter" id="sec111">Chapter 11 The OCaml language</h1><!--SEC END --><p> <a id="c:refman"></a>
+<!--TOC chapter id="sec112" Chapter 11 The OCaml language-->
+<h1 class="chapter" id="sec112">Chapter 11 The OCaml language</h1><!--SEC END --><p> <a id="c:refman"></a>
 </p><!--NAME language.html-->
 <!--TOC subsection id="ss:foreword" Foreword-->
 <h3 class="subsection" id="ss:foreword"><a class="section-anchor" href="#ss:foreword" aria-hidden="true">﻿</a>Foreword</h3><!--SEC END --><p>This document is intended as a reference manual for the OCaml
@@ -15294,8 +15305,8 @@ chapter <a href="#c%3Acamlc">13</a> for more details) and <a class="syntax" hre
 
 </p><!--CUT END -->
 
-<!--TOC chapter id="sec277" Chapter 12 Language extensions-->
-<h1 class="chapter" id="sec277">Chapter 12 Language extensions</h1><!--SEC END --><p> <a id="c:extensions"></a>
+<!--TOC chapter id="sec278" Chapter 12 Language extensions-->
+<h1 class="chapter" id="sec278">Chapter 12 Language extensions</h1><!--SEC END --><p> <a id="c:extensions"></a>
 </p><!--NAME extn.html-->
 <p>This chapter describes language extensions and convenience features
 that are implemented in OCaml, but not described in chapter <a href="#c%3Arefman">11</a>.</p><!--CUT DEF section  -->
@@ -19216,13 +19227,13 @@ Exception: Failure <span class="ocamlstring">"protocol violation"</span>.</div><
 to the reader.
 </p><!--CUT END -->
 
-<!--TOC part id="sec334" Part III The OCaml tools-->
-<table class="center"><tr><td><h1 class="part" id="sec334">Part III<br>
+<!--TOC part id="sec335" Part III The OCaml tools-->
+<table class="center"><tr><td><h1 class="part" id="sec335">Part III<br>
 The OCaml tools</h1></td></tr>
 </table><!--SEC END --><p>
 <a id="p:commands"></a></p>
-<!--TOC chapter id="sec335" Chapter 13 Batch compilation (ocamlc)-->
-<h1 class="chapter" id="sec335">Chapter 13 Batch compilation (ocamlc)</h1><!--SEC END --><p> <a id="c:camlc"></a>
+<!--TOC chapter id="sec336" Chapter 13 Batch compilation (ocamlc)-->
+<h1 class="chapter" id="sec336">Chapter 13 Batch compilation (ocamlc)</h1><!--SEC END --><p> <a id="c:camlc"></a>
 </p><!--NAME comp.html-->
 <p>This chapter describes the OCaml batch compiler <span class="machine"><span class="font-tt">ocamlc</span></span>,
 which compiles OCaml source files to bytecode object files and links
@@ -19822,8 +19833,8 @@ Process <span class="font-it">file</span> as a file name, even if it starts with
 character.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-help</span></span> or <span class="machine"><span class="font-tt">--help</span></span></span></dt><dd class="dd-description">
 Display a short usage summary and exit.</dd></dl>
-<!--TOC paragraph id="sec338" contextual-cli-control-->
-<h5 class="paragraph" id="sec338"><a class="section-anchor" href="#sec338" aria-hidden="true">﻿</a>contextual-cli-control</h5><!--SEC END --><p>Contextual control of command-line options</p><p>The compiler command line can be modified “from the outside”
+<!--TOC paragraph id="sec339" contextual-cli-control-->
+<h5 class="paragraph" id="sec339"><a class="section-anchor" href="#sec339" aria-hidden="true">﻿</a>contextual-cli-control</h5><!--SEC END --><p>Contextual control of command-line options</p><p>The compiler command line can be modified “from the outside”
 with the following mechanisms. These are experimental
 and subject to change. They should be used only for experimental and
 development work, not in released packages.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">OCAMLPARAM</span></span> </span>(environment variable)</dt><dd class="dd-description">
@@ -20149,8 +20160,8 @@ More precisely, it warns when guard uses “ambiguous” variables, that are bou
 to different parts of the scrutinees by different sides of a or-pattern.
 
 </p>
-<!--TOC chapter id="sec346" Chapter 14 The toplevel system or REPL (ocaml)-->
-<h1 class="chapter" id="sec346">Chapter 14 The toplevel system or REPL (ocaml)</h1><!--SEC END --><p> <a id="c:camllight"></a>
+<!--TOC chapter id="sec347" Chapter 14 The toplevel system or REPL (ocaml)-->
+<h1 class="chapter" id="sec347">Chapter 14 The toplevel system or REPL (ocaml)</h1><!--SEC END --><p> <a id="c:camllight"></a>
 </p><!--NAME toplevel.html-->
 <p>This chapter describes the toplevel system for OCaml, that permits
 interactive use of the OCaml system
@@ -20687,8 +20698,8 @@ installation directory) may be invoked directly rather than using
 <span class="font-tt">make natruntop</span>.
 
 </p>
-<!--TOC chapter id="sec354" Chapter 15 The runtime system (ocamlrun)-->
-<h1 class="chapter" id="sec354">Chapter 15 The runtime system (ocamlrun)</h1><!--SEC END --><p> <a id="c:runtime"></a>
+<!--TOC chapter id="sec355" Chapter 15 The runtime system (ocamlrun)-->
+<h1 class="chapter" id="sec355">Chapter 15 The runtime system (ocamlrun)</h1><!--SEC END --><p> <a id="c:runtime"></a>
 </p><!--NAME runtime.html-->
 <p>The <span class="machine"><span class="font-tt">ocamlrun</span></span> command executes bytecode files produced by the
 linking phase of the <span class="machine"><span class="font-tt">ocamlc</span></span> command.</p>
@@ -20845,6 +20856,7 @@ is a sum of values selected from the following:
 executable file, resolving shared libraries).
 </dd><dt class="dt-description"><span class="font-bold">512 (= 0x200)</span></dt><dd class="dd-description"> Computation of compaction-triggering condition.
 </dd><dt class="dt-description"><span class="font-bold">1024 (= 0x400)</span></dt><dd class="dd-description"> Output GC statistics at program exit.
+</dd><dt class="dt-description"><span class="font-bold">2048 (= 0x800)</span></dt><dd class="dd-description"> GC debugging messages.
 </dd></dl>
 </dd><dt class="dt-description"><span class="font-bold">V</span></dt><dd class="dd-description"> (<span class="machine"><span class="font-tt">verify_heap</span></span>) runs an integrity check on the heap just after
 the completion of a major GC cycle
@@ -20938,8 +20950,8 @@ structure with too many (infinitely many?) cells. If it displays few
 “<span class="machine"><span class="font-tt">Growing heap</span></span>…” messages, but with a huge increment in the
 heap size, this is probably an attempt to build an excessively large
 array, string or byte sequence.</p></dd></dl>
-<!--TOC chapter id="sec359" Chapter 16 Native-code compilation (ocamlopt)-->
-<h1 class="chapter" id="sec359">Chapter 16 Native-code compilation (ocamlopt)</h1><!--SEC END --><p> <a id="c:nativecomp"></a>
+<!--TOC chapter id="sec360" Chapter 16 Native-code compilation (ocamlopt)-->
+<h1 class="chapter" id="sec360">Chapter 16 Native-code compilation (ocamlopt)</h1><!--SEC END --><p> <a id="c:nativecomp"></a>
 </p><!--NAME native.html-->
 <p>This chapter describes the OCaml high-performance
 native-code compiler <span class="machine"><span class="font-tt">ocamlopt</span></span>, which compiles OCaml source files to
@@ -21541,8 +21553,8 @@ Process <span class="font-it">file</span> as a file name, even if it starts with
 character.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-help</span></span> or <span class="machine"><span class="font-tt">--help</span></span></span></dt><dd class="dd-description">
 Display a short usage summary and exit.</dd></dl>
-<!--TOC paragraph id="sec362" Options for the 32-bit x86 architecture-->
-<h5 class="paragraph" id="sec362"><a class="section-anchor" href="#sec362" aria-hidden="true">﻿</a>Options for the 32-bit x86 architecture</h5><!--SEC END --><p>
+<!--TOC paragraph id="sec363" Options for the 32-bit x86 architecture-->
+<h5 class="paragraph" id="sec363"><a class="section-anchor" href="#sec363" aria-hidden="true">﻿</a>Options for the 32-bit x86 architecture</h5><!--SEC END --><p>
 The 32-bit code generator for Intel/AMD x86 processors (<span class="machine"><span class="font-tt">i386</span></span>
 architecture) supports the
 following additional option:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-ffast-math</span></span></span></dt><dd class="dd-description"> Use the processor instructions to compute
@@ -21554,23 +21566,23 @@ and the precision of the result can be reduced. In particular,
 trigonometric operations <span class="machine"><span class="font-tt">cos</span></span>, <span class="machine"><span class="font-tt">sin</span></span>, <span class="machine"><span class="font-tt">tan</span></span> have their range reduced to
 [−2<sup>64</sup>, 2<sup>64</sup>].
 </dd></dl>
-<!--TOC paragraph id="sec363" Options for the 64-bit x86 architecture-->
-<h5 class="paragraph" id="sec363"><a class="section-anchor" href="#sec363" aria-hidden="true">﻿</a>Options for the 64-bit x86 architecture</h5><!--SEC END --><p>
+<!--TOC paragraph id="sec364" Options for the 64-bit x86 architecture-->
+<h5 class="paragraph" id="sec364"><a class="section-anchor" href="#sec364" aria-hidden="true">﻿</a>Options for the 64-bit x86 architecture</h5><!--SEC END --><p>
 The 64-bit code generator for Intel/AMD x86 processors (<span class="machine"><span class="font-tt">amd64</span></span>
 architecture) supports the following additional options:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-fPIC</span></span></span></dt><dd class="dd-description"> Generate position-independent machine code. This is
 the default.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-fno-PIC</span></span></span></dt><dd class="dd-description"> Generate position-dependent machine code.
 </dd></dl>
-<!--TOC paragraph id="sec364" Options for the PowerPC architecture-->
-<h5 class="paragraph" id="sec364"><a class="section-anchor" href="#sec364" aria-hidden="true">﻿</a>Options for the PowerPC architecture</h5><!--SEC END --><p>
+<!--TOC paragraph id="sec365" Options for the PowerPC architecture-->
+<h5 class="paragraph" id="sec365"><a class="section-anchor" href="#sec365" aria-hidden="true">﻿</a>Options for the PowerPC architecture</h5><!--SEC END --><p>
 The PowerPC code generator supports the following additional options:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-flarge-toc</span></span></span></dt><dd class="dd-description"> Enables the PowerPC large model allowing the TOC (table of
 contents) to be arbitrarily large. This is the default since 4.11.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-fsmall-toc</span></span></span></dt><dd class="dd-description"> Enables the PowerPC small model allowing the TOC to be up
 to 64 kbytes per compilation unit. Prior to 4.11 this was the default
 behaviour.
 </dd></dl>
-<!--TOC paragraph id="sec365" Contextual control of command-line options-->
-<h5 class="paragraph" id="sec365"><a class="section-anchor" href="#sec365" aria-hidden="true">﻿</a>Contextual control of command-line options</h5><!--SEC END --><p>The compiler command line can be modified “from the outside”
+<!--TOC paragraph id="sec366" Contextual control of command-line options-->
+<h5 class="paragraph" id="sec366"><a class="section-anchor" href="#sec366" aria-hidden="true">﻿</a>Contextual control of command-line options</h5><!--SEC END --><p>The compiler command line can be modified “from the outside”
 with the following mechanisms. These are experimental
 and subject to change. They should be used only for experimental and
 development work, not in released packages.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">OCAMLPARAM</span></span> </span>(environment variable)</dt><dd class="dd-description">
@@ -21641,8 +21653,8 @@ exception like with the bytecode compiler. The runtime system makes
 a best effort to trap stack overflows and raise the <span class="machine"><span class="font-tt">Stack_overflow</span></span>
 exception, but sometimes it fails and a “segmentation fault” or
 another system fault occurs instead.</li></ul>
-<!--TOC chapter id="sec369" Chapter 17 Lexer and parser generators (ocamllex, ocamlyacc)-->
-<h1 class="chapter" id="sec369">Chapter 17 Lexer and parser generators (ocamllex, ocamlyacc)</h1><!--SEC END --><p>
+<!--TOC chapter id="sec370" Chapter 17 Lexer and parser generators (ocamllex, ocamlyacc)-->
+<h1 class="chapter" id="sec370">Chapter 17 Lexer and parser generators (ocamllex, ocamlyacc)</h1><!--SEC END --><p>
 <a id="c:ocamlyacc"></a>
 </p><!--NAME lexyacc.html-->
 <p>This chapter describes two program generators: <span class="machine"><span class="font-tt">ocamllex</span></span>, that
@@ -22167,8 +22179,8 @@ Those parsers rely on an internal work state which is shared by all
 ocamlyacc generated parsers.
 The <a href="https://cambium.inria.fr/~fpottier/menhir/">menhir</a> parser generator
 is a better option if you want thread-safe parsers.</p></dd></dl>
-<!--TOC chapter id="sec390" Chapter 18 Dependency generator (ocamldep)-->
-<h1 class="chapter" id="sec390">Chapter 18 Dependency generator (ocamldep)</h1><!--SEC END --><p> <a id="c:camldep"></a>
+<!--TOC chapter id="sec391" Chapter 18 Dependency generator (ocamldep)-->
+<h1 class="chapter" id="sec391">Chapter 18 Dependency generator (ocamldep)</h1><!--SEC END --><p> <a id="c:camldep"></a>
 </p><!--NAME depend.html-->
 <p>The <span class="machine"><span class="font-tt">ocamldep</span></span> command scans a set of OCaml source files
 (<span class="machine"><span class="font-tt">.ml</span></span> and <span class="machine"><span class="font-tt">.mli</span></span> files) for references to external compilation units,
@@ -22313,8 +22325,8 @@ If <span class="machine"><span class="font-tt">mylib.mli</span></span> itself ha
 <span class="machine"><span class="font-tt">-as-map</span></span>.
 
 </p>
-<!--TOC chapter id="sec393" Chapter 19 The documentation generator (ocamldoc)-->
-<h1 class="chapter" id="sec393">Chapter 19 The documentation generator (ocamldoc)</h1><!--SEC END --><p> <a id="c:ocamldoc"></a>
+<!--TOC chapter id="sec394" Chapter 19 The documentation generator (ocamldoc)-->
+<h1 class="chapter" id="sec394">Chapter 19 The documentation generator (ocamldoc)</h1><!--SEC END --><p> <a id="c:ocamldoc"></a>
 </p><!--NAME ocamldoc.html-->
 <p>This chapter describes OCamldoc, a tool that generates documentation from
 special comments embedded in source files. The comments used by OCamldoc
@@ -23186,8 +23198,8 @@ Then, the following command uses <span class="machine"><span class="font-tt">cus
 </p><pre>
         ocamldoc -g custom.cma <span class="font-it">other-options</span> <span class="font-it">source-files</span>
 </pre>
-<!--TOC chapter id="sec430" Chapter 20 The debugger (ocamldebug)-->
-<h1 class="chapter" id="sec430">Chapter 20 The debugger (ocamldebug)</h1><!--SEC END --><p> <a id="c:debugger"></a>
+<!--TOC chapter id="sec431" Chapter 20 The debugger (ocamldebug)-->
+<h1 class="chapter" id="sec431">Chapter 20 The debugger (ocamldebug)</h1><!--SEC END --><p> <a id="c:debugger"></a>
 </p><!--NAME debugger.html-->
 <p>This chapter describes the OCaml source-level replay debugger
 <span class="machine"><span class="font-tt">ocamldebug</span></span>.</p><blockquote class="quote"><span class="osvariant">Unix:</span>  The debugger is available on Unix systems that provide
@@ -23667,8 +23679,8 @@ to point
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">C-x C-a C-p</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">print</span></span>): print value of identifier at point
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">C-x C-a C-d</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">display</span></span>): display value of identifier at point
 </dd></dl>
-<!--TOC chapter id="sec461" Chapter 21 Profiling (ocamlprof)-->
-<h1 class="chapter" id="sec461">Chapter 21 Profiling (ocamlprof)</h1><!--SEC END --><p> <a id="c:profiler"></a>
+<!--TOC chapter id="sec462" Chapter 21 Profiling (ocamlprof)-->
+<h1 class="chapter" id="sec462">Chapter 21 Profiling (ocamlprof)</h1><!--SEC END --><p> <a id="c:profiler"></a>
 </p><!--NAME profil.html-->
 <p>This chapter describes how the execution of OCaml
 programs can be profiled, by recording how many times functions are
@@ -23711,8 +23723,8 @@ beginning of the body of each branch
 if…then…else…, loops and pattern matching.</p><p>Calling <span class="machine"><span class="font-tt">ocamlcp</span></span> or <span class="machine"><span class="font-tt">ocamloptp</span></span> without the <span class="machine"><span class="font-tt">-P</span></span> option defaults to
 <span class="machine"><span class="font-tt">-P fm</span></span>, meaning that only function calls and pattern matching are
 profiled.</p>
-<!--TOC paragraph id="sec465" Note-->
-<h5 class="paragraph" id="sec465"><a class="section-anchor" href="#sec465" aria-hidden="true">﻿</a>Note</h5><!--SEC END --><p> For compatibility with previous releases, <span class="machine"><span class="font-tt">ocamlcp</span></span>
+<!--TOC paragraph id="sec466" Note-->
+<h5 class="paragraph" id="sec466"><a class="section-anchor" href="#sec466" aria-hidden="true">﻿</a>Note</h5><!--SEC END --><p> For compatibility with previous releases, <span class="machine"><span class="font-tt">ocamlcp</span></span>
 also accepts the <span class="machine"><span class="font-tt">-p</span></span> option, with the same arguments and behaviour as
 <span class="machine"><span class="font-tt">-P</span></span>.</p><p>The <span class="machine"><span class="font-tt">ocamlcp</span></span> and <span class="machine"><span class="font-tt">ocamloptp</span></span> commands also accept all the options of
 the corresponding <span class="machine"><span class="font-tt">ocamlc</span></span> or <span class="machine"><span class="font-tt">ocamlopt</span></span> compiler, except the <span class="machine"><span class="font-tt">-pp</span></span>
@@ -24516,8 +24528,8 @@ argument must be
 replaced by <span class="machine"><span class="font-tt">CAMLreturn0</span></span>. If your C function is a procedure (i.e. if
 it returns void), you must insert <span class="machine"><span class="font-tt">CAMLreturn0</span></span> at the end (to replace
 C’s implicit <span class="machine"><span class="font-tt">return</span></span>).</p>
-<!--TOC paragraph id="sec498" Note:-->
-<h5 class="paragraph" id="sec498"><a class="section-anchor" href="#sec498" aria-hidden="true">﻿</a>Note:</h5><!--SEC END --><p> some C compilers give bogus warnings about unused
+<!--TOC paragraph id="sec499" Note:-->
+<h5 class="paragraph" id="sec499"><a class="section-anchor" href="#sec499" aria-hidden="true">﻿</a>Note:</h5><!--SEC END --><p> some C compilers give bogus warnings about unused
 variables <span class="machine"><span class="font-tt">caml__dummy_xxx</span></span> at each use of <span class="machine"><span class="font-tt">CAMLparam</span></span> and
 <span class="machine"><span class="font-tt">CAMLlocal</span></span>. You should ignore them.</p><p> <br>
 </p><p>Example:
@@ -24528,8 +24540,8 @@ variables <span class="machine"><span class="font-tt">caml__dummy_xxx</span></sp
   CAMLreturn0;
 }
 </pre>
-<!--TOC paragraph id="sec499" Note:-->
-<h5 class="paragraph" id="sec499"><a class="section-anchor" href="#sec499" aria-hidden="true">﻿</a>Note:</h5><!--SEC END --><p> if your function is a primitive with more than 5 arguments
+<!--TOC paragraph id="sec500" Note:-->
+<h5 class="paragraph" id="sec500"><a class="section-anchor" href="#sec500" aria-hidden="true">﻿</a>Note:</h5><!--SEC END --><p> if your function is a primitive with more than 5 arguments
 for use with the byte-code runtime, its arguments are not <span class="machine"><span class="font-tt">value</span></span>s and
 must not be declared (they have types <span class="machine"><span class="font-tt">value *</span></span> and <span class="machine"><span class="font-tt">int</span></span>).</p><div class="theorem"><span class="font-bold">Rule 2</span> <em>
 Local variables of type <span class="machine"><span class="font-tt">value</span></span> must be declared with one of the
@@ -24569,14 +24581,14 @@ block (i.e. <span class="machine"><span class="font-tt">Is_block(</span></span><
   CAMLreturn (result);
 }
 </pre>
-<!--TOC paragraph id="sec500" Warning:-->
-<h5 class="paragraph" id="sec500"><a class="section-anchor" href="#sec500" aria-hidden="true">﻿</a>Warning:</h5><!--SEC END --><p> The first argument of <span class="machine"><span class="font-tt">Store_field</span></span> and
+<!--TOC paragraph id="sec501" Warning:-->
+<h5 class="paragraph" id="sec501"><a class="section-anchor" href="#sec501" aria-hidden="true">﻿</a>Warning:</h5><!--SEC END --><p> The first argument of <span class="machine"><span class="font-tt">Store_field</span></span> and
 <span class="machine"><span class="font-tt">Store_double_field</span></span> must be a variable declared by <span class="machine"><span class="font-tt">CAMLparam*</span></span> or
 a parameter declared by <span class="machine"><span class="font-tt">CAMLlocal*</span></span> to ensure that a garbage
 collection triggered by the evaluation of the other arguments will not
 invalidate the first argument after it is computed.</p>
-<!--TOC paragraph id="sec501" Use with CAMLlocalN:-->
-<h5 class="paragraph" id="sec501"><a class="section-anchor" href="#sec501" aria-hidden="true">﻿</a>Use with CAMLlocalN:</h5><!--SEC END --><p> Arrays of values declared using
+<!--TOC paragraph id="sec502" Use with CAMLlocalN:-->
+<h5 class="paragraph" id="sec502"><a class="section-anchor" href="#sec502" aria-hidden="true">﻿</a>Use with CAMLlocalN:</h5><!--SEC END --><p> Arrays of values declared using
 <span class="machine"><span class="font-tt">CAMLlocalN</span></span> must not be written to using <span class="machine"><span class="font-tt">Store_field</span></span>.
 Use the normal C array syntax instead.</p><div class="theorem"><span class="font-bold">Rule 4</span> <em> Global variables containing values must be registered
 with the garbage collector using the <span class="machine"><span class="font-tt">caml_register_global_root</span></span> function,
@@ -24610,8 +24622,8 @@ The garbage collector takes advantage of the guarantee that <span class="machine
 modified between calls to <span class="machine"><span class="font-tt">caml_modify_generational_global_root</span></span> to scan it
 less often. This improves performance if the
 modifications of <span class="machine"><span class="font-tt">v</span></span> happen less often than minor collections.</p>
-<!--TOC paragraph id="sec502" Note:-->
-<h5 class="paragraph" id="sec502"><a class="section-anchor" href="#sec502" aria-hidden="true">﻿</a>Note:</h5><!--SEC END --><p> The <span class="machine"><span class="font-tt">CAML</span></span> macros use identifiers (local variables, type
+<!--TOC paragraph id="sec503" Note:-->
+<h5 class="paragraph" id="sec503"><a class="section-anchor" href="#sec503" aria-hidden="true">﻿</a>Note:</h5><!--SEC END --><p> The <span class="machine"><span class="font-tt">CAML</span></span> macros use identifiers (local variables, type
 identifiers, structure tags) that start with <span class="machine"><span class="font-tt">caml__</span></span>. Do not use any
 identifier starting with <span class="machine"><span class="font-tt">caml__</span></span> in your programs.</p>
 <!--TOC subsection id="ss:c-low-level-gc-harmony" 22.5.2 Low-level interface-->
@@ -24908,8 +24920,8 @@ exception occurred, and <span class="font-it">v</span> is the value returned by 
 function. If <span class="machine"><span class="font-tt">Is_exception_result(</span></span><span class="font-it">v</span><span class="machine"><span class="font-tt">)</span></span> returns “true”,
 an exception escaped, and its value (the exception descriptor) can be
 recovered using <span class="machine"><span class="font-tt">Extract_exception(</span></span><span class="font-it">v</span><span class="machine"><span class="font-tt">)</span></span>.</p>
-<!--TOC paragraph id="sec508" Warning:-->
-<h5 class="paragraph" id="sec508"><a class="section-anchor" href="#sec508" aria-hidden="true">﻿</a>Warning:</h5><!--SEC END --><p> If the OCaml function returned with an exception,
+<!--TOC paragraph id="sec509" Warning:-->
+<h5 class="paragraph" id="sec509"><a class="section-anchor" href="#sec509" aria-hidden="true">﻿</a>Warning:</h5><!--SEC END --><p> If the OCaml function returned with an exception,
 <span class="machine"><span class="font-tt">Extract_exception</span></span> should be applied to the exception result prior
 to calling a function that may trigger garbage collection.
 Otherwise, if <span class="font-it">v</span> is reachable during garbage collection, the runtime
@@ -25101,8 +25113,8 @@ With <span class="machine"><span class="font-tt">ocamlopt</span></span>, you sho
         cc -o myprog <span class="font-it">C objects and libraries</span> \
            camlcode.o <span class="font-it">C libraries required by the runtime, eg -lm -ldl</span>
 </pre>
-<!--TOC paragraph id="sec513" Warning:-->
-<h5 class="paragraph" id="sec513"><a class="section-anchor" href="#sec513" aria-hidden="true">﻿</a>Warning:</h5><!--SEC END --><p> On some ports, special options are required on the final
+<!--TOC paragraph id="sec514" Warning:-->
+<h5 class="paragraph" id="sec514"><a class="section-anchor" href="#sec514" aria-hidden="true">﻿</a>Warning:</h5><!--SEC END --><p> On some ports, special options are required on the final
 linking phase that links together the object file produced by the
 <span class="machine"><span class="font-tt">-output-obj</span></span> and <span class="machine"><span class="font-tt">-output-complete-obj</span></span> options and the remainder of the program. Those options
 are shown in the configuration file <span class="machine"><span class="font-tt">Makefile.config</span></span> generated during
@@ -25114,8 +25126,8 @@ all other object files linked with it should also be compiled with
 </li><li class="li-itemize">other systems: you may have to add one or both of
 <span class="machine"><span class="font-tt">-lm</span></span> and <span class="machine"><span class="font-tt">-ldl</span></span>, depending on your OS and C compiler.
 </li></ul>
-<!--TOC paragraph id="sec514" Stack backtraces.-->
-<h5 class="paragraph" id="sec514"><a class="section-anchor" href="#sec514" aria-hidden="true">﻿</a>Stack backtraces.</h5><!--SEC END --><p> When OCaml bytecode produced by
+<!--TOC paragraph id="sec515" Stack backtraces.-->
+<h5 class="paragraph" id="sec515"><a class="section-anchor" href="#sec515" aria-hidden="true">﻿</a>Stack backtraces.</h5><!--SEC END --><p> When OCaml bytecode produced by
 <span class="machine"><span class="font-tt">ocamlc -g</span></span> is embedded in a C program, no debugging information is
 included, and therefore it is impossible to print stack backtraces on
 uncaught exceptions. This is not the case when native code produced
@@ -25126,8 +25138,8 @@ by calling <span class="machine"><span class="font-tt">Printexc.record_backtrace
 one of the OCaml modules. This can also be achieved from the C side
 by calling <span class="machine"><span class="font-tt">caml_record_backtraces(1);</span></span> in the OCaml-C glue code.
 (<span class="machine"><span class="font-tt">caml_record_backtraces</span></span> is declared in <span class="machine"><span class="font-tt">backtrace.h</span></span>)</p>
-<!--TOC paragraph id="sec515" Unloading the runtime.-->
-<h5 class="paragraph" id="sec515"><a class="section-anchor" href="#sec515" aria-hidden="true">﻿</a>Unloading the runtime.</h5><!--SEC END --><p>In case the shared library produced with <span class="machine"><span class="font-tt">-output-obj</span></span> is to be loaded and
+<!--TOC paragraph id="sec516" Unloading the runtime.-->
+<h5 class="paragraph" id="sec516"><a class="section-anchor" href="#sec516" aria-hidden="true">﻿</a>Unloading the runtime.</h5><!--SEC END --><p>In case the shared library produced with <span class="machine"><span class="font-tt">-output-obj</span></span> is to be loaded and
 unloaded repeatedly by a single process, care must be taken to unload the
 OCaml runtime explicitly, in order to avoid various system resource leaks.</p><p>Since 4.05, <span class="machine"><span class="font-tt">caml_shutdown</span></span> function can be used to shut the runtime down
 gracefully, which equals the following:
@@ -25152,8 +25164,8 @@ to <span class="machine"><span class="font-tt">caml_shutdown</span></span> (in a
 there are no outstanding calls to <span class="machine"><span class="font-tt">caml_startup</span></span>.</p><p>Once a runtime is unloaded, it cannot be started up again without reloading the
 shared library and reinitializing its static data. Therefore, at the moment, the
 facility is only useful for building reloadable shared libraries.</p>
-<!--TOC paragraph id="sec516" Unix signal handling.-->
-<h5 class="paragraph" id="sec516"><a class="section-anchor" href="#sec516" aria-hidden="true">﻿</a>Unix signal handling.</h5><!--SEC END --><p> Depending on the target platform and
+<!--TOC paragraph id="sec517" Unix signal handling.-->
+<h5 class="paragraph" id="sec517"><a class="section-anchor" href="#sec517" aria-hidden="true">﻿</a>Unix signal handling.</h5><!--SEC END --><p> Depending on the target platform and
 operating system, the native-code runtime system may install signal
 handlers for one or several of the <span class="machine"><span class="font-tt">SIGSEGV</span></span>, <span class="machine"><span class="font-tt">SIGTRAP</span></span> and <span class="machine"><span class="font-tt">SIGFPE</span></span>
 signals when <span class="machine"><span class="font-tt">caml_startup</span></span> is called, and reset these signals to
@@ -25488,8 +25500,8 @@ The kind of array elements is one of the following constants:
 <tr><td class="c006"><span class="machine"><span class="font-tt">CAML_BA_COMPLEX64</span></span></td><td class="c006">64-bit double-precision complex numbers </td></tr>
 <tr><td class="c006"><span class="machine"><span class="font-tt">CAML_BA_CHAR</span></span></td><td class="c006">8-bit characters </td></tr>
 </table></div></div>
-<!--TOC paragraph id="sec528" Warning:-->
-<h5 class="paragraph" id="sec528"><a class="section-anchor" href="#sec528" aria-hidden="true">﻿</a>Warning:</h5><!--SEC END --><p>
+<!--TOC paragraph id="sec529" Warning:-->
+<h5 class="paragraph" id="sec529"><a class="section-anchor" href="#sec529" aria-hidden="true">﻿</a>Warning:</h5><!--SEC END --><p>
 <span class="machine"><span class="font-tt">Caml_ba_array_val(</span></span><span class="font-it">v</span><span class="machine"><span class="font-tt">)</span></span> must always be dereferenced immediately and not stored
 anywhere, including local variables.
 It resolves to a derived pointer: it is not a valid OCaml value but points to
@@ -25659,7 +25671,8 @@ Technically, this is enforced by a “domain lock”
 that any thread must hold while executing such code within a domain.</p><p>When OCaml calls the C code implementing a primitive, the domain lock
 is held, therefore the C code has full access to the facilities of the
 run-time system. However, no other thread in the same domain can execute
-OCaml code concurrently with the C code of the primitive.</p><p>If a C primitive runs for a long time or performs potentially blocking
+OCaml code concurrently with the C code of the primitive.
+See also chapter <a href="#s%3Apar_c_bindings">9.6</a> for the behaviour with multiple domains.</p><p>If a C primitive runs for a long time or performs potentially blocking
 input-output operations, it can explicitly release the domain lock,
 enabling other OCaml threads in the same domain to run concurrently with
 its operations.
@@ -25783,8 +25796,8 @@ string returned by <span class="machine"><span class="font-tt">caml_stat_strdup_
 <span class="machine"><span class="font-tt">caml_copy_string</span></span>.</li></ul><p><span class="font-bold">Note:</span> The strings returned by <span class="machine"><span class="font-tt">caml_stat_strdup_to_os</span></span> and
 <span class="machine"><span class="font-tt">caml_stat_strdup_of_os</span></span> are allocated using <span class="machine"><span class="font-tt">caml_stat_alloc</span></span>, so they need to
 be deallocated using <span class="machine"><span class="font-tt">caml_stat_free</span></span> when they are no longer needed.</p>
-<!--TOC paragraph id="sec538" Example-->
-<h5 class="paragraph" id="sec538"><a class="section-anchor" href="#sec538" aria-hidden="true">﻿</a>Example</h5><!--SEC END --><p> We want to bind the function <span class="machine"><span class="font-tt">getenv</span></span> in a way that works
+<!--TOC paragraph id="sec539" Example-->
+<h5 class="paragraph" id="sec539"><a class="section-anchor" href="#sec539" aria-hidden="true">﻿</a>Example</h5><!--SEC END --><p> We want to bind the function <span class="machine"><span class="font-tt">getenv</span></span> in a way that works
 both under Unix and Windows. Under Unix this function has the prototype:</p><pre>    char *getenv(const char *);
 </pre><p>While the Unicode version under Windows has the prototype:
 </p><pre>    WCHAR *_wgetenv(const WCHAR *);
@@ -25874,8 +25887,8 @@ If not specified, defaults to the output name given with <span class="machine"><
 </dd></dl><p>On native Windows, the following environment variable is also consulted:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">OCAML_FLEXLINK</span></span></span></dt><dd class="dd-description"> Alternative executable to use instead of the
 configured value. Primarily used for bootstrapping.
 </dd></dl>
-<!--TOC paragraph id="sec540" Example-->
-<h5 class="paragraph" id="sec540"><a class="section-anchor" href="#sec540" aria-hidden="true">﻿</a>Example</h5><!--SEC END --><p> Consider an OCaml interface to the standard <span class="machine"><span class="font-tt">libz</span></span>
+<!--TOC paragraph id="sec541" Example-->
+<h5 class="paragraph" id="sec541"><a class="section-anchor" href="#sec541" aria-hidden="true">﻿</a>Example</h5><!--SEC END --><p> Consider an OCaml interface to the standard <span class="machine"><span class="font-tt">libz</span></span>
 C library for reading and writing compressed files. Assume this
 library resides in <span class="machine"><span class="font-tt">/usr/local/zlib</span></span>. This interface is
 composed of an OCaml part <span class="machine"><span class="font-tt">zip.cmo</span></span>/<span class="machine"><span class="font-tt">zip.cmx</span></span> and a C part <span class="machine"><span class="font-tt">zipstubs.o</span></span>
@@ -25920,8 +25933,8 @@ to this internal runtime API, this section provides some guidelines
 that may help you to write code that might not break on every new version
 of OCaml.
 </p>
-<!--TOC paragraph id="sec542" Note-->
-<h5 class="paragraph" id="sec542"><a class="section-anchor" href="#sec542" aria-hidden="true">﻿</a>Note</h5><!--SEC END --><p> Programmers which come to rely on the internal API
+<!--TOC paragraph id="sec543" Note-->
+<h5 class="paragraph" id="sec543"><a class="section-anchor" href="#sec543" aria-hidden="true">﻿</a>Note</h5><!--SEC END --><p> Programmers which come to rely on the internal API
 for a use-case which they find realistic and useful are encouraged to open
 a request for improvement on the bug tracker.</p>
 <!--TOC subsection id="ss:c-internals" 22.15.1 Internal variables and CAML_INTERNALS-->
@@ -25955,8 +25968,8 @@ you could write
 ...
 #endif
 </pre>
-<!--TOC chapter id="sec545" Chapter 23 Optimisation with Flambda-->
-<h1 class="chapter" id="sec545">Chapter 23 Optimisation with Flambda</h1><!--SEC END --><!--NAME flambda.html-->
+<!--TOC chapter id="sec546" Chapter 23 Optimisation with Flambda-->
+<h1 class="chapter" id="sec546">Chapter 23 Optimisation with Flambda</h1><!--SEC END --><!--NAME flambda.html-->
 
 <!--TOC section id="s:flambda-overview" 23.1 Overview-->
 <h2 class="section" id="s:flambda-overview"><a class="section-anchor" href="#s:flambda-overview" aria-hidden="true">﻿</a>23.1 Overview</h2><!--SEC END --><p><em>Flambda</em> is the term used to describe a series of optimisation passes
@@ -26058,8 +26071,8 @@ See section <a href="#ss%3Aflambda-rounds">23.2.1</a>.
 calculation when using <span class="font-tt">-unbox-closures</span>. See
 section <a href="#ss%3Aflambda-unbox-closures">23.9.3</a>.
 </dd></dl>
-<!--TOC paragraph id="sec548" Notes-->
-<h5 class="paragraph" id="sec548"><a class="section-anchor" href="#sec548" aria-hidden="true">﻿</a>Notes</h5><!--SEC END --><ul class="itemize"><li class="li-itemize">The set of command line flags relating to optimisation should typically
+<!--TOC paragraph id="sec549" Notes-->
+<h5 class="paragraph" id="sec549"><a class="section-anchor" href="#sec549" aria-hidden="true">﻿</a>Notes</h5><!--SEC END --><ul class="itemize"><li class="li-itemize">The set of command line flags relating to optimisation should typically
 be specified to be the same across an entire project. Flambda does not
 currently record the requested flags in the <span class="font-tt">.cmx</span> files. As such,
 inlining of functions from previously-compiled units will subject their code
@@ -26362,8 +26375,8 @@ functions within a recursive group (although this has some limitations,
 as shown by the example below).</p><p>It should be noted that the <em>unboxing of closures</em> pass (see below)
 can introduce specialised arguments on non-recursive functions. (No other
 place in the compiler currently does this.)</p>
-<!--TOC paragraph id="sec562" Example: the well-known <span class="font-tt">List.iter</span> function-->
-<h5 class="paragraph" id="sec562"><a class="section-anchor" href="#sec562" aria-hidden="true">﻿</a>Example: the well-known <span class="font-tt">List.iter</span> function</h5><!--SEC END --><p>
+<!--TOC paragraph id="sec563" Example: the well-known <span class="font-tt">List.iter</span> function-->
+<h5 class="paragraph" id="sec563"><a class="section-anchor" href="#sec563" aria-hidden="true">﻿</a>Example: the well-known <span class="font-tt">List.iter</span> function</h5><!--SEC END --><p>
 This function might be written like so:
 </p><pre>let rec iter f l =
   match l with
@@ -26424,8 +26437,8 @@ means that the body of <span class="font-tt">iter’</span> may be simplified:
   in
   iter' (List.rev xs)
 </pre>
-<!--TOC paragraph id="sec563" Aside on invariant parameters.-->
-<h5 class="paragraph" id="sec563"><a class="section-anchor" href="#sec563" aria-hidden="true">﻿</a>Aside on invariant parameters.</h5><!--SEC END --><p> The compiler cannot currently
+<!--TOC paragraph id="sec564" Aside on invariant parameters.-->
+<h5 class="paragraph" id="sec564"><a class="section-anchor" href="#sec564" aria-hidden="true">﻿</a>Aside on invariant parameters.</h5><!--SEC END --><p> The compiler cannot currently
 detect invariance in cases such as the following.
 </p><pre>let rec iter_swap f g l =
   match l with
@@ -26557,8 +26570,8 @@ attribute <span class="font-tt">unrolled(</span><span class="font-it">n</span> �
 As such, <span class="font-it">n</span> behaves as the “maximum depth of unrolling”.
 </dd></dl><p>A compiler warning will be emitted if it was found impossible to obey an
 annotation from an <span class="font-tt">@inlined</span> or <span class="font-tt">@specialised</span> attribute.</p>
-<!--TOC paragraph id="sec569" Example showing correct placement of attributes-->
-<h5 class="paragraph" id="sec569"><a class="section-anchor" href="#sec569" aria-hidden="true">﻿</a>Example showing correct placement of attributes</h5><!--SEC END --><pre>module F (M : sig type t end) = struct
+<!--TOC paragraph id="sec570" Example showing correct placement of attributes-->
+<h5 class="paragraph" id="sec570"><a class="section-anchor" href="#sec570" aria-hidden="true">﻿</a>Example showing correct placement of attributes</h5><!--SEC END --><pre>module F (M : sig type t end) = struct
   let[@inline never] bar x =
     x * 3
 
@@ -26599,8 +26612,8 @@ constants, such as the floating-point number <span class="font-tt">42.0</span>, 
 values such as constant closures.</p><p>Lifting of constants to toplevel reduces allocation at runtime.</p><p>The compiler aims to share constants lifted to toplevel such that there
 are no duplicate definitions. However if <span class="font-tt">.cmx</span> files are hidden
 from the compiler then maximal sharing may not be possible.</p>
-<!--TOC paragraph id="sec573" Notes about float arrays-->
-<h5 class="paragraph" id="sec573"><a class="section-anchor" href="#sec573" aria-hidden="true">﻿</a>Notes about float arrays</h5><!--SEC END --><p> The following language semantics apply specifically to constant float arrays.
+<!--TOC paragraph id="sec574" Notes about float arrays-->
+<h5 class="paragraph" id="sec574"><a class="section-anchor" href="#sec574" aria-hidden="true">﻿</a>Notes about float arrays</h5><!--SEC END --><p> The following language semantics apply specifically to constant float arrays.
 (By “constant float array” is meant an array consisting entirely of floating
 point numbers that are known at compile time. A common case is a literal
 such as <span class="font-tt">[| 42.0; 43.0; |]</span>.
@@ -26658,8 +26671,8 @@ there is
 reasonable certainty that there are no uses of the boxed free variable itself
 within the corresponding function bodies.
 </p>
-<!--TOC paragraph id="sec577" Example:-->
-<h5 class="paragraph" id="sec577"><a class="section-anchor" href="#sec577" aria-hidden="true">﻿</a>Example:</h5><!--SEC END --><p> In the following code, the compiler observes that
+<!--TOC paragraph id="sec578" Example:-->
+<h5 class="paragraph" id="sec578"><a class="section-anchor" href="#sec578" aria-hidden="true">﻿</a>Example:</h5><!--SEC END --><p> In the following code, the compiler observes that
 the closure returned from the function <span class="font-tt">f</span> contains a variable <span class="font-tt">pair</span>
 (free in the body of <span class="font-tt">f</span>) that may be split into two separate variables.
 </p><pre>let f x0 x1 =
@@ -26693,8 +26706,8 @@ reasonable certainty that the boxed argument itself is unused within the
 function.</p><p>If the function in question is involved in a recursive group then unboxing
 of specialised arguments may be immediately replicated across the group
 based on the dataflow between invariant arguments.</p>
-<!--TOC paragraph id="sec579" Example:-->
-<h5 class="paragraph" id="sec579"><a class="section-anchor" href="#sec579" aria-hidden="true">﻿</a>Example:</h5><!--SEC END --><p> Having been given the following code, the compiler
+<!--TOC paragraph id="sec580" Example:-->
+<h5 class="paragraph" id="sec580"><a class="section-anchor" href="#sec580" aria-hidden="true">﻿</a>Example:</h5><!--SEC END --><p> Having been given the following code, the compiler
 will inline <span class="font-tt">loop</span> into <span class="font-tt">f</span>, and then observe <span class="font-tt">inv</span>
 being invariant and always the pair formed by adding <span class="font-tt">42</span> and <span class="font-tt">43</span>
 to the argument <span class="font-tt">x</span> of the function <span class="font-tt">f</span>.
@@ -26756,8 +26769,8 @@ performance may be obtained due to reduced allocation. It is recommended
 that developers experiment to determine whether the option is beneficial
 for their code. (It is expected that in the future it will be possible
 for the performance degradation to be removed.)</p>
-<!--TOC paragraph id="sec581" Simple example:-->
-<h5 class="paragraph" id="sec581"><a class="section-anchor" href="#sec581" aria-hidden="true">﻿</a>Simple example:</h5><!--SEC END --><p> In the following code (which might typically
+<!--TOC paragraph id="sec582" Simple example:-->
+<h5 class="paragraph" id="sec582"><a class="section-anchor" href="#sec582" aria-hidden="true">﻿</a>Simple example:</h5><!--SEC END --><p> In the following code (which might typically
 occur when <span class="font-tt">g</span> is too large to inline) the value of <span class="font-tt">x</span> would usually
 be communicated to the application of the <span class="font-tt">+</span> function via the closure
 of <span class="font-tt">g</span>.
@@ -26791,8 +26804,8 @@ integer, may be used to adjust the point at which a function is deemed
 large enough to be ineligible for duplication. The benefit of
 duplication is scaled by the integer before being evaluated against the
 size.</p>
-<!--TOC paragraph id="sec582" Harder example:-->
-<h5 class="paragraph" id="sec582"><a class="section-anchor" href="#sec582" aria-hidden="true">﻿</a>Harder example:</h5><!--SEC END --><p> In the following code, there are two closure
+<!--TOC paragraph id="sec583" Harder example:-->
+<h5 class="paragraph" id="sec583"><a class="section-anchor" href="#sec583" aria-hidden="true">﻿</a>Harder example:</h5><!--SEC END --><p> In the following code, there are two closure
 variables that would typically cause closure allocations. One is called
 <span class="font-tt">fv</span> and occurs inside the function <span class="font-tt">baz</span>; the other is called
 <span class="font-tt">z</span> and occurs inside the function <span class="font-tt">bar</span>.
@@ -27003,8 +27016,8 @@ enclosed within any function declaration.
 </dd><dt class="dt-description"><span class="font-bold">Variable</span></dt><dd class="dd-description"> A named entity to which some OCaml value is bound by a
 <span class="font-tt">let</span> expression, pattern-matching construction, or similar.
 </dd></dl>
-<!--TOC chapter id="sec596" Chapter 24 Fuzzing with afl-fuzz-->
-<h1 class="chapter" id="sec596">Chapter 24 Fuzzing with afl-fuzz</h1><!--SEC END --><!--NAME afl-fuzz.html-->
+<!--TOC chapter id="sec597" Chapter 24 Fuzzing with afl-fuzz-->
+<h1 class="chapter" id="sec597">Chapter 24 Fuzzing with afl-fuzz</h1><!--SEC END --><!--NAME afl-fuzz.html-->
 
 <!--TOC section id="s:afl-overview" 24.1 Overview-->
 <h2 class="section" id="s:afl-overview"><a class="section-anchor" href="#s:afl-overview" aria-hidden="true">﻿</a>24.1 Overview</h2><!--SEC END --><p>American fuzzy lop (“afl-fuzz”) is a <em>fuzzer</em>, a tool for
@@ -27048,8 +27061,8 @@ afl-fuzz -m none -i input -o output ./readline
 is required to disable afl-fuzz’s default 50MB virtual memory limit.
 
 </p>
-<!--TOC chapter id="sec601" Chapter 25 Runtime tracing with runtime events-->
-<h1 class="chapter" id="sec601">Chapter 25 Runtime tracing with runtime events</h1><!--SEC END --><p>
+<!--TOC chapter id="sec602" Chapter 25 Runtime tracing with runtime events-->
+<h1 class="chapter" id="sec602">Chapter 25 Runtime tracing with runtime events</h1><!--SEC END --><p>
 <a id="c:runtime-tracing"></a>
 </p><!--NAME runtime-tracing.html-->
 <p>This chapter describes the runtime events tracing system which enables
@@ -27266,8 +27279,8 @@ Percentile 	 Latency (ms)
 99.9999 	 9.17
 100.0000 	 9.17
 </pre>
-<!--TOC chapter id="sec614" Chapter 26 The “Tail Modulo Constructor” program transformation-->
-<h1 class="chapter" id="sec614">Chapter 26 The “Tail Modulo Constructor” program transformation</h1><!--SEC END --><p> <a id="c:tail_mod_cons"></a>
+<!--TOC chapter id="sec615" Chapter 26 The “Tail Modulo Constructor” program transformation-->
+<h1 class="chapter" id="sec615">Chapter 26 The “Tail Modulo Constructor” program transformation</h1><!--SEC END --><p> <a id="c:tail_mod_cons"></a>
 </p><!--NAME tail_mod_cons.html-->
 <p>(Introduced in OCaml 4.14)</p><p>Note: this feature is considered experimental, and its interface may
 evolve, with user feedback, in the next few releases of the language.</p><p>Consider this natural implementation of the <span class="machine"><span class="font-tt">List.map</span></span> function:
@@ -27365,8 +27378,8 @@ but is never applied in TMC position.</div></div>
 on functions that contain some recursive calls in tail-modulo-cons
 position, and some calls in other, arbitrary positions. Only the tail
 calls and tail-modulo-cons calls will happen in constant stack space.</p>
-<!--TOC paragraph id="sec615" General design-->
-<h5 class="paragraph" id="sec615"><a class="section-anchor" href="#sec615" aria-hidden="true">﻿</a>General design</h5><!--SEC END --><p> This feature is provided as an explicit
+<!--TOC paragraph id="sec616" General design-->
+<h5 class="paragraph" id="sec616"><a class="section-anchor" href="#sec616" aria-hidden="true">﻿</a>General design</h5><!--SEC END --><p> This feature is provided as an explicit
 program transformation, not an implicit optimization. It is
 annotation-driven: the user is expected to express their intent by
 adding annotations in the program using attributes, and will be asked
@@ -27377,8 +27390,8 @@ all callsites that should not consume any stack
 space. <span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span> extends the set of functions on which calls
 can be annotated to be tail calls, helping establish stack-consumption
 guarantees in more cases.</p>
-<!--TOC paragraph id="sec616" Performance-->
-<h5 class="paragraph" id="sec616"><a class="section-anchor" href="#sec616" aria-hidden="true">﻿</a>Performance</h5><!--SEC END --><p> A standard approach to get a tail-recursive
+<!--TOC paragraph id="sec617" Performance-->
+<h5 class="paragraph" id="sec617"><a class="section-anchor" href="#sec617" aria-hidden="true">﻿</a>Performance</h5><!--SEC END --><p> A standard approach to get a tail-recursive
 version of <span class="machine"><span class="font-tt">List.map</span></span> is to use an accumulator to collect output
 elements, and reverse it at the end of the traversal.</p><div class="caml-example verbatim">
 
@@ -27398,8 +27411,8 @@ elements, and reverse it at the end of the traversal.</p><div class="caml-exampl
 simple, non-tail-recursive version. In contrast, the tail-mod-cons
 transformation provides an implementation that has comparable
 performance to the original version, even on small inputs.</p>
-<!--TOC paragraph id="sec617" Evaluation order-->
-<h5 class="paragraph" id="sec617"><a class="section-anchor" href="#sec617" aria-hidden="true">﻿</a>Evaluation order</h5><!--SEC END --><p> Beware that the tail-modulo-cons
+<!--TOC paragraph id="sec618" Evaluation order-->
+<h5 class="paragraph" id="sec618"><a class="section-anchor" href="#sec618" aria-hidden="true">﻿</a>Evaluation order</h5><!--SEC END --><p> Beware that the tail-modulo-cons
 transformation has an effect on evaluation order: the constructor
 argument that is transformed into tail-position will always be
 evaluated last. Consider the following example:</p><div class="caml-example verbatim">
@@ -27425,8 +27438,8 @@ is unspecified in OCaml, but many implementations typically use
 left-to-right or right-to-left.)</p><p>This effect on evaluation order is one of the reasons why the
 tail-modulo-cons transformation has to be explicitly requested by the
 user, instead of being applied as an automatic optimization.</p>
-<!--TOC paragraph id="sec618" Why tail-modulo-cons?-->
-<h5 class="paragraph" id="sec618"><a class="section-anchor" href="#sec618" aria-hidden="true">﻿</a>Why tail-modulo-cons?</h5><!--SEC END --><p> Other program transformations, in
+<!--TOC paragraph id="sec619" Why tail-modulo-cons?-->
+<h5 class="paragraph" id="sec619"><a class="section-anchor" href="#sec619" aria-hidden="true">﻿</a>Why tail-modulo-cons?</h5><!--SEC END --><p> Other program transformations, in
 particular a transformation to continuation-passing style (CPS), can
 make all functions tail-recursive, instead of targeting only a small
 fragment. Some reasons to provide builtin support for the less-general
@@ -27815,8 +27828,8 @@ and rec flatten_dps l dst i =
 the call gets transformed to a non-tail call.</p>
 <!--TOC section id="sec:limitations" 26.4 Current limitations-->
 <h2 class="section" id="sec:limitations"><a class="section-anchor" href="#sec:limitations" aria-hidden="true">﻿</a>26.4 Current limitations</h2><!--SEC END -->
-<!--TOC paragraph id="sec623" Purely syntactic criterion-->
-<h5 class="paragraph" id="sec623"><a class="section-anchor" href="#sec623" aria-hidden="true">﻿</a>Purely syntactic criterion</h5><!--SEC END --><p> Just like tail calls in
+<!--TOC paragraph id="sec624" Purely syntactic criterion-->
+<h5 class="paragraph" id="sec624"><a class="section-anchor" href="#sec624" aria-hidden="true">﻿</a>Purely syntactic criterion</h5><!--SEC END --><p> Just like tail calls in
 general, the notion of tail-modulo-constructor position is purely
 syntactic; some simple refactoring will move calls out of
 tail-modulo-constructor position.</p><div class="caml-example verbatim">
@@ -27858,8 +27871,8 @@ tail-modulo-constructor position.</p><div class="caml-example verbatim">
 but is never applied in TMC position.</div></div>
 
 </div>
-<!--TOC paragraph id="sec624" Local, first-order transformation-->
-<h5 class="paragraph" id="sec624"><a class="section-anchor" href="#sec624" aria-hidden="true">﻿</a>Local, first-order transformation</h5><!--SEC END --><p> When a function gets
+<!--TOC paragraph id="sec625" Local, first-order transformation-->
+<h5 class="paragraph" id="sec625"><a class="section-anchor" href="#sec625" aria-hidden="true">﻿</a>Local, first-order transformation</h5><!--SEC END --><p> When a function gets
 transformed with tail-mod-cons, two definitions are generated, one
 providing a direct-style interface and one providing the
 destination-passing-style version. However, not all calls to this
@@ -27887,8 +27900,8 @@ constant space.</p><p>These limitations may be an issue in more complex situatio
 mutual recursion happens between functions, with some functions not
 annotated tail-mod-cons, or defined across different modules, or called
 indirectly, for example through function parameters.</p>
-<!--TOC paragraph id="sec625" Non-exact calls to tupled functions-->
-<h5 class="paragraph" id="sec625"><a class="section-anchor" href="#sec625" aria-hidden="true">﻿</a>Non-exact calls to tupled functions</h5><!--SEC END --><p> OCaml performs an
+<!--TOC paragraph id="sec626" Non-exact calls to tupled functions-->
+<h5 class="paragraph" id="sec626"><a class="section-anchor" href="#sec626" aria-hidden="true">﻿</a>Non-exact calls to tupled functions</h5><!--SEC END --><p> OCaml performs an
 implicit optimization for “tupled” functions, which take a single
 parameter that is a tuple: <span class="machine"><span class="font-tt">let f (x, y, z) = ...</span></span>. Direct calls to
 these functions with a tuple literal argument (like <span class="machine"><span class="font-tt">f (a, b, c)</span></span>) will
@@ -27921,14 +27934,14 @@ transformation is not possible.</p><div class="caml-example verbatim">
 <div class="pre caml-output warn"><span class="ocamlwarning">Warning</span> 51 [wrong-tailcall-expectation]: expected tailcall</div></div>
 
 </div>
-<!--TOC part id="sec626" Part IV The OCaml library-->
-<table class="center"><tr><td><h1 class="part" id="sec626">Part IV<br>
+<!--TOC part id="sec627" Part IV The OCaml library-->
+<table class="center"><tr><td><h1 class="part" id="sec627">Part IV<br>
 The OCaml library</h1></td></tr>
 </table><!--SEC END --><p>
 <a id="p:library"></a>
 </p>
-<!--TOC chapter id="sec627" Chapter 27 The core library-->
-<h1 class="chapter" id="sec627">Chapter 27 The core library</h1><!--SEC END --><p> <a id="c:corelib"></a></p><!--NAME core.html-->
+<!--TOC chapter id="sec628" Chapter 27 The core library-->
+<h1 class="chapter" id="sec628">Chapter 27 The core library</h1><!--SEC END --><p> <a id="c:corelib"></a></p><!--NAME core.html-->
 <p>This chapter describes the OCaml core library, which is
 composed of declarations for built-in types and exceptions, plus
 the module <span class="machine"><span class="font-tt">Stdlib</span></span> that provides basic operations on these
@@ -28106,8 +28119,8 @@ The arguments are the location of the definition in the source code
 <!--TOC section id="s:stdlib-module" 27.2 Module <span class="font-tt">Stdlib</span>: the initially opened module-->
 <h2 class="section" id="s:stdlib-module"><a class="section-anchor" href="#s:stdlib-module" aria-hidden="true">﻿</a>27.2 Module <span class="font-tt">Stdlib</span>: the initially opened module</h2><!--SEC END --><ul class="ftoc2"><li class="li-links"><a href="libref/Stdlib.html">Module <span class="font-tt">Stdlib</span></a>: the initially opened module
 </li></ul>
-<!--TOC chapter id="sec632" Chapter 28 The standard library-->
-<h1 class="chapter" id="sec632">Chapter 28 The standard library</h1><!--SEC END --><p> <a id="c:stdlib"></a></p><!--NAME stdlib.html-->
+<!--TOC chapter id="sec633" Chapter 28 The standard library-->
+<h1 class="chapter" id="sec633">Chapter 28 The standard library</h1><!--SEC END --><p> <a id="c:stdlib"></a></p><!--NAME stdlib.html-->
 <p>This chapter describes the functions provided by the OCaml
 standard library. The modules from the standard library are
 automatically linked with the user’s object code files by the <span class="machine"><span class="font-tt">ocamlc</span></span>
@@ -28177,8 +28190,8 @@ provided by these modules, or to add <span class="machine"><span class="font-tt"
 </li><li class="li-links"><a href="libref/Unit.html">Module <span class="font-tt">Unit</span></a>: unit values
 </li><li class="li-links"><a href="libref/Weak.html">Module <span class="font-tt">Weak</span></a>: arrays of weak pointers
 </li></ul>
-<!--TOC chapter id="sec633" Chapter 29 The compiler front-end-->
-<h1 class="chapter" id="sec633">Chapter 29 The compiler front-end</h1><!--SEC END --><p> <a id="c:parsinglib"></a></p><!--NAME parsing.html-->
+<!--TOC chapter id="sec634" Chapter 29 The compiler front-end-->
+<h1 class="chapter" id="sec634">Chapter 29 The compiler front-end</h1><!--SEC END --><p> <a id="c:parsinglib"></a></p><!--NAME parsing.html-->
 <p>
 <a id="Compiler-underscorelibs"></a> </p><p>This chapter describes the OCaml front-end, which declares the abstract
 syntax tree used by the compiler, provides a way to parse, print
@@ -28206,8 +28219,8 @@ type<br>
 </li><li class="li-links"><a href="compilerlibref/Parsetree.html">Module <span class="font-tt">Parsetree</span></a>: OCaml syntax tree
 </li><li class="li-links"><a href="compilerlibref/Pprintast.html">Module <span class="font-tt">Pprintast</span></a>: OCaml syntax printing
 </li></ul>
-<!--TOC chapter id="sec634" Chapter 30 The unix library: Unix system calls-->
-<h1 class="chapter" id="sec634">Chapter 30 The unix library: Unix system calls</h1><!--SEC END --><!--NAME libunix.html-->
+<!--TOC chapter id="sec635" Chapter 30 The unix library: Unix system calls-->
+<h1 class="chapter" id="sec635">Chapter 30 The unix library: Unix system calls</h1><!--SEC END --><!--NAME libunix.html-->
 <p>
 <a id="c:unix"></a></p><p>The <span class="machine"><span class="font-tt">unix</span></span> library makes many Unix
 system calls and system-related library functions available to
@@ -28218,16 +28231,29 @@ details on the behavior of these functions.</p><ul class="ftoc2"><li class="li-l
 </li></ul><p>Not all functions are provided by all Unix variants. If some functions
 are not available, they will raise <span class="machine"><span class="font-tt">Invalid_arg</span></span> when called.</p><p>Programs that use the <span class="machine"><span class="font-tt">unix</span></span> library must be linked as follows:
 </p><pre>
-        ocamlc <span class="font-it">other options</span> unix.cma <span class="font-it">other files</span>
-        ocamlopt <span class="font-it">other options</span> unix.cmxa <span class="font-it">other files</span>
+        ocamlc <span class="font-it">other options</span> -I +unix unix.cma <span class="font-it">other files</span>
+        ocamlopt <span class="font-it">other options</span>  -I +unix unix.cmxa <span class="font-it">other files</span>
 </pre><p>
 For interactive use of the <span class="machine"><span class="font-tt">unix</span></span> library, do:
 </p><pre>
-        ocamlmktop -o mytop unix.cma
+        ocamlmktop -o mytop -I +unix unix.cma
         ./mytop
 </pre><p>
 or (if dynamic linking of C libraries is supported on your platform),
-start <span class="machine"><span class="font-tt">ocaml</span></span> and type <span class="machine"><span class="font-tt">#load "unix.cma";;</span></span>.</p><blockquote class="quote"><span class="osvariant">Windows:</span> 
+start <span class="machine"><span class="font-tt">ocaml</span></span> and type</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> #directory <span class="ocamlstring">"+unix"</span>;;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> #load <span class="ocamlstring">"unix.cma"</span>;;</div></div>
+
+</div><blockquote class="quote"><span class="osvariant">Windows:</span> 
 The Cygwin port of OCaml fully implements all functions from
 the Unix module. The native Win32 ports implement a subset of them.
 Below is a list of the functions that are not implemented, or only
@@ -28271,15 +28297,15 @@ processes </td></tr>
 <tr><td class="c012">terminal functions (<span class="machine"><span class="font-tt">tc*</span></span>)</td><td class="c011">not implemented </td></tr>
 <tr><td class="c012"><span class="machine"><span class="font-tt">setsid</span></span></td><td class="c011">not implemented </td></tr>
 </table></div></div>
-<!--TOC chapter id="sec635" Chapter 31 The str library: regular expressions and string processing-->
-<h1 class="chapter" id="sec635">Chapter 31 The str library: regular expressions and string processing</h1><!--SEC END --><!--NAME libstr.html-->
+<!--TOC chapter id="sec636" Chapter 31 The str library: regular expressions and string processing-->
+<h1 class="chapter" id="sec636">Chapter 31 The str library: regular expressions and string processing</h1><!--SEC END --><!--NAME libstr.html-->
 <p>The <span class="machine"><span class="font-tt">str</span></span> library provides high-level string processing functions,
 some based on regular expressions. It is intended to support the kind
 of file processing that is usually performed with scripting languages
 such as <span class="machine"><span class="font-tt">awk</span></span>, <span class="machine"><span class="font-tt">perl</span></span> or <span class="machine"><span class="font-tt">sed</span></span>.</p><p>Programs that use the <span class="machine"><span class="font-tt">str</span></span> library must be linked as follows:
 </p><pre>
-        ocamlc <span class="font-it">other options</span> str.cma <span class="font-it">other files</span>
-        ocamlopt <span class="font-it">other options</span> str.cmxa <span class="font-it">other files</span>
+        ocamlc <span class="font-it">other options</span> -I +str str.cma <span class="font-it">other files</span>
+        ocamlopt <span class="font-it">other options</span>  -I +str str.cmxa <span class="font-it">other files</span>
 </pre><p>
 For interactive use of the <span class="machine"><span class="font-tt">str</span></span> library, do:
 </p><pre>
@@ -28287,10 +28313,25 @@ For interactive use of the <span class="machine"><span class="font-tt">str</span
         ./mytop
 </pre><p>
 or (if dynamic linking of C libraries is supported on your platform),
-start <span class="machine"><span class="font-tt">ocaml</span></span> and type <span class="machine"><span class="font-tt">#load "str.cma";;</span></span>.</p><ul class="ftoc2"><li class="li-links"><a href="libref/Str.html">Module <span class="font-tt">Str</span></a>: regular expressions and string processing
+start <span class="machine"><span class="font-tt">ocaml</span></span> and type
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> #directory <span class="ocamlstring">"+str"</span>;;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> #load  <span class="ocamlstring">"str.cma"</span>;;</div></div>
+
+</div><ul class="ftoc2"><li class="li-links"><a href="libref/Str.html">Module <span class="font-tt">Str</span></a>: regular expressions and string processing
 </li></ul>
-<!--TOC chapter id="sec636" Chapter 32 The runtime_events library-->
-<h1 class="chapter" id="sec636">Chapter 32 The runtime_events library</h1><!--SEC END --><p>
+<!--TOC chapter id="sec637" Chapter 32 The runtime_events library-->
+<h1 class="chapter" id="sec637">Chapter 32 The runtime_events library</h1><!--SEC END --><p>
 <a id="c:runtime_events"></a></p><!--NAME runtime_events.html-->
 <!--NAME runtime_events.html-->
 <p>The <span class="machine"><span class="font-tt">runtime_events</span></span> library provides an API for consuming runtime tracing and
@@ -28303,8 +28344,8 @@ more information.</p><p>Programs that use runtime_events must be linked as follo
 Compilation units that use the runtime_events library must also be compiled with
 the <span class="machine"><span class="font-tt">-I +runtime_events</span></span> option (see chapter <a href="#c%3Acamlc">13</a>).</p><ul class="ftoc2"><li class="li-links"><a href="libref/Runtime_events.html">Module <span class="font-tt">Runtime_events</span></a>: tracing system
 </li></ul>
-<!--TOC chapter id="sec637" Chapter 33 The threads library-->
-<h1 class="chapter" id="sec637">Chapter 33 The threads library</h1><!--SEC END --><p>
+<!--TOC chapter id="sec638" Chapter 33 The threads library-->
+<h1 class="chapter" id="sec638">Chapter 33 The threads library</h1><!--SEC END --><p>
 <a id="c:threads"></a></p><!--NAME threads.html-->
 <!--NAME libthreads.html-->
 <p>The <span class="machine"><span class="font-tt">threads</span></span> library allows concurrent programming in OCaml. It provides
@@ -28321,15 +28362,15 @@ However, threads provide concurrency and can be used to structure programs as
 several communicating processes. Threads also efficiently support concurrent,
 overlapping I/O operations.</p><p>Programs that use threads must be linked as follows:
 </p><pre>
-        ocamlc -I +threads <span class="font-it">other options</span> unix.cma threads.cma <span class="font-it">other files</span>
-        ocamlopt -I +threads <span class="font-it">other options</span> unix.cmxa threads.cmxa <span class="font-it">other files</span>
+        ocamlc -I +unix -I +threads <span class="font-it">other options</span> unix.cma threads.cma <span class="font-it">other files</span>
+        ocamlopt -I +unix -I +threads <span class="font-it">other options</span> unix.cmxa threads.cmxa <span class="font-it">other files</span>
 </pre><p>
 Compilation units that use the <span class="machine"><span class="font-tt">threads</span></span> library must also be compiled with
 the <span class="machine"><span class="font-tt">-I +threads</span></span> option (see chapter <a href="#c%3Acamlc">13</a>).</p><ul class="ftoc2"><li class="li-links"><a href="libref/Thread.html">Module <span class="font-tt">Thread</span></a>: lightweight threads
 </li><li class="li-links"><a href="libref/Event.html">Module <span class="font-tt">Event</span></a>: first-class synchronous communication
 </li></ul>
-<!--TOC chapter id="sec638" Chapter 34 The dynlink library: dynamic loading and linking of object files-->
-<h1 class="chapter" id="sec638">Chapter 34 The dynlink library: dynamic loading and linking of object files</h1><!--SEC END --><!--NAME libdynlink.html-->
+<!--TOC chapter id="sec639" Chapter 34 The dynlink library: dynamic loading and linking of object files-->
+<h1 class="chapter" id="sec639">Chapter 34 The dynlink library: dynamic loading and linking of object files</h1><!--SEC END --><!--NAME libdynlink.html-->
 <p>The <span class="machine"><span class="font-tt">dynlink</span></span> library supports type-safe dynamic loading and linking
 of bytecode object files (<span class="machine"><span class="font-tt">.cmo</span></span> and <span class="machine"><span class="font-tt">.cma</span></span> files) in a running
 bytecode program, or of native plugins (usually <span class="machine"><span class="font-tt">.cmxs</span></span> files) in a
@@ -28341,14 +28382,15 @@ In native code, there are also some compatibility checks on the
 implementations (to avoid errors with cross-module optimizations); it
 might be useful to hide <span class="machine"><span class="font-tt">.cmx</span></span> files when building native plugins so
 that they remain independent of the implementation of modules in the
-main program.</p><p>Programs that use the <span class="machine"><span class="font-tt">dynlink</span></span> library simply need to link
+main program.</p><p>Programs that use the <span class="machine"><span class="font-tt">dynlink</span></span> library simply need to include
+the dynlink library directory with <span class="machine"><span class="font-tt">-I +dynlink</span></span> and link
 <span class="machine"><span class="font-tt">dynlink.cma</span></span> or <span class="machine"><span class="font-tt">dynlink.cmxa</span></span> with their object files and other libraries.</p><p><span class="font-bold">Note:</span> in order to insure that the dynamically-loaded modules have
 access to all the libraries that are visible to the main program (and not just
 to the parts of those libraries that are actually used in the main program),
 programs using the <span class="machine"><span class="font-tt">dynlink</span></span> library should be linked with <span class="machine"><span class="font-tt">-linkall</span></span>.</p><ul class="ftoc2"><li class="li-links"><a href="libref/Dynlink.html">Module <span class="font-tt">Dynlink</span></a>: dynamic loading of bytecode object files
 </li></ul>
-<!--TOC chapter id="sec639" Chapter 35 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)-->
-<h1 class="chapter" id="sec639">Chapter 35 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</h1><!--SEC END --><!--NAME old.html-->
+<!--TOC chapter id="sec640" Chapter 35 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)-->
+<h1 class="chapter" id="sec640">Chapter 35 Recently removed or moved libraries (Graphics, Bigarray, Num, LablTk)</h1><!--SEC END --><!--NAME old.html-->
 <p>This chapter describes three libraries which were formerly part of the OCaml
 distribution (Graphics, Num, and LablTk), and a library which has now become
 part of OCaml’s standard library, and is documented there (Bigarray).</p>
@@ -28382,8 +28424,8 @@ For interactive use of the <span class="machine"><span class="font-tt">bigarray<
 </pre><p>
 or (if dynamic linking of C libraries is supported on your platform),
 start <span class="machine"><span class="font-tt">ocaml</span></span> and type <span class="machine"><span class="font-tt">#load "bigarray.cma";;</span></span>.</p>
-<!--TOC section id="sec642" 35.3 The Num Library-->
-<h2 class="section" id="sec642"><a class="section-anchor" href="#sec642" aria-hidden="true">﻿</a>35.3 The Num Library</h2><!--SEC END --><p>The <span class="machine"><span class="font-tt">num</span></span> library implements integer arithmetic and rational
+<!--TOC section id="sec643" 35.3 The Num Library-->
+<h2 class="section" id="sec643"><a class="section-anchor" href="#sec643" aria-hidden="true">﻿</a>35.3 The Num Library</h2><!--SEC END --><p>The <span class="machine"><span class="font-tt">num</span></span> library implements integer arithmetic and rational
 arithmetic in arbitrary precision. It was split off the core
 OCaml distribution starting with the 4.06.0 release, and can now be found
 at <a href="https://github.com/ocaml/num"><span class="font-tt">https://github.com/ocaml/num</span></a>.</p><p>New applications that need arbitrary-precision arithmetic should use the
@@ -28396,8 +28438,8 @@ and has a nicer API.</p>
 are distributed separately from the OCaml compiler. The project is now
 hosted at <a href="https://github.com/garrigue/labltk"><span class="font-tt">https://github.com/garrigue/labltk</span></a>.
 </p>
-<!--TOC part id="sec644" Part V Indexes-->
-<table class="center"><tr><td><h1 class="part" id="sec644">Part V<br>
+<!--TOC part id="sec645" Part V Indexes-->
+<table class="center"><tr><td><h1 class="part" id="sec645">Part V<br>
 Indexes</h1></td></tr>
 </table><!--SEC END --><p>
 <a id="p:indexes"></a></p><ul class="ftoc2"><li class="li-links"><a href="libref/index_modules.html">Index of modules</a>
@@ -28406,8 +28448,8 @@ Indexes</h1></td></tr>
 </li><li class="li-links"><a href="libref/index_exceptions.html">Index of exceptions</a>
 </li><li class="li-links"><a href="libref/index_values.html">Index of values</a>
 </li></ul><p>
-<a id="section@the@hevea@index@manual.kwd"></a></p><!--TOC chapter id="sec645" Index of keywords-->
-<h1 class="chapter" id="sec645">Index of keywords</h1><!--SEC END --><div class="theindex"><table class="c001 cellpading0"><tr><td class="c010">
+<a id="section@the@hevea@index@manual.kwd"></a></p><!--TOC chapter id="sec646" Index of keywords-->
+<h1 class="chapter" id="sec646">Index of keywords</h1><!--SEC END --><div class="theindex"><table class="c001 cellpading0"><tr><td class="c010">
 <ul class="indexenv"><li class="li-indexenv"><span class="font-tt">and</span>, <a href="#hevea_manual.kwd21">11.7</a>, <a href="#hevea_manual.kwd93">11.8.1</a>, <a href="#hevea_manual.kwd122">11.9.2</a>, <a href="#hevea_manual.kwd144">11.9.3</a>, <a href="#hevea_manual.kwd146">11.9.4</a>, <a href="#hevea_manual.kwd149">11.9.5</a>, <a href="#hevea_manual.kwd154">11.10</a>, <a href="#hevea_manual.kwd183">11.11</a>, <a href="#hevea_manual.kwd207">12.2</a>, <a href="#hevea_manual.kwd215">12.5</a>
 </li><li class="li-indexenv"><span class="font-tt">as</span>, <a href="#hevea_manual.kwd7">11.4</a>, <a href="#hevea_manual.kwd8">11.4</a>, <a href="#hevea_manual.kwd9">11.4</a>, <a href="#hevea_manual.kwd15">11.6</a>, <a href="#hevea_manual.kwd16">11.6</a>, <a href="#hevea_manual.kwd17">11.6</a>, <a href="#hevea_manual.kwd124">11.9.2</a>, <a href="#hevea_manual.kwd132">11.9.2</a>
 </li><li class="li-indexenv"><span class="font-tt">asr</span>, <a href="#hevea_manual.kwd6">11.3</a>, <a href="#hevea_manual.kwd57">11.7.1</a>, <a href="#hevea_manual.kwd76">11.7.5</a>, <a href="#hevea_manual.kwd83">11.7.5</a>

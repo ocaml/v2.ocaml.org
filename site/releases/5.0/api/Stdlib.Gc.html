@@ -643,6 +643,9 @@
 <div class="info-desc">
 <p>Return the current values of the GC parameters in a <code class="code">control</code> record.</p>
 </div>
+<ul class="info-attributes">
+<li><b>Alert unsynchronized_access.</b> GC parameters are a mutable global state.</li>
+</ul>
 </div>
 
 <pre><span id="VALset"><span class="keyword">val</span> set</span> : <code class="type"><a href="Gc.html#TYPEcontrol">control</a> -&gt; unit</code></pre><div class="info ">
@@ -650,6 +653,9 @@
 <p><code class="code">set&nbsp;r</code> changes the GC parameters according to the <code class="code">control</code> record <code class="code">r</code>.
    The normal usage is: <code class="code"><span class="constructor">Gc</span>.set&nbsp;{&nbsp;(<span class="constructor">Gc</span>.get())&nbsp;<span class="keyword">with</span>&nbsp;<span class="constructor">Gc</span>.verbose&nbsp;=&nbsp;0x00d&nbsp;}</code></p>
 </div>
+<ul class="info-attributes">
+<li><b>Alert unsynchronized_access.</b> GC parameters are a mutable global state.</li>
+</ul>
 </div>
 
 <pre><span id="VALminor"><span class="keyword">val</span> minor</span> : <code class="type">unit -&gt; unit</code></pre><div class="info ">

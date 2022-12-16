@@ -12,7 +12,7 @@
 
 
 
-<h1 class="chapter" id="sec545"><span class="chapter-number">Chapter 23</span> Optimisation with Flambda</h1>
+<h1 class="chapter" id="sec546"><span class="chapter-number">Chapter 23</span> Optimisation with Flambda</h1>
 <header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Optimisation with Flambda</a></li>
 <li><a href="flambda.html#s%3Aflambda-overview"><span class="number">1</span> Overview</a>
 </li><li><a href="flambda.html#s%3Aflambda-cli"><span class="number">2</span> Command-line flags</a>
@@ -132,7 +132,7 @@ See section <a href="#ss%3Aflambda-rounds">23.2.1</a>.
 calculation when using <span class="font-tt">-unbox-closures</span>. See
 section <a href="#ss%3Aflambda-unbox-closures">23.9.3</a>.
 </dd></dl>
-<h5 class="paragraph" id="sec548"><a class="section-anchor" href="#sec548" aria-hidden="true">﻿</a>Notes</h5>
+<h5 class="paragraph" id="sec549"><a class="section-anchor" href="#sec549" aria-hidden="true">﻿</a>Notes</h5>
 <ul class="itemize"><li class="li-itemize">The set of command line flags relating to optimisation should typically
 be specified to be the same across an entire project. Flambda does not
 currently record the requested flags in the <span class="font-tt">.cmx</span> files. As such,
@@ -435,7 +435,7 @@ functions within a recursive group (although this has some limitations,
 as shown by the example below).</p><p>It should be noted that the <em>unboxing of closures</em> pass (see below)
 can introduce specialised arguments on non-recursive functions. (No other
 place in the compiler currently does this.)</p>
-<h5 class="paragraph" id="sec562"><a class="section-anchor" href="#sec562" aria-hidden="true">﻿</a>Example: the well-known <span class="font-tt">List.iter</span> function</h5>
+<h5 class="paragraph" id="sec563"><a class="section-anchor" href="#sec563" aria-hidden="true">﻿</a>Example: the well-known <span class="font-tt">List.iter</span> function</h5>
 <p>
 This function might be written like so:
 </p><pre>let rec iter f l =
@@ -497,7 +497,7 @@ means that the body of <span class="font-tt">iter’</span> may be simplified:
   in
   iter' (List.rev xs)
 </pre>
-<h5 class="paragraph" id="sec563"><a class="section-anchor" href="#sec563" aria-hidden="true">﻿</a>Aside on invariant parameters.</h5>
+<h5 class="paragraph" id="sec564"><a class="section-anchor" href="#sec564" aria-hidden="true">﻿</a>Aside on invariant parameters.</h5>
 <p> The compiler cannot currently
 detect invariance in cases such as the following.
 </p><pre>let rec iter_swap f g l =
@@ -630,7 +630,7 @@ attribute <span class="font-tt">unrolled(</span><span class="font-it">n</span> �
 As such, <span class="font-it">n</span> behaves as the “maximum depth of unrolling”.
 </dd></dl><p>A compiler warning will be emitted if it was found impossible to obey an
 annotation from an <span class="font-tt">@inlined</span> or <span class="font-tt">@specialised</span> attribute.</p>
-<h5 class="paragraph" id="sec569"><a class="section-anchor" href="#sec569" aria-hidden="true">﻿</a>Example showing correct placement of attributes</h5>
+<h5 class="paragraph" id="sec570"><a class="section-anchor" href="#sec570" aria-hidden="true">﻿</a>Example showing correct placement of attributes</h5>
 <pre>module F (M : sig type t end) = struct
   let[@inline never] bar x =
     x * 3
@@ -671,7 +671,7 @@ constants, such as the floating-point number <span class="font-tt">42.0</span>, 
 values such as constant closures.</p><p>Lifting of constants to toplevel reduces allocation at runtime.</p><p>The compiler aims to share constants lifted to toplevel such that there
 are no duplicate definitions. However if <span class="font-tt">.cmx</span> files are hidden
 from the compiler then maximal sharing may not be possible.</p>
-<h5 class="paragraph" id="sec573"><a class="section-anchor" href="#sec573" aria-hidden="true">﻿</a>Notes about float arrays</h5>
+<h5 class="paragraph" id="sec574"><a class="section-anchor" href="#sec574" aria-hidden="true">﻿</a>Notes about float arrays</h5>
 <p> The following language semantics apply specifically to constant float arrays.
 (By “constant float array” is meant an array consisting entirely of floating
 point numbers that are known at compile time. A common case is a literal
@@ -730,7 +730,7 @@ there is
 reasonable certainty that there are no uses of the boxed free variable itself
 within the corresponding function bodies.
 </p>
-<h5 class="paragraph" id="sec577"><a class="section-anchor" href="#sec577" aria-hidden="true">﻿</a>Example:</h5>
+<h5 class="paragraph" id="sec578"><a class="section-anchor" href="#sec578" aria-hidden="true">﻿</a>Example:</h5>
 <p> In the following code, the compiler observes that
 the closure returned from the function <span class="font-tt">f</span> contains a variable <span class="font-tt">pair</span>
 (free in the body of <span class="font-tt">f</span>) that may be split into two separate variables.
@@ -765,7 +765,7 @@ reasonable certainty that the boxed argument itself is unused within the
 function.</p><p>If the function in question is involved in a recursive group then unboxing
 of specialised arguments may be immediately replicated across the group
 based on the dataflow between invariant arguments.</p>
-<h5 class="paragraph" id="sec579"><a class="section-anchor" href="#sec579" aria-hidden="true">﻿</a>Example:</h5>
+<h5 class="paragraph" id="sec580"><a class="section-anchor" href="#sec580" aria-hidden="true">﻿</a>Example:</h5>
 <p> Having been given the following code, the compiler
 will inline <span class="font-tt">loop</span> into <span class="font-tt">f</span>, and then observe <span class="font-tt">inv</span>
 being invariant and always the pair formed by adding <span class="font-tt">42</span> and <span class="font-tt">43</span>
@@ -828,7 +828,7 @@ performance may be obtained due to reduced allocation. It is recommended
 that developers experiment to determine whether the option is beneficial
 for their code. (It is expected that in the future it will be possible
 for the performance degradation to be removed.)</p>
-<h5 class="paragraph" id="sec581"><a class="section-anchor" href="#sec581" aria-hidden="true">﻿</a>Simple example:</h5>
+<h5 class="paragraph" id="sec582"><a class="section-anchor" href="#sec582" aria-hidden="true">﻿</a>Simple example:</h5>
 <p> In the following code (which might typically
 occur when <span class="font-tt">g</span> is too large to inline) the value of <span class="font-tt">x</span> would usually
 be communicated to the application of the <span class="font-tt">+</span> function via the closure
@@ -863,7 +863,7 @@ integer, may be used to adjust the point at which a function is deemed
 large enough to be ineligible for duplication. The benefit of
 duplication is scaled by the integer before being evaluated against the
 size.</p>
-<h5 class="paragraph" id="sec582"><a class="section-anchor" href="#sec582" aria-hidden="true">﻿</a>Harder example:</h5>
+<h5 class="paragraph" id="sec583"><a class="section-anchor" href="#sec583" aria-hidden="true">﻿</a>Harder example:</h5>
 <p> In the following code, there are two closure
 variables that would typically cause closure allocations. One is called
 <span class="font-tt">fv</span> and occurs inside the function <span class="font-tt">baz</span>; the other is called

@@ -97,6 +97,10 @@
 <h1>Module <a href="type_Stdlib.Hashtbl.html">Stdlib.Hashtbl</a></h1>
 
 <pre><span id="MODULEHashtbl"><span class="keyword">module</span> Hashtbl</span>: <code class="type"><a href="Hashtbl.html">Hashtbl</a></code></pre><hr width="100%">
+<p><b>Unsynchronized accesses</b></p>
+<p>Unsynchronized accesses to a hash table may lead to an invalid hash table
+    state. Thus, concurrent accesses to a hash tables must be synchronized
+    (for instance with a <a href="Mutex.html#TYPEt"><code class="code"><span class="constructor">Mutex</span>.t</code></a>).</p>
 <h2 id="1_Genericinterface">Generic interface</h2>
 <pre><span id="TYPEt"><span class="keyword">type</span> <code class="type">('a, 'b)</code> t</span> </pre>
 <div class="info ">
@@ -114,11 +118,11 @@
    the table.  The table grows as needed, so <code class="code">n</code> is just an
    initial guess.</p>
 
-<p>The optional <code class="code">~</code><code class="code">random</code> parameter (a boolean) controls whether
+<p>The optional <code class="code">~random</code> parameter (a boolean) controls whether
    the internal organization of the hash table is randomized at each
    execution of <code class="code"><span class="constructor">Hashtbl</span>.create</code> or deterministic over all executions.</p>
 
-<p>A hash table that is created with <code class="code">~</code><code class="code">random</code> set to <code class="code"><span class="keyword">false</span></code> uses a
+<p>A hash table that is created with <code class="code">~random</code> set to <code class="code"><span class="keyword">false</span></code> uses a
    fixed hash function (<a href="Hashtbl.html#VALhash"><code class="code"><span class="constructor">Hashtbl</span>.hash</code></a>) to distribute keys among
    buckets.  As a consequence, collisions between keys happen
    deterministically.  In Web-facing applications or other
@@ -127,7 +131,7 @@
    denial-of-service attack: the attacker sends input crafted to
    create many collisions in the table, slowing the application down.</p>
 
-<p>A hash table that is created with <code class="code">~</code><code class="code">random</code> set to <code class="code"><span class="keyword">true</span></code> uses the seeded
+<p>A hash table that is created with <code class="code">~random</code> set to <code class="code"><span class="keyword">true</span></code> uses the seeded
    hash function <a href="Hashtbl.html#VALseeded_hash"><code class="code"><span class="constructor">Hashtbl</span>.seeded_hash</code></a> with a seed that is randomly chosen at hash
    table creation time.  In effect, the hash function used is randomly
    selected among <code class="code">2^{30}</code> different hash functions.  All these hash
@@ -137,13 +141,13 @@
    or <a href="Hashtbl.html#VALiter"><code class="code"><span class="constructor">Hashtbl</span>.iter</code></a> is no longer deterministic: elements are enumerated in
    different orders at different runs of the program.</p>
 
-<p>If no <code class="code">~</code><code class="code">random</code> parameter is given, hash tables are created
+<p>If no <code class="code">~random</code> parameter is given, hash tables are created
    in non-random mode by default.  This default can be changed
    either programmatically by calling <a href="Hashtbl.html#VALrandomize"><code class="code"><span class="constructor">Hashtbl</span>.randomize</code></a> or by
    setting the <code class="code"><span class="constructor">R</span></code> flag in the <code class="code"><span class="constructor">OCAMLRUNPARAM</span></code> environment variable.</p>
 </div>
 <ul class="info-attributes">
-<li><b>Before 4.00.0 </b> the <code class="code">~</code><code class="code">random</code> parameter was not present and all
+<li><b>Before 4.00.0 </b> the <code class="code">~random</code> parameter was not present and all
    hash tables were created in non-randomized mode.</li>
 </ul>
 </div>

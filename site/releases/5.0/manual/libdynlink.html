@@ -12,7 +12,7 @@
 
 
 
-<h1 class="chapter" id="sec638"><span class="chapter-number">Chapter 34</span> The dynlink library: dynamic loading and linking of object files</h1>
+<h1 class="chapter" id="sec639"><span class="chapter-number">Chapter 34</span> The dynlink library: dynamic loading and linking of object files</h1>
 <p>The <span class="machine"><span class="font-tt">dynlink</span></span> library supports type-safe dynamic loading and linking
 of bytecode object files (<span class="machine"><span class="font-tt">.cmo</span></span> and <span class="machine"><span class="font-tt">.cma</span></span> files) in a running
 bytecode program, or of native plugins (usually <span class="machine"><span class="font-tt">.cmxs</span></span> files) in a
@@ -24,7 +24,8 @@ In native code, there are also some compatibility checks on the
 implementations (to avoid errors with cross-module optimizations); it
 might be useful to hide <span class="machine"><span class="font-tt">.cmx</span></span> files when building native plugins so
 that they remain independent of the implementation of modules in the
-main program.</p><p>Programs that use the <span class="machine"><span class="font-tt">dynlink</span></span> library simply need to link
+main program.</p><p>Programs that use the <span class="machine"><span class="font-tt">dynlink</span></span> library simply need to include
+the dynlink library directory with <span class="machine"><span class="font-tt">-I +dynlink</span></span> and link
 <span class="machine"><span class="font-tt">dynlink.cma</span></span> or <span class="machine"><span class="font-tt">dynlink.cmxa</span></span> with their object files and other libraries.</p><p><span class="font-bold">Note:</span> in order to insure that the dynamically-loaded modules have
 access to all the libraries that are visible to the main program (and not just
 to the parts of those libraries that are actually used in the main program),

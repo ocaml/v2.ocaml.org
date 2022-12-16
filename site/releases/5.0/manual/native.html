@@ -12,7 +12,7 @@
 
 
 
-<h1 class="chapter" id="sec359"><span class="chapter-number">Chapter 16</span> Native-code compilation (ocamlopt)</h1>
+<h1 class="chapter" id="sec360"><span class="chapter-number">Chapter 16</span> Native-code compilation (ocamlopt)</h1>
 <header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Native-code compilation (ocamlopt)</a></li>
 <li><a href="native.html#s%3Anative-overview"><span class="number">1</span> Overview of the compiler</a>
 </li><li><a href="native.html#s%3Anative-options"><span class="number">2</span> Options</a>
@@ -621,7 +621,7 @@ Process <span class="font-it">file</span> as a file name, even if it starts with
 character.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-help</span></span> or <span class="machine"><span class="font-tt">--help</span></span></span></dt><dd class="dd-description">
 Display a short usage summary and exit.</dd></dl>
-<h5 class="paragraph" id="sec362"><a class="section-anchor" href="#sec362" aria-hidden="true">﻿</a>Options for the 32-bit x86 architecture</h5>
+<h5 class="paragraph" id="sec363"><a class="section-anchor" href="#sec363" aria-hidden="true">﻿</a>Options for the 32-bit x86 architecture</h5>
 <p>
 The 32-bit code generator for Intel/AMD x86 processors (<span class="machine"><span class="font-tt">i386</span></span>
 architecture) supports the
@@ -634,14 +634,14 @@ and the precision of the result can be reduced. In particular,
 trigonometric operations <span class="machine"><span class="font-tt">cos</span></span>, <span class="machine"><span class="font-tt">sin</span></span>, <span class="machine"><span class="font-tt">tan</span></span> have their range reduced to
 [−2<sup>64</sup>, 2<sup>64</sup>].
 </dd></dl>
-<h5 class="paragraph" id="sec363"><a class="section-anchor" href="#sec363" aria-hidden="true">﻿</a>Options for the 64-bit x86 architecture</h5>
+<h5 class="paragraph" id="sec364"><a class="section-anchor" href="#sec364" aria-hidden="true">﻿</a>Options for the 64-bit x86 architecture</h5>
 <p>
 The 64-bit code generator for Intel/AMD x86 processors (<span class="machine"><span class="font-tt">amd64</span></span>
 architecture) supports the following additional options:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-fPIC</span></span></span></dt><dd class="dd-description"> Generate position-independent machine code. This is
 the default.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-fno-PIC</span></span></span></dt><dd class="dd-description"> Generate position-dependent machine code.
 </dd></dl>
-<h5 class="paragraph" id="sec364"><a class="section-anchor" href="#sec364" aria-hidden="true">﻿</a>Options for the PowerPC architecture</h5>
+<h5 class="paragraph" id="sec365"><a class="section-anchor" href="#sec365" aria-hidden="true">﻿</a>Options for the PowerPC architecture</h5>
 <p>
 The PowerPC code generator supports the following additional options:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-flarge-toc</span></span></span></dt><dd class="dd-description"> Enables the PowerPC large model allowing the TOC (table of
 contents) to be arbitrarily large. This is the default since 4.11.
@@ -649,7 +649,7 @@ contents) to be arbitrarily large. This is the default since 4.11.
 to 64 kbytes per compilation unit. Prior to 4.11 this was the default
 behaviour.
 </dd></dl>
-<h5 class="paragraph" id="sec365"><a class="section-anchor" href="#sec365" aria-hidden="true">﻿</a>Contextual control of command-line options</h5>
+<h5 class="paragraph" id="sec366"><a class="section-anchor" href="#sec366" aria-hidden="true">﻿</a>Contextual control of command-line options</h5>
 <p>The compiler command line can be modified “from the outside”
 with the following mechanisms. These are experimental
 and subject to change. They should be used only for experimental and

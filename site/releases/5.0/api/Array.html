@@ -91,11 +91,15 @@
 <link title="Arrays of pairs" rel="Section" href="#1_Arraysofpairs">
 <link title="Sorting" rel="Section" href="#1_Sorting">
 <link title="Arrays and Sequences" rel="Section" href="#1_ArraysandSequences">
+<link title="Arrays and concurrency safety" rel="Section" href="#array_concurrency">
+<link title="Atomicity" rel="Subsection" href="#array_atomicity">
+<link title="Data races" rel="Subsection" href="#array_data_race">
+<link title="Float arrays" rel="Subsection" href="#array_data_race_exceptions">
 <title>OCaml library : Array</title>
 <script src="search.js"></script><script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
 <body><div class="api"><div id="sidebar-button"><span>☰</span></div><header id="sidebar"><nav class="toc brand"><a class="brand" href="../manual/index.html"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">API Version 5.0</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" class="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
 <img src="search_icon.svg" alt="Search" class="api_search svg" onclick="mySearch(false)"></div>
-<div id="search_results"></div><div class="toc_title"><a href="#top">OCaml library : Array</a></div><ul><li><a href="#1_Iterators">Iterators</a></li><li><a href="#1_Iteratorsontwoarrays">Iterators on two arrays</a></li><li><a href="#1_Arrayscanning">Array scanning</a></li><li><a href="#1_Arraysofpairs">Arrays of pairs</a></li><li><a href="#1_Sorting">Sorting</a></li><li><a href="#1_ArraysandSequences">Arrays and Sequences</a></li></ul></nav></header>
+<div id="search_results"></div><div class="toc_title"><a href="#top">OCaml library : Array</a></div><ul><li><a href="#1_Iterators">Iterators</a></li><li><a href="#1_Iteratorsontwoarrays">Iterators on two arrays</a></li><li><a href="#1_Arrayscanning">Array scanning</a></li><li><a href="#1_Arraysofpairs">Arrays of pairs</a></li><li><a href="#1_Sorting">Sorting</a></li><li><a href="#1_ArraysandSequences">Arrays and Sequences</a></li><li><a href="#array_concurrency">Arrays and concurrency safety</a><ul><li><a href="#array_atomicity">Atomicity</a></li><li><a href="#array_data_race">Data races</a></li><li><a href="#array_data_race_exceptions">Float arrays</a></li></ul></li></ul></nav></header>
 <h1>Module <a href="type_Array.html">Array</a></h1>
 
 <pre><span id="MODULEArray"><span class="keyword">module</span> Array</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Array.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
@@ -545,5 +549,69 @@
 <li><b>Since</b> 4.07</li>
 </ul>
 </div>
+<h2 id="array_concurrency">Arrays and concurrency safety</h2>
+<p>Care must be taken when concurrently accessing arrays from multiple
+    domains: accessing an array will never crash a program, but unsynchronized
+    accesses might yield surprising (non-sequentially-consistent) results.</p>
+
+<h3 id="array_atomicity">Atomicity</h3>
+<p>Every array operation that accesses more than one array element is not
+    atomic. This includes iteration, scanning, sorting, splitting and
+    combining arrays.</p>
+
+<p>For example, consider the following program:</p>
+<pre class="codepre"><code class="code"><span class="keyword">let</span> size = 100_000_000
+<span class="keyword">let</span> a = <span class="constructor">Array</span>.make size 1
+<span class="keyword">let</span> d1 = <span class="constructor">Domain</span>.spawn (<span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span>
+   <span class="constructor">Array</span>.iteri (<span class="keyword">fun</span> i x <span class="keywordsign">-&gt;</span> a.(i) &lt;- x + 1) a
+)
+<span class="keyword">let</span> d2 = <span class="constructor">Domain</span>.spawn (<span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span>
+  <span class="constructor">Array</span>.iteri (<span class="keyword">fun</span> i x <span class="keywordsign">-&gt;</span> a.(i) &lt;- 2 * x + 1) a
+)
+<span class="keyword">let</span> () = <span class="constructor">Domain</span>.join d1; <span class="constructor">Domain</span>.join d2
+</code></pre>
+<p>After executing this code, each field of the array <code class="code">a</code> is either <code class="code">2</code>, <code class="code">3</code>,
+    <code class="code">4</code> or <code class="code">5</code>. If atomicity is required, then the user must implement their own
+    synchronization (for example, using <a href="Mutex.html#TYPEt"><code class="code"><span class="constructor">Mutex</span>.t</code></a>).</p>
+
+<h3 id="array_data_race">Data races</h3>
+<p>If two domains only access disjoint parts of the array, then the
+    observed behaviour is the equivalent to some sequential interleaving of the
+    operations from the two domains.</p>
+
+<p>A data race is said to occur when two domains access the same array element
+    without synchronization and at least one of the accesses is a write.
+    In the absence of data races, the observed behaviour is equivalent to some
+    sequential interleaving of the operations from different domains.</p>
+
+<p>Whenever possible, data races should be avoided by using synchronization to
+    mediate the accesses to the array elements.</p>
+
+<p>Indeed, in the presence of data races, programs will not crash but the
+    observed behaviour may not be equivalent to any sequential interleaving of
+    operations from different domains. Nevertheless, even in the presence of
+    data races, a read operation will return the value of some prior write to
+    that location (with a few exceptions for float arrays).</p>
+
+<h3 id="array_data_race_exceptions">Float arrays</h3>
+<p>Float arrays have two supplementary caveats in the presence of data races.</p>
+
+<p>First, the blit operation might copy an array byte-by-byte. Data races
+    between such a blit operation and another operation might produce surprising
+    values due to tearing: partial writes interleaved with other operations can
+    create float values that would not exist with a sequential execution.</p>
+
+<p>For instance, at the end of</p>
+<pre class="codepre"><code class="code"><span class="keyword">let</span> zeros = <span class="constructor">Array</span>.make size 0.
+<span class="keyword">let</span> max_floats = <span class="constructor">Array</span>.make size <span class="constructor">Float</span>.max_float
+<span class="keyword">let</span> res = <span class="constructor">Array</span>.copy zeros
+<span class="keyword">let</span> d1 = <span class="constructor">Domain</span>.spawn (<span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span> <span class="constructor">Array</span>.blit zeros 0 res 0 size)
+<span class="keyword">let</span> d2 = <span class="constructor">Domain</span>.spawn (<span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span> <span class="constructor">Array</span>.blit max_floats 0 res 0 size)
+<span class="keyword">let</span> () = <span class="constructor">Domain</span>.join d1; <span class="constructor">Domain</span>.join d2
+</code></pre><p>the <code class="code">res</code> array might contain values that are neither <code class="code">0.</code> nor <code class="code">max_float</code>.</p>
+
+<p>Second, on 32-bit architectures, getting or setting a field involves two
+    separate memory accesses. In the presence of data races, the user may
+    observe tearing on any operation.</p>
 
 </div></body></html>

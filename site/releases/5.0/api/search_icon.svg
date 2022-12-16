@@ -31,6 +31,8 @@
   </head>
 
   <body class="light">
+    
+    
     <header 
   class="h-20 flex items-center text-white dark:bg-[#171717]"
   x-data="{ open: false, sidebar: window.innerWidth > 1024 && true, showOnMobile: false}"
@@ -286,9 +288,10 @@
 
         <ul>
           <li class="text-lg font-semibold pb-3">Legal</li>
-          <li class="py-3"><a href="/carbon-footprint">Carbon Footprint</a></li>
-          <li class="py-3"><a href="/governance">Governance</a></li>
-          <li class="py-3"><a href="/privacy-policy">Privacy Policy</a></li>
+          <li class="py-3"><a href="/policies/carbon-footprint">Carbon Footprint</a></li>
+          <li class="py-3"><a href="/policies/governance">Governance</a></li>
+          <li class="py-3"><a href="/policies/privacy-policy">Privacy Policy</a></li>
+          <li class="py-3"><a href="/policies/code-of-conduct">Code of Conduct</a></li>
         </ul>
       </div>
     </div>

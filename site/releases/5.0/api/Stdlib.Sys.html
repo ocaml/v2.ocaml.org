@@ -250,6 +250,9 @@
    programs and to <code class="code"><span class="keyword">true</span></code> if the code is being executed under
    the interactive toplevel system <code class="code">ocaml</code>.</p>
 </div>
+<ul class="info-attributes">
+<li><b>Alert unsynchronized_access.</b> The interactive status is a mutable global state.</li>
+</ul>
 </div>
 
 <pre><span id="VALos_type"><span class="keyword">val</span> os_type</span> : <code class="type">string</code></pre><div class="info ">
@@ -707,6 +710,11 @@
 
 
 <pre><span id="TYPEextra_info"><span class="keyword">type</span> <code class="type"></code>extra_info</span> = <code class="type"><a href="Sys.html#TYPEextra_prefix">extra_prefix</a> * string</code> </pre>
+<div class="info ">
+<ul class="info-attributes">
+<li><b>Since</b> 4.14</li>
+</ul>
+</div>
 
 
 <pre><code><span id="TYPEocaml_release_info"><span class="keyword">type</span> <code class="type"></code>ocaml_release_info</span> = {</code></pre><table class="typetable">
@@ -740,9 +748,22 @@
 </tr></tbody></table>
 <code>}</code>
 
+<div class="info ">
+<ul class="info-attributes">
+<li><b>Since</b> 4.14</li>
+</ul>
+</div>
 
 
-<pre><span id="VALocaml_release"><span class="keyword">val</span> ocaml_release</span> : <code class="type"><a href="Sys.html#TYPEocaml_release_info">ocaml_release_info</a></code></pre>
+<pre><span id="VALocaml_release"><span class="keyword">val</span> ocaml_release</span> : <code class="type"><a href="Sys.html#TYPEocaml_release_info">ocaml_release_info</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">ocaml_release</code> is the version of OCaml.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.14</li>
+</ul>
+</div>
+
 <pre><span id="VALenable_runtime_warnings"><span class="keyword">val</span> enable_runtime_warnings</span> : <code class="type">bool -&gt; unit</code></pre><div class="info ">
 <div class="info-desc">
 <p>Control whether the OCaml runtime system can emit warnings
@@ -752,6 +773,7 @@
 </div>
 <ul class="info-attributes">
 <li><b>Since</b> 4.03.0</li>
+<li><b>Alert unsynchronized_access.</b> The status of runtime warnings is a mutable global state.</li>
 </ul>
 </div>
 
@@ -761,6 +783,7 @@
 </div>
 <ul class="info-attributes">
 <li><b>Since</b> 4.03.0</li>
+<li><b>Alert unsynchronized_access.</b> The status of runtime warnings is a mutable global state.</li>
 </ul>
 </div>
 <h2 id="1_Optimization">Optimization</h2>

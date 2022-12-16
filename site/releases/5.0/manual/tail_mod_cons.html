@@ -12,7 +12,7 @@
 
 
 
-<h1 class="chapter" id="sec614"><span class="chapter-number">Chapter 26</span> The “Tail Modulo Constructor” program transformation</h1>
+<h1 class="chapter" id="sec615"><span class="chapter-number">Chapter 26</span> The “Tail Modulo Constructor” program transformation</h1>
 <header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.0</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The “Tail Modulo Constructor” program transformation</a></li>
 <li><a href="tail_mod_cons.html#sec%3Adisambiguation"><span class="number">1</span> Disambiguation</a>
 </li><li><a href="tail_mod_cons.html#sec%3Aout-of-tmc"><span class="number">2</span> Danger: getting out of tail-mod-cons</a>
@@ -116,7 +116,7 @@ but is never applied in TMC position.</div></div>
 on functions that contain some recursive calls in tail-modulo-cons
 position, and some calls in other, arbitrary positions. Only the tail
 calls and tail-modulo-cons calls will happen in constant stack space.</p>
-<h5 class="paragraph" id="sec615"><a class="section-anchor" href="#sec615" aria-hidden="true"></a>General design</h5>
+<h5 class="paragraph" id="sec616"><a class="section-anchor" href="#sec616" aria-hidden="true"></a>General design</h5>
 <p> This feature is provided as an explicit
 program transformation, not an implicit optimization. It is
 annotation-driven: the user is expected to express their intent by
@@ -128,7 +128,7 @@ all callsites that should not consume any stack
 space. <span class="machine"><span class="font-tt">[@tail_mod_cons]</span></span> extends the set of functions on which calls
 can be annotated to be tail calls, helping establish stack-consumption
 guarantees in more cases.</p>
-<h5 class="paragraph" id="sec616"><a class="section-anchor" href="#sec616" aria-hidden="true">﻿</a>Performance</h5>
+<h5 class="paragraph" id="sec617"><a class="section-anchor" href="#sec617" aria-hidden="true">﻿</a>Performance</h5>
 <p> A standard approach to get a tail-recursive
 version of <span class="machine"><span class="font-tt">List.map</span></span> is to use an accumulator to collect output
 elements, and reverse it at the end of the traversal.</p><div class="caml-example verbatim">
@@ -149,7 +149,7 @@ elements, and reverse it at the end of the traversal.</p><div class="caml-exampl
 simple, non-tail-recursive version. In contrast, the tail-mod-cons
 transformation provides an implementation that has comparable
 performance to the original version, even on small inputs.</p>
-<h5 class="paragraph" id="sec617"><a class="section-anchor" href="#sec617" aria-hidden="true">﻿</a>Evaluation order</h5>
+<h5 class="paragraph" id="sec618"><a class="section-anchor" href="#sec618" aria-hidden="true">﻿</a>Evaluation order</h5>
 <p> Beware that the tail-modulo-cons
 transformation has an effect on evaluation order: the constructor
 argument that is transformed into tail-position will always be
@@ -176,7 +176,7 @@ is unspecified in OCaml, but many implementations typically use
 left-to-right or right-to-left.)</p><p>This effect on evaluation order is one of the reasons why the
 tail-modulo-cons transformation has to be explicitly requested by the
 user, instead of being applied as an automatic optimization.</p>
-<h5 class="paragraph" id="sec618"><a class="section-anchor" href="#sec618" aria-hidden="true">﻿</a>Why tail-modulo-cons?</h5>
+<h5 class="paragraph" id="sec619"><a class="section-anchor" href="#sec619" aria-hidden="true">﻿</a>Why tail-modulo-cons?</h5>
 <p> Other program transformations, in
 particular a transformation to continuation-passing style (CPS), can
 make all functions tail-recursive, instead of targeting only a small
@@ -565,7 +565,7 @@ and rec flatten_dps l dst i =
 </pre><p>If <span class="machine"><span class="font-tt">append_flatten</span></span> does not have a destination-passing-style version,
 the call gets transformed to a non-tail call.</p>
 <h2 class="section" id="sec:limitations"><a class="section-anchor" href="#sec:limitations" aria-hidden="true">﻿</a><span class="number">4</span> Current limitations</h2>
-<h5 class="paragraph" id="sec623"><a class="section-anchor" href="#sec623" aria-hidden="true">﻿</a>Purely syntactic criterion</h5>
+<h5 class="paragraph" id="sec624"><a class="section-anchor" href="#sec624" aria-hidden="true">﻿</a>Purely syntactic criterion</h5>
 <p> Just like tail calls in
 general, the notion of tail-modulo-constructor position is purely
 syntactic; some simple refactoring will move calls out of
@@ -608,7 +608,7 @@ tail-modulo-constructor position.</p><div class="caml-example verbatim">
 but is never applied in TMC position.</div></div>
 
 </div>
-<h5 class="paragraph" id="sec624"><a class="section-anchor" href="#sec624" aria-hidden="true">﻿</a>Local, first-order transformation</h5>
+<h5 class="paragraph" id="sec625"><a class="section-anchor" href="#sec625" aria-hidden="true">﻿</a>Local, first-order transformation</h5>
 <p> When a function gets
 transformed with tail-mod-cons, two definitions are generated, one
 providing a direct-style interface and one providing the
@@ -637,7 +637,7 @@ constant space.</p><p>These limitations may be an issue in more complex situatio
 mutual recursion happens between functions, with some functions not
 annotated tail-mod-cons, or defined across different modules, or called
 indirectly, for example through function parameters.</p>
-<h5 class="paragraph" id="sec625"><a class="section-anchor" href="#sec625" aria-hidden="true">﻿</a>Non-exact calls to tupled functions</h5>
+<h5 class="paragraph" id="sec626"><a class="section-anchor" href="#sec626" aria-hidden="true">﻿</a>Non-exact calls to tupled functions</h5>
 <p> OCaml performs an
 implicit optimization for “tupled” functions, which take a single
 parameter that is a tuple: <span class="machine"><span class="font-tt">let f (x, y, z) = ...</span></span>. Direct calls to

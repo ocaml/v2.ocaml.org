@@ -4,9 +4,9 @@
                                    release 5.0
                         Documentation and user’s manual
                                   Xavier Leroy,
-    Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy and Jérôme
-                                   Vouillon
-                                12^thOctober, 2022
+                 Damien Doligez, Alain Frisch, Jacques Garrigue,
+             Didier Rémy, KC Sivaramakrishnan and Jérôme Vouillon
+                               20^thDecember , 2022
        Copyright © 2013 Institut National de Recherche en Informatique et en
                                  Automatique 
 
@@ -142,9 +142,10 @@ Contents
 
             - 9.5.1 Interaction with systhreads 
 
-         - 9.6 Atomics 
+         - 9.6 Interaction with C bindings 
+         - 9.7 Atomics 
 
-            - 9.6.1 Lock-free stack 
+            - 9.7.1 Lock-free stack 
 
 
       - Chapter 10 Memory model: The hard bits 
@@ -658,7 +659,7 @@ Contents
          - 28.13 Module Condition : Condition variables. 
          - 28.14 Module Domain 
          - 28.15 Module Digest : MD5 message digest. 
-         - 28.16 Module Effect : Effects. 
+         - 28.16 Module Effect 
          - 28.17 Module Either : Either type. 
          - 28.18 Module Ephemeron : Ephemerons and weak hash tables. 
          - 28.19 Module Filename : Operations on file names. 
@@ -8578,7 +8579,7 @@ Reference cells, arrays and mutable record fields are said to be non-atomic
 data structures. A data race is said to occur when two domains concurrently
 access a non-atomic memory location without synchronisation and at least one of
 the accesses is a write. OCaml provides a number of ways to introduce
-synchronisation including atomic variables (section 9.6) and mutexes (section
+synchronisation including atomic variables (section 9.7) and mutexes (section
 9.5).
   Importantly, for data race free (DRF) programs, OCaml provides sequentially
 consistent (SC) semantics – the observed behaviour of such programs can be
@@ -8729,7 +8730,20 @@ initial domain gets the domain id and the thread id as 0. The newly spawned
 domain gets domain id as 1.
 
 
-9.6 Atomics
+9.6 Interaction with C bindings
+*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+
+
+  During parallel execution with multiple domains, C code running on a domain
+may run in parallel with any C code running in other domains even if neither of
+them has released the “domain lock”. Prior to OCaml 5.0, C bindings may
+have assumed that if the OCaml runtime lock is not released, then it would be
+safe to manipulate global C state (e.g. initialise a function-local static
+value). This is no longer true in the presence of parallel execution with
+multiple domains.
+
+
+9.7 Atomics
 *=*=*=*=*=*=*
 
 
@@ -8831,7 +8845,7 @@ between two domains.
 race since r is an atomic reference.
 
 
-9.6.1 Lock-free stack
+9.7.1 Lock-free stack
 =======================
 
   The Atomic module is used to implement non-blocking, lock-free data
@@ -19553,6 +19567,7 @@ a.out directly.
       resolving shared libraries). 
     512 (= 0x200)  Computation of compaction-triggering condition. 
     1024 (= 0x400)  Output GC statistics at program exit. 
+    2048 (= 0x800)  GC debugging messages. 
 
  V  (verify_heap) runs an integrity check on the heap just after the completion
    of a major GC cycle 
@@ -25446,7 +25461,8 @@ code within a domain.
   When OCaml calls the C code implementing a primitive, the domain lock is
 held, therefore the C code has full access to the facilities of the run-time
 system. However, no other thread in the same domain can execute OCaml code
-concurrently with the C code of the primitive.
+concurrently with the C code of the primitive. See also chapter 9.6 for the
+behaviour with multiple domains.
   If a C primitive runs for a long time or performs potentially blocking
 input-output operations, it can explicitly release the domain lock, enabling
 other OCaml threads in the same domain to run concurrently with its operations.
@@ -30165,7 +30181,7 @@ Program termination
    system: usually 0 to indicate no errors, and a small positive integer to
    indicate failure. All open output channels are flushed with flush_all. The
    callbacks registered with Domain.at_exit[28.14] are called followed by those
-   registed with at_exit[27.2].
+   registered with at_exit[27.2].
    An implicit exit 0 is performed each time a program terminates normally. An
    implicit exit 2 is performed if the program terminates early because of an
    uncaught exception.
@@ -30250,10 +30266,16 @@ Standard library modules
   module Domain : >>
 
   Domain
+    Alert unstable. The Domain interface may change in incompatible ways in the
+   future.
+
 <<
   module Effect : >>
 
   Effect
+    Alert unstable. The Effect interface may change in incompatible ways in the
+   future.
+
 <<
   module Either : >>
 
@@ -30498,6 +30520,8 @@ all remaining arguments.
   Note that if no arguments follow a Rest keyword then the function is not
 called at all whereas the function for a Rest_all keyword is called with an
 empty list.
+  Alert unsynchronized_access. The Arg module relies on a mutable global state,
+parsing functions should only be called from a single domain.
 
 
 <<
@@ -31184,6 +31208,83 @@ Arrays and Sequences
 
 
 
+Arrays and concurrency safety
+=============================
+
+  Care must be taken when concurrently accessing arrays from multiple domains:
+accessing an array will never crash a program, but unsynchronized accesses
+might yield surprising (non-sequentially-consistent) results.
+
+
+Atomicity
+---------
+
+  Every array operation that accesses more than one array element is not
+atomic. This includes iteration, scanning, sorting, splitting and combining
+arrays.
+  For example, consider the following program: 
+<<
+  let size = 100_000_000
+  let a = Array.make size 1
+  let d1 = Domain.spawn (fun () ->
+     Array.iteri (fun i x -> a.(i) <- x + 1) a
+  )
+  let d2 = Domain.spawn (fun () ->
+    Array.iteri (fun i x -> a.(i) <- 2 * x + 1) a
+  )
+  let () = Domain.join d1; Domain.join d2
+
+>>
+
+  After executing this code, each field of the array a is either 2, 3, 4 or 5.
+If atomicity is required, then the user must implement their own
+synchronization (for example, using Mutex.t[28.36]).
+
+
+Data races
+----------
+
+  If two domains only access disjoint parts of the array, then the observed
+behaviour is the equivalent to some sequential interleaving of the operations
+from the two domains.
+  A data race is said to occur when two domains access the same array element
+without synchronization and at least one of the accesses is a write. In the
+absence of data races, the observed behaviour is equivalent to some sequential
+interleaving of the operations from different domains.
+  Whenever possible, data races should be avoided by using synchronization to
+mediate the accesses to the array elements.
+  Indeed, in the presence of data races, programs will not crash but the
+observed behaviour may not be equivalent to any sequential interleaving of
+operations from different domains. Nevertheless, even in the presence of data
+races, a read operation will return the value of some prior write to that
+location (with a few exceptions for float arrays).
+
+
+Float arrays
+------------
+
+  Float arrays have two supplementary caveats in the presence of data races.
+  First, the blit operation might copy an array byte-by-byte. Data races
+between such a blit operation and another operation might produce surprising
+values due to tearing: partial writes interleaved with other operations can
+create float values that would not exist with a sequential execution.
+  For instance, at the end of 
+<<
+  let zeros = Array.make size 0.
+  let max_floats = Array.make size Float.max_float
+  let res = Array.copy zeros
+  let d1 = Domain.spawn (fun () -> Array.blit zeros 0 res 0 size)
+  let d2 = Domain.spawn (fun () -> Array.blit max_floats 0 res 0 size)
+  let () = Domain.join d1; Domain.join d2
+
+>>
+
+  the res array might contain values that are neither 0. nor max_float.
+  Second, on 32-bit architectures, getting or setting a field involves two
+separate memory accesses. In the presence of data races, the user may observe
+tearing on any operation.
+
+
 28.3 Module ArrayLabels : Array operations.
 *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
@@ -31578,10 +31679,88 @@ Arrays and Sequences
 
 
 
+Arrays and concurrency safety
+=============================
+
+  Care must be taken when concurrently accessing arrays from multiple domains:
+accessing an array will never crash a program, but unsynchronized accesses
+might yield surprising (non-sequentially-consistent) results.
+
+
+Atomicity
+---------
+
+  Every array operation that accesses more than one array element is not
+atomic. This includes iteration, scanning, sorting, splitting and combining
+arrays.
+  For example, consider the following program: 
+<<
+  let size = 100_000_000
+  let a = ArrayLabels.make size 1
+  let d1 = Domain.spawn (fun () ->
+     ArrayLabels.iteri ~f:(fun i x -> a.(i) <- x + 1) a
+  )
+  let d2 = Domain.spawn (fun () ->
+    ArrayLabels.iteri ~f:(fun i x -> a.(i) <- 2 * x + 1) a
+  )
+  let () = Domain.join d1; Domain.join d2
+
+>>
+
+  After executing this code, each field of the array a is either 2, 3, 4 or 5.
+If atomicity is required, then the user must implement their own
+synchronization (for example, using Mutex.t[28.36]).
+
+
+Data races
+----------
+
+  If two domains only access disjoint parts of the array, then the observed
+behaviour is the equivalent to some sequential interleaving of the operations
+from the two domains.
+  A data race is said to occur when two domains access the same array element
+without synchronization and at least one of the accesses is a write. In the
+absence of data races, the observed behaviour is equivalent to some sequential
+interleaving of the operations from different domains.
+  Whenever possible, data races should be avoided by using synchronization to
+mediate the accesses to the array elements.
+  Indeed, in the presence of data races, programs will not crash but the
+observed behaviour may not be equivalent to any sequential interleaving of
+operations from different domains. Nevertheless, even in the presence of data
+races, a read operation will return the value of some prior write to that
+location (with a few exceptions for float arrays).
+
+
+Float arrays
+------------
+
+  Float arrays have two supplementary caveats in the presence of data races.
+  First, the blit operation might copy an array byte-by-byte. Data races
+between such a blit operation and another operation might produce surprising
+values due to tearing: partial writes interleaved with other operations can
+create float values that would not exist with a sequential execution.
+  For instance, at the end of 
+<<
+  let zeros = Array.make size 0.
+  let max_floats = Array.make size Float.max_float
+  let res = Array.copy zeros
+  let d1 = Domain.spawn (fun () -> Array.blit zeros 0 res 0 size)
+  let d2 = Domain.spawn (fun () -> Array.blit max_floats 0 res 0 size)
+  let () = Domain.join d1; Domain.join d2
+
+>>
+
+  the res array might contain values that are neither 0. nor max_float.
+  Second, on 32-bit architectures, getting or setting a field involves two
+separate memory accesses. In the presence of data races, the user may observe
+tearing on any operation.
+
+
 28.4 Module Atomic : Atomic references.
 *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
 
+  See ’Memory model: The hard bits’ chapter in the manual.
   Since: 4.12
 
 
@@ -33069,6 +33248,73 @@ Re-shaping Bigarrays
 
 
 
+Bigarrays and concurrency safety
+================================
+
+  Care must be taken when concurrently accessing bigarrays from multiple
+domains: accessing a bigarray will never crash a program, but unsynchronized
+accesses might yield surprising (non-sequentially-consistent) results.
+
+
+Atomicity
+---------
+
+  Every bigarray operation that accesses more than one array element is not
+atomic. This includes slicing, bliting, and filling bigarrays.
+  For example, consider the following program: 
+<<
+  open Bigarray
+  let size = 100_000_000
+  let a = Array1.init Int C_layout size (fun _ -> 1)
+  let update f a () =
+    for i = 0 to size - 1 do a.{i} <- f a.{i} done
+  let d1 = Domain.spawn (update (fun x -> x + 1) a)
+  let d2 = Domain.spawn (update (fun x -> 2 * x + 1) a)
+  let () = Domain.join d1; Domain.join d2
+
+>>
+
+  After executing this code, each field of the bigarray a is either 2, 3, 4 or
+5. If atomicity is required, then the user must implement their own
+synchronization (for example, using Mutex.t[28.36]).
+
+
+Data races
+----------
+
+  If two domains only access disjoint parts of the bigarray, then the observed
+behaviour is the equivalent to some sequential interleaving of the operations
+from the two domains.
+  A data race is said to occur when two domains access the same bigarray
+element without synchronization and at least one of the accesses is a write. In
+the absence of data races, the observed behaviour is equivalent to some
+sequential interleaving of the operations from different domains.
+  Whenever possible, data races should be avoided by using synchronization to
+mediate the accesses to the bigarray elements.
+  Indeed, in the presence of data races, programs will not crash but the
+observed behaviour may not be equivalent to any sequential interleaving of
+operations from different domains.
+
+
+Tearing
+-------
+
+  Bigarrays have a distinct caveat in the presence of data races: concurrent
+bigarray operations might produce surprising values due to tearing. More
+precisely, the interleaving of partial writes and reads might create values
+that would not exist with a sequential execution. For instance, at the end of 
+<<
+  let res = Array1.init Complex64 c_layout size (fun _ -> Complex.zero)
+  let d1 = Domain.spawn (fun () -> Array1.fill res Complex.one)
+  let d2 = Domain.spawn (fun () -> Array1.fill res Complex.i)
+  let () = Domain.join d1; Domain.join d2
+
+>>
+
+  the res bigarray might contain values that are neither Complex.i nor
+Complex.one (for instance 1 + i).
+
+
 28.6 Module Bool : Boolean values.
 *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
 
@@ -33173,8 +33419,14 @@ quadratic time when strings are concatenated pairwise). For example:
 
 >>
 
+  Alert unsynchronized_access. Unsynchronized accesses to buffers are a
+programming error.
 
 
+  Unsynchronized accesses
+  Unsynchronized accesses to a buffer may lead to an invalid buffer state.
+Thus, concurrent accesses to a buffer must be synchronized (for instance with a
+Mutex.t[28.36]).
 <<
   type t 
 >>
@@ -33948,7 +34200,7 @@ StdLabels[28.53] module.
   val ends_with : suffix:bytes -> bytes -> bool
 >>
 
-    ends_with suffix s is true if and only if s ends with suffix.
+    ends_with ~suffix s is true if and only if s ends with suffix.
    Since: 4.13.0
 
 
@@ -34440,6 +34692,76 @@ bits than the binary encoding. These extra bits are handled as follows:
 
 
 
+Byte sequences and concurrency safety
+=====================================
+
+  Care must be taken when concurrently accessing byte sequences from multiple
+domains: accessing a byte sequence will never crash a program, but
+unsynchronized accesses might yield surprising (non-sequentially-consistent)
+results.
+
+
+Atomicity
+---------
+
+  Every byte sequence operation that accesses more than one byte is not atomic.
+This includes iteration and scanning.
+  For example, consider the following program: 
+<<
+  let size = 100_000_000
+  let b = Bytes.make size  ' '
+  let update b f ()  =
+    Bytes.iteri (fun i x -> Bytes.set b i (Char.chr (f (Char.code x)))) b
+  let d1 = Domain.spawn (update b (fun x -> x + 1))
+  let d2 = Domain.spawn (update b (fun x -> 2 * x + 1))
+  let () = Domain.join d1; Domain.join d2
+
+>>
+
+  the bytes sequence b may contain a non-deterministic mixture of '!', 'A',
+'B', and 'C' values.
+  After executing this code, each byte of the sequence b is either '!', 'A',
+'B', or 'C'. If atomicity is required, then the user must implement their own
+synchronization (for example, using Mutex.t[28.36]).
+
+
+Data races
+----------
+
+  If two domains only access disjoint parts of a byte sequence, then the
+observed behaviour is the equivalent to some sequential interleaving of the
+operations from the two domains.
+  A data race is said to occur when two domains access the same byte without
+synchronization and at least one of the accesses is a write. In the absence of
+data races, the observed behaviour is equivalent to some sequential
+interleaving of the operations from different domains.
+  Whenever possible, data races should be avoided by using synchronization to
+mediate the accesses to the elements of the sequence.
+  Indeed, in the presence of data races, programs will not crash but the
+observed behaviour may not be equivalent to any sequential interleaving of
+operations from different domains. Nevertheless, even in the presence of data
+races, a read operation will return the value of some prior write to that
+location.
+
+
+Mixed-size accesses 
+--------------------
+
+  Another subtle point is that if a data race involves mixed-size writes and
+reads to the same location, the order in which those writes and reads are
+observed by domains is not specified. For instance, the following code write
+sequentially a 32-bit integer and a char to the same index 
+<<
+
+  let b = Bytes.make 10 '\000'
+  let d1 = Domain.spawn (fun () -> Bytes.set_int32_ne b 0 100; b.[0] <- 'd' )
+
+>>
+
+  In this situation, a domain that observes the write of ’d’ to b.0 is not
+guaranteed to also observe the write to indices 1, 2, or 3.
+
+
 28.9 Module BytesLabels : Byte sequence operations.
 *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
@@ -34852,7 +35174,7 @@ StdLabels[28.53] module.
   val ends_with : suffix:bytes -> bytes -> bool
 >>
 
-    ends_with suffix s is true if and only if s ends with suffix.
+    ends_with ~suffix s is true if and only if s ends with suffix.
    Since: 4.13.0
 
 
@@ -35345,6 +35667,76 @@ bits than the binary encoding. These extra bits are handled as follows:
 
 
 
+Byte sequences and concurrency safety
+=====================================
+
+  Care must be taken when concurrently accessing byte sequences from multiple
+domains: accessing a byte sequence will never crash a program, but
+unsynchronized accesses might yield surprising (non-sequentially-consistent)
+results.
+
+
+Atomicity
+---------
+
+  Every byte sequence operation that accesses more than one byte is not atomic.
+This includes iteration and scanning.
+  For example, consider the following program: 
+<<
+  let size = 100_000_000
+  let b = Bytes.make size  ' '
+  let update b f ()  =
+    Bytes.iteri (fun i x -> Bytes.set b i (Char.chr (f (Char.code x)))) b
+  let d1 = Domain.spawn (update b (fun x -> x + 1))
+  let d2 = Domain.spawn (update b (fun x -> 2 * x + 1))
+  let () = Domain.join d1; Domain.join d2
+
+>>
+
+  the bytes sequence b may contain a non-deterministic mixture of '!', 'A',
+'B', and 'C' values.
+  After executing this code, each byte of the sequence b is either '!', 'A',
+'B', or 'C'. If atomicity is required, then the user must implement their own
+synchronization (for example, using Mutex.t[28.36]).
+
+
+Data races
+----------
+
+  If two domains only access disjoint parts of a byte sequence, then the
+observed behaviour is the equivalent to some sequential interleaving of the
+operations from the two domains.
+  A data race is said to occur when two domains access the same byte without
+synchronization and at least one of the accesses is a write. In the absence of
+data races, the observed behaviour is equivalent to some sequential
+interleaving of the operations from different domains.
+  Whenever possible, data races should be avoided by using synchronization to
+mediate the accesses to the elements of the sequence.
+  Indeed, in the presence of data races, programs will not crash but the
+observed behaviour may not be equivalent to any sequential interleaving of
+operations from different domains. Nevertheless, even in the presence of data
+races, a read operation will return the value of some prior write to that
+location.
+
+
+Mixed-size accesses 
+--------------------
+
+  Another subtle point is that if a data race involves mixed-size writes and
+reads to the same location, the order in which those writes and reads are
+observed by domains is not specified. For instance, the following code write
+sequentially a 32-bit integer and a char to the same index 
+<<
+
+  let b = Bytes.make 10 '\000'
+  let d1 = Domain.spawn (fun () -> Bytes.set_int32_ne b 0 100; b.[0] <- 'd' )
+
+>>
+
+  In this situation, a domain that observes the write of ’d’ to b.0 is not
+guaranteed to also observe the write to indices 1, 2, or 3.
+
+
 28.10 Module Callback : Registering OCaml values with the C runtime.
 *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
 
@@ -35743,8 +36135,13 @@ situation, known as a deadlock.
 *=*=*=*=*=*=*=*=*=*=*
 
 
+    Alert unstable. The Domain interface may change in incompatible ways in the
+   future.
 
 
+
+  Domains.
+  See ’Parallel programming’ chapter in the manual.
 <<
   type 'a t 
 >>
@@ -35802,23 +36199,19 @@ situation, known as a deadlock.
     at_exit f registers f to be called when the current domain exits. Note that
    at_exit callbacks are domain-local and only apply to the calling domain. The
    registered functions are called in ’last in, first out’ order: the
-   function most recently added with at_exit is called first.
-   The at_exit function can be used in combination with at_each_spawn to clean
-   up domain-local resources. Consider the following example:
+   function most recently added with at_exit is called first. An example:
    <<
 
      let temp_file_key = Domain.DLS.new_key (fun _ ->
-       snd (Filename.open_temp_file "" ""))
-
-     let _ = Domain.(at_each_spawn (fun _ ->
-       at_exit (fun _ -> close_out (DLS.get temp_file_key))))
+       let tmp = snd (Filename.open_temp_file "" "") in
+       Domain.at_exit (fun () -> close_out_noerr tmp);
+       tmp)
 
    >>
 
-   The snippet above uses domain-local state (Domain.DLS[28.14]) to create a
-   temporary file for each domain. The at_each_spawn callback installs an
-   at_exit callback on each domain which closes the temporary file when the
-   domain terminates.
+   The snippet above creates a key that when retrieved for the first time will
+   open a temporary file and register an at_exit callback to close it, thus
+   guaranteeing the descriptor is not leaked in case the current domain exits.
 
 <<
   val cpu_relax : unit -> unit
@@ -35837,7 +36230,9 @@ situation, known as a deadlock.
   val recommended_domain_count : unit -> int
 >>
 
-    The recommended maximum number of domains to be spawned.
+    The recommended maximum number of domains which should be running
+   simultaneously (including domains already running).
+   The value returned is at least 1.
 
 <<
   module DLS : >>
@@ -35856,14 +36251,35 @@ situation, known as a deadlock.
      val new_key : ?split_from_parent:('a -> 'a) -> (unit -> 'a) -> 'a key
    >>
 
-       new_key f returns a new key bound to initialiser f for accessing
+       new_key f returns a new key bound to initialiser f for accessing ,
       domain-local variables.
+      If split_from_parent is not provided, the value for a new domain will be
+      computed on-demand by the new domain: the first get call will call the
+      initializer f and store that value.
       If split_from_parent is provided, spawning a domain will derive the child
-      value (for this key) from the parent value.
-      Note that the split_from_parent call is computed in the parent domain,
-      and is always computed regardless of whether the child domain will use
-      it. If the splitting function is expensive or requires client-side
-      computation, consider using 'a Lazy.t key.
+      value (for this key) from the parent value. This computation happens in
+      the parent domain and it always happens, regardless of whether the child
+      domain will use it. If the splitting function is expensive or requires
+      child-side computation, consider using 'a Lazy.t key:
+      <<
+
+                let init () = ...
+
+                let split_from_parent parent_value =
+                  ... parent-side computation ...;
+                  lazy (
+                    ... child-side computation ...
+                  )
+
+                let key = Domain.DLS.new_key ~split_from_parent init
+
+                let get () = Lazy.force (Domain.DLS.get key)
+
+      >>
+
+      In this case a part of the computation happens on the child domain; in
+      particular, it can access parent_value concurrently with the parent
+      domain, which may require explicit synchronization to avoid data races.
 
    <<
      val get : 'a key -> 'a
@@ -35994,13 +36410,17 @@ cryptographic primitives should be used instead.
 
 
 
-28.16 Module Effect : Effects.
-*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+28.16 Module Effect
+*=*=*=*=*=*=*=*=*=*=*
 
 
-  Since: 5.0
+    Alert unstable. The Effect interface may change in incompatible ways in the
+   future.
 
 
+
+  Effects.
+  See ’Language extensions/Effect handlers’ section in the manual.
 <<
   type '_ t = ..
 >>
@@ -36358,8 +36778,14 @@ constructed by the least fixpoint of: A value is alive if:
   Ephemerons are defined in a language agnostic way in this paper: B. Hayes,
 Ephemerons: A New Finalization Mechanism, OOPSLA’97
   Since: 4.03.0
+  Alert unsynchronized_access. Unsynchronized accesses to weak hash tables are
+a programming error.
 
 
+  Unsynchronized accesses
+  Unsynchronized accesses to a weak hash table may lead to an invalid weak hash
+table state. Thus, concurrent accesses to a buffer must be synchronized (for
+instance with a Mutex.t[28.36]).
 <<
   module type S = >>
 
@@ -37999,6 +38425,82 @@ as an argument return nan, ...
        map_from_array f a applies function f to all the elements of a, and
       builds a floatarray with the results returned by f.
 
+
+
+   Arrays and concurrency safety
+   =============================
+
+ Care must be taken when concurrently accessing float arrays from multiple
+   domains: accessing an array will never crash a program, but unsynchronized
+   accesses might yield surprising (non-sequentially-consistent) results.
+
+
+   Atomicity
+   ---------
+
+ Every float array operation that accesses more than one array element is not
+   atomic. This includes iteration, scanning, sorting, splitting and combining
+   arrays.
+ For example, consider the following program: 
+   <<
+     let size = 100_000_000
+       let a = Float.Array.make size 1.
+       let update a f () =
+          Float.Array.iteri (fun i x -> Float.Array.set a i (f x)) a
+       let d1 = Domain.spawn (update a (fun x -> x +. 1.))
+       let d2 = Domain.spawn (update a (fun x ->  2. *. x +. 1.))
+       let () = Domain.join d1; Domain.join d2
+
+   >>
+
+ After executing this code, each field of the float array a is either 2., 3.,
+   4. or 5.. If atomicity is required, then the user must implement their own
+   synchronization (for example, using Mutex.t[28.36]).
+
+
+   Data races
+   ----------
+
+ If two domains only access disjoint parts of the array, then the observed
+   behaviour is the equivalent to some sequential interleaving of the
+   operations from the two domains.
+ A data race is said to occur when two domains access the same array element
+   without synchronization and at least one of the accesses is a write. In the
+   absence of data races, the observed behaviour is equivalent to some
+   sequential interleaving of the operations from different domains.
+ Whenever possible, data races should be avoided by using synchronization to
+   mediate the accesses to the array elements.
+ Indeed, in the presence of data races, programs will not crash but the
+   observed behaviour may not be equivalent to any sequential interleaving of
+   operations from different domains. Nevertheless, even in the presence of
+   data races, a read operation will return the value of some prior write to
+   that location with a few exceptions.
+
+
+   Tearing 
+   --------
+
+ Float arrays have two supplementary caveats in the presence of data races.
+ First, the blit operation might copy an array byte-by-byte. Data races between
+   such a blit operation and another operation might produce surprising values
+   due to tearing: partial writes interleaved with other operations can create
+   float values that would not exist with a sequential execution.
+ For instance, at the end of 
+   <<
+     let zeros = Float.Array.make size 0.
+       let max_floats = Float.Array.make size Float.max_float
+       let res = Float.Array.copy zeros
+       let d1 = Domain.spawn (fun () -> Float.Array.blit zeros 0 res 0 size)
+       let d2 = Domain.spawn (fun () -> Float.Array.blit max_floats 0 res 0
+   size)
+       let () = Domain.join d1; Domain.join d2
+
+   >>
+
+ the res float array might contain values that are neither 0. nor max_float.
+ Second, on 32-bit architectures, getting or setting a field involves two
+   separate memory accesses. In the presence of data races, the user may
+   observe tearing on any operation.
    end
 
     Float arrays with packed representation.
@@ -38331,6 +38833,82 @@ as an argument return nan, ...
        map_from_array ~f a applies function f to all the elements of a, and
       builds a floatarray with the results returned by f.
 
+
+
+   Arrays and concurrency safety
+   =============================
+
+ Care must be taken when concurrently accessing float arrays from multiple
+   domains: accessing an array will never crash a program, but unsynchronized
+   accesses might yield surprising (non-sequentially-consistent) results.
+
+
+   Atomicity
+   ---------
+
+ Every float array operation that accesses more than one array element is not
+   atomic. This includes iteration, scanning, sorting, splitting and combining
+   arrays.
+ For example, consider the following program: 
+   <<
+     let size = 100_000_000
+       let a = Float.ArrayLabels.make size 1.
+       let update a f () =
+          Float.ArrayLabels.iteri ~f:(fun i x -> Float.Array.set a i (f x)) a
+       let d1 = Domain.spawn (update a (fun x -> x +. 1.))
+       let d2 = Domain.spawn (update a (fun x ->  2. *. x +. 1.))
+       let () = Domain.join d1; Domain.join d2
+
+   >>
+
+ After executing this code, each field of the float array a is either 2., 3.,
+   4. or 5.. If atomicity is required, then the user must implement their own
+   synchronization (for example, using Mutex.t[28.36]).
+
+
+   Data races
+   ----------
+
+ If two domains only access disjoint parts of the array, then the observed
+   behaviour is the equivalent to some sequential interleaving of the
+   operations from the two domains.
+ A data race is said to occur when two domains access the same array element
+   without synchronization and at least one of the accesses is a write. In the
+   absence of data races, the observed behaviour is equivalent to some
+   sequential interleaving of the operations from different domains.
+ Whenever possible, data races should be avoided by using synchronization to
+   mediate the accesses to the array elements.
+ Indeed, in the presence of data races, programs will not crash but the
+   observed behaviour may not be equivalent to any sequential interleaving of
+   operations from different domains. Nevertheless, even in the presence of
+   data races, a read operation will return the value of some prior write to
+   that location with a few exceptions.
+
+
+   Tearing 
+   --------
+
+ Float arrays have two supplementary caveats in the presence of data races.
+ First, the blit operation might copy an array byte-by-byte. Data races between
+   such a blit operation and another operation might produce surprising values
+   due to tearing: partial writes interleaved with other operations can create
+   float values that would not exist with a sequential execution.
+ For instance, at the end of 
+   <<
+     let zeros = Float.Array.make size 0.
+       let max_floats = Float.Array.make size Float.max_float
+       let res = Float.Array.copy zeros
+       let d1 = Domain.spawn (fun () -> Float.Array.blit zeros 0 res 0 size)
+       let d2 = Domain.spawn (fun () -> Float.Array.blit max_floats 0 res 0
+   size)
+       let () = Domain.join d1; Domain.join d2
+
+   >>
+
+ the res float array might contain values that are neither 0. nor max_float.
+ Second, on 32-bit architectures, getting or setting a field involves two
+   separate memory accesses. In the presence of data races, the user may
+   observe tearing on any operation.
    end
 
     Float arrays with packed representation (labeled functions).
@@ -38912,11 +39490,14 @@ variables, margin and maxixum indentation limit.
   }
 >>
 
+    Since: 4.08
+
 <<
   val check_geometry : geometry -> bool
 >>
 
     Check if the formatter geometry is valid: 1 < max_indent < margin
+   Since: 4.08
 
 <<
   val pp_set_geometry : formatter -> max_indent:int -> margin:int -> unit
@@ -39536,6 +40117,7 @@ new formatter using those functions for output.
    When the formatter is used with multiple domains, the output from the
    domains will be interleaved with each other at points where the formatter is
    flushed, such as with Format.print_flush[28.21].
+   Alert unstable
 
 <<
   val std_formatter : formatter
@@ -39550,6 +40132,7 @@ new formatter using those functions for output.
 
     get_std_formatter () returns the current domain’s standard formatter used
    to write to standard output.
+   Since: 5.0
 
 <<
   val err_formatter : formatter
@@ -39561,6 +40144,10 @@ new formatter using those functions for output.
 <<
   val get_err_formatter : unit -> formatter
 >>
+
+    get_err_formatter () returns the current domain’s formatter used to write
+   to standard error.
+   Since: 5.0
 
 <<
   val formatter_of_buffer : Buffer.t -> formatter
@@ -39583,6 +40170,7 @@ new formatter using those functions for output.
 
     get_stdbuf () returns the current domain’s string buffer in which the
    current domain’s string formatter writes.
+   Since: 5.0
 
 <<
   val str_formatter : formatter
@@ -39599,6 +40187,7 @@ new formatter using those functions for output.
 
     The current domain’s formatter to output to the current domains string
    buffer.
+   Since: 5.0
 
 <<
   val flush_str_formatter : unit -> string
@@ -39637,6 +40226,8 @@ new formatter using those functions for output.
    When the formatter is used with multiple domains, the output from the
    domains will be interleaved with each other at points where the formatter is
    flushed, such as with Format.print_flush[28.21].
+   Since: 5.0
+   Alert unstable
 
 <<
   val formatter_of_out_functions : formatter_out_functions -> formatter
@@ -40428,6 +41019,7 @@ Exception handling
 >>
 
     Return the current values of the GC parameters in a control record.
+   Alert unsynchronized_access. GC parameters are a mutable global state.
 
 <<
   val set : control -> unit
@@ -40435,6 +41027,7 @@ Exception handling
 
     set r changes the GC parameters according to the control record r. The
    normal usage is: Gc.set { (Gc.get()) with Gc.verbose = 0x00d }
+   Alert unsynchronized_access. GC parameters are a mutable global state.
 
 <<
   val minor : unit -> unit
@@ -40736,8 +41329,14 @@ Exception handling
 
 
   Hash tables are hashed association tables, with in-place modification.
+  Alert unsynchronized_access. Unsynchronized accesses to hash tables are a
+programming error.
 
 
+  Unsynchronized accesses
+  Unsynchronized accesses to a hash table may lead to an invalid hash table
+state. Thus, concurrent accesses to a hash tables must be synchronized (for
+instance with a Mutex.t[28.36]).
 
 
 Generic interface
@@ -44794,6 +45393,10 @@ with their labeled counterparts.
 
  Hash tables and hash functions.
  Hash tables are hashed association tables, with in-place modification.
+ Unsynchronized accesses
+ Unsynchronized accesses to a hash table may lead to an invalid hash table
+   state. Thus, concurrent accesses to a hash tables must be synchronized (for
+   instance with a Mutex.t[28.36]).
 
 
    Generic interface
@@ -46876,6 +47479,8 @@ bit of precision over the int type.
 
     Oo.copy o returns a copy of object o, that is a fresh object with the same
    methods and instance variables as o.
+   Alert unsynchronized_access. Unsynchronized accesses to mutable objects are
+   a programming error.
 
 <<
   val id : < .. > -> int
@@ -48043,11 +48648,14 @@ Exception slots
 
 
   This module implements queues (FIFOs), with in-place modification.
-  Warning This module is not thread-safe: each Queue.t[28.44] value must be
-protected from concurrent access (e.g. with a Mutex.t). Failure to do so can
-lead to a crash.
+  Alert unsynchronized_access. Unsynchronized accesses to queues are a
+programming error.
 
 
+  Unsynchronized accesses
+  Unsynchronized accesses to a queue may lead to an invalid queue state. Thus,
+concurrent accesses to queues must be synchronized (for instance with a
+Mutex.t[28.36]).
 <<
   type 'a t 
 >>
@@ -48617,14 +49225,14 @@ tracing
 
 
   This module enables users to enable and subscribe to tracing events from the
-Garbage Collector and othe parts of the OCaml runtime. This can be useful for
+Garbage Collector and other parts of the OCaml runtime. This can be useful for
 diagnostic or performance monitoring purposes. This module can be used to
 subscribe to events for the current process or external processes
 asynchronously.
   When enabled (either via setting the OCAML_RUNTIME_EVENTS_START environment
 variable or calling Runtime_events.start) a file with the pid of the process
 and extension .events will be created. By default this is in the current
-directory but can be over-ridden by the OCAML_RUNTIME_EVENTS_DIR environent
+directory but can be over-ridden by the OCAML_RUNTIME_EVENTS_DIR environment
 variable. Each domain maintains its own ring buffer in a section of the larger
 file into which it emits events.
   There is additionally a set of C APIs in runtime_events.h that can enable
@@ -48800,7 +49408,7 @@ environment variables:
        Create a Callback that optionally subscribes to one or more runtime
       events. The first int supplied to callbacks is the ring buffer index.
       Each domain owns a single ring buffer for the duration of the domain’s
-      existance. After a domain terminates, a newly spawned domain may take
+      existence. After a domain terminates, a newly spawned domain may take
       ownership of the ring buffer. A runtime_begin callback is called when the
       runtime enters a new phase (e.g a runtime_begin with EV_MINOR is called
       at the start of a minor GC). A runtime_end callback is called when the
@@ -48871,6 +49479,8 @@ environment variables:
 *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
 
+  Alert unsynchronized_access. Unsynchronized accesses to Scanning.in_channel
+are a programming error.
 
 
 
@@ -48945,13 +49555,11 @@ define complex tokens; as expected within a functional programming language,
 the formatted input functions also support polymorphism, in particular
 arbitrary interaction with polymorphic user-defined scanners. Furthermore, the
 OCaml formatted input facility is fully type-checked at compile time.
-
-
-Note on concurrent use
-----------------------
-
-  Since values of type Scanf.Scanning.in_channel[28.48] contain inner mutable
-states, they are not safe to use concurrently without external synchronization.
+  Unsynchronized accesses
+  Unsynchronized accesses to a Scanf.Scanning.in_channel[28.48] may lead to an
+invalid Scanf.Scanning.in_channel[28.48] state. Thus, concurrent accesses to
+Scanf.Scanning.in_channel[28.48]s must be synchronized (for instance with a
+Mutex.t[28.36]).
 
 
 Formatted input channel
@@ -50820,8 +51428,14 @@ Likewise, it is safe to release a binary semaphore that is already available.
 
 
   This module implements stacks (LIFOs), with in-place modification.
+  Alert unsynchronized_accesses. Unsynchronized accesses to stacks are a
+programming error.
 
 
+  Unsynchronized accesses
+  Unsynchronized accesses to a stack may lead to an invalid queue state. Thus,
+concurrent accesses to stacks must be synchronized (for instance with a
+Mutex.t[28.36]).
 <<
   type 'a t 
 >>
@@ -51110,7 +51724,7 @@ Concatenating
 
     cat s1 s2 concatenates s1 and s2 (s1 ^ s2).
    Since: 4.13.0
-   Raises Invalid_argument if the result is longer then than
+   Raises Invalid_argument if the result is longer than
    Sys.max_string_length[28.56] bytes.
 
 
@@ -51763,7 +52377,7 @@ Concatenating
 
     cat s1 s2 concatenates s1 and s2 (s1 ^ s2).
    Since: 4.13.0
-   Raises Invalid_argument if the result is longer then than
+   Raises Invalid_argument if the result is longer than
    Sys.max_string_length[28.56] bytes.
 
 
@@ -52433,6 +53047,8 @@ when the underlying system call signal an error.
 
     This reference is initially set to false in standalone programs and to true
    if the code is being executed under the interactive toplevel system ocaml.
+   Alert unsynchronized_access. The interactive status is a mutable global
+   state.
 
 <<
   val os_type : string
@@ -52804,6 +53420,8 @@ Signal numbers for the standard POSIX signals.
   type extra_info = extra_prefix * string 
 >>
 
+    Since: 4.14
+
 <<
   type ocaml_release_info = 
   {  major : int ;
@@ -52813,9 +53431,14 @@ Signal numbers for the standard POSIX signals.
   }
 >>
 
+    Since: 4.14
+
 <<
   val ocaml_release : ocaml_release_info
 >>
+
+    ocaml_release is the version of OCaml.
+   Since: 4.14
 
 <<
   val enable_runtime_warnings : bool -> unit
@@ -52826,6 +53449,8 @@ Signal numbers for the standard POSIX signals.
    open_* functions is finalized without being closed. Runtime warnings are
    disabled by default.
    Since: 4.03.0
+   Alert unsynchronized_access. The status of runtime warnings is a mutable
+   global state.
 
 <<
   val runtime_warnings_enabled : unit -> bool
@@ -52833,6 +53458,8 @@ Signal numbers for the standard POSIX signals.
 
     Return whether runtime warnings are currently enabled.
    Since: 4.03.0
+   Alert unsynchronized_access. The status of runtime warnings is a mutable
+   global state.
 
 
 
@@ -53188,8 +53815,8 @@ Low-level functions
 
     Weak.set ar n (Some el) sets the nth cell of ar to be a (full) pointer to
    el; Weak.set ar n None sets the nth cell of ar to empty.
-   Raises Invalid_argument if n is not in the range 0 to Weak.length[28.59] a -
-   1.
+   Raises Invalid_argument if n is not in the range 0 to Weak.length[28.59] ar
+   - 1.
 
 <<
   val get : 'a t -> int -> 'a option
@@ -53197,8 +53824,8 @@ Low-level functions
 
     Weak.get ar n returns None if the nth cell of ar is empty, Some x (where x
    is the value) if it is full.
-   Raises Invalid_argument if n is not in the range 0 to Weak.length[28.59] a -
-   1.
+   Raises Invalid_argument if n is not in the range 0 to Weak.length[28.59] ar
+   - 1.
 
 <<
   val get_copy : 'a t -> int -> 'a option
@@ -53209,8 +53836,8 @@ Low-level functions
    pitfalls with mutable values, the interesting difference with get is that
    get_copy does not prevent the incremental GC from erasing the value in its
    current cycle (get may delay the erasure to the next GC cycle).
-   Raises Invalid_argument if n is not in the range 0 to Weak.length[28.59] a -
-   1.
+   Raises Invalid_argument if n is not in the range 0 to Weak.length[28.59] ar
+   - 1.
    If the element is a custom block it is not copied.
 
 <<
@@ -53220,6 +53847,8 @@ Low-level functions
     Weak.check ar n returns true if the nth cell of ar is full, false if it is
    empty. Note that even if Weak.check ar n returns true, a subsequent
    Weak.get[28.59] ar n can return None.
+   Raises Invalid_argument if n is not in the range 0 to Weak.length[28.59] ar
+   - 1.
 
 <<
   val fill : 'a t -> int -> int -> 'a option -> unit
@@ -53228,7 +53857,7 @@ Low-level functions
     Weak.fill ar ofs len el sets to el all pointers of ar from ofs to ofs + len
    - 1.
    Raises Invalid_argument if ofs and len do not designate a valid subarray of
-   a.
+   ar.
 
 <<
   val blit : 'a t -> int -> 'a t -> int -> int -> unit
@@ -53253,6 +53882,11 @@ relation and hash function are taken from that module. We will say that v is an
 instance of x if equal x v is true.
   The equal relation must be able to work on a shallow copy of the values and
 give the same result as with the values themselves.
+  Unsynchronized accesses
+  Unsynchronized accesses to weak hash sets are a programming error.
+Unsynchronized accesses to a weak hash set may lead to an invalid weak hash set
+state. Thus, concurrent accesses to weak hash sets must be synchronized (for
+instance with a Mutex.t[28.36]).
 <<
   module type S = >>
 
@@ -56508,16 +57142,29 @@ details on the behavior of these functions.
 not available, they will raise Invalid_arg when called.
   Programs that use the unix library must be linked as follows: 
 <<
-          ocamlc other options unix.cma other files
-          ocamlopt other options unix.cmxa other files
+          ocamlc other options -I +unix unix.cma other files
+          ocamlopt other options  -I +unix unix.cmxa other files
 >>
    For interactive use of the unix library, do: 
 <<
-          ocamlmktop -o mytop unix.cma
+          ocamlmktop -o mytop -I +unix unix.cma
           ./mytop
 >>
    or (if dynamic linking of C libraries is supported on your platform), start
-ocaml and type #load "unix.cma";;.
+ocaml and type
+
+<<
+
+  # #directory "+unix";;
+
+>>
+
+<<
+
+  # #load "unix.cma";;
+
+>>
+
 
     Windows: 
     The Cygwin port of OCaml fully implements all functions from the Unix
@@ -56602,8 +57249,8 @@ on regular expressions. It is intended to support the kind of file processing
 that is usually performed with scripting languages such as awk, perl or sed.
   Programs that use the str library must be linked as follows: 
 <<
-          ocamlc other options str.cma other files
-          ocamlopt other options str.cmxa other files
+          ocamlc other options -I +str str.cma other files
+          ocamlopt other options  -I +str str.cmxa other files
 >>
    For interactive use of the str library, do: 
 <<
@@ -56611,7 +57258,19 @@ that is usually performed with scripting languages such as awk, perl or sed.
           ./mytop
 >>
    or (if dynamic linking of C libraries is supported on your platform), start
-ocaml and type #load "str.cma";;.
+ocaml and type  
+<<
+
+  # #directory "+str";;
+
+>>
+
+<<
+
+  # #load  "str.cma";;
+
+>>
+
 
 
 31.1 Module Str : Regular expressions and high-level string processing
@@ -57009,14 +57668,14 @@ tracing
 
 
   This module enables users to enable and subscribe to tracing events from the
-Garbage Collector and othe parts of the OCaml runtime. This can be useful for
+Garbage Collector and other parts of the OCaml runtime. This can be useful for
 diagnostic or performance monitoring purposes. This module can be used to
 subscribe to events for the current process or external processes
 asynchronously.
   When enabled (either via setting the OCAML_RUNTIME_EVENTS_START environment
 variable or calling Runtime_events.start) a file with the pid of the process
 and extension .events will be created. By default this is in the current
-directory but can be over-ridden by the OCAML_RUNTIME_EVENTS_DIR environent
+directory but can be over-ridden by the OCAML_RUNTIME_EVENTS_DIR environment
 variable. Each domain maintains its own ring buffer in a section of the larger
 file into which it emits events.
   There is additionally a set of C APIs in runtime_events.h that can enable
@@ -57192,7 +57851,7 @@ environment variables:
        Create a Callback that optionally subscribes to one or more runtime
       events. The first int supplied to callbacks is the ring buffer index.
       Each domain owns a single ring buffer for the duration of the domain’s
-      existance. After a domain terminates, a newly spawned domain may take
+      existence. After a domain terminates, a newly spawned domain may take
       ownership of the ring buffer. A runtime_begin callback is called when the
       runtime enters a new phase (e.g a runtime_begin with EV_MINOR is called
       at the start of a minor GC). A runtime_end callback is called when the
@@ -57278,8 +57937,10 @@ programs as several communicating processes. Threads also efficiently support
 concurrent, overlapping I/O operations.
   Programs that use threads must be linked as follows: 
 <<
-          ocamlc -I +threads other options unix.cma threads.cma other files
-          ocamlopt -I +threads other options unix.cmxa threads.cmxa other files
+          ocamlc -I +unix -I +threads other options unix.cma threads.cma other
+files
+          ocamlopt -I +unix -I +threads other options unix.cmxa threads.cmxa
+other files
 >>
    Compilation units that use the threads library must also be compiled with
 the -I +threads option (see chapter 13).
@@ -57308,13 +57969,14 @@ Thread creation and termination
 
     Thread.create funct arg creates a new thread of control, in which the
    function application funct arg is executed concurrently with the other
-   threads of the program. The application of Thread.create returns the handle
+   threads of the domain. The application of Thread.create returns the handle
    of the newly created thread. The new thread terminates when the application
    funct arg returns, either normally or by raising the Thread.Exit[33.1]
    exception or by raising any other uncaught exception. In the last case, the
    uncaught exception is printed on standard error, but not propagated back to
    the parent thread. Similarly, the result of the application funct arg is
    discarded and not directly accessible to the parent thread.
+   See also Domain.spawn[28.14] if you want parallel execution instead.
 
 <<
   val self : unit -> t
@@ -57610,8 +58272,9 @@ modules. In native code, there are also some compatibility checks on the
 implementations (to avoid errors with cross-module optimizations); it might be
 useful to hide .cmx files when building native plugins so that they remain
 independent of the implementation of modules in the main program.
-  Programs that use the dynlink library simply need to link dynlink.cma or
-dynlink.cmxa with their object files and other libraries.
+  Programs that use the dynlink library simply need to include the dynlink
+library directory with -I +dynlink and link dynlink.cma or dynlink.cmxa with
+their object files and other libraries.
   Note: in order to insure that the dynamically-loaded modules have access to
 all the libraries that are visible to the main program (and not just to the
 parts of those libraries that are actually used in the main program), programs

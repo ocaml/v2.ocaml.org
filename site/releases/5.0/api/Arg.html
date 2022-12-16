@@ -150,6 +150,9 @@
     is not called at all whereas the function for a <code class="code"><span class="constructor">Rest_all</span></code> keyword
     is called with an empty list.</p>
 </div>
+<ul class="info-attributes">
+<li><b>Alert unsynchronized_access.</b> The Arg module relies on a mutable global state, parsing functions should only be called from a single domain.</li>
+</ul>
 </div>
 <hr width="100%">
 
