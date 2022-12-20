@@ -12,7 +12,7 @@
 
 
 
-<h1 class="chapter" id="sec634"><span class="chapter-number">Chapter 30</span> The unix library: Unix system calls</h1>
+<h1 class="chapter" id="sec635"><span class="chapter-number">Chapter 30</span> The unix library: Unix system calls</h1>
 <p>
 <a id="c:unix"></a></p><p>The <span class="machine"><span class="font-tt">unix</span></span> library makes many Unix
 system calls and system-related library functions available to
@@ -22,15 +22,28 @@ details on the behavior of these functions.</p><ul class="ftoc2"><li class="li-l
 </li><li class="li-links"><a href="../api/UnixLabels.html">Module <span class="font-tt">UnixLabels</span></a>: Labeled Unix system calls
 </li></ul><p>Not all functions are provided by all Unix variants. If some functions
 are not available, they will raise <span class="machine"><span class="font-tt">Invalid_arg</span></span> when called.</p><p>Programs that use the <span class="machine"><span class="font-tt">unix</span></span> library must be linked as follows:
-</p><pre>        ocamlc <span class="font-it">other options</span> unix.cma <span class="font-it">other files</span>
-        ocamlopt <span class="font-it">other options</span> unix.cmxa <span class="font-it">other files</span>
+</p><pre>        ocamlc <span class="font-it">other options</span> -I +unix unix.cma <span class="font-it">other files</span>
+        ocamlopt <span class="font-it">other options</span>  -I +unix unix.cmxa <span class="font-it">other files</span>
 </pre><p>
 For interactive use of the <span class="machine"><span class="font-tt">unix</span></span> library, do:
-</p><pre>        ocamlmktop -o mytop unix.cma
+</p><pre>        ocamlmktop -o mytop -I +unix unix.cma
         ./mytop
 </pre><p>
 or (if dynamic linking of C libraries is supported on your platform),
-start <span class="machine"><span class="font-tt">ocaml</span></span> and type <span class="machine"><span class="font-tt">#load "unix.cma";;</span></span>.</p><blockquote class="quote"><span class="osvariant">Windows:</span> 
+start <span class="machine"><span class="font-tt">ocaml</span></span> and type</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> #directory <span class="ocamlstring">"+unix"</span>;;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> #load <span class="ocamlstring">"unix.cma"</span>;;</div></div>
+
+</div><blockquote class="quote"><span class="osvariant">Windows:</span> 
 The Cygwin port of OCaml fully implements all functions from
 the Unix module. The native Win32 ports implement a subset of them.
 Below is a list of the functions that are not implemented, or only

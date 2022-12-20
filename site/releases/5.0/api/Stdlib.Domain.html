@@ -92,7 +92,15 @@
 <div id="search_results"></div><div class="toc_title"><a href="#top">OCaml library : Stdlib.Domain</a></div><ul></ul></nav></header>
 <h1>Module <a href="type_Stdlib.Domain.html">Stdlib.Domain</a></h1>
 
-<pre><span id="MODULEDomain"><span class="keyword">module</span> Domain</span>: <code class="type"><a href="Domain.html">Domain</a></code></pre><hr width="100%">
+<pre><span id="MODULEDomain"><span class="keyword">module</span> Domain</span>: <code class="type"><a href="Domain.html">Domain</a></code></pre><div class="info module top">
+<ul class="info-attributes">
+<li><b>Alert unstable.</b> The Domain interface may change in incompatible ways in the future.</li>
+</ul>
+</div>
+<hr width="100%">
+<p>Domains.</p>
+
+<p>See 'Parallel programming' chapter in the manual.</p>
 
 <pre><span id="TYPEt"><span class="keyword">type</span> <code class="type">'a</code> t</span> </pre>
 <div class="info ">
@@ -156,21 +164,17 @@
 <p><code class="code">at_exit&nbsp;f</code> registers <code class="code">f</code> to be called when the current domain exits. Note
     that <code class="code">at_exit</code> callbacks are domain-local and only apply to the calling
     domain. The registered functions are called in 'last in, first out' order:
-    the function most recently added with <code class="code">at_exit</code> is called first.</p>
-
-<p>The <code class="code">at_exit</code> function can be used in combination with <code class="code">at_each_spawn</code> to
-    clean up domain-local resources. Consider the following example:</p>
+    the function most recently added with <code class="code">at_exit</code> is called first. An example:</p>
 
 <pre class="codepre"><code class="code"><span class="keyword">let</span> temp_file_key = <span class="constructor">Domain</span>.<span class="constructor">DLS</span>.new_key (<span class="keyword">fun</span> _ <span class="keywordsign">-&gt;</span>
-  snd (<span class="constructor">Filename</span>.open_temp_file <span class="string">""</span> <span class="string">""</span>))
-
-<span class="keyword">let</span> _ = <span class="constructor">Domain</span>.(at_each_spawn (<span class="keyword">fun</span> _ <span class="keywordsign">-&gt;</span>
-  at_exit (<span class="keyword">fun</span> _ <span class="keywordsign">-&gt;</span> close_out (<span class="constructor">DLS</span>.get temp_file_key))))
+  <span class="keyword">let</span> tmp = snd (<span class="constructor">Filename</span>.open_temp_file <span class="string">""</span> <span class="string">""</span>) <span class="keyword">in</span>
+  <span class="constructor">Domain</span>.at_exit (<span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span> close_out_noerr tmp);
+  tmp)
     </code></pre>
-<p>The snippet above uses domain-local state (<a href="Domain.DLS.html"><code class="code"><span class="constructor">Domain</span>.<span class="constructor">DLS</span></code></a>) to create a
-    temporary file for each domain. The <code class="code">at_each_spawn</code> callback installs an
-    <code class="code">at_exit</code> callback on each domain which closes the temporary file when the
-    domain terminates.</p>
+<p>The snippet above creates a key that when retrieved for the first
+    time will open a temporary file and register an <code class="code">at_exit</code> callback
+    to close it, thus guaranteeing the descriptor is not leaked in
+    case the current domain exits.</p>
 </div>
 </div>
 
@@ -189,7 +193,10 @@
 
 <pre><span id="VALrecommended_domain_count"><span class="keyword">val</span> recommended_domain_count</span> : <code class="type">unit -&gt; int</code></pre><div class="info ">
 <div class="info-desc">
-<p>The recommended maximum number of domains to be spawned.</p>
+<p>The recommended maximum number of domains which should be running
+    simultaneously (including domains already running).</p>
+
+<p>The value returned is at least <code class="code">1</code>.</p>
 </div>
 </div>
 

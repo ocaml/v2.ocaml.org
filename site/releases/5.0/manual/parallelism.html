@@ -19,7 +19,8 @@
 </li><li><a href="parallelism.html#s%3Apar_gc"><span class="number">3</span> Parallel garbage collection</a>
 </li><li><a href="parallelism.html#s%3Apar_mm_easy"><span class="number">4</span> Memory model: The easy bits</a>
 </li><li><a href="parallelism.html#s%3Apar_sync"><span class="number">5</span> Blocking synchronisation</a>
-</li><li><a href="parallelism.html#s%3Apar_atomics"><span class="number">6</span> Atomics</a>
+</li><li><a href="parallelism.html#s%3Apar_c_bindings"><span class="number">6</span> Interaction with C bindings</a>
+</li><li><a href="parallelism.html#s%3Apar_atomics"><span class="number">7</span> Atomics</a>
 </li></ul></nav></header>
 <p>
 <a id="c:parallelism"></a></p><p>In this chapter, we shall look at the parallel programming facilities in OCaml.
@@ -416,7 +417,7 @@ Reference cells, arrays and mutable record fields are said to be
 domains concurrently access a non-atomic memory location without
 <em>synchronisation</em> and at least one of the accesses is a write. OCaml
 provides a number of ways to introduce synchronisation including atomic
-variables (section <a href="#s%3Apar_atomics">9.6</a>) and mutexes (section <a href="#s%3Apar_sync">9.5</a>).</p><p>Importantly, <span class="font-bold">for data race free (DRF) programs, OCaml provides
+variables (section <a href="#s%3Apar_atomics">9.7</a>) and mutexes (section <a href="#s%3Apar_sync">9.5</a>).</p><p>Importantly, <span class="font-bold">for data race free (DRF) programs, OCaml provides
 sequentially consistent (SC) semantics</span> – the observed behaviour of such
 programs can be explained by the interleaving of operations from different
 domains. This property is known as DRF-SC guarantee. Moreover, in OCaml, DRF-SC
@@ -546,7 +547,15 @@ between the different systhreads running on two different domains. The
 systhread identifiers uniquely identify systhreads in the program. The initial
 domain gets the domain id and the thread id as 0. The newly spawned domain gets
 domain id as 1.</p>
-<h2 class="section" id="s:par_atomics"><a class="section-anchor" href="#s:par_atomics" aria-hidden="true">﻿</a><span class="number">6</span> Atomics</h2>
+<h2 class="section" id="s:par_c_bindings"><a class="section-anchor" href="#s:par_c_bindings" aria-hidden="true">﻿</a><span class="number">6</span> Interaction with C bindings</h2>
+<p>During parallel execution with multiple domains, C code running on a domain may
+run in parallel with any C code running in other domains even if neither of
+them has released the “domain lock”. Prior to OCaml 5.0, C bindings may have
+assumed that if the OCaml runtime lock is not released, then it would be safe
+to manipulate global C state (e.g. initialise a function-local static value).
+This is no longer true in the presence of parallel execution with multiple
+domains.</p>
+<h2 class="section" id="s:par_atomics"><a class="section-anchor" href="#s:par_atomics" aria-hidden="true">﻿</a><span class="number">7</span> Atomics</h2>
 <p>Mutex, condition variables and semaphores are used to implement blocking
 synchronisation between domains. For non-blocking synchronisation, OCaml
 provides <a href="../api/Atomic.html"><span class="font-tt">Atomic</span></a> variables. As the name suggests, non-blocking
@@ -644,7 +653,7 @@ between two domains.</p><div class="caml-example verbatim">
 
 </div><p>While the sender and the receiver compete to access <span class="machine"><span class="font-tt">r</span></span>, this is not a data
 race since <span class="machine"><span class="font-tt">r</span></span> is an atomic reference.</p>
-<h3 class="subsection" id="s:par_lockfree_stack"><a class="section-anchor" href="#s:par_lockfree_stack" aria-hidden="true">﻿</a><span class="number">6.1</span> Lock-free stack</h3>
+<h3 class="subsection" id="s:par_lockfree_stack"><a class="section-anchor" href="#s:par_lockfree_stack" aria-hidden="true">﻿</a><span class="number">7.1</span> Lock-free stack</h3>
 <p>The Atomic module is used to implement non-blocking, lock-free data structures.
 The following program implements a lock-free stack.</p><div class="caml-example verbatim">
 

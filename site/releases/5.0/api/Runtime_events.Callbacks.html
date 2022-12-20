@@ -106,7 +106,7 @@
 <p>Create a <code class="code"><span class="constructor">Callback</span></code> that optionally subscribes to one or more runtime
       events. The first int supplied to callbacks is the ring buffer index.
       Each domain owns a single ring buffer for the duration of the domain's
-      existance. After a domain terminates, a newly spawned domain may take
+      existence. After a domain terminates, a newly spawned domain may take
       ownership of the ring buffer. A <code class="code">runtime_begin</code> callback is called when
       the runtime enters a new phase (e.g a runtime_begin with EV_MINOR is
       called at the start of a minor GC). A <code class="code">runtime_end</code> callback is called

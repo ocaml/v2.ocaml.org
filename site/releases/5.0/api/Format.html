@@ -638,12 +638,20 @@ coupled variables, margin and maxixum indentation limit.</p>
 </tr></tbody></table>
 <code>}</code>
 
+<div class="info ">
+<ul class="info-attributes">
+<li><b>Since</b> 4.08</li>
+</ul>
+</div>
 
 
 <pre><span id="VALcheck_geometry"><span class="keyword">val</span> check_geometry</span> : <code class="type"><a href="Format.html#TYPEgeometry">geometry</a> -&gt; bool</code></pre><div class="info ">
 <div class="info-desc">
 <p>Check if the formatter geometry is valid: <code class="code">1&nbsp;&lt;&nbsp;max_indent&nbsp;&lt;&nbsp;margin</code></p>
 </div>
+<ul class="info-attributes">
+<li><b>Since</b> 4.08</li>
+</ul>
 </div>
 
 <pre><span id="VALpp_set_geometry"><span class="keyword">val</span> pp_set_geometry</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a> -&gt; max_indent:int -&gt; margin:int -&gt; unit</code></pre>
@@ -1256,6 +1264,9 @@ coupled variables, margin and maxixum indentation limit.</p>
     domains will be interleaved with each other at points where the formatter
     is flushed, such as with <a href="Format.html#VALprint_flush"><code class="code"><span class="constructor">Format</span>.print_flush</code></a>.</p>
 </div>
+<ul class="info-attributes">
+<li><b>Alert unstable.</b></li>
+</ul>
 </div>
 
 <pre><span id="VALstd_formatter"><span class="keyword">val</span> std_formatter</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
@@ -1271,6 +1282,9 @@ coupled variables, margin and maxixum indentation limit.</p>
 <p><code class="code">get_std_formatter&nbsp;()</code> returns the current domain's standard formatter used
     to write to standard output.</p>
 </div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.0</li>
+</ul>
 </div>
 
 <pre><span id="VALerr_formatter"><span class="keyword">val</span> err_formatter</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
@@ -1281,7 +1295,16 @@ coupled variables, margin and maxixum indentation limit.</p>
 </div>
 </div>
 
-<pre><span id="VALget_err_formatter"><span class="keyword">val</span> get_err_formatter</span> : <code class="type">unit -&gt; <a href="Format.html#TYPEformatter">formatter</a></code></pre>
+<pre><span id="VALget_err_formatter"><span class="keyword">val</span> get_err_formatter</span> : <code class="type">unit -&gt; <a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">get_err_formatter&nbsp;()</code> returns the current domain's formatter used to write
+   to standard error.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.0</li>
+</ul>
+</div>
+
 <pre><span id="VALformatter_of_buffer"><span class="keyword">val</span> formatter_of_buffer</span> : <code class="type"><a href="Buffer.html#TYPEt">Buffer.t</a> -&gt; <a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
 <div class="info-desc">
 <p><code class="code">formatter_of_buffer&nbsp;b</code> returns a new formatter writing to
@@ -1302,6 +1325,9 @@ coupled variables, margin and maxixum indentation limit.</p>
 <p><code class="code">get_stdbuf&nbsp;()</code> returns the current domain's string buffer in which the
     current domain's string formatter writes.</p>
 </div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.0</li>
+</ul>
 </div>
 
 <pre><span id="VALstr_formatter"><span class="keyword">val</span> str_formatter</span> : <code class="type"><a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">
@@ -1317,6 +1343,9 @@ coupled variables, margin and maxixum indentation limit.</p>
 <p>The current domain's formatter to output to the current domains string
     buffer.</p>
 </div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.0</li>
+</ul>
 </div>
 
 <pre><span id="VALflush_str_formatter"><span class="keyword">val</span> flush_str_formatter</span> : <code class="type">unit -&gt; string</code></pre><div class="info ">
@@ -1349,6 +1378,10 @@ coupled variables, margin and maxixum indentation limit.</p>
     domains will be interleaved with each other at points where the formatter
     is flushed, such as with <a href="Format.html#VALprint_flush"><code class="code"><span class="constructor">Format</span>.print_flush</code></a>.</p>
 </div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.0</li>
+<li><b>Alert unstable.</b></li>
+</ul>
 </div>
 
 <pre><span id="VALformatter_of_out_functions"><span class="keyword">val</span> formatter_of_out_functions</span> : <code class="type"><a href="Format.html#TYPEformatter_out_functions">formatter_out_functions</a> -&gt; <a href="Format.html#TYPEformatter">formatter</a></code></pre><div class="info ">

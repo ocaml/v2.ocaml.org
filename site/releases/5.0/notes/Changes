@@ -1,5 +1,14 @@
-OCaml 5.0
----------
+OCaml 5.0 (16 December 2022)
+----------------------------
+
+- #10831: Multicore OCaml
+  (Enguerrand Decorne, Stephen Dolan, Tom Kelly, Sadiq Jaffer,
+  Anil Madhavapeddy, Sudha Parimala, KC Sivaramakrishnan,
+  Leo White, the Tarides multicore team,
+  review by Florian Angeletti, Damien Doligez, Xavier Leroy,
+  Guillaume Munch-Maccagnoni, Olivier Nicole, Nicolás Ojeda Bär,
+  Gabriel Scherer, the OCaml core development team, and many
+  other valued reviewers.)
 
 ### Language features:
 
@@ -28,9 +37,6 @@ OCaml 5.0
   Richard Warburton, Gabriel Scherer, Sabine Schmaltz, Florian Angeletti,
   Patrick Ferris, Tom Kelly)
 
-- #10831: Multicore OCaml
-  (The multicore team, caml-devel and more)
-
 * #10723: do not use `-flat-namespace` linking for macOS.
   (Carlo Cabrera, review by Damien Doligez)
 
@@ -57,9 +63,10 @@ OCaml 5.0
   (Guillaume Munch-Maccagnoni, review by Xavier Leroy and Gabriel
   Scherer)
 
-- #10875: Add option to allocate stacks with mmap(MAP_STACK) instead of malloc.
-  This is exposed via a configure --enable-mmap-map-stack option, and is
-  enabled by default on OpenBSD where it is mandatory.
+- #10875, #11731: Add option to allocate fiber stacks and sigaltstacks with
+  mmap(MAP_STACK) instead of malloc. This is exposed via a configure
+  --enable-mmap-map-stack option, and is enabled by default on OpenBSD where
+  it is mandatory.
   (Anil Madhavapeddy, review by Gabriel Scherer, Tom Kelly,
    Michael Hendricks and KC Sivaramakrishnan).
 
@@ -150,6 +157,14 @@ OCaml 5.0
 - #11504, #11522: Use static allocation in `caml_make_float_vect` in
   no-flat-float-array mode, it's more efficient and avoids a a race condition
   (Xavier Leroy, report by Guillaume Munch-Maccagnoni, review by David Allsopp)
+
+- #11652: Fix benign off-by-one error in Windows implementation of caml_mem_map.
+  (David Allsopp, review by Gabriel Scherer)
+
+- #11669, #11704: Fix construction of Effect.Unhandled exceptions in the
+  bytecode interpreter.
+  (David Allsopp and Xavier Leroy, report by Samuel Hym, review by Xavier Leroy
+  and Gabriel Scherer)
 
 ### Code generation and optimizations:
 
@@ -295,6 +310,17 @@ OCaml 5.0
   Scherer, Thomas Leonard, Tom Ridge, Xavier Leroy, Luc Maranget, Fabrice
   Buoro, Olivier Nicole, Guillaume Munch-Maccagnoni, Jacques-Henri Jourdan)
 
+- #11640: Add Flambda commonly-used options to the ocamlopt manpage
+  (Amandine Nangah, review by David Allsopp, Florian Angeletti,
+  Sébastien Hinderer, and Vincent Laviron)
+
+- #11676: Fix missing since annotation in the `Sys` and `Format` modules
+  (Github user Bukolab99, review by Florian Angeletti)
+
+- #11813: Make new multicore chapters easier to discover, and emphasize impact
+  on C bindings.
+  (Edwin Török, review by KC Sivaramakrishnan, and Florian Angeletti)
+
 ### Compiler user-interface and warnings:
 
 - #9140, #11131: New command-line flag -nocwd to not include implicit
@@ -317,8 +343,8 @@ OCaml 5.0
   (Sébastien Hinderer, review by David Allsopp, Florian Angeletti and
   Xavier Leroy)
 
-- #11184: Stop calling ranlib on created / installed libraries
-  (Sébastien Hinderer, review by Xavier Leroy)
+- #11184, #11670: Stop calling ranlib on created / installed libraries
+  (Sébastien Hinderer and Xavier Leroy, review by the same)
 
 - #11253: Deprecate `ocaml script` and `ocamlnat` script where `script` has no
   extension and is an implicit basename.
@@ -359,14 +385,14 @@ OCaml 5.0
   (Christopher Zimmermann, review by Anil Madhavapeddy)
 
 - #11126: Build system: make it possible to choose which ocamldep
-  (and flags) to use when computing depencies for the compiler.
+  (and flags) to use when computing dependencies for the compiler.
   Add a -no-slash option to ocamldep to let users override -slash.
   (Sébastien Hinderer, review by David Allsopp)
 
 - #11147: Factorize the stdlib-related compilation flags. Make it
   possible to control them consistently through the STDLIBFLAGS
   build variable. Make sure ocamldoc and ocamllex get compiled and
-  linked with debugging informations (-g).
+  linked with debugging information (-g).
   (Sébastien Hinderer, review by Gabriel Scherer)
 
 - #11149: Make the bootstrap process reproducible on systems with non-big-endian
@@ -398,6 +424,9 @@ OCaml 5.0
 
 - #11487: Thwart FMA test optimization during configure
   (William Hu, review by David Allsopp and Sébastien Hinderer)
+
+- #11097: Build native-code compilers on NetBSD/aarch64
+  (Kate Deplaix, review by Anil Madhavapeddy)
 
 ### Bug fixes:
 
@@ -444,6 +473,11 @@ OCaml 5.0
   true. Fixes a race condition where a child process could inherit the
   socket and deadlock the parent.
   (Antonin Décimo, review by Xavier Leroy)
+
+- #11194, #11609: Fix inconsistent type variable names in "unbound type var"
+  messages
+  (Ulysse Gérard and Florian Angeletti, review Florian Angeletti and
+   Gabriel Scherer)
 
 - #11204: Fix regression introduced in 4.14.0 that would trigger Warning 17 when
   calling virtual methods introduced by constraining the self type from within
@@ -500,6 +534,28 @@ OCaml 5.0
 
 - #11587: Prevent integer comparison from being used on pointers
   (Vincent Laviron, review by Gabriel Scherer)
+
+- #11622: Prevent stack overflow when printing a constructor or record
+  mismatch error involving recursive types.
+  (Florian Angeletti, review by Gabriel Scherer)
+
+- #11662, #11673: fix a memory leak when using Dynlink,
+  the bug was only present in development version of OCaml 5.
+  (Stephen Dolan, report by Andre Maroneze, review by Gabriel Scherer)
+
+- #11732: Ensure that types from packed modules are always generalised
+  (Stephen Dolan and Leo White, review by Jacques Garrigue)
+
+- #11737: Fix segfault condition in Unix.stat under Windows in the presence of
+  multiple threads.
+  (Marc Lasson, Nicolás Ojeda Bär, review by Gabriel Scherer and David Allsopp)
+
+- #11776: Extend environment with functor parameters in `strengthen_lazy`.
+  (Chris Casinghino and Luke Maurer, review by Gabriel Scherer)
+
+- #11533, #11534: follow synonyms again in #show_module_type
+  (this had stopped working in 4.14.0)
+  (Gabriel Scherer, review by Jacques Garrigue, report by Yaron Minsky)
 
 OCaml 4.14.0 (28 March 2022)
 ----------------------------

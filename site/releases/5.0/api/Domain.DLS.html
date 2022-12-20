@@ -104,15 +104,36 @@
 <pre><span id="VALnew_key"><span class="keyword">val</span> new_key</span> : <code class="type">?split_from_parent:('a -&gt; 'a) -&gt; (unit -&gt; 'a) -&gt; 'a <a href="Domain.DLS.html#TYPEkey">key</a></code></pre><div class="info ">
 <div class="info-desc">
 <p><code class="code">new_key&nbsp;f</code> returns a new key bound to initialiser <code class="code">f</code> for accessing
-        domain-local variables.</p>
+,        domain-local variables.</p>
 
-<p>If <code class="code">split_from_parent</code> is provided, spawning a domain will derive the
-        child value (for this key) from the parent value.</p>
+<p>If <code class="code">split_from_parent</code> is not provided, the value for a new
+        domain will be computed on-demand by the new domain: the first
+        <code class="code">get</code> call will call the initializer <code class="code">f</code> and store that value.</p>
 
-<p>Note that the <code class="code">split_from_parent</code> call is computed in the parent
-        domain, and is always computed regardless of whether the child domain
-        will use it. If the splitting function is expensive or requires
-        client-side computation, consider using <code class="code"><span class="keywordsign">'</span>a&nbsp;<span class="constructor">Lazy</span>.t&nbsp;key</code>.</p>
+<p>If <code class="code">split_from_parent</code> is provided, spawning a domain will
+        derive the child value (for this key) from the parent
+        value. This computation happens in the parent domain and it
+        always happens, regardless of whether the child domain will
+        use it.
+        If the splitting function is expensive or requires
+        child-side computation, consider using <code class="code"><span class="keywordsign">'</span>a&nbsp;<span class="constructor">Lazy</span>.t&nbsp;key</code>:</p>
+
+<pre class="codepre"><code class="code">        <span class="keyword">let</span> init () = ...
+
+        <span class="keyword">let</span> split_from_parent parent_value =
+          ... parent-side computation ...;
+          <span class="keyword">lazy</span> (
+            ... child-side computation ...
+          )
+
+        <span class="keyword">let</span> key = <span class="constructor">Domain</span>.<span class="constructor">DLS</span>.new_key ~split_from_parent init
+
+        <span class="keyword">let</span> get () = <span class="constructor">Lazy</span>.force (<span class="constructor">Domain</span>.<span class="constructor">DLS</span>.get key)
+        </code></pre>
+<p>In this case a part of the computation happens on the child
+        domain; in particular, it can access <code class="code">parent_value</code>
+        concurrently with the parent domain, which may require
+        explicit synchronization to avoid data races.</p>
 </div>
 </div>
 

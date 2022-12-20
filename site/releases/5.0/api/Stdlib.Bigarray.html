@@ -94,12 +94,16 @@
 <link title="Three-dimensional arrays" rel="Section" href="#1_Threedimensionalarrays">
 <link title="Coercions between generic Bigarrays and fixed-dimension Bigarrays" rel="Section" href="#1_CoercionsbetweengenericBigarraysandfixeddimensionBigarrays">
 <link title="Re-shaping Bigarrays" rel="Section" href="#1_ReshapingBigarrays">
+<link title="Bigarrays and concurrency safety" rel="Section" href="#bigarray_concurrency">
 <link title="Supported layouts" rel="Subsection" href="#2_Supportedlayouts">
+<link title="Atomicity" rel="Subsection" href="#bigarray_atomicity">
+<link title="Data races" rel="Subsection" href="#bigarray_data_race">
+<link title="Tearing" rel="Subsection" href="#bigarrarray_data_race_tearing">
 <title>OCaml library : Stdlib.Bigarray</title>
 <script src="search.js"></script><script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
 <body><div class="api"><div id="sidebar-button"><span>☰</span></div><header id="sidebar"><nav class="toc brand"><a class="brand" href="../manual/index.html"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">API Version 5.0</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" class="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
 <img src="search_icon.svg" alt="Search" class="api_search svg" onclick="mySearch(false)"></div>
-<div id="search_results"></div><div class="toc_title"><a href="#top">OCaml library : Stdlib.Bigarray</a></div><ul><li><a href="#1_Elementkinds">Element kinds</a></li><li><a href="#1_Arraylayouts">Array layouts</a><ul><li><a href="#2_Supportedlayouts">Supported layouts</a></li></ul></li><li><a href="#1_Genericarraysofarbitrarilymanydimensions">Generic arrays (of arbitrarily many dimensions)</a></li><li><a href="#1_Zerodimensionalarrays">Zero-dimensional arrays</a></li><li><a href="#1_Onedimensionalarrays">One-dimensional arrays</a></li><li><a href="#1_Twodimensionalarrays">Two-dimensional arrays</a></li><li><a href="#1_Threedimensionalarrays">Three-dimensional arrays</a></li><li><a href="#1_CoercionsbetweengenericBigarraysandfixeddimensionBigarrays">Coercions between generic Bigarrays and fixed-dimension Bigarrays</a></li><li><a href="#1_ReshapingBigarrays">Re-shaping Bigarrays</a></li></ul></nav></header>
+<div id="search_results"></div><div class="toc_title"><a href="#top">OCaml library : Stdlib.Bigarray</a></div><ul><li><a href="#1_Elementkinds">Element kinds</a></li><li><a href="#1_Arraylayouts">Array layouts</a><ul><li><a href="#2_Supportedlayouts">Supported layouts</a></li></ul></li><li><a href="#1_Genericarraysofarbitrarilymanydimensions">Generic arrays (of arbitrarily many dimensions)</a></li><li><a href="#1_Zerodimensionalarrays">Zero-dimensional arrays</a></li><li><a href="#1_Onedimensionalarrays">One-dimensional arrays</a></li><li><a href="#1_Twodimensionalarrays">Two-dimensional arrays</a></li><li><a href="#1_Threedimensionalarrays">Three-dimensional arrays</a></li><li><a href="#1_CoercionsbetweengenericBigarraysandfixeddimensionBigarrays">Coercions between generic Bigarrays and fixed-dimension Bigarrays</a></li><li><a href="#1_ReshapingBigarrays">Re-shaping Bigarrays</a></li><li><a href="#bigarray_concurrency">Bigarrays and concurrency safety</a><ul><li><a href="#bigarray_atomicity">Atomicity</a></li><li><a href="#bigarray_data_race">Data races</a></li><li><a href="#bigarrarray_data_race_tearing">Tearing</a></li></ul></li></ul></nav></header>
 <h1>Module <a href="type_Stdlib.Bigarray.html">Stdlib.Bigarray</a></h1>
 
 <pre><span id="MODULEBigarray"><span class="keyword">module</span> Bigarray</span>: <code class="type"><a href="Bigarray.html">Bigarray</a></code></pre><hr width="100%">
@@ -708,8 +712,60 @@
 <pre><span id="VALreshape_3"><span class="keyword">val</span> reshape_3</span> : <code class="type">('a, 'b, 'c) <a href="Bigarray.Genarray.html#TYPEt">Genarray.t</a> -&gt;<br>       int -&gt; int -&gt; int -&gt; ('a, 'b, 'c) <a href="Bigarray.Array3.html#TYPEt">Array3.t</a></code></pre><div class="info ">
 <div class="info-desc">
 <p>Specialized version of <a href="Bigarray.html#VALreshape"><code class="code"><span class="constructor">Bigarray</span>.reshape</code></a> for reshaping to
-   three-dimensional arrays.</p>
+    three-dimensional arrays.</p>
 </div>
 </div>
+<h2 id="bigarray_concurrency">Bigarrays and concurrency safety</h2>
+<p>Care must be taken when concurrently accessing bigarrays from multiple
+    domains: accessing a bigarray will never crash a program, but unsynchronized
+    accesses might yield surprising (non-sequentially-consistent) results.</p>
+
+<h3 id="bigarray_atomicity">Atomicity</h3>
+<p>Every bigarray operation that accesses more than one array element is not
+    atomic. This includes slicing, bliting, and filling bigarrays.</p>
+
+<p>For example, consider the following program:</p>
+<pre class="codepre"><code class="code"><span class="keyword">open</span> <span class="constructor">Bigarray</span>
+<span class="keyword">let</span> size = 100_000_000
+<span class="keyword">let</span> a = <span class="constructor">Array1</span>.init <span class="constructor">Int</span> <span class="constructor">C_layout</span> size (<span class="keyword">fun</span> _ <span class="keywordsign">-&gt;</span> 1)
+<span class="keyword">let</span> update f a () =
+  <span class="keyword">for</span> i = 0 <span class="keyword">to</span> size - 1 <span class="keyword">do</span> a.{i} &lt;- f a.{i} <span class="keyword">done</span>
+<span class="keyword">let</span> d1 = <span class="constructor">Domain</span>.spawn (update (<span class="keyword">fun</span> x <span class="keywordsign">-&gt;</span> x + 1) a)
+<span class="keyword">let</span> d2 = <span class="constructor">Domain</span>.spawn (update (<span class="keyword">fun</span> x <span class="keywordsign">-&gt;</span> 2 * x + 1) a)
+<span class="keyword">let</span> () = <span class="constructor">Domain</span>.join d1; <span class="constructor">Domain</span>.join d2
+</code></pre>
+<p>After executing this code, each field of the bigarray <code class="code">a</code> is either <code class="code">2</code>,
+    <code class="code">3</code>, <code class="code">4</code> or <code class="code">5</code>. If atomicity is required, then the user must implement
+    their own synchronization (for example, using <a href="Mutex.html#TYPEt"><code class="code"><span class="constructor">Mutex</span>.t</code></a>).</p>
+
+<h3 id="bigarray_data_race">Data races</h3>
+<p>If two domains only access disjoint parts of the bigarray, then the
+    observed behaviour is the equivalent to some sequential interleaving of the
+    operations from the two domains.</p>
+
+<p>A data race is said to occur when two domains access the same bigarray
+    element without synchronization and at least one of the accesses is a
+    write. In the absence of data races, the observed behaviour is equivalent
+    to some sequential interleaving of the operations from different domains.</p>
+
+<p>Whenever possible, data races should be avoided by using synchronization to
+    mediate the accesses to the bigarray elements.</p>
+
+<p>Indeed, in the presence of data races, programs will not crash but the
+    observed behaviour may not be equivalent to any sequential interleaving of
+    operations from different domains.</p>
+
+<h3 id="bigarrarray_data_race_tearing">Tearing</h3>
+<p>Bigarrays have a distinct caveat in the presence of data races:
+    concurrent bigarray operations might produce surprising values due to
+    tearing. More precisely, the interleaving of partial writes and reads might
+    create values that would not exist with a sequential execution.
+    For instance, at the end of</p>
+<pre class="codepre"><code class="code"><span class="keyword">let</span> res = <span class="constructor">Array1</span>.init <span class="constructor">Complex64</span> c_layout size (<span class="keyword">fun</span> _ <span class="keywordsign">-&gt;</span> <span class="constructor">Complex</span>.zero)
+<span class="keyword">let</span> d1 = <span class="constructor">Domain</span>.spawn (<span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span> <span class="constructor">Array1</span>.fill res <span class="constructor">Complex</span>.one)
+<span class="keyword">let</span> d2 = <span class="constructor">Domain</span>.spawn (<span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span> <span class="constructor">Array1</span>.fill res <span class="constructor">Complex</span>.i)
+<span class="keyword">let</span> () = <span class="constructor">Domain</span>.join d1; <span class="constructor">Domain</span>.join d2
+</code></pre><p>the <code class="code">res</code> bigarray might contain values that are neither <code class="code"><span class="constructor">Complex</span>.i</code>
+    nor <code class="code"><span class="constructor">Complex</span>.one</code> (for instance <code class="code">1&nbsp;+&nbsp;i</code>).</p>
 
 </div></body></html>

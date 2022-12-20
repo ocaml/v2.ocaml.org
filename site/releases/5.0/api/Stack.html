@@ -99,8 +99,15 @@
 
 <p>This module implements stacks (LIFOs), with in-place modification.</p>
 </div>
+<ul class="info-attributes">
+<li><b>Alert unsynchronized_accesses.</b> Unsynchronized accesses to stacks are a programming error.</li>
+</ul>
 </div>
 <hr width="100%">
+<p><b>Unsynchronized accesses</b></p>
+<p>Unsynchronized accesses to a stack may lead to an invalid queue state.
+    Thus, concurrent accesses to stacks must be synchronized (for instance
+    with a <a href="Mutex.html#TYPEt"><code class="code"><span class="constructor">Mutex</span>.t</code></a>).</p>
 
 <pre><span id="TYPEt"><span class="keyword">type</span> <code class="type">'a</code> t</span> </pre>
 <div class="info ">

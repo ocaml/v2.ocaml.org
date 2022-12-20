@@ -12,7 +12,7 @@
 
 
 
-<h1 class="chapter" id="sec637"><span class="chapter-number">Chapter 33</span> The threads library</h1>
+<h1 class="chapter" id="sec638"><span class="chapter-number">Chapter 33</span> The threads library</h1>
 <p>
 <a id="c:threads"></a></p><p>The <span class="machine"><span class="font-tt">threads</span></span> library allows concurrent programming in OCaml. It provides
 multiple threads of control (also called lightweight processes) that execute
@@ -27,8 +27,8 @@ are limited to the parts of the program that run system or C library code.
 However, threads provide concurrency and can be used to structure programs as
 several communicating processes. Threads also efficiently support concurrent,
 overlapping I/O operations.</p><p>Programs that use threads must be linked as follows:
-</p><pre>        ocamlc -I +threads <span class="font-it">other options</span> unix.cma threads.cma <span class="font-it">other files</span>
-        ocamlopt -I +threads <span class="font-it">other options</span> unix.cmxa threads.cmxa <span class="font-it">other files</span>
+</p><pre>        ocamlc -I +unix -I +threads <span class="font-it">other options</span> unix.cma threads.cma <span class="font-it">other files</span>
+        ocamlopt -I +unix -I +threads <span class="font-it">other options</span> unix.cmxa threads.cmxa <span class="font-it">other files</span>
 </pre><p>
 Compilation units that use the <span class="machine"><span class="font-tt">threads</span></span> library must also be compiled with
 the <span class="machine"><span class="font-tt">-I +threads</span></span> option (see chapter&nbsp;<a href="comp.html#c%3Acamlc">13</a>).</p><ul class="ftoc2"><li class="li-links"><a href="../api/Thread.html">Module <span class="font-tt">Thread</span></a>: lightweight threads

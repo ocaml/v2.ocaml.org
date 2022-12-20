@@ -96,6 +96,10 @@
 <h1>Module <a href="type_Stdlib.Buffer.html">Stdlib.Buffer</a></h1>
 
 <pre><span id="MODULEBuffer"><span class="keyword">module</span> Buffer</span>: <code class="type"><a href="Buffer.html">Buffer</a></code></pre><hr width="100%">
+<p><b>Unsynchronized accesses</b></p>
+<p>Unsynchronized accesses to a buffer may lead to an invalid buffer state.
+    Thus, concurrent accesses to a buffer must be synchronized (for instance
+    with a <a href="Mutex.html#TYPEt"><code class="code"><span class="constructor">Mutex</span>.t</code></a>).</p>
 
 <pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
 <div class="info ">

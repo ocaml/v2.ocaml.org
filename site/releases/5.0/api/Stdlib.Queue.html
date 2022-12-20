@@ -94,6 +94,10 @@
 <h1>Module <a href="type_Stdlib.Queue.html">Stdlib.Queue</a></h1>
 
 <pre><span id="MODULEQueue"><span class="keyword">module</span> Queue</span>: <code class="type"><a href="Queue.html">Queue</a></code></pre><hr width="100%">
+<p><b>Unsynchronized accesses</b></p>
+<p>Unsynchronized accesses to a queue may lead to an invalid queue state.
+    Thus, concurrent accesses to queues must be synchronized (for instance
+    with a <a href="Mutex.html#TYPEt"><code class="code"><span class="constructor">Mutex</span>.t</code></a>).</p>
 
 <pre><span id="TYPEt"><span class="keyword">type</span> <code class="type">'a</code> t</span> </pre>
 <div class="info ">

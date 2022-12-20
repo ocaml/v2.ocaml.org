@@ -116,7 +116,7 @@
 <div class="info-desc">
 <p><code class="code"><span class="constructor">Thread</span>.create&nbsp;funct&nbsp;arg</code> creates a new thread of control,
    in which the function application <code class="code">funct&nbsp;arg</code>
-   is executed concurrently with the other threads of the program.
+   is executed concurrently with the other threads of the domain.
    The application of <code class="code"><span class="constructor">Thread</span>.create</code>
    returns the handle of the newly created thread.
    The new thread terminates when the application <code class="code">funct&nbsp;arg</code>
@@ -126,6 +126,8 @@
    but not propagated back to the parent thread. Similarly, the
    result of the application <code class="code">funct&nbsp;arg</code> is discarded and not
    directly accessible to the parent thread.</p>
+
+<p>See also <a href="Domain.html#VALspawn"><code class="code"><span class="constructor">Domain</span>.spawn</code></a> if you want parallel execution instead.</p>
 </div>
 </div>
 

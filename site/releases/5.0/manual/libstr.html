@@ -12,20 +12,35 @@
 
 
 
-<h1 class="chapter" id="sec635"><span class="chapter-number">Chapter 31</span> The str library: regular expressions and string processing</h1>
+<h1 class="chapter" id="sec636"><span class="chapter-number">Chapter 31</span> The str library: regular expressions and string processing</h1>
 <p>The <span class="machine"><span class="font-tt">str</span></span> library provides high-level string processing functions,
 some based on regular expressions. It is intended to support the kind
 of file processing that is usually performed with scripting languages
 such as <span class="machine"><span class="font-tt">awk</span></span>, <span class="machine"><span class="font-tt">perl</span></span> or <span class="machine"><span class="font-tt">sed</span></span>.</p><p>Programs that use the <span class="machine"><span class="font-tt">str</span></span> library must be linked as follows:
-</p><pre>        ocamlc <span class="font-it">other options</span> str.cma <span class="font-it">other files</span>
-        ocamlopt <span class="font-it">other options</span> str.cmxa <span class="font-it">other files</span>
+</p><pre>        ocamlc <span class="font-it">other options</span> -I +str str.cma <span class="font-it">other files</span>
+        ocamlopt <span class="font-it">other options</span>  -I +str str.cmxa <span class="font-it">other files</span>
 </pre><p>
 For interactive use of the <span class="machine"><span class="font-tt">str</span></span> library, do:
 </p><pre>        ocamlmktop -o mytop str.cma
         ./mytop
 </pre><p>
 or (if dynamic linking of C libraries is supported on your platform),
-start <span class="machine"><span class="font-tt">ocaml</span></span> and type <span class="machine"><span class="font-tt">#load "str.cma";;</span></span>.</p><ul class="ftoc2"><li class="li-links"><a href="../api/Str.html">Module <span class="font-tt">Str</span></a>: regular expressions and string processing
+start <span class="machine"><span class="font-tt">ocaml</span></span> and type
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> #directory <span class="ocamlstring">"+str"</span>;;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> #load  <span class="ocamlstring">"str.cma"</span>;;</div></div>
+
+</div><ul class="ftoc2"><li class="li-links"><a href="../api/Str.html">Module <span class="font-tt">Str</span></a>: regular expressions and string processing
 </li></ul>
 <hr>
 <div class="bottom-navigation"><a class="previous" href="libunix.html">« The unix library: Unix system calls</a><a class="next" href="runtime_events.html">The runtime_events library »</a></div>

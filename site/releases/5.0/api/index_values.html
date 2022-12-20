@@ -2848,7 +2848,7 @@
 <td><div class="info">
 <p><code class="code"><span class="constructor">Thread</span>.create&nbsp;funct&nbsp;arg</code> creates a new thread of control,
    in which the function application <code class="code">funct&nbsp;arg</code>
-   is executed concurrently with the other threads of the program.</p>
+   is executed concurrently with the other threads of the domain.</p>
 
 </div>
 </td></tr>
@@ -3486,13 +3486,13 @@
 </td></tr>
 <tr><td><a href="BytesLabels.html#VALends_with">ends_with</a> [<a href="BytesLabels.html">BytesLabels</a>]</td>
 <td><div class="info">
-<p><code class="code">ends_with&nbsp;suffix&nbsp;s</code> is <code class="code"><span class="keyword">true</span></code> if and only if <code class="code">s</code> ends with <code class="code">suffix</code>.</p>
+<p><code class="code">ends_with&nbsp;</code><code class="code">~suffix&nbsp;s</code> is <code class="code"><span class="keyword">true</span></code> if and only if <code class="code">s</code> ends with <code class="code">suffix</code>.</p>
 
 </div>
 </td></tr>
 <tr><td><a href="Bytes.html#VALends_with">ends_with</a> [<a href="Bytes.html">Bytes</a>]</td>
 <td><div class="info">
-<p><code class="code">ends_with&nbsp;suffix&nbsp;s</code> is <code class="code"><span class="keyword">true</span></code> if and only if <code class="code">s</code> ends with <code class="code">suffix</code>.</p>
+<p><code class="code">ends_with&nbsp;</code><code class="code">~suffix&nbsp;s</code> is <code class="code"><span class="keyword">true</span></code> if and only if <code class="code">s</code> ends with <code class="code">suffix</code>.</p>
 
 </div>
 </td></tr>
@@ -6044,7 +6044,12 @@
 </div>
 </td></tr>
 <tr><td><a href="Format.html#VALget_err_formatter">get_err_formatter</a> [<a href="Format.html">Format</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">get_err_formatter&nbsp;()</code> returns the current domain's formatter used to write
+   to standard error.</p>
+
+</div>
+</td></tr>
 <tr><td><a href="Result.html#VALget_error">get_error</a> [<a href="Result.html">Result</a>]</td>
 <td><div class="info">
 <p><code class="code">get_error&nbsp;r</code> is <code class="code">e</code> if <code class="code">r</code> is <code class="code"><span class="constructor">Error</span>&nbsp;e</code> and raise otherwise.</p>
@@ -10745,7 +10750,7 @@
 <tr><td><a href="Domain.DLS.html#VALnew_key">new_key</a> [<a href="Domain.DLS.html">Domain.DLS</a>]</td>
 <td><div class="info">
 <p><code class="code">new_key&nbsp;f</code> returns a new key bound to initialiser <code class="code">f</code> for accessing
-        domain-local variables.</p>
+,        domain-local variables.</p>
 
 </div>
 </td></tr>
@@ -10874,7 +10879,11 @@
 <tr><td><a href="Obj.html#VALobject_tag">object_tag</a> [<a href="Obj.html">Obj</a>]</td>
 <td></td></tr>
 <tr><td><a href="Sys.html#VALocaml_release">ocaml_release</a> [<a href="Sys.html">Sys</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">ocaml_release</code> is the version of OCaml.</p>
+
+</div>
+</td></tr>
 <tr><td><a href="Sys.html#VALocaml_version">ocaml_version</a> [<a href="Sys.html">Sys</a>]</td>
 <td><div class="info">
 <p><code class="code">ocaml_version</code> is the version of OCaml.</p>
@@ -12885,7 +12894,8 @@
 </td></tr>
 <tr><td><a href="Domain.html#VALrecommended_domain_count">recommended_domain_count</a> [<a href="Domain.html">Domain</a>]</td>
 <td><div class="info">
-<p>The recommended maximum number of domains to be spawned.</p>
+<p>The recommended maximum number of domains which should be running
+    simultaneously (including domains already running).</p>
 
 </div>
 </td></tr>
@@ -13324,7 +13334,7 @@
 <tr><td><a href="Bigarray.html#VALreshape_3">reshape_3</a> [<a href="Bigarray.html">Bigarray</a>]</td>
 <td><div class="info">
 <p>Specialized version of <a href="Bigarray.html#VALreshape"><code class="code"><span class="constructor">Bigarray</span>.reshape</code></a> for reshaping to
-   three-dimensional arrays.</p>
+    three-dimensional arrays.</p>
 
 </div>
 </td></tr>
@@ -15441,14 +15451,14 @@
 </td></tr>
 <tr><td><a href="BytesLabels.html#VALstarts_with">starts_with</a> [<a href="BytesLabels.html">BytesLabels</a>]</td>
 <td><div class="info">
-<p><code class="code">starts_with&nbsp;</code><code class="code">~</code><code class="code">prefix&nbsp;s</code> is <code class="code"><span class="keyword">true</span></code> if and only if <code class="code">s</code> starts with
+<p><code class="code">starts_with&nbsp;</code><code class="code">~prefix&nbsp;s</code> is <code class="code"><span class="keyword">true</span></code> if and only if <code class="code">s</code> starts with
     <code class="code">prefix</code>.</p>
 
 </div>
 </td></tr>
 <tr><td><a href="Bytes.html#VALstarts_with">starts_with</a> [<a href="Bytes.html">Bytes</a>]</td>
 <td><div class="info">
-<p><code class="code">starts_with&nbsp;</code><code class="code">~</code><code class="code">prefix&nbsp;s</code> is <code class="code"><span class="keyword">true</span></code> if and only if <code class="code">s</code> starts with
+<p><code class="code">starts_with&nbsp;</code><code class="code">~prefix&nbsp;s</code> is <code class="code"><span class="keyword">true</span></code> if and only if <code class="code">s</code> starts with
     <code class="code">prefix</code>.</p>
 
 </div>
