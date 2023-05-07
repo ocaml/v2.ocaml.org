@@ -1,8 +1,3 @@
-<ul class="nav nav-tabs">
-    <li class="active">
-        <a>{{! cmd script/translate ((! get filename !)) "New packages" !}}</a>
-    </li>
-</ul>
 <table class="table table-bordered table-condensed table-hover">
     <thead>
         <tr>

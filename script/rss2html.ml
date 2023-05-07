@@ -367,7 +367,7 @@ let html_date_of_post e =
   | Some d ->
      let date =
        let open Syndic.Date in
-       sprintf "%s %02d, %d" (string_of_month(month d)) (day d) (year d) in
+       sprintf "%s %02d, %d" (string_of_month(month d)) (day d) (year d) in
      [Data date]
 
 (* Transform a post [p] (i.e. story) into HTML. *)
@@ -413,7 +413,7 @@ let html_of_post e =
                            [Element("img", ["src", "/img/twitter.png";
                                             "alt", "Twitter"], []) ])
                 :: rss) ] in
-  let sep = Data " — " in
+  let sep = Data " — " in
   let additional_info = match html_author_of_post e, html_date_of_post e with
     | [], [] -> []
     | html_author, [] -> sep :: html_author
@@ -436,7 +436,7 @@ let html_of_post e =
 
 
 let li_of_post (e: Atom.entry) =
-  let sep = Data " — " in
+  let sep = Data " — " in
   let title = string_of_text_construct e.Atom.title in
   let title = match get_alternate_link e with
     | None -> [Data title]

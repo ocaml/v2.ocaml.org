@@ -151,6 +151,7 @@
         <section class="span6 condensed">
             <h1><a href='http://opam.ocaml.org/packages/index-date.html'>Packages</a></h1>
             ((! input template/front_package.mpp !))
+            <p>See <a href="http://opam.ocaml.org/packages/index-date.html">more packages</a>! </p>
         </section>
     </div>
 </div>
