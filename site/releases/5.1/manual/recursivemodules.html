@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Language extensions</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec278"><span class="chapter-number">Chapter 12</span> Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.1</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
+<li><a href="letrecvalues.html#start-section"><span class="number">1</span> Recursive definitions of values</a>
+</li><li><a href="recursivemodules.html#start-section"><span class="number">2</span> Recursive modules</a>
+</li><li><a href="privatetypes.html#start-section"><span class="number">3</span> Private types</a>
+</li><li><a href="locallyabstract.html#start-section"><span class="number">4</span> Locally abstract types</a>
+</li><li><a href="firstclassmodules.html#start-section"><span class="number">5</span> First-class modules</a>
+</li><li><a href="moduletypeof.html#start-section"><span class="number">6</span> Recovering the type of a module</a>
+</li><li><a href="signaturesubstitution.html#start-section"><span class="number">7</span> Substituting inside a signature</a>
+</li><li><a href="modulealias.html#start-section"><span class="number">8</span> Type-level module aliases</a>
+</li><li><a href="overridingopen.html#start-section"><span class="number">9</span> Overriding in open statements</a>
+</li><li><a href="gadts.html#start-section"><span class="number">10</span> Generalized algebraic datatypes</a>
+</li><li><a href="bigarray.html#start-section"><span class="number">11</span> Syntax for Bigarray access</a>
+</li><li><a href="attributes.html#start-section"><span class="number">12</span> Attributes</a>
+</li><li><a href="extensionnodes.html#start-section"><span class="number">13</span> Extension nodes</a>
+</li><li><a href="extensiblevariants.html#start-section"><span class="number">14</span> Extensible variant types</a>
+</li><li><a href="generativefunctors.html#start-section"><span class="number">15</span> Generative functors</a>
+</li><li><a href="extensionsyntax.html#start-section"><span class="number">16</span> Extension-only syntax</a>
+</li><li><a href="inlinerecords.html#start-section"><span class="number">17</span> Inline records</a>
+</li><li><a href="doccomments.html#start-section"><span class="number">18</span> Documentation comments</a>
+</li><li><a href="indexops.html#start-section"><span class="number">19</span> Extended indexing operators </a>
+</li><li><a href="emptyvariants.html#start-section"><span class="number">20</span> Empty variant types</a>
+</li><li><a href="alerts.html#start-section"><span class="number">21</span> Alerts</a>
+</li><li><a href="generalizedopens.html#start-section"><span class="number">22</span> Generalized open statements</a>
+</li><li><a href="bindingops.html#start-section"><span class="number">23</span> Binding operators</a>
+</li><li><a href="effects.html#start-section"><span class="number">24</span> Effect handlers</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:recursive-modules"><a class="section-anchor" href="#s:recursive-modules" aria-hidden="true"></a><span class="number">2</span> Recursive modules</h2>
+<p>
+<a id="hevea_manual.kwd206"></a>
+<a id="hevea_manual.kwd207"></a>
+</p><p>(Introduced in Objective Caml 3.07)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" href="modules.html#definition"><span class="nonterminal">definition</span></a></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">module</span> <span class="syntax-token">rec</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> <span class="syntax-token">:</span> <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a> <span class="syntax-token">=</span> <a class="syntax" href="modules.html#module-expr"><span class="nonterminal">module-expr</span></a> 
+{ <span class="syntax-token">and</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> <span class="syntax-token">:</span> <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a> <span class="syntax-token">=</span> <a class="syntax" href="modules.html#module-expr"><span class="nonterminal">module-expr</span></a> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" href="modtypes.html#specification"><span class="nonterminal">specification</span></a></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">module</span> <span class="syntax-token">rec</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> <span class="syntax-token">:</span> <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a>
+{ <span class="syntax-token">and</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a><span class="syntax-token">:</span> <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a> }
+</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Recursive module definitions, introduced by the <span class="syntax-token">module rec</span> …<span class="syntax-token">and</span> … construction, generalize regular module definitions
+<span class="syntax-token">module</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> <span class="syntax-token">=</span> <a class="syntax" href="modules.html#module-expr"><span class="nonterminal">module-expr</span></a> and module specifications
+<span class="syntax-token">module</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> <span class="syntax-token">:</span> <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a> by allowing the defining
+<a class="syntax" href="modules.html#module-expr"><span class="nonterminal">module-expr</span></a> and the <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a> to refer recursively to the module
+identifiers being defined. A typical example of a recursive module
+definition is:
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">rec</span> A : <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> t = Leaf <span class="ocamlkeyword">of</span> string | Node <span class="ocamlkeyword">of</span> ASet.t
+  <span class="ocamlkeyword">val</span> compare: t -&gt; t -&gt; int
+<span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span>
+  <span class="ocamlkeyword">type</span> t = Leaf <span class="ocamlkeyword">of</span> string | Node <span class="ocamlkeyword">of</span> ASet.t
+  <span class="ocamlkeyword">let</span> compare t1 t2 =
+    <span class="ocamlkeyword">match</span> (t1, t2) <span class="ocamlkeyword">with</span>
+    | (Leaf s1, Leaf s2) -&gt; Stdlib.compare s1 s2
+    | (Leaf _, Node _) -&gt; 1
+    | (Node _, Leaf _) -&gt; -1
+    | (Node n1, Node n2) -&gt; ASet.compare n1 n2
+<span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">and</span> ASet
+  : Set.S <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">type</span> elt = A.t
+  = Set.Make(A)</div></div>
+
+</div><p>
+
+It can be given the following specification:
+
+</p><div class="caml-example signature">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">rec</span> A : <span class="ocamlkeyword">sig</span>
+  <span class="ocamlkeyword">type</span> t = Leaf <span class="ocamlkeyword">of</span> string | Node <span class="ocamlkeyword">of</span> ASet.t
+  <span class="ocamlkeyword">val</span> compare: t -&gt; t -&gt; int
+<span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">and</span> ASet : Set.S <span class="ocamlkeyword">with</span> <span class="ocamlkeyword">type</span> elt = A.t</div></div>
+
+</div><p>This is an experimental extension of OCaml: the class of
+recursive definitions accepted, as well as its dynamic semantics are
+not final and subject to change in future releases.</p><p>Currently, the compiler requires that all dependency cycles between
+the recursively-defined module identifiers go through at least one
+“safe” module. A module is “safe” if all value definitions that
+it contains have function types <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><sub>1</sub> <span class="syntax-token">-&gt;</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><sub>2</sub>. Evaluation of a
+recursive module definition proceeds by building initial values for
+the safe modules involved, binding all (functional) values to
+<span class="syntax-token">fun</span> <span class="syntax-token">_</span> <span class="syntax-token">-&gt;</span> <span class="syntax-token">raise</span> <span class="machine"><span class="font-tt">Undefined_recursive_module</span></span>. The defining
+module expressions are then evaluated, and the initial values
+for the safe modules are replaced by the values thus computed. If a
+function component of a safe module is applied during this computation
+(which corresponds to an ill-founded recursive definition), the
+<span class="machine"><span class="font-tt">Undefined_recursive_module</span></span> exception is raised at runtime:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">rec</span> M: <span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">val</span> f: unit -&gt; int <span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span> <span class="ocamlkeyword">let</span> f () = N.x <span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">and</span> N:<span class="ocamlkeyword">sig</span> <span class="ocamlkeyword">val</span> x: int <span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span> <span class="ocamlkeyword">let</span> x = M.f () <span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output ok">Exception:
+Undefined_recursive_module (<span class="ocamlstring">"extensions/recursivemodules.etex"</span>, 1, 43).</div></div>
+
+</div><p>If there are no safe modules along a dependency cycle, an error is raised</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> <span class="ocamlkeyword">rec</span> M: <span class="ocamlkeyword">sig</span> <span class="ocamlhighlight">val x: int</span> <span class="ocamlkeyword">end</span> = <span class="ocamlhighlight">struct let x = N.y end</span>
+<span class="ocamlkeyword">and</span> N:<span class="ocamlkeyword">sig</span> <span class="ocamlhighlight">val x: int</span> <span class="ocamlkeyword">val</span> y:int <span class="ocamlkeyword">end</span> = <span class="ocamlkeyword">struct</span> <span class="ocamlkeyword">let</span> x = M.x <span class="ocamlkeyword">let</span> y = 0 <span class="ocamlkeyword">end</span></div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: Cannot safely evaluate the definition of the following cycle
+       of recursively-defined modules: M -&gt; N -&gt; M.
+       There are no safe modules in this cycle (see manual section 12.2).
+  Module M defines an unsafe value, x .
+  Module N defines an unsafe value, x .</div></div>
+
+</div><p>Note that, in the <a class="syntax" href="modtypes.html#specification"><span class="nonterminal">specification</span></a> case, the <a class="syntax" href="modtypes.html#module-type"><span class="nonterminal">module-type</span></a>s must be
+parenthesized if they use the <span class="syntax-token">with</span> <a class="syntax" href="modtypes.html#mod-constraint"><span class="nonterminal">mod-constraint</span></a> construct.
+</p>
+
+<div class="bottom-navigation"><a class="previous" href="letrecvalues.html">« Recursive definitions of values</a><a class="next" href="privatetypes.html">Private types »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2023 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

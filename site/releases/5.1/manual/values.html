@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - The OCaml language</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec112"><span class="chapter-number">Chapter 11</span> The OCaml language</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.1</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
+<li><a href="lex.html#start-section"><span class="number">1</span> Lexical conventions</a>
+</li><li><a href="values.html#start-section"><span class="number">2</span> Values</a>
+</li><li><a href="names.html#start-section"><span class="number">3</span> Names</a>
+</li><li><a href="types.html#start-section"><span class="number">4</span> Type expressions</a>
+</li><li><a href="const.html#start-section"><span class="number">5</span> Constants</a>
+</li><li><a href="patterns.html#start-section"><span class="number">6</span> Patterns</a>
+</li><li><a href="expr.html#start-section"><span class="number">7</span> Expressions</a>
+</li><li><a href="typedecl.html#start-section"><span class="number">8</span> Type and exception definitions</a>
+</li><li><a href="classes.html#start-section"><span class="number">9</span> Classes</a>
+</li><li><a href="modtypes.html#start-section"><span class="number">10</span> Module types (module specifications)</a>
+</li><li><a href="modules.html#start-section"><span class="number">11</span> Module expressions (module implementations)</a>
+</li><li><a href="compunit.html#start-section"><span class="number">12</span> Compilation units</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:values"><a class="section-anchor" href="#s:values" aria-hidden="true"></a><span class="number">2</span> Values</h2>
+<ul>
+<li><a href="values.html#ss%3Avalues%3Abase"><span class="number">2.1</span> Base values</a>
+</li><li><a href="values.html#ss%3Avalues%3Atuple"><span class="number">2.2</span> Tuples</a>
+</li><li><a href="values.html#ss%3Avalues%3Arecords"><span class="number">2.3</span> Records</a>
+</li><li><a href="values.html#ss%3Avalues%3Aarray"><span class="number">2.4</span> Arrays</a>
+</li><li><a href="values.html#ss%3Avalues%3Avariant"><span class="number">2.5</span> Variant values</a>
+</li><li><a href="values.html#ss%3Avalues%3Apolyvars"><span class="number">2.6</span> Polymorphic variants</a>
+</li><li><a href="values.html#ss%3Avalues%3Afun"><span class="number">2.7</span> Functions</a>
+</li><li><a href="values.html#ss%3Avalues%3Aobj"><span class="number">2.8</span> Objects</a>
+</li></ul>
+<p>This section describes the kinds of values that are manipulated by
+OCaml programs.</p>
+<h3 class="subsection" id="ss:values:base"><a class="section-anchor" href="#ss:values:base" aria-hidden="true">﻿</a><span class="number">2.1</span> Base values</h3>
+<h4 class="subsubsection" id="sss:values:integer"><a class="section-anchor" href="#sss:values:integer" aria-hidden="true">﻿</a>Integer numbers</h4>
+<p>Integer values are integer numbers from −2<sup>30</sup> to 2<sup>30</sup>−1, that
+is −1073741824 to 1073741823. The implementation may support a
+wider range of integer values: on 64-bit platforms, the current
+implementation supports integers ranging from −2<sup>62</sup> to 2<sup>62</sup>−1.</p><h4 class="subsubsection" id="sss:values:float"><a class="section-anchor" href="#sss:values:float" aria-hidden="true">﻿</a>Floating-point numbers</h4>
+<p>Floating-point values are numbers in floating-point representation.
+The current implementation uses double-precision floating-point
+numbers conforming to the IEEE 754 standard, with 53 bits of mantissa
+and an exponent ranging from −1022 to 1023.</p><h4 class="subsubsection" id="sss:values:char"><a class="section-anchor" href="#sss:values:char" aria-hidden="true">﻿</a>Characters</h4>
+<p>Character values are represented as 8-bit integers between 0 and 255.
+Character codes between 0 and 127 are interpreted following the ASCII
+standard. The current implementation interprets character codes
+between 128 and 255 following the ISO 8859-1 standard.</p><h4 class="subsubsection" id="sss:values:string"><a class="section-anchor" href="#sss:values:string" aria-hidden="true">﻿</a>Character strings</h4>
+<p>String values are finite sequences of characters. The current
+implementation supports strings containing up to 2<sup>24</sup> − 5
+characters (16777211 characters); on 64-bit platforms, the limit is
+2<sup>57</sup> − 9.</p>
+<h3 class="subsection" id="ss:values:tuple"><a class="section-anchor" href="#ss:values:tuple" aria-hidden="true">﻿</a><span class="number">2.2</span> Tuples</h3>
+<p>Tuples of values are written <span class="syntax-token">(</span><span class="nonterminal">v</span><sub>1</sub><span class="syntax-token">,</span> …<span class="syntax-token">,</span> <span class="nonterminal">v</span><sub><span class="font-it">n</span></sub><span class="syntax-token">)</span>, standing for the
+<span class="font-it">n</span>-tuple of values <span class="nonterminal">v</span><sub>1</sub> to <span class="nonterminal">v</span><sub><span class="font-it">n</span></sub>. The current implementation
+supports tuple of up to 2<sup>22</sup> − 1 elements (4194303 elements).</p>
+<h3 class="subsection" id="ss:values:records"><a class="section-anchor" href="#ss:values:records" aria-hidden="true">﻿</a><span class="number">2.3</span> Records</h3>
+<p>Record values are labeled tuples of values. The record value written
+<span class="syntax-token">{</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub>1</sub> <span class="syntax-token">=</span> <span class="nonterminal">v</span><sub>1</sub><span class="syntax-token">;</span> …<span class="syntax-token">;</span> <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">=</span> <span class="nonterminal">v</span><sub><span class="font-it">n</span></sub> <span class="syntax-token">}</span> associates the value
+<span class="nonterminal">v</span><sub><span class="font-it">i</span></sub> to the record field <a class="syntax" href="names.html#field"><span class="nonterminal">field</span></a><sub><span class="font-it">i</span></sub>, for <span class="font-it">i</span> = 1 … <span class="font-it">n</span>. The current
+implementation supports records with up to 2<sup>22</sup> − 1 fields
+(4194303 fields).</p>
+<h3 class="subsection" id="ss:values:array"><a class="section-anchor" href="#ss:values:array" aria-hidden="true">﻿</a><span class="number">2.4</span> Arrays</h3>
+<p>Arrays are finite, variable-sized sequences of values of the same
+type. The current implementation supports arrays containing up to
+2<sup>22</sup> − 1 elements (4194303 elements) unless the elements are
+floating-point numbers (2097151 elements in this case); on 64-bit
+platforms, the limit is 2<sup>54</sup> − 1 for all arrays.</p>
+<h3 class="subsection" id="ss:values:variant"><a class="section-anchor" href="#ss:values:variant" aria-hidden="true">﻿</a><span class="number">2.5</span> Variant values</h3>
+<p>Variant values are either a constant constructor, or a non-constant
+constructor applied to a number of values. The former case is written
+<a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a>; the latter case is written <a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a> <span class="syntax-token">(</span><span class="nonterminal">v</span><sub>1</sub><span class="syntax-token">,</span> ... <span class="syntax-token">,</span> <span class="nonterminal">v</span><sub><span class="font-it">n</span></sub>
+<span class="syntax-token">)</span>, where the <span class="nonterminal">v</span><sub><span class="font-it">i</span></sub> are said to be the arguments of the non-constant
+constructor <a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a>. The parentheses may be omitted if there is only
+one argument.</p><p>The following constants are treated like built-in constant
+constructors:
+</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c004"><span class="font-bold">Constant</span></td><td class="c004"><span class="font-bold">Constructor</span> </td></tr>
+<tr><td class="c006">
+<span class="machine"><span class="font-tt">false</span></span></td><td class="c006">the boolean false </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">true</span></span></td><td class="c006">the boolean true </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">()</span></span></td><td class="c006">the “unit” value </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">[]</span></span></td><td class="c006">the empty list </td></tr>
+</tbody></table></div></div><p>The current implementation limits each variant type to have at most
+246 non-constant constructors and 2<sup>30</sup>−1 constant constructors.</p>
+<h3 class="subsection" id="ss:values:polyvars"><a class="section-anchor" href="#ss:values:polyvars" aria-hidden="true">﻿</a><span class="number">2.6</span> Polymorphic variants</h3>
+<p>Polymorphic variants are an alternate form of variant values, not
+belonging explicitly to a predefined variant type, and following
+specific typing rules. They can be either constant, written
+<span class="syntax-token">`</span><a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a>, or non-constant, written <span class="syntax-token">`</span><a class="syntax" href="names.html#tag-name"><span class="nonterminal">tag-name</span></a><span class="syntax-token">(</span><span class="nonterminal">v</span><span class="syntax-token">)</span>.</p>
+<h3 class="subsection" id="ss:values:fun"><a class="section-anchor" href="#ss:values:fun" aria-hidden="true">﻿</a><span class="number">2.7</span> Functions</h3>
+<p>Functional values are mappings from values to values.</p>
+<h3 class="subsection" id="ss:values:obj"><a class="section-anchor" href="#ss:values:obj" aria-hidden="true">﻿</a><span class="number">2.8</span> Objects</h3>
+<p>Objects are composed of a hidden internal state which is a
+record of instance variables, and a set of methods for accessing and
+modifying these variables. The structure of an object is described by
+the toplevel class that created it.
+
+</p>
+
+<div class="bottom-navigation"><a class="previous" href="lex.html">« Lexical conventions</a><a class="next" href="names.html">Names »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2023 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>
