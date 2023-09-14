@@ -1,0 +1,274 @@
+<!DOCTYPE html><html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Complex.html">
+<link rel="next" href="Digest.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel="Appendix" href="index_types.html">
+<link title="Index of extensions" rel="Appendix" href="index_extensions.html">
+<link title="Index of exceptions" rel="Appendix" href="index_exceptions.html">
+<link title="Index of values" rel="Appendix" href="index_values.html">
+<link title="Index of modules" rel="Appendix" href="index_modules.html">
+<link title="Index of module types" rel="Appendix" href="index_module_types.html">
+<link title="Format_tutorial" rel="Chapter" href="Format_tutorial.html">
+<link title="Ocaml_operators" rel="Chapter" href="Ocaml_operators.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Atomic" rel="Chapter" href="Atomic.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Bool" rel="Chapter" href="Bool.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Bytes" rel="Chapter" href="Bytes.html">
+<link title="BytesLabels" rel="Chapter" href="BytesLabels.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Domain" rel="Chapter" href="Domain.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Effect" rel="Chapter" href="Effect.html">
+<link title="Either" rel="Chapter" href="Either.html">
+<link title="Ephemeron" rel="Chapter" href="Ephemeron.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Float" rel="Chapter" href="Float.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Fun" rel="Chapter" href="Fun.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="In_channel" rel="Chapter" href="In_channel.html">
+<link title="Int" rel="Chapter" href="Int.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Option" rel="Chapter" href="Option.html">
+<link title="Out_channel" rel="Chapter" href="Out_channel.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Result" rel="Chapter" href="Result.html">
+<link title="Runtime_events" rel="Chapter" href="Runtime_events.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Semaphore" rel="Chapter" href="Semaphore.html">
+<link title="Seq" rel="Chapter" href="Seq.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Stdlib" rel="Chapter" href="Stdlib.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="Type" rel="Chapter" href="Type.html">
+<link title="Uchar" rel="Chapter" href="Uchar.html">
+<link title="Unit" rel="Chapter" href="Unit.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Weak" rel="Chapter" href="Weak.html">
+<link title="CamlinternalFormat" rel="Chapter" href="CamlinternalFormat.html">
+<link title="CamlinternalFormatBasics" rel="Chapter" href="CamlinternalFormatBasics.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html"><title>OCaml library : Condition</title>
+<script src="search.js"></script><script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="api"><div id="sidebar-button"><span>☰</span></div><header id="sidebar"><nav class="toc brand"><a class="brand" href="../manual/index.html"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">API Version 5.1</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" class="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="api_search svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="#top">OCaml library : Condition</a></div><ul></ul></nav></header>
+<h1>Module <a href="type_Condition.html">Condition</a></h1>
+
+<pre><span id="MODULECondition"><span class="keyword">module</span> Condition</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Condition.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Condition variables.</p>
+
+<p>Condition variables are useful when several threads wish to access a
+   shared data structure that is protected by a mutex (a mutual exclusion
+   lock).</p>
+
+<p>A condition variable is a <i>communication channel</i>. On the receiver
+   side, one or more threads can indicate that they wish to <i>wait</i>
+   for a certain property to become true. On the sender side, a thread
+   can <i>signal</i> that this property has become true, causing one (or
+   more) waiting threads to be woken up.</p>
+
+<p>For instance, in the implementation of a queue data structure, if a
+   thread that wishes to extract an element finds that the queue is
+   currently empty, then this thread waits for the queue to become
+   nonempty. A thread that inserts an element into the queue signals
+   that the queue has become nonempty. A condition variable is used for this
+   purpose. This communication channel conveys the information that
+   the property "the queue is nonempty" is true, or more accurately,
+   may be true. (We explain below why the receiver of a signal cannot
+   be certain that the property holds.)</p>
+
+<p>To continue the example of the queue, assuming that the queue has a fixed
+   maximum capacity, then a thread that wishes to insert an element
+   may find that the queue is full. Then, this thread must wait for
+   the queue to become not full, and a thread that extracts an element
+   of the queue signals that the queue has become not full. Another
+   condition variable is used for this purpose.</p>
+
+<p>In short, a condition variable <code class="code">c</code> is used to convey the information
+   that a certain property <i>P</i> about a shared data structure <i>D</i>,
+   protected by a mutex <code class="code">m</code>, may be true.</p>
+
+<p>Condition variables provide an efficient alternative to busy-waiting.
+   When one wishes to wait for the property <i>P</i> to be true,
+   instead of writing a busy-waiting loop:</p>
+<pre class="codepre"><code class="code">     <span class="constructor">Mutex</span>.lock m;
+     <span class="keyword">while</span> not <span class="constructor">P</span> <span class="keyword">do</span>
+       <span class="constructor">Mutex</span>.unlock m; <span class="constructor">Mutex</span>.lock m
+     <span class="keyword">done</span>;
+     &lt;update the data structure&gt;;
+     <span class="constructor">Mutex</span>.unlock m
+   </code></pre><p>one uses <a href="Condition.html#VALwait"><code class="code"><span class="constructor">Condition</span>.wait</code></a> in the body of the loop, as follows:</p>
+<pre class="codepre"><code class="code">     <span class="constructor">Mutex</span>.lock m;
+     <span class="keyword">while</span> not <span class="constructor">P</span> <span class="keyword">do</span>
+       <span class="constructor">Condition</span>.wait c m
+     <span class="keyword">done</span>;
+     &lt;update the data structure&gt;;
+     <span class="constructor">Mutex</span>.unlock m
+   </code></pre><p>The busy-waiting loop is inefficient because the waiting thread
+   consumes processing time and creates contention of the mutex <code class="code">m</code>.
+   Calling <a href="Condition.html#VALwait"><code class="code"><span class="constructor">Condition</span>.wait</code></a> allows the waiting thread to be suspended, so it
+   does not consume any computing resources while waiting.</p>
+
+<p>With a condition variable <code class="code">c</code>, exactly one mutex <code class="code">m</code> is associated.
+   This association is implicit: the mutex <code class="code">m</code> is not explicitly passed
+   as an argument to <a href="Condition.html#VALcreate"><code class="code"><span class="constructor">Condition</span>.create</code></a>. It is up to the programmer to know, for
+   each condition variable <code class="code">c</code>, which is the associated mutex <code class="code">m</code>.</p>
+
+<p>With a mutex <code class="code">m</code>, several condition variables can be associated.
+   In the example of the bounded queue, one condition variable is
+   used to indicate that the queue is nonempty, and another condition
+   variable is used to indicate that the queue is not full.</p>
+
+<p>With a condition variable <code class="code">c</code>, exactly one logical property <i>P</i>
+   should be associated. Examples of such properties
+   include "the queue is nonempty" and "the queue is not full".
+   It is up to the programmer to keep track, for each condition
+   variable, of the corresponding property <i>P</i>.
+   A signal is sent on the condition variable <code class="code">c</code>
+   as an indication that the property <i>P</i> is true, or may be true.
+   On the receiving end, however, a thread that is woken up
+   cannot assume that <i>P</i> is true;
+   after a call to <a href="Condition.html#VALwait"><code class="code"><span class="constructor">Condition</span>.wait</code></a> terminates,
+   one must explicitly test whether <i>P</i> is true.
+   There are several reasons why this is so.
+   One reason is that,
+   between the moment when the signal is sent
+   and the moment when a waiting thread receives the signal
+   and is scheduled,
+   the property <i>P</i> may be falsified by some other thread
+   that is able to acquire the mutex <code class="code">m</code> and alter the data structure <i>D</i>.
+   Another reason is that <i>spurious wakeups</i> may occur:
+   a waiting thread can be woken up even if no signal was sent.</p>
+
+<p>Here is a complete example, where a mutex protects a sequential
+   unbounded queue, and where a condition variable is used to signal
+   that the queue is nonempty.</p>
+<pre class="codepre"><code class="code">     <span class="keyword">type</span> <span class="keywordsign">'</span>a safe_queue =
+       { queue : <span class="keywordsign">'</span>a <span class="constructor">Queue</span>.t; mutex : <span class="constructor">Mutex</span>.t; nonempty : <span class="constructor">Condition</span>.t }
+
+     <span class="keyword">let</span> create () =
+       { queue = <span class="constructor">Queue</span>.create(); mutex = <span class="constructor">Mutex</span>.create();
+         nonempty = <span class="constructor">Condition</span>.create() }
+
+     <span class="keyword">let</span> add v q =
+       <span class="constructor">Mutex</span>.lock q.mutex;
+       <span class="keyword">let</span> was_empty = <span class="constructor">Queue</span>.is_empty q.queue <span class="keyword">in</span>
+       <span class="constructor">Queue</span>.add v q.queue;
+       <span class="keyword">if</span> was_empty <span class="keyword">then</span> <span class="constructor">Condition</span>.broadcast q.nonempty;
+       <span class="constructor">Mutex</span>.unlock q.mutex
+
+     <span class="keyword">let</span> take q =
+       <span class="constructor">Mutex</span>.lock q.mutex;
+       <span class="keyword">while</span> <span class="constructor">Queue</span>.is_empty q.queue <span class="keyword">do</span> <span class="constructor">Condition</span>.wait q.nonempty q.mutex <span class="keyword">done</span>;
+       <span class="keyword">let</span> v = <span class="constructor">Queue</span>.take q.queue <span class="keyword">in</span> <span class="comment">(* cannot fail since queue is nonempty *)</span>
+       <span class="constructor">Mutex</span>.unlock q.mutex;
+       v
+   </code></pre><p>Because the call to <a href="Condition.html#VALbroadcast"><code class="code"><span class="constructor">Condition</span>.broadcast</code></a> takes place inside the critical
+   section, the following property holds whenever the mutex is unlocked:
+   <i>if the queue is nonempty, then no thread is waiting</i>,
+   or, in other words,
+   <i>if some thread is waiting, then the queue must be empty</i>.
+   This is a desirable property: if a thread
+   that attempts to execute a <code class="code">take</code> operation
+   could remain suspended
+   even though the queue is nonempty,
+   that would be a problematic situation,
+   known as a <i>deadlock</i>.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>The type of condition variables.</p>
+</div>
+</div>
+
+
+<pre><span id="VALcreate"><span class="keyword">val</span> create</span> : <code class="type">unit -&gt; <a href="Condition.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">create()</code> creates and returns a new condition variable.
+   This condition variable should be associated (in the programmer's mind)
+   with a certain mutex <code class="code">m</code> and with a certain property <i>P</i> of the data
+   structure that is protected by the mutex <code class="code">m</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALwait"><span class="keyword">val</span> wait</span> : <code class="type"><a href="Condition.html#TYPEt">t</a> -&gt; <a href="Mutex.html#TYPEt">Mutex.t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>The call <code class="code">wait&nbsp;c&nbsp;m</code> is permitted only if <code class="code">m</code> is the mutex associated
+   with the condition variable <code class="code">c</code>, and only if <code class="code">m</code> is currently locked.
+   This call atomically unlocks the mutex <code class="code">m</code> and suspends the
+   current thread on the condition variable <code class="code">c</code>. This thread can
+   later be woken up after the condition variable <code class="code">c</code> has been signaled
+   via <a href="Condition.html#VALsignal"><code class="code"><span class="constructor">Condition</span>.signal</code></a> or <a href="Condition.html#VALbroadcast"><code class="code"><span class="constructor">Condition</span>.broadcast</code></a>; however, it can also be woken up for
+   no reason. The mutex <code class="code">m</code> is locked again before <code class="code">wait</code> returns. One
+   cannot assume that the property <i>P</i> associated with the condition
+   variable <code class="code">c</code> holds when <code class="code">wait</code> returns; one must explicitly test
+   whether <i>P</i> holds after calling <code class="code">wait</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALsignal"><span class="keyword">val</span> signal</span> : <code class="type"><a href="Condition.html#TYPEt">t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">signal&nbsp;c</code> wakes up one of the threads waiting on the condition
+   variable <code class="code">c</code>, if there is one. If there is none, this call has
+   no effect.</p>
+
+<p>It is recommended to call <code class="code">signal&nbsp;c</code> inside a critical section,
+   that is, while the mutex <code class="code">m</code> associated with <code class="code">c</code> is locked.</p>
+</div>
+</div>
+
+<pre><span id="VALbroadcast"><span class="keyword">val</span> broadcast</span> : <code class="type"><a href="Condition.html#TYPEt">t</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">broadcast&nbsp;c</code> wakes up all threads waiting on the condition
+   variable <code class="code">c</code>. If there are none, this call has no effect.</p>
+
+<p>It is recommended to call <code class="code">broadcast&nbsp;c</code> inside a critical section,
+   that is, while the mutex <code class="code">m</code> associated with <code class="code">c</code> is locked.</p>
+</div>
+</div>
+
+</div></body></html>

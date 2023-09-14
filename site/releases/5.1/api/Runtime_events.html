@@ -1,0 +1,756 @@
+<!DOCTYPE html><html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Result.html">
+<link rel="next" href="Scanf.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel="Appendix" href="index_types.html">
+<link title="Index of extensions" rel="Appendix" href="index_extensions.html">
+<link title="Index of exceptions" rel="Appendix" href="index_exceptions.html">
+<link title="Index of values" rel="Appendix" href="index_values.html">
+<link title="Index of modules" rel="Appendix" href="index_modules.html">
+<link title="Index of module types" rel="Appendix" href="index_module_types.html">
+<link title="Format_tutorial" rel="Chapter" href="Format_tutorial.html">
+<link title="Ocaml_operators" rel="Chapter" href="Ocaml_operators.html">
+<link title="Arg" rel="Chapter" href="Arg.html">
+<link title="Array" rel="Chapter" href="Array.html">
+<link title="ArrayLabels" rel="Chapter" href="ArrayLabels.html">
+<link title="Atomic" rel="Chapter" href="Atomic.html">
+<link title="Bigarray" rel="Chapter" href="Bigarray.html">
+<link title="Bool" rel="Chapter" href="Bool.html">
+<link title="Buffer" rel="Chapter" href="Buffer.html">
+<link title="Bytes" rel="Chapter" href="Bytes.html">
+<link title="BytesLabels" rel="Chapter" href="BytesLabels.html">
+<link title="Callback" rel="Chapter" href="Callback.html">
+<link title="Char" rel="Chapter" href="Char.html">
+<link title="Complex" rel="Chapter" href="Complex.html">
+<link title="Condition" rel="Chapter" href="Condition.html">
+<link title="Digest" rel="Chapter" href="Digest.html">
+<link title="Domain" rel="Chapter" href="Domain.html">
+<link title="Dynlink" rel="Chapter" href="Dynlink.html">
+<link title="Effect" rel="Chapter" href="Effect.html">
+<link title="Either" rel="Chapter" href="Either.html">
+<link title="Ephemeron" rel="Chapter" href="Ephemeron.html">
+<link title="Event" rel="Chapter" href="Event.html">
+<link title="Filename" rel="Chapter" href="Filename.html">
+<link title="Float" rel="Chapter" href="Float.html">
+<link title="Format" rel="Chapter" href="Format.html">
+<link title="Fun" rel="Chapter" href="Fun.html">
+<link title="Gc" rel="Chapter" href="Gc.html">
+<link title="Hashtbl" rel="Chapter" href="Hashtbl.html">
+<link title="In_channel" rel="Chapter" href="In_channel.html">
+<link title="Int" rel="Chapter" href="Int.html">
+<link title="Int32" rel="Chapter" href="Int32.html">
+<link title="Int64" rel="Chapter" href="Int64.html">
+<link title="Lazy" rel="Chapter" href="Lazy.html">
+<link title="Lexing" rel="Chapter" href="Lexing.html">
+<link title="List" rel="Chapter" href="List.html">
+<link title="ListLabels" rel="Chapter" href="ListLabels.html">
+<link title="Map" rel="Chapter" href="Map.html">
+<link title="Marshal" rel="Chapter" href="Marshal.html">
+<link title="MoreLabels" rel="Chapter" href="MoreLabels.html">
+<link title="Mutex" rel="Chapter" href="Mutex.html">
+<link title="Nativeint" rel="Chapter" href="Nativeint.html">
+<link title="Obj" rel="Chapter" href="Obj.html">
+<link title="Oo" rel="Chapter" href="Oo.html">
+<link title="Option" rel="Chapter" href="Option.html">
+<link title="Out_channel" rel="Chapter" href="Out_channel.html">
+<link title="Parsing" rel="Chapter" href="Parsing.html">
+<link title="Printexc" rel="Chapter" href="Printexc.html">
+<link title="Printf" rel="Chapter" href="Printf.html">
+<link title="Queue" rel="Chapter" href="Queue.html">
+<link title="Random" rel="Chapter" href="Random.html">
+<link title="Result" rel="Chapter" href="Result.html">
+<link title="Runtime_events" rel="Chapter" href="Runtime_events.html">
+<link title="Scanf" rel="Chapter" href="Scanf.html">
+<link title="Semaphore" rel="Chapter" href="Semaphore.html">
+<link title="Seq" rel="Chapter" href="Seq.html">
+<link title="Set" rel="Chapter" href="Set.html">
+<link title="Stack" rel="Chapter" href="Stack.html">
+<link title="StdLabels" rel="Chapter" href="StdLabels.html">
+<link title="Stdlib" rel="Chapter" href="Stdlib.html">
+<link title="Str" rel="Chapter" href="Str.html">
+<link title="String" rel="Chapter" href="String.html">
+<link title="StringLabels" rel="Chapter" href="StringLabels.html">
+<link title="Sys" rel="Chapter" href="Sys.html">
+<link title="Thread" rel="Chapter" href="Thread.html">
+<link title="Type" rel="Chapter" href="Type.html">
+<link title="Uchar" rel="Chapter" href="Uchar.html">
+<link title="Unit" rel="Chapter" href="Unit.html">
+<link title="Unix" rel="Chapter" href="Unix.html">
+<link title="UnixLabels" rel="Chapter" href="UnixLabels.html">
+<link title="Weak" rel="Chapter" href="Weak.html">
+<link title="CamlinternalFormat" rel="Chapter" href="CamlinternalFormat.html">
+<link title="CamlinternalFormatBasics" rel="Chapter" href="CamlinternalFormatBasics.html">
+<link title="CamlinternalLazy" rel="Chapter" href="CamlinternalLazy.html">
+<link title="CamlinternalMod" rel="Chapter" href="CamlinternalMod.html">
+<link title="CamlinternalOO" rel="Chapter" href="CamlinternalOO.html"><title>OCaml library : Runtime_events</title>
+<script src="search.js"></script><script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="api"><div id="sidebar-button"><span>☰</span></div><header id="sidebar"><nav class="toc brand"><a class="brand" href="../manual/index.html"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">API Version 5.1</a></div><a href="index.html">&lt; General Index</a><div class="api_search"><input type="text" name="apisearch" id="api_search" class="api_search" oninput="mySearch(false);" onkeypress="this.oninput();" onclick="this.oninput();" onpaste="this.oninput();">
+<img src="search_icon.svg" alt="Search" class="api_search svg" onclick="mySearch(false)"></div>
+<div id="search_results"></div><div class="toc_title"><a href="#top">OCaml library : Runtime_events</a></div><ul></ul></nav></header>
+<h1>Module <a href="type_Runtime_events.html">Runtime_events</a></h1>
+
+<pre><span id="MODULERuntime_events"><span class="keyword">module</span> Runtime_events</span>: <code class="code"><span class="keyword">sig</span></code> <a href="Runtime_events.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Runtime events - ring buffer-based runtime tracing</p>
+
+<p>This module enables users to enable and subscribe to tracing events
+    from the Garbage Collector and other parts of the OCaml runtime. This can
+    be useful for diagnostic or performance monitoring purposes. This module
+    can be used to subscribe to events for the current process or external
+    processes asynchronously.</p>
+
+<p>When enabled (either via setting the OCAML_RUNTIME_EVENTS_START environment
+    variable or calling Runtime_events.start) a file with the pid of the process
+    and extension .events will be created. By default this is in the
+    current directory but can be over-ridden by the OCAML_RUNTIME_EVENTS_DIR
+    environment variable. Each domain maintains its own ring buffer in a section
+    of the larger file into which it emits events.</p>
+
+<p>There is additionally a set of C APIs in runtime_events.h that can enable
+    zero-impact monitoring of the current process or bindings for other
+    languages.</p>
+
+<p>The runtime events system's behaviour can be controlled by the following
+    environment variables:</p>
+
+<ul>
+<li>OCAML_RUNTIME_EVENTS_START if set will cause the runtime events system
+    to be started as part of the OCaml runtime initialization.</li>
+</ul>
+<ul>
+<li>OCAML_RUNTIME_EVENTS_DIR sets the directory where the runtime events
+    ring buffers will be located. If not present the program's working directory
+    will be used.</li>
+</ul>
+<ul>
+<li>OCAML_RUNTIME_EVENTS_PRESERVE if set will prevent the OCaml runtime from
+    removing its ring buffers when it terminates. This can help if monitoring
+    very short running programs.</li>
+</ul>
+</div>
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEruntime_counter"><span class="keyword">type</span> <code class="type"></code>runtime_counter</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_FORCE_MINOR_ALLOC_SMALL"><span class="constructor">EV_C_FORCE_MINOR_ALLOC_SMALL</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_FORCE_MINOR_MAKE_VECT"><span class="constructor">EV_C_FORCE_MINOR_MAKE_VECT</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_FORCE_MINOR_SET_MINOR_HEAP_SIZE"><span class="constructor">EV_C_FORCE_MINOR_SET_MINOR_HEAP_SIZE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_FORCE_MINOR_MEMPROF"><span class="constructor">EV_C_FORCE_MINOR_MEMPROF</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_MINOR_PROMOTED"><span class="constructor">EV_C_MINOR_PROMOTED</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_MINOR_ALLOCATED"><span class="constructor">EV_C_MINOR_ALLOCATED</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_REQUEST_MAJOR_ALLOC_SHR"><span class="constructor">EV_C_REQUEST_MAJOR_ALLOC_SHR</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_REQUEST_MAJOR_ADJUST_GC_SPEED"><span class="constructor">EV_C_REQUEST_MAJOR_ADJUST_GC_SPEED</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_REQUEST_MINOR_REALLOC_REF_TABLE"><span class="constructor">EV_C_REQUEST_MINOR_REALLOC_REF_TABLE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_REQUEST_MINOR_REALLOC_EPHE_REF_TABLE"><span class="constructor">EV_C_REQUEST_MINOR_REALLOC_EPHE_REF_TABLE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_REQUEST_MINOR_REALLOC_CUSTOM_TABLE"><span class="constructor">EV_C_REQUEST_MINOR_REALLOC_CUSTOM_TABLE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_MAJOR_HEAP_POOL_WORDS"><span class="constructor">EV_C_MAJOR_HEAP_POOL_WORDS</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top"><code>(*</code></td><td class="typefieldcomment" align="left" valign="top"><div class="info ">
+<div class="info-desc">
+<p>Total words in a Domain's major heap pools. This is the sum of unallocated and
+live words in each pool.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.1</li>
+</ul>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom"><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_MAJOR_HEAP_POOL_LIVE_WORDS"><span class="constructor">EV_C_MAJOR_HEAP_POOL_LIVE_WORDS</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top"><code>(*</code></td><td class="typefieldcomment" align="left" valign="top"><div class="info ">
+<div class="info-desc">
+<p>Current live words in a Domain's major heap pools.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.1</li>
+</ul>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom"><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_MAJOR_HEAP_LARGE_WORDS"><span class="constructor">EV_C_MAJOR_HEAP_LARGE_WORDS</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top"><code>(*</code></td><td class="typefieldcomment" align="left" valign="top"><div class="info ">
+<div class="info-desc">
+<p>Total words of a Domain's major heap large allocations.
+A large allocation is an allocation larger than the largest sized pool.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.1</li>
+</ul>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom"><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_MAJOR_HEAP_POOL_FRAG_WORDS"><span class="constructor">EV_C_MAJOR_HEAP_POOL_FRAG_WORDS</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top"><code>(*</code></td><td class="typefieldcomment" align="left" valign="top"><div class="info ">
+<div class="info-desc">
+<p>Words in a Domain's major heap pools lost to fragmentation. This is due to
+there not being a pool with the exact size of an allocation and a larger sized
+pool needing to be used.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.1</li>
+</ul>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom"><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_MAJOR_HEAP_POOL_LIVE_BLOCKS"><span class="constructor">EV_C_MAJOR_HEAP_POOL_LIVE_BLOCKS</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top"><code>(*</code></td><td class="typefieldcomment" align="left" valign="top"><div class="info ">
+<div class="info-desc">
+<p>Live blocks of a Domain's major heap pools.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.1</li>
+</ul>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom"><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_counter.EV_C_MAJOR_HEAP_LARGE_BLOCKS"><span class="constructor">EV_C_MAJOR_HEAP_LARGE_BLOCKS</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top"><code>(*</code></td><td class="typefieldcomment" align="left" valign="top"><div class="info ">
+<div class="info-desc">
+<p>Live blocks of a Domain's major heap large allocations.</p>
+</div>
+<ul class="info-attributes">
+<li><b>Since</b> 5.1</li>
+</ul>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom"><code>*)</code></td>
+</tr></tbody></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>The type for counter events emitted by the runtime</p>
+</div>
+</div>
+
+
+<pre><code><span id="TYPEruntime_phase"><span class="keyword">type</span> <code class="type"></code>runtime_phase</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_EXPLICIT_GC_SET"><span class="constructor">EV_EXPLICIT_GC_SET</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_EXPLICIT_GC_STAT"><span class="constructor">EV_EXPLICIT_GC_STAT</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_EXPLICIT_GC_MINOR"><span class="constructor">EV_EXPLICIT_GC_MINOR</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_EXPLICIT_GC_MAJOR"><span class="constructor">EV_EXPLICIT_GC_MAJOR</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_EXPLICIT_GC_FULL_MAJOR"><span class="constructor">EV_EXPLICIT_GC_FULL_MAJOR</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_EXPLICIT_GC_COMPACT"><span class="constructor">EV_EXPLICIT_GC_COMPACT</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR"><span class="constructor">EV_MAJOR</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_SWEEP"><span class="constructor">EV_MAJOR_SWEEP</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_MARK_ROOTS"><span class="constructor">EV_MAJOR_MARK_ROOTS</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_MARK"><span class="constructor">EV_MAJOR_MARK</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR"><span class="constructor">EV_MINOR</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_LOCAL_ROOTS"><span class="constructor">EV_MINOR_LOCAL_ROOTS</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_FINALIZED"><span class="constructor">EV_MINOR_FINALIZED</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_EXPLICIT_GC_MAJOR_SLICE"><span class="constructor">EV_EXPLICIT_GC_MAJOR_SLICE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_FINALISE_UPDATE_FIRST"><span class="constructor">EV_FINALISE_UPDATE_FIRST</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_FINALISE_UPDATE_LAST"><span class="constructor">EV_FINALISE_UPDATE_LAST</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_INTERRUPT_REMOTE"><span class="constructor">EV_INTERRUPT_REMOTE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_EPHE_MARK"><span class="constructor">EV_MAJOR_EPHE_MARK</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_EPHE_SWEEP"><span class="constructor">EV_MAJOR_EPHE_SWEEP</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_FINISH_MARKING"><span class="constructor">EV_MAJOR_FINISH_MARKING</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_GC_CYCLE_DOMAINS"><span class="constructor">EV_MAJOR_GC_CYCLE_DOMAINS</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_GC_PHASE_CHANGE"><span class="constructor">EV_MAJOR_GC_PHASE_CHANGE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_GC_STW"><span class="constructor">EV_MAJOR_GC_STW</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_MARK_OPPORTUNISTIC"><span class="constructor">EV_MAJOR_MARK_OPPORTUNISTIC</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_SLICE"><span class="constructor">EV_MAJOR_SLICE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_FINISH_CYCLE"><span class="constructor">EV_MAJOR_FINISH_CYCLE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_CLEAR"><span class="constructor">EV_MINOR_CLEAR</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_FINALIZERS_OLDIFY"><span class="constructor">EV_MINOR_FINALIZERS_OLDIFY</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_GLOBAL_ROOTS"><span class="constructor">EV_MINOR_GLOBAL_ROOTS</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_LEAVE_BARRIER"><span class="constructor">EV_MINOR_LEAVE_BARRIER</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_STW_API_BARRIER"><span class="constructor">EV_STW_API_BARRIER</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_STW_HANDLER"><span class="constructor">EV_STW_HANDLER</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_STW_LEADER"><span class="constructor">EV_STW_LEADER</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MAJOR_FINISH_SWEEPING"><span class="constructor">EV_MAJOR_FINISH_SWEEPING</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_FINALIZERS_ADMIN"><span class="constructor">EV_MINOR_FINALIZERS_ADMIN</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_REMEMBERED_SET"><span class="constructor">EV_MINOR_REMEMBERED_SET</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_REMEMBERED_SET_PROMOTE"><span class="constructor">EV_MINOR_REMEMBERED_SET_PROMOTE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_MINOR_LOCAL_ROOTS_PROMOTE"><span class="constructor">EV_MINOR_LOCAL_ROOTS_PROMOTE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_DOMAIN_CONDITION_WAIT"><span class="constructor">EV_DOMAIN_CONDITION_WAIT</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTruntime_phase.EV_DOMAIN_RESIZE_HEAP_RESERVATION"><span class="constructor">EV_DOMAIN_RESIZE_HEAP_RESERVATION</span></span></code></td>
+
+</tr></tbody></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>The type for span events emitted by the runtime</p>
+</div>
+</div>
+
+
+<pre><code><span id="TYPElifecycle"><span class="keyword">type</span> <code class="type"></code>lifecycle</span> = </code></pre><table class="typetable">
+<tbody><tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTlifecycle.EV_RING_START"><span class="constructor">EV_RING_START</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTlifecycle.EV_RING_STOP"><span class="constructor">EV_RING_STOP</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTlifecycle.EV_RING_PAUSE"><span class="constructor">EV_RING_PAUSE</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTlifecycle.EV_RING_RESUME"><span class="constructor">EV_RING_RESUME</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTlifecycle.EV_FORK_PARENT"><span class="constructor">EV_FORK_PARENT</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTlifecycle.EV_FORK_CHILD"><span class="constructor">EV_FORK_CHILD</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTlifecycle.EV_DOMAIN_SPAWN"><span class="constructor">EV_DOMAIN_SPAWN</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top">
+<code><span id="TYPEELTlifecycle.EV_DOMAIN_TERMINATE"><span class="constructor">EV_DOMAIN_TERMINATE</span></span></code></td>
+
+</tr></tbody></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>Lifecycle events for the ring itself</p>
+</div>
+</div>
+
+
+<pre><span id="VALlifecycle_name"><span class="keyword">val</span> lifecycle_name</span> : <code class="type"><a href="Runtime_events.html#TYPElifecycle">lifecycle</a> -&gt; string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return a string representation of a given lifecycle event type</p>
+</div>
+</div>
+
+<pre><span id="VALruntime_phase_name"><span class="keyword">val</span> runtime_phase_name</span> : <code class="type"><a href="Runtime_events.html#TYPEruntime_phase">runtime_phase</a> -&gt; string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return a string representation of a given runtime phase event type</p>
+</div>
+</div>
+
+<pre><span id="VALruntime_counter_name"><span class="keyword">val</span> runtime_counter_name</span> : <code class="type"><a href="Runtime_events.html#TYPEruntime_counter">runtime_counter</a> -&gt; string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return a string representation of a given runtime counter type</p>
+</div>
+</div>
+
+<pre><span id="TYPEcursor"><span class="keyword">type</span> <code class="type"></code>cursor</span> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>Type of the cursor used when consuming</p>
+</div>
+</div>
+
+
+<pre><span id="MODULETimestamp"><span class="keyword">module</span> <a href="Runtime_events.Timestamp.html">Timestamp</a></span>: <code class="code"><span class="keyword">sig</span></code> <a href="Runtime_events.Timestamp.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><span id="MODULEType"><span class="keyword">module</span> <a href="Runtime_events.Type.html">Type</a></span>: <code class="code"><span class="keyword">sig</span></code> <a href="Runtime_events.Type.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><span id="MODULEUser"><span class="keyword">module</span> <a href="Runtime_events.User.html">User</a></span>: <code class="code"><span class="keyword">sig</span></code> <a href="Runtime_events.User.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><span id="MODULECallbacks"><span class="keyword">module</span> <a href="Runtime_events.Callbacks.html">Callbacks</a></span>: <code class="code"><span class="keyword">sig</span></code> <a href="Runtime_events.Callbacks.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><span id="VALstart"><span class="keyword">val</span> start</span> : <code class="type">unit -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">start&nbsp;()</code> will start the collection of events in the runtime if not already
+  started.</p>
+
+<p>Events can be consumed by creating a cursor with <code class="code">create_cursor</code> and providing
+  a set of callbacks to be called for each type of event.</p>
+</div>
+</div>
+
+<pre><span id="VALpause"><span class="keyword">val</span> pause</span> : <code class="type">unit -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">pause&nbsp;()</code> will pause the collection of events in the runtime.
+   Traces are collected if the program has called <code class="code"><span class="constructor">Runtime_events</span>.start&nbsp;()</code> or
+   the OCAML_RUNTIME_EVENTS_START environment variable has been set.</p>
+</div>
+</div>
+
+<pre><span id="VALresume"><span class="keyword">val</span> resume</span> : <code class="type">unit -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">resume&nbsp;()</code> will resume the collection of events in the runtime.
+   Traces are collected if the program has called <code class="code"><span class="constructor">Runtime_events</span>.start&nbsp;()</code> or
+   the OCAML_RUNTIME_EVENTS_START environment variable has been set.</p>
+</div>
+</div>
+
+<pre><span id="VALcreate_cursor"><span class="keyword">val</span> create_cursor</span> : <code class="type">(string * int) option -&gt; <a href="Runtime_events.html#TYPEcursor">cursor</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">create_cursor&nbsp;path_pid</code> creates a cursor to read from an runtime_events.
+   Cursors can be created for runtime_events in and out of process. A
+   runtime_events ring-buffer may have multiple cursors reading from it at any
+   point in time and a program may have multiple cursors open concurrently
+  (for example if multiple consumers want different sets of events). If
+   <code class="code">path_pid</code> is None then a cursor is created for the current process.
+   Otherwise the pair contains a string <code class="code">path</code> to the directory that contains
+   the <code class="code">pid</code>.events file and int <code class="code">pid</code> for the runtime_events of an
+   external process to monitor.</p>
+</div>
+</div>
+
+<pre><span id="VALfree_cursor"><span class="keyword">val</span> free_cursor</span> : <code class="type"><a href="Runtime_events.html#TYPEcursor">cursor</a> -&gt; unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Free a previously created runtime_events cursor</p>
+</div>
+</div>
+
+<pre><span id="VALread_poll"><span class="keyword">val</span> read_poll</span> : <code class="type"><a href="Runtime_events.html#TYPEcursor">cursor</a> -&gt; <a href="Runtime_events.Callbacks.html#TYPEt">Callbacks.t</a> -&gt; int option -&gt; int</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">read_poll&nbsp;cursor&nbsp;callbacks&nbsp;max_option</code> calls the corresponding functions
+    on <code class="code">callbacks</code> for up to <code class="code">max_option</code> events read off <code class="code">cursor</code>'s
+    runtime_events and returns the number of events read.</p>
+</div>
+</div>
+
+</div></body></html>

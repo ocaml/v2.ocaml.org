@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Language extensions</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml language</nav><ul id="part-menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="extn.html">Language extensions</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec278"><span class="chapter-number">Chapter 12</span> Language extensions</h1><header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.1</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
+<li><a href="letrecvalues.html#start-section"><span class="number">1</span> Recursive definitions of values</a>
+</li><li><a href="recursivemodules.html#start-section"><span class="number">2</span> Recursive modules</a>
+</li><li><a href="privatetypes.html#start-section"><span class="number">3</span> Private types</a>
+</li><li><a href="locallyabstract.html#start-section"><span class="number">4</span> Locally abstract types</a>
+</li><li><a href="firstclassmodules.html#start-section"><span class="number">5</span> First-class modules</a>
+</li><li><a href="moduletypeof.html#start-section"><span class="number">6</span> Recovering the type of a module</a>
+</li><li><a href="signaturesubstitution.html#start-section"><span class="number">7</span> Substituting inside a signature</a>
+</li><li><a href="modulealias.html#start-section"><span class="number">8</span> Type-level module aliases</a>
+</li><li><a href="overridingopen.html#start-section"><span class="number">9</span> Overriding in open statements</a>
+</li><li><a href="gadts.html#start-section"><span class="number">10</span> Generalized algebraic datatypes</a>
+</li><li><a href="bigarray.html#start-section"><span class="number">11</span> Syntax for Bigarray access</a>
+</li><li><a href="attributes.html#start-section"><span class="number">12</span> Attributes</a>
+</li><li><a href="extensionnodes.html#start-section"><span class="number">13</span> Extension nodes</a>
+</li><li><a href="extensiblevariants.html#start-section"><span class="number">14</span> Extensible variant types</a>
+</li><li><a href="generativefunctors.html#start-section"><span class="number">15</span> Generative functors</a>
+</li><li><a href="extensionsyntax.html#start-section"><span class="number">16</span> Extension-only syntax</a>
+</li><li><a href="inlinerecords.html#start-section"><span class="number">17</span> Inline records</a>
+</li><li><a href="doccomments.html#start-section"><span class="number">18</span> Documentation comments</a>
+</li><li><a href="indexops.html#start-section"><span class="number">19</span> Extended indexing operators </a>
+</li><li><a href="emptyvariants.html#start-section"><span class="number">20</span> Empty variant types</a>
+</li><li><a href="alerts.html#start-section"><span class="number">21</span> Alerts</a>
+</li><li><a href="generalizedopens.html#start-section"><span class="number">22</span> Generalized open statements</a>
+</li><li><a href="bindingops.html#start-section"><span class="number">23</span> Binding operators</a>
+</li><li><a href="effects.html#start-section"><span class="number">24</span> Effect handlers</a>
+</li></ul></nav></header><a id="start-section"></a><section id="section">
+
+
+
+
+<h2 class="section" id="s:index-operators"><a class="section-anchor" href="#s:index-operators" aria-hidden="true"></a><span class="number">19</span> Extended indexing operators </h2>
+<ul>
+<li><a href="indexops.html#ss%3Amultiindexing"><span class="number">19.1</span> Multi-index notation</a>
+</li></ul>
+<p>(Introduced in 4.06)</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008">
+<a class="syntax" id="dot-ext"><span class="nonterminal">dot-ext</span></a></td><td class="c005">::=</td><td class="c007">&nbsp;</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="#dot-operator-char"><span class="nonterminal">dot-operator-char</span></a> { <a class="syntax" href="lex.html#operator-char"><span class="nonterminal">operator-char</span></a> }
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" id="dot-operator-char"><span class="nonterminal">dot-operator-char</span></a></td><td class="c005">::=</td><td class="c007">
+<span class="syntax-token">!</span> ∣ <span class="syntax-token">?</span> ∣ <a class="syntax" href="lex.html#core-operator-char"><span class="nonterminal">core-operator-char</span></a> ∣ <span class="syntax-token">%</span> ∣ <span class="syntax-token">:</span>
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">.</span> [<a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.</span>] <a class="syntax" href="#dot-ext"><span class="nonterminal">dot-ext</span></a> ( <span class="syntax-token">(</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">)</span> ∣ <span class="syntax-token">[</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">]</span> ∣ <span class="syntax-token">{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">}</span> ) [ <span class="syntax-token">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> ]
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<span class="nonterminal">operator-name</span></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">.</span> <a class="syntax" href="#dot-ext"><span class="nonterminal">dot-ext</span></a> (<span class="syntax-token">()</span> ∣ <span class="syntax-token">[]</span> ∣ <span class="syntax-token">{}</span>) [<span class="syntax-token">&lt;-</span>]
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>This extension provides syntactic sugar for getting and setting elements
+for user-defined indexed types. For instance, we can define python-like
+dictionaries with
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> Dict = <span class="ocamlkeyword">struct</span>
+<span class="ocamlkeyword">include</span> Hashtbl
+<span class="ocamlkeyword">let</span> ( .%{} ) tabl index = find tabl index
+<span class="ocamlkeyword">let</span> ( .%{}&lt;- ) tabl index value = add tabl index value
+<span class="ocamlkeyword">end</span>
+<span class="ocamlkeyword">let</span> dict =
+  <span class="ocamlkeyword">let</span> dict = Dict.create 10 <span class="ocamlkeyword">in</span>
+  <span class="ocamlkeyword">let</span> () =
+    dict.Dict.%{<span class="ocamlstring">"one"</span>} &lt;- 1;
+    <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">open</span> Dict <span class="ocamlkeyword">in</span>
+    dict.%{<span class="ocamlstring">"two"</span>} &lt;- 2 <span class="ocamlkeyword">in</span>
+  dict</div></div>
+
+</div><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> dict.Dict.%{<span class="ocamlstring">"one"</span>};;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 1</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> <span class="ocamlkeyword">open</span> Dict <span class="ocamlkeyword">in</span> dict.%{<span class="ocamlstring">"two"</span>};;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 2</div></div>
+
+</div>
+<h3 class="subsection" id="ss:multiindexing"><a class="section-anchor" href="#ss:multiindexing" aria-hidden="true">﻿</a><span class="number">19.1</span> Multi-index notation</h3>
+<div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">.</span> [<a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.</span>] <a class="syntax" href="#dot-ext"><span class="nonterminal">dot-ext</span></a> <span class="syntax-token">(</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> { <span class="syntax-token">;</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> }<sup>+</sup> <span class="syntax-token">)</span> [ <span class="syntax-token">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> ]
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">.</span> [<a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.</span>] <a class="syntax" href="#dot-ext"><span class="nonterminal">dot-ext</span></a> <span class="syntax-token">[</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> { <span class="syntax-token">;</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> }<sup>+</sup> <span class="syntax-token">]</span> [ <span class="syntax-token">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> ]
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">.</span> [<a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a> <span class="syntax-token">.</span>] <a class="syntax" href="#dot-ext"><span class="nonterminal">dot-ext</span></a> <span class="syntax-token">{</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> { <span class="syntax-token">;</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> }<sup>+</sup> <span class="syntax-token">}</span> [ <span class="syntax-token">&lt;-</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> ]
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+<tr><td class="c008">
+<span class="nonterminal">operator-name</span></td><td class="c005">::=</td><td class="c007">
+...
+</td></tr>
+<tr><td class="c008">&nbsp;</td><td class="c005">∣</td><td class="c007"> <span class="syntax-token">.</span> <a class="syntax" href="#dot-ext"><span class="nonterminal">dot-ext</span></a> (<span class="syntax-token">(;..)</span> ∣ <span class="syntax-token">[;..]</span> ∣ <span class="syntax-token">{;..}</span>) [<span class="syntax-token">&lt;-</span>]
+</td></tr>
+<tr><td class="c008">&nbsp;</td></tr>
+</tbody></table></td></tr>
+</tbody></table></div><p>Multi-index are also supported through a second variant of indexing operators</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> (.%[;..]) = Bigarray.Genarray.get
+<span class="ocamlkeyword">let</span> (.%{;..}) = Bigarray.Genarray.get
+<span class="ocamlkeyword">let</span> (.%(;..)) = Bigarray.Genarray.get</div></div>
+
+</div><p>which is called when an index literals contain a semicolon separated list
+of expressions with two and more elements:</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> sum x y = x.%[1;2;3] + y.%[1;2]
+<span class="ocamlcomment">(* is equivalent to *)</span>
+<span class="ocamlkeyword">let</span> sum x y = (.%[;..]) x [|1;2;3|] + (.%[;..]) y [|1;2|]</div></div>
+
+</div><p>In particular this multi-index notation makes it possible to uniformly handle
+indexing Genarray and other implementations of multidimensional arrays.</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">module</span> A = Bigarray.Genarray
+<span class="ocamlkeyword">let</span> (.%{;..}) = A.get
+<span class="ocamlkeyword">let</span> (.%{;..}&lt;- ) = A.set
+<span class="ocamlkeyword">let</span> (.%{ }) a k = A.get a [|k|]
+<span class="ocamlkeyword">let</span> (.%{ }&lt;-) a k x = A.set a [|k|] x
+<span class="ocamlkeyword">let</span> syntax_compare vec mat t3 t4 =
+          vec.%{0} = A.get vec [|0|]
+   &amp;&amp;   mat.%{0;0} = A.get mat [|0;0|]
+   &amp;&amp;   t3.%{0;0;0} = A.get t3 [|0;0;0|]
+   &amp;&amp; t4.%{0;0;0;0} = t4.{0,0,0,0}</div></div>
+
+</div><p>Beware that the differentiation between the multi-index and single index
+operators is purely syntactic: multi-index operators are restricted to
+index expressions that contain one or more semicolons <span class="machine"><span class="font-tt">;</span></span>. For instance,
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">  <span class="ocamlkeyword">let</span> pair vec mat = vec.%{0}, mat.%{0;0}</div></div>
+
+</div><p>
+
+is equivalent to
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input">  <span class="ocamlkeyword">let</span> pair vec mat = (.%{ }) vec 0, (.%{;..}) mat [|0;0|]</div></div>
+
+</div><p>
+
+Notice that in the <span class="machine"><span class="font-tt">vec</span></span> case, we are calling the single index operator, <span class="machine"><span class="font-tt">(.%{})</span></span>, and
+not the multi-index variant, <span class="machine"><span class="font-tt">(.{;..})</span></span>.
+For this reason, it is expected that most users of multi-index operators will need
+to define conjointly a single index variant
+
+</p><div class="caml-example verbatim">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlkeyword">let</span> (.%{;..}) = A.get
+<span class="ocamlkeyword">let</span> (.%{ }) a k = A.get a [|k|]</div></div>
+
+</div><p>
+
+to handle both cases uniformly.
+</p>
+
+<div class="bottom-navigation"><a class="previous" href="doccomments.html">« Documentation comments</a><a class="next" href="emptyvariants.html">Empty variant types »</a></div>
+
+
+
+
+</section><div class="copyright">Copyright © 2023 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

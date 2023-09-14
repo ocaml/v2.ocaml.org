@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.36">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="manual.css">
+<title>OCaml - Labeled arguments</title>
+<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>An introduction to OCaml</nav><ul id="part-menu"><li><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li class="active"><a href="lablexamples.html">Labeled arguments</a></li><li><a href="polyvariant.html">Polymorphic variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="gadts-tutorial.html">Generalized algebraic datatypes</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li><li><a href="parallelism.html">Parallel programming</a></li><li><a href="memorymodel.html">Memory model: The hard bits</a></li></ul>
+
+
+
+
+<h1 class="chapter" id="sec44"><span class="chapter-number">Chapter 4</span> Labeled arguments</h1>
+<header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 5.1</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Labeled arguments</a></li>
+<li><a href="lablexamples.html#s%3Aoptional-arguments"><span class="number">1</span> Optional arguments</a>
+</li><li><a href="lablexamples.html#s%3Alabel-inference"><span class="number">2</span> Labels and type inference</a>
+</li><li><a href="lablexamples.html#s%3Alabel-suggestions"><span class="number">3</span> Suggestions for labeling</a>
+</li></ul></nav></header>
+<p> <a id="c:labl-examples"></a>
+</p><p>
+</p><p>If you have a look at modules ending in <span class="machine"><span class="font-tt">Labels</span></span> in the standard
+library, you will see that function types have annotations you did not
+have in the functions you defined yourself.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> ListLabels.map;;</div>
+
+
+
+<div class="pre caml-output ok">- : f:('a -&gt; 'b) -&gt; 'a list -&gt; 'b list = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> StringLabels.sub;;</div>
+
+
+
+<div class="pre caml-output ok">- : string -&gt; pos:int -&gt; len:int -&gt; string = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>Such annotations of the form <span class="machine"><span class="font-tt">name:</span></span> are called <em>labels</em>. They are
+meant to document the code, allow more checking, and give more
+flexibility to function application.
+You can give such names to arguments in your programs, by prefixing them
+with a tilde <span class="machine"><span class="font-tt">~</span></span>.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f ~x ~y = x - y;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f : x:int -&gt; y:int -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> x = 3 <span class="ocamlkeyword">and</span> y = 2 <span class="ocamlkeyword">in</span> f ~x ~y;;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 1</div></div>
+
+</div><p>When you want to use distinct names for the variable and the label
+appearing in the type, you can use a naming label of the form
+<span class="machine"><span class="font-tt">~name:</span></span>. This also applies when the argument is not a variable.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f ~x:x1 ~y:y1 = x1 - y1;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f : x:int -&gt; y:int -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> f ~x:3 ~y:2;;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 1</div></div>
+
+</div><p>Labels obey the same rules as other identifiers in OCaml, that is you
+cannot use a reserved keyword (like <span class="machine"><span class="font-tt">in</span></span> or <span class="machine"><span class="font-tt">to</span></span>) as a label.</p><p>Formal parameters and arguments are matched according to their
+respective labels, the absence of label
+being interpreted as the empty label.
+This allows commuting arguments in applications. One can also
+partially apply a function on any argument, creating a new function of
+the remaining parameters.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> f ~x ~y = x - y;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> f : x:int -&gt; y:int -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> f ~y:2 ~x:3;;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 1</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> ListLabels.fold_left;;</div>
+
+
+
+<div class="pre caml-output ok">- : f:('acc -&gt; 'a -&gt; 'acc) -&gt; init:'acc -&gt; 'a list -&gt; 'acc = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> ListLabels.fold_left [1;2;3] ~init:0 ~f:( + );;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 6</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> ListLabels.fold_left ~init:0;;</div>
+
+
+
+<div class="pre caml-output ok">- : f:(int -&gt; 'a -&gt; int) -&gt; 'a list -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>If several arguments of a function bear the same label (or no label),
+they will not commute among themselves, and order matters. But they
+can still commute with other arguments.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> hline ~x:x1 ~x:x2 ~y = (x1, x2, y);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> hline : x:'a -&gt; x:'b -&gt; y:'c -&gt; 'a * 'b * 'c = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> hline ~x:3 ~y:2 ~x:5;;</div>
+
+
+
+<div class="pre caml-output ok">- : int * int * int = (3, 5, 2)</div></div>
+
+</div>
+<h2 class="section" id="s:optional-arguments"><a class="section-anchor" href="#s:optional-arguments" aria-hidden="true"></a><span class="number">1</span> Optional arguments</h2>
+<p>An interesting feature of labeled arguments is that they can be made
+optional. For optional parameters, the question mark <span class="machine"><span class="font-tt">?</span></span> replaces the
+tilde <span class="machine"><span class="font-tt">~</span></span> of non-optional ones, and the label is also prefixed by <span class="machine"><span class="font-tt">?</span></span>
+in the function type.
+Default values may be given for such optional parameters.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> bump ?(step = 1) x = x + step;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> bump : ?step:int -&gt; int -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> bump 2;;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 3</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> bump ~step:3 2;;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 5</div></div>
+
+</div><p>A function taking some optional arguments must also take at least one
+non-optional argument. The criterion for deciding whether an optional
+argument has been omitted is the non-labeled application of an
+argument appearing after this optional argument in the function type.
+Note that if that argument is labeled, you will only be able to
+eliminate optional arguments by totally applying the function,
+omitting all optional arguments and omitting all labels for all
+remaining arguments.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> test ?(x = 0) ?(y = 0) () ?(z = 0) () = (x, y, z);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> test : ?x:int -&gt; ?y:int -&gt; unit -&gt; ?z:int -&gt; unit -&gt; int * int * int =
+  &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> test ();;</div>
+
+
+
+<div class="pre caml-output ok">- : ?z:int -&gt; unit -&gt; int * int * int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> test ~x:2 () ~z:3 ();;</div>
+
+
+
+<div class="pre caml-output ok">- : int * int * int = (2, 0, 3)</div></div>
+
+</div><p>Optional parameters may also commute with non-optional or unlabeled
+ones, as long as they are applied simultaneously. By nature, optional
+arguments do not commute with unlabeled arguments applied
+independently.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> test ~y:2 ~x:3 () ();;</div>
+
+
+
+<div class="pre caml-output ok">- : int * int * int = (3, 2, 0)</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> test () () ~z:1 ~y:2 ~x:3;;</div>
+
+
+
+<div class="pre caml-output ok">- : int * int * int = (3, 2, 1)</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlhighlight">(test () ())</span> ~z:1 ;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This expression has type int * int * int
+       This is not a function; it cannot be applied.</div></div>
+
+</div><p>
+
+Here <span class="machine"><span class="font-tt">(test () ())</span></span> is already <span class="machine"><span class="font-tt">(0,0,0)</span></span> and cannot be further
+applied.</p><p>Optional arguments are actually implemented as option types. If
+you do not give a default value, you have access to their internal
+representation, <span class="machine"><span class="font-tt">type 'a option = None | Some of 'a</span></span>. You can then
+provide different behaviors when an argument is present or not.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> bump ?step x =
+    <span class="ocamlkeyword">match</span> step <span class="ocamlkeyword">with</span>
+    | None -&gt; x * 2
+    | Some y -&gt; x + y
+  ;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> bump : ?step:int -&gt; int -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div><p>It may also be useful to relay an optional argument from a function
+call to another. This can be done by prefixing the applied argument
+with <span class="machine"><span class="font-tt">?</span></span>. This question mark disables the wrapping of optional
+argument in an option type.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> test2 ?x ?y () = test ?x ?y () ();;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> test2 : ?x:int -&gt; ?y:int -&gt; unit -&gt; int * int * int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> test2 ?x:None;;</div>
+
+
+
+<div class="pre caml-output ok">- : ?y:int -&gt; unit -&gt; int * int * int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+
+</div>
+<h2 class="section" id="s:label-inference"><a class="section-anchor" href="#s:label-inference" aria-hidden="true">﻿</a><span class="number">2</span> Labels and type inference</h2>
+<p>While they provide an increased comfort for writing function
+applications, labels and optional arguments have the pitfall that they
+cannot be inferred as completely as the rest of the language.</p><p>You can see it in the following two examples.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> h' g = g ~y:2 ~x:3;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> h' : (y:int -&gt; x:int -&gt; 'a) -&gt; 'a = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> h' <span class="ocamlhighlight">f</span> ;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This expression has type x:int -&gt; y:int -&gt; int
+       but an expression was expected of type y:int -&gt; x:int -&gt; 'a</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> bump_it bump x =
+    bump ~step:2 x;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> bump_it : (step:int -&gt; 'a -&gt; 'b) -&gt; 'a -&gt; 'b = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> bump_it <span class="ocamlhighlight">bump</span> 1 ;;</div>
+
+
+
+<div class="pre caml-output error"><span class="ocamlerror">Error</span>: This expression has type ?step:int -&gt; int -&gt; int
+       but an expression was expected of type step:int -&gt; 'a -&gt; 'b</div></div>
+
+</div><p>
+
+The first case is simple: <span class="machine"><span class="font-tt">g</span></span> is passed <span class="machine"><span class="font-tt">~y</span></span> and then <span class="machine"><span class="font-tt">~x</span></span>, but <span class="machine"><span class="font-tt">f</span></span>
+expects <span class="machine"><span class="font-tt">~x</span></span> and then <span class="machine"><span class="font-tt">~y</span></span>. This is correctly handled if we know the
+type of <span class="machine"><span class="font-tt">g</span></span> to be <span class="machine"><span class="font-tt">x:int -&gt; y:int -&gt; int</span></span> in advance, but otherwise
+this causes the above type clash. The simplest workaround is to apply
+formal parameters in a standard order.</p><p>The second example is more subtle: while we intended the argument
+<span class="machine"><span class="font-tt">bump</span></span> to be of type <span class="machine"><span class="font-tt">?step:int -&gt; int -&gt; int</span></span>, it is inferred as
+<span class="machine"><span class="font-tt">step:int -&gt; int -&gt; 'a</span></span>.
+These two types being incompatible (internally normal and optional
+arguments are different), a type error occurs when applying <span class="machine"><span class="font-tt">bump_it</span></span>
+to the real <span class="machine"><span class="font-tt">bump</span></span>.</p><p>We will not try here to explain in detail how type inference works.
+One must just understand that there is not enough information in the
+above program to deduce the correct type of <span class="machine"><span class="font-tt">g</span></span> or <span class="machine"><span class="font-tt">bump</span></span>. That is,
+there is no way to know whether an argument is optional or not, or
+which is the correct order, by looking only at how a function is
+applied. The strategy used by the compiler is to assume that there are
+no optional arguments, and that applications are done in the right
+order.</p><p>The right way to solve this problem for optional parameters is to add
+a type annotation to the argument <span class="machine"><span class="font-tt">bump</span></span>.
+
+</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> bump_it (bump : ?step:int -&gt; int -&gt; int) x =
+    bump ~step:2 x;;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> bump_it : (?step:int -&gt; int -&gt; int) -&gt; int -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> bump_it bump 1;;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 3</div></div>
+
+</div><p>
+
+In practice, such problems appear mostly when using objects whose
+methods have optional arguments, so writing the type of object
+arguments is often a good idea.</p><p>Normally the compiler generates a type error if you attempt to pass to
+a function a parameter whose type is different from the expected one.
+However, in the specific case where the expected type is a non-labeled
+function type, and the argument is a function expecting optional
+parameters, the compiler will attempt to transform the argument to
+have it match the expected type, by passing <span class="machine"><span class="font-tt">None</span></span> for all optional
+parameters.</p><div class="caml-example toplevel">
+
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> <span class="ocamlkeyword">let</span> twice f (x : int) = f(f x);;</div>
+
+
+
+<div class="pre caml-output ok"><span class="ocamlkeyword">val</span> twice : (int -&gt; int) -&gt; int -&gt; int = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
+<div class="ocaml">
+
+
+
+<div class="pre caml-input"><span class="ocamlprompt">#</span> twice bump 2;;</div>
+
+
+
+<div class="pre caml-output ok">- : int = 8</div></div>
+
+</div><p>This transformation is coherent with the intended semantics,
+including side-effects. That is, if the application of optional
+parameters shall produce side-effects, these are delayed until the
+received function is really applied to an argument.</p>
+<h2 class="section" id="s:label-suggestions"><a class="section-anchor" href="#s:label-suggestions" aria-hidden="true">﻿</a><span class="number">3</span> Suggestions for labeling</h2>
+<p>Like for names, choosing labels for functions is not an easy task. A
+good labeling is one which</p><ul class="itemize"><li class="li-itemize">makes programs more readable,
+</li><li class="li-itemize">is easy to remember,
+</li><li class="li-itemize">when possible, allows useful partial applications.
+</li></ul><p>We explain here the rules we applied when labeling OCaml
+libraries.</p><p>To speak in an “object-oriented” way, one can consider that each
+function has a main argument, its <em>object</em>, and other arguments
+related with its action, the <em>parameters</em>. To permit the
+combination of functions through functionals in commuting label mode, the
+object will not be labeled. Its role is clear from the function
+itself. The parameters are labeled with names reminding of
+their nature or their role. The best labels combine nature and
+role. When this is not possible the role is to be preferred, since the
+nature will
+often be given by the type itself. Obscure abbreviations should be
+avoided.
+</p><pre><span class="machine"><span class="font-tt">ListLabels.map : f:('a -&gt; 'b) -&gt; 'a list -&gt; 'b list</span></span>
+UnixLabels.write : file_descr -&gt; buf:bytes -&gt; pos:int -&gt; len:int -&gt; unit
+</pre><p>When there are several objects of same nature and role, they are all
+left unlabeled.
+</p><pre><span class="machine"><span class="font-tt">ListLabels.iter2 : f:('a -&gt; 'b -&gt; unit) -&gt; 'a list -&gt; 'b list -&gt; unit</span></span>
+</pre><p>When there is no preferable object, all arguments are labeled.
+</p><pre>BytesLabels.blit :
+  src:bytes -&gt; src_pos:int -&gt; dst:bytes -&gt; dst_pos:int -&gt; len:int -&gt; unit
+</pre><p>However, when there is only one argument, it is often left unlabeled.
+</p><pre>BytesLabels.create : int -&gt; bytes
+</pre><p>
+This principle also applies to functions of several arguments whose
+return type is a type variable, as long as the role of each argument
+is not ambiguous. Labeling such functions may lead to awkward error
+messages when one attempts to omit labels in an application, as we
+have seen with <span class="machine"><span class="font-tt">ListLabels.fold_left</span></span>.</p><p>Here are some of the label names you will find throughout the
+libraries.</p><div class="tableau">
+<div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c004"><span class="font-bold">Label</span></td><td class="c004"><span class="font-bold">Meaning</span> </td></tr>
+<tr><td class="c006">
+<span class="machine"><span class="font-tt">f:</span></span></td><td class="c006">a function to be applied </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">pos:</span></span></td><td class="c006">a position in a string, array or byte sequence </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">len:</span></span></td><td class="c006">a length </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">buf:</span></span></td><td class="c006">a byte sequence or string used as buffer </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">src:</span></span></td><td class="c006">the source of an operation </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">dst:</span></span></td><td class="c006">the destination of an operation </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">init:</span></span></td><td class="c006">the initial value for an iterator </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">cmp:</span></span></td><td class="c006">a comparison function, <span class="font-it">e.g.</span> <span class="machine"><span class="font-tt">Stdlib.compare</span></span> </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">mode:</span></span></td><td class="c006">an operation mode or a flag list </td></tr>
+</tbody></table></div></div><p>All these are only suggestions, but keep in mind that the
+choice of labels is essential for readability. Bizarre choices will
+make the program harder to maintain.</p><p>In the ideal, the right function name with right labels should be
+enough to understand the function’s meaning. Since one can get this
+information with OCamlBrowser or the <span class="machine"><span class="font-tt">ocaml</span></span> toplevel, the documentation
+is only used when a more detailed specification is needed.</p>
+<hr>
+<div class="bottom-navigation"><a class="previous" href="objectexamples.html">« Objects in OCaml</a><a class="next" href="polyvariant.html">Polymorphic variants »</a></div>
+
+
+
+
+<span class="authors font-it">(Chapter written by Jacques Garrigue)</span><div class="copyright">Copyright © 2023 Institut National de
+Recherche en Informatique et en Automatique</div></div></body></html>

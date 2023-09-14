@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head id="htmx-head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <meta name="description" content="This page does not exist.">
+    
+    <meta name="twitter:title" content="Page Not Found">
+    
+    <meta name="twitter:description" content="This page does not exist.">
+    
+    <meta property="og:site_name" content="OCaml">
+    <meta property="og:type" content="object">
+    <meta property="og:title" content="Page Not Found">
+    
+    <meta property="og:description" content="This page does not exist.">
+    
+    <meta name="theme-color" content="#fff" >
+    <meta name="color-scheme" content="white">
+    
+    <link rel="icon" type="image/x-icon" href="/_/ZDJmMjgzN2NkZmJlMzgxNGQxMTMxNGVlMzk1NzZkN2I/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="stylesheet" href="/_/MDIwNDE2MWJjYTNlZDU3ZWU1MjQwMTVlNzQzZWU2ZWM/css/main.css">
+    
+    <link rel="stylesheet" href="/_/NmFjYjY5ZmIxYWRhMWQxMTQxODM4ZDEwYTgwMDcwNmI/vendors/font-files/inter.css">
+    <link rel="stylesheet" href="/_/YjM3OGY4YzIwN2E2ZmUxZTczOWVkNDQwZWRhMDU0MGM/vendors/font-files/roboto-mono.css">
+    <script defer src="/_/OWYyZDQyZjg4MTFlNWEzZjE4ZGY0YWM0OTU1NGEzYTI/vendors/alpine-clipboard.js"></script>
+    <script defer src="/_/NGI1NjQzZjdkODY0MTY2MmViNThhM2VlZTYwMDk3NTI/vendors/alpine.min.js"></script>
+    <script defer src="/_/YTNhODI2Yzg0Yzk4M2ZiNDcxYmRiYzdhY2FiN2Y0OWQ/vendors/htmx.min.js"></script>
+    
+    <title>Page Not Found</title>
+  </head>
+
+  <body class="light">
+    
+    
+    <header
+  class="h-20 flex items-center bg-mild-contrast dark:bg-dark-mild-contrast"
+  x-data="{ open: false }">
+  <nav class="container-fluid wide header flex justify-between items-center">
+    <ul class="space space-x-5 xl:space-x-8 items-center flex text-lighter font-medium dark:text-white dark:text-opacity-60 dark:font-semibold">
+      <li style="width:132px">
+        <a href="/" class="block pb-2">
+          <img src="/_/YTY2ODhjNjU2NzljODk5ODY4ODJmNTAyMDhmOTJhNDM/logo-with-name.svg" width="132" alt="OCaml logo" class="dark:hidden">
+          <img src="/_/OWRlZTVjOWVkOWE3MTgyZjk3MjMzMWQxNjZiYWIzN2I/logo-with-name-white.svg" width="132" alt="OCaml logo" class="hidden dark:inline">
+        </a>
+      </li>
+    </ul>
+    <ul class="ml-5 xl:ml-8 mr-auto items-center hidden lg:flex font-medium dark:text-white dark:text-opacity-60 dark:font-semibold">
+      <li><a href="/docs" class="font-semibold py-3 mg:py-4 px-1 lg:px-3  text-lighter hover:text-primary-600">Learn</a>
+
+
+</li>
+      <li><a href="/packages" class="font-semibold py-3 mg:py-4 px-1 lg:px-3  text-lighter hover:text-primary-600">Packages</a>
+
+
+</li>
+      <li><a href="/community" class="font-semibold py-3 mg:py-4 px-1 lg:px-3  text-lighter hover:text-primary-600">Community</a>
+
+
+</li>
+      <li><a href="/blog" class="font-semibold py-3 mg:py-4 px-1 lg:px-3  text-lighter hover:text-primary-600">Blog</a>
+
+
+</li>
+      <li><a href="/play" class="font-semibold py-3 mg:py-4 px-1 lg:px-3  text-lighter hover:text-primary-600">Playground</a>
+
+
+</li>
+    </ul>
+    <ul class="hidden lg:flex items-center space-x-4 xl:space-x-8">
+      <li>
+        <form
+           x-data="{ row: null, col: 0, max: 0, total: 0 }"
+       @submit="if (row !== null) { window.location = document.getElementById('package-autocomplete-'+row+'-'+col).getAttribute('href'); $event.stopPropagation(); $event.preventDefault(); return false }" 
+          action="/packages/search" method="GET">
+          <div class="dropdown-container flex items-center justify-center h-10 rounded-md focus-within:outline-primary-300 focus-within:outline focus-within:outline-2 lg:w-56 xl:w-80" tabindex="0">
+  <label for="q" class="sr-only">Search OCaml packages</label>
+  <input
+      type="search"
+      name="q"
+      placeholder="Search OCaml packages"
+      class="h-full w-full font-medium focus:border-primary-600 focus:ring-0 text-gray-800 border-primary-600 rounded-md rounded-r-none px-3 py-1 placeholder-body-400 appearance-none focus:outline-none"
+      @keydown.stop   @keyup.down="if (row === null) { row = 0; col = 0; } else { row +=1; if (row > max) { row = max } }"
+        @keyup.up="if (row !== null) { row -=1; if (row < 0) { row = null } }"
+        @keyup.right="if (col < 1) col++"
+        @keyup.left="if (col >= 1) col--"
+        :aria-activedescendant="row !== null ? 'package-autocomplete-'+row+'-'+col : null"
+
+        hx-get="/packages/autocomplete"
+        hx-params="q"
+        hx-trigger="keyup changed, search"
+        hx-target="#header-search-results"
+        hx-indicator="#header-search-indicator"
+        autocomplete="off"
+        
+  >
+  
+  <button
+      aria-label="search"
+      class="h-full flex items-center justify-center rounded-r-md bg-primary-600 text-white px-4"
+      type="submit"
+  ><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+</svg>
+
+</button>
+
+  <div class="dropdown z-10 absolute rounded-md w-full top-1 mt-10 p-2 bg-default dark:bg-dark-default border border-primary-600">
+    <span id="header-search-indicator" class="mx-2 htmx-indicator">Searching...</span>
+<div id="header-search-results" aria-live="polite"></div>
+<span class="pl-2 font-semibold">Or go to:</span>
+<a class="flex py-2 px-4 gap-4 hover:bg-primary-100 font-semibold hover:font-semibold text-primary-600" href="/releases/latest/api/index.html">
+  Standard Library API
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+</svg>
+
+
+</a>
+
+</div>
+
+</div>
+
+
+        </form>
+      </li>
+      
+        <li><a href="/docs/up-and-running" class="btn btn-secondary btn-sm">Get Started</a></li>
+      
+    </ul>
+    <ul class="lg:hidden flex items-center">
+      <li
+        class="h-12 w-12 hover:bg-primary-100 flex items-center justify-center rounded-full text-lighter dark:text-white">
+        <button aria-label="open menu" @click="open = ! open">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+</svg>
+
+
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="bg-black fixed w-full h-full left-0 top-0 opacity-60 z-40" x-show='open' x-cloak></div>
+
+  <nav class="z-50 h-full fixed right-0 top-0 max-w-full w-96 bg-default dark:bg-dark-default shadow-lg" x-show="open" x-cloak
+    @click.away="open = false" x-transition:enter="transition duration-200 ease-out"
+    x-transition:enter-start="translate-x-full" x-transition:leave="transition duration-100 ease-in"
+    x-transition:leave-end="translate-x-full">
+    <ul class="text-lighter p-6 font-semibold">
+      <li class="flex justify-between items-center">
+        <a href="/">
+          <img src="/_/YTY2ODhjNjU2NzljODk5ODY4ODJmNTAyMDhmOTJhNDM/logo-with-name.svg" width="132" alt="OCaml logo" class="dark:hidden">
+          <img src="/_/OWRlZTVjOWVkOWE3MTgyZjk3MjMzMWQxNjZiYWIzN2I/logo-with-name-white.svg" width="132" alt="OCaml logo" class="hidden dark:inline">
+        </a>
+
+        <div class="close lg:hidden h-12 w-12 hover:bg-primary-100 flex items-center justify-center rounded-full"
+          x-on:click="open = false">
+          <button aria-label="close" class="text-lighter">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
+
+
+          </button>
+        </div>
+      </li>
+      <li class="mt-6 mb-3">
+        <form action="/packages/search" method="GET">
+          <div class="dropdown-container flex items-center justify-center h-10 rounded-md focus-within:outline-primary-300 focus-within:outline focus-within:outline-2 " tabindex="0">
+  <label for="q" class="sr-only">Search OCaml packages</label>
+  <input
+      type="search"
+      name="q"
+      placeholder="Search OCaml packages"
+      class="h-full w-full font-medium focus:border-primary-600 focus:ring-0 text-gray-800 border-primary-600 rounded-md rounded-r-none px-3 py-1 placeholder-body-400 appearance-none focus:outline-none"
+      
+  >
+  
+  <button
+      aria-label="search"
+      class="h-full flex items-center justify-center rounded-r-md bg-primary-600 text-white px-4"
+      type="submit"
+  ><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+</svg>
+
+</button>
+
+  
+</div>
+
+
+        </form>
+      </li>
+
+      <li><a href="/docs" class="font-semibold py-3 mg:py-4 px-1 lg:px-3 block text-lighter hover:text-primary-600">Learn</a>
+
+
+</li>
+      <li><a href="/packages" class="font-semibold py-3 mg:py-4 px-1 lg:px-3 block text-lighter hover:text-primary-600">Packages</a>
+
+
+</li>
+      <li><a href="/community" class="font-semibold py-3 mg:py-4 px-1 lg:px-3 block text-lighter hover:text-primary-600">Community</a>
+
+
+</li>
+      <li><a href="/blog" class="font-semibold py-3 mg:py-4 px-1 lg:px-3 block text-lighter hover:text-primary-600">Blog</a>
+
+
+</li>
+      <li><a href="/play" class="font-semibold py-3 mg:py-4 px-1 lg:px-3 block text-lighter hover:text-primary-600">Playground</a>
+
+
+</li>
+      <li class="mt-3 mb-6">
+        <a href="/docs/up-and-running" class="btn w-full">Get started</a>
+      </li>
+
+      <li>
+        <div class="space-x-6 text-2xl flex items-center">
+          <a aria-label="OCaml's Discord" href="https://discord.gg/cCYQbqN" class="opacity-60 hover:opacity-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill-rule="evenodd" d="M18.9419 5.29661C17.6473 4.69088 16.263 4.25066 14.8157 4C14.638 4.32134 14.4304 4.75355 14.2872 5.09738C12.7487 4.86601 11.2245 4.86601 9.7143 5.09738C9.57116 4.75355 9.3588 4.32134 9.17947 4C7.73067 4.25066 6.3448 4.6925 5.05016 5.29982C2.43887 9.24582 1.73099 13.0938 2.08493 16.8872C3.81688 18.1805 5.49534 18.9662 7.14548 19.4804C7.55291 18.9196 7.91628 18.3235 8.22931 17.6953C7.63313 17.4688 7.06211 17.1892 6.52256 16.8647C6.6657 16.7586 6.80571 16.6478 6.94098 16.5337C10.2318 18.0729 13.8074 18.0729 17.0589 16.5337C17.1958 16.6478 17.3358 16.7586 17.4774 16.8647C16.9362 17.1908 16.3637 17.4704 15.7675 17.697C16.0805 18.3235 16.4423 18.9212 16.8513 19.4819C18.503 18.9678 20.183 18.1822 21.915 16.8872C22.3303 12.4897 21.2056 8.67705 18.9419 5.29661ZM8.67765 14.5543C7.68977 14.5543 6.87963 13.632 6.87963 12.509C6.87963 11.3859 7.67247 10.4621 8.67765 10.4621C9.68285 10.4621 10.493 11.3843 10.4757 12.509C10.4772 13.632 9.68285 14.5543 8.67765 14.5543ZM15.3223 14.5543C14.3344 14.5543 13.5243 13.632 13.5243 12.509C13.5243 11.3859 14.3171 10.4621 15.3223 10.4621C16.3275 10.4621 17.1376 11.3843 17.1203 12.509C17.1203 13.632 16.3275 14.5543 15.3223 14.5543Z" clip-rule="evenodd" />
+</svg>
+
+
+          </a>
+          <a aria-label="The OCaml Compiler on GitHub" href="https://github.com/ocaml/ocaml" class="opacity-60 hover:opacity-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+</svg>
+
+
+          </a>
+          <a aria-label="The OCaml Language Twitter Account" href="https://twitter.com/ocamllang" class="opacity-60 hover:opacity-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+</svg>
+
+
+          </a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+
+    <main><div class="bg-default dark:bg-dark-default px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
+  <div class="sm:flex max-w-max mx-auto">
+    <p class="text-4xl font-extrabold text-primary-600 sm:text-5xl">404</p>
+    <div class="sm:ml-6">
+      <div class="sm:border-l sm:border-gray-200 sm:pl-6">
+        <h1 class="text-4xl font-extrabold text-default tracking-tight sm:text-5xl">Page not found</h1>
+        <p class="mt-1 text-base text-gray-500">Please check the URL in the address bar and try again.</p>
+      </div>
+      <div class="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
+        <a href="/"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+          Go Back Home
+        </a>
+        <a href="https://github.com/ocaml/ocaml.org/issues"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-orange-700 bg-orange-100 hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+          Open an Issue
+        </a>
+      </div>
+    </div>
+  </div>
+</div></main>
+
+    <footer class="bg-mild-contrast dark:bg-dark-mild-contrast" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Footer</h2>
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+      <div class="space-y-8">
+        <a href="/"><img class="h-8" src="/_/YTY2ODhjNjU2NzljODk5ODY4ODJmNTAyMDhmOTJhNDM/logo-with-name.svg" alt="OCaml"></a>
+        <p class="text-base leading-6 text-lighter">Innovation. Community. Security.</p>
+        <div class="flex space-x-6">
+          <a href="https://github.com/ocaml/ocaml" class="text-lighter hover:text-gray-500">
+  <span class="sr-only">GitHub</span>
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+</svg>
+
+
+</a>
+
+
+
+          <!-- FIXME: footer_icon_link component -->
+          <a href="https://discord.gg/cCYQbqN" class="text-lighter hover:text-gray-500">
+            <span class="sr-only">Discord</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill-rule="evenodd" d="M18.9419 5.29661C17.6473 4.69088 16.263 4.25066 14.8157 4C14.638 4.32134 14.4304 4.75355 14.2872 5.09738C12.7487 4.86601 11.2245 4.86601 9.7143 5.09738C9.57116 4.75355 9.3588 4.32134 9.17947 4C7.73067 4.25066 6.3448 4.6925 5.05016 5.29982C2.43887 9.24582 1.73099 13.0938 2.08493 16.8872C3.81688 18.1805 5.49534 18.9662 7.14548 19.4804C7.55291 18.9196 7.91628 18.3235 8.22931 17.6953C7.63313 17.4688 7.06211 17.1892 6.52256 16.8647C6.6657 16.7586 6.80571 16.6478 6.94098 16.5337C10.2318 18.0729 13.8074 18.0729 17.0589 16.5337C17.1958 16.6478 17.3358 16.7586 17.4774 16.8647C16.9362 17.1908 16.3637 17.4704 15.7675 17.697C16.0805 18.3235 16.4423 18.9212 16.8513 19.4819C18.503 18.9678 20.183 18.1822 21.915 16.8872C22.3303 12.4897 21.2056 8.67705 18.9419 5.29661ZM8.67765 14.5543C7.68977 14.5543 6.87963 13.632 6.87963 12.509C6.87963 11.3859 7.67247 10.4621 8.67765 10.4621C9.68285 10.4621 10.493 11.3843 10.4757 12.509C10.4772 13.632 9.68285 14.5543 8.67765 14.5543ZM15.3223 14.5543C14.3344 14.5543 13.5243 13.632 13.5243 12.509C13.5243 11.3859 14.3171 10.4621 15.3223 10.4621C16.3275 10.4621 17.1376 11.3843 17.1203 12.509C17.1203 13.632 16.3275 14.5543 15.3223 14.5543Z" clip-rule="evenodd" />
+</svg>
+
+
+          </a>
+
+          <!-- FIXME: footer_icon_link component -->
+          <a href="https://twitter.com/ocamllang" class="text-lighter hover:text-gray-500">
+            <span class="sr-only">Twitter</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+</svg>
+
+
+          </a>
+
+          <!-- FIXME: footer_icon_link component -->
+          <a href="https://watch.ocaml.org/" class="text-lighter hover:text-gray-500">
+            <span class="sr-only">Peertube</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill-rule="evenodd" d="M5 2V12L12.4998 7.00047" clip-rule="evenodd" />
+  <path fill-rule="evenodd" d="M5 12V22L12.4998 17.0005" clip-rule="evenodd" />
+  <path fill-rule="evenodd" d="M12.4998 6.99951V16.9995L19.9995 12" clip-rule="evenodd" />
+</svg>
+
+
+          </a>
+
+          <!-- FIXME: footer_icon_link component -->
+          <a href="/feed.xml" class="text-lighter hover:text-gray-500">
+            <span class="sr-only">RSS</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill-rule="evenodd" d="M15.2692 22H11.3846C11.3846 16.8462 7.11538 12.6154 2 12.6154V8.73077C9.26923 8.73077 15.2692 14.7308 15.2692 22ZM18 22C18 13.2308 10.7692 6 2 6V2C12.9615 2 22 11.0385 22 22H18Z" clip-rule="evenodd" />
+  <path fill-rule="evenodd" d="M4.73077 22C6.23893 22 7.46154 20.7774 7.46154 19.2692C7.46154 17.7611 6.23893 16.5385 4.73077 16.5385C3.22261 16.5385 2 17.7611 2 19.2692C2 20.7774 3.22261 22 4.73077 22Z" clip-rule="evenodd" />
+</svg>
+
+
+          </a>
+        </div>
+      </div>
+      <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+        <div class="md:grid md:grid-cols-2 md:gap-8">
+          <div>
+            <h3 class="text-base font-semibold leading-6 text-default">About Us</h3>
+            <ul class="mt-6 space-y-4">
+              <li>
+                <!-- TODO: create footer_link component -->
+                <a href="/industrial-users" class="text-base leading-6 text-lighter">Industrial Users</a>
+              </li>
+
+              <li>
+                <a href="/academic-users" class="text-base leading-6 text-lighter">Academic Users</a>
+              </li>
+
+              <li>
+                <a href="/about" class="text-base leading-6 text-lighter">Why OCaml</a>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-10 md:mt-0">
+            <h3 class="text-base font-semibold leading-6 text-default">Resources</h3>
+            <ul class="mt-6 space-y-4">
+              <li>
+                <a href="/install" class="text-base leading-6 text-lighter">Install OCaml</a>
+              </li>
+
+              <li>
+                <a href="/docs/up-and-running" class="text-base leading-6 text-lighter">Get Started</a>
+              </li>
+
+              <li>
+                <a href="/releases/latest/manual.html" class="text-base leading-6 text-lighter">Language Manual</a>
+              </li>
+
+              <li>
+                <a href="/releases/latest/api/index.html" class="text-base leading-6 text-lighter">Standard Library API</a>
+              </li>
+
+              <li>
+                <a href="/books" class="text-base leading-6 text-lighter">Books</a>
+              </li>
+
+              <li>
+                <a href="/releases" class="text-base leading-6 text-lighter">Releases</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="md:grid md:grid-cols-2 md:gap-8">
+          <div>
+            <h3 class="text-base font-semibold leading-6 text-default">Community</h3>
+            <ul class="mt-6 space-y-4">
+              <li>
+                <a href="/blog" class="text-base leading-6 text-lighter">Blog</a>
+              </li>
+
+              <li>
+                <a href="/changelog" class="text-base leading-6 text-lighter">Changelog</a>
+              </li>
+
+              <li>
+                <a href="/jobs" class="text-base leading-6 text-lighter">Jobs</a>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-10 md:mt-0">
+            <h3 class="text-base font-semibold leading-6 text-default">Policies</h3>
+            <ul class="mt-6 space-y-4">
+              <li>
+                <a href="/policies/carbon-footprint" class="text-base leading-6 text-lighter">Carbon Footprint</a>
+              </li>
+
+              <li>
+                <a href="/policies/governance" class="text-base leading-6 text-lighter">Governance</a>
+              </li>
+
+              <li>
+                <a href="/policies/privacy-policy" class="text-base leading-6 text-lighter">Privacy</a>
+              </li>
+
+              <li>
+                <a href="/policies/code-of-conduct" class="text-base leading-6 text-lighter">Code of Conduct</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
