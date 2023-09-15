@@ -1,3 +1,96 @@
+OCaml 4.14.1 (20 December 2022)
+------------------------------
+
+### Compiler user-interface and warnings:
+
+- #11184, #11670: Stop calling ranlib on created / installed libraries
+  (Sébastien Hinderer and Xavier Leroy, review by the same)
+
+### Build system:
+
+- #11370, #11373: Don't pass CFLAGS to flexlink during configure.
+  (David Allsopp, report by William Hu, review by Xavier Leroy and
+   Sébastien Hinderer)
+
+- #11487: Thwart FMA test optimization during configure
+  (William Hu, review by David Allsopp and Sébastien Hinderer)
+
+### Bug fixes:
+
+- #10768, #11340: Fix typechecking regression when combining first class
+  modules and GADTs.
+  (Jacques Garrigue, report by François Thiré, review by Matthew Ryan)
+
+- #11204: Fix regression introduced in 4.14.0 that would trigger Warning 17 when
+  calling virtual methods introduced by constraining the self type from within
+  the class definition.
+  (Nicolás Ojeda Bär, review by Leo White)
+
+- #11263, #11267: caml/{memory,misc}.h: check whether `_MSC_VER` is defined
+  before using it to ensure that the headers can always be used in code which
+  turns on -Wundef (or equivalent).
+  (David Allsopp and Nicolás Ojeda Bär, review by Nicolás Ojeda Bär and
+   Sébastien Hinderer)
+
+- #11314, #11416: fix non-informative error message for module inclusion
+  (Florian Angeletti, report by Thierry Martinez, review by Gabriel Scherer)
+
+- #11358, #11379: Refactor the initialization of bytecode threading,
+  This avoids a "dangling pointer" warning of GCC 12.1.
+  (Xavier Leroy, report by Armaël Guéneau, review by Gabriel Scherer)
+
+- #11387, module type with constraints no longer crash the compiler in presence
+  of both shadowing warnings and the `-bin-annot` compiler flag.
+  (Florian Angeletti, report by Christophe Raffalli, review by Gabriel Scherer)
+
+- #11392, #11392: assertion failure with -rectypes and external definitions
+  (Gabriel Scherer, review by Florian Angeletti, report by Dmitrii Kosarev)
+
+- #11417: Fix regression allowing virtual methods in non-virtual classes.
+  (Leo White, review by Florian Angeletti)
+
+- #11468: Fix regression from #10186 (OCaml 4.13) detecting IPv6 on Windows for
+  mingw-w64 i686 port.
+  (David Allsopp, review by Xavier Leroy and Sébastien Hinderer)
+
+- #11489, #11496: More prudent deallocation of alternate signal stack
+  (Xavier Leroy, report by @rajdakin, review by Florian Angeletti)
+
+- #11516, #11524: Fix the `deprecated_mutable` attribute.
+  (Chris Casinghino, review by Nicolás Ojeda Bär and Florian Angeletti)
+
+- #11194, #11609: Fix inconsistent type variable names in "unbound type var"
+  messages
+  (Ulysse Gérard and Florian Angeletti, review Florian Angeletti and
+   Gabriel Scherer)
+
+- #11622: Prevent stack overflow when printing a constructor or record
+  mismatch error involving recursive types.
+  (Florian Angeletti, review by Gabriel Scherer)
+
+- #11732: Ensure that types from packed modules are always generalised
+  (Stephen Dolan and Leo White, review by Jacques Garrigue)
+
+- #11737: Fix segfault condition in Unix.stat under Windows in the presence of
+  multiple threads.
+  (Marc Lasson, Nicolás Ojeda Bär, review by Gabriel Scherer and David Allsopp)
+
+- #11776: Extend environment with functor parameters in `strengthen_lazy`.
+  (Chris Casinghino and Luke Maurer, review by Gabriel Scherer)
+
+- #11533, #11534: follow synonyms again in #show_module_type
+  (this had stopped working in 4.14.0)
+  (Gabriel Scherer, review by Jacques Garrigue, report by Yaron Minsky)
+
+- #11768, #11788: Fix crash at start-up of bytecode programs in
+  no-naked-pointers mode caused by wrong initialization of caml_global_data
+  (Xavier Leroy, report by Etienne Millon, review by Gabriel Scherer)
+
+- #11803, #11808: on x86, the destination of an integer comparison must be
+  a register, it cannot be a stack slot.
+  (Vincent Laviron, review by Xavier Leroy, report by
+   Emilio Jesús Gallego Arias)
+
 OCaml 4.14.0 (28 March 2022)
 ----------------------------
 
@@ -61,7 +154,6 @@ OCaml 4.14.0 (28 March 2022)
   abstraction of modules that can be used by external tooling to perform
   definition-aware operations.
   (Ulysse Gérard, Thomas Refis and Leo White, review by Florian Angeletti)
-
 
 ### Language features:
 
