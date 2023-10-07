@@ -161,10 +161,37 @@ a.planet-toggle {
   float: right;
   font-size: 90%;
   padding: 5px 10px;
+  padding-right: 23px;
   margin-bottom: 2ex;
-  color: #4b4b4b;
-  background: #e6e6e6;
-  border: 1px solid #dedede;
+  color: #ffffff;
+  background: #008000;
+  border: 1px solid #008000;
+}
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  right: 15px;
+  float: right;
+  position: relative;
+  left: 85px;
+  top: 17px;
+ 
+}
+
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #ffffff;
+  float: right;
+  position: relative;
+  left: 52px;
+  top: 18px;
+  
 }
 
 a.planet-toggle:hover, a.planet-toggle:focus {
