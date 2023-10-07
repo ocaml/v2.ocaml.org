@@ -528,6 +528,15 @@ SOLUTION
 >   in
 >     if a < b then aux [] b a else List.rev (aux [] a b)
 > ```
+> An alternative solution:
+>
+> ```ocamltop
+> let range start stop =
+>   let op = if start > stop then (-) else (+)
+>   in let rec aux s = function
+>     | 0 -> [s]
+>     | n -> s :: aux (op s 1) (n - 1)
+>   in aux start (abs (stop - start));;
 
 ```ocamltop
 range 4 9;;
