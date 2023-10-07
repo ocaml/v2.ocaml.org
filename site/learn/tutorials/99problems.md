@@ -300,15 +300,17 @@ duplicates, as in problem "[Pack consecutive duplicates of list elements into su
 SOLUTION
 
 > ```ocamltop
-> let encode list =
->   let rle count x = if count = 0 then One x else Many (count + 1, x) in
->   let rec aux count acc = function
->     | [] -> [] (* Can only be reached if original list is empty *)
->     | [x] -> rle count x :: acc
->     | a :: (b :: _ as t) -> if a = b then aux (count + 1) acc t
->                             else aux 0 (rle count a :: acc) t
->   in
->     List.rev (aux 0 [] list);;
+> let encode lst =
+>    let create_tuple n v = match n with
+>        | 1 -> One v
+>        | _ -> Many (n, v)
+>    in let rec aux count = function
+>        | [] -> []
+>        | [a] -> [create_tuple (count+1) a]
+>       | h :: (h' :: _ as t) -> if h = h'
+>           then aux (count+1) t
+>           else create_tuple (count+1) h :: aux 0 t 
+>    in aux 0 lst;;
 > ```
 
 ```ocamltop
