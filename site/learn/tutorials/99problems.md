@@ -274,16 +274,13 @@ problem, construct its uncompressed version.
 SOLUTION
 
 > ```ocamltop
-> let decode list =
->   let rec many acc n x =
->     if n = 0 then acc else many (x :: acc) (n - 1) x
->   in
->   let rec aux acc = function
->     | [] -> acc
->     | One x :: t -> aux (x :: acc) t
->     | Many (n, x) :: t -> aux (many acc n x) t
->   in
->     aux [] (List.rev list);;
+> let rec decode = function
+>     | [] -> []
+>     | h::t -> match h with
+>         | One x -> x :: (decode t)
+>         | Many (n,x) -> if n > 1
+>             then x :: (decode (Many (n-1, x) :: t))
+>             else x :: (decode t);;
 > ```
 
 ```ocamltop
