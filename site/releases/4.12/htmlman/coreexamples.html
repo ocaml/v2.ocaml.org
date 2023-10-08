@@ -2,16 +2,30 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="hevea 2.35">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
 <title>OCaml - The core language</title>
-<script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>An introduction to OCaml</nav><ul id="part-menu"><li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
-
-
-
-
+<script src="scroll.js"></script><script src="navigation.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
+<body>
+<div style="width:100%;position:fixed;" class="content manual" >
+<nav><div id="part-title" style="width:95%; background-color: white; position: fixed; top: 0; padding-bottom: 20px;">
+<span>☰</span>
+An introduction to OCaml
+</div>
+<div id="sidebar-button" style="width:5%; background-color: white; position: fixed; top: 0; padding-bottom: 100px;"><span>☰</span></div>
+</nav>
+</div>
+<br/><br/>
+<div class="right-div" style="position:fixed;">
+<ul id="part-menu">
+<li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a>
+</li>
+<li><a href="advexamples.html">Advanced examples with classes and modules</a></li>
+</br/></ul>
+</div>
+<br/><br/>
+<div class="content manual" >
 <h1 class="chapter" id="sec7"><span class="number">Chapter 1</span>The core language</h1>
 <header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The core language</a></li>
 <li><a href="coreexamples.html#s%3Abasics"><span class="number">1</span>Basics</a>
@@ -1394,7 +1408,7 @@ the function <span class="c004">f</span> cannot raise a <span class="c004">Done<
 entire class of misbehaving functions.</p>
 <h2 class="section" id="s:lazy-expr"><a class="section-anchor" href="#s:lazy-expr" aria-hidden="true">﻿</a><span class="number">7</span>Lazy expressions</h2>
 <p>OCaml allows us to defer some computation until later when we need the result of
-that computation. </p><p>We use <span class="c004">lazy (expr)</span> to delay the evaluation of some expression <span class="c004">expr</span>. For 
+that computation. </p><p>We use <span class="c004">lazy (expr)</span> to delay the evaluation of some expression <span class="c004">expr</span>. For
 example, we can defer the computation of <span class="c004">1+1</span> until we need the result of that
 expression, <span class="c004">2</span>. Let us see how we initialize a lazy expression. </p><div class="caml-example toplevel">
 
@@ -1409,10 +1423,10 @@ expression, <span class="c004">2</span>. Let us see how we initialize a lazy exp
 <div class="pre caml-output ok"><span class="ocamlkeyword">val</span> lazy_two : int lazy_t = &lt;<span class="ocamlkeyword">lazy</span>&gt;</div></div>
 
 </div><p>We added <span class="c004">print_endline "lazy_two evaluation"</span> to see when the lazy
-expression is being evaluated.</p><p>The value of <span class="c004">lazy_two</span> is displayed as <span class="c004">&lt;lazy&gt;</span>, which means the expression 
-has not been evaluated yet, and its final value is unknown.</p><p>Note that <span class="c004">lazy_two</span> has type <span class="c004">int lazy_t</span>. However, the type <span class="c004">'a lazy_t</span> is an 
-internal type name, so the type <span class="c004">'a Lazy.t</span> should be preferred when possible.</p><p>When we finally need the result of a lazy expression, we can call <span class="c004">Lazy.force</span> 
-on that expression to force its evaluation. The function <span class="c004">force</span> comes from 
+expression is being evaluated.</p><p>The value of <span class="c004">lazy_two</span> is displayed as <span class="c004">&lt;lazy&gt;</span>, which means the expression
+has not been evaluated yet, and its final value is unknown.</p><p>Note that <span class="c004">lazy_two</span> has type <span class="c004">int lazy_t</span>. However, the type <span class="c004">'a lazy_t</span> is an
+internal type name, so the type <span class="c004">'a Lazy.t</span> should be preferred when possible.</p><p>When we finally need the result of a lazy expression, we can call <span class="c004">Lazy.force</span>
+on that expression to force its evaluation. The function <span class="c004">force</span> comes from
 standard-library module <a href="../api/Lazy.html"><span class="c004">Lazy</span></a>.</p><div class="caml-example toplevel">
 
 <div class="ocaml">
@@ -1426,8 +1440,8 @@ standard-library module <a href="../api/Lazy.html"><span class="c004">Lazy</span
 <div class="pre caml-output ok">lazy_two evaluation
 - : int = 2</div></div>
 
-</div><p>Notice that our function call above prints “lazy_two evaluation” and then 
-returns the plain value of the computation. </p><p>Now if we look at the value of <span class="c004">lazy_two</span>, we see that it is not displayed as 
+</div><p>Notice that our function call above prints “lazy_two evaluation” and then
+returns the plain value of the computation. </p><p>Now if we look at the value of <span class="c004">lazy_two</span>, we see that it is not displayed as
 <span class="c004">&lt;lazy&gt;</span> anymore but as <span class="c004">lazy 2</span>.</p><div class="caml-example toplevel">
 
 <div class="ocaml">
@@ -1440,9 +1454,9 @@ returns the plain value of the computation. </p><p>Now if we look at the value o
 
 <div class="pre caml-output ok">- : int lazy_t = <span class="ocamlkeyword">lazy</span> 2</div></div>
 
-</div><p>This is because <span class="c004">Lazy.force</span> memoizes the result of the forced expression. In other 
-words, every subsequent call of <span class="c004">Lazy.force</span> on that expression returns the 
-result of the first computation without recomputing the lazy expression. Let us 
+</div><p>This is because <span class="c004">Lazy.force</span> memoizes the result of the forced expression. In other
+words, every subsequent call of <span class="c004">Lazy.force</span> on that expression returns the
+result of the first computation without recomputing the lazy expression. Let us
 force <span class="c004">lazy_two</span> once again. </p><div class="caml-example toplevel">
 
 <div class="ocaml">
@@ -1492,9 +1506,9 @@ not printed. The result of the initial computation is simply returned. </p><p>La
 
 <div class="pre caml-output ok"><span class="ocamlkeyword">val</span> maybe_eval : bool lazy_t -&gt; 'a lazy_t -&gt; string = &lt;<span class="ocamlkeyword">fun</span>&gt;</div></div>
 
-</div><p>The lazy expression <span class="c004">lazy_expr</span> is forced only if the <span class="c004">lazy_guard</span> value yields 
-<span class="c004">true</span> once computed. Indeed, a simple wildcard pattern (not lazy) never forces 
-the lazy expression’s evaluation. However, a pattern with keyword <span class="c004">lazy</span>, even 
+</div><p>The lazy expression <span class="c004">lazy_expr</span> is forced only if the <span class="c004">lazy_guard</span> value yields
+<span class="c004">true</span> once computed. Indeed, a simple wildcard pattern (not lazy) never forces
+the lazy expression’s evaluation. However, a pattern with keyword <span class="c004">lazy</span>, even
 if it is wildcard, always forces the evaluation of the deferred computation.</p>
 <h2 class="section" id="s:symb-expr"><a class="section-anchor" href="#s:symb-expr" aria-hidden="true">﻿</a><span class="number">8</span>Symbolic processing of expressions</h2>
 <p>We finish this introduction with a more complete example

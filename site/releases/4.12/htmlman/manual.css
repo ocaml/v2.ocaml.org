@@ -26,7 +26,24 @@
 
 html.smooth-scroll {
   scroll-behavior: smooth; }
-
+  @media all and (max-width: 14400px) and (min-width: 900px) {
+      .right-div{
+       margin-left:73%;
+        display:content;
+      }
+      .right-div-1{
+        width: 25%;
+        margin-left: 72%;
+      }
+    }
+    @media all and (max-width: 800px) and (min-width: 300px){
+      .right-div{
+        width: 96%;
+      }
+      .right-div-1{
+        width: 96%;
+      }
+    }
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto; } }
@@ -46,9 +63,13 @@ html {
 #sidebar-button {
   float: right;
   cursor: context-menu;
+   background-color: white;
   display: none; }
   #sidebar-button span {
-    font-size: 28px; }
+    font-size: 22px;
+    display: block;
+      width: 100%;
+      background-color: white;}
 
 .content > header, .api > header {
   margin-bottom: 30px; }
@@ -396,6 +417,7 @@ blockquote.quote {
   text-align: right;
   list-style: none;
   overflow-y: hidden;
+   background-color: white;
   transition: height 0.3s; }
 
 #part-menu li.active a {

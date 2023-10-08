@@ -7,12 +7,23 @@
 <link rel="stylesheet" type="text/css" href="manual.css">
 <title>OCaml - Interfacing C with OCaml</title>
 <script src="scroll.js"></script><script src="navigation.js"></script><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"></head>
-<body><div class="content manual"><div id="sidebar-button"><span>☰</span></div><nav id="part-title"><span>☰</span>The OCaml tools</nav><ul id="part-menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li class="active"><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></ul>
-
-
-
-
-<h1 class="chapter" id="c:intf-c"><span class="number">Chapter 18</span>Interfacing C with OCaml</h1>
+<body>
+  <div style="width:100%;position:fixed;" class="content manual" >
+  <nav><div id="part-title" style="width:95%; background-color: white; position: fixed; top: 0; padding-bottom: 20px;">
+  <span>☰</span>
+  The OCaml tools
+  </div>
+  <div id="sidebar-button" style="width:5%; background-color: white; position: fixed; top: 0; padding-bottom: 100px;"><span>☰</span></div>
+  </nav>
+  </div>
+  <br/><br/>
+  <div class="right-div" style="position:fixed;">
+  <ul id="part-menu">
+  <li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li class="active"><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="instrumented-runtime.html">Runtime tracing with the instrumented runtime</a></li></br></ul>
+  </div>
+  <br/><br/>
+  <div class="content manual" >
+    <h1 class="chapter" id="c:intf-c"><span class="number">Chapter 18</span>Interfacing C with OCaml</h1>
 <header id="sidebar"><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="https://ocaml.org/releases/">Version 4.12</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Interfacing C with OCaml</a></li>
 <li><a href="intfc.html#s%3Ac-overview"><span class="number">1</span>Overview and compilation information</a>
 </li><li><a href="intfc.html#s%3Ac-value"><span class="number">2</span>The <span class="c004">value</span> type</a>
@@ -1857,7 +1868,7 @@ code around C calls. Technically it wraps every C call with the C function
 <span class="c004">caml_c_call</span> which is part of the OCaml runtime.</p><p>For small functions that are called repeatedly, this indirection can have
 a big impact on performances. However this is not needed if we know that
 the C function doesn’t allocate, doesn’t raise exceptions, and doesn’t release
-the master lock (see section&nbsp;<a href="#ss%3Aparallel-execution-long-running-c-code">18.12.2</a>). 
+the master lock (see section&nbsp;<a href="#ss%3Aparallel-execution-long-running-c-code">18.12.2</a>).
 We can instruct the OCaml native-code compiler of this fact by annotating the
 external declaration with the attribute <span class="c004">[@@noalloc]</span>:</p><pre>external bar : int -&gt; int -&gt; int = "foo" [@@noalloc]
 </pre><p>
