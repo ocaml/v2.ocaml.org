@@ -621,10 +621,14 @@ vertical-align:middle;
   .books-span{
     margin: 5px;
   }
+  .books-row{
+    display: flex;
+  }
+  .books-row div.span2{
+    padding: 5px;
+  }
 }
-.books-row{
-  display: flex;
-}
+
 @media (max-width: 480px) {
   #footer .column {
     width: 98%;
