@@ -671,6 +671,21 @@ vertical-align:middle;
   text-align: center;
   display: flex;
 }
+
+.com-button{
+  background-color: #c45641;
+  color: #FFFFFF;
+  padding: 5px;
+ 
+  
+}
+
+.button-link {
+  text-decoration: none;
+  
+  
+}
+
 .stickers img{
   max-width: 100px;
 }
