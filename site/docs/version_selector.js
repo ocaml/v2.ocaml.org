@@ -110,6 +110,22 @@ function fill_selector(){
     document.getElementById("version-selector").innerHTML = html;
 }
 
+//This function adds the selected version from the version selector to all
+//the links that change when a particular version is selected.
+function getSelectedVersion() {
+    let arr = ['tutref_b','extref_b','toolref_b','api_b'];
+    let selectedVersion = document.getElementById('version-selector');
+
+    for(let i = 0; i < arr.length; i++){
+          const newSpan = document.querySelector(`#${arr[i]} .varPrefix`);
+        if (newSpan) {
+          newSpan.innerText = `(${selectedVersion.value})`;
+        } else {
+          let newText = document.getElementById(arr[i]);
+          newText.innerHTML = newText.innerText + ` <span class='varPrefix'>(${selectedVersion.value})</span>`;
+        }
+    }
+}
 
 function refresh(){
     let i = document.Versions.selector.selectedIndex;
@@ -117,6 +133,8 @@ function refresh(){
     localStorage.setItem("CURRENT_VERSION_INDEX", i);
     let version = document.Versions.selector.options[i].value;
     setVersion(version);
+    getSelectedVersion();
+
 }
 
 function init(){
