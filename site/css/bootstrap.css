@@ -7013,6 +7013,22 @@ body {
     padding-right: 10px;
   }
 }
+
+@media (max-width:768px){
+ #platform-download {
+  margin-top: -24.3px;
+  margin-bottom: 2ex;
+  float: left; 
+}
+a.btn{
+  margin-top: -24.3px;
+  padding: 4px 10px;
+  font-size: 125%;
+  border: 1px solid #dedede;
+  float: left;
+}
+}
+
 @media (min-width: 980px) {
   .nav-collapse.collapse {
     height: auto !important;
