@@ -24,6 +24,7 @@ processor/operating system combinations:
 <tbody>
 <tr class="odd">
 <td align="left">Tier 1 platforms<br /> (actively used and maintained by the core Caml team):</td>
+
 </tr>
 <tr class="even">
 <td align="left">AMD64 (Intel and AMD x86 processors in 64-bit mode)</td>
@@ -43,6 +44,7 @@ processor/operating system combinations:
 </tr>
 <tr class="even">
 <td align="left">Tier 2 platforms<br /> (maintained but less actively, with help from users):</td>
+
 </tr>
 <tr class="odd">
 <td align="left">AMD64</td>
@@ -86,6 +88,7 @@ Windows available:
 Each of these ports exists for either Win32 or Win64 platforms.
 
 Here is a summary of the main differences between these ports:
+
 
 <table width="100%">
 <thead>
