@@ -5360,9 +5360,14 @@ body {
 }
 #nav-secondary {
   padding-top: 52px;
-  padding-bottom: 52px;
-  overflow: hidden;
+  top: 0;
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+  height: 250px;
+  width: 300px;
 }
+
 #content-primary {
   padding-bottom: 28px;
 }

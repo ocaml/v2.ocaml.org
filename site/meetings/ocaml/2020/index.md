@@ -94,6 +94,24 @@ Organizing Comittee
 - Daniel Tornabene
 - Shiwei Weng
 
+2020 OCaml workshop
+--------------------
+
+- Videos about 2020 OCaml workshop can be found on [_youtube_](https://www.youtube.com/playlist?list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f).
+- Keynote session about [_OCaml platform_](https://www.youtube.com/watch?v=E8T_4zqWmq8&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=1) plans for 2020-21 with a clear roadmap are well presented by Anil Madhavapeddy.
+- Thomas Leonard explains [_OCaml-Cl: A zero configuration Cl_](https://www.youtube.com/watch?v=HjcCUZ9i-ug&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=2) which is a service for OCaml projects. 
+- [_The final pieces of the OCaml documentation puzzle_](https://www.youtube.com/watch?v=wVyZ-KveN-w&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=3), Jonathan Ludlam.
+- Joseph Harrison and Steven Varoumas talk about their experience in using an automatic [_API migration_](https://www.youtube.com/watch?v=y6RKnOu4i74&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=4).
+- Sadiq Jaffer talks about [_Parallelising your OCaml Code with Multicore OCaml_](https://www.youtube.com/watch?v=Z7YZR1q8wzI&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=5) in detail with a QnA session with  Sudha Parimala,  KC Sivaramakrishnan and  Anil Madhavapeddy.
+- Jan Midtgaard expalins [_A Simple State-Machine Framework for Property-Based Testing in OCaml_](https://www.youtube.com/watch?v=uuL9RYuaZV4&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=6).
+- Tom Ridge talks about new OCaml filesystem, [_The ImpFS filesystem_](https://www.youtube.com/watch?v=wwzbSeiXbno&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=7) and realted libraries.
+- Ioana CristescuI, [_Irmin v2_](https://www.youtube.com/watch?v=v1lfMUM332w&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=8): an OCaml library for building distributed databases with the same design principles as Git.
+- Markus Mottl presents [_AD-OCaml: Algorithmic Differentiation for OCaml_](https://www.youtube.com/watch?v=KUVHbVS-PN4&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=9).
+- Sebastien Mondet presents [_OCaml Under The Hood: SmartPy_](https://www.youtube.com/watch?v=z8YN2oT2gGY&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=10) project.
+- Eelco Visser, Eduardo Amorim present [_A Declarative Syntax Definition for OCaml_](https://www.youtube.com/watch?v=SgP4GlWuUr4&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=11).
+- Patrik Keller, Marc Lasson present about the use of [_LexiFi Runtime Types_](https://www.youtube.com/watch?v=0BpmxJGaaFo&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=12).
+- Paul Steckler, Matthew Ryan talk about [_Types in amber](https://www.youtube.com/watch?v=jroMKd7MzT4&list=PLKO_ZowsIOu5fHjRj0ua7_QWE_L789K_f&index=13).
+
 Questions and contact
 ---------------------
 

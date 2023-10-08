@@ -34,4 +34,8 @@ outperform the competition in the financial world.
 Framework](http://vimeo.com/6652523) from [Malcolm
 Wallace](http://vimeo.com/user2191865) on [Vimeo](http://vimeo.com).
 
+## 2020 OCaml workshop
+
+Videos about 2020 OCaml workshop can be found on [OCaml 2020](../meetings/ocaml/2020/index.html).
+
 
