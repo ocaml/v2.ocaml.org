@@ -32,10 +32,10 @@
 #opamdoc-contents table.typetable td {
     padding-right:0.75ex;
 }
-#opamdoc-contents div.info {
+ #opamdoc-contents div.info {
     /* margin:2pt 0 1.5em 1em; */
     /* padding:0; */
-}
+} 
 #opamdoc-contents ul {
     margin: 0 0 0 4ex;
     padding: 0;
@@ -91,8 +91,8 @@ code, .gutter pre {
 }
 code { font-size: 100%; }
 h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
-.governing, .ocaml .ot { color: black; font-weight: bold; }
-.keyword, .ocaml .kw, .ocaml .k, .planet .Keyword { color: #575bf4 }
+.ocaml .ot { color: black; font-weight: bold; }
+.ocaml .kw, .ocaml .k, .planet .Keyword { color: #575bf4 }
 .keywordsign { color: #886643; }
 .constructor, .ocaml .dt, .ocaml .nc {
   color: #008000;
@@ -100,15 +100,14 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h5 code { font-size: 80%; }
 }
 .superscript { font-size : 80% }
 .subscript { font-size : 80% }
-.comment, .comment .governing, .comment .keyword, .comment .ocaml-function,
+.comment .governing, .comment .ocaml-function,
 .comment .string, .ocaml .co, .comment .ocaml-module,
 .comment .ocaml-variable, .planet .Comment {
   color: #525252;
   font-style: italic;
   font-weight: normal;
 }
-.type { color: #b03bb5 }
-.string, .string .keyword, .string .keywordsign, .string .constructor,
+.string .keyword, .string .keywordsign, .string .constructor,
 .string .governing,
 .ocaml .st {
   color: #a95472;
@@ -126,14 +125,12 @@ li p {
 }
 
 .ocaml-prompt { color: #8d8d8d }
-.ocaml-function { color: #0606ee }
-.ocaml-variable, .planet .Identifier { color: #c54512 }
-.ocaml-module, .planet .Include {
+ .planet .Identifier { color: #c54512 }
+ .planet .Include {
   color: #008000; /* same as "constructor" */
 }
 .planet .Operator { color: #93827c }
 
-.ocaml-output { color: #696969 }
 .ocaml-stdout { color: #0c6fb3 }
 .ocaml-stderr { font-style: italic }
 .ocaml-error { font-style: italic;  color: #d32121 }
@@ -177,9 +174,6 @@ h1.planet {
   line-height: 24px;
   padding-bottom: 6px;
   border-bottom: 1px #ACACAC solid;
-}
-h1.planet a {
-  color: #404040;
 }
 h1.planet a:hover {
   color: #c45641;
@@ -509,7 +503,6 @@ ul.translations:after { content: "]"; }
   /* IE7 inline-block hack */
 
   *zoom: 1;
-  text-shadow: 0 1px 0 #ffffff;
 }
 
 .translations > li:not(:last-child):after {

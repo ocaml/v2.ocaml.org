@@ -1,0 +1,105 @@
+/*Light-mode css file */
+
+/*CSS Variables*/
+:root {
+  --back-color: #ffffff;
+  --primary-color: #000000;
+  --header-back: #5d5d5d;
+  --header-text: #eee;
+}
+/* Color-change for body*/
+body {
+  background-color: var(--back-color);
+  color: var(--primary-color);
+}
+
+/*Home Page*/
+.home-feature h1 a {
+  color:var(--primary-color);
+}
+.condensed > h1 a {
+  color: #404040;
+}
+
+/* Translations */
+ul.translations {
+  
+  color: #6f6f6f; /* current language name */
+  
+}
+.translations > li{ text-shadow: 0 1px 0 #ffffff;}
+.breadcrumb > li{text-shadow: 0 1px 0 #ffffff;}
+.breadcrumb { color: #6f6f6f; 
+  background-color: #ffffff;}
+  
+/* Table (package) home page */
+.table th {
+    
+  background: #EBEBEB;
+  
+}
+.condensed .table {
+  border-top: none;
+  
+}
+.table-bordered th,
+.table-bordered td {
+  border-left: 1px solid #c5c5c5;
+}
+.table-hover tbody a {
+  color: #404040;
+}
+.table-hover tbody tr:hover > td {
+  background-color: #f7f7f7;
+  
+}
+
+/* codeblocks */
+pre code {
+  color:inherit;
+}
+pre { background-color: #f5f5f5;}
+
+.comment,.comment .keyword{
+  color: #525252;
+  font-style: italic;
+  font-weight: normal;
+}
+.keyword { color: #575bf4 }
+.ocaml-variable{color: #008000;}
+.type { color: #b03bb5 }
+.ocaml-function { color: #0606ee }
+.ocaml-output { color: #696969 }
+.governing{color :black;}
+.ocaml-module{
+  color: #008000; /* same as "constructor" */
+}
+.string {
+  color: #a95472;
+  font-weight: normal;  
+}
+
+/* documentation */
+.documentation-highlight {
+  color: #404040;
+}
+
+/*News */
+h1.planet a {
+  color: #404040;
+}
+
+/*Contents */
+.nav-list .nav-header a {
+  color: #404040;
+}
+/* colour change for a tag*/
+a{color: #c15540;}
+
+/*#home-learn a {
+  color: #404040;
+}*/
+#home-learn a:hover {
+ 
+  color: #c45641;
+}

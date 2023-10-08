@@ -7,6 +7,65 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+
+ :root {
+  --light: #ffffff;
+  
+  --dark: #81899b;
+}
+/* Toggle Button for theme-change*/
+
+.toggle {
+  position : relative ;
+  display : inline-block;
+  width : 50px;
+  height : 25px;
+  background-color: white;
+  border-radius: 30px;
+  border: 2px solid gray;
+}
+      
+/* After slide changes */
+.toggle:after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: gray;
+  top: -2px; 
+  left: 0.5px;
+  transition:  all 0.5s;
+}
+      
+
+      
+/* Checkbox cheked effect */
+.checkbox:checked + .toggle::after {
+  left : 25px;   }
+      
+/* Checkbox cheked toggle label bg color */
+.checkbox:checked + .toggle {
+  background-color:#404040;
+}
+      
+/* Checkbox vanished */
+.checkbox { 
+  display : none;
+}
+
+.theme-switches {
+  display: flex;
+  
+}
+
+
+.switch:hover {
+  transform: scale(1.2);
+  transition: 0.3s ease-in-out;
+}
+
+
 .build-breaker {
   /*
       This is a blank LESS mixin that can be added to LESS files that
@@ -160,6 +219,7 @@ textarea {
   overflow: auto;
   vertical-align: top;
 }
+
 @media print {
   * {
     text-shadow: none !important;
@@ -215,13 +275,9 @@ body {
   margin: 0;
   font-family: Domine, serif;
   font-size: 14px;
-  line-height: 24px;
-  color: #000000;
-  background-color: #ffffff;
-}
+  line-height: 24px;}
 a {
-  color: #c15540;
-  text-decoration: none;
+text-decoration: none;
 }
 a:hover,
 a:focus {
@@ -851,7 +907,7 @@ pre {
   word-wrap: break-word;
   white-space: pre;
   white-space: pre-wrap;
-  background-color: #f5f5f5;
+  
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   -webkit-border-radius: 4px;
@@ -864,7 +920,7 @@ pre.prettyprint {
 }
 pre code {
   padding: 0;
-  color: inherit;
+ 
   white-space: pre;
   white-space: pre-wrap;
   background-color: transparent;
@@ -1747,7 +1803,6 @@ table {
 }
 .table th {
   font-weight: bold;
-  background: #EBEBEB;
   border-bottom: 1px #c5c5c5 solid;
 }
 .table thead th {
@@ -1779,10 +1834,6 @@ table {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-}
-.table-bordered th,
-.table-bordered td {
-  border-left: 1px solid #c5c5c5;
 }
 .table-bordered caption + thead tr:first-child th,
 .table-bordered caption + tbody tr:first-child th,
@@ -1856,9 +1907,6 @@ table {
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
   background-color: #f7f7f7;
-}
-.table-hover tbody a {
-  color: #404040;
 }
 .table-hover tbody tr:hover > td {
   background-color: #f7f7f7;
@@ -3426,9 +3474,6 @@ input[type="submit"].btn.btn-mini {
   line-height: 36px;
   text-transform: none;
 }
-.nav-list .nav-header a {
-  color: #404040;
-}
 .nav-list > li > a:hover,
 .nav-list > li > a:focus {
   background: none;
@@ -4253,8 +4298,7 @@ input[type="submit"].btn.btn-mini {
 .breadcrumb {
   padding: 8px 0;
   margin: 0 0 24px;
-  list-style: none;
-  background-color: #ffffff;
+  list-style: none; 
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -4268,7 +4312,6 @@ input[type="submit"].btn.btn-mini {
   /* IE7 inline-block hack */
 
   *zoom: 1;
-  text-shadow: 0 1px 0 #ffffff;
 }
 .breadcrumb > li > .divider {
   padding: 0 5px;
@@ -5404,9 +5447,6 @@ body {
 .condensed > h1.ruled {
   border-bottom: 1px #ACACAC solid;
 }
-.condensed > h1 a {
-  color: #404040;
-}
 .condensed > h1 a:hover {
   color: #c45641;
 }
@@ -5425,7 +5465,6 @@ body {
   margin-top: -10px;
 }
 .condensed .table {
-  border-top: none;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5474,7 +5513,6 @@ body {
   font-size: 20px;
   line-height: 32px;
   height: 34px;
-  color: #404040;
   font-family: Lato, sans-serif;
   margin-bottom: 30px;
   white-space: nowrap;
@@ -5560,6 +5598,7 @@ body {
 .home-feature > a {
   float: left;
 }
+
 .home-feature h1 {
   font-size: 24px;
   line-height: 36px;
@@ -5568,9 +5607,7 @@ body {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.home-feature h1 a {
-  color: #404040;
-}
+
 .home-feature h1 a:hover {
   color: #c45641;
 }
@@ -5597,6 +5634,7 @@ body {
   font-family: Lato, sans-serif;
   padding: 25px 0;
 }
+
 #home-learn a {
   text-decoration: none;
 }
