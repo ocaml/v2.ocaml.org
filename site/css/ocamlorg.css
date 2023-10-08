@@ -249,6 +249,47 @@ h4.news img.rss {
   border-bottom: 1px #ACACAC solid;
 }
 
+/*Learn section styling*/
+.learn-section{
+  padding: 3em 0;
+}
+
+@media (min-width: 1200px){
+  .learn-section{
+    width: 370px;
+    margin-left: 30px;
+    float: left;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+  #success-story p:nth-child(3), #success-story p:nth-child(4){
+    margin-top: 70px;
+  }
+  .learn-section{
+    width: 300px;
+    margin-left: 20px;
+    float: left;
+  }
+}
+
+@media (max-width: 991px){
+  .learn-section{
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+  #success-story p:nth-child(3), #success-story p:nth-child(4){
+    margin-top: 40px;
+  }
+  .learn-section{
+    margin-left: 10px;
+    float: left;
+  }
+}
+
+
 /* Edit buttom, right of the navbar. */
 a.edit-this-page {
   margin-top: 22.5px;
