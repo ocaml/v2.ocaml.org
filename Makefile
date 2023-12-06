@@ -8,11 +8,13 @@ local: script/relative_urls
 production: pre-build
 	$(MAKE) gen_md gen_html
 	$(MAKE) syncotherfiles
-	$(RM) ocaml.org/robots.txt
+	mv ocaml.org/robots-production.txt ocaml.org/robots.txt
 
 staging: pre-build
 	$(MAKE) gen_md gen_html SET_STAGING='-set staging'
 	$(MAKE) syncotherfiles
+	mv ocaml.org/robots-staging.txt ocaml.org/robots.txt
+	
 
 # Pattern for directories containing the reference manuals
 # and other release material
