@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -50,17 +50,18 @@ argument:
 The arguments following <span class="font-it">program</span> are optional, and are passed as
 command-line arguments to the program being debugged. (See also the
 <span class="machine"><span class="font-tt">set arguments</span></span> command.)</p><p>The following command-line options are recognized:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-c </span></span> <span class="font-it">count</span></span></dt><dd class="dd-description">
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-c </span></span> <span class="font-it">count</span></span></dt><dd class="dd-description">
 Set the maximum number of simultaneously live checkpoints to <span class="font-it">count</span>.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-cd </span></span> <span class="font-it">dir</span></span></dt><dd class="dd-description">
 Run the debugger program from the working directory <span class="font-it">dir</span>,
 instead of the current directory. (See also the <span class="machine"><span class="font-tt">cd</span></span> command.)</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-emacs</span></span></span></dt><dd class="dd-description">
 Tell the debugger it is executed under Emacs. (See
-section&nbsp;<a href="#s%3Ainf-debugger">20.10</a> for information on how to run the
+section ‍<a href="#s%3Ainf-debugger">20.10</a> for information on how to run the
 debugger under Emacs.)</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-I </span></span><span class="font-it">directory</span></span></dt><dd class="dd-description">
 Add <span class="font-it">directory</span> to the list of directories searched for source
 files and compiled files. (See also the <span class="machine"><span class="font-tt">directory</span></span> command.)</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-s </span></span><span class="font-it">socket</span></span></dt><dd class="dd-description">
 Use <span class="font-it">socket</span> for communicating with the debugged program. See the
-description of the command <span class="machine"><span class="font-tt">set socket</span></span> (section&nbsp;<a href="#ss%3Adebugger-communication">20.8.8</a>)
+description of the command <span class="machine"><span class="font-tt">set socket</span></span> (section ‍<a href="#ss%3Adebugger-communication">20.8.8</a>)
 for the format of <span class="font-it">socket</span>.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-version</span></span></span></dt><dd class="dd-description">
 Print version string and exit.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-vnum</span></span></span></dt><dd class="dd-description">
 Print short version number and exit.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-help</span></span> or <span class="machine"><span class="font-tt">--help</span></span></span></dt><dd class="dd-description">
@@ -92,7 +93,8 @@ stands for <span class="machine"><span class="font-tt">run</span></span> even th
 <span class="machine"><span class="font-tt">RET</span></span>) will repeat it.</p>
 <h3 class="subsection" id="ss:debugger-help"><a class="section-anchor" href="#ss:debugger-help" aria-hidden="true">﻿</a><span class="number">3.1</span> Getting help</h3>
 <p>The OCaml debugger has a simple on-line help system, which gives
-a brief description of each command and variable.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">help</span></span></span></dt><dd class="dd-description">
+a brief description of each command and variable.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">help</span></span></span></dt><dd class="dd-description">
 Print the list of commands.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">help </span></span><span class="font-it">command</span></span></dt><dd class="dd-description">
 Give help about the command <span class="font-it">command</span>.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">help set </span></span><span class="font-it">variable</span>, <span class="machine"><span class="font-tt">help show </span></span><span class="font-it">variable</span></span></dt><dd class="dd-description">
 Give help about the variable <span class="font-it">variable</span>. The list of all debugger
@@ -100,7 +102,8 @@ variables can be obtained with <span class="machine"><span class="font-tt">help 
 Give help about <span class="font-it">topic</span>. Use <span class="machine"><span class="font-tt">help info</span></span> to get a list of known topics.
 </dd></dl>
 <h3 class="subsection" id="ss:debugger-state"><a class="section-anchor" href="#ss:debugger-state" aria-hidden="true">﻿</a><span class="number">3.2</span> Accessing the debugger state</h3>
-<dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set </span></span><span class="font-it">variable</span> <span class="font-it">value</span></span></dt><dd class="dd-description">
+<dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set </span></span><span class="font-it">variable</span> <span class="font-it">value</span></span></dt><dd class="dd-description">
 Set the debugger variable <span class="font-it">variable</span> to the value <span class="font-it">value</span>.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">show </span></span><span class="font-it">variable</span></span></dt><dd class="dd-description">
 Print the value of the debugger variable <span class="font-it">variable</span>.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">info </span></span><span class="font-it">subject</span></span></dt><dd class="dd-description">
 Give information about the given subject.
@@ -118,7 +121,8 @@ encountered. The value of this counter is referred as the <em>current
 time</em>. Thanks to reverse execution, it is possible to jump back and
 forth to any time of the execution.</p><p>Here is where the debugger events (written ⋈) are located in
 the source code:
-</p><ul class="itemize"><li class="li-itemize">Following a function application:
+</p><ul class="itemize"><li class="li-itemize">
+Following a function application:
 <pre>(f arg)⋈
 </pre>
 </li><li class="li-itemize">On entrance to a function:
@@ -149,13 +153,14 @@ event is put after the function application.
 <p>The debugger starts executing the debugged program only when needed.
 This allows setting breakpoints or assigning debugger variables before
 execution starts. There are several ways to start execution:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">run</span></span></span></dt><dd class="dd-description"> Run the program until a breakpoint is hit, or the program
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">run</span></span></span></dt><dd class="dd-description"> Run the program until a breakpoint is hit, or the program
 terminates.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">goto 0</span></span></span></dt><dd class="dd-description"> Load the program and stop on the first event.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">goto </span></span><span class="font-it">time</span></span></dt><dd class="dd-description"> Load the program and execute it until the
 given time. Useful when you already know approximately at what time
 the problem appears. Also useful to set breakpoints on function values
-that have not been computed at time 0 (see section&nbsp;<a href="#s%3Abreakpoints">20.5</a>).
+that have not been computed at time 0 (see section ‍<a href="#s%3Abreakpoints">20.5</a>).
 </dd></dl><p>The execution of a program is affected by certain information it
 receives when the debugger starts it, such as the command-line
 arguments to the program and its working directory. The debugger
@@ -166,7 +171,8 @@ program, the debugger will kill the program (after asking for confirmation).</p>
 <h3 class="subsection" id="ss:debugger-running"><a class="section-anchor" href="#ss:debugger-running" aria-hidden="true">﻿</a><span class="number">4.3</span> Running the program</h3>
 <p>The following commands execute the program forward or backward,
 starting at the current time. The execution will stop either when
-specified by the command or when a breakpoint is encountered.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">run</span></span></span></dt><dd class="dd-description"> Execute the program forward from current time. Stops at
+specified by the command or when a breakpoint is encountered.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">run</span></span></span></dt><dd class="dd-description"> Execute the program forward from current time. Stops at
 next breakpoint or when the program terminates.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">reverse</span></span></span></dt><dd class="dd-description"> Execute the program backward from current time.
 Mostly useful to go to the last breakpoint encountered before the
@@ -192,7 +198,8 @@ breakpoints, using the <span class="machine"><span class="font-tt">goto</span></
 the successive times you stop at. The <span class="machine"><span class="font-tt">last</span></span> command can be used to
 revisit these times: each <span class="machine"><span class="font-tt">last</span></span> command moves one step back through
 the history. That is useful mainly to undo commands such as <span class="machine"><span class="font-tt">step</span></span>
-and <span class="machine"><span class="font-tt">next</span></span>.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">goto </span></span><span class="font-it">time</span></span></dt><dd class="dd-description">
+and <span class="machine"><span class="font-tt">next</span></span>.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">goto </span></span><span class="font-it">time</span></span></dt><dd class="dd-description">
 Jump to the given time.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">last </span></span>[<span class="font-it">count</span>]</span></dt><dd class="dd-description">
 Go back to the latest time recorded in the execution history. With an
@@ -201,7 +208,8 @@ argument, do it <span class="font-it">count</span> times.
 Set the size of the execution history.
 </dd></dl>
 <h3 class="subsection" id="ss:debugger-kill"><a class="section-anchor" href="#ss:debugger-kill" aria-hidden="true">﻿</a><span class="number">4.5</span> Killing the program</h3>
-<dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">kill</span></span></span></dt><dd class="dd-description"> Kill the program being executed. This command is mainly
+<dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">kill</span></span></span></dt><dd class="dd-description"> Kill the program being executed. This command is mainly
 useful if you wish to recompile the program without leaving the debugger.
 </dd></dl>
 <h2 class="section" id="s:breakpoints"><a class="section-anchor" href="#s:breakpoints" aria-hidden="true">﻿</a><span class="number">5</span> Breakpoints</h2>
@@ -209,7 +217,8 @@ useful if you wish to recompile the program without leaving the debugger.
 the program is reached. It can be set in several ways using the
 <span class="machine"><span class="font-tt">break</span></span> command. Breakpoints are assigned numbers when set, for
 further reference. The most comfortable way to set breakpoints is
-through the Emacs interface (see section&nbsp;<a href="#s%3Ainf-debugger">20.10</a>).</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">break</span></span></span></dt><dd class="dd-description">
+through the Emacs interface (see section ‍<a href="#s%3Ainf-debugger">20.10</a>).</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">break</span></span></span></dt><dd class="dd-description">
 Set a breakpoint at the current position in the program execution. The
 current position must be on an event (i.e., neither at the beginning,
 nor at the end of the program).</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">break </span></span><span class="font-it">function</span></span></dt><dd class="dd-description">
@@ -247,7 +256,8 @@ whenever you ask the debugger for the value of a local variable, the
 value is found in the selected frame. The commands <span class="machine"><span class="font-tt">frame</span></span>, <span class="machine"><span class="font-tt">up</span></span> and <span class="machine"><span class="font-tt">down</span></span>
 select whichever frame you are interested in.</p><p>When the program stops, the debugger automatically selects the
 currently executing frame and describes it briefly as the <span class="machine"><span class="font-tt">frame</span></span>
-command does.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">frame</span></span></span></dt><dd class="dd-description">
+command does.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">frame</span></span></span></dt><dd class="dd-description">
 Describe the currently selected stack frame.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">frame</span></span> <span class="font-it">frame-number</span></span></dt><dd class="dd-description">
 Select a stack frame by number and describe it. The frame currently
 executing when the program stopped has number 0; its caller has number
@@ -297,7 +307,8 @@ function application), and is valid only if the selected event is an
 <span class="syntax-token">$</span> <span class="nonterminal">integer</span> refer to a previously printed value. The remaining four
 forms select part of an expression: respectively, a record field, an
 array element, a string element, and the current contents of a
-reference.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">print </span></span><span class="font-it">variables</span></span></dt><dd class="dd-description">
+reference.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">print </span></span><span class="font-it">variables</span></span></dt><dd class="dd-description">
 Print the values of the given variables. <span class="machine"><span class="font-tt">print</span></span> can be abbreviated as
 <span class="machine"><span class="font-tt">p</span></span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">display </span></span><span class="font-it">variables</span></span></dt><dd class="dd-description">
@@ -310,14 +321,16 @@ to parts of the value that cannot be printed because the maximal
 printing depth is exceeded. Named values can be printed later on
 with the commands <span class="machine"><span class="font-tt">p $</span></span><span class="font-it">integer</span> or <span class="machine"><span class="font-tt">d $</span></span><span class="font-it">integer</span>.
 Named values are valid only as long as the program is stopped. They
-are forgotten as soon as the program resumes execution.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set print_depth</span></span> <span class="font-it">d</span></span></dt><dd class="dd-description">
+are forgotten as soon as the program resumes execution.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set print_depth</span></span> <span class="font-it">d</span></span></dt><dd class="dd-description">
 Limit the printing of values to a maximal depth of <span class="font-it">d</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set print_length</span></span> <span class="font-it">l</span></span></dt><dd class="dd-description">
 Limit the printing of values to at most <span class="font-it">l</span> nodes printed.
 </dd></dl>
 <h2 class="section" id="s:debugger-control"><a class="section-anchor" href="#s:debugger-control" aria-hidden="true">﻿</a><span class="number">8</span> Controlling the debugger</h2>
 <h3 class="subsection" id="ss:debugger-name-and-arguments"><a class="section-anchor" href="#ss:debugger-name-and-arguments" aria-hidden="true">﻿</a><span class="number">8.1</span> Setting the program name and arguments</h3>
-<dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set program</span></span> <span class="font-it">file</span></span></dt><dd class="dd-description">
+<dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set program</span></span> <span class="font-it">file</span></span></dt><dd class="dd-description">
 Set the program name to <span class="font-it">file</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set arguments</span></span> <span class="font-it">arguments</span></span></dt><dd class="dd-description">
 Give <span class="font-it">arguments</span> as command-line arguments for the program.
@@ -329,7 +342,8 @@ recommended to redirect their input from a file (using
 input to the debugger are not properly separated, and inputs are not
 properly replayed when running the program backwards.</p>
 <h3 class="subsection" id="ss:debugger-loading"><a class="section-anchor" href="#ss:debugger-loading" aria-hidden="true">﻿</a><span class="number">8.2</span> How programs are loaded</h3>
-<p>The <span class="machine"><span class="font-tt">loadingmode</span></span> variable controls how the program is executed.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set loadingmode direct</span></span></span></dt><dd class="dd-description">
+<p>The <span class="machine"><span class="font-tt">loadingmode</span></span> variable controls how the program is executed.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set loadingmode direct</span></span></span></dt><dd class="dd-description">
 The program is run directly by the debugger. This is the default mode.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set loadingmode runtime</span></span></span></dt><dd class="dd-description">
 The debugger execute the OCaml runtime <span class="machine"><span class="font-tt">ocamlrun</span></span> on the program.
@@ -337,14 +351,15 @@ Rarely useful; moreover it prevents the debugging of programs compiled
 in “custom runtime” mode.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set loadingmode manual</span></span></span></dt><dd class="dd-description">
 The user starts manually the program, when asked by the debugger.
-Allows remote debugging (see section&nbsp;<a href="#ss%3Adebugger-communication">20.8.8</a>).
+Allows remote debugging (see section ‍<a href="#ss%3Adebugger-communication">20.8.8</a>).
 </dd></dl>
 <h3 class="subsection" id="ss:debugger-search-path"><a class="section-anchor" href="#ss:debugger-search-path" aria-hidden="true">﻿</a><span class="number">8.3</span> Search path for files</h3>
 <p>The debugger searches for source files and compiled interface files in
 a list of directories, the search path. The search path initially
 contains the current directory <span class="machine"><span class="font-tt">.</span></span> and the standard library directory.
 The <span class="machine"><span class="font-tt">directory</span></span> command adds directories to the path.</p><p>Whenever the search path is modified, the debugger will clear any
-information it may have cached about the files.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">directory</span></span> <span class="font-it">directorynames</span></span></dt><dd class="dd-description">
+information it may have cached about the files.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">directory</span></span> <span class="font-it">directorynames</span></span></dt><dd class="dd-description">
 Add the given directories to the search path. These directories are
 added at the front, and will therefore be searched first.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">directory</span></span> <span class="font-it">directorynames</span> <span class="machine"><span class="font-tt">for</span></span> <span class="font-it">modulename</span></span></dt><dd class="dd-description">
 Same as <span class="machine"><span class="font-tt">directory</span></span> <span class="font-it">directorynames</span>, but the given directories will be
@@ -358,7 +373,8 @@ directory from the current working directory of the debugger. This
 working directory is initially whatever it inherited from its parent
 process (typically the shell), but you can specify a new working
 directory in the debugger with the <span class="machine"><span class="font-tt">cd</span></span> command or the <span class="machine"><span class="font-tt">-cd</span></span>
-command-line option.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">cd</span></span> <span class="font-it">directory</span></span></dt><dd class="dd-description">
+command-line option.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">cd</span></span> <span class="font-it">directory</span></span></dt><dd class="dd-description">
 Set the working directory for <span class="machine"><span class="font-tt">ocamldebug</span></span> to <span class="font-it">directory</span>.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">pwd</span></span></span></dt><dd class="dd-description">
 Print the working directory for <span class="machine"><span class="font-tt">ocamldebug</span></span>.
 </dd></dl>
@@ -369,14 +385,16 @@ programs.</p><p>Normally, the debugger takes checkpoints of the program state fr
 time to time. That is, it makes a copy of the current state of the
 program (using the Unix system call <span class="machine"><span class="font-tt">fork</span></span>). If the variable
 <span class="font-it">checkpoints</span> is set to <span class="machine"><span class="font-tt">off</span></span>, the debugger will not take any
-checkpoints.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set checkpoints</span></span> <span class="font-it">on/off</span></span></dt><dd class="dd-description">
+checkpoints.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set checkpoints</span></span> <span class="font-it">on/off</span></span></dt><dd class="dd-description">
 Select whether the debugger makes checkpoints or not.
 </dd></dl>
 <h3 class="subsection" id="ss:debugger-fork"><a class="section-anchor" href="#ss:debugger-fork" aria-hidden="true">﻿</a><span class="number">8.6</span> Behavior of the debugger with respect to <span class="machine"><span class="font-tt">fork</span></span></h3>
 <p>When the program issues a call to <span class="machine"><span class="font-tt">fork</span></span>, the debugger can either
 follow the child or the parent. By default, the debugger follows the
 parent process. The variable <span class="font-it">follow_fork_mode</span> controls this
-behavior:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set follow_fork_mode</span></span> <span class="font-it">child/parent</span></span></dt><dd class="dd-description">
+behavior:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set follow_fork_mode</span></span> <span class="font-it">child/parent</span></span></dt><dd class="dd-description">
 Select whether to follow the child or the parent in case of a call to
 <span class="machine"><span class="font-tt">fork</span></span>.
 </dd></dl>
@@ -386,13 +404,15 @@ external module is not yet loaded, it is impossible to set a
 breakpoint in its code. In order to facilitate setting breakpoints in
 dynamically loaded code, the debugger stops the program each time new
 modules are loaded. This behavior can be disabled using the
-<span class="font-it">break_on_load</span> variable:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set break_on_load</span></span> <span class="font-it">on/off</span></span></dt><dd class="dd-description">
+<span class="font-it">break_on_load</span> variable:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set break_on_load</span></span> <span class="font-it">on/off</span></span></dt><dd class="dd-description">
 Select whether to stop after loading new code.
 </dd></dl>
 <h3 class="subsection" id="ss:debugger-communication"><a class="section-anchor" href="#ss:debugger-communication" aria-hidden="true">﻿</a><span class="number">8.8</span> Communication between the debugger and the program</h3>
 <p>The debugger communicate with the program being debugged through a
 Unix socket. You may need to change the socket name, for example if
-you need to run the debugger on a machine and your program on another.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set socket</span></span> <span class="font-it">socket</span></span></dt><dd class="dd-description">
+you need to run the debugger on a machine and your program on another.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set socket</span></span> <span class="font-it">socket</span></span></dt><dd class="dd-description">
 Use <span class="font-it">socket</span> for communication with the program. <span class="font-it">socket</span> can be
 either a file name, or an Internet port specification
 <span class="font-it">host</span>:<span class="font-it">port</span>, where <span class="font-it">host</span> is a host name or an Internet
@@ -401,7 +421,8 @@ address in dot notation, and <span class="font-it">port</span> is a port number 
 <span class="machine"><span class="font-tt">CAML_DEBUG_SOCKET</span></span> environment variable.</p>
 <h3 class="subsection" id="ss:debugger-fine-tuning"><a class="section-anchor" href="#ss:debugger-fine-tuning" aria-hidden="true">﻿</a><span class="number">8.9</span> Fine-tuning the debugger</h3>
 <p>Several variables enables to fine-tune the debugger. Reasonable
-defaults are provided, and you should normally not have to change them.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set processcount</span></span> <span class="font-it">count</span></span></dt><dd class="dd-description">
+defaults are provided, and you should normally not have to change them.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set processcount</span></span> <span class="font-it">count</span></span></dt><dd class="dd-description">
 Set the maximum number of checkpoints to <span class="font-it">count</span>. More checkpoints
 facilitate going far back in time, but use more memory and create more
 Unix processes.
@@ -413,22 +434,25 @@ current time. To fine-tune the checkpointing strategy, the debugger
 does not take checkpoints at the same frequency for long displacements
 (e.g. <span class="machine"><span class="font-tt">run</span></span>) and small ones (e.g. <span class="machine"><span class="font-tt">step</span></span>). The two variables <span class="machine"><span class="font-tt">bigstep</span></span>
 and <span class="machine"><span class="font-tt">smallstep</span></span> contain the number of events between two checkpoints
-in each case.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set bigstep</span></span> <span class="font-it">count</span></span></dt><dd class="dd-description">
+in each case.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">set bigstep</span></span> <span class="font-it">count</span></span></dt><dd class="dd-description">
 Set the number of events between two checkpoints for long displacements.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">set smallstep</span></span> <span class="font-it">count</span></span></dt><dd class="dd-description">
 Set the number of events between two checkpoints for small
 displacements.
-</dd></dl><p>The following commands display information on checkpoints and events:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">info checkpoints</span></span></span></dt><dd class="dd-description">
+</dd></dl><p>The following commands display information on checkpoints and events:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">info checkpoints</span></span></span></dt><dd class="dd-description">
 Print a list of checkpoints.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">info events</span></span> [<span class="font-it">module</span>]</span></dt><dd class="dd-description">
 Print the list of events in the given module (the current module, by default).
 </dd></dl>
 <h3 class="subsection" id="ss:debugger-printers"><a class="section-anchor" href="#ss:debugger-printers" aria-hidden="true">﻿</a><span class="number">8.10</span> User-defined printers</h3>
-<p>Just as in the toplevel system (section&nbsp;<a href="toplevel.html#s%3Atoplevel-directives">14.2</a>),
+<p>Just as in the toplevel system (section ‍<a href="toplevel.html#s%3Atoplevel-directives">14.2</a>),
 the user can register functions for printing values of certain types.
 For technical reasons, the debugger cannot call printing functions
 that reside in the program being debugged. The code for the printing
-functions must therefore be loaded explicitly in the debugger.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">load_printer "</span></span><span class="font-it">file-name</span><span class="machine"><span class="font-tt">"</span></span></span></dt><dd class="dd-description">
+functions must therefore be loaded explicitly in the debugger.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">load_printer "</span></span><span class="font-it">file-name</span><span class="machine"><span class="font-tt">"</span></span></span></dt><dd class="dd-description">
 Load in the debugger the indicated <span class="machine"><span class="font-tt">.cmo</span></span> or <span class="machine"><span class="font-tt">.cma</span></span> object file. The
 file is loaded in an environment consisting only of the OCaml
 standard library plus the definitions provided by object files
@@ -448,7 +472,8 @@ reference the functions of the program being debugged.</p></dd><dt class="dt-des
 Remove the named function from the table of value printers.
 </dd></dl>
 <h2 class="section" id="s:debugger-misc-cmds"><a class="section-anchor" href="#s:debugger-misc-cmds" aria-hidden="true">﻿</a><span class="number">9</span> Miscellaneous commands</h2>
-<dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">list</span></span> [<span class="font-it">module</span>] [<span class="font-it">beginning</span>] [<span class="font-it">end</span>]</span></dt><dd class="dd-description">
+<dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">list</span></span> [<span class="font-it">module</span>] [<span class="font-it">beginning</span>] [<span class="font-it">end</span>]</span></dt><dd class="dd-description">
 List the source of module <span class="font-it">module</span>, from line number
 <span class="font-it">beginning</span> to line number <span class="font-it">end</span>. By default, 20 lines of the
 current module are displayed, starting 10 lines before the current
@@ -467,7 +492,8 @@ with the debugger.</p><p>In addition, Emacs displays the source files containing
 event (the current position in the program execution) and highlights
 the location of the event. This display is updated synchronously with
 the debugger action.</p><p>The following bindings for the most common debugger commands are
-available in the <span class="machine"><span class="font-tt">*camldebug-</span></span><span class="font-it">progname</span><span class="machine"><span class="font-tt">*</span></span> buffer:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">C-c C-s</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">step</span></span>): execute the program one step forward.
+available in the <span class="machine"><span class="font-tt">*camldebug-</span></span><span class="font-it">progname</span><span class="machine"><span class="font-tt">*</span></span> buffer:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">C-c C-s</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">step</span></span>): execute the program one step forward.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">C-c C-k</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">backstep</span></span>): execute the program one step backward.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">C-c C-n</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">next</span></span>): execute the program one step
 forward, skipping over function calls.
@@ -489,7 +515,8 @@ current frame.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">C-c &gt;</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">down</span></span>): select the stack frame above the
 current frame.
 </dd></dl><p>In all buffers in OCaml editing mode, the following debugger commands
-are also available:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">C-x C-a C-b</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">break</span></span>): set a breakpoint at event closest
+are also available:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">C-x C-a C-b</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">break</span></span>): set a breakpoint at event closest
 to point
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">C-x C-a C-p</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">print</span></span>): print value of identifier at point
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">C-x C-a C-d</span></span></span></dt><dd class="dd-description"> (command <span class="machine"><span class="font-tt">display</span></span>): display value of identifier at point

@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -206,7 +206,8 @@ that are created using the <a href="../api/Atomic.html"><span class="font-tt">At
 executes one action at a time, arbitrarily picking one of the available domains
 at each step. We classify actions into two: <em>inter-domain</em> and
 <em>intra-domain</em>. An inter-domain action is one which can be observed and be
-influenced by actions on other domains. There are several inter-domain actions:</p><ul class="itemize"><li class="li-itemize">Reads and writes of atomic and non-atomic locations.
+influenced by actions on other domains. There are several inter-domain actions:</p><ul class="itemize"><li class="li-itemize">
+Reads and writes of atomic and non-atomic locations.
 </li><li class="li-itemize">Spawn and join of domains.
 </li><li class="li-itemize">Operations on mutexes.
 </li></ul><p>On the other hand, intra-domain actions can neither be observed nor influence
@@ -218,7 +219,8 @@ inter-domain actions.</p><p>A totally ordered list of actions executed by the ab
 given program due to non-determinism.</p><p>For a given execution trace, we define an irreflexive, transitive
 <em>happens-before relation</em> that captures the causality between actions in
 the OCaml program. The happens-before relation is defined as the smallest
-transitive relation satisfying the following properties:</p><ul class="itemize"><li class="li-itemize">We define the order in which a domain executes its actions as the
+transitive relation satisfying the following properties:</p><ul class="itemize"><li class="li-itemize">
+We define the order in which a domain executes its actions as the
 <em>program order</em>. If an action <span class="machine"><span class="font-tt">x</span></span> precedes another action <span class="machine"><span class="font-tt">y</span></span> in
 program order, then <span class="machine"><span class="font-tt">x</span></span> precedes <span class="machine"><span class="font-tt">y</span></span> in happens-before order.
 </li><li class="li-itemize">If <span class="machine"><span class="font-tt">x</span></span> is a write to an atomic location and <span class="machine"><span class="font-tt">y</span></span> is a subsequent read or
@@ -247,7 +249,7 @@ sequentially consistent behaviours.</p><p>DRF-SC is a strong guarantee for the p
 <em>sequential reasoning</em> i.e., reasoning by executing one inter-domain
 action after the other, to identify whether their program has a data race. In
 particular, they do not need to reason about reorderings described in
-section&nbsp;<a href="#s%3Awhy_relaxed_memory">10.1</a> in order to determine whether their program
+section ‍<a href="#s%3Awhy_relaxed_memory">10.1</a> in order to determine whether their program
 has a data race. Once the determination that a particular program is data race
 free is made, they do not need to worry about reorderings in their code.</p>
 <h2 class="section" id="s:drf_reasoning"><a class="section-anchor" href="#s:drf_reasoning" aria-hidden="true">﻿</a><span class="number">3</span> Reasoning with DRF-SC</h2>
@@ -275,7 +277,7 @@ Here is a simple example with a data race:</p><div class="caml-example verbatim"
 
 </div><p><span class="machine"><span class="font-tt">r</span></span> is a non-atomic reference. The two domains race to access the reference,
 and <span class="machine"><span class="font-tt">d1</span></span> is a write. Since there is no happens-before relationship between the
-conflicting accesses, there is a data race.</p><p>Both of the programs that we had seen in the section&nbsp;<a href="#s%3Awhy_relaxed_memory">10.1</a>
+conflicting accesses, there is a data race.</p><p>Both of the programs that we had seen in the section ‍<a href="#s%3Awhy_relaxed_memory">10.1</a>
 have data races. It is no surprise that they exhibit non sequentially
 consistent behaviours.</p><p>Accessing disjoint array indices and fields of a record in parallel is not a
 data race. For example,</p><div class="caml-example verbatim">
@@ -464,7 +466,7 @@ small-step operational manner. That is, the semantics is described by an
 abstract machine that executes one action at a time, arbitrarily picking one of
 the available domains at each step. This is similar to the abstract machine
 that we had used to describe the happens-before relationship in
-section&nbsp;<a href="#s%3Ahappens_before">10.2.2</a>.</p>
+section ‍<a href="#s%3Ahappens_before">10.2.2</a>.</p>
 <h3 class="subsection" id="ss:mm_non_atomic"><a class="section-anchor" href="#ss:mm_non_atomic" aria-hidden="true">﻿</a><span class="number">5.1</span> Non-atomic locations</h3>
 <p>In the semantics, we model non-atomic locations as finite maps from timestamps
 <span class="machine"><span class="font-tt">t</span></span> to values <span class="machine"><span class="font-tt">v</span></span>. We take timestamps to be rational numbers. The timestamps
@@ -628,14 +630,15 @@ returns <span class="machine"><span class="font-tt">0</span></span>. The machine
 <span class="machine"><span class="font-tt">t0</span></span>. Hence, this read may also return either <span class="machine"><span class="font-tt">0</span></span> or <span class="machine"><span class="font-tt">1</span></span>. Let us assume that it
 returns <span class="machine"><span class="font-tt">0</span></span>. Hence, the assertion in the original program, <span class="machine"><span class="font-tt">assert (not (r1 = 0 &amp;&amp; r2 = 0))</span></span>, will fail for this particular execution.</p>
 <h2 class="section" id="s:mm_tearing"><a class="section-anchor" href="#s:mm_tearing" aria-hidden="true">﻿</a><span class="number">6</span> Non-compliant operations</h2>
-<p>There are certain operations which are not memory model compliant.</p><ul class="itemize"><li class="li-itemize"><span class="machine"><span class="font-tt">Array.blit</span></span> function on float arrays may cause <em>tearing</em>. When an
+<p>There are certain operations which are not memory model compliant.</p><ul class="itemize"><li class="li-itemize">
+<span class="machine"><span class="font-tt">Array.blit</span></span> function on float arrays may cause <em>tearing</em>. When an
 unsynchronized blit operation runs concurrently with some overlapping write
 to the fields of the same float array, the field may end up with bits from
 either of the writes.
 </li><li class="li-itemize">With flat-float arrays or records with only float fields on 32-bit
 architectures, getting or setting a field involves two separate memory
 accesses. In the presence of data races, the user may observe tearing.
-</li><li class="li-itemize">The <span class="machine"><span class="font-tt">Bytes</span></span> module&nbsp;<a href="../api/Bytes.html"><span class="font-tt">Bytes</span></a> permits mixed-mode accesses
+</li><li class="li-itemize">The <span class="machine"><span class="font-tt">Bytes</span></span> module ‍<a href="../api/Bytes.html"><span class="font-tt">Bytes</span></a> permits mixed-mode accesses
 where reads and writes may be of different sizes. Unsynchronized mixed-mode
 accesses lead to tearing.
 </li></ul>

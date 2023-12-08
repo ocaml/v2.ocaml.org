@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -351,7 +351,7 @@ inherited.</p><p>This ability provides class constructors as can be found in oth
 languages. Several constructors can be defined this way to build objects of
 the same class but with different initialization patterns; an
 alternative is to use initializers, as described below in
-section&nbsp;<a href="#s%3Ainitializers">3.4</a>.</p>
+section ‍<a href="#s%3Ainitializers">3.4</a>.</p>
 <h2 class="section" id="s:immediate-objects"><a class="section-anchor" href="#s:immediate-objects" aria-hidden="true">﻿</a><span class="number">2</span> Immediate objects</h2>
 <p>There is another, more direct way to create an object: create it
 without going through a class.</p><p>The syntax is exactly the same as for class expressions, but the
@@ -423,7 +423,7 @@ environment.
 </div><p>Immediate objects have two weaknesses compared to classes: their types
 are not abbreviated, and you cannot inherit from them. But these two
 weaknesses can be advantages in some situations, as we will see
-in sections&nbsp;<a href="#s%3Areference-to-self">3.3</a> and&nbsp;<a href="#s%3Aparameterized-classes">3.10</a>.</p>
+in sections ‍<a href="#s%3Areference-to-self">3.3</a> and ‍<a href="#s%3Aparameterized-classes">3.10</a>.</p>
 <h2 class="section" id="s:reference-to-self"><a class="section-anchor" href="#s:reference-to-self" aria-hidden="true">﻿</a><span class="number">3</span> Reference to self</h2>
 <p>A method or an initializer can invoke methods on self (that is,
 the current object). For that, self must be explicitly bound, here to
@@ -512,7 +512,7 @@ subclasses, you cannot fix it in advance. Here is a simple example.
 You can ignore the first two lines of the error message. What matters
 is the last one: putting self into an external reference would make it
 impossible to extend it through inheritance.
-We will see in section&nbsp;<a href="#s%3Ausing-coercions">3.12</a> a workaround to this
+We will see in section ‍<a href="#s%3Ausing-coercions">3.12</a> a workaround to this
 problem.
 Note however that, since immediate objects are not extensible, the
 problem does not occur with them.
@@ -583,7 +583,7 @@ access self and the instance variables.
 Initializers cannot be overridden. On the contrary, all initializers are
 evaluated sequentially.
 Initializers are particularly useful to enforce invariants.
-Another example can be seen in section&nbsp;<a href="advexamples.html#s%3Aextended-bank-accounts">8.1</a>.</p>
+Another example can be seen in section ‍<a href="advexamples.html#s%3Aextended-bank-accounts">8.1</a>.</p>
 <h2 class="section" id="s:virtual-methods"><a class="section-anchor" href="#s:virtual-methods" aria-hidden="true">﻿</a><span class="number">5</span> Virtual methods</h2>
 <p>It is possible to declare a method without actually defining it, using
 the keyword <span class="machine"><span class="font-tt">virtual</span></span>. This method will be provided later in
@@ -743,7 +743,7 @@ class. This is a direct consequence of the independence between types
 and classes in OCaml: two unrelated classes may produce
 objects of the same type, and there is no way at the type level to
 ensure that an object comes from a specific class. However a possible
-encoding of friend methods is given in section&nbsp;<a href="#s%3Afriends">3.17</a>.</p><p>Private methods are inherited (they are by default visible in subclasses),
+encoding of friend methods is given in section ‍<a href="#s%3Afriends">3.17</a>.</p><p>Private methods are inherited (they are by default visible in subclasses),
 unless they are hidden by signature matching, as described below.</p><p>Private methods can be made public in a subclass.
 
 </p><div class="caml-example toplevel">
@@ -1658,7 +1658,7 @@ Only occurrences of quantified variables are required.
 
 </div><p>Another use of polymorphic methods is to allow some form of implicit
 subtyping in method arguments. We have already seen in
-section&nbsp;<a href="#s%3Ainheritance">3.8</a> how some functions may be polymorphic in the
+section ‍<a href="#s%3Ainheritance">3.8</a> how some functions may be polymorphic in the
 class of their argument. This can be extended to methods.
 
 </p><div class="caml-example toplevel">
@@ -1952,7 +1952,7 @@ unrolled twice to obtain <span class="machine"><span class="font-tt">&lt; m : &l
 You may also note that the type of <span class="machine"><span class="font-tt">to_c2</span></span> is <span class="machine"><span class="font-tt">#c2 -&gt; c2</span></span> while
 the type of <span class="machine"><span class="font-tt">to_c1</span></span> is more general than <span class="machine"><span class="font-tt">#c1 -&gt; c1</span></span>. This is not always true,
 since there are class types for which some instances of <span class="machine"><span class="font-tt">#c</span></span> are not subtypes
-of <span class="machine"><span class="font-tt">c</span></span>, as explained in section&nbsp;<a href="#s%3Abinary-methods">3.16</a>. Yet, for
+of <span class="machine"><span class="font-tt">c</span></span>, as explained in section ‍<a href="#s%3Abinary-methods">3.16</a>. Yet, for
 parameterless classes the coercion <span class="machine"><span class="font-tt">(_ :&gt; c)</span></span> is always more general than
 <span class="machine"><span class="font-tt">(_ : #c :&gt; c)</span></span>.
 </p><p>A common problem may occur when one tries to define a coercion to a
@@ -2291,7 +2291,7 @@ the method <span class="machine"><span class="font-tt">move</span></span> will
 keep returning an object of the parent class. On the contrary, in a
 subclass of <span class="machine"><span class="font-tt">functional_point</span></span>, the method <span class="machine"><span class="font-tt">move</span></span> will return an
 object of the subclass.</p><p>Functional update is often used in conjunction with binary methods
-as illustrated in section&nbsp;<a href="advexamples.html#ss%3Astring-as-class">8.2.1</a>.</p>
+as illustrated in section ‍<a href="advexamples.html#ss%3Astring-as-class">8.2.1</a>.</p>
 <h2 class="section" id="s:cloning-objects"><a class="section-anchor" href="#s:cloning-objects" aria-hidden="true">﻿</a><span class="number">14</span> Cloning objects</h2>
 <p>Objects can also be cloned, whether they are functional or imperative.
 The library function <span class="machine"><span class="font-tt">Oo.copy</span></span> makes a shallow copy of an object. That is,
@@ -2727,7 +2727,7 @@ or <span class="machine"><span class="font-tt">money2</span></span>.
 <div class="pre caml-output ok">- : float = 3.14</div></div>
 
 </div><p>More examples of binary methods can be found in
-sections&nbsp;<a href="advexamples.html#ss%3Astring-as-class">8.2.1</a> and&nbsp;<a href="advexamples.html#ss%3Aset-as-class">8.2.3</a>.</p><p>Note the use of override for method <span class="machine"><span class="font-tt">times</span></span>.
+sections ‍<a href="advexamples.html#ss%3Astring-as-class">8.2.1</a> and ‍<a href="advexamples.html#ss%3Aset-as-class">8.2.3</a>.</p><p>Note the use of override for method <span class="machine"><span class="font-tt">times</span></span>.
 Writing <span class="machine"><span class="font-tt">new money2 (k *. repr)</span></span> instead of <span class="machine"><span class="font-tt">{&lt; repr = k *. repr &gt;}</span></span>
 would not behave well with inheritance: in a subclass <span class="machine"><span class="font-tt">money3</span></span> of <span class="machine"><span class="font-tt">money2</span></span>
 the <span class="machine"><span class="font-tt">times</span></span> method would return an object of class <span class="machine"><span class="font-tt">money2</span></span> but not of class
@@ -2843,14 +2843,15 @@ visibility of the representation using the module system.
 
 </div><p>
 
-Another example of friend functions may be found in section&nbsp;<a href="advexamples.html#ss%3Aset-as-class">8.2.3</a>.
+Another example of friend functions may be found in section ‍<a href="advexamples.html#ss%3Aset-as-class">8.2.3</a>.
 These examples occur when a group of objects (here
 objects of the same class) and functions should see each others internal
 representation, while their representation should be hidden from the
 outside. The solution is always to define all friends in the same module,
 give access to the representation and use a signature constraint to make the
 representation abstract outside the module.</p>
-<hr class="footnoterule"><dl class="thefootnotes"><dt class="dt-thefootnotes"><a id="note1" href="#text1">1</a></dt><dd class="dd-thefootnotes"><div class="footnotetext">floats are an
+<hr class="footnoterule"><dl class="thefootnotes"><dt class="dt-thefootnotes">
+<a id="note1" href="#text1">1</a></dt><dd class="dd-thefootnotes"><div class="footnotetext">floats are an
 approximation of decimal numbers, they are unsuitable for use in most
 monetary calculations as they may introduce errors.</div></dd></dl>
 <hr>

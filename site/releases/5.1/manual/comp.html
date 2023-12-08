@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -29,7 +29,8 @@ These executable files are then run by the bytecode interpreter
 <h2 class="section" id="s:comp-overview"><a class="section-anchor" href="#s:comp-overview" aria-hidden="true"></a><span class="number">1</span> Overview of the compiler</h2>
 <p>The <span class="machine"><span class="font-tt">ocamlc</span></span> command has a command-line interface similar to the one of
 most C compilers. It accepts several types of arguments and processes them
-sequentially, after all options have been processed:</p><ul class="itemize"><li class="li-itemize">Arguments ending in <span class="machine"><span class="font-tt">.mli</span></span> are taken to be source files for
+sequentially, after all options have been processed:</p><ul class="itemize"><li class="li-itemize">
+Arguments ending in <span class="machine"><span class="font-tt">.mli</span></span> are taken to be source files for
 compilation unit interfaces. Interfaces specify the names exported by
 compilation units: they declare value names with their types, define
 public data types, declare abstract data types, and so on. From the
@@ -79,7 +80,7 @@ produced by the linking phase, the command
 </pre><p>
 executes the compiled code contained in <span class="machine"><span class="font-tt">a.out</span></span>, passing it as
 arguments the character strings <span class="font-it">arg</span><sub>1</sub> to <span class="font-it">arg</span><sub><span class="font-it">n</span></sub>.
-(See chapter&nbsp;<a href="runtime.html#c%3Aruntime">15</a> for more details.)</p><p>On most systems, the file produced by the linking
+(See chapter ‍<a href="runtime.html#c%3Aruntime">15</a> for more details.)</p><p>On most systems, the file produced by the linking
 phase can be run directly, as in:
 </p><pre>        ./a.out <span class="font-it">arg</span><sub>1</sub> <span class="font-it">arg</span><sub>2</sub> … <span class="font-it">arg</span><sub><span class="font-it">n</span></sub>
 </pre><p>
@@ -95,7 +96,8 @@ The AST is partial if type checking was unsuccessful.</p><p>These <span class="m
 <h2 class="section" id="s:comp-options"><a class="section-anchor" href="#s:comp-options" aria-hidden="true">﻿</a><span class="number">2</span> Options</h2>
 <p>The following command-line options are recognized by <span class="machine"><span class="font-tt">ocamlc</span></span>.
 The options <span class="machine"><span class="font-tt">-pack</span></span>, <span class="machine"><span class="font-tt">-a</span></span>, <span class="machine"><span class="font-tt">-c</span></span>, <span class="machine"><span class="font-tt">-output-obj</span></span> and <span class="machine"><span class="font-tt">-output-complete-obj</span></span> are mutually exclusive.
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-a</span></span></span></dt><dd class="dd-description">
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-a</span></span></span></dt><dd class="dd-description">
 Build a library(<span class="machine"><span class="font-tt">.cma</span></span> file)
 with the object files ( <span class="machine"><span class="font-tt">.cmo</span></span> files)
 given on the command line, instead of linking them into an executable file.
@@ -151,7 +153,8 @@ error if it fails to find one.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-color</span></span> <span class="font-it">mode</span></span></dt><dd class="dd-description">
 Enable or disable colors in compiler messages (especially warnings and errors).
 The following modes are supported:
-<dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">auto</span></span></span></dt><dd class="dd-description"> use heuristics to enable colors only if the output supports them
+<dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">auto</span></span></span></dt><dd class="dd-description"> use heuristics to enable colors only if the output supports them
 (an ANSI-compatible tty terminal);
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">always</span></span></span></dt><dd class="dd-description"> enable colors unconditionally;
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">never</span></span></span></dt><dd class="dd-description"> disable color output.
@@ -164,7 +167,8 @@ not empty or <span class="machine"><span class="font-tt">dumb</span></span>, and
 </p></dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-error-style</span></span> <span class="font-it">mode</span></span></dt><dd class="dd-description">
 Control the way error messages and warnings are printed.
 The following modes are supported:
-<dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">short</span></span></span></dt><dd class="dd-description"> only print the error and its location;
+<dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">short</span></span></span></dt><dd class="dd-description"> only print the error and its location;
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">contextual</span></span></span></dt><dd class="dd-description"> like <span class="machine"><span class="font-tt">short</span></span>, but also display the source code snippet
 corresponding to the location of the error.
 </dd></dl>
@@ -191,7 +195,7 @@ and the bytecode for the program. The resulting file is larger, but it
 can be executed directly, even if the <span class="machine"><span class="font-tt">ocamlrun</span></span> command is not
 installed. Moreover, the “custom runtime” mode enables static
 linking of OCaml code with user-defined C functions, as described in
-chapter&nbsp;<a href="intfc.html#c%3Aintf-c">22</a>.
+chapter ‍<a href="intfc.html#c%3Aintf-c">22</a>.
 <blockquote class="quote"><span class="osvariant">Unix:</span> 
 Never use the <span class="machine"><span class="font-tt">strip</span></span> command on executables produced by <span class="machine"><span class="font-tt">ocamlc -custom</span></span>,
 this would remove the bytecode part of the executable.
@@ -213,7 +217,7 @@ C libraries. At link-time, shared libraries are searched in the
 standard search path (the one corresponding to the <span class="machine"><span class="font-tt">-I</span></span> option).
 The <span class="machine"><span class="font-tt">-dllpath</span></span> option simply stores <span class="font-it">dir</span> in the produced
 executable file, where <span class="machine"><span class="font-tt">ocamlrun</span></span> can find it and use it as
-described in section&nbsp;<a href="runtime.html#s%3Aocamlrun-dllpath">15.3</a>.
+described in section ‍<a href="runtime.html#s%3Aocamlrun-dllpath">15.3</a>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-for-pack</span></span> <span class="font-it">module-path</span></span></dt><dd class="dd-description">
 Generate an object file (<span class="machine"><span class="font-tt">.cmo</span></span>)
 that can later be included
@@ -228,9 +232,9 @@ names.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-g</span></span></span></dt><dd class="dd-description">
 Add debugging information while compiling and linking. This option is
 required in order to be able to debug the program with <span class="machine"><span class="font-tt">ocamldebug</span></span>
-(see chapter&nbsp;<a href="debugger.html#c%3Adebugger">20</a>), and to produce stack backtraces when
+(see chapter ‍<a href="debugger.html#c%3Adebugger">20</a>), and to produce stack backtraces when
 the program terminates on an uncaught exception (see
-section&nbsp;<a href="runtime.html#s%3Aocamlrun-options">15.2</a>).
+section ‍<a href="runtime.html#s%3Aocamlrun-options">15.2</a>).
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-no-g</span></span></span></dt><dd class="dd-description">
 Do not record debugging information (default).
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-i</span></span></span></dt><dd class="dd-description">
@@ -278,7 +282,7 @@ incorporating the C object files and libraries given on the command
 line. This custom runtime system can be used later to execute
 bytecode executables produced with the
 <span class="machine"><span class="font-tt">ocamlc -use-runtime</span></span> <span class="font-it">runtime-name</span> option.
-See section&nbsp;<a href="intfc.html#ss%3Acustom-runtime">22.1.6</a> for more information.
+See section ‍<a href="intfc.html#ss%3Acustom-runtime">22.1.6</a> for more information.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-match-context-rows</span></span></span></dt><dd class="dd-description">
 Set the number of rows of context used for optimization during
 pattern matching compilation. The default value is 32. Lower values
@@ -287,7 +291,7 @@ option is meant for use in the event that a pattern-match-heavy
 program leads to significant increases in compilation time.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-no-alias-deps</span></span></span></dt><dd class="dd-description">
 Do not record dependencies for module aliases. See
-section&nbsp;<a href="modulealias.html#s%3Amodule-alias">12.8</a> for more information.
+section ‍<a href="modulealias.html#s%3Amodule-alias">12.8</a> for more information.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-no-app-funct</span></span></span></dt><dd class="dd-description">
 Deactivates the applicative behaviour of functors. With this option,
 each functor application generates new types in its result and
@@ -353,8 +357,8 @@ were added at the top of each file.
 Cause the linker to produce a C object file instead of
 a bytecode executable file.
 This is useful to wrap OCaml code as a C library,
-callable from any C program. See chapter&nbsp;<a href="intfc.html#c%3Aintf-c">22</a>,
-section&nbsp;<a href="intfc.html#ss%3Ac-embedded-code">22.7.5</a>. The name of the output object file
+callable from any C program. See chapter ‍<a href="intfc.html#c%3Aintf-c">22</a>,
+section ‍<a href="intfc.html#ss%3Ac-embedded-code">22.7.5</a>. The name of the output object file
 must be set with the <span class="machine"><span class="font-tt">-o</span></span> option.
 This option can also be used to produce a C source file (<span class="machine"><span class="font-tt">.c</span></span> extension)
 or a compiled shared/dynamic library (<span class="machine"><span class="font-tt">.so</span></span> extension, <span class="machine"><span class="font-tt">.dll</span></span> under Windows).
@@ -387,7 +391,7 @@ errors, the intermediate file is deleted afterwards.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-ppx</span></span> <span class="font-it">command</span></span></dt><dd class="dd-description">
 After parsing, pipe the abstract syntax tree through the preprocessor
 <span class="font-it">command</span>. The module <span class="machine"><span class="font-tt">Ast_mapper</span></span>, described in
-chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">29</a>:
+chapter ‍<a href="parsing.html#c%3Aparsinglib">29</a>:
 <a href="../api/compilerlibref/Ast_mapper.html"> <span class="font-tt">Ast_mapper</span> </a>
 ,
 implements the external interface of a preprocessor.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-principal</span></span></span></dt><dd class="dd-description">
@@ -454,7 +458,7 @@ since OCaml 5.0.</dd><dt class="dt-description"><span class="font-bold"><span cl
 Generate a bytecode executable file that can be executed on the custom
 runtime system <span class="font-it">runtime-name</span>, built earlier with
 <span class="machine"><span class="font-tt">ocamlc -make-runtime</span></span> <span class="font-it">runtime-name</span>.
-See section&nbsp;<a href="intfc.html#ss%3Acustom-runtime">22.1.6</a> for more information.
+See section ‍<a href="intfc.html#ss%3Acustom-runtime">22.1.6</a> for more information.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-v</span></span></span></dt><dd class="dd-description">
 Print the version number of the compiler and the location of the
 standard library directory, then exit.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-verbose</span></span></span></dt><dd class="dd-description">
@@ -475,7 +479,8 @@ enabled, it is displayed normally by the compiler whenever the source
 code triggers it. If it is enabled and fatal, the compiler will also
 stop with an error after displaying it.<p>The <span class="font-it">warning-list</span> argument is a sequence of warning specifiers,
 with no separators between them. A warning specifier is one of the
-following:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">num</span></span></dt><dd class="dd-description"> Enable warning number <span class="font-it">num</span>.
+following:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">num</span></span></dt><dd class="dd-description"> Enable warning number <span class="font-it">num</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-</span></span><span class="font-it">num</span></span></dt><dd class="dd-description"> Disable warning number <span class="font-it">num</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">@</span></span><span class="font-it">num</span></span></dt><dd class="dd-description"> Enable and mark as fatal warning number <span class="font-it">num</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">num1</span>..<span class="font-it">num2</span></span></dt><dd class="dd-description"> Enable warnings in the given range.
@@ -494,13 +499,15 @@ to <span class="font-it">uppercase-letter</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="font-it">lowercase-letter</span></span></dt><dd class="dd-description"> Disable the set of warnings corresponding
 to <span class="font-it">lowercase-letter</span>.
 </dd></dl><p>Alternatively, <span class="font-it">warning-list</span> can specify a single warning using its
-mnemonic name (see below), as follows:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">name</span></span></dt><dd class="dd-description"> Enable warning <span class="font-it">name</span>.
+mnemonic name (see below), as follows:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">name</span></span></dt><dd class="dd-description"> Enable warning <span class="font-it">name</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-</span></span><span class="font-it">name</span></span></dt><dd class="dd-description"> Disable warning <span class="font-it">name</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">@</span></span><span class="font-it">name</span></span></dt><dd class="dd-description"> Enable and mark as fatal warning <span class="font-it">name</span>.
 </dd></dl><p>Warning numbers, letters and names which are not currently defined are
 ignored. The warnings are as follows (the name following each number specifies
 the mnemonic for that warning).
-</p><dl class="description"><dt class="dt-description"><span class="font-bold">1 <span class="machine"><span class="font-tt">comment-start</span></span></span></dt><dd class="dd-description"> Suspicious-looking start-of-comment mark.
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold">1 <span class="machine"><span class="font-tt">comment-start</span></span></span></dt><dd class="dd-description"> Suspicious-looking start-of-comment mark.
 </dd><dt class="dt-description"><span class="font-bold">2 <span class="machine"><span class="font-tt">comment-not-end</span></span></span></dt><dd class="dd-description"> Suspicious-looking end-of-comment mark.
 </dd><dt class="dt-description"><span class="font-bold">3</span></dt><dd class="dd-description"> Deprecated synonym for the ’deprecated’ alert.
 </dd><dt class="dt-description"><span class="font-bold">4 <span class="machine"><span class="font-tt">fragile-match</span></span></span></dt><dd class="dd-description"> Fragile pattern matching: matching that will remain complete even
@@ -632,7 +639,8 @@ Display a short usage summary and exit.</dd></dl>
 <p>Contextual control of command-line options</p><p>The compiler command line can be modified “from the outside”
 with the following mechanisms. These are experimental
 and subject to change. They should be used only for experimental and
-development work, not in released packages.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">OCAMLPARAM</span></span> </span>(environment variable)</dt><dd class="dd-description">
+development work, not in released packages.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">OCAMLPARAM</span></span> </span>(environment variable)</dt><dd class="dd-description">
 A set of arguments that will be inserted before or after the arguments from
 the command line. Arguments are specified in a comma-separated list
 of <span class="machine"><span class="font-tt">name=value</span></span> pairs. A <span class="machine"><span class="font-tt">_</span></span> is used to specify the position of
@@ -746,7 +754,8 @@ could be used inconsistently later. Therefore, the compiler
 flags an error when a structure or compilation unit defines a value
 <span class="font-it">name</span> whose type contains non-generalized type variables. There
 are two ways to fix this error:
-</p><ul class="itemize"><li class="li-itemize">Add a type constraint or a <span class="machine"><span class="font-tt">.mli</span></span> file to give a monomorphic
+</p><ul class="itemize"><li class="li-itemize">
+Add a type constraint or a <span class="machine"><span class="font-tt">.mli</span></span> file to give a monomorphic
 type (without type variables) to <span class="font-it">name</span>. For instance, instead of
 writing
 <pre>    let sort_int_list = List.sort Stdlib.compare
@@ -775,7 +784,8 @@ recursive functions across modules. That is, function <span class="machine"><spa
 function <span class="machine"><span class="font-tt">Mod2.g</span></span>, and function <span class="machine"><span class="font-tt">Mod2.g</span></span> calls function <span class="machine"><span class="font-tt">Mod1.f</span></span>.
 In this case, no matter what permutations you perform on the command
 line, the program will be rejected at link-time. Fixes:
-</p><ul class="itemize"><li class="li-itemize">Put <span class="machine"><span class="font-tt">f</span></span> and <span class="machine"><span class="font-tt">g</span></span> in the same module.
+</p><ul class="itemize"><li class="li-itemize">
+Put <span class="machine"><span class="font-tt">f</span></span> and <span class="machine"><span class="font-tt">g</span></span> in the same module.
 </li><li class="li-itemize">Parameterize one function by the other.
 That is, instead of having
 <pre>mod1.ml:    let f x = ... Mod2.g ...
@@ -793,7 +803,7 @@ mod2.ml:    let g y = ... Mod1.f ...
 </pre></li></ul></dd><dt class="dt-description"><span class="font-bold">The external function <span class="font-it">f</span> is not available</span></dt><dd class="dd-description">
 This error appears when trying to link code that calls external
 functions written in C. As explained in
-chapter&nbsp;<a href="intfc.html#c%3Aintf-c">22</a>, such code must be linked with C libraries that
+chapter ‍<a href="intfc.html#c%3Aintf-c">22</a>, such code must be linked with C libraries that
 implement the required <span class="font-it">f</span> C function. If the C libraries in
 question are not shared libraries (DLLs), the code must be linked in
 “custom runtime” mode. Fix: add the required C libraries to the
@@ -907,7 +917,7 @@ those several cases.</p><p>For example,
   | Failure "int_of_string" -&gt; (0, true)
   | Failure "bool_of_string" -&gt; (-1, false)
 </pre><p> should be rewritten into more atomic tests. For example,
-using the <span class="machine"><span class="font-tt">exception</span></span> patterns documented in Section&nbsp;<a href="patterns.html#sss%3Aexception-match">11.6</a>,
+using the <span class="machine"><span class="font-tt">exception</span></span> patterns documented in Section ‍<a href="patterns.html#sss%3Aexception-match">11.6</a>,
 one can write:
 </p><pre>match int_of_string count_str with
   | exception (Failure _) -&gt; (0, true)
@@ -931,18 +941,18 @@ the environment captured by the match is the environment captured by
 <span class="font-it">p</span>, never the one captured by <span class="font-it">q</span>.</p><p>While this property is generally intuitive, there is at least one specific
 case where a different semantics might be expected.
 Consider a pattern followed by a when-guard:
-<span class="machine"><span class="font-tt">|</span></span>&nbsp;<span class="font-it">p</span>&nbsp;<span class="machine"><span class="font-tt">when</span></span>&nbsp;<span class="font-it">g</span>&nbsp;<span class="machine"><span class="font-tt">-&gt;</span></span>&nbsp;<span class="font-it">e</span>, for example:
+<span class="machine"><span class="font-tt">|</span></span> ‍<span class="font-it">p</span> ‍<span class="machine"><span class="font-tt">when</span></span> ‍<span class="font-it">g</span> ‍<span class="machine"><span class="font-tt">-&gt;</span></span> ‍<span class="font-it">e</span>, for example:
 </p><pre>     | ((Const x, _) | (_, Const x)) when is_neutral x -&gt; branch
 </pre><p> The semantics is clear:
 match the scrutinee against the pattern, if it matches, test the guard,
 and if the guard passes, take the branch.
-In particular, consider the input <span class="machine"><span class="font-tt">(Const</span></span>&nbsp;<span class="font-it">a</span><span class="machine"><span class="font-tt">, Const</span></span>&nbsp;<span class="font-it">b</span><span class="machine"><span class="font-tt">)</span></span>, where
-<span class="font-it">a</span> fails the test <span class="machine"><span class="font-tt">is_neutral</span></span>&nbsp;<span class="font-it">a</span>, while <span class="font-it">b</span> passes the test
-<span class="machine"><span class="font-tt">is_neutral</span></span>&nbsp;<span class="font-it">b</span>. With the left-to-right semantics, the clause above is
-<em>not</em> taken by its input: matching <span class="machine"><span class="font-tt">(Const</span></span>&nbsp;<span class="font-it">a</span><span class="machine"><span class="font-tt">, Const</span></span>&nbsp;<span class="font-it">b</span><span class="machine"><span class="font-tt">)</span></span>
+In particular, consider the input <span class="machine"><span class="font-tt">(Const</span></span> ‍<span class="font-it">a</span><span class="machine"><span class="font-tt">, Const</span></span> ‍<span class="font-it">b</span><span class="machine"><span class="font-tt">)</span></span>, where
+<span class="font-it">a</span> fails the test <span class="machine"><span class="font-tt">is_neutral</span></span> ‍<span class="font-it">a</span>, while <span class="font-it">b</span> passes the test
+<span class="machine"><span class="font-tt">is_neutral</span></span> ‍<span class="font-it">b</span>. With the left-to-right semantics, the clause above is
+<em>not</em> taken by its input: matching <span class="machine"><span class="font-tt">(Const</span></span> ‍<span class="font-it">a</span><span class="machine"><span class="font-tt">, Const</span></span> ‍<span class="font-it">b</span><span class="machine"><span class="font-tt">)</span></span>
 against the or-pattern succeeds in the left branch, it returns the
-environment <span class="font-it">x</span>&nbsp;<span class="machine"><span class="font-tt">-&gt;</span></span>&nbsp;<span class="font-it">a</span>, and then the guard
-<span class="machine"><span class="font-tt">is_neutral</span></span>&nbsp;<span class="font-it">a</span> is tested and fails, the branch is not taken.</p><p>However, another semantics may be considered more natural here:
+environment <span class="font-it">x</span> ‍<span class="machine"><span class="font-tt">-&gt;</span></span> ‍<span class="font-it">a</span>, and then the guard
+<span class="machine"><span class="font-tt">is_neutral</span></span> ‍<span class="font-it">a</span> is tested and fails, the branch is not taken.</p><p>However, another semantics may be considered more natural here:
 any pair that has one side passing the test will take the branch. With this
 semantics the previous code fragment would be equivalent to
 </p><pre>     | (Const x, _) when is_neutral x -&gt; branch

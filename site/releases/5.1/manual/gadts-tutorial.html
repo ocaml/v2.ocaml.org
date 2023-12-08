@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -115,7 +115,7 @@ function, and thus escapes its scope. In the above example, this happens
 in the branch <span class="machine"><span class="font-tt">App(f,x)</span></span> when <span class="machine"><span class="font-tt">eval</span></span> is called with <span class="machine"><span class="font-tt">f</span></span> as an argument.
 In this branch, the type of <span class="machine"><span class="font-tt">f</span></span> is <span class="machine"><span class="font-tt">($App_'b -&gt; a) term</span></span>. The prefix <span class="machine"><span class="font-tt">$</span></span> in
 <span class="machine"><span class="font-tt">$App_'b</span></span> denotes an existential type named by the compiler
-(see&nbsp;<a href="#s%3Aexistential-names">7.5</a>). Since the type of <span class="machine"><span class="font-tt">eval</span></span> is
+(see ‍<a href="#s%3Aexistential-names">7.5</a>). Since the type of <span class="machine"><span class="font-tt">eval</span></span> is
 <span class="machine"><span class="font-tt">'a term -&gt; 'a</span></span>, the call <span class="machine"><span class="font-tt">eval f</span></span> makes the existential type <span class="machine"><span class="font-tt">$App_'b</span></span>
 flow to the type variable <span class="machine"><span class="font-tt">'a</span></span> and escape its scope. This triggers the
 above error.</p>
@@ -304,7 +304,8 @@ to implement dynamic types.
 existential types. When necessary, error messages refer to these
 existential types using compiler-generated names. Currently, the
 compiler generates these names according to the following nomenclature:
-</p><ul class="itemize"><li class="li-itemize">First, types whose name starts with a <span class="machine"><span class="font-tt">$</span></span> are existentials.
+</p><ul class="itemize"><li class="li-itemize">
+First, types whose name starts with a <span class="machine"><span class="font-tt">$</span></span> are existentials.
 </li><li class="li-itemize"><span class="machine"><span class="font-tt">$Constr_'a</span></span> denotes an existential type introduced for the type
 variable <span class="machine"><span class="font-tt">'a</span></span> of the GADT constructor <span class="machine"><span class="font-tt">Constr</span></span>:
 

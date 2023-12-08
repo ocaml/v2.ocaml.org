@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -120,7 +120,7 @@ names. The definitions are evaluated in the order in which they appear
 in the structure. The scopes of the bindings performed by the
 definitions extend to the end of the structure. As a consequence, a
 definition may refer to names bound by earlier definitions in the same
-structure.</p><p>For compatibility with toplevel phrases (chapter&nbsp;<a href="toplevel.html#c%3Acamllight">14</a>),
+structure.</p><p>For compatibility with toplevel phrases (chapter ‍<a href="toplevel.html#c%3Acamllight">14</a>),
 optional <span class="syntax-token">;;</span> are allowed after and before each definition in a structure. These
 <span class="syntax-token">;;</span> have no semantic meanings. Similarly, an <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> preceded by <span class="machine"><span class="font-tt">;;</span></span> is allowed as
 a component of a structure. It is equivalent to <span class="syntax-token">let</span> <span class="syntax-token">_</span> <span class="syntax-token">=</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a>, i.e. <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a> is
@@ -128,11 +128,11 @@ evaluated for its side-effects but is not bound to any identifier. If <a class="
 the first component of a structure, the preceding <span class="machine"><span class="font-tt">;;</span></span> can be omitted.</p><h4 class="subsubsection" id="sss:mexpr-value-defs"><a class="section-anchor" href="#sss:mexpr-value-defs" aria-hidden="true">﻿</a>Value definitions</h4>
 <p><a id="hevea_manual.kwd193"></a></p><p>A value definition <span class="syntax-token">let</span> [<span class="syntax-token">rec</span>] <a class="syntax" href="expr.html#let-binding"><span class="nonterminal">let-binding</span></a> { <span class="syntax-token">and</span> <a class="syntax" href="expr.html#let-binding"><span class="nonterminal">let-binding</span></a> }
 bind value names in the same way as a <span class="syntax-token">let</span> … <span class="syntax-token">in</span> … expression
-(see section&nbsp;<a href="expr.html#sss%3Aexpr-localdef">11.7.2</a>). The value names appearing in the
+(see section ‍<a href="expr.html#sss%3Aexpr-localdef">11.7.2</a>). The value names appearing in the
 left-hand sides of the bindings are bound to the corresponding values
 in the right-hand sides.</p><p><a id="hevea_manual.kwd194"></a></p><p>A value definition <span class="syntax-token">external</span> <a class="syntax" href="names.html#value-name"><span class="nonterminal">value-name</span></a> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a> <span class="syntax-token">=</span> <a class="syntax" href="intfc.html#external-declaration"><span class="nonterminal">external-declaration</span></a>
 implements <a class="syntax" href="names.html#value-name"><span class="nonterminal">value-name</span></a> as the external function specified in
-<a class="syntax" href="intfc.html#external-declaration"><span class="nonterminal">external-declaration</span></a> (see chapter&nbsp;<a href="intfc.html#c%3Aintf-c">22</a>).</p><h4 class="subsubsection" id="sss:mexpr-type-defs"><a class="section-anchor" href="#sss:mexpr-type-defs" aria-hidden="true">﻿</a>Type definitions</h4>
+<a class="syntax" href="intfc.html#external-declaration"><span class="nonterminal">external-declaration</span></a> (see chapter ‍<a href="intfc.html#c%3Aintf-c">22</a>).</p><h4 class="subsubsection" id="sss:mexpr-type-defs"><a class="section-anchor" href="#sss:mexpr-type-defs" aria-hidden="true">﻿</a>Type definitions</h4>
 <p><a id="hevea_manual.kwd195"></a></p><p>A definition of one or several type components is written
 <span class="syntax-token">type</span> <a class="syntax" href="typedecl.html#typedef"><span class="nonterminal">typedef</span></a> { <span class="syntax-token">and</span> <a class="syntax" href="typedecl.html#typedef"><span class="nonterminal">typedef</span></a> } and consists of a sequence
 of mutually recursive definitions of type names.</p><h4 class="subsubsection" id="sss:mexpr-exn-defs"><a class="section-anchor" href="#sss:mexpr-exn-defs" aria-hidden="true">﻿</a>Exception definitions</h4>
@@ -141,13 +141,13 @@ or <span class="syntax-token">exception</span> <a class="syntax" href="names.htm
 <p><a id="hevea_manual.kwd197"></a></p><p>A definition of one or several classes is written <span class="syntax-token">class</span>
 <a class="syntax" href="classes.html#class-binding"><span class="nonterminal">class-binding</span></a> { <span class="syntax-token">and</span> <a class="syntax" href="classes.html#class-binding"><span class="nonterminal">class-binding</span></a> } and consists of a sequence of
 mutually recursive definitions of class names. Class definitions are
-described more precisely in section&nbsp;<a href="classes.html#ss%3Aclass-def">11.9.3</a>.</p><h4 class="subsubsection" id="sss:mexpr-classtype-defs"><a class="section-anchor" href="#sss:mexpr-classtype-defs" aria-hidden="true">﻿</a>Class type definitions</h4>
+described more precisely in section ‍<a href="classes.html#ss%3Aclass-def">11.9.3</a>.</p><h4 class="subsubsection" id="sss:mexpr-classtype-defs"><a class="section-anchor" href="#sss:mexpr-classtype-defs" aria-hidden="true">﻿</a>Class type definitions</h4>
 <p><a id="hevea_manual.kwd198"></a>
 <a id="hevea_manual.kwd199"></a></p><p>A definition of one or several classes is written
 <span class="syntax-token">class</span> <span class="syntax-token">type</span> <a class="syntax" href="classes.html#classtype-def"><span class="nonterminal">classtype-def</span></a> { <span class="syntax-token">and</span> <a class="syntax" href="classes.html#classtype-def"><span class="nonterminal">classtype-def</span></a> } and consists of
 a sequence of mutually recursive definitions of class type names.
 Class type definitions are described more precisely in
-section&nbsp;<a href="classes.html#ss%3Aclasstype">11.9.5</a>.</p><h4 class="subsubsection" id="sss:mexpr-module-defs"><a class="section-anchor" href="#sss:mexpr-module-defs" aria-hidden="true">﻿</a>Module definitions</h4>
+section ‍<a href="classes.html#ss%3Aclasstype">11.9.5</a>.</p><h4 class="subsubsection" id="sss:mexpr-module-defs"><a class="section-anchor" href="#sss:mexpr-module-defs" aria-hidden="true">﻿</a>Module definitions</h4>
 <p><a id="hevea_manual.kwd200"></a></p><p>The basic form for defining a module component is
 <span class="syntax-token">module</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> <span class="syntax-token">=</span> <a class="syntax" href="#module-expr"><span class="nonterminal">module-expr</span></a>, which evaluates <a class="syntax" href="#module-expr"><span class="nonterminal">module-expr</span></a> and binds
 the result to the name <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a>.</p><p>One can write

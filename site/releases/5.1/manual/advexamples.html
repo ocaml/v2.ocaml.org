@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -31,7 +31,7 @@ of window managers.</p>
 <p>In this section, we illustrate most aspects of Object and inheritance
 by refining, debugging, and specializing the following
 initial naive definition of a simple bank account. (We reuse the
-module <span class="machine"><span class="font-tt">Euro</span></span> defined at the end of chapter&nbsp;<a href="objectexamples.html#c%3Aobjectexamples">3</a>.)
+module <span class="machine"><span class="font-tt">Euro</span></span> defined at the end of chapter ‍<a href="objectexamples.html#c%3Aobjectexamples">3</a>.)
 
 </p><div class="caml-example toplevel">
 
@@ -561,7 +561,7 @@ class.
 
 </div><p>
 
-As seen in section&nbsp;<a href="objectexamples.html#s%3Abinary-methods">3.16</a>, the solution is to use
+As seen in section ‍<a href="objectexamples.html#s%3Abinary-methods">3.16</a>, the solution is to use
 functional update instead. We need to create an instance variable
 containing the representation <span class="machine"><span class="font-tt">s</span></span> of the string.
 
@@ -653,7 +653,7 @@ string of a given length:
 
 Here, exposing the representation of strings is probably harmless. We do
 could also hide the representation of strings as we hid the currency in the
-class <span class="machine"><span class="font-tt">money</span></span> of section&nbsp;<a href="objectexamples.html#s%3Afriends">3.17</a>.</p>
+class <span class="machine"><span class="font-tt">money</span></span> of section ‍<a href="objectexamples.html#s%3Afriends">3.17</a>.</p>
 <h4 class="subsubsection" id="sss:stack-as-class"><a class="section-anchor" href="#sss:stack-as-class" aria-hidden="true">﻿</a>Stacks</h4>
 <p>There is sometimes an alternative between using modules or classes for
 parametric data types.
@@ -871,7 +871,7 @@ true hash table… whose elements are small hash tables!
 <p>Implementing sets leads to another difficulty. Indeed, the method
 <span class="machine"><span class="font-tt">union</span></span> needs to be able to access the internal representation of
 another object of the same class.</p><p>This is another instance of friend functions as seen in
-section&nbsp;<a href="objectexamples.html#s%3Afriends">3.17</a>. Indeed, this is the same mechanism used in the module
+section ‍<a href="objectexamples.html#s%3Afriends">3.17</a>. Indeed, this is the same mechanism used in the module
 <span class="machine"><span class="font-tt">Set</span></span> in the absence of objects.</p><p>In the object-oriented version of sets, we only need to add an additional
 method <span class="machine"><span class="font-tt">tag</span></span> to return the representation of a set. Since sets are
 parametric in the type of elements, the method <span class="machine"><span class="font-tt">tag</span></span> has a parametric type

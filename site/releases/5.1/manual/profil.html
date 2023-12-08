@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -26,8 +26,8 @@ called, branches of conditionals are taken, …</p>
 <h2 class="section" id="s:ocamlprof-compiling"><a class="section-anchor" href="#s:ocamlprof-compiling" aria-hidden="true"></a><span class="number">1</span> Compiling for profiling</h2>
 <p>Before profiling an execution, the program must be compiled in
 profiling mode, using the <span class="machine"><span class="font-tt">ocamlcp</span></span> front-end to the <span class="machine"><span class="font-tt">ocamlc</span></span> compiler
-(see chapter&nbsp;<a href="comp.html#c%3Acamlc">13</a>) or the <span class="machine"><span class="font-tt">ocamloptp</span></span> front-end to the
-<span class="machine"><span class="font-tt">ocamlopt</span></span> compiler (see chapter&nbsp;<a href="native.html#c%3Anativecomp">16</a>). When compiling
+(see chapter ‍<a href="comp.html#c%3Acamlc">13</a>) or the <span class="machine"><span class="font-tt">ocamloptp</span></span> front-end to the
+<span class="machine"><span class="font-tt">ocamlopt</span></span> compiler (see chapter ‍<a href="native.html#c%3Anativecomp">16</a>). When compiling
 modules separately, <span class="machine"><span class="font-tt">ocamlcp</span></span> or <span class="machine"><span class="font-tt">ocamloptp</span></span> must be used when
 compiling the modules (production of <span class="machine"><span class="font-tt">.cmo</span></span> or <span class="machine"><span class="font-tt">.cmx</span></span> files), and can
 also be used (though this is not strictly necessary) when linking them
@@ -46,7 +46,8 @@ have a <span class="machine"><span class="font-tt">.mli</span></span> file for e
 profiling mode, avoid using any identifier that begins with
 <span class="machine"><span class="font-tt">__ocaml_prof</span></span>.</p><p>The amount of profiling information can be controlled through the <span class="machine"><span class="font-tt">-P</span></span>
 option to <span class="machine"><span class="font-tt">ocamlcp</span></span> or <span class="machine"><span class="font-tt">ocamloptp</span></span>, followed by one or several letters
-indicating which parts of the program should be profiled:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">a</span></span></span></dt><dd class="dd-description"> all options
+indicating which parts of the program should be profiled:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">a</span></span></span></dt><dd class="dd-description"> all options
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">f</span></span></span></dt><dd class="dd-description"> function calls : a count point is set at the beginning of
 each function body
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">i</span></span></span></dt><dd class="dd-description"> <span class="font-bold">if …then …else …</span> : count points are set in

@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -35,7 +35,7 @@ executable path as well as in the current directory.) The remaining
 arguments are passed to the OCaml program, in the string array
 <span class="machine"><span class="font-tt">Sys.argv</span></span>. Element 0 of this array is the name of the
 bytecode executable file; elements 1 to <span class="font-it">n</span> are the remaining
-arguments <span class="font-it">arg</span><sub>1</sub> to <span class="font-it">arg</span><sub><span class="font-it">n</span></sub>.</p><p>As mentioned in chapter&nbsp;<a href="comp.html#c%3Acamlc">13</a>, the bytecode executable files
+arguments <span class="font-it">arg</span><sub>1</sub> to <span class="font-it">arg</span><sub><span class="font-it">n</span></sub>.</p><p>As mentioned in chapter ‍<a href="comp.html#c%3Acamlc">13</a>, the bytecode executable files
 produced by the <span class="machine"><span class="font-tt">ocamlc</span></span> command are self-executable, and manage to
 launch the <span class="machine"><span class="font-tt">ocamlrun</span></span> command on themselves automatically. That is,
 assuming <span class="machine"><span class="font-tt">a.out</span></span> is a bytecode executable file,
@@ -67,7 +67,7 @@ configuration, then exit.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-I</span></span> <span class="font-it">dir</span></span></dt><dd class="dd-description">
 Search the directory <span class="font-it">dir</span> for dynamically-loaded libraries,
 in addition to the standard search path (see
-section&nbsp;<a href="#s%3Aocamlrun-dllpath">15.3</a>).
+section ‍<a href="#s%3Aocamlrun-dllpath">15.3</a>).
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-m</span></span></span></dt><dd class="dd-description">
 Print the magic number of the bytecode executable given as argument
 and exit.
@@ -86,11 +86,12 @@ standard error. This is equivalent to setting <span class="machine"><span class=
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-version</span></span></span></dt><dd class="dd-description">
 Print version string and exit.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-vnum</span></span></span></dt><dd class="dd-description">
-Print short version number and exit.</dd></dl><p>The following environment variables are also consulted:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">CAML_LD_LIBRARY_PATH</span></span></span></dt><dd class="dd-description"> Additional directories to search for
-dynamically-loaded libraries (see section&nbsp;<a href="#s%3Aocamlrun-dllpath">15.3</a>).</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">OCAMLLIB</span></span></span></dt><dd class="dd-description"> The directory containing the OCaml standard
+Print short version number and exit.</dd></dl><p>The following environment variables are also consulted:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">CAML_LD_LIBRARY_PATH</span></span></span></dt><dd class="dd-description"> Additional directories to search for
+dynamically-loaded libraries (see section ‍<a href="#s%3Aocamlrun-dllpath">15.3</a>).</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">OCAMLLIB</span></span></span></dt><dd class="dd-description"> The directory containing the OCaml standard
 library. (If <span class="machine"><span class="font-tt">OCAMLLIB</span></span> is not set, <span class="machine"><span class="font-tt">CAMLLIB</span></span> will be used instead.)
 Used to locate the <span class="machine"><span class="font-tt">ld.conf</span></span> configuration file for
-dynamic loading (see section&nbsp;<a href="#s%3Aocamlrun-dllpath">15.3</a>). If not set,
+dynamic loading (see section ‍<a href="#s%3Aocamlrun-dllpath">15.3</a>). If not set,
 default to the library directory specified when compiling OCaml.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">OCAMLRUNPARAM</span></span></span></dt><dd class="dd-description"> Set the runtime system options
 and garbage collection parameters.
 (If <span class="machine"><span class="font-tt">OCAMLRUNPARAM</span></span> is not set, <span class="machine"><span class="font-tt">CAMLRUNPARAM</span></span> will be used instead.)
@@ -104,7 +105,8 @@ and an optional multiplier. The options are documented below;
 the options <span class="machine"><span class="font-tt">a, i, l, m, M, n, o, O, s, v, w</span></span> correspond to
 the fields of the <span class="machine"><span class="font-tt">control</span></span> record documented in
 <a href="../api/Gc.html">Module <span class="font-tt">Gc</span></a>.
-<dl class="description"><dt class="dt-description"><span class="font-bold">b</span></dt><dd class="dd-description"> (backtrace) Trigger the printing of a stack backtrace
+<dl class="description"><dt class="dt-description">
+<span class="font-bold">b</span></dt><dd class="dd-description"> (backtrace) Trigger the printing of a stack backtrace
 when an uncaught exception aborts the program. An optional argument can
 be provided: <span class="machine"><span class="font-tt">b=0</span></span> turns backtrace printing off; <span class="machine"><span class="font-tt">b=1</span></span> is equivalent to
 <span class="machine"><span class="font-tt">b</span></span> and turns backtrace printing on; <span class="machine"><span class="font-tt">b=2</span></span> turns backtrace printing on
@@ -113,7 +115,7 @@ startup time instead of at backtrace printing time. <span class="machine"><span 
 the runtime is unable to load debugging information at backtrace
 printing time, for example if there are no file descriptors available.
 </dd><dt class="dt-description"><span class="font-bold">c</span></dt><dd class="dd-description"> (<span class="machine"><span class="font-tt">cleanup_on_exit</span></span>) Shut the runtime down gracefully on exit (see
-<span class="machine"><span class="font-tt">caml_shutdown</span></span> in section&nbsp;<a href="intfc.html#ss%3Ac-embedded-code">22.7.5</a>). The option also enables
+<span class="machine"><span class="font-tt">caml_shutdown</span></span> in section ‍<a href="intfc.html#ss%3Ac-embedded-code">22.7.5</a>). The option also enables
 pooling (as in <span class="machine"><span class="font-tt">caml_startup_pooled</span></span>). This mode can be used to detect
 leaks with a third-party memory debugger.
 </dd><dt class="dt-description"><span class="font-bold">e</span></dt><dd class="dd-description"> (<span class="machine"><span class="font-tt">runtime_events_log_wsize</span></span>) Size of the per-domain runtime events ring
@@ -160,7 +162,8 @@ This option takes no argument.
 </dd><dt class="dt-description"><span class="font-bold">t</span></dt><dd class="dd-description"> Set the trace level for the debug runtime (ignored by the standard runtime).
 </dd><dt class="dt-description"><span class="font-bold">v</span></dt><dd class="dd-description"> (<span class="machine"><span class="font-tt">verbose</span></span>) What GC messages to print to stderr. This
 is a sum of values selected from the following:
-<dl class="description"><dt class="dt-description"><span class="font-bold">1 (= 0x001)</span></dt><dd class="dd-description"> Start and end of major GC cycle.
+<dl class="description"><dt class="dt-description">
+<span class="font-bold">1 (= 0x001)</span></dt><dd class="dd-description"> Start and end of major GC cycle.
 </dd><dt class="dt-description"><span class="font-bold">2 (= 0x002)</span></dt><dd class="dd-description"> Minor collection and major GC slice.
 </dd><dt class="dt-description"><span class="font-bold">4 (= 0x004)</span></dt><dd class="dd-description"> Growing and shrinking of the heap.
 </dd><dt class="dt-description"><span class="font-bold">8 (= 0x008)</span></dt><dd class="dd-description"> Resizing of stacks and memory manager tables.
@@ -183,7 +186,7 @@ if the equal sign or the number is missing, the value is taken as 1;
 if the multiplier is not recognized, it is ignored.</p><p>For example, on a 32-bit machine, under <span class="machine"><span class="font-tt">bash</span></span> the command
 </p><pre>        export OCAMLRUNPARAM='b,s=256k,v=0x015'
 </pre><p> tells a subsequent <span class="machine"><span class="font-tt">ocamlrun</span></span> to print backtraces for uncaught exceptions,
-set its initial minor heap size to 1&nbsp;megabyte and
+set its initial minor heap size to 1 ‍megabyte and
 print a message at the start of each major GC cycle, when the heap
 size changes, and when compaction is triggered.</p></dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">CAMLRUNPARAM</span></span></span></dt><dd class="dd-description"> If <span class="machine"><span class="font-tt">OCAMLRUNPARAM</span></span> is not found in the
 environment, then <span class="machine"><span class="font-tt">CAMLRUNPARAM</span></span> will be used instead. If
@@ -195,11 +198,12 @@ executable file.
 dynamically with C shared libraries (DLLs) providing additional C primitives
 beyond those provided by the standard runtime system. The names for
 these libraries are provided at link time as described in
-section&nbsp;<a href="intfc.html#ss%3Adynlink-c-code">22.1.4</a>), and recorded in the bytecode executable
+section ‍<a href="intfc.html#ss%3Adynlink-c-code">22.1.4</a>), and recorded in the bytecode executable
 file; <span class="machine"><span class="font-tt">ocamlrun</span></span>, then, locates these libraries and resolves references
 to their primitives when the bytecode executable program starts.</p><p>The <span class="machine"><span class="font-tt">ocamlrun</span></span> command searches shared libraries in the following
 directories, in the order indicated:
-</p><ol class="enumerate" type="1"><li class="li-enumerate">Directories specified on the <span class="machine"><span class="font-tt">ocamlrun</span></span> command line with the
+</p><ol class="enumerate" type="1"><li class="li-enumerate">
+Directories specified on the <span class="machine"><span class="font-tt">ocamlrun</span></span> command line with the
 <span class="machine"><span class="font-tt">-I</span></span> option.
 </li><li class="li-enumerate">Directories specified in the <span class="machine"><span class="font-tt">CAML_LD_LIBRARY_PATH</span></span> environment
 variable.
@@ -247,7 +251,7 @@ integer arguments
 (arguments of more complex types are not correctly printed).
 To locate the context of the uncaught exception, compile the program
 with the <span class="machine"><span class="font-tt">-g</span></span> option and either run it again under the <span class="machine"><span class="font-tt">ocamldebug</span></span>
-debugger (see chapter&nbsp;<a href="debugger.html#c%3Adebugger">20</a>), or run it with <span class="machine"><span class="font-tt">ocamlrun -b</span></span>
+debugger (see chapter ‍<a href="debugger.html#c%3Adebugger">20</a>), or run it with <span class="machine"><span class="font-tt">ocamlrun -b</span></span>
 or with the <span class="machine"><span class="font-tt">OCAMLRUNPARAM</span></span> environment variable set to <span class="machine"><span class="font-tt">b=1</span></span>.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">Out of memory</span></span></span></dt><dd class="dd-description">
 The program being executed requires more memory than available. Either
 the program builds excessively large data structures; or the program

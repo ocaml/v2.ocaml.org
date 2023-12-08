@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -251,7 +251,7 @@ precedence come first. For infix and prefix symbols, we write
 <div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c004"><span class="font-bold">Construction or operator</span></td><td class="c004"><span class="font-bold">Associativity</span> </td></tr>
 <tr><td class="c006">
 prefix-symbol</td><td class="c006">– </td></tr>
-<tr><td class="c006"><span class="machine"><span class="font-tt">.   .(   .[   .{</span></span> (see section&nbsp;<a href="bigarray.html#s%3Abigarray-access">12.11</a>)</td><td class="c006">– </td></tr>
+<tr><td class="c006"><span class="machine"><span class="font-tt">.   .(   .[   .{</span></span> (see section ‍<a href="bigarray.html#s%3Abigarray-access">12.11</a>)</td><td class="c006">– </td></tr>
 <tr><td class="c006"><span class="machine"><span class="font-tt">#</span></span>…</td><td class="c006">left </td></tr>
 <tr><td class="c006">function application, constructor application, tag
 application, <span class="machine"><span class="font-tt">assert</span></span>,
@@ -348,7 +348,7 @@ and <span class="syntax-token">(</span> … <span class="syntax-token">)</span> 
 <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a> <span class="syntax-token">)</span>. This constraint forces the type of <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a> to be
 compatible with <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a>.</p><p>Parenthesized expressions can also contain coercions
 <span class="syntax-token">(</span> <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a> [<span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a>] <span class="syntax-token">:&gt;</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><span class="syntax-token">)</span> (see
-subsection&nbsp;<a href="#ss%3Aexpr-coercions">11.7.7</a> below).</p><h4 class="subsubsection" id="sss:expr-functions-application"><a class="section-anchor" href="#sss:expr-functions-application" aria-hidden="true">﻿</a>Function application</h4>
+subsection ‍<a href="#ss%3Aexpr-coercions">11.7.7</a> below).</p><h4 class="subsubsection" id="sss:expr-functions-application"><a class="section-anchor" href="#sss:expr-functions-application" aria-hidden="true">﻿</a>Function application</h4>
 <p>Function application is denoted by juxtaposition of (possibly labeled)
 expressions. The expression <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a> <a class="syntax" href="#argument"><span class="nonterminal">argument</span></a><sub>1</sub> … <a class="syntax" href="#argument"><span class="nonterminal">argument</span></a><sub><span class="font-it">n</span></sub>
 evaluates the expression <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a> and those appearing in <a class="syntax" href="#argument"><span class="nonterminal">argument</span></a><sub>1</sub>
@@ -726,7 +726,7 @@ This defines <span class="nonterminal">name</span><sub>1</sub> … <span class="
 local to <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a>.</p><p>The behavior of other forms of <span class="syntax-token">let</span> <span class="syntax-token">rec</span> definitions is
 implementation-dependent. The current implementation also supports
 a certain class of recursive definitions of non-functional values,
-as explained in section&nbsp;<a href="letrecvalues.html#s%3Aletrecvalues">12.1</a>.</p>
+as explained in section ‍<a href="letrecvalues.html#s%3Aletrecvalues">12.1</a>.</p>
 <h4 class="subsubsection" id="sss:expr-let-exception"><a class="section-anchor" href="#sss:expr-let-exception" aria-hidden="true">﻿</a>Local exceptions</h4>
 <p>
 (Introduced in OCaml 4.04)</p><p>It is possible to define local exceptions in expressions:
@@ -994,7 +994,7 @@ The loop body is never evaluated if <span class="font-it">n</span> &lt; <span cl
 value <span class="syntax-token">()</span>.</p><h4 class="subsubsection" id="sss:expr-exception-handling"><a class="section-anchor" href="#sss:expr-exception-handling" aria-hidden="true">﻿</a>Exception handling</h4>
 <p>
 <a id="hevea_manual.kwd69"></a></p><p>The expression
-</p><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><span class="syntax-token">try&nbsp;</span></td><td class="c007"><span class="font-sl">expr</span> </td></tr>
+</p><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><span class="syntax-token">try ‍</span></td><td class="c007"><span class="font-sl">expr</span> </td></tr>
 <tr><td class="c008"><span class="syntax-token">with</span></td><td class="c007"><span class="font-sl">pattern</span><sub>1</sub></td><td class="c007"><span class="syntax-token">-&gt;</span></td><td class="c007"><span class="font-sl">expr</span><sub>1</sub> </td></tr>
 <tr><td class="c008"><span class="syntax-token">|</span></td><td class="c007">… </td></tr>
 <tr><td class="c008"><span class="syntax-token">|</span></td><td class="c007"><span class="font-sl">pattern</span><sub><span class="font-it">n</span></sub></td><td class="c007"><span class="syntax-token">-&gt;</span></td><td class="c007"><span class="font-sl">expr</span><sub><span class="font-it">n</span></sub>
@@ -1288,7 +1288,7 @@ interpreted as the application <span class="syntax-token">(</span> <a class="syn
 <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a>. Similarly, the expression <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a><sub>1</sub> <a class="syntax" href="lex.html#infix-symbol"><span class="nonterminal">infix-symbol</span></a> <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a><sub>2</sub> is
 interpreted as the application <span class="syntax-token">(</span> <a class="syntax" href="lex.html#infix-symbol"><span class="nonterminal">infix-symbol</span></a> <span class="syntax-token">)</span> <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a><sub>1</sub> <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a><sub>2</sub>.</p><p>The table below lists the symbols defined in the initial environment
 and their initial meaning. (See the description of the core
-library module <span class="machine"><span class="font-tt">Stdlib</span></span> in chapter&nbsp;<a href="core.html#c%3Acorelib">27</a> for more
+library module <span class="machine"><span class="font-tt">Stdlib</span></span> in chapter ‍<a href="core.html#c%3Acorelib">27</a> for more
 details). Their meaning may be changed at any time using
 <span class="syntax-token">let</span> <span class="syntax-token">(</span> <a class="syntax" href="names.html#infix-op"><span class="nonterminal">infix-op</span></a> <span class="syntax-token">)</span> <span class="nonterminal">name</span><sub>1</sub> <span class="nonterminal">name</span><sub>2</sub> <span class="syntax-token">=</span> …</p><div class="caml-example toplevel">
 
@@ -1527,7 +1527,7 @@ is a supertype of
 </p><div class="center">
  <span class="syntax-token">&lt;</span> <a class="syntax" href="names.html#method-name"><span class="nonterminal">met</span></a><sub>1</sub> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>1</sub> <span class="syntax-token">;</span> … <span class="syntax-token">;</span> <a class="syntax" href="names.html#method-name"><span class="nonterminal">met</span></a><sub><span class="font-it">n</span></sub> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub><span class="font-it">n</span></sub> <span class="syntax-token">;</span>
 <a class="syntax" href="names.html#method-name"><span class="nonterminal">met</span></a><sub><span class="font-it">n</span>+1</sub> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub><span class="font-it">n</span>+1</sub> <span class="syntax-token">;</span> … <span class="syntax-token">;</span> <a class="syntax" href="names.html#method-name"><span class="nonterminal">met</span></a><sub><span class="font-it">n</span>+<span class="font-it">m</span></sub> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub><span class="font-it">n</span>+<span class="font-it">m</span></sub>
-&nbsp;[<span class="syntax-token">;</span> <span class="syntax-token">..</span>] <span class="syntax-token">&gt;</span> 
+ ‍[<span class="syntax-token">;</span> <span class="syntax-token">..</span>] <span class="syntax-token">&gt;</span> 
 </div><p>
 which may contain an ellipsis <span class="machine"><span class="font-tt">..</span></span> if every <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a><sub><span class="font-it">i</span></sub> is a supertype of
 the corresponding <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub><span class="font-it">i</span></sub>.</p><p>A monomorphic method type can be a supertype of a polymorphic method
@@ -1559,7 +1559,7 @@ subtyping of their arguments. For instance, <a class="syntax" href="types.html#t
 subtype of <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>1</sub> <span class="syntax-token">*</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>2</sub> when <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a><sub>1</sub> and <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a><sub>2</sub> are
 respectively subtypes of <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>1</sub> and <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>2</sub>.
 For function types, the relation is more subtle:
-<a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a><sub>1</sub> <span class="syntax-token">-&gt;</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a><sub>2</sub> is a subtype of <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>1</sub>&nbsp;<span class="syntax-token">-&gt;</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>2</sub>
+<a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a><sub>1</sub> <span class="syntax-token">-&gt;</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a><sub>2</sub> is a subtype of <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>1</sub> ‍<span class="syntax-token">-&gt;</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>2</sub>
 if <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a><sub>1</sub> is a supertype of <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>1</sub> and <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a><sub>2</sub> is a
 subtype of <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typ</span></a>′<sub>2</sub>. For this reason, function types are covariant in
 their second argument (like tuples), but contravariant in their first
@@ -1572,7 +1572,7 @@ variance-free if it has no occurrences, and nonvariant otherwise.
 A variance-free parameter may change freely through subtyping, it does
 not have to be a subtype or a supertype.
 For abstract and private types, the variance must be given explicitly
-(see section&nbsp;<a href="typedecl.html#ss%3Atypedefs">11.8.1</a>),
+(see section ‍<a href="typedecl.html#ss%3Atypedefs">11.8.1</a>),
 otherwise the default is nonvariant. This is also the case for
 constrained arguments in type definitions.</p>
 <h3 class="subsection" id="ss:expr-other"><a class="section-anchor" href="#ss:expr-other" aria-hidden="true">﻿</a><span class="number">7.8</span> Other</h3>
@@ -1626,7 +1626,7 @@ evaluated at this point in the program. Instead, its evaluation will
 be performed the first time the function <span class="machine"><span class="font-tt">Lazy.force</span></span> is applied to the value
 <span class="font-it">v</span>, returning the actual value of <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a>. Subsequent applications
 of <span class="machine"><span class="font-tt">Lazy.force</span></span> to <span class="font-it">v</span> do not evaluate <a class="syntax" href="#expr"><span class="nonterminal">expr</span></a> again. Applications
-of <span class="machine"><span class="font-tt">Lazy.force</span></span> may be implicit through pattern matching (see&nbsp;<a href="patterns.html#sss%3Apat-lazy">11.6</a>).</p><div class="caml-example toplevel">
+of <span class="machine"><span class="font-tt">Lazy.force</span></span> may be implicit through pattern matching (see ‍<a href="patterns.html#sss%3Apat-lazy">11.6</a>).</p><div class="caml-example toplevel">
 
 <div class="ocaml">
 

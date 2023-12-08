@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -129,7 +129,7 @@ meaning.</p><h4 class="subsubsection" id="sss:mty-values"><a class="section-anch
 value and <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a> its expected type.</p><p><a id="hevea_manual.kwd166"></a></p><p>The form <span class="syntax-token">external</span> <a class="syntax" href="names.html#value-name"><span class="nonterminal">value-name</span></a> <span class="syntax-token">:</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a> <span class="syntax-token">=</span> <a class="syntax" href="intfc.html#external-declaration"><span class="nonterminal">external-declaration</span></a>
 is similar, except that it requires in addition the name to be
 implemented as the external function specified in <a class="syntax" href="intfc.html#external-declaration"><span class="nonterminal">external-declaration</span></a>
-(see chapter&nbsp;<a href="intfc.html#c%3Aintf-c">22</a>).</p><h4 class="subsubsection" id="sss:mty-type"><a class="section-anchor" href="#sss:mty-type" aria-hidden="true">﻿</a>Type specifications</h4>
+(see chapter ‍<a href="intfc.html#c%3Aintf-c">22</a>).</p><h4 class="subsubsection" id="sss:mty-type"><a class="section-anchor" href="#sss:mty-type" aria-hidden="true">﻿</a>Type specifications</h4>
 <p><a id="hevea_manual.kwd167"></a></p><p>A specification of one or several type components in a signature is
 written <span class="syntax-token">type</span> <a class="syntax" href="typedecl.html#typedef"><span class="nonterminal">typedef</span></a> { <span class="syntax-token">and</span> <a class="syntax" href="typedecl.html#typedef"><span class="nonterminal">typedef</span></a> } and consists of a sequence
 of mutually recursive definitions of type names.</p><p>Each type definition in the signature specifies an optional type
@@ -140,7 +140,8 @@ be compatible with the type expression specified in the equation (if
 given), and have the specified representation (if given). Conversely,
 users of that signature will be able to rely on the type equation
 or type representation, if given. More precisely, we have the
-following four situations:</p><dl class="description"><dt class="dt-description"><span class="font-bold">Abstract type: no equation, no representation.</span></dt><dd class="dd-description"> &nbsp; <br>
+following four situations:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold">Abstract type: no equation, no representation.</span></dt><dd class="dd-description">  ‍ <br>
 Names that are defined as abstract types in a signature can be
 implemented in a matching structure by any kind of type definition
 (provided it has the same number of type parameters). The exact
@@ -151,17 +152,17 @@ accessible to the users; if the type is implemented as an
 abbreviation, the type equality between the type name and the
 right-hand side of the abbreviation will be hidden from the users of the
 structure. Users of the structure consider that type as incompatible
-with any other type: a fresh type has been generated.</dd><dt class="dt-description"><span class="font-bold">Type abbreviation: an equation </span><span class="syntax-token">=</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><span class="font-bold">, no representation.</span></dt><dd class="dd-description"> &nbsp; <br>
+with any other type: a fresh type has been generated.</dd><dt class="dt-description"><span class="font-bold">Type abbreviation: an equation </span><span class="syntax-token">=</span> <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a><span class="font-bold">, no representation.</span></dt><dd class="dd-description">  ‍ <br>
 The type name must be implemented by a type compatible with <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a>.
 All users of the structure know that the type name is
-compatible with <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a>.</dd><dt class="dt-description"><span class="font-bold">New variant type or record type: no equation, a representation.</span></dt><dd class="dd-description"> &nbsp; <br>
+compatible with <a class="syntax" href="types.html#typexpr"><span class="nonterminal">typexpr</span></a>.</dd><dt class="dt-description"><span class="font-bold">New variant type or record type: no equation, a representation.</span></dt><dd class="dd-description">  ‍ <br>
 The type name must be implemented by a variant type or record type
 with exactly the constructors or fields specified. All users of the
 structure have access to the constructors or fields, and can use them
 to create or inspect values of that type. However, users of the
 structure consider that type as incompatible with any other type: a
 fresh type has been generated.</dd><dt class="dt-description"><span class="font-bold">Re-exported variant type or record type: an equation,
-a representation.</span></dt><dd class="dd-description"> &nbsp; <br>
+a representation.</span></dt><dd class="dd-description">  ‍ <br>
 This case combines the previous two: the representation of the type is
 made visible to all users, and no fresh type is generated.
 </dd></dl><h4 class="subsubsection" id="sss:mty-exn"><a class="section-anchor" href="#sss:mty-exn" aria-hidden="true">﻿</a>Exception specification</h4>
@@ -172,13 +173,13 @@ users of the structure.</p><h4 class="subsubsection" id="sss:mty-class"><a class
 <p><a id="hevea_manual.kwd169"></a></p><p>A specification of one or several classes in a signature is written
 <span class="syntax-token">class</span> <a class="syntax" href="classes.html#class-spec"><span class="nonterminal">class-spec</span></a> { <span class="syntax-token">and</span> <a class="syntax" href="classes.html#class-spec"><span class="nonterminal">class-spec</span></a> } and consists of a sequence
 of mutually recursive definitions of class names.</p><p>Class specifications are described more precisely in
-section&nbsp;<a href="classes.html#ss%3Aclass-spec">11.9.4</a>.</p><h4 class="subsubsection" id="sss:mty-classtype"><a class="section-anchor" href="#sss:mty-classtype" aria-hidden="true">﻿</a>Class type specifications</h4>
+section ‍<a href="classes.html#ss%3Aclass-spec">11.9.4</a>.</p><h4 class="subsubsection" id="sss:mty-classtype"><a class="section-anchor" href="#sss:mty-classtype" aria-hidden="true">﻿</a>Class type specifications</h4>
 <p><a id="hevea_manual.kwd170"></a>
 <a id="hevea_manual.kwd171"></a></p><p>A specification of one or several class types in a signature is
 written <span class="syntax-token">class</span> <span class="syntax-token">type</span> <a class="syntax" href="classes.html#classtype-def"><span class="nonterminal">classtype-def</span></a> { <span class="syntax-token">and</span> <a class="syntax" href="classes.html#classtype-def"><span class="nonterminal">classtype-def</span></a> } and
 consists of a sequence of mutually recursive definitions of class type
 names. Class type specifications are described more precisely in
-section&nbsp;<a href="classes.html#ss%3Aclasstype">11.9.5</a>.</p><h4 class="subsubsection" id="sss:mty-module"><a class="section-anchor" href="#sss:mty-module" aria-hidden="true">﻿</a>Module specifications</h4>
+section ‍<a href="classes.html#ss%3Aclasstype">11.9.5</a>.</p><h4 class="subsubsection" id="sss:mty-module"><a class="section-anchor" href="#sss:mty-module" aria-hidden="true">﻿</a>Module specifications</h4>
 <p><a id="hevea_manual.kwd172"></a></p><p>A specification of a module component in a signature is written
 <span class="syntax-token">module</span> <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> <span class="syntax-token">:</span> <a class="syntax" href="#module-type"><span class="nonterminal">module-type</span></a>, where <a class="syntax" href="names.html#module-name"><span class="nonterminal">module-name</span></a> is the
 name of the module component and <a class="syntax" href="#module-type"><span class="nonterminal">module-type</span></a> its expected type.

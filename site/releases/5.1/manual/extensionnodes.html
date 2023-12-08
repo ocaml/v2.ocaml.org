@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -52,7 +52,7 @@ infix notation (e1 ;%ext e2) added in 4.04.
 )</p><p>Extension nodes are generic placeholders in the syntax tree. They are
 rejected by the type-checker and are intended to be “expanded” by external
 tools such as <span class="machine"><span class="font-tt">-ppx</span></span> rewriters.</p><p>Extension nodes share the same notion of identifier and payload as
-attributes&nbsp;<a href="attributes.html#s%3Aattributes">12.12</a>.</p><p>The first form of extension node is used for “algebraic” categories:</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="extension"><span class="nonterminal">extension</span></a></td><td class="c005">::=</td><td class="c007">
+attributes ‍<a href="attributes.html#s%3Aattributes">12.12</a>.</p><p>The first form of extension node is used for “algebraic” categories:</p><div class="syntax"><table class="display dcenter"><tbody><tr class="c009"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c008"><a class="syntax" id="extension"><span class="nonterminal">extension</span></a></td><td class="c005">::=</td><td class="c007">
 <span class="syntax-token">[%</span> <a class="syntax" href="attributes.html#attr-id"><span class="nonterminal">attr-id</span></a> <a class="syntax" href="attributes.html#attr-payload"><span class="nonterminal">attr-payload</span></a> <span class="syntax-token">]</span>
 </td></tr>
 <tr><td class="c008">&nbsp;</td></tr>
@@ -159,7 +159,8 @@ specific delimiter limits the freedom to change the delimiter to avoid
 escaping issues.</p>
 <h3 class="subsection" id="ss:builtin-extension-nodes"><a class="section-anchor" href="#ss:builtin-extension-nodes" aria-hidden="true">﻿</a><span class="number">13.1</span> Built-in extension nodes</h3>
 <p>(Introduced in OCaml 4.03)</p><p>Some extension nodes are understood by the compiler itself:
-</p><ul class="itemize"><li class="li-itemize">“ocaml.extension_constructor” or “extension_constructor”
+</p><ul class="itemize"><li class="li-itemize">
+“ocaml.extension_constructor” or “extension_constructor”
 take as payload a constructor from an extensible variant type
 (see <a href="extensiblevariants.html#s%3Aextensible-variants">12.14</a>) and return its extension
 constructor slot.

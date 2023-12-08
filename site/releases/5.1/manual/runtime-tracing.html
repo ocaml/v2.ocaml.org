@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -25,12 +25,14 @@ continuous extraction of performance information from the OCaml runtime with
 very low overhead. The system and interfaces are low-level and tightly coupled
 to the runtime implementation, it is intended for end-users to rely on tooling
 to consume and visualise data of interest.</p><p>Data emitted includes:
-</p><ul class="itemize"><li class="li-itemize">Event times of garbage collector and runtime phases
+</p><ul class="itemize"><li class="li-itemize">
+Event times of garbage collector and runtime phases
 </li><li class="li-itemize">Minor and major heap sizings and utilization
 </li><li class="li-itemize">Allocation and promotion rates between heaps
 </li></ul>
 <h2 class="section" id="s:runtime-tracing-overview"><a class="section-anchor" href="#s:runtime-tracing-overview" aria-hidden="true"></a><span class="number">1</span> Overview</h2>
-<p>There are three main classes of events emitted by the runtime events system:</p><dl class="description"><dt class="dt-description"><span class="font-bold">Spans</span></dt><dd class="dd-description"> Events spanning over a duration in time. For example, the runtime
+<p>There are three main classes of events emitted by the runtime events system:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold">Spans</span></dt><dd class="dd-description"> Events spanning over a duration in time. For example, the runtime
 events tracing system emits a span event that starts when a minor
 collection begins in the OCaml garbage collector and ends when
 the collection is completed. Spans can contain other spans, e.g other span
@@ -43,7 +45,8 @@ interest. For example, the number of words promoted from the minor to
 the major heap during the last minor garbage collection is emitted as a
 counter event.
 </dd></dl><p>The runtime events tracing system is designed to be used in different contexts:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold">Self monitoring</span></dt><dd class="dd-description"> OCaml programs and libraries can install their own callbacks
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold">Self monitoring</span></dt><dd class="dd-description"> OCaml programs and libraries can install their own callbacks
 to listen for runtime events and react to them programmatically, for example,
 to export events to disk or over the network.
 </dd><dt class="dt-description"><span class="font-bold">External monitoring</span></dt><dd class="dd-description"> An external process can consume the runtime events
@@ -87,7 +90,8 @@ enables them to be read from outside the main OCaml process. See
 <h4 class="subsubsection" id="s:runtime-tracing-apis"><a class="section-anchor" href="#s:runtime-tracing-apis" aria-hidden="true">﻿</a>Consumption APIs</h4>
 <p>The runtime event tracing system provides both OCaml and C APIs which are
 cursor-based and polling-driven. The high-level process for consuming events
-is as follows:</p><ol class="enumerate" type="1"><li class="li-enumerate">A cursor is created via <span class="font-tt">Runtime_events.create_cursor</span> for either the
+is as follows:</p><ol class="enumerate" type="1"><li class="li-enumerate">
+A cursor is created via <span class="font-tt">Runtime_events.create_cursor</span> for either the
 current process or an external process (specified by a path and PID).
 </li><li class="li-enumerate"><span class="font-tt">Runtime_events.Callbacks.create</span> is called to register a callback function to receive the events.
 </li><li class="li-enumerate">The cursor is polled via <span class="font-tt">Runtime_events.read_poll</span> using the callbacks
@@ -167,7 +171,8 @@ instead, call the program as below to produce the same result:</p><pre>OCAML_RUN
 </pre>
 <h4 class="subsubsection" id="s-runtime-tracing-environment-variables"><a class="section-anchor" href="#s-runtime-tracing-environment-variables" aria-hidden="true">﻿</a>Environment variables</h4>
 <p>Environment variables can be used to control different aspects of the runtime
-event tracing system. The following environment variables are available:</p><ul class="itemize"><li class="li-itemize">OCAML_RUNTIME_EVENTS_START if set will cause the runtime events system
+event tracing system. The following environment variables are available:</p><ul class="itemize"><li class="li-itemize">
+OCAML_RUNTIME_EVENTS_START if set will cause the runtime events system
 to be started as part of the OCaml runtime initialization.
 </li><li class="li-itemize">OCAML_RUNTIME_EVENTS_DIR sets the directory where the <span class="machine"><span class="font-tt">.events</span></span>
 files containing the runtime event tracing system’s ring buffers will be located.

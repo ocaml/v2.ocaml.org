@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -197,7 +197,8 @@ particular a transformation to continuation-passing style (CPS), can
 make all functions tail-recursive, instead of targeting only a small
 fragment. Some reasons to provide builtin support for the less-general
 tail-mod-cons are as follows:
-</p><ul class="itemize"><li class="li-itemize">The tail-mod-cons transformation preserves the performance of
+</p><ul class="itemize"><li class="li-itemize">
+The tail-mod-cons transformation preserves the performance of
 the original, non-tail-recursive version, while
 a continuation-passing-style transformation incurs a measurable
 constant-factor overhead.
@@ -327,8 +328,9 @@ for two of the constructor arguments to be put in tail position:
 </div>
 <h2 class="section" id="sec:out-of-tmc"><a class="section-anchor" href="#sec:out-of-tmc" aria-hidden="true">﻿</a><span class="number">2</span> Danger: getting out of tail-mod-cons</h2>
 <p>Due to the nature of the tail-mod-cons transformation
-(see Section&nbsp;<a href="#sec%3Adetails">26.3</a> for a presentation of transformation):
-</p><ul class="itemize"><li class="li-itemize">Calls from a tail-mod-cons function to another tail-mod-cons
+(see Section ‍<a href="#sec%3Adetails">26.3</a> for a presentation of transformation):
+</p><ul class="itemize"><li class="li-itemize">
+Calls from a tail-mod-cons function to another tail-mod-cons
 function declared in the same recursive-binding group are
 transformed into tail calls, as soon as they occur in tail position
 or tail-modulo-cons position in the source function.
@@ -656,7 +658,8 @@ providing a direct-style interface and one providing the
 destination-passing-style version. However, not all calls to this
 function in tail-modulo-cons position will use the
 destination-passing-style version and become tail calls:
-</p><ul class="itemize"><li class="li-itemize">The transformation is local: only tail-mod-cons calls to <span class="machine"><span class="font-tt">foo</span></span>
+</p><ul class="itemize"><li class="li-itemize">
+The transformation is local: only tail-mod-cons calls to <span class="machine"><span class="font-tt">foo</span></span>
 within the same compilation unit as <span class="machine"><span class="font-tt">foo</span></span> become tail calls.
 </li><li class="li-itemize">The transformation is first-order: only direct calls to
 known tail-mod-cons functions become tail calls when in

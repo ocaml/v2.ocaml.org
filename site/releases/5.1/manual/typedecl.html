@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -206,17 +206,18 @@ types. The polymorphism of the contents is statically checked whenever
 a record value is created or modified. Extracted values may have their
 types instantiated.</p><p>The two components of a type definition, the optional equation and the
 optional representation, can be combined independently, giving
-rise to four typical situations:</p><dl class="description"><dt class="dt-description"><span class="font-bold">Abstract type: no equation, no representation.</span></dt><dd class="dd-description"> &nbsp;<br>
+rise to four typical situations:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold">Abstract type: no equation, no representation.</span></dt><dd class="dd-description">  ‍<br>
 When appearing in a module signature, this definition specifies
 nothing on the type constructor, besides its number of parameters:
 its representation is hidden and it is assumed incompatible with any
-other type.</dd><dt class="dt-description"><span class="font-bold">Type abbreviation: an equation, no representation.</span></dt><dd class="dd-description"> &nbsp;<br>
+other type.</dd><dt class="dt-description"><span class="font-bold">Type abbreviation: an equation, no representation.</span></dt><dd class="dd-description">  ‍<br>
 This defines the type constructor as an abbreviation for the type
-expression on the right of the <span class="syntax-token">=</span> sign.</dd><dt class="dt-description"><span class="font-bold">New variant type or record type: no equation, a representation.</span></dt><dd class="dd-description"> &nbsp;<br>
+expression on the right of the <span class="syntax-token">=</span> sign.</dd><dt class="dt-description"><span class="font-bold">New variant type or record type: no equation, a representation.</span></dt><dd class="dd-description">  ‍<br>
 This generates a new type constructor and defines associated
 constructors or fields, through which values of that type can be
 directly built or inspected.</dd><dt class="dt-description"><span class="font-bold">Re-exported variant type or record type: an equation,
-a representation.</span></dt><dd class="dd-description"> &nbsp;<br>
+a representation.</span></dt><dd class="dd-description">  ‍<br>
 In this case, the type constructor is defined as an abbreviation for
 the type expression given in the equation, but in addition the
 constructors or fields given in the representation remain attached to

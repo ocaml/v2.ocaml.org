@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -37,7 +37,8 @@ inheritance clause.</p>
 </p><pre>        ocamldoc <span class="font-it">options</span> <span class="font-it">sourcefiles</span>
 </pre><h4 class="subsubsection" id="sss:ocamldoc-output"><a class="section-anchor" href="#sss:ocamldoc-output" aria-hidden="true">﻿</a>Options for choosing the output format</h4>
 <p>The following options determine the format for the generated
-documentation.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-html</span></span></span></dt><dd class="dd-description">
+documentation.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-html</span></span></span></dt><dd class="dd-description">
 Generate documentation in HTML default format. The generated HTML pages
 are stored in the current directory, or in the directory specified
 with the <span class="font-bold"><span class="font-tt">-d</span></span> option. You can customize the style of the
@@ -91,7 +92,8 @@ Load information from <span class="font-it">file</span>, which has been produced
 Specify merge options between interfaces and implementations.
 (see section <a href="#ss%3Aocamldoc-merge">19.1.2</a> for details).
 <span class="font-it">flags</span> can be one or several of the following characters:
-<dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">d</span></span></span></dt><dd class="dd-description"> merge description
+<dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">d</span></span></span></dt><dd class="dd-description"> merge description
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">a</span></span></span></dt><dd class="dd-description"> merge <span class="machine"><span class="font-tt">@author</span></span>
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">v</span></span></span></dt><dd class="dd-description"> merge <span class="machine"><span class="font-tt">@version</span></span>
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">l</span></span></span></dt><dd class="dd-description"> merge <span class="machine"><span class="font-tt">@see</span></span>
@@ -137,7 +139,8 @@ Add <span class="font-it">directory</span> to the list of directories search for
 interface files (<span class="machine"><span class="font-tt">.cmi</span></span> files).</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-nolabels</span></span></span></dt><dd class="dd-description">
 Ignore non-optional labels in types.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-rectypes</span></span></span></dt><dd class="dd-description">
 Allow arbitrary recursive types. (See the <span class="machine"><span class="font-tt">-rectypes</span></span> option to <span class="machine"><span class="font-tt">ocamlc</span></span>.)</dd></dl><h4 class="subsubsection" id="sss:ocamldoc-html"><a class="section-anchor" href="#sss:ocamldoc-html" aria-hidden="true">﻿</a>Options for generating HTML pages</h4>
-<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-html</span></span> option:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-all-params</span></span></span></dt><dd class="dd-description">
+<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-html</span></span> option:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-all-params</span></span></span></dt><dd class="dd-description">
 Display the complete list of parameters for functions and methods.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-charset</span></span> <span class="font-it">charset</span></span></dt><dd class="dd-description">
 Add information about character encoding being <span class="font-it">charset</span>
 (default is iso-8859-1).</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-colorize-code</span></span></span></dt><dd class="dd-description">
@@ -152,7 +155,8 @@ Use a short form to display functors:
 is displayed as:
 <pre>module M (A:Module) (B:Module2) : sig .. end
 </pre></dd></dl><h4 class="subsubsection" id="sss:ocamldoc-latex"><a class="section-anchor" href="#sss:ocamldoc-latex" aria-hidden="true">﻿</a>Options for generating L<sup>A</sup>T<sub>E</sub>X files</h4>
-<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-latex</span></span> option:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-latex-value-prefix</span></span> <span class="font-it">prefix</span></span></dt><dd class="dd-description">
+<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-latex</span></span> option:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-latex-value-prefix</span></span> <span class="font-it">prefix</span></span></dt><dd class="dd-description">
 Give a prefix to use for the labels of the values in the generated
 L<sup>A</sup>T<sub>E</sub>X document.
 The default prefix is the empty string. You can also use the options
@@ -175,7 +179,8 @@ Suppress trailer in generated documentation.</dd><dt class="dt-description"><spa
 Generate one <span class="machine"><span class="font-tt">.tex</span></span> file per toplevel module, instead of the global
 <span class="machine"><span class="font-tt">ocamldoc.out</span></span> file.
 </dd></dl><h4 class="subsubsection" id="sss:ocamldoc-info"><a class="section-anchor" href="#sss:ocamldoc-info" aria-hidden="true">﻿</a>Options for generating TeXinfo files</h4>
-<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-texi</span></span> option:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-esc8</span></span></span></dt><dd class="dd-description">
+<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-texi</span></span> option:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-esc8</span></span></span></dt><dd class="dd-description">
 Escape accented characters in Info files.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-info-entry</span></span></span></dt><dd class="dd-description">
 Specify Info directory entry.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-info-section</span></span></span></dt><dd class="dd-description">
 Specify section of Info directory.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-noheader</span></span></span></dt><dd class="dd-description">
@@ -183,7 +188,8 @@ Suppress header in generated documentation.</dd><dt class="dt-description"><span
 Do not build index for Info files.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-notrailer</span></span></span></dt><dd class="dd-description">
 Suppress trailer in generated documentation.
 </dd></dl><h4 class="subsubsection" id="sss:ocamldoc-dot"><a class="section-anchor" href="#sss:ocamldoc-dot" aria-hidden="true">﻿</a>Options for generating <span class="machine"><span class="font-tt">dot</span></span> graphs</h4>
-<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-dot</span></span> option:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-dot-colors</span></span> <span class="font-it">colors</span></span></dt><dd class="dd-description">
+<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-dot</span></span> option:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-dot-colors</span></span> <span class="font-it">colors</span></span></dt><dd class="dd-description">
 Specify the colors to use in the generated <span class="machine"><span class="font-tt">dot</span></span> code.
 When generating module dependencies, <span class="machine"><span class="font-tt">ocamldoc</span></span> uses different colors
 for modules, depending on the directories in which they reside.
@@ -200,7 +206,8 @@ a lot of transitive dependencies that clutter the graph.</dd><dt class="dt-descr
 Output <span class="machine"><span class="font-tt">dot</span></span> code describing the type dependency graph instead of
 the module dependency graph.
 </dd></dl><h4 class="subsubsection" id="sss:ocamldoc-man"><a class="section-anchor" href="#sss:ocamldoc-man" aria-hidden="true">﻿</a>Options for generating man files</h4>
-<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-man</span></span> option:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-man-mini</span></span></span></dt><dd class="dd-description">
+<p>The following options apply in conjunction with the <span class="machine"><span class="font-tt">-man</span></span> option:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-man-mini</span></span></span></dt><dd class="dd-description">
 Generate man pages only for modules, module types, classes and class
 types, instead of pages for all elements.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-man-suffix</span></span> <span class="font-it">suffix</span></span></dt><dd class="dd-description">
 Set the suffix used for generated man filenames. Default is ’<span class="machine"><span class="font-tt">3o</span></span>’,
@@ -212,7 +219,8 @@ file, or both, depending on the files given on the command line.
 When both <span class="machine"><span class="font-tt">.mli</span></span> and <span class="machine"><span class="font-tt">.ml</span></span> files are given for the same module,
 information extracted from these files is merged according to the
 following rules:
-</p><ul class="itemize"><li class="li-itemize">Only elements (values, types, classes, ...) declared in the <span class="machine"><span class="font-tt">.mli</span></span>
+</p><ul class="itemize"><li class="li-itemize">
+Only elements (values, types, classes, ...) declared in the <span class="machine"><span class="font-tt">.mli</span></span>
 file are kept. In other terms, definitions from the <span class="machine"><span class="font-tt">.ml</span></span> file that are
 not exported in the <span class="machine"><span class="font-tt">.mli</span></span> file are not documented.
 </li><li class="li-itemize">Descriptions of elements and descriptions in @-tags are handled
@@ -228,7 +236,8 @@ In either case, all the information given in the <span class="machine"><span cla
 <p>
 The following rules must be respected in order to avoid name clashes
 resulting in cross-reference errors:
-</p><ul class="itemize"><li class="li-itemize">In a module, there must not be two modules, two module types or
+</p><ul class="itemize"><li class="li-itemize">
+In a module, there must not be two modules, two module types or
 a module and a module type with the same name.
 In the default HTML generator, modules <span class="machine"><span class="font-tt">ab</span></span> and <span class="machine"><span class="font-tt">AB</span></span> will be printed
 to the same file on case insensitive file systems.
@@ -277,8 +286,9 @@ locations of comments in <span class="machine"><span class="font-tt">.mli</span>
 <p>
 A special comment is associated to an element if it is placed before or
 after the element.<br>
-A special comment before an element is associated to this element if&nbsp;:
-</p><ul class="itemize"><li class="li-itemize">There is no blank line or another special comment between the special
+A special comment before an element is associated to this element if ‍:
+</p><ul class="itemize"><li class="li-itemize">
+There is no blank line or another special comment between the special
 comment and the element. However, a regular comment can occur between
 the special comment and the element.
 </li><li class="li-itemize">The special comment is not already associated to the previous element.
@@ -656,7 +666,8 @@ referenced as <span class="machine"><span class="font-tt">{!tree.Node}</span></s
 or class type, the <em>first sentence</em> is sometimes used in indexes, or
 when just a part of the description is needed. The first sentence
 is composed of the first characters of the description, until
-</p><ul class="itemize"><li class="li-itemize">the first dot followed by a blank, or
+</p><ul class="itemize"><li class="li-itemize">
+the first dot followed by a blank, or
 </li><li class="li-itemize">the first blank line
 </li></ul><p>
 outside of the following text formatting :
@@ -749,7 +760,8 @@ To handle custom tags, you need to define a custom generator,
 as explained in section <a href="#ss%3Aocamldoc-handling-custom-tags">19.3.2</a>.</p>
 <h2 class="section" id="s:ocamldoc-custom-generators"><a class="section-anchor" href="#s:ocamldoc-custom-generators" aria-hidden="true">﻿</a><span class="number">3</span> Custom generators</h2>
 <p>OCamldoc operates in two steps:
-</p><ol class="enumerate" type="1"><li class="li-enumerate">analysis of the source files;
+</p><ol class="enumerate" type="1"><li class="li-enumerate">
+analysis of the source files;
 </li><li class="li-enumerate">generation of documentation, through a documentation generator,
 	which is an object of class <span class="machine"><span class="font-tt">Odoc_args.class_generator</span></span>.
 </li></ol><p>
@@ -764,18 +776,19 @@ description.</p><p>The files you can use to define custom generators are install
 <p>
 The type of a generator module depends on the kind of generated documentation.
 Here is the list of generator module types, with the name of the generator
-class in the module&nbsp;:
-</p><ul class="itemize"><li class="li-itemize">for HTML&nbsp;: <span class="machine"><span class="font-tt">Odoc_html.Html_generator</span></span> (class <span class="machine"><span class="font-tt">html</span></span>),
-</li><li class="li-itemize">for L<sup>A</sup>T<sub>E</sub>X&nbsp;: <span class="machine"><span class="font-tt">Odoc_latex.Latex_generator</span></span> (class <span class="machine"><span class="font-tt">latex</span></span>),
-</li><li class="li-itemize">for TeXinfo&nbsp;: <span class="machine"><span class="font-tt">Odoc_texi.Texi_generator</span></span> (class <span class="machine"><span class="font-tt">texi</span></span>),
-</li><li class="li-itemize">for man pages&nbsp;: <span class="machine"><span class="font-tt">Odoc_man.Man_generator</span></span> (class <span class="machine"><span class="font-tt">man</span></span>),
-</li><li class="li-itemize">for graphviz (dot)&nbsp;: <span class="machine"><span class="font-tt">Odoc_dot.Dot_generator</span></span> (class <span class="machine"><span class="font-tt">dot</span></span>),
-</li><li class="li-itemize">for other kinds&nbsp;: <span class="machine"><span class="font-tt">Odoc_gen.Base</span></span> (class <span class="machine"><span class="font-tt">generator</span></span>).
+class in the module ‍:
+</p><ul class="itemize"><li class="li-itemize">
+for HTML ‍: <span class="machine"><span class="font-tt">Odoc_html.Html_generator</span></span> (class <span class="machine"><span class="font-tt">html</span></span>),
+</li><li class="li-itemize">for L<sup>A</sup>T<sub>E</sub>X ‍: <span class="machine"><span class="font-tt">Odoc_latex.Latex_generator</span></span> (class <span class="machine"><span class="font-tt">latex</span></span>),
+</li><li class="li-itemize">for TeXinfo ‍: <span class="machine"><span class="font-tt">Odoc_texi.Texi_generator</span></span> (class <span class="machine"><span class="font-tt">texi</span></span>),
+</li><li class="li-itemize">for man pages ‍: <span class="machine"><span class="font-tt">Odoc_man.Man_generator</span></span> (class <span class="machine"><span class="font-tt">man</span></span>),
+</li><li class="li-itemize">for graphviz (dot) ‍: <span class="machine"><span class="font-tt">Odoc_dot.Dot_generator</span></span> (class <span class="machine"><span class="font-tt">dot</span></span>),
+</li><li class="li-itemize">for other kinds ‍: <span class="machine"><span class="font-tt">Odoc_gen.Base</span></span> (class <span class="machine"><span class="font-tt">generator</span></span>).
 </li></ul><p>
 That is, to define a new generator, one must implement a module with
 the expected signature, and with the given generator class, providing
 the <span class="machine"><span class="font-tt">generate</span></span> method as entry point to make the generator generates
-documentation for a given list of modules&nbsp;:</p><pre>        method generate : Odoc_info.Module.t_module list -&gt; unit
+documentation for a given list of modules ‍:</p><pre>        method generate : Odoc_info.Module.t_module list -&gt; unit
 </pre><p>
 This method will be called with the list of analysed and possibly
 merged <span class="machine"><span class="font-tt">Odoc_info.t_module</span></span> structures.</p><p>It is recommended to inherit from the current generator of the same
@@ -783,7 +796,7 @@ kind as the one you want to define. Doing so, it is possible to
 load various custom generators to combine improvements brought by each one.</p><p>This is done using first class modules (see chapter <a href="firstclassmodules.html#s%3Afirst-class-modules">12.5</a>).</p><p>The easiest way to define a custom generator is the following this example,
 here extending the current HTML generator. We don’t have to know if this is
 the original HTML generator defined in ocamldoc or if it has been extended
-already by a previously loaded custom generator&nbsp;:</p><pre>module Generator (G : Odoc_html.Html_generator) =
+already by a previously loaded custom generator ‍:</p><pre>module Generator (G : Odoc_html.Html_generator) =
 struct
   class html =
     object(self)
@@ -802,13 +815,14 @@ let _ = Odoc_args.extend_html_generator (module Generator : Odoc_gen.Html_functo
 </pre><p>
 To know which methods to override and/or which methods are available,
 have a look at the different base implementations, depending on the
-kind of generator you are extending&nbsp;:
+kind of generator you are extending ‍:
 
-</p><ul class="itemize"><li class="li-itemize">for HTML&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_html.ml"><span class="machine"><span class="font-tt">odoc_html.ml</span></span></a>,
-</li><li class="li-itemize">for L<sup>A</sup>T<sub>E</sub>X&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_latex.ml"><span class="machine"><span class="font-tt">odoc_latex.ml</span></span></a>,
-</li><li class="li-itemize">for TeXinfo&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_texi.ml"><span class="machine"><span class="font-tt">odoc_texi.ml</span></span></a>,
-</li><li class="li-itemize">for man pages&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_man.ml"><span class="machine"><span class="font-tt">odoc_man.ml</span></span></a>,
-</li><li class="li-itemize">for graphviz (dot)&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_dot.ml"><span class="machine"><span class="font-tt">odoc_dot.ml</span></span></a>.
+</p><ul class="itemize"><li class="li-itemize">
+for HTML ‍: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_html.ml"><span class="machine"><span class="font-tt">odoc_html.ml</span></span></a>,
+</li><li class="li-itemize">for L<sup>A</sup>T<sub>E</sub>X ‍: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_latex.ml"><span class="machine"><span class="font-tt">odoc_latex.ml</span></span></a>,
+</li><li class="li-itemize">for TeXinfo ‍: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_texi.ml"><span class="machine"><span class="font-tt">odoc_texi.ml</span></span></a>,
+</li><li class="li-itemize">for man pages ‍: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_man.ml"><span class="machine"><span class="font-tt">odoc_man.ml</span></span></a>,
+</li><li class="li-itemize">for graphviz (dot) ‍: <a href="https://github.com/ocaml/ocaml/blob/5.1/ocamldoc/odoc_dot.ml"><span class="machine"><span class="font-tt">odoc_dot.ml</span></span></a>.
 </li></ul>
 <h3 class="subsection" id="ss:ocamldoc-handling-custom-tags"><a class="section-anchor" href="#ss:ocamldoc-handling-custom-tags" aria-hidden="true">﻿</a><span class="number">3.2</span> Handling custom tags</h3>
 <p>Making a custom generator handle custom tags (see
@@ -854,10 +868,10 @@ this function.</p>
 <h4 class="subsubsection" id="sss:ocamldoc-generator-class"><a class="section-anchor" href="#sss:ocamldoc-generator-class" aria-hidden="true">﻿</a>Defining a custom generator class in one file</h4>
 <p>
 Let <span class="machine"><span class="font-tt">custom.ml</span></span> be the file defining a new generator class.
-Compilation of <span class="machine"><span class="font-tt">custom.ml</span></span> can be performed by the following command&nbsp;:
+Compilation of <span class="machine"><span class="font-tt">custom.ml</span></span> can be performed by the following command ‍:
 </p><pre>        ocamlc -I +ocamldoc -c custom.ml
 </pre><p>
-The file <span class="machine"><span class="font-tt">custom.cmo</span></span> is created and can be used this way&nbsp;:
+The file <span class="machine"><span class="font-tt">custom.cmo</span></span> is created and can be used this way ‍:
 </p><pre>        ocamldoc -g custom.cmo <span class="font-it">other-options</span> <span class="font-it">source-files</span>
 </pre><p>
 Options selecting a built-in generator to <span class="machine"><span class="font-tt">ocamldoc</span></span>, such as
@@ -870,7 +884,7 @@ It is possible to define a generator class in several modules, which
 are defined in several files <span class="font-it">file</span><sub>1</sub><span class="machine"><span class="font-tt">.ml</span></span>[<span class="machine"><span class="font-tt">i</span></span>],
 <span class="font-it">file</span><sub>2</sub><span class="machine"><span class="font-tt">.ml</span></span>[<span class="machine"><span class="font-tt">i</span></span>], ..., <span class="font-it">file</span><sub><span class="font-it">n</span></sub><span class="machine"><span class="font-tt">.ml</span></span>[<span class="machine"><span class="font-tt">i</span></span>]. A <span class="machine"><span class="font-tt">.cma</span></span>
 library file must be created, including all these files.</p><p>The following commands create the <span class="machine"><span class="font-tt">custom.cma</span></span> file from files
-<span class="font-it">file</span><sub>1</sub><span class="machine"><span class="font-tt">.ml</span></span>[<span class="machine"><span class="font-tt">i</span></span>], ..., <span class="font-it">file</span><sub><span class="font-it">n</span></sub><span class="machine"><span class="font-tt">.ml</span></span>[<span class="machine"><span class="font-tt">i</span></span>]&nbsp;:
+<span class="font-it">file</span><sub>1</sub><span class="machine"><span class="font-tt">.ml</span></span>[<span class="machine"><span class="font-tt">i</span></span>], ..., <span class="font-it">file</span><sub><span class="font-it">n</span></sub><span class="machine"><span class="font-tt">.ml</span></span>[<span class="machine"><span class="font-tt">i</span></span>] ‍:
 </p><pre>ocamlc -I +ocamldoc -c <span class="font-it">file</span><sub>1</sub>.ml[i]
 ocamlc -I +ocamldoc -c <span class="font-it">file</span><sub>2</sub>.ml[i]
 ...

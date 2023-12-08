@@ -10,6 +10,7 @@ instructions pour installer OCaml par d'autres moyens que la
 compilation des sources, comme par exemple le gestionnaire de paquets
 OPAM et les gestionnaire de paquets spécifiques à une plateforme.
 
+* OCaml [5.1.0](5.1.0.html), [téléchargé](https://github.com/ocaml/ocaml/archive/5.1.0.tar.gz), publiée le 14 septembre, 2023.
 * OCaml [4.14.0](4.14.0.html), [téléchargé](https://github.com/ocaml/ocaml/archive/4.14.0.tar.gz), publiée le 28 mars, 2022.
 * OCaml [4.13.1](4.13.1.html), [téléchargé](https://github.com/ocaml/ocaml/archive/4.13.1.tar.gz), publiée le 1er octobre, 2021.
 * OCaml [4.13.0](4.13.0.html), [téléchargé](https://github.com/ocaml/ocaml/archive/4.13.0.tar.gz), publiée le 24 septembre 2021.

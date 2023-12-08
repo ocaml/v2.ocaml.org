@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -42,7 +42,7 @@
 
 
 <h2 class="section" id="s:letrecvalues"><a class="section-anchor" href="#s:letrecvalues" aria-hidden="true"></a><span class="number">1</span> Recursive definitions of values</h2>
-<p>(Introduced in Objective Caml 1.00)</p><p>As mentioned in section&nbsp;<a href="expr.html#sss%3Aexpr-localdef">11.7.2</a>, the <span class="syntax-token">let</span> <span class="syntax-token">rec</span> binding
+<p>(Introduced in Objective Caml 1.00)</p><p>As mentioned in section ‍<a href="expr.html#sss%3Aexpr-localdef">11.7.2</a>, the <span class="syntax-token">let</span> <span class="syntax-token">rec</span> binding
 construct, in addition to the definition of recursive functions,
 also supports a certain class of recursive definitions of
 non-functional values, such as
@@ -64,7 +64,8 @@ is not immediately linked to any of <span class="nonterminal">name</span><sub>1<
 and is not an array constructor whose arguments have abstract type.</p><p>An expression <span class="nonterminal">e</span> is said to be <em>statically constructive
 with respect to</em> the variables <span class="nonterminal">name</span><sub>1</sub> … <span class="nonterminal">name</span><sub><span class="font-it">n</span></sub> if at least
 one of the following conditions is true:
-</p><ul class="itemize"><li class="li-itemize"><span class="nonterminal">e</span> has no free occurrence of any of <span class="nonterminal">name</span><sub>1</sub> … <span class="nonterminal">name</span><sub><span class="font-it">n</span></sub>
+</p><ul class="itemize"><li class="li-itemize">
+<span class="nonterminal">e</span> has no free occurrence of any of <span class="nonterminal">name</span><sub>1</sub> … <span class="nonterminal">name</span><sub><span class="font-it">n</span></sub>
 </li><li class="li-itemize"><span class="nonterminal">e</span> is a variable
 </li><li class="li-itemize"><span class="nonterminal">e</span> has the form <span class="syntax-token">fun</span> … <span class="syntax-token">-&gt;</span> …
 </li><li class="li-itemize"><span class="nonterminal">e</span> has the form <span class="syntax-token">function</span> … <span class="syntax-token">-&gt;</span> …
@@ -73,7 +74,8 @@ one of the following conditions is true:
 <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub> … <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub><span class="font-it">m</span></sub> is statically constructive with respect to
 <span class="nonterminal">name</span><sub>1</sub> … <span class="nonterminal">name</span><sub><span class="font-it">n</span></sub>, and <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub> is statically constructive with
 respect to <span class="nonterminal">name</span><sub>1</sub> … <span class="nonterminal">name</span><sub><span class="font-it">n</span></sub>, <span class="nonterminal">xname</span><sub>1</sub> … <span class="nonterminal">xname</span><sub><span class="font-it">m</span></sub>:
-<ul class="itemize"><li class="li-itemize"><span class="syntax-token">let</span> [<span class="syntax-token">rec</span>] <span class="nonterminal">xname</span><sub>1</sub> <span class="syntax-token">=</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub> <span class="syntax-token">and</span> …
+<ul class="itemize"><li class="li-itemize">
+<span class="syntax-token">let</span> [<span class="syntax-token">rec</span>] <span class="nonterminal">xname</span><sub>1</sub> <span class="syntax-token">=</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub> <span class="syntax-token">and</span> …
 <span class="syntax-token">and</span> <span class="nonterminal">xname</span><sub><span class="font-it">m</span></sub> <span class="syntax-token">=</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub><span class="font-it">m</span></sub> <span class="syntax-token">in</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>0</sub>
 </li><li class="li-itemize"><span class="syntax-token">let</span> <span class="syntax-token">module</span> … <span class="syntax-token">in</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub>
 </li><li class="li-itemize"><a class="syntax" href="names.html#constr"><span class="nonterminal">constr</span></a> <span class="syntax-token">(</span><a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">,</span> … <span class="syntax-token">,</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub><span class="font-it">m</span></sub><span class="syntax-token">)</span>
@@ -88,7 +90,8 @@ linked to <span class="nonterminal">name</span><sub>1</sub> … <span class="non
 </li></ul>
 </li></ul><p>An expression <span class="nonterminal">e</span> is said to be <em>immediately linked to</em> the variable
 <span class="nonterminal">name</span> in the following cases:
-</p><ul class="itemize"><li class="li-itemize"><span class="nonterminal">e</span> is <span class="nonterminal">name</span>
+</p><ul class="itemize"><li class="li-itemize">
+<span class="nonterminal">e</span> is <span class="nonterminal">name</span>
 </li><li class="li-itemize"><span class="nonterminal">e</span> has the form <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub><span class="syntax-token">;</span> … <span class="syntax-token">;</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub><span class="font-it">m</span></sub> where <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub><span class="font-it">m</span></sub>
 is immediately linked to <span class="nonterminal">name</span>
 </li><li class="li-itemize"><span class="nonterminal">e</span> has the form <span class="syntax-token">let</span> [<span class="syntax-token">rec</span>] <span class="nonterminal">xname</span><sub>1</sub> <span class="syntax-token">=</span> <a class="syntax" href="expr.html#expr"><span class="nonterminal">expr</span></a><sub>1</sub> <span class="syntax-token">and</span> …

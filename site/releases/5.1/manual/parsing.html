@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -17,8 +17,8 @@
 <a id="Compiler-underscorelibs"></a> </p><p>This chapter describes the OCaml front-end, which declares the abstract
 syntax tree used by the compiler, provides a way to parse, print
 and pretty-print OCaml code, and ultimately allows one to write abstract
-syntax tree preprocessors invoked via the <span class="font-tt">-ppx</span> flag (see chapters&nbsp;<a href="comp.html#c%3Acamlc">13</a>
-and&nbsp;<a href="native.html#c%3Anativecomp">16</a>).</p><p>It is important to note that the exported front-end interface follows the evolution of the OCaml language and implementation, and thus does not provide <span class="font-bold">any</span> backwards compatibility guarantees.</p><p>The front-end is a part of <span class="machine"><span class="font-tt">compiler-libs</span></span> library.
+syntax tree preprocessors invoked via the <span class="font-tt">-ppx</span> flag (see chapters ‍<a href="comp.html#c%3Acamlc">13</a>
+and ‍<a href="native.html#c%3Anativecomp">16</a>).</p><p>It is important to note that the exported front-end interface follows the evolution of the OCaml language and implementation, and thus does not provide <span class="font-bold">any</span> backwards compatibility guarantees.</p><p>The front-end is a part of <span class="machine"><span class="font-tt">compiler-libs</span></span> library.
 Programs that use the <span class="machine"><span class="font-tt">compiler-libs</span></span> library should be built as follows:
 </p><pre>        ocamlfind ocamlc <span class="font-it">other options</span> -package compiler-libs.common <span class="font-it">other files</span>
         ocamlfind ocamlopt <span class="font-it">other options</span> -package compiler-libs.common <span class="font-it">other files</span>
@@ -29,7 +29,8 @@ Use of the <span class="font-tt">ocamlfind</span> utility is recommended. Howeve
 </pre><p>
 For interactive use of the <span class="machine"><span class="font-tt">compiler-libs</span></span> library, start <span class="machine"><span class="font-tt">ocaml</span></span> and
 type<br>
-<span class="machine"><span class="font-tt">#load "compiler-libs/ocamlcommon.cma";;</span></span>.</p><ul class="ftoc2"><li class="li-links"><a href="../api/compilerlibref/Ast_helper.html">Module <span class="font-tt">Ast_helper</span></a>: helper functions for AST construction
+<span class="machine"><span class="font-tt">#load "compiler-libs/ocamlcommon.cma";;</span></span>.</p><ul class="ftoc2"><li class="li-links">
+<a href="../api/compilerlibref/Ast_helper.html">Module <span class="font-tt">Ast_helper</span></a>: helper functions for AST construction
 </li><li class="li-links"><a href="../api/compilerlibref/Ast_mapper.html">Module <span class="font-tt">Ast_mapper</span></a>: -ppx rewriter interface
 </li><li class="li-links"><a href="../api/compilerlibref/Asttypes.html">Module <span class="font-tt">Asttypes</span></a>: auxiliary types used by Parsetree
 </li><li class="li-links"><a href="../api/compilerlibref/Location.html">Module <span class="font-tt">Location</span></a>: source code locations

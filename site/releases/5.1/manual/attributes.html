@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -293,7 +293,8 @@ and[@bar] y = 3 in x + y           === (let x = 2 [@@foo] and y = 3 [@@bar] in x
 </pre>
 <h3 class="subsection" id="ss:builtin-attributes"><a class="section-anchor" href="#ss:builtin-attributes" aria-hidden="true">﻿</a><span class="number">12.1</span> Built-in attributes</h3>
 <p>Some attributes are understood by the type-checker:
-</p><ul class="itemize"><li class="li-itemize">“ocaml.warning” or “warning”, with a string literal payload.
+</p><ul class="itemize"><li class="li-itemize">
+“ocaml.warning” or “warning”, with a string literal payload.
 This can be used as floating attributes in a
 signature/structure/object/object type. The string is parsed and has
 the same effect as the <span class="machine"><span class="font-tt">-w</span></span> command-line option, in the scope between
@@ -306,8 +307,8 @@ Note that it is not well-defined which scope is used for a specific
 warning. This is implementation dependent and can change between versions.
 Some warnings are even completely outside the control of “ocaml.warning”
 (for instance, warnings 1, 2, 14, 29 and 50).</li><li class="li-itemize">“ocaml.warnerror” or “warnerror”, with a string literal payload.
-Same as “ocaml.warning”, for the <span class="machine"><span class="font-tt">-warn-error</span></span> command-line option.</li><li class="li-itemize">“ocaml.alert” or “alert”: see section&nbsp;<a href="alerts.html#s%3Aalerts">12.21</a>.</li><li class="li-itemize">“ocaml.deprecated” or “deprecated”: alias for the
-“deprecated” alert, see section&nbsp;<a href="alerts.html#s%3Aalerts">12.21</a>.
+Same as “ocaml.warning”, for the <span class="machine"><span class="font-tt">-warn-error</span></span> command-line option.</li><li class="li-itemize">“ocaml.alert” or “alert”: see section ‍<a href="alerts.html#s%3Aalerts">12.21</a>.</li><li class="li-itemize">“ocaml.deprecated” or “deprecated”: alias for the
+“deprecated” alert, see section ‍<a href="alerts.html#s%3Aalerts">12.21</a>.
 </li><li class="li-itemize">“ocaml.deprecated_mutable” or “deprecated_mutable”.
 Can be applied to a mutable record label. If the label is later
 used to modify the field (with “expr.l &lt;- expr”), the “deprecated” alert

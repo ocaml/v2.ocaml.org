@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -55,7 +55,8 @@
 definition equal to <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a>. Conversely, a type-level module
 alias can be matched by itself, or by any supertype of the type of the
 module it references.</p><p>There are several restrictions on <a class="syntax" href="names.html#module-path"><span class="nonterminal">module-path</span></a>:
-</p><ol class="enumerate" type="1"><li class="li-enumerate">it should be of the form <span class="font-it">M</span><sub>0</sub>.<span class="font-it">M</span><sub>1</sub>...<span class="font-it">M</span><sub><span class="font-it">n</span></sub> (<em>i.e.</em> without
+</p><ol class="enumerate" type="1"><li class="li-enumerate">
+it should be of the form <span class="font-it">M</span><sub>0</sub>.<span class="font-it">M</span><sub>1</sub>...<span class="font-it">M</span><sub><span class="font-it">n</span></sub> (<em>i.e.</em> without
 functor applications);
 </li><li class="li-enumerate">inside the body of a functor, <span class="font-it">M</span><sub>0</sub> should not be one of the
 functor parameters;
@@ -112,7 +113,8 @@ would issue the command line
 physically <span class="syntax-token">A</span> and <span class="syntax-token">B</span> as submodules, and with no dependencies on
 their respective compilation units.
 Here is a concrete example of a possible alternative approach:
-</p><ol class="enumerate" type="1"><li class="li-enumerate">Rename the files containing <span class="syntax-token">A</span> and <span class="syntax-token">B</span> to <span class="syntax-token">Mylib__A</span> and
+</p><ol class="enumerate" type="1"><li class="li-enumerate">
+Rename the files containing <span class="syntax-token">A</span> and <span class="syntax-token">B</span> to <span class="syntax-token">Mylib__A</span> and
 <span class="syntax-token">Mylib__B</span>.
 </li><li class="li-enumerate">Create a packing interface <span class="syntax-token">Mylib.ml</span>, containing the
 following lines.

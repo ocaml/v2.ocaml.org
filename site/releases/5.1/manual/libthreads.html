@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -22,7 +22,7 @@ communication channels.</p><p>The <span class="machine"><span class="font-tt">th
 provided by the operating system: POSIX 1003.1c threads for Linux, MacOS, and
 other Unix-like systems; Win32 threads for Windows. Only one thread at a time
 is allowed to run OCaml code on a particular
-domain&nbsp;<a href="parallelism.html#s%3Apar_systhread_interaction">9.5.1</a>. Hence, opportunities for parallelism
+domain ‍<a href="parallelism.html#s%3Apar_systhread_interaction">9.5.1</a>. Hence, opportunities for parallelism
 are limited to the parts of the program that run system or C library code.
 However, threads provide concurrency and can be used to structure programs as
 several communicating processes. Threads also efficiently support concurrent,
@@ -31,7 +31,8 @@ overlapping I/O operations.</p><p>Programs that use threads must be linked as fo
         ocamlopt -I +unix -I +threads <span class="font-it">other options</span> unix.cmxa threads.cmxa <span class="font-it">other files</span>
 </pre><p>
 Compilation units that use the <span class="machine"><span class="font-tt">threads</span></span> library must also be compiled with
-the <span class="machine"><span class="font-tt">-I +threads</span></span> option (see chapter&nbsp;<a href="comp.html#c%3Acamlc">13</a>).</p><ul class="ftoc2"><li class="li-links"><a href="../api/Thread.html">Module <span class="font-tt">Thread</span></a>: lightweight threads
+the <span class="machine"><span class="font-tt">-I +threads</span></span> option (see chapter ‍<a href="comp.html#c%3Acamlc">13</a>).</p><ul class="ftoc2"><li class="li-links">
+<a href="../api/Thread.html">Module <span class="font-tt">Thread</span></a>: lightweight threads
 </li><li class="li-links"><a href="../api/Event.html">Module <span class="font-tt">Event</span></a>: first-class synchronous communication
 </li></ul>
 <hr>

@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -129,7 +129,7 @@ contrast, a shallow handler monitors a computation until either the computation
 terminates or the computation performs one effect, and it handles this single
 effect only. In situations where they are applicable, deep handlers are usually
 preferred. An example that utilises shallow handlers is discussed later
-in&nbsp;<a href="#s%3Aeffects-shallow">12.24.6</a>.</p>
+in ‍<a href="#s%3Aeffects-shallow">12.24.6</a>.</p>
 <h3 class="subsection" id="s:effects-concurrency"><a class="section-anchor" href="#s:effects-concurrency" aria-hidden="true">﻿</a><span class="number">24.2</span> Concurrency</h3>
 <p>The expressive power of effect handlers comes from the delimited continuation.
 While the previous example immediately resumed the computation, the computation
@@ -172,7 +172,8 @@ returns a <span class="machine"><span class="font-tt">'a status</span></span> va
 <span class="machine"><span class="font-tt">match_with</span></span> primitive installs an effect handler. However, unlike <span class="machine"><span class="font-tt">try_with</span></span>,
 where only the effect case <span class="machine"><span class="font-tt">effc</span></span> is provided, <span class="machine"><span class="font-tt">match_with</span></span> expects the
 handlers for the value (<span class="machine"><span class="font-tt">retc</span></span>) and exceptional (<span class="machine"><span class="font-tt">exnc</span></span>) return cases. In fact,
-<span class="machine"><span class="font-tt">try_with</span></span> can be defined using <span class="machine"><span class="font-tt">match_with</span></span> as follows: <span class="machine"><span class="font-tt">let try_with f v {effc} = match_with f v {retc = Fun.id; exnc = raise; effc}</span></span>.</p><p>In the <span class="machine"><span class="font-tt">step</span></span> function,</p><ul class="itemize"><li class="li-itemize">Case <span class="machine"><span class="font-tt">retc</span></span>: If the computation returns with a value <span class="machine"><span class="font-tt">v</span></span>, we return
+<span class="machine"><span class="font-tt">try_with</span></span> can be defined using <span class="machine"><span class="font-tt">match_with</span></span> as follows: <span class="machine"><span class="font-tt">let try_with f v {effc} = match_with f v {retc = Fun.id; exnc = raise; effc}</span></span>.</p><p>In the <span class="machine"><span class="font-tt">step</span></span> function,</p><ul class="itemize"><li class="li-itemize">
+Case <span class="machine"><span class="font-tt">retc</span></span>: If the computation returns with a value <span class="machine"><span class="font-tt">v</span></span>, we return
 <span class="machine"><span class="font-tt">Complete v</span></span>.
 </li><li class="li-itemize">Case <span class="machine"><span class="font-tt">exnc</span></span>: If the computation raises an exception, then the handler
 raises the same exception.
@@ -322,7 +323,7 @@ exchange. If so, we enqueue the waiting task with the current value being
 offered and immediately resume the current task with the value being offered.
 If not, we make the current task the waiting exchanger, and run the next task
 from the scheduler queue.</p><p>Note that this scheduler code is not perfect – it can leak resources. We shall
-explain and fix this in the next section&nbsp;<a href="#s%3Aeffects-discontinue">12.24.3</a>.</p><p>Now we can write a concurrent program that utilises the newly defined
+explain and fix this in the next section ‍<a href="#s%3Aeffects-discontinue">12.24.3</a>.</p><p>Now we can write a concurrent program that utilises the newly defined
 operations:</p><div class="caml-example verbatim">
 
 <div class="ocaml">
@@ -726,7 +727,7 @@ when we run <span class="machine"><span class="font-tt">bar</span></span>.</p><d
 
 </div>
 <h4 class="subsubsection" id="s:effects-linearity"><a class="section-anchor" href="#s:effects-linearity" aria-hidden="true">﻿</a>Linear continuations</h4>
-<p>As discussed earlier&nbsp;<a href="#s%3Aeffects-discontinue">12.24.3</a>, the delimited continuations
+<p>As discussed earlier ‍<a href="#s%3Aeffects-discontinue">12.24.3</a>, the delimited continuations
 in OCaml must be used linearly – <em><span class="font-bold">every captured continuation
 must be resumed either with a <span class="machine"><span class="font-tt">continue</span></span> or <span class="machine"><span class="font-tt">discontinue</span></span> exactly once</span></em>.
 Attempting to use a continuation more than once raises a

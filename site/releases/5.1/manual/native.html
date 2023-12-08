@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -37,7 +37,8 @@ system <span class="machine"><span class="font-tt">ocaml</span></span>.</p>
 <h2 class="section" id="s:native-overview"><a class="section-anchor" href="#s:native-overview" aria-hidden="true"></a><span class="number">1</span> Overview of the compiler</h2>
 <p>The <span class="machine"><span class="font-tt">ocamlopt</span></span> command has a command-line interface very close to that
 of <span class="machine"><span class="font-tt">ocamlc</span></span>. It accepts the same types of arguments, and processes them
-sequentially, after all options have been processed:</p><ul class="itemize"><li class="li-itemize">Arguments ending in <span class="machine"><span class="font-tt">.mli</span></span> are taken to be source files for
+sequentially, after all options have been processed:</p><ul class="itemize"><li class="li-itemize">
+Arguments ending in <span class="machine"><span class="font-tt">.mli</span></span> are taken to be source files for
 compilation unit interfaces. Interfaces specify the names exported by
 compilation units: they declare value names with their types, define
 public data types, declare abstract data types, and so on. From the
@@ -54,7 +55,7 @@ should always be referred to under the name <span class="font-it">x</span><span 
 a <span class="machine"><span class="font-tt">.o</span></span> or <span class="machine"><span class="font-tt">.obj</span></span> file, <span class="machine"><span class="font-tt">ocamlopt</span></span> assumes that it contains code compiled from C,
 not from OCaml).<p>The implementation is checked against the interface file <span class="font-it">x</span><span class="machine"><span class="font-tt">.mli</span></span>
 (if it exists) as described in the manual for <span class="machine"><span class="font-tt">ocamlc</span></span>
-(chapter&nbsp;<a href="comp.html#c%3Acamlc">13</a>).</p></li><li class="li-itemize">Arguments ending in <span class="machine"><span class="font-tt">.cmx</span></span> are taken to be compiled object code. These
+(chapter ‍<a href="comp.html#c%3Acamlc">13</a>).</p></li><li class="li-itemize">Arguments ending in <span class="machine"><span class="font-tt">.cmx</span></span> are taken to be compiled object code. These
 files are linked together, along with the object files obtained
 by compiling <span class="machine"><span class="font-tt">.ml</span></span> arguments (if any), and the OCaml standard
 library, to produce a native-code executable program. The order in
@@ -73,7 +74,8 @@ referenced anywhere in the program, then it is not linked in.</li><li class="li-
 a <span class="machine"><span class="font-tt">.o</span></span>/<span class="machine"><span class="font-tt">.obj</span></span> object file. This object file is linked with the program.</li><li class="li-itemize">Arguments ending in <span class="machine"><span class="font-tt">.o</span></span>, <span class="machine"><span class="font-tt">.a</span></span> or <span class="machine"><span class="font-tt">.so</span></span> (<span class="machine"><span class="font-tt">.obj</span></span>, <span class="machine"><span class="font-tt">.lib</span></span> and <span class="machine"><span class="font-tt">.dll</span></span>
 under Windows) are assumed to be C object files and
 libraries. They are linked with the program.</li></ul><p>The output of the linking phase is a regular Unix or Windows
-executable file. It does not need <span class="machine"><span class="font-tt">ocamlrun</span></span> to run.</p><p>The compiler is able to emit some information on its internal stages:</p><ul class="itemize"><li class="li-itemize"><span class="machine"><span class="font-tt">.cmt</span></span> files for the implementation of the compilation unit
+executable file. It does not need <span class="machine"><span class="font-tt">ocamlrun</span></span> to run.</p><p>The compiler is able to emit some information on its internal stages:</p><ul class="itemize"><li class="li-itemize">
+<span class="machine"><span class="font-tt">.cmt</span></span> files for the implementation of the compilation unit
 and <span class="machine"><span class="font-tt">.cmti</span></span> for signatures if the option <span class="machine"><span class="font-tt">-bin-annot</span></span> is passed to it (see the
 description of <span class="machine"><span class="font-tt">-bin-annot</span></span> below).
 Each such file contains a typed abstract syntax tree (AST), that is produced
@@ -90,7 +92,8 @@ To continue compilation, the compiler can be invoked with (a possibly modified)
 <h2 class="section" id="s:native-options"><a class="section-anchor" href="#s:native-options" aria-hidden="true">﻿</a><span class="number">2</span> Options</h2>
 <p>The following command-line options are recognized by <span class="machine"><span class="font-tt">ocamlopt</span></span>.
 The options <span class="machine"><span class="font-tt">-pack</span></span>, <span class="machine"><span class="font-tt">-a</span></span>, <span class="machine"><span class="font-tt">-shared</span></span>, <span class="machine"><span class="font-tt">-c</span></span>, <span class="machine"><span class="font-tt">-output-obj</span></span> and
-<span class="machine"><span class="font-tt">-output-complete-obj</span></span> are mutually exclusive.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-a</span></span></span></dt><dd class="dd-description">
+<span class="machine"><span class="font-tt">-output-complete-obj</span></span> are mutually exclusive.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-a</span></span></span></dt><dd class="dd-description">
 Build a library(<span class="machine"><span class="font-tt">.cmxa</span></span> and <span class="machine"><span class="font-tt">.a</span></span>/<span class="machine"><span class="font-tt">.lib</span></span> files)
 with the object files (<span class="machine"><span class="font-tt">.cmx</span></span> and <span class="machine"><span class="font-tt">.o</span></span>/<span class="machine"><span class="font-tt">.obj</span></span> files)
 given on the command line, instead of linking them into an executable file.
@@ -146,7 +149,8 @@ error if it fails to find one.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-color</span></span> <span class="font-it">mode</span></span></dt><dd class="dd-description">
 Enable or disable colors in compiler messages (especially warnings and errors).
 The following modes are supported:
-<dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">auto</span></span></span></dt><dd class="dd-description"> use heuristics to enable colors only if the output supports them
+<dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">auto</span></span></span></dt><dd class="dd-description"> use heuristics to enable colors only if the output supports them
 (an ANSI-compatible tty terminal);
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">always</span></span></span></dt><dd class="dd-description"> enable colors unconditionally;
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">never</span></span></span></dt><dd class="dd-description"> disable color output.
@@ -159,7 +163,8 @@ not empty or <span class="machine"><span class="font-tt">dumb</span></span>, and
 </p></dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-error-style</span></span> <span class="font-it">mode</span></span></dt><dd class="dd-description">
 Control the way error messages and warnings are printed.
 The following modes are supported:
-<dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">short</span></span></span></dt><dd class="dd-description"> only print the error and its location;
+<dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">short</span></span></span></dt><dd class="dd-description"> only print the error and its location;
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">contextual</span></span></span></dt><dd class="dd-description"> like <span class="machine"><span class="font-tt">short</span></span>, but also display the source code snippet
 corresponding to the location of the error.
 </dd></dl>
@@ -195,7 +200,7 @@ names.
 Add debugging information while compiling and linking. This option is
 required in order to  produce stack backtraces when
 the program terminates on an uncaught exception (see
-section&nbsp;<a href="runtime.html#s%3Aocamlrun-options">15.2</a>).
+section ‍<a href="runtime.html#s%3Aocamlrun-options">15.2</a>).
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-no-g</span></span></span></dt><dd class="dd-description">
 Do not record debugging information (default).
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-i</span></span></span></dt><dd class="dd-description">
@@ -259,7 +264,7 @@ option is meant for use in the event that a pattern-match-heavy
 program leads to significant increases in compilation time.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-no-alias-deps</span></span></span></dt><dd class="dd-description">
 Do not record dependencies for module aliases. See
-section&nbsp;<a href="modulealias.html#s%3Amodule-alias">12.8</a> for more information.
+section ‍<a href="modulealias.html#s%3Amodule-alias">12.8</a> for more information.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-no-app-funct</span></span></span></dt><dd class="dd-description">
 Deactivates the applicative behaviour of functors. With this option,
 each functor application generates new types in its result and
@@ -335,8 +340,8 @@ were added at the top of each file.
 Cause the linker to produce a C object file instead of
 an executable file.
 This is useful to wrap OCaml code as a C library,
-callable from any C program. See chapter&nbsp;<a href="intfc.html#c%3Aintf-c">22</a>,
-section&nbsp;<a href="intfc.html#ss%3Ac-embedded-code">22.7.5</a>. The name of the output object file
+callable from any C program. See chapter ‍<a href="intfc.html#c%3Aintf-c">22</a>,
+section ‍<a href="intfc.html#ss%3Ac-embedded-code">22.7.5</a>. The name of the output object file
 must be set with the <span class="machine"><span class="font-tt">-o</span></span> option.
 This option can also be used to produce a  compiled shared/dynamic library (<span class="machine"><span class="font-tt">.so</span></span> extension, <span class="machine"><span class="font-tt">.dll</span></span> under Windows).
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-output-complete-obj</span></span></span></dt><dd class="dd-description">
@@ -372,7 +377,7 @@ errors, the intermediate file is deleted afterwards.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-ppx</span></span> <span class="font-it">command</span></span></dt><dd class="dd-description">
 After parsing, pipe the abstract syntax tree through the preprocessor
 <span class="font-it">command</span>. The module <span class="machine"><span class="font-tt">Ast_mapper</span></span>, described in
-chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">29</a>:
+chapter ‍<a href="parsing.html#c%3Aparsinglib">29</a>:
 <a href="../api/compilerlibref/Ast_mapper.html"> <span class="font-tt">Ast_mapper</span> </a>
 ,
 implements the external interface of a preprocessor.</dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-principal</span></span></span></dt><dd class="dd-description">
@@ -412,7 +417,7 @@ The currently supported passes and the corresponding file extensions are:
 <span class="machine"><span class="font-tt">scheduling</span></span> (<span class="machine"><span class="font-tt">.cmir-linear</span></span>).<p>This experimental feature enables external tools to inspect and manipulate
 compiler’s intermediate representation of the program
 using <span class="machine"><span class="font-tt">compiler-libs</span></span> library (see
-chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">29</a> and
+chapter ‍<a href="parsing.html#c%3Aparsinglib">29</a> and
 <a href="../api/compilerlibref/Compiler_libs.html"> <span class="font-tt">Compiler_libs</span> </a>
 ).
 </p></dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-shared</span></span></span></dt><dd class="dd-description">
@@ -479,7 +484,8 @@ enabled, it is displayed normally by the compiler whenever the source
 code triggers it. If it is enabled and fatal, the compiler will also
 stop with an error after displaying it.<p>The <span class="font-it">warning-list</span> argument is a sequence of warning specifiers,
 with no separators between them. A warning specifier is one of the
-following:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">num</span></span></dt><dd class="dd-description"> Enable warning number <span class="font-it">num</span>.
+following:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">num</span></span></dt><dd class="dd-description"> Enable warning number <span class="font-it">num</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-</span></span><span class="font-it">num</span></span></dt><dd class="dd-description"> Disable warning number <span class="font-it">num</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">@</span></span><span class="font-it">num</span></span></dt><dd class="dd-description"> Enable and mark as fatal warning number <span class="font-it">num</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">num1</span>..<span class="font-it">num2</span></span></dt><dd class="dd-description"> Enable warnings in the given range.
@@ -498,13 +504,15 @@ to <span class="font-it">uppercase-letter</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="font-it">lowercase-letter</span></span></dt><dd class="dd-description"> Disable the set of warnings corresponding
 to <span class="font-it">lowercase-letter</span>.
 </dd></dl><p>Alternatively, <span class="font-it">warning-list</span> can specify a single warning using its
-mnemonic name (see below), as follows:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">name</span></span></dt><dd class="dd-description"> Enable warning <span class="font-it">name</span>.
+mnemonic name (see below), as follows:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">+</span></span><span class="font-it">name</span></span></dt><dd class="dd-description"> Enable warning <span class="font-it">name</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-</span></span><span class="font-it">name</span></span></dt><dd class="dd-description"> Disable warning <span class="font-it">name</span>.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">@</span></span><span class="font-it">name</span></span></dt><dd class="dd-description"> Enable and mark as fatal warning <span class="font-it">name</span>.
 </dd></dl><p>Warning numbers, letters and names which are not currently defined are
 ignored. The warnings are as follows (the name following each number specifies
 the mnemonic for that warning).
-</p><dl class="description"><dt class="dt-description"><span class="font-bold">1 <span class="machine"><span class="font-tt">comment-start</span></span></span></dt><dd class="dd-description"> Suspicious-looking start-of-comment mark.
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold">1 <span class="machine"><span class="font-tt">comment-start</span></span></span></dt><dd class="dd-description"> Suspicious-looking start-of-comment mark.
 </dd><dt class="dt-description"><span class="font-bold">2 <span class="machine"><span class="font-tt">comment-not-end</span></span></span></dt><dd class="dd-description"> Suspicious-looking end-of-comment mark.
 </dd><dt class="dt-description"><span class="font-bold">3</span></dt><dd class="dd-description"> Deprecated synonym for the ’deprecated’ alert.
 </dd><dt class="dt-description"><span class="font-bold">4 <span class="machine"><span class="font-tt">fragile-match</span></span></span></dt><dd class="dd-description"> Fragile pattern matching: matching that will remain complete even
@@ -635,13 +643,15 @@ Display a short usage summary and exit.</dd></dl>
 <h5 class="paragraph" id="sec365"><a class="section-anchor" href="#sec365" aria-hidden="true">﻿</a>Options for the 64-bit x86 architecture</h5>
 <p>
 The 64-bit code generator for Intel/AMD x86 processors (<span class="machine"><span class="font-tt">amd64</span></span>
-architecture) supports the following additional options:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-fPIC</span></span></span></dt><dd class="dd-description"> Generate position-independent machine code. This is
+architecture) supports the following additional options:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-fPIC</span></span></span></dt><dd class="dd-description"> Generate position-independent machine code. This is
 the default.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-fno-PIC</span></span></span></dt><dd class="dd-description"> Generate position-dependent machine code.
 </dd></dl>
 <h5 class="paragraph" id="sec366"><a class="section-anchor" href="#sec366" aria-hidden="true">﻿</a>Options for the PowerPC architecture</h5>
 <p>
-The PowerPC code generator supports the following additional options:</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-flarge-toc</span></span></span></dt><dd class="dd-description"> Enables the PowerPC large model allowing the TOC (table of
+The PowerPC code generator supports the following additional options:</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-flarge-toc</span></span></span></dt><dd class="dd-description"> Enables the PowerPC large model allowing the TOC (table of
 contents) to be arbitrarily large. This is the default since 4.11.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-fsmall-toc</span></span></span></dt><dd class="dd-description"> Enables the PowerPC small model allowing the TOC to be up
 to 64 kbytes per compilation unit. Prior to 4.11 this was the default
@@ -651,7 +661,8 @@ behaviour.
 <p>The compiler command line can be modified “from the outside”
 with the following mechanisms. These are experimental
 and subject to change. They should be used only for experimental and
-development work, not in released packages.</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">OCAMLPARAM</span></span> </span>(environment variable)</dt><dd class="dd-description">
+development work, not in released packages.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">OCAMLPARAM</span></span> </span>(environment variable)</dt><dd class="dd-description">
 A set of arguments that will be inserted before or after the arguments from
 the command line. Arguments are specified in a comma-separated list
 of <span class="machine"><span class="font-tt">name=value</span></span> pairs. A <span class="machine"><span class="font-tt">_</span></span> is used to specify the position of
@@ -669,15 +680,16 @@ configured value. Primarily used for bootstrapping.
 </dd></dl>
 <h2 class="section" id="s:native-common-errors"><a class="section-anchor" href="#s:native-common-errors" aria-hidden="true">﻿</a><span class="number">3</span> Common errors</h2>
 <p>The error messages are almost identical to those of <span class="machine"><span class="font-tt">ocamlc</span></span>.
-See section&nbsp;<a href="comp.html#s%3Acomp-errors">13.4</a>.</p>
+See section ‍<a href="comp.html#s%3Acomp-errors">13.4</a>.</p>
 <h2 class="section" id="s:native:running-executable"><a class="section-anchor" href="#s:native:running-executable" aria-hidden="true">﻿</a><span class="number">4</span> Running executables produced by ocamlopt</h2>
 <p>Executables generated by <span class="machine"><span class="font-tt">ocamlopt</span></span> are native, stand-alone executable
 files that can be invoked directly. They do
 not depend on the <span class="machine"><span class="font-tt">ocamlrun</span></span> bytecode runtime system nor on
 dynamically-loaded C/OCaml stub libraries.</p><p>During execution of an <span class="machine"><span class="font-tt">ocamlopt</span></span>-generated executable,
 the following environment variables are also consulted:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">OCAMLRUNPARAM</span></span></span></dt><dd class="dd-description"> Same usage as in <span class="machine"><span class="font-tt">ocamlrun</span></span>
-(see section&nbsp;<a href="runtime.html#s%3Aocamlrun-options">15.2</a>), except that option <span class="machine"><span class="font-tt">l</span></span>
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">OCAMLRUNPARAM</span></span></span></dt><dd class="dd-description"> Same usage as in <span class="machine"><span class="font-tt">ocamlrun</span></span>
+(see section ‍<a href="runtime.html#s%3Aocamlrun-options">15.2</a>), except that option <span class="machine"><span class="font-tt">l</span></span>
 is ignored (the operating system’s stack size limit
 is used instead).
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">CAMLRUNPARAM</span></span></span></dt><dd class="dd-description"> If <span class="machine"><span class="font-tt">OCAMLRUNPARAM</span></span> is not found in the

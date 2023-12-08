@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="hevea 2.36">
+<meta name="generator" content="hevea 2.35">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
@@ -61,7 +61,8 @@ technical terms used below.</p>
 be used to control their behaviour. Detailed descriptions of each flag
 are given in the referenced sections. Those sections also describe any
 arguments which the particular flags take.</p><p>Commonly-used options:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-O2</span></span></span></dt><dd class="dd-description"> Perform more optimisation than usual. Compilation
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-O2</span></span></span></dt><dd class="dd-description"> Perform more optimisation than usual. Compilation
 times may be lengthened. (This flag is an abbreviation for a certain
 set of parameters described in section <a href="#s%3Aflambda-defaults">23.5</a>.)
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-O3</span></span></span></dt><dd class="dd-description"> Perform even more optimisation than usual, possibly
@@ -81,7 +82,8 @@ of the compiler.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-inlining-report</span></span></span></dt><dd class="dd-description"> Emit <span class="font-tt">.inlining</span> files (one per
 round of optimisation) showing all of the inliner’s decisions.
 </dd></dl><p>Less commonly-used options:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-remove-unused-arguments</span></span></span></dt><dd class="dd-description"> Remove unused function arguments
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-remove-unused-arguments</span></span></span></dt><dd class="dd-description"> Remove unused function arguments
 even when the argument is not specialised. This may have a small
 performance penalty.
 See section <a href="#ss%3Aflambda-remove-unused-args">23.10.3</a>.
@@ -89,9 +91,11 @@ See section <a href="#ss%3Aflambda-remove-unused-args">23.10.3</a>.
 rather than closures (an optimisation for reducing allocation). See
 section <a href="#ss%3Aflambda-unbox-closures">23.9.3</a>. This may have a small performance penalty.
 </dd></dl><p>Advanced options, only needed for detailed tuning:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-inline</span></span></span></dt><dd class="dd-description"> The behaviour depends on whether <span class="font-tt">-Oclassic</span>
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-inline</span></span></span></dt><dd class="dd-description"> The behaviour depends on whether <span class="font-tt">-Oclassic</span>
 is used.
-<ul class="itemize"><li class="li-itemize">When not in <span class="font-tt">-Oclassic</span> mode, <span class="font-tt">-inline</span> limits the total
+<ul class="itemize"><li class="li-itemize">
+When not in <span class="font-tt">-Oclassic</span> mode, <span class="font-tt">-inline</span> limits the total
 size of functions considered for inlining during any speculative inlining
 search. (See section <a href="#ss%3Aflambda-speculation">23.3.6</a>.) Note that
 this parameter does
@@ -133,7 +137,8 @@ calculation when using <span class="font-tt">-unbox-closures</span>. See
 section <a href="#ss%3Aflambda-unbox-closures">23.9.3</a>.
 </dd></dl>
 <h5 class="paragraph" id="sec552"><a class="section-anchor" href="#sec552" aria-hidden="true">﻿</a>Notes</h5>
-<ul class="itemize"><li class="li-itemize">The set of command line flags relating to optimisation should typically
+<ul class="itemize"><li class="li-itemize">
+The set of command line flags relating to optimisation should typically
 be specified to be the same across an entire project. Flambda does not
 currently record the requested flags in the <span class="font-tt">.cmx</span> files. As such,
 inlining of functions from previously-compiled units will subject their code
@@ -162,7 +167,8 @@ For high optimisation the number of rounds might be set at 3 or 4.</p><p>Command
 <span class="font-tt"><span class="machine"><span class="font-tt">-cost</span></span></span> in the name, accept arguments of the form:
 </p><div class="center">
 <em>n</em><span class="font-tt"> | </span><em>round</em><span class="font-tt">=</span><em>n</em>[<span class="font-tt">,</span>...]
-</div><ul class="itemize"><li class="li-itemize">If the first form is used, with a single integer specified,
+</div><ul class="itemize"><li class="li-itemize">
+If the first form is used, with a single integer specified,
 the value will apply to all rounds.
 </li><li class="li-itemize">If the second form is used, zero-based <em>round</em> integers specify
 values which are to be used only for those rounds.
@@ -175,7 +181,8 @@ level.</p>
 place where the function is called.
 The code of the function will be surrounded by bindings of its parameters
 to the corresponding arguments.</p><p>The aims of inlining are:
-</p><ul class="itemize"><li class="li-itemize">to reduce the runtime overhead caused by function calls (including
+</p><ul class="itemize"><li class="li-itemize">
+to reduce the runtime overhead caused by function calls (including
 setting up for such calls and returning afterwards);
 </li><li class="li-itemize">to reduce instruction cache misses by expressing frequently-taken
 paths through the program using fewer machine instructions; and
@@ -210,7 +217,8 @@ previous versions of the compiler.</p>
 passes, that is to say, after closure conversion. This has three particular
 advantages over a potentially more straightforward implementation prior to
 closure conversion:
-</p><ul class="itemize"><li class="li-itemize">It permits higher-order inlining, for example when a non-inlinable
+</p><ul class="itemize"><li class="li-itemize">
+It permits higher-order inlining, for example when a non-inlinable
 function always returns the same function yet with different environments
 of definition. Not all such cases are supported yet, but it is intended
 that such support will be improved in future.
@@ -233,7 +241,8 @@ in this chapter. See sections <a href="#sss%3Aflambda-functors">23.3.3</a>, <a h
 At the definition site of a function, the body of the
 function is measured. It will then be marked as eligible for inlining
 (and hence inlined at every direct call site) if:
-</p><ul class="itemize"><li class="li-itemize">the measured size (in unspecified units) is smaller than that of a
+</p><ul class="itemize"><li class="li-itemize">
+the measured size (in unspecified units) is smaller than that of a
 function call plus the argument of the <span class="font-tt">-inline</span> command-line flag; and
 </li><li class="li-itemize">the function is not recursive.
 </li></ul><p>Non-Flambda versions of the compiler cannot inline functions that
@@ -254,7 +263,8 @@ end
 </pre><p>
 All of this contrasts with the normal Flambda mode, that is to say
 without <span class="font-tt">-Oclassic</span>, where:
-</p><ul class="itemize"><li class="li-itemize">the inlining decision is made at the <span class="font-bold">call site</span>; and
+</p><ul class="itemize"><li class="li-itemize">
+the inlining decision is made at the <span class="font-bold">call site</span>; and
 </li><li class="li-itemize">recursive functions can be handled, by <em>specialisation</em> (see
 below).
 </li></ul><p>
@@ -282,7 +292,8 @@ against a large increase in code size. In the existing non-Flambda inliner
 this isn’t a great problem because chains of inlining were cut off fairly
 quickly. However it has led to excessive use of overly-large inlining
 parameters such as <span class="font-tt">-inline 10000</span>.</p><p>In more detail, at each call site the following procedure is followed:
-</p><ul class="itemize"><li class="li-itemize">Determine whether it is clear that inlining would be beneficial
+</p><ul class="itemize"><li class="li-itemize">
+Determine whether it is clear that inlining would be beneficial
 without, for the moment, doing any inlining within the function itself.
 (The exact assessment of <em>benefit</em> is described below.) If so, the
 function is inlined.
@@ -291,7 +302,8 @@ will be performed <em>speculatively</em> inside the function itself. The
 search for speculative inlining possibilities is controlled by two
 parameters: the <em>inlining threshold</em> and the <em>inlining depth</em>.
 (These are described in more detail below.)
-<ul class="itemize"><li class="li-itemize">If such speculation shows that performing some inlining inside the
+<ul class="itemize"><li class="li-itemize">
+If such speculation shows that performing some inlining inside the
 function would be beneficial, then such inlining is performed and the
 resulting function inlined at the original call site.
 </li><li class="li-itemize">Otherwise, nothing happens.
@@ -345,7 +357,8 @@ as a result of inlining.</p><p>For example given the following code:
 
 let g x = f true x
 </pre><p>it would be observed that inlining of <span class="font-tt">f</span> would remove:
-</p><ul class="itemize"><li class="li-itemize">one direct call;
+</p><ul class="itemize"><li class="li-itemize">
+one direct call;
 </li><li class="li-itemize">one conditional branch.
 </li></ul><p>Formally, an estimate of runtime performance benefit is computed by
 first summing
@@ -356,7 +369,8 @@ using the various <span class="font-tt">-inline-...-cost</span> flags as follows
 specified as integers. All of these flags accept a single argument
 describing such integers using the conventions
 detailed in section <a href="#ss%3Aflambda-rounds">23.2.1</a>.
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-inline-alloc-cost</span></span></span></dt><dd class="dd-description"> The cost of an allocation.
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">-inline-alloc-cost</span></span></span></dt><dd class="dd-description"> The cost of an allocation.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-inline-branch-cost</span></span></span></dt><dd class="dd-description"> The cost of a branch.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-inline-call-cost</span></span></span></dt><dd class="dd-description"> The cost of a direct function call.
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">-inline-indirect-cost</span></span></span></dt><dd class="dd-description"> The cost of an indirect function call.
@@ -382,13 +396,15 @@ towards keeping the inlined version.</p>
 <h3 class="subsection" id="ss:flambda-speculation"><a class="section-anchor" href="#ss:flambda-speculation" aria-hidden="true">﻿</a><span class="number">3.6</span> Control of speculation</h3>
 <p>As described above, there are three parameters that restrict the search
 for inlining opportunities during speculation:
-</p><ul class="itemize"><li class="li-itemize">the <em>inlining threshold</em>;
+</p><ul class="itemize"><li class="li-itemize">
+the <em>inlining threshold</em>;
 </li><li class="li-itemize">the <em>inlining depth</em>;
 </li><li class="li-itemize">the <em>unrolling depth</em>.
 </li></ul><p>
 These parameters are ultimately bounded by the arguments provided to
 the corresponding command-line flags (or their default values):
-</p><ul class="itemize"><li class="li-itemize"><span class="font-tt">-inline</span> (or, if the call site that triggered speculation is
+</p><ul class="itemize"><li class="li-itemize">
+<span class="font-tt">-inline</span> (or, if the call site that triggered speculation is
 at toplevel, <span class="font-tt">-inline-toplevel</span>);
 </li><li class="li-itemize"><span class="font-tt">-inline-max-depth</span>;
 </li><li class="li-itemize"><span class="font-tt">-inline-max-unroll</span>.
@@ -427,7 +443,8 @@ is not performed uselessly, arguments are only specialised if it can be shown
 that they are <em>invariant</em>: in other words, during the execution of the
 recursive function(s) themselves, the arguments never change.</p><p>Unless overridden by an attribute (see below), specialisation of a function
 will not be attempted if:
-</p><ul class="itemize"><li class="li-itemize">the compiler is in <span class="font-tt">-Oclassic</span> mode;
+</p><ul class="itemize"><li class="li-itemize">
+the compiler is in <span class="font-tt">-Oclassic</span> mode;
 </li><li class="li-itemize">the function is not obviously recursive;
 </li><li class="li-itemize">the function is not closed.
 </li></ul><p>The compiler can prove invariance of function arguments across multiple
@@ -586,7 +603,8 @@ locality.</p><p>The inliner is directed using attributes.
 For non-recursive functions (and one-step unrolling of recursive functions,
 although <span class="font-tt">@unroll</span> is more clear for this purpose)
 the following are supported:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">@@inline always</span></span> or <span class="machine"><span class="font-tt">@@inline never</span></span></span></dt><dd class="dd-description"> Attached
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">@@inline always</span></span> or <span class="machine"><span class="font-tt">@@inline never</span></span></span></dt><dd class="dd-description"> Attached
 to a <em>declaration</em> of a function or functor, these direct the inliner to
 either
 always or never inline, irrespective of the size/benefit calculation. (If
@@ -603,7 +621,8 @@ on the corresponding declaration.
 <span class="machine"><span class="font-tt">@@inline always</span></span> except that it will not trigger warning 55 if
 the function application cannot be inlined.
 </dd></dl><p>For recursive functions the relevant attributes are:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">@@specialise always</span></span> or <span class="machine"><span class="font-tt">@@specialise never</span></span></span></dt><dd class="dd-description">Attached to a declaration of a function
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold"><span class="machine"><span class="font-tt">@@specialise always</span></span> or <span class="machine"><span class="font-tt">@@specialise never</span></span></span></dt><dd class="dd-description">Attached to a declaration of a function
 or functor, this directs the inliner to either always or never
 specialise the function so
 long as it has appropriate contextual knowledge, irrespective of the
@@ -620,7 +639,8 @@ one or more invariant parameters whose values are known.)
 </dd><dt class="dt-description"><span class="font-bold"><span class="machine"><span class="font-tt">@unrolled </span></span></span><span class="font-it">n</span></dt><dd class="dd-description"> This attribute is attached to a function
 application and always takes an integer argument. Each time the inliner sees
 the attribute it behaves as follows:
-<ul class="itemize"><li class="li-itemize">If <span class="font-it">n</span> is zero or less, nothing happens.
+<ul class="itemize"><li class="li-itemize">
+If <span class="font-it">n</span> is zero or less, nothing happens.
 </li><li class="li-itemize">Otherwise the function being called is substituted at the call site
 with its body having been rewritten such that 
 any recursive calls to that function <em>or
@@ -676,7 +696,8 @@ from the compiler then maximal sharing may not be possible.</p>
 (By “constant float array” is meant an array consisting entirely of floating
 point numbers that are known at compile time. A common case is a literal
 such as <span class="font-tt">[| 42.0; 43.0; |]</span>.
-</p><ul class="itemize"><li class="li-itemize">Constant float arrays at the toplevel are mutable and never shared.
+</p><ul class="itemize"><li class="li-itemize">
+Constant float arrays at the toplevel are mutable and never shared.
 (That is to say, for each
 such definition there is a distinct symbol in the data section of the object
 file pointing at the array.)
@@ -685,7 +706,8 @@ time the expression is evaluated. This can be thought of as an operation that
 takes an immutable array (which in the source code has no associated name; let
 us call it the <em>initialising array</em>) and
 duplicates it into a fresh mutable array.
-<ul class="itemize"><li class="li-itemize">If the array is of size four or less, the expression will create a
+<ul class="itemize"><li class="li-itemize">
+If the array is of size four or less, the expression will create a
 fresh block and write the values into it one by one. There is no reference
 to the initialising array as a whole.</li><li class="li-itemize">Otherwise, the initialising array is lifted out and subject to the
 normal constant sharing procedure;
@@ -931,18 +953,21 @@ the “removal of unused closure variables” pass (see below).</p>
 <h2 class="section" id="s:flambda-effects"><a class="section-anchor" href="#s:flambda-effects" aria-hidden="true">﻿</a><span class="number">12</span> Treatment of effects</h2>
 <p>The Flambda optimisers classify expressions in order to determine whether
 an expression:
-</p><ul class="itemize"><li class="li-itemize">does not need to be evaluated at all; and/or
+</p><ul class="itemize"><li class="li-itemize">
+does not need to be evaluated at all; and/or
 </li><li class="li-itemize">may be duplicated.
 </li></ul><p>This is done by forming judgements on the <em>effects</em> and the <em>coeffects</em>
 that might be performed were the expression to be executed. Effects talk
 about how the expression might affect the world; coeffects talk about how
 the world might affect the expression.</p><p>Effects are classified as follows:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold">No effects:</span></dt><dd class="dd-description"> The expression does not change the observable state
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold">No effects:</span></dt><dd class="dd-description"> The expression does not change the observable state
 of the world. For example, it must not write to any mutable storage,
 call arbitrary external functions or change control flow (e.g. by raising
 an exception). Note that allocation is <em>not</em> classed as having
 “no effects” (see below).
-<ul class="itemize"><li class="li-itemize">It is assumed in the compiler that expressions with no
+<ul class="itemize"><li class="li-itemize">
+It is assumed in the compiler that expressions with no
 effects, whose results are not used, may be eliminated. (This typically
 happens where the expression in question is the defining expression of a
 <span class="font-tt">let</span>; in such cases the <span class="font-tt">let</span>-expression will be
@@ -964,7 +989,8 @@ may be eliminated by the compiler. However, unlike expressions with
 “no effects”, such expressions will never be eligible for duplication.
 </dd><dt class="dt-description"><span class="font-bold">Arbitrary effects:</span></dt><dd class="dd-description"> All other expressions.
 </dd></dl><p>There is a single classification for coeffects:
-</p><dl class="description"><dt class="dt-description"><span class="font-bold">No coeffects:</span></dt><dd class="dd-description"> The expression does not observe the effects (in
+</p><dl class="description"><dt class="dt-description">
+<span class="font-bold">No coeffects:</span></dt><dd class="dd-description"> The expression does not observe the effects (in
 the sense described above) of other expressions. For example, it must not
 read from any mutable storage or call arbitrary external functions.
 </dd></dl><p>It is assumed in the compiler that, subject to data dependencies,
@@ -1025,7 +1051,8 @@ to add type annotations that claim some mutable value is always immediate
 if it might be possible for an unsafe operation to update it to a boxed
 value.</p>
 <h2 class="section" id="s:flambda-glossary"><a class="section-anchor" href="#s:flambda-glossary" aria-hidden="true">﻿</a><span class="number">16</span> Glossary</h2>
-<p>The following terminology is used in this chapter of the manual.</p><dl class="description"><dt class="dt-description"><span class="font-bold">Call site</span></dt><dd class="dd-description"> See <em>direct call site</em> and <em>indirect call site</em> below.
+<p>The following terminology is used in this chapter of the manual.</p><dl class="description"><dt class="dt-description">
+<span class="font-bold">Call site</span></dt><dd class="dd-description"> See <em>direct call site</em> and <em>indirect call site</em> below.
 </dd><dt class="dt-description"><span class="font-bold">Closed function</span></dt><dd class="dd-description"> A function whose body has no free variables
 except its parameters and any to which are bound other functions within
 the same (possibly mutually-recursive) declaration.
