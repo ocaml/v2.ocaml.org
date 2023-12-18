@@ -89,7 +89,7 @@
 <img src="search_icon.svg" alt="Search" class="api_search svg" onclick="mySearch(false)"></div>
 <div id="search_results"></div><div class="toc_title"><a href="Marshal.html">OCaml library : Marshal</a></div><ul></ul></nav></header>
 <code class="code"><span class="keyword">sig</span><br>
-&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;extern_flags&nbsp;=&nbsp;<span class="constructor">No_sharing</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Closures</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Compat_32</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Compression</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;extern_flags&nbsp;=&nbsp;<span class="constructor">No_sharing</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Closures</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Compat_32</span><br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;to_channel&nbsp;:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Stdlib</span>.out_channel&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Marshal</span>.extern_flags&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
 &nbsp;&nbsp;<span class="keyword">external</span>&nbsp;to_bytes&nbsp;:&nbsp;<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Marshal</span>.extern_flags&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bytes<br>
@@ -104,6 +104,5 @@
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;header_size&nbsp;:&nbsp;int<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;data_size&nbsp;:&nbsp;bytes&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;total_size&nbsp;:&nbsp;bytes&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;compression_supported&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
 <span class="keyword">end</span></code>
 </div></body></html>

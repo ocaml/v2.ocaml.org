@@ -587,13 +587,11 @@
 <td class="typefieldcomment" align="left" valign="top"><code>(*</code></td><td class="typefieldcomment" align="left" valign="top"><div class="info ">
 <div class="info-desc">
 <p>Maximum amount of out-of-heap memory for each custom value
-        allocated in the minor heap. When a custom value is allocated
-        on the minor heap and holds more than this many bytes, only
-        this value is counted against <code class="code">custom_minor_ratio</code> and the
-        rest is directly counted against <code class="code">custom_major_ratio</code>.
+        allocated in the minor heap. Custom values that hold more
+        than this many bytes are allocated on the major heap.
         Note: this only applies to values allocated with
         <code class="code">caml_alloc_custom_mem</code> (e.g. bigarrays).
-        Default: 8192 bytes.</p>
+        Default: 70000 bytes.</p>
 </div>
 <ul class="info-attributes">
 <li><b>Since</b> 4.08</li>

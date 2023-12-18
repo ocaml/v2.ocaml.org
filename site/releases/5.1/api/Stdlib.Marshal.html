@@ -131,29 +131,10 @@
 </div>
 </div>
 </td><td class="typefieldcomment" align="left" valign="bottom"><code>*)</code></td>
-</tr>
-<tr>
-<td align="left" valign="top">
-<code><span class="keyword">|</span></code></td>
-<td align="left" valign="top">
-<code><span id="TYPEELTextern_flags.Compression"><span class="constructor">Compression</span></span></code></td>
-<td class="typefieldcomment" align="left" valign="top"><code>(*</code></td><td class="typefieldcomment" align="left" valign="top"><div class="info ">
-<div class="info-desc">
-<p>Compress the output if possible</p>
-</div>
-<ul class="info-attributes">
-<li><b>Since</b> 5.1</li>
-</ul>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom"><code>*)</code></td>
 </tr></tbody></table>
 
-<div class="info ">
-<div class="info-desc">
-<p>The flags to the <code class="code"><span class="constructor">Marshal</span>.to_*</code> functions below.</p>
-</div>
-</div>
 
+<p>The flags to the <code class="code"><span class="constructor">Marshal</span>.to_*</code> functions below.</p>
 
 <pre><span id="VALto_channel"><span class="keyword">val</span> to_channel</span> : <code class="type"><a href="Stdlib.html#TYPEout_channel">out_channel</a> -&gt; 'a -&gt; <a href="Marshal.html#TYPEextern_flags">extern_flags</a> list -&gt; unit</code></pre><div class="info ">
 <div class="info-desc">
@@ -195,17 +176,6 @@
    corresponding closure will create a new reference, different from
    the global one.</p>
 
-<p>If <code class="code">flags</code> contains <code class="code"><span class="constructor">Marshal</span>.<span class="constructor">Compression</span></code>, the marshaled data
-   representing value <code class="code">v</code> is compressed before being written to
-   channel <code class="code">chan</code>.  Decompression takes place automatically in
-   the unmarshaling functions <a href="Stdlib.html#VALinput_value"><code class="code">input_value</code></a>, <a href="Marshal.html#VALfrom_channel"><code class="code"><span class="constructor">Marshal</span>.from_channel</code></a>,
-   <a href="Marshal.html#VALfrom_string"><code class="code"><span class="constructor">Marshal</span>.from_string</code></a>, etc.  For large values <code class="code">v</code>, compression
-   typically reduces the size of marshaled data by a factor 2 to 4,
-   but slows down marshaling and, to a lesser extent, unmarshaling.
-   Compression is not supported on some platforms; in this case,
-   the <code class="code"><span class="constructor">Marshal</span>.<span class="constructor">Compression</span></code> flag is silently ignored and uncompressed
-   data is written to channel <code class="code">chan</code>.</p>
-
 <p>If <code class="code">flags</code> contains <code class="code"><span class="constructor">Marshal</span>.<span class="constructor">Compat_32</span></code>, marshaling fails when
    it encounters an integer value outside the range <code class="code">[-2{^30},&nbsp;2{^30}-1]</code>
    of integers that are representable on a 32-bit platform.  This
@@ -219,7 +189,6 @@
    it has no effect if marshaling is performed on a 32-bit platform.</p>
 </div>
 <ul class="info-attributes">
-<li><b>Before 5.1 </b> Compression mode was not supported</li>
 <li><b>Raises</b> <code>Failure</code> if <code class="code">chan</code> is not in binary mode.</li>
 </ul>
 </div>
@@ -325,30 +294,6 @@
 <div class="info-desc">
 <p>See <a href="Marshal.html#VALheader_size"><code class="code"><span class="constructor">Marshal</span>.header_size</code></a>.</p>
 </div>
-</div>
-
-<pre><span id="VALcompression_supported"><span class="keyword">val</span> compression_supported</span> : <code class="type">unit -&gt; bool</code></pre><div class="info ">
-<div class="info-desc">
-<p>Indicates whether the compressed data format is supported.</p>
-
-<p>If <code class="code"><span class="constructor">Marshal</span>.compression_supported()</code> is <code class="code"><span class="keyword">true</span></code>, compressed data
-    is unmarshaled safely by <a href="Stdlib.html#VALinput_value"><code class="code">input_value</code></a>, <a href="Marshal.html#VALfrom_channel"><code class="code"><span class="constructor">Marshal</span>.from_channel</code></a>,
-    <a href="Marshal.html#VALfrom_string"><code class="code"><span class="constructor">Marshal</span>.from_string</code></a> and related functions.  Moreover, the
-    <code class="code"><span class="constructor">Marshal</span>.<span class="constructor">Compression</span></code> flag is honored by the <a href="Marshal.html#VALto_channel"><code class="code"><span class="constructor">Marshal</span>.to_channel</code></a>,
-    <a href="Marshal.html#VALto_string"><code class="code"><span class="constructor">Marshal</span>.to_string</code></a> and related functions, resulting in the
-    production of compressed data.</p>
-
-<p>If <code class="code"><span class="constructor">Marshal</span>.compression_supported()</code> is <code class="code"><span class="keyword">false</span></code>, compressed data
-    causes <a href="Stdlib.html#VALinput_value"><code class="code">input_value</code></a>, <a href="Marshal.html#VALfrom_channel"><code class="code"><span class="constructor">Marshal</span>.from_channel</code></a>,
-    <a href="Marshal.html#VALfrom_string"><code class="code"><span class="constructor">Marshal</span>.from_string</code></a> and related functions to fail and a
-    <code class="code"><span class="constructor">Failure</span></code> exception to be raised.  Moreover,
-    <a href="Marshal.html#VALto_channel"><code class="code"><span class="constructor">Marshal</span>.to_channel</code></a>, <a href="Marshal.html#VALto_string"><code class="code"><span class="constructor">Marshal</span>.to_string</code></a> and related functions
-    ignore the <code class="code"><span class="constructor">Marshal</span>.<span class="constructor">Compression</span></code> flag and produce uncompressed
-    data.</p>
-</div>
-<ul class="info-attributes">
-<li><b>Since</b> 5.1</li>
-</ul>
 </div>
 
 </div></body></html>
