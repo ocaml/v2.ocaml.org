@@ -34,6 +34,7 @@
 <link title="Build_path_prefix_map" rel="Chapter" href="Build_path_prefix_map.html">
 <link title="Ccomp" rel="Chapter" href="Ccomp.html">
 <link title="Clflags" rel="Chapter" href="Clflags.html">
+<link title="Compression" rel="Chapter" href="Compression.html">
 <link title="Config_boot" rel="Chapter" href="Config_boot.html">
 <link title="Config_main" rel="Chapter" href="Config_main.html">
 <link title="Config" rel="Chapter" href="Config.html">
@@ -878,6 +879,12 @@
 <td></td></tr>
 <tr><td><a href="CamlinternalMenhirLib.ErrorReports.html#VALcompress">compress</a> [<a href="CamlinternalMenhirLib.ErrorReports.html">CamlinternalMenhirLib.ErrorReports</a>]</td>
 <td></td></tr>
+<tr><td><a href="Compression.html#VALcompression_supported">compression_supported</a> [<a href="Compression.html">Compression</a>]</td>
+<td><div class="info">
+<p>Reports whether compression is supported.</p>
+
+</div>
+</td></tr>
 <tr><td><a href="Misc.html#VALconcat_null_terminated">concat_null_terminated</a> [<a href="Misc.html">Misc</a>]</td>
 <td><div class="info">
 <p><code class="code">concat_null_terminated&nbsp;[x1;x2;&nbsp;...&nbsp;xn]</code> is
@@ -2079,6 +2086,15 @@
 <td></td></tr>
 <tr><td><a href="Location.html#VALinput_phrase_buffer">input_phrase_buffer</a> [<a href="Location.html">Location</a>]</td>
 <td></td></tr>
+<tr><td><a href="Compression.html#VALinput_value">input_value</a> [<a href="Compression.html">Compression</a>]</td>
+<td><div class="info">
+<p><code class="code"><span class="constructor">Compression</span>.input_value&nbsp;chan</code> reads from channel <code class="code">chan</code> the
+    byte representation of a structured value, as produced by
+    <code class="code"><span class="constructor">Compression</span>.output_value</code>, and reconstructs and
+    returns the corresponding value.</p>
+
+</div>
+</td></tr>
 <tr><td><a href="Clflags.html#VALinsn_sched">insn_sched</a> [<a href="Clflags.html">Clflags</a>]</td>
 <td></td></tr>
 <tr><td><a href="Clflags.html#VALinsn_sched_default">insn_sched_default</a> [<a href="Clflags.html">Clflags</a>]</td>
@@ -3066,6 +3082,13 @@
 <td><div class="info">
 <p>Produce output in temporary file, then rename it
            (as atomically as possible) to the desired output file name.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Compression.html#VALoutput_value">output_value</a> [<a href="Compression.html">Compression</a>]</td>
+<td><div class="info">
+<p><code class="code"><span class="constructor">Compression</span>.output_value&nbsp;chan&nbsp;v</code> writes the representation
+    of <code class="code">v</code> on channel <code class="code">chan</code>.</p>
 
 </div>
 </td></tr>

@@ -6,7 +6,7 @@
                                   Xavier Leroy,
                  Damien Doligez, Alain Frisch, Jacques Garrigue,
              Didier Rémy, KC Sivaramakrishnan and Jérôme Vouillon
-                               14^thSeptember, 2023
+                               18^thDecember , 2023
        Copyright © 2013 Institut National de Recherche en Informatique et en
                                  Automatique 
 
@@ -41668,11 +41668,9 @@ Exception handling
 >>
 
     Maximum amount of out-of-heap memory for each custom value allocated in the
-   minor heap. When a custom value is allocated on the minor heap and holds
-   more than this many bytes, only this value is counted against
-   custom_minor_ratio and the rest is directly counted against
-   custom_major_ratio. Note: this only applies to values allocated with
-   caml_alloc_custom_mem (e.g. bigarrays). Default: 8192 bytes.
+   minor heap. Custom values that hold more than this many bytes are allocated
+   on the major heap. Note: this only applies to values allocated with
+   caml_alloc_custom_mem (e.g. bigarrays). Default: 70000 bytes.
    Since: 4.08
 
 <<
@@ -46286,15 +46284,7 @@ differently than binary channels, e.g. Windows.
 
     Ensure 32-bit compatibility
 
-<<
-    | Compression
->>
-
-    Compress the output if possible
-   Since: 5.1
-
-    The flags to the Marshal.to_* functions below.
-
+  The flags to the Marshal.to_* functions below.
 <<
   val to_channel : out_channel -> 'a -> extern_flags list -> unit
 >>
@@ -46328,15 +46318,6 @@ differently than binary channels, e.g. Windows.
    reference may or may not include the reference in its closure. If it does,
    unmarshaling the corresponding closure will create a new reference,
    different from the global one.
-   If flags contains Marshal.Compression, the marshaled data representing value
-   v is compressed before being written to channel chan. Decompression takes
-   place automatically in the unmarshaling functions input_value[27.2],
-   Marshal.from_channel[28.34], Marshal.from_string[28.34], etc. For large
-   values v, compression typically reduces the size of marshaled data by a
-   factor 2 to 4, but slows down marshaling and, to a lesser extent,
-   unmarshaling. Compression is not supported on some platforms; in this case,
-   the Marshal.Compression flag is silently ignored and uncompressed data is
-   written to channel chan.
    If flags contains Marshal.Compat_32, marshaling fails when it encounters an
    integer value outside the range [-2{^30}, 2{^30}-1] of integers that are
    representable on a 32-bit platform. This ensures that marshaled data
@@ -46347,7 +46328,6 @@ differently than binary channels, e.g. Windows.
    32-bit platform. The Mashal.Compat_32 flag only matters when marshaling is
    performed on a 64-bit platform; it has no effect if marshaling is performed
    on a 32-bit platform.
-   Before 5.1 Compression mode was not supported
    Raises Failure if chan is not in binary mode.
 
 <<
@@ -46437,24 +46417,6 @@ differently than binary channels, e.g. Windows.
 >>
 
     See Marshal.header_size[28.34].
-
-<<
-  val compression_supported : unit -> bool
->>
-
-    Indicates whether the compressed data format is supported.
-   If Marshal.compression_supported() is true, compressed data is unmarshaled
-   safely by input_value[27.2], Marshal.from_channel[28.34],
-   Marshal.from_string[28.34] and related functions. Moreover, the
-   Marshal.Compression flag is honored by the Marshal.to_channel[28.34],
-   Marshal.to_string[28.34] and related functions, resulting in the production
-   of compressed data.
-   If Marshal.compression_supported() is false, compressed data causes
-   input_value[27.2], Marshal.from_channel[28.34], Marshal.from_string[28.34]
-   and related functions to fail and a Failure exception to be raised.
-   Moreover, Marshal.to_channel[28.34], Marshal.to_string[28.34] and related
-   functions ignore the Marshal.Compression flag and produce uncompressed data.
-   Since: 5.1
 
 
 
@@ -60566,7 +60528,6 @@ Chapter 36  Index to the library
    - complex32_elt, 28.5 
    - complex64, 28.5 
    - complex64_elt, 28.5 
-   - compression_supported, 28.34 
    - concat, 28.2, 28.3, 28.8, 28.9, 28.19, 28.20, 28.20, 28.31, 28.32, 28.48,
    28.53, 28.54 
    - concat_map, 28.31, 28.32, 28.48 
