@@ -4,8 +4,7 @@
 
 # Introduction to Gtk
 
-If you intend to try the code in this tutorial in the
-interactive toplevel, you
+If you intend to try the code in this tutorial in the [interactive toplevel](https://ocaml.org/learn/tutorials/a_first_hour_with_ocaml.html),, you
 must first issue (assuming you have installed `lablgtk` using
 [opam](../../docs/install.html)):
 
